@@ -166,6 +166,14 @@
     @media(max-width:900px){.materials{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr 1fr}.step{border-right:none;border-bottom:1.5px solid var(--gray-200)}.step:nth-child(odd){border-right:1.5px solid var(--gray-200)}.step:last-child{border-bottom:none}}
     @media(max-width:600px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 24px 60px}.quality-bar{padding:16px 20px}.pricing-sec,.how-sec,.faq-sec,.cta-sec{padding:60px 24px}.materials{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step{border-right:none !important;border-bottom:1.5px solid var(--gray-200) !important}.step:last-child{border-bottom:none !important}.min-notice{flex-direction:column}footer{padding:28px 24px}}
   </style>
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7V41XYLLP5');
+  </script>
 </head>
 <body>
 <div class="blob blob-1"></div>
@@ -256,6 +264,14 @@
 
 <div class="quality-bar">
   <p>⚠️ 品質承諾：每筆訂單列印前，線材經過 <strong>5小時烘線</strong> 去除水氣，機台進行 <strong>1小時精密校準</strong>。<br>這是最低消費 <strong>NT$200（不含運費）</strong> 的原因，也是我們對品質的堅持。</p>
+</div>
+
+<!-- Overseas notice (hidden by default, shown by JS) -->
+<div id="overseas-notice" style="display:none;background:#fff3cd;border-top:3px solid #E8431A;padding:20px 48px;text-align:center;position:relative;z-index:1">
+  <p style="font-family:'Space Mono',monospace;font-size:13px;letter-spacing:.05em;color:#856404;line-height:1.8">
+    🌏 <strong>Taiwan Delivery Only</strong> — Our FDM 3D printing service currently ships within Taiwan only.<br>
+    For international orders, please <a href="https://lin.ee/n5KW430" target="_blank" style="color:#E8431A;font-weight:700">contact us via LINE</a> to discuss options.
+  </p>
 </div>
 
 <section class="pricing-sec" id="pricing">
@@ -392,6 +408,29 @@
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
     if (!isOpen) item.classList.add('open');
   }
+
+  // ── TAIWAN ONLY DETECTION ──
+  async function checkRegion() {
+    let country = 'TW';
+    try {
+      const res = await fetch('https://ipapi.co/json/');
+      const data = await res.json();
+      country = data.country_code || 'TW';
+    } catch(e) {}
+
+    if(country !== 'TW') {
+      document.getElementById('overseas-notice').style.display = 'block';
+      // Grey out pricing section slightly
+      const pricingSec = document.querySelector('.pricing-sec');
+      if(pricingSec) {
+        const notice = document.createElement('div');
+        notice.style.cssText = 'text-align:center;margin-bottom:24px;background:#fff3cd;border:1.5px solid #ffd700;border-radius:12px;padding:16px 24px;font-family:Space Mono,monospace;font-size:12px;letter-spacing:.05em;color:#856404';
+        notice.innerHTML = '⚠️ Taiwan delivery only · 僅限台灣本島配送';
+        document.querySelector('.materials').before(notice);
+      }
+    }
+  }
+  checkRegion();
 </script>
 </body>
 </html>
