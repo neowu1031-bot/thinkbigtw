@@ -225,6 +225,14 @@
     @media(max-width:900px){.plans{grid-template-columns:1fr}.skills-panel.active{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr 1fr}.step{border-right:none;border-bottom:1.5px solid var(--gray-200)}.step:nth-child(odd){border-right:1.5px solid var(--gray-200)}.step:last-child{border-bottom:none}}
     @media(max-width:600px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 24px 60px}.pricing-sec,.skills-sec,.how-sec,.cta-sec{padding:60px 24px}.skills-panel.active{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step{border-right:none !important;border-bottom:1.5px solid var(--gray-200) !important}.step:last-child{border-bottom:none !important}footer{padding:28px 24px}}
   </style>
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7V41XYLLP5');
+  </script>
 </head>
 <body>
 <div class="blob blob-1"></div>
@@ -438,6 +446,53 @@
     btn.classList.add('active');
     document.getElementById('tab-' + tab).classList.add('active');
   }
+
+  // ── GEO PRICING ──
+  const PRICES = {
+    'TW': { currency:'NT$', starter:'888', pro:'2,888', starterRaw:'888', proRaw:'2,888', period:'一次性 · 永久使用' },
+    'JP': { currency:'¥',   starter:'4,200', pro:'13,800', starterRaw:'4200', proRaw:'13800', period:'One-time · Lifetime' },
+    'KR': { currency:'USD$', starter:'28', pro:'88', starterRaw:'28', proRaw:'88', period:'One-time · Lifetime' },
+    'TH': { currency:'USD$', starter:'28', pro:'88', starterRaw:'28', proRaw:'88', period:'One-time · Lifetime' },
+    'SG': { currency:'USD$', starter:'28', pro:'88', starterRaw:'28', proRaw:'88', period:'One-time · Lifetime' },
+    'DEFAULT': { currency:'USD$', starter:'32', pro:'98', starterRaw:'32', proRaw:'98', period:'One-time · Lifetime' },
+  };
+
+  async function applyGeoPricing() {
+    let country = 'DEFAULT';
+    try {
+      const res = await fetch('https://ipapi.co/json/');
+      const data = await res.json();
+      country = data.country_code || 'DEFAULT';
+    } catch(e) {}
+
+    const p = PRICES[country] || PRICES['DEFAULT'];
+
+    // Update starter price
+    const starterAmount = document.querySelector('.plan:first-child .amount');
+    const starterCurrency = document.querySelector('.plan:first-child .currency');
+    const starterPeriod = document.querySelector('.plan:first-child .period');
+    if(starterAmount) starterAmount.textContent = p.starter;
+    if(starterCurrency) starterCurrency.textContent = p.currency;
+    if(starterPeriod) starterPeriod.textContent = p.period;
+
+    // Update pro price
+    const proAmount = document.querySelector('.plan.featured .amount');
+    const proCurrency = document.querySelector('.plan.featured .currency');
+    const proPeriod = document.querySelector('.plan.featured .period');
+    if(proAmount) proAmount.textContent = p.pro;
+    if(proCurrency) proCurrency.textContent = p.currency;
+    if(proPeriod) proPeriod.textContent = p.period;
+
+    // Add geo badge
+    if(country !== 'TW') {
+      const badge = document.createElement('div');
+      badge.style.cssText = 'text-align:center;margin-bottom:24px;font-family:Space Mono,monospace;font-size:11px;letter-spacing:.08em;color:var(--gray-400)';
+      badge.textContent = '💱 Prices shown in your local currency';
+      document.querySelector('.plans').before(badge);
+    }
+  }
+
+  applyGeoPricing();
 </script>
 </body>
 </html>
