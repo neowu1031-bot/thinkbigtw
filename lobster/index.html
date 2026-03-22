@@ -1,1 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>龍蝦安裝 — AI Agent 部署服務 | Think BIG!</title>
+  <meta name="description" content="Think BIG! 龍蝦安裝服務。入門版30技能NT$888、專業版140+技能NT$2,888、企業版客製詢價。OpenClaw AI Agent 專業部署，台灣在地團隊。">
+  <meta name="keywords" content="龍蝦安裝,OpenClaw安裝,AI Agent部署,AI自動化台灣,OpenClaw台灣,龍蝦技能,AI Agent安裝服務,Think BIG">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://thinkbigtw.com/lobster">
 
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="zh-TW" href="https://thinkbigtw.com/lobster">
+  <link rel="alternate" hreflang="en" href="https://thinkbigtw.com/lobster">
+  <link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/lobster">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thinkbigtw.com/lobster">
+  <meta property="og:title" content="🦞 龍蝦安裝 — AI Agent 部署服務 | Think BIG!">
+  <meta property="og:description" content="專業部署 OpenClaw AI Agent。入門版 NT$888 起，140+ 技能全套配置，安全設定全包。台灣在地團隊，24小時快速交付。">
+  <meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Think BIG!">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🦞 龍蝦安裝 — AI Agent 部署服務 | Think BIG!">
+  <meta name="twitter:description" content="專業部署 OpenClaw AI Agent。入門版 NT$888 起，140+ 技能全套，安全設定全包。台灣在地團隊。">
+  <meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
+
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://thinkbigtw.com/lobster#webpage",
+        "url": "https://thinkbigtw.com/lobster",
+        "name": "龍蝦安裝 — AI Agent 部署服務 | Think BIG!",
+        "description": "專業部署 OpenClaw AI Agent，入門版30技能NT$888，專業版140+技能NT$2,888，企業版客製詢價。",
+        "isPartOf": { "@id": "https://thinkbigtw.com/#website" },
+        "inLanguage": "zh-TW",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://thinkbigtw.com" },
+            { "@type": "ListItem", "position": 2, "name": "龍蝦安裝", "item": "https://thinkbigtw.com/lobster" }
+          ]
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://thinkbigtw.com/lobster#service",
+        "name": "OpenClaw 龍蝦 AI Agent 安裝服務",
+        "description": "專業部署 OpenClaw AI Agent，提供完整技能庫配置、安全設定、LINE串接、操作教學。",
+        "url": "https://thinkbigtw.com/lobster",
+        "provider": { "@id": "https://thinkbigtw.com/#organization" },
+        "areaServed": { "@type": "Country", "name": "Taiwan" },
+        "availableLanguage": ["Chinese", "English"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "龍蝦安裝方案",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "入門版 — 龍蝦新手包",
+              "description": "30個精選日常技能，基本安全設定，LINE串接，操作手冊，7天售後支援。",
+              "price": "888",
+              "priceCurrency": "TWD",
+              "priceSpecification": { "@type": "UnitPriceSpecification", "price": "888", "priceCurrency": "TWD", "unitText": "一次性" },
+              "url": "https://thinkbigtw.com/lobster",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "Offer",
+              "name": "專業版 — 龍蝦全裝備",
+              "description": "140+完整技能庫，進階安全設定，LINE+WhatsApp串接，10個Cron排程，30天售後支援。",
+              "price": "2888",
+              "priceCurrency": "TWD",
+              "priceSpecification": { "@type": "UnitPriceSpecification", "price": "2888", "priceCurrency": "TWD", "unitText": "一次性" },
+              "url": "https://thinkbigtw.com/lobster",
+              "availability": "https://schema.org/InStock"
+            },
+            {
+              "@type": "Offer",
+              "name": "企業版 — 龍蝦艦隊",
+              "description": "客製化多機多人部署，專屬AI工作流設計，月度維護，依規模報價。",
+              "url": "https://thinkbigtw.com/lobster",
+              "availability": "https://schema.org/InStock"
+            }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "OpenClaw 龍蝦安裝需要多久？",
+            "acceptedAnswer": { "@type": "Answer", "text": "專業版通常在24小時內完成遠端安裝配置，入門版更快，約2-4小時。" }
+          },
+          {
+            "@type": "Question",
+            "name": "入門版和專業版有什麼差別？",
+            "acceptedAnswer": { "@type": "Answer", "text": "入門版包含30個精選日常技能，適合個人使用者體驗AI Agent。專業版包含140+完整技能庫，含進階安全設定、LINE+WhatsApp串接、10個自動排程，適合重度使用者。" }
+          },
+          {
+            "@type": "Question",
+            "name": "安裝後可以自己新增技能嗎？",
+            "acceptedAnswer": { "@type": "Answer", "text": "可以！專業版含GitHub Skill Installer，可從GitHub一鍵安裝新技能，龍蝦也有Self Evolve自動升級功能。" }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--orange:#E8431A;--orange-dark:#C23510;--orange-pale:#FEF0EC;--orange-light:#FDDDD5;--cream:#F5F0EB;--warm-white:#FAF8F5;--gray-100:#F0EDE8;--gray-200:#E0DCD5;--gray-400:#9A9590;--gray-600:#5A5550;--ink:#1A1512}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--warm-white);color:var(--ink);font-family:'Noto Sans TC',sans-serif;font-weight:300;overflow-x:hidden}
+    .blob{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
+    .blob-1{width:600px;height:600px;top:-200px;right:-180px;background:radial-gradient(circle,rgba(232,67,26,.08) 0%,transparent 70%)}
+    .blob-2{width:500px;height:500px;bottom:-150px;left:-150px;background:radial-gradient(circle,rgba(232,67,26,.07) 0%,transparent 70%)}
+    .watermark{position:fixed;bottom:-20px;left:50%;transform:translateX(-50%);z-index:0;pointer-events:none;font-family:'Syne',sans-serif;font-size:clamp(80px,16vw,200px);font-weight:800;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px rgba(232,67,26,.06);white-space:nowrap;line-height:1;user-select:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,245,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px}
+    .nav-wordmark{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.02em;text-decoration:none}
+    .nav-wordmark span{color:var(--orange)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-size:13px;color:var(--gray-600);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--ink)}
+    .nav-links a.active{color:var(--ink);font-weight:500;border-bottom:2px solid var(--orange);padding-bottom:2px}
+    .nav-line{display:flex;align-items:center;gap:8px;background:#06C755;color:white;padding:8px 18px;border-radius:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 2px 12px rgba(6,199,85,.3)}
+    .nav-line:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(6,199,85,.45)}
+    .nav-line svg{width:16px;height:16px;fill:white;flex-shrink:0}
+    .hero{padding:140px 48px 80px;text-align:center;position:relative;z-index:1;max-width:900px;margin:0 auto}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-pale);border:1px solid var(--orange-light);color:var(--orange);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:32px;opacity:0;animation:fadeUp .6s .1s forwards}
+    .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+    .hero-emoji{font-size:72px;display:block;margin-bottom:20px;opacity:0;animation:fadeUp .5s .05s forwards}
+    .hero-h1{font-family:'Syne',sans-serif;font-size:clamp(42px,6vw,80px);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin-bottom:24px;opacity:0;animation:fadeUp .7s .2s forwards}
+    .hero-h1 em{font-style:normal;color:var(--orange)}
+    .hero-sub{font-size:17px;line-height:1.7;color:var(--gray-600);max-width:520px;margin:0 auto 40px;opacity:0;animation:fadeUp .7s .35s forwards}
+    .hero-trust{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .5s forwards}
+    .trust-pill{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid var(--gray-200);padding:7px 16px;border-radius:100px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--gray-600)}
+    .pricing-sec{padding:80px 48px;position:relative;z-index:1}
+    .sec-head{text-align:center;margin-bottom:56px}
+    .sec-eye{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto}
+    .plan{border-radius:20px;padding:36px 32px;background:white;border:1.5px solid var(--gray-200);position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.3,.64,1),box-shadow .3s}
+    .plan:hover{transform:translateY(-6px);box-shadow:0 24px 56px rgba(0,0,0,.09)}
+    .plan.featured{border-color:var(--orange);background:var(--ink)}
+    .plan.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange)}
+    .plan-badge{position:absolute;top:20px;right:20px;background:var(--orange);color:white;font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px}
+    .plan-eye{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+    .plan-name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.03em;margin-bottom:8px;color:var(--ink)}
+    .plan.featured .plan-name{color:white}
+    .plan-desc{font-size:13px;line-height:1.7;color:var(--gray-600);margin-bottom:24px;min-height:44px}
+    .plan.featured .plan-desc{color:rgba(255,255,255,.5)}
+    .plan-price{margin-bottom:24px}
+    .plan-price .amount{font-family:'Syne',sans-serif;font-size:48px;font-weight:800;letter-spacing:-.04em;color:var(--ink);line-height:1}
+    .plan.featured .amount{color:white}
+    .plan-price .currency{font-family:'Space Mono',monospace;font-size:14px;color:var(--gray-400);margin-right:2px}
+    .plan.featured .currency{color:rgba(255,255,255,.35)}
+    .plan-price .period{font-family:'Space Mono',monospace;font-size:10px;color:var(--gray-400);letter-spacing:.05em;display:block;margin-top:4px}
+    .plan.featured .period{color:rgba(255,255,255,.3)}
+    .plan-divider{height:1px;background:var(--gray-200);margin-bottom:20px}
+    .plan.featured .plan-divider{background:rgba(255,255,255,.1)}
+    .plan-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+    .plan-features li{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.5;color:var(--gray-600)}
+    .plan.featured .plan-features li{color:rgba(255,255,255,.7)}
+    .feat-check{width:16px;height:16px;flex-shrink:0;margin-top:1px}
+    .plan-btn{display:block;text-align:center;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:14px 24px;border-radius:10px;text-decoration:none;transition:transform .2s,box-shadow .2s;font-weight:700}
+    .plan-btn.outline{border:1.5px solid var(--gray-200);color:var(--ink);background:transparent}
+    .plan-btn.outline:hover{border-color:var(--ink);transform:translateY(-1px)}
+    .plan-btn.primary{background:var(--orange);color:white;box-shadow:0 4px 16px rgba(232,67,26,.3)}
+    .plan-btn.primary:hover{background:var(--orange-dark);transform:translateY(-2px)}
+    .plan-btn.dark{background:white;color:var(--ink)}
+    .plan-btn.dark:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+    .skills-sec{background:var(--cream);padding:80px 48px;position:relative;z-index:1}
+    .tabs{display:flex;gap:8px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+    .tab{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:8px 20px;border-radius:100px;border:1.5px solid var(--gray-200);background:white;color:var(--gray-600);cursor:pointer;transition:all .2s}
+    .tab.active{background:var(--orange);color:white;border-color:var(--orange)}
+    .skills-panel{display:none;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1000px;margin:0 auto}
+    .skills-panel.active{display:grid}
+    .skill-card{background:white;border:1.5px solid var(--gray-200);border-radius:14px;padding:20px 22px;transition:transform .2s,border-color .2s}
+    .skill-card:hover{transform:translateY(-3px);border-color:var(--orange-light)}
+    .skill-tier{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+    .skill-tier.starter{color:#06C755}
+    .skill-tier.pro{color:var(--orange)}
+    .skill-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px}
+    .skill-desc{font-size:12px;line-height:1.6;color:var(--gray-400)}
+    .how-sec{padding:80px 48px;position:relative;z-index:1}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);max-width:1000px;margin:0 auto;border:1.5px solid var(--gray-200);border-radius:16px;overflow:hidden;background:white}
+    .step{padding:36px 28px;border-right:1.5px solid var(--gray-200);position:relative}
+    .step:last-child{border-right:none}
+    .step-n{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--gray-100);line-height:1;margin-bottom:16px;letter-spacing:-.04em}
+    .step-t{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px}
+    .step-d{font-size:13px;line-height:1.75;color:var(--gray-600)}
+    .step-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .step:hover .step-bar{transform:scaleX(1)}
+    .cta-sec{padding:100px 48px;text-align:center;position:relative;overflow:hidden;z-index:1}
+    .cta-blob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:var(--orange-pale);border-radius:50%;filter:blur(60px);pointer-events:none}
+    .cta-t{font-family:'Syne',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin-bottom:20px;position:relative}
+    .cta-t em{font-style:normal;color:var(--orange)}
+    .cta-s{font-size:16px;color:var(--gray-600);margin-bottom:40px;position:relative}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:white;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border-radius:8px;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(232,67,26,.3)}
+    .btn-p:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,67,26,.4)}
+    .btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border-radius:8px;border:1.5px solid var(--gray-200);text-decoration:none;transition:border-color .2s,transform .15s}
+    .btn-g:hover{border-color:var(--ink);transform:translateY(-2px)}
+    footer{background:var(--ink);padding:32px 48px}
+    .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.2)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){.plans{grid-template-columns:1fr}.skills-panel.active{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr 1fr}.step{border-right:none;border-bottom:1.5px solid var(--gray-200)}.step:nth-child(odd){border-right:1.5px solid var(--gray-200)}.step:last-child{border-bottom:none}}
+    @media(max-width:600px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 24px 60px}.pricing-sec,.skills-sec,.how-sec,.cta-sec{padding:60px 24px}.skills-panel.active{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step{border-right:none !important;border-bottom:1.5px solid var(--gray-200) !important}.step:last-child{border-bottom:none !important}footer{padding:28px 24px}}
+  </style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="watermark">LOBSTER</div>
+
+<nav>
+  <a href="/" class="nav-wordmark">Think <span>BIG!</span></a>
+  <ul class="nav-links">
+    <li><a href="/#services">服務項目</a></li>
+    <li><a href="/lobster" class="active">龍蝦安裝</a></li>
+    <li><a href="/#contact">聯絡我們</a></li>
+  </ul>
+  <a href="https://lin.ee/n5KW430" class="nav-line" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    立即連繫
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><div class="badge-dot"></div>OpenClaw · AI Agent 部署</div>
+  <span class="hero-emoji">🦞</span>
+  <h1 class="hero-h1">龍蝦安裝<br><em>一次到位</em></h1>
+  <p class="hero-sub">專業部署 OpenClaw AI Agent，從安裝、技能配置到安全設定，讓你的龍蝦立刻開始幹活。</p>
+  <div class="hero-trust">
+    <div class="trust-pill">✅ 安全設定全配置</div>
+    <div class="trust-pill">⚡ 24小時快速交付</div>
+    <div class="trust-pill">🇹🇼 台灣在地支援</div>
+    <div class="trust-pill">📞 操作教學包含</div>
+  </div>
+</div>
+
+<section class="pricing-sec" id="pricing">
+  <div class="sec-head reveal">
+    <div class="sec-eye">方案選擇</div>
+    <h2 class="sec-title">選一個適合你的龍蝦</h2>
+  </div>
+  <div class="plans reveal">
+    <div class="plan">
+      <div class="plan-eye">入門版</div>
+      <div class="plan-name">龍蝦新手包</div>
+      <p class="plan-desc">30個精選日常技能，快速上手，體驗 AI Agent 的威力。</p>
+      <div class="plan-price">
+        <span class="currency">NT$</span><span class="amount">888</span>
+        <span class="period">一次性 · 永久使用</span>
+      </div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>30個精選實用技能</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>基本安全設定</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>LINE 串接設定</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>操作手冊 PDF</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>7天售後支援</li>
+      </ul>
+      <a href="https://line.me/R/oaMessage/@589woayh/?%E6%88%91%E8%A6%81%E8%B3%BC%E8%B2%B7%20AI%20Agent%20%E9%BE%8D%E8%9D%A6%E6%96%B0%E6%89%8B%E5%8C%85%20NT%24888" class="plan-btn outline" target="_blank">選擇入門版 →</a>
+    </div>
+
+    <div class="plan featured">
+      <div class="plan-badge">最多人選</div>
+      <div class="plan-eye">專業版</div>
+      <div class="plan-name">龍蝦全裝備</div>
+      <p class="plan-desc">140+ 技能全套配置，完整安全防護，讓龍蝦替你全面運作。</p>
+      <div class="plan-price">
+        <span class="currency">NT$</span><span class="amount">2,888</span>
+        <span class="period">一次性 · 永久使用</span>
+      </div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#E8431A" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#E8431A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>140+ 完整技能庫</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#E8431A" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#E8431A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>完整安全設定（含進階防護）</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#E8431A" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#E8431A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>LINE + WhatsApp 串接</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#E8431A" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#E8431A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>自動排程（10個Cron）</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#E8431A" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#E8431A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>遠端安裝 + 操作教學</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#E8431A" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#E8431A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>30天售後支援</li>
+      </ul>
+      <a href="https://line.me/R/oaMessage/@589woayh/?%E6%88%91%E8%A6%81%E8%B3%BC%E8%B2%B7%20AI%20Agent%20%E9%BE%8D%E8%9D%A6%E5%85%A8%E8%A3%9D%E5%82%99%20NT%242%2C888" class="plan-btn dark" target="_blank">選擇專業版 →</a>
+    </div>
+
+    <div class="plan">
+      <div class="plan-eye">企業版</div>
+      <div class="plan-name">龍蝦艦隊</div>
+      <p class="plan-desc">依企業需求客製化開發，多機多人部署，專屬工作流設計。</p>
+      <div class="plan-price">
+        <span class="amount" style="font-size:36px">詢價</span>
+        <span class="period">依規模報價 · 月度維護可選</span>
+      </div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>專業版全部功能</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>多機多人部署</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>客製化技能開發</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>專屬 AI 工作流設計</li>
+        <li><svg class="feat-check" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7.25" stroke="#06C755" stroke-width="1.5"/><path d="M5 8l2 2 4-4" stroke="#06C755" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>月度維護 + 優先支援</li>
+      </ul>
+      <a href="https://line.me/R/oaMessage/@589woayh/?%E6%88%91%E6%83%B3%E4%BA%86%E8%A7%A3%E4%BC%81%E6%A5%AD%E7%89%88%E9%BE%8D%E8%9D%A6%E8%89%A6%E9%9A%8A%E6%96%B9%E6%A1%88%EF%BC%8C%E8%AB%8B%E6%8F%90%E4%BE%9B%E5%A0%B1%E5%83%B9" class="plan-btn outline" target="_blank">聯絡我們洽談 →</a>
+    </div>
+  </div>
+</section>
+
+<section class="skills-sec" id="skills">
+  <div class="sec-head reveal">
+    <div class="sec-eye">技能庫</div>
+    <h2 class="sec-title">你的龍蝦會什麼？</h2>
+  </div>
+  <div class="tabs reveal">
+    <button class="tab active" onclick="switchTab(this,'starter')">🌱 入門版 30 技能</button>
+    <button class="tab" onclick="switchTab(this,'pro')">🦞 專業版 140+ 技能</button>
+  </div>
+
+  <div id="tab-starter" class="skills-panel active">
+    <div class="skill-card"><div class="skill-tier starter">日常效率</div><div class="skill-name">Morning Brief</div><div class="skill-desc">每天早上自動整理今日行程、天氣、待辦事項</div></div>
+    <div class="skill-card"><div class="skill-tier starter">日常效率</div><div class="skill-name">Daily Summary</div><div class="skill-desc">每日工作摘要自動生成，發送到 LINE</div></div>
+    <div class="skill-card"><div class="skill-tier starter">日常效率</div><div class="skill-name">Send LINE Message</div><div class="skill-desc">自動發送 LINE 訊息，定時提醒不漏接</div></div>
+    <div class="skill-card"><div class="skill-tier starter">日常效率</div><div class="skill-name">Auto Reply Engine</div><div class="skill-desc">智能自動回覆，讓龍蝦替你接客</div></div>
+    <div class="skill-card"><div class="skill-tier starter">日常效率</div><div class="skill-name">File Ops</div><div class="skill-desc">檔案整理、命名、分類自動化</div></div>
+    <div class="skill-card"><div class="skill-tier starter">日常效率</div><div class="skill-name">Code Cleaner</div><div class="skill-desc">自動整理程式碼格式，保持乾淨</div></div>
+    <div class="skill-card"><div class="skill-tier starter">內容創作</div><div class="skill-name">Content Pipeline</div><div class="skill-desc">自動生成社群貼文、文案草稿</div></div>
+    <div class="skill-card"><div class="skill-tier starter">內容創作</div><div class="skill-name">Video Script Generator</div><div class="skill-desc">一鍵生成 YouTube / Reels 腳本</div></div>
+    <div class="skill-card"><div class="skill-tier starter">內容創作</div><div class="skill-name">Newsletter Generator</div><div class="skill-desc">自動撰寫週報、電子報內容</div></div>
+    <div class="skill-card"><div class="skill-tier starter">內容創作</div><div class="skill-name">IG Auto Poster</div><div class="skill-desc">Instagram 貼文自動排程發布</div></div>
+    <div class="skill-card"><div class="skill-tier starter">內容創作</div><div class="skill-name">Social Scheduler</div><div class="skill-desc">多平台社群內容統一排程管理</div></div>
+    <div class="skill-card"><div class="skill-tier starter">內容創作</div><div class="skill-name">Comment Generator</div><div class="skill-desc">自動生成回覆留言，提升互動率</div></div>
+    <div class="skill-card"><div class="skill-tier starter">商業工具</div><div class="skill-name">Invoice Generator</div><div class="skill-desc">自動生成發票、報價單 PDF</div></div>
+    <div class="skill-card"><div class="skill-tier starter">商業工具</div><div class="skill-name">Payment Tracker</div><div class="skill-desc">追蹤收款狀態，逾期自動提醒</div></div>
+    <div class="skill-card"><div class="skill-tier starter">商業工具</div><div class="skill-name">Client Onboarding</div><div class="skill-desc">新客戶自動發送歡迎訊息與資料</div></div>
+    <div class="skill-card"><div class="skill-tier starter">商業工具</div><div class="skill-name">Contract Manager</div><div class="skill-desc">合約追蹤、到期提醒、版本管理</div></div>
+    <div class="skill-card"><div class="skill-tier starter">商業工具</div><div class="skill-name">Lead Tracker</div><div class="skill-desc">潛在客戶追蹤，不讓商機溜走</div></div>
+    <div class="skill-card"><div class="skill-tier starter">商業工具</div><div class="skill-name">Marketing Advice</div><div class="skill-desc">AI 行銷建議，分析你的品牌策略</div></div>
+    <div class="skill-card"><div class="skill-tier starter">監控安全</div><div class="skill-name">Security Audit</div><div class="skill-desc">定期自動掃描安全漏洞並回報</div></div>
+    <div class="skill-card"><div class="skill-tier starter">監控安全</div><div class="skill-name">Vault Manager</div><div class="skill-desc">安全金鑰管理，機密資料保護</div></div>
+    <div class="skill-card"><div class="skill-tier starter">監控安全</div><div class="skill-name">Mailbox Sentinel</div><div class="skill-desc">信箱監控，重要郵件即時通知</div></div>
+    <div class="skill-card"><div class="skill-tier starter">監控安全</div><div class="skill-name">GitHub Health Check</div><div class="skill-desc">監控 GitHub Repo 狀態與異常</div></div>
+    <div class="skill-card"><div class="skill-tier starter">監控安全</div><div class="skill-name">Self Evolve</div><div class="skill-desc">龍蝦自我升級，技能自動更新</div></div>
+    <div class="skill-card"><div class="skill-tier starter">資料分析</div><div class="skill-name">Data Analytics Dashboard</div><div class="skill-desc">自動生成數據報表，視覺化呈現</div></div>
+    <div class="skill-card"><div class="skill-tier starter">資料分析</div><div class="skill-name">Web Scanner</div><div class="skill-desc">自動爬取網路資訊、競品動態</div></div>
+    <div class="skill-card"><div class="skill-tier starter">資料分析</div><div class="skill-name">Insight Engine</div><div class="skill-desc">深度分析數據，提供行動建議</div></div>
+    <div class="skill-card"><div class="skill-tier starter">資料分析</div><div class="skill-name">Skill Report</div><div class="skill-desc">每週技能使用報告，優化工作流</div></div>
+    <div class="skill-card"><div class="skill-tier starter">資料分析</div><div class="skill-name">IG Analytics Tracker</div><div class="skill-desc">追蹤 Instagram 成長數據與趨勢</div></div>
+    <div class="skill-card"><div class="skill-tier starter">進階功能</div><div class="skill-name">Prompt Optimizer</div><div class="skill-desc">自動優化你的 AI 提示詞，省 Token</div></div>
+    <div class="skill-card"><div class="skill-tier starter">進階功能</div><div class="skill-name">GitHub Skill Installer</div><div class="skill-desc">從 GitHub 一鍵安裝新技能</div></div>
+  </div>
+
+  <div id="tab-pro" class="skills-panel">
+    <div class="skill-card" style="grid-column:1/-1;background:var(--orange-pale);border-color:var(--orange-light)"><div class="skill-tier pro">專業版包含</div><div class="skill-name">入門版全部 30 技能 + 以下 110+ 進階技能</div><div class="skill-desc">涵蓋遠端存取、全端開發、AI自動化、加密貨幣、SEO、雲端部署等完整技能生態系</div></div>
+    <div class="skill-card"><div class="skill-tier pro">遠端存取</div><div class="skill-name">AnyDesk Deployment</div><div class="skill-desc">遠端桌面自動部署與管理</div></div>
+    <div class="skill-card"><div class="skill-tier pro">遠端存取</div><div class="skill-name">AnyDesk Logger</div><div class="skill-desc">遠端連線記錄與監控</div></div>
+    <div class="skill-card"><div class="skill-tier pro">全端開發</div><div class="skill-name">Fullstack App Generator</div><div class="skill-desc">自動生成完整前後端應用程式</div></div>
+    <div class="skill-card"><div class="skill-tier pro">全端開發</div><div class="skill-name">Full Stack Web Builder</div><div class="skill-desc">一鍵建立完整網站專案</div></div>
+    <div class="skill-card"><div class="skill-tier pro">全端開發</div><div class="skill-name">Dev Agent Pro</div><div class="skill-desc">進階開發助理，自動寫程式</div></div>
+    <div class="skill-card"><div class="skill-tier pro">AI 自動化</div><div class="skill-name">Autonomous Income Engine</div><div class="skill-desc">自動化收入來源監控與管理</div></div>
+    <div class="skill-card"><div class="skill-tier pro">AI 自動化</div><div class="skill-name">RPG Life System</div><div class="skill-desc">把生活遊戲化，任務完成升等</div></div>
+    <div class="skill-card"><div class="skill-tier pro">AI 自動化</div><div class="skill-name">Skill Factory</div><div class="skill-desc">自動生成新技能，龍蝦自我進化</div></div>
+    <div class="skill-card"><div class="skill-tier pro">安全防護</div><div class="skill-name">Security Pentest</div><div class="skill-desc">自動滲透測試，發現安全漏洞</div></div>
+    <div class="skill-card"><div class="skill-tier pro">安全防護</div><div class="skill-name">Security Gatekeeper</div><div class="skill-desc">進階存取控制與威脅攔截</div></div>
+    <div class="skill-card"><div class="skill-tier pro">安全防護</div><div class="skill-name">Vault Guard</div><div class="skill-desc">金庫級機密保護與存取稽核</div></div>
+    <div class="skill-card"><div class="skill-tier pro">加密貨幣</div><div class="skill-name">Crypto Market Monitor</div><div class="skill-desc">24小時加密貨幣市場監控</div></div>
+    <div class="skill-card"><div class="skill-tier pro">加密貨幣</div><div class="skill-name">Crypto Portfolio Dashboard</div><div class="skill-desc">持倉組合視覺化管理</div></div>
+    <div class="skill-card"><div class="skill-tier pro">加密貨幣</div><div class="skill-name">Crypto Auto Trader</div><div class="skill-desc">AI 判斷自動交易策略執行</div></div>
+    <div class="skill-card"><div class="skill-tier pro">SEO 行銷</div><div class="skill-name">SEO Builder</div><div class="skill-desc">自動優化網站 SEO，提升排名</div></div>
+    <div class="skill-card"><div class="skill-tier pro">SEO 行銷</div><div class="skill-name">X / Reddit Scraper</div><div class="skill-desc">爬取熱門話題，掌握趨勢脈動</div></div>
+    <div class="skill-card"><div class="skill-tier pro">SEO 行銷</div><div class="skill-name">IG Engagement Manager</div><div class="skill-desc">自動管理 IG 互動，提升觸及率</div></div>
+    <div class="skill-card"><div class="skill-tier pro">雲端部署</div><div class="skill-name">Cloud DevOps</div><div class="skill-desc">雲端基礎設施自動化管理</div></div>
+    <div class="skill-card"><div class="skill-tier pro">雲端部署</div><div class="skill-name">IoT Monitor</div><div class="skill-desc">物聯網裝置監控與自動化控制</div></div>
+    <div class="skill-card"><div class="skill-tier pro">雲端部署</div><div class="skill-name">ML Predictor</div><div class="skill-desc">機器學習預測模型自動部署</div></div>
+    <div class="skill-card"><div class="skill-tier pro">其他</div><div class="skill-name">Health Coach</div><div class="skill-desc">AI 健康顧問，追蹤生活習慣</div></div>
+    <div class="skill-card"><div class="skill-tier pro">其他</div><div class="skill-name">Dify Brain Control</div><div class="skill-desc">整合 Dify AI 工作流引擎</div></div>
+    <div class="skill-card"><div class="skill-tier pro">其他</div><div class="skill-name">Upwork Hunting</div><div class="skill-desc">自動搜尋符合條件的接案機會</div></div>
+    <div class="skill-card" style="border-style:dashed;border-color:var(--orange-light);background:var(--orange-pale)"><div class="skill-tier pro">還有更多</div><div class="skill-name">90+ 更多技能</div><div class="skill-desc">完整技能列表請洽詢，持續新增中！</div></div>
+  </div>
+</section>
+
+<section class="how-sec" id="how">
+  <div class="sec-head reveal">
+    <div class="sec-eye">安裝流程</div>
+    <h2 class="sec-title">四步驟，龍蝦到位</h2>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><div class="step-n">01</div><div class="step-t">LINE 諮詢</div><p class="step-d">加入官方帳號，說明你的需求和目前環境，完全免費。</p><div class="step-bar"></div></div>
+    <div class="step"><div class="step-n">02</div><div class="step-t">確認方案</div><p class="step-d">根據需求推薦最適合的方案，透明報價，確認後付款。</p><div class="step-bar"></div></div>
+    <div class="step"><div class="step-n">03</div><div class="step-t">遠端安裝</div><p class="step-d">約好時間，遠端協助安裝配置，全程即時溝通。</p><div class="step-bar"></div></div>
+    <div class="step"><div class="step-n">04</div><div class="step-t">教學交付</div><p class="step-d">操作教學 + 手冊，讓你完全上手，售後支援持續在線。</p><div class="step-bar"></div></div>
+  </div>
+</section>
+
+<section class="cta-sec" id="contact">
+  <div class="cta-blob"></div>
+  <h2 class="cta-t reveal">你的龍蝦，<br><em>今天就上線</em></h2>
+  <p class="cta-s reveal">LINE 諮詢完全免費，30分鐘內給你建議。</p>
+  <div class="cta-row reveal">
+    <a href="https://lin.ee/n5KW430" class="btn-p" target="_blank">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white;flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      立即連繫 LINE
+    </a>
+    <a href="/" class="btn-g">← 回首頁</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-bottom">
+    <span style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:white;letter-spacing:-.02em">Think <span style="color:var(--orange)">BIG!</span> <span style="font-weight:300;color:rgba(255,255,255,.35);font-size:14px;letter-spacing:.08em">Make it Real.</span></span>
+    <span>© 2026 Think BIG · thinkbigtw.com · Taiwan</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') }), {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  function switchTab(btn, tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + tab).classList.add('active');
+  }
+</script>
+</body>
+</html>
