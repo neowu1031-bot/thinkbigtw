@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://thinkbigtw.com/sitemap.xml
+
+# Block unnecessary paths
+Disallow: /private/
+Disallow: /admin/
