@@ -1,1 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FDM 3D列印代工服務 | Think BIG!</title>
+  <meta name="description" content="Think BIG! FDM 3D列印代工。PLA $1/分鐘起，ABS/PETG $1.5/分鐘，TPU $2/分鐘。最低消費NT$200不含運，1件起印，台灣在地服務。">
+  <meta name="keywords" content="3D列印代工,FDM列印台灣,PLA列印,ABS列印,PETG,TPU軟性列印,3D列印報價,客製化3D列印,Think BIG">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://thinkbigtw.com/print">
+  <link rel="alternate" hreflang="zh-TW" href="https://thinkbigtw.com/print">
+  <link rel="alternate" hreflang="en" href="https://thinkbigtw.com/print">
+  <link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/print">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://thinkbigtw.com/print">
+  <meta property="og:title" content="🖨️ FDM 3D列印代工 | Think BIG!">
+  <meta property="og:description" content="PLA $1/分鐘起，1件就接，品質優先。每單烘線5小時+校準確保品質，最低消費NT$200不含運。">
+  <meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Think BIG!">
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="🖨️ FDM 3D列印代工 | Think BIG!">
+  <meta name="twitter:description" content="PLA $1/分鐘起，1件就接。最低消費NT$200不含運。台灣在地服務。">
+  <meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://thinkbigtw.com/print#webpage",
+        "url": "https://thinkbigtw.com/print",
+        "name": "FDM 3D列印代工服務 | Think BIG!",
+        "isPartOf": { "@id": "https://thinkbigtw.com/#website" },
+        "inLanguage": "zh-TW",
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://thinkbigtw.com" },
+            { "@type": "ListItem", "position": 2, "name": "3D列印", "item": "https://thinkbigtw.com/print" }
+          ]
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "FDM 3D列印代工",
+        "provider": { "@id": "https://thinkbigtw.com/#organization" },
+        "description": "FDM 3D列印代工，支援PLA/ABS/PETG/TPU，1件起印，每單烘線5小時確保品質，最低消費NT$200。",
+        "areaServed": { "@type": "Country", "name": "Taiwan" },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "3D列印材質方案",
+          "itemListElement": [
+            { "@type": "Offer", "name": "PLA列印", "price": "1", "priceCurrency": "TWD", "description": "每分鐘NT$1，最低消費NT$200不含運" },
+            { "@type": "Offer", "name": "ABS列印", "price": "1.5", "priceCurrency": "TWD", "description": "每分鐘NT$1.5，最低消費NT$200不含運" },
+            { "@type": "Offer", "name": "PETG列印", "price": "1.5", "priceCurrency": "TWD", "description": "每分鐘NT$1.5，最低消費NT$200不含運" },
+            { "@type": "Offer", "name": "TPU軟性列印", "price": "2", "priceCurrency": "TWD", "description": "每分鐘NT$2，最低消費NT$200不含運" }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "3D列印最少要印幾件？", "acceptedAnswer": { "@type": "Answer", "text": "1件起印，沒有最低件數限制。" } },
+          { "@type": "Question", "name": "為什麼要烘線5小時？", "acceptedAnswer": { "@type": "Answer", "text": "線材受潮會影響列印品質，出現氣泡、拉絲等問題。烘線5小時能確保最佳品質。" } },
+          { "@type": "Question", "name": "最低消費是多少？", "acceptedAnswer": { "@type": "Answer", "text": "最低消費NT$200不含運費。未達NT$200的訂單同樣以NT$200計算。" } },
+          { "@type": "Question", "name": "需要提供什麼檔案？", "acceptedAnswer": { "@type": "Answer", "text": "請提供STL或3MF格式的3D檔案。" } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--orange:#E8431A;--orange-dark:#C23510;--orange-pale:#FEF0EC;--orange-light:#FDDDD5;--cream:#F5F0EB;--warm-white:#FAF8F5;--gray-100:#F0EDE8;--gray-200:#E0DCD5;--gray-400:#9A9590;--gray-600:#5A5550;--ink:#1A1512}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--warm-white);color:var(--ink);font-family:'Noto Sans TC',sans-serif;font-weight:300;overflow-x:hidden}
+    .blob{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
+    .blob-1{width:600px;height:600px;top:-200px;right:-180px;background:radial-gradient(circle,rgba(232,67,26,.08) 0%,transparent 70%)}
+    .blob-2{width:500px;height:500px;bottom:-150px;left:-150px;background:radial-gradient(circle,rgba(232,67,26,.07) 0%,transparent 70%)}
+    .watermark{position:fixed;bottom:-20px;left:50%;transform:translateX(-50%);z-index:0;pointer-events:none;font-family:'Syne',sans-serif;font-size:clamp(60px,12vw,160px);font-weight:800;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px rgba(232,67,26,.06);white-space:nowrap;line-height:1;user-select:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,248,245,.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px}
+    .nav-wordmark{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:-.02em;text-decoration:none}
+    .nav-wordmark span{color:var(--orange)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-size:13px;color:var(--gray-600);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--ink)}
+    .nav-links a.active{color:var(--ink);font-weight:500;border-bottom:2px solid var(--orange);padding-bottom:2px}
+    .nav-line{display:flex;align-items:center;gap:8px;background:#06C755;color:white;padding:8px 18px;border-radius:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-decoration:none;transition:transform .2s,box-shadow .2s;box-shadow:0 2px 12px rgba(6,199,85,.3)}
+    .nav-line:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(6,199,85,.45)}
+    .nav-line svg{width:16px;height:16px;fill:white;flex-shrink:0}
+    .hero{padding:140px 48px 60px;text-align:center;position:relative;z-index:1;max-width:900px;margin:0 auto}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--orange-pale);border:1px solid var(--orange-light);color:var(--orange);font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:32px;opacity:0;animation:fadeUp .6s .1s forwards}
+    .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--orange);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+    .hero-emoji{font-size:72px;display:block;margin-bottom:20px;opacity:0;animation:fadeUp .5s .05s forwards}
+    .hero-h1{font-family:'Syne',sans-serif;font-size:clamp(42px,6vw,80px);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin-bottom:24px;opacity:0;animation:fadeUp .7s .2s forwards}
+    .hero-h1 em{font-style:normal;color:var(--orange)}
+    .hero-sub{font-size:17px;line-height:1.7;color:var(--gray-600);max-width:520px;margin:0 auto 40px;opacity:0;animation:fadeUp .7s .35s forwards}
+    .hero-trust{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;opacity:0;animation:fadeUp .6s .5s forwards}
+    .trust-pill{display:flex;align-items:center;gap:6px;background:white;border:1.5px solid var(--gray-200);padding:7px 16px;border-radius:100px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--gray-600)}
+    .quality-bar{background:var(--ink);padding:20px 48px;position:relative;z-index:1;text-align:center}
+    .quality-bar p{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.05em;color:rgba(255,255,255,.7);line-height:1.9}
+    .quality-bar strong{color:var(--orange)}
+    .pricing-sec{padding:80px 48px;position:relative;z-index:1}
+    .sec-head{text-align:center;margin-bottom:56px}
+    .sec-eye{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+    .sec-title{font-family:'Syne',sans-serif;font-size:clamp(32px,4.5vw,52px);font-weight:700;line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+    .sec-sub{font-size:13px;color:var(--gray-400);margin-top:12px;font-family:'Space Mono',monospace;letter-spacing:.04em}
+    .materials{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto 32px}
+    .mat-card{border-radius:16px;padding:32px 24px;background:white;border:1.5px solid var(--gray-200);position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.34,1.3,.64,1),box-shadow .3s;text-align:center}
+    .mat-card:hover{transform:translateY(-5px);box-shadow:0 20px 48px rgba(0,0,0,.08)}
+    .mat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .mat-card:hover::before{transform:scaleX(1)}
+    .mat-icon{font-size:36px;margin-bottom:16px;display:block}
+    .mat-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+    .mat-trait{font-size:12px;color:var(--gray-400);margin-bottom:20px;line-height:1.6}
+    .mat-price{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;letter-spacing:-.04em;color:var(--orange);line-height:1}
+    .mat-unit{font-family:'Space Mono',monospace;font-size:10px;color:var(--gray-400);letter-spacing:.06em;margin-top:4px}
+    .mat-tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:16px}
+    .mat-tag{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:100px;background:var(--gray-100);color:var(--gray-600)}
+    .min-notice{max-width:1000px;margin:0 auto;background:var(--orange-pale);border:1.5px solid var(--orange-light);border-radius:16px;padding:24px 32px;display:flex;align-items:flex-start;gap:16px}
+    .min-notice-icon{font-size:28px;flex-shrink:0;margin-top:2px}
+    .min-notice-text h4{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--ink);margin-bottom:8px}
+    .min-notice-text p{font-size:13px;line-height:1.9;color:var(--gray-600)}
+    .min-notice-text strong{color:var(--orange);font-weight:500}
+    .how-sec{background:var(--cream);padding:80px 48px;position:relative;z-index:1}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);max-width:1000px;margin:0 auto;border:1.5px solid var(--gray-200);border-radius:16px;overflow:hidden;background:white}
+    .step{padding:36px 28px;border-right:1.5px solid var(--gray-200);position:relative}
+    .step:last-child{border-right:none}
+    .step-n{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--gray-100);line-height:1;margin-bottom:16px;letter-spacing:-.04em}
+    .step-t{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ink);margin-bottom:10px}
+    .step-d{font-size:13px;line-height:1.75;color:var(--gray-600)}
+    .step-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+    .step:hover .step-bar{transform:scaleX(1)}
+    .faq-sec{padding:80px 48px;position:relative;z-index:1}
+    .faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+    .faq-item{background:white;border:1.5px solid var(--gray-200);border-radius:14px;overflow:hidden}
+    .faq-q{width:100%;text-align:left;padding:20px 24px;font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--ink);background:none;border:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+    .faq-q:hover{color:var(--orange)}
+    .faq-arrow{font-size:18px;transition:transform .3s;flex-shrink:0}
+    .faq-item.open .faq-arrow{transform:rotate(180deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+    .faq-item.open .faq-a{max-height:200px}
+    .faq-a-inner{padding:0 24px 20px;font-size:14px;line-height:1.8;color:var(--gray-600)}
+    .cta-sec{padding:100px 48px;text-align:center;position:relative;overflow:hidden;z-index:1}
+    .cta-blob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:var(--orange-pale);border-radius:50%;filter:blur(60px);pointer-events:none}
+    .cta-t{font-family:'Syne',sans-serif;font-size:clamp(36px,5.5vw,64px);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--ink);margin-bottom:20px;position:relative}
+    .cta-t em{font-style:normal;color:var(--orange)}
+    .cta-s{font-size:16px;color:var(--gray-600);margin-bottom:40px;position:relative}
+    .cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative}
+    .btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:white;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border-radius:8px;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 16px rgba(232,67,26,.3)}
+    .btn-p:hover{background:var(--orange-dark);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,67,26,.4)}
+    .btn-g{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--ink);font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border-radius:8px;border:1.5px solid var(--gray-200);text-decoration:none;transition:border-color .2s,transform .15s}
+    .btn-g:hover{border-color:var(--ink);transform:translateY(-2px)}
+    footer{background:var(--ink);padding:32px 48px}
+    .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(255,255,255,.2)}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:900px){.materials{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr 1fr}.step{border-right:none;border-bottom:1.5px solid var(--gray-200)}.step:nth-child(odd){border-right:1.5px solid var(--gray-200)}.step:last-child{border-bottom:none}}
+    @media(max-width:600px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 24px 60px}.quality-bar{padding:16px 20px}.pricing-sec,.how-sec,.faq-sec,.cta-sec{padding:60px 24px}.materials{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step{border-right:none !important;border-bottom:1.5px solid var(--gray-200) !important}.step:last-child{border-bottom:none !important}.min-notice{flex-direction:column}footer{padding:28px 24px}}
+  </style>
+</head>
+<body>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="watermark">3D PRINT</div>
 
+<nav>
+  <a href="/" class="nav-wordmark">Think <span>BIG!</span></a>
+  <ul class="nav-links">
+    <li><a href="/#services">服務項目</a></li>
+    <li><a href="/lobster">龍蝦安裝</a></li>
+    <li><a href="/print" class="active">3D列印</a></li>
+  </ul>
+  <a href="https://lin.ee/n5KW430" class="nav-line" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+    立即連繫
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><div class="badge-dot"></div>FDM · 品質優先列印</div>
+  <div style="margin:0 auto 20px;opacity:0;animation:fadeUp .5s .05s forwards;max-width:320px">
+    <svg width="100%" viewBox="0 0 680 400">
+      <rect x="220" y="80" width="240" height="240" rx="14" fill="#1C1C1C" stroke="#3a3a3a" stroke-width="1.5"/>
+      <rect x="220" y="80" width="240" height="36" rx="14" fill="#141414"/>
+      <rect x="220" y="100" width="240" height="16" fill="#141414"/>
+      <rect x="228" y="122" width="144" height="184" rx="6" fill="#0a0a0a" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="234" y="126" width="18" height="176" rx="4" fill="white" opacity="0.04"/>
+      <rect x="255" y="126" width="6" height="176" rx="2" fill="white" opacity="0.02"/>
+      <rect x="376" y="122" width="76" height="184" rx="6" fill="#181818" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="382" y="130" width="64" height="48" rx="5" fill="#0d0d0d"/>
+      <rect x="385" y="133" width="58" height="42" rx="3" fill="#1a0800" opacity="0.9"/>
+      <rect x="385" y="133" width="58" height="42" rx="3" fill="none" stroke="#E8431A" stroke-width="0.8" opacity="0.6"/>
+      <rect x="390" y="140" width="36" height="2.5" rx="1.2" fill="#E8431A" opacity="0.8"/>
+      <rect x="390" y="147" width="26" height="2" rx="1" fill="#888" opacity="0.4"/>
+      <rect x="390" y="153" width="32" height="2" rx="1" fill="#888" opacity="0.3"/>
+      <rect x="390" y="163" width="42" height="7" rx="3" fill="#E8431A" opacity="0.85"/>
+      <text style="font-size:6.5px;font-family:monospace" x="399" y="169" fill="white" opacity="0.95">PRINTING</text>
+      <circle cx="392" cy="188" r="6" fill="#0d0d0d" stroke="#2a2a2a" stroke-width="0.8"/>
+      <circle cx="392" cy="188" r="3.5" fill="#111"/>
+      <circle cx="392" cy="188" r="1.8" fill="#1a1a1a"/>
+      <circle cx="393.2" cy="186.8" r="0.7" fill="white" opacity="0.4"/>
+      <rect x="388" y="198" width="12" height="12" rx="2" fill="#E8431A" opacity="0.15"/>
+      <rect x="390" y="200" width="8" height="8" rx="1" fill="#E8431A" opacity="0.3"/>
+      <rect x="232" y="158" width="210" height="3.5" rx="1.5" fill="#2a2a2a"/>
+      <rect x="232" y="159" width="210" height="1.5" rx="0.5" fill="#444" opacity="0.5"/>
+      <rect x="232" y="122" width="3.5" height="174" rx="1.5" fill="#2a2a2a"/>
+      <rect x="440" y="122" width="3.5" height="174" rx="1.5" fill="#2a2a2a"/>
+      <rect x="306" y="144" width="52" height="30" rx="6" fill="#222" stroke="#383838" stroke-width="1"/>
+      <circle cx="322" cy="159" r="8" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="0.8"/>
+      <circle cx="322" cy="159" r="5" fill="#111"/>
+      <circle cx="322" cy="159" r="2" fill="#1a1a1a"/>
+      <rect x="326" y="174" width="20" height="7" rx="2" fill="#1a1a1a" stroke="#333" stroke-width="0.8"/>
+      <path d="M330 181 L332 188 L342 188 L344 181Z" fill="#222" stroke="#333" stroke-width="0.8"/>
+      <circle cx="337" cy="189" r="2.2" fill="#E8431A" opacity="0.95"/>
+      <rect x="242" y="290" width="200" height="8" rx="3" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="246" y="288" width="192" height="6" rx="2" fill="#252525"/>
+      <rect x="292" y="282" width="96" height="6" rx="2" fill="#E8431A" opacity="0.95"/>
+      <rect x="296" y="276" width="88" height="6" rx="2" fill="#E8431A" opacity="0.85"/>
+      <rect x="300" y="270" width="80" height="6" rx="2" fill="#E8431A" opacity="0.75"/>
+      <rect x="306" y="264" width="68" height="6" rx="2" fill="#E8431A" opacity="0.65"/>
+      <rect x="312" y="258" width="56" height="6" rx="2" fill="#E8431A" opacity="0.55"/>
+      <rect x="318" y="252" width="44" height="6" rx="2" fill="#E8431A" opacity="0.4"/>
+      <rect x="324" y="246" width="32" height="6" rx="2" fill="#E8431A" opacity="0.25"/>
+      <rect x="220" y="316" width="240" height="6" rx="3" fill="#141414" stroke="#2a2a2a" stroke-width="1"/>
+      <rect x="238" y="318" width="28" height="6" rx="3" fill="#111"/>
+      <rect x="414" y="318" width="28" height="6" rx="3" fill="#111"/>
+      <rect x="472" y="142" width="78" height="98" rx="10" fill="#181818" stroke="#2a2a2a" stroke-width="1.5"/>
+      <rect x="472" y="142" width="78" height="22" rx="10" fill="#141414"/>
+      <rect x="472" y="153" width="78" height="11" fill="#141414"/>
+      <rect x="482" y="174" width="58" height="11" rx="3" fill="#E8431A" opacity="0.8"/>
+      <rect x="482" y="190" width="58" height="11" rx="3" fill="#333"/>
+      <rect x="482" y="206" width="58" height="11" rx="3" fill="#2a2a2a"/>
+      <rect x="482" y="222" width="58" height="8" rx="3" fill="#222"/>
+      <text style="font-size:7px;font-family:monospace" x="511" y="153" text-anchor="middle" fill="#666">AMS 2 PRO</text>
+      <path d="M472 178 Q458 178 454 174 Q450 170 448 160" fill="none" stroke="#333" stroke-width="2" stroke-dasharray="4 3"/>
+    </svg>
+  </div>
+  <h1 class="hero-h1">你的設計，<br><em>我來印出來</em></h1>
+  <p class="hero-sub">提供 STL 或 3MF 檔，選好材質，剩下的交給我們。使用拓竹 Bambu Lab P2S，1件起印，品質每次到位。</p>
+  <div class="hero-trust">
+    <div class="trust-pill">🌡️ 烘線5小時</div>
+    <div class="trust-pill">⚙️ 每單校準機台</div>
+    <div class="trust-pill">📦 1件起印</div>
+    <div class="trust-pill">🇹🇼 台灣在地</div>
+  </div>
+</div>
+
+<div class="quality-bar">
+  <p>⚠️ 品質承諾：每筆訂單列印前，線材經過 <strong>5小時烘線</strong> 去除水氣，機台進行 <strong>1小時精密校準</strong>。<br>這是最低消費 <strong>NT$200（不含運費）</strong> 的原因，也是我們對品質的堅持。</p>
+</div>
+
+<section class="pricing-sec" id="pricing">
+  <div class="sec-head reveal">
+    <div class="sec-eye">材質與定價</div>
+    <h2 class="sec-title">選你的材質</h2>
+    <p class="sec-sub">依切片軟體顯示列印時間計費 · 連費 NT$50 起跳</p>
+  </div>
+  <div class="materials reveal">
+    <div class="mat-card">
+      <span class="mat-icon">⚪</span>
+      <div class="mat-name">PLA</div>
+      <div class="mat-trait">最常用・易印・顏色豐富<br>適合模型、原型、日常小物</div>
+      <div class="mat-price">$1</div>
+      <div class="mat-unit">NT$ / 分鐘</div>
+      <div class="mat-tags"><span class="mat-tag">推薦新手</span><span class="mat-tag">顏色多</span><span class="mat-tag">穩定</span></div>
+    </div>
+    <div class="mat-card">
+      <span class="mat-icon">🔵</span>
+      <div class="mat-name">ABS</div>
+      <div class="mat-trait">耐熱・強度高<br>適合功能性零件、耐用品</div>
+      <div class="mat-price">$1.5</div>
+      <div class="mat-unit">NT$ / 分鐘</div>
+      <div class="mat-tags"><span class="mat-tag">耐熱</span><span class="mat-tag">高強度</span><span class="mat-tag">工業用</span></div>
+    </div>
+    <div class="mat-card">
+      <span class="mat-icon">🟢</span>
+      <div class="mat-name">PETG</div>
+      <div class="mat-trait">耐熱+韌性・食品安全<br>PLA與ABS之間最佳選擇</div>
+      <div class="mat-price">$1.5</div>
+      <div class="mat-unit">NT$ / 分鐘</div>
+      <div class="mat-tags"><span class="mat-tag">食品安全</span><span class="mat-tag">韌性佳</span><span class="mat-tag">耐熱</span></div>
+    </div>
+    <div class="mat-card">
+      <span class="mat-icon">🟠</span>
+      <div class="mat-name">TPU</div>
+      <div class="mat-trait">軟性・彈性・耐磨<br>適合手機殼、軟墊、彈性零件</div>
+      <div class="mat-price">$2</div>
+      <div class="mat-unit">NT$ / 分鐘</div>
+      <div class="mat-tags"><span class="mat-tag">軟性彈性</span><span class="mat-tag">耐磨</span><span class="mat-tag">防滑</span></div>
+    </div>
+  </div>
+
+  <div class="min-notice reveal">
+    <div class="min-notice-icon">📋</div>
+    <div class="min-notice-text">
+      <h4>最低消費說明</h4>
+      <p>每筆訂單需進行 <strong>5小時烘線</strong> 及 <strong>1小時機台校準</strong>，確保最佳列印品質。<br>
+      <strong>最低消費 NT$200，不含運費</strong>，未達金額同樣以 NT$200 計算。運費依寄送地點與重量另報。</p>
+      <br>
+      <p>📐 <strong>最大列印尺寸：256 × 256 × 256 mm</strong>（超出尺寸需拆件）<br>
+      🎨 <strong>多色列印</strong>：請自行在 STL 檔內拆件並設定好顏色，我們不提供拆件服務<br>
+      🚚 <strong>交件時間：1–5 個工作天</strong>（線材顏色備貨充足時約1天，特殊色需調貨）</p>
+    </div>
+  </div>
+</section>
+
+<section class="how-sec" id="how">
+  <div class="sec-head reveal">
+    <div class="sec-eye">列印流程</div>
+    <h2 class="sec-title">四步驟，成品到手</h2>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><div class="step-n">01</div><div class="step-t">傳檔報價</div><p class="step-d">LINE 傳來 STL 或 3MF 檔，告訴我們材質與顏色，30分鐘內回報價。</p><div class="step-bar"></div></div>
+    <div class="step"><div class="step-n">02</div><div class="step-t">確認付款</div><p class="step-d">確認報價後付款，開始進行烘線與機台校準。</p><div class="step-bar"></div></div>
+    <div class="step"><div class="step-n">03</div><div class="step-t">品質列印</div><p class="step-d">烘線5小時+校準1小時後開始列印，完成拍照給你確認。</p><div class="step-bar"></div></div>
+    <div class="step"><div class="step-n">04</div><div class="step-t">寄送到府</div><p class="step-d">品質確認後出貨，提供追蹤號碼，運費依實際報價。</p><div class="step-bar"></div></div>
+  </div>
+</section>
+
+<section class="faq-sec" id="faq">
+  <div class="sec-head reveal">
+    <div class="sec-eye">常見問題</div>
+    <h2 class="sec-title">你可能想知道</h2>
+  </div>
+  <div class="faq-list reveal">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">需要提供什麼檔案格式？<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">請提供 <strong>STL 或 3MF</strong> 格式的 3D 檔案。如果只有想法但沒有圖檔，可以洽詢建模服務（另外報價）。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">為什麼要烘線 5 小時才能印？<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">線材吸收水氣後列印時會出現氣泡、拉絲、層間黏合差等問題，嚴重影響成品品質。我們堅持每單烘線 5 小時，這是確保品質的必要步驟，不是噱頭。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">最低消費 NT$200 怎麼算？<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">依列印時間 × 材質單價計算。若總金額未達 NT$200，一律以 NT$200 計算。運費另外報價，不含在最低消費內。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">我不知道哪種材質適合我怎麼辦？<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">LINE 告訴我們你要印什麼用途，我們幫你建議最適合的材質和顏色。一般日常用品推薦 PLA，需要耐熱選 PETG，要彈性選 TPU。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">大概要等多久才能收到？<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">烘線 5 小時 + 校準 1 小時 + 實際列印時間 + 出貨，<strong>預計 1–5 個工作天</strong>。線材備貨充足時約1天，特殊色需調貨時間較長，報價時會同步告知。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">最大可以印多大的東西？<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">使用拓竹 Bambu Lab P2S，最大列印尺寸為 <strong>256 × 256 × 256 mm</strong>。超出尺寸的物件需要拆件分批印製後再組合，拆件請自行處理。</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">可以印多色嗎？<span class="faq-arrow">▾</span></button>
+      <div class="faq-a"><div class="faq-a-inner">可以！但多色列印請自行在 STL 或 3MF 檔案內完成拆件並設定好各部件顏色，我們不提供拆件服務。建議使用 Bambu Studio 軟體處理多色設定後再傳檔給我們。</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec" id="contact">
+  <div class="cta-blob"></div>
+  <h2 class="cta-t reveal">你的設計，<br><em>今天就印</em></h2>
+  <p class="cta-s reveal">傳 STL 檔給我們，30分鐘內免費報價。</p>
+  <div class="cta-row reveal">
+    <a href="https://line.me/R/oaMessage/@589woayh/?%E6%88%91%E8%A6%81%E8%A9%A2%E5%95%8F3D%E5%88%97%E5%8D%B0%EF%BC%8C%E6%88%91%E6%9C%83%E5%82%B3STL%E6%AA%94%E7%B5%A6%E4%BD%A0" class="btn-p" target="_blank">
+      <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:white;flex-shrink:0"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+      傳檔報價
+    </a>
+    <a href="/" class="btn-g">← 回首頁</a>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-bottom">
+    <span style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:white;letter-spacing:-.02em">Think <span style="color:var(--orange)">BIG!</span> <span style="font-weight:300;color:rgba(255,255,255,.35);font-size:14px;letter-spacing:.08em">Make it Real.</span></span>
+    <span>© 2026 Think BIG · thinkbigtw.com · Taiwan</span>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') }), {threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
