@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Noto+Sans+TC:wght@400;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; background: #0D0D0D; }
+  .canvas {
+    width: 1200px;
+    height: 630px;
+    background: #0D0D0D;
+    position: relative;
+    font-family: 'Syne', sans-serif;
+    overflow: hidden;
+  }
+  .grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(232,67,26,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,67,26,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .glow-left {
+    position: absolute;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(232,67,26,0.18) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .glow-right {
+    position: absolute;
+    right: -80px;
+    bottom: -80px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(232,67,26,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .border-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #E8431A, #FF6B35, #E8431A, transparent);
+  }
+  .border-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #E8431A, #FF6B35, #E8431A, transparent);
+  }
+  .content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    gap: 60px;
+  }
+  .left {
+    flex: 1;
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(232,67,26,0.15);
+    border: 1px solid rgba(232,67,26,0.4);
+    border-radius: 20px;
+    padding: 6px 16px;
+    margin-bottom: 28px;
+  }
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    background: #E8431A;
+    border-radius: 50%;
+  }
+  .badge-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 13px;
+    color: #E8431A;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .brand {
+    font-size: 88px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 0.9;
+    letter-spacing: -3px;
+    margin-bottom: 8px;
+  }
+  .brand span {
+    color: #E8431A;
+  }
+  .tagline {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 22px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    margin-top: 20px;
+    letter-spacing: 1px;
+  }
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: #E8431A;
+    margin: 24px 0;
+  }
+  .services {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .service-item {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .service-dot {
+    width: 5px;
+    height: 5px;
+    background: #E8431A;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .lobster {
+    font-size: 130px;
+    line-height: 1;
+    filter: drop-shadow(0 0 30px rgba(232,67,26,0.5));
+  }
+  .url-box {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-family: 'Syne', monospace;
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 1px;
+  }
+  .corner-tl, .corner-tr, .corner-bl, .corner-br {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+  }
+  .corner-tl { top: 20px; left: 20px; border-top: 2px solid #E8431A; border-left: 2px solid #E8431A; }
+  .corner-tr { top: 20px; right: 20px; border-top: 2px solid #E8431A; border-right: 2px solid #E8431A; }
+  .corner-bl { bottom: 20px; left: 20px; border-bottom: 2px solid #E8431A; border-left: 2px solid #E8431A; }
+  .corner-br { bottom: 20px; right: 20px; border-bottom: 2px solid #E8431A; border-right: 2px solid #E8431A; }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="grid"></div>
+  <div class="glow-left"></div>
+  <div class="glow-right"></div>
+  <div class="border-top"></div>
+  <div class="border-bottom"></div>
+  <div class="corner-tl"></div>
+  <div class="corner-tr"></div>
+  <div class="corner-bl"></div>
+  <div class="corner-br"></div>
+  <div class="content">
+    <div class="left">
+      <div class="badge">
+        <div class="badge-dot"></div>
+        <span class="badge-text">AI Agent 專家</span>
+      </div>
+      <div class="brand">Think<br><span>BIG</span></div>
+      <div class="tagline">Think Big! Make it Real.</div>
+      <div class="divider"></div>
+      <div class="services">
+        <div class="service-item"><div class="service-dot"></div>龍蝦 AI Agent 安裝 &amp; 設定</div>
+        <div class="service-item"><div class="service-dot"></div>企業 AI 自動化方案</div>
+        <div class="service-item"><div class="service-dot"></div>客製化 AI 禮品 &amp; 3D 列印</div>
+      </div>
+    </div>
+    <div class="right">
+      <div class="lobster">🦞</div>
+      <div class="url-box">thinkbigtw.com</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
