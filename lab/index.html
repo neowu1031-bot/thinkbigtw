@@ -302,25 +302,32 @@ async function loadMarketData() {
 async function searchStock() {
   const code = document.getElementById('stockInput').value.trim();
   if (!code) return;
+  const KEY = 'sb_publishable_KEnwL0LHgUp7puGK1KvLCg_XMWCC14m';
+  const BASE = 'https://sirhskxufayklqrlxeep.supabase.co/rest/v1';
   try {
-    const r = await fetch(`https://openapi.twse.com.tw/v1/exchangeReport/STOCK_DAY?stockNo=${code}`);
+    const r = await fetch(`${BASE}/daily_prices?symbol=eq.${code}&order=date.desc&limit=1`, {
+      headers: { 'apikey': KEY, 'Authorization': `Bearer ${KEY}` }
+    });
     const data = await r.json();
     if (data && data.length > 0) {
-      const d = data[data.length - 1];
+      const d = data[0];
       document.getElementById('stockResult').style.display = 'block';
       document.getElementById('stockName').textContent = code;
-      document.getElementById('stockMeta').textContent = `最新交易日：${d.Date}`;
-      document.getElementById('sClose').textContent = d.ClosingPrice;
-      const change = parseFloat(d.Change);
+      document.getElementById('stockMeta').textContent = `最新交易日：${d.date}`;
+      document.getElementById('sClose').textContent = d.close_price;
+      const change = parseFloat(d.change_percent);
       const changeEl = document.getElementById('sChange');
-      changeEl.textContent = (change >= 0 ? '+' : '') + d.Change;
+      changeEl.textContent = (change >= 0 ? '+' : '') + change.toFixed(2) + '%';
       changeEl.className = 'val ' + (change >= 0 ? 'up' : 'down');
-      document.getElementById('sVol').textContent = parseInt(d.TradeVolume).toLocaleString();
-      document.getElementById('sOpen').textContent = d.OpeningPrice;
-      document.getElementById('sHigh').textContent = d.HighestPrice;
-      document.getElementById('sLow').textContent = d.LowestPrice;
+      document.getElementById('sVol').textContent = parseInt(d.volume).toLocaleString();
+      document.getElementById('sOpen').textContent = d.open_price;
+      document.getElementById('sHigh').textContent = d.high_price;
+      document.getElementById('sLow').textContent = d.low_price;
     } else {
-      alert('找不到此股票，請確認代號是否正確');
+      document.getElementById('stockResult').style.display = 'block';
+      document.getElementById('stockName').textContent = code;
+      document.getElementById('stockMeta').textContent = '尚無數據，請於盤後查詢';
+      ['sClose','sChange','sVol','sOpen','sHigh','sLow'].forEach(id => document.getElementById(id).textContent = '—');
     }
   } catch(e) {
     alert('查詢失敗，請稍後再試');
