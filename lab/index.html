@@ -262,6 +262,7 @@ function showDashboard() {
   document.getElementById('lockScreen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
   loadMarketData();
+  loadSupabaseData();
 }
 
 if (localStorage.getItem('lab_auth') === 'true') showDashboard();
@@ -349,6 +350,48 @@ async function sendFeedback(section, inputId) {
   } catch(e) {
     alert('送出失敗，請稍後再試');
   }
+}
+
+async function loadSupabaseData() {
+  const KEY = 'sb_publishable_KEnwL0LHgUp7puGK1KvLCg_XMWCC14m';
+  const BASE = 'https://sirhskxufayklqrlxeep.supabase.co/rest/v1';
+  const h = { 'apikey': KEY, 'Authorization': `Bearer ${KEY}` };
+  const names = {'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電'};
+
+  try {
+    const r = await fetch(`${BASE}/ai_analysis?order=date.desc&limit=10`, { headers: h });
+    const data = await r.json();
+    if (data && data.length > 0) {
+      const container = document.querySelector('.ai-card .ai-text');
+      container.innerHTML = data.map(d =>
+        `<span class="ai-stock">${names[d.symbol]||d.symbol} (${d.symbol})</span> ${d.summary}<br><br>`
+      ).join('');
+    }
+  } catch(e) {}
+
+  try {
+    const r = await fetch(`${BASE}/sentiment?order=mention_count.desc&limit=5`, { headers: h });
+    const data = await r.json();
+    if (data && data.length > 0) {
+      const container = document.getElementById('sentimentList');
+      container.innerHTML = data.map((d, i) => {
+        const tag = d.sentiment_score >= 0.6 ? 'tag-up">正面' : d.sentiment_score <= 0.4 ? 'tag-down">負面' : 'tag-neutral">中性';
+        return `<div class="rank-item"><div class="rank-num">${i+1}</div><div><div class="rank-name">${names[d.symbol]||d.symbol} ${d.symbol}</div><div class="rank-sub">今日討論 ${d.mention_count} 則</div></div><span class="tag ${tag}</span></div>`;
+      }).join('');
+    }
+  } catch(e) {}
+
+  try {
+    const r = await fetch(`${BASE}/institutional_investors?order=total_buy.desc&limit=5`, { headers: h });
+    const data = await r.json();
+    if (data && data.length > 0) {
+      const container = document.getElementById('institutionalList');
+      container.innerHTML = data.map((d, i) => {
+        const who = d.foreign_buy > 0 && d.investment_trust_buy > 0 ? '外資+投信' : d.foreign_buy > 0 ? '外資' : '投信';
+        return `<div class="rank-item"><div class="rank-num">${i+1}</div><div><div class="rank-name">${names[d.symbol]||d.symbol} ${d.symbol}</div><div class="rank-sub">${who}</div></div><div class="rank-val up">+${d.total_buy.toLocaleString()}張</div></div>`;
+      }).join('');
+    }
+  } catch(e) {}
 }
 </script>
 </body>
