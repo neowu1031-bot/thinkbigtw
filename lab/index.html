@@ -1,1 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台股情報站 | THINK BIG Lab</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0f1e;
+    color: #e2e8f0;
+    font-family: 'SF Pro Display', -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lock-screen {
+    text-align: center;
+    padding: 40px;
+  }
+  .logo { font-size: 48px; margin-bottom: 16px; }
+  h1 { font-size: 24px; color: #60a5fa; margin-bottom: 8px; }
+  p { color: #94a3b8; margin-bottom: 32px; font-size: 14px; }
+  input {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #e2e8f0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 280px;
+    display: block;
+    margin: 0 auto 16px;
+    text-align: center;
+    letter-spacing: 4px;
+  }
+  input:focus { outline: none; border-color: #60a5fa; }
+  button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 280px;
+  }
+  button:hover { background: #1d4ed8; }
+  .error { color: #f87171; font-size: 13px; margin-top: 12px; }
+  .dashboard { display: none; padding: 24px; max-width: 1200px; margin: 0 auto; }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1e293b;
+  }
+  .header h1 { font-size: 20px; color: #60a5fa; }
+  .badge {
+    background: #1e293b;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #334155;
+  }
+  .card h3 { font-size: 13px; color: #94a3b8; margin-bottom: 8px; }
+  .card .value { font-size: 28px; font-weight: 700; color: #e2e8f0; }
+  .card .sub { font-size: 12px; color: #64748b; margin-top: 4px; }
+  .up { color: #34d399; }
+  .down { color: #f87171; }
+  .coming-soon {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 60px 20px;
+    text-align: center;
+    border: 1px dashed #334155;
+    color: #475569;
+  }
+  .coming-soon span { font-size: 48px; display: block; margin-bottom: 12px; }
+</style>
+</head>
+<body>
 
+<div class="lock-screen" id="lockScreen">
+  <div class="logo">🦞</div>
+  <h1>台股情報站</h1>
+  <p>THINK BIG Lab · 內部測試版</p>
+  <input type="password" id="pwInput" placeholder="輸入密碼" onkeydown="if(event.key==='Enter')checkPw()">
+  <button onclick="checkPw()">進入</button>
+  <div class="error" id="errMsg"></div>
+</div>
+
+<div class="dashboard" id="dashboard">
+  <div class="header">
+    <h1>🦞 台股情報站</h1>
+    <span class="badge">內部測試版 · THINK BIG Lab</span>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h3>加權指數</h3>
+      <div class="value" id="taiex">載入中...</div>
+      <div class="sub" id="taiexChange">—</div>
+    </div>
+    <div class="card">
+      <h3>今日成交量</h3>
+      <div class="value" id="volume">載入中...</div>
+      <div class="sub">億元</div>
+    </div>
+    <div class="card">
+      <h3>外資今日</h3>
+      <div class="value" id="foreign">載入中...</div>
+      <div class="sub">億元</div>
+    </div>
+  </div>
+
+  <div class="coming-soon">
+    <span>🔨</span>
+    AI個股解讀、籌碼分析、輿情雷達 — 建置中
+  </div>
+</div>
+
+<script>
+const PW = 'thinkbig2025';
+
+function checkPw() {
+  const input = document.getElementById('pwInput').value;
+  if (input === PW) {
+    localStorage.setItem('lab_auth', 'true');
+    showDashboard();
+  } else {
+    document.getElementById('errMsg').textContent = '密碼錯誤，請再試一次';
+  }
+}
+
+function showDashboard() {
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('dashboard').style.display = 'block';
+  loadData();
+}
+
+if (localStorage.getItem('lab_auth') === 'true') {
+  showDashboard();
+}
+
+async function loadData() {
+  try {
+    const r = await fetch('https://openapi.twse.com.tw/v1/exchangeReport/FMTQIK');
+    const data = await r.json();
+    if (data && data[0]) {
+      const d = data[0];
+      document.getElementById('taiex').textContent = parseFloat(d.TSE指數).toLocaleString();
+      const change = parseFloat(d.TSE漲跌點數);
+      const el = document.getElementById('taiexChange');
+      el.textContent = (change >= 0 ? '▲ +' : '▼ ') + change.toFixed(2) + ' 點';
+      el.className = 'sub ' + (change >= 0 ? 'up' : 'down');
+      const vol = (parseFloat(d.成交金額) / 100000000).toFixed(0);
+      document.getElementById('volume').textContent = vol;
+    }
+  } catch(e) {
+    document.getElementById('taiex').textContent = '盤後更新';
+  }
+
+  try {
+    const r2 = await fetch('https://openapi.twse.com.tw/v1/fund/TWT38U');
+    const data2 = await r2.json();
+    if (data2 && data2[0]) {
+      const foreign = (parseFloat(data2[0].外陸資買賣超股數) / 100000000).toFixed(1);
+      const el2 = document.getElementById('foreign');
+      el2.textContent = (parseFloat(foreign) >= 0 ? '+' : '') + foreign;
+      el2.className = 'value ' + (parseFloat(foreign) >= 0 ? 'up' : 'down');
+    }
+  } catch(e) {
+    document.getElementById('foreign').textContent = '盤後更新';
+  }
+}
+</script>
+</body>
+</html>
