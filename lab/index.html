@@ -270,31 +270,37 @@ function showDashboard() {
 if (localStorage.getItem('lab_auth') === 'true') showDashboard();
 
 async function loadMarketData() {
+  const KEY = 'sb_publishable_KEnwL0LHgUp7puGK1KvLCg_XMWCC14m';
+  const BASE = 'https://sirhskxufaaylqrlxeep.supabase.co/rest/v1'.replace('aaylq','ayklq');
+  const h = { 'apikey': KEY, 'Authorization': `Bearer ${KEY}` };
   try {
-    const r = await fetch('https://openapi.twse.com.tw/v1/exchangeReport/FMTQIK');
+    const r = await fetch(`${BASE}/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=1`, { headers: h });
     const data = await r.json();
-    if (data && data[0]) {
+    if (data && data.length > 0) {
       const d = data[0];
-      document.getElementById('taiex').textContent = parseFloat(d.TSE指數).toLocaleString();
-      const change = parseFloat(d.TSE漲跌點數);
+      document.getElementById('taiex').textContent = parseFloat(d.close_price).toLocaleString();
+      const change = parseFloat(d.change_percent);
       const el = document.getElementById('taiexChange');
       el.textContent = (change >= 0 ? '▲ +' : '▼ ') + change.toFixed(2) + ' 點';
       el.className = 'sub ' + (change >= 0 ? 'up' : 'down');
-      const vol = (parseFloat(d.成交金額) / 100000000).toFixed(0);
+      const vol = (parseFloat(d.volume) / 100000000).toFixed(0);
       document.getElementById('volume').textContent = Number(vol).toLocaleString();
+    } else {
+      document.getElementById('taiex').textContent = '盤後更新';
     }
   } catch(e) {
     document.getElementById('taiex').textContent = '盤後更新';
   }
   try {
-    const r2 = await fetch('https://openapi.twse.com.tw/v1/fund/TWT38U');
+    const r2 = await fetch(`${BASE}/institutional_investors?order=date.desc&limit=1`, { headers: h });
     const data2 = await r2.json();
-    if (data2 && data2[0]) {
-      const val = parseFloat(data2[0].外陸資買賣超股數);
-      const billions = (val / 100000000).toFixed(1);
+    if (data2 && data2.length > 0) {
+      const val = data2[0].foreign_buy || 0;
       const el2 = document.getElementById('foreign');
-      el2.textContent = (val >= 0 ? '+' : '') + billions;
+      el2.textContent = (val >= 0 ? '+' : '') + val.toLocaleString();
       el2.className = 'value ' + (val >= 0 ? 'up' : 'down');
+    } else {
+      document.getElementById('foreign').textContent = '盤後更新';
     }
   } catch(e) {
     document.getElementById('foreign').textContent = '盤後更新';
