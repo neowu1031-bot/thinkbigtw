@@ -64,12 +64,14 @@ textarea{height:80px;resize:vertical}
 .tag-up{background:#064e3b;color:#34d399}
 .tag-down{background:#450a0a;color:#f87171}
 .tag-neutral{background:#1e293b;color:#94a3b8}
+
+.logo-text{font-size:22px;font-weight:800;color:#60a5fa;letter-spacing:2px;margin-bottom:16px;border:2px solid #2563eb;padding:8px 18px;border-radius:8px;display:inline-block}
 </style>
 </head>
 <body>
 
 <div class="lock-screen" id="lockScreen">
-  <div class="logo">🦞</div>
+  <div class="logo-text">T B</div>
   <h1>台股情報站</h1>
   <p class="subtitle">THINK BIG Lab · 內部測試版</p>
   <input type="password" id="pwInput" placeholder="輸入密碼" onkeydown="if(event.key==='Enter')checkPw()">
@@ -79,13 +81,13 @@ textarea{height:80px;resize:vertical}
 
 <div class="dashboard" id="dashboard">
   <div class="header">
-    <h1>🦞 台股情報站</h1>
+    <h1>台股情報站</h1>
     <span class="badge">內部測試版 · THINK BIG Lab</span>
   </div>
 
   <!-- 大盤總覽 -->
   <div class="section">
-    <div class="section-title">📊 大盤總覽</div>
+    <div class="section-title"> 大盤總覽</div>
     <div class="grid">
       <div class="card">
         <h3>加權指數</h3>
@@ -104,7 +106,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="feedback-box">
-      <p>💬 對「大盤總覽」的建議：</p>
+      <p>對「大盤總覽」的建議：</p>
       <textarea id="fb1" placeholder="例如：希望加入台指期、美股連動指標..."></textarea>
       <button class="btn-sm" onclick="sendFeedback('大盤總覽','fb1')">送出建議</button>
       <div class="success" id="fb1ok"></div>
@@ -113,7 +115,7 @@ textarea{height:80px;resize:vertical}
 
   <!-- 個股搜尋 -->
   <div class="section">
-    <div class="section-title">🔍 個股搜尋</div>
+    <div class="section-title"> 個股搜尋</div>
     <div class="stock-search">
       <input type="text" id="stockInput" placeholder="輸入股票代號，例如：2330" onkeydown="if(event.key==='Enter')searchStock()">
       <button onclick="searchStock()">查詢</button>
@@ -131,7 +133,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="feedback-box">
-      <p>💬 對「個股搜尋」的建議：</p>
+      <p>對「個股搜尋」的建議：</p>
       <textarea id="fb2" placeholder="例如：希望加入K線圖、法人籌碼、AI解讀..."></textarea>
       <button class="btn-sm" onclick="sendFeedback('個股搜尋','fb2')">送出建議</button>
       <div class="success" id="fb2ok"></div>
@@ -140,7 +142,7 @@ textarea{height:80px;resize:vertical}
 
   <!-- AI每日解讀 -->
   <div class="section">
-    <div class="section-title">🤖 AI每日解讀</div>
+    <div class="section-title"> AI每日解讀</div>
     <div class="ai-card">
       <span class="ai-tag">AI 生成 · 僅供參考</span>
       <div class="ai-text">
@@ -148,10 +150,10 @@ textarea{height:80px;resize:vertical}
         <span class="ai-stock">鴻海 (2317)</span> 籌碼面出現大戶承接訊號，PTT討論熱度為近30日最高，短線有表態機會。<br><br>
         <span class="ai-stock">聯發科 (2454)</span> 本週投信連續買超，基本面穩健，適合中長線關注。
       </div>
-      <div style="margin-top:12px;font-size:11px;color:#475569">⚠️ 以上內容為AI自動生成，不構成投資建議，投資有風險請自行判斷</div>
+      <div style="margin-top:12px;font-size:11px;color:#475569">注意：以上內容為AI自動生成，不構成投資建議，投資有風險請自行判斷</div>
     </div>
     <div class="feedback-box">
-      <p>💬 對「AI每日解讀」的建議：</p>
+      <p>對「AI 每日解讀」的建議：</p>
       <textarea id="fb3" placeholder="例如：希望能自訂追蹤的股票、解讀內容太短/太長..."></textarea>
       <button class="btn-sm" onclick="sendFeedback('AI每日解讀','fb3')">送出建議</button>
       <div class="success" id="fb3ok"></div>
@@ -160,7 +162,7 @@ textarea{height:80px;resize:vertical}
 
   <!-- 輿情雷達 -->
   <div class="section">
-    <div class="section-title">📡 輿情雷達（PTT討論熱度）</div>
+    <div class="section-title"> 輿情雷達（PTT討論熱度）</div>
     <div class="rank-list" id="sentimentList">
       <div class="rank-item"><div class="rank-num">1</div><div><div class="rank-name">台積電 2330</div><div class="rank-sub">今日討論 142 則</div></div><span class="tag tag-up">正面</span></div>
       <div class="rank-item"><div class="rank-num">2</div><div><div class="rank-name">鴻海 2317</div><div class="rank-sub">今日討論 89 則</div></div><span class="tag tag-up">正面</span></div>
@@ -169,7 +171,7 @@ textarea{height:80px;resize:vertical}
       <div class="rank-item"><div class="rank-num">5</div><div><div class="rank-name">緯創 3231</div><div class="rank-sub">今日討論 41 則</div></div><span class="tag tag-down">負面</span></div>
     </div>
     <div class="feedback-box">
-      <p>💬 對「輿情雷達」的建議：</p>
+      <p>對「輿情雷達」的建議：</p>
       <textarea id="fb4" placeholder="例如：希望加入爆料同學會、Threads、YouTube留言..."></textarea>
       <button class="btn-sm" onclick="sendFeedback('輿情雷達','fb4')">送出建議</button>
       <div class="success" id="fb4ok"></div>
@@ -178,7 +180,7 @@ textarea{height:80px;resize:vertical}
 
   <!-- 三大法人 -->
   <div class="section">
-    <div class="section-title">🏦 三大法人今日買超排行</div>
+    <div class="section-title"> 三大法人今日買超排行</div>
     <div class="rank-list" id="institutionalList">
       <div class="rank-item"><div class="rank-num">1</div><div><div class="rank-name">台積電 2330</div><div class="rank-sub">外資</div></div><div class="rank-val up">+8,420張</div></div>
       <div class="rank-item"><div class="rank-num">2</div><div><div class="rank-name">鴻海 2317</div><div class="rank-sub">投信</div></div><div class="rank-val up">+3,210張</div></div>
@@ -187,7 +189,7 @@ textarea{height:80px;resize:vertical}
       <div class="rank-item"><div class="rank-num">5</div><div><div class="rank-name">台達電 2308</div><div class="rank-sub">投信</div></div><div class="rank-val up">+980張</div></div>
     </div>
     <div class="feedback-box">
-      <p>💬 對「三大法人」的建議：</p>
+      <p>對「三大法人」的建議：</p>
       <textarea id="fb5" placeholder="例如：希望看到賣超排行、分開顯示外資/投信/自營..."></textarea>
       <button class="btn-sm" onclick="sendFeedback('三大法人','fb5')">送出建議</button>
       <div class="success" id="fb5ok"></div>
@@ -196,14 +198,14 @@ textarea{height:80px;resize:vertical}
 
   <!-- 技術指標提醒 -->
   <div class="section">
-    <div class="section-title">🔔 技術指標提醒（建置中）</div>
+    <div class="section-title"> 技術指標提醒（建置中）</div>
     <div class="coming">
-      <span>🔨</span>
+      
       設定條件（RSI低於20、KD黃金交叉等）→ 自動發Email通知<br>
       <small style="font-size:12px;margin-top:8px;display:block">預計下一版本上線</small>
     </div>
     <div class="feedback-box">
-      <p>💬 你最希望收到哪種提醒？</p>
+      <p>你最希望收到哪種提醒？</p>
       <textarea id="fb6" placeholder="例如：RSI低於30時通知我、外資連買3天通知我..."></textarea>
       <button class="btn-sm" onclick="sendFeedback('技術指標提醒','fb6')">送出建議</button>
       <div class="success" id="fb6ok"></div>
@@ -212,14 +214,14 @@ textarea{height:80px;resize:vertical}
 
   <!-- 選股條件 -->
   <div class="section">
-    <div class="section-title">🎯 智慧選股（建置中）</div>
+    <div class="section-title"> 智慧選股（建置中）</div>
     <div class="coming">
-      <span>🔨</span>
+      
       自訂條件篩選：外資連買N天 + 站上季線 + 輿情正面<br>
       <small style="font-size:12px;margin-top:8px;display:block">預計下一版本上線</small>
     </div>
     <div class="feedback-box">
-      <p>💬 你最常用什麼條件選股？</p>
+      <p>你最常用什麼條件選股？</p>
       <textarea id="fb7" placeholder="例如：殖利率超過5%、本益比低於15、外資連買..."></textarea>
       <button class="btn-sm" onclick="sendFeedback('智慧選股','fb7')">送出建議</button>
       <div class="success" id="fb7ok"></div>
@@ -228,7 +230,7 @@ textarea{height:80px;resize:vertical}
 
   <!-- 整體建議 -->
   <div class="section">
-    <div class="section-title">💡 整體建議</div>
+    <div class="section-title"> 整體建議</div>
     <div class="feedback-box" style="background:#1e293b;border:1px solid #334155">
       <p>還有什麼功能是你最想看到的？</p>
       <textarea id="fb8" placeholder="任何想法都歡迎，例如：希望有App版、希望能追蹤美股、希望有社群討論區..."></textarea>
@@ -349,7 +351,7 @@ async function sendFeedback(section, inputId) {
       body: JSON.stringify({ section, message })
     });
     if (r.ok) {
-      document.getElementById(inputId + 'ok').textContent = '✅ 已收到，謝謝你的建議！';
+      document.getElementById(inputId + 'ok').textContent = '已收到，謝謝你的建議。';
       document.getElementById(inputId).value = '';
     } else {
       alert('送出失敗，請稍後再試');
