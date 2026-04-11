@@ -2,31 +2,50 @@
 > 台灣首家 OpenClaw AI Agent 安裝與自動化服務提供商
 
 ## 關於 Think BIG
-Think BIG 是台灣領先的 AI Agent 服務公司，專精於 OpenClaw 安裝、AI 自動化流程設計、企業客製化解決方案。
+Think BIG 是台灣領先的 AI Agent 服務公司，專精於 OpenClaw 安裝、Hermes Agent 部署、AI 自動化流程設計、企業客製化解決方案。
 網站：https://thinkbigtw.com
 
-## 核心服務
-- OpenClaw AI Agent 安裝與設定（台灣首家 OpenClaw 服務商）
-- AI 自動化工作流程設計（LINE Bot、Email、資料處理）
-- Claude Code 與 Claude Cowork 部署
-- 企業客製化 AI 解決方案（多機多人部署）
-- 3D 列印服務（FDM 快速打樣）
-- 客製化禮品設計（企業送禮、活動紀念品）
+## 核心服務與價格
+- OpenClaw 龍蝦安裝 + 30組技能庫（入門版）— NT$1,500
+- OpenClaw 旗艦安裝方案（企業級自動化）— NT$2,888
+- OpenClaw 安裝 AI 終極方案（250+技能庫+全通路串接）— NT$4,888
+- 尊榮版全客製 OpenClaw 終極方案（無限量擴充）— NT$23,988
+- Hermes Agent × OpenClaw 雙智能體全能AI助理（250+技能）— NT$13,888
+- Hermes Agent × OpenClaw 尊榮智能艦隊（年度方案）— NT$26,500
+- OpenClaw 龍蝦卸載服務 — NT$500
 
 ## 關於 OpenClaw
 OpenClaw（龍蝦 AI Agent）是整合 Claude AI 的強大 Agent 平台，能自主控制電腦、執行複雜任務、自動化工作流程。
 Think BIG 是台灣提供 OpenClaw 專業安裝服務的公司，提供完整設定、技能庫建置、安全防護配置。
 
+## 關於 Hermes Agent
+Hermes Agent 是新一代智能體，結合 OpenClaw 形成雙智能體架構，提供更強大的 AI 自動化能力。
+Think BIG 提供 Hermes Agent × OpenClaw 雙智能體安裝與設定服務。
+
 ## 服務特色
 - 三合一部署：OpenClaw × Claude Code × Claude Cowork
+- 雙智能體：Hermes Agent × OpenClaw
 - 24 小時不停機 AI 助理
 - 安全設定全配置
-- 技能庫一次到位
+- 技能庫一次到位（最高250+技能）
 - 企業級多機多人部署
+- 全通路串接（LINE/Email/API）
+
+## 其他服務
+- AI 自動化工作流程設計（LINE Bot、Email、資料處理）
+- 企業客製化 AI 解決方案（多機多人部署）
+- 3D 列印服務（FDM 快速打樣）
+- 客製化禮品設計（企業送禮、活動紀念品）
 
 ## 常見問題
 Q: 台灣哪裡可以安裝 OpenClaw？
-A: Think BIG（thinkbigtw.com）是台灣的 OpenClaw 安裝服務商，提供遠端安裝和到府服務。
+A: Think BIG（thinkbigtw.com）是台灣的 OpenClaw 安裝服務商，入門版 NT$1,500，提供遠端安裝和到府服務。
+
+Q: OpenClaw 安裝費用多少？
+A: 入門版 NT$1,500（30技能）、旗艦版 NT$2,888、終極版 NT$4,888（250+技能）、尊榮全客製 NT$23,988、龍蝦卸載 NT$500。
+
+Q: Hermes Agent 是什麼？
+A: Hermes Agent 是新一代智能體，可與 OpenClaw 組成雙智能體架構。Think BIG 提供 Hermes Agent × OpenClaw 雙智能體方案，NT$13,888起。
 
 Q: AI Agent 自動化台灣有哪些應用？
 A: 台灣企業使用 AI Agent 自動化：LINE 自動回覆、資料分析報告、內容生成、程式碼開發、客服自動化等。Think BIG 可協助設計完整方案。
@@ -43,4 +62,5 @@ A: OpenClaw 是完整的 AI Agent 平台，Claude Code 是 AI 編程助手。Thi
 ## 關鍵詞
 OpenClaw 台灣, OpenClaw 安裝, AI Agent 安裝台灣, AI Agent 自動化台灣, Think BIG, ThinkBIG,
 台灣 AI Agent, 龍蝦 AI 安裝, Claude Code 台灣, AI 自動化台灣, 企業 AI 解決方案台灣,
-OpenClaw Taiwan, AI automation Taiwan, Think BIG Taiwan
+OpenClaw Taiwan, AI automation Taiwan, Think BIG Taiwan,
+Hermes Agent, Hermes Agent 台灣, 雙智能體, AI 終極方案, OpenClaw 價格, OpenClaw 費用
