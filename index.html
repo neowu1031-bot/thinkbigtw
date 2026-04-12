@@ -710,7 +710,7 @@ async function detectAndApply(){
   document.getElementById('nav-how').textContent=t.navHow;
   document.getElementById('nav-contact-link').textContent=t.navContact;
   document.getElementById('nav-contact').innerHTML=isLine?buildLineBtn(t.contact):buildWaBtn(t.contact);
-  document.querySelectorAll('.card-cta').forEach(btn=>{btn.href=contactUrl;});
+  document.querySelectorAll('.card-cta').forEach(btn=>{if(!btn.closest('.card-featured')){btn.href=contactUrl;}});
   document.getElementById('cta-btns').innerHTML=isLine?buildCtaLineBtn(t.contact):buildCtaWaBtn(t.contact);
 }
 detectAndApply();
