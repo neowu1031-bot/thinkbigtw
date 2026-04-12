@@ -32,243 +32,160 @@
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "LocalBusiness",
-      "@id": "https://thinkbigtw.com/#localbusiness",
-      "name": "Think BIG",
-      "alternateName": ["Think BIG Taiwan","ThinkBIG AI","Think BIG AI Agent"],
-      "url": "https://thinkbigtw.com",
-      "logo": "https://thinkbigtw.com/logo.png",
-      "image": "https://thinkbigtw.com/og-image.jpg",
-      "description": "台灣首家 OpenClaw AI Agent 安裝服務商。專精 OpenClaw 安裝設定、AI 自動化流程設計、Claude Code 部署、企業客製化 AI 解決方案、3D 列印及客製禮品。",
-      "priceRange": "$$",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "TW",
-        "addressRegion": "Taiwan",
-        "addressLocality": "台灣"
-      },
-      "contactPoint": [
-        {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
-          "availableLanguage": ["Chinese","English"],
-          "url": "https://lin.ee/n5KW430"
-        },
-        {
-          "@type": "ContactPoint",
-          "contactType": "sales",
-          "email": "neowu1031@gmail.com"
-        }
-      ],
-      "sameAs": ["https://lin.ee/n5KW430"],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Think BIG 服務目錄",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "price": "1500",
-            "priceCurrency": "TWD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "OpenClaw 龍蝦安裝 + 30組技能庫（入門版）",
-              "description": "OpenClaw AI Agent 入門版安裝，含30組技能庫，永久使用，遠端安裝+操作教學+安全設定。",
-              "provider": {"@id": "https://thinkbigtw.com/#localbusiness"},
-              "areaServed": {"@type": "Country","name": "Taiwan"},
-              "serviceType": "AI Agent 安裝"
-            }
-          },
-          {
-            "@type": "Offer",
-            "price": "2888",
-            "priceCurrency": "TWD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "OpenClaw 旗艦安裝方案（企業級自動化）",
-              "description": "OpenClaw 旗艦安裝方案，企業級自動化設定，進階技能庫配置與安全防護。",
-              "provider": {"@id": "https://thinkbigtw.com/#localbusiness"},
-              "areaServed": {"@type": "Country","name": "Taiwan"},
-              "serviceType": "AI Agent 安裝"
-            }
-          },
-          {
-            "@type": "Offer",
-            "price": "4888",
-            "priceCurrency": "TWD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "OpenClaw 安裝 AI 終極方案（250+技能庫+全通路串接）",
-              "description": "OpenClaw AI 終極方案，250+技能庫全解鎖，LINE/Email/API全通路串接，完整自動化部署。",
-              "provider": {"@id": "https://thinkbigtw.com/#localbusiness"},
-              "areaServed": {"@type": "Country","name": "Taiwan"},
-              "serviceType": "AI Agent 安裝"
-            }
-          },
-          {
-            "@type": "Offer",
-            "price": "23988",
-            "priceCurrency": "TWD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "尊榮版全客製 OpenClaw 終極方案（無限量擴充）",
-              "description": "尊榮全客製方案，無限量技能擴充，完全客製化 AI Agent 解決方案。",
-              "provider": {"@id": "https://thinkbigtw.com/#localbusiness"},
-              "serviceType": "企業 AI 客製化"
-            }
-          },
-          {
-            "@type": "Offer",
-            "price": "13888",
-            "priceCurrency": "TWD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Hermes Agent × OpenClaw 雙智能體全能AI助理（250+技能）",
-              "description": "Hermes Agent 結合 OpenClaw 雙引擎全能 AI 助理，250+技能庫，LINE/Email/API 全通路串接。",
-              "provider": {"@id": "https://thinkbigtw.com/#localbusiness"},
-              "areaServed": {"@type": "Country","name": "Taiwan"},
-              "serviceType": "AI Agent 安裝"
-            }
-          },
-          {
-            "@type": "Offer",
-            "price": "26500",
-            "priceCurrency": "TWD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Hermes Agent × OpenClaw 尊榮智能艦隊（年度方案）",
-              "description": "Hermes Agent × OpenClaw 尊榮年度方案，智能艦隊全年無限支援與維護。",
-              "provider": {"@id": "https://thinkbigtw.com/#localbusiness"},
-              "serviceType": "企業 AI 客製化"
-            }
-          },
-          {
-            "@type": "Offer",
-            "price": "500",
-            "priceCurrency": "TWD",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "OpenClaw 龍蝦卸載服務",
-              "description": "專業 OpenClaw 龍蝦卸載服務，安全移除，一次性費用。",
-              "provider": {"@id": "https://thinkbigtw.com/#localbusiness"},
-              "serviceType": "AI Agent 服務"
-            }
-          }
-        ]
-      }
-    },
-    {
       "@type": "Organization",
       "@id": "https://thinkbigtw.com/#organization",
       "name": "Think BIG!",
+      "alternateName": ["Think BIG Taiwan", "ThinkBIG AI", "台灣AI自動化專家"],
       "url": "https://thinkbigtw.com",
-      "logo": "https://thinkbigtw.com/logo.png",
-      "description": "台灣頂尖 AI Agent 部署服務商，提供最強 AI 助理組合：OpenClaw × Claude Code × Claude Cowork 三合一專業部署。",
-      "address": {"@type":"PostalAddress","addressCountry":"TW","addressRegion":"Taiwan"},
-      "contactPoint": {"@type":"ContactPoint","contactType":"customer service","availableLanguage":["Chinese","English"]}
+      "logo": "https://thinkbigtw.com/og-image.jpg",
+      "description": "Taiwan's leading AI Agent deployment and automation service provider. Specializing in OpenClaw, Hermes Agent, and Claude Managed Agent installation and integration.",
+      "address": {"@type": "PostalAddress", "addressCountry": "TW"},
+      "areaServed": ["TW","HK","MO","MY","SG","JP","KR","TH","ID","VN","Global"],
+      "availableLanguage": ["zh-TW","zh-CN","en","ja","ko","th","id","vi","es","fr","de","pt","ar","ru"],
+      "contactPoint": [
+        {"@type": "ContactPoint", "contactType": "customer service", "url": "https://lin.ee/n5KW430", "contactOption": "LINE"},
+        {"@type": "ContactPoint", "contactType": "customer service", "url": "https://wa.me/886908898903", "contactOption": "WhatsApp"}
+      ],
+      "sameAs": ["https://thinkbigtw.com"]
     },
     {
       "@type": "WebSite",
       "@id": "https://thinkbigtw.com/#website",
-      "url": "https://thinkbigtw.com",
       "name": "Think BIG!",
-      "publisher": {"@id": "https://thinkbigtw.com/#organization"},
-      "inLanguage": "zh-TW"
+      "url": "https://thinkbigtw.com",
+      "inLanguage": ["zh-TW","zh-CN","en","ja","ko","th","de","fr","es","pt","ar","ru","id","vi"],
+      "publisher": {"@id": "https://thinkbigtw.com/#organization"}
     },
     {
-      "@type": "WebPage",
-      "@id": "https://thinkbigtw.com/#webpage",
+      "@type": "LocalBusiness",
+      "@id": "https://thinkbigtw.com/#localbusiness",
+      "name": "Think BIG!",
       "url": "https://thinkbigtw.com",
-      "name": "Think BIG — 台灣首家 OpenClaw AI Agent 安裝服務｜AI 自動化、企業客製化、3D列印、客製禮品",
-      "isPartOf": {"@id": "https://thinkbigtw.com/#website"},
-      "about": {"@id": "https://thinkbigtw.com/#organization"},
-      "description": "台灣首家 OpenClaw AI Agent 安裝服務商。專精 OpenClaw 安裝設定、AI 自動化流程設計、企業客製化 AI 解決方案。",
-      "inLanguage": "zh-TW"
+      "image": "https://thinkbigtw.com/og-image.jpg",
+      "description": "台灣頂尖 AI Agent 部署服務。OpenClaw 安裝、Hermes Agent 企業自動化、Claude Managed Agent、MCP 串接。香港、馬來西亞、新加坡遠端安裝。",
+      "priceRange": "NT$1,500 - NT$26,500",
+      "address": {"@type": "PostalAddress", "addressCountry": "TW", "addressLocality": "Taiwan"},
+      "telephone": "+886908898903",
+      "openingHours": "Mo-Su 09:00-22:00",
+      "areaServed": ["TW","HK","MO","MY","SG","JP","Global"]
+    },
+    {
+      "@type": "Service",
+      "name": "OpenClaw AI Agent 安裝",
+      "alternateName": "OpenClaw Installation Service",
+      "provider": {"@id": "https://thinkbigtw.com/#organization"},
+      "description": "OpenClaw AI Agent 本機安裝服務，含 30-250+ 技能庫設定、安全配置、操作教學。",
+      "offers": [
+        {"@type": "Offer", "name": "龍蝦安裝 + 30技能", "price": "1500", "priceCurrency": "TWD"},
+        {"@type": "Offer", "name": "旗艦安裝方案", "price": "2888", "priceCurrency": "TWD"},
+        {"@type": "Offer", "name": "終極方案 250+技能", "price": "4888", "priceCurrency": "TWD"}
+      ],
+      "areaServed": ["TW","HK","MY","SG","Global"]
+    },
+    {
+      "@type": "Service",
+      "name": "Hermes Agent 企業自動化",
+      "alternateName": "Hermes Agent Enterprise Automation",
+      "provider": {"@id": "https://thinkbigtw.com/#organization"},
+      "description": "Hermes Agent 企業級 AI 自動化助理，整合 LINE、Email、CRM，自動回覆客戶、排程管理。",
+      "offers": [
+        {"@type": "Offer", "name": "Hermes Agent x OpenClaw", "price": "13888", "priceCurrency": "TWD"},
+        {"@type": "Offer", "name": "Hermes Agent 尊榮年度版", "price": "26500", "priceCurrency": "TWD"}
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Claude Managed Agent 整合",
+      "alternateName": "Claude Managed Agent Integration",
+      "provider": {"@id": "https://thinkbigtw.com/#organization"},
+      "description": "Anthropic 官方 Claude Managed Agent 框架部署，透過 MCP 協議串接 OpenClaw 與 Hermes Agent。"
+    },
+    {
+      "@type": "Service",
+      "name": "尊榮全客製方案",
+      "provider": {"@id": "https://thinkbigtw.com/#organization"},
+      "description": "全客製化 AI Agent 解決方案，無限量技能擴充。",
+      "offers": {"@type": "Offer", "price": "23988", "priceCurrency": "TWD"}
     },
     {
       "@type": "FAQPage",
-      "@id": "https://thinkbigtw.com/#faqpage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "什麼是 OpenClaw？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "OpenClaw（又稱龍蝦 AI Agent）是一款強大的 AI Agent 平台，能整合 Claude Code、Claude Cowork 等 AI 工具，讓使用者透過自然語言控制電腦、自動化工作流程、執行複雜任務。Think BIG 是台灣首家提供 OpenClaw 專業安裝服務的公司。"
-          }
+          "name": "台灣哪裡可以安裝 OpenClaw AI Agent？",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 提供台灣全島遠端安裝服務，24小時內完成，LINE 或 WhatsApp 聯絡即可。費用從 NT$1,500 起。"}
         },
         {
           "@type": "Question",
-          "name": "台灣哪裡可以安裝 OpenClaw？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Think BIG（thinkbigtw.com）是台灣提供 OpenClaw 安裝服務的專業團隊。可透過 LINE（https://lin.ee/n5KW430）或 Email（neowu1031@gmail.com）聯絡，提供遠端安裝或到府服務，服務範圍涵蓋全台灣。"
-          }
+          "name": "什麼是 Hermes Agent？",
+          "acceptedAnswer": {"@type": "Answer", "text": "Hermes Agent 是企業級 AI 自動化助理，能整合 LINE、Email、日曆、CRM 等系統，自動回覆客戶、排程管理、產生報告，24小時不停機運作。"}
         },
         {
           "@type": "Question",
-          "name": "Think BIG 提供什麼服務？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Think BIG 提供：1) OpenClaw AI Agent 安裝（入門版NT$1,500/旗艦版NT$2,888/終極版NT$4,888/尊榮全客製NT$23,988）；2) Hermes Agent × OpenClaw 雙智能體（NT$13,888起）；3) 尊榮智能艦隊年度方案（NT$26,500）；4) 龍蝦卸載服務（NT$500）；5) 企業客製化 AI 解決方案；6) 3D 列印服務；7) 客製化禮品設計。"
-          }
+          "name": "什麼是 MCP 協議？",
+          "acceptedAnswer": {"@type": "Answer", "text": "MCP（Model Context Protocol）是 Anthropic 制定的開放協議，讓 OpenClaw、Hermes Agent、Claude Managed Agent 三個工具互相溝通協作，打造完整 AI 自動化基礎設施。"}
         },
         {
           "@type": "Question",
-          "name": "OpenClaw 安裝費用多少？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "OpenClaw 安裝費用：入門版 NT$1,500（30技能庫）、旗艦版 NT$2,888（企業級自動化）、終極版 NT$4,888（250+技能+全通路串接）、尊榮全客製 NT$23,988（無限擴充）。Hermes Agent × OpenClaw 雙智能體 NT$13,888起，尊榮智能艦隊年度方案 NT$26,500，龍蝦卸載服務 NT$500。一次性費用，永久使用，遠端安裝含教學。詳情請透過 LINE（https://lin.ee/n5KW430）洽詢。"
-          }
+          "name": "香港、馬來西亞、新加坡也能使用 Think BIG 服務嗎？",
+          "acceptedAnswer": {"@type": "Answer", "text": "可以，Think BIG! 提供全球遠端安裝服務。亞洲地區費用從 USD$48 起，WhatsApp 聯絡即可。"}
         },
         {
           "@type": "Question",
-          "name": "AI Agent 自動化可以做什麼？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "AI Agent 自動化可以：自動回覆 LINE/Email 訊息、自動化資料整理與分析、自動生成報告和內容、自動化程式碼開發與除錯、24 小時不停機執行重複性工作、整合各種 API 與第三方服務。Think BIG 可協助企業設計完整的 AI 自動化方案。"
-          }
+          "name": "OpenClaw 和 Hermes Agent 有什麼差別？",
+          "acceptedAnswer": {"@type": "Answer", "text": "OpenClaw 專注本機技能執行（100-250+ 個 Skills），適合個人自動化需求；Hermes Agent 專注企業業務流程自動化與外部系統整合，適合中小企業。"}
         },
         {
           "@type": "Question",
-          "name": "什麼是 AI Agent？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "AI Agent（AI 代理人）是能夠自主執行任務的 AI 系統，可以理解指令、制定計畫、使用工具並完成複雜多步驟任務。OpenClaw 能控制電腦、瀏覽網頁、撰寫程式、自動化工作流程。Think BIG 專精於 AI Agent 的安裝、設定與客製化。"
-          }
+          "name": "什么是 OpenClaw AI Agent？",
+          "acceptedAnswer": {"@type": "Answer", "text": "OpenClaw 是开源 AI Agent 平台，可在本地运行 100-250+ 个自动化技能。Think BIG! 提供远程安装服务，支持台湾、香港、马来西亚、新加坡等地区。"}
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I find OpenClaw installation service in Asia?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! provides professional OpenClaw AI Agent installation across Asia, including Taiwan, Hong Kong, Malaysia, and Singapore. Remote installation available globally. Starting from USD$48 for Asia, USD$55 globally. Contact via WhatsApp: +886908898903."}
+        },
+        {
+          "@type": "Question",
+          "name": "What is Harness Engineers?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Harness Engineers is Think BIG!'s core service concept — integrating OpenClaw, Hermes Agent, and Claude Managed Agent via MCP protocol to build a complete AI automation infrastructure. Learn more at https://thinkbigtw.com/harness/"}
+        },
+        {
+          "@type": "Question",
+          "name": "What is CLAW LAND?",
+          "acceptedAnswer": {"@type": "Answer", "text": "CLAW LAND is an AI desktop pet application developed by Think BIG!, integrating ChatGPT, Gemini, and Claude into one desktop companion. Available for Windows and Mac. Learn more at https://thinkbigtw.com/clawland/"}
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClawはどこでインストールできますか？",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG!がアジア全域でリモートインストールを提供しています。WhatsApp（+886908898903）でお問い合わせください。"}
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClaw는 어디서 설치할 수 있나요?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG!이 아시아 전역에서 원격 설치 서비스를 제공합니다. WhatsApp으로 문의하세요."}
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde puedo instalar OpenClaw en Asia?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! ofrece instalación remota de OpenClaw en toda Asia. Contacte por WhatsApp: +886908898903."}
+        },
+        {
+          "@type": "Question",
+          "name": "Où puis-je installer OpenClaw en Asie?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! propose une installation à distance d'OpenClaw dans toute l'Asie. Contactez via WhatsApp: +886908898903."}
+        },
+        {
+          "@type": "Question",
+          "name": "Wo kann ich OpenClaw in Asien installieren?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! bietet Remote-Installation von OpenClaw in ganz Asien an. Kontakt über WhatsApp: +886908898903."}
+        },
+        {
+          "@type": "Question",
+          "name": "Di mana saya bisa menginstal OpenClaw?",
+          "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! menyediakan layanan instalasi OpenClaw jarak jauh di seluruh Asia. Hubungi melalui WhatsApp: +886908898903."}
         }
       ]
-    },
-    {
-      "@type": "ItemList",
-      "name": "Think BIG 服務項目",
-      "itemListElement": [
-        {"@type":"ListItem","position":1,"name":"OpenClaw 龍蝦安裝入門版 NT$1,500","description":"OpenClaw 安裝+30組技能庫，永久使用，遠端安裝含教學。"},
-        {"@type":"ListItem","position":2,"name":"OpenClaw 旗艦安裝方案 NT$2,888","description":"企業級自動化，進階技能庫配置。"},
-        {"@type":"ListItem","position":3,"name":"OpenClaw AI 終極方案 NT$4,888","description":"250+技能庫+全通路串接（LINE/Email/API）完整部署。"},
-        {"@type":"ListItem","position":4,"name":"Hermes Agent × OpenClaw 雙智能體 NT$13,888","description":"Hermes Agent 結合 OpenClaw 雙引擎，250+技能全能AI助理。"},
-        {"@type":"ListItem","position":5,"name":"尊榮版全客製 OpenClaw NT$23,988","description":"無限量擴充，完全客製化企業AI解決方案。"},
-        {"@type":"ListItem","position":6,"name":"Hermes Agent × OpenClaw 尊榮智能艦隊 NT$26,500","description":"年度方案，智能艦隊全年無限支援。"},
-        {"@type":"ListItem","position":7,"name":"OpenClaw 龍蝦卸載服務 NT$500","description":"專業安全移除服務。"},
-        {"@type":"ListItem","position":8,"name":"企業方案客製化開發","description":"為企業打造專屬 AI 工作流，多機多人部署，從需求分析到上線維護。"},
-        {"@type":"ListItem","position":9,"name":"3D 列印服務","description":"FDM 3D 列印，從原型到量產，快速打樣。"},
-        {"@type":"ListItem","position":10,"name":"客製化禮品品牌溫度","description":"從設計到成品完全客製化，企業送禮、活動紀念品、個人收藏。"}
-      ]
-    },
-    {
-      "@type": "WebPage",
-      "@id": "https://thinkbigtw.com/harness/",
-      "url": "https://thinkbigtw.com/harness/",
-      "name": "Harness Engineers — OpenClaw × Hermes Agent × Claude Managed Agent | Think BIG",
-      "description": "三個工具，透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。OpenClaw 本機技能執行、Hermes Agent 企業流程自動化、Claude Managed Agent 高層次推理。",
-      "inLanguage": "zh-TW",
-      "isPartOf": {"@id": "https://thinkbigtw.com"},
-      "breadcrumb": {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://thinkbigtw.com"},
-          {"@type": "ListItem", "position": 2, "name": "Harness Engineers", "item": "https://thinkbigtw.com/harness/"}
-        ]
-      }
     }
   ]
 }
