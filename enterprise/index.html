@@ -140,201 +140,126 @@ footer a:hover{color:var(--text)}
 
 
 <!-- ═══════════════════════════════════════════════════
-     AI 產業分析報價工具
+     AI 產業分析報價工具 v2 (靜態版 · 0 Token · 20產業)
 ═══════════════════════════════════════════════════ -->
-<div id="ai-analyzer" style="position:relative;z-index:1;max-width:860px;margin:60px auto 80px;padding:0 24px;">
-
-  <!-- Step 1: Input -->
-  <div id="step-input" style="background:#111;border:1px solid #1e3a1e;border-radius:8px;padding:40px;box-shadow:0 0 40px rgba(0,255,65,0.08);">
-    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:6px;color:#00ff41;text-transform:uppercase;margin-bottom:10px;">AI ANALYZER</div>
-    <h2 style="font-size:clamp(22px,3vw,32px);font-weight:700;color:#f0f0f0;margin-bottom:8px;">輸入你的產業，秒出自動化清單</h2>
-    <p style="font-size:14px;color:#666;margin-bottom:28px;">由 Claude AI 即時分析，列出你的產業最適合的自動化項目與報價</p>
-
-    <div style="display:flex;gap:10px;flex-wrap:wrap;">
-      <input id="industry-input" type="text"
-        placeholder="例如：牙科診所、房仲公司、網路電商、餐廳..."
-        style="flex:1;min-width:240px;background:#0a0a0a;border:1px solid #2a4a2a;border-radius:4px;padding:14px 18px;font-size:15px;color:#f0f0f0;font-family:'Noto Sans TC',sans-serif;outline:none;transition:border .2s;"
-        onfocus="this.style.borderColor='#00ff41'"
-        onblur="this.style.borderColor='#2a4a2a'"
-      />
-      <button id="analyze-btn" onclick="runAnalysis()"
-        style="background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:14px 28px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;cursor:pointer;white-space:nowrap;transition:all .2s;"
-        onmouseover="this.style.background='#00ff41';this.style.color='#0a0a0a'"
-        onmouseout="this.style.background='#008f1a';this.style.color='white'"
-      >分析產業 →</button>
-    </div>
-
-    <!-- Quick tags -->
-    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
-      <span style="font-family:'Space Mono',monospace;font-size:10px;color:#444;margin-right:4px;">快速選擇：</span>
-      <script>
-      ['牙科診所','房仲公司','網路電商','餐廳','會計師事務所','製造業','美容沙龍','旅行社','物流倉儲','補習班'].forEach(t=>{
-        document.write('<button onclick="quickTag(\'' + t + '\')" style="background:transparent;border:1px solid #2a3a2a;color:#7aad7a;padding:5px 12px;border-radius:100px;font-family:Space Mono,monospace;font-size:10px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#2a3a2a';this.style.color='#7aad7a'">' + t + '</button>');
-      });
-      </script>
-    </div>
-  </div>
-
-  <!-- Step 2: Loading -->
-  <div id="step-loading" style="display:none;text-align:center;padding:60px 40px;">
-    <div style="font-size:32px;margin-bottom:16px;animation:spin 1s linear infinite;display:inline-block;">⟳</div>
-    <p id="loading-msg" style="font-family:'Space Mono',monospace;font-size:13px;color:#00ff41;letter-spacing:.08em;">ANALYZING INDUSTRY...</p>
-  </div>
-
-  <!-- Step 3: Result -->
-  <div id="step-result" style="display:none;">
-    <!-- Result will be injected here -->
-  </div>
-</div>
-
 <style>
-@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.result-card{animation:fadeInUp .5s ease forwards;opacity:0}
-.result-card:nth-child(2){animation-delay:.1s}
-.result-card:nth-child(3){animation-delay:.2s}
-.result-card:nth-child(4){animation-delay:.3s}
-.result-card:nth-child(5){animation-delay:.4s}
+#ai-analyzer input:focus{border-color:#00ff41!important}
+@keyframes fadeUp2{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.anim-in{animation:fadeUp2 .4s ease forwards}
 </style>
-
-<script>
-function quickTag(val){
-  document.getElementById('industry-input').value = val;
-  runAnalysis();
-}
-
-async function runAnalysis(){
-  const industry = document.getElementById('industry-input').value.trim();
-  if(!industry) return;
-
-  document.getElementById('step-input').style.display='none';
-  document.getElementById('step-loading').style.display='block';
-  document.getElementById('step-result').style.display='none';
-
-  const msgs = ['ANALYZING INDUSTRY...','MAPPING WORKFLOWS...','CALCULATING ROI...','GENERATING REPORT...'];
-  let mi=0;
-  const loadInterval = setInterval(()=>{
-    document.getElementById('loading-msg').textContent = msgs[mi++ % msgs.length];
-  },900);
-
-  try{
-    const res = await fetch('https://line-webhook-240748706912.asia-east1.run.app/ai-analyze',{
-      method:'POST',
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({industry:industry})
-    });
-    clearInterval(loadInterval);
-    const data = await res.json();
-    let text = data.content?.find(b=>b.type==='text')?.text || '{}';
-    text = text.replace(/```json|```/g,'').trim();
-    const result = JSON.parse(text);
-    renderResult(result, industry);
-  }catch(e){
-    clearInterval(loadInterval);
-    document.getElementById('step-loading').style.display='none';
-    document.getElementById('step-input').style.display='block';
-    document.getElementById('industry-input').value = industry;
-    alert('分析失敗，請再試一次');
-  }
-}
-
-document.getElementById('industry-input').addEventListener('keydown', e=>{
-  if(e.key==='Enter') runAnalysis();
-});
-
-function renderResult(r, rawInput){
-  document.getElementById('step-loading').style.display='none';
-  const priorityColor = {'高':'#00ff41','中':'#FFE500','低':'#7aad7a'};
-  const priorityBg = {'高':'rgba(0,255,65,0.12)','中':'rgba(255,229,0,0.1)','低':'rgba(122,173,122,0.08)'};
-
-  const automationHTML = r.automations?.map((a,i)=>`
-    <div class="result-card" style="background:#0d1a0d;border:1px solid ${priorityBg[a.priority]||'#1e3a1e'};border-left:3px solid ${priorityColor[a.priority]||'#00ff41'};border-radius:4px;padding:18px 20px;margin-bottom:8px;">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
-        <div style="flex:1;">
-          <div style="font-size:15px;font-weight:700;color:#f0f0f0;margin-bottom:4px;">${i+1}. ${a.title}</div>
-          <div style="font-size:13px;color:#7aad7a;line-height:1.6;">${a.desc}</div>
-        </div>
-        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
-          <span style="font-family:'Space Mono',monospace;font-size:9px;background:${priorityBg[a.priority]||'rgba(0,255,65,0.1)'};color:${priorityColor[a.priority]||'#00ff41'};padding:3px 8px;border-radius:2px;">優先度 ${a.priority}</span>
-          <span style="font-family:'Space Mono',monospace;font-size:9px;color:#444;padding:3px 8px;border:1px solid #1e3a1e;border-radius:2px;">${a.tool}</span>
-        </div>
-      </div>
-    </div>`).join('') || '';
-
-  const painHTML = r.pain_points?.map(p=>`
-    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;">
-      <span style="color:#e8422a;font-size:14px;flex-shrink:0;margin-top:1px;">✕</span>
-      <span style="font-size:14px;color:#888;">${p}</span>
-    </div>`).join('') || '';
-
-  const plan = r.recommended_plan || {};
-  const priceFormatted = plan.price ? 'NT$' + plan.price.toLocaleString() : '';
-
-  document.getElementById('step-result').innerHTML = `
-    <div style="background:#111;border:1px solid #1e3a1e;border-radius:8px;overflow:hidden;box-shadow:0 0 40px rgba(0,255,65,0.08);">
-
-      <!-- Header -->
-      <div style="background:rgba(0,255,65,0.06);border-bottom:1px solid #1e3a1e;padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-        <div>
-          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:6px;color:#00ff41;text-transform:uppercase;margin-bottom:6px;">AI ANALYSIS REPORT</div>
-          <h3 style="font-size:22px;font-weight:700;color:#f0f0f0;">${r.industry || rawInput} — 自動化分析</h3>
-        </div>
-        <button onclick="resetAnalyzer()" style="background:transparent;border:1px solid #2a4a2a;color:#7aad7a;padding:8px 16px;border-radius:4px;font-family:'Space Mono',monospace;font-size:10px;cursor:pointer;letter-spacing:.06em;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#2a4a2a';this.style.color='#7aad7a'">← 重新分析</button>
-      </div>
-
-      <div style="padding:32px;">
-
-        <!-- Pain points -->
-        <div style="margin-bottom:28px;">
-          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#e8422a;text-transform:uppercase;margin-bottom:14px;">目前痛點</div>
-          ${painHTML}
-        </div>
-
-        <!-- Automations -->
-        <div style="margin-bottom:28px;">
-          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00ff41;text-transform:uppercase;margin-bottom:14px;">可部署的自動化項目（${r.automations?.length||0} 項）</div>
-          ${automationHTML}
-        </div>
-
-        <!-- Plan recommendation -->
-        <div style="background:linear-gradient(135deg,rgba(0,255,65,0.1),rgba(0,143,26,0.06));border:1px solid rgba(0,255,65,0.4);border-radius:6px;padding:24px 28px;margin-bottom:20px;">
-          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00ff41;text-transform:uppercase;margin-bottom:10px;">推薦方案</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
-            <div>
-              <div style="font-size:20px;font-weight:700;color:#f0f0f0;margin-bottom:4px;">${plan.name||''}</div>
-              <div style="font-size:13px;color:#7aad7a;">${plan.reason||''}</div>
-              ${plan.skills_count ? `<div style="font-family:'Space Mono',monospace;font-size:11px;color:#444;margin-top:6px;">${plan.skills_count} 個技能庫</div>` : ''}
-            </div>
-            <div style="text-align:right;">
-              <div style="font-family:'Space Mono',monospace;font-size:32px;font-weight:700;color:#00ff41;">${priceFormatted}</div>
-              <div style="font-family:'Space Mono',monospace;font-size:10px;color:#444;letter-spacing:.06em;">一次買斷・無月費</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ROI note -->
-        ${r.roi_note ? `<div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:24px;padding:14px 18px;border-left:2px solid #1e3a1e;">💡 ${r.roi_note}</div>` : ''}
-
-        <!-- CTA -->
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="https://lin.ee/n5KW430" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:13px 24px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:.06em;transition:all .2s;" onmouseover="this.style.background='#00ff41';this.style.color='#0a0a0a'" onmouseout="this.style.background='#008f1a';this.style.color='white'">LINE 立即諮詢 →</a>
-          <button onclick="resetAnalyzer()" style="background:transparent;color:#7aad7a;border:1px solid #2a4a2a;border-radius:4px;padding:13px 24px;font-family:'Space Mono',monospace;font-size:12px;cursor:pointer;letter-spacing:.06em;transition:all .2s;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#2a4a2a';this.style.color='#7aad7a'">換個產業試試</button>
-        </div>
-      </div>
+<div id="ai-analyzer" style="position:relative;z-index:1;max-width:900px;margin:60px auto 80px;padding:0 24px;">
+  <div id="step-input" style="background:#111;border:1px solid #1e3a1e;border-radius:8px;padding:36px 40px;box-shadow:0 0 40px rgba(0,255,65,0.07);">
+    <div style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:6px;color:#00ff41;text-transform:uppercase;margin-bottom:10px;">AI ANALYZER · INSTANT · 0 TOKEN</div>
+    <h2 style="font-size:clamp(20px,3vw,28px);font-weight:700;color:#f0f0f0;margin-bottom:6px;">輸入你的產業，秒出自動化清單 & 報價</h2>
+    <p style="font-size:12px;color:#444;margin-bottom:24px;">覆蓋全球 20 大產業 · 支援中 / English / 日本語 / 한국어</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px;">
+      <input id="ind-input" type="text" placeholder="例：牙科診所 / dental clinic / 不動産 / 부동산..."
+        style="flex:1;min-width:200px;background:#0a0a0a;border:1px solid #2a4a2a;border-radius:4px;padding:13px 16px;font-size:14px;color:#f0f0f0;font-family:'Noto Sans TC',sans-serif;outline:none;transition:border .2s;"
+        onfocus="this.style.borderColor='#00ff41'" onblur="this.style.borderColor='#2a4a2a'"/>
+      <button onclick="doAnalyze()" style="background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:13px 26px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s;" onmouseover="this.style.background='#00ff41';this.style.color='#0a0a0a'" onmouseout="this.style.background='#008f1a';this.style.color='white'">分析 →</button>
     </div>
-  `;
+    <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;">
+      <span style="font-family:'Space Mono',monospace;font-size:9px;color:#333;margin-right:4px;">快速選：</span>
+      <button onclick="qTag('🏥 醫療診所')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">🏥 醫療診所</button>
+      <button onclick="qTag('🏠 房仲')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">🏠 房仲</button>
+      <button onclick="qTag('🛍 電商')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">🛍 電商</button>
+      <button onclick="qTag('🍜 餐廳')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">🍜 餐廳</button>
+      <button onclick="qTag('💰 會計')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">💰 會計</button>
+      <button onclick="qTag('🏭 製造業')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">🏭 製造業</button>
+      <button onclick="qTag('💄 美容SPA')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">💄 美容SPA</button>
+      <button onclick="qTag('✈️ 旅遊飯店')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">✈️ 旅遊飯店</button>
+      <button onclick="qTag('📦 物流倉儲')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">📦 物流倉儲</button>
+      <button onclick="qTag('🎓 教育補習')" style="background:transparent;border:1px solid #1a3a1a;color:#5a8d5a;padding:3px 9px;border-radius:100px;font-size:11px;cursor:pointer;font-family:'Noto Sans TC',sans-serif;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1a3a1a';this.style.color='#5a8d5a'">🎓 教育補習</button>
+    </div>
+  </div>
+  <div id="step-result" style="display:none;"></div>
+</div>
+<script>
+var IDB={
+  medical:{k:['醫療','診所','牙科','牙醫','醫院','骨科','中醫','眼科','皮膚科','婦產科','小兒科','耳鼻喉','精神科','復健','clinic','medical','dental','hospital','healthcare','doctor','physician','クリニック','歯科','医療','병원','의원','클리닉'],n:'醫療 / 診所',p:['預約電話接不完，回診率低','病歷建檔手動耗時易出錯','健保申報繁瑣，核銷費時','患者術後追蹤靠人工，易漏接'],a:[{t:'LINE 自動預約 & 回診提醒',d:'患者 LINE 訊息即可預約，24h 前提醒，回診率+30-40%',tool:'Hermes Agent + LINE',p:'高'},{t:'新患資料自動建檔',d:'線上問診表自動同步病歷系統，省去 80% 人工輸入',tool:'OpenClaw',p:'高'},{t:'健保申報輔助自動化',d:'AI 整理就診紀錄生成申報草稿，核錯率-60%',tool:'OpenClaw',p:'中'},{t:'術後/慢病追蹤自動推播',d:'依療程自動推播衛教資訊和藥物提醒',tool:'OpenClaw + LINE',p:'中'},{t:'差評預警 & 口碑管理',d:'Google/FB 新評論即時通知，壞評1小時內回應',tool:'OpenClaw',p:'低'}],plan:{n:'旗艦版',price:2888,r:'預約+患者追蹤一次搞定，診所首選方案',s:80},roi:'回診率+30% = 年增收 NT$15-30 萬；每天省 2-3 小時人工作業'},
+  realestate:{k:['房仲','房地產','不動產','仲介','地產','地主','租賃','物業','房屋','real estate','realty','property','realtor','不動産','宅建','부동산','중개','공인중개'],n:'房仲 / 房地產',p:['客戶資料散落，跟進不即時','物件資訊更新慢，問詢量大','合約文件手動填寫易出錯','廣告投放 ROI 難追蹤'],a:[{t:'客戶自動分級 & 跟進提醒',d:'依預算熱度自動分 A/B/C 級，排程追蹤不漏客',tool:'OpenClaw + CRM',p:'高'},{t:'物件配對自動推播',d:'新物件上架自動配對符合客戶並發 LINE 通知',tool:'Hermes Agent + LINE',p:'高'},{t:'帶看報告自動生成',d:'語音輸入後 AI 整理成結構化報告',tool:'OpenClaw',p:'中'},{t:'合約草稿自動填寫',d:'輸入物件+買方資料，AI填入合約範本，省 70% 文書時間',tool:'OpenClaw',p:'中'},{t:'廣告成效日報彙整',d:'591/FB 廣告數據每日自動產出報告',tool:'OpenClaw',p:'低'}],plan:{n:'旗艦版',price:2888,r:'客戶追蹤自動化是房仲業最直接的業績提升工具',s:80},roi:'每月多成交 0.5-1 件 = 年增收 NT$30-60 萬（以台北佣金估算）'},
+  ecommerce:{k:['電商','網路商店','網購','蝦皮','Shopee','Shopify','MOMO','PChome','賣場','ecommerce','e-commerce','online store','online shop','Amazon','eBay','通販','ネットショップ','쇼핑몰','이커머스'],n:'電商 / 網路賣場',p:['客服回覆慢導致轉換流失','多平台庫存對帳易出錯','廣告 ROAS 手動撈數據費時','促銷期訂單暴增人力跟不上'],a:[{t:'AI 客服自動回覆 (24hr)',d:'常見問題/訂單查詢/退換貨自動處理，省 70% 客服工時',tool:'Hermes Agent + LINE/IG',p:'高'},{t:'訂單 & 庫存自動同步',d:'多平台訂單彙整，庫存低於閾值自動補貨提醒',tool:'OpenClaw',p:'高'},{t:'出貨通知自動推播',d:'確認→出貨→到貨全程自動通知，退單率-20%',tool:'OpenClaw + LINE',p:'高'},{t:'廣告成效日報自動產出',d:'FB/Google Ads 每日自動彙整 ROAS/CPA 數據',tool:'OpenClaw',p:'中'},{t:'棄單自動追蹤',d:'加購未結帳 1h 後自動發提醒+優惠碼，回購率+15%',tool:'Hermes Agent',p:'中'}],plan:{n:'終極版',price:4888,r:'電商全通路需求廣，250+技能完整覆蓋',s:150},roi:'客服自動化節省 2-3 名人力 = 年省 NT$60-90 萬人事費'},
+  restaurant:{k:['餐廳','餐飲','小吃','料理','廚房','外送','飲料','咖啡','茶飲','烘焙','麵包','restaurant','food','cafe','coffee','bakery','catering','飲食店','カフェ','レストラン','식당','카페','음식점'],n:'餐飲 / 餐廳',p:['尖峰時段電話訂位漏接','外送平台訂單手動登記易錯','食材採購靠感覺廚餘浪費','員工排班每週重新手排'],a:[{t:'LINE 自動訂位 & 提醒',d:'LINE 訂位自動確認+前一天提醒，No-show 降 40%',tool:'Hermes Agent + LINE',p:'高'},{t:'外送平台訂單自動整合',d:'Uber Eats/Foodpanda/門市訂單自動彙整廚房顯示',tool:'OpenClaw',p:'高'},{t:'食材耗用 & 採購預測',d:'依歷史銷量預測食材需求，廚餘減少 25-35%',tool:'OpenClaw',p:'中'},{t:'員工排班 AI 輔助',d:'AI 自動產生排班草稿，省 2 小時/週',tool:'OpenClaw',p:'中'},{t:'顧客評價自動監控',d:'Google Maps/FB 新評論即時推播',tool:'OpenClaw',p:'低'}],plan:{n:'旗艦版',price:2888,r:'訂位+外送整合是餐廳最高 ROI 的起點',s:80},roi:'省 1 名訂位專員年省 NT$40 萬+，食材預測每月省 NT$1-3 萬廚餘'},
+  accounting:{k:['會計','財務','記帳','稅務','審計','報稅','財報','帳務','事務所','CPA','accounting','finance','tax','bookkeeping','audit','financial','会計','税理士','회계','세무','재무'],n:'會計 / 財務事務所',p:['報稅季加班常態化','發票憑證手動整理費時','客戶截止日易漏提醒','重複文件填寫佔用專業人力'],a:[{t:'發票 & 憑證自動辨識建檔',d:'拍照後 AI 自動提取金額日期類別，準確率 95%+',tool:'OpenClaw + OCR',p:'高'},{t:'客戶截止日自動提醒',d:'依申報日程自動發 LINE/Email 提醒，零漏報',tool:'OpenClaw + LINE',p:'高'},{t:'財報草稿自動生成',d:'輸入數據後 AI 自動生成報表格式，製表時間-60%',tool:'OpenClaw',p:'高'},{t:'稅務法規更新自動追蹤',d:'新法規上路自動通知相關客戶',tool:'OpenClaw',p:'中'},{t:'客戶資料夾自動歸檔',d:'每月自動整理憑證報表往來文件',tool:'OpenClaw',p:'低'}],plan:{n:'終極版',price:4888,r:'文件量大，250+技能涵蓋 OCR+財報自動化',s:120},roi:'發票辨識自動化節省每月 30-50 小時 = 年省 NT$20-40 萬人事費'},
+  manufacturing:{k:['製造','工廠','生產','加工','五金','塑膠','金屬','電子製造','機械','OEM','ODM','manufacturing','factory','production','assembly','industrial','製造業','工場','生産','제조','공장','생산'],n:'製造業 / 工廠',p:['設備故障難預測停線損失大','品管人工目視錯誤率高','生產排程手動調整效率低','供應商交期追蹤靠電話往返'],a:[{t:'設備異常自動預警',d:'監控數據提前 48-72h 通報，停線減少 15-30%',tool:'OpenClaw + IoT',p:'高'},{t:'生產日報自動彙整',d:'產量良率停機時間自動整理成報表',tool:'OpenClaw',p:'高'},{t:'供應商交期自動追蹤',d:'採購單後自動追蹤回覆，逾期自動升級',tool:'Hermes Agent + Email',p:'高'},{t:'品管異常自動紀錄',d:'生產異常自動建 8D 報告草稿，改善效率+40%',tool:'OpenClaw',p:'中'},{t:'排班 & 人力調度輔助',d:'AI 建議最佳排班組合，換線時間-20%',tool:'OpenClaw',p:'中'}],plan:{n:'Hermes Agent × OpenClaw',price:13888,r:'製造業需多系統整合+多機部署，雙AI最適合',s:200},roi:'預測維護年省停線損失 NT$100-500 萬，ROI 回收期 3-6 個月'},
+  beauty:{k:['美容','美髮','美甲','SPA','沙龍','造型','髮廊','按摩','美體','美睫','紋身','皮膚管理','beauty','salon','spa','hair','nail','massage','aesthetics','美容室','サロン','헤어','뷰티','네일','마사지'],n:'美容 / SPA / 沙龍',p:['電話預約漏接客轉競爭對手','客戶偏好靠記憶新員工難接手','回購週期到不知道主動聯絡','促銷難精準推送對的客人'],a:[{t:'LINE 自動預約 & 提醒',d:'24hr 自動接受預約+前一天提醒，爽約率-35%',tool:'Hermes Agent + LINE',p:'高'},{t:'客戶消費偏好自動建檔',d:'每次服務後自動記錄項目設計師偏好膚質',tool:'OpenClaw + CRM',p:'高'},{t:'回購週期自動提醒',d:'依服務類型自動在對的時間推播優惠',tool:'Hermes Agent + LINE',p:'高'},{t:'生日/節慶自動關懷推播',d:'生日前 3 天自動送祝福+折扣，回購率+20%',tool:'OpenClaw + LINE',p:'中'},{t:'員工業績自動統計',d:'每月自動彙整各設計師業績和客戶滿意度',tool:'OpenClaw',p:'低'}],plan:{n:'旗艦版',price:2888,r:'預約+CRM 自動化直接提升回購率',s:80},roi:'回購提醒提升回購率 20-30%，月營業額增 NT$5-15 萬'},
+  travel:{k:['旅遊','旅行社','飯店','民宿','訂房','導遊','行程','觀光','travel','hotel','tourism','hospitality','accommodation','airbnb','booking','tour','旅行','ホテル','旅館','여행','호텔','숙박','관광'],n:'旅遊 / 飯店 / 民宿',p:['詢問行程/房價訊息量大','旺季訂房管理混亂超訂','多平台庫存難統一','旅客入住前後資訊不足評分低'],a:[{t:'多平台訂房自動同步',d:'Booking/Airbnb/Agoda 房況即時同步，超訂消除',tool:'OpenClaw + API',p:'高'},{t:'旅客自動 Check-in 說明',d:'訂房後自動發送入住指南地圖密碼，服務評分+0.5星',tool:'OpenClaw + LINE',p:'高'},{t:'常見問題 AI 自動回覆',d:'房型/設施/交通 24hr 自動回覆，省 80% 客服時間',tool:'Hermes Agent',p:'高'},{t:'退房後自動索取評價',d:'退房 2h 後自動發感謝+評價連結，好評率提升',tool:'OpenClaw + LINE',p:'中'},{t:'競品定價自動監控',d:'競爭對手房價/空房率自動監控，建議最佳定價',tool:'OpenClaw',p:'中'}],plan:{n:'旗艦版',price:2888,r:'多平台同步+旅客服務自動化最高 ROI',s:90},roi:'消除超訂避免每年 NT$5-20 萬退款損失；好評提升訂房率 10-15%'},
+  logistics:{k:['物流','倉儲','貨運','宅配','配送','快遞','供應鏈','倉庫','運輸','冷鏈','logistics','warehouse','shipping','delivery','supply chain','freight','courier','物流','倉庫','配送','물류','창고','배송','택배'],n:'物流 / 倉儲 / 配送',p:['出貨量大人工建單效率低','客戶不斷詢問貨況','倉庫庫位管理混亂揀貨錯誤率高','司機路線規劃耗時油耗高'],a:[{t:'訂單自動建單 & 出貨單',d:'訂單進來自動建立出貨揀貨標籤，錯誤-70%',tool:'OpenClaw',p:'高'},{t:'貨態全程自動推播',d:'出貨→轉運→派送→送達自動通知，客服詢問-60%',tool:'OpenClaw + LINE',p:'高'},{t:'每日貨量預測 & 人力調度',d:'依歷史預測明後天貨量，提前安排人力車輛',tool:'OpenClaw',p:'中'},{t:'異常件自動升級處理',d:'逾時未配達自動標記通知負責人，SLA+20%',tool:'Hermes Agent',p:'中'},{t:'庫存盤點自動彙整',d:'掃描後 AI 對比系統庫存，差異報表秒出',tool:'OpenClaw',p:'低'}],plan:{n:'終極版',price:4888,r:'物流自動化項目多，250+技能完整覆蓋全流程',s:130},roi:'自動建單省每月 60-100 小時；貨態推播減少 60% 電話詢問'},
+  education:{k:['教育','補習班','安親班','才藝','家教','學校','培訓','課程','線上課','education','tutoring','school','training','learning','academy','学校','塾','교육','학원','보습','과외'],n:'教育 / 補習班 / 培訓',p:['招生季訊息爆量跟進不及時','出缺席手動記錄家長聯絡費時','課程異動通知延遲','教材作業管理分散雜亂'],a:[{t:'試聽/報名自動詢問回覆',d:'招生期 LINE 自動回答課程費用師資，24hr不漏接',tool:'Hermes Agent + LINE',p:'高'},{t:'出缺席自動記錄 & 家長通知',d:'點名後自動通知家長，曠課自動預警',tool:'OpenClaw + LINE',p:'高'},{t:'課程表異動即時群發',d:'停課換教室考試安排一鍵群發相關班級',tool:'OpenClaw + LINE',p:'高'},{t:'學習進度報告自動生成',d:'每月自動彙整成績出席率產生個人化報告',tool:'OpenClaw',p:'中'},{t:'續班提醒自動推播',d:'結束前 2 週自動發續班優惠，流失率-25%',tool:'OpenClaw + LINE',p:'中'}],plan:{n:'旗艦版',price:2888,r:'招生+家長溝通自動化直接影響招生率',s:80},roi:'招生成交率+20%，每月多招 2-3 名學生 = 年增收 NT$10-20 萬'},
+  legal:{k:['法律','律師','法務','事務所','訴訟','合約','法院','仲裁','公證','legal','lawyer','attorney','law firm','contract','litigation','弁護士','법률','변호사','법무','로펌'],n:'法律事務所',p:['合約審閱耗時重複條款比對','案件期限追蹤易遺漏','法規更新量大難即時掌握','開庭日程靠人工容易出錯'],a:[{t:'合約關鍵條款自動標記',d:'上傳合約 AI 自動標記風險條款，審閱時間-50%',tool:'OpenClaw + OCR',p:'高'},{t:'案件期限自動提醒',d:'開庭日/答辯期限提前 7/3/1 天自動提醒',tool:'OpenClaw + 行事曆',p:'高'},{t:'法規異動自動追蹤',d:'指定法規有修法動態時自動通知負責人',tool:'OpenClaw',p:'高'},{t:'客戶案件進度自動回報',d:'有新進展時自動發摘要給客戶，信任感大幅提升',tool:'Hermes Agent + Email',p:'中'},{t:'文件範本自動填寫',d:'輸入當事人資訊 AI 自動填入聲請書合約範本',tool:'OpenClaw',p:'中'}],plan:{n:'終極版',price:4888,r:'法律文件量大+追蹤需求強，完整技能庫支撐',s:120},roi:'合約審閱效率+50%，每月節省 20-40 小時律師時間 = NT$3-8 萬'},
+  construction:{k:['建設','營造','建築','施工','工程','裝潢','室內設計','建案','工地','construction','building','architecture','interior design','contractor','renovation','建設','建築','건설','건축','시공','인테리어'],n:'建設 / 營造 / 裝潢',p:['工程進度更新靠電話業主追問','材料採購比價耗時','工地安全記錄靠紙本','多案同時資源調度混亂'],a:[{t:'工程進度自動週報推送',d:'每週自動彙整進度+照片推送業主，追問電話-70%',tool:'OpenClaw + LINE',p:'高'},{t:'材料採購自動比價彙整',d:'詢價單自動發多家供應商，回報後自動製比價表',tool:'Hermes Agent + Email',p:'高'},{t:'工地異常自動回報',d:'巡查表單填寫後 AI 分類風險等級，重大問題即時升級',tool:'OpenClaw',p:'中'},{t:'工程日報自動生成',d:'輸入當日工項後 AI 整理格式化日報送主管',tool:'OpenClaw',p:'中'},{t:'保固到期自動提醒',d:'交屋後自動管理保固期限到期前通知',tool:'OpenClaw',p:'低'}],plan:{n:'旗艦版',price:2888,r:'進度透明化+採購自動化是工程業最快見效的起點',s:90},roi:'採購比價自動化每案省 NT$2-5 萬材料費'},
+  automotive:{k:['汽車','車行','車廠','維修廠','保養廠','二手車','中古車','輪胎','板金','汽修','automotive','car','auto','vehicle','repair','dealership','garage','自動車','자동차','중고차'],n:'汽車 / 車行 / 維修保養',p:['定保提醒靠手動客戶流失','報價估單耗時客戶等待','零件庫存常缺貨','交車後缺乏追蹤轉介少'],a:[{t:'定保到期自動提醒',d:'依里程/上次保養日自動推播提醒，回廠率+30%',tool:'OpenClaw + LINE',p:'高'},{t:'維修進度全程推播',d:'入廠→診斷→維修→完工自動通知車主',tool:'OpenClaw + LINE',p:'高'},{t:'線上快速估價自動回覆',d:'客戶描述問題後 AI 給初步估價，預約立即成交',tool:'Hermes Agent + LINE',p:'高'},{t:'零件庫存低量預警',d:'常用零件低於安全庫存自動發採購建議',tool:'OpenClaw',p:'中'},{t:'交車後滿意度調查',d:'交車 3 天後自動發問卷+轉介紹請求',tool:'OpenClaw + LINE',p:'中'}],plan:{n:'旗艦版',price:2888,r:'定保提醒+進度推播直接提升回廠率',s:80},roi:'定保提醒回廠率+30%，每月多服務 10-20 台車 = 月增收 NT$5-15 萬'},
+  pet:{k:['寵物','動物醫院','獸醫','狗','貓','寵物店','寵物美容','寵物旅館','pet','veterinary','vet','animal hospital','grooming','ペット','動物病院','애완동물','반려동물','동물병원','펫샵'],n:'寵物 / 動物醫院',p:['預約電話佔用診療時間','疫苗健檢到期提醒靠人工','寵物旅館訂房超訂風險','飼主衛教不足再診率低'],a:[{t:'LINE 自動預約 & 提醒',d:'飼主 LINE 預約+確認+前一天提醒，漏約率-40%',tool:'Hermes Agent + LINE',p:'高'},{t:'疫苗/健檢到期自動提醒',d:'依疫苗記錄自動發到期提醒，回診率+35%',tool:'OpenClaw + LINE',p:'高'},{t:'術後護理自動推播',d:'手術後按時程自動發送護理指引',tool:'OpenClaw + LINE',p:'中'},{t:'寵物旅館自動訂房管理',d:'多窩位即時同步，訂房確認自動發送',tool:'OpenClaw',p:'中'},{t:'生日祝福 & 健檢推廣',d:'毛孩生日自動送祝福+年度健檢優惠',tool:'OpenClaw + LINE',p:'低'}],plan:{n:'旗艦版',price:2888,r:'預約+疫苗提醒是寵物業最高回報組合',s:80},roi:'疫苗提醒回診率+35%，每月多 20-40 次回診 = 月增收 NT$4-8 萬'},
+  tech:{k:['科技','新創','軟體','IT','SaaS','APP','網路','程式','開發','新創公司','tech','startup','software','developer','IT company','app','テック','스타트업','소프트웨어','개발'],n:'科技新創 / 軟體公司',p:['工程師花大量時間在重複 DevOps','客服 ticket 量大回應慢','競品技術趨勢難即時追蹤','內部文件 SOP 散落難維護'],a:[{t:'CI/CD 異常自動通報',d:'部署失敗/測試異常即時推播 Slack/LINE，反應時間-80%',tool:'OpenClaw + Webhook',p:'高'},{t:'客服 Ticket 自動分類 & 回覆',d:'常見問題 AI 回覆，技術問題自動分派，SLA+40%',tool:'Hermes Agent',p:'高'},{t:'競品監控自動週報',d:'競品官網/App Store 更新自動通知 PM',tool:'OpenClaw',p:'中'},{t:'技術文件自動生成',d:'程式提交後 AI 自動生成 Changelog/API 文件草稿',tool:'OpenClaw',p:'中'},{t:'週 KPI 自動彙整',d:'GA/Firebase/Stripe 數據自動產出週報',tool:'OpenClaw + API',p:'中'}],plan:{n:'終極版',price:4888,r:'科技公司自動化需求廣，250+技能完整覆蓋',s:150},roi:'DevOps 自動化每月省 20-40 工程師小時 = NT$5-15 萬人力成本'},
+  fitness:{k:['健身','運動','瑜伽','拳擊','舞蹈','體育','健身房','教練','健身中心','fitness','gym','yoga','pilates','boxing','dance','sports','coach','trainer','フィットネス','ジム','헬스','피트니스','요가'],n:'健身 / 運動 / 瑜伽',p:['課程預約衝突和爽約率高','會員到期不提醒流失看不見','教練一對多追蹤困難','課程異動通知延遲'],a:[{t:'LINE 自動課程預約 & 提醒',d:'自助預約/取消，課前 2h 提醒，爽約率-35%',tool:'Hermes Agent + LINE',p:'高'},{t:'會員到期 & 續費自動提醒',d:'到期前 14/7/1 天自動發提醒+方案，流失率-30%',tool:'OpenClaw + LINE',p:'高'},{t:'訓練計畫自動追蹤推播',d:'依目標自動推送當日訓練提醒+完成打卡',tool:'OpenClaw + LINE',p:'中'},{t:'課程額滿候補自動通知',d:'有人取消立即通知候補，滿班率提升',tool:'OpenClaw + LINE',p:'中'},{t:'月度訓練成果報告',d:'自動彙整出席率體重體脂，產生會員專屬報告',tool:'OpenClaw',p:'低'}],plan:{n:'旗艦版',price:2888,r:'預約+會員續費自動化最快回收的投資',s:80},roi:'續費提醒降低流失 30%，100 名會員多留 3-4 人 = 月增收 NT$2-4 萬'},
+  retail:{k:['零售','實體店','門市','雜貨','超商','百貨','量販','連鎖','retail','store','shop','boutique','supermarket','convenience','department','chain','小売','コンビニ','소매','편의점','백화점'],n:'零售 / 實體門市',p:['庫存缺貨/積貨靠感覺補貨不及時','促銷通知難觸達會員','員工排班出勤記錄手動耗時','銷售日報手動整理主管無法即時看'],a:[{t:'庫存低量自動補貨提醒',d:'庫存低於安全量自動發出採購通知',tool:'OpenClaw',p:'高'},{t:'會員促銷活動自動推播',d:'依消費行為分群，精準推送限時優惠，回購率+20%',tool:'Hermes Agent + LINE',p:'高'},{t:'每日銷售日報自動生成',d:'收市後自動彙整銷售額暢滯銷品，5 分鐘內送主管',tool:'OpenClaw',p:'高'},{t:'員工打卡 & 排班自動整理',d:'出勤記錄自動彙整，月底薪資計算省 4-6 小時',tool:'OpenClaw',p:'中'},{t:'節慶備貨自動預測',d:'依去年同期預測備貨量，積貨/缺貨改善 30%',tool:'OpenClaw',p:'中'}],plan:{n:'旗艦版',price:2888,r:'庫存+會員自動化是零售業最快回收的核心投資',s:90},roi:'精準備貨降低積貨損失每月 NT$1-5 萬；促銷提升回購率 20%'},
+  finance:{k:['保險','銀行','金融','投資','理財','基金','保單','壽險','產險','finance','insurance','banking','investment','financial','fund','broker','保険','銀行','보험','은행','금융','투자'],n:'保險 / 銀行 / 金融',p:['保單到期/續期提醒靠人工易漏','合規文件繁瑣人工整理費時','潛在客戶跟進週期長轉換率低','客戶資料更新難統一管理'],a:[{t:'保單到期自動提醒 & 續期引導',d:'到期前 90/30/7 天自動發提醒，續保率+25%',tool:'OpenClaw + LINE',p:'高'},{t:'客戶 KYC 資料自動更新提醒',d:'依法規週期自動提醒客戶更新資料，合規風險降低',tool:'OpenClaw + Email',p:'高'},{t:'潛在客戶自動跟進排程',d:'依接觸紀錄自動安排下次聯繫，不漏任何機會',tool:'OpenClaw + CRM',p:'高'},{t:'法規異動自動通報',d:'金融新規定上路時自動通知相關業務人員',tool:'OpenClaw',p:'中'},{t:'月度業績報告自動生成',d:'自動彙整業績達成率客戶組合續期率，省 3-5 小時/月',tool:'OpenClaw',p:'中'}],plan:{n:'終極版',price:4888,r:'金融業合規要求高，完整技能庫+安全部署',s:130},roi:'續保提醒提升續保率 25%，100 份保單每年多 NT$30-80 萬保費'}
+};
+
+var PC={'高':'#00ff41','中':'#FFE500','低':'#7aad7a'};
+var PB={'高':'rgba(0,255,65,0.1)','中':'rgba(255,229,0,0.08)','低':'rgba(122,173,122,0.06)'};
+
+function qTag(v){document.getElementById('ind-input').value=v;doAnalyze();}
+
+function findInd(input){
+  var l=input.toLowerCase();
+  var best=null,bs=0;
+  Object.keys(IDB).forEach(function(k){
+    IDB[k].k.forEach(function(kw){
+      if(l.includes(kw.toLowerCase())||kw.toLowerCase().includes(l)){
+        var s=kw.length;if(s>bs){bs=s;best=IDB[k];}
+      }
+    });
+  });
+  return best;
+}
+
+function doAnalyze(){
+  var v=document.getElementById('ind-input').value.trim();
+  if(!v)return;
+  var r=findInd(v);
+  document.getElementById('step-input').style.display='none';
+  if(!r){
+    document.getElementById('step-result').innerHTML='<div class="anim-in" style="background:#111;border:1px solid #1e3a1e;border-radius:8px;padding:40px;text-align:center;"><div style="font-size:40px;margin-bottom:16px;">🦞</div><p style="font-size:14px;color:#7aad7a;margin-bottom:20px;">找不到精確比對 — 建議 LINE 直接諮詢客製分析</p><a href="https://lin.ee/n5KW430" target="_blank" style="display:inline-flex;align-items:center;gap:7px;background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:11px 22px;font-family:Space Mono,monospace;font-size:11px;text-decoration:none;margin-right:8px;">LINE 諮詢 →</a><button onclick="resetA()" style="background:transparent;color:#555;border:1px solid #1e3a1e;border-radius:4px;padding:11px 18px;font-family:Space Mono,monospace;font-size:11px;cursor:pointer;">← 重試</button></div>';
+    document.getElementById('step-result').style.display='block';return;
+  }
+  var pH=r.p.map(function(p){return '<div style="display:flex;gap:8px;margin-bottom:7px;"><span style="color:#e8422a;flex-shrink:0;margin-top:1px;">✕</span><span style="font-size:12px;color:#888;">'+p+'</span></div>';}).join('');
+  var aH=r.a.map(function(a,i){
+    var c=PC[a.p]||'#00ff41',b=PB[a.p]||'rgba(0,255,65,0.1)';
+    return '<div style="background:#0d1a0d;border:1px solid '+b+';border-left:3px solid '+c+';border-radius:4px;padding:14px 16px;margin-bottom:7px;"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;"><div style="flex:1;"><div style="font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:3px;">'+(i+1)+'. '+a.t+'</div><div style="font-size:11px;color:#7aad7a;line-height:1.55;">'+a.d+'</div></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0;"><span style="font-family:Space Mono,monospace;font-size:8px;background:'+b+';color:'+c+';padding:2px 6px;border-radius:2px;">'+a.p+'</span><span style="font-family:Space Mono,monospace;font-size:8px;color:#333;border:1px solid #1e3a1e;padding:2px 6px;border-radius:2px;">'+a.tool+'</span></div></div></div>';
+  }).join('');
+  var pl=r.plan;
+  document.getElementById('step-result').innerHTML='<div class="anim-in" style="background:#111;border:1px solid #1e3a1e;border-radius:8px;overflow:hidden;box-shadow:0 0 40px rgba(0,255,65,0.07);">'+
+    '<div style="background:rgba(0,255,65,0.05);border-bottom:1px solid #1e3a1e;padding:20px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'+
+      '<div><div style="font-family:Space Mono,monospace;font-size:8px;letter-spacing:5px;color:#00ff41;text-transform:uppercase;margin-bottom:4px;">ANALYSIS REPORT</div><h3 style="font-size:18px;font-weight:700;color:#f0f0f0;">'+r.n+'</h3></div>'+
+      '<button onclick="resetA()" style="background:transparent;border:1px solid #1e3a1e;color:#444;padding:6px 12px;border-radius:4px;font-family:Space Mono,monospace;font-size:9px;cursor:pointer;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1e3a1e';this.style.color='#444'">換產業</button>'+
+    '</div>'+
+    '<div style="padding:24px 26px;">'+
+      '<div style="margin-bottom:20px;"><div style="font-family:Space Mono,monospace;font-size:8px;letter-spacing:4px;color:#e8422a;text-transform:uppercase;margin-bottom:10px;">目前痛點</div>'+pH+'</div>'+
+      '<div style="margin-bottom:20px;"><div style="font-family:Space Mono,monospace;font-size:8px;letter-spacing:4px;color:#00ff41;text-transform:uppercase;margin-bottom:10px;">可部署自動化項目（'+r.a.length+' 項）</div>'+aH+'</div>'+
+      '<div style="background:linear-gradient(135deg,rgba(0,255,65,0.08),rgba(0,143,26,0.03));border:1px solid rgba(0,255,65,0.3);border-radius:6px;padding:20px 24px;margin-bottom:14px;">'+
+        '<div style="font-family:Space Mono,monospace;font-size:8px;letter-spacing:4px;color:#00ff41;text-transform:uppercase;margin-bottom:10px;">推薦方案</div>'+
+        '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">'+
+          '<div><div style="font-size:17px;font-weight:700;color:#f0f0f0;margin-bottom:3px;">'+pl.n+'</div><div style="font-size:11px;color:#7aad7a;margin-bottom:4px;">'+pl.r+'</div><div style="font-family:Space Mono,monospace;font-size:9px;color:#333;">'+pl.s+' 個技能庫 · 一次買斷 · 無月費</div></div>'+
+          '<div style="text-align:right;"><div style="font-family:Space Mono,monospace;font-size:28px;font-weight:700;color:#00ff41;">NT$'+pl.price.toLocaleString()+'</div><div style="font-family:Space Mono,monospace;font-size:8px;color:#333;letter-spacing:.05em;">NO MONTHLY FEE</div></div>'+
+        '</div></div>'+
+      '<div style="font-size:11px;color:#444;line-height:1.7;margin-bottom:20px;padding:10px 14px;border-left:2px solid #1e3a1e;">💡 '+r.roi+'</div>'+
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;">'+
+        '<a href="https://lin.ee/n5KW430" target="_blank" style="display:inline-flex;align-items:center;gap:6px;background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:11px 20px;font-family:Space Mono,monospace;font-size:11px;font-weight:700;text-decoration:none;transition:all .2s;" onmouseover="this.style.background='#00ff41';this.style.color='#0a0a0a'" onmouseout="this.style.background='#008f1a';this.style.color='white'">LINE 立即諮詢 →</a>'+
+        '<button onclick="resetA()" style="background:transparent;color:#444;border:1px solid #1e3a1e;border-radius:4px;padding:11px 18px;font-family:Space Mono,monospace;font-size:11px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#1e3a1e';this.style.color='#444'">換個產業</button>'+
+      '</div>'+
+    '</div></div>';
   document.getElementById('step-result').style.display='block';
   document.getElementById('ai-analyzer').scrollIntoView({behavior:'smooth',block:'start'});
 }
 
-function resetAnalyzer(){
+function resetA(){
   document.getElementById('step-result').style.display='none';
-  document.getElementById('step-loading').style.display='none';
   document.getElementById('step-input').style.display='block';
-  document.getElementById('industry-input').value='';
-  document.getElementById('industry-input').focus();
+  document.getElementById('ind-input').value='';
+  document.getElementById('ind-input').focus();
 }
+document.getElementById('ind-input').addEventListener('keydown',function(e){if(e.key==='Enter')doAnalyze();});
 </script>
 
 
