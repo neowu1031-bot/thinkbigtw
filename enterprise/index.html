@@ -302,18 +302,7 @@ function aiaRun(){
     var c=PC[a.pri]||"#00ff41",b=PB[a.pri]||"rgba(0,255,65,0.1)";
     return '<div class="q-auto-item" style="background:#0d1a0d;border-left-color:'+c+'"><div style="flex:1"><div class="q-auto-title">'+(i+1)+". "+a.t+'</div><div class="q-auto-desc">'+a.d+'</div></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0"><span class="q-badge" style="background:'+b+';color:'+c+'">'+a.pri+'</span><span class="q-badge" style="color:#333;border:1px solid #1e3a1e">'+a.tool+'</span></div></div>';
   }).join("");
-  var waMsg=encodeURIComponent("【AI自動化報價單】
-產業："+r.n+"
-方案："+r.pl+"
-報價：NT$"+r.price.toLocaleString()+"
-
-自動化項目：
-"+r.a.map(function(a,i){return (i+1)+". "+a.t;}).join("
-")+"
-
-ROI："+r.roi+"
-
-請問可以進一步說明嗎？");
+  var waMsg=encodeURIComponent("【AI自動化報價單】\n產業："+r.n+"\n方案："+r.pl+"\n報價：NT$"+r.price.toLocaleString()+"\n\n自動化項目：\n"+r.a.map(function(a,i){return (i+1)+". "+a.t;}).join("\n")+"\n\nROI："+r.roi+"\n\n請問可以進一步說明嗎？");
   document.getElementById("aia-result").innerHTML=
     '<div class="aiaIn q-card">'+
     '<div class="q-head"><div><div class="q-label">AI 自動化報價單 · INSTANT QUOTE</div><div class="q-title">'+r.n+'</div></div>'+
