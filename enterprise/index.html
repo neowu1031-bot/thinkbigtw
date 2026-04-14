@@ -294,15 +294,6 @@ var DB=[
 {k:["食品加工","食品製造","食品廠","食品","food processing","food factory","food manufacturing"],n:"食品加工 / 製造",p:["生產批次紀錄手動","食安追溯文件繁瑣"],a:[{t:"生產批次自動建檔",d:"掃描後自動建立批次紀錄，追溯時間-80%",tool:"OpenClaw",pri:"高"},{t:"保存期限自動預警",d:"產品接近效期自動通知",tool:"OpenClaw",pri:"高"}],pl:"中小企業",price:28880,ps:90,pr:"食安文件+批次追溯直接降低合規風險",roi:"稽核準備時間-60%"}
 ];
 
-(function(){
-  var c=document.querySelector("#aia .aia-tags");
-  TAGS.forEach(function(t){
-    var b=document.createElement("button");
-    b.className="aia-tag";b.textContent=t;
-    b.onclick=function(){document.getElementById("aia-q").value=t;aiaRun();};
-    c.appendChild(b);
-  });
-})();
 
 var PC={"高":"#00ff41","中":"#FFE500","低":"#7aad7a"};
 var PB={"高":"rgba(0,255,65,0.1)","中":"rgba(255,229,0,0.08)","低":"rgba(122,173,122,0.06)"};
@@ -401,7 +392,7 @@ function aiaFind(q){
 function aiaRun(){
   var q=document.getElementById("aia-q").value.trim();
   if(!q)return;
-  if(!DB_LOADED){setTimeout(aiaRun,400);return;}
+  if(!DB||!DB.length){setTimeout(aiaRun,300);return;}
   var r=aiaFind(q);
   document.getElementById("aia-input").style.display="none";
   if(!r){
