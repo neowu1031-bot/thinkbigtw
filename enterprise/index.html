@@ -312,8 +312,49 @@ var DB=[
 var PC={"高":"#00ff41","中":"#FFE500","低":"#7aad7a"};
 var PB={"高":"rgba(0,255,65,0.1)","中":"rgba(255,229,0,0.08)","低":"rgba(122,173,122,0.06)"};
 
+// 大類 fallback 對照表（ISIC Rev.4 精神）
+var FALLBACK_MAP = [
+  {keys:["製造","工廠","加工","生產","組裝","焊接","鑄造","沖壓","射出","紡織","成衣","印染","製鞋","傢俱","木工","紙業","印刷","橡膠","塑膠","化工","玻璃","陶瓷","水泥","鋼鐵","鋁業","金屬","電子","半導體","PCB","機械","設備","汽配","航太","船舶","國防","manufacture","factory","production","assembly","textile","furniture","chemical","semiconductor","steel","equipment"],target:"製造業 / 工廠"},
+  {keys:["買賣","貿易","進出口","wholesale","trading","import","export","distributor","經銷","代理","批發","零批","貨物","商品流通"],target:"零售 / 實體門市"},
+  {keys:["農","漁","牧","林","種植","養殖","畜牧","果園","茶園","菜農","花農","水產","漁業","林業","伐木","采礦","採礦","礦業","石油","天然氣","quarry","mining","fishing","forestry","livestock","aquaculture"],target:"農業 / 農場"},
+  {keys:["建築","土木","水電","鷹架","模板","鋼構","橋樑","道路","隧道","捷運","鐵路","機場","港口","civil engineering","infrastructure","bridge","tunnel","highway"],target:"建設 / 營造 / 裝潢"},
+  {keys:["醫院","醫療","診所","醫師","醫生","護士","護理","藥","復健","治療","手術","健檢","health","medical","hospital","clinic","pharmacy","therapy","rehabilitation"],target:"醫療 / 診所"},
+  {keys:["學校","教育","老師","教師","教學","學習","課程","補習","訓練","培訓","school","education","teacher","training","learning","academy","university","college"],target:"教育 / 補習班 / 培訓"},
+  {keys:["餐","食","飲","廚","料理","外送","烹飪","廚師","食材","飲食","餐具","food","restaurant","cafe","drink","cook","cuisine","catering","meal","menu"],target:"餐飲 / 餐廳"},
+  {keys:["零售","商店","賣場","門市","百貨","量販","超商","超市","便利","精品","服裝","衣","鞋","包","配件","飾品","零食","雜貨","retail","store","shop","mall","market","fashion","clothing"],target:"零售 / 實體門市"},
+  {keys:["美","髮","妝","甲","膚","睫","眉","紋","皮膚","保養","護理","造型","沙龍","SPA","spa","beauty","hair","nail","skin","makeup","cosmetic","salon","aesthetic"],target:"美容 / SPA / 沙龍"},
+  {keys:["金融","銀行","保險","投資","基金","證券","股票","外匯","期貨","信貸","借貸","融資","理財","finance","bank","insurance","investment","fund","stock","forex","credit","loan"],target:"保險 / 銀行 / 金融"},
+  {keys:["法","律","訴","合約","法院","仲裁","著作","專利","商標","智財","法規","legal","law","lawyer","contract","court","patent","trademark","copyright","compliance","regulation"],target:"法律事務所"},
+  {keys:["軟體","程式","網路","app","系統","雲端","資料","AI","機器","演算","程式","開發","IT","tech","software","code","cloud","data","algorithm","developer","cyber","digital","internet","platform"],target:"科技新創 / 軟體公司"},
+  {keys:["運輸","物流","貨運","配送","倉儲","快遞","宅配","航空","船運","卡車","司機","transport","logistics","shipping","delivery","warehouse","freight","cargo","courier","aviation","trucking"],target:"物流 / 倉儲 / 配送"},
+  {keys:["旅遊","旅行","飯店","民宿","民宿","景點","導遊","訂房","度假","tourism","travel","hotel","resort","tour","guide","vacation","hospitality","accommodation","airbnb"],target:"旅遊 / 飯店 / 民宿"},
+  {keys:["媒體","新聞","出版","雜誌","廣播","電視","電影","影視","劇","節目","內容","創作","media","news","publishing","broadcast","TV","film","movie","content","magazine","podcast"],target:"媒體 / 新聞 / 出版"},
+  {keys:["廣告","行銷","品牌","公關","SEO","社群","網紅","KOL","推廣","宣傳","marketing","advertising","branding","PR","promotion","campaign","influencer","social media"],target:"廣告 / 行銷公司"},
+  {keys:["政府","公務","機關","行政","公所","縣市","警察","消防","軍","國防","公營","國企","government","public","municipal","administration","police","military","civil service"],target:"政府機關 / 公部門"},
+  {keys:["能源","電力","水力","核能","太陽","風力","天然氣","石油","煤炭","電網","utility","energy","power","electricity","solar","wind","nuclear","oil","gas","renewable"],target:"能源 / 太陽能"},
+  {keys:["電信","通訊","網路商","電話","手機","寬頻","5G","ISP","telecom","telecommunications","mobile","broadband","network operator","wireless","carrier"],target:"科技新創 / 軟體公司"},
+  {keys:["不動產","房地","房屋","租屋","房仲","建案","代銷","房東","real estate","property","realty","housing","rental","landlord","mortgage","broker"],target:"房仲 / 房地產"},
+  {keys:["設計","美工","平面","插畫","動畫","3D","影片","剪輯","攝影","拍照","design","graphic","illustration","animation","video","photography","creative","visual","art","film"],target:"設計 / 創意工作室"},
+  {keys:["健身","運動","體育","球","游泳","瑜珈","舞蹈","武術","拳擊","健康","fitness","gym","sport","yoga","dance","swimming","boxing","martial arts","wellness"],target:"健身 / 運動 / 瑜伽"},
+  {keys:["清潔","打掃","家政","保全","保安","警衛","停車","洗車","垃圾","廢棄物","清運","消毒","pest","cleaning","security","guard","parking","waste","janitorial"],target:"清潔 / 家政服務"},
+  {keys:["人資","HR","招募","獵頭","求職","就業","人力","staffing","recruitment","HR","human resources","headhunter","employment","talent","workforce"],target:"人資 / 獵頭 / 招募"},
+  {keys:["會計","財務","記帳","稅務","審計","accounting","finance","tax","bookkeeping","audit","CPA","CFO","controller","payroll"],target:"會計 / 財務事務所"},
+  {keys:["非營利","社會","公益","慈善","志工","NGO","基金會","協會","社團","nonprofit","charity","foundation","association","volunteer","social enterprise"],target:"非營利 / NGO / 基金會"},
+  {keys:["宗教","廟","教會","寺","清真","神","佛","基督","天主","伊斯蘭","church","temple","mosque","religion","spiritual","faith"],target:"宗教 / 廟宇 / 教會"},
+  {keys:["殯","喪","葬","告別","禮儀","遺體","funeral","mortuary","burial","cremation","memorial"],target:"殯葬 / 禮儀社"},
+  {keys:["娛樂","遊樂","主題","電影","KTV","卡拉","夜","酒","吧","club","entertainment","amusement","theme park","nightlife","karaoke"],target:"娛樂酒吧 / 夜店 / KTV"},
+  {keys:["寵物","貓","狗","鳥","兔","爬蟲","水族","動物","獸醫","pet","cat","dog","animal","veterinary","vet","aquarium","reptile"],target:"寵物 / 動物醫院"},
+  {keys:["長照","安養","照護","老人","養老","托育","幼兒","小孩","child care","elderly","nursing","care","senior","daycare","kindergarten"],target:"長照 / 托育 / 社會福利"},
+  {keys:["顧問","諮詢","策略","管理","輔導","consulting","advisory","strategy","management","coach","mentor","consultant"],target:"顧問 / 管理諮詢"},
+  {keys:["維修","修繕","安裝","工務","技師","冷氣","電器","水管","水電","repair","maintenance","installation","technician","HVAC","plumbing","electrical","appliance"],target:"汽車 / 車行 / 維修保養"},
+  {keys:["印刷","印刷","名片","海報","DM","包裝","標籤","print","printing","packaging","label","banner","brochure"],target:"印刷 / 設計輸出"},
+  {keys:["接案","freelance","自由","獨立","工作室","studio","solopreneur","side hustle","contractor"],target:"自由工作者 / 接案"},
+  {keys:["加密","區塊鏈","NFT","Web3","DeFi","DAO","crypto","blockchain","token","metaverse","defi"],target:"加密貨幣 / Web3"}
+];
+
 function aiaFind(q){
   var l=q.toLowerCase(),best=null,bs=0;
+  // 第一輪：精確關鍵字比對
   DB.forEach(function(d){
     d.k.forEach(function(kw){
       if(l.includes(kw.toLowerCase())||kw.toLowerCase().includes(l)){
@@ -321,7 +362,45 @@ function aiaFind(q){
       }
     });
   });
-  return best;
+  if(best) return best;
+
+  // 第二輪：fallback 大類比對
+  var fbBest=null,fbScore=0;
+  FALLBACK_MAP.forEach(function(fb){
+    fb.keys.forEach(function(kw){
+      if(l.includes(kw.toLowerCase())||kw.toLowerCase().includes(l)){
+        var s=kw.length;
+        if(s>fbScore){fbScore=s;fbBest=fb.target;}
+      }
+    });
+  });
+  if(fbBest){
+    // 找到 fallback 對應的 DB entry
+    var matched=null;
+    DB.forEach(function(d){ if(d.n===fbBest) matched=d; });
+    return matched;
+  }
+
+  // 第三輪：單字元比對（最後手段）
+  if(l.length>=2){
+    var partial=null,ps=0;
+    DB.forEach(function(d){
+      d.k.forEach(function(kw){
+        var kwl=kw.toLowerCase();
+        // 找最長公共子字串長度
+        for(var i=0;i<l.length-1;i++){
+          for(var j=i+2;j<=l.length;j++){
+            var sub=l.slice(i,j);
+            if(kwl.includes(sub)&&sub.length>ps){
+              ps=sub.length;partial=d;
+            }
+          }
+        }
+      });
+    });
+    if(ps>=2) return partial;
+  }
+  return null;
 }
 
 function aiaRun(){
