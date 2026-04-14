@@ -664,59 +664,6 @@ detectAndApply();
 </script>
 
 <script>
-(function(){
-  const c = document.getElementById('matrix-home');
-  if(!c) return;
-  const ctx = c.getContext('2d');
-  function resize(){ c.width=window.innerWidth; c.height=window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  const cols = Math.floor(c.width/16);
-  const drops = Array(cols).fill(1);
-  const chars = '01アイウエオカキクケコサシスタチABCDEFGHIJ';
-  setInterval(()=>{
-    ctx.fillStyle='rgba(0,0,0,0.05)';
-    ctx.fillRect(0,0,c.width,c.height);
-    ctx.fillStyle='#00ff41';
-    ctx.font='13px monospace';
-    drops.forEach((y,i)=>{
-      const ch=chars[Math.floor(Math.random()*chars.length)];
-      ctx.fillText(ch,i*16,y*16);
-      if(y*16>c.height&Math.random()>0.975)drops[i]=0;
-      drops[i]++;
-    });
-  },50);
-})();
-</script>
-
-<script>
-(function(){
-  const c=document.getElementById('matrix-home');
-  if(!c)return;
-  const ctx=c.getContext('2d');
-  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-  const cols=Math.floor(c.width/14);
-  const drops=Array(cols).fill(0).map(()=>Math.random()*c.height/14);
-  const chars='01アイウエオカキクケサシスタチナニABCDEFGHIJK';
-  function draw(){
-    ctx.fillStyle='rgba(0,0,0,0.04)';
-    ctx.fillRect(0,0,c.width,c.height);
-    drops.forEach((y,i)=>{
-      const bright=Math.random()>0.95;
-      ctx.fillStyle=bright?'#afffaf':'#00ff41';
-      ctx.font=(bright?'bold ':'')+'13px monospace';
-      ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*14,y*14);
-      if(y*14>c.height&Math.random()>0.975)drops[i]=0;
-      drops[i]+=0.8;
-    });
-  }
-  setInterval(draw,40);
-})();
-</script>
-
-<script>
 function pullRibbon(){
   var card=document.getElementById('gift-card');
   var svg=document.getElementById('ribbon-svg');
