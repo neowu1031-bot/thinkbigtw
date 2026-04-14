@@ -366,6 +366,20 @@ gtag('config', 'G-7V41XYLLP5');
         </div>
         <a href="/clawland/" style="display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;padding:11px 22px;background:#FF2D87;color:white;border-radius:8px;text-decoration:none;box-shadow:0 4px 16px rgba(255,45,135,0.4);width:fit-content;">進入 CLAW LAND</a>
       </div>
+
+    <!-- 企業禮品 -->
+    <div class="card reveal" style="background:#1a1008;border:1px solid rgba(255,248,231,0.08);padding:32px;position:relative;z-index:1;">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px;color:#FFE500;text-transform:uppercase;margin-bottom:12px;">Custom Gift</div>
+      <h3 style="font-family:'Bangers',cursive;font-size:36px;letter-spacing:3px;color:#FFF8E7;margin-bottom:12px;">企業禮品訂制</h3>
+      <div style="width:24px;height:2px;background:#FFE500;margin-bottom:14px;"></div>
+      <p style="font-size:13px;line-height:1.65;color:rgba(255,248,231,0.7);margin-bottom:20px;">品牌商品客製化，護膚品、化妝包、馬克杯、T恤、貼紙，工廠直接製作。LOGO、文字、圖案完全客製，免費諮詢報價。</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">
+        <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">品牌商品</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">客製化</span>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">工廠直製</span>
+      </div>
+      <a href="https://lin.ee/n5KW430" target="_blank" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;background:transparent;color:#FFE500;border:1px solid #FFE500;text-decoration:none;display:inline-block;" onmouseover="this.style.background='#FFE500';this.style.color='#1a1008'" onmouseout="this.style.background='transparent';this.style.color='#FFE500'">免費詢價</a>
+    </div>
     </div>
 
   </div>
@@ -601,7 +615,6 @@ async function detectAndApply(){
 detectAndApply();
 </script>
 
-<canvas id="matrix-home" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;opacity:0.04;pointer-events:none;"></canvas>
 <script>
 (function(){
   const c = document.getElementById('matrix-home');
@@ -625,6 +638,34 @@ detectAndApply();
       drops[i]++;
     });
   },50);
+})();
+</script>
+
+<canvas id="matrix-home" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;opacity:0.07;pointer-events:none;"></canvas>
+<script>
+(function(){
+  const c=document.getElementById('matrix-home');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+  const cols=Math.floor(c.width/14);
+  const drops=Array(cols).fill(0).map(()=>Math.random()*c.height/14);
+  const chars='01アイウエオカキクケサシスタチナニABCDEFGHIJK';
+  function draw(){
+    ctx.fillStyle='rgba(0,0,0,0.04)';
+    ctx.fillRect(0,0,c.width,c.height);
+    drops.forEach((y,i)=>{
+      const bright=Math.random()>0.95;
+      ctx.fillStyle=bright?'#afffaf':'#00ff41';
+      ctx.font=(bright?'bold ':'')+'13px monospace';
+      ctx.fillText(chars[Math.floor(Math.random()*chars.length)],i*14,y*14);
+      if(y*14>c.height&&Math.random()>0.975)drops[i]=0;
+      drops[i]+=0.8;
+    });
+  }
+  setInterval(draw,40);
 })();
 </script>
 </body>
