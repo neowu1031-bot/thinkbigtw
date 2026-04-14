@@ -230,13 +230,10 @@ footer a:hover{color:var(--text)}
     <h2 style="font-size:clamp(18px,3vw,26px);font-weight:700;color:#f0f0f0;margin-bottom:6px">輸入你的產業，秒出自動化清單 & 報價單</h2>
     <p style="font-size:12px;color:#444;margin-bottom:22px">上至政府機關，下至各行各業 · 中 / EN / 日 / 한 / 全語言支援</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
-      <input id="aia-q" type="text" placeholder="例：牙科診所 / funeral home / 風俗業 / 法院 / NGO..."
+      <input id="aia-q" type="text" placeholder="例：牙科診所 / funeral home / 法院 / NGO..."
         style="flex:1;min-width:200px;background:#0a0a0a;border:1px solid #2a4a2a;border-radius:4px;padding:13px 16px;font-size:14px;color:#f0f0f0;font-family:Noto Sans TC,sans-serif;outline:none;transition:border .2s"
         onfocus="this.style.borderColor='#00ff41'" onblur="this.style.borderColor='#2a4a2a'"/>
       <button onclick="aiaRun()" style="background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:13px 26px;font-family:Space Mono,monospace;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:all .2s" onmouseover="this.style.background='#00ff41';this.style.color='#0a0a0a'" onmouseout="this.style.background='#008f1a';this.style.color='white'">分析 →</button>
-    </div>
-    <div class="aia-tags">
-      <span style="font-family:Space Mono,monospace;font-size:9px;color:#333;margin-right:4px">快速選：</span>
     </div>
   </div>
   <div id="aia-result" style="display:none"></div>
@@ -300,8 +297,6 @@ var DB=[
 {k:["設計","創意","平面設計","UI","UX","網頁設計","graphic design","web design","designer","デザイン","디자인"],n:"設計 / 創意工作室",p:["專案時程管理複雜","客戶修改回覆難追蹤","報價計算費時"],a:[{t:"專案截止日自動提醒",d:"每個里程碑自動提醒設計師和客戶",tool:"OpenClaw",pri:"高"},{t:"客戶修改意見自動整理",d:"多輪溝通後 AI 自動彙整修改重點",tool:"OpenClaw",pri:"中"},{t:"線上快速報價系統",d:"輸入需求後自動計算初步報價",tool:"OpenClaw",pri:"高"}],pl:"中小企業",price:28880,ps:80,pr:"時程追蹤+報價自動化讓設計師專注創作",roi:"行政時間-50%，每月可多接 1-2 個專案"},
 {k:["檳榔","檳榔攤","betel nut","檳榔西施"],n:"檳榔攤",p:["備貨靠感覺廢貨浪費","旺季人手不足"],a:[{t:"銷量追蹤自動備貨提醒",d:"銷售量低於閾值自動提醒補貨",tool:"OpenClaw",pri:"高"},{t:"尖峰時段人力自動提醒",d:"依歷史銷量預測尖峰，提前安排人手",tool:"OpenClaw",pri:"中"}],pl:"個人 / 小型",price:15000,ps:30,pr:"小型門市最基礎的庫存自動化",roi:"備貨精準化減少浪費，每月省 NT$3,000-8,000"}
 ];
-
-var TAGS=[" 醫療診所"," 房仲"," 電商"," 餐廳"," 會計"," 製造業"," 美容SPA","️ 旅遊飯店"," 物流"," 教育","️ 法律"," 政府機關"," 夜店KTV"," 寵物"," 科技新創","️ 健身"," 零售"," 金融保險"," 農業"," 殯葬"," 電競"," 演唱會"," 車行汽修"," 建設工程"," 物業管理"];
 
 (function(){
   var c=document.querySelector("#aia .aia-tags");
