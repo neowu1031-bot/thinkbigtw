@@ -150,7 +150,11 @@
     .reveal.visible{opacity:1;transform:translateY(0)}
     @media(max-width:900px){.products{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr 1fr}.step{border-right:none;border-bottom:1.5px solid var(--gray-200)}.step:nth-child(odd){border-right:1.5px solid var(--gray-200)}.step:last-child{border-bottom:none}}
     @media(max-width:600px){nav{padding:0 20px}.nav-links{display:none}.hero{padding:100px 24px 60px}.products-sec,.how-sec,.brand-strip,.cta-sec{padding:60px 24px}.products{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.step{border-right:none !important;border-bottom:1.5px solid var(--gray-200) !important}.step:last-child{border-bottom:none !important}.brand-strip-inner{padding:36px 28px}footer{padding:28px 24px}}
-  </style>
+  
+/* Butterfly background */
+#butterfly-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.13;}
+#butterfly-bg canvas{width:100%;height:100%;}
+</style>
 <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
   <script>
@@ -161,6 +165,8 @@
   </script>
 </head>
 <body>
+<div id="butterfly-bg"><canvas id="bf-canvas"></canvas></div>
+
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
 <div class="watermark">GIFT</div>
@@ -331,5 +337,124 @@
   const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') }), {threshold:.1});
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
+
+<script>
+(function(){
+  var canvas = document.getElementById('bf-canvas');
+  var ctx = canvas.getContext('2d');
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  resize();
+  window.addEventListener('resize',resize);
+
+  // Butterfly colors - pastel palette
+  var colors = [
+    '#FF6B9D','#FF9ECD','#FFB347','#FFD700',
+    '#87CEEB','#98FB98','#DDA0DD','#F0E68C',
+    '#FF7F7F','#90EE90','#87CEFA','#FFB6C1',
+    '#E6E6FA','#FFDAB9','#B0E0E6','#FFC0CB'
+  ];
+
+  // Create butterflies
+  var butterflies = [];
+  var NUM = 28;
+
+  function makeButterfly(){
+    var color = colors[Math.floor(Math.random()*colors.length)];
+    var size = 8 + Math.random()*18;
+    return {
+      x: Math.random()*canvas.width,
+      y: Math.random()*canvas.height,
+      vx: (Math.random()-0.5)*0.8,
+      vy: (Math.random()-0.5)*0.8,
+      size: size,
+      color: color,
+      color2: colors[Math.floor(Math.random()*colors.length)],
+      phase: Math.random()*Math.PI*2,  // wing flap phase
+      flapSpeed: 0.06 + Math.random()*0.06,
+      wobble: Math.random()*Math.PI*2, // body wobble
+      wobbleSpeed: 0.01 + Math.random()*0.01,
+      rotation: Math.random()*Math.PI*2,
+      rotSpeed: (Math.random()-0.5)*0.008
+    };
+  }
+
+  for(var i=0;i<NUM;i++) butterflies.push(makeButterfly());
+
+  function drawWing(ctx, size, openFactor, color, color2, side){
+    // Upper wing
+    ctx.beginPath();
+    ctx.save();
+    ctx.scale(side, 1);
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(
+      size*1.2*openFactor, -size*0.8,
+      size*1.5*openFactor, -size*0.2,
+      size*0.3*openFactor, size*0.3
+    );
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+    // Lower wing
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.bezierCurveTo(
+      size*0.9*openFactor, size*0.5,
+      size*1.1*openFactor, size*1.0,
+      size*0.2*openFactor, size*0.7
+    );
+    ctx.closePath();
+    ctx.fillStyle = color2;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawButterfly(b){
+    var open = 0.5 + 0.5*Math.sin(b.phase); // 0..1 wing openness
+    ctx.save();
+    ctx.translate(b.x, b.y);
+    ctx.rotate(b.rotation);
+
+    // Left wings
+    drawWing(ctx, b.size, open, b.color, b.color2, -1);
+    // Right wings
+    drawWing(ctx, b.size, open, b.color, b.color2, 1);
+
+    // Body
+    ctx.beginPath();
+    ctx.ellipse(0, 0, b.size*0.08, b.size*0.55, 0, 0, Math.PI*2);
+    ctx.fillStyle = '#4a2c0a';
+    ctx.fill();
+
+    ctx.restore();
+  }
+
+  function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    butterflies.forEach(function(b){
+      // Update
+      b.phase += b.flapSpeed;
+      b.wobble += b.wobbleSpeed;
+      b.rotation += b.rotSpeed + Math.sin(b.wobble)*0.004;
+
+      // Drift with slight sinusoidal motion
+      b.x += b.vx + Math.sin(b.wobble*0.7)*0.3;
+      b.y += b.vy + Math.cos(b.wobble*0.5)*0.2;
+
+      // Wrap around edges
+      if(b.x < -50) b.x = canvas.width+50;
+      if(b.x > canvas.width+50) b.x = -50;
+      if(b.y < -50) b.y = canvas.height+50;
+      if(b.y > canvas.height+50) b.y = -50;
+
+      drawButterfly(b);
+    });
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
 </body>
 </html>
