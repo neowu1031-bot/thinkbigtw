@@ -118,6 +118,20 @@ footer a:hover{color:var(--text)}
   .hero-btns,.cta-btns{flex-direction:column;align-items:center}
 }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"台灣哪裡有企業 AI 自動化部署服務？","acceptedAnswer":{"@type":"Answer","text":"Think BIG! 是台灣首家 OpenClaw AI Agent 企業部署服務商，提供 100+ 產業自動化分析、即時報價、遠端安裝與月度維護。"}},
+    {"@type":"Question","name":"AI 自動化部署費用多少？","acceptedAnswer":{"@type":"Answer","text":"依企業規模分為：個人/小型 NT$15,000 起、中小企業 NT$28,880 起、多部門/全通路 NT$48,880 起、多機/企業級 NT$138,880 起。一次買斷，無月費。"}},
+    {"@type":"Question","name":"What industries support AI automation deployment?","acceptedAnswer":{"@type":"Answer","text":"Think BIG! supports 100+ industries including medical, real estate, e-commerce, F&B, accounting, manufacturing, beauty, education, legal, government, logistics, and more."}},
+    {"@type":"Question","name":"How long does AI automation deployment take?","acceptedAnswer":{"@type":"Answer","text":"Standard deployment completes within 24 hours. Enterprise multi-machine deployment takes 3-7 business days depending on complexity."}},
+    {"@type":"Question","name":"AIオートメーション導入にはどれくらいかかりますか？","acceptedAnswer":{"@type":"Answer","text":"Think BIG!は台湾のOpenClaw AI Agentの専門導入会社です。個人・小規模からNT$15,000、中小企業からNT$28,880で提供しています。"}},
+    {"@type":"Question","name":"AI 자동화 배포 비용은 얼마입니까？","acceptedAnswer":{"@type":"Answer","text":"Think BIG!는 대만 최초 OpenClaw AI Agent 기업 배포 서비스입니다. 개인/소규모 NT$15,000부터 시작합니다."}}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -261,7 +275,7 @@ var DB=[
 {k:["檳榔","檳榔攤","betel nut","檳榔西施"],n:"檳榔攤",p:["備貨靠感覺廢貨浪費","旺季人手不足"],a:[{t:"銷量追蹤自動備貨提醒",d:"銷售量低於閾值自動提醒補貨",tool:"OpenClaw",pri:"高"},{t:"尖峰時段人力自動提醒",d:"依歷史銷量預測尖峰，提前安排人手",tool:"OpenClaw",pri:"中"}],pl:"個人 / 小型",price:15000,ps:30,pr:"小型門市最基礎的庫存自動化",roi:"備貨精準化減少浪費，每月省 NT$3,000-8,000"}
 ];
 
-var TAGS=["🏥 醫療診所","🏠 房仲","🛍 電商","🍜 餐廳","💰 會計","🏭 製造業","💄 美容SPA","✈️ 旅遊飯店","📦 物流","🎓 教育","⚖️ 法律","🏛 政府機關","🌙 夜店KTV","🐾 寵物","📱 科技新創","🏋️ 健身","🏪 零售","🏦 金融保險","🌿 農業","😢 殯葬","🎮 電競","🎬 演唱會","🚗 車行汽修","🔧 建設工程","🏢 物業管理"];
+var TAGS=[" 醫療診所"," 房仲"," 電商"," 餐廳"," 會計"," 製造業"," 美容SPA","️ 旅遊飯店"," 物流"," 教育","️ 法律"," 政府機關"," 夜店KTV"," 寵物"," 科技新創","️ 健身"," 零售"," 金融保險"," 農業"," 殯葬"," 電競"," 演唱會"," 車行汽修"," 建設工程"," 物業管理"];
 
 (function(){
   var c=document.querySelector("#aia .aia-tags");
@@ -294,10 +308,10 @@ function aiaRun(){
   var r=aiaFind(q);
   document.getElementById("aia-input").style.display="none";
   if(!r){
-    document.getElementById("aia-result").innerHTML='<div class="aiaIn q-card"><div class="q-body" style="text-align:center;padding:40px"><div style="font-size:40px;margin-bottom:16px">🦞</div><p style="font-size:14px;color:#7aad7a;margin-bottom:20px">找不到精確比對 — 歡迎直接告訴我們你的行業，我們幫你客製分析！</p><div class="q-cta-row" style="justify-content:center"><a class="q-btn-line" href="https://lin.ee/n5KW430" target="_blank">📲 LINE 諮詢 →</a><a class="q-btn-wa" href="https://wa.me/886908898903" target="_blank">💬 WhatsApp</a></div><br><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:8px">← 重新輸入</button></div></div>';
+    document.getElementById("aia-result").innerHTML='<div class="aiaIn q-card"><div class="q-body" style="text-align:center;padding:40px"><div style="font-size:40px;margin-bottom:16px"></div><p style="font-size:14px;color:#7aad7a;margin-bottom:20px">找不到精確比對 — 歡迎直接告訴我們你的行業，我們幫你客製分析！</p><div class="q-cta-row" style="justify-content:center"><a class="q-btn-line" href="https://lin.ee/n5KW430" target="_blank"> LINE 諮詢 →</a><a class="q-btn-wa" href="https://wa.me/886908898903" target="_blank"> WhatsApp</a></div><br><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:8px">← 重新輸入</button></div></div>';
     document.getElementById("aia-result").style.display="block";return;
   }
-  var pH=r.p.map(function(p){return '<div class="q-pain-item"><span style="color:#e8422a;flex-shrink:0">✕</span><span style="font-size:12px;color:#888">'+p+'</span></div>';}).join("");
+  var pH=r.p.map(function(p){return '<div class="q-pain-item"><span style="color:#e8422a;flex-shrink:0"></span><span style="font-size:12px;color:#888">'+p+'</span></div>';}).join("");
   var aH=r.a.map(function(a,i){
     var c=PC[a.pri]||"#00ff41",b=PB[a.pri]||"rgba(0,255,65,0.1)";
     return '<div class="q-auto-item" style="background:#0d1a0d;border-left-color:'+c+'"><div style="flex:1"><div class="q-auto-title">'+(i+1)+". "+a.t+'</div><div class="q-auto-desc">'+a.d+'</div></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0"><span class="q-badge" style="background:'+b+';color:'+c+'">'+a.pri+'</span><span class="q-badge" style="color:#333;border:1px solid #1e3a1e">'+a.tool+'</span></div></div>';
@@ -312,11 +326,11 @@ function aiaRun(){
     '<div style="margin-bottom:20px"><div class="q-sec-label" style="color:#00ff41">可部署自動化項目（'+r.a.length+' 項）</div>'+aH+'</div>'+
     '<div class="q-plan"><div><div class="q-plan-name">'+r.pl+'</div><div class="q-plan-reason">'+r.pr+'</div><div class="q-plan-meta">'+r.ps+' 個技能庫 · 一次買斷 · 無月費</div></div>'+
     '<div><div class="q-price">NT$'+r.price.toLocaleString()+'<span style="font-size:18px;font-weight:400;letter-spacing:0"> 起</span></div><div class="q-price-sub">NO MONTHLY FEE</div></div></div>'+
-    '<div class="q-roi">💡 '+r.roi+'</div>'+
+    '<div class="q-roi"> '+r.roi+'</div>'+
     '<div style="margin-bottom:10px;font-family:Space Mono,monospace;font-size:8px;letter-spacing:4px;color:#00ff41;text-transform:uppercase">一鍵傳送這份報價單 → Think BIG 30 分鐘內回覆</div>'+
     '<div class="q-cta-row">'+
-    '<a class="q-btn-line" href="https://lin.ee/n5KW430" target="_blank">📲 LINE 立即部署</a>'+
-    '<a class="q-btn-wa" href="https://wa.me/886908898903?text='+waMsg+'" target="_blank">💬 WhatsApp</a>'+
+    '<a class="q-btn-line" href="https://lin.ee/n5KW430" target="_blank"> LINE 立即部署</a>'+
+    '<a class="q-btn-wa" href="https://wa.me/886908898903?text='+waMsg+'" target="_blank"> WhatsApp</a>'+
     '<button class="q-btn-reset" onclick="aiaReset()">換個產業</button></div>'+
     '<p style="font-size:10px;color:#2a4a2a;margin-top:10px;font-family:Space Mono,monospace">點擊後開啟對應 App → 發送報價單給 Think BIG 團隊</p>'+
     '</div></div>';
