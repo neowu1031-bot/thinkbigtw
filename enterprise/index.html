@@ -296,6 +296,28 @@ var DB=[
 
 
 var PC={"高":"#00ff41","中":"#FFE500","低":"#7aad7a"};
+var ITEM_PRICE={"高":12000,"中":8000,"低":5000};
+var BASE_PRICE=4888;
+
+function calcPrice(r){
+  var total=BASE_PRICE;
+  r.a.forEach(function(a){total+=ITEM_PRICE[a.pri]||8000;});
+  return total;
+}
+
+function calcBreakdown(r){
+  var h=0,m=0,l=0;
+  r.a.forEach(function(a){
+    if(a.pri==="高")h++;
+    else if(a.pri==="中")m++;
+    else l++;
+  });
+  var parts=[];
+  if(h)parts.push(h+"項高難度×NT$12,000");
+  if(m)parts.push(m+"項中難度×NT$8,000");
+  if(l)parts.push(l+"項低難度×NT$5,000");
+  return parts.join(" + ");
+}
 var PB={"高":"rgba(0,255,65,0.1)","中":"rgba(255,229,0,0.08)","低":"rgba(122,173,122,0.06)"};
 
 // 大類 fallback 對照表（ISIC Rev.4 精神）
@@ -412,8 +434,8 @@ function aiaRun(){
     '<div class="q-body">'+
     '<div style="margin-bottom:20px"><div class="q-sec-label" style="color:#e8422a">目前痛點</div>'+pH+'</div>'+
     '<div style="margin-bottom:20px"><div class="q-sec-label" style="color:#00ff41">可部署自動化項目（'+r.a.length+' 項）</div>'+aH+'</div>'+
-    '<div class="q-plan"><div><div class="q-plan-name">'+r.pl+'</div><div class="q-plan-reason">'+r.pr+'</div><div class="q-plan-meta">'+r.ps+' 個技能庫 · 一次買斷 · 無月費</div></div>'+
-    '<div><div class="q-price">NT$'+r.price.toLocaleString()+'<span style="font-size:18px;font-weight:400;letter-spacing:0"> 起</span></div><div class="q-price-sub">NO MONTHLY FEE</div></div></div>'+
+    '<div class="q-plan"><div><div class="q-plan-name">客製化部署方案</div><div class="q-plan-reason">底價 NT$4,888 + '+calcBreakdown(r)+'</div><div class="q-plan-meta">客製化 Skills · 一次買斷 · 無月費</div></div>'+
+    '<div><div class="q-price">NT$'+calcPrice(r).toLocaleString()+'<span style="font-size:18px;font-weight:400;letter-spacing:0"> 起</span></div><div class="q-price-sub">NO MONTHLY FEE</div></div></div>'+
     '<div class="q-roi"> '+r.roi+'</div>'+
     '<div style="margin-bottom:10px;font-family:Space Mono,monospace;font-size:8px;letter-spacing:4px;color:#00ff41;text-transform:uppercase">一鍵傳送這份報價單 → Think BIG 30 分鐘內回覆</div>'+
     '<div class="q-cta-row">'+
