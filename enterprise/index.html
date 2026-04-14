@@ -296,12 +296,51 @@ var DB=[
 
 
 var PC={"高":"#00ff41","中":"#FFE500","低":"#7aad7a"};
-var ITEM_PRICE={"高":12000,"中":8000,"低":5000};
-var BASE_PRICE=4888;
+// ══ 地理定價系統 ══
+// 各國市場均價 × 0.9（比當地便宜10%）
+// 台灣：NT$ 底價8,888 高15,000 中10,000 低6,000
+// 其他國家：依當地物價水準換算
+
+var GEO_PRICING = {
+  "TW": {currency:"NT$", base:8888,  high:15000, mid:10000, low:6000,  symbol:"NT$",  label:"台灣"},
+  "US": {currency:"USD", base:450,   high:900,   mid:630,   low:360,   symbol:"$",    label:"United States"},
+  "JP": {currency:"JPY", base:65000, high:130000,mid:90000, low:54000, symbol:"¥",    label:"Japan"},
+  "SG": {currency:"SGD", base:600,   high:1200,  mid:850,   low:500,   symbol:"S$",   label:"Singapore"},
+  "MY": {currency:"MYR", base:1800,  high:3600,  mid:2500,  low:1500,  symbol:"RM",   label:"Malaysia"},
+  "GB": {currency:"GBP", base:350,   high:700,   mid:490,   low:290,   symbol:"£",    label:"United Kingdom"},
+  "AU": {currency:"AUD", base:600,   high:1200,  mid:850,   low:500,   symbol:"A$",   label:"Australia"},
+  "KR": {currency:"KRW", base:580000,high:1150000,mid:800000,low:480000,symbol:"₩",   label:"Korea"},
+  "HK": {currency:"HKD", base:2700,  high:5400,  mid:3800,  low:2200,  symbol:"HK$",  label:"Hong Kong"},
+  "DE": {currency:"EUR", base:400,   high:800,   mid:560,   low:320,   symbol:"€",    label:"Germany"},
+  "FR": {currency:"EUR", base:400,   high:800,   mid:560,   low:320,   symbol:"€",    label:"France"},
+  "CA": {currency:"CAD", base:550,   high:1100,  mid:770,   low:450,   symbol:"C$",   label:"Canada"},
+  "DEFAULT": {currency:"USD", base:450, high:900, mid:630,  low:360,   symbol:"$",    label:""}
+};
+
+var GEO = null;  // will be set after IP detection
+var ITEM_PRICE={"高":15000,"中":10000,"低":6000};
+var BASE_PRICE=8888;
+var CURRENCY_SYMBOL="NT$";
+
+// Detect country via IP
+(function(){
+  fetch("https://ipapi.co/json/")
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var code = d.country_code || "DEFAULT";
+      GEO = GEO_PRICING[code] || GEO_PRICING["DEFAULT"];
+      BASE_PRICE = GEO.base;
+      ITEM_PRICE = {"高": GEO.high, "中": GEO.mid, "低": GEO.low};
+      CURRENCY_SYMBOL = GEO.symbol;
+    })
+    .catch(function(){
+      GEO = GEO_PRICING["DEFAULT"];
+    });
+})();
 
 function calcPrice(r){
   var total=BASE_PRICE;
-  r.a.forEach(function(a){total+=ITEM_PRICE[a.pri]||8000;});
+  r.a.forEach(function(a){total+=ITEM_PRICE[a.pri]||ITEM_PRICE["中"];});
   return total;
 }
 
@@ -313,9 +352,9 @@ function calcBreakdown(r){
     else l++;
   });
   var parts=[];
-  if(h)parts.push(h+"項高難度×NT$12,000");
-  if(m)parts.push(m+"項中難度×NT$8,000");
-  if(l)parts.push(l+"項低難度×NT$5,000");
+  if(h)parts.push(h+" high×"+CURRENCY_SYMBOL+(ITEM_PRICE["高"]||0).toLocaleString());
+  if(m)parts.push(m+" mid×"+CURRENCY_SYMBOL+(ITEM_PRICE["中"]||0).toLocaleString());
+  if(l)parts.push(l+" low×"+CURRENCY_SYMBOL+(ITEM_PRICE["低"]||0).toLocaleString());
   return parts.join(" + ");
 }
 var PB={"高":"rgba(0,255,65,0.1)","中":"rgba(255,229,0,0.08)","低":"rgba(122,173,122,0.06)"};
