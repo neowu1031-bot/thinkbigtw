@@ -181,9 +181,15 @@ footer a{color:#00ff41;text-decoration:none}
 .reveal.visible{opacity:1;transform:translateY(0)}
 @media(max-width:900px){.tool-grid{grid-template-columns:1fr}.mcp-features{grid-template-columns:1fr}}
 @media(max-width:600px){nav{padding:0 20px}.hero{padding:100px 20px 60px}.section{padding:60px 20px}.mcp-section{padding:60px 20px}.cta-sec{padding:60px 20px}}
+
+/* Gear background */
+#gear-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.06;}
+#gear-bg canvas{width:100%;height:100%;}
 </style>
 </head>
 <body>
+<div id="gear-bg"><canvas id="gear-canvas"></canvas></div>
+
 <div class="matrix-bg"><canvas id="matrix-canvas"></canvas></div>
 
 <nav>
@@ -402,5 +408,101 @@ const obs=new IntersectionObserver(entries=>{
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
+
+<script>
+(function(){
+  var canvas = document.getElementById('gear-canvas');
+  var ctx = canvas.getContext('2d');
+
+  function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Define interlocking gears
+  // Each gear: {x, y, r (radius), teeth, speed (rad/frame), angle}
+  var gears = [];
+
+  function makeGrid(){
+    gears = [];
+    var W = canvas.width, H = canvas.height;
+    // Tile the screen with interlocking gears of 2 sizes
+    var R1 = 72, R2 = 48;
+    var spacing = R1 + R2 + 4; // gap between centers so teeth mesh
+    var cols = Math.ceil(W / spacing) + 2;
+    var rows = Math.ceil(H / (spacing * 0.866)) + 2;
+    var baseSpeed = 0.004;
+
+    for(var row = -1; row < rows; row++){
+      for(var col = -1; col < cols; col++){
+        var x = col * spacing + (row % 2 === 0 ? 0 : spacing / 2);
+        var y = row * spacing * 0.866;
+        var isLarge = (row + col) % 2 === 0;
+        var r = isLarge ? R1 : R2;
+        var teeth = isLarge ? 18 : 12;
+        // Alternate rotation direction based on position
+        var dir = ((row + col) % 2 === 0) ? 1 : -1;
+        gears.push({
+          x: x, y: y, r: r, teeth: teeth,
+          speed: baseSpeed * dir * (isLarge ? 1 : R1/R2),
+          angle: (col * 0.7 + row * 0.5) // stagger start angles
+        });
+      }
+    }
+  }
+  makeGrid();
+  window.addEventListener('resize', makeGrid);
+
+  function drawGear(g){
+    var teeth = g.teeth;
+    var r = g.r;
+    var innerR = r * 0.75;
+    var toothH = r * 0.22;
+    var toothW = (2 * Math.PI / teeth) * 0.4;
+
+    ctx.save();
+    ctx.translate(g.x, g.y);
+    ctx.rotate(g.angle);
+
+    ctx.beginPath();
+    for(var i = 0; i < teeth; i++){
+      var a = (i / teeth) * Math.PI * 2;
+      var a1 = a - toothW;
+      var a2 = a - toothW * 0.3;
+      var a3 = a + toothW * 0.3;
+      var a4 = a + toothW;
+
+      ctx.lineTo(Math.cos(a1) * innerR, Math.sin(a1) * innerR);
+      ctx.lineTo(Math.cos(a2) * (r + toothH), Math.sin(a2) * (r + toothH));
+      ctx.lineTo(Math.cos(a3) * (r + toothH), Math.sin(a3) * (r + toothH));
+      ctx.lineTo(Math.cos(a4) * innerR, Math.sin(a4) * innerR);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = '#00ff41';
+    ctx.lineWidth = 1.2;
+    ctx.stroke();
+
+    // Center hole
+    ctx.beginPath();
+    ctx.arc(0, 0, r * 0.22, 0, Math.PI * 2);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function animate(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    gears.forEach(function(g){
+      g.angle += g.speed;
+      drawGear(g);
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+
 </body>
 </html>
