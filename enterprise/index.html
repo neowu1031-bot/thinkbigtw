@@ -218,40 +218,11 @@ async function runAnalysis(){
   },900);
 
   try{
-    const res = await fetch('https://api.anthropic.com/v1/messages',{
+    const res = await fetch('https://line-webhook-240748706912.asia-east1.run.app/ai-analyze',{
+      method:'POST',
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1200,
-        system:`你是 Think BIG! 的 AI 顧問，專門分析企業自動化需求並提供 OpenClaw AI Agent 部署建議。
-你只回傳 JSON，不加任何說明文字或 markdown。
-
-JSON 格式如下（嚴格遵守）：
-{
-  "industry": "產業名稱",
-  "pain_points": ["痛點1","痛點2","痛點3"],
-  "automations": [
-    {"title":"自動化項目名稱","desc":"一句話說明效益","tool":"使用工具","priority":"高/中/低"},
-    ...共5-8項
-  ],
-  "recommended_plan": {
-    "name": "方案名稱",
-    "price": 數字(TWD),
-    "reason": "推薦原因（1句話）",
-    "skills_count": 數字
-  },
-  "roi_note": "ROI估算說明（1-2句）"
-}
-
-方案定價參考：
-- 入門版：NT$1,500（30技能）
-- 旗艦版：NT$2,888（企業自動化）
-- 終極版：NT$4,888（250+技能）
-- Hermes Agent × OpenClaw：NT$13,888（雙AI，多機部署）
-- Hermes Agent 尊榮年度版：NT$26,500（年度維護）`,
-        messages:[{role:'user',content:`我的產業是：${industry}`}]
-      })
+      body:JSON.stringify({industry:industry})
     });
     clearInterval(loadInterval);
     const data = await res.json();
