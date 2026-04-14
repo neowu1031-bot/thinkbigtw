@@ -542,17 +542,53 @@ if(mc){
   <p class="cta-s reveal">你的下一步，從一個訊息開始。</p>
   <div class="cta-row reveal" id="cta-btns">
     <!-- 卡片4：企業禮品 -->
-    <div class="card reveal" style="background:#1a1008;border:1px solid rgba(255,248,231,0.08);padding:32px;">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px;color:#FFE500;text-transform:uppercase;margin-bottom:12px;">Custom Gift</div>
-      <h3 style="font-family:'Space Mono',monospace;font-size:36px;letter-spacing:3px;color:#FFF8E7;margin-bottom:12px;">企業禮品訂制</h3>
-      <div style="width:24px;height:2px;background:#FFE500;margin-bottom:14px;"></div>
-      <p style="font-size:13px;line-height:1.65;color:rgba(255,248,231,0.7);margin-bottom:20px;">品牌商品客製化，護膚品、化妝包、馬克杯、T恤、貼紙，工廠直接製作。LOGO、文字、圖案完全客製，歡迎諮詢報價。</p>
-      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">
-        <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">品牌商品</span>
-        <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">客製化</span>
-        <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">工廠直製</span>
+    <div class="card reveal" id="gift-card" style="position:relative;overflow:hidden;padding:0;border:none;min-height:360px;cursor:pointer;" onclick="pullRibbon()">
+      <!-- Background image with watermark effect -->
+      <div style="position:absolute;inset:0;background-image:url('/images/gift-bg.jpg');background-size:cover;background-position:center;opacity:0.22;pointer-events:none;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(160deg,rgba(20,8,0,0.82) 0%,rgba(10,4,0,0.75) 100%);pointer-events:none;"></div>
+      <!-- Ribbon SVG animation -->
+      <svg id="ribbon-svg" viewBox="0 0 400 360" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.18;">
+        <defs>
+          <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FFE500"/>
+            <stop offset="100%" style="stop-color:#FF9900"/>
+          </linearGradient>
+        </defs>
+        <!-- Vertical ribbon -->
+        <rect x="188" y="0" width="24" height="360" fill="url(#rg)" opacity="0.7"/>
+        <!-- Horizontal ribbon -->
+        <rect x="0" y="162" width="400" height="24" fill="url(#rg)" opacity="0.7"/>
+        <!-- Bow left loop -->
+        <ellipse id="bow-l" cx="152" cy="174" rx="44" ry="28" fill="url(#rg)" transform="rotate(-30 152 174)"/>
+        <!-- Bow right loop -->
+        <ellipse id="bow-r" cx="248" cy="174" rx="44" ry="28" fill="url(#rg)" transform="rotate(30 248 174)"/>
+        <!-- Bow center -->
+        <ellipse cx="200" cy="174" rx="18" ry="18" fill="url(#rg)"/>
+        <!-- Ribbon tail -->
+        <path id="ribbon-tail" d="M196 174 Q180 240 160 340" stroke="url(#rg)" stroke-width="22" fill="none" stroke-linecap="round"/>
+        <path d="M204 174 Q220 240 240 340" stroke="url(#rg)" stroke-width="22" fill="none" stroke-linecap="round"/>
+      </svg>
+      <style>
+        #gift-card .ribbon-fly{position:absolute;width:22px;border-radius:11px;background:linear-gradient(180deg,#FFE500,#FF9900);transform-origin:bottom center;pointer-events:none;}
+        @keyframes ribbonPull{0%{top:160px;opacity:1;transform:scaleY(1) rotate(var(--rot))}60%{opacity:1}100%{top:-120px;opacity:0;transform:scaleY(2.5) rotate(calc(var(--rot) + 20deg))}}
+        @keyframes bowPop{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+        #gift-card:hover #ribbon-svg{opacity:0.28;transition:opacity .3s}
+        .pull-hint{font-family:"Space Mono",monospace;font-size:9px;letter-spacing:3px;color:rgba(255,229,0,0.5);text-transform:uppercase;margin-top:8px;animation:blink 2s infinite}
+        @keyframes blink{0%,100%{opacity:0.5}50%{opacity:1}}
+      </style>
+      <div style="position:relative;z-index:1;padding:28px 24px;display:flex;flex-direction:column;min-height:360px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:5px;color:#FFE500;text-transform:uppercase;margin-bottom:12px;">Custom Gift</div>
+        <h3 style="font-family:'Space Mono',monospace;font-size:28px;letter-spacing:2px;color:#FFF8E7;margin-bottom:12px;font-weight:700;">企業禮品訂制</h3>
+        <div style="width:24px;height:2px;background:#FFE500;margin-bottom:14px;"></div>
+        <p style="font-size:13px;line-height:1.65;color:rgba(255,248,231,0.75);margin-bottom:20px;flex:1;">品牌商品客製化，護膚品、化妝包、馬克杯、T恤、貼紙，工廠直接製作。LOGO、文字、圖案完全客製，歡迎諮詢報價。</p>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">品牌商品</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">客製化</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;padding:4px 10px;border:1px solid rgba(255,229,0,0.4);color:rgba(255,248,231,0.7);">工廠直製</span>
+        </div>
+        <div class="pull-hint">↑ 點擊拉開緞帶</div>
+        <a href="https://lin.ee/n5KW430" target="_blank" id="gift-cta" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;background:transparent;color:#FFE500;border:1px solid #FFE500;text-decoration:none;display:inline-block;width:fit-content;margin-top:10px;transition:all .2s;" onmouseover="this.style.background='#FFE500';this.style.color='#1a1008'" onmouseout="this.style.background='transparent';this.style.color='#FFE500'">立即詢價</a>
       </div>
-      <a href="https://lin.ee/n5KW430" target="_blank" style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 20px;background:transparent;color:#FFE500;border:1px solid #FFE500;text-decoration:none;display:inline-block;transition:all .15s;" onmouseover="this.style.background='#FFE500';this.style.color='#1a1008'" onmouseout="this.style.background='transparent';this.style.color='#FFE500'">立即詢價</a>
     </div>
 </div>
 </section>
@@ -655,6 +691,41 @@ detectAndApply();
   }
   setInterval(draw,40);
 })();
+</script>
+
+<script>
+function pullRibbon(){
+  var card=document.getElementById('gift-card');
+  var svg=document.getElementById('ribbon-svg');
+  // Animate ribbon tails flying up
+  var colors=['#FFE500','#FF9900','#FFD700'];
+  for(var i=0;i<6;i++){
+    var r=document.createElement('div');
+    r.className='ribbon-fly';
+    var rot=(Math.random()-0.5)*60;
+    r.style.cssText='position:absolute;width:18px;height:80px;border-radius:9px;background:linear-gradient(180deg,#FFE500,#FF9900);top:160px;left:'+(160+Math.random()*80)+'px;z-index:10;--rot:'+rot+'deg;animation:ribbonPull '+(0.7+Math.random()*0.4)+'s ease-out '+(i*0.06)+'s forwards;transform:rotate('+rot+'deg);pointer-events:none;';
+    card.appendChild(r);
+    setTimeout(function(el){el.remove();},1200,r);
+  }
+  // Bow pop animation
+  svg.style.opacity='0';
+  svg.style.transition='opacity 0.4s';
+  // Show CTA
+  setTimeout(function(){
+    var hint=card.querySelector('.pull-hint');
+    if(hint){hint.style.display='none';}
+    var cta=document.getElementById('gift-cta');
+    if(cta){cta.style.transform='scale(1.05)';cta.style.background='#FFE500';cta.style.color='#1a1008';}
+  },500);
+  // Reset after 3s
+  setTimeout(function(){
+    svg.style.opacity='0.18';
+    var cta=document.getElementById('gift-cta');
+    if(cta){cta.style.transform='';cta.style.background='transparent';cta.style.color='#FFE500';}
+    var hint=card.querySelector('.pull-hint');
+    if(hint){hint.style.display='';}
+  },3000);
+}
 </script>
 </body>
 </html>
