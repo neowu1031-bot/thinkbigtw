@@ -138,10 +138,234 @@ footer a:hover{color:var(--text)}
   </div>
 </section>
 
-<div class="stat-item"><span class="stat-num">24h</span><span class="stat-label">完成部署</span></div>
-  <div class="stat-item"><span class="stat-num">250+</span><span class="stat-label">自動化技能</span></div>
-  <div class="stat-item"><span class="stat-num">NT$0</span><span class="stat-label">月費（一次買斷）</span></div>
+
+<!-- ═══════════════════════════════════════════════════
+     AI 產業分析報價工具
+═══════════════════════════════════════════════════ -->
+<div id="ai-analyzer" style="position:relative;z-index:1;max-width:860px;margin:60px auto 80px;padding:0 24px;">
+
+  <!-- Step 1: Input -->
+  <div id="step-input" style="background:#111;border:1px solid #1e3a1e;border-radius:8px;padding:40px;box-shadow:0 0 40px rgba(0,255,65,0.08);">
+    <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:6px;color:#00ff41;text-transform:uppercase;margin-bottom:10px;">AI ANALYZER</div>
+    <h2 style="font-size:clamp(22px,3vw,32px);font-weight:700;color:#f0f0f0;margin-bottom:8px;">輸入你的產業，秒出自動化清單</h2>
+    <p style="font-size:14px;color:#666;margin-bottom:28px;">由 Claude AI 即時分析，列出你的產業最適合的自動化項目與報價</p>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <input id="industry-input" type="text"
+        placeholder="例如：牙科診所、房仲公司、網路電商、餐廳..."
+        style="flex:1;min-width:240px;background:#0a0a0a;border:1px solid #2a4a2a;border-radius:4px;padding:14px 18px;font-size:15px;color:#f0f0f0;font-family:'Noto Sans TC',sans-serif;outline:none;transition:border .2s;"
+        onfocus="this.style.borderColor='#00ff41'"
+        onblur="this.style.borderColor='#2a4a2a'"
+      />
+      <button id="analyze-btn" onclick="runAnalysis()"
+        style="background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:14px 28px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.06em;cursor:pointer;white-space:nowrap;transition:all .2s;"
+        onmouseover="this.style.background='#00ff41';this.style.color='#0a0a0a'"
+        onmouseout="this.style.background='#008f1a';this.style.color='white'"
+      >分析產業 →</button>
+    </div>
+
+    <!-- Quick tags -->
+    <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+      <span style="font-family:'Space Mono',monospace;font-size:10px;color:#444;margin-right:4px;">快速選擇：</span>
+      <script>
+      ['牙科診所','房仲公司','網路電商','餐廳','會計師事務所','製造業','美容沙龍','旅行社','物流倉儲','補習班'].forEach(t=>{
+        document.write('<button onclick="quickTag(\'' + t + '\')" style="background:transparent;border:1px solid #2a3a2a;color:#7aad7a;padding:5px 12px;border-radius:100px;font-family:Space Mono,monospace;font-size:10px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#2a3a2a';this.style.color='#7aad7a'">' + t + '</button>');
+      });
+      </script>
+    </div>
+  </div>
+
+  <!-- Step 2: Loading -->
+  <div id="step-loading" style="display:none;text-align:center;padding:60px 40px;">
+    <div style="font-size:32px;margin-bottom:16px;animation:spin 1s linear infinite;display:inline-block;">⟳</div>
+    <p id="loading-msg" style="font-family:'Space Mono',monospace;font-size:13px;color:#00ff41;letter-spacing:.08em;">ANALYZING INDUSTRY...</p>
+  </div>
+
+  <!-- Step 3: Result -->
+  <div id="step-result" style="display:none;">
+    <!-- Result will be injected here -->
+  </div>
 </div>
+
+<style>
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.result-card{animation:fadeInUp .5s ease forwards;opacity:0}
+.result-card:nth-child(2){animation-delay:.1s}
+.result-card:nth-child(3){animation-delay:.2s}
+.result-card:nth-child(4){animation-delay:.3s}
+.result-card:nth-child(5){animation-delay:.4s}
+</style>
+
+<script>
+function quickTag(val){
+  document.getElementById('industry-input').value = val;
+  runAnalysis();
+}
+
+async function runAnalysis(){
+  const industry = document.getElementById('industry-input').value.trim();
+  if(!industry) return;
+
+  document.getElementById('step-input').style.display='none';
+  document.getElementById('step-loading').style.display='block';
+  document.getElementById('step-result').style.display='none';
+
+  const msgs = ['ANALYZING INDUSTRY...','MAPPING WORKFLOWS...','CALCULATING ROI...','GENERATING REPORT...'];
+  let mi=0;
+  const loadInterval = setInterval(()=>{
+    document.getElementById('loading-msg').textContent = msgs[mi++ % msgs.length];
+  },900);
+
+  try{
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1200,
+        system:`你是 Think BIG! 的 AI 顧問，專門分析企業自動化需求並提供 OpenClaw AI Agent 部署建議。
+你只回傳 JSON，不加任何說明文字或 markdown。
+
+JSON 格式如下（嚴格遵守）：
+{
+  "industry": "產業名稱",
+  "pain_points": ["痛點1","痛點2","痛點3"],
+  "automations": [
+    {"title":"自動化項目名稱","desc":"一句話說明效益","tool":"使用工具","priority":"高/中/低"},
+    ...共5-8項
+  ],
+  "recommended_plan": {
+    "name": "方案名稱",
+    "price": 數字(TWD),
+    "reason": "推薦原因（1句話）",
+    "skills_count": 數字
+  },
+  "roi_note": "ROI估算說明（1-2句）"
+}
+
+方案定價參考：
+- 入門版：NT$1,500（30技能）
+- 旗艦版：NT$2,888（企業自動化）
+- 終極版：NT$4,888（250+技能）
+- Hermes Agent × OpenClaw：NT$13,888（雙AI，多機部署）
+- Hermes Agent 尊榮年度版：NT$26,500（年度維護）`,
+        messages:[{role:'user',content:`我的產業是：${industry}`}]
+      })
+    });
+    clearInterval(loadInterval);
+    const data = await res.json();
+    let text = data.content?.find(b=>b.type==='text')?.text || '{}';
+    text = text.replace(/```json|```/g,'').trim();
+    const result = JSON.parse(text);
+    renderResult(result, industry);
+  }catch(e){
+    clearInterval(loadInterval);
+    document.getElementById('step-loading').style.display='none';
+    document.getElementById('step-input').style.display='block';
+    document.getElementById('industry-input').value = industry;
+    alert('分析失敗，請再試一次');
+  }
+}
+
+document.getElementById('industry-input').addEventListener('keydown', e=>{
+  if(e.key==='Enter') runAnalysis();
+});
+
+function renderResult(r, rawInput){
+  document.getElementById('step-loading').style.display='none';
+  const priorityColor = {'高':'#00ff41','中':'#FFE500','低':'#7aad7a'};
+  const priorityBg = {'高':'rgba(0,255,65,0.12)','中':'rgba(255,229,0,0.1)','低':'rgba(122,173,122,0.08)'};
+
+  const automationHTML = r.automations?.map((a,i)=>`
+    <div class="result-card" style="background:#0d1a0d;border:1px solid ${priorityBg[a.priority]||'#1e3a1e'};border-left:3px solid ${priorityColor[a.priority]||'#00ff41'};border-radius:4px;padding:18px 20px;margin-bottom:8px;">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;">
+        <div style="flex:1;">
+          <div style="font-size:15px;font-weight:700;color:#f0f0f0;margin-bottom:4px;">${i+1}. ${a.title}</div>
+          <div style="font-size:13px;color:#7aad7a;line-height:1.6;">${a.desc}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+          <span style="font-family:'Space Mono',monospace;font-size:9px;background:${priorityBg[a.priority]||'rgba(0,255,65,0.1)'};color:${priorityColor[a.priority]||'#00ff41'};padding:3px 8px;border-radius:2px;">優先度 ${a.priority}</span>
+          <span style="font-family:'Space Mono',monospace;font-size:9px;color:#444;padding:3px 8px;border:1px solid #1e3a1e;border-radius:2px;">${a.tool}</span>
+        </div>
+      </div>
+    </div>`).join('') || '';
+
+  const painHTML = r.pain_points?.map(p=>`
+    <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;">
+      <span style="color:#e8422a;font-size:14px;flex-shrink:0;margin-top:1px;">✕</span>
+      <span style="font-size:14px;color:#888;">${p}</span>
+    </div>`).join('') || '';
+
+  const plan = r.recommended_plan || {};
+  const priceFormatted = plan.price ? 'NT$' + plan.price.toLocaleString() : '';
+
+  document.getElementById('step-result').innerHTML = `
+    <div style="background:#111;border:1px solid #1e3a1e;border-radius:8px;overflow:hidden;box-shadow:0 0 40px rgba(0,255,65,0.08);">
+
+      <!-- Header -->
+      <div style="background:rgba(0,255,65,0.06);border-bottom:1px solid #1e3a1e;padding:24px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:6px;color:#00ff41;text-transform:uppercase;margin-bottom:6px;">AI ANALYSIS REPORT</div>
+          <h3 style="font-size:22px;font-weight:700;color:#f0f0f0;">${r.industry || rawInput} — 自動化分析</h3>
+        </div>
+        <button onclick="resetAnalyzer()" style="background:transparent;border:1px solid #2a4a2a;color:#7aad7a;padding:8px 16px;border-radius:4px;font-family:'Space Mono',monospace;font-size:10px;cursor:pointer;letter-spacing:.06em;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#2a4a2a';this.style.color='#7aad7a'">← 重新分析</button>
+      </div>
+
+      <div style="padding:32px;">
+
+        <!-- Pain points -->
+        <div style="margin-bottom:28px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#e8422a;text-transform:uppercase;margin-bottom:14px;">目前痛點</div>
+          ${painHTML}
+        </div>
+
+        <!-- Automations -->
+        <div style="margin-bottom:28px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00ff41;text-transform:uppercase;margin-bottom:14px;">可部署的自動化項目（${r.automations?.length||0} 項）</div>
+          ${automationHTML}
+        </div>
+
+        <!-- Plan recommendation -->
+        <div style="background:linear-gradient(135deg,rgba(0,255,65,0.1),rgba(0,143,26,0.06));border:1px solid rgba(0,255,65,0.4);border-radius:6px;padding:24px 28px;margin-bottom:20px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:4px;color:#00ff41;text-transform:uppercase;margin-bottom:10px;">推薦方案</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
+            <div>
+              <div style="font-size:20px;font-weight:700;color:#f0f0f0;margin-bottom:4px;">${plan.name||''}</div>
+              <div style="font-size:13px;color:#7aad7a;">${plan.reason||''}</div>
+              ${plan.skills_count ? `<div style="font-family:'Space Mono',monospace;font-size:11px;color:#444;margin-top:6px;">${plan.skills_count} 個技能庫</div>` : ''}
+            </div>
+            <div style="text-align:right;">
+              <div style="font-family:'Space Mono',monospace;font-size:32px;font-weight:700;color:#00ff41;">${priceFormatted}</div>
+              <div style="font-family:'Space Mono',monospace;font-size:10px;color:#444;letter-spacing:.06em;">一次買斷・無月費</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROI note -->
+        ${r.roi_note ? `<div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:24px;padding:14px 18px;border-left:2px solid #1e3a1e;">💡 ${r.roi_note}</div>` : ''}
+
+        <!-- CTA -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="https://lin.ee/n5KW430" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#008f1a;color:white;border:1px solid #00ff41;border-radius:4px;padding:13px 24px;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:.06em;transition:all .2s;" onmouseover="this.style.background='#00ff41';this.style.color='#0a0a0a'" onmouseout="this.style.background='#008f1a';this.style.color='white'">LINE 立即諮詢 →</a>
+          <button onclick="resetAnalyzer()" style="background:transparent;color:#7aad7a;border:1px solid #2a4a2a;border-radius:4px;padding:13px 24px;font-family:'Space Mono',monospace;font-size:12px;cursor:pointer;letter-spacing:.06em;transition:all .2s;" onmouseover="this.style.borderColor='#00ff41';this.style.color='#00ff41'" onmouseout="this.style.borderColor='#2a4a2a';this.style.color='#7aad7a'">換個產業試試</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('step-result').style.display='block';
+  document.getElementById('ai-analyzer').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function resetAnalyzer(){
+  document.getElementById('step-result').style.display='none';
+  document.getElementById('step-loading').style.display='none';
+  document.getElementById('step-input').style.display='block';
+  document.getElementById('industry-input').value='';
+  document.getElementById('industry-input').focus();
+}
+</script>
+
 
 <div class="section">
   <div class="section-header">
