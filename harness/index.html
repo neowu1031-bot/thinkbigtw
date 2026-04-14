@@ -185,6 +185,13 @@ footer a{color:#00ff41;text-decoration:none}
 /* Gear background */
 #gear-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.06;}
 #gear-bg canvas{width:100%;height:100%;}
+
+.tool-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:680px;margin:24px auto 32px;}
+.tc-pill{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;padding:5px 13px;border-radius:100px;border:1px solid;}
+.tc-core{color:#00ff41;border-color:rgba(0,255,65,0.6);background:rgba(0,255,65,0.08);}
+.tc-wf{color:#FFE500;border-color:rgba(255,229,0,0.5);background:rgba(255,229,0,0.06);}
+.tc-msg{color:#9acd9a;border-color:rgba(154,205,154,0.4);background:rgba(154,205,154,0.05);}
+.tc-sys{color:#5a8d5a;border-color:rgba(90,141,90,0.35);background:transparent;}
 </style>
 </head>
 <body>
@@ -209,14 +216,31 @@ footer a{color:#00ff41;text-decoration:none}
 <section class="hero">
   <div class="hero-badge"><span class="badge-dot"></span>HARNESS ENGINEERS</div>
   <h1 class="hero-h1">Harness <em>Engineers</em></h1>
-  <div class="hero-combo">
-    <span class="combo-pill">OpenClaw</span>
-    <span class="combo-x">×</span>
-    <span class="combo-pill">Hermes Agent</span>
-    <span class="combo-x">×</span>
-    <span class="combo-pill">Claude Managed Agent</span>
+  <p class="hero-tagline">最強 AI 工具組合，透過 MCP 協議無縫串接，讓自動化真正發生。</p>
+  <div class="tool-cloud">
+    <span class="tc-pill tc-core">OpenClaw</span>
+    <span class="tc-pill tc-core">Hermes Agent</span>
+    <span class="tc-pill tc-core">Claude Managed Agent</span>
+    <span class="tc-pill tc-wf">n8n</span>
+    <span class="tc-pill tc-wf">DIFY</span>
+    <span class="tc-pill tc-wf">Make</span>
+    <span class="tc-pill tc-msg">LINE</span>
+    <span class="tc-pill tc-msg">WhatsApp</span>
+    <span class="tc-pill tc-msg">Telegram</span>
+    <span class="tc-pill tc-msg">Discord</span>
+    <span class="tc-pill tc-msg">Slack</span>
+    <span class="tc-pill tc-msg">Teams</span>
+    <span class="tc-pill tc-msg">iMessage</span>
+    <span class="tc-pill tc-sys">Google Calendar</span>
+    <span class="tc-pill tc-sys">Gmail</span>
+    <span class="tc-pill tc-sys">Google Drive</span>
+    <span class="tc-pill tc-sys">Notion</span>
+    <span class="tc-pill tc-sys">GitHub</span>
+    <span class="tc-pill tc-sys">Zapier</span>
+    <span class="tc-pill tc-sys">Browser</span>
+    <span class="tc-pill tc-sys">Cron</span>
+    <span class="tc-pill tc-sys">MCP</span>
   </div>
-  <p class="hero-tagline">三個工具，透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。</p>
   <a href="https://lin.ee/n5KW430" class="btn-primary" target="_blank" rel="noopener">立即諮詢 →</a>
 </section>
 
