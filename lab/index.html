@@ -124,6 +124,10 @@ textarea{height:80px;resize:vertical}
         <div id="taiexChart" style="height:300px"></div>
       </div>
     </div>
+    <div class="section" style="margin-bottom:8px">
+      <div class="section-title" style="cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'grid':'none'">⭐ 我的自選股</div>
+      <div id="watchlistGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px"></div>
+    </div>
     <div class="section">
       <div class="section-title">個股搜尋</div>
       <div class="stock-search">
@@ -131,7 +135,10 @@ textarea{height:80px;resize:vertical}
         <button onclick="searchStock()">查詢</button>
       </div>
       <div class="stock-result" id="stockResult">
-        <h2 id="stockName">—</h2>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <h2 id="stockName" style="margin:0">—</h2>
+          <button id="watchlistBtn" onclick="toggleWatchlist()" style="background:#1d4ed8;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">＋ 加入自選</button>
+        </div>
         <div class="stock-meta" id="stockMeta">—</div>
         <div class="stock-grid">
           <div class="stock-item"><div class="label">收盤價</div><div class="val" id="sClose">—</div></div>
@@ -276,6 +283,41 @@ function showDashboard(){
 }
 // 不自動進入，等待密碼
 
+
+function toggleWatchlist(){
+  const code=currentStock;
+  if(!code)return;
+  let ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
+  if(ws.includes(code)){ws=ws.filter(s=>s!==code);}else{ws.push(code);}
+  localStorage.setItem('watchlist',JSON.stringify(ws));
+  const btn=document.getElementById('watchlistBtn');
+  btn.textContent=ws.includes(code)?'✓ 已加入自選':'＋ 加入自選';
+  btn.style.background=ws.includes(code)?'#166534':'#1d4ed8';
+  renderWatchlist();
+}
+async function renderWatchlist(){
+  const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
+  const el=document.getElementById('watchlistGrid');
+  if(!el)return;
+  if(ws.length===0){el.innerHTML='<div style="color:#64748b;padding:8px">尚未加入任何自選股</div>';return;}
+  el.innerHTML='';
+  for(const code of ws){
+    try{
+      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=1',{headers:SB_H});
+      const data=await r.json();
+      if(!data||!data.length)continue;
+      const d=data[0];
+      const ch=parseFloat(d.change_percent);
+      const up=ch>=0;
+      el.innerHTML+=`<div onclick="document.getElementById('stockInput').value='${code}';searchStock();" style="background:#1e293b;border-radius:10px;padding:14px;cursor:pointer;border:1px solid #334155">
+        <div style="font-size:12px;color:#94a3b8">${code}</div>
+        <div style="font-size:14px;color:#e2e8f0">${NAMES[code]||code}</div>
+        <div style="font-size:18px;font-weight:700;color:#e2e8f0">${parseFloat(d.close_price).toLocaleString()}</div>
+        <div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${ch.toFixed(2)}</div>
+      </div>`;
+    }catch(e){}
+  }
+}
 function switchTab(name,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
@@ -436,6 +478,10 @@ async function searchStock(){
       document.getElementById('stockChartContainer').style.display='block';
       document.getElementById('stockChartTitle').textContent=(NAMES[code]||code)+' K線圖';
       loadStockChart(code,30,document.querySelector('#stockChartContainer .range-btn'));
+      // 更新自選股按鈕
+      const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
+      const wBtn=document.getElementById('watchlistBtn');
+      if(wBtn){wBtn.textContent=ws.includes(code)?'✓ 已加入自選':'＋ 加入自選';wBtn.style.background=ws.includes(code)?'#166534':'#1d4ed8';}
     }else{
       document.getElementById('stockName').textContent=code;
       document.getElementById('stockMeta').textContent='尚無數據';
