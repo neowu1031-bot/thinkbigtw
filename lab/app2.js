@@ -76,15 +76,15 @@ async function authSubmit(){
 
 async function loginGoogle(){
   const errEl=document.getElementById('errMsg');
-  if(!SUPA_AUTH){errEl.textContent='系統未就緒';return;}
+  if(!SUPA_AUTH){if(errEl)errEl.textContent='系統未就緒';return;}
   try{
     const {error}=await SUPA_AUTH.auth.signInWithOAuth({
       provider:'google',
       options:{redirectTo:window.location.origin+window.location.pathname}
     });
-    if(error){errEl.textContent='Google 登入失敗：'+error.message+'（請先在 Supabase 後台啟用 Google Provider）';}
+    if(error){if(errEl)errEl.textContent='Google 登入失敗：'+error.message+'（請先在 Supabase 後台啟用 Google Provider）';}
     trackEvent('login',{method:'google'});
-  }catch(e){errEl.textContent='Google 登入錯誤：'+e.message;}
+  }catch(e){if(errEl)errEl.textContent='Google 登入錯誤：'+e.message;}
 }
 
 function onAuthSuccess(user){
@@ -508,6 +508,143 @@ function switchTab(name,btn){
   if(name==='bonds')setTimeout(loadBonds,100);
   if(name==='sector')setTimeout(loadSectors,100);
   if(name==='macro')setTimeout(loadMacro,100);
+  if(name==='options')setTimeout(loadOptions,100);
+}
+
+// =============== 選擇權分頁 ===============
+async function loadOptions(){
+  // P/C Ratio
+  try{
+    const url='https://www.taifex.com.tw/cht/3/pcRatioExcel';
+    const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
+    const r=await fetch(proxy);
+    const txt=await r.text();
+    const lines=txt.trim().split(/\r?\n/);
+    if(lines.length>=2){
+      const cols=lines[1].split(',');
+      const pcr=parseFloat(cols[6])||parseFloat(cols[cols.length-2]);
+      const pcrOI=parseFloat(cols[cols.length-1]);
+      const px=document.getElementById('opt_pcRatio');
+      const interp=document.getElementById('opt_pcRatioInterp');
+      const oi=document.getElementById('opt_pcOI');
+      if(!isNaN(pcr)&&px){
+        px.textContent=pcr.toFixed(2);
+        if(pcr>1.5){interp.textContent='偏多訊號（恐慌）';interp.className='sub up';}
+        else if(pcr<0.7){interp.textContent='偏空訊號（樂觀）';interp.className='sub down';}
+        else{interp.textContent='中性區間';interp.className='sub';}
+      }
+      if(!isNaN(pcrOI)&&oi)oi.textContent=pcrOI.toFixed(2);
+    }
+  }catch(e){const px=document.getElementById('opt_pcRatio');if(px)px.textContent='抓取失敗';}
+  const vix=document.getElementById('opt_vix');if(vix)vix.textContent='參考';
+  const maxOI=document.getElementById('opt_maxOI');if(maxOI)maxOI.textContent='查 TAIFEX';
+}
+
+// =============== 智慧選股 ===============
+function applyScreenerTemplate(name){
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.value=v;};
+  ['sc_pct','sc_vol','sc_pmin','sc_pmax','sc_pe','sc_yield','sc_roe','sc_eps','sc_w52'].forEach(id=>set(id,''));
+  if(name==='dividend'){set('sc_yield',5);set('sc_roe',10);set('sc_pe',20);}
+  else if(name==='growth'){set('sc_eps',5);set('sc_roe',15);set('sc_pct',0);}
+  else if(name==='value'){set('sc_pe',15);set('sc_yield',3);set('sc_w52',50);}
+  else if(name==='momentum'){set('sc_pct',2);set('sc_vol',1);}
+  else if(name==='reset'){
+    document.getElementById('screenerResult').innerHTML='<div style="color:#64748b;padding:8px">請設定篩選條件後按「開始選股」</div>';
+    return;
+  }
+  runScreener();
+}
+
+async function runScreener(){
+  const result=document.getElementById('screenerResult');
+  if(!result)return;
+  const minPct=parseFloat(document.getElementById('sc_pct').value);
+  const minVol=parseFloat(document.getElementById('sc_vol').value);
+  const minPx=parseFloat(document.getElementById('sc_pmin').value);
+  const maxPx=parseFloat(document.getElementById('sc_pmax').value);
+  const maxPE=parseFloat(document.getElementById('sc_pe').value);
+  const minY=parseFloat(document.getElementById('sc_yield').value);
+  const minROE=parseFloat(document.getElementById('sc_roe').value);
+  const minEPS=parseFloat(document.getElementById('sc_eps').value);
+  const max52pos=parseFloat(document.getElementById('sc_w52').value);
+  result.innerHTML='<div style="color:#64748b;padding:8px">選股中...</div>';
+  try{
+    const r0=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const latest=(await r0.json())[0].date;
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=2000&select=symbol,close_price,change_percent,volume';
+    if(!isNaN(minPx))url+=`&close_price=gte.${minPx}`;
+    if(!isNaN(maxPx))url+=`&close_price=lte.${maxPx}`;
+    if(!isNaN(minVol))url+=`&volume=gte.${minVol*10000}`;
+    const r1=await fetch(url,{headers:SB_H});
+    let prices=await r1.json();
+    if(!isNaN(minPct)){
+      prices=prices.filter(d=>{
+        const ch=parseFloat(d.change_percent);
+        const prev=parseFloat(d.close_price)-ch;
+        return prev>0?(ch/prev*100>=minPct):false;
+      });
+    }
+    const needFund=!isNaN(maxPE)||!isNaN(minY)||!isNaN(minROE)||!isNaN(minEPS)||!isNaN(max52pos);
+    let fundMap={};
+    if(needFund&&prices.length){
+      const syms=prices.map(d=>d.symbol);
+      for(let i=0;i<syms.length;i+=100){
+        const batch=syms.slice(i,i+100);
+        const rf=await fetch(BASE+'/stock_fundamentals?symbol=in.('+batch.join(',')+')&select=symbol,pe_ratio,dividend_yield,roe,eps,week52_high,week52_low',{headers:SB_H});
+        (await rf.json()).forEach(f=>fundMap[f.symbol]=f);
+      }
+      prices=prices.filter(d=>{
+        const f=fundMap[d.symbol];
+        if(!f)return false;
+        if(!isNaN(maxPE)&&maxPE>0&&!(f.pe_ratio!=null&&f.pe_ratio<maxPE))return false;
+        if(!isNaN(minY)&&!(f.dividend_yield!=null&&f.dividend_yield>minY))return false;
+        if(!isNaN(minROE)&&!(f.roe!=null&&f.roe>minROE))return false;
+        if(!isNaN(minEPS)&&!(f.eps!=null&&f.eps>minEPS))return false;
+        if(!isNaN(max52pos)){
+          if(f.week52_high&&f.week52_high>0){
+            const pos=(parseFloat(d.close_price)/f.week52_high)*100;
+            if(pos>max52pos)return false;
+          }else return false;
+        }
+        return true;
+      });
+    }
+    prices.sort((a,b)=>parseFloat(b.change_percent)-parseFloat(a.change_percent));
+    const show=prices.slice(0,50);
+    if(show.length===0){result.innerHTML='<div style="color:#94a3b8;padding:12px">沒有符合條件的個股</div>';return;}
+    const showSyms=show.map(d=>d.symbol).join(',');
+    const rn=await fetch(BASE+'/stocks?symbol=in.('+showSyms+')&select=symbol,name',{headers:SB_H});
+    const nameMap={};(await rn.json()).forEach(s=>nameMap[s.symbol]=s.name);
+    let html=`<div style="color:#94a3b8;font-size:13px;margin-bottom:10px">找到 <span style="color:#34d399;font-weight:700">${prices.length}</span> 檔（顯示前 50）</div>`;
+    html+=`<div style="background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden;overflow-x:auto">
+      <div style="display:grid;grid-template-columns:80px 1fr 80px 80px 90px 70px 80px 70px;gap:6px;font-size:11px;color:#64748b;padding:10px 12px;background:#0f172a;border-bottom:1px solid #334155;min-width:680px">
+        <div>代號</div><div>名稱</div><div style="text-align:right">現價</div><div style="text-align:right">漲跌</div><div style="text-align:right">成交量</div><div style="text-align:right">PE</div><div style="text-align:right">殖利率</div><div style="text-align:right">ROE</div>
+      </div>`;
+    show.forEach(d=>{
+      const ch=parseFloat(d.change_percent);
+      const closePx=parseFloat(d.close_price);
+      const prev=closePx-ch;
+      const pct=prev>0?(ch/prev*100):0;
+      const up=ch>=0;
+      const f=fundMap[d.symbol]||{};
+      const nm=nameMap[d.symbol]||NAMES[d.symbol]||d.symbol;
+      const vol=parseFloat(d.volume);
+      const volStr=vol>=1e8?(vol/1e8).toFixed(1)+'億':vol>=1e4?(vol/1e4).toFixed(1)+'萬':vol.toFixed(0);
+      html+=`<div onclick="document.getElementById('stockInput').value='${d.symbol}';searchStock();var t=document.querySelector('[onclick*=&quot;switchTab(\\'tw\\'&quot;]');if(t)switchTab('tw',t);window.scrollTo({top:300,behavior:'smooth'});" style="display:grid;grid-template-columns:80px 1fr 80px 80px 90px 70px 80px 70px;gap:6px;font-size:13px;padding:10px 12px;border-bottom:1px solid #0f172a;cursor:pointer;min-width:680px">
+        <div style="color:#60a5fa;font-weight:600">${d.symbol}</div>
+        <div style="color:#e2e8f0">${nm}</div>
+        <div style="color:#e2e8f0;text-align:right">${closePx.toFixed(2)}</div>
+        <div style="color:${up?'#34d399':'#f87171'};text-align:right;font-weight:700">${up?'+':''}${pct.toFixed(2)}%</div>
+        <div style="color:#94a3b8;text-align:right">${volStr}</div>
+        <div style="color:#94a3b8;text-align:right">${f.pe_ratio!=null?f.pe_ratio.toFixed(1):'—'}</div>
+        <div style="color:#fbbf24;text-align:right">${f.dividend_yield!=null?f.dividend_yield.toFixed(2)+'%':'—'}</div>
+        <div style="color:#a78bfa;text-align:right">${f.roe!=null?f.roe.toFixed(1)+'%':'—'}</div>
+      </div>`;
+    });
+    html+='</div>';
+    result.innerHTML=html;
+    trackEvent('run_screener',{result_count:prices.length});
+  }catch(e){result.innerHTML='<div style="color:#f87171;padding:12px">選股失敗：'+e.message+'</div>';}
 }
 
 // =============== 債券分頁 ===============

@@ -225,9 +225,11 @@ textarea{height:80px;resize:vertical}
     <div class="tab-nav tab-nav-row2">
       <span class="tab-row-label">進階</span>
       <button class="tab-btn" onclick="switchTab('futures',this)">期貨</button>
+      <button class="tab-btn" onclick="switchTab('options',this)">選擇權</button>
       <button class="tab-btn" onclick="switchTab('bonds',this)">債券</button>
       <button class="tab-btn" onclick="switchTab('sector',this)">產業</button>
       <button class="tab-btn" onclick="switchTab('macro',this)">總經</button>
+      <button class="tab-btn" onclick="switchTab('screener',this)">選股</button>
       <button class="tab-btn" onclick="switchTab('tools',this)">理財工具</button>
       <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
     </div>
@@ -537,6 +539,99 @@ textarea{height:80px;resize:vertical}
     </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
+  <div class="tab-content" id="tab-options">
+    <div class="section">
+      <div class="section-title">📊 台指選擇權核心指標</div>
+      <div class="grid">
+        <div class="card"><h3>Put/Call Ratio (口數)</h3><div class="value" id="opt_pcRatio">載入中...</div><div class="sub" id="opt_pcRatioInterp">—</div></div>
+        <div class="card"><h3>Put/Call Ratio (未平倉)</h3><div class="value" id="opt_pcOI">載入中...</div><div class="sub">P/C OI</div></div>
+        <div class="card"><h3>VIX 恐慌指數</h3><div class="value" id="opt_vix">參考</div><div class="sub">越高越恐慌</div></div>
+        <div class="card"><h3>最大未平倉</h3><div class="value" id="opt_maxOI">—</div><div class="sub">支撐/壓力</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📚 指標解讀</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+        <div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+          <div style="font-size:14px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">Put/Call Ratio</div>
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.7">買權與賣權成交比例，反映市場情緒：
+          <div style="margin-top:8px;color:#34d399">• > 1.5：市場過度恐慌（反向指標 → 偏多訊號）</div>
+          <div style="color:#fbbf24">• 0.7 ~ 1.5：中性區間</div>
+          <div style="color:#f87171">• < 0.7：市場過度樂觀（反向指標 → 偏空訊號）</div>
+          <div style="margin-top:8px;color:#94a3b8;font-size:12px">資料來源：TAIFEX 期交所</div>
+          </div>
+        </div>
+        <div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+          <div style="font-size:14px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">VIX 恐慌指數</div>
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.7">由台指選擇權隱含波動率推算：
+          <div style="margin-top:8px;color:#34d399">• &lt; 15：市場平靜</div>
+          <div style="color:#fbbf24">• 15 ~ 25：正常波動</div>
+          <div style="color:#f87171">• > 30：恐慌情緒</div>
+          <div style="margin-top:8px;color:#94a3b8;font-size:12px">VIX 飆升通常伴隨指數急跌，投資人情緒緊張時是值得關注的反向指標。</div>
+          </div>
+        </div>
+        <div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+          <div style="font-size:14px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">最大未平倉</div>
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.7">在哪個履約價聚集最多未平倉口數，常被視為心理關卡：
+          <div style="margin-top:8px;color:#34d399">• Call 最大未平倉 → 通常為「壓力位」</div>
+          <div style="color:#f87171">• Put 最大未平倉 → 通常為「支撐位」</div>
+          <div style="margin-top:8px;color:#94a3b8;font-size:12px">大型法人會在這些價位附近做價差或保護策略，因此這些位置在到期前常成為指數震盪的中軸。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🔗 期交所官方連結</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
+        <a href="https://www.taifex.com.tw/cht/3/optDailyMarketSummary" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📋 選擇權每日成交行情 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/3/pcRatio" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📊 Put/Call Ratio 歷史 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/5/optCalculator" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">🧮 選擇權計算機 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/3/optContractsDate" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📅 選擇權契約規格 ↗</div>
+        </a>
+      </div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
+  <div class="tab-content" id="tab-screener">
+    <div class="section">
+      <div class="section-title">🎯 智慧選股</div>
+      <div style="color:#64748b;font-size:13px;margin-bottom:10px">所有條件可組合（空白＝不限），點擊個股可跳到台股查詢</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+        <button onclick="applyScreenerTemplate('dividend')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">💎 存股族</button>
+        <button onclick="applyScreenerTemplate('growth')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">🚀 成長股</button>
+        <button onclick="applyScreenerTemplate('value')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">💰 價值股</button>
+        <button onclick="applyScreenerTemplate('momentum')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">⚡ 強勢股</button>
+        <button onclick="applyScreenerTemplate('reset')" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">重置</button>
+      </div>
+      <div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155;margin-bottom:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+          <input type="number" id="sc_pct" placeholder="漲跌幅 > %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_vol" placeholder="成交量 > 萬張" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_pmin" placeholder="股價 ≥" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_pmax" placeholder="股價 ≤" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_pe" placeholder="本益比 < (0=不限)" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_yield" placeholder="殖利率 > %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_roe" placeholder="ROE > %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_eps" placeholder="EPS > 元" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_w52" placeholder="52週位階 < %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <button onclick="runScreener()" style="background:#2563eb;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">🔍 開始選股</button>
+        </div>
+      </div>
+      <div id="screenerResult"><div style="color:#64748b;padding:8px">請設定篩選條件後按「開始選股」</div></div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
   <div class="tab-content" id="tab-bonds">
     <div class="section">
       <div class="section-title">💵 債券市場總覽</div>
@@ -672,7 +767,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=27"></script>
+<script src="app2.js?v=28"></script>
 </body>
 </html>
   
