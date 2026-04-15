@@ -691,6 +691,7 @@ async function searchETF(){
       document.getElementById('etfChartTitle').textContent=(NAMES[code]||code)+' K線圖';
       loadETFChart(code,30,document.querySelector('#etfChartContainer .range-btn'));
       loadETFDividend(code);
+      loadETFHoldings(code);
     }else{
       document.getElementById('etfName').textContent=code;
       document.getElementById('etfMeta').textContent='尚無數據';
@@ -1038,6 +1039,42 @@ async function loadETFDividend(code){
     el.innerHTML=html;
   }catch(e){if(el)el.style.display='none';}
 }
+async function loadETFHoldings(code){
+  const el=document.getElementById('etfHoldings');
+  if(!el)return;
+  el.style.display='block';
+  el.innerHTML='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div><div style="color:#64748b;padding:8px;font-size:12px">載入中...</div>';
+  try{
+    // Finnhub ETF holdings 僅支援美股 ETF，台股 ETF 需轉為 symbol.TW
+    const sym=/^\d+[A-Z]?$/.test(code)?code+'.TW':code;
+    const r=await fetch(`https://finnhub.io/api/v1/etf/holdings?symbol=${sym}&token=${FINNHUB_KEY}`);
+    const d=await r.json();
+    if(!d||!Array.isArray(d.holdings)||d.holdings.length===0){
+      el.innerHTML='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div><div style="color:#64748b;padding:8px;font-size:12px">此 ETF 無持股明細資料（Finnhub 免費方案未涵蓋台股ETF）</div>';
+      return;
+    }
+    const top10=d.holdings.slice(0,10);
+    let html='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div>';
+    html+='<div style="display:grid;grid-template-columns:30px 90px 1fr 70px 90px;gap:6px;font-size:11px;color:#64748b;padding:4px 8px 8px;border-bottom:1px solid #334155;margin-bottom:4px"><div>#</div><div>代號</div><div>名稱</div><div style="text-align:right">比例</div><div style="text-align:right">市值</div></div>';
+    top10.forEach((h,i)=>{
+      const pct=h.percent!=null?parseFloat(h.percent).toFixed(2)+'%':'—';
+      const val=h.value!=null?(h.value>=1e9?(h.value/1e9).toFixed(2)+'B':h.value>=1e6?(h.value/1e6).toFixed(2)+'M':h.value.toLocaleString()):'—';
+      const symbol=(h.symbol||'').replace(/</g,'&lt;');
+      const name=(h.name||'').replace(/</g,'&lt;');
+      html+=`<div style="display:grid;grid-template-columns:30px 90px 1fr 70px 90px;gap:6px;font-size:13px;padding:6px 8px;border-bottom:1px solid #0f172a;align-items:center">
+        <div style="color:#64748b">${i+1}</div>
+        <div style="color:#60a5fa;font-weight:600">${symbol}</div>
+        <div style="color:#e2e8f0">${name}</div>
+        <div style="color:#34d399;text-align:right;font-weight:600">${pct}</div>
+        <div style="color:#94a3b8;text-align:right">${val}</div>
+      </div>`;
+    });
+    el.innerHTML=html;
+  }catch(e){
+    el.innerHTML='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div><div style="color:#f87171;padding:8px;font-size:12px">持股明細載入失敗</div>';
+  }
+}
+
 async function loadETFHot(){
   const grid=document.getElementById('etfHotGrid');
   if(!grid)return;
