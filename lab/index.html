@@ -489,13 +489,12 @@ const ETF_HOT = [
 async function loadETFHot(){
   const grid=document.getElementById('etfHotGrid');
   if(!grid)return;
-  const SB_URL=window._SB_URL, SB_KEY=window._SB_KEY;
-  if(!SB_URL||!SB_KEY){grid.innerHTML='<div style="color:#f87171">設定錯誤</div>';return;}
+  // 使用全域 SB_URL, SB_KEY, SB_H
   grid.innerHTML='';
   for(const e of ETF_HOT){
     try{
       const r=await fetch(SB_URL+'/rest/v1/daily_prices?symbol=eq.'+e.sym+'&order=date.desc&limit=1',
-        {headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}});
+        {headers:SB_H});
       const data=await r.json();
       if(!data||data.length===0){continue;}
       const d=data[0];
