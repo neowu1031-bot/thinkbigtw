@@ -470,6 +470,7 @@ async function searchStock(){
       loadFundamentals(code);
       loadStockChart(code,30,document.querySelector('#stockChartContainer .range-btn'));
       loadMonthlyRevenue(code);
+      loadStockNews(code);
       // 更新自選股按鈕
       const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
       const wBtn=document.getElementById('watchlistBtn');
@@ -601,6 +602,43 @@ async function loadMonthlyRevenue(code){
     html+='</div>';
     el.innerHTML=html;
   }catch(e){el.innerHTML='<div style="color:#f87171;padding:8px">月營收走勢載入失敗</div>';}
+}
+
+async function loadStockNews(code){
+  const el=document.getElementById('stockNews');
+  if(!el)return;
+  el.style.display='block';
+  el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📰 最新新聞</div><div style="color:#64748b;padding:8px">載入中...</div>';
+  try{
+    const today=new Date();
+    const from=new Date(today.getTime()-7*86400000);
+    const fromStr=from.toISOString().slice(0,10);
+    const toStr=today.toISOString().slice(0,10);
+    // 台股代號加 .TW 後綴給 Finnhub
+    const sym=/^\d+$/.test(code)?code+'.TW':code;
+    const r=await fetch(`https://finnhub.io/api/v1/company-news?symbol=${sym}&from=${fromStr}&to=${toStr}&token=${FINNHUB_KEY}`);
+    const news=await r.json();
+    if(!Array.isArray(news)||news.length===0){
+      el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📰 最新新聞</div><div style="color:#64748b;padding:8px;font-size:12px">尚無近期新聞</div>';
+      return;
+    }
+    const latest=news.slice(0,5);
+    let html='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">📰 最新新聞（近7天）</div>';
+    html+='<div style="display:flex;flex-direction:column;gap:6px">';
+    latest.forEach(n=>{
+      const d=new Date((n.datetime||0)*1000);
+      const dStr=d.toISOString().slice(0,10);
+      const headline=(n.headline||'').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+      const url=n.url||'#';
+      const src=(n.source||'').replace(/</g,'&lt;');
+      html+=`<a href="${url}" target="_blank" rel="noopener noreferrer" style="display:block;background:#0f172a;border-radius:8px;padding:10px 12px;text-decoration:none;color:inherit;border:1px solid #1e293b">
+        <div style="font-size:13px;color:#e2e8f0;line-height:1.4;margin-bottom:4px">${headline}</div>
+        <div style="font-size:11px;color:#64748b">${dStr} · ${src} ↗</div>
+      </a>`;
+    });
+    html+='</div>';
+    el.innerHTML=html;
+  }catch(e){el.innerHTML='<div style="color:#f87171;padding:8px;font-size:12px">新聞載入失敗</div>';}
 }
 
 async function loadFundamentals(code){
