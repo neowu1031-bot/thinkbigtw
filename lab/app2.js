@@ -295,7 +295,7 @@ function switchTab(name,btn){
   if(name==='hk')setTimeout(loadHKHot,100);
   if(name==='futures')setTimeout(loadFutures,100);
   if(name==='tools')setTimeout(initTools,100);
-  if(name==='portfolio'&&typeof renderPortfolio==='function')setTimeout(renderPortfolio,100);
+  if(name==='portfolio')setTimeout(renderPortfolio,100);
 }
 
 const HK_HOT=[
@@ -579,6 +579,162 @@ function calcTool6(){
   const rate=tr/fr;
   out.innerHTML=`<div style="color:#34d399;font-size:20px;font-weight:700">${fmt(result,2)} ${to}</div>
     <div style="color:#94a3b8">匯率 1 ${from} = ${rate.toFixed(4)} ${to}</div>`;
+}
+
+// =============== 投資組合分頁 ===============
+function getPortfolio(){return JSON.parse(localStorage.getItem('portfolio')||'[]');}
+function setPortfolio(arr){localStorage.setItem('portfolio',JSON.stringify(arr));}
+
+function addHolding(){
+  const type=document.getElementById('holdType').value;
+  const sym=document.getElementById('holdSym').value.trim().toUpperCase();
+  const name=document.getElementById('holdName').value.trim();
+  const price=parseFloat(document.getElementById('holdPrice').value);
+  const qty=parseFloat(document.getElementById('holdQty').value);
+  if(!sym||isNaN(price)||isNaN(qty)){alert('請填入代號、買入價、數量');return;}
+  const list=getPortfolio();
+  list.push({id:Date.now(),type,sym,name:name||sym,price,qty,addedAt:new Date().toISOString().slice(0,10)});
+  setPortfolio(list);
+  document.getElementById('holdSym').value='';
+  document.getElementById('holdName').value='';
+  document.getElementById('holdPrice').value='';
+  document.getElementById('holdQty').value='';
+  renderPortfolio();
+}
+
+function removeHolding(id){
+  if(!confirm('確定要刪除這筆持倉？'))return;
+  setPortfolio(getPortfolio().filter(h=>h.id!==id));
+  renderPortfolio();
+}
+
+async function fetchHoldingPrice(h){
+  // 回傳當前價（同幣別，不換匯）
+  try{
+    if(h.type==='tw'||h.type==='etf'){
+      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+h.sym+'&order=date.desc&limit=1',{headers:SB_H});
+      const d=await r.json();
+      if(d&&d.length)return parseFloat(d[0].close_price);
+    }else if(h.type==='us'){
+      const {price}=await fetchUSStock(h.sym);return price;
+    }else if(h.type==='hk'){
+      let sym=h.sym;
+      if(/^\d+$/.test(sym))sym=sym.padStart(4,'0')+'.HK';
+      else if(!sym.endsWith('.HK'))sym=sym+'.HK';
+      const {price}=await fetchHKQuote(sym);return price;
+    }else if(h.type==='crypto'){
+      const sym=h.sym.endsWith('USDT')?h.sym:h.sym+'USDT';
+      const r=await fetch('https://api.binance.com/api/v3/ticker/price?symbol='+sym);
+      const d=await r.json();
+      if(d&&d.price)return parseFloat(d.price);
+    }
+  }catch(e){}
+  return null;
+}
+
+const TYPE_LABEL={tw:'台股',etf:'ETF',us:'美股',hk:'港股',crypto:'加密幣'};
+const TYPE_COLOR={tw:'#60a5fa',etf:'#a78bfa',us:'#f59e0b',hk:'#34d399',crypto:'#f472b6'};
+const TYPE_CCY={tw:'NT$',etf:'NT$',us:'US$',hk:'HK$',crypto:'$'};
+
+async function renderPortfolio(){
+  const listEl=document.getElementById('portfolioList');
+  const sumEl=document.getElementById('portfolioSummary');
+  const allocEl=document.getElementById('portfolioAlloc');
+  if(!listEl||!sumEl)return;
+  const list=getPortfolio();
+  if(list.length===0){
+    sumEl.innerHTML='';
+    allocEl.innerHTML='';
+    listEl.innerHTML='<div style="background:#1e293b;border-radius:12px;padding:30px;text-align:center;color:#64748b;border:1px dashed #334155">尚未新增任何持倉，請使用上方表單新增。</div>';
+    return;
+  }
+  // 抓匯率（用於統一台幣換算）
+  if(!cachedFXRates){
+    try{const r=await fetch('https://open.er-api.com/v6/latest/USD');const d=await r.json();cachedFXRates=d.rates;}catch(e){}
+  }
+  const usdToTwd=cachedFXRates&&cachedFXRates.TWD?cachedFXRates.TWD:31;
+  const hkdToTwd=cachedFXRates&&cachedFXRates.HKD?usdToTwd/cachedFXRates.HKD:4;
+  function toTwd(v,type){
+    if(type==='tw'||type==='etf')return v;
+    if(type==='us'||type==='crypto')return v*usdToTwd;
+    if(type==='hk')return v*hkdToTwd;
+    return v;
+  }
+  listEl.innerHTML='<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155"><div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">📋 持倉明細</div><div id="holdRows"></div></div>';
+  const rowsEl=document.getElementById('holdRows');
+  rowsEl.innerHTML='<div style="color:#64748b;padding:8px;font-size:12px">抓取最新價...</div>';
+
+  const enriched=[];
+  for(const h of list){
+    const cur=await fetchHoldingPrice(h);
+    enriched.push({...h,cur});
+  }
+
+  // 各分類市值彙整（台幣）
+  const byType={};
+  let totalTwd=0,totalCostTwd=0;
+  enriched.forEach(h=>{
+    const cur=h.cur??h.price;
+    const cost=h.price*h.qty;
+    const value=cur*h.qty;
+    const valueTwd=toTwd(value,h.type);
+    const costTwd=toTwd(cost,h.type);
+    totalTwd+=valueTwd;
+    totalCostTwd+=costTwd;
+    if(!byType[h.type])byType[h.type]={value:0,cost:0,count:0};
+    byType[h.type].value+=valueTwd;
+    byType[h.type].cost+=costTwd;
+    byType[h.type].count++;
+  });
+  const totalPL=totalTwd-totalCostTwd;
+  const totalPLPct=totalCostTwd>0?(totalPL/totalCostTwd*100):0;
+
+  // 彙整卡片
+  let summary=`<div class="grid">
+    <div class="card"><h3>總資產</h3><div class="value">NT$ ${fmt(totalTwd,0)}</div><div class="sub">${enriched.length} 檔持倉</div></div>
+    <div class="card"><h3>總成本</h3><div class="value">NT$ ${fmt(totalCostTwd,0)}</div></div>
+    <div class="card"><h3>總損益</h3><div class="value ${totalPL>=0?'up':'down'}">${totalPL>=0?'+':''}NT$ ${fmt(totalPL,0)}</div><div class="sub ${totalPL>=0?'up':'down'}">${totalPL>=0?'+':''}${totalPLPct.toFixed(2)}%</div></div>`;
+  Object.entries(byType).forEach(([t,v])=>{
+    summary+=`<div class="card"><h3>${TYPE_LABEL[t]}</h3><div class="value" style="color:${TYPE_COLOR[t]}">NT$ ${fmt(v.value,0)}</div><div class="sub">${v.count} 檔 · 占 ${(v.value/totalTwd*100).toFixed(1)}%</div></div>`;
+  });
+  summary+='</div>';
+  sumEl.innerHTML=summary;
+
+  // 持倉明細列
+  rowsEl.innerHTML=`<div style="display:grid;grid-template-columns:60px 80px 1fr 90px 90px 110px 30px;gap:6px;font-size:11px;color:#64748b;padding:4px 8px;border-bottom:1px solid #334155;margin-bottom:6px">
+    <div>類型</div><div>代號</div><div>名稱</div><div style="text-align:right">買入</div><div style="text-align:right">現價</div><div style="text-align:right">損益</div><div></div>
+  </div>`;
+  enriched.forEach(h=>{
+    const cur=h.cur??h.price;
+    const pl=(cur-h.price)*h.qty;
+    const plPct=h.price>0?(cur-h.price)/h.price*100:0;
+    const up=pl>=0;
+    const ccy=TYPE_CCY[h.type];
+    rowsEl.innerHTML+=`<div style="display:grid;grid-template-columns:60px 80px 1fr 90px 90px 110px 30px;gap:6px;font-size:13px;padding:8px;border-bottom:1px solid #0f172a;align-items:center">
+      <div><span style="font-size:10px;background:${TYPE_COLOR[h.type]};color:#0a0f1e;padding:2px 6px;border-radius:10px;font-weight:700">${TYPE_LABEL[h.type]}</span></div>
+      <div style="color:#60a5fa;font-weight:600">${h.sym}</div>
+      <div style="color:#e2e8f0">${h.name} <span style="color:#64748b;font-size:11px">×${h.qty}</span></div>
+      <div style="color:#94a3b8;text-align:right">${ccy}${fmt(h.price,2)}</div>
+      <div style="color:#e2e8f0;text-align:right">${h.cur!=null?ccy+fmt(cur,2):'<span style="color:#64748b;font-size:11px">無資料</span>'}</div>
+      <div style="color:${up?'#34d399':'#f87171'};text-align:right;font-weight:700">${up?'+':''}${ccy}${fmt(pl,0)}<div style="font-size:11px">${up?'+':''}${plPct.toFixed(2)}%</div></div>
+      <div style="text-align:right"><button onclick="removeHolding(${h.id})" style="background:transparent;border:none;color:#f87171;cursor:pointer;font-size:14px">✕</button></div>
+    </div>`;
+  });
+
+  // 資產配置（純CSS橫向長條）
+  let alloc='<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155"><div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">📊 資產配置</div>';
+  alloc+='<div style="display:flex;height:24px;border-radius:6px;overflow:hidden;margin-bottom:10px">';
+  Object.entries(byType).forEach(([t,v])=>{
+    const pct=(v.value/totalTwd*100).toFixed(1);
+    alloc+=`<div style="background:${TYPE_COLOR[t]};width:${pct}%;display:flex;align-items:center;justify-content:center;color:#0a0f1e;font-size:11px;font-weight:700" title="${TYPE_LABEL[t]} ${pct}%">${pct>5?TYPE_LABEL[t]:''}</div>`;
+  });
+  alloc+='</div><div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px">';
+  Object.entries(byType).forEach(([t,v])=>{
+    const pct=(v.value/totalTwd*100).toFixed(1);
+    alloc+=`<div style="display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:10px;height:10px;background:${TYPE_COLOR[t]};border-radius:2px"></span><span style="color:#94a3b8">${TYPE_LABEL[t]} ${pct}% (NT$${fmt(v.value,0)})</span></div>`;
+  });
+  alloc+='</div></div>';
+  allocEl.innerHTML=alloc;
 }
 
 // =============== 期貨分頁 ===============
