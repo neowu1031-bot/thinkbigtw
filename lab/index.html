@@ -223,7 +223,19 @@ textarea{height:80px;resize:vertical}
   <div class="tab-content" id="tab-crypto">
     <div class="section">
       <div class="section-title">加密貨幣即時行情</div>
-      <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:16px 0"></div>
+      <div style="display:flex;gap:12px;margin-bottom:20px;padding-top:8px">
+        <input type="text" id="cryptoSearch" placeholder="輸入幣種代號，例如：BTC、ETH、SHIB" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
+        <button onclick="searchCrypto()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer">查詢</button>
+      </div>
+      <div id="cryptoSearchResult" style="margin-bottom:20px"></div>
+      <div class="section-title" style="font-size:14px;color:#64748b;margin-bottom:12px">熱門幣種</div>
+      <div style="display:flex;gap:12px;margin-bottom:20px">
+        <input type="text" id="cryptoSearch" placeholder="輸入幣種代號，例如：BTC、ETH、SHIB" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
+        <button onclick="searchCrypto()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
+      </div>
+      <div id="cryptoSearchResult" style="margin-bottom:20px"></div>
+      <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門幣種</div>
+      <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
     </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
@@ -257,6 +269,55 @@ function switchTab(name,btn){
 }
 
 
+
+async function searchCrypto(){
+  const input=document.getElementById('cryptoSearch').value.trim().toUpperCase();
+  const result=document.getElementById('cryptoSearchResult');
+  if(!input){result.innerHTML='';return;}
+  const sym=input.endsWith('USDT')?input:input+'USDT';
+  result.innerHTML='<div style="color:#94a3b8;padding:8px">查詢中...</div>';
+  try{
+    const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol='+sym);
+    if(!r.ok){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+input+'，請確認代號是否正確</div>';return;}
+    const d=await r.json();
+    const pct=parseFloat(d.priceChangePercent);
+    const price=parseFloat(d.lastPrice);
+    const up=pct>=0;
+    result.innerHTML=`<div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:20px;max-width:320px">
+      <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${input} / USDT</div>
+      <div style="font-size:28px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:6})}</div>
+      <div style="font-size:16px;color:${up?'#34d399':'#f87171'};margin-top:6px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      <div style="font-size:12px;color:#64748b;margin-top:8px">24h量: ${parseFloat(d.volume).toLocaleString(undefined,{maximumFractionDigits:0})} | 高: $${parseFloat(d.highPrice).toLocaleString()} | 低: $${parseFloat(d.lowPrice).toLocaleString()}</div>
+    </div>`;
+  }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">查詢失敗，請稍後再試</div>';}
+}
+// Enter 鍵觸發搜尋
+document.addEventListener('DOMContentLoaded',()=>{
+  const inp=document.getElementById('cryptoSearch');
+  if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')searchCrypto();});
+});
+
+async function searchCrypto(){
+  const input=document.getElementById('cryptoSearch').value.trim().toUpperCase();
+  const result=document.getElementById('cryptoSearchResult');
+  if(!input){result.innerHTML='';return;}
+  const sym=input.endsWith('USDT')?input:input+'USDT';
+  result.innerHTML='<div style="color:#94a3b8;padding:8px">查詢中...</div>';
+  try{
+    const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol='+sym);
+    if(!r.ok){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+input+'，請確認代號</div>';return;}
+    const d=await r.json();
+    const pct=parseFloat(d.priceChangePercent);
+    const price=parseFloat(d.lastPrice);
+    const up=pct>=0;
+    result.innerHTML=`<div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:20px;max-width:340px">
+      <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${input} / USDT</div>
+      <div style="font-size:26px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:6})}</div>
+      <div style="font-size:15px;color:${up?'#34d399':'#f87171'};margin-top:6px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      <div style="font-size:12px;color:#64748b;margin-top:8px">24h高: $${parseFloat(d.highPrice).toLocaleString()} | 低: $${parseFloat(d.lowPrice).toLocaleString()}</div>
+    </div>`;
+  }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">查詢失敗</div>';}
+}
 async function loadCrypto(){
   const coins=[
     {sym:'BTCUSDT',name:'Bitcoin'},
