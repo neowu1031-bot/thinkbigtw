@@ -50,10 +50,14 @@ textarea{height:80px;resize:vertical}
 .header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px 0;margin-bottom:0}
 .header h1{font-size:20px;color:#60a5fa}
 .badge{background:#1e293b;padding:4px 14px;border-radius:20px;font-size:12px;color:#94a3b8}
-.tab-nav{display:flex;gap:0;border-bottom:2px solid #1e293b;margin:16px 24px 0;overflow-x:auto}
+.tab-nav-wrap{margin:16px 24px 0}
+.tab-nav{display:flex;gap:0;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-nav-row1{border-bottom:1px solid #1e293b}
+.tab-nav-row2{border-bottom:2px solid #1e293b;background:#0f172a}
 .tab-nav::-webkit-scrollbar{height:4px}
 .tab-nav::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
-.tab-btn{padding:12px 20px;border:none;background:none;color:#94a3b8;font-size:14px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all 0.2s}
+.tab-row-label{font-size:10px;color:#475569;font-weight:700;padding:0 10px 0 2px;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;border-right:1px solid #1e293b;margin-right:4px}
+.tab-btn{padding:11px 16px;border:none;background:none;color:#94a3b8;font-size:13px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0}
 .tab-btn:hover{color:#e2e8f0}
 .tab-btn.active{color:#60a5fa;border-bottom-color:#2563eb}
 .tab-content{display:none;padding:24px}
@@ -108,8 +112,10 @@ textarea{height:80px;resize:vertical}
   .cards{grid-template-columns:1fr 1fr!important;}
   .stock-grid{grid-template-columns:1fr 1fr!important;}
   #taiexChart{height:220px!important;}
-  .tab-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;margin:12px 12px 0!important;}
-  .tab-btn{padding:8px 14px!important;font-size:13px!important;flex-shrink:0;}
+  .tab-nav-wrap{margin:12px 8px 0!important;}
+  .tab-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+  .tab-btn{padding:8px 12px!important;font-size:12px!important;flex-shrink:0;}
+  .tab-row-label{font-size:9px!important;padding:0 6px 0 2px!important;}
   .section-title{font-size:14px!important;}
   .card{padding:12px!important;}
   .card .value{font-size:20px!important;}
@@ -134,8 +140,9 @@ textarea{height:80px;resize:vertical}
   .cards{grid-template-columns:1fr!important;}
   .card .value{font-size:18px!important;}
   .card h3{font-size:10px!important;}
-  .tab-btn{padding:6px 10px!important;font-size:12px!important;}
-  .tab-nav{margin:8px 8px 0!important;}
+  .tab-btn{padding:6px 10px!important;font-size:11px!important;}
+  .tab-nav-wrap{margin:8px 4px 0!important;}
+  .tab-row-label{display:none;}
   .tab-content{padding:10px 4px!important;}
   .dashboard{padding:0 4px 40px!important;}
   .header h1{font-size:17px!important;}
@@ -205,19 +212,25 @@ textarea{height:80px;resize:vertical}
       <button id="logoutBtn" onclick="logoutUser()" style="display:none;background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer">登出</button>
     </div>
   </div>
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('tw',this)">台股</button>
-    <button class="tab-btn" onclick="switchTab('etf',this)">ETF</button>
-    <button class="tab-btn" onclick="switchTab('us',this)">美股</button>
-    <button class="tab-btn" onclick="switchTab('fund',this)">外匯/黃金</button>
-    <button class="tab-btn" onclick="switchTab('crypto',this)">加密貨幣</button>
-    <button class="tab-btn" onclick="switchTab('hk',this)">港股</button>
-    <button class="tab-btn" onclick="switchTab('futures',this)">期貨</button>
-    <button class="tab-btn" onclick="switchTab('tools',this)">理財工具</button>
-    <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
-    <button class="tab-btn" onclick="switchTab('bonds',this)">債券</button>
-    <button class="tab-btn" onclick="switchTab('sector',this)">產業</button>
-    <button class="tab-btn" onclick="switchTab('macro',this)">總經</button>
+  <div class="tab-nav-wrap">
+    <div class="tab-nav tab-nav-row1">
+      <span class="tab-row-label">主要</span>
+      <button class="tab-btn active" onclick="switchTab('tw',this)">台股</button>
+      <button class="tab-btn" onclick="switchTab('etf',this)">ETF</button>
+      <button class="tab-btn" onclick="switchTab('us',this)">美股</button>
+      <button class="tab-btn" onclick="switchTab('hk',this)">港股</button>
+      <button class="tab-btn" onclick="switchTab('fund',this)">外匯/黃金</button>
+      <button class="tab-btn" onclick="switchTab('crypto',this)">加密貨幣</button>
+    </div>
+    <div class="tab-nav tab-nav-row2">
+      <span class="tab-row-label">進階</span>
+      <button class="tab-btn" onclick="switchTab('futures',this)">期貨</button>
+      <button class="tab-btn" onclick="switchTab('bonds',this)">債券</button>
+      <button class="tab-btn" onclick="switchTab('sector',this)">產業</button>
+      <button class="tab-btn" onclick="switchTab('macro',this)">總經</button>
+      <button class="tab-btn" onclick="switchTab('tools',this)">理財工具</button>
+      <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
+    </div>
   </div>
   <div class="tab-content active" id="tab-tw">
     <div class="section">
@@ -659,7 +672,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=26"></script>
+<script src="app2.js?v=27"></script>
 </body>
 </html>
   
