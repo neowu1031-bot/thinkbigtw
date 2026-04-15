@@ -763,16 +763,17 @@ async function loadFX(){
     const r=await fetch('https://open.er-api.com/v6/latest/USD');
     const d=await r.json();
     const rates=d.rates;
-    // 貴金屬用Finnhub
-    let gold=null,silver=null,oil=null;
+    // 貴金屬用 Binance（黃金=PAXG，白銀從XAG匯率換算）
+    let goldPrice=null,goldPct=0,silverPrice=null,silverPct=0;
     try{
-      const [g,s,o]=await Promise.all([
-        fetch(`https://finnhub.io/api/v1/quote?symbol=OANDA:XAU_USD&token=${FINNHUB_KEY}`).then(r=>r.json()),
-        fetch(`https://finnhub.io/api/v1/quote?symbol=OANDA:XAG_USD&token=${FINNHUB_KEY}`).then(r=>r.json()),
-        fetch(`https://finnhub.io/api/v1/quote?symbol=OANDA:BCO_USD&token=${FINNHUB_KEY}`).then(r=>r.json()),
+      const [pg,xaut]=await Promise.all([
+        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=PAXGUSDT').then(r=>r.json()),
+        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=XAUTUSDT').then(r=>r.json()),
       ]);
-      gold=g;silver=s;oil=o;
+      if(pg&&pg.lastPrice){goldPrice=parseFloat(pg.lastPrice);goldPct=parseFloat(pg.priceChangePercent);}
     }catch(e){}
+    // 白銀從 ExchangeRate XAG 換算（已在 rates 裡）
+    if(rates['XAG']){silverPrice=1/rates['XAG'];}
     grid.innerHTML='';
     const twd=rates['TWD']||30;
 
@@ -788,9 +789,10 @@ async function loadFX(){
     grid.innerHTML+=fxCard('新加坡幣/台幣','TWD',twd/(rates['SGD']||1),0,2);
     // 貴金屬區塊
     grid.innerHTML+=secTitle('🥇','貴金屬 & 原物料');
-    if(gold&&gold.c)grid.innerHTML+=fxCard('黃金','USD/oz',gold.c,gold.pc?((gold.c-gold.pc)/gold.pc*100):0,2);
-    if(silver&&silver.c)grid.innerHTML+=fxCard('白銀','USD/oz',silver.c,silver.pc?((silver.c-silver.pc)/silver.pc*100):0,2);
-    if(oil&&oil.c)grid.innerHTML+=fxCard('原油(Brent)','USD/桶',oil.c,oil.pc?((oil.c-oil.pc)/oil.pc*100):0,2);
+    if(goldPrice)grid.innerHTML+=fxCard('黃金 (PAXG)','USD/oz',goldPrice,goldPct,2);
+    if(silverPrice)grid.innerHTML+=fxCard('白銀','USD/oz',silverPrice,0,2);
+    // 黃金台幣價格
+    if(goldPrice&&rates['TWD'])grid.innerHTML+=fxCard('黃金/台幣','TWD/oz',goldPrice*rates['TWD'],0,0);
     // 亞洲外匯
     grid.innerHTML+=secTitle('🌏','亞洲外匯');
     [['JPY','美元/日圓',2],['CNY','美元/人民幣',4],['HKD','美元/港幣',4],['SGD','美元/新幣',4],['KRW','美元/韓元',0],['THB','美元/泰銖',2],['MYR','美元/馬幣',4],['IDR','美元/印尼盾',0],['INR','美元/印度盧比',2],['PHP','美元/菲律賓披索',2],['VND','美元/越南盾',0],['PKR','美元/巴基斯坦盧比',2]].forEach(([c,n,d])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,rates[c],0,d);});
