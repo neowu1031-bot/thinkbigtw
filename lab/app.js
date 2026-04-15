@@ -355,7 +355,7 @@ async function loadMarketData(){
     }else document.getElementById('taiex').textContent='盤後更新';
   }catch(e){document.getElementById('taiex').textContent='盤後更新';}
   try{
-    const r2=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1',{headers:SB_H});
+    const r2=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=1&date=eq.'+new Date().toISOString().slice(0,10),{headers:SB_H});
     const d2=await r2.json();
     if(d2&&d2.length>0){
       const val=d2[0].foreign_buy||0;
@@ -731,7 +731,7 @@ async function loadSupabaseData(){
     if(data&&data.length>0)document.getElementById('sentimentList').innerHTML=data.map((d,i)=>{const tag=d.sentiment_score>=0.6?'tag-up">正面':d.sentiment_score<=0.4?'tag-down">負面':'tag-neutral">中性';return '<div class="rank-item"><div class="rank-num">'+(i+1)+'</div><div><div class="rank-name">'+(NAMES[d.symbol]||d.symbol)+' '+d.symbol+'</div><div class="rank-sub">今日討論 '+d.mention_count+' 則</div></div><span class="tag '+tag+'</span></div>';}).join('');
   }catch(e){}
   try{
-    const r=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=5',{headers:SB_H});
+    const r=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=5&date=eq.'+new Date().toISOString().slice(0,10),{headers:SB_H});
     const data=await r.json();
     if(data&&data.length>0)document.getElementById('institutionalList').innerHTML=data.map((d,i)=>{const who=d.foreign_buy>0&&d.investment_trust_buy>0?'外資+投信':d.foreign_buy>0?'外資':'投信';return '<div class="rank-item"><div class="rank-num">'+(i+1)+'</div><div><div class="rank-name">'+(NAMES[d.symbol]||d.symbol)+' '+d.symbol+'</div><div class="rank-sub">'+who+'</div></div><div class="rank-val up">+'+(d.total_buy||0).toLocaleString()+'張</div></div>';}).join('');
   }catch(e){}
