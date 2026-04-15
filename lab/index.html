@@ -200,6 +200,21 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
+      <div class="section-title">選股篩選器</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+        <select id="filterType" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px">
+          <option value="up">漲幅排序</option>
+          <option value="down">跌幅排序</option>
+          <option value="volume">成交量排序</option>
+          <option value="price_asc">價格低→高</option>
+          <option value="price_desc">價格高→低</option>
+        </select>
+        <input type="number" id="filterMinPct" placeholder="最小漲幅%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:110px">
+        <input type="number" id="filterMaxPrice" placeholder="最高價格" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:110px">
+        <button onclick="applyFilter()" style="background:#2563eb;color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:13px;cursor:pointer">篩選</button>
+        <button onclick="applyFilter(true)" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer">重置</button>
+      </div>
+      <div id="filterResult" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
       <div class="section-title">今日市場排行</div>
       <div style="display:flex;gap:8px;margin-bottom:12px">
         <button onclick="loadRanking('up')" id="rankUpBtn" style="background:#166534;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">▲ 漲幅</button>
@@ -331,6 +346,64 @@ function showDashboard(){
 
 
 
+
+async function applyFilter(reset=false){
+  const result=document.getElementById('filterResult');
+  if(!result)return;
+  if(reset){
+    document.getElementById('filterMinPct').value='';
+    document.getElementById('filterMaxPrice').value='';
+    result.innerHTML='';
+    return;
+  }
+  const type=document.getElementById('filterType').value;
+  const minPct=parseFloat(document.getElementById('filterMinPct').value)||null;
+  const maxPrice=parseFloat(document.getElementById('filterMaxPrice').value)||null;
+  result.innerHTML='<div style="color:#64748b">篩選中...</div>';
+  try{
+    const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const latest=(await r.json())[0].date;
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=50&select=symbol,close_price,change_percent,volume';
+    if(type==='up')url+='&order=change_percent.desc';
+    else if(type==='down')url+='&order=change_percent.asc';
+    else if(type==='volume')url+='&order=volume.desc';
+    else if(type==='price_asc')url+='&order=close_price.asc';
+    else url+='&order=close_price.desc';
+    if(maxPrice)url+=`&close_price=lte.${maxPrice}`;
+    const r2=await fetch(url,{headers:SB_H});
+    let data=await r2.json();
+    // 過濾最小漲幅
+    if(minPct!==null){
+      data=data.filter(d=>{
+        const ch=parseFloat(d.change_percent);
+        const prev=parseFloat(d.close_price)-ch;
+        const pct=prev>0?ch/prev*100:0;
+        return pct>=minPct;
+      });
+    }
+    // 查名稱
+    const syms=data.slice(0,20).map(d=>d.symbol).join(',');
+    const rn=await fetch(BASE+'/stocks?symbol=in.('+syms+')&select=symbol,name',{headers:SB_H});
+    const nameMap={};(await rn.json()).forEach(s=>nameMap[s.symbol]=s.name);
+    result.innerHTML=`<div style="color:#94a3b8;font-size:13px;margin-bottom:8px">找到 ${data.length} 檔</div>`;
+    data.slice(0,20).forEach((d,i)=>{
+      const ch=parseFloat(d.change_percent);
+      const prev=parseFloat(d.close_price)-ch;
+      const pct=prev>0?(ch/prev*100).toFixed(2):'—';
+      const up=ch>=0;
+      result.innerHTML+=`<div onclick="document.getElementById('stockInput').value='${d.symbol}';searchStock();" style="display:flex;align-items:center;justify-content:space-between;background:#1e293b;border-radius:8px;padding:10px 14px;cursor:pointer;border:1px solid #0f172a">
+        <div>
+          <span style="font-size:14px;color:#e2e8f0;font-weight:600">${nameMap[d.symbol]||NAMES[d.symbol]||d.symbol}</span>
+          <span style="color:#64748b;font-size:12px;margin-left:6px">${d.symbol}</span>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:15px;font-weight:700;color:${up?'#34d399':'#f87171'}">${up?'+':''}${pct}%</div>
+          <div style="font-size:12px;color:#64748b">$${parseFloat(d.close_price).toLocaleString()}</div>
+        </div>
+      </div>`;
+    });
+  }catch(e){result.innerHTML='<div style="color:#f87171">篩選失敗</div>';}
+}
 async function loadRanking(type){
   // 更新按鈕樣式
   ['up','down','volume'].forEach(t=>{
