@@ -742,6 +742,19 @@ const FX_ITEMS=[
   {sym:'NG=F',name:'天然氣',unit:'USD'},
   {sym:'HG=F',name:'銅',unit:'USD/磅'}
 ];
+function fxCard(name,unit,price,pct,dec){
+  const up=pct>=0;
+  const pHtml=pct!==0?`<div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${Math.abs(pct).toFixed(2)}%</div>`:'';
+  return `<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155">
+    <div style="font-size:11px;color:#64748b">${unit}</div>
+    <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin:2px 0">${name}</div>
+    <div style="font-size:18px;font-weight:700;color:#e2e8f0">${typeof price==='number'?price.toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec}):price}</div>
+    ${pHtml}
+  </div>`;
+}
+function secTitle(icon,title){
+  return `<div style="grid-column:1/-1;font-size:12px;color:#93c5fd;font-weight:700;padding:6px 0 4px;border-left:3px solid #2563eb;padding-left:8px;margin-top:4px">${icon} ${title}</div>`;
+}
 async function loadFX(){
   const grid=document.getElementById('fxGrid');
   if(!grid)return;
@@ -762,23 +775,11 @@ async function loadFX(){
     }catch(e){}
     grid.innerHTML='';
     const twd=rates['TWD']||30;
-    function fxCard(name,unit,price,pct,dec){
-      const up=pct>=0;
-      const pHtml=pct!==0?`<div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${Math.abs(pct).toFixed(2)}%</div>`:'';
-      return `<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155">
-        <div style="font-size:11px;color:#64748b">${unit}</div>
-        <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin:2px 0">${name}</div>
-        <div style="font-size:18px;font-weight:700;color:#e2e8f0">${typeof price==='number'?price.toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec}):price}</div>
-        ${pHtml}
-      </div>`;
-    }
-    function secTitle(icon,title){
-      return `<div style="grid-column:1/-1;font-size:12px;color:#93c5fd;font-weight:700;padding:6px 0 4px;border-left:3px solid #2563eb;padding-left:8px;margin-top:4px">${icon} ${title}</div>`;
-    }
+
     // 台幣區塊
     grid.innerHTML+=secTitle('🇹🇼','台幣匯率');
     grid.innerHTML+=fxCard('美元/台幣','TWD',twd,0,2);
-    grid.innerHTML+=fxCard('日圓/台幣','TWD',twd/(rates['JPY']||1),0,3);
+    grid.innerHTML+=fxCard('日圓100/台幣','TWD',(twd/(rates['JPY']||1))*100,0,3);
     grid.innerHTML+=fxCard('歐元/台幣','TWD',twd/(rates['EUR']||1),0,2);
     grid.innerHTML+=fxCard('人民幣/台幣','TWD',twd/(rates['CNY']||1),0,2);
     grid.innerHTML+=fxCard('港幣/台幣','TWD',twd/(rates['HKD']||1),0,3);
