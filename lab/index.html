@@ -241,7 +241,7 @@ function checkPw(){
 function showDashboard(){
   document.getElementById('lockScreen').style.display='none';
   document.getElementById('dashboard').style.display='block';
-  loadMarketData();loadSupabaseData();
+  loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);
   setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
 }
 if(localStorage.getItem('lab_auth')==='true')showDashboard();
