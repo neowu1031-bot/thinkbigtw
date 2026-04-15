@@ -469,6 +469,7 @@ async function searchStock(){
       // 載入財報數據
       loadFundamentals(code);
       loadStockChart(code,30,document.querySelector('#stockChartContainer .range-btn'));
+      loadMonthlyRevenue(code);
       // 更新自選股按鈕
       const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
       const wBtn=document.getElementById('watchlistBtn');
@@ -548,6 +549,59 @@ async function loadStockChart(code,days,btn){
   }catch(e){}
 }
 
+
+async function loadMonthlyRevenue(code){
+  const el=document.getElementById('stockRevenue');
+  if(!el)return;
+  el.style.display='block';
+  el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📊 月成交金額趨勢（近12個月）</div><div style="color:#64748b;padding:8px">載入中...</div>';
+  // 抓 24 個月資料以便計算 YoY，僅顯示最近 12 根
+  const now=new Date();
+  const months=[];
+  for(let i=23;i>=0;i--){
+    const dt=new Date(now.getFullYear(),now.getMonth()-i,1);
+    months.push({y:dt.getFullYear(),m:dt.getMonth()+1});
+  }
+  try{
+    const monthlyData=[];
+    for(const mi of months){
+      const ymStart=`${mi.y}-${String(mi.m).padStart(2,'0')}-01`;
+      const endDate=new Date(mi.y,mi.m,0);
+      const ymEnd=`${mi.y}-${String(mi.m).padStart(2,'0')}-${String(endDate.getDate()).padStart(2,'0')}`;
+      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&date=gte.'+ymStart+'&date=lte.'+ymEnd+'&select=volume,close_price',{headers:SB_H});
+      const rows=await r.json();
+      let turnover=0;
+      if(rows&&rows.length){
+        rows.forEach(d=>{turnover+=parseFloat(d.volume||0)*parseFloat(d.close_price||0);});
+      }
+      monthlyData.push({y:mi.y,m:mi.m,turnover:turnover});
+    }
+    const last12=monthlyData.slice(-12);
+    const maxVal=Math.max(...last12.map(d=>d.turnover),1);
+    let html='<div style="font-size:13px;color:#64748b;margin-bottom:10px">📊 月成交金額趨勢（近12個月，含YoY）</div>';
+    html+='<div style="background:#0f172a;border-radius:10px;padding:14px 10px 4px;display:flex;align-items:flex-end;gap:4px;height:180px;overflow-x:auto">';
+    last12.forEach((d,idx)=>{
+      const h=d.turnover>0?Math.max((d.turnover/maxVal)*130,4):2;
+      // YoY: compare to same month last year
+      const lastYear=monthlyData.find(x=>x.y===d.y-1&&x.m===d.m);
+      let yoyHtml='';
+      if(lastYear&&lastYear.turnover>0){
+        const yoy=(d.turnover/lastYear.turnover-1)*100;
+        const up=yoy>=0;
+        yoyHtml=`<div style="font-size:9px;color:${up?'#34d399':'#f87171'};margin-top:2px">${up?'+':''}${yoy.toFixed(1)}%</div>`;
+      }
+      const amt=d.turnover>=1e8?(d.turnover/1e8).toFixed(1)+'億':d.turnover>=1e4?(d.turnover/1e4).toFixed(0)+'萬':d.turnover.toFixed(0);
+      html+=`<div style="flex:1;min-width:40px;display:flex;flex-direction:column;align-items:center;gap:2px">
+        <div style="font-size:9px;color:#94a3b8">${amt}</div>
+        <div style="width:100%;background:linear-gradient(to top,#2563eb,#60a5fa);height:${h}px;border-radius:4px 4px 0 0" title="${d.y}/${d.m} ${amt}"></div>
+        <div style="font-size:10px;color:#64748b">${d.y%100}/${d.m}</div>
+        ${yoyHtml}
+      </div>`;
+    });
+    html+='</div>';
+    el.innerHTML=html;
+  }catch(e){el.innerHTML='<div style="color:#f87171;padding:8px">月營收走勢載入失敗</div>';}
+}
 
 async function loadFundamentals(code){
   const el=document.getElementById('stockFundamentals');
