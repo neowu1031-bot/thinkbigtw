@@ -276,6 +276,9 @@ function switchTab(name,btn){
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+name).classList.add('active');
+  if(name==='crypto')setTimeout(loadCrypto,100);
+  if(name==='etf')setTimeout(loadETFHot,100);
+  if(name==='us')setTimeout(loadUSHot,100);
 }
 
 
@@ -509,15 +512,25 @@ const US_HOT=[
   {sym:'META',name:'Meta'}
 ];
 async function fetchUSStock(sym){
-  const r=await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`,
-    {headers:{'User-Agent':'Mozilla/5.0'}});
-  const d=await r.json();
+  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`;
+  const proxy='https://api.allorigins.win/get?url='+encodeURIComponent(url);
+  const r=await fetch(proxy);
+  const raw=await r.json();
+  const d=JSON.parse(raw.contents);
   const meta=d.chart.result[0].meta;
   const price=meta.regularMarketPrice;
   const prev=meta.chartPreviousClose;
   const pct=(price-prev)/prev*100;
   const high=meta.regularMarketDayHigh||price;
   const low=meta.regularMarketDayLow||price;
+  return {price,pct,high,low};
+}&fields=regularMarketPrice,regularMarketChangePercent,regularMarketDayHigh,regularMarketDayLow,regularMarketPreviousClose`);
+  const d=await r.json();
+  const q=d.quoteResponse.result[0];
+  const price=q.regularMarketPrice;
+  const pct=q.regularMarketChangePercent;
+  const high=q.regularMarketDayHigh||price;
+  const low=q.regularMarketDayLow||price;
   return {price,pct,high,low};
 }
 function usCard(sym,name,price,pct,extra=''){
