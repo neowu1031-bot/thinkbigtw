@@ -200,6 +200,18 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
+      <div class="section-title">📣 價格警示</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
+        <input type="text" id="alertSymbol" placeholder="股票代號" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <select id="alertCondition" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px">
+          <option value="above">漲到</option>
+          <option value="below">跌到</option>
+        </select>
+        <input type="number" id="alertPrice" placeholder="目標價" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <button onclick="addAlert()" style="background:#2563eb;color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:13px;cursor:pointer">新增警示</button>
+        <button onclick="requestNotifyPermission()" id="notifyBtn" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer">🔔 開啟通知</button>
+      </div>
+      <div id="alertList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
       <div class="section-title">選股篩選器</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
         <select id="filterType" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px">
@@ -347,6 +359,96 @@ function showDashboard(){
 
 
 
+
+let alertList=JSON.parse(localStorage.getItem('priceAlerts')||'[]');
+
+function requestNotifyPermission(){
+  if(!('Notification' in window)){alert('此瀏覽器不支援通知功能');return;}
+  Notification.requestPermission().then(p=>{
+    const btn=document.getElementById('notifyBtn');
+    if(p==='granted'){btn.textContent='🔔 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';}
+    else{btn.textContent='🔕 通知已封鎖';btn.style.color='#f87171';}
+  });
+}
+
+function addAlert(){
+  const sym=document.getElementById('alertSymbol').value.trim().toUpperCase();
+  const cond=document.getElementById('alertCondition').value;
+  const price=parseFloat(document.getElementById('alertPrice').value);
+  if(!sym||!price){alert('請填入股票代號和目標價');return;}
+  const alert_item={id:Date.now(),symbol:sym,condition:cond,price:price,triggered:false};
+  alertList.push(alert_item);
+  localStorage.setItem('priceAlerts',JSON.stringify(alertList));
+  document.getElementById('alertSymbol').value='';
+  document.getElementById('alertPrice').value='';
+  renderAlerts();
+  // 申請通知權限
+  if(Notification.permission==='default')requestNotifyPermission();
+}
+
+function removeAlert(id){
+  alertList=alertList.filter(a=>a.id!==id);
+  localStorage.setItem('priceAlerts',JSON.stringify(alertList));
+  renderAlerts();
+}
+
+function renderAlerts(){
+  const el=document.getElementById('alertList');
+  if(!el)return;
+  if(alertList.length===0){el.innerHTML='<div style="color:#64748b;font-size:13px">尚未設定警示</div>';return;}
+  el.innerHTML='';
+  alertList.forEach(a=>{
+    el.innerHTML+=`<div style="display:flex;align-items:center;justify-content:space-between;background:#1e293b;border-radius:8px;padding:10px 14px;border:1px solid ${a.triggered?'#f59e0b':'#334155'}">
+      <div>
+        <span style="font-size:14px;color:#e2e8f0;font-weight:600">${a.symbol}</span>
+        <span style="font-size:13px;color:#94a3b8;margin-left:8px">${a.condition==='above'?'漲到':'跌到'} $${a.price.toLocaleString()}</span>
+        ${a.triggered?'<span style="font-size:12px;color:#f59e0b;margin-left:8px">✓ 已觸發</span>':''}
+      </div>
+      <button onclick="removeAlert(${a.id})" style="background:transparent;border:none;color:#f87171;cursor:pointer;font-size:16px">✕</button>
+    </div>`;
+  });
+}
+
+async function checkAlerts(){
+  if(alertList.length===0)return;
+  const activeAlerts=alertList.filter(a=>!a.triggered);
+  if(activeAlerts.length===0)return;
+  const syms=[...new Set(activeAlerts.map(a=>a.symbol))];
+  try{
+    const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const latest=(await r.json())[0].date;
+    for(const sym of syms){
+      const r2=await fetch(BASE+'/daily_prices?symbol=eq.'+sym+'&date=eq.'+latest+'&select=close_price',{headers:SB_H});
+      const data=await r2.json();
+      if(!data||!data.length)continue;
+      const price=parseFloat(data[0].close_price);
+      alertList.forEach(a=>{
+        if(a.symbol!==sym||a.triggered)return;
+        if((a.condition==='above'&&price>=a.price)||(a.condition==='below'&&price<=a.price)){
+          a.triggered=true;
+          // 瀏覽器推播通知
+          if(Notification.permission==='granted'){
+            new Notification('📣 台股情報站 價格警示',{
+              body:`${sym} 現價 $${price.toLocaleString()} 已${a.condition==='above'?'達到':'跌破'} $${a.price.toLocaleString()}`,
+              icon:'/favicon.ico'
+            });
+          }
+        }
+      });
+    }
+    localStorage.setItem('priceAlerts',JSON.stringify(alertList));
+    renderAlerts();
+  }catch(e){}
+}
+
+// 初始化
+renderAlerts();
+if(Notification.permission==='granted'){
+  const btn=document.getElementById('notifyBtn');
+  if(btn){btn.textContent='🔔 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';}
+}
+// 每分鐘檢查一次警示
+setInterval(checkAlerts,60000);
 async function applyFilter(reset=false){
   const result=document.getElementById('filterResult');
   if(!result)return;
