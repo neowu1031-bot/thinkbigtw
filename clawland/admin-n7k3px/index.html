@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLAW LAND Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',sans-serif;background:#0E0904;color:#FFF8E7;min-height:100vh}
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center}
+.login-box{background:rgba(26,16,8,0.95);border:1px solid rgba(255,248,231,0.1);padding:48px 40px;width:360px;text-align:center}
+.login-logo{font-family:'Bangers',cursive;font-size:36px;letter-spacing:4px;color:#FF2D87;margin-bottom:4px}
+.login-sub{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;color:#FFE500;margin-bottom:32px}
+.login-input{width:100%;background:rgba(255,248,231,0.06);border:1px solid rgba(255,248,231,0.15);color:#FFF8E7;font-family:'Space Mono',monospace;font-size:14px;padding:12px 16px;outline:none;margin-bottom:16px}
+.login-input:focus{border-color:#FF2D87}
+.login-btn{width:100%;font-family:'Bangers',cursive;font-size:18px;letter-spacing:2px;padding:12px;background:#FF2D87;color:white;border:none;cursor:pointer}
+.login-btn:hover{background:#d4216e}
+.admin{display:none;padding:24px}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:rgba(26,16,8,0.95);border-bottom:1px solid rgba(255,229,0,0.2);margin:-24px -24px 32px}
+.header-logo{font-family:'Bangers',cursive;font-size:24px;letter-spacing:3px;color:#FF2D87}
+.header-time{font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,248,231,0.4)}
+.sec-title{font-family:'Bangers',cursive;font-size:22px;letter-spacing:2px;color:#FFE500;margin-bottom:16px}
+.card{background:rgba(26,16,8,0.9);border:1px solid rgba(255,248,231,0.08);padding:24px;margin-bottom:24px}
+.form-row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:12px}
+.form-group{display:flex;flex-direction:column;gap:6px;flex:1;min-width:150px}
+label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:rgba(255,248,231,0.4);text-transform:uppercase}
+input[type=text],input[type=number],input[type=url],select,textarea{background:rgba(255,248,231,0.06);border:1px solid rgba(255,248,231,0.15);color:#FFF8E7;font-family:'Space Mono',monospace;font-size:12px;padding:10px 12px;outline:none;width:100%}
+input:focus,select:focus,textarea:focus{border-color:#FFE500}
+.btn{font-family:'Bangers',cursive;font-size:16px;letter-spacing:1px;padding:10px 24px;border:none;cursor:pointer;white-space:nowrap}
+.btn-yellow{background:#FFE500;color:#1A1008}
+.btn-yellow:hover{background:#e6ce00}
+.btn-pink{background:#FF2D87;color:white}
+.btn-pink:hover{background:#d4216e}
+.btn-outline{background:transparent;border:1px solid rgba(255,229,0,0.5);color:#FFE500}
+.btn-outline:hover{background:rgba(255,229,0,0.1)}
+.btn-sm{font-size:11px;padding:4px 12px}
+.stats{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.stat{background:rgba(26,16,8,0.9);border:1px solid rgba(255,248,231,0.08);padding:16px 20px;flex:1;min-width:100px;text-align:center}
+.stat-num{font-family:'Bangers',cursive;font-size:32px;color:#FFE500}
+.stat-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;color:rgba(255,248,231,0.4);text-transform:uppercase;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-family:'Space Mono',monospace;font-size:11px}
+th{text-align:left;padding:8px 12px;border-bottom:1px solid rgba(255,229,0,0.3);color:#FFE500;font-size:9px;letter-spacing:2px;text-transform:uppercase}
+td{padding:10px 12px;border-bottom:1px solid rgba(255,248,231,0.06);color:rgba(255,248,231,0.8)}
+tr:hover td{background:rgba(255,248,231,0.03)}
+.badge{display:inline-block;font-size:9px;padding:2px 8px;border-radius:2px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.b-unused{background:rgba(57,255,20,0.15);color:#39FF14;border:1px solid rgba(57,255,20,0.3)}
+.b-used{background:rgba(255,248,231,0.08);color:rgba(255,248,231,0.4);border:1px solid rgba(255,248,231,0.15)}
+.msg{font-family:'Space Mono',monospace;font-size:11px;padding:10px 14px;margin-top:12px;display:none}
+.msg.ok{background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);color:#39FF14}
+.msg.err{background:rgba(255,45,135,0.1);border:1px solid rgba(255,45,135,0.3);color:#FF2D87}
+.tabs{display:flex;gap:2px;margin-bottom:24px}
+.tab{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;padding:10px 20px;background:rgba(255,248,231,0.05);border:1px solid rgba(255,248,231,0.1);color:rgba(255,248,231,0.5);cursor:pointer}
+.tab.active{background:rgba(255,229,0,0.1);border-color:#FFE500;color:#FFE500}
+.tab-content{display:none}
+.tab-content.active{display:block}
+</style>
+</head>
+<body>
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">CLAW LAND</div>
+    <div class="login-sub">Admin Panel</div>
+    <input class="login-input" type="password" id="pw" placeholder="管理員密碼" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">登入</button>
+  </div>
+</div>
+
+<div class="admin" id="admin">
+  <header>
+    <div class="header-logo">CLAW LAND ADMIN</div>
+    <div class="header-time" id="ht"></div>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('codes')">驗證碼管理</div>
+    <div class="tab" onclick="switchTab('products')">商品管理</div>
+  </div>
+
+  <!-- 驗證碼 Tab -->
+  <div class="tab-content active" id="tab-codes">
+    <div class="stats">
+      <div class="stat"><div class="stat-num" id="s-total">-</div><div class="stat-label">總數</div></div>
+      <div class="stat"><div class="stat-num" id="s-unused">-</div><div class="stat-label">未使用</div></div>
+      <div class="stat"><div class="stat-num" id="s-used">-</div><div class="stat-label">已使用</div></div>
+    </div>
+    <div class="card">
+      <div class="sec-title">產生驗證碼</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>商品名稱</label>
+          <input type="text" id="gen-pname" placeholder="e.g. 法鬥 AI三合一">
+        </div>
+        <div class="form-group">
+          <label>數量</label>
+          <input type="number" id="gen-qty" value="1" min="1" max="50" style="width:80px">
+        </div>
+        <div class="form-group">
+          <label>Mac 下載連結</label>
+          <input type="url" id="gen-mac" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label>Win 下載連結</label>
+          <input type="url" id="gen-win" placeholder="https://...">
+        </div>
+        <button class="btn btn-yellow" onclick="genCodes()">產生</button>
+      </div>
+      <div class="msg" id="gen-msg"></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <div class="sec-title" style="margin:0">驗證碼列表</div>
+        <div style="display:flex;gap:8px">
+          <select id="f-status" onchange="loadCodes()" style="font-size:10px;padding:6px">
+            <option value="">全部</option>
+            <option value="unused">未使用</option>
+            <option value="used">已使用</option>
+          </select>
+          <button class="btn btn-outline btn-sm" onclick="loadCodes()">重整</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>驗證碼</th><th>商品</th><th>狀態</th><th>買家</th><th>使用時間</th><th>操作</th></tr></thead>
+          <tbody id="codes-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商品 Tab -->
+  <div class="tab-content" id="tab-products">
+    <div class="card">
+      <div class="sec-title">新增商品</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>商品名稱（中）</label>
+          <input type="text" id="p-name" placeholder="法鬥包">
+        </div>
+        <div class="form-group">
+          <label>商品名稱（英）</label>
+          <input type="text" id="p-name-en" placeholder="Bulldog Pack">
+        </div>
+        <div class="form-group">
+          <label>價格（NT$）</label>
+          <input type="number" id="p-price" placeholder="299">
+        </div>
+        <div class="form-group">
+          <label>標籤</label>
+          <input type="text" id="p-tag" placeholder="STARTER">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>描述（中）</label>
+          <textarea id="p-desc" rows="2" placeholder="商品描述..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>描述（英）</label>
+          <textarea id="p-desc-en" rows="2" placeholder="Description..."></textarea>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>PayPal 連結</label>
+          <input type="url" id="p-paypal" placeholder="https://paypal.com/...">
+        </div>
+        <div class="form-group">
+          <label>蝦皮連結</label>
+          <input type="url" id="p-shopee" placeholder="https://shopee.tw/...">
+        </div>
+        <div class="form-group">
+          <label>圖片連結</label>
+          <input type="url" id="p-img" placeholder="https://...">
+        </div>
+        <button class="btn btn-yellow" onclick="addProduct()">新增商品</button>
+      </div>
+      <div class="msg" id="p-msg"></div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <div class="sec-title" style="margin:0">商品列表</div>
+        <button class="btn btn-outline btn-sm" onclick="loadProducts()">重整</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table>
+          <thead><tr><th>名稱</th><th>價格</th><th>標籤</th><th>狀態</th><th>操作</th></tr></thead>
+          <tbody id="products-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const SB = 'https://xtucjknezgihrsvxyvpr.supabase.co';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0dWNqa25lemdpaHJzdnh5dnByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwODQzNjYsImV4cCI6MjA4OTY2MDM2Nn0.1qm8pWuyRvoo0F7L4l7GiWo6V1QutnHwLG_966C8ITg';
+const PW = 'thinkbig2025';
+
+function doLogin(){
+  if(document.getElementById('pw').value===PW){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin').style.display='block';
+    loadCodes(); loadProducts();
+    setInterval(()=>document.getElementById('ht').textContent=new Date().toLocaleString('zh-TW'),1000);
+  } else alert('密碼錯誤');
+}
+
+function switchTab(t){
+  document.querySelectorAll('.tab,.tab-content').forEach(e=>e.classList.remove('active'));
+  document.querySelector('[onclick="switchTab(\''+t+'\')"]').classList.add('active');
+  document.getElementById('tab-'+t).classList.add('active');
+}
+
+function genCode(){
+  const c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const p=()=>Array.from({length:4},()=>c[Math.floor(Math.random()*c.length)]).join('');
+  return 'CLAW-'+p()+'-'+p();
+}
+
+async function sb(path, method='GET', body=null){
+  const opts={headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'}};
+  if(method!=='GET'){opts.method=method;opts.body=JSON.stringify(body);}
+  const r=await fetch(SB+path,opts);
+  return r.ok?await r.json():null;
+}
+
+async function genCodes(){
+  const pname=document.getElementById('gen-pname').value;
+  const qty=parseInt(document.getElementById('gen-qty').value)||1;
+  const mac=document.getElementById('gen-mac').value;
+  const win=document.getElementById('gen-win').value;
+  if(!pname){showMsg('gen-msg','err','請填商品名稱');return;}
+  const rows=Array.from({length:qty},()=>({code:genCode(),product_name:pname,status:'unused',mac_url:mac||null,win_url:win||null,created_at:new Date().toISOString()}));
+  const res=await fetch(SB+'/rest/v1/claw_codes',{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(rows)});
+  if(res.ok){showMsg('gen-msg','ok','✓ 產生 '+qty+' 組驗證碼');loadCodes();}
+  else showMsg('gen-msg','err','錯誤：'+(await res.text()).substring(0,100));
+}
+
+async function loadCodes(){
+  const status=document.getElementById('f-status').value;
+  let url='/rest/v1/claw_codes?select=*&order=created_at.desc&limit=200';
+  if(status)url+='&status=eq.'+status;
+  const data=await sb(url)||[];
+  document.getElementById('s-total').textContent=data.length;
+  document.getElementById('s-unused').textContent=data.filter(r=>r.status==='unused').length;
+  document.getElementById('s-used').textContent=data.filter(r=>r.status==='used').length;
+  const tbody=document.getElementById('codes-body');
+  tbody.innerHTML=data.length?data.map(r=>`<tr>
+    <td><span style="color:#FFE500">${r.code}</span> <button onclick="navigator.clipboard.writeText('${r.code}')" style="background:none;border:none;color:#FFE500;cursor:pointer;font-size:10px">複製</button></td>
+    <td>${r.product_name||'-'}</td>
+    <td><span class="badge ${r.status==='used'?'b-used':'b-unused'}">${r.status}</span></td>
+    <td>${r.buyer_email||'-'}</td>
+    <td>${r.used_at?new Date(r.used_at).toLocaleString('zh-TW'):'-'}</td>
+    <td><button class="btn btn-pink btn-sm" onclick="delCode('${r.id}')">刪除</button></td>
+  </tr>`).join(''):'<tr><td colspan="6" style="text-align:center;padding:24px;color:rgba(255,248,231,0.3)">沒有資料</td></tr>';
+}
+
+async function delCode(id){
+  if(!confirm('確定刪除？'))return;
+  await fetch(SB+'/rest/v1/claw_codes?id=eq.'+id,{method:'DELETE',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}});
+  loadCodes();
+}
+
+async function addProduct(){
+  const name=document.getElementById('p-name').value;
+  const price=parseInt(document.getElementById('p-price').value)||0;
+  if(!name){showMsg('p-msg','err','請填商品名稱');return;}
+  const row={name,name_en:document.getElementById('p-name-en').value||null,price,tag:document.getElementById('p-tag').value||'NEW',description:document.getElementById('p-desc').value||null,description_en:document.getElementById('p-desc-en').value||null,paypal_url:document.getElementById('p-paypal').value||null,shopee_url:document.getElementById('p-shopee').value||null,image_url:document.getElementById('p-img').value||null,active:true};
+  const res=await fetch(SB+'/rest/v1/claw_products',{method:'POST',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=minimal'},body:JSON.stringify(row)});
+  if(res.ok){showMsg('p-msg','ok','✓ 商品新增成功');loadProducts();['p-name','p-name-en','p-price','p-tag','p-desc','p-desc-en','p-paypal','p-shopee','p-img'].forEach(id=>document.getElementById(id).value='');}
+  else showMsg('p-msg','err','錯誤：'+(await res.text()).substring(0,100));
+}
+
+async function loadProducts(){
+  const data=await sb('/rest/v1/claw_products?select=*&order=sort_order.asc')||[];
+  const tbody=document.getElementById('products-body');
+  tbody.innerHTML=data.length?data.map(r=>`<tr>
+    <td>${r.name}${r.name_en?' / '+r.name_en:''}</td>
+    <td style="color:#FFE500">NT$${r.price}</td>
+    <td><span style="background:rgba(255,229,0,0.15);color:#FFE500;padding:2px 8px;font-size:10px">${r.tag||''}</span></td>
+    <td><span class="badge ${r.active?'b-unused':'b-used'}">${r.active?'上架':'下架'}</span></td>
+    <td>
+      <button class="btn btn-outline btn-sm" onclick="toggleProduct('${r.id}',${r.active})">${r.active?'下架':'上架'}</button>
+      <button class="btn btn-pink btn-sm" onclick="delProduct('${r.id}')">刪除</button>
+    </td>
+  </tr>`).join(''):'<tr><td colspan="5" style="text-align:center;padding:24px;color:rgba(255,248,231,0.3)">還沒有商品，請新增</td></tr>';
+}
+
+async function toggleProduct(id,active){
+  await fetch(SB+'/rest/v1/claw_products?id=eq.'+id,{method:'PATCH',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify({active:!active})});
+  loadProducts();
+}
+
+async function delProduct(id){
+  if(!confirm('確定刪除商品？'))return;
+  await fetch(SB+'/rest/v1/claw_products?id=eq.'+id,{method:'DELETE',headers:{'apikey':KEY,'Authorization':'Bearer '+KEY}});
+  loadProducts();
+}
+
+function showMsg(id,type,text){
+  const m=document.getElementById(id);
+  m.className='msg '+type;m.textContent=text;m.style.display='block';
+  setTimeout(()=>m.style.display='none',3000);
+}
+</script>
+</body>
+</html>
