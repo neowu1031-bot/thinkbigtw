@@ -646,33 +646,62 @@ const US_HOT=[
   {sym:'AVGO',name:'Broadcom'},
   {sym:'MU',name:'Micron'},
   {sym:'AMAT',name:'應用材料'},
-  // AI/雲端
+  {sym:'LRCX',name:'科林研發'},
+  {sym:'KLAC',name:'科磊'},
+  {sym:'ASML',name:'ASML'},
+  {sym:'ARM',name:'ARM Holdings'},
+  // AI/雲端/SaaS
   {sym:'PLTR',name:'Palantir'},
   {sym:'CRM',name:'Salesforce'},
   {sym:'ORCL',name:'Oracle'},
   {sym:'NOW',name:'ServiceNow'},
-  // 消費/娛樂
+  {sym:'SNOW',name:'Snowflake'},
+  {sym:'DDOG',name:'Datadog'},
+  {sym:'ZS',name:'Zscaler'},
+  {sym:'CRWD',name:'CrowdStrike'},
+  // 消費/娛樂/電商
   {sym:'NFLX',name:'Netflix'},
   {sym:'DIS',name:'Disney'},
   {sym:'SHOP',name:'Shopify'},
   {sym:'UBER',name:'Uber'},
-  // 金融
+  {sym:'ABNB',name:'Airbnb'},
+  {sym:'DASH',name:'DoorDash'},
+  {sym:'SPOT',name:'Spotify'},
+  {sym:'RBLX',name:'Roblox'},
+  // 金融/支付
   {sym:'JPM',name:'摩根大通'},
   {sym:'BAC',name:'美國銀行'},
   {sym:'GS',name:'高盛'},
+  {sym:'V',name:'Visa'},
+  {sym:'MA',name:'Mastercard'},
+  {sym:'PYPL',name:'PayPal'},
+  {sym:'SQ',name:'Block'},
+  // 傳產/能源/醫療
+  {sym:'BRK-B',name:'波克夏'},
+  {sym:'JNJ',name:'嬌生'},
+  {sym:'PFE',name:'輝瑞'},
+  {sym:'XOM',name:'埃克森美孚'},
+  {sym:'CVX',name:'雪佛龍'},
   // 中概股
   {sym:'BABA',name:'阿里巴巴'},
   {sym:'BIDU',name:'百度'},
   {sym:'JD',name:'京東'},
   {sym:'PDD',name:'拼多多'},
-  // ETF
+  {sym:'NTES',name:'網易'},
+  {sym:'BILI',name:'嗶哩嗶哩'},
+  // 美股ETF
   {sym:'SPY',name:'S&P500 ETF'},
   {sym:'QQQ',name:'NASDAQ ETF'},
-  {sym:'SOXX',name:'費城半導體ETF'}
+  {sym:'SOXX',name:'費城半導體ETF'},
+  {sym:'ARKK',name:'ARK Innovation'},
+  {sym:'GLD',name:'黃金ETF'},
+  {sym:'TLT',name:'美債20年ETF'},
+  {sym:'SQQQ',name:'NASDAQ三倍反向'},
+  {sym:'TQQQ',name:'NASDAQ三倍正向'}
 ];
 async function fetchUSStock(sym){
   const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`;
-  const proxy='https://corsproxy.io/?'+encodeURIComponent(url);
+  const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
   const r=await fetch(proxy);
   const d=await r.json();
   const meta=d.chart.result[0].meta;
@@ -721,7 +750,7 @@ async function loadFX(){
   for(const item of FX_ITEMS){
     try{
       const url=`https://query1.finance.yahoo.com/v8/finance/chart/${item.sym}?interval=1d&range=2d`;
-      const proxy='https://corsproxy.io/?'+encodeURIComponent(url);
+      const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
       const r=await fetch(proxy);
       const d=await r.json();
       const meta=d.chart.result[0].meta;
@@ -780,7 +809,7 @@ async function loadUSChart(sym,days,btn){
   try{
     const range=days<=30?'1mo':days<=90?'3mo':days<=180?'6mo':'1y';
     const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=${range}`;
-    const proxy='https://corsproxy.io/?'+encodeURIComponent(url);
+    const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
     const r=await fetch(proxy);
     const d=await r.json();
     const res=d.chart.result[0];
