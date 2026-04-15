@@ -318,7 +318,15 @@ async function loadCrypto(){
     {sym:'XRPUSDT',name:'XRP'},
     {sym:'ADAUSDT',name:'Cardano'},
     {sym:'DOGEUSDT',name:'Dogecoin'},
-    {sym:'TRXUSDT',name:'TRON'}
+    {sym:'TRXUSDT',name:'TRON'},
+    {sym:'AVAXUSDT',name:'Avalanche'},
+    {sym:'DOTUSDT',name:'Polkadot'},
+    {sym:'MATICUSDT',name:'Polygon'},
+    {sym:'LINKUSDT',name:'Chainlink'},
+    {sym:'UNIUSDT',name:'Uniswap'},
+    {sym:'ATOMUSDT',name:'Cosmos'},
+    {sym:'LTCUSDT',name:'Litecoin'},
+    {sym:'SHIBUSDT',name:'Shiba Inu'}
   ];
   const grid=document.getElementById('cryptoGrid');
   if(!grid)return;
@@ -557,8 +565,20 @@ const ETF_HOT = [
   {sym:'00919',name:'群益台灣精選高息'},
   {sym:'00929',name:'復華台灣科技優息'},
   {sym:'00713',name:'元大台灣高息低波'},
-  {sym:'006208',name:'富邦台灣50'},
-  {sym:'00881',name:'國泰台灣5G+'}
+  {sym:'006208',name:'富邦台灣采吉50'},
+  {sym:'00881',name:'國泰台灣5G+'},
+  {sym:'00940',name:'元大台灣價值高息'},
+  {sym:'00923',name:'群益台灣精選高息30'},
+  {sym:'00927',name:'群益半導體收益ETF'},
+  {sym:'00934',name:'中信成長高股息'},
+  {sym:'00905',name:'富邦台灣優質高息'},
+  {sym:'00896',name:'中信綠能及電動車'},
+  {sym:'00891',name:'中信關鍵半導體'},
+  {sym:'00892',name:'富邦台灣半導體'},
+  {sym:'00893',name:'國泰智能電動車'},
+  {sym:'00900',name:'富邦特選高股息30'},
+  {sym:'00915',name:'凱基優選高股息30'},
+  {sym:'00918',name:'大華優利高填息30'}
 ];
 
 const US_HOT=[
@@ -569,7 +589,15 @@ const US_HOT=[
   {sym:'TSM',name:'台積電 ADR'},
   {sym:'GOOGL',name:'Alphabet'},
   {sym:'AMZN',name:'Amazon'},
-  {sym:'META',name:'Meta'}
+  {sym:'META',name:'Meta'},
+  {sym:'AMD',name:'AMD'},
+  {sym:'INTC',name:'Intel'},
+  {sym:'NFLX',name:'Netflix'},
+  {sym:'DIS',name:'Disney'},
+  {sym:'BABA',name:'阿里巴巴'},
+  {sym:'BIDU',name:'百度'},
+  {sym:'SHOP',name:'Shopify'},
+  {sym:'PLTR',name:'Palantir'}
 ];
 async function fetchUSStock(sym){
   const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`;
@@ -601,7 +629,11 @@ const FX_ITEMS=[
   {sym:'EURUSD=X',name:'歐元/美元',unit:'USD'},
   {sym:'JPY=X',name:'日圓/美元',unit:'JPY'},
   {sym:'CNY=X',name:'人民幣/美元',unit:'CNY'},
-  {sym:'SI=F',name:'白銀',unit:'USD/oz'}
+  {sym:'SI=F',name:'白銀',unit:'USD/oz'},
+  {sym:'GBPUSD=X',name:'英鎊/美元',unit:'USD'},
+  {sym:'AUDUSD=X',name:'澳幣/美元',unit:'USD'},
+  {sym:'CL=F',name:'原油(WTI)',unit:'USD/桶'},
+  {sym:'HG=F',name:'銅',unit:'USD/磅'}
 ];
 async function loadFX(){
   const grid=document.getElementById('fxGrid');
@@ -639,6 +671,7 @@ async function loadUSHot(){
     }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${s.sym} 載入失敗</div>`;}
   }
 }
+let usChart=null,currentUS='';
 async function searchUS(){
   const sym=document.getElementById('usSearch').value.trim().toUpperCase();
   const result=document.getElementById('usSearchResult');
@@ -647,34 +680,88 @@ async function searchUS(){
   try{
     const {price,pct,high,low}=await fetchUSStock(sym);
     const up=pct>=0;
-    result.innerHTML=`<div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:20px;max-width:340px">
+    currentUS=sym;
+    result.innerHTML=`<div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:20px;max-width:400px">
       <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${sym}</div>
       <div style="font-size:26px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
       <div style="font-size:15px;color:${up?'#34d399':'#f87171'};margin-top:6px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
       <div style="font-size:12px;color:#64748b;margin-top:8px">今日高: $${high.toFixed(2)} | 低: $${low.toFixed(2)}</div>
     </div>`;
+    document.getElementById('usChartTitle').textContent=sym+' K線圖';
+    document.getElementById('usChartContainer').style.display='block';
+    loadUSChart(sym,30,document.querySelector('#usChartContainer .range-btn'));
   }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+sym+'，請確認代號</div>';}
+}
+async function loadUSChart(sym,days,btn){
+  if(!sym)return;
+  if(btn){document.querySelectorAll('#usChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+  const el=document.getElementById('usChartWrap');
+  if(!el)return;
+  el.innerHTML='<div style="color:#64748b;padding:20px;text-align:center">載入中...</div>';
+  try{
+    const range=days<=30?'1mo':days<=90?'3mo':days<=180?'6mo':'1y';
+    const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=${range}`;
+    const proxy='https://corsproxy.io/?'+encodeURIComponent(url);
+    const r=await fetch(proxy);
+    const d=await r.json();
+    const res=d.chart.result[0];
+    const ts=res.timestamp;
+    const q=res.indicators.quote[0];
+    el.innerHTML='';
+    if(usChart){try{usChart.remove();}catch(e){}}
+    usChart=LightweightCharts.createChart(el,{width:el.clientWidth,height:260,layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155',timeVisible:false}});
+    const cs=usChart.addCandlestickSeries({upColor:'#34d399',downColor:'#f87171',borderUpColor:'#34d399',borderDownColor:'#f87171',wickUpColor:'#34d399',wickDownColor:'#f87171'});
+    const bars=ts.map((t,i)=>({time:t,open:q.open[i],high:q.high[i],low:q.low[i],close:q.close[i]})).filter(b=>b.open&&b.high&&b.low&&b.close);
+    cs.setData(bars);
+    usChart.timeScale().fitContent();
+  }catch(e){el.innerHTML='<div style="color:#f87171;padding:20px;text-align:center">K線載入失敗（CORS限制，需在HTTPS環境）</div>';}
 }
 
 async function loadETFDividend(code){
   const el=document.getElementById('etfDividend');
   if(!el)return;
   try{
-    const r=await fetch(BASE+'/stock_fundamentals?symbol=eq.'+code+'&select=dividend_yield,eps,pe_ratio',{headers:SB_H});
-    const data=await r.json();
-    if(!data||!data.length){el.style.display='none';return;}
-    const d=data[0];
+    // 基本面殖利率
+    const r0=await fetch(BASE+'/stock_fundamentals?symbol=eq.'+code+'&select=dividend_yield,pe_ratio',{headers:SB_H});
+    const fd=await r0.json();
+    // 配息明細
+    const r1=await fetch(BASE+'/etf_dividends?symbol=eq.'+code+'&order=ex_dividend_date.desc&limit=12',{headers:SB_H});
+    const divs=await r1.json();
+    let html='<div style="margin:10px 0">';
+    // 殖利率卡片
+    if(fd&&fd.length){
+      const f=fd[0];
+      html+=`<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+        <div style="background:#0f172a;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px">
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">年殖利率</div>
+          <div style="font-size:18px;font-weight:700;color:#34d399">${f.dividend_yield?f.dividend_yield.toFixed(2)+'%':'—'}</div>
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px">
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">本益比</div>
+          <div style="font-size:18px;font-weight:700;color:#e2e8f0">${f.pe_ratio?f.pe_ratio.toFixed(1)+'x':'—'}</div>
+        </div>
+      </div>`;
+    }
+    // 配息明細列表
+    if(divs&&divs.length){
+      html+='<div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:6px;border-left:3px solid #2563eb;padding-left:8px">📅 配息記錄</div>';
+      html+='<div style="display:flex;flex-direction:column;gap:4px">';
+      divs.forEach(d=>{
+        const amt=d.dividend_amount!=null?'$'+parseFloat(d.dividend_amount).toFixed(3):'待公告';
+        const color=d.dividend_amount!=null?'#34d399':'#94a3b8';
+        html+=`<div style="display:flex;justify-content:space-between;align-items:center;background:#0f172a;border-radius:6px;padding:8px 12px">
+          <div>
+            <div style="font-size:12px;color:#94a3b8">除息日 ${d.ex_dividend_date||'—'}</div>
+            <div style="font-size:11px;color:#64748b">發放日 ${d.payment_date||'—'}</div>
+          </div>
+          <div style="font-size:16px;font-weight:700;color:${color}">${amt}</div>
+        </div>`;
+      });
+      html+='</div>';
+    }
+    html+='</div>';
     el.style.display='block';
-    el.innerHTML=`<div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0">
-      <div style="background:#0f172a;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px">
-        <div style="font-size:11px;color:#64748b;margin-bottom:4px">年殖利率</div>
-        <div style="font-size:18px;font-weight:700;color:#34d399">${d.dividend_yield?d.dividend_yield.toFixed(2)+'%':'—'}</div>
-      </div>
-      <div style="background:#0f172a;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px">
-        <div style="font-size:11px;color:#64748b;margin-bottom:4px">本益比</div>
-        <div style="font-size:18px;font-weight:700;color:#e2e8f0">${d.pe_ratio?d.pe_ratio.toFixed(1)+'x':'—'}</div>
-      </div>
-    </div>`;
+    el.innerHTML=html;
   }catch(e){if(el)el.style.display='none';}
 }
 async function loadETFHot(){

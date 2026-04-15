@@ -307,6 +307,18 @@ textarea{height:80px;resize:vertical}
         <button onclick="searchUS()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
       </div>
       <div id="usSearchResult" style="margin-bottom:20px"></div>
+      <div id="usChartContainer" style="display:none;margin-bottom:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span style="font-size:14px;font-weight:700;color:#93c5fd" id="usChartTitle">K線圖</span>
+          <div style="display:flex;gap:6px">
+            <button class="range-btn active" onclick="loadUSChart(currentUS,30,this)">1M</button>
+            <button class="range-btn" onclick="loadUSChart(currentUS,90,this)">3M</button>
+            <button class="range-btn" onclick="loadUSChart(currentUS,180,this)">6M</button>
+            <button class="range-btn" onclick="loadUSChart(currentUS,365,this)">1Y</button>
+          </div>
+        </div>
+        <div id="usChartWrap" style="height:260px"></div>
+      </div>
       <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門美股</div>
       <div id="usHotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
         <div style="color:#64748b;padding:8px">載入中...</div>
@@ -316,7 +328,7 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-fund">
     <div class="section">
-      <div class="section-title">外匯 &amp; 黃金即時行情</div>
+      <div class="section-title">外匯 · 黃金 · 大宗商品即時行情</div>
       <div id="fxGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding-top:8px">
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
