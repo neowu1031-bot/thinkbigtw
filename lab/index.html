@@ -97,7 +97,7 @@ textarea{height:80px;resize:vertical}
     <button class="tab-btn active" onclick="switchTab('tw',this)">台股</button>
     <button class="tab-btn" onclick="switchTab('etf',this)">ETF</button>
     <button class="tab-btn" onclick="switchTab('us',this)">美股</button>
-    <button class="tab-btn" onclick="switchTab('fund',this)">基金</button>
+    <button class="tab-btn" onclick="switchTab('fund',this)">外匯/黃金</button>
     <button class="tab-btn" onclick="switchTab('crypto',this)">加密貨幣</button>
   </div>
   <div class="tab-content active" id="tab-tw">
@@ -233,7 +233,12 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
   <div class="tab-content" id="tab-fund">
-    <div class="coming">基金功能開發中，敬請期待<br><small style="font-size:12px;margin-top:8px;display:block">預計支援：國內外基金淨值、績效比較</small></div>
+    <div class="section">
+      <div class="section-title">外匯 &amp; 黃金即時行情</div>
+      <div id="fxGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding-top:8px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
   <div class="tab-content" id="tab-crypto">
@@ -278,7 +283,7 @@ function switchTab(name,btn){
   document.getElementById('tab-'+name).classList.add('active');
   if(name==='crypto')setTimeout(loadCrypto,100);
   if(name==='etf')setTimeout(loadETFHot,100);
-  if(name==='us')setTimeout(loadUSHot,100);
+  if(name==='us')setTimeout(loadUSHot,100);if(name==='fund')setTimeout(loadFX,100);
 }
 
 
@@ -513,10 +518,9 @@ const US_HOT=[
 ];
 async function fetchUSStock(sym){
   const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`;
-  const proxy='https://api.allorigins.win/get?url='+encodeURIComponent(url);
+  const proxy='https://corsproxy.io/?'+encodeURIComponent(url);
   const r=await fetch(proxy);
-  const raw=await r.json();
-  const d=JSON.parse(raw.contents);
+  const d=await r.json();
   const meta=d.chart.result[0].meta;
   const price=meta.regularMarketPrice;
   const prev=meta.chartPreviousClose;
@@ -534,6 +538,40 @@ function usCard(sym,name,price,pct,extra=''){
     <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
     ${extra}
   </div>`;
+}
+
+const FX_ITEMS=[
+  {sym:'USDTWD=X',name:'美元/台幣',unit:'TWD'},
+  {sym:'GC=F',name:'黃金',unit:'USD/oz'},
+  {sym:'EURUSD=X',name:'歐元/美元',unit:'USD'},
+  {sym:'JPY=X',name:'日圓/美元',unit:'JPY'},
+  {sym:'CNY=X',name:'人民幣/美元',unit:'CNY'},
+  {sym:'SI=F',name:'白銀',unit:'USD/oz'}
+];
+async function loadFX(){
+  const grid=document.getElementById('fxGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  for(const item of FX_ITEMS){
+    try{
+      const url=`https://query1.finance.yahoo.com/v8/finance/chart/${item.sym}?interval=1d&range=2d`;
+      const proxy='https://corsproxy.io/?'+encodeURIComponent(url);
+      const r=await fetch(proxy);
+      const d=await r.json();
+      const meta=d.chart.result[0].meta;
+      const price=meta.regularMarketPrice;
+      const prev=meta.chartPreviousClose;
+      const pct=(price-prev)/prev*100;
+      const up=pct>=0;
+      const decimals=price>100?2:4;
+      grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+        <div style="font-size:12px;color:#94a3b8">${item.unit}</div>
+        <div style="font-size:15px;color:#e2e8f0;margin:2px 0">${item.name}</div>
+        <div style="font-size:22px;font-weight:700;color:#e2e8f0">${price.toLocaleString(undefined,{minimumFractionDigits:decimals,maximumFractionDigits:decimals})}</div>
+        <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      </div>`;
+    }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${item.name} 載入失敗</div>`;}
+  }
 }
 async function loadUSHot(){
   const grid=document.getElementById('usHotGrid');
