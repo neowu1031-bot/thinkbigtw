@@ -2,6 +2,11 @@
 const PW='thinkbig2025';
 const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';
+// Supabase Auth client（CDN 自動暴露 window.supabase）
+let SUPA_AUTH=null;
+try{if(window.supabase&&window.supabase.createClient)SUPA_AUTH=window.supabase.createClient(SB_URL,SB_KEY);}catch(e){console.log('Supabase init err',e);}
+let currentAuthMode='login';
+let currentUser=null;
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
 const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電','2303':'聯電','2881':'富邦金','2882':'國泰金','2886':'兆豐金','2891':'中信金','2884':'玉山金','2885':'元大金','2892':'第一金','2883':'開發金','2880':'華南金','2887':'台新金','2888':'新光金','1301':'台塑','1303':'南亞','1326':'台化','2002':'中鋼','2412':'中華電','3008':'大立光','2395':'研華','2357':'華碩','2376':'技嘉','4938':'和碩','2474':'可成','3034':'聯詠','2379':'瑞昱','6505':'台塑化','1216':'統一','2912':'統一超','2207':'和泰車','2105':'正新','2615':'萬海','2603':'長榮','2609':'陽明','2610':'華航','2618':'長榮航','2301':'光寶科','2324':'仁寶','2352':'佳世達','2353':'宏碁','2356':'英業達','3045':'台灣大','4904':'遠傳','2409':'友達','3481':'群創','6669':'緯穎','2408':'南亞科','3711':'日月光投控','2327':'國巨','2360':'致茂','5274':'信驊','6415':'矽力-KY','2049':'上銀','1590':'亞德客-KY','6239':'力成','0050':'元大台灣50','0056':'元大高股息','00878':'國泰永續高股息','00919':'群益台灣精選高息','00929':'復華台灣科技優息','00940':'元大台灣價值高息','00713':'元大台灣高息低波','006208':'富邦台灣采吉50','00881':'國泰台灣5G+'}
@@ -9,9 +14,112 @@ let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=nu
 const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
 function checkPw(){
-  if(document.getElementById('pwInput').value===PW){showDashboard();}
+  if(document.getElementById('pwInput').value===PW){
+    document.getElementById('userBadge').textContent='管理員 · THINK BIG Lab';
+    showDashboard();
+  }
   else document.getElementById('errMsg').textContent='密碼錯誤';
 }
+
+function showPwBackdoor(){
+  const el=document.getElementById('pwBackdoor');
+  if(el)el.style.display=el.style.display==='none'?'block':'none';
+}
+
+function switchAuthTab(mode){
+  currentAuthMode=mode;
+  const loginBtn=document.getElementById('authTabLogin');
+  const signupBtn=document.getElementById('authTabSignup');
+  const submitBtn=document.getElementById('authSubmitBtn');
+  if(mode==='login'){
+    loginBtn.style.background='#2563eb';loginBtn.style.color='#fff';
+    signupBtn.style.background='transparent';signupBtn.style.color='#94a3b8';
+    submitBtn.textContent='登入';
+  }else{
+    signupBtn.style.background='#2563eb';signupBtn.style.color='#fff';
+    loginBtn.style.background='transparent';loginBtn.style.color='#94a3b8';
+    submitBtn.textContent='免費註冊';
+  }
+  document.getElementById('errMsg').textContent='';
+}
+
+async function authSubmit(){
+  const email=document.getElementById('authEmail').value.trim();
+  const password=document.getElementById('authPassword').value;
+  const errEl=document.getElementById('errMsg');
+  errEl.textContent='';
+  if(!SUPA_AUTH){errEl.textContent='系統未就緒，請稍後再試';return;}
+  if(!email||!password){errEl.textContent='請輸入 Email 與密碼';return;}
+  if(password.length<6){errEl.textContent='密碼至少 6 字';return;}
+  try{
+    if(currentAuthMode==='signup'){
+      const {data,error}=await SUPA_AUTH.auth.signUp({email,password});
+      if(error){errEl.textContent='註冊失敗：'+error.message;return;}
+      if(data.user&&!data.session){
+        errEl.style.color='#34d399';
+        errEl.textContent='✓ 註冊成功！請收信驗證後登入';
+        switchAuthTab('login');
+      }else if(data.session){
+        currentUser=data.user;
+        onAuthSuccess(data.user);
+      }
+      trackEvent('signup',{method:'email'});
+    }else{
+      const {data,error}=await SUPA_AUTH.auth.signInWithPassword({email,password});
+      if(error){errEl.textContent='登入失敗：'+error.message;return;}
+      currentUser=data.user;
+      onAuthSuccess(data.user);
+      trackEvent('login',{method:'email'});
+    }
+  }catch(e){errEl.textContent='系統錯誤：'+e.message;}
+}
+
+async function loginGoogle(){
+  const errEl=document.getElementById('errMsg');
+  if(!SUPA_AUTH){errEl.textContent='系統未就緒';return;}
+  try{
+    const {error}=await SUPA_AUTH.auth.signInWithOAuth({
+      provider:'google',
+      options:{redirectTo:window.location.origin+window.location.pathname}
+    });
+    if(error){errEl.textContent='Google 登入失敗：'+error.message+'（請先在 Supabase 後台啟用 Google Provider）';}
+    trackEvent('login',{method:'google'});
+  }catch(e){errEl.textContent='Google 登入錯誤：'+e.message;}
+}
+
+function onAuthSuccess(user){
+  const badge=document.getElementById('userBadge');
+  const logoutBtn=document.getElementById('logoutBtn');
+  if(badge)badge.textContent=(user.email||'會員')+' · 免費版';
+  if(logoutBtn)logoutBtn.style.display='inline-block';
+  showDashboard();
+}
+
+async function logoutUser(){
+  if(SUPA_AUTH){try{await SUPA_AUTH.auth.signOut();}catch(e){}}
+  currentUser=null;
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('lockScreen').style.display='flex';
+  document.getElementById('authEmail').value='';
+  document.getElementById('authPassword').value='';
+  document.getElementById('logoutBtn').style.display='none';
+  document.getElementById('userBadge').textContent='—';
+  document.getElementById('errMsg').textContent='已登出';
+  document.getElementById('errMsg').style.color='#94a3b8';
+}
+
+// 開啟頁面時自動恢復登入狀態
+async function checkExistingSession(){
+  if(!SUPA_AUTH)return;
+  try{
+    const {data:{session}}=await SUPA_AUTH.auth.getSession();
+    if(session&&session.user){
+      currentUser=session.user;
+      onAuthSuccess(session.user);
+    }
+  }catch(e){}
+}
+window.addEventListener('load',()=>{setTimeout(checkExistingSession,300);});
 function showDashboard(){
   document.getElementById('lockScreen').style.display='none';
   document.getElementById('dashboard').style.display='block';
