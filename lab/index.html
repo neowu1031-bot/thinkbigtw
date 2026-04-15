@@ -218,7 +218,18 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版<br>所有內容僅供參考，不構成投資建議</div>
   </div>
   <div class="tab-content" id="tab-us">
-    <div class="coming">美股功能開發中，敬請期待<br><small style="font-size:12px;margin-top:8px;display:block">預計支援：S&amp;P500、NASDAQ、個股查詢、K線圖</small></div>
+    <div class="section">
+      <div class="section-title">美股即時行情</div>
+      <div style="display:flex;gap:12px;margin-bottom:20px;padding-top:8px">
+        <input type="text" id="usSearch" placeholder="輸入美股代號，例如：AAPL、NVDA、TSLA" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
+        <button onclick="searchUS()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
+      </div>
+      <div id="usSearchResult" style="margin-bottom:20px"></div>
+      <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門美股</div>
+      <div id="usHotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
   <div class="tab-content" id="tab-fund">
@@ -486,6 +497,66 @@ const ETF_HOT = [
   {sym:'006208',name:'富邦台灣50'},
   {sym:'00881',name:'國泰台灣5G+'}
 ];
+
+const US_HOT=[
+  {sym:'AAPL',name:'Apple'},
+  {sym:'NVDA',name:'NVIDIA'},
+  {sym:'MSFT',name:'Microsoft'},
+  {sym:'TSLA',name:'Tesla'},
+  {sym:'TSM',name:'台積電 ADR'},
+  {sym:'GOOGL',name:'Alphabet'},
+  {sym:'AMZN',name:'Amazon'},
+  {sym:'META',name:'Meta'}
+];
+async function fetchUSStock(sym){
+  const r=await fetch(`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`,
+    {headers:{'User-Agent':'Mozilla/5.0'}});
+  const d=await r.json();
+  const meta=d.chart.result[0].meta;
+  const price=meta.regularMarketPrice;
+  const prev=meta.chartPreviousClose;
+  const pct=(price-prev)/prev*100;
+  const high=meta.regularMarketDayHigh||price;
+  const low=meta.regularMarketDayLow||price;
+  return {price,pct,high,low};
+}
+function usCard(sym,name,price,pct,extra=''){
+  const up=pct>=0;
+  return `<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+    <div style="font-size:12px;color:#94a3b8">${sym}</div>
+    <div style="font-size:14px;color:#e2e8f0;margin:2px 0">${name}</div>
+    <div style="font-size:20px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+    <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+    ${extra}
+  </div>`;
+}
+async function loadUSHot(){
+  const grid=document.getElementById('usHotGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  for(const s of US_HOT){
+    try{
+      const {price,pct}=await fetchUSStock(s.sym);
+      grid.innerHTML+=usCard(s.sym,s.name,price,pct);
+    }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${s.sym} 載入失敗</div>`;}
+  }
+}
+async function searchUS(){
+  const sym=document.getElementById('usSearch').value.trim().toUpperCase();
+  const result=document.getElementById('usSearchResult');
+  if(!sym){result.innerHTML='';return;}
+  result.innerHTML='<div style="color:#94a3b8;padding:8px">查詢中...</div>';
+  try{
+    const {price,pct,high,low}=await fetchUSStock(sym);
+    const up=pct>=0;
+    result.innerHTML=`<div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:20px;max-width:340px">
+      <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${sym}</div>
+      <div style="font-size:26px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+      <div style="font-size:15px;color:${up?'#34d399':'#f87171'};margin-top:6px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      <div style="font-size:12px;color:#64748b;margin-top:8px">今日高: $${high.toFixed(2)} | 低: $${low.toFixed(2)}</div>
+    </div>`;
+  }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+sym+'，請確認代號</div>';}
+}
 async function loadETFHot(){
   const grid=document.getElementById('etfHotGrid');
   if(!grid)return;
