@@ -209,7 +209,12 @@ textarea{height:80px;resize:vertical}
         </div>
       </div>
     </div>
-    <div class="coming">ETF 熱門排行與配息資訊即將上線</div>
+    <div class="section" style="margin-top:8px">
+      <div class="section-title" style="font-size:14px;color:#64748b;margin-bottom:12px">熱門 ETF</div>
+      <div id="etfHotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版<br>所有內容僅供參考，不構成投資建議</div>
   </div>
   <div class="tab-content" id="tab-us">
@@ -224,12 +229,6 @@ textarea{height:80px;resize:vertical}
     <div class="section">
       <div class="section-title">加密貨幣即時行情</div>
       <div style="display:flex;gap:12px;margin-bottom:20px;padding-top:8px">
-        <input type="text" id="cryptoSearch" placeholder="輸入幣種代號，例如：BTC、ETH、SHIB" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
-        <button onclick="searchCrypto()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer">查詢</button>
-      </div>
-      <div id="cryptoSearchResult" style="margin-bottom:20px"></div>
-      <div class="section-title" style="font-size:14px;color:#64748b;margin-bottom:12px">熱門幣種</div>
-      <div style="display:flex;gap:12px;margin-bottom:20px">
         <input type="text" id="cryptoSearch" placeholder="輸入幣種代號，例如：BTC、ETH、SHIB" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
         <button onclick="searchCrypto()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
       </div>
@@ -476,6 +475,41 @@ async function searchETF(){
   }catch(e){alert('查詢失敗');}
 }
 
+
+const ETF_HOT = [
+  {sym:'0050',name:'元大台灣50'},
+  {sym:'0056',name:'元大高股息'},
+  {sym:'00878',name:'國泰永續高股息'},
+  {sym:'00919',name:'群益台灣精選高息'},
+  {sym:'00929',name:'復華台灣科技優息'},
+  {sym:'00713',name:'元大台灣高息低波'},
+  {sym:'006208',name:'富邦台灣50'},
+  {sym:'00881',name:'國泰台灣5G+'}
+];
+async function loadETFHot(){
+  const grid=document.getElementById('etfHotGrid');
+  if(!grid)return;
+  const SB_URL=window._SB_URL, SB_KEY=window._SB_KEY;
+  if(!SB_URL||!SB_KEY){grid.innerHTML='<div style="color:#f87171">設定錯誤</div>';return;}
+  grid.innerHTML='';
+  for(const e of ETF_HOT){
+    try{
+      const r=await fetch(SB_URL+'/rest/v1/daily_prices?symbol=eq.'+e.sym+'&order=date.desc&limit=1',
+        {headers:{apikey:SB_KEY,Authorization:'Bearer '+SB_KEY}});
+      const data=await r.json();
+      if(!data||data.length===0){continue;}
+      const d=data[0];
+      const pct=parseFloat(d.change_percent)||0;
+      const up=pct>=0;
+      grid.innerHTML+=`<div class="stock-card" onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#1e293b;border-radius:12px;padding:16px;cursor:pointer;border:1px solid #334155">
+        <div style="font-size:12px;color:#94a3b8">${e.sym}</div>
+        <div style="font-size:14px;color:#e2e8f0;margin:2px 0">${e.name}</div>
+        <div style="font-size:20px;font-weight:700;color:#e2e8f0">$${parseFloat(d.close_price).toLocaleString()}</div>
+        <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      </div>`;
+    }catch(e2){}
+  }
+}
 async function loadETFChart(code,days,btn){
   if(!code)return;
   if(btn){document.querySelectorAll('#etfChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
