@@ -15,7 +15,7 @@ function checkPw(){
 function showDashboard(){
   document.getElementById('lockScreen').style.display='none';
   document.getElementById('dashboard').style.display='block';
-  loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
+  loadMarketData();loadSupabaseData();loadDividendCalendar();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
   loadRanking("up");setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
 }
 // 不自動進入，等待密碼
@@ -1078,6 +1078,77 @@ async function loadETFChart(code,days,btn){
     cs.setData(data.map(d=>({time:d.date,open:parseFloat(d.open_price),high:parseFloat(d.high_price),low:parseFloat(d.low_price),close:parseFloat(d.close_price)})));
     etfChart.timeScale().fitContent();
   }catch(e){}
+}
+
+async function loadDividendCalendar(){
+  const el=document.getElementById('dividendCalendar');
+  if(!el)return;
+  try{
+    // TWSE 除權息預告表 (CORS 問題透過 allorigins 代理)
+    const twseUrl='https://www.twse.com.tw/rwd/zh/announcement/twt49u?response=json';
+    const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(twseUrl);
+    let rows=[];
+    try{
+      const r=await fetch(proxy);
+      const j=await r.json();
+      if(j&&Array.isArray(j.data))rows=j.data;
+    }catch(e){console.log('TWSE fetch fail, fallback to Supabase',e);}
+    // 若 TWSE 抓不到，退回 Supabase etf_dividends
+    if(rows.length===0){
+      const today=new Date().toISOString().slice(0,10);
+      const in30=new Date(Date.now()+30*86400000).toISOString().slice(0,10);
+      const r=await fetch(BASE+'/etf_dividends?ex_dividend_date=gte.'+today+'&ex_dividend_date=lte.'+in30+'&order=ex_dividend_date.asc&limit=50',{headers:SB_H});
+      const data=await r.json();
+      if(!data||data.length===0){el.innerHTML='<div style="color:#64748b;padding:8px;font-size:13px">未來30天暫無除權息資料</div>';return;}
+      let html='<div style="display:grid;grid-template-columns:80px 1fr 90px 80px;gap:6px;font-size:11px;color:#64748b;padding:4px 8px 8px;border-bottom:1px solid #334155;margin-bottom:8px"><div>代號</div><div>名稱</div><div>除息日</div><div style="text-align:right">配息</div></div>';
+      data.forEach(d=>{
+        const nm=NAMES[d.symbol]||d.symbol;
+        const amt=d.dividend_amount!=null?'$'+parseFloat(d.dividend_amount).toFixed(3):'待定';
+        html+=`<div style="display:grid;grid-template-columns:80px 1fr 90px 80px;gap:6px;font-size:13px;padding:6px 8px;border-bottom:1px solid #0f172a">
+          <div style="color:#60a5fa;font-weight:600">${d.symbol}</div>
+          <div style="color:#e2e8f0">${nm}</div>
+          <div style="color:#94a3b8">${d.ex_dividend_date||'—'}</div>
+          <div style="color:#34d399;text-align:right;font-weight:600">${amt}</div>
+        </div>`;
+      });
+      el.innerHTML=html;
+      return;
+    }
+    // TWSE 欄位：[0]資料日期 [1]股票代號 [2]名稱 [3]除權息前收盤 [4]除權息參考價 [5]權值+息值 [6]權/息 [7]漲停價格 [8]跌停價格 [9]開始交易基準日 [10]除權息公告日期 [11]現金股利 [12]每股配股 ...
+    const today=new Date();
+    const today0=today.toISOString().slice(0,10).replace(/-/g,'');
+    const in30=new Date(Date.now()+30*86400000).toISOString().slice(0,10).replace(/-/g,'');
+    // TWSE 日期格式通常為 民國年/MM/DD，需要轉換判斷
+    function rocToYMD(s){
+      if(!s)return '';
+      const m=String(s).match(/(\d+)\/(\d+)\/(\d+)/);
+      if(!m)return '';
+      const y=parseInt(m[1])+1911;
+      return `${y}${m[2].padStart(2,'0')}${m[3].padStart(2,'0')}`;
+    }
+    const filtered=rows.map(row=>{
+      const exDate=rocToYMD(row[0]);
+      return {
+        exDate:exDate,
+        exDateDisplay:exDate?`${exDate.slice(0,4)}-${exDate.slice(4,6)}-${exDate.slice(6,8)}`:'—',
+        symbol:row[1]||'',
+        name:row[2]||'',
+        cashDiv:row[11]||row[5]||'—',
+        stockDiv:row[12]||'—'
+      };
+    }).filter(r=>r.exDate&&r.exDate>=today0&&r.exDate<=in30).sort((a,b)=>a.exDate.localeCompare(b.exDate));
+    if(filtered.length===0){el.innerHTML='<div style="color:#64748b;padding:8px;font-size:13px">未來30天暫無除權息公告</div>';return;}
+    let html='<div style="display:grid;grid-template-columns:80px 1fr 100px 90px;gap:6px;font-size:11px;color:#64748b;padding:4px 8px 8px;border-bottom:1px solid #334155;margin-bottom:8px"><div>代號</div><div>名稱</div><div>除息日</div><div style="text-align:right">現金股利</div></div>';
+    filtered.slice(0,80).forEach(r=>{
+      html+=`<div onclick="document.getElementById('stockInput').value='${r.symbol}';searchStock();window.scrollTo({top:0,behavior:'smooth'});" style="display:grid;grid-template-columns:80px 1fr 100px 90px;gap:6px;font-size:13px;padding:8px;border-bottom:1px solid #0f172a;cursor:pointer">
+        <div style="color:#60a5fa;font-weight:600">${r.symbol}</div>
+        <div style="color:#e2e8f0">${r.name}</div>
+        <div style="color:#94a3b8">${r.exDateDisplay}</div>
+        <div style="color:#34d399;text-align:right;font-weight:600">${r.cashDiv}</div>
+      </div>`;
+    });
+    el.innerHTML=html;
+  }catch(e){el.innerHTML='<div style="color:#f87171;padding:8px;font-size:12px">除權息月曆載入失敗</div>';}
 }
 
 async function loadSupabaseData(){
