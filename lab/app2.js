@@ -5,7 +5,7 @@ const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
 const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電','2303':'聯電','2881':'富邦金','2882':'國泰金','2886':'兆豐金','2891':'中信金','2884':'玉山金','2885':'元大金','2892':'第一金','2883':'開發金','2880':'華南金','2887':'台新金','2888':'新光金','1301':'台塑','1303':'南亞','1326':'台化','2002':'中鋼','2412':'中華電','3008':'大立光','2395':'研華','2357':'華碩','2376':'技嘉','4938':'和碩','2474':'可成','3034':'聯詠','2379':'瑞昱','6505':'台塑化','1216':'統一','2912':'統一超','2207':'和泰車','2105':'正新','2615':'萬海','2603':'長榮','2609':'陽明','2610':'華航','2618':'長榮航','2301':'光寶科','2324':'仁寶','2352':'佳世達','2353':'宏碁','2356':'英業達','3045':'台灣大','4904':'遠傳','2409':'友達','3481':'群創','6669':'緯穎','2408':'南亞科','3711':'日月光投控','2327':'國巨','2360':'致茂','5274':'信驊','6415':'矽力-KY','2049':'上銀','1590':'亞德客-KY','6239':'力成','0050':'元大台灣50','0056':'元大高股息','00878':'國泰永續高股息','00919':'群益台灣精選高息','00929':'復華台灣科技優息','00940':'元大台灣價值高息','00713':'元大台灣高息低波','006208':'富邦台灣采吉50','00881':'國泰台灣5G+'}
-let taiexChart=null,stockChart=null,etfChart=null,usChart=null,currentStock='',currentETF='',currentUS='';
+let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=null,currentStock='',currentETF='',currentUS='',currentIndicator='none',lastKData=[];
 const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
 function checkPw(){
@@ -499,6 +499,7 @@ async function loadStockChart(code,days,btn){
     stockChart=LightweightCharts.createChart(el,{width:el.clientWidth,height:280,layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155'}});
     const cs=stockChart.addCandlestickSeries({upColor:'#34d399',downColor:'#f87171',borderUpColor:'#34d399',borderDownColor:'#f87171',wickUpColor:'#34d399',wickDownColor:'#f87171'});
     const kData=data.map(d=>({time:d.date,open:parseFloat(d.open_price),high:parseFloat(d.high_price),low:parseFloat(d.low_price),close:parseFloat(d.close_price)}));
+    lastKData=kData;
     cs.setData(kData);
     // MA5
     const ma5=stockChart.addLineSeries({color:'#fbbf24',lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
@@ -547,7 +548,114 @@ async function loadStockChart(code,days,btn){
         else{rsiLabel.textContent='正常';rsiLabel.style.background='#1e293b';rsiLabel.style.color='#64748b';}
       }
     }
+    // 重繪副圖指標
+    if(currentIndicator&&currentIndicator!=='none')renderIndicator(currentIndicator);
   }catch(e){}
+}
+
+function switchIndicator(name,btn){
+  currentIndicator=name;
+  document.querySelectorAll('.indicator-btn').forEach(b=>{
+    if(b.dataset.ind===name){b.style.background='#2563eb';b.style.borderColor='#2563eb';b.style.color='#fff';}
+    else{b.style.background='#1e293b';b.style.borderColor='#334155';b.style.color='#94a3b8';}
+  });
+  const wrap=document.getElementById('indicatorWrap');
+  if(name==='none'){wrap.style.display='none';if(indicatorChart){try{indicatorChart.remove();}catch(e){}indicatorChart=null;}return;}
+  wrap.style.display='block';
+  renderIndicator(name);
+}
+
+function computeEMA(values,period){
+  const k=2/(period+1);
+  const out=[];
+  let prev=null;
+  for(let i=0;i<values.length;i++){
+    if(i<period-1){out.push(null);continue;}
+    if(prev===null){
+      let sum=0;for(let j=0;j<period;j++)sum+=values[i-j];
+      prev=sum/period;
+    }else{
+      prev=values[i]*k+prev*(1-k);
+    }
+    out.push(prev);
+  }
+  return out;
+}
+
+function computeMACD(closes){
+  const ema12=computeEMA(closes,12);
+  const ema26=computeEMA(closes,26);
+  const dif=closes.map((_,i)=>(ema12[i]!=null&&ema26[i]!=null)?ema12[i]-ema26[i]:null);
+  const difVals=dif.filter(v=>v!=null);
+  const signalRaw=computeEMA(difVals,9);
+  const dea=[];let si=0;
+  for(let i=0;i<dif.length;i++){
+    if(dif[i]==null){dea.push(null);}
+    else{dea.push(signalRaw[si]??null);si++;}
+  }
+  const hist=dif.map((v,i)=>(v!=null&&dea[i]!=null)?v-dea[i]:null);
+  return {dif,dea,hist};
+}
+
+function computeKD(kData,period=9){
+  const K=[],D=[];
+  let prevK=50,prevD=50;
+  for(let i=0;i<kData.length;i++){
+    if(i<period-1){K.push(null);D.push(null);continue;}
+    let hh=-Infinity,ll=Infinity;
+    for(let j=i-period+1;j<=i;j++){
+      if(kData[j].high>hh)hh=kData[j].high;
+      if(kData[j].low<ll)ll=kData[j].low;
+    }
+    const rsv=hh===ll?50:((kData[i].close-ll)/(hh-ll))*100;
+    const k=(2/3)*prevK+(1/3)*rsv;
+    const d=(2/3)*prevD+(1/3)*k;
+    K.push(k);D.push(d);prevK=k;prevD=d;
+  }
+  return {K,D};
+}
+
+function renderIndicator(name){
+  const el=document.getElementById('indicatorChart');
+  const legend=document.getElementById('indicatorLegend');
+  if(!el||!lastKData||lastKData.length<30){if(legend)legend.textContent='資料不足，無法計算';return;}
+  el.innerHTML='';
+  if(indicatorChart){try{indicatorChart.remove();}catch(e){}indicatorChart=null;}
+  indicatorChart=LightweightCharts.createChart(el,{width:el.clientWidth,height:140,layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155',visible:true}});
+  const closes=lastKData.map(d=>d.close);
+  if(name==='macd'){
+    const {dif,dea,hist}=computeMACD(closes);
+    const histSeries=indicatorChart.addHistogramSeries({priceFormat:{type:'price',precision:2,minMove:0.01}});
+    histSeries.setData(lastKData.map((d,i)=>hist[i]!=null?{time:d.time,value:hist[i],color:hist[i]>=0?'#34d39966':'#f8717166'}:null).filter(Boolean));
+    const difSeries=indicatorChart.addLineSeries({color:'#60a5fa',lineWidth:2,priceLineVisible:false,lastValueVisible:true});
+    difSeries.setData(lastKData.map((d,i)=>dif[i]!=null?{time:d.time,value:dif[i]}:null).filter(Boolean));
+    const deaSeries=indicatorChart.addLineSeries({color:'#fbbf24',lineWidth:2,priceLineVisible:false,lastValueVisible:true});
+    deaSeries.setData(lastKData.map((d,i)=>dea[i]!=null?{time:d.time,value:dea[i]}:null).filter(Boolean));
+    const lastI=lastKData.length-1;
+    const difV=dif[lastI]?.toFixed(2)||'—';
+    const deaV=dea[lastI]?.toFixed(2)||'—';
+    const hV=hist[lastI]?.toFixed(2)||'—';
+    if(legend)legend.innerHTML=`<span style="color:#60a5fa">● DIF=${difV}</span> · <span style="color:#fbbf24">● DEA=${deaV}</span> · <span style="color:${hist[lastI]>=0?'#34d399':'#f87171'}">■ MACD=${hV}</span>`;
+  }else if(name==='kd'){
+    const {K,D}=computeKD(lastKData,9);
+    const kSeries=indicatorChart.addLineSeries({color:'#60a5fa',lineWidth:2,priceLineVisible:false,lastValueVisible:true});
+    kSeries.setData(lastKData.map((d,i)=>K[i]!=null?{time:d.time,value:K[i]}:null).filter(Boolean));
+    const dSeries=indicatorChart.addLineSeries({color:'#fbbf24',lineWidth:2,priceLineVisible:false,lastValueVisible:true});
+    dSeries.setData(lastKData.map((d,i)=>D[i]!=null?{time:d.time,value:D[i]}:null).filter(Boolean));
+    // 加超買超賣參考線
+    const ref80=indicatorChart.addLineSeries({color:'#f87171',lineWidth:1,lineStyle:2,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    ref80.setData(lastKData.map(d=>({time:d.time,value:80})));
+    const ref20=indicatorChart.addLineSeries({color:'#34d399',lineWidth:1,lineStyle:2,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    ref20.setData(lastKData.map(d=>({time:d.time,value:20})));
+    const lastI=lastKData.length-1;
+    const kV=K[lastI]?.toFixed(2)||'—';
+    const dV=D[lastI]?.toFixed(2)||'—';
+    let sig='正常';let sc='#64748b';
+    if(K[lastI]>80&&D[lastI]>80){sig='超買';sc='#f87171';}
+    else if(K[lastI]<20&&D[lastI]<20){sig='超賣';sc='#34d399';}
+    if(legend)legend.innerHTML=`<span style="color:#60a5fa">● K=${kV}</span> · <span style="color:#fbbf24">● D=${dV}</span> · <span style="color:${sc}">${sig}</span>`;
+  }
+  indicatorChart.timeScale().fitContent();
 }
 
 

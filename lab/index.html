@@ -197,7 +197,7 @@ textarea{height:80px;resize:vertical}
             </div>
           </div>
           <div id="stockChartWrap" style="height:240px"></div>
-          <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:0 4px">
+          <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:0 4px;flex-wrap:wrap">
             <span style="font-size:12px;color:#64748b">RSI(14):</span>
             <span id="stockRSI" style="font-size:14px;font-weight:700;color:#e2e8f0">—</span>
             <span id="stockRSILabel" style="font-size:12px;padding:2px 8px;border-radius:4px"></span>
@@ -205,6 +205,16 @@ textarea{height:80px;resize:vertical}
             <span style="font-size:12px;color:#fbbf24">■</span>
             <span style="font-size:12px;color:#64748b;margin-left:4px">MA20:</span>
             <span style="font-size:12px;color:#a78bfa">■</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;padding:0 4px;flex-wrap:wrap">
+            <span style="font-size:12px;color:#64748b">副圖指標：</span>
+            <button class="indicator-btn" data-ind="none" onclick="switchIndicator('none',this)" style="padding:4px 10px;border:1px solid #2563eb;background:#2563eb;color:#fff;font-size:12px;border-radius:6px;cursor:pointer">無</button>
+            <button class="indicator-btn" data-ind="macd" onclick="switchIndicator('macd',this)" style="padding:4px 10px;border:1px solid #334155;background:#1e293b;color:#94a3b8;font-size:12px;border-radius:6px;cursor:pointer">MACD</button>
+            <button class="indicator-btn" data-ind="kd" onclick="switchIndicator('kd',this)" style="padding:4px 10px;border:1px solid #334155;background:#1e293b;color:#94a3b8;font-size:12px;border-radius:6px;cursor:pointer">KD</button>
+          </div>
+          <div id="indicatorWrap" style="display:none;margin-top:10px">
+            <div id="indicatorChart" style="height:140px"></div>
+            <div id="indicatorLegend" style="font-size:11px;color:#64748b;margin-top:4px;padding:0 4px"></div>
           </div>
         </div>
       </div>
@@ -365,7 +375,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=9"></script>
+<script src="app2.js?v=10"></script>
 </body>
 </html>
   
