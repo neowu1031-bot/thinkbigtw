@@ -1460,65 +1460,75 @@ async function searchETF(){
 }
 
 
-const ETF_HOT = [
-  // 指數型
-  {sym:'0050',name:'元大台灣50'},
-  {sym:'006208',name:'富邦台灣采吉50'},
-  {sym:'0051',name:'元大中型100'},
-  {sym:'0052',name:'富邦科技'},
-  {sym:'0053',name:'元大電子'},
-  {sym:'0054',name:'元大台商50'},
-  {sym:'0055',name:'元大MSCI金融'},
-  // 高股息型
-  {sym:'0056',name:'元大高股息'},
-  {sym:'00713',name:'元大台灣高息低波'},
-  {sym:'00878',name:'國泰永續高股息'},
-  {sym:'00900',name:'富邦特選高股息30'},
-  {sym:'00915',name:'凱基優選高股息30'},
-  {sym:'00918',name:'大華優利高填息30'},
-  {sym:'00919',name:'群益台灣精選高息'},
-  {sym:'00923',name:'群益台灣精選高息30'},
-  {sym:'00929',name:'復華台灣科技優息'},
-  {sym:'00934',name:'中信成長高股息'},
-  {sym:'00940',name:'元大台灣價值高息'},
-  {sym:'00905',name:'富邦台灣優質高息'},
-  {sym:'00907',name:'永豐優息存股'},
-  // 科技主題
-  {sym:'00881',name:'國泰台灣5G+'},
-  {sym:'00891',name:'中信關鍵半導體'},
-  {sym:'00892',name:'富邦台灣半導體'},
-  {sym:'00896',name:'中信綠能及電動車'},
-  {sym:'00893',name:'國泰智能電動車'},
-  {sym:'00927',name:'群益半導體收益ETF'},
-  {sym:'00922',name:'國泰台灣尖牙+'},
-  {sym:'00935',name:'野村臺灣新科技50'},
-  // ESG/永續
-  {sym:'00850',name:'元大臺灣ESG永續'},
-  {sym:'00888',name:'永豐台灣ESG'},
-  // 美股/海外
-  {sym:'00646',name:'元大S&P500'},
-  {sym:'00827',name:'中信美國500大'},
-  {sym:'00858',name:'國泰美國道瓊'},
-  {sym:'00830',name:'國泰費城半導體'},
-  {sym:'00757',name:'統一FANG+'},
-  {sym:'00662',name:'富邦NASDAQ'},
-  {sym:'00631L',name:'元大S&P500正2'},
-  // 債券型
-  {sym:'00679B',name:'元大美債20年'},
-  {sym:'00696B',name:'富邦美債20年'},
-  {sym:'00720B',name:'元大投資級公司債'},
-  {sym:'00723B',name:'群益15年IG'},
-  {sym:'00795B',name:'富邦投資級公司債'},
-  {sym:'00751B',name:'元大AAA至A公司債'},
-  // 原物料/黃金
-  {sym:'00635U',name:'元大S&P黃金'},
-  {sym:'00642U',name:'元大S&P石油'},
-  // 槓桿反向
-  {sym:'00631L',name:'元大S&P500正2'},
-  {sym:'00632R',name:'元大S&P500反1'},
-  {sym:'00663L',name:'國泰臺灣加權正2'},
-  {sym:'00664R',name:'國泰臺灣加權反1'}
+const ETF_GROUPS = [
+  {cat:'股票型 / 追蹤台股大盤', items:[
+    {sym:'0050',name:'元大台灣50'},{sym:'006208',name:'富邦台灣采吉50'},{sym:'0051',name:'元大中型100'},
+    {sym:'0052',name:'富邦科技'},{sym:'0053',name:'元大電子'},{sym:'0054',name:'元大台商50'},
+    {sym:'0055',name:'元大MSCI金融'},{sym:'00850',name:'元大臺灣ESG永續'},{sym:'00888',name:'永豐台灣ESG'},
+    {sym:'00910',name:'第一金太空衛星'},{sym:'00928',name:'中信上櫃ESG30'},{sym:'00936',name:'台新永續高息中小'},
+    {sym:'00939',name:'統一台灣高息動能'},{sym:'00941',name:'中信上游半導體'},{sym:'00943',name:'兆豐台灣晶圓製造'},
+    {sym:'00946',name:'群益台灣科技'},{sym:'00947',name:'台新臺灣IC設計'},{sym:'00948',name:'中信小資高價30'},
+    {sym:'00953',name:'群益台灣半導體收益'}
+  ]},
+  {cat:'高股息 / 收益型', items:[
+    {sym:'0056',name:'元大高股息'},{sym:'00713',name:'元大台灣高息低波'},{sym:'00878',name:'國泰永續高股息'},
+    {sym:'00900',name:'富邦特選高股息30'},{sym:'00905',name:'富邦台灣優質高息'},{sym:'00907',name:'永豐優息存股'},
+    {sym:'00915',name:'凱基優選高股息30'},{sym:'00918',name:'大華優利高填息30'},{sym:'00919',name:'群益台灣精選高息'},
+    {sym:'00923',name:'群益台灣精選高息30'},{sym:'00929',name:'復華台灣科技優息'},{sym:'00930',name:'永豐ESG低碳高息'},
+    {sym:'00934',name:'中信成長高股息'},{sym:'00940',name:'元大台灣價值高息'}
+  ]},
+  {cat:'科技 / 主題型', items:[
+    {sym:'00881',name:'國泰台灣5G+'},{sym:'00891',name:'中信關鍵半導體'},{sym:'00892',name:'富邦台灣半導體'},
+    {sym:'00893',name:'國泰智能電動車'},{sym:'00896',name:'中信綠能及電動車'},{sym:'00922',name:'國泰台灣尖牙+'},
+    {sym:'00927',name:'群益半導體收益'},{sym:'00935',name:'野村臺灣新科技50'},{sym:'00937B',name:'群益ESG投等債20+'},
+    {sym:'00945B',name:'凱基美國非投等債'},{sym:'00951',name:'中信日經高股息'}
+  ]},
+  {cat:'美股 / 海外型', items:[
+    {sym:'00646',name:'元大S&P500'},{sym:'00662',name:'富邦NASDAQ'},{sym:'00757',name:'統一FANG+'},
+    {sym:'00827',name:'中信美國500大'},{sym:'00830',name:'國泰費城半導體'},{sym:'00858',name:'國泰美國道瓊'},
+    {sym:'00713',name:'元大台灣高息低波'}
+  ]},
+  {cat:'債券型 / 公債 & 公司債', items:[
+    {sym:'00679B',name:'元大美債20年'},{sym:'00681B',name:'元大美債1-3'},{sym:'00687B',name:'國泰20年美債'},
+    {sym:'00688B',name:'國泰5-10年美債'},{sym:'00689B',name:'國泰1-3年美債'},{sym:'00694B',name:'富邦美債1-3'},
+    {sym:'00695B',name:'富邦美債7-10'},{sym:'00696B',name:'富邦美債20年'},{sym:'00697B',name:'元大美債7-10'},
+    {sym:'00720B',name:'元大投等公司債'},{sym:'00723B',name:'群益15年IG電信債'},{sym:'00724B',name:'群益10年IG金融債'},
+    {sym:'00725B',name:'國泰投等公司債'},{sym:'00727B',name:'國泰1-5年美債'},{sym:'00740B',name:'富邦全球投等債'},
+    {sym:'00746B',name:'富邦A級公司債'},{sym:'00749B',name:'凱基新興債10+'},{sym:'00751B',name:'元大AAA至A公司債'},
+    {sym:'00754B',name:'群益AAA-AA公司債'},{sym:'00755B',name:'群益新興投等債'},{sym:'00756B',name:'群益投等新興債'},
+    {sym:'00761B',name:'國泰A級公司債'},{sym:'00764B',name:'群益25年美債'},{sym:'00772B',name:'中信高評級公司債'},
+    {sym:'00773B',name:'中信優先金融債'},{sym:'00777B',name:'凱基AAA-AA公司債'},{sym:'00778B',name:'凱基金融債20+'},
+    {sym:'00779B',name:'凱基美債25+'},{sym:'00780B',name:'國泰投等金融債'},{sym:'00781B',name:'中信小資公司債'},
+    {sym:'00782B',name:'中信美國公債20年'},{sym:'00784B',name:'富邦中國政策金融債'},{sym:'00788B',name:'國泰中國政金'},
+    {sym:'00791B',name:'復華能源債'},{sym:'00792B',name:'群益A級公司債'},{sym:'00795B',name:'富邦投等公司債'},
+    {sym:'00799B',name:'群益投等不動產債'},{sym:'00834B',name:'第一金美債20年'},{sym:'00840B',name:'凱基美債25+'},
+    {sym:'00845B',name:'富邦新興投等債'},{sym:'00846B',name:'富邦中國投等債'},{sym:'00857B',name:'群益優選投等債'},
+    {sym:'00867B',name:'新光投等債15+'},{sym:'00937B',name:'群益ESG投等債20+'},{sym:'00945B',name:'凱基美國非投等債'}
+  ]},
+  {cat:'原物料 / 黃金 / 商品', items:[
+    {sym:'00635U',name:'元大S&P黃金'},{sym:'00642U',name:'元大S&P石油'},{sym:'00673R',name:'期元大S&P原油反1'},
+    {sym:'00674R',name:'期元大S&P黃金反1'},{sym:'00708L',name:'期元大S&P原油正2'},{sym:'00715L',name:'期街口布蘭特正2'}
+  ]},
+  {cat:'槓桿 / 反向型', items:[
+    {sym:'00631L',name:'元大台灣50正2'},{sym:'00632R',name:'元大台灣50反1'},{sym:'00633L',name:'富邦上証正2'},
+    {sym:'00634R',name:'富邦上証反1'},{sym:'00637L',name:'元大滬深300正2'},{sym:'00638R',name:'元大滬深300反1'},
+    {sym:'00640L',name:'富邦日本正2'},{sym:'00641R',name:'富邦日本反1'},{sym:'00647L',name:'元大S&P500正2'},
+    {sym:'00648R',name:'元大S&P500反1'},{sym:'00650L',name:'復華香港正2'},{sym:'00651R',name:'復華香港反1'},
+    {sym:'00652',name:'富邦印度'},{sym:'00653L',name:'富邦印度正2'},{sym:'00654R',name:'富邦印度反1'},
+    {sym:'00655L',name:'國泰中國A50正2'},{sym:'00656R',name:'國泰中國A50反1'},{sym:'00663L',name:'國泰臺灣加權正2'},
+    {sym:'00664R',name:'國泰臺灣加權反1'},{sym:'00665L',name:'富邦恒生國企正2'},{sym:'00666R',name:'富邦恒生國企反1'},
+    {sym:'00669R',name:'國泰美國道瓊反1'},{sym:'00670L',name:'富邦NASDAQ正2'},{sym:'00671R',name:'富邦NASDAQ反1'}
+  ]},
+  {cat:'跨境 / 區域型', items:[
+    {sym:'008201',name:'元大寶滬深'},{sym:'0061',name:'元大寶滬深'},{sym:'006205',name:'富邦上証'},
+    {sym:'006206',name:'元大上證50'},{sym:'006207',name:'復華滬深300'},{sym:'00625K',name:'富邦深100'},
+    {sym:'00636',name:'國泰中國A50'},{sym:'00643',name:'群益深証中小'},{sym:'00645',name:'富邦日本'},
+    {sym:'00657',name:'國泰日經225'},{sym:'00709',name:'富邦歐洲'},{sym:'00714',name:'群益道瓊美國'}
+  ]}
 ];
+
+// 攤平給其他地方使用
+const ETF_HOT = ETF_GROUPS.flatMap(g=>g.items);
 
 const US_HOT=[
   // 科技巨頭
@@ -1835,27 +1845,71 @@ async function loadETFHoldings(code){
 }
 
 async function loadETFHot(){
-  const grid=document.getElementById('etfHotGrid');
-  if(!grid)return;
-  // 使用全域 SB_URL, SB_KEY, SB_H
-  grid.innerHTML='';
-  for(const e of ETF_HOT){
+  const wrap=document.getElementById('etfHotGrid');
+  if(!wrap)return;
+  // 改成分組：用一個容器放所有分組
+  wrap.style.display='block';
+  wrap.style.gridTemplateColumns='unset';
+  wrap.innerHTML='<div style="color:#64748b;padding:8px">載入中...</div>';
+
+  // 一次抓全部 ETF 最新價
+  const allSyms=ETF_HOT.map(e=>e.sym);
+  // 用 PostgREST: symbol=in.(...) + order=date.desc + 取最新
+  // 為避免單次太多，分批 50
+  const priceMap={};
+  for(let i=0;i<allSyms.length;i+=50){
+    const batch=allSyms.slice(i,i+50);
     try{
-      const r=await fetch(SB_URL+'/rest/v1/daily_prices?symbol=eq.'+e.sym+'&order=date.desc&limit=1',
-        {headers:SB_H});
-      const data=await r.json();
-      if(!data||data.length===0){continue;}
-      const d=data[0];
-      const pct=parseFloat(d.change_percent)||0;
-      const up=pct>=0;
-      grid.innerHTML+=`<div class="stock-card" onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#1e293b;border-radius:12px;padding:16px;cursor:pointer;border:1px solid #334155">
-        <div style="font-size:12px;color:#94a3b8">${e.sym}</div>
-        <div style="font-size:14px;color:#e2e8f0;margin:2px 0">${e.name}</div>
-        <div style="font-size:20px;font-weight:700;color:#e2e8f0">$${parseFloat(d.close_price).toLocaleString()}</div>
-        <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
-      </div>`;
-    }catch(e2){}
+      // 取每檔最新一筆：先抓最近一天日期，再抓該天資料
+      const r=await fetch(BASE+'/daily_prices?symbol=in.('+batch.join(',')+')&order=date.desc&limit=1000&select=symbol,date,close_price,change_percent,volume',{headers:SB_H});
+      const rows=await r.json();
+      // 各 symbol 取第一筆（最新日期）
+      rows.forEach(d=>{if(!priceMap[d.symbol])priceMap[d.symbol]=d;});
+    }catch(e){}
   }
+
+  let html='';
+  ETF_GROUPS.forEach((g,gi)=>{
+    const expandDefault=gi<2; // 前兩組預設展開
+    html+=`<div style="margin-bottom:14px;background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden">
+      <div onclick="toggleETFGroup(${gi})" style="padding:12px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:#0f172a">
+        <div style="font-size:14px;color:#93c5fd;font-weight:700">${g.cat} <span style="color:#64748b;font-size:11px;font-weight:400">(${g.items.length} 檔)</span></div>
+        <span id="etfGroupArrow_${gi}" style="color:#64748b;font-size:12px">${expandDefault?'▼':'▶'}</span>
+      </div>
+      <div id="etfGroupBody_${gi}" style="display:${expandDefault?'grid':'none'};grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;padding:12px">`;
+    g.items.forEach(e=>{
+      const d=priceMap[e.sym];
+      if(d){
+        const pct=parseFloat(d.change_percent)||0;
+        const closePx=parseFloat(d.close_price);
+        const prev=closePx-pct;
+        const realPct=prev>0?(pct/prev*100):0;
+        const up=pct>=0;
+        html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid #1e293b">
+          <div style="font-size:11px;color:#94a3b8">${e.sym}</div>
+          <div style="font-size:12px;color:#e2e8f0;margin:1px 0">${e.name}</div>
+          <div style="font-size:16px;font-weight:700;color:#e2e8f0">$${closePx.toLocaleString(undefined,{maximumFractionDigits:2})}</div>
+          <div style="font-size:11px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${realPct.toFixed(2)}%</div>
+        </div>`;
+      }else{
+        html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid #1e293b;opacity:0.55">
+          <div style="font-size:11px;color:#94a3b8">${e.sym}</div>
+          <div style="font-size:12px;color:#e2e8f0;margin:1px 0">${e.name}</div>
+          <div style="font-size:11px;color:#64748b">尚無報價</div>
+        </div>`;
+      }
+    });
+    html+='</div></div>';
+  });
+  wrap.innerHTML=html;
+}
+
+function toggleETFGroup(gi){
+  const body=document.getElementById('etfGroupBody_'+gi);
+  const arr=document.getElementById('etfGroupArrow_'+gi);
+  if(!body)return;
+  if(body.style.display==='none'){body.style.display='grid';arr.textContent='▼';}
+  else{body.style.display='none';arr.textContent='▶';}
 }
 async function loadETFChart(code,days,btn){
   if(!code)return;
