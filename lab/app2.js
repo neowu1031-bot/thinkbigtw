@@ -17,6 +17,101 @@ function showDashboard(){
   document.getElementById('dashboard').style.display='block';
   loadMarketData();loadSupabaseData();loadDividendCalendar();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
   loadRanking("up");setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
+  // 處理 URL 參數深連結
+  handleURLParams();
+}
+
+function handleURLParams(){
+  try{
+    const p=new URLSearchParams(location.search);
+    const tab=p.get('tab');
+    if(tab){
+      const tabBtn=document.querySelector(`[onclick*="switchTab('${tab}'"]`);
+      if(tabBtn)switchTab(tab,tabBtn);
+    }
+    const stock=p.get('stock');
+    if(stock){
+      const inp=document.getElementById('stockInput');
+      if(inp){inp.value=stock;searchStock();}
+    }
+    const etf=p.get('etf');
+    if(etf){
+      const inp=document.getElementById('etfInput');
+      if(inp){inp.value=etf;searchETF();
+        // 切到 ETF 分頁
+        const t=document.querySelector(`[onclick*="switchTab('etf'"]`);if(t)switchTab('etf',t);
+      }
+    }
+    const us=p.get('us');
+    if(us){
+      const inp=document.getElementById('usSearch');
+      if(inp){inp.value=us;
+        const t=document.querySelector(`[onclick*="switchTab('us'"]`);if(t)switchTab('us',t);
+        searchUS();
+      }
+    }
+    const hk=p.get('hk');
+    if(hk){
+      const inp=document.getElementById('hkSearch');
+      if(inp){inp.value=hk;
+        const t=document.querySelector(`[onclick*="switchTab('hk'"]`);if(t)switchTab('hk',t);
+        searchHK();
+      }
+    }
+  }catch(e){console.log('URL param error',e);}
+}
+
+function copyToClipboard(text){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    return navigator.clipboard.writeText(text);
+  }
+  // fallback：用臨時 textarea
+  return new Promise((resolve,reject)=>{
+    try{
+      const ta=document.createElement('textarea');
+      ta.value=text;ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      resolve();
+    }catch(e){reject(e);}
+  });
+}
+
+function _flashShareBtn(btnId,origText){
+  const b=document.getElementById(btnId);
+  if(!b)return;
+  const original=b.textContent;
+  b.textContent='✓ 已複製';
+  b.style.background='#166534';b.style.color='#fff';b.style.borderColor='#166534';
+  setTimeout(()=>{
+    b.textContent=origText||original;
+    b.style.background='#0f172a';b.style.color='#94a3b8';b.style.borderColor='#334155';
+  },2000);
+}
+
+function shareStock(){
+  if(!currentStock)return;
+  const url=`https://thinkbigtw.com/lab/?stock=${encodeURIComponent(currentStock)}`;
+  copyToClipboard(url).then(()=>{
+    _flashShareBtn('shareStockBtn','🔗 分享');
+    trackEvent('share_stock',{stock_code:currentStock});
+  }).catch(()=>{prompt('複製這段網址：',url);});
+}
+
+function shareETF(){
+  if(!currentETF)return;
+  const url=`https://thinkbigtw.com/lab/?etf=${encodeURIComponent(currentETF)}`;
+  copyToClipboard(url).then(()=>{
+    _flashShareBtn('shareETFBtn','🔗 分享');
+    trackEvent('share_etf',{etf_code:currentETF});
+  }).catch(()=>{prompt('複製這段網址：',url);});
+}
+
+function shareUS(){
+  if(!currentUS)return;
+  const url=`https://thinkbigtw.com/lab/?us=${encodeURIComponent(currentUS)}`;
+  copyToClipboard(url).then(()=>{trackEvent('share_us',{us_code:currentUS});alert('已複製：'+url);}).catch(()=>prompt('複製：',url));
 }
 // 不自動進入，等待密碼
 
