@@ -292,7 +292,91 @@ function switchTab(name,btn){
   if(name==='crypto')setTimeout(loadCrypto,100);
   if(name==='etf')setTimeout(loadETFHot,100);
   if(name==='us')setTimeout(loadUSHot,100);if(name==='fund')setTimeout(loadFX,100);
+  if(name==='hk')setTimeout(loadHKHot,100);
+  if(name==='futures'&&typeof loadFutures==='function')setTimeout(loadFutures,100);
+  if(name==='tools'&&typeof initTools==='function')setTimeout(initTools,100);
+  if(name==='portfolio'&&typeof renderPortfolio==='function')setTimeout(renderPortfolio,100);
 }
+
+const HK_HOT=[
+  {sym:'^HSI',name:'恆生指數',cat:'指數'},
+  {sym:'0700.HK',name:'騰訊控股',cat:'科技'},
+  {sym:'9988.HK',name:'阿里巴巴',cat:'科技'},
+  {sym:'3690.HK',name:'美團',cat:'科技'},
+  {sym:'1810.HK',name:'小米集團',cat:'科技'},
+  {sym:'9618.HK',name:'京東集團',cat:'科技'},
+  {sym:'9888.HK',name:'百度集團',cat:'科技'},
+  {sym:'9999.HK',name:'網易',cat:'科技'},
+  {sym:'0941.HK',name:'中國移動',cat:'科技'},
+  {sym:'0005.HK',name:'匯豐控股',cat:'金融'},
+  {sym:'0388.HK',name:'香港交易所',cat:'金融'},
+  {sym:'1398.HK',name:'工商銀行',cat:'金融'},
+  {sym:'3988.HK',name:'中國銀行',cat:'金融'},
+  {sym:'0002.HK',name:'中電控股',cat:'傳產'},
+  {sym:'0003.HK',name:'香港中華煤氣',cat:'傳產'},
+  {sym:'0011.HK',name:'恆生銀行',cat:'金融'}
+];
+
+async function fetchHKQuote(sym){
+  const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(sym)}&token=${FINNHUB_KEY}`);
+  const d=await r.json();
+  if(!d||!d.c)throw new Error('no data');
+  const price=d.c;
+  const prev=d.pc||price;
+  const pct=prev>0?(price-prev)/prev*100:0;
+  return {price,pct,high:d.h||price,low:d.l||price,prev};
+}
+
+function hkCard(sym,name,cat,price,pct){
+  const up=pct>=0;
+  return `<div onclick="document.getElementById('hkSearch').value='${sym}';searchHK();" style="background:#1e293b;border-radius:12px;padding:14px;cursor:pointer;border:1px solid #334155">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+      <span style="font-size:12px;color:#94a3b8">${sym}</span>
+      <span style="font-size:10px;background:#0f172a;color:#60a5fa;padding:1px 6px;border-radius:10px">${cat}</span>
+    </div>
+    <div style="font-size:14px;color:#e2e8f0;margin:2px 0">${name}</div>
+    <div style="font-size:18px;font-weight:700;color:#e2e8f0">HK$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+    <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+  </div>`;
+}
+
+async function loadHKHot(){
+  const grid=document.getElementById('hkHotGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  for(const s of HK_HOT){
+    try{
+      const {price,pct}=await fetchHKQuote(s.sym);
+      grid.innerHTML+=hkCard(s.sym,s.name,s.cat,price,pct);
+    }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:14px;color:#64748b;font-size:12px">${s.sym} ${s.name} 載入失敗</div>`;}
+  }
+}
+
+async function searchHK(){
+  const input=document.getElementById('hkSearch').value.trim();
+  const result=document.getElementById('hkSearchResult');
+  if(!input){result.innerHTML='';return;}
+  // 補滿4位數，加 .HK
+  let sym=input.toUpperCase();
+  if(/^\d+$/.test(sym))sym=sym.padStart(4,'0')+'.HK';
+  else if(!sym.endsWith('.HK')&&!sym.startsWith('^'))sym=sym+'.HK';
+  result.innerHTML='<div style="color:#94a3b8;padding:8px">查詢中...</div>';
+  try{
+    const {price,pct,high,low}=await fetchHKQuote(sym);
+    const up=pct>=0;
+    result.innerHTML=`<div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:20px;max-width:400px">
+      <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${sym}</div>
+      <div style="font-size:26px;font-weight:700;color:#e2e8f0">HK$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+      <div style="font-size:15px;color:${up?'#34d399':'#f87171'};margin-top:6px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      <div style="font-size:12px;color:#64748b;margin-top:8px">今日高: HK$${high.toFixed(2)} | 低: HK$${low.toFixed(2)}</div>
+    </div>`;
+  }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+sym+'，請確認代號（Finnhub 免費方案部分港股可能受限）</div>';}
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const inp=document.getElementById('hkSearch');
+  if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')searchHK();});
+});
 
 
 

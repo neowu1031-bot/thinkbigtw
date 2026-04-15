@@ -168,6 +168,10 @@ textarea{height:80px;resize:vertical}
     <button class="tab-btn" onclick="switchTab('us',this)">美股</button>
     <button class="tab-btn" onclick="switchTab('fund',this)">外匯/黃金</button>
     <button class="tab-btn" onclick="switchTab('crypto',this)">加密貨幣</button>
+    <button class="tab-btn" onclick="switchTab('hk',this)">港股</button>
+    <button class="tab-btn" onclick="switchTab('futures',this)">期貨</button>
+    <button class="tab-btn" onclick="switchTab('tools',this)">理財工具</button>
+    <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
   </div>
   <div class="tab-content active" id="tab-tw">
     <div class="section">
@@ -413,6 +417,21 @@ textarea{height:80px;resize:vertical}
     </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
+  <div class="tab-content" id="tab-hk">
+    <div class="section">
+      <div class="section-title">🇭🇰 港股即時行情</div>
+      <div style="display:flex;gap:12px;margin-bottom:20px;padding-top:8px">
+        <input type="text" id="hkSearch" placeholder="輸入港股代號（4碼），例如：0700、9988" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
+        <button onclick="searchHK()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
+      </div>
+      <div id="hkSearchResult" style="margin-bottom:20px"></div>
+      <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門港股 / 恆生成分</div>
+      <div id="hkHotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
   <div class="tab-content" id="tab-crypto">
     <div class="section">
       <div class="section-title">加密貨幣即時行情</div>
@@ -427,7 +446,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=13"></script>
+<script src="app2.js?v=14"></script>
 </body>
 </html>
   
