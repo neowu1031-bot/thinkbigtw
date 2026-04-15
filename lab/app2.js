@@ -284,11 +284,17 @@ async function renderWatchlist(){
     }catch(e){}
   }
 }
+// GA4 事件追蹤包裝（gtag 未載入時 no-op）
+function trackEvent(eventName,params){
+  try{if(typeof gtag==='function')gtag('event',eventName,params||{});}catch(e){}
+}
+
 function switchTab(name,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('tab-'+name).classList.add('active');
+  trackEvent('tab_switch',{tab_name:name});
   if(name==='crypto')setTimeout(loadCrypto,100);
   if(name==='etf')setTimeout(loadETFHot,100);
   if(name==='us')setTimeout(loadUSHot,100);if(name==='fund')setTimeout(loadFX,100);
@@ -357,6 +363,7 @@ async function searchHK(){
   const input=document.getElementById('hkSearch').value.trim();
   const result=document.getElementById('hkSearchResult');
   if(!input){result.innerHTML='';return;}
+  trackEvent('search_hk',{hk_code:input});
   // 補滿4位數，加 .HK
   let sym=input.toUpperCase();
   if(/^\d+$/.test(sym))sym=sym.padStart(4,'0')+'.HK';
@@ -1145,6 +1152,7 @@ async function searchStock(){
   const code=document.getElementById('stockInput').value.trim();
   if(!code)return;
   currentStock=code;
+  trackEvent('search_stock',{stock_code:code});
   try{
     const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=1',{headers:SB_H});
     const data=await r.json();
@@ -1479,6 +1487,7 @@ async function searchETF(){
   const code=document.getElementById('etfInput').value.trim();
   if(!code)return;
   currentETF=code;
+  trackEvent('search_etf',{etf_code:code});
   try{
     const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=1',{headers:SB_H});
     const data=await r.json();
@@ -1771,6 +1780,7 @@ async function searchUS(){
   const sym=document.getElementById('usSearch').value.trim().toUpperCase();
   const result=document.getElementById('usSearchResult');
   if(!sym){result.innerHTML='';return;}
+  trackEvent('search_us',{us_code:sym});
   result.innerHTML='<div style="color:#94a3b8;padding:8px">查詢中...</div>';
   try{
     const {price,pct,high,low}=await fetchUSStock(sym);
