@@ -449,6 +449,23 @@ async function loadStockChart(code,days,btn){
     const ma20data=kData.map((d,i,arr)=>{if(i<19)return null;const avg=arr.slice(i-19,i+1).reduce((s,v)=>s+v.close,0)/20;return{time:d.time,value:avg};}).filter(Boolean);
     ma20.setData(ma20data);
     stockChart.timeScale().fitContent();
+    // 進場點位偵測（MA5 黃金/死亡交叉）
+    const markers=[];
+    for(let i=20;i<kData.length;i++){
+      const prev5=ma5data.find(d=>d.time===kData[i-1].time);
+      const curr5=ma5data.find(d=>d.time===kData[i].time);
+      const prev20=ma20data.find(d=>d.time===kData[i-1].time);
+      const curr20=ma20data.find(d=>d.time===kData[i].time);
+      if(!prev5||!curr5||!prev20||!curr20)continue;
+      if(prev5.value<prev20.value && curr5.value>=curr20.value){
+        // 黃金交叉 做多
+        markers.push({time:kData[i].time,position:'belowBar',color:'#34d399',shape:'arrowUp',text:'做多'});
+      } else if(prev5.value>prev20.value && curr5.value<=curr20.value){
+        // 死亡交叉 做空
+        markers.push({time:kData[i].time,position:'aboveBar',color:'#f87171',shape:'arrowDown',text:'做空'});
+      }
+    }
+    if(markers.length>0)cs.setMarkers(markers);
     // 計算 RSI(14)
     if(kData.length>=15){
       const closes=kData.map(d=>d.close);
