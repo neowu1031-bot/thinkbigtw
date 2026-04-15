@@ -233,7 +233,7 @@ textarea{height:80px;resize:vertical}
       </div>
       <div id="alertList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
       <div class="section-title">選股篩選器</div>
-      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
         <select id="filterType" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px">
           <option value="up">漲幅排序</option>
           <option value="down">跌幅排序</option>
@@ -241,8 +241,13 @@ textarea{height:80px;resize:vertical}
           <option value="price_asc">價格低→高</option>
           <option value="price_desc">價格高→低</option>
         </select>
-        <input type="number" id="filterMinPct" placeholder="最小漲幅%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:110px">
-        <input type="number" id="filterMaxPrice" placeholder="最高價格" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:110px">
+        <input type="number" id="filterMinPct" placeholder="漲幅>%" title="最小漲幅%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <input type="number" id="filterMinVol" placeholder="成交量>張" title="最小成交量(張)" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:110px">
+        <input type="number" id="filterMinPrice" placeholder="價格≥" title="最低價" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:80px">
+        <input type="number" id="filterMaxPrice" placeholder="價格≤" title="最高價" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:80px">
+        <input type="number" id="filterMaxPE" placeholder="PE<" title="最大本益比" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:80px">
+        <input type="number" id="filterMinYield" placeholder="殖利率>%" title="最小殖利率%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <input type="number" id="filterMinROE" placeholder="ROE>%" title="最小ROE%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:90px">
         <button onclick="applyFilter()" style="background:#2563eb;color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:13px;cursor:pointer">篩選</button>
         <button onclick="applyFilter(true)" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer">重置</button>
       </div>
@@ -375,7 +380,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=10"></script>
+<script src="app2.js?v=11"></script>
 </body>
 </html>
   

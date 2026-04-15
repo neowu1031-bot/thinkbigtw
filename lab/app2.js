@@ -117,29 +117,34 @@ async function applyFilter(reset=false){
   const result=document.getElementById('filterResult');
   if(!result)return;
   if(reset){
-    document.getElementById('filterMinPct').value='';
-    document.getElementById('filterMaxPrice').value='';
+    ['filterMinPct','filterMinVol','filterMinPrice','filterMaxPrice','filterMaxPE','filterMinYield','filterMinROE'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
     result.innerHTML='';
     return;
   }
   const type=document.getElementById('filterType').value;
-  const minPct=parseFloat(document.getElementById('filterMinPct').value)||null;
-  const maxPrice=parseFloat(document.getElementById('filterMaxPrice').value)||null;
+  const minPct=parseFloat(document.getElementById('filterMinPct').value);
+  const minVol=parseFloat(document.getElementById('filterMinVol').value);
+  const minPrice=parseFloat(document.getElementById('filterMinPrice').value);
+  const maxPrice=parseFloat(document.getElementById('filterMaxPrice').value);
+  const maxPE=parseFloat(document.getElementById('filterMaxPE').value);
+  const minYield=parseFloat(document.getElementById('filterMinYield').value);
+  const minROE=parseFloat(document.getElementById('filterMinROE').value);
   result.innerHTML='<div style="color:#64748b">篩選中...</div>';
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r.json())[0].date;
-    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=50&select=symbol,close_price,change_percent,volume';
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,change_percent,volume';
     if(type==='up')url+='&order=change_percent.desc';
     else if(type==='down')url+='&order=change_percent.asc';
     else if(type==='volume')url+='&order=volume.desc';
     else if(type==='price_asc')url+='&order=close_price.asc';
     else url+='&order=close_price.desc';
-    if(maxPrice)url+=`&close_price=lte.${maxPrice}`;
+    if(!isNaN(maxPrice))url+=`&close_price=lte.${maxPrice}`;
+    if(!isNaN(minPrice))url+=`&close_price=gte.${minPrice}`;
+    if(!isNaN(minVol))url+=`&volume=gte.${minVol}`;
     const r2=await fetch(url,{headers:SB_H});
     let data=await r2.json();
-    // 過濾最小漲幅
-    if(minPct!==null){
+    if(!isNaN(minPct)){
       data=data.filter(d=>{
         const ch=parseFloat(d.change_percent);
         const prev=parseFloat(d.close_price)-ch;
@@ -147,24 +152,53 @@ async function applyFilter(reset=false){
         return pct>=minPct;
       });
     }
+    // 需基本面條件：查 stock_fundamentals
+    const needFund=!isNaN(maxPE)||!isNaN(minYield)||!isNaN(minROE);
+    let fundMap={};
+    if(needFund&&data.length){
+      const syms=data.map(d=>d.symbol).join(',');
+      const rf=await fetch(BASE+'/stock_fundamentals?symbol=in.('+syms+')&select=symbol,pe_ratio,dividend_yield,roe',{headers:SB_H});
+      (await rf.json()).forEach(f=>fundMap[f.symbol]=f);
+      data=data.filter(d=>{
+        const f=fundMap[d.symbol];
+        if(!f)return false;
+        if(!isNaN(maxPE)&&!(f.pe_ratio!=null&&f.pe_ratio<maxPE))return false;
+        if(!isNaN(minYield)&&!(f.dividend_yield!=null&&f.dividend_yield>minYield))return false;
+        if(!isNaN(minROE)&&!(f.roe!=null&&f.roe>minROE))return false;
+        return true;
+      });
+    }
     // 查名稱
-    const syms=data.slice(0,20).map(d=>d.symbol).join(',');
-    const rn=await fetch(BASE+'/stocks?symbol=in.('+syms+')&select=symbol,name',{headers:SB_H});
-    const nameMap={};(await rn.json()).forEach(s=>nameMap[s.symbol]=s.name);
-    result.innerHTML=`<div style="color:#94a3b8;font-size:13px;margin-bottom:8px">找到 ${data.length} 檔</div>`;
-    data.slice(0,20).forEach((d,i)=>{
+    const showSyms=data.slice(0,30).map(d=>d.symbol).join(',');
+    let nameMap={};
+    if(showSyms){
+      const rn=await fetch(BASE+'/stocks?symbol=in.('+showSyms+')&select=symbol,name',{headers:SB_H});
+      (await rn.json()).forEach(s=>nameMap[s.symbol]=s.name);
+    }
+    result.innerHTML=`<div style="color:#94a3b8;font-size:13px;margin-bottom:8px">找到 ${data.length} 檔（顯示前30）</div>`;
+    data.slice(0,30).forEach((d,i)=>{
       const ch=parseFloat(d.change_percent);
       const prev=parseFloat(d.close_price)-ch;
       const pct=prev>0?(ch/prev*100).toFixed(2):'—';
       const up=ch>=0;
+      const f=fundMap[d.symbol];
+      let extra='';
+      if(f){
+        const parts=[];
+        if(f.pe_ratio!=null)parts.push(`PE ${f.pe_ratio.toFixed(1)}`);
+        if(f.dividend_yield!=null)parts.push(`殖 ${f.dividend_yield.toFixed(2)}%`);
+        if(f.roe!=null)parts.push(`ROE ${f.roe.toFixed(1)}%`);
+        if(parts.length)extra=`<div style="font-size:11px;color:#64748b;margin-top:2px">${parts.join(' · ')}</div>`;
+      }
       result.innerHTML+=`<div onclick="document.getElementById('stockInput').value='${d.symbol}';searchStock();" style="display:flex;align-items:center;justify-content:space-between;background:#1e293b;border-radius:8px;padding:10px 14px;cursor:pointer;border:1px solid #0f172a">
         <div>
           <span style="font-size:14px;color:#e2e8f0;font-weight:600">${nameMap[d.symbol]||NAMES[d.symbol]||d.symbol}</span>
           <span style="color:#64748b;font-size:12px;margin-left:6px">${d.symbol}</span>
+          ${extra}
         </div>
         <div style="text-align:right">
           <div style="font-size:15px;font-weight:700;color:${up?'#34d399':'#f87171'}">${up?'+':''}${pct}%</div>
-          <div style="font-size:12px;color:#64748b">$${parseFloat(d.close_price).toLocaleString()}</div>
+          <div style="font-size:12px;color:#64748b">$${parseFloat(d.close_price).toLocaleString()} · ${parseInt(d.volume).toLocaleString()}張</div>
         </div>
       </div>`;
     });
