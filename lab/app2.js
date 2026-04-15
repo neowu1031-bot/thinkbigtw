@@ -763,17 +763,14 @@ async function loadFX(){
     const r=await fetch('https://open.er-api.com/v6/latest/USD');
     const d=await r.json();
     const rates=d.rates;
-    // 貴金屬用 Binance（黃金=PAXG，白銀從XAG匯率換算）
-    let goldPrice=null,goldPct=0,silverPrice=null,silverPct=0;
+    // 貴金屬用 Binance PAXG
+    let goldPrice=null,goldPct=0,silverPrice=null;
     try{
-      const [pg,xaut]=await Promise.all([
-        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=PAXGUSDT').then(r=>r.json()),
-        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=XAUTUSDT').then(r=>r.json()),
-      ]);
+      const pg=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=PAXGUSDT').then(r=>r.json());
       if(pg&&pg.lastPrice){goldPrice=parseFloat(pg.lastPrice);goldPct=parseFloat(pg.priceChangePercent);}
-    }catch(e){}
-    // 白銀從 ExchangeRate XAG 換算（已在 rates 裡）
-    if(rates['XAG']){silverPrice=1/rates['XAG'];}
+    }catch(e){console.log('PAXG error:',e);}
+    // 白銀從 ExchangeRate XAG 換算
+    if(rates['XAG']){silverPrice=parseFloat((1/rates['XAG']).toFixed(2));}
     grid.innerHTML='';
     const twd=rates['TWD']||30;
 
