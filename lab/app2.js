@@ -384,6 +384,44 @@ async function loadMarketData(){
       el2.className='value '+(val>=0?'up':'down');
     }
   }catch(e){}
+  loadGlobalIndices();
+}
+
+async function loadGlobalIndices(){
+  const indices=[
+    {sym:'^DJI',key:'DJI'},
+    {sym:'^IXIC',key:'IXIC'},
+    {sym:'^GSPC',key:'GSPC'},
+    {sym:'^N225',key:'N225'}
+  ];
+  for(const idx of indices){
+    try{
+      const r=await fetch('https://finnhub.io/api/v1/quote?symbol='+encodeURIComponent(idx.sym)+'&token='+FINNHUB_KEY);
+      const d=await r.json();
+      if(!d||!d.c||d.c===0){
+        const pxEl=document.getElementById('idx_'+idx.key);
+        const pctEl=document.getElementById('idx_'+idx.key+'_pct');
+        if(pxEl)pxEl.textContent='無資料';
+        if(pctEl)pctEl.textContent='—';
+        continue;
+      }
+      const price=d.c;
+      const prev=d.pc||price;
+      const chg=price-prev;
+      const pct=prev>0?(chg/prev*100):0;
+      const up=chg>=0;
+      const pxEl=document.getElementById('idx_'+idx.key);
+      const pctEl=document.getElementById('idx_'+idx.key+'_pct');
+      if(pxEl)pxEl.textContent=price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+      if(pctEl){
+        pctEl.textContent=(up?'▲ +':'▼ ')+Math.abs(chg).toFixed(2)+' ('+(up?'+':'')+pct.toFixed(2)+'%)';
+        pctEl.className='sub '+(up?'up':'down');
+      }
+    }catch(e){
+      const pxEl=document.getElementById('idx_'+idx.key);
+      if(pxEl)pxEl.textContent='載入失敗';
+    }
+  }
 }
 
 async function loadTaiexChart(days,btn){
