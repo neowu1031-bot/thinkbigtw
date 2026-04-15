@@ -408,6 +408,8 @@ async function searchStock(){
       document.getElementById('sLow').textContent=d.low_price;
       document.getElementById('stockChartContainer').style.display='block';
       document.getElementById('stockChartTitle').textContent=(NAMES[code]||code)+' K線圖';
+      // 載入財報數據
+      loadFundamentals(code);
       loadStockChart(code,30,document.querySelector('#stockChartContainer .range-btn'));
       // 更新自選股按鈕
       const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
@@ -471,6 +473,34 @@ async function loadStockChart(code,days,btn){
   }catch(e){}
 }
 
+
+async function loadFundamentals(code){
+  const el=document.getElementById('stockFundamentals');
+  if(!el)return;
+  try{
+    const r=await fetch(BASE+'/stock_fundamentals?symbol=eq.'+code+'&select=*',{headers:SB_H});
+    const data=await r.json();
+    if(!data||!data.length){el.style.display='none';return;}
+    const d=data[0];
+    const items=[
+      {label:'EPS',value:d.eps?d.eps.toFixed(2)+'元':'—'},
+      {label:'本益比',value:d.pe_ratio?d.pe_ratio.toFixed(1)+'x':'—'},
+      {label:'殖利率',value:d.dividend_yield?d.dividend_yield.toFixed(2)+'%':'—'},
+      {label:'ROE',value:d.roe?d.roe.toFixed(1)+'%':'—'},
+      {label:'每股淨值',value:d.book_value?'$'+d.book_value.toFixed(1):'—'},
+      {label:'52週高',value:d.week52_high?'$'+d.week52_high.toLocaleString():'—'},
+      {label:'52週低',value:d.week52_low?'$'+d.week52_low.toLocaleString():'—'},
+    ];
+    el.style.display='block';
+    el.innerHTML=`<div style="font-size:13px;color:#64748b;margin-bottom:8px">基本面數據</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px">
+        ${items.map(i=>`<div style="background:#0f172a;border-radius:8px;padding:10px;text-align:center">
+          <div style="font-size:11px;color:#64748b;margin-bottom:4px">${i.label}</div>
+          <div style="font-size:15px;font-weight:700;color:#e2e8f0">${i.value}</div>
+        </div>`).join('')}
+      </div>`;
+  }catch(e){if(el)el.style.display='none';}
+}
 async function searchETF(){
   const code=document.getElementById('etfInput').value.trim();
   if(!code)return;
