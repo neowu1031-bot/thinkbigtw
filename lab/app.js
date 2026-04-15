@@ -5,7 +5,8 @@ const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZ
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
 const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電','2303':'聯電','2881':'富邦金','2882':'國泰金','2886':'兆豐金','2891':'中信金','2884':'玉山金','2885':'元大金','2892':'第一金','2883':'開發金','2880':'華南金','2887':'台新金','2888':'新光金','1301':'台塑','1303':'南亞','1326':'台化','2002':'中鋼','2412':'中華電','3008':'大立光','2395':'研華','2357':'華碩','2376':'技嘉','4938':'和碩','2474':'可成','3034':'聯詠','2379':'瑞昱','6505':'台塑化','1216':'統一','2912':'統一超','2207':'和泰車','2105':'正新','2615':'萬海','2603':'長榮','2609':'陽明','2610':'華航','2618':'長榮航','2301':'光寶科','2324':'仁寶','2352':'佳世達','2353':'宏碁','2356':'英業達','3045':'台灣大','4904':'遠傳','2409':'友達','3481':'群創','6669':'緯穎','2408':'南亞科','3711':'日月光投控','2327':'國巨','2360':'致茂','5274':'信驊','6415':'矽力-KY','2049':'上銀','1590':'亞德客-KY','6239':'力成','0050':'元大台灣50','0056':'元大高股息','00878':'國泰永續高股息','00919':'群益台灣精選高息','00929':'復華台灣科技優息','00940':'元大台灣價值高息','00713':'元大台灣高息低波','006208':'富邦台灣采吉50','00881':'國泰台灣5G+'}
-let taiexChart=null,stockChart=null,etfChart=null,currentStock='',currentETF='';
+let taiexChart=null,stockChart=null,etfChart=null,usChart=null,currentStock='',currentETF='',currentUS='';
+const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
 function checkPw(){
   if(document.getElementById('pwInput').value===PW){showDashboard();}
@@ -700,16 +701,14 @@ const US_HOT=[
   {sym:'TQQQ',name:'NASDAQ三倍正向'}
 ];
 async function fetchUSStock(sym){
-  const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`;
-  const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
-  const r=await fetch(proxy);
+  const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${FINNHUB_KEY}`);
   const d=await r.json();
-  const meta=d.chart.result[0].meta;
-  const price=meta.regularMarketPrice;
-  const prev=meta.chartPreviousClose;
+  if(!d||!d.c)throw new Error('no data');
+  const price=d.c;
+  const prev=d.pc;
   const pct=(price-prev)/prev*100;
-  const high=meta.regularMarketDayHigh||price;
-  const low=meta.regularMarketDayLow||price;
+  const high=d.h||price;
+  const low=d.l||price;
   return {price,pct,high,low};
 }
 function usCard(sym,name,price,pct,extra=''){
@@ -807,22 +806,19 @@ async function loadUSChart(sym,days,btn){
   if(!el)return;
   el.innerHTML='<div style="color:#64748b;padding:20px;text-align:center">載入中...</div>';
   try{
-    const range=days<=30?'1mo':days<=90?'3mo':days<=180?'6mo':'1y';
-    const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=${range}`;
-    const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
-    const r=await fetch(proxy);
+    const now=Math.floor(Date.now()/1000);
+    const from=now-days*86400;
+    const r=await fetch(`https://finnhub.io/api/v1/stock/candle?symbol=${sym}&resolution=D&from=${from}&to=${now}&token=${FINNHUB_KEY}`);
     const d=await r.json();
-    const res=d.chart.result[0];
-    const ts=res.timestamp;
-    const q=res.indicators.quote[0];
+    if(!d||d.s==='no_data'||!d.t)throw new Error('no data');
     el.innerHTML='';
     if(usChart){try{usChart.remove();}catch(e){}}
-    usChart=LightweightCharts.createChart(el,{width:el.clientWidth,height:260,layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155',timeVisible:false}});
+    usChart=LightweightCharts.createChart(el,{width:el.clientWidth,height:260,layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155'}});
     const cs=usChart.addCandlestickSeries({upColor:'#34d399',downColor:'#f87171',borderUpColor:'#34d399',borderDownColor:'#f87171',wickUpColor:'#34d399',wickDownColor:'#f87171'});
-    const bars=ts.map((t,i)=>({time:t,open:q.open[i],high:q.high[i],low:q.low[i],close:q.close[i]})).filter(b=>b.open&&b.high&&b.low&&b.close);
+    const bars=d.t.map((t,i)=>({time:t,open:d.o[i],high:d.h[i],low:d.l[i],close:d.c[i]})).filter(b=>b.open&&b.high&&b.low&&b.close);
     cs.setData(bars);
     usChart.timeScale().fitContent();
-  }catch(e){el.innerHTML='<div style="color:#f87171;padding:20px;text-align:center">K線載入失敗（CORS限制，需在HTTPS環境）</div>';}
+  }catch(e){el.innerHTML='<div style="color:#f87171;padding:20px;text-align:center">K線載入失敗</div>';}
 }
 
 async function loadETFDividend(code){
