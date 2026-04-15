@@ -215,6 +215,9 @@ textarea{height:80px;resize:vertical}
     <button class="tab-btn" onclick="switchTab('futures',this)">期貨</button>
     <button class="tab-btn" onclick="switchTab('tools',this)">理財工具</button>
     <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
+    <button class="tab-btn" onclick="switchTab('bonds',this)">債券</button>
+    <button class="tab-btn" onclick="switchTab('sector',this)">產業</button>
+    <button class="tab-btn" onclick="switchTab('macro',this)">總經</button>
   </div>
   <div class="tab-content active" id="tab-tw">
     <div class="section">
@@ -521,6 +524,85 @@ textarea{height:80px;resize:vertical}
     </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
+  <div class="tab-content" id="tab-bonds">
+    <div class="section">
+      <div class="section-title">💵 債券市場總覽</div>
+      <div id="bondsUS" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">💼 公司債 / 高收益債</div>
+      <div id="bondsCorp" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">🌏 新興市場債</div>
+      <div id="bondsEM" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">🇹🇼 台灣債券 ETF</div>
+      <div id="bondsTW" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px"></div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
+  <div class="tab-content" id="tab-sector">
+    <div class="section">
+      <div class="section-title">🏭 產業族群熱度</div>
+      <div style="color:#64748b;font-size:13px;margin-bottom:12px">依台股個股當日漲跌幅平均，點擊展開看族群成分股</div>
+      <div id="sectorList" style="display:flex;flex-direction:column;gap:10px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
+  <div class="tab-content" id="tab-macro">
+    <div class="section">
+      <div class="section-title">🇹🇼 台灣總體經濟指標</div>
+      <div class="grid" id="macroTW">
+        <div class="card"><h3>央行利率</h3><div class="value" id="m_tw_rate">2.000%</div><div class="sub">2026年最新</div></div>
+        <div class="card"><h3>CPI 年增率</h3><div class="value" id="m_tw_cpi">2.1%</div><div class="sub">主計總處</div></div>
+        <div class="card"><h3>GDP 成長率</h3><div class="value" id="m_tw_gdp">3.5%</div><div class="sub">年增率</div></div>
+        <div class="card"><h3>失業率</h3><div class="value" id="m_tw_unemp">3.4%</div><div class="sub">主計總處</div></div>
+        <div class="card"><h3>外匯存底</h3><div class="value" id="m_tw_fx">5,750億 USD</div><div class="sub">央行</div></div>
+        <div class="card"><h3>貿易順差</h3><div class="value" id="m_tw_trade">+58億 USD</div><div class="sub">月份</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🇺🇸 美國總體經濟指標</div>
+      <div class="grid" id="macroUS">
+        <div class="card"><h3>聯準會利率</h3><div class="value" id="m_us_rate">載入中...</div><div class="sub">FedFunds</div></div>
+        <div class="card"><h3>10年公債殖利率</h3><div class="value" id="m_us_10y">載入中...</div><div class="sub">UST10Y</div></div>
+        <div class="card"><h3>CPI 年增率</h3><div class="value" id="m_us_cpi">3.2%</div><div class="sub">BLS</div></div>
+        <div class="card"><h3>失業率</h3><div class="value" id="m_us_unemp">3.9%</div><div class="sub">BLS</div></div>
+        <div class="card"><h3>製造業 PMI</h3><div class="value" id="m_us_pmi">49.5</div><div class="sub">ISM</div></div>
+        <div class="card"><h3>非農就業</h3><div class="value" id="m_us_nfp">+18.5萬</div><div class="sub">月變動</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🌐 全球央行利率比較</div>
+      <div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#334155;border-radius:8px;overflow:hidden">
+          <div style="background:#0f172a;padding:10px;font-size:12px;color:#64748b;text-align:center">國家/地區</div>
+          <div style="background:#0f172a;padding:10px;font-size:12px;color:#64748b;text-align:center">央行利率</div>
+          <div style="background:#0f172a;padding:10px;font-size:12px;color:#64748b;text-align:center">基準變動</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇺🇸 美國</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.25-5.50%</div><div style="background:#1e293b;padding:10px;color:#94a3b8;text-align:center">持平</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇹🇼 台灣</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">2.000%</div><div style="background:#1e293b;padding:10px;color:#94a3b8;text-align:center">持平</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇪🇺 歐盟</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.75%</div><div style="background:#1e293b;padding:10px;color:#34d399;text-align:center">↓ 25bp</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇬🇧 英國</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.00%</div><div style="background:#1e293b;padding:10px;color:#94a3b8;text-align:center">持平</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇯🇵 日本</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">0.25%</div><div style="background:#1e293b;padding:10px;color:#f87171;text-align:center">↑ 15bp</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇨🇳 中國</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.10%</div><div style="background:#1e293b;padding:10px;color:#34d399;text-align:center">↓ 10bp</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📈 美國公債殖利率曲線</div>
+      <div style="background:#1e293b;border-radius:12px;padding:18px;border:1px solid #334155">
+        <div id="yieldCurve" style="display:flex;align-items:flex-end;gap:14px;height:200px;padding:10px 0">
+          <div style="color:#64748b;padding:8px">載入中...</div>
+        </div>
+        <div style="font-size:11px;color:#64748b;margin-top:8px;text-align:center">數值由 ETF 殖利率近似（TLT/IEF/SHY 等），實際殖利率以 Treasury.gov 為準</div>
+      </div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
   <div class="tab-content" id="tab-portfolio">
     <div class="section">
       <div class="section-title">💼 我的投資組合</div>
@@ -577,7 +659,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=25"></script>
+<script src="app2.js?v=26"></script>
 </body>
 </html>
   

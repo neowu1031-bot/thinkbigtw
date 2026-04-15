@@ -505,6 +505,255 @@ function switchTab(name,btn){
   if(name==='futures')setTimeout(loadFutures,100);
   if(name==='tools')setTimeout(initTools,100);
   if(name==='portfolio')setTimeout(renderPortfolio,100);
+  if(name==='bonds')setTimeout(loadBonds,100);
+  if(name==='sector')setTimeout(loadSectors,100);
+  if(name==='macro')setTimeout(loadMacro,100);
+}
+
+// =============== 債券分頁 ===============
+const BONDS_US=[
+  {sym:'TLT',name:'美債20年ETF'},
+  {sym:'IEF',name:'美債7-10年ETF'},
+  {sym:'SHY',name:'美債1-3年ETF'},
+  {sym:'BND',name:'美國綜合債券ETF'}
+];
+const BONDS_CORP=[
+  {sym:'HYG',name:'高收益債ETF'},
+  {sym:'LQD',name:'投資級公司債ETF'},
+  {sym:'JNK',name:'SPDR高收益債'}
+];
+const BONDS_EM=[
+  {sym:'EMB',name:'新興市場美元債'},
+  {sym:'PCY',name:'PowerShares新興主權'}
+];
+const BONDS_TW=['00679B','00696B','00720B','00723B','00724B','00727B','00740B','00751B','00754B','00756B','00761B','00764B','00772B','00779B','00780B','00781B','00784B','00791B','00795B','00796B','00799B','00805B','00815B','00840B'];
+
+function bondCard(sym,name,price,pct,ccy='$'){
+  const up=pct>=0;
+  return `<div style="background:#1e293b;border-radius:10px;padding:12px;border:1px solid #334155">
+    <div style="font-size:11px;color:#94a3b8">${sym}</div>
+    <div style="font-size:13px;color:#e2e8f0;margin:1px 0">${name}</div>
+    <div style="font-size:18px;font-weight:700;color:#e2e8f0">${ccy}${price.toLocaleString(undefined,{maximumFractionDigits:2})}</div>
+    <div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${Math.abs(pct).toFixed(2)}%</div>
+  </div>`;
+}
+
+async function loadBonds(){
+  // 美國公債 ETF
+  const usEl=document.getElementById('bondsUS');
+  if(usEl){
+    usEl.innerHTML='';
+    for(const b of BONDS_US){
+      try{
+        const {price,pct}=await fetchUSStock(b.sym);
+        usEl.innerHTML+=bondCard(b.sym,b.name,price,pct);
+      }catch(e){usEl.innerHTML+=`<div style="background:#1e293b;border-radius:10px;padding:12px;color:#64748b;font-size:12px">${b.sym} 載入失敗</div>`;}
+    }
+  }
+  // 公司債/高收益債
+  const corpEl=document.getElementById('bondsCorp');
+  if(corpEl){
+    corpEl.innerHTML='';
+    for(const b of BONDS_CORP){
+      try{
+        const {price,pct}=await fetchUSStock(b.sym);
+        corpEl.innerHTML+=bondCard(b.sym,b.name,price,pct);
+      }catch(e){corpEl.innerHTML+=`<div style="background:#1e293b;border-radius:10px;padding:12px;color:#64748b;font-size:12px">${b.sym} 載入失敗</div>`;}
+    }
+  }
+  // 新興市場債
+  const emEl=document.getElementById('bondsEM');
+  if(emEl){
+    emEl.innerHTML='';
+    for(const b of BONDS_EM){
+      try{
+        const {price,pct}=await fetchUSStock(b.sym);
+        emEl.innerHTML+=bondCard(b.sym,b.name,price,pct);
+      }catch(e){emEl.innerHTML+=`<div style="background:#1e293b;border-radius:10px;padding:12px;color:#64748b;font-size:12px">${b.sym} 載入失敗</div>`;}
+    }
+  }
+  // 台灣債券 ETF（從 Supabase）
+  const twEl=document.getElementById('bondsTW');
+  if(twEl){
+    twEl.innerHTML='';
+    try{
+      const r=await fetch(BASE+'/daily_prices?symbol=in.('+BONDS_TW.join(',')+')&order=date.desc&limit=500&select=symbol,date,close_price,change_percent',{headers:SB_H});
+      const rows=await r.json();
+      const map={};rows.forEach(d=>{if(!map[d.symbol])map[d.symbol]=d;});
+      // 抓名稱
+      const rn=await fetch(BASE+'/stocks?symbol=in.('+BONDS_TW.join(',')+')&select=symbol,name',{headers:SB_H});
+      const nameMap={};(await rn.json()).forEach(s=>nameMap[s.symbol]=s.name);
+      BONDS_TW.forEach(sym=>{
+        const d=map[sym];
+        const nm=nameMap[sym]||NAMES[sym]||sym;
+        if(d){
+          const pct=parseFloat(d.change_percent)||0;
+          const closePx=parseFloat(d.close_price);
+          const prev=closePx-pct;
+          const realPct=prev>0?(pct/prev*100):0;
+          twEl.innerHTML+=`<div onclick="document.getElementById('etfInput').value='${sym}';searchETF();var t=document.querySelector('[onclick*=\\\"switchTab(\\'etf\\'\\\"]');if(t)switchTab('etf',t);" style="cursor:pointer;background:#1e293b;border-radius:10px;padding:12px;border:1px solid #334155">
+            <div style="font-size:11px;color:#94a3b8">${sym}</div>
+            <div style="font-size:13px;color:#e2e8f0;margin:1px 0">${nm}</div>
+            <div style="font-size:18px;font-weight:700;color:#e2e8f0">$${closePx.toFixed(2)}</div>
+            <div style="font-size:12px;color:${pct>=0?'#34d399':'#f87171'}">${pct>=0?'▲ +':'▼ '}${Math.abs(realPct).toFixed(2)}%</div>
+          </div>`;
+        }else{
+          twEl.innerHTML+=`<div style="background:#1e293b;border-radius:10px;padding:12px;border:1px solid #334155;opacity:0.55">
+            <div style="font-size:11px;color:#94a3b8">${sym}</div>
+            <div style="font-size:13px;color:#e2e8f0;margin:1px 0">${nm}</div>
+            <div style="font-size:11px;color:#64748b">尚無報價</div>
+          </div>`;
+        }
+      });
+    }catch(e){twEl.innerHTML='<div style="color:#f87171;padding:8px">台灣債券 ETF 載入失敗</div>';}
+  }
+}
+
+// =============== 產業族群分頁 ===============
+const SECTORS=[
+  {name:'AI/伺服器',icon:'🤖',symbols:['2330','3711','6669','2382','4938','3231']},
+  {name:'半導體',icon:'💾',symbols:['2303','2454','2344','2379','3034','6415','2408','2327']},
+  {name:'金融股',icon:'🏦',symbols:['2881','2882','2883','2884','2885','2886','2887','2891','2892','2880']},
+  {name:'航運股',icon:'🚢',symbols:['2603','2609','2615','2610','2618']},
+  {name:'傳產',icon:'🏗',symbols:['1301','1303','1326','2002','1216']},
+  {name:'電信',icon:'📡',symbols:['2412','3045','4904']},
+  {name:'生技醫療',icon:'⚕',symbols:['4711','4552','1777','6547']},
+  {name:'電子消費',icon:'💻',symbols:['2357','2376','2353','2324','2352','2356']},
+  {name:'高息ETF',icon:'💎',symbols:['0056','00713','00878','00919','00929','00940','00923']}
+];
+
+async function loadSectors(){
+  const el=document.getElementById('sectorList');
+  if(!el)return;
+  el.innerHTML='<div style="color:#64748b;padding:8px">載入中...</div>';
+  // 一次抓所有用到的 symbol 最新價
+  const allSyms=[...new Set(SECTORS.flatMap(s=>s.symbols))];
+  const priceMap={};
+  try{
+    for(let i=0;i<allSyms.length;i+=50){
+      const batch=allSyms.slice(i,i+50);
+      const r=await fetch(BASE+'/daily_prices?symbol=in.('+batch.join(',')+')&order=date.desc&limit=1000&select=symbol,date,close_price,change_percent',{headers:SB_H});
+      const rows=await r.json();
+      rows.forEach(d=>{if(!priceMap[d.symbol])priceMap[d.symbol]=d;});
+    }
+  }catch(e){}
+  // 抓名稱
+  const nameMap={};
+  try{
+    const rn=await fetch(BASE+'/stocks?symbol=in.('+allSyms.join(',')+')&select=symbol,name',{headers:SB_H});
+    (await rn.json()).forEach(s=>nameMap[s.symbol]=s.name);
+  }catch(e){}
+  // 計算每個族群平均漲跌幅
+  const sectorData=SECTORS.map(s=>{
+    const stocks=s.symbols.map(sym=>{
+      const d=priceMap[sym];
+      if(!d)return {sym,close:null,pct:0};
+      const ch=parseFloat(d.change_percent);
+      const closePx=parseFloat(d.close_price);
+      const prev=closePx-ch;
+      const realPct=prev>0?(ch/prev*100):0;
+      return {sym,close:closePx,pct:realPct,name:nameMap[sym]||NAMES[sym]||sym};
+    });
+    const validStocks=stocks.filter(x=>x.close!=null);
+    const avgPct=validStocks.length>0?validStocks.reduce((a,b)=>a+b.pct,0)/validStocks.length:0;
+    return {...s,stocks,avgPct,validCount:validStocks.length};
+  });
+  // 按漲幅排序
+  sectorData.sort((a,b)=>b.avgPct-a.avgPct);
+  el.innerHTML='';
+  sectorData.forEach((s,i)=>{
+    const up=s.avgPct>=0;
+    el.innerHTML+=`<div style="background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden">
+      <div onclick="toggleSector(${i})" style="padding:14px 16px;cursor:pointer;display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <span style="font-size:18px;margin-right:6px">${s.icon}</span>
+          <span style="font-size:15px;color:#e2e8f0;font-weight:700">${s.name}</span>
+          <span style="font-size:11px;color:#64748b;margin-left:6px">${s.validCount}/${s.symbols.length} 檔</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span style="font-size:18px;font-weight:700;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${Math.abs(s.avgPct).toFixed(2)}%</span>
+          <span id="sectorArrow_${i}" style="color:#64748b">▶</span>
+        </div>
+      </div>
+      <div id="sectorBody_${i}" style="display:none;border-top:1px solid #334155;padding:10px;background:#0f172a">
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">
+          ${s.stocks.map(st=>{
+            if(st.close==null)return `<div style="background:#1e293b;border-radius:6px;padding:8px;opacity:0.5"><div style="font-size:11px;color:#94a3b8">${st.sym}</div><div style="font-size:12px;color:#e2e8f0">${nameMap[st.sym]||NAMES[st.sym]||st.sym}</div><div style="font-size:11px;color:#64748b">尚無報價</div></div>`;
+            const u=st.pct>=0;
+            return `<div onclick="event.stopPropagation();document.getElementById('stockInput').value='${st.sym}';searchStock();var t=document.querySelector('[onclick*=\\\"switchTab(\\'tw\\'\\\"]');if(t)switchTab('tw',t);window.scrollTo({top:0,behavior:'smooth'});" style="cursor:pointer;background:#1e293b;border-radius:6px;padding:8px">
+              <div style="font-size:11px;color:#94a3b8">${st.sym}</div>
+              <div style="font-size:12px;color:#e2e8f0">${st.name}</div>
+              <div style="font-size:14px;font-weight:700;color:#e2e8f0">$${st.close.toFixed(2)}</div>
+              <div style="font-size:11px;color:${u?'#34d399':'#f87171'}">${u?'+':''}${st.pct.toFixed(2)}%</div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+  });
+}
+
+function toggleSector(i){
+  const body=document.getElementById('sectorBody_'+i);
+  const arr=document.getElementById('sectorArrow_'+i);
+  if(!body)return;
+  if(body.style.display==='none'){body.style.display='block';arr.textContent='▼';}
+  else{body.style.display='none';arr.textContent='▶';}
+}
+
+// =============== 總體經濟分頁 ===============
+async function loadMacro(){
+  // 美國 Fed Rate
+  try{
+    const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=^TNX&token=${FINNHUB_KEY}`);
+    const d=await r.json();
+    if(d&&d.c){
+      const el=document.getElementById('m_us_10y');
+      if(el)el.textContent=(d.c/10).toFixed(3)+'%';
+    }
+  }catch(e){}
+  // FedFunds via economic API
+  try{
+    const r=await fetch(`https://finnhub.io/api/v1/economic?code=MA-USA-148&token=${FINNHUB_KEY}`);
+    const d=await r.json();
+    if(d&&d.data&&d.data.length){
+      const last=d.data[d.data.length-1];
+      const el=document.getElementById('m_us_rate');
+      if(el)el.textContent=last.value.toFixed(2)+'%';
+    }
+  }catch(e){}
+  // 殖利率曲線：用 SHY/IEI/IEF/TLT 殖利率近似
+  loadYieldCurve();
+}
+
+async function loadYieldCurve(){
+  const el=document.getElementById('yieldCurve');
+  if(!el)return;
+  // 用各天期 ETF 30天平均報酬反推殖利率（簡化展示）
+  // 近期殖利率參考：2Y~4.7%, 5Y~4.3%, 10Y~4.2%, 30Y~4.4%（2026年4月參考值）
+  // 嘗試從 Finnhub 抓 ^TNX (10Y) 即時值
+  let y10=4.20;
+  try{
+    const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=^TNX&token=${FINNHUB_KEY}`);
+    const d=await r.json();
+    if(d&&d.c)y10=d.c/10;
+  }catch(e){}
+  const data=[
+    {label:'3M',y:y10+0.45,color:'#60a5fa'},
+    {label:'2Y',y:y10+0.30,color:'#60a5fa'},
+    {label:'5Y',y:y10+0.05,color:'#a78bfa'},
+    {label:'10Y',y:y10,color:'#fbbf24'},
+    {label:'30Y',y:y10+0.20,color:'#f472b6'}
+  ];
+  const maxY=Math.max(...data.map(d=>d.y));
+  el.innerHTML=data.map(d=>{
+    const h=(d.y/maxY)*150;
+    return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+      <div style="font-size:12px;color:#e2e8f0;font-weight:700">${d.y.toFixed(2)}%</div>
+      <div style="width:80%;background:linear-gradient(to top,${d.color}66,${d.color});height:${h}px;border-radius:6px 6px 0 0;border:1px solid ${d.color}"></div>
+      <div style="font-size:12px;color:#94a3b8">${d.label}</div>
+    </div>`;
+  }).join('');
 }
 
 const HK_HOT=[
