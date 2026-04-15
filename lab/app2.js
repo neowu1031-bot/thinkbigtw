@@ -294,7 +294,7 @@ function switchTab(name,btn){
   if(name==='us')setTimeout(loadUSHot,100);if(name==='fund')setTimeout(loadFX,100);
   if(name==='hk')setTimeout(loadHKHot,100);
   if(name==='futures')setTimeout(loadFutures,100);
-  if(name==='tools'&&typeof initTools==='function')setTimeout(initTools,100);
+  if(name==='tools')setTimeout(initTools,100);
   if(name==='portfolio'&&typeof renderPortfolio==='function')setTimeout(renderPortfolio,100);
 }
 
@@ -377,6 +377,209 @@ document.addEventListener('DOMContentLoaded',()=>{
   const inp=document.getElementById('hkSearch');
   if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')searchHK();});
 });
+
+// =============== 理財工具分頁 ===============
+let toolsInited=false;
+let cachedFXRates=null;
+
+function fmt(n,dec=0){if(n==null||isNaN(n))return '—';return Number(n).toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec});}
+
+function toolCard(title,bodyHtml){
+  return `<div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+    <div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">${title}</div>
+    ${bodyHtml}
+  </div>`;
+}
+
+function inputRow(label,id,placeholder='',unit='',type='number'){
+  return `<div style="display:grid;grid-template-columns:110px 1fr 40px;gap:6px;align-items:center;margin-bottom:6px">
+    <label style="font-size:12px;color:#94a3b8">${label}</label>
+    <input type="${type}" id="${id}" placeholder="${placeholder}" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:6px 8px;border-radius:6px;font-size:13px">
+    <span style="font-size:11px;color:#64748b">${unit}</span>
+  </div>`;
+}
+
+function initTools(){
+  if(toolsInited)return;
+  const grid=document.getElementById('toolsGrid');
+  if(!grid)return;
+  grid.innerHTML=
+    toolCard('💰 複利計算機',
+      inputRow('本金','t1_p','1000000','元')+
+      inputRow('年報酬率','t1_r','7','%')+
+      inputRow('投資年數','t1_n','20','年')+
+      '<div id="t1_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算</div>'
+    )+
+    toolCard('📅 定期定額試算',
+      inputRow('每月投入','t2_m','10000','元')+
+      inputRow('年報酬率','t2_r','7','%')+
+      inputRow('投資年數','t2_n','20','年')+
+      '<div id="t2_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算</div>'
+    )+
+    toolCard('💹 ETF配息再投入',
+      inputRow('本金','t3_p','1000000','元')+
+      inputRow('年殖利率','t3_y','5','%')+
+      inputRow('股價','t3_px','30','元/股')+
+      inputRow('投資年數','t3_n','20','年')+
+      '<div id="t3_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算</div>'
+    )+
+    toolCard('🏖 退休金試算',
+      inputRow('目前年齡','t4_age','35','歲')+
+      inputRow('退休年齡','t4_ret','65','歲')+
+      inputRow('目前積蓄','t4_save','500000','元')+
+      inputRow('每月投入','t4_m','15000','元')+
+      inputRow('年報酬率','t4_r','6','%')+
+      inputRow('退休後月支出','t4_exp','40000','元')+
+      '<div id="t4_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算</div>'
+    )+
+    toolCard('📊 股票損益計算',
+      inputRow('買入價','t5_bp','100','元')+
+      inputRow('賣出價','t5_sp','110','元')+
+      inputRow('張數','t5_q','10','張')+
+      inputRow('手續費率','t5_fee','0.1425','%')+
+      inputRow('證交稅','t5_tax','0.3','%')+
+      '<div id="t5_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算</div>'
+    )+
+    toolCard('🌐 外幣換算',
+      `<div style="display:grid;grid-template-columns:110px 1fr 80px;gap:6px;align-items:center;margin-bottom:6px">
+        <label style="font-size:12px;color:#94a3b8">金額</label>
+        <input type="number" id="t6_amt" placeholder="1000" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:6px 8px;border-radius:6px;font-size:13px">
+        <select id="t6_from" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:6px 4px;border-radius:6px;font-size:12px">
+          <option value="USD">USD</option><option value="TWD">TWD</option><option value="JPY">JPY</option><option value="EUR">EUR</option><option value="CNY">CNY</option><option value="HKD">HKD</option><option value="GBP">GBP</option><option value="AUD">AUD</option><option value="KRW">KRW</option><option value="SGD">SGD</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:110px 1fr 80px;gap:6px;align-items:center">
+        <label style="font-size:12px;color:#94a3b8">換成</label>
+        <div></div>
+        <select id="t6_to" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:6px 4px;border-radius:6px;font-size:12px">
+          <option value="TWD">TWD</option><option value="USD">USD</option><option value="JPY">JPY</option><option value="EUR">EUR</option><option value="CNY">CNY</option><option value="HKD">HKD</option><option value="GBP">GBP</option><option value="AUD">AUD</option><option value="KRW">KRW</option><option value="SGD">SGD</option>
+        </select>
+      </div>
+      <div id="t6_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算（匯率資料即時抓取中...）</div>`
+    );
+
+  // 綁定 input listeners
+  const bind=(ids,fn)=>ids.forEach(id=>{const e=document.getElementById(id);if(e)e.addEventListener('input',fn);});
+  bind(['t1_p','t1_r','t1_n'],calcTool1);
+  bind(['t2_m','t2_r','t2_n'],calcTool2);
+  bind(['t3_p','t3_y','t3_px','t3_n'],calcTool3);
+  bind(['t4_age','t4_ret','t4_save','t4_m','t4_r','t4_exp'],calcTool4);
+  bind(['t5_bp','t5_sp','t5_q','t5_fee','t5_tax'],calcTool5);
+  bind(['t6_amt'],calcTool6);
+  ['t6_from','t6_to'].forEach(id=>{const e=document.getElementById(id);if(e)e.addEventListener('change',calcTool6);});
+  // 預載匯率
+  if(!cachedFXRates){
+    fetch('https://open.er-api.com/v6/latest/USD').then(r=>r.json()).then(d=>{cachedFXRates=d.rates;calcTool6();}).catch(()=>{});
+  }
+  toolsInited=true;
+}
+
+function calcTool1(){
+  const p=parseFloat(document.getElementById('t1_p').value);
+  const r=parseFloat(document.getElementById('t1_r').value)/100;
+  const n=parseFloat(document.getElementById('t1_n').value);
+  const out=document.getElementById('t1_out');
+  if(isNaN(p)||isNaN(r)||isNaN(n)){out.innerHTML='請輸入完整數值';return;}
+  const fv=p*Math.pow(1+r,n);
+  const profit=fv-p;
+  const mult=fv/p;
+  out.innerHTML=`<div style="color:#34d399;font-size:18px;font-weight:700">$${fmt(fv,0)}</div>
+    <div style="color:#94a3b8">獲利 $${fmt(profit,0)} · 成長 ${mult.toFixed(2)}倍</div>`;
+}
+
+function calcTool2(){
+  const m=parseFloat(document.getElementById('t2_m').value);
+  const r=parseFloat(document.getElementById('t2_r').value)/100/12;
+  const n=parseFloat(document.getElementById('t2_n').value)*12;
+  const out=document.getElementById('t2_out');
+  if(isNaN(m)||isNaN(r)||isNaN(n)){out.innerHTML='請輸入完整數值';return;}
+  const fv=m*((Math.pow(1+r,n)-1)/r);
+  const total=m*n;
+  const profit=fv-total;
+  out.innerHTML=`<div style="color:#34d399;font-size:18px;font-weight:700">$${fmt(fv,0)}</div>
+    <div style="color:#94a3b8">總投入 $${fmt(total,0)} · 獲利 $${fmt(profit,0)}</div>`;
+}
+
+function calcTool3(){
+  const p=parseFloat(document.getElementById('t3_p').value);
+  const y=parseFloat(document.getElementById('t3_y').value)/100;
+  const px=parseFloat(document.getElementById('t3_px').value);
+  const n=parseFloat(document.getElementById('t3_n').value);
+  const out=document.getElementById('t3_out');
+  if(isNaN(p)||isNaN(y)||isNaN(px)||isNaN(n)){out.innerHTML='請輸入完整數值';return;}
+  let shares=p/px;
+  let totalDiv=0;
+  for(let i=0;i<n;i++){
+    const div=shares*px*y;
+    totalDiv+=div;
+    shares+=div/px;
+  }
+  const fv=shares*px;
+  out.innerHTML=`<div style="color:#34d399;font-size:18px;font-weight:700">$${fmt(fv,0)}</div>
+    <div style="color:#94a3b8">最終股數 ${fmt(shares,0)} · 累積股息 $${fmt(totalDiv,0)}</div>`;
+}
+
+function calcTool4(){
+  const age=parseFloat(document.getElementById('t4_age').value);
+  const ret=parseFloat(document.getElementById('t4_ret').value);
+  const save=parseFloat(document.getElementById('t4_save').value);
+  const m=parseFloat(document.getElementById('t4_m').value);
+  const r=parseFloat(document.getElementById('t4_r').value)/100;
+  const exp=parseFloat(document.getElementById('t4_exp').value);
+  const out=document.getElementById('t4_out');
+  if([age,ret,save,m,r,exp].some(isNaN)||ret<=age){out.innerHTML='請輸入完整數值（退休年齡須大於目前年齡）';return;}
+  const yrs=ret-age;
+  // 累積期：複利 + 月投入
+  const monthlyR=r/12;
+  const months=yrs*12;
+  const fvLump=save*Math.pow(1+r,yrs);
+  const fvMonthly=m*((Math.pow(1+monthlyR,months)-1)/monthlyR);
+  const totalAtRet=fvLump+fvMonthly;
+  // 退休後支出（不再投資，純消耗）
+  const yearlyExp=exp*12;
+  const yearsLasts=totalAtRet>0?Math.floor(totalAtRet/yearlyExp):0;
+  out.innerHTML=`<div style="color:#34d399;font-size:18px;font-weight:700">退休時 $${fmt(totalAtRet,0)}</div>
+    <div style="color:#94a3b8">每年支出 $${fmt(yearlyExp,0)} · 可用 ${yearsLasts} 年（活到 ${ret+yearsLasts} 歲）</div>`;
+}
+
+function calcTool5(){
+  const bp=parseFloat(document.getElementById('t5_bp').value);
+  const sp=parseFloat(document.getElementById('t5_sp').value);
+  const q=parseFloat(document.getElementById('t5_q').value);
+  const fee=parseFloat(document.getElementById('t5_fee').value)/100;
+  const tax=parseFloat(document.getElementById('t5_tax').value)/100;
+  const out=document.getElementById('t5_out');
+  if([bp,sp,q,fee,tax].some(isNaN)){out.innerHTML='請輸入完整數值';return;}
+  const cost=bp*1000*q;
+  const proceeds=sp*1000*q;
+  const buyFee=Math.max(20,cost*fee);
+  const sellFee=Math.max(20,proceeds*fee);
+  const sellTax=proceeds*tax;
+  const netProfit=proceeds-cost-buyFee-sellFee-sellTax;
+  const grossProfit=proceeds-cost;
+  const pct=cost>0?(netProfit/cost*100):0;
+  const up=netProfit>=0;
+  out.innerHTML=`<div style="color:${up?'#34d399':'#f87171'};font-size:18px;font-weight:700">${up?'+':''}$${fmt(netProfit,0)} (${pct.toFixed(2)}%)</div>
+    <div style="color:#94a3b8">毛利 $${fmt(grossProfit,0)} · 手續費 $${fmt(buyFee+sellFee,0)} · 證交稅 $${fmt(sellTax,0)}</div>`;
+}
+
+function calcTool6(){
+  const out=document.getElementById('t6_out');
+  if(!cachedFXRates){out.innerHTML='匯率載入中...';return;}
+  const amt=parseFloat(document.getElementById('t6_amt').value);
+  const from=document.getElementById('t6_from').value;
+  const to=document.getElementById('t6_to').value;
+  if(isNaN(amt)){out.innerHTML='請輸入金額';return;}
+  // 換算：所有匯率以 USD 為基準
+  const fr=from==='USD'?1:cachedFXRates[from];
+  const tr=to==='USD'?1:cachedFXRates[to];
+  if(!fr||!tr){out.innerHTML='幣別不支援';return;}
+  const usdAmt=amt/fr;
+  const result=usdAmt*tr;
+  const rate=tr/fr;
+  out.innerHTML=`<div style="color:#34d399;font-size:20px;font-weight:700">${fmt(result,2)} ${to}</div>
+    <div style="color:#94a3b8">匯率 1 ${from} = ${rate.toFixed(4)} ${to}</div>`;
+}
 
 // =============== 期貨分頁 ===============
 const STOCK_FUTURES=[
