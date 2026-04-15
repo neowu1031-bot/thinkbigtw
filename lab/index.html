@@ -260,7 +260,7 @@ const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣�
 let taiexChart=null,stockChart=null,etfChart=null,currentStock='',currentETF='';
 
 function checkPw(){
-  if(document.getElementById('pwInput').value===PW){localStorage.setItem('lab_auth','true');showDashboard();}
+  if(document.getElementById('pwInput').value===PW){showDashboard();}
   else document.getElementById('errMsg').textContent='密碼錯誤';
 }
 function showDashboard(){
@@ -269,7 +269,7 @@ function showDashboard(){
   loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
   setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
 }
-document.addEventListener('DOMContentLoaded',()=>showDashboard());
+// 不自動進入，等待密碼
 
 function switchTab(name,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
