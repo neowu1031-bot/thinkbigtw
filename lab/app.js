@@ -540,6 +540,7 @@ async function searchETF(){
       document.getElementById('etfChartContainer').style.display='block';
       document.getElementById('etfChartTitle').textContent=(NAMES[code]||code)+' K線圖';
       loadETFChart(code,30,document.querySelector('#etfChartContainer .range-btn'));
+      loadETFDividend(code);
     }else{
       document.getElementById('etfName').textContent=code;
       document.getElementById('etfMeta').textContent='尚無數據';
@@ -653,6 +654,28 @@ async function searchUS(){
       <div style="font-size:12px;color:#64748b;margin-top:8px">今日高: $${high.toFixed(2)} | 低: $${low.toFixed(2)}</div>
     </div>`;
   }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+sym+'，請確認代號</div>';}
+}
+
+async function loadETFDividend(code){
+  const el=document.getElementById('etfDividend');
+  if(!el)return;
+  try{
+    const r=await fetch(BASE+'/stock_fundamentals?symbol=eq.'+code+'&select=dividend_yield,eps,pe_ratio',{headers:SB_H});
+    const data=await r.json();
+    if(!data||!data.length){el.style.display='none';return;}
+    const d=data[0];
+    el.style.display='block';
+    el.innerHTML=`<div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0">
+      <div style="background:#0f172a;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px">
+        <div style="font-size:11px;color:#64748b;margin-bottom:4px">年殖利率</div>
+        <div style="font-size:18px;font-weight:700;color:#34d399">${d.dividend_yield?d.dividend_yield.toFixed(2)+'%':'—'}</div>
+      </div>
+      <div style="background:#0f172a;border-radius:8px;padding:10px 16px;text-align:center;min-width:80px">
+        <div style="font-size:11px;color:#64748b;margin-bottom:4px">本益比</div>
+        <div style="font-size:18px;font-weight:700;color:#e2e8f0">${d.pe_ratio?d.pe_ratio.toFixed(1)+'x':'—'}</div>
+      </div>
+    </div>`;
+  }catch(e){if(el)el.style.display='none';}
 }
 async function loadETFHot(){
   const grid=document.getElementById('etfHotGrid');
