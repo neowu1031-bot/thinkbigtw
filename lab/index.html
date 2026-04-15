@@ -221,7 +221,10 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
   <div class="tab-content" id="tab-crypto">
-    <div class="coming">加密貨幣功能開發中，敬請期待<br><small style="font-size:12px;margin-top:8px;display:block">預計支援：BTC、ETH、SOL 走勢與AI分析</small></div>
+    <div class="section">
+      <div class="section-title">加密貨幣即時行情</div>
+      <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;padding:16px 0"></div>
+    </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
@@ -241,7 +244,7 @@ function checkPw(){
 function showDashboard(){
   document.getElementById('lockScreen').style.display='none';
   document.getElementById('dashboard').style.display='block';
-  loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);
+  loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
   setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
 }
 if(localStorage.getItem('lab_auth')==='true')showDashboard();
@@ -253,6 +256,37 @@ function switchTab(name,btn){
   document.getElementById('tab-'+name).classList.add('active');
 }
 
+
+async function loadCrypto(){
+  const coins=[
+    {sym:'BTCUSDT',name:'Bitcoin'},
+    {sym:'ETHUSDT',name:'Ethereum'},
+    {sym:'BNBUSDT',name:'BNB'},
+    {sym:'SOLUSDT',name:'Solana'},
+    {sym:'XRPUSDT',name:'XRP'},
+    {sym:'ADAUSDT',name:'Cardano'},
+    {sym:'DOGEUSDT',name:'Dogecoin'},
+    {sym:'TRXUSDT',name:'TRON'}
+  ];
+  const grid=document.getElementById('cryptoGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  for(const c of coins){
+    try{
+      const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol='+c.sym);
+      const d=await r.json();
+      const pct=parseFloat(d.priceChangePercent);
+      const price=parseFloat(d.lastPrice);
+      const up=pct>=0;
+      grid.innerHTML+=`<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:20px">
+        <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${c.name}</div>
+        <div style="font-size:22px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+        <div style="font-size:14px;color:${up?'#34d399':'#f87171'};margin-top:4px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+        <div style="font-size:12px;color:#64748b;margin-top:8px">24h量: ${parseFloat(d.volume).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      </div>`;
+    }catch(e){}
+  }
+}
 async function loadMarketData(){
   try{
     const r=await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=1',{headers:SB_H});
