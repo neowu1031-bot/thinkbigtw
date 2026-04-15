@@ -334,12 +334,17 @@ async function loadRanking(type){
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r.json())[0].date;
-    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=10&select=symbol,close_price,change_percent,volume,stocks(name)';
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=10&select=symbol,close_price,change_percent,volume';
     if(type==='up')url+='&order=change_percent.desc';
     else if(type==='down')url+='&order=change_percent.asc';
     else url+='&order=volume.desc';
     const r2=await fetch(url,{headers:SB_H});
     const data=await r2.json();
+    // 批次查名稱
+    const syms=data.map(d=>d.symbol).join(',');
+    const rn=await fetch(BASE+'/stocks?symbol=in.('+syms+')&select=symbol,name',{headers:SB_H});
+    const nameData=await rn.json();
+    const nameMap={};nameData.forEach(s=>nameMap[s.symbol]=s.name);
     list.innerHTML='';
     data.forEach((d,i)=>{
       const ch=parseFloat(d.change_percent);
@@ -347,11 +352,11 @@ async function loadRanking(type){
       const closePx=parseFloat(d.close_price);
       const prevPx=closePx-ch;
       const pct=prevPx>0?Math.abs(ch/prevPx*100).toFixed(2):'—';
-      list.innerHTML+=`<div onclick="document.getElementById('stockInput').value='${d.symbol}';searchStock();" title="${(d.stocks&&d.stocks.name)||NAMES[d.symbol]||d.symbol}" style="display:flex;align-items:center;justify-content:space-between;background:#1e293b;border-radius:8px;padding:10px 14px;cursor:pointer;border:1px solid #0f172a">
+      list.innerHTML+=`<div onclick="document.getElementById('stockInput').value='${d.symbol}';searchStock();" title="${nameMap[d.symbol]||NAMES[d.symbol]||d.symbol}" style="display:flex;align-items:center;justify-content:space-between;background:#1e293b;border-radius:8px;padding:10px 14px;cursor:pointer;border:1px solid #0f172a">
         <div style="display:flex;align-items:center;gap:10px">
           <span style="color:#64748b;font-size:13px;width:20px">${i+1}</span>
           <div>
-            <div style="font-size:14px;color:#e2e8f0;font-weight:600">${(d.stocks&&d.stocks.name)||NAMES[d.symbol]||d.symbol} <span style="color:#64748b;font-size:12px">${d.symbol}</span></div>
+            <div style="font-size:14px;color:#e2e8f0;font-weight:600">${nameMap[d.symbol]||NAMES[d.symbol]||d.symbol} <span style="color:#64748b;font-size:12px">${d.symbol}</span></div>
             <div style="font-size:12px;color:#64748b">${type==='volume'?parseInt(d.volume).toLocaleString()+'張':'$'+parseFloat(d.close_price).toLocaleString()}</div>
           </div>
         </div>
