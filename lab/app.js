@@ -311,6 +311,7 @@ async function searchCrypto(){
 }
 async function loadCrypto(){
   const coins=[
+    // 主流
     {sym:'BTCUSDT',name:'Bitcoin'},
     {sym:'ETHUSDT',name:'Ethereum'},
     {sym:'BNBUSDT',name:'BNB'},
@@ -319,6 +320,7 @@ async function loadCrypto(){
     {sym:'ADAUSDT',name:'Cardano'},
     {sym:'DOGEUSDT',name:'Dogecoin'},
     {sym:'TRXUSDT',name:'TRON'},
+    // Layer2/DeFi
     {sym:'AVAXUSDT',name:'Avalanche'},
     {sym:'DOTUSDT',name:'Polkadot'},
     {sym:'MATICUSDT',name:'Polygon'},
@@ -326,7 +328,16 @@ async function loadCrypto(){
     {sym:'UNIUSDT',name:'Uniswap'},
     {sym:'ATOMUSDT',name:'Cosmos'},
     {sym:'LTCUSDT',name:'Litecoin'},
-    {sym:'SHIBUSDT',name:'Shiba Inu'}
+    {sym:'SHIBUSDT',name:'Shiba Inu'},
+    // 新興
+    {sym:'SUIUSDT',name:'Sui'},
+    {sym:'APTUSDT',name:'Aptos'},
+    {sym:'ARBUSDT',name:'Arbitrum'},
+    {sym:'OPUSDT',name:'Optimism'},
+    {sym:'INJUSDT',name:'Injective'},
+    {sym:'TIAUSDT',name:'Celestia'},
+    {sym:'WIFUSDT',name:'dogwifhat'},
+    {sym:'PEPEUSDT',name:'Pepe'}
   ];
   const grid=document.getElementById('cryptoGrid');
   if(!grid)return;
@@ -559,45 +570,105 @@ async function searchETF(){
 
 
 const ETF_HOT = [
+  // 指數型
   {sym:'0050',name:'元大台灣50'},
-  {sym:'0056',name:'元大高股息'},
-  {sym:'00878',name:'國泰永續高股息'},
-  {sym:'00919',name:'群益台灣精選高息'},
-  {sym:'00929',name:'復華台灣科技優息'},
-  {sym:'00713',name:'元大台灣高息低波'},
   {sym:'006208',name:'富邦台灣采吉50'},
-  {sym:'00881',name:'國泰台灣5G+'},
-  {sym:'00940',name:'元大台灣價值高息'},
-  {sym:'00923',name:'群益台灣精選高息30'},
-  {sym:'00927',name:'群益半導體收益ETF'},
-  {sym:'00934',name:'中信成長高股息'},
-  {sym:'00905',name:'富邦台灣優質高息'},
-  {sym:'00896',name:'中信綠能及電動車'},
-  {sym:'00891',name:'中信關鍵半導體'},
-  {sym:'00892',name:'富邦台灣半導體'},
-  {sym:'00893',name:'國泰智能電動車'},
+  {sym:'0051',name:'元大中型100'},
+  {sym:'0052',name:'富邦科技'},
+  {sym:'0053',name:'元大電子'},
+  {sym:'0054',name:'元大台商50'},
+  {sym:'0055',name:'元大MSCI金融'},
+  // 高股息型
+  {sym:'0056',name:'元大高股息'},
+  {sym:'00713',name:'元大台灣高息低波'},
+  {sym:'00878',name:'國泰永續高股息'},
   {sym:'00900',name:'富邦特選高股息30'},
   {sym:'00915',name:'凱基優選高股息30'},
-  {sym:'00918',name:'大華優利高填息30'}
+  {sym:'00918',name:'大華優利高填息30'},
+  {sym:'00919',name:'群益台灣精選高息'},
+  {sym:'00923',name:'群益台灣精選高息30'},
+  {sym:'00929',name:'復華台灣科技優息'},
+  {sym:'00934',name:'中信成長高股息'},
+  {sym:'00940',name:'元大台灣價值高息'},
+  {sym:'00905',name:'富邦台灣優質高息'},
+  {sym:'00907',name:'永豐優息存股'},
+  // 科技主題
+  {sym:'00881',name:'國泰台灣5G+'},
+  {sym:'00891',name:'中信關鍵半導體'},
+  {sym:'00892',name:'富邦台灣半導體'},
+  {sym:'00896',name:'中信綠能及電動車'},
+  {sym:'00893',name:'國泰智能電動車'},
+  {sym:'00927',name:'群益半導體收益ETF'},
+  {sym:'00922',name:'國泰台灣尖牙+'},
+  {sym:'00935',name:'野村臺灣新科技50'},
+  // ESG/永續
+  {sym:'00850',name:'元大臺灣ESG永續'},
+  {sym:'00888',name:'永豐台灣ESG'},
+  // 美股/海外
+  {sym:'00646',name:'元大S&P500'},
+  {sym:'00827',name:'中信美國500大'},
+  {sym:'00858',name:'國泰美國道瓊'},
+  {sym:'00830',name:'國泰費城半導體'},
+  {sym:'00757',name:'統一FANG+'},
+  {sym:'00662',name:'富邦NASDAQ'},
+  {sym:'00631L',name:'元大S&P500正2'},
+  // 債券型
+  {sym:'00679B',name:'元大美債20年'},
+  {sym:'00696B',name:'富邦美債20年'},
+  {sym:'00720B',name:'元大投資級公司債'},
+  {sym:'00723B',name:'群益15年IG'},
+  {sym:'00795B',name:'富邦投資級公司債'},
+  {sym:'00751B',name:'元大AAA至A公司債'},
+  // 原物料/黃金
+  {sym:'00635U',name:'元大S&P黃金'},
+  {sym:'00642U',name:'元大S&P石油'},
+  // 槓桿反向
+  {sym:'00631L',name:'元大S&P500正2'},
+  {sym:'00632R',name:'元大S&P500反1'},
+  {sym:'00663L',name:'國泰臺灣加權正2'},
+  {sym:'00664R',name:'國泰臺灣加權反1'}
 ];
 
 const US_HOT=[
+  // 科技巨頭
   {sym:'AAPL',name:'Apple'},
   {sym:'NVDA',name:'NVIDIA'},
   {sym:'MSFT',name:'Microsoft'},
-  {sym:'TSLA',name:'Tesla'},
-  {sym:'TSM',name:'台積電 ADR'},
   {sym:'GOOGL',name:'Alphabet'},
   {sym:'AMZN',name:'Amazon'},
   {sym:'META',name:'Meta'},
+  {sym:'TSLA',name:'Tesla'},
+  {sym:'TSM',name:'台積電 ADR'},
+  // 半導體
   {sym:'AMD',name:'AMD'},
   {sym:'INTC',name:'Intel'},
+  {sym:'QCOM',name:'Qualcomm'},
+  {sym:'AVGO',name:'Broadcom'},
+  {sym:'MU',name:'Micron'},
+  {sym:'AMAT',name:'應用材料'},
+  // AI/雲端
+  {sym:'PLTR',name:'Palantir'},
+  {sym:'CRM',name:'Salesforce'},
+  {sym:'ORCL',name:'Oracle'},
+  {sym:'NOW',name:'ServiceNow'},
+  // 消費/娛樂
   {sym:'NFLX',name:'Netflix'},
   {sym:'DIS',name:'Disney'},
+  {sym:'SHOP',name:'Shopify'},
+  {sym:'UBER',name:'Uber'},
+  // 金融
+  {sym:'JPM',name:'摩根大通'},
+  {sym:'BAC',name:'美國銀行'},
+  {sym:'GS',name:'高盛'},
+  // 中概股
   {sym:'BABA',name:'阿里巴巴'},
   {sym:'BIDU',name:'百度'},
-  {sym:'SHOP',name:'Shopify'},
-  {sym:'PLTR',name:'Palantir'}
+  {sym:'JD',name:'京東'},
+  {sym:'PDD',name:'拼多多'},
+  // ETF
+  {sym:'SPY',name:'S&P500 ETF'},
+  {sym:'QQQ',name:'NASDAQ ETF'},
+  {sym:'SOXX',name:'費城半導體ETF'}
 ];
 async function fetchUSStock(sym){
   const url=`https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=1d&range=2d`;
@@ -624,15 +695,23 @@ function usCard(sym,name,price,pct,extra=''){
 }
 
 const FX_ITEMS=[
+  // 台幣相關
   {sym:'USDTWD=X',name:'美元/台幣',unit:'TWD'},
-  {sym:'GC=F',name:'黃金',unit:'USD/oz'},
+  {sym:'JPYTWD=X',name:'日圓/台幣',unit:'TWD'},
+  {sym:'EURTWD=X',name:'歐元/台幣',unit:'TWD'},
+  // 主要貨幣
   {sym:'EURUSD=X',name:'歐元/美元',unit:'USD'},
-  {sym:'JPY=X',name:'日圓/美元',unit:'JPY'},
-  {sym:'CNY=X',name:'人民幣/美元',unit:'CNY'},
-  {sym:'SI=F',name:'白銀',unit:'USD/oz'},
+  {sym:'JPY=X',name:'美元/日圓',unit:'JPY'},
   {sym:'GBPUSD=X',name:'英鎊/美元',unit:'USD'},
   {sym:'AUDUSD=X',name:'澳幣/美元',unit:'USD'},
+  {sym:'CNY=X',name:'美元/人民幣',unit:'CNY'},
+  {sym:'KRWUSD=X',name:'韓元/美元',unit:'KRW'},
+  // 貴金屬
+  {sym:'GC=F',name:'黃金',unit:'USD/oz'},
+  {sym:'SI=F',name:'白銀',unit:'USD/oz'},
+  // 大宗商品
   {sym:'CL=F',name:'原油(WTI)',unit:'USD/桶'},
+  {sym:'NG=F',name:'天然氣',unit:'USD'},
   {sym:'HG=F',name:'銅',unit:'USD/磅'}
 ];
 async function loadFX(){
