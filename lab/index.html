@@ -80,30 +80,71 @@ textarea{height:80px;resize:vertical}
 
 /* ===== RWD 手機版 ===== */
 @media(max-width:768px){
+  .grid{grid-template-columns:1fr 1fr!important;gap:8px!important;}
   .cards{grid-template-columns:1fr 1fr!important;}
   .stock-grid{grid-template-columns:1fr 1fr!important;}
   #taiexChart{height:220px!important;}
-  .tab-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
-  .tab-btn{padding:8px 14px!important;font-size:13px!important;}
+  .tab-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;margin:12px 12px 0!important;}
+  .tab-btn{padding:8px 14px!important;font-size:13px!important;flex-shrink:0;}
   .section-title{font-size:14px!important;}
-  .card .value{font-size:22px!important;}
+  .card{padding:12px!important;}
+  .card .value{font-size:20px!important;}
   #watchlistGrid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))!important;}
   #cryptoGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
-  #etfHotGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
-  #usHotGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
-  #fxGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
+  #etfHotGrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;}
+  #usHotGrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;}
+  #fxGrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;}
+  #globalIndicesGrid{grid-template-columns:1fr 1fr!important;}
   .stock-search{flex-direction:column!important;}
   .stock-search input{width:100%!important;}
   .stock-search button{width:100%!important;}
   #stockChartWrap,#etfChartWrap{height:220px!important;}
   h2{font-size:18px!important;}
   .dashboard{padding:0 8px 60px!important;}
-  .section{padding:12px!important;}
+  .header{padding:16px 12px 0!important;}
+  .tab-content{padding:14px 10px!important;}
+  .section{padding:4px 0!important;margin-bottom:18px!important;}
 }
 @media(max-width:480px){
+  .grid{grid-template-columns:1fr!important;}
   .cards{grid-template-columns:1fr!important;}
-  .card .value{font-size:20px!important;}
+  .card .value{font-size:18px!important;}
+  .card h3{font-size:10px!important;}
   .tab-btn{padding:6px 10px!important;font-size:12px!important;}
+  .tab-nav{margin:8px 8px 0!important;}
+  .tab-content{padding:10px 4px!important;}
+  .dashboard{padding:0 4px 40px!important;}
+  .header h1{font-size:17px!important;}
+  .badge{font-size:10px!important;padding:3px 8px!important;}
+  .stock-grid{grid-template-columns:1fr 1fr!important;gap:6px!important;}
+  .stock-item{padding:8px!important;}
+  .stock-item .val{font-size:14px!important;}
+  #watchlistGrid{grid-template-columns:1fr 1fr!important;}
+  #cryptoGrid{grid-template-columns:1fr 1fr!important;}
+  #etfHotGrid,#usHotGrid,#fxGrid{grid-template-columns:1fr 1fr!important;}
+  #globalIndicesGrid{grid-template-columns:1fr 1fr!important;}
+  #taiexChart{height:180px!important;}
+  #stockChartWrap,#etfChartWrap,#usChartWrap{height:200px!important;}
+  #indicatorChart{height:110px!important;}
+  input[type=text],input[type=number],select{font-size:13px!important;padding:8px 10px!important;}
+  .chart-range .range-btn{padding:3px 8px!important;font-size:11px!important;}
+  #dividendCalendar{padding:10px 6px!important;font-size:12px!important;}
+  #dividendCalendar > div{grid-template-columns:60px 1fr 80px 70px!important;gap:4px!important;font-size:11px!important;}
+  #stockRevenue > div:last-child{padding:12px 6px 4px!important;}
+  .ai-card{padding:14px!important;}
+  .ai-card .ai-text{font-size:13px!important;}
+}
+@media(max-width:375px){
+  .grid,.cards{grid-template-columns:1fr!important;gap:6px!important;}
+  .stock-grid{grid-template-columns:1fr 1fr!important;}
+  .tab-btn{padding:5px 8px!important;font-size:11px!important;}
+  .card .value{font-size:17px!important;}
+  .header h1{font-size:16px!important;}
+  #watchlistGrid,#cryptoGrid,#etfHotGrid,#usHotGrid,#fxGrid,#globalIndicesGrid{grid-template-columns:1fr!important;}
+  .dashboard{padding:0 2px 40px!important;}
+  .logo-text{font-size:18px!important;padding:6px 14px!important;}
+  input[type=password]{width:260px!important;}
+  .btn{width:260px!important;padding:12px 20px!important;}
 }
 </style>
 </head>
@@ -386,7 +427,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=12"></script>
+<script src="app2.js?v=13"></script>
 </body>
 </html>
   
