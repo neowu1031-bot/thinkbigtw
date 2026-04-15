@@ -105,7 +105,7 @@ textarea{height:80px;resize:vertical}
       <div class="section-title">大盤總覽</div>
       <div class="grid">
         <div class="card"><h3>加權指數</h3><div class="value" id="taiex">載入中...</div><div class="sub" id="taiexChange">—</div></div>
-        <div class="card"><h3>今日成交量</h3><div class="value" id="volume">載入中...</div><div class="sub">億元</div></div>
+        <div class="card"><h3>今日高點</h3><div class="value" id="taiexHigh">—</div></div><div class="card"><h3>今日低點</h3><div class="value" id="taiexLow">—</div></div>
         <div class="card"><h3>外資今日</h3><div class="value" id="foreign">載入中...</div><div class="sub">張買賣超</div></div>
       </div>
     </div>
@@ -265,7 +265,7 @@ async function loadMarketData(){
       el.textContent=(ch>=0?'▲ +':'▼ ')+ch.toFixed(2)+' 點';
       el.className='sub '+(ch>=0?'up':'down');
       const vol=parseFloat(d.volume);
-      document.getElementById('volume').textContent=vol>0?(vol/100000000).toFixed(0):'—';
+      document.getElementById('taiexHigh').textContent=parseFloat(d.high_price).toLocaleString();document.getElementById('taiexLow').textContent=parseFloat(d.low_price).toLocaleString();
     }else document.getElementById('taiex').textContent='盤後更新';
   }catch(e){document.getElementById('taiex').textContent='盤後更新';}
   try{
