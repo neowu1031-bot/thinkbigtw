@@ -77,6 +77,34 @@ textarea{height:80px;resize:vertical}
 .coming{background:#1e293b;border-radius:12px;padding:50px 20px;text-align:center;border:1px dashed #334155;color:#475569;margin-bottom:14px;font-size:14px}
 .logo-text{font-size:22px;font-weight:800;color:#60a5fa;letter-spacing:2px;margin-bottom:16px;border:2px solid #2563eb;padding:8px 18px;border-radius:8px;display:inline-block}
 .footer{text-align:center;padding:30px 0;color:#334155;font-size:12px}
+
+/* ===== RWD 手機版 ===== */
+@media(max-width:768px){
+  .cards{grid-template-columns:1fr 1fr!important;}
+  .stock-grid{grid-template-columns:1fr 1fr!important;}
+  #taiexChart{height:220px!important;}
+  .tab-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+  .tab-btn{padding:8px 14px!important;font-size:13px!important;}
+  .section-title{font-size:14px!important;}
+  .card .value{font-size:22px!important;}
+  #watchlistGrid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))!important;}
+  #cryptoGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
+  #etfHotGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
+  #usHotGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
+  #fxGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
+  .stock-search{flex-direction:column!important;}
+  .stock-search input{width:100%!important;}
+  .stock-search button{width:100%!important;}
+  #stockChartWrap,#etfChartWrap{height:220px!important;}
+  h2{font-size:18px!important;}
+  .dashboard{padding:0 8px 60px!important;}
+  .section{padding:12px!important;}
+}
+@media(max-width:480px){
+  .cards{grid-template-columns:1fr!important;}
+  .card .value{font-size:20px!important;}
+  .tab-btn{padding:6px 10px!important;font-size:12px!important;}
+}
 </style>
 </head>
 <body>
