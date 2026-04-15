@@ -524,13 +524,6 @@ async function fetchUSStock(sym){
   const high=meta.regularMarketDayHigh||price;
   const low=meta.regularMarketDayLow||price;
   return {price,pct,high,low};
-  const d=await r.json();
-  const q=d.quoteResponse.result[0];
-  const price=q.regularMarketPrice;
-  const pct=q.regularMarketChangePercent;
-  const high=q.regularMarketDayHigh||price;
-  const low=q.regularMarketDayLow||price;
-  return {price,pct,high,low};
 }
 function usCard(sym,name,price,pct,extra=''){
   const up=pct>=0;
