@@ -633,14 +633,12 @@ function addHolding(){
   const name=document.getElementById('holdName').value.trim();
   const price=parseFloat(document.getElementById('holdPrice').value);
   const qty=parseFloat(document.getElementById('holdQty').value);
+  const buyDate=document.getElementById('holdDate').value||new Date().toISOString().slice(0,10);
   if(!sym||isNaN(price)||isNaN(qty)){alert('請填入代號、買入價、數量');return;}
   const list=getPortfolio();
-  list.push({id:Date.now(),type,sym,name:name||sym,price,qty,addedAt:new Date().toISOString().slice(0,10)});
+  list.push({id:Date.now(),type,sym,name:name||sym,price,qty,buyDate,addedAt:new Date().toISOString().slice(0,10)});
   setPortfolio(list);
-  document.getElementById('holdSym').value='';
-  document.getElementById('holdName').value='';
-  document.getElementById('holdPrice').value='';
-  document.getElementById('holdQty').value='';
+  ['holdSym','holdName','holdPrice','holdQty','holdDate'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
   renderPortfolio();
 }
 
@@ -743,8 +741,8 @@ async function renderPortfolio(){
   sumEl.innerHTML=summary;
 
   // 持倉明細列
-  rowsEl.innerHTML=`<div style="display:grid;grid-template-columns:60px 80px 1fr 90px 90px 110px 30px;gap:6px;font-size:11px;color:#64748b;padding:4px 8px;border-bottom:1px solid #334155;margin-bottom:6px">
-    <div>類型</div><div>代號</div><div>名稱</div><div style="text-align:right">買入</div><div style="text-align:right">現價</div><div style="text-align:right">損益</div><div></div>
+  rowsEl.innerHTML=`<div style="display:grid;grid-template-columns:60px 80px 1fr 90px 90px 110px 90px 30px;gap:6px;font-size:11px;color:#64748b;padding:4px 8px;border-bottom:1px solid #334155;margin-bottom:6px">
+    <div>類型</div><div>代號</div><div>名稱</div><div style="text-align:right">買入</div><div style="text-align:right">現價</div><div style="text-align:right">損益</div><div style="text-align:right">買入日</div><div></div>
   </div>`;
   enriched.forEach(h=>{
     const cur=h.cur??h.price;
@@ -752,13 +750,21 @@ async function renderPortfolio(){
     const plPct=h.price>0?(cur-h.price)/h.price*100:0;
     const up=pl>=0;
     const ccy=TYPE_CCY[h.type];
-    rowsEl.innerHTML+=`<div style="display:grid;grid-template-columns:60px 80px 1fr 90px 90px 110px 30px;gap:6px;font-size:13px;padding:8px;border-bottom:1px solid #0f172a;align-items:center">
+    const bd=h.buyDate||h.addedAt||'—';
+    // 持有天數
+    let holdDays='';
+    if(h.buyDate){
+      const days=Math.floor((Date.now()-new Date(h.buyDate).getTime())/86400000);
+      if(days>=0)holdDays=`${days}天`;
+    }
+    rowsEl.innerHTML+=`<div style="display:grid;grid-template-columns:60px 80px 1fr 90px 90px 110px 90px 30px;gap:6px;font-size:13px;padding:8px;border-bottom:1px solid #0f172a;align-items:center">
       <div><span style="font-size:10px;background:${TYPE_COLOR[h.type]};color:#0a0f1e;padding:2px 6px;border-radius:10px;font-weight:700">${TYPE_LABEL[h.type]}</span></div>
       <div style="color:#60a5fa;font-weight:600">${h.sym}</div>
       <div style="color:#e2e8f0">${h.name} <span style="color:#64748b;font-size:11px">×${h.qty}</span></div>
       <div style="color:#94a3b8;text-align:right">${ccy}${fmt(h.price,2)}</div>
       <div style="color:#e2e8f0;text-align:right">${h.cur!=null?ccy+fmt(cur,2):'<span style="color:#64748b;font-size:11px">無資料</span>'}</div>
       <div style="color:${up?'#34d399':'#f87171'};text-align:right;font-weight:700">${up?'+':''}${ccy}${fmt(pl,0)}<div style="font-size:11px">${up?'+':''}${plPct.toFixed(2)}%</div></div>
+      <div style="text-align:right;color:#94a3b8;font-size:11px">${bd}<div style="color:#64748b">${holdDays}</div></div>
       <div style="text-align:right"><button onclick="removeHolding(${h.id})" style="background:transparent;border:none;color:#f87171;cursor:pointer;font-size:14px">✕</button></div>
     </div>`;
   });
