@@ -419,6 +419,44 @@ async function loadMarketData(){
     }
   }catch(e){}
   loadGlobalIndices();
+  loadMarketBreadth();
+}
+
+async function loadMarketBreadth(){
+  try{
+    // 取最新交易日
+    const r0=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const j0=await r0.json();
+    if(!j0||!j0.length)return;
+    const latest=j0[0].date;
+    // 抓當日所有個股（排除指數），使用 PostgREST Prefer count
+    const r=await fetch(BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&select=change_percent,close_price&limit=3000',{headers:SB_H});
+    const rows=await r.json();
+    if(!rows||!rows.length)return;
+    let up=0,down=0,flat=0;
+    rows.forEach(d=>{
+      const ch=parseFloat(d.change_percent);
+      if(isNaN(ch)){flat++;return;}
+      if(ch>0)up++;
+      else if(ch<0)down++;
+      else flat++;
+    });
+    const total=up+down+flat;
+    const pct=n=>total>0?((n/total)*100).toFixed(1)+'%':'—';
+    const setText=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+    setText('breadthUp',up.toLocaleString());
+    setText('breadthDown',down.toLocaleString());
+    setText('breadthFlat',flat.toLocaleString());
+    setText('breadthUpPct',pct(up));
+    setText('breadthDownPct',pct(down));
+    setText('breadthFlatPct',pct(flat));
+    const ratio=down>0?(up/down).toFixed(2):(up>0?'∞':'—');
+    const ratioEl=document.getElementById('breadthRatio');
+    if(ratioEl){
+      ratioEl.textContent=ratio;
+      ratioEl.className='value '+(up>down?'up':(down>up?'down':''));
+    }
+  }catch(e){console.log('breadth err',e);}
 }
 
 async function loadGlobalIndices(){
