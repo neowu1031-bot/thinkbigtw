@@ -424,13 +424,11 @@ function initTools(){
       inputRow('投資年數','t3_n','20','年')+
       '<div id="t3_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算</div>'
     )+
-    toolCard('🏖 退休金試算',
-      inputRow('目前年齡','t4_age','35','歲')+
-      inputRow('退休年齡','t4_ret','65','歲')+
-      inputRow('目前積蓄','t4_save','500000','元')+
+    toolCard('🏖 退休金試算（幾年達標）',
+      inputRow('目標退休金','t4_goal','20000000','元')+
+      inputRow('現有積蓄','t4_save','500000','元')+
       inputRow('每月投入','t4_m','15000','元')+
-      inputRow('年報酬率','t4_r','6','%')+
-      inputRow('退休後月支出','t4_exp','40000','元')+
+      inputRow('預期年報酬率','t4_r','6','%')+
       '<div id="t4_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算</div>'
     )+
     toolCard('📊 股票損益計算',
@@ -457,6 +455,11 @@ function initTools(){
         </select>
       </div>
       <div id="t6_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算（匯率資料即時抓取中...）</div>`
+    )+
+    toolCard('📈 0050 定期定額回測',
+      inputRow('每月投入','t7_m','10000','元')+
+      inputRow('開始年份','t7_y','2010','年')+
+      '<div id="t7_out" style="margin-top:8px;padding:10px;background:#0f172a;border-radius:8px;font-size:12px;color:#94a3b8">輸入後即時計算（從 Supabase 抓 0050 歷史價）</div>'
     );
 
   // 綁定 input listeners
@@ -464,10 +467,11 @@ function initTools(){
   bind(['t1_p','t1_r','t1_n'],calcTool1);
   bind(['t2_m','t2_r','t2_n'],calcTool2);
   bind(['t3_p','t3_y','t3_px','t3_n'],calcTool3);
-  bind(['t4_age','t4_ret','t4_save','t4_m','t4_r','t4_exp'],calcTool4);
+  bind(['t4_goal','t4_save','t4_m','t4_r'],calcTool4);
   bind(['t5_bp','t5_sp','t5_q','t5_fee','t5_tax'],calcTool5);
   bind(['t6_amt'],calcTool6);
   ['t6_from','t6_to'].forEach(id=>{const e=document.getElementById(id);if(e)e.addEventListener('change',calcTool6);});
+  bind(['t7_m','t7_y'],calcTool7);
   // 預載匯率
   if(!cachedFXRates){
     fetch('https://open.er-api.com/v6/latest/USD').then(r=>r.json()).then(d=>{cachedFXRates=d.rates;calcTool6();}).catch(()=>{});
@@ -521,26 +525,63 @@ function calcTool3(){
 }
 
 function calcTool4(){
-  const age=parseFloat(document.getElementById('t4_age').value);
-  const ret=parseFloat(document.getElementById('t4_ret').value);
+  const goal=parseFloat(document.getElementById('t4_goal').value);
   const save=parseFloat(document.getElementById('t4_save').value);
   const m=parseFloat(document.getElementById('t4_m').value);
   const r=parseFloat(document.getElementById('t4_r').value)/100;
-  const exp=parseFloat(document.getElementById('t4_exp').value);
   const out=document.getElementById('t4_out');
-  if([age,ret,save,m,r,exp].some(isNaN)||ret<=age){out.innerHTML='請輸入完整數值（退休年齡須大於目前年齡）';return;}
-  const yrs=ret-age;
-  // 累積期：複利 + 月投入
+  if([goal,save,m,r].some(isNaN)||goal<=0){out.innerHTML='請輸入完整數值';return;}
+  // 數值法逐月模擬至達標
   const monthlyR=r/12;
-  const months=yrs*12;
-  const fvLump=save*Math.pow(1+r,yrs);
-  const fvMonthly=m*((Math.pow(1+monthlyR,months)-1)/monthlyR);
-  const totalAtRet=fvLump+fvMonthly;
-  // 退休後支出（不再投資，純消耗）
-  const yearlyExp=exp*12;
-  const yearsLasts=totalAtRet>0?Math.floor(totalAtRet/yearlyExp):0;
-  out.innerHTML=`<div style="color:#34d399;font-size:18px;font-weight:700">退休時 $${fmt(totalAtRet,0)}</div>
-    <div style="color:#94a3b8">每年支出 $${fmt(yearlyExp,0)} · 可用 ${yearsLasts} 年（活到 ${ret+yearsLasts} 歲）</div>`;
+  let bal=save,months=0;
+  while(bal<goal&&months<100*12){
+    bal=bal*(1+monthlyR)+m;
+    months++;
+  }
+  if(months>=100*12){out.innerHTML='<div style="color:#f87171">100年內無法達標，請增加投入或調整目標</div>';return;}
+  const years=Math.floor(months/12);
+  const restMonth=months%12;
+  out.innerHTML=`<div style="color:#34d399;font-size:18px;font-weight:700">${years} 年 ${restMonth} 個月達標</div>
+    <div style="color:#94a3b8">屆時資產 $${fmt(bal,0)} · 累積投入 $${fmt(save+m*months,0)}</div>`;
+}
+
+let cached0050=null;
+async function calcTool7(){
+  const m=parseFloat(document.getElementById('t7_m').value);
+  const startY=parseInt(document.getElementById('t7_y').value);
+  const out=document.getElementById('t7_out');
+  if(isNaN(m)||isNaN(startY)){out.innerHTML='請輸入完整數值';return;}
+  if(startY<2003){out.innerHTML='0050 於 2003/6 上市，請輸入 2003 之後';return;}
+  out.innerHTML='抓取歷史價格中...';
+  try{
+    if(!cached0050){
+      const r=await fetch(BASE+'/daily_prices?symbol=eq.0050&order=date.asc&limit=10000&select=date,close_price',{headers:SB_H});
+      cached0050=await r.json();
+    }
+    if(!cached0050||!cached0050.length){out.innerHTML='<div style="color:#f87171">無歷史資料</div>';return;}
+    const startDate=`${startY}-01-01`;
+    const data=cached0050.filter(d=>d.date>=startDate);
+    if(!data.length){out.innerHTML='<div style="color:#f87171">該年份起無資料</div>';return;}
+    // 每月第一個交易日定額買入
+    const monthlyEntries={};
+    data.forEach(d=>{const ym=d.date.slice(0,7);if(!monthlyEntries[ym])monthlyEntries[ym]=parseFloat(d.close_price);});
+    const months=Object.keys(monthlyEntries).sort();
+    let totalShares=0,totalInvested=0;
+    months.forEach(ym=>{
+      const px=monthlyEntries[ym];
+      const sh=m/px;
+      totalShares+=sh;totalInvested+=m;
+    });
+    const lastPx=parseFloat(data[data.length-1].close_price);
+    const lastDate=data[data.length-1].date;
+    const value=totalShares*lastPx;
+    const profit=value-totalInvested;
+    const pct=totalInvested>0?(profit/totalInvested*100):0;
+    const up=profit>=0;
+    out.innerHTML=`<div style="color:${up?'#34d399':'#f87171'};font-size:18px;font-weight:700">$${fmt(value,0)}（${up?'+':''}${pct.toFixed(2)}%）</div>
+      <div style="color:#94a3b8">期間 ${months[0]} ～ ${lastDate} · 共 ${months.length} 個月</div>
+      <div style="color:#94a3b8">總投入 $${fmt(totalInvested,0)} · 累積股數 ${fmt(totalShares,1)} · 損益 ${up?'+':''}$${fmt(profit,0)}</div>`;
+  }catch(e){out.innerHTML='<div style="color:#f87171">回測失敗</div>';}
 }
 
 function calcTool5(){
