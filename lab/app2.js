@@ -745,28 +745,69 @@ const FX_ITEMS=[
 async function loadFX(){
   const grid=document.getElementById('fxGrid');
   if(!grid)return;
-  grid.innerHTML='';
-  for(const item of FX_ITEMS){
+  grid.innerHTML='<div style="color:#64748b;padding:8px">載入中...</div>';
+  try{
+    const r=await fetch('https://open.er-api.com/v6/latest/USD');
+    const d=await r.json();
+    const rates=d.rates;
+    // 貴金屬用Finnhub
+    let gold=null,silver=null,oil=null;
     try{
-      const url=`https://query1.finance.yahoo.com/v8/finance/chart/${item.sym}?interval=1d&range=2d`;
-      const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
-      const r=await fetch(proxy);
-      const d=await r.json();
-      const meta=d.chart.result[0].meta;
-      const price=meta.regularMarketPrice;
-      const prev=meta.chartPreviousClose;
-      const pct=(price-prev)/prev*100;
+      const [g,s,o]=await Promise.all([
+        fetch(`https://finnhub.io/api/v1/quote?symbol=OANDA:XAU_USD&token=${FINNHUB_KEY}`).then(r=>r.json()),
+        fetch(`https://finnhub.io/api/v1/quote?symbol=OANDA:XAG_USD&token=${FINNHUB_KEY}`).then(r=>r.json()),
+        fetch(`https://finnhub.io/api/v1/quote?symbol=OANDA:BCO_USD&token=${FINNHUB_KEY}`).then(r=>r.json()),
+      ]);
+      gold=g;silver=s;oil=o;
+    }catch(e){}
+    grid.innerHTML='';
+    const twd=rates['TWD']||30;
+    function fxCard(name,unit,price,pct,dec){
       const up=pct>=0;
-      const decimals=price>100?2:4;
-      grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
-        <div style="font-size:12px;color:#94a3b8">${item.unit}</div>
-        <div style="font-size:15px;color:#e2e8f0;margin:2px 0">${item.name}</div>
-        <div style="font-size:22px;font-weight:700;color:#e2e8f0">${price.toLocaleString(undefined,{minimumFractionDigits:decimals,maximumFractionDigits:decimals})}</div>
-        <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      const pHtml=pct!==0?`<div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${Math.abs(pct).toFixed(2)}%</div>`:'';
+      return `<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155">
+        <div style="font-size:11px;color:#64748b">${unit}</div>
+        <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin:2px 0">${name}</div>
+        <div style="font-size:18px;font-weight:700;color:#e2e8f0">${typeof price==='number'?price.toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec}):price}</div>
+        ${pHtml}
       </div>`;
-    }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${item.name} 載入失敗</div>`;}
-  }
+    }
+    function secTitle(icon,title){
+      return `<div style="grid-column:1/-1;font-size:12px;color:#93c5fd;font-weight:700;padding:6px 0 4px;border-left:3px solid #2563eb;padding-left:8px;margin-top:4px">${icon} ${title}</div>`;
+    }
+    // 台幣區塊
+    grid.innerHTML+=secTitle('🇹🇼','台幣匯率');
+    grid.innerHTML+=fxCard('美元/台幣','TWD',twd,0,2);
+    grid.innerHTML+=fxCard('日圓/台幣','TWD',twd/(rates['JPY']||1),0,3);
+    grid.innerHTML+=fxCard('歐元/台幣','TWD',twd/(rates['EUR']||1),0,2);
+    grid.innerHTML+=fxCard('人民幣/台幣','TWD',twd/(rates['CNY']||1),0,2);
+    grid.innerHTML+=fxCard('港幣/台幣','TWD',twd/(rates['HKD']||1),0,3);
+    grid.innerHTML+=fxCard('英鎊/台幣','TWD',twd/(rates['GBP']||1),0,2);
+    grid.innerHTML+=fxCard('澳幣/台幣','TWD',twd/(rates['AUD']||1),0,2);
+    grid.innerHTML+=fxCard('新加坡幣/台幣','TWD',twd/(rates['SGD']||1),0,2);
+    // 貴金屬區塊
+    grid.innerHTML+=secTitle('🥇','貴金屬 & 原物料');
+    if(gold&&gold.c)grid.innerHTML+=fxCard('黃金','USD/oz',gold.c,gold.pc?((gold.c-gold.pc)/gold.pc*100):0,2);
+    if(silver&&silver.c)grid.innerHTML+=fxCard('白銀','USD/oz',silver.c,silver.pc?((silver.c-silver.pc)/silver.pc*100):0,2);
+    if(oil&&oil.c)grid.innerHTML+=fxCard('原油(Brent)','USD/桶',oil.c,oil.pc?((oil.c-oil.pc)/oil.pc*100):0,2);
+    // 亞洲外匯
+    grid.innerHTML+=secTitle('🌏','亞洲外匯');
+    [['JPY','美元/日圓',2],['CNY','美元/人民幣',4],['HKD','美元/港幣',4],['SGD','美元/新幣',4],['KRW','美元/韓元',0],['THB','美元/泰銖',2],['MYR','美元/馬幣',4],['IDR','美元/印尼盾',0],['INR','美元/印度盧比',2],['PHP','美元/菲律賓披索',2],['VND','美元/越南盾',0],['PKR','美元/巴基斯坦盧比',2]].forEach(([c,n,d])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,rates[c],0,d);});
+    // 歐洲外匯
+    grid.innerHTML+=secTitle('🌍','歐洲外匯');
+    [['EUR','歐元/美元',4,true],['GBP','英鎊/美元',4,true],['CHF','美元/瑞郎',4],['SEK','美元/瑞典克朗',4],['NOK','美元/挪威克朗',4],['DKK','美元/丹麥克朗',4],['PLN','美元/波蘭茲羅提',4],['CZK','美元/捷克克朗',4],['HUF','美元/匈牙利福林',2],['TRY','美元/土耳其里拉',4],['RUB','美元/俄羅斯盧布',2],['UAH','美元/烏克蘭格里夫納',2]].forEach(([c,n,d,inv])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,inv?1/rates[c]:rates[c],0,d);});
+    // 美洲外匯
+    grid.innerHTML+=secTitle('🌎','美洲外匯');
+    [['CAD','美元/加幣',4],['MXN','美元/墨西哥披索',4],['BRL','美元/巴西里拉',4],['ARS','美元/阿根廷披索',2],['CLP','美元/智利披索',0],['COP','美元/哥倫比亞披索',0],['PEN','美元/秘魯索爾',4]].forEach(([c,n,d])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,rates[c],0,d);});
+    // 中東/非洲
+    grid.innerHTML+=secTitle('🌐','中東 & 非洲');
+    [['SAR','美元/沙烏地里亞爾',4],['AED','美元/阿聯迪拉姆',4],['ILS','美元/以色列新謝克爾',4],['EGP','美元/埃及鎊',4],['ZAR','美元/南非蘭特',4],['NGN','美元/奈及利亞奈拉',2],['KWD','美元/科威特第納爾',4],['QAR','美元/卡達里亞爾',4]].forEach(([c,n,d])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,rates[c],0,d);});
+    // 大洋洲
+    grid.innerHTML+=secTitle('🦘','大洋洲');
+    [['AUD','澳幣/美元',4,true],['NZD','紐幣/美元',4,true]].forEach(([c,n,d,inv])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,inv?1/rates[c]:rates[c],0,d);});
+  }catch(e){grid.innerHTML='<div style="color:#f87171;padding:8px">載入失敗：'+e.message+'</div>';}
 }
+
 async function loadUSHot(){
   const grid=document.getElementById('usHotGrid');
   if(!grid)return;
