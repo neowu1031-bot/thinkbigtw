@@ -1394,12 +1394,16 @@ const STOCK_FUTURES=[
 ];
 
 async function loadFutures(){
-  // 國際商品（Finnhub）
+  // 國際商品 + 農產品（Finnhub）
   const intl=[
     {sym:'GC=F',key:'GC'},
     {sym:'CL=F',key:'CL'},
     {sym:'SI=F',key:'SI'},
-    {sym:'HG=F',key:'HG'}
+    {sym:'HG=F',key:'HG'},
+    {sym:'ZW=F',key:'ZW'},
+    {sym:'ZS=F',key:'ZS'},
+    {sym:'ZC=F',key:'ZC'},
+    {sym:'BZ=F',key:'BZ'}
   ];
   for(const it of intl){
     try{
