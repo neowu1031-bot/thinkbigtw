@@ -186,7 +186,16 @@ textarea{height:80px;resize:vertical}
               <button class="range-btn" onclick="loadStockChart(currentStock,365,this)">1Y</button>
             </div>
           </div>
-          <div id="stockChartWrap" style="height:280px"></div>
+          <div id="stockChartWrap" style="height:260px"></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:0 4px">
+            <span style="font-size:12px;color:#64748b">RSI(14):</span>
+            <span id="stockRSI" style="font-size:14px;font-weight:700;color:#e2e8f0">—</span>
+            <span id="stockRSILabel" style="font-size:12px;padding:2px 8px;border-radius:4px"></span>
+            <span style="font-size:12px;color:#64748b;margin-left:8px">MA5:</span>
+            <span style="font-size:12px;color:#fbbf24">■</span>
+            <span style="font-size:12px;color:#64748b;margin-left:4px">MA20:</span>
+            <span style="font-size:12px;color:#a78bfa">■</span>
+          </div>
         </div>
       </div>
     </div>
@@ -600,6 +609,27 @@ async function loadStockChart(code,days,btn){
     const ma20data=kData.map((d,i,arr)=>{if(i<19)return null;const avg=arr.slice(i-19,i+1).reduce((s,v)=>s+v.close,0)/20;return{time:d.time,value:avg};}).filter(Boolean);
     ma20.setData(ma20data);
     stockChart.timeScale().fitContent();
+    // 計算 RSI(14)
+    if(kData.length>=15){
+      const closes=kData.map(d=>d.close);
+      let gains=0,losses=0;
+      for(let i=1;i<=14;i++){const d=closes[closes.length-14-1+i]-closes[closes.length-14-1+i-1];if(d>0)gains+=d;else losses-=d;}
+      let avgG=gains/14,avgL=losses/14;
+      const lastClose=closes[closes.length-1];
+      const prevClose=closes[closes.length-2];
+      const diff=lastClose-prevClose;
+      if(diff>0){avgG=(avgG*13+diff)/14;}else{avgL=(avgL*13-diff)/14;}
+      const rs=avgL===0?100:avgG/avgL;
+      const rsi=Math.round(100-100/(1+rs));
+      const rsiEl=document.getElementById('stockRSI');
+      const rsiLabel=document.getElementById('stockRSILabel');
+      if(rsiEl){rsiEl.textContent=rsi;rsiEl.style.color=rsi>70?'#f87171':rsi<30?'#34d399':'#e2e8f0';}
+      if(rsiLabel){
+        if(rsi>70){rsiLabel.textContent='超買';rsiLabel.style.background='#450a0a';rsiLabel.style.color='#f87171';}
+        else if(rsi<30){rsiLabel.textContent='超賣';rsiLabel.style.background='#052e16';rsiLabel.style.color='#34d399';}
+        else{rsiLabel.textContent='正常';rsiLabel.style.background='#1e293b';rsiLabel.style.color='#64748b';}
+      }
+    }
   }catch(e){}
 }
 
