@@ -314,7 +314,7 @@ async function searchStock(){
       document.getElementById('sClose').textContent=d.close_price;
       const ch=parseFloat(d.change_percent);
       const cel=document.getElementById('sChange');
-      cel.textContent=(ch>=0?'+':'')+ch.toFixed(2)+'%';
+      const pct=d.close_price>0?((ch/(parseFloat(d.close_price)-ch))*100).toFixed(2):ch.toFixed(2);cel.textContent=(ch>=0?'+':'')+pct+'%';
       cel.className='val '+(ch>=0?'up':'down');
       document.getElementById('sVol').textContent=parseInt(d.volume).toLocaleString();
       document.getElementById('sOpen').textContent=d.open_price;
@@ -367,7 +367,7 @@ async function searchETF(){
       document.getElementById('eClose').textContent=d.close_price;
       const ch=parseFloat(d.change_percent);
       const cel=document.getElementById('eChange');
-      cel.textContent=(ch>=0?'+':'')+ch.toFixed(2)+'%';
+      const pct=d.close_price>0?((ch/(parseFloat(d.close_price)-ch))*100).toFixed(2):ch.toFixed(2);cel.textContent=(ch>=0?'+':'')+pct+'%';
       cel.className='val '+(ch>=0?'up':'down');
       document.getElementById('eVol').textContent=parseInt(d.volume).toLocaleString();
       document.getElementById('etfChartContainer').style.display='block';
