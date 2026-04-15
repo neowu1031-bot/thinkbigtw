@@ -269,7 +269,7 @@ function showDashboard(){
   loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
   setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
 }
-if(localStorage.getItem('lab_auth')==='true')showDashboard();
+showDashboard();
 
 function switchTab(name,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
