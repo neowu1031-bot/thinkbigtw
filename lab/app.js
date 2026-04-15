@@ -778,7 +778,6 @@ async function loadUSHot(){
     }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${s.sym} 載入失敗</div>`;}
   }
 }
-let usChart=null,currentUS='';
 async function searchUS(){
   const sym=document.getElementById('usSearch').value.trim().toUpperCase();
   const result=document.getElementById('usSearchResult');
