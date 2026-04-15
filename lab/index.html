@@ -459,7 +459,16 @@ async function loadStockChart(code,days,btn){
     if(stockChart){try{stockChart.remove();}catch(e){}}
     stockChart=LightweightCharts.createChart(el,{width:el.clientWidth,height:280,layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155'}});
     const cs=stockChart.addCandlestickSeries({upColor:'#34d399',downColor:'#f87171',borderUpColor:'#34d399',borderDownColor:'#f87171',wickUpColor:'#34d399',wickDownColor:'#f87171'});
-    cs.setData(data.map(d=>({time:d.date,open:parseFloat(d.open_price),high:parseFloat(d.high_price),low:parseFloat(d.low_price),close:parseFloat(d.close_price)})));
+    const kData=data.map(d=>({time:d.date,open:parseFloat(d.open_price),high:parseFloat(d.high_price),low:parseFloat(d.low_price),close:parseFloat(d.close_price)}));
+    cs.setData(kData);
+    // MA5
+    const ma5=stockChart.addLineSeries({color:'#fbbf24',lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    const ma5data=kData.map((d,i,arr)=>{if(i<4)return null;const avg=arr.slice(i-4,i+1).reduce((s,v)=>s+v.close,0)/5;return{time:d.time,value:avg};}).filter(Boolean);
+    ma5.setData(ma5data);
+    // MA20
+    const ma20=stockChart.addLineSeries({color:'#a78bfa',lineWidth:1,priceLineVisible:false,lastValueVisible:false,crosshairMarkerVisible:false});
+    const ma20data=kData.map((d,i,arr)=>{if(i<19)return null;const avg=arr.slice(i-19,i+1).reduce((s,v)=>s+v.close,0)/20;return{time:d.time,value:avg};}).filter(Boolean);
+    ma20.setData(ma20data);
     stockChart.timeScale().fitContent();
   }catch(e){}
 }
