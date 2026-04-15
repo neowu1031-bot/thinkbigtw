@@ -18,7 +18,7 @@ function showDashboard(){
   loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
   loadRanking("up");loadIntlIndices();setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
 }
-// 不自動進入，等待密碼
+showDashboard();
 
 
 
