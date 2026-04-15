@@ -16,7 +16,7 @@ function showDashboard(){
   document.getElementById('lockScreen').style.display='none';
   document.getElementById('dashboard').style.display='block';
   loadMarketData();loadSupabaseData();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
-  loadRanking("up");setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
+  loadRanking("up");loadIntlIndices();setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
 }
 // 不自動進入，等待密碼
 
@@ -356,6 +356,38 @@ async function loadCrypto(){
         <div style="font-size:14px;color:${up?'#34d399':'#f87171'};margin-top:4px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
         <div style="font-size:12px;color:#64748b;margin-top:8px">24h量: ${parseFloat(d.volume).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
       </div>`;
+    }catch(e){}
+  }
+}
+
+const INTL_INDICES=[
+  {sym:'^DJI',name:'道瓊'},
+  {sym:'^IXIC',name:'納斯達克'},
+  {sym:'^SPX',name:'S&P500'},
+  {sym:'^N225',name:'日經225'},
+  {sym:'^HSI',name:'恆生指數'}
+];
+async function loadIntlIndices(){
+  const grid=document.getElementById('intlGrid');
+  if(!grid)return;
+  for(const idx of INTL_INDICES){
+    try{
+      const url=`https://query1.finance.yahoo.com/v8/finance/chart/${idx.sym}?interval=1d&range=2d`;
+      const proxy='https://api.allorigins.win/get?url='+encodeURIComponent(url);
+      const r=await fetch(proxy);
+      const raw=await r.json();
+      const d=JSON.parse(raw.contents);
+      const meta=d.chart.result[0].meta;
+      const price=meta.regularMarketPrice;
+      const prev=meta.chartPreviousClose;
+      const pct=(price-prev)/prev*100;
+      const up=pct>=0;
+      const el=document.getElementById('intl-'+idx.sym.replace('^',''));
+      if(el){
+        el.innerHTML=`<div style="font-size:12px;color:#94a3b8">${idx.name}</div>
+          <div style="font-size:16px;font-weight:700;color:#e2e8f0">${price.toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+          <div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>`;
+      }
     }catch(e){}
   }
 }
