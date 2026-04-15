@@ -192,6 +192,7 @@ textarea{height:80px;resize:vertical}
     <input type="email" id="authEmail" placeholder="Email" autocomplete="email" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px;width:100%;margin-bottom:8px;letter-spacing:normal;text-align:left">
     <input type="password" id="authPassword" placeholder="密碼（至少 6 字）" autocomplete="current-password" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px;width:100%;margin-bottom:10px;letter-spacing:normal;text-align:left" onkeydown="if(event.key==='Enter')authSubmit()">
     <button class="btn" onclick="authSubmit()" style="margin-bottom:8px;width:100%" id="authSubmitBtn">登入</button>
+    <div style="text-align:right;margin-bottom:10px"><a href="#" onclick="forgotPassword();return false;" style="font-size:12px;color:#60a5fa;text-decoration:none">忘記密碼？</a></div>
     <button onclick="loginGoogle()" style="background:#fff;color:#1f2937;border:none;padding:11px;border-radius:8px;font-size:14px;cursor:pointer;width:100%;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px">
       <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34.5 6.5 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 19 13 24 13c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34.5 6.5 29.5 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.4 0 10.3-2.1 14-5.4l-6.5-5.5c-2 1.4-4.6 2.3-7.5 2.3-5.2 0-9.6-3.3-11.2-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.2-4 5.7l6.5 5.5c-.5.5 6.7-4.9 6.7-15.2 0-1.3-.1-2.4-.5-3.5z"/></svg>
       使用 Google 登入
@@ -377,6 +378,7 @@ textarea{height:80px;resize:vertical}
       <div class="section-title">AI每日解讀</div>
       <div class="ai-card">
         <span class="ai-tag">AI 生成 · 僅供參考</span>
+        <button onclick="requirePro('AI 個股深度解讀')" style="float:right;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0a0f1e;border:none;padding:4px 12px;border-radius:14px;font-size:11px;cursor:pointer;font-weight:700">⭐ 升級 PRO 解鎖深度版</button>
         <div class="ai-text" id="aiText">
           <span class="ai-stock">台積電 (2330)</span> 今日外資買超逾5,000張，站上月線，技術面轉強。<br><br>
           <span class="ai-stock">鴻海 (2317)</span> 籌碼面出現大戶承接訊號，PTT討論熱度為近30日最高。
@@ -797,7 +799,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=29"></script>
+<script src="app2.js?v=30"></script>
 </body>
 </html>
   

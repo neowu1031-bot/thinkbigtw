@@ -15,7 +15,9 @@ const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
 function checkPw(){
   if(document.getElementById('pwInput').value===PW){
-    document.getElementById('userBadge').textContent='管理員 · THINK BIG Lab';
+    currentUserPlan='pro'; // 管理員視為 PRO
+    document.getElementById('userBadge').innerHTML='Hi, 管理員 · <span style="color:#fbbf24;font-weight:700">⭐ PRO</span>';
+    document.getElementById('logoutBtn').style.display='inline-block';
     showDashboard();
   }
   else document.getElementById('errMsg').textContent='密碼錯誤';
@@ -87,12 +89,50 @@ async function loginGoogle(){
   }catch(e){if(errEl)errEl.textContent='Google 登入錯誤：'+e.message;}
 }
 
-function onAuthSuccess(user){
+async function onAuthSuccess(user){
   const badge=document.getElementById('userBadge');
   const logoutBtn=document.getElementById('logoutBtn');
-  if(badge)badge.textContent=(user.email||'會員')+' · 免費版';
+  // 從 email 取 @ 前面作為暱稱
+  const handle=user.email?user.email.split('@')[0]:'會員';
+  // 查用戶 plan
+  let plan='free';
+  try{
+    const r=await fetch(BASE+'/users?id=eq.'+user.id+'&select=plan',{headers:SB_H});
+    const rows=await r.json();
+    if(rows&&rows.length&&rows[0].plan)plan=rows[0].plan;
+  }catch(e){}
+  currentUserPlan=plan;
+  const planLabel=plan==='pro'?'<span style="color:#fbbf24;font-weight:700">⭐ PRO</span>':'<span style="color:#60a5fa">免費版</span>';
+  if(badge)badge.innerHTML=`Hi, ${handle} · ${planLabel}`;
   if(logoutBtn)logoutBtn.style.display='inline-block';
   showDashboard();
+}
+
+let currentUserPlan='free';
+
+function isPro(){return currentUserPlan==='pro';}
+
+function requirePro(featureName){
+  if(isPro())return true;
+  alert(`「${featureName}」為 PRO 會員專屬功能。\n\n升級 PRO 解鎖：\n• AI 個股深度解讀\n• 進場/出場訊號提醒\n• 法人籌碼進階分析\n• 自訂選股策略保存\n\n升級請洽：neowu1031@gmail.com`);
+  trackEvent('upgrade_prompt',{feature:featureName});
+  return false;
+}
+
+async function forgotPassword(){
+  const email=document.getElementById('authEmail').value.trim();
+  const errEl=document.getElementById('errMsg');
+  if(!email){errEl.style.color='#f87171';errEl.textContent='請先在 Email 欄位輸入您的帳號 Email';return;}
+  if(!SUPA_AUTH){errEl.textContent='系統未就緒';return;}
+  try{
+    const {error}=await SUPA_AUTH.auth.resetPasswordForEmail(email,{
+      redirectTo:window.location.origin+window.location.pathname+'?reset=1'
+    });
+    if(error){errEl.style.color='#f87171';errEl.textContent='發送失敗：'+error.message;return;}
+    errEl.style.color='#34d399';
+    errEl.textContent='✓ 重設密碼連結已寄至 '+email+'，請查收 Email';
+    trackEvent('password_reset_request',{});
+  }catch(e){errEl.style.color='#f87171';errEl.textContent='系統錯誤：'+e.message;}
 }
 
 async function logoutUser(){
@@ -116,6 +156,19 @@ async function checkExistingSession(){
     if(session&&session.user){
       currentUser=session.user;
       onAuthSuccess(session.user);
+    }
+    // 處理密碼重設回流（Supabase 會把 token 放在 hash）
+    const hash=window.location.hash;
+    if((hash&&hash.includes('type=recovery'))||new URLSearchParams(location.search).get('reset')==='1'){
+      setTimeout(()=>{
+        const newPw=prompt('請設定新密碼（至少 6 字）：');
+        if(newPw&&newPw.length>=6){
+          SUPA_AUTH.auth.updateUser({password:newPw}).then(({error})=>{
+            if(error)alert('設定失敗：'+error.message);
+            else{alert('✓ 密碼已更新，請使用新密碼登入');history.replaceState(null,'',window.location.pathname);}
+          });
+        }
+      },500);
     }
   }catch(e){}
 }
