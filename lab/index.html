@@ -417,6 +417,89 @@ textarea{height:80px;resize:vertical}
     </div>
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
+  <div class="tab-content" id="tab-futures">
+    <div class="section">
+      <div class="section-title">📈 台灣期貨主要商品</div>
+      <div class="grid" id="futuresIndexGrid">
+        <div class="card"><h3>台指期 TX</h3><div class="value" id="fut_TX">載入中...</div><div class="sub" id="fut_TX_pct">—</div></div>
+        <div class="card"><h3>電子期 TE</h3><div class="value" id="fut_TE">載入中...</div><div class="sub" id="fut_TE_pct">—</div></div>
+        <div class="card"><h3>金融期 TF</h3><div class="value" id="fut_TF">載入中...</div><div class="sub" id="fut_TF_pct">—</div></div>
+        <div class="card"><h3>小台 MTX</h3><div class="value" id="fut_MTX">載入中...</div><div class="sub" id="fut_MTX_pct">—</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🌍 國際商品期貨</div>
+      <div class="grid" id="futuresGlobalGrid">
+        <div class="card"><h3>黃金 GC=F</h3><div class="value" id="fut_GC">載入中...</div><div class="sub" id="fut_GC_pct">—</div></div>
+        <div class="card"><h3>WTI 原油 CL=F</h3><div class="value" id="fut_CL">載入中...</div><div class="sub" id="fut_CL_pct">—</div></div>
+        <div class="card"><h3>白銀 SI=F</h3><div class="value" id="fut_SI">載入中...</div><div class="sub" id="fut_SI_pct">—</div></div>
+        <div class="card"><h3>銅 HG=F</h3><div class="value" id="fut_HG">載入中...</div><div class="sub" id="fut_HG_pct">—</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📊 選擇權籌碼指標</div>
+      <div class="grid">
+        <div class="card"><h3>Put/Call Ratio</h3><div class="value" id="pcRatio">載入中...</div><div class="sub" id="pcRatioInterp">—</div></div>
+        <div class="card"><h3>外資期貨多空淨額</h3><div class="value" id="foreignFut">載入中...</div><div class="sub">口數</div></div>
+        <div class="card"><h3>台指期未平倉</h3><div class="value" id="futOI">—</div><div class="sub">總未平倉口數</div></div>
+        <div class="card"><h3>台灣 VIX</h3><div class="value" id="twVIX">—</div><div class="sub">恐慌指數</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🔥 熱門股票期貨（單一商品）</div>
+      <div id="stockFuturesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📅 期貨交易說明</div>
+      <div style="background:#1e293b;border-radius:12px;padding:16px;color:#94a3b8;font-size:13px;line-height:1.7">
+        台指期（TX）合約規格：契約價值 = 指數 × NT$200／點，逐筆撮合，最後交易日為當月第三個週三。<br>
+        小台指期（MTX）：契約價值為大台 1/4，新手入門首選。<br>
+        股票期貨：契約規模 2,000 股，保證金約原始 13.5%。<br>
+        ETF 期貨：0050、0056、00878 等熱門 ETF 皆有期貨商品。<br>
+        夜盤：14:50 收盤後 15:00～次日 5:00 提供夜盤交易。<br>
+        資料來源：TAIFEX 期交所 + Finnhub 國際商品。
+      </div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
+  <div class="tab-content" id="tab-tools">
+    <div class="section">
+      <div class="section-title">🛠 理財試算工具</div>
+      <div style="color:#64748b;font-size:13px;padding:8px 0 16px">輸入即時運算，無需按鈕。所有資料只在你的瀏覽器計算，不會上傳。</div>
+      <div id="toolsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
+  <div class="tab-content" id="tab-portfolio">
+    <div class="section">
+      <div class="section-title">💼 我的投資組合</div>
+      <div id="portfolioSummary" style="margin-bottom:14px"></div>
+      <div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155;margin-bottom:14px">
+        <div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px">➕ 新增持倉</div>
+        <div style="display:grid;grid-template-columns:90px 110px 1fr 100px 100px auto;gap:8px">
+          <select id="holdType" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+            <option value="tw">台股</option>
+            <option value="etf">ETF</option>
+            <option value="us">美股</option>
+            <option value="hk">港股</option>
+            <option value="crypto">加密幣</option>
+          </select>
+          <input type="text" id="holdSym" placeholder="代號" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="text" id="holdName" placeholder="名稱（選填）" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="holdPrice" placeholder="買入價" step="0.01" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="holdQty" placeholder="股數/口/數量" step="1" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <button onclick="addHolding()" style="background:#2563eb;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer">新增</button>
+        </div>
+      </div>
+      <div id="portfolioList"></div>
+      <div id="portfolioAlloc" style="margin-top:14px"></div>
+    </div>
+    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+  </div>
   <div class="tab-content" id="tab-hk">
     <div class="section">
       <div class="section-title">🇭🇰 港股即時行情</div>
@@ -446,7 +529,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
   </div>
 </div>
-<script src="app2.js?v=14"></script>
+<script src="app2.js?v=15"></script>
 </body>
 </html>
   

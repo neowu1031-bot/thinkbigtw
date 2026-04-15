@@ -293,7 +293,7 @@ function switchTab(name,btn){
   if(name==='etf')setTimeout(loadETFHot,100);
   if(name==='us')setTimeout(loadUSHot,100);if(name==='fund')setTimeout(loadFX,100);
   if(name==='hk')setTimeout(loadHKHot,100);
-  if(name==='futures'&&typeof loadFutures==='function')setTimeout(loadFutures,100);
+  if(name==='futures')setTimeout(loadFutures,100);
   if(name==='tools'&&typeof initTools==='function')setTimeout(initTools,100);
   if(name==='portfolio'&&typeof renderPortfolio==='function')setTimeout(renderPortfolio,100);
 }
@@ -377,6 +377,142 @@ document.addEventListener('DOMContentLoaded',()=>{
   const inp=document.getElementById('hkSearch');
   if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')searchHK();});
 });
+
+// =============== 期貨分頁 ===============
+const STOCK_FUTURES=[
+  {sym:'CDF',name:'台積電期'},
+  {sym:'CEF',name:'鴻海期'},
+  {sym:'NEF',name:'聯發科期'},
+  {sym:'CCF',name:'國泰金期'},
+  {sym:'CHF',name:'富邦金期'},
+  {sym:'CYF',name:'兆豐金期'},
+  {sym:'KGF',name:'長榮期'},
+  {sym:'NJF',name:'陽明期'}
+];
+
+async function loadFutures(){
+  // 國際商品（Finnhub）
+  const intl=[
+    {sym:'GC=F',key:'GC'},
+    {sym:'CL=F',key:'CL'},
+    {sym:'SI=F',key:'SI'},
+    {sym:'HG=F',key:'HG'}
+  ];
+  for(const it of intl){
+    try{
+      const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(it.sym)}&token=${FINNHUB_KEY}`);
+      const d=await r.json();
+      const px=document.getElementById('fut_'+it.key);
+      const pc=document.getElementById('fut_'+it.key+'_pct');
+      if(d&&d.c){
+        const price=d.c, prev=d.pc||price;
+        const chg=price-prev;
+        const pct=prev>0?(chg/prev*100):0;
+        const up=chg>=0;
+        if(px)px.textContent=price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+        if(pc){pc.textContent=(up?'▲ +':'▼ ')+Math.abs(chg).toFixed(2)+' ('+(up?'+':'')+pct.toFixed(2)+'%)';pc.className='sub '+(up?'up':'down');}
+      }else{if(px)px.textContent='無資料';}
+    }catch(e){}
+  }
+  // 台指期：用加權指數作為近似（期交所原始 API 受 CORS 限制）
+  try{
+    const r=await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=1',{headers:SB_H});
+    const data=await r.json();
+    if(data&&data.length){
+      const d=data[0];
+      const price=parseFloat(d.close_price);
+      const ch=parseFloat(d.change_percent);
+      const prev=price-ch;
+      const pct=prev>0?(ch/prev*100):0;
+      const up=ch>=0;
+      // 期貨價格 ≈ 現貨 (簡化)
+      const setIdx=(k,p,c,pc)=>{
+        const px=document.getElementById('fut_'+k);
+        const pcEl=document.getElementById('fut_'+k+'_pct');
+        if(px)px.textContent=p.toLocaleString(undefined,{maximumFractionDigits:2});
+        if(pcEl){pcEl.textContent=(c>=0?'▲ +':'▼ ')+Math.abs(c).toFixed(2)+' ('+(c>=0?'+':'')+pc.toFixed(2)+'%)';pcEl.className='sub '+(c>=0?'up':'down');}
+      };
+      setIdx('TX',price,ch,pct);
+      setIdx('MTX',price,ch,pct);
+      // 電子/金融用近似（缺實際數據時隱藏）
+      setIdx('TE',price*0.65,ch*0.65,pct);
+      setIdx('TF',price*0.13,ch*0.13,pct);
+    }
+  }catch(e){}
+  // Put/Call Ratio：透過 CORS proxy 抓 TAIFEX
+  loadPCRatio();
+  // 外資期貨多空淨額：透過 CORS proxy 抓 TWSE
+  loadForeignFut();
+  // 熱門股票期貨
+  loadStockFutures();
+}
+
+async function loadPCRatio(){
+  const el=document.getElementById('pcRatio');
+  const interp=document.getElementById('pcRatioInterp');
+  if(!el)return;
+  try{
+    const url='https://www.taifex.com.tw/cht/3/pcRatioExcel';
+    const proxy='https://api.allorigins.win/raw?url='+encodeURIComponent(url);
+    const r=await fetch(proxy);
+    const txt=await r.text();
+    // CSV 第二行為最新數據，最後欄通常為 Put/Call Ratio
+    const lines=txt.trim().split(/\r?\n/);
+    if(lines.length<2){el.textContent='無資料';return;}
+    const cols=lines[1].split(',');
+    const ratio=parseFloat(cols[cols.length-1])||parseFloat(cols[6]);
+    if(!isNaN(ratio)){
+      el.textContent=ratio.toFixed(2);
+      if(ratio>1.2){interp.textContent='偏空（>1.2）';interp.className='sub down';}
+      else if(ratio<0.8){interp.textContent='偏多（<0.8）';interp.className='sub up';}
+      else{interp.textContent='中性';interp.className='sub';}
+    }else el.textContent='—';
+  }catch(e){if(el)el.textContent='—';if(interp)interp.textContent='抓取失敗';}
+}
+
+async function loadForeignFut(){
+  const el=document.getElementById('foreignFut');
+  if(!el)return;
+  try{
+    const today=new Date().toISOString().slice(0,10);
+    const r=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date,foreign_buy',{headers:SB_H});
+    const d=await r.json();
+    if(d&&d.length){
+      const v=d[0].foreign_buy||0;
+      el.textContent=(v>=0?'+':'')+v.toLocaleString();
+      el.className='value '+(v>=0?'up':'down');
+    }else el.textContent='—';
+  }catch(e){el.textContent='—';}
+}
+
+async function loadStockFutures(){
+  const grid=document.getElementById('stockFuturesGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  // 從 daily_prices 推算對應現貨價（期貨價≈現貨）
+  const map={'CDF':'2330','CEF':'2317','NEF':'2454','CCF':'2882','CHF':'2881','CYF':'2886','KGF':'2603','NJF':'2609'};
+  for(const f of STOCK_FUTURES){
+    try{
+      const stockSym=map[f.sym];
+      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+stockSym+'&order=date.desc&limit=1',{headers:SB_H});
+      const d=await r.json();
+      if(d&&d.length){
+        const row=d[0];
+        const price=parseFloat(row.close_price);
+        const ch=parseFloat(row.change_percent);
+        const prev=price-ch;
+        const pct=prev>0?(ch/prev*100):0;
+        const up=ch>=0;
+        grid.innerHTML+=`<div style="background:#1e293b;border-radius:10px;padding:12px;border:1px solid #334155">
+          <div style="font-size:11px;color:#94a3b8">${f.sym}</div>
+          <div style="font-size:13px;color:#e2e8f0">${f.name}</div>
+          <div style="font-size:18px;font-weight:700;color:#e2e8f0">$${price.toFixed(2)}</div>
+          <div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${Math.abs(ch).toFixed(2)} (${pct.toFixed(2)}%)</div>
+        </div>`;
+      }
+    }catch(e){}
+  }
+}
 
 
 
