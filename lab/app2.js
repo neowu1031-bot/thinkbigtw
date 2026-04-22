@@ -2321,6 +2321,47 @@ async function loadMinuteChart(code, interval){
   }
 }
 
+
+// ===== 處置股/注意股警示 =====
+async function checkDisposeStatus(code){
+  const el = document.getElementById('disposeWrap');
+  if(!el) return;
+  try{
+    const [disposeData, attentionData] = await Promise.all([
+      twseProxy('dispose', code),
+      twseProxy('attention', code)
+    ]);
+    const isDispose = Array.isArray(disposeData) && disposeData.length > 0;
+    const isAttention = Array.isArray(attentionData) && attentionData.length > 0;
+
+    if(!isDispose && !isAttention){
+      el.innerHTML = '<div style="display:inline-flex;align-items:center;gap:6px;background:#052e16;border:1px solid #166534;border-radius:20px;padding:4px 12px"><span style="font-size:11px;color:#34d399">✅ 正常交易</span></div>';
+      return;
+    }
+    let html = '<div style="display:flex;gap:8px;flex-wrap:wrap">';
+    if(isDispose){
+      const d = disposeData[0];
+      html += `<div style="display:inline-flex;align-items:center;gap:6px;background:#450a0a;border:1px solid #ef4444;border-radius:20px;padding:5px 14px">
+        <span style="font-size:13px">⚠️</span>
+        <span style="font-size:12px;color:#f87171;font-weight:700">處置股</span>
+        <span style="font-size:11px;color:#94a3b8">${d['處置期間']||d['period']||''}</span>
+      </div>`;
+    }
+    if(isAttention){
+      const d = attentionData[0];
+      html += `<div style="display:inline-flex;align-items:center;gap=6px;background:#431407;border:1px solid #f97316;border-radius:20px;padding:5px 14px">
+        <span style="font-size:13px">🔔</span>
+        <span style="font-size:12px;color:#fb923c;font-weight:700">注意股</span>
+        <span style="font-size:11px;color:#94a3b8">${d['注意原因']||d['reason']||''}</span>
+      </div>`;
+    }
+    html += '</div>';
+    el.innerHTML = html;
+  }catch(e){
+    el.innerHTML = '';
+  }
+}
+
 async function loadStockChart(code,days,btn){
   if(!code)return;
   if(btn){document.querySelectorAll('#stockChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
