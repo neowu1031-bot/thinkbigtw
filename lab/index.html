@@ -315,11 +315,22 @@ textarea{height:80px;resize:vertical}
         <div class="chart-container" id="stockChartContainer" style="display:none">
           <div class="chart-header">
             <span class="chart-title" id="stockChartTitle">K線圖</span>
-            <div class="chart-range">
-              <button class="range-btn active" onclick="loadStockChart(currentStock,30,this)">1M</button>
-              <button class="range-btn" onclick="loadStockChart(currentStock,90,this)">3M</button>
-              <button class="range-btn" onclick="loadStockChart(currentStock,180,this)">6M</button>
-              <button class="range-btn" onclick="loadStockChart(currentStock,365,this)">1Y</button>
+            <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">
+              <div class="chart-range" id="dayKBtns">
+                <span style="font-size:10px;color:#475569;margin-right:4px">日K</span>
+                <button class="range-btn active" onclick="switchChartMode('day',30,this)">1M</button>
+                <button class="range-btn" onclick="switchChartMode('day',90,this)">3M</button>
+                <button class="range-btn" onclick="switchChartMode('day',180,this)">6M</button>
+                <button class="range-btn" onclick="switchChartMode('day',365,this)">1Y</button>
+              </div>
+              <div class="chart-range" id="minKBtns">
+                <span style="font-size:10px;color:#475569;margin-right:4px">分K</span>
+                <button class="range-btn" onclick="switchChartMode('min',1,this)">1分</button>
+                <button class="range-btn" onclick="switchChartMode('min',5,this)">5分</button>
+                <button class="range-btn" onclick="switchChartMode('min',15,this)">15分</button>
+                <button class="range-btn" onclick="switchChartMode('min',30,this)">30分</button>
+                <button class="range-btn" onclick="switchChartMode('min',60,this)">60分</button>
+              </div>
             </div>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
@@ -837,7 +848,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
 </div>
-<script src="app2.js?v=63"></script>
+<script src="app2.js?v=64"></script>
 
 <script>
 (function(){

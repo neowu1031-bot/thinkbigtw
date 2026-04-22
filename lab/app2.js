@@ -2170,6 +2170,153 @@ async function loadSouvenir(code){
     <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}</style>`;
 }
 
+
+// ===== 分K切換 =====
+let currentChartMode = 'day';
+
+function switchChartMode(mode, period, btn){
+  currentChartMode = mode;
+  // 更新所有按鈕狀態
+  document.querySelectorAll('#dayKBtns .range-btn, #minKBtns .range-btn').forEach(b=>{
+    b.classList.remove('active');
+  });
+  if(btn) btn.classList.add('active');
+
+  if(mode === 'day'){
+    loadStockChart(currentStock, period, null);
+  } else {
+    loadMinuteChart(currentStock, period);
+  }
+}
+
+async function loadMinuteChart(code, interval){
+  if(!code) return;
+  const el = document.getElementById('stockChartWrap');
+  if(!el) return;
+  el.innerHTML = '<div style="color:#64748b;padding:20px;text-align:center">載入分K中...</div>';
+
+  try{
+    // 用 Yahoo Finance API 抓分K（台股代號格式：2330.TW）
+    const suffix = code.length <= 4 ? '.TW' : '.TWO';
+    const sym = code + suffix;
+    const intervalMap = {1:'1m', 5:'5m', 15:'15m', 30:'30m', 60:'60m'};
+    const yInterval = intervalMap[interval] || '5m';
+    const rangeMap = {1:'1d', 5:'5d', 15:'5d', 30:'1mo', 60:'1mo'};
+    const yRange = rangeMap[interval] || '5d';
+
+    const url = `https://query1.finance.yahoo.com/v8/finance/chart/${sym}?interval=${yInterval}&range=${yRange}&includePrePost=false`;
+    const r = await fetch(url);
+    if(!r.ok) throw new Error('API error');
+    const data = await r.json();
+
+    const result = data?.chart?.result?.[0];
+    if(!result?.timestamp?.length){
+      el.innerHTML = '<div style="color:#64748b;padding:20px;text-align:center">無分K資料（非交易時間或代號錯誤）</div>';
+      return;
+    }
+
+    const timestamps = result.timestamp;
+    const quotes = result.indicators.quote[0];
+    const opens = quotes.open;
+    const highs = quotes.high;
+    const lows = quotes.low;
+    const closes = quotes.close;
+    const volumes = quotes.volume;
+
+    // 組合 K 線資料
+    const kData = timestamps.map((t,i) => {
+      if(!closes[i]) return null;
+      return {
+        time: t,
+        open: parseFloat((opens[i]||closes[i]).toFixed(2)),
+        high: parseFloat((highs[i]||closes[i]).toFixed(2)),
+        low: parseFloat((lows[i]||closes[i]).toFixed(2)),
+        close: parseFloat(closes[i].toFixed(2))
+      };
+    }).filter(Boolean);
+
+    const volData = timestamps.map((t,i) => {
+      if(!volumes[i] || !closes[i]) return null;
+      const prev = closes[i-1]||closes[i];
+      return {time: t, value: volumes[i], color: closes[i]>=prev ? 'rgba(52,211,153,0.5)' : 'rgba(248,113,113,0.5)'};
+    }).filter(Boolean);
+
+    if(!kData.length){
+      el.innerHTML = '<div style="color:#64748b;padding:20px;text-align:center">無有效分K資料</div>';
+      return;
+    }
+
+    el.innerHTML = '';
+    el.style.cssText = 'width:100%;overflow:hidden;background:#0f172a;border-radius:8px';
+
+    const W = el.clientWidth || 800;
+
+    // 主圖
+    const mainDiv = document.createElement('div');
+    mainDiv.style.cssText = 'width:100%;height:280px';
+    el.appendChild(mainDiv);
+
+    if(stockChart){try{stockChart.remove();}catch(e){}}
+    stockChart = LightweightCharts.createChart(mainDiv, {
+      width:W, height:280,
+      layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},
+      grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},
+      rightPriceScale:{borderColor:'#334155'},
+      timeScale:{borderColor:'#334155',timeVisible:true,secondsVisible:false},
+      crosshair:{mode:1}
+    });
+
+    const cs = stockChart.addCandlestickSeries({
+      upColor:'#34d399',downColor:'#f87171',
+      borderUpColor:'#34d399',borderDownColor:'#f87171',
+      wickUpColor:'#34d399',wickDownColor:'#f87171'
+    });
+    cs.setData(kData);
+
+    // MA5 MA20
+    const maColors = {'5':'#fbbf24','20':'#a78bfa'};
+    [5,20].forEach(n=>{
+      if(kData.length <= n) return;
+      const ma = stockChart.addLineSeries({color:maColors[n],lineWidth:1,priceLineVisible:false,lastValueVisible:true,crosshairMarkerVisible:false,title:'MA'+n});
+      const maData = kData.map((d,i,arr)=>{
+        if(i<n-1) return null;
+        const avg = arr.slice(i-n+1,i+1).reduce((s,v)=>s+v.close,0)/n;
+        return {time:d.time, value:parseFloat(avg.toFixed(2))};
+      }).filter(Boolean);
+      ma.setData(maData);
+    });
+
+    stockChart.timeScale().fitContent();
+
+    // 成交量
+    const volDiv = document.createElement('div');
+    volDiv.style.cssText = 'width:100%;height:70px;margin-top:2px';
+    el.appendChild(volDiv);
+
+    const volChart = LightweightCharts.createChart(volDiv, {
+      width:W, height:70,
+      layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},
+      grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},
+      rightPriceScale:{borderColor:'#334155'},
+      timeScale:{borderColor:'#334155',visible:false},
+    });
+    const volSeries = volChart.addHistogramSeries({priceScaleId:'right',scaleMargins:{top:0.1,bottom:0}});
+    volSeries.setData(volData);
+    volChart.timeScale().fitContent();
+
+    // 同步捲動
+    stockChart.timeScale().subscribeVisibleLogicalRangeChange(range=>{if(range)volChart.timeScale().setVisibleLogicalRange(range);});
+    volChart.timeScale().subscribeVisibleLogicalRangeChange(range=>{if(range)stockChart.timeScale().setVisibleLogicalRange(range);});
+
+    // 標題更新
+    const titleEl = document.getElementById('stockChartTitle');
+    if(titleEl) titleEl.textContent = (NAMES[code]||code) + ` ${interval}分K`;
+
+  }catch(e){
+    el.innerHTML = `<div style="color:#64748b;padding:20px;text-align:center">分K載入失敗（${e.message}）<br><span style="font-size:11px">Yahoo Finance API 有 CORS 限制，交易時間外可能無法取得</span></div>`;
+  }
+}
+
 async function loadStockChart(code,days,btn){
   if(!code)return;
   if(btn){document.querySelectorAll('#stockChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
