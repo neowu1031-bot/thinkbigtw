@@ -1205,6 +1205,18 @@ async function searchHK(){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
+  // 記住我：自動填入
+  if(localStorage.getItem('mr_remember')==='1'){
+    const savedEmail=localStorage.getItem('mr_remember_email');
+    if(savedEmail){
+      setTimeout(()=>{
+        const inp=document.getElementById('loginEmail');
+        const cb=document.getElementById('rememberMe');
+        if(inp)inp.value=savedEmail;
+        if(cb)cb.checked=true;
+      },100);
+    }
+  }
   const inp=document.getElementById('hkSearch');
   if(inp)inp.addEventListener('keydown',e=>{if(e.key==='Enter')searchHK();});
 });
@@ -2125,6 +2137,7 @@ function renderStockChart(data,code){
   const el=document.getElementById('stockChartWrap');
   if(!el)return;
   el.innerHTML='';
+  el.style.cssText='width:100%;overflow:hidden;background:#0f172a;border-radius:8px';
   if(stockChart){try{stockChart.remove();}catch(e){}}
 
   const W=el.clientWidth||800;
