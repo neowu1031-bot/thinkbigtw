@@ -28,7 +28,9 @@ async function loadWatchlist() {
 }
 
 async function toggleWatchlist(symbol, name, market, label='watching') {
-  if(!currentUser) { alert('請先登入才能使用清單功能'); return; }
+  if(!currentUser) { showToast('請先登入才能使用清單功能','#f87171'); return; }
+  // 確保 token 最新
+  try{const{data:{session}}=await supabase.auth.getSession();if(session?.access_token)currentUser._token=session.access_token;}catch(e){}
   try {
     // 先查是否已存在
     const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+symbol+'&market=eq.'+market, {headers:authHeaders()});
@@ -2032,6 +2034,8 @@ async function searchStock(){
       // 載入財報數據
       loadFundamentals(code);
       loadStockChart(code,30,document.querySelector('#stockChartContainer .range-btn'));
+      loadIntradayChart(code);
+      loadRealtimeQuote(code);
       loadMonthlyRevenue(code);
       loadStockNews(code);
       // 更新自選股按鈕
@@ -2047,6 +2051,101 @@ async function searchStock(){
   }catch(e){alert('查詢失敗');}
 }
 
+
+// ===== 五檔委買委賣 + 分時走勢 =====
+async function loadRealtimeQuote(code){
+  const el = document.getElementById('realtimeQuote');
+  if(!el) return;
+  el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入中...</div>';
+  try{
+    // 判斷上市(tse)或上櫃(otc)
+    const prefix = (code.startsWith('6')||code.startsWith('8')) ? 'otc' : 'tse';
+    const url = `https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${prefix}_${code}.tw&json=1&delay=0`;
+    const r = await fetch(url);
+    const data = await r.json();
+    if(!data?.msgArray?.length){ el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">休市中或無即時資料</div>'; return; }
+    const s = data.msgArray[0];
+    // 五檔委買委賣
+    const bids = (s.b||'').split('_').filter(Boolean).slice(0,5);
+    const asks = (s.a||'').split('_').filter(Boolean).slice(0,5);
+    const bidVols = (s.g||'').split('_').filter(Boolean).slice(0,5);
+    const askVols = (s.f||'').split('_').filter(Boolean).slice(0,5);
+    const price = parseFloat(s.z||s.y||0);
+    const prev = parseFloat(s.y||0);
+    const maxVol = Math.max(...bidVols.map(Number), ...askVols.map(Number), 1);
+    let html = `<div style="font-size:11px;color:#64748b;margin-bottom:6px">即時報價 · ${s.t||''}</div>`;
+    html += `<table style="width:100%;border-collapse:collapse;font-size:12px">`;
+    html += `<tr style="color:#64748b;font-size:10px"><td style="text-align:right;padding:1px 4px">委買量</td><td style="text-align:center">委買價</td><td></td><td style="text-align:center">委賣價</td><td style="text-align:left;padding:1px 4px">委賣量</td></tr>`;
+    for(let i=4;i>=0;i--){
+      const bp=bids[i]||'—', bv=bidVols[i]||'—';
+      const ap=asks[i]||'—', av=askVols[i]||'—';
+      const bPct=bv!=='—'?Math.round(Number(bv)/maxVol*100):0;
+      const aPct=av!=='—'?Math.round(Number(av)/maxVol*100):0;
+      html+=`<tr>
+        <td style="text-align:right;padding:2px 4px;color:#34d399;position:relative">
+          <div style="position:absolute;right:0;top:0;bottom:0;width:${bPct}%;background:rgba(52,211,153,0.15);z-index:0"></div>
+          <span style="position:relative;z-index:1">${bv}</span>
+        </td>
+        <td style="text-align:center;color:#34d399;font-weight:600;padding:2px 6px">${bp}</td>
+        <td style="width:8px"></td>
+        <td style="text-align:center;color:#f87171;font-weight:600;padding:2px 6px">${ap}</td>
+        <td style="text-align:left;padding:2px 4px;color:#f87171;position:relative">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:${aPct}%;background:rgba(248,113,113,0.15);z-index:0"></div>
+          <span style="position:relative;z-index:1">${av}</span>
+        </td>
+      </tr>`;
+    }
+    html += `</table>`;
+    html += `<div style="display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:#64748b;border-top:1px solid #1e293b;padding-top:6px">
+      <span>成交: <span style="color:#e2e8f0;font-weight:600">${s.z||'—'}</span></span>
+      <span>總量: <span style="color:#e2e8f0">${s.v||'—'}</span>張</span>
+      <span>昨收: <span style="color:#94a3b8">${s.y||'—'}</span></span>
+    </div>`;
+    el.innerHTML = html;
+  }catch(e){
+    el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">無法取得即時資料（CORS）</div>';
+  }
+}
+
+async function loadIntradayChart(code){
+  const el = document.getElementById('intradayChartWrap');
+  if(!el) return;
+  el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px;text-align:center">載入分時走勢中...</div>';
+  try{
+    const prefix = (code.startsWith('6')||code.startsWith('8')) ? 'otc' : 'tse';
+    const url = `https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${prefix}_${code}.tw&json=1&delay=0`;
+    const r = await fetch(url);
+    const data = await r.json();
+    if(!data?.msgArray?.length){ el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">休市中或無分時資料</div>'; return; }
+    const s = data.msgArray[0];
+    // 分時價格
+    const prices = (s.pz||'').split('_').filter(Boolean).map(Number);
+    const times = (s.pt||'').split('_').filter(Boolean);
+    const prev = parseFloat(s.y||0);
+    if(!prices.length){ el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">尚無分時資料</div>'; return; }
+    // 畫 SVG 分時圖
+    const W=el.clientWidth||400, H=100;
+    const min=Math.min(prev*0.98,...prices), max=Math.max(prev*1.02,...prices);
+    const range=max-min||1;
+    const pts=prices.map((p,i)=>`${(i/(prices.length-1||1))*W},${H-((p-min)/range)*(H-8)-4}`).join(' ');
+    const prevY=H-((prev-min)/range)*(H-8)-4;
+    const lastP=prices[prices.length-1];
+    const color=lastP>=prev?'#34d399':'#f87171';
+    el.innerHTML=`<svg width="${W}" height="${H}" style="display:block">
+      <defs><linearGradient id="ig" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${color}" stop-opacity="0.3"/><stop offset="100%" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
+      <line x1="0" y1="${prevY}" x2="${W}" y2="${prevY}" stroke="#475569" stroke-width="1" stroke-dasharray="4"/>
+      <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5"/>
+      <text x="4" y="12" fill="#64748b" font-size="10">${times[0]||'09:00'}</text>
+      <text x="${W-32}" y="12" fill="#64748b" font-size="10">${times[times.length-1]||'13:30'}</text>
+      <text x="${W-50}" y="${H-4}" fill="${color}" font-size="11" font-weight="bold">${lastP.toFixed(2)}</text>
+    </svg>
+    <div style="display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-top:2px">
+      <span>昨收 ${prev}</span><span style="color:${color}">${lastP>=prev?'▲':'▼'} ${Math.abs(((lastP-prev)/prev)*100).toFixed(2)}%</span>
+    </div>`;
+  }catch(e){
+    el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">無法取得分時資料（CORS）</div>';
+  }
+}
 async function loadStockChart(code,days,btn){
   if(!code)return;
   if(btn){document.querySelectorAll('#stockChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
