@@ -2021,8 +2021,14 @@ async function loadTaiexChart(days,btn){
 }
 
 async function searchStock(){
-  const code=document.getElementById('stockInput').value.trim();
+  let code=document.getElementById('stockInput').value.trim();
   if(!code)return;
+  // 支援中文名稱搜尋：在 NAMES 裡找對應代號
+  if(!/^\d/.test(code)){
+    const found = Object.entries(NAMES).find(([k,v])=>v===code||v.includes(code)||k===code);
+    if(found) code=found[0];
+  }
+  document.getElementById('stockInput').value=code;
   currentStock=code;
   trackEvent('search_stock',{stock_code:code});
   try{
@@ -3043,8 +3049,13 @@ async function loadETFNav(code){
 }
 
 async function searchETF(){
-  const code=document.getElementById('etfInput').value.trim();
+  let code=document.getElementById('etfInput').value.trim();
   if(!code)return;
+  if(!/^\d/.test(code)){
+    const found = Object.entries(NAMES).find(([k,v])=>v===code||v.includes(code)||k===code);
+    if(found) code=found[0];
+  }
+  document.getElementById('etfInput').value=code;
   currentETF=code;
   trackEvent('search_etf',{etf_code:code});
   try{
