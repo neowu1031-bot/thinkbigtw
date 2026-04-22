@@ -2335,13 +2335,45 @@ async function fetchUSStock(sym){
   const low=d.l||price;
   return {price,pct,high,low};
 }
-function usCard(sym,name,price,pct,extra=''){
+// 通用迷你折線圖 SVG
+function miniSVG(prices, color){
+  if(!prices||prices.length<2)return '';
+  const W=160,H=48;
+  const min=Math.min(...prices),max=Math.max(...prices);
+  const range=max-min||1;
+  const pts=prices.map((p,i)=>{
+    const x=(i/(prices.length-1))*W;
+    const y=H-((p-min)/range)*(H-6)-3;
+    return x.toFixed(1)+','+y.toFixed(1);
+  }).join(' ');
+  const lx=((prices.length-1)/(prices.length-1))*W;
+  const ly=H-((prices[prices.length-1]-min)/range)*(H-6)-3;
+  return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block;width:100%;height:${H}px">
+    <defs><linearGradient id="g${color.replace('#','')}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${color}" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="${color}" stop-opacity="0"/>
+    </linearGradient></defs>
+    <polygon points="${pts} ${W},${H} 0,${H}" fill="url(#g${color.replace('#','')})" opacity="0.4"/>
+    <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="${lx.toFixed(1)}" cy="${ly.toFixed(1)}" r="2.5" fill="${color}"/>
+  </svg>`;
+}
+
+function usCard(sym,name,price,pct,extra='',chart=''){
   const up=pct>=0;
-  return `<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
-    <div style="font-size:12px;color:#94a3b8">${sym}</div>
-    <div style="font-size:14px;color:#e2e8f0;margin:2px 0">${name}</div>
-    <div style="font-size:20px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
-    <div style="font-size:13px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+  const color=up?'#34d399':'#f87171';
+  return `<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div style="font-size:11px;color:#94a3b8">${sym}</div>
+        <div style="font-size:13px;color:#e2e8f0;margin:2px 0;font-weight:600">${name}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:18px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+        <div style="font-size:12px;color:${color}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+      </div>
+    </div>
+    ${chart?`<div style="margin-top:8px">${chart}</div>`:''}
     ${extra}
   </div>`;
 }
@@ -2366,14 +2398,22 @@ const FX_ITEMS=[
   {sym:'NG=F',name:'天然氣',unit:'USD'},
   {sym:'HG=F',name:'銅',unit:'USD/磅'}
 ];
-function fxCard(name,unit,price,pct,dec){
+function fxCard(name,unit,price,pct,dec,chart=''){
   const up=pct>=0;
-  const pHtml=pct!==0?`<div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${Math.abs(pct).toFixed(2)}%</div>`:'';
-  return `<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155">
-    <div style="font-size:11px;color:#64748b">${unit}</div>
-    <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin:2px 0">${name}</div>
-    <div style="font-size:18px;font-weight:700;color:#e2e8f0">${typeof price==='number'?price.toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec}):price}</div>
-    ${pHtml}
+  const color=pct!==0?(up?'#34d399':'#f87171'):'#94a3b8';
+  const pHtml=pct!==0?`<div style="font-size:12px;color:${color}">${up?'▲ +':'▼ '}${Math.abs(pct).toFixed(2)}%</div>`:'';
+  return `<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${pct>0?'#1e4a3a':pct<0?'#4a1e1e':'#334155'}">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start">
+      <div>
+        <div style="font-size:11px;color:#64748b">${unit}</div>
+        <div style="font-size:13px;color:#e2e8f0;font-weight:600;margin:2px 0">${name}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:18px;font-weight:700;color:#e2e8f0">${typeof price==='number'?price.toLocaleString(undefined,{minimumFractionDigits:dec,maximumFractionDigits:dec}):price}</div>
+        ${pHtml}
+      </div>
+    </div>
+    ${chart?`<div style="margin-top:8px">${chart}</div>`:''}
   </div>`;
 }
 function secTitle(icon,title){
@@ -2439,7 +2479,16 @@ async function loadUSHot(){
   for(const s of US_HOT){
     try{
       const {price,pct}=await fetchUSStock(s.sym);
-      grid.innerHTML+=usCard(s.sym,s.name,price,pct);
+      // 抓近30天K線
+      let chart='';
+      try{
+        const to=Math.floor(Date.now()/1000);
+        const from=to-30*24*3600;
+        const cr=await fetch(`https://finnhub.io/api/v1/stock/candle?symbol=${s.sym}&resolution=D&from=${from}&to=${to}&token=d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg`);
+        const cd=await cr.json();
+        if(cd.s==='ok'&&cd.c&&cd.c.length>1)chart=miniSVG(cd.c,up?'#34d399':'#f87171');
+      }catch(e){}
+      grid.innerHTML+=usCard(s.sym,s.name,price,pct,'',chart);
     }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${s.sym} 載入失敗</div>`;}
   }
 }
