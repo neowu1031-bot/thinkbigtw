@@ -1877,7 +1877,7 @@ async function searchStock(){
       document.getElementById('sOpen').textContent=d.open_price;
       document.getElementById('sHigh').textContent=d.high_price;
       document.getElementById('sLow').textContent=d.low_price;
-      document.getElementById('stockChartContainer').style.display='block';
+      document.getElementById('stockChartContainer').style.display='block';setTimeout(()=>document.getElementById('stockChartContainer').scrollIntoView({behavior:'smooth',block:'start'}),50);
       document.getElementById('stockChartTitle').textContent=(NAMES[code]||code)+' K線圖';
       // 載入財報數據
       loadFundamentals(code);
@@ -2209,7 +2209,7 @@ async function searchETF(){
       const pct=d.close_price>0?((ch/(parseFloat(d.close_price)-ch))*100).toFixed(2):ch.toFixed(2);cel.textContent=(ch>=0?'+':'')+pct+'%';
       cel.className='val '+(ch>=0?'up':'down');
       document.getElementById('eVol').textContent=parseInt(d.volume).toLocaleString();
-      document.getElementById('etfChartContainer').style.display='block';
+      document.getElementById('etfChartContainer').style.display='block';setTimeout(()=>document.getElementById('etfChartContainer').scrollIntoView({behavior:'smooth',block:'start'}),50);
       document.getElementById('etfChartTitle').textContent=(NAMES[code]||code)+' K線圖';
       loadETFChart(code,30,document.querySelector('#etfChartContainer .range-btn'));
       loadETFDividend(code);
@@ -2547,7 +2547,7 @@ async function searchUS(){
       <div style="font-size:12px;color:#64748b;margin-top:8px">今日高: $${high.toFixed(2)} | 低: $${low.toFixed(2)}</div>
     </div>`;
     document.getElementById('usChartTitle').textContent=sym+' K線圖';
-    document.getElementById('usChartContainer').style.display='block';
+    document.getElementById('usChartContainer').style.display='block';setTimeout(()=>document.getElementById('usChartContainer').scrollIntoView({behavior:'smooth',block:'start'}),50);
     loadUSChart(sym,30,document.querySelector('#usChartContainer .range-btn'));
   }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+sym+'，請確認代號</div>';}
 }
