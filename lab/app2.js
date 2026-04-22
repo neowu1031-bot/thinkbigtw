@@ -2901,6 +2901,57 @@ async function loadFundamentals(code){
       </div>`;
   }catch(e){if(el)el.style.display='none';}
 }
+
+// ===== ETF 折溢價 =====
+async function loadETFNav(code){
+  const el = document.getElementById('etfNavWrap');
+  if(!el) return;
+  el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:4px">載入折溢價...</div>';
+  try{
+    // 用 bwibbu 拿殖利率/本益比
+    const bwi = await twseProxy('bwibbu', code);
+    if(!bwi){ el.innerHTML=''; return; }
+
+    const yield_ = bwi['DividendYield'] ? parseFloat(bwi['DividendYield']) : null;
+    const pe = bwi['PEratio'] ? parseFloat(bwi['PEratio']) : null;
+    const pb = bwi['PBratio'] ? parseFloat(bwi['PBratio']) : null;
+
+    // 折溢價：(市價-淨值)/淨值 × 100%
+    // 用 PB ratio 估算：PB = 市價/淨值，折溢價 = (PB-1)×100%
+    let navHtml = '';
+    if(pb !== null){
+      const premium = (pb - 1) * 100;
+      const color = premium > 0 ? '#f87171' : premium < 0 ? '#34d399' : '#94a3b8';
+      const label = premium > 0 ? '溢價' : premium < 0 ? '折價' : '平價';
+      navHtml = `<div style="display:inline-flex;align-items:center;gap:6px;background:${premium>0?'#450a0a':premium<0?'#052e16':'#1e293b'};border:1px solid ${color};border-radius:20px;padding:4px 12px;margin-bottom:8px">
+        <span style="font-size:12px;color:${color};font-weight:700">${label} ${Math.abs(premium).toFixed(2)}%</span>
+        <span style="font-size:10px;color:#64748b">PB ${pb.toFixed(2)}x</span>
+      </div>`;
+    }
+
+    el.innerHTML = `<div style="margin-bottom:8px">
+      ${navHtml}
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${yield_!==null?`<div style="background:#0f172a;border-radius:8px;padding:8px 12px;text-align:center;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:2px">殖利率</div>
+          <div style="font-size:16px;font-weight:700;color:#34d399">${yield_.toFixed(2)}%</div>
+        </div>`:''}
+        ${pe!==null&&pe>0?`<div style="background:#0f172a;border-radius:8px;padding:8px 12px;text-align:center;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:2px">本益比</div>
+          <div style="font-size:16px;font-weight:700;color:#e2e8f0">${pe.toFixed(1)}x</div>
+        </div>`:''}
+        ${pb!==null?`<div style="background:#0f172a;border-radius:8px;padding:8px 12px;text-align:center;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:2px">股價淨值比</div>
+          <div style="font-size:16px;font-weight:700;color:#60a5fa">${pb.toFixed(2)}x</div>
+        </div>`:''}
+      </div>
+    </div>`;
+    el.style.display = 'block';
+  }catch(e){
+    el.innerHTML = '';
+  }
+}
+
 async function searchETF(){
   const code=document.getElementById('etfInput').value.trim();
   if(!code)return;
@@ -2924,6 +2975,7 @@ async function searchETF(){
       document.getElementById('etfChartContainer').style.display='block';setTimeout(()=>document.getElementById('etfChartContainer').scrollIntoView({behavior:'smooth',block:'start'}),50);
       document.getElementById('etfChartTitle').textContent=(NAMES[code]||code)+' K線圖';
       loadETFChart(code,30,document.querySelector('#etfChartContainer .range-btn'));
+      loadETFNav(code);
       loadETFDividend(code);
       loadETFHoldings(code);
     }else{
