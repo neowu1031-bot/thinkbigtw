@@ -13,6 +13,13 @@ serve(async (req) => {
   try {
     const { type, code } = await req.json();
     let url = '';
+    let data = null;
+
+    const headers = {
+      'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+      'Accept': 'application/json, text/plain, */*',
+      'Referer': 'https://mis.twse.com.tw/',
+    };
 
     switch(type) {
       case 'dispose':
@@ -32,22 +39,36 @@ serve(async (req) => {
       case 'etf_nav':
         url = 'https://openapi.twse.com.tw/v1/ETF/fund';
         break;
+      case 'dividend':
+        // 台股個股歷年配息 - TWSE exchangeReport
+        if (!code) throw new Error('code required');
+        url = `https://www.twse.com.tw/exchangeReport/STOCK_DAY?response=json&stockNo=${code}`;
+        // 改用 goodinfo 格式的 TWSE API
+        const r2 = await fetch(
+          `https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_d`,
+          { headers }
+        );
+        const allData = await r2.json();
+        const stockData = Array.isArray(allData) ? allData.find((d: any) => d['Code'] === code) : null;
+        // 再抓配息資料
+        const r3 = await fetch(
+          `https://openapi.twse.com.tw/v1/exchangeReport/BWIBBU_ALL`,
+          { headers }
+        );
+        let divData = null;
+        try { divData = await r3.json(); } catch(e) { divData = null; }
+        data = { bwibbu: stockData, dividendHistory: divData };
+        return new Response(JSON.stringify({ ok: true, data }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
       default:
         throw new Error('unknown type: ' + type);
     }
 
-    const r = await fetch(url, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
-        'Accept': 'application/json, text/plain, */*',
-        'Referer': 'https://mis.twse.com.tw/',
-      }
-    });
-
+    const r = await fetch(url, { headers });
     if (!r.ok) throw new Error(`upstream HTTP ${r.status}`);
 
     const text = await r.text();
-    let data;
     try { data = JSON.parse(text); } catch { data = text; }
 
     // 過濾特定股票
@@ -56,7 +77,7 @@ serve(async (req) => {
         const filtered = data.filter((d: any) =>
           d['股票代號'] === code || d['Code'] === code || d['stockNo'] === code
         );
-        data = filtered.length > 0 ? filtered : [];
+        data = filtered;
       }
       if (type === 'bwibbu') {
         const filtered = data.filter((d: any) => d['Code'] === code);

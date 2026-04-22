@@ -2362,6 +2362,71 @@ async function checkDisposeStatus(code){
   }
 }
 
+
+// ===== 台股個股配息歷史 =====
+async function loadStockDividend(code){
+  const el = document.getElementById('stockDividendWrap');
+  if(!el) return;
+  el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入配息資料中...</div>';
+  try{
+    // 從 bwibbu 拿到殖利率/本益比
+    const bwi = await twseProxy('bwibbu', code);
+    // 從 Supabase etf_dividends 試看看（台股通常沒有）
+    const r = await fetch(BASE+'/etf_dividends?symbol=eq.'+code+'&order=ex_dividend_date.desc&limit=10',{headers:SB_H});
+    const divs = await r.json();
+
+    let html = '<div style="margin:8px 0">';
+
+    // 即時殖利率卡片
+    if(bwi){
+      html += `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">
+        <div style="background:#0f172a;border-radius:8px;padding:10px 14px;text-align:center;min-width:80px;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">殖利率</div>
+          <div style="font-size:17px;font-weight:700;color:#34d399">${bwi['DividendYield']?parseFloat(bwi['DividendYield']).toFixed(2)+'%':'—'}</div>
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px 14px;text-align:center;min-width:80px;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">本益比</div>
+          <div style="font-size:17px;font-weight:700;color:#e2e8f0">${bwi['PEratio']?parseFloat(bwi['PEratio']).toFixed(1)+'x':'—'}</div>
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px 14px;text-align:center;min-width:80px;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">股價淨值比</div>
+          <div style="font-size:17px;font-weight:700;color:#60a5fa">${bwi['PBratio']?parseFloat(bwi['PBratio']).toFixed(2)+'x':'—'}</div>
+        </div>
+      </div>`;
+    }
+
+    // 配息記錄
+    if(divs && divs.length > 0){
+      html += '<div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:6px;border-left:3px solid #2563eb;padding-left:8px">📅 配息記錄</div>';
+      html += '<div style="display:flex;flex-direction:column;gap:4px">';
+      divs.forEach(d=>{
+        const amt = d.dividend_amount!=null ? '$'+parseFloat(d.dividend_amount).toFixed(3) : '待公告';
+        const color = d.dividend_amount!=null ? '#34d399' : '#94a3b8';
+        html += `<div style="display:flex;justify-content:space-between;align-items:center;background:#0f172a;border-radius:6px;padding:8px 12px;border:1px solid #1e293b">
+          <div>
+            <div style="font-size:12px;color:#94a3b8">除息日 ${d.ex_dividend_date||'—'}</div>
+            <div style="font-size:11px;color:#64748b">發放日 ${d.payment_date||'—'}</div>
+          </div>
+          <div style="font-size:15px;font-weight:700;color:${color}">${amt}</div>
+        </div>`;
+      });
+      html += '</div>';
+    } else {
+      html += `<div style="text-align:center;padding:12px;color:#475569;font-size:12px">
+        配息歷史資料建置中
+        <br><a href="https://goodinfo.tw/tw/StockDividendPolicy.asp?STOCK_ID=${code}" target="_blank" 
+           style="color:#60a5fa;font-size:11px;margin-top:6px;display:inline-block">查看 Goodinfo 配息歷史 →</a>
+      </div>`;
+    }
+
+    html += '</div>';
+    el.innerHTML = html;
+    el.style.display = 'block';
+  }catch(e){
+    el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">配息資料載入失敗</div>';
+  }
+}
+
 async function loadStockChart(code,days,btn){
   if(!code)return;
   if(btn){document.querySelectorAll('#stockChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
