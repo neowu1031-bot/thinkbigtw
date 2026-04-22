@@ -2054,6 +2054,7 @@ async function searchStock(){
       loadStockNews(code);
       checkDisposeStatus(code);
       loadStockDividend(code);
+      loadChipAnalysis(code);
       // 更新自選股按鈕
       const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
       const wBtn=document.getElementById('watchlistBtn');
@@ -2429,6 +2430,92 @@ async function loadStockDividend(code){
     el.style.display = 'block';
   }catch(e){
     el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">配息資料載入失敗</div>';
+  }
+}
+
+
+// ===== 籌碼分析：三大法人個股進出 =====
+async function loadChipAnalysis(code){
+  const el = document.getElementById('chipWrap');
+  if(!el) return;
+  el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入籌碼資料中...</div>';
+  try{
+    // 從 Supabase 抓最新10天的三大法人個股資料
+    const r = await fetch(BASE+'/institutional_investors?symbol=eq.'+code+'&order=date.desc&limit=10',{headers:SB_H});
+    const data = await r.json();
+
+    if(!data||!data.length){
+      el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">暫無籌碼資料</div>';
+      return;
+    }
+
+    const latest = data[0];
+    const foreign = parseInt(latest.foreign_buy||0);
+    const trust = parseInt(latest.investment_trust_buy||0);
+    const dealer = parseInt(latest.dealer_buy||0);
+    const total = parseInt(latest.total_buy||0);
+
+    // 外資連買/連賣天數
+    let foreignStreak = 0;
+    for(const d of data){
+      const f = parseInt(d.foreign_buy||0);
+      if(foreignStreak===0){ foreignStreak = f>=0?1:-1; continue; }
+      if((foreignStreak>0&&f>=0)||(foreignStreak<0&&f<0)){ foreignStreak += foreignStreak>0?1:-1; }
+      else break;
+    }
+
+    const fColor = foreign>=0?'#34d399':'#f87171';
+    const tColor = trust>=0?'#34d399':'#f87171';
+    const dColor = dealer>=0?'#34d399':'#f87171';
+    const totColor = total>=0?'#34d399':'#f87171';
+    const streakColor = foreignStreak>0?'#34d399':'#f87171';
+    const streakText = foreignStreak>0?`外資連買${Math.abs(foreignStreak)}天`:`外資連賣${Math.abs(foreignStreak)}天`;
+
+    let html = `<div style="margin-bottom:8px">
+      <div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">
+        📊 三大法人 · ${latest.date||''}
+        <span style="margin-left:8px;font-size:11px;background:${foreignStreak>0?'#052e16':'#450a0a'};color:${streakColor};padding:2px 8px;border-radius:10px">${streakText}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+        <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">外資</div>
+          <div style="font-size:16px;font-weight:700;color:${fColor}">${foreign>=0?'+':''}${foreign.toLocaleString()}<span style="font-size:10px;color:#64748b">張</span></div>
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">投信</div>
+          <div style="font-size:16px;font-weight:700;color:${tColor}">${trust>=0?'+':''}${trust.toLocaleString()}<span style="font-size:10px;color:#64748b">張</span></div>
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b">
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">自營商</div>
+          <div style="font-size:16px;font-weight:700;color:${dColor}">${dealer>=0?'+':''}${dealer.toLocaleString()}<span style="font-size:10px;color:#64748b">張</span></div>
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid ${totColor};border-width:1px">
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">三大合計</div>
+          <div style="font-size:16px;font-weight:700;color:${totColor}">${total>=0?'+':''}${total.toLocaleString()}<span style="font-size:10px;color:#64748b">張</span></div>
+        </div>
+      </div>`;
+
+    // 近10天走勢
+    if(data.length > 1){
+      const maxAbs = Math.max(...data.map(d=>Math.abs(parseInt(d.foreign_buy||0))),1);
+      html += '<div style="font-size:11px;color:#64748b;margin-bottom:4px">外資近期動向</div>';
+      html += '<div style="display:flex;align-items:flex-end;gap:3px;height:50px;background:#0f172a;border-radius:8px;padding:6px">';
+      [...data].reverse().forEach(d=>{
+        const v = parseInt(d.foreign_buy||0);
+        const h = Math.max(Math.abs(v)/maxAbs*38, 2);
+        const c = v>=0?'#34d399':'#f87171';
+        html += `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:${v>=0?'flex-end':'flex-start'}">
+          <div style="width:100%;height:${h}px;background:${c};border-radius:2px;opacity:0.8" title="${d.date}: ${v>=0?'+':''}${v}張"></div>
+        </div>`;
+      });
+      html += '</div>';
+    }
+
+    html += '</div>';
+    el.innerHTML = html;
+    el.style.display = 'block';
+  }catch(e){
+    el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">籌碼資料載入失敗</div>';
   }
 }
 
