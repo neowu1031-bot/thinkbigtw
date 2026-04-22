@@ -2651,13 +2651,13 @@ async function loadETFHot(){
   const priceMap={};
   const klineMap={};
   // 預先抓ETF K線（每批前3檔，避免太多請求）
-  for(const code of allSyms.slice(0,20)){
+  await Promise.all(allSyms.map(async code=>{
     try{
       const kr=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30&select=close_price',{headers:SB_H});
       const kd=await kr.json();
       if(kd&&kd.length>1) klineMap[code]=kd.map(r=>parseFloat(r.close_price)).reverse();
     }catch(e){}
-  }
+  }));
   for(let i=0;i<allSyms.length;i+=50){
     const batch=allSyms.slice(i,i+50);
     try{
