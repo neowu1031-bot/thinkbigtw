@@ -1741,16 +1741,17 @@ async function loadMarketBreadth(){
 
 async function loadGlobalIndices(){
   const indices=[
-    {sym:'%5EDJI',stooq:'^DJI',name:'道瓊 DJI',key:'DJI'},
-    {sym:'%5EIXIC',stooq:'^NDX',name:'納斯達克 IXIC',key:'IXIC'},
-    {sym:'%5EGSPC',stooq:'^SPX',name:'S&P500 GSPC',key:'GSPC'},
-    {sym:'%5EN225',stooq:'^NKX',name:'日經 N225',key:'N225'}
+    {sym:'%5EDJI',name:'道瓊 DJI',key:'DJI'},
+    {sym:'%5EIXIC',name:'納斯達克 IXIC',key:'IXIC'},
+    {sym:'%5EGSPC',name:'S&P500 GSPC',key:'GSPC'},
+    {sym:'%5EN225',name:'日經 N225',key:'N225'}
   ];
   for(const idx of indices){
-    const el=document.getElementById('global-'+idx.key);
-    if(!el)continue;
+    const priceEl=document.getElementById('idx_'+idx.key);
+    const pctEl=document.getElementById('idx_'+idx.key+'_pct');
+    if(!priceEl)continue;
     try{
-      const r=await fetch('https://corsproxy.io/?'+encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/'+idx.sym+'?interval=1d&range=1d&_cachebust='+Date.now()));
+      const r=await fetch('https://corsproxy.io/?'+encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/'+idx.sym+'?interval=1d&range=1d'));
       const d=await r.json();
       const meta=d.chart.result[0].meta;
       const price=meta.regularMarketPrice;
@@ -1758,9 +1759,11 @@ async function loadGlobalIndices(){
       const chg=price-prev;
       const pct=(prev>0?chg/prev*100:0).toFixed(2);
       const color=chg>=0?'#34d399':'#f87171';
-      el.innerHTML='<div style="font-size:1.4em;font-weight:bold;color:'+color+'">'+price.toLocaleString('en-US',{maximumFractionDigits:2})+'</div><div style="color:'+color+';font-size:0.85em">'+(chg>=0?'+':'')+chg.toFixed(2)+' ('+pct+'%)</div>';
+      priceEl.textContent=price.toLocaleString('en-US',{maximumFractionDigits:2});
+      priceEl.style.color=color;
+      if(pctEl){pctEl.textContent=(chg>=0?'+':'')+pct+'%';pctEl.style.color=color;}
     }catch(e){
-      if(el)el.innerHTML='<div style="color:#64748b">休市</div>';
+      priceEl.textContent='休市';
     }
   }
 }
