@@ -803,6 +803,22 @@ textarea{height:80px;resize:vertical}
         <input type="text" id="cryptoSearch" placeholder="輸入幣種代號，例如：BTC、ETH、SHIB" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
         <button onclick="searchCrypto()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
       </div>
+      <div id="tab-watchlist" style="display:none">
+        <div style="padding:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+            <div style="font-size:16px;font-weight:700;color:#e2e8f0">⭐ 我的清單</div>
+            <div style="font-size:12px;color:#64748b">點任意股票的 ☆ 加入清單</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <button onclick="filterWatchlist('all')" id="wl-all" style="background:#2563eb;color:#fff;border:none;padding:5px 14px;border-radius:16px;font-size:12px;cursor:pointer">全部</button>
+            <button onclick="filterWatchlist('watching')" id="wl-watching" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 14px;border-radius:16px;font-size:12px;cursor:pointer">👁 觀察中</button>
+            <button onclick="filterWatchlist('holding')" id="wl-holding" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 14px;border-radius:16px;font-size:12px;cursor:pointer">✅ 持有中</button>
+          </div>
+          <div id="watchlistContent">
+            <div style="color:#64748b;padding:20px;text-align:center">載入中...</div>
+          </div>
+        </div>
+      </div>
       <div id="cryptoSearchResult" style="margin-bottom:20px"></div>
       <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門幣種</div>
       <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
@@ -810,7 +826,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
 </div>
-<script src="app2.js?v=50"></script>
+<script src="app2.js?v=51"></script>
 
 <script>
 (function(){

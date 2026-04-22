@@ -10,6 +10,133 @@ let currentUser=null;
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
 const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電','2303':'聯電','2881':'富邦金','2882':'國泰金','2886':'兆豐金','2891':'中信金','2884':'玉山金','2885':'元大金','2892':'第一金','2883':'開發金','2880':'華南金','2887':'台新金','2888':'新光金','1301':'台塑','1303':'南亞','1326':'台化','2002':'中鋼','2412':'中華電','3008':'大立光','2395':'研華','2357':'華碩','2376':'技嘉','4938':'和碩','2474':'可成','3034':'聯詠','2379':'瑞昱','6505':'台塑化','1216':'統一','2912':'統一超','2207':'和泰車','2105':'正新','2615':'萬海','2603':'長榮','2609':'陽明','2610':'華航','2618':'長榮航','2301':'光寶科','2324':'仁寶','2352':'佳世達','2353':'宏碁','2356':'英業達','3045':'台灣大','4904':'遠傳','2409':'友達','3481':'群創','6669':'緯穎','2408':'南亞科','3711':'日月光投控','2327':'國巨','2360':'致茂','5274':'信驊','6415':'矽力-KY','2049':'上銀','1590':'亞德客-KY','6239':'力成','0050':'元大台灣50','0056':'元大高股息','00878':'國泰永續高股息','00919':'群益台灣精選高息','00929':'復華台灣科技優息','00940':'元大台灣價值高息','00713':'元大台灣高息低波','006208':'富邦台灣采吉50','00881':'國泰台灣5G+'}
+
+// ===== 我的清單 (Watchlist) =====
+let watchlistCache = null;
+
+async function loadWatchlist() {
+  if(!currentUser) return [];
+  try {
+    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&order=created_at.desc', {headers:SB_H});
+    watchlistCache = await r.json();
+    return watchlistCache || [];
+  } catch(e) { return []; }
+}
+
+async function toggleWatchlist(symbol, name, market, label='watching') {
+  if(!currentUser) { alert('請先登入才能使用清單功能'); return; }
+  try {
+    // 先查是否已存在
+    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+symbol+'&market=eq.'+market, {headers:SB_H});
+    const existing = await r.json();
+    if(existing && existing.length > 0) {
+      // 已存在 → 刪除
+      await fetch(BASE+'/watchlist?id=eq.'+existing[0].id, {method:'DELETE', headers:SB_H});
+      watchlistCache = (watchlistCache||[]).filter(w => !(w.symbol===symbol && w.market===market));
+      showToast('已從清單移除：'+name, '#f87171');
+    } else {
+      // 不存在 → 新增
+      await fetch(BASE+'/watchlist', {
+        method:'POST',
+        headers:{...SB_H,'Content-Type':'application/json','Prefer':'return=minimal'},
+        body: JSON.stringify({user_id:currentUser.id, symbol, name, market, label})
+      });
+      if(!watchlistCache) watchlistCache = [];
+      watchlistCache.push({symbol, name, market, label});
+      showToast((label==='holding'?'✅ 已加入持有中：':'👁 已加入觀察中：')+name, '#34d399');
+    }
+    // 更新按鈕狀態
+    document.querySelectorAll('[data-wl-sym="'+symbol+'"][data-wl-mkt="'+market+'"]').forEach(btn => {
+      const inList = (watchlistCache||[]).some(w => w.symbol===symbol && w.market===market);
+      btn.style.color = inList ? '#f59e0b' : '#475569';
+      btn.textContent = inList ? '★' : '☆';
+    });
+  } catch(e) { showToast('操作失敗，請重試', '#f87171'); }
+}
+
+function isInWatchlist(symbol, market) {
+  return (watchlistCache||[]).some(w => w.symbol===symbol && w.market===market);
+}
+
+function watchlistBtn(symbol, name, market) {
+  const inList = isInWatchlist(symbol, market);
+  return `<span data-wl-sym="${symbol}" data-wl-mkt="${market}" onclick="event.stopPropagation();toggleWatchlist('${symbol}','${name.replace(/'/g,"\'")}','${market}')" style="cursor:pointer;font-size:18px;color:${inList?'#f59e0b':'#475569'};padding:2px 4px;line-height:1" title="${inList?'從清單移除':'加入觀察清單'}">${inList?'★':'☆'}</span>`;
+}
+
+function showToast(msg, color='#34d399') {
+  let t = document.getElementById('wl-toast');
+  if(!t) {
+    t = document.createElement('div');
+    t.id = 'wl-toast';
+    t.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1e293b;color:#e2e8f0;padding:10px 20px;border-radius:20px;font-size:13px;z-index:9999;border:1px solid #334155;transition:opacity 0.3s;pointer-events:none';
+    document.body.appendChild(t);
+  }
+  t.style.borderColor = color;
+  t.style.color = color;
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.style.opacity = '0'; }, 2500);
+}
+
+async function renderWatchlistTab() {
+  const el = document.getElementById('watchlistContent');
+  if(!el) return;
+  el.innerHTML = '<div style="color:#64748b;padding:20px;text-align:center">載入中...</div>';
+  const list = await loadWatchlist();
+  if(!list || list.length === 0) {
+    el.innerHTML = `<div style="text-align:center;padding:40px;color:#64748b">
+      <div style="font-size:40px;margin-bottom:12px">☆</div>
+      <div style="font-size:15px;margin-bottom:8px;color:#94a3b8">清單是空的</div>
+      <div style="font-size:13px">在任何股票卡片上點 ☆ 即可加入</div>
+    </div>`;
+    return;
+  }
+  // 分兩組：持有中 / 觀察中
+  const holding = list.filter(w => w.label === 'holding');
+  const watching = list.filter(w => w.label === 'watching');
+  let html = '';
+  const renderGroup = (items, title, icon, color) => {
+    if(items.length === 0) return '';
+    let h = `<div style="font-size:13px;color:${color};font-weight:700;padding:8px 0 6px;border-bottom:1px solid #1e293b;margin-bottom:8px">${icon} ${title} (${items.length})</div>`;
+    items.forEach(w => {
+      const mktLabel = {tw:'台股',etf:'ETF',us:'美股',hk:'港股',crypto:'加密',fx:'外匯'}[w.market]||w.market;
+      h += `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px;background:#0f172a;border-radius:8px;margin-bottom:6px;border:1px solid #1e293b">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:10px;background:#1e293b;color:#60a5fa;padding:2px 6px;border-radius:8px">${mktLabel}</span>
+          <div>
+            <div style="font-size:13px;color:#e2e8f0;font-weight:600">${w.symbol}</div>
+            <div style="font-size:11px;color:#64748b">${w.name||''}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span onclick="toggleWatchlistLabel('${w.id}','${w.symbol}','${w.market}','${w.label==='holding'?'watching':'holding'}')" style="font-size:10px;padding:3px 8px;border-radius:10px;cursor:pointer;background:${w.label==='holding'?'#1e4a3a':'#1e293b'};color:${w.label==='holding'?'#34d399':'#94a3b8'};border:1px solid ${w.label==='holding'?'#34d399':'#334155'}">${w.label==='holding'?'持有中':'觀察中'}</span>
+          <span onclick="toggleWatchlist('${w.symbol}','${w.name||''}','${w.market}')" style="cursor:pointer;color:#ef4444;font-size:16px;padding:2px 4px" title="移除">×</span>
+        </div>
+      </div>`;
+    });
+    return h;
+  };
+  html += renderGroup(holding, '持有中', '✅', '#34d399');
+  html += renderGroup(watching, '觀察中', '👁', '#60a5fa');
+  el.innerHTML = html;
+}
+
+async function toggleWatchlistLabel(id, symbol, market, newLabel) {
+  try {
+    await fetch(BASE+'/watchlist?id=eq.'+id, {
+      method:'PATCH',
+      headers:{...SB_H,'Content-Type':'application/json'},
+      body: JSON.stringify({label: newLabel})
+    });
+    if(watchlistCache) {
+      const item = watchlistCache.find(w => w.symbol===symbol && w.market===market);
+      if(item) item.label = newLabel;
+    }
+    renderWatchlistTab();
+    showToast(newLabel==='holding'?'✅ 標記為持有中':'👁 標記為觀察中', '#34d399');
+  } catch(e) {}
+}
 let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=null,currentStock='',currentETF='',currentUS='',currentIndicator='none',lastKData=[];
 const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
