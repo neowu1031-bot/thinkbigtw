@@ -1741,37 +1741,29 @@ async function loadMarketBreadth(){
 
 async function loadGlobalIndices(){
   const indices=[
-    {sym:'^DJI',key:'DJI'},
-    {sym:'^IXIC',key:'IXIC'},
-    {sym:'^GSPC',key:'GSPC'},
-    {sym:'^N225',key:'N225'}
+    {sym:'%5EDJI',name:'道瓊 DJI',key:'DJI'},
+    {sym:'%5EIXIC',name:'納斯達克 IXIC',key:'IXIC'},
+    {sym:'%5EGSPC',name:'S&P500 GSPC',key:'GSPC'},
+    {sym:'%5EN225',name:'日經 N225',key:'N225'}
   ];
+  const CORS='https://api.allorigins.win/get?url=';
   for(const idx of indices){
+    const el=document.getElementById('global-'+idx.key);
+    if(!el)continue;
     try{
-      const r=await fetch('https://finnhub.io/api/v1/quote?symbol='+encodeURIComponent(idx.sym)+'&token='+FINNHUB_KEY);
+      const url=encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/'+idx.sym+'?interval=1d&range=1d');
+      const r=await fetch(CORS+url);
       const d=await r.json();
-      if(!d||!d.c||d.c===0){
-        const pxEl=document.getElementById('idx_'+idx.key);
-        const pctEl=document.getElementById('idx_'+idx.key+'_pct');
-        if(pxEl)pxEl.textContent='無資料';
-        if(pctEl)pctEl.textContent='—';
-        continue;
-      }
-      const price=d.c;
-      const prev=d.pc||price;
+      const obj=JSON.parse(d.contents);
+      const meta=obj.chart.result[0].meta;
+      const price=meta.regularMarketPrice;
+      const prev=meta.chartPreviousClose||meta.previousClose;
       const chg=price-prev;
-      const pct=prev>0?(chg/prev*100):0;
-      const up=chg>=0;
-      const pxEl=document.getElementById('idx_'+idx.key);
-      const pctEl=document.getElementById('idx_'+idx.key+'_pct');
-      if(pxEl)pxEl.textContent=price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
-      if(pctEl){
-        pctEl.textContent=(up?'▲ +':'▼ ')+Math.abs(chg).toFixed(2)+' ('+(up?'+':'')+pct.toFixed(2)+'%)';
-        pctEl.className='sub '+(up?'up':'down');
-      }
+      const pct=(chg/prev*100).toFixed(2);
+      const color=chg>=0?'#34d399':'#f87171';
+      el.innerHTML='<div style="font-size:1.4em;font-weight:bold;color:'+color+'">'+price.toLocaleString('en-US',{maximumFractionDigits:2})+'</div><div style="color:'+color+';font-size:0.85em">'+(chg>=0?'+':'')+chg.toFixed(2)+' ('+pct+'%)</div>';
     }catch(e){
-      const pxEl=document.getElementById('idx_'+idx.key);
-      if(pxEl)pxEl.textContent='載入失敗';
+      if(el)el.innerHTML='<div style="color:#64748b">載入失敗</div>';
     }
   }
 }
