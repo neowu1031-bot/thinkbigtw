@@ -2501,11 +2501,10 @@ async function loadUSHot(){
       // 抓近30天K線 via Yahoo Finance
       let chart='';
       try{
-        const yhUrl='https://query1.finance.yahoo.com/v8/finance/chart/'+s.sym+'?interval=1d&range=1mo';
-        const cr=await fetch('https://corsproxy.io/?'+encodeURIComponent(yhUrl));
+        const efUrl='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/yahoo-kline';
+        const cr=await fetch(efUrl,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':'Bearer '+SUPABASE_ANON_KEY},body:JSON.stringify({symbol:s.sym})});
         const cd=await cr.json();
-        const closes=cd.chart.result[0].indicators.quote[0].close.filter(v=>v!=null);
-        if(closes.length>1)chart=miniSVG(closes,up?'#34d399':'#f87171');
+        if(cd.closes&&cd.closes.length>1)chart=miniSVG(cd.closes,up?'#34d399':'#f87171');
       }catch(e){}
       grid.innerHTML+=usCard(s.sym,s.name,price,pct,'',chart);
     }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${s.sym} 載入失敗</div>`;}
