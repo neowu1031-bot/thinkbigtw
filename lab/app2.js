@@ -2049,6 +2049,8 @@ async function searchStock(){
       loadRealtimeQuote(code);
       loadMonthlyRevenue(code);
       loadStockNews(code);
+      checkDisposeStatus(code);
+      loadStockDividend(code);
       // 更新自選股按鈕
       const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
       const wBtn=document.getElementById('watchlistBtn');
