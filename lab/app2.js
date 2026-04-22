@@ -1820,11 +1820,10 @@ async function loadGlobalIndices(){
     const pctEl=document.getElementById('idx_'+idx.key+'_pct');
     if(!priceEl)continue;
     try{
-      const _sym=decodeURIComponent(idx.sym).replace('%5E','^');const _yf=await yfQuote(_sym,'1d','1d');const r={json:async()=>({chart:{result:[{meta:{regularMarketPrice:_yf.currentPrice,chartPreviousClose:_yf.prevClose,regularMarketDayHigh:_yf.high,regularMarketDayLow:_yf.low},indicators:{quote:[{close:[_yf.currentPrice]}]}}}]}})};
-      const d=await r.json();
-      const meta=d.chart.result[0].meta;
-      const price=meta.regularMarketPrice;
-      const prev=meta.chartPreviousClose||meta.previousClose||price;
+      const _sym=decodeURIComponent(idx.sym).replace('%5E','^');const _yf=await yfQuote(_sym,'1d','1d');
+      if(!_yf.currentPrice||_yf.error)throw new Error('no data');
+      const price=_yf.currentPrice;
+      const prev=_yf.prevClose||price;
       const chg=price-prev;
       const pct=(prev>0?chg/prev*100:0).toFixed(2);
       const color=chg>=0?'#34d399':'#f87171';
