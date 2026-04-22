@@ -1693,11 +1693,30 @@ async function loadCrypto(){
       const pct=parseFloat(d.priceChangePercent);
       const price=parseFloat(d.lastPrice);
       const up=pct>=0;
-      grid.innerHTML+=`<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:20px">
-        <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${c.name}</div>
-        <div style="font-size:22px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
-        <div style="font-size:14px;color:${up?'#34d399':'#f87171'};margin-top:4px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
-        <div style="font-size:12px;color:#64748b;margin-top:8px">24h量: ${parseFloat(d.volume).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+      // 抓K線
+      let kChart='';
+      try{
+        const kr=await fetch('https://api.binance.com/api/v3/klines?symbol='+c.sym+'&interval=1d&limit=30');
+        const kd=await kr.json();
+        if(Array.isArray(kd)&&kd.length>1){
+          const prices=kd.map(k=>parseFloat(k[4]));
+          kChart=miniSVG(prices,up?'#34d399':'#f87171');
+        }
+      }catch(e){}
+      const color=up?'#34d399':'#f87171';
+      grid.innerHTML+=`<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <div>
+            <div style="font-size:11px;color:#94a3b8">${c.sym.replace('USDT','')}</div>
+            <div style="font-size:13px;color:#e2e8f0;font-weight:600">${c.name}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:18px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+            <div style="font-size:12px;color:${color}">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
+          </div>
+        </div>
+        ${kChart?`<div style="margin-top:8px">${kChart}</div>`:''}
+        <div style="font-size:11px;color:#64748b;margin-top:4px">24h量: ${parseFloat(d.volume).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
       </div>`;
     }catch(e){}
   }
@@ -2631,6 +2650,15 @@ async function loadETFHot(){
   // 用 PostgREST: symbol=in.(...) + order=date.desc + 取最新
   // 為避免單次太多，分批 50
   const priceMap={};
+  const klineMap={};
+  // 預先抓ETF K線（每批前3檔，避免太多請求）
+  for(const code of allSyms.slice(0,20)){
+    try{
+      const kr=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30&select=close_price',{headers:SB_H});
+      const kd=await kr.json();
+      if(kd&&kd.length>1) klineMap[code]=kd.map(r=>parseFloat(r.close_price)).reverse();
+    }catch(e){}
+  }
   for(let i=0;i<allSyms.length;i+=50){
     const batch=allSyms.slice(i,i+50);
     try{
