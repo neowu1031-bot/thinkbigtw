@@ -24,6 +24,14 @@ function authHeaders(){
   const token=currentUser?._token||SB_KEY;
   return{'apikey':SB_KEY,'Authorization':'Bearer '+token,'Content-Type':'application/json'};
 }
+// 確保 token 最新的版本
+async function authHeadersFresh(){
+  try{
+    const{data:{session}}=await supabase.auth.getSession();
+    if(session?.access_token&&currentUser) currentUser._token=session.access_token;
+  }catch(e){}
+  return authHeaders();
+}
 const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電','2303':'聯電','2881':'富邦金','2882':'國泰金','2886':'兆豐金','2891':'中信金','2884':'玉山金','2885':'元大金','2892':'第一金','2883':'開發金','2880':'華南金','2887':'台新金','2888':'新光金','1301':'台塑','1303':'南亞','1326':'台化','2002':'中鋼','2412':'中華電','3008':'大立光','2395':'研華','2357':'華碩','2376':'技嘉','4938':'和碩','2474':'可成','3034':'聯詠','2379':'瑞昱','6505':'台塑化','1216':'統一','2912':'統一超','2207':'和泰車','2105':'正新','2615':'萬海','2603':'長榮','2609':'陽明','2610':'華航','2618':'長榮航','2301':'光寶科','2324':'仁寶','2352':'佳世達','2353':'宏碁','2356':'英業達','3045':'台灣大','4904':'遠傳','2409':'友達','3481':'群創','6669':'緯穎','2408':'南亞科','3711':'日月光投控','2327':'國巨','2360':'致茂','5274':'信驊','6415':'矽力-KY','2049':'上銀','1590':'亞德客-KY','6239':'力成','0050':'元大台灣50','0056':'元大高股息','00878':'國泰永續高股息','00919':'群益台灣精選高息','00929':'復華台灣科技優息','00940':'元大台灣價值高息','00713':'元大台灣高息低波','006208':'富邦台灣采吉50','00881':'國泰台灣5G+'}
 
 // ===== 我的清單 (Watchlist) =====
@@ -55,11 +63,12 @@ async function toggleWatchlist(symbol, name, market, label='watching') {
   try {
     // 先查是否已存在
     const cleanSym = symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
-    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+cleanSym+'&market=eq.'+market, {headers:authHeaders()});
+    const freshH = await authHeadersFresh();
+    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+cleanSym+'&market=eq.'+market, {headers:freshH});
     const existing = await r.json();
     if(existing && existing.length > 0) {
       // 已存在 → 刪除
-      await fetch(BASE+'/watchlist?id=eq.'+existing[0].id, {method:'DELETE', headers:authHeaders()});
+      await fetch(BASE+'/watchlist?id=eq.'+existing[0].id, {method:'DELETE', headers:freshH});
       const _cs=symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
       watchlistCache = (watchlistCache||[]).filter(w => !(w.symbol===_cs && w.market===market));
       showToast('已從清單移除：'+name, '#f87171');
@@ -67,7 +76,7 @@ async function toggleWatchlist(symbol, name, market, label='watching') {
       // 不存在 → 新增
       await fetch(BASE+'/watchlist', {
         method:'POST',
-        headers:{...authHeaders(),'Prefer':'return=minimal'},
+        headers:{...freshH,'Prefer':'return=minimal'},
         body: JSON.stringify({user_id:currentUser.id, symbol:symbol.replace(/\.HK$|\.TWO$|\.TW$/i,''), name, market, label})
       });
       if(!watchlistCache) watchlistCache = [];
@@ -1975,21 +1984,23 @@ async function loadMarketBreadth(){
 }
 
 async function loadGlobalIndices(){
+  // 用 Finnhub quote API（已有 CORS 支援）
   const indices=[
-    {sym:'%5EDJI',name:'道瓊 DJI',key:'DJI'},
-    {sym:'%5EIXIC',name:'納斯達克 IXIC',key:'IXIC'},
-    {sym:'%5EGSPC',name:'S&P500 GSPC',key:'GSPC'},
-    {sym:'%5EN225',name:'日經 N225',key:'N225'}
+    {sym:'^DJI',name:'道瓊 DJI',key:'DJI',fh:'OANDA:US30_USD'},
+    {sym:'^IXIC',name:'納斯達克 IXIC',key:'IXIC',fh:'OANDA:NAS100_USD'},
+    {sym:'^GSPC',name:'S&P500 GSPC',key:'GSPC',fh:'OANDA:SPX500_USD'},
+    {sym:'^N225',name:'日經 N225',key:'N225',fh:'OANDA:JP225_USD'}
   ];
-  for(const idx of indices){
+  await Promise.all(indices.map(async idx=>{
     const priceEl=document.getElementById('idx_'+idx.key);
     const pctEl=document.getElementById('idx_'+idx.key+'_pct');
-    if(!priceEl)continue;
+    if(!priceEl)return;
     try{
-      const _sym=decodeURIComponent(idx.sym).replace('%5E','^');const _yf=await yfQuote(_sym,'1d','1d');
-      if(!_yf.currentPrice||_yf.error)throw new Error('no data');
-      const price=_yf.currentPrice;
-      const prev=_yf.prevClose||price;
+      const r=await fetch('https://finnhub.io/api/v1/quote?symbol='+encodeURIComponent(idx.fh)+'&token='+FINNHUB_KEY);
+      const d=await r.json();
+      if(!d||!d.c||d.c===0)throw new Error('no data');
+      const price=d.c;
+      const prev=d.pc||price;
       const chg=price-prev;
       const pct=(prev>0?chg/prev*100:0).toFixed(2);
       const color=chg>=0?'#34d399':'#f87171';
@@ -1997,9 +2008,9 @@ async function loadGlobalIndices(){
       priceEl.style.color=color;
       if(pctEl){pctEl.textContent=(chg>=0?'+':'')+pct+'%';pctEl.style.color=color;}
     }catch(e){
-      priceEl.textContent='休市';
+      if(priceEl)priceEl.textContent='—';
     }
-  }
+  }));
 }
 
 async function loadTaiexChart(days,btn){
