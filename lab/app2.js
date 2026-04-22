@@ -34,6 +34,16 @@ async function loadWatchlist() {
   try {
     const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&order=created_at.desc', {headers:authHeaders()});
     watchlistCache = await r.json();
+    // 更新頁面上所有星星狀態
+    if(watchlistCache){
+      document.querySelectorAll('[data-wl-sym]').forEach(btn=>{
+        const sym=btn.getAttribute('data-wl-sym');
+        const mkt=btn.getAttribute('data-wl-mkt');
+        const inList=(watchlistCache||[]).some(w=>w.symbol===sym&&w.market===mkt);
+        btn.style.color=inList?'#f59e0b':'#475569';
+        btn.textContent=inList?'★':'☆';
+      });
+    }
     return watchlistCache || [];
   } catch(e) { return []; }
 }
@@ -44,26 +54,28 @@ async function toggleWatchlist(symbol, name, market, label='watching') {
   try{const{data:{session}}=await supabase.auth.getSession();if(session?.access_token)currentUser._token=session.access_token;}catch(e){}
   try {
     // 先查是否已存在
-    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+symbol+'&market=eq.'+market, {headers:authHeaders()});
+    const cleanSym = symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
+    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+cleanSym+'&market=eq.'+market, {headers:authHeaders()});
     const existing = await r.json();
     if(existing && existing.length > 0) {
       // 已存在 → 刪除
       await fetch(BASE+'/watchlist?id=eq.'+existing[0].id, {method:'DELETE', headers:authHeaders()});
-      watchlistCache = (watchlistCache||[]).filter(w => !(w.symbol===symbol && w.market===market));
+      const _cs=symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
+      watchlistCache = (watchlistCache||[]).filter(w => !(w.symbol===_cs && w.market===market));
       showToast('已從清單移除：'+name, '#f87171');
     } else {
       // 不存在 → 新增
       await fetch(BASE+'/watchlist', {
         method:'POST',
         headers:{...authHeaders(),'Prefer':'return=minimal'},
-        body: JSON.stringify({user_id:currentUser.id, symbol, name, market, label})
+        body: JSON.stringify({user_id:currentUser.id, symbol:symbol.replace(/\.HK$|\.TWO$|\.TW$/i,''), name, market, label})
       });
       if(!watchlistCache) watchlistCache = [];
       watchlistCache.push({symbol, name, market, label});
-      showToast((label==='holding'?'✅ 已加入持有中：':'👁 已加入觀察中：')+name, '#34d399');
+      showToast((label==='holding'?'✅ 已加入持有中：':' 已加入觀察中：')+name, '#34d399');
     }
     // 更新按鈕狀態
-    document.querySelectorAll('[data-wl-sym="'+symbol+'"][data-wl-mkt="'+market+'"]').forEach(btn => {
+    document.querySelectorAll('[data-wl-sym="'+symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'')+'"][data-wl-mkt="'+market+'"]').forEach(btn => {
       const inList = (watchlistCache||[]).some(w => w.symbol===symbol && w.market===market);
       btn.style.color = inList ? '#f59e0b' : '#475569';
       btn.textContent = inList ? '★' : '☆';
@@ -72,7 +84,8 @@ async function toggleWatchlist(symbol, name, market, label='watching') {
 }
 
 function isInWatchlist(symbol, market) {
-  return (watchlistCache||[]).some(w => w.symbol===symbol && w.market===market);
+  const s=symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
+  return (watchlistCache||[]).some(w => w.symbol===s && w.market===market);
 }
 
 function watchlistBtn(symbol, name, market) {
@@ -135,7 +148,7 @@ async function renderWatchlistTab() {
     return h;
   };
   html += renderGroup(holding, '持有中', '✅', '#34d399');
-  html += renderGroup(watching, '觀察中', '👁', '#60a5fa');
+  html += renderGroup(watching, '觀察中', '', '#60a5fa');
   el.innerHTML = html;
 }
 
