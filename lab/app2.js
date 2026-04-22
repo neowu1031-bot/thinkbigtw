@@ -9,6 +9,10 @@ let currentAuthMode='login';
 let currentUser=null;
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+function authHeaders(){
+  const token=currentUser?._token||SB_KEY;
+  return{'apikey':SB_KEY,'Authorization':'Bearer '+token,'Content-Type':'application/json'};
+}
 const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電','2303':'聯電','2881':'富邦金','2882':'國泰金','2886':'兆豐金','2891':'中信金','2884':'玉山金','2885':'元大金','2892':'第一金','2883':'開發金','2880':'華南金','2887':'台新金','2888':'新光金','1301':'台塑','1303':'南亞','1326':'台化','2002':'中鋼','2412':'中華電','3008':'大立光','2395':'研華','2357':'華碩','2376':'技嘉','4938':'和碩','2474':'可成','3034':'聯詠','2379':'瑞昱','6505':'台塑化','1216':'統一','2912':'統一超','2207':'和泰車','2105':'正新','2615':'萬海','2603':'長榮','2609':'陽明','2610':'華航','2618':'長榮航','2301':'光寶科','2324':'仁寶','2352':'佳世達','2353':'宏碁','2356':'英業達','3045':'台灣大','4904':'遠傳','2409':'友達','3481':'群創','6669':'緯穎','2408':'南亞科','3711':'日月光投控','2327':'國巨','2360':'致茂','5274':'信驊','6415':'矽力-KY','2049':'上銀','1590':'亞德客-KY','6239':'力成','0050':'元大台灣50','0056':'元大高股息','00878':'國泰永續高股息','00919':'群益台灣精選高息','00929':'復華台灣科技優息','00940':'元大台灣價值高息','00713':'元大台灣高息低波','006208':'富邦台灣采吉50','00881':'國泰台灣5G+'}
 
 // ===== 我的清單 (Watchlist) =====
@@ -17,7 +21,7 @@ let watchlistCache = null;
 async function loadWatchlist() {
   if(!currentUser) return [];
   try {
-    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&order=created_at.desc', {headers:SB_H});
+    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&order=created_at.desc', {headers:authHeaders()});
     watchlistCache = await r.json();
     return watchlistCache || [];
   } catch(e) { return []; }
@@ -27,18 +31,18 @@ async function toggleWatchlist(symbol, name, market, label='watching') {
   if(!currentUser) { alert('請先登入才能使用清單功能'); return; }
   try {
     // 先查是否已存在
-    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+symbol+'&market=eq.'+market, {headers:SB_H});
+    const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+symbol+'&market=eq.'+market, {headers:authHeaders()});
     const existing = await r.json();
     if(existing && existing.length > 0) {
       // 已存在 → 刪除
-      await fetch(BASE+'/watchlist?id=eq.'+existing[0].id, {method:'DELETE', headers:SB_H});
+      await fetch(BASE+'/watchlist?id=eq.'+existing[0].id, {method:'DELETE', headers:authHeaders()});
       watchlistCache = (watchlistCache||[]).filter(w => !(w.symbol===symbol && w.market===market));
       showToast('已從清單移除：'+name, '#f87171');
     } else {
       // 不存在 → 新增
       await fetch(BASE+'/watchlist', {
         method:'POST',
-        headers:{...SB_H,'Content-Type':'application/json','Prefer':'return=minimal'},
+        headers:{...authHeaders(),'Prefer':'return=minimal'},
         body: JSON.stringify({user_id:currentUser.id, symbol, name, market, label})
       });
       if(!watchlistCache) watchlistCache = [];
@@ -126,7 +130,7 @@ async function toggleWatchlistLabel(id, symbol, market, newLabel) {
   try {
     await fetch(BASE+'/watchlist?id=eq.'+id, {
       method:'PATCH',
-      headers:{...SB_H,'Content-Type':'application/json'},
+      headers:authHeaders(),
       body: JSON.stringify({label: newLabel})
     });
     if(watchlistCache) {
@@ -200,7 +204,7 @@ async function authSubmit(){
         errEl.textContent='✓ 註冊成功！請收信驗證後登入';
         switchAuthTab('login');
       }else if(data.session){
-        currentUser=data.user;
+        currentUser=data.user;if(data.session?.access_token)currentUser._token=data.session.access_token;
         onAuthSuccess(data.user);
       }
       trackEvent('signup',{method:'email'});
