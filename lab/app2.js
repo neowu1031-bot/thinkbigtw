@@ -1156,6 +1156,7 @@ function hkCard(sym,name,cat,price,pct,chart=''){
   return `<div onclick="document.getElementById('hkSearch').value='${sym}';searchHK();" style="background:#1e293b;border-radius:12px;padding:14px;cursor:pointer;border:1px solid #334155">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
       <span style="font-size:12px;color:#94a3b8">${sym}</span>
+      ${watchlistBtn(sym,name,'hk')}
       <span style="font-size:10px;background:#0f172a;color:#60a5fa;padding:1px 6px;border-radius:10px">${cat}</span>
     </div>
     <div style="font-size:14px;color:#e2e8f0;margin:2px 0">${name}</div>
@@ -1854,9 +1855,12 @@ async function loadCrypto(){
       const color=up?'#34d399':'#f87171';
       grid.innerHTML+=`<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
         <div style="display:flex;justify-content:space-between;align-items:flex-start">
-          <div>
-            <div style="font-size:11px;color:#94a3b8">${c.sym.replace('USDT','')}</div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:11px;color:#94a3b8">${c.sym.replace('USDT','')}</div>
             <div style="font-size:13px;color:#e2e8f0;font-weight:600">${c.name}</div>
+            </div>
+            ${watchlistBtn(c.sym.replace('USDT',''),c.name,'crypto')}
           </div>
           <div style="text-align:right">
             <div style="font-size:18px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
@@ -2530,8 +2534,11 @@ function usCard(sym,name,price,pct,extra='',chart=''){
   const color=up?'#34d399':'#f87171';
   return `<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
     <div style="display:flex;justify-content:space-between;align-items:flex-start">
-      <div>
-        <div style="font-size:11px;color:#94a3b8">${sym}</div>
+      <div style="flex:1">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:11px;color:#94a3b8">${sym}</div>
+          ${watchlistBtn(sym,name,'us')}
+        </div>
         <div style="font-size:13px;color:#e2e8f0;margin:2px 0;font-weight:600">${name}</div>
       </div>
       <div style="text-align:right">
@@ -2838,7 +2845,7 @@ async function loadETFHot(){
         html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
           <div style="display:flex;justify-content:space-between;align-items:flex-start">
             <div>
-              <div style="font-size:11px;color:#94a3b8">${e.sym}</div>
+              <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:11px;color:#94a3b8">${e.sym}</div>${watchlistBtn(e.sym,e.name,'etf')}</div>
               <div style="font-size:12px;color:#e2e8f0;margin:1px 0">${e.name}</div>
             </div>
             <div style="text-align:right">
@@ -2850,7 +2857,7 @@ async function loadETFHot(){
         </div>`;
       }else{
         html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid #1e293b;opacity:0.55">
-          <div style="font-size:11px;color:#94a3b8">${e.sym}</div>
+          <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:11px;color:#94a3b8">${e.sym}</div>${watchlistBtn(e.sym,e.name,'etf')}</div>
           <div style="font-size:12px;color:#e2e8f0;margin:1px 0">${e.name}</div>
           <div style="font-size:11px;color:#64748b">尚無報價</div>
         </div>`;
