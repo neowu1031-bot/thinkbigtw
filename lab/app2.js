@@ -521,24 +521,53 @@ async function renderWatchlist(){
   const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
   const el=document.getElementById('watchlistGrid');
   if(!el)return;
-  if(ws.length===0){el.innerHTML='<div style="color:#64748b;padding:8px">尚未加入任何自選股</div>';return;}
-  el.innerHTML='';
+  if(ws.length===0){el.innerHTML='<div style="color:#64748b;padding:8px">尚未加入任何自選股，搜尋個股後點「加入自選」</div>';return;}
+  el.innerHTML='<div style="color:#64748b;font-size:12px;padding:4px 0 8px">載入中...</div>';
+  const cards=[];
   for(const code of ws){
     try{
-      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=1',{headers:SB_H});
+      // 抓近30天資料畫K線
+      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30',{headers:SB_H});
       const data=await r.json();
       if(!data||!data.length)continue;
-      const d=data[0];
-      const ch=parseFloat(d.change_percent);
+      const latest=data[0];
+      const ch=parseFloat(latest.change_percent);
       const up=ch>=0;
-      el.innerHTML+=`<div onclick="document.getElementById('stockInput').value='${code}';searchStock();" style="background:#1e293b;border-radius:10px;padding:14px;cursor:pointer;border:1px solid #334155">
-        <div style="font-size:12px;color:#94a3b8">${code}</div>
-        <div style="font-size:14px;color:#e2e8f0">${NAMES[code]||code}</div>
-        <div style="font-size:18px;font-weight:700;color:#e2e8f0">${parseFloat(d.close_price).toLocaleString()}</div>
-        <div style="font-size:12px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${ch.toFixed(2)}</div>
-      </div>`;
+      const color=up?'#34d399':'#f87171';
+      const prices=data.map(d=>parseFloat(d.close_price)).reverse();
+      // 畫 SVG 迷你折線圖
+      const min=Math.min(...prices), max=Math.max(...prices);
+      const range=max-min||1;
+      const W=160, H=50;
+      const pts=prices.map((p,i)=>{
+        const x=i*(W/(prices.length-1));
+        const y=H-((p-min)/range)*(H-4)-2;
+        return x+','+y;
+      }).join(' ');
+      const svg=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block">
+        <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="${prices.length>1?(prices.length-1)*(W/(prices.length-1)):0}" cy="${H-((prices[prices.length-1]-min)/range)*(H-4)-2}" r="2.5" fill="${color}"/>
+      </svg>`;
+      cards.push(`<div onclick="document.getElementById('stockInput').value='${code}';searchStock();" style="background:#1e293b;border-radius:12px;padding:14px 14px 10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'};transition:border-color 0.2s" onmouseover="this.style.borderColor='${color}'" onmouseout="this.style.borderColor='${up?'#1e4a3a':'#4a1e1e'}'">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#e2e8f0">${NAMES[code]||code}</div>
+            <div style="font-size:11px;color:#64748b">${code}</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:17px;font-weight:700;color:#e2e8f0">${parseFloat(latest.close_price).toLocaleString()}</div>
+            <div style="font-size:11px;color:${color}">${up?'▲ +':'▼ '}${ch.toFixed(2)}%</div>
+          </div>
+        </div>
+        <div style="margin-top:4px;overflow:hidden;border-radius:4px">${svg}</div>
+        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#475569">
+          <span>量 ${(parseInt(latest.volume)||0).toLocaleString()}</span>
+          <span>${latest.date||''}</span>
+        </div>
+      </div>`);
     }catch(e){}
   }
+  el.innerHTML=cards.length?cards.join(''):'<div style="color:#64748b;padding:8px">載入失敗，請重試</div>';
 }
 // GA4 事件追蹤包裝（gtag 未載入時 no-op）
 function trackEvent(eventName,params){
