@@ -1022,6 +1022,8 @@ async function loadHKHot(){
   const grid=document.getElementById('hkHotGrid');
   if(!grid)return;
   grid.innerHTML='';
+  const _hk='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';
+  const _hu='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/yahoo-kline';
   for(const s of HK_HOT){
     try{
       const {price,pct}=await fetchHKQuote(s.sym);
@@ -1564,7 +1566,7 @@ async function loadForeignFut(){
   if(!el)return;
   try{
     const today=new Date().toISOString().slice(0,10);
-    const r=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date,foreign_buy',{headers:SB_H});
+    const r=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date,foreign_buy,investment_trust_buy,dealer_buy',{headers:SB_H});
     const d=await r.json();
     if(d&&d.length){
       const v=d[0].foreign_buy||0;
@@ -1737,7 +1739,7 @@ async function loadMarketData(){
     }else document.getElementById('taiex').textContent='盤後更新';
   }catch(e){document.getElementById('taiex').textContent='盤後更新';}
   try{
-    const r2=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=1&date=eq.'+new Date().toISOString().slice(0,10),{headers:SB_H});
+    const _latestDateR=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});const _latestDateD=await _latestDateR.json();const _latestDate=_latestDateD[0]?.date||new Date().toISOString().slice(0,10);const r2=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=1&date=eq.'+_latestDate,{headers:SB_H});
     const d2=await r2.json();
     if(d2&&d2.length>0){
       const val=d2[0].foreign_buy||0;
@@ -1799,7 +1801,7 @@ async function loadGlobalIndices(){
     const pctEl=document.getElementById('idx_'+idx.key+'_pct');
     if(!priceEl)continue;
     try{
-      const r=await fetch('https://corsproxy.io/?'+encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/'+idx.sym+'?interval=1d&range=1d'));
+      const _ek='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';const _eu='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/yahoo-kline';const _sym=decodeURIComponent(idx.sym).replace('%5E','^');const _ir=await fetch(_eu,{method:'POST',headers:{'Content-Type':'application/json','apikey':_ek,'Authorization':'Bearer '+_ek},body:JSON.stringify({symbol:_sym,range:'1d'})});const r=_ir;
       const d=await r.json();
       const meta=d.chart.result[0].meta;
       const price=meta.regularMarketPrice;
