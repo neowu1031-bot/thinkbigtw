@@ -2502,7 +2502,7 @@ async function loadUSHot(){
       let chart='';
       try{
         const efUrl='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/yahoo-kline';
-        const cr=await fetch(efUrl,{method:'POST',headers:{'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY},body:JSON.stringify({symbol:s.sym})});
+        const _k='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';const cr=await fetch(efUrl,{method:'POST',headers:{'Content-Type':'application/json','apikey':_k,'Authorization':'Bearer '+_k},body:JSON.stringify({symbol:s.sym})});
         const cd=await cr.json();
         if(cd.closes&&cd.closes.length>1)chart=miniSVG(cd.closes,up?'#34d399':'#f87171');
       }catch(e){}
