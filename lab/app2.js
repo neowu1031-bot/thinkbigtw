@@ -1741,29 +1741,26 @@ async function loadMarketBreadth(){
 
 async function loadGlobalIndices(){
   const indices=[
-    {sym:'%5EDJI',name:'道瓊 DJI',key:'DJI'},
-    {sym:'%5EIXIC',name:'納斯達克 IXIC',key:'IXIC'},
-    {sym:'%5EGSPC',name:'S&P500 GSPC',key:'GSPC'},
-    {sym:'%5EN225',name:'日經 N225',key:'N225'}
+    {sym:'%5EDJI',stooq:'^DJI',name:'道瓊 DJI',key:'DJI'},
+    {sym:'%5EIXIC',stooq:'^NDX',name:'納斯達克 IXIC',key:'IXIC'},
+    {sym:'%5EGSPC',stooq:'^SPX',name:'S&P500 GSPC',key:'GSPC'},
+    {sym:'%5EN225',stooq:'^NKX',name:'日經 N225',key:'N225'}
   ];
-  const CORS='https://api.allorigins.win/get?url=';
   for(const idx of indices){
     const el=document.getElementById('global-'+idx.key);
     if(!el)continue;
     try{
-      const url=encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/'+idx.sym+'?interval=1d&range=1d');
-      const r=await fetch(CORS+url);
+      const r=await fetch('https://corsproxy.io/?'+encodeURIComponent('https://query1.finance.yahoo.com/v8/finance/chart/'+idx.sym+'?interval=1d&range=1d&_cachebust='+Date.now()));
       const d=await r.json();
-      const obj=JSON.parse(d.contents);
-      const meta=obj.chart.result[0].meta;
+      const meta=d.chart.result[0].meta;
       const price=meta.regularMarketPrice;
-      const prev=meta.chartPreviousClose||meta.previousClose;
+      const prev=meta.chartPreviousClose||meta.previousClose||price;
       const chg=price-prev;
-      const pct=(chg/prev*100).toFixed(2);
+      const pct=(prev>0?chg/prev*100:0).toFixed(2);
       const color=chg>=0?'#34d399':'#f87171';
       el.innerHTML='<div style="font-size:1.4em;font-weight:bold;color:'+color+'">'+price.toLocaleString('en-US',{maximumFractionDigits:2})+'</div><div style="color:'+color+';font-size:0.85em">'+(chg>=0?'+':'')+chg.toFixed(2)+' ('+pct+'%)</div>';
     }catch(e){
-      if(el)el.innerHTML='<div style="color:#64748b">載入失敗</div>';
+      if(el)el.innerHTML='<div style="color:#64748b">休市</div>';
     }
   }
 }
