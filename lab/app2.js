@@ -359,7 +359,7 @@ async function checkAlerts(){
           a.triggered=true;
           // 瀏覽器推播通知
           if(Notification.permission==='granted'){
-            new Notification('📣 台股情報站 價格警示',{
+            new Notification('📣 MoneyRadar™ 價格警示',{
               body:`${sym} 現價 $${price.toLocaleString()} 已${a.condition==='above'?'達到':'跌破'} $${a.price.toLocaleString()}`,
               icon:'/favicon.ico'
             });

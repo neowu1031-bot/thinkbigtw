@@ -3,22 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>台股情報站 | 即時行情、ETF、美股、外匯、加密貨幣 - THINK BIG</title>
+<title>MoneyRadar™ | 全方位即時看盤・台股・ETF・美股・外匯・加密貨幣</title>
 <meta name="description" content="台灣最完整投資工具，台股即時報價、ETF配息、美股行情、全球外匯黃金、加密貨幣，一站式全方位投資資訊平台">
 <meta name="keywords" content="台股,ETF,美股,外匯,黃金,加密貨幣,股票行情,投資工具">
-<meta property="og:title" content="台股情報站 | THINK BIG Lab">
+<meta property="og:title" content="MoneyRadar™ | 全方位看盤平台">
 <meta property="og:description" content="台灣最完整一站式投資工具">
 <meta property="og:url" content="https://thinkbigtw.com/lab">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="台股情報站 | THINK BIG Lab">
+<meta name="twitter:title" content="MoneyRadar™ | 全方位看盤平台">
 <meta name="twitter:description" content="台灣最完整一站式投資工具">
 <link rel="canonical" href="https://thinkbigtw.com/lab/">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#2563eb">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="台股情報站">
+<meta name="apple-mobile-web-app-title" content="MoneyRadar™">
 <meta name="mobile-web-app-capable" content="yes">
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -182,8 +182,8 @@ textarea{height:80px;resize:vertical}
 <body>
 <div class="lock-screen" id="lockScreen">
   <div class="logo-text">T B</div>
-  <h1>台股情報站</h1>
-  <p class="subtitle">THINK BIG Lab · 一站式投資工具</p>
+  <h1>Money<span style="color:#38bdf8">Radar</span>™</h1>
+  <p class="subtitle">MoneyRadar™ · 全方位看盤平台</p>
   <div id="authBox" style="width:300px">
     <div id="authTabs" style="display:flex;gap:6px;margin-bottom:14px;background:#1e293b;border-radius:8px;padding:4px">
       <button id="authTabLogin" onclick="switchAuthTab('login')" style="flex:1;background:#2563eb;color:#fff;border:none;padding:8px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">登入</button>
@@ -207,7 +207,7 @@ textarea{height:80px;resize:vertical}
 </div>
 <div class="dashboard" id="dashboard">
   <div class="header">
-    <h1>台股情報站</h1>
+    <h1>Money<span style="color:#38bdf8">Radar</span>™</h1>
     <div style="display:flex;align-items:center;gap:10px">
       <span class="badge" id="userBadge">—</span>
       <button id="logoutBtn" onclick="logoutUser()" style="display:none;background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer">登出</button>
@@ -412,7 +412,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版<br>所有內容僅供參考，不構成投資建議</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議</div>
   </div>
   <div class="tab-content" id="tab-etf">
     <div class="section">
@@ -454,7 +454,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版<br>所有內容僅供參考，不構成投資建議</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議</div>
   </div>
   <div class="tab-content" id="tab-us">
     <div class="section">
@@ -481,7 +481,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-fund">
     <div class="section">
@@ -490,7 +490,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-futures">
     <div class="section">
@@ -567,7 +567,7 @@ textarea{height:80px;resize:vertical}
         資料來源：TAIFEX 期交所 + Finnhub 國際商品。
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-tools">
     <div class="section">
@@ -577,7 +577,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-options">
     <div class="section">
@@ -641,7 +641,7 @@ textarea{height:80px;resize:vertical}
         </a>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-screener">
     <div class="section">
@@ -670,7 +670,7 @@ textarea{height:80px;resize:vertical}
       </div>
       <div id="screenerResult"><div style="color:#64748b;padding:8px">請設定篩選條件後按「開始選股」</div></div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-bonds">
     <div class="section">
@@ -689,7 +689,7 @@ textarea{height:80px;resize:vertical}
       <div class="section-title">🇹🇼 台灣債券 ETF</div>
       <div id="bondsTW" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px"></div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-sector">
     <div class="section">
@@ -699,7 +699,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-macro">
     <div class="section">
@@ -749,7 +749,7 @@ textarea{height:80px;resize:vertical}
         <div style="font-size:11px;color:#64748b;margin-top:8px;text-align:center">數值由 ETF 殖利率近似（TLT/IEF/SHY 等），實際殖利率以 Treasury.gov 為準</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-portfolio">
     <div class="section">
@@ -776,7 +776,7 @@ textarea{height:80px;resize:vertical}
       <div id="portfolioList"></div>
       <div id="portfolioAlloc" style="margin-top:14px"></div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-hk">
     <div class="section">
@@ -791,7 +791,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
   <div class="tab-content" id="tab-crypto">
     <div class="section">
@@ -804,10 +804,10 @@ textarea{height:80px;resize:vertical}
       <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門幣種</div>
       <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
     </div>
-    <div class="footer">台股情報站 · THINK BIG Lab · 內部測試版</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
 </div>
-<script src="app2.js?v=45"></script>
+<script src="app2.js?v=46"></script>
 </body>
 </html>
   
