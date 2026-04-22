@@ -688,8 +688,11 @@ async function renderWatchlist(){
       </svg>`;
       cards.push(`<div onclick="document.getElementById('stockInput').value='${code}';searchStock();" style="background:#1e293b;border-radius:12px;padding:14px 14px 10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'};transition:border-color 0.2s" onmouseover="this.style.borderColor='${color}'" onmouseout="this.style.borderColor='${up?'#1e4a3a':'#4a1e1e'}'">
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
-          <div>
-            <div style="font-size:13px;font-weight:600;color:#e2e8f0">${NAMES[code]||code}</div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="font-size:13px;font-weight:600;color:#e2e8f0">${NAMES[code]||code}</div>
+              ${watchlistBtn(code,NAMES[code]||code,'tw')}
+            </div>
             <div style="font-size:11px;color:#64748b">${code}</div>
           </div>
           <div style="text-align:right">
