@@ -9,6 +9,17 @@ let currentAuthMode='login';
 let currentUser=null;
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+const PROXY_URL='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/twse-proxy';
+async function twseProxy(type, code=null){
+  const r = await fetch(PROXY_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+SB_KEY},
+    body: JSON.stringify({type, code})
+  });
+  const d = await r.json();
+  if(!d.ok) throw new Error(d.error||'proxy error');
+  return d.data;
+}
 function authHeaders(){
   const token=currentUser?._token||SB_KEY;
   return{'apikey':SB_KEY,'Authorization':'Bearer '+token,'Content-Type':'application/json'};
@@ -2058,11 +2069,7 @@ async function loadRealtimeQuote(code){
   if(!el) return;
   el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入中...</div>';
   try{
-    // 判斷上市(tse)或上櫃(otc)
-    const prefix = (code.startsWith('6')||code.startsWith('8')) ? 'otc' : 'tse';
-    const url = `https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${prefix}_${code}.tw&json=1&delay=0`;
-    const r = await fetch(url);
-    const data = await r.json();
+    const data = await twseProxy('realtime', code);
     if(!data?.msgArray?.length){ el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">休市中或無即時資料</div>'; return; }
     const s = data.msgArray[0];
     // 五檔委買委賣
@@ -2112,10 +2119,7 @@ async function loadIntradayChart(code){
   if(!el) return;
   el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px;text-align:center">載入分時走勢中...</div>';
   try{
-    const prefix = (code.startsWith('6')||code.startsWith('8')) ? 'otc' : 'tse';
-    const url = `https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${prefix}_${code}.tw&json=1&delay=0`;
-    const r = await fetch(url);
-    const data = await r.json();
+    const data = await twseProxy('realtime', code);
     if(!data?.msgArray?.length){ el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">休市中或無分時資料</div>'; return; }
     const s = data.msgArray[0];
     // 分時價格
