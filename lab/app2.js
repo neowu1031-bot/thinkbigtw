@@ -1943,6 +1943,7 @@ async function loadMarketData(){
     }
   }catch(e){}
   loadGlobalIndices();
+  loadIntlGrid();
   loadMarketBreadth();
 }
 
@@ -2009,6 +2010,38 @@ async function loadGlobalIndices(){
       if(pctEl){pctEl.textContent=(chg>=0?'+':'')+pct+'%';pctEl.style.color=color;}
     }catch(e){
       if(priceEl)priceEl.textContent='—';
+    }
+  }));
+}
+
+
+// ===== 台股頁面國際指數卡片（intlGrid）=====
+async function loadIntlGrid(){
+  const map = {
+    'intl-DJI':  {sym:'OANDA:US30_USD',  name:'道瓊',     key:'DJI'},
+    'intl-IXIC': {sym:'OANDA:NAS100_USD',name:'那斯達克', key:'IXIC'},
+    'intl-SPX':  {sym:'OANDA:SPX500_USD',name:'S&P500',   key:'SPX'},
+    'intl-N225': {sym:'OANDA:JP225_USD', name:'日經',     key:'N225'},
+    'intl-HSI':  {sym:'HSI',             name:'恆生',     key:'HSI'},
+  };
+  await Promise.all(Object.entries(map).map(async ([id, cfg])=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    try{
+      const r = await fetch('https://finnhub.io/api/v1/quote?symbol='+encodeURIComponent(cfg.sym)+'&token='+FINNHUB_KEY);
+      const d = await r.json();
+      if(!d||!d.c||d.c===0) throw new Error('no data');
+      const price = d.c;
+      const prev = d.pc || price;
+      const chg = price - prev;
+      const pct = (prev>0 ? chg/prev*100 : 0).toFixed(2);
+      const color = chg>=0 ? '#34d399' : '#f87171';
+      el.innerHTML = `
+        <div style="font-size:11px;color:#64748b;margin-bottom:4px">${cfg.name}</div>
+        <div style="font-size:15px;font-weight:700;color:${color}">${price.toLocaleString('en-US',{maximumFractionDigits:2})}</div>
+        <div style="font-size:11px;color:${color}">${chg>=0?'+':''}${pct}%</div>`;
+    }catch(e){
+      el.innerHTML = `<div style="font-size:11px;color:#64748b">${cfg.name}</div><div style="color:#475569;font-size:13px">—</div>`;
     }
   }));
 }
