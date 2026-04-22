@@ -2146,6 +2146,30 @@ async function loadIntradayChart(code){
     el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">無法取得分時資料（CORS）</div>';
   }
 }
+
+async function loadSouvenir(code){
+  const el = document.getElementById('souvenirWrap');
+  if(!el) return;
+  el.innerHTML = `
+    <div style="background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);border-radius:12px;padding:20px;border:1px solid #312e81;text-align:center;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at top,rgba(99,102,241,0.15) 0%,transparent 70%);pointer-events:none"></div>
+      <div style="font-size:28px;margin-bottom:8px">🎁</div>
+      <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:4px">股東會紀念品</div>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:#312e81;border:1px solid #4f46e5;border-radius:20px;padding:4px 14px;margin:8px 0">
+        <span style="width:6px;height:6px;background:#818cf8;border-radius:50%;animation:pulse 1.5s infinite"></span>
+        <span style="font-size:12px;color:#818cf8;font-weight:600;letter-spacing:1px">COMING SOON</span>
+      </div>
+      <div style="font-size:12px;color:#64748b;margin-top:8px;line-height:1.6">包含紀念品圖片、領取日期<br>代領方式與最後買進日</div>
+      <div style="margin-top:12px">
+        <a href="https://www.gooddie.tw/stock/meeting?Keyword=${code}" target="_blank"
+           style="display:inline-flex;align-items:center;gap:4px;padding:6px 14px;background:#1e293b;border:1px solid #334155;border-radius:8px;color:#94a3b8;font-size:11px;text-decoration:none">
+          暫時到股代網查詢 →
+        </a>
+      </div>
+    </div>
+    <style>@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}</style>`;
+}
+
 async function loadStockChart(code,days,btn){
   if(!code)return;
   if(btn){document.querySelectorAll('#stockChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
