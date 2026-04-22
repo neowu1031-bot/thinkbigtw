@@ -1024,7 +1024,7 @@ async function fetchHKQuote(sym){
   return {price,pct,high:d.h||price,low:d.l||price,prev};
 }
 
-function hkCard(sym,name,cat,price,pct){
+function hkCard(sym,name,cat,price,pct,chart=''){
   const up=pct>=0;
   return `<div onclick="document.getElementById('hkSearch').value='${sym}';searchHK();" style="background:#1e293b;border-radius:12px;padding:14px;cursor:pointer;border:1px solid #334155">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
