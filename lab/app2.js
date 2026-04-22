@@ -45,6 +45,17 @@ function switchAuthTab(mode){
   document.getElementById('errMsg').textContent='';
 }
 
+
+// ── Yahoo Finance via Edge Function (即時報價+K線) ──
+const YF_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';
+const YF_URL='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/yahoo-kline';
+async function yfQuote(symbol,range='1mo',interval='1d'){
+  try{
+    const r=await fetch(YF_URL,{method:'POST',headers:{'Content-Type':'application/json','apikey':YF_KEY,'Authorization':'Bearer '+YF_KEY},body:JSON.stringify({symbol,range,interval})});
+    return await r.json();
+  }catch(e){return {error:e.message};}
+}
+
 async function authSubmit(){
   const email=document.getElementById('authEmail').value.trim();
   const password=document.getElementById('authPassword').value;
@@ -996,6 +1007,14 @@ const HK_HOT=[
 ];
 
 async function fetchHKQuote(sym){
+  // 先嘗試 Yahoo Finance（即時）
+  try{
+    const yf=await yfQuote(sym,'1d','1d');
+    if(yf.currentPrice&&!yf.error){
+      return {price:yf.currentPrice,pct:yf.changePct||0,high:yf.high||yf.currentPrice,low:yf.low||yf.currentPrice};
+    }
+  }catch(e){}
+  // fallback 原邏輯
   const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(sym)}&token=${FINNHUB_KEY}`);
   const d=await r.json();
   if(!d||!d.c)throw new Error('no data');
@@ -1801,7 +1820,7 @@ async function loadGlobalIndices(){
     const pctEl=document.getElementById('idx_'+idx.key+'_pct');
     if(!priceEl)continue;
     try{
-      const _ek='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';const _eu='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/yahoo-kline';const _sym=decodeURIComponent(idx.sym).replace('%5E','^');const _ir=await fetch(_eu,{method:'POST',headers:{'Content-Type':'application/json','apikey':_ek,'Authorization':'Bearer '+_ek},body:JSON.stringify({symbol:_sym,range:'1d'})});const r=_ir;
+      const _sym=decodeURIComponent(idx.sym).replace('%5E','^');const _yf=await yfQuote(_sym,'1d','1d');const r={json:async()=>({chart:{result:[{meta:{regularMarketPrice:_yf.currentPrice,chartPreviousClose:_yf.prevClose,regularMarketDayHigh:_yf.high,regularMarketDayLow:_yf.low},indicators:{quote:[{close:[_yf.currentPrice]}]}}}]}})};
       const d=await r.json();
       const meta=d.chart.result[0].meta;
       const price=meta.regularMarketPrice;
@@ -2825,7 +2844,7 @@ async function loadSupabaseData(){
     if(data&&data.length>0)document.getElementById('sentimentList').innerHTML=data.map((d,i)=>{const tag=d.sentiment_score>=0.6?'tag-up">正面':d.sentiment_score<=0.4?'tag-down">負面':'tag-neutral">中性';return '<div class="rank-item"><div class="rank-num">'+(i+1)+'</div><div><div class="rank-name">'+(NAMES[d.symbol]||d.symbol)+' '+d.symbol+'</div><div class="rank-sub">今日討論 '+d.mention_count+' 則</div></div><span class="tag '+tag+'</span></div>';}).join('');
   }catch(e){}
   try{
-    const r=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=5&date=eq.'+new Date().toISOString().slice(0,10),{headers:SB_H});
+    const _ld3=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});const _ld3d=await _ld3.json();const _ld3date=_ld3d[0]?.date||new Date().toISOString().slice(0,10);const r=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=5&date=eq.'+_ld3date,{headers:SB_H});
     const data=await r.json();
     if(data&&data.length>0)document.getElementById('institutionalList').innerHTML=data.map((d,i)=>{const who=d.foreign_buy>0&&d.investment_trust_buy>0?'外資+投信':d.foreign_buy>0?'外資':'投信';const nm=NAMES[d.symbol]||d.symbol;const nm2=nm===d.symbol?d.symbol:nm+' '+d.symbol;const sheets=Math.round((d.total_buy||0)/1000);return '<div class="rank-item"><div class="rank-num">'+(i+1)+'</div><div><div class="rank-name">'+nm2+'</div><div class="rank-sub">'+who+'</div></div><div class="rank-val up">+'+sheets.toLocaleString()+'張</div></div>';}).join('');
   }catch(e){}
