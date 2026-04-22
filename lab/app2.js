@@ -661,17 +661,7 @@ async function loadRanking(type){
     });
   }catch(e){list.innerHTML='<div style="color:#f87171">載入失敗</div>';}
 }
-function toggleWatchlist(){
-  const code=currentStock;
-  if(!code)return;
-  let ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
-  if(ws.includes(code)){ws=ws.filter(s=>s!==code);}else{ws.push(code);}
-  localStorage.setItem('watchlist',JSON.stringify(ws));
-  const btn=document.getElementById('watchlistBtn');
-  btn.textContent=ws.includes(code)?'✓ 已加入自選':'＋ 加入自選';
-  btn.style.background=ws.includes(code)?'#166534':'#1d4ed8';
-  renderWatchlist();
-}
+// [舊版 toggleWatchlist 已移除，使用新版 Supabase 版本]
 async function renderWatchlist(){
   const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
   const el=document.getElementById('watchlistGrid');
