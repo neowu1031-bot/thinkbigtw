@@ -2498,14 +2498,14 @@ async function loadUSHot(){
   for(const s of US_HOT){
     try{
       const {price,pct}=await fetchUSStock(s.sym);
-      // 抓近30天K線
+      // 抓近30天K線 via Yahoo Finance
       let chart='';
       try{
-        const to=Math.floor(Date.now()/1000);
-        const from=to-30*24*3600;
-        const cr=await fetch(`https://finnhub.io/api/v1/stock/candle?symbol=${s.sym}&resolution=D&from=${from}&to=${to}&token=d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg`);
+        const yhUrl='https://query1.finance.yahoo.com/v8/finance/chart/'+s.sym+'?interval=1d&range=1mo';
+        const cr=await fetch('https://corsproxy.io/?'+encodeURIComponent(yhUrl));
         const cd=await cr.json();
-        if(cd.s==='ok'&&cd.c&&cd.c.length>1)chart=miniSVG(cd.c,up?'#34d399':'#f87171');
+        const closes=cd.chart.result[0].indicators.quote[0].close.filter(v=>v!=null);
+        if(closes.length>1)chart=miniSVG(closes,up?'#34d399':'#f87171');
       }catch(e){}
       grid.innerHTML+=usCard(s.sym,s.name,price,pct,'',chart);
     }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${s.sym} 載入失敗</div>`;}
