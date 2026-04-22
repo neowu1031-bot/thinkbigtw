@@ -2687,11 +2687,20 @@ async function loadETFHot(){
         const prev=closePx-pct;
         const realPct=prev>0?(pct/prev*100):0;
         const up=pct>=0;
-        html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid #1e293b">
-          <div style="font-size:11px;color:#94a3b8">${e.sym}</div>
-          <div style="font-size:12px;color:#e2e8f0;margin:1px 0">${e.name}</div>
-          <div style="font-size:16px;font-weight:700;color:#e2e8f0">$${closePx.toLocaleString(undefined,{maximumFractionDigits:2})}</div>
-          <div style="font-size:11px;color:${up?'#34d399':'#f87171'}">${up?'▲ +':'▼ '}${realPct.toFixed(2)}%</div>
+        const etfColor=up?'#34d399':'#f87171';
+        const etfChart=klineMap[e.sym]?miniSVG(klineMap[e.sym],etfColor):'';
+        html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div>
+              <div style="font-size:11px;color:#94a3b8">${e.sym}</div>
+              <div style="font-size:12px;color:#e2e8f0;margin:1px 0">${e.name}</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:15px;font-weight:700;color:#e2e8f0">$${closePx.toLocaleString(undefined,{maximumFractionDigits:2})}</div>
+              <div style="font-size:11px;color:${etfColor}">${up?'▲ +':'▼ '}${realPct.toFixed(2)}%</div>
+            </div>
+          </div>
+          ${etfChart?`<div style="margin-top:6px">${etfChart}</div>`:''}
         </div>`;
       }else{
         html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid #1e293b;opacity:0.55">
