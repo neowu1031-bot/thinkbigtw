@@ -17,6 +17,44 @@ serve(async (req) => {
       const code = sym.replace('.TW','').replace('.TWO','')
       const isOTC = sym.endsWith('.TWO')
       const monthCount = range==='3mo'?3:range==='6mo'?6:range==='1y'?12:1
+
+      // ── 優先查 Supabase DB（自建歷史資料，最可靠）──
+      const SUPABASE_URL = Deno.env.get('SUPABASE_URL') || 'https://sirhskxufayklqrlxeep.supabase.co'
+      const SUPABASE_KEY = Deno.env.get('SUPABASE_ANON_KEY') || ''
+      const days = monthCount * 31
+      const fromDate = new Date(Date.now() - days * 86400000).toISOString().split('T')[0]
+      try {
+        const dbRes = await fetch(
+          `${SUPABASE_URL}/rest/v1/daily_prices?symbol=eq.${code}&date=gte.${fromDate}&order=date.asc&limit=400`,
+          { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
+        )
+        if (dbRes.ok) {
+          const dbData = await dbRes.json()
+          if (Array.isArray(dbData) && dbData.length > 5) {
+            const closes = dbData.map((d: any) => d.close_price)
+            const latest = dbData[dbData.length - 1]
+            const prev   = dbData[dbData.length - 2]
+            const currentPrice = latest?.close_price || 0
+            const prevClose = prev?.close_price || currentPrice
+            const change = currentPrice - prevClose
+            const changePct = prevClose > 0 ? parseFloat((change/prevClose*100).toFixed(2)) : 0
+            return new Response(JSON.stringify({
+              closes,
+              candles: dbData.map((d: any) => ({
+                date: d.date, open: d.open_price, high: d.high_price,
+                low: d.low_price, close: d.close_price, volume: d.volume
+              })),
+              currentPrice, prevClose,
+              change: parseFloat(change.toFixed(2)), changePct,
+              high: latest?.high_price || 0, low: latest?.low_price || 0,
+              volume: latest?.volume || 0,
+              marketState: 'CLOSED', symbol: code, currency: 'TWD',
+              exchangeName: isOTC ? 'TPEx' : 'TWSE', source: 'SUPABASE_DB'
+            }), { headers: { ...corsHeaders, 'Content-Type': 'application/json' } })
+          }
+        }
+      } catch {}
+      // ── Fallback: TWSE 直接查詢 ──
       const allData: any[] = []
       const now = new Date()
       for (let i = 0; i < monthCount; i++) {
