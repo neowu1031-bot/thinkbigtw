@@ -2093,6 +2093,7 @@ async function searchStock(){
       // 載入財報數據
       loadFundamentals(code);
       loadStockChart(code,30,document.querySelector('#stockChartContainer .range-btn'));
+      setTimeout(initDrawingTool, 800);
       loadIntradayChart(code);
       loadRealtimeQuote(code);
       loadMonthlyRevenue(code);
