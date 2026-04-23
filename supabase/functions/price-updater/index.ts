@@ -76,22 +76,25 @@ serve(async (req) => {
     try {
       const twYear = parseInt(y) - 1911
       const tpexDate = `${twYear}/${m}/${d}`
+      // TPEX 正確路徑：stk_quote_result.php，資料在 aaData 欄位
+      // 格式：[代號, 名稱, 收盤, 漲跌, 開盤, 最高, 最低, 均價, 成交股數, 成交金額, ...]
       const tpexRes = await fetch(
-        `https://www.tpex.org.tw/openapi/v1/tpex_mainboard_perday_quotes?d=${encodeURIComponent(tpexDate)}`,
-        { headers }
+        `https://www.tpex.org.tw/web/stock/aftertrading/daily_close_quotes/stk_quote_result.php?l=zh-tw&d=${encodeURIComponent(tpexDate)}&_=${Date.now()}`,
+        { headers: { ...headers, 'Referer': 'https://www.tpex.org.tw/' } }
       )
       if (tpexRes.ok) {
         const tpexText = await tpexRes.text()
-        if (tpexText.trim().startsWith('[')) {
-          const tpexData = JSON.parse(tpexText)
-          // TPEX 欄位：SecuritiesCompanyCode, Close, Open, High, Low, TradingShares
-          const tpexRows = tpexData.map((row: any) => {
-            const sym = row['SecuritiesCompanyCode']?.trim() || row['代號']?.trim()
-            const close = parseFloat(row['Close'] || row['收盤']) || null
-            const open  = parseFloat(row['Open']  || row['開盤']) || null
-            const high  = parseFloat(row['High']  || row['最高']) || null
-            const low   = parseFloat(row['Low']   || row['最低']) || null
-            const vol   = parseInt((row['TradingShares'] || row['成交股數'] || '0').replace(/,/g,'')) || null
+        if (tpexText.trim().startsWith('{')) {
+          const tpexJson = JSON.parse(tpexText)
+          const tpexData = tpexJson.aaData || []
+          // 欄位：[0]代號 [1]名稱 [2]收盤 [3]漲跌 [4]開盤 [5]最高 [6]最低 [7]均價 [8]成交股數
+          const tpexRows = tpexData.map((row: string[]) => {
+            const sym   = row[0]?.trim()
+            const close = parseFloat(row[2]?.replace(/,/g,'')) || null
+            const open  = parseFloat(row[4]?.replace(/,/g,'')) || null
+            const high  = parseFloat(row[5]?.replace(/,/g,'')) || null
+            const low   = parseFloat(row[6]?.replace(/,/g,'')) || null
+            const vol   = parseInt(row[8]?.replace(/,/g,'')) || null
             if (!sym || !close) return null
             return { symbol: sym, date: today, open_price: open, high_price: high, low_price: low, close_price: close, volume: vol, change_percent: null }
           }).filter(Boolean)
