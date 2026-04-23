@@ -51,12 +51,62 @@ serve(async (req) => {
         break;
       }
       case 'monthly_revenue': {
-        // 月營收 - TWSE 公開資料 (CC BY 4.0 政府授權，可商業使用)
+        // 月營收歷史 - 平行抓近13個月（含當月），TWSE 政府公開資料 CC BY 4.0
         if (!code) throw new Error('code required');
-        const revRes = await fetch(`https://openapi.twse.com.tw/v1/opendata/t187ap05_L`, { headers });
-        if (!revRes.ok) throw new Error(`upstream HTTP ${revRes.status}`);
-        const revAll = await revRes.json();
-        const revFiltered = Array.isArray(revAll) ? revAll.filter((d: any) => d['公司代號'] === code) : [];
+
+        // 產生近13個月的民國年月清單 (格式: YYYMMM e.g. 11503)
+        const months: string[] = [];
+        const now = new Date();
+        for (let i = 0; i < 13; i++) {
+          const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+          const rocYear = d.getFullYear() - 1911;
+          const m = String(d.getMonth() + 1).padStart(2, '0');
+          months.push(`${rocYear}${m}`);
+        }
+
+        // 平行抓每個月份
+        const results = await Promise.allSettled(
+          months.map(ym =>
+            fetch(`https://www.twse.com.tw/exchangeReport/t187ap05_L?response=json&date=${ym}&selectType=ALL`, { headers })
+              .then(r => r.ok ? r.json() : null)
+              .then(data => {
+                if (!data || !data.data) return null;
+                // TWSE t187ap05_L 欄位：[公司代號, 公司名稱, 產業別, 當月營收, 上月營收, 去年當月營收, 上月比較增減, 去年同月增減, 當月累計, 去年累計, 前期比較增減]
+                const row = data.data.find((r: string[]) => r[0] === code);
+                if (!row) return null;
+                const rocYear = parseInt(ym.substring(0, 3));
+                const month = parseInt(ym.substring(3, 5));
+                return {
+                  '資料年月': ym,
+                  '公司代號': code,
+                  '營業收入-當月營收': row[3]?.replace(/,/g,'') || '0',
+                  '營業收入-上月比較增減(%)': row[6] || '0',
+                  '營業收入-去年同月增減(%)': row[7] || '0',
+                  revenue_year: rocYear + 1911,
+                  revenue_month: month,
+                };
+              })
+              .catch(() => null)
+          )
+        );
+
+        const revFiltered = results
+          .map((r: any) => r.status === 'fulfilled' ? r.value : null)
+          .filter(Boolean)
+          .sort((a: any, b: any) => a['資料年月'].localeCompare(b['資料年月']));
+
+        // fallback：若全部失敗，嘗試 openapi 最新一筆
+        if (revFiltered.length === 0) {
+          const fallback = await fetch(`https://openapi.twse.com.tw/v1/opendata/t187ap05_L`, { headers });
+          if (fallback.ok) {
+            const fallbackAll = await fallback.json();
+            const row = Array.isArray(fallbackAll) ? fallbackAll.filter((d: any) => d['公司代號'] === code) : [];
+            return new Response(JSON.stringify({ ok: true, data: row }), {
+              headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+            });
+          }
+        }
+
         return new Response(JSON.stringify({ ok: true, data: revFiltered }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
