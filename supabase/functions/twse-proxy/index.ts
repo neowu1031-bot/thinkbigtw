@@ -47,16 +47,13 @@ serve(async (req) => {
       case 'etf_holdings': {
         // ETF 成分股前10大 - TWSE openapi (CC BY 4.0 政府授權，可商業使用)
         if (!code) throw new Error('code required');
-        const etfRes = await fetch(`https://fundclear.tdcc.com.tw/smWeb/QryStockAjax.do`,{method:'POST',headers:{...headers,'Content-Type':'application/x-www-form-urlencoded','Referer':'https://fundclear.tdcc.com.tw/'},body:`REQ_KEY=FUNDLIST&FUND_NO=${code}`});
-        const etfText = await etfRes.text();
-        let etfData: any[] = [];
-        try { etfData = JSON.parse(etfText); } catch { etfData = []; }
-        return new Response(JSON.stringify({ ok: true, data: etfData }), {headers: { ...corsHeaders, 'Content-Type': 'application/json' }});
+        url = `https://openapi.twse.com.tw/v1/ETF/fund/${code}`;
+        break;
       }
       case 'monthly_revenue': {
         // 月營收 - TWSE 公開資料 (CC BY 4.0 政府授權，可商業使用)
         if (!code) throw new Error('code required');
-        const revRes = await fetch(`https://openapi.twse.com.tw/v1/opendata/t187ap05_L`, { headers });
+        const revRes = await fetch(`https://openapi.twse.com.tw/v1/opendata/t187ap04_L`, { headers });
         if (!revRes.ok) throw new Error(`upstream HTTP ${revRes.status}`);
         const revAll = await revRes.json();
         const revFiltered = Array.isArray(revAll) ? revAll.filter((d: any) => d['公司代號'] === code) : [];
