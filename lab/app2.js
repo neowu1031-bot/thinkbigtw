@@ -3813,7 +3813,7 @@ async function loadUSHot(){
         const _k='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';const cr=await fetch(efUrl,{method:'POST',headers:{'Content-Type':'application/json','apikey':_k,'Authorization':'Bearer '+_k},body:JSON.stringify({symbol:s.sym})});
         const cd=await cr.json();
         // 僅在有足夠資料點時才顯示K線（quote只有2點不畫）
-        const up=pct>=0;if(cd.closes&&cd.closes.length>5)chart=miniSVG(cd.closes,up?'#34d399':'#f87171');
+        // K線暫停：Finnhub free 無歷史資料
       }catch(e){}
       grid.innerHTML+=usCard(s.sym,s.name,price,pct,'',chart);
     }catch(e){grid.innerHTML+=`<div style="background:#1e293b;border-radius:12px;padding:16px;color:#64748b">${s.sym} 載入失敗</div>`;}
