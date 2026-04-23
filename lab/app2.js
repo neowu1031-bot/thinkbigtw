@@ -3300,16 +3300,16 @@ async function loadMonthlyRevenue(code){
     const recent = rows.slice(-12).map(parseRow);
     const latest = recent[recent.length-1];
     const prev = recent[recent.length-2];
-    const latestRev = latest.revenue/1e8;
-    const prevRev = prev?.revenue/1e8||0;
+    const latestRev = latest.revenue/1e5; // TWSE 單位是千元，/1e5 = 億
+    const prevRev = prev?.revenue/1e5||0;
     const lyRow = rows.length>12 ? rows[rows.length-13] : null;
     const lyRevRaw = lyRow ? parseInt((lyRow['營業收入-當月營收']||'0').replace(/,/g,'')) : null;
-    const lyRev = lyRevRaw ? lyRevRaw/1e8 : null;
+    const lyRev = lyRevRaw ? lyRevRaw/1e5 : null;
     const mom = latest.mom || (prevRev>0?((latestRev-prevRev)/prevRev*100):0);
     const yoy = latest.yoy || (lyRev?((latestRev-lyRev)/lyRev*100):null);
     const momColor = mom>=0?'#34d399':'#f87171';
     const yoyColor = yoy===null?'#64748b':yoy>=0?'#34d399':'#f87171';
-    const maxRev = Math.max(...recent.map(r=>r.revenue));
+    const maxRev = Math.max(...recent.map(r=>r.revenue/1e5));
 
     let html = `
     <div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">
