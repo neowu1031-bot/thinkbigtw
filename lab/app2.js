@@ -1157,7 +1157,6 @@ const HK_HOT=[
   {sym:'3988.HK',name:'中國銀行',cat:'金融'},
   {sym:'0002.HK',name:'中電控股',cat:'傳產'},
   {sym:'0003.HK',name:'香港中華煤氣',cat:'傳產'},
-  {sym:'0011.HK',name:'恆生銀行',cat:'金融'},
   {sym:'1211.HK',name:'比亞迪',cat:'電動車'}
 ];
 
