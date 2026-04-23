@@ -56,18 +56,18 @@ serve(async (req) => {
       const changePct=prevClose>0?parseFloat((change/prevClose*100).toFixed(2)):0
       return new Response(JSON.stringify({closes,candles:allData,currentPrice,prevClose,change:parseFloat(change.toFixed(2)),changePct,high:latest?.high||0,low:latest?.low||0,volume:latest?.volume||0,marketState:'CLOSED',symbol:code,currency:'TWD',exchangeName:isOTC?'TPEx':'TWSE',source:'TWSE_OFFICIAL'}),{headers:{...corsHeaders,'Content-Type':'application/json'}})
     } else {
+      // 美股/指數：Finnhub quote API (免費版支援，商業授權)
       const FINNHUB_KEY=Deno.env.get('FINNHUB_KEY')||'d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg'
       const fsym=isIndex?sym.replace('^',''):sym
-      const nowTs=Math.floor(Date.now()/1000)
-      const from=range==='1y'?nowTs-31536000:range==='6mo'?nowTs-15768000:range==='3mo'?nowTs-7776000:nowTs-2592000
-      const r=await fetch(`https://finnhub.io/api/v1/stock/candle?symbol=${fsym}&resolution=D&from=${from}&to=${nowTs}&token=${FINNHUB_KEY}`,{headers:hdrs})
+      const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${fsym}&token=${FINNHUB_KEY}`,{headers:hdrs})
       const data=await r.json()
-      if(data.s==='no_data'||!data.c) return new Response(JSON.stringify({closes:[],error:'no data',symbol:fsym}),{headers:{...corsHeaders,'Content-Type':'application/json'}})
-      const closes=data.c
-      const currentPrice=closes[closes.length-1]
-      const prevClose=closes[closes.length-2]||currentPrice
-      const change=currentPrice-prevClose
-      return new Response(JSON.stringify({closes,currentPrice,prevClose,change:parseFloat(change.toFixed(4)),changePct:parseFloat((change/prevClose*100).toFixed(2)),high:data.h?.[data.h.length-1]||0,low:data.l?.[data.l.length-1]||0,volume:data.v?.[data.v.length-1]||0,marketState:'CLOSED',symbol:fsym,currency:'USD',source:'FINNHUB'}),{headers:{...corsHeaders,'Content-Type':'application/json'}})
+      if(!data.c||data.c===0) return new Response(JSON.stringify({closes:[],error:'no data',symbol:fsym}),{headers:{...corsHeaders,'Content-Type':'application/json'}})
+      const currentPrice=data.c
+      const prevClose=data.pc||data.c
+      const change=data.d||currentPrice-prevClose
+      const changePct=data.dp||parseFloat((change/prevClose*100).toFixed(2))
+      // quote only - 回傳單點資料，closes 用 [prevClose, currentPrice]
+      return new Response(JSON.stringify({closes:[prevClose,currentPrice],currentPrice,prevClose,change:parseFloat(change.toFixed(4)),changePct:parseFloat(changePct.toFixed(2)),high:data.h||0,low:data.l||0,volume:0,marketState:'CLOSED',symbol:fsym,currency:'USD',source:'FINNHUB_QUOTE'}),{headers:{...corsHeaders,'Content-Type':'application/json'}})
     }
   } catch(e:any) {
     return new Response(JSON.stringify({error:e.message}),{status:500,headers:{...corsHeaders,'Content-Type':'application/json'}})
