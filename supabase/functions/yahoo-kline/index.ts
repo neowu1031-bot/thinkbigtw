@@ -58,7 +58,9 @@ serve(async (req) => {
     } else {
       // 美股/指數：Finnhub quote API (免費版支援，商業授權)
       const FINNHUB_KEY=Deno.env.get('FINNHUB_KEY')||'d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg'
-      const fsym=isIndex?sym.replace('^',''):sym
+      const indexMap: Record<string,string> = {'DJI':'DIA','GSPC':'SPY','IXIC':'QQQ','N225':'EWJ','HSI':'EWH','FTSE':'EWU','GDAXI':'EWG','SPX':'SPY'}
+      const rawSym = isIndex ? sym.replace('^','') : sym
+      const fsym = indexMap[rawSym] || rawSym
       const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${fsym}&token=${FINNHUB_KEY}`,{headers:hdrs})
       const data=await r.json()
       if(!data.c||data.c===0) return new Response(JSON.stringify({closes:[],error:'no data',symbol:fsym}),{headers:{...corsHeaders,'Content-Type':'application/json'}})
