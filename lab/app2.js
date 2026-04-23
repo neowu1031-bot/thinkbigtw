@@ -1941,6 +1941,7 @@ async function loadMarketData(){
   }catch(e){}
   loadGlobalIndices();
   loadIntlGrid();
+  initSearchAutocomplete();
   loadMarketBreadth();
 }
 
@@ -1982,23 +1983,21 @@ async function loadMarketBreadth(){
 }
 
 async function loadGlobalIndices(){
-  // 用 Finnhub quote API（已有 CORS 支援）
   const indices=[
-    {sym:'^DJI',name:'道瓊 DJI',key:'DJI',fh:'OANDA:US30_USD'},
-    {sym:'^IXIC',name:'納斯達克 IXIC',key:'IXIC',fh:'OANDA:NAS100_USD'},
-    {sym:'^GSPC',name:'S&P500 GSPC',key:'GSPC',fh:'OANDA:SPX500_USD'},
-    {sym:'^N225',name:'日經 N225',key:'N225',fh:'OANDA:JP225_USD'}
+    {sym:'^DJI', name:'道瓊 DJI',   key:'DJI'},
+    {sym:'^IXIC',name:'納斯達克 IXIC',key:'IXIC'},
+    {sym:'^GSPC',name:'S&P500 GSPC', key:'GSPC'},
+    {sym:'^N225',name:'日經 N225',   key:'N225'}
   ];
   await Promise.all(indices.map(async idx=>{
     const priceEl=document.getElementById('idx_'+idx.key);
     const pctEl=document.getElementById('idx_'+idx.key+'_pct');
     if(!priceEl)return;
     try{
-      const r=await fetch('https://finnhub.io/api/v1/quote?symbol='+encodeURIComponent(idx.fh)+'&token='+FINNHUB_KEY);
-      const d=await r.json();
-      if(!d||!d.c||d.c===0)throw new Error('no data');
-      const price=d.c;
-      const prev=d.pc||price;
+      const d=await yfQuote(idx.sym,'1d','1d');
+      if(!d||!d.currentPrice||d.error)throw new Error('no data');
+      const price=d.currentPrice;
+      const prev=d.prevClose||price;
       const chg=price-prev;
       const pct=(prev>0?chg/prev*100:0).toFixed(2);
       const color=chg>=0?'#34d399':'#f87171';
@@ -2015,21 +2014,20 @@ async function loadGlobalIndices(){
 // ===== 台股頁面國際指數卡片（intlGrid）=====
 async function loadIntlGrid(){
   const map = {
-    'intl-DJI':  {sym:'OANDA:US30_USD',  name:'道瓊',     key:'DJI'},
-    'intl-IXIC': {sym:'OANDA:NAS100_USD',name:'那斯達克', key:'IXIC'},
-    'intl-SPX':  {sym:'OANDA:SPX500_USD',name:'S&P500',   key:'SPX'},
-    'intl-N225': {sym:'OANDA:JP225_USD', name:'日經',     key:'N225'},
-    'intl-HSI':  {sym:'HSI',             name:'恆生',     key:'HSI'},
+    'intl-DJI':  {sym:'^DJI',  name:'道瓊'},
+    'intl-IXIC': {sym:'^IXIC', name:'那斯達克'},
+    'intl-SPX':  {sym:'^GSPC', name:'S&P500'},
+    'intl-N225': {sym:'^N225', name:'日經'},
+    'intl-HSI':  {sym:'^HSI',  name:'恆生'},
   };
   await Promise.all(Object.entries(map).map(async ([id, cfg])=>{
     const el = document.getElementById(id);
     if(!el) return;
     try{
-      const r = await fetch('https://finnhub.io/api/v1/quote?symbol='+encodeURIComponent(cfg.sym)+'&token='+FINNHUB_KEY);
-      const d = await r.json();
-      if(!d||!d.c||d.c===0) throw new Error('no data');
-      const price = d.c;
-      const prev = d.pc || price;
+      const d = await yfQuote(cfg.sym,'1d','1d');
+      if(!d||!d.currentPrice||d.error) throw new Error('no data');
+      const price = d.currentPrice;
+      const prev = d.prevClose || price;
       const chg = price - prev;
       const pct = (prev>0 ? chg/prev*100 : 0).toFixed(2);
       const color = chg>=0 ? '#34d399' : '#f87171';
@@ -2567,6 +2565,40 @@ async function loadChipAnalysis(code){
   }
 }
 
+
+
+// ===== 搜尋自動完成 =====
+function initSearchAutocomplete(){
+  const input = document.getElementById('stockInput');
+  if(!input) return;
+  let dropdown = document.getElementById('searchDropdown');
+  if(!dropdown){
+    dropdown = document.createElement('div');
+    dropdown.id = 'searchDropdown';
+    dropdown.style.cssText = 'position:absolute;z-index:9999;background:#1e293b;border:1px solid #334155;border-radius:8px;width:100%;max-height:240px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.4)';
+    input.parentElement.style.position='relative';
+    input.parentElement.appendChild(dropdown);
+  }
+  input.addEventListener('input', function(){
+    const q = this.value.trim().toLowerCase();
+    if(!q||q.length<1){dropdown.style.display='none';return;}
+    const matches = Object.entries(NAMES).filter(([code,name])=>
+      code.startsWith(q) || name.toLowerCase().includes(q)
+    ).slice(0,8);
+    if(!matches.length){dropdown.style.display='none';return;}
+    dropdown.innerHTML = matches.map(([code,name])=>`
+      <div onclick="document.getElementById('stockInput').value='${code}';document.getElementById('searchDropdown').style.display='none';searchStock();"
+        style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #0f172a"
+        onmouseover="this.style.background='#2d3f55'" onmouseout="this.style.background='transparent'">
+        <span style="color:#60a5fa;font-weight:700;font-size:13px">${code}</span>
+        <span style="color:#94a3b8;font-size:12px">${name}</span>
+      </div>`).join('');
+    dropdown.style.display='block';
+  });
+  document.addEventListener('click', function(e){
+    if(!input.contains(e.target)&&!dropdown.contains(e.target)) dropdown.style.display='none';
+  });
+}
 
 // ===== 融資融券 =====
 async function loadMarginData(code){
