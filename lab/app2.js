@@ -2716,15 +2716,23 @@ function initDrawingTool(){
   overlay.id = 'drawingOverlay';
   overlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:340px;z-index:11;display:none;cursor:crosshair';
 
-  // 找 mainDiv（K線圖容器）
-  const mainDiv = wrap.querySelector('div');
-  if(mainDiv){
-    mainDiv.style.position = 'relative';
-    mainDiv.appendChild(canvas);
-    mainDiv.appendChild(overlay);
+  // 找 mainDiv - K線圖在 stockChartWrap 的下一個兄弟 div
+  const parent = wrap.parentElement;
+  let mainDiv = wrap.nextElementSibling;
+  // 如果 stockChartWrap 是空的，圖表在前一個 div
+  if(!mainDiv || mainDiv.id) {
+    // 找有 canvas 的 div
+    mainDiv = [...parent.children].find(el => !el.id && el.tagName==='DIV' && el.querySelector('canvas'));
   }
+  if(!mainDiv) mainDiv = wrap; // fallback
 
-  wrap.parentElement.insertBefore(toolbar, wrap);
+  mainDiv.style.position = 'relative';
+  canvas.width = mainDiv.clientWidth || 800;
+  canvas.height = mainDiv.clientHeight || 340;
+  mainDiv.appendChild(canvas);
+  mainDiv.appendChild(overlay);
+
+  parent.insertBefore(toolbar, wrap);
 
   drawingCanvas = canvas;
   drawingCtx = canvas.getContext('2d');
