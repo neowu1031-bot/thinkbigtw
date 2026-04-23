@@ -2102,6 +2102,7 @@ async function searchStock(){
       checkDisposeStatus(code);
       loadStockDividend(code);
       loadChipAnalysis(code);
+      loadMarginData(code);
       // 更新自選股按鈕
       const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
       const wBtn=document.getElementById('watchlistBtn');
@@ -2563,6 +2564,69 @@ async function loadChipAnalysis(code){
     el.style.display = 'block';
   }catch(e){
     el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">籌碼資料載入失敗</div>';
+  }
+}
+
+
+// ===== 融資融券 =====
+async function loadMarginData(code){
+  const el = document.getElementById('marginWrap');
+  if(!el) return;
+  el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入融資融券...</div>';
+  try{
+    const r = await fetch(EDGE+'twse-proxy',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+SB_KEY},
+      body:JSON.stringify({type:'margin_total',code:code})
+    });
+    const res = await r.json();
+    if(!res.ok||!res.data){el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">暫無融資融券資料</div>';return;}
+    const d = res.data;
+    const marginBal = parseInt(d['融資今日餘額']||0);
+    const shortBal = parseInt(d['融券今日餘額']||0);
+    const marginBuy = parseInt(d['融資買進']||0);
+    const marginSell = parseInt(d['融資賣出']||0);
+    const shortBuy = parseInt(d['融券買進']||0);
+    const shortSell = parseInt(d['融券賣出']||0);
+    const prevMargin = parseInt(d['融資前日餘額']||0);
+    const prevShort = parseInt(d['融券前日餘額']||0);
+    const marginChg = marginBal - prevMargin;
+    const shortChg = shortBal - prevShort;
+    const mColor = marginChg>=0?'#f87171':'#34d399'; // 融資增加=偏空(紅)
+    const sColor = shortChg>=0?'#f87171':'#34d399';  // 融券增加=偏空(紅)
+    const ratio = shortBal>0?(marginBal/shortBal).toFixed(1):'-';
+
+    el.innerHTML = `
+    <div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">
+      📊 融資融券
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
+      <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b">
+        <div style="font-size:10px;color:#64748b;margin-bottom:3px">融資餘額</div>
+        <div style="font-size:15px;font-weight:700;color:#e2e8f0">${marginBal.toLocaleString()}<span style="font-size:10px;color:#64748b">張</span></div>
+        <div style="font-size:11px;color:${mColor};margin-top:2px">${marginChg>=0?'▲':'▼'}${Math.abs(marginChg).toLocaleString()}</div>
+      </div>
+      <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b">
+        <div style="font-size:10px;color:#64748b;margin-bottom:3px">融券餘額</div>
+        <div style="font-size:15px;font-weight:700;color:#e2e8f0">${shortBal.toLocaleString()}<span style="font-size:10px;color:#64748b">張</span></div>
+        <div style="font-size:11px;color:${sColor};margin-top:2px">${shortChg>=0?'▲':'▼'}${Math.abs(shortChg).toLocaleString()}</div>
+      </div>
+    </div>
+    <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b;margin-bottom:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:10px;color:#64748b">資券比</div>
+        <div style="font-size:14px;font-weight:700;color:#f59e0b">${ratio}x</div>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11px;color:#64748b">
+        <span>融資買進 ${marginBuy.toLocaleString()} / 賣出 ${marginSell.toLocaleString()}</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-top:2px;font-size:11px;color:#64748b">
+        <span>融券買進 ${shortBuy.toLocaleString()} / 賣出 ${shortSell.toLocaleString()}</span>
+      </div>
+    </div>`;
+    el.style.display = 'block';
+  }catch(e){
+    el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">融資融券載入失敗</div>';
   }
 }
 
