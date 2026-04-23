@@ -1143,7 +1143,6 @@ async function loadYieldCurve(){
 }
 
 const HK_HOT=[
-  {sym:'^HSI',name:'恆生指數',cat:'指數'},
   {sym:'0700.HK',name:'騰訊控股',cat:'科技'},
   {sym:'9988.HK',name:'阿里巴巴',cat:'科技'},
   {sym:'3690.HK',name:'美團',cat:'科技'},
@@ -2018,8 +2017,7 @@ async function loadIntlGrid(){
     'intl-IXIC': {sym:'^IXIC', name:'那斯達克'},
     'intl-SPX':  {sym:'^GSPC', name:'S&P500'},
     'intl-N225': {sym:'^N225', name:'日經'},
-    'intl-HSI':  {sym:'^HSI',  name:'恆生'},
-  };
+    };
   await Promise.all(Object.entries(map).map(async ([id, cfg])=>{
     const el = document.getElementById(id);
     if(!el) return;
