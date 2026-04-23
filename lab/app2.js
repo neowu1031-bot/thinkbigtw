@@ -2343,6 +2343,7 @@ async function loadMinuteChart(code, interval){
     });
 
     stockChart.timeScale().fitContent();
+    setTimeout(initDrawingTool, 300);
 
     // 成交量
     const volDiv = document.createElement('div');
@@ -2669,6 +2670,165 @@ function loadOddLot(code){
   </div>`;
 
   el.innerHTML = html;
+}
+
+
+// ===== K線畫線工具 =====
+let drawingMode = null; // 'trendline' | 'hline' | 'rect' | null
+let drawingLines = []; // 已畫的線
+let drawingStart = null;
+let drawingCanvas = null;
+let drawingCtx = null;
+let drawingColor = '#f59e0b';
+let isDrawing = false;
+
+function initDrawingTool(){
+  const wrap = document.getElementById('stockChartWrap');
+  if(!wrap || document.getElementById('drawingCanvas')) return;
+
+  // 建立畫線工具列
+  const toolbar = document.createElement('div');
+  toolbar.id = 'drawingToolbar';
+  toolbar.style.cssText = 'display:flex;align-items:center;gap:6px;padding:6px 0;flex-wrap:wrap';
+  toolbar.innerHTML = `
+    <span style="font-size:11px;color:#64748b;margin-right:4px">畫線</span>
+    <button id="dt-trend" onclick="setDrawMode('trendline')" title="趨勢線" style="background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">📈 趨勢</button>
+    <button id="dt-hline" onclick="setDrawMode('hline')" title="水平線" style="background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">➖ 水平</button>
+    <button id="dt-rect" onclick="setDrawMode('rect')" title="矩形" style="background:#1e293b;border:1px solid #334155;color:#94a3b8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">⬜ 矩形</button>
+    <button onclick="clearDrawings()" title="清除" style="background:#450a0a;border:1px solid #7f1d1d;color:#f87171;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">🗑️ 清除</button>
+    <div style="display:flex;align-items:center;gap:4px;margin-left:4px">
+      <span style="font-size:11px;color:#64748b">色</span>
+      <input type="color" id="dt-color" value="#f59e0b" onchange="drawingColor=this.value;redrawAll()" style="width:24px;height:24px;border:none;border-radius:4px;cursor:pointer;padding:0;background:none">
+    </div>
+    <button onclick="setDrawMode(null)" style="background:#1e293b;border:1px solid #334155;color:#64748b;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">✋ 取消</button>
+  `;
+
+  // canvas 疊在圖表上
+  const canvas = document.createElement('canvas');
+  canvas.id = 'drawingCanvas';
+  canvas.style.cssText = 'position:absolute;top:0;left:0;pointer-events:none;z-index:10';
+  canvas.width = wrap.clientWidth;
+  canvas.height = 340;
+
+  // 事件監聽 div
+  const overlay = document.createElement('div');
+  overlay.id = 'drawingOverlay';
+  overlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:340px;z-index:11;display:none;cursor:crosshair';
+
+  // 找 mainDiv（K線圖容器）
+  const mainDiv = wrap.querySelector('div');
+  if(mainDiv){
+    mainDiv.style.position = 'relative';
+    mainDiv.appendChild(canvas);
+    mainDiv.appendChild(overlay);
+  }
+
+  wrap.parentElement.insertBefore(toolbar, wrap);
+
+  drawingCanvas = canvas;
+  drawingCtx = canvas.getContext('2d');
+
+  overlay.addEventListener('mousedown', onDrawStart);
+  overlay.addEventListener('mousemove', onDrawMove);
+  overlay.addEventListener('mouseup', onDrawEnd);
+  overlay.addEventListener('mouseleave', onDrawEnd);
+}
+
+function setDrawMode(mode){
+  drawingMode = mode;
+  const overlay = document.getElementById('drawingOverlay');
+  if(overlay) overlay.style.display = mode ? 'block' : 'none';
+  // 更新按鈕樣式
+  ['dt-trend','dt-hline','dt-rect'].forEach(id=>{
+    const btn = document.getElementById(id);
+    if(btn) btn.style.background = '#1e293b';
+  });
+  const modeMap = {trendline:'dt-trend',hline:'dt-hline',rect:'dt-rect'};
+  if(mode && modeMap[mode]){
+    const btn = document.getElementById(modeMap[mode]);
+    if(btn) btn.style.background = '#1e3a5f';
+  }
+}
+
+function onDrawStart(e){
+  if(!drawingMode) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  drawingStart = {x: e.clientX - rect.left, y: e.clientY - rect.top};
+  isDrawing = true;
+}
+
+function onDrawMove(e){
+  if(!isDrawing || !drawingStart) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const cur = {x: e.clientX - rect.left, y: e.clientY - rect.top};
+  redrawAll();
+  // 畫預覽線
+  drawShape(drawingStart, cur, drawingColor, 0.6);
+}
+
+function onDrawEnd(e){
+  if(!isDrawing || !drawingStart) return;
+  const rect = e.currentTarget.getBoundingClientRect();
+  const end = {x: e.clientX - rect.left, y: e.clientY - rect.top};
+  const dist = Math.sqrt(Math.pow(end.x-drawingStart.x,2)+Math.pow(end.y-drawingStart.y,2));
+  if(dist > 5){
+    drawingLines.push({mode:drawingMode, start:{...drawingStart}, end, color:drawingColor});
+    redrawAll();
+  }
+  isDrawing = false;
+  drawingStart = null;
+}
+
+function drawShape(start, end, color, alpha=1){
+  const ctx = drawingCtx;
+  if(!ctx) return;
+  ctx.globalAlpha = alpha;
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 1.5;
+  ctx.setLineDash([]);
+
+  if(drawingMode==='hline'){
+    ctx.beginPath();
+    ctx.setLineDash([6,3]);
+    ctx.moveTo(0, start.y);
+    ctx.lineTo(drawingCanvas.width, start.y);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  } else if(drawingMode==='trendline'){
+    ctx.beginPath();
+    ctx.moveTo(start.x, start.y);
+    ctx.lineTo(end.x, end.y);
+    ctx.stroke();
+    // 箭頭
+    const angle = Math.atan2(end.y-start.y, end.x-start.x);
+    ctx.beginPath();
+    ctx.moveTo(end.x, end.y);
+    ctx.lineTo(end.x-10*Math.cos(angle-0.4), end.y-10*Math.sin(angle-0.4));
+    ctx.moveTo(end.x, end.y);
+    ctx.lineTo(end.x-10*Math.cos(angle+0.4), end.y-10*Math.sin(angle+0.4));
+    ctx.stroke();
+  } else if(drawingMode==='rect'){
+    ctx.fillStyle = color+'22';
+    ctx.fillRect(start.x, start.y, end.x-start.x, end.y-start.y);
+    ctx.strokeRect(start.x, start.y, end.x-start.x, end.y-start.y);
+  }
+  ctx.globalAlpha = 1;
+}
+
+function redrawAll(){
+  if(!drawingCtx || !drawingCanvas) return;
+  drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+  const savedMode = drawingMode;
+  drawingLines.forEach(line=>{
+    drawingMode = line.mode;
+    drawShape(line.start, line.end, line.color);
+  });
+  drawingMode = savedMode;
+}
+
+function clearDrawings(){
+  drawingLines = [];
+  if(drawingCtx && drawingCanvas) drawingCtx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
 }
 
 // ===== 融資融券 =====
