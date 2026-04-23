@@ -2600,6 +2600,77 @@ function initSearchAutocomplete(){
   });
 }
 
+
+// ===== 零股投資試算 =====
+function loadOddLot(code){
+  const el = document.getElementById('oddLotWrap');
+  if(!el) return;
+  el.style.display='block';
+
+  // 從現有的收盤價取得
+  const closeEl = document.getElementById('sClose');
+  const nameEl = document.getElementById('sName');
+  const price = parseFloat(closeEl?.textContent?.replace(/[^0-9.]/g,'') || 0);
+  const name = nameEl?.textContent?.split('(')[0]?.trim() || code;
+
+  if(!price || price <= 0) {
+    el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">等待價格載入...</div>';
+    return;
+  }
+
+  // 零股計算邏輯
+  const budgets = [1000, 3000, 5000, 10000, 30000, 50000];
+  const tax = 0.003; // 證券交易稅
+  const fee = 0.001425; // 手續費（最低1元）
+  const minFee = 1;
+
+  let html = `
+  <div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">
+    🪙 零股投資試算 · ${name}
+  </div>
+  <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+      <span style="font-size:11px;color:#64748b">現價</span>
+      <span style="font-size:14px;font-weight:700;color:#e2e8f0">$${price.toLocaleString()}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+      <span style="font-size:11px;color:#64748b">最少買1股</span>
+      <span style="font-size:13px;color:#60a5fa">$${price.toLocaleString()}</span>
+    </div>
+    <div style="display:flex;justify-content:space-between">
+      <span style="font-size:11px;color:#64748b">每張(1000股)</span>
+      <span style="font-size:13px;color:#60a5fa">$${(price*1000).toLocaleString()}</span>
+    </div>
+  </div>
+  <div style="font-size:11px;color:#64748b;margin-bottom:6px">💰 預算可買零股數</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">`;
+
+  budgets.forEach(budget => {
+    const shares = Math.floor(budget / price);
+    const cost = shares * price;
+    const feeAmt = Math.max(Math.round(cost * fee), minFee);
+    const taxAmt = Math.round(cost * tax);
+    const total = cost + feeAmt;
+    if(shares <= 0) return;
+    html += `
+    <div style="background:#0f172a;border-radius:8px;padding:8px;border:1px solid #1e293b;text-align:center">
+      <div style="font-size:10px;color:#64748b;margin-bottom:3px">預算 $${(budget/1000).toFixed(0)}K</div>
+      <div style="font-size:16px;font-weight:700;color:#34d399">${shares}<span style="font-size:10px;color:#64748b"> 股</span></div>
+      <div style="font-size:10px;color:#475569">費後 $${total.toLocaleString()}</div>
+    </div>`;
+  });
+
+  html += `</div>
+  <div style="margin-top:8px;padding:8px;background:#0f172a;border-radius:8px;border:1px solid #1e293b">
+    <div style="font-size:10px;color:#475569;line-height:1.6">
+      ⚠️ 零股交易時間：13:40-14:30（收盤後）<br>
+      手續費最低$1，賣出含0.3%交易稅
+    </div>
+  </div>`;
+
+  el.innerHTML = html;
+}
+
 // ===== 融資融券 =====
 async function loadMarginData(code){
   const el = document.getElementById('marginWrap');
