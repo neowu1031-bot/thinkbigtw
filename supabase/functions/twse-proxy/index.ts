@@ -44,6 +44,11 @@ serve(async (req) => {
         if (!code) throw new Error('code required');
         url = `https://www.twse.com.tw/exchangeReport/BFIAUU?response=json&stockNo=${code}`;
         break;
+      case 'etf_holdings':
+        // ETF 成分股前10大 - MoneyDJ
+        if (!code) throw new Error('code required');
+        url = `https://www.moneydj.com/ETF/X/Basic/Basic0007a.xdjhtm?etfid=${code}.TW`;
+        break;
       case 'monthly_revenue':
         // 月營收 - FinMind 免費API
         if (!code) throw new Error('code required');
