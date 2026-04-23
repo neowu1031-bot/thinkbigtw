@@ -3018,56 +3018,88 @@ function renderIndicator(name){
 
 
 async function loadMonthlyRevenue(code){
-  const el=document.getElementById('stockRevenue');
-  if(!el)return;
+  const el = document.getElementById('revenueWrap');
+  if(!el) return;
   el.style.display='block';
-  el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📊 月成交金額趨勢（近12個月）</div><div style="color:#64748b;padding:8px">載入中...</div>';
-  // 抓 24 個月資料以便計算 YoY，僅顯示最近 12 根
-  const now=new Date();
-  const months=[];
-  for(let i=23;i>=0;i--){
-    const dt=new Date(now.getFullYear(),now.getMonth()-i,1);
-    months.push({y:dt.getFullYear(),m:dt.getMonth()+1});
-  }
+  el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入月營收中...</div>';
   try{
-    const monthlyData=[];
-    for(const mi of months){
-      const ymStart=`${mi.y}-${String(mi.m).padStart(2,'0')}-01`;
-      const endDate=new Date(mi.y,mi.m,0);
-      const ymEnd=`${mi.y}-${String(mi.m).padStart(2,'0')}-${String(endDate.getDate()).padStart(2,'0')}`;
-      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&date=gte.'+ymStart+'&date=lte.'+ymEnd+'&select=volume,close_price',{headers:SB_H});
-      const rows=await r.json();
-      let turnover=0;
-      if(rows&&rows.length){
-        rows.forEach(d=>{turnover+=parseFloat(d.volume||0)*parseFloat(d.close_price||0);});
-      }
-      monthlyData.push({y:mi.y,m:mi.m,turnover:turnover});
+    const r = await fetch(PROXY_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+SB_KEY},
+      body:JSON.stringify({type:'monthly_revenue',code:code})
+    });
+    const res = await r.json();
+    const rows = res?.data?.data || [];
+    if(!Array.isArray(rows)||rows.length===0){
+      el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">暫無月營收資料</div>';
+      return;
     }
-    const last12=monthlyData.slice(-12);
-    const maxVal=Math.max(...last12.map(d=>d.turnover),1);
-    let html='<div style="font-size:13px;color:#64748b;margin-bottom:10px">📊 月成交金額趨勢（近12個月，含YoY）</div>';
-    html+='<div style="background:#0f172a;border-radius:10px;padding:14px 10px 4px;display:flex;align-items:flex-end;gap:4px;height:180px;overflow-x:auto">';
-    last12.forEach((d,idx)=>{
-      const h=d.turnover>0?Math.max((d.turnover/maxVal)*130,4):2;
-      // YoY: compare to same month last year
-      const lastYear=monthlyData.find(x=>x.y===d.y-1&&x.m===d.m);
-      let yoyHtml='';
-      if(lastYear&&lastYear.turnover>0){
-        const yoy=(d.turnover/lastYear.turnover-1)*100;
-        const up=yoy>=0;
-        yoyHtml=`<div style="font-size:9px;color:${up?'#34d399':'#f87171'};margin-top:2px">${up?'+':''}${yoy.toFixed(1)}%</div>`;
-      }
-      const amt=d.turnover>=1e8?(d.turnover/1e8).toFixed(1)+'億':d.turnover>=1e4?(d.turnover/1e4).toFixed(0)+'萬':d.turnover.toFixed(0);
-      html+=`<div style="flex:1;min-width:40px;display:flex;flex-direction:column;align-items:center;gap:2px">
-        <div style="font-size:9px;color:#94a3b8">${amt}</div>
-        <div style="width:100%;background:linear-gradient(to top,#2563eb,#60a5fa);height:${h}px;border-radius:4px 4px 0 0" title="${d.y}/${d.m} ${amt}"></div>
-        <div style="font-size:10px;color:#64748b">${d.y%100}/${d.m}</div>
-        ${yoyHtml}
+    const recent = rows.slice(-12);
+    const latest = recent[recent.length-1];
+    const prev = recent[recent.length-2];
+    const latestRev = latest.revenue/1e8;
+    const prevRev = prev?.revenue/1e8||0;
+    const lyRow = rows[rows.length-13];
+    const lyRev = lyRow ? lyRow.revenue/1e8 : null;
+    const mom = prevRev>0?((latestRev-prevRev)/prevRev*100):0;
+    const yoy = lyRev?((latestRev-lyRev)/lyRev*100):null;
+    const momColor = mom>=0?'#34d399':'#f87171';
+    const yoyColor = yoy===null?'#64748b':yoy>=0?'#34d399':'#f87171';
+    const maxRev = Math.max(...recent.map(r=>r.revenue));
+
+    let html = `
+    <div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">
+      📊 月營收 · ${latest.revenue_year}年${latest.revenue_month}月
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px">
+      <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b;text-align:center">
+        <div style="font-size:10px;color:#64748b;margin-bottom:3px">當月營收</div>
+        <div style="font-size:15px;font-weight:700;color:#e2e8f0">${latestRev.toFixed(1)}<span style="font-size:10px;color:#64748b">億</span></div>
+      </div>
+      <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b;text-align:center">
+        <div style="font-size:10px;color:#64748b;margin-bottom:3px">月增率</div>
+        <div style="font-size:15px;font-weight:700;color:${momColor}">${mom>=0?'+':''}${mom.toFixed(1)}%</div>
+      </div>
+      <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b;text-align:center">
+        <div style="font-size:10px;color:#64748b;margin-bottom:3px">年增率</div>
+        <div style="font-size:15px;font-weight:700;color:${yoyColor}">${yoy===null?'—':(yoy>=0?'+':'')+yoy.toFixed(1)+'%'}</div>
+      </div>
+    </div>
+    <div style="font-size:11px;color:#64748b;margin-bottom:6px">近12個月走勢（億）</div>
+    <div style="background:#0f172a;border-radius:10px;padding:12px 8px 4px;border:1px solid #1e293b">
+      <div style="display:flex;align-items:flex-end;gap:2px;height:70px">`;
+
+    recent.forEach((row,i)=>{
+      const rev = row.revenue/1e8;
+      const h = Math.max(rev/maxRev*62,3);
+      const isLatest = i===recent.length-1;
+      const isMax = row.revenue===maxRev;
+      const barColor = isLatest?'#60a5fa':isMax?'#f59e0b':'#334155';
+      html += `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:1px" title="${row.revenue_year}/${row.revenue_month}: ${rev.toFixed(1)}億">
+        <div style="width:100%;height:${h}px;background:${barColor};border-radius:2px 2px 0 0"></div>
+        <div style="font-size:8px;color:${isLatest?'#60a5fa':'#475569'}">${row.revenue_month}月</div>
       </div>`;
     });
-    html+='</div>';
-    el.innerHTML=html;
-  }catch(e){el.innerHTML='<div style="color:#f87171;padding:8px">月營收走勢載入失敗</div>';}
+
+    html += `</div></div>`;
+    html += `<div style="margin-top:8px">`;
+    recent.slice(-3).reverse().forEach((row,i)=>{
+      const rev = row.revenue/1e8;
+      const prevIdx = recent.indexOf(row)-1;
+      const prevRow = prevIdx>=0?recent[prevIdx]:null;
+      const chg = prevRow?(rev-prevRow.revenue/1e8)/(prevRow.revenue/1e8)*100:null;
+      const c = chg===null?'#64748b':chg>=0?'#34d399':'#f87171';
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #0f172a">
+        <span style="font-size:11px;color:#64748b">${row.revenue_year}年${row.revenue_month}月</span>
+        <span style="font-size:13px;font-weight:600;color:#e2e8f0">${rev.toFixed(2)}億</span>
+        <span style="font-size:11px;color:${c}">${chg===null?'—':(chg>=0?'▲':'▼')+Math.abs(chg).toFixed(1)+'%'}</span>
+      </div>`;
+    });
+    html += `</div>`;
+    el.innerHTML = html;
+  }catch(e){
+    el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">月營收載入失敗</div>';
+  }
 }
 
 async function loadStockNews(code){
