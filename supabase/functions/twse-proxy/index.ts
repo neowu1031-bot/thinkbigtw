@@ -49,6 +49,10 @@ serve(async (req) => {
         if (!code) throw new Error('code required');
         url = `https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockMonthRevenue&data_id=${code}&start_date=2023-01-01`;
         break;
+      case 'monthly_revenue':
+        if (!code) throw new Error('code required');
+        url = `https://api.finmindtrade.com/api/v4/data?dataset=TaiwanStockMonthRevenue&data_id=${code}&start_date=2023-01-01`;
+        break;
       case 'margin_total':
         // 全市場融資融券總覽（當日）
         url = 'https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN';
