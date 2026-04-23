@@ -360,110 +360,6 @@ gtag('config', 'G-7V41XYLLP5');
     <div class="trust-item"> 台灣在地團隊</div>
   </div>
 </section>
-<section class="section" style="padding-bottom:40px">
-  <div style="max-width:1100px;margin:0 auto;padding:0 24px">
-<!-- MoneyRadar 全方位看盤 -->
-    <div class="card reveal" onclick="window.open('https://thinkbigtw.com/lab/','_blank')" style="cursor:pointer;position:relative;overflow:hidden;background:#050f1a;border:1px solid #1e3a5f;min-height:280px;">
-      <!-- 動態K線動畫背景 -->
-      <canvas id="kline-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.35;pointer-events:none;"></canvas>
-      <!-- 漸層遮罩 -->
-      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,15,26,0.85) 0%,rgba(5,15,26,0.4) 60%,transparent 100%);pointer-events:none;"></div>
-      <!-- 內容 -->
-      <div style="position:relative;z-index:2;padding:0;text-align:center;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;justify-content:center;">
-          <span style="font-size:11px;font-family:'Space Mono',monospace;letter-spacing:.15em;color:#38bdf8;text-transform:uppercase;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);padding:3px 10px;border-radius:20px;">LIVE · 台灣 · 美股 · 港股</span>
-        </div>
-        <div style="font-size:11px;font-family:'Space Mono',monospace;letter-spacing:.1em;color:#64748b;text-transform:uppercase;margin-bottom:6px;">Market Intelligence Platform</div>
-        <h3 style="font-size:2.2rem;font-weight:900;color:#f0f9ff;margin:0 0 6px;letter-spacing:-.02em;line-height:1.1;text-align:center;">Money<span style="color:#38bdf8;">Radar</span></h3>
-        <div style="font-size:1rem;color:#94a3b8;margin-bottom:16px;">全方位即時看盤・台股・ETF・美股・外匯・加密貨幣</div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:center;">
-          <span style="font-size:11px;background:rgba(56,189,248,.1);color:#38bdf8;border:1px solid rgba(56,189,248,.2);padding:3px 10px;border-radius:12px;">📈 即時 K 線</span>
-          <span style="font-size:11px;background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);padding:3px 10px;border-radius:12px;">🌏 14 個市場</span>
-          <span style="font-size:11px;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2);padding:3px 10px;border-radius:12px;">💹 三大法人</span>
-          <span style="font-size:11px;background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);padding:3px 10px;border-radius:12px;">🆓 免費使用</span>
-        </div>
-        <a href="https://thinkbigtw.com/lab/" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0ea5e9,#2563eb);color:white;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(14,165,233,.4);transition:all .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(14,165,233,.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(14,165,233,.4)'">
-          立即使用 MoneyRadar →
-        </a>
-      </div>
-    </div>
-    <!-- K線動畫 JS -->
-    <script>
-    (function(){
-      const canvas = document.getElementById('kline-canvas');
-      if(!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let candles = [];
-      let frame = 0;
-      function resize(){
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-      }
-      function genCandles(){
-        candles = [];
-        const n = Math.floor(canvas.width / 14);
-        let price = 150 + Math.random()*50;
-        for(let i=0;i<n;i++){
-          const change = (Math.random()-0.46)*8;
-          const open = price;
-          price += change;
-          const close = price;
-          const high = Math.max(open,close) + Math.random()*4;
-          const low = Math.min(open,close) - Math.random()*4;
-          candles.push({open,close,high,low});
-        }
-      }
-      function draw(){
-        if(!canvas.offsetWidth) return;
-        resize();
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        const n = candles.length;
-        if(!n) return;
-        const prices = candles.flatMap(c=>[c.high,c.low]);
-        const minP = Math.min(...prices), maxP = Math.max(...prices);
-        const range = maxP - minP || 1;
-        const padT = 20, padB = 20;
-        const h = canvas.height - padT - padB;
-        const w = canvas.width;
-        const cw = w / n;
-        // scroll offset
-        const offset = (frame * 0.3) % cw;
-        candles.forEach((c,i)=>{
-          const x = i * cw - offset + cw;
-          if(x < -cw || x > w+cw) return;
-          const up = c.close >= c.open;
-          const color = up ? '#34d399' : '#f87171';
-          const yH = padT + h*(1-(c.high-minP)/range);
-          const yL = padT + h*(1-(c.low-minP)/range);
-          const yO = padT + h*(1-(c.open-minP)/range);
-          const yC = padT + h*(1-(c.close-minP)/range);
-          // wick
-          ctx.strokeStyle = color;
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(x+cw/2, yH);
-          ctx.lineTo(x+cw/2, yL);
-          ctx.stroke();
-          // body
-          ctx.fillStyle = color;
-          const bodyY = Math.min(yO,yC);
-          const bodyH = Math.max(Math.abs(yC-yO), 1);
-          ctx.fillRect(x+2, bodyY, cw-4, bodyH);
-        });
-        frame++;
-        // 每100幀重新生成一批蠟燭
-        if(frame % 200 === 0) { candles.shift(); const last=candles[candles.length-1]; const p=last?last.close:150; const chg=(Math.random()-.46)*8; const o=p; const c=p+chg; candles.push({open:o,close:c,high:Math.max(o,c)+Math.random()*4,low:Math.min(o,c)-Math.random()*4}); }
-        requestAnimationFrame(draw);
-      }
-      resize();
-      genCandles();
-      draw();
-    })();
-    </script>
-    <h2 class="sec-title" style="text-align:center">我們能為你做什麼</h2>
-  </div>
-  </div>
-</section>
 <section class="section" id="services">
   <div class="sec-head reveal" style="text-align:center;padding-top:56px">
     <div class="sec-eye">服務項目</div>
@@ -580,6 +476,110 @@ gtag('config', 'G-7V41XYLLP5');
 
     </div>
 
+  </div>
+</section>
+<section class="section" style="padding-bottom:40px">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px">
+<!-- MoneyRadar 全方位看盤 -->
+    <div class="card reveal" onclick="window.open('https://thinkbigtw.com/lab/','_blank')" style="cursor:pointer;position:relative;overflow:hidden;background:#050f1a;border:1px solid #1e3a5f;min-height:280px;">
+      <!-- 動態K線動畫背景 -->
+      <canvas id="kline-canvas" style="position:absolute;top:0;left:0;width:100%;height:100%;opacity:0.35;pointer-events:none;"></canvas>
+      <!-- 漸層遮罩 -->
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,15,26,0.85) 0%,rgba(5,15,26,0.4) 60%,transparent 100%);pointer-events:none;"></div>
+      <!-- 內容 -->
+      <div style="position:relative;z-index:2;padding:0;text-align:center;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;justify-content:center;">
+          <span style="font-size:11px;font-family:'Space Mono',monospace;letter-spacing:.15em;color:#38bdf8;text-transform:uppercase;background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);padding:3px 10px;border-radius:20px;">LIVE · 台灣 · 美股 · 港股</span>
+        </div>
+        <div style="font-size:11px;font-family:'Space Mono',monospace;letter-spacing:.1em;color:#64748b;text-transform:uppercase;margin-bottom:6px;">Market Intelligence Platform</div>
+        <h3 style="font-size:2.2rem;font-weight:900;color:#f0f9ff;margin:0 0 6px;letter-spacing:-.02em;line-height:1.1;text-align:center;">Money<span style="color:#38bdf8;">Radar</span></h3>
+        <div style="font-size:1rem;color:#94a3b8;margin-bottom:16px;">全方位即時看盤・台股・ETF・美股・外匯・加密貨幣</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;justify-content:center;">
+          <span style="font-size:11px;background:rgba(56,189,248,.1);color:#38bdf8;border:1px solid rgba(56,189,248,.2);padding:3px 10px;border-radius:12px;">📈 即時 K 線</span>
+          <span style="font-size:11px;background:rgba(52,211,153,.1);color:#34d399;border:1px solid rgba(52,211,153,.2);padding:3px 10px;border-radius:12px;">🌏 14 個市場</span>
+          <span style="font-size:11px;background:rgba(251,191,36,.1);color:#fbbf24;border:1px solid rgba(251,191,36,.2);padding:3px 10px;border-radius:12px;">💹 三大法人</span>
+          <span style="font-size:11px;background:rgba(167,139,250,.1);color:#a78bfa;border:1px solid rgba(167,139,250,.2);padding:3px 10px;border-radius:12px;">🆓 免費使用</span>
+        </div>
+        <a href="https://thinkbigtw.com/lab/" target="_blank" onclick="event.stopPropagation()" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0ea5e9,#2563eb);color:white;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:12px 24px;border-radius:8px;text-decoration:none;box-shadow:0 4px 20px rgba(14,165,233,.4);transition:all .2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 30px rgba(14,165,233,.5)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 20px rgba(14,165,233,.4)'">
+          立即使用 MoneyRadar →
+        </a>
+      </div>
+    </div>
+    <!-- K線動畫 JS -->
+    <script>
+    (function(){
+      const canvas = document.getElementById('kline-canvas');
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let candles = [];
+      let frame = 0;
+      function resize(){
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      function genCandles(){
+        candles = [];
+        const n = Math.floor(canvas.width / 14);
+        let price = 150 + Math.random()*50;
+        for(let i=0;i<n;i++){
+          const change = (Math.random()-0.46)*8;
+          const open = price;
+          price += change;
+          const close = price;
+          const high = Math.max(open,close) + Math.random()*4;
+          const low = Math.min(open,close) - Math.random()*4;
+          candles.push({open,close,high,low});
+        }
+      }
+      function draw(){
+        if(!canvas.offsetWidth) return;
+        resize();
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        const n = candles.length;
+        if(!n) return;
+        const prices = candles.flatMap(c=>[c.high,c.low]);
+        const minP = Math.min(...prices), maxP = Math.max(...prices);
+        const range = maxP - minP || 1;
+        const padT = 20, padB = 20;
+        const h = canvas.height - padT - padB;
+        const w = canvas.width;
+        const cw = w / n;
+        // scroll offset
+        const offset = (frame * 0.3) % cw;
+        candles.forEach((c,i)=>{
+          const x = i * cw - offset + cw;
+          if(x < -cw || x > w+cw) return;
+          const up = c.close >= c.open;
+          const color = up ? '#34d399' : '#f87171';
+          const yH = padT + h*(1-(c.high-minP)/range);
+          const yL = padT + h*(1-(c.low-minP)/range);
+          const yO = padT + h*(1-(c.open-minP)/range);
+          const yC = padT + h*(1-(c.close-minP)/range);
+          // wick
+          ctx.strokeStyle = color;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(x+cw/2, yH);
+          ctx.lineTo(x+cw/2, yL);
+          ctx.stroke();
+          // body
+          ctx.fillStyle = color;
+          const bodyY = Math.min(yO,yC);
+          const bodyH = Math.max(Math.abs(yC-yO), 1);
+          ctx.fillRect(x+2, bodyY, cw-4, bodyH);
+        });
+        frame++;
+        // 每100幀重新生成一批蠟燭
+        if(frame % 200 === 0) { candles.shift(); const last=candles[candles.length-1]; const p=last?last.close:150; const chg=(Math.random()-.46)*8; const o=p; const c=p+chg; candles.push({open:o,close:c,high:Math.max(o,c)+Math.random()*4,low:Math.min(o,c)-Math.random()*4}); }
+        requestAnimationFrame(draw);
+      }
+      resize();
+      genCandles();
+      draw();
+    })();
+    </script>
+    <h2 class="sec-title" style="text-align:center">我們能為你做什麼</h2>
+  </div>
   </div>
 </section>
 
