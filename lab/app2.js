@@ -140,7 +140,7 @@ async function renderWatchlistTab() {
     if(items.length === 0) return '';
     let h = `<div style="font-size:13px;color:${color};font-weight:700;padding:8px 0 6px;border-bottom:1px solid #1e293b;margin-bottom:8px">${icon} ${title} (${items.length})</div>`;
     items.forEach(w => {
-      const mktLabel = {tw:'台股',etf:'ETF',us:'美股',hk:'港股',crypto:'加密',fx:'外匯'}[w.market]||w.market;
+      const mktLabel = {tw:'台股',etf:'ETF',us:'美股',crypto:'加密',fx:'外匯'}[w.market]||w.market;
       h += `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px;background:#0f172a;border-radius:8px;margin-bottom:6px;border:1px solid #1e293b">
         <div style="display:flex;align-items:center;gap:8px">
           <span style="font-size:10px;background:#1e293b;color:#60a5fa;padding:2px 6px;border-radius:8px">${mktLabel}</span>
@@ -750,7 +750,7 @@ function switchTab(name,btn){
   if(name==='crypto')setTimeout(loadCrypto,100);
   if(name==='etf')setTimeout(loadETFHot,100);
   if(name==='us')setTimeout(loadUSHot,100);if(name==='fund')setTimeout(loadFX,100);
-  if(name==='hk')setTimeout(loadHKHot,100);
+  // 港股已移除
   if(name==='futures')setTimeout(loadFutures,100);
   if(name==='tools')setTimeout(initTools,100);
   if(name==='portfolio')setTimeout(renderPortfolio,100);
@@ -1540,9 +1540,9 @@ async function fetchHoldingPrice(h){
   return null;
 }
 
-const TYPE_LABEL={tw:'台股',etf:'ETF',us:'美股',hk:'港股',crypto:'加密幣'};
-const TYPE_COLOR={tw:'#60a5fa',etf:'#a78bfa',us:'#f59e0b',hk:'#34d399',crypto:'#f472b6'};
-const TYPE_CCY={tw:'NT$',etf:'NT$',us:'US$',hk:'HK$',crypto:'$'};
+const TYPE_LABEL={tw:'台股',etf:'ETF',us:'美股',crypto:'加密幣'};
+const TYPE_COLOR={tw:'#60a5fa',etf:'#a78bfa',us:'#f59e0b',crypto:'#f472b6'};
+const TYPE_CCY={tw:'NT$',etf:'NT$',us:'US$',crypto:'$'};
 
 async function renderPortfolio(){
   const listEl=document.getElementById('portfolioList');
@@ -1565,7 +1565,7 @@ async function renderPortfolio(){
   function toTwd(v,type){
     if(type==='tw'||type==='etf')return v;
     if(type==='us'||type==='crypto')return v*usdToTwd;
-    if(type==='hk')return v*hkdToTwd;
+    // hk 已移除
     return v;
   }
   listEl.innerHTML='<div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155"><div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">📋 持倉明細</div><div id="holdRows"></div></div>';
