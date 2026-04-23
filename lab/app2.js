@@ -1,5 +1,6 @@
 
-const PW='thinkbig2025';
+const ADMIN_EMAIL='neowu1031@gmail.com';
+let isAdmin=false;
 const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';
 // Supabase Auth client（CDN 自動暴露 window.supabase）
@@ -180,13 +181,8 @@ let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=nu
 const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
 function checkPw(){
-  if(document.getElementById('pwInput').value===PW){
-    currentUserPlan='pro'; // 管理員視為 PRO
-    document.getElementById('userBadge').innerHTML='Hi, 管理員 · <span style="color:#fbbf24;font-weight:700">⭐ PRO</span>';
-    document.getElementById('logoutBtn').style.display='inline-block';
-    showDashboard();
-  }
-  else document.getElementById('errMsg').textContent='密碼錯誤';
+  // 管理員入口已停用，請用 Google 或 Email 登入
+  document.getElementById('errMsg').textContent='請使用 Email 登入';
 }
 
 function showPwBackdoor(){
@@ -240,6 +236,7 @@ async function authSubmit(){
         switchAuthTab('login');
       }else if(data.session){
         currentUser=data.user;if(data.session?.access_token)currentUser._token=data.session.access_token;
+        if(currentUser.email===ADMIN_EMAIL){currentUserPlan='pro';isAdmin=true;}
         onAuthSuccess(data.user);
       }
       trackEvent('signup',{method:'email'});
