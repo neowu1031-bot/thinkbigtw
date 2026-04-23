@@ -2068,18 +2068,22 @@ async function searchStock(){
   currentStock=code;
   trackEvent('search_stock',{stock_code:code});
   try{
-    const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=1',{headers:SB_H});
+    const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=2',{headers:SB_H});
     const data=await r.json();
     const res=document.getElementById('stockResult');
     res.style.display='block';
     if(data&&data.length>0){
       const d=data[0];
+      const prev=data[1];
       document.getElementById('stockName').textContent=(NAMES[code]||code)+' ('+code+')';
       document.getElementById('stockMeta').textContent='最新交易日：'+d.date;
       document.getElementById('sClose').textContent=d.close_price;
-      const ch=parseFloat(d.change_percent);
+      // 漲跌幅：用前一日收盤計算
+      const prevClose=prev?parseFloat(prev.close_price):parseFloat(d.close_price);
+      const ch=parseFloat(d.close_price)-prevClose;
+      const pct=prevClose>0?(ch/prevClose*100).toFixed(2):'0.00';
       const cel=document.getElementById('sChange');
-      const pct=d.close_price>0?((ch/(parseFloat(d.close_price)-ch))*100).toFixed(2):ch.toFixed(2);cel.textContent=(ch>=0?'+':'')+pct+'%';
+      cel.textContent=(ch>=0?'+':'')+pct+'%';
       cel.className='val '+(ch>=0?'up':'down');
       document.getElementById('sVol').textContent=parseInt(d.volume).toLocaleString();
       document.getElementById('sOpen').textContent=d.open_price;
