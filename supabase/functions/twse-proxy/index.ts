@@ -39,6 +39,15 @@ serve(async (req) => {
       case 'etf_nav':
         url = 'https://openapi.twse.com.tw/v1/ETF/fund';
         break;
+      case 'margin':
+        // 融資融券 - 個股信用交易
+        if (!code) throw new Error('code required');
+        url = `https://www.twse.com.tw/exchangeReport/BFIAUU?response=json&stockNo=${code}`;
+        break;
+      case 'margin_total':
+        // 全市場融資融券總覽（當日）
+        url = 'https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN';
+        break;
       case 'dividend':
         // 台股個股歷年配息 - TWSE exchangeReport
         if (!code) throw new Error('code required');
@@ -81,6 +90,12 @@ serve(async (req) => {
       }
       if (type === 'bwibbu') {
         const filtered = data.filter((d: any) => d['Code'] === code);
+        data = filtered.length > 0 ? filtered[0] : null;
+      }
+      if (type === 'margin_total' && code) {
+        const filtered = data.filter((d: any) =>
+          d['股票代號'] === code || d['Code'] === code
+        );
         data = filtered.length > 0 ? filtered[0] : null;
       }
     }
