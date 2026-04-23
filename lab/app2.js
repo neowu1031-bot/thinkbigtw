@@ -3281,20 +3281,32 @@ async function loadMonthlyRevenue(code){
       body:JSON.stringify({type:'monthly_revenue',code:code})
     });
     const res = await r.json();
-    const rows = res?.data?.data || [];
+    const rows = res?.data || [];
     if(!Array.isArray(rows)||rows.length===0){
       el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">暫無月營收資料</div>';
       return;
     }
-    const recent = rows.slice(-12);
+    // TWSE t187ap05_L 欄位：中文名稱
+    // 解析民國年月：資料年月 "11503" → 2026年3月
+    const parseRow = (row) => {
+      const ym = row['資料年月']||'';
+      const year = parseInt(ym.substring(0,3))+1911;
+      const month = parseInt(ym.substring(3,5));
+      const rev = parseInt((row['營業收入-當月營收']||'0').replace(/,/g,''));
+      const mom = parseFloat(row['營業收入-上月比較增減(%)'||0])||0;
+      const yoy = parseFloat(row['營業收入-去年同月增減(%)'||0])||0;
+      return {revenue_year:year, revenue_month:month, revenue:rev, mom, yoy};
+    };
+    const recent = rows.slice(-12).map(parseRow);
     const latest = recent[recent.length-1];
     const prev = recent[recent.length-2];
     const latestRev = latest.revenue/1e8;
     const prevRev = prev?.revenue/1e8||0;
-    const lyRow = rows[rows.length-13];
-    const lyRev = lyRow ? lyRow.revenue/1e8 : null;
-    const mom = prevRev>0?((latestRev-prevRev)/prevRev*100):0;
-    const yoy = lyRev?((latestRev-lyRev)/lyRev*100):null;
+    const lyRow = rows.length>12 ? rows[rows.length-13] : null;
+    const lyRevRaw = lyRow ? parseInt((lyRow['營業收入-當月營收']||'0').replace(/,/g,'')) : null;
+    const lyRev = lyRevRaw ? lyRevRaw/1e8 : null;
+    const mom = latest.mom || (prevRev>0?((latestRev-prevRev)/prevRev*100):0);
+    const yoy = latest.yoy || (lyRev?((latestRev-lyRev)/lyRev*100):null);
     const momColor = mom>=0?'#34d399':'#f87171';
     const yoyColor = yoy===null?'#64748b':yoy>=0?'#34d399':'#f87171';
     const maxRev = Math.max(...recent.map(r=>r.revenue));
