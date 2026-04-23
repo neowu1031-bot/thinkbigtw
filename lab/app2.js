@@ -2716,19 +2716,30 @@ function initDrawingTool(){
   overlay.id = 'drawingOverlay';
   overlay.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:340px;z-index:11;display:none;cursor:crosshair';
 
-  // 找 mainDiv - K線圖在 stockChartWrap 的下一個兄弟 div
+  // 找 K線圖的實際容器
+  // loadStockChart 建立 mainDiv 是直接放在 stockChartWrap 的 innerHTML 裡
+  // 但 stockChartWrap 會被清空再重建，所以我們用 stockChartContainer 裡
+  // 找 drawingToolbar 之後、stockChartWrap 之前的 div
   const parent = wrap.parentElement;
-  let mainDiv = wrap.nextElementSibling;
-  // 如果 stockChartWrap 是空的，圖表在前一個 div
-  if(!mainDiv || mainDiv.id) {
-    // 找有 canvas 的 div
-    mainDiv = [...parent.children].find(el => !el.id && el.tagName==='DIV' && el.querySelector('canvas'));
+  // K線圖容器是在 toolbar 之後緊接的 div（沒有 id）
+  const toolbar_el = parent.querySelector('#drawingToolbar');
+  let mainDiv = null;
+  if(toolbar_el) {
+    let next = toolbar_el.nextElementSibling;
+    while(next) {
+      if(!next.id && next.tagName==='DIV' && next.offsetWidth > 100) { mainDiv = next; break; }
+      next = next.nextElementSibling;
+    }
   }
-  if(!mainDiv) mainDiv = wrap; // fallback
+  if(!mainDiv) {
+    // fallback: 找最大的無 id div
+    mainDiv = [...parent.children].filter(el => !el.id && el.tagName==='DIV' && el.offsetWidth > 100)
+                                   .sort((a,b) => b.offsetWidth - a.offsetWidth)[0] || wrap;
+  }
 
   mainDiv.style.position = 'relative';
-  canvas.width = mainDiv.clientWidth || 800;
-  canvas.height = mainDiv.clientHeight || 340;
+  canvas.width = mainDiv.offsetWidth || 800;
+  canvas.height = 340;
   mainDiv.appendChild(canvas);
   mainDiv.appendChild(overlay);
 
