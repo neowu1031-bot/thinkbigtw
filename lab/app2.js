@@ -3658,38 +3658,69 @@ async function loadETFDividend(code){
   }catch(e){if(el)el.style.display='none';}
 }
 async function loadETFHoldings(code){
-  const el=document.getElementById('etfHoldings');
-  if(!el)return;
+  const el = document.getElementById('etfHoldingsWrap');
+  if(!el) return;
   el.style.display='block';
-  el.innerHTML='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div><div style="color:#64748b;padding:8px;font-size:12px">載入中...</div>';
+  el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">載入成分股中...</div>';
   try{
-    // Finnhub ETF holdings 僅支援美股 ETF，台股 ETF 需轉為 symbol.TW
-    const sym=/^\d+[A-Z]?$/.test(code)?code+'.TW':code;
-    const r=await fetch(`https://finnhub.io/api/v1/etf/holdings?symbol=${sym}&token=${FINNHUB_KEY}`);
-    const d=await r.json();
-    if(!d||!Array.isArray(d.holdings)||d.holdings.length===0){
-      el.innerHTML='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div><div style="color:#64748b;padding:8px;font-size:12px">此 ETF 無持股明細資料（Finnhub 免費方案未涵蓋台股ETF）</div>';
+    const r = await fetch(PROXY_URL,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+SB_KEY},
+      body:JSON.stringify({type:'etf_holdings',code:code})
+    });
+    const res = await r.json();
+    if(!res.ok||!res.data){
+      el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">暫無成分股資料</div>';
       return;
     }
-    const top10=d.holdings.slice(0,10);
-    let html='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div>';
-    html+='<div style="display:grid;grid-template-columns:30px 90px 1fr 70px 90px;gap:6px;font-size:11px;color:#64748b;padding:4px 8px 8px;border-bottom:1px solid #334155;margin-bottom:4px"><div>#</div><div>代號</div><div>名稱</div><div style="text-align:right">比例</div><div style="text-align:right">市值</div></div>';
-    top10.forEach((h,i)=>{
-      const pct=h.percent!=null?parseFloat(h.percent).toFixed(2)+'%':'—';
-      const val=h.value!=null?(h.value>=1e9?(h.value/1e9).toFixed(2)+'B':h.value>=1e6?(h.value/1e6).toFixed(2)+'M':h.value.toLocaleString()):'—';
-      const symbol=(h.symbol||'').replace(/</g,'&lt;');
-      const name=(h.name||'').replace(/</g,'&lt;');
-      html+=`<div style="display:grid;grid-template-columns:30px 90px 1fr 70px 90px;gap:6px;font-size:13px;padding:6px 8px;border-bottom:1px solid #0f172a;align-items:center">
-        <div style="color:#64748b">${i+1}</div>
-        <div style="color:#60a5fa;font-weight:600">${symbol}</div>
-        <div style="color:#e2e8f0">${name}</div>
-        <div style="color:#34d399;text-align:right;font-weight:600">${pct}</div>
-        <div style="color:#94a3b8;text-align:right">${val}</div>
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(res.data,'text/html');
+    let holdings = [];
+    for(const t of doc.querySelectorAll('table')){
+      if(t.textContent.includes('持股')&&t.textContent.includes('比例')){
+        const rows = t.querySelectorAll('tr');
+        for(let i=1;i<rows.length&&holdings.length<10;i++){
+          const cells = rows[i].querySelectorAll('td');
+          if(cells.length>=3){
+            const name = cells[0]?.textContent?.trim();
+            const pct = parseFloat(cells[2]?.textContent?.trim());
+            const chg = cells[3]?.textContent?.trim()||'—';
+            if(name&&!isNaN(pct)&&pct>0) holdings.push({name,pct,chg});
+          }
+        }
+        break;
+      }
+    }
+    if(!holdings.length){
+      el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">無法解析成分股資料</div>';
+      return;
+    }
+    const maxPct = holdings[0].pct;
+    let html = `<div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">🏆 成分股前10大</div>`;
+    holdings.forEach((h,i)=>{
+      const barW = (h.pct/maxPct*100).toFixed(0);
+      const isUp = h.chg.includes('+');
+      const isDn = h.chg.includes('-');
+      const chgColor = isUp?'#34d399':isDn?'#f87171':'#64748b';
+      html += `<div style="margin-bottom:7px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+          <div style="display:flex;align-items:center;gap:6px">
+            <span style="font-size:10px;color:#475569;font-weight:700;min-width:16px">${i+1}</span>
+            <span style="font-size:12px;color:#e2e8f0;font-weight:600">${h.name}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;color:${chgColor}">${h.chg}</span>
+            <span style="font-size:13px;font-weight:700;color:#60a5fa">${h.pct}%</span>
+          </div>
+        </div>
+        <div style="background:#1e293b;border-radius:3px;height:4px">
+          <div style="width:${barW}%;height:100%;background:linear-gradient(90deg,#1d4ed8,#60a5fa);border-radius:3px"></div>
+        </div>
       </div>`;
     });
-    el.innerHTML=html;
+    el.innerHTML = html;
   }catch(e){
-    el.innerHTML='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🧩 前10大成分股</div><div style="color:#f87171;padding:8px;font-size:12px">持股明細載入失敗</div>';
+    el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">成分股載入失敗</div>';
   }
 }
 
