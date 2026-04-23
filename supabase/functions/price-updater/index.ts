@@ -69,9 +69,48 @@ serve(async (req) => {
       else inserted += batch.length
     }
 
-    console.log(`[price-updater] ✅ 完成！寫入 ${inserted} 筆`)
+    console.log(`[price-updater] TWSE 上市 ✅ ${inserted} 筆，開始抓 TPEX 上櫃...`)
 
-    return new Response(JSON.stringify({ ok: true, date: today, inserted, total: rows.length }), {
+    // ── 抓 TPEX 上櫃全市場收盤 ──
+    let tpexInserted = 0
+    try {
+      const twYear = parseInt(y) - 1911
+      const tpexDate = `${twYear}/${m}/${d}`
+      const tpexRes = await fetch(
+        `https://www.tpex.org.tw/openapi/v1/tpex_mainboard_perday_quotes?d=${encodeURIComponent(tpexDate)}`,
+        { headers }
+      )
+      if (tpexRes.ok) {
+        const tpexText = await tpexRes.text()
+        if (tpexText.trim().startsWith('[')) {
+          const tpexData = JSON.parse(tpexText)
+          // TPEX 欄位：SecuritiesCompanyCode, Close, Open, High, Low, TradingShares
+          const tpexRows = tpexData.map((row: any) => {
+            const sym = row['SecuritiesCompanyCode']?.trim() || row['代號']?.trim()
+            const close = parseFloat(row['Close'] || row['收盤']) || null
+            const open  = parseFloat(row['Open']  || row['開盤']) || null
+            const high  = parseFloat(row['High']  || row['最高']) || null
+            const low   = parseFloat(row['Low']   || row['最低']) || null
+            const vol   = parseInt((row['TradingShares'] || row['成交股數'] || '0').replace(/,/g,'')) || null
+            if (!sym || !close) return null
+            return { symbol: sym, date: today, open_price: open, high_price: high, low_price: low, close_price: close, volume: vol, change_percent: null }
+          }).filter(Boolean)
+
+          for (let i = 0; i < tpexRows.length; i += 500) {
+            const { error } = await supabase.from('daily_prices')
+              .upsert(tpexRows.slice(i, i+500), { onConflict: 'symbol,date', ignoreDuplicates: false })
+            if (!error) tpexInserted += Math.min(500, tpexRows.length - i)
+          }
+          console.log(`[price-updater] TPEX 上櫃 ✅ ${tpexInserted} 筆`)
+        }
+      }
+    } catch(tpexErr: any) {
+      console.log(`[price-updater] TPEX 抓取失敗: ${tpexErr.message}`)
+    }
+
+    console.log(`[price-updater] ✅ 全部完成！上市 ${inserted} + 上櫃 ${tpexInserted} 筆`)
+
+    return new Response(JSON.stringify({ ok: true, date: today, inserted, tpexInserted, total: rows.length }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     })
 
