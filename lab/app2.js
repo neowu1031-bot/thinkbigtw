@@ -2574,7 +2574,7 @@ async function loadMarginData(code){
   if(!el) return;
   el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入融資融券...</div>';
   try{
-    const r = await fetch(EDGE+'twse-proxy',{
+    const r = await fetch(PROXY_URL,{
       method:'POST',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+SB_KEY},
       body:JSON.stringify({type:'margin_total',code:code})
