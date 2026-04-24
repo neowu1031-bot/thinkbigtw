@@ -28,7 +28,7 @@ function authHeaders(){
 // 確保 token 最新的版本
 async function authHeadersFresh(){
   try{
-    const{data:{session}}=await supabase.auth.getSession();
+    const{data:{session}}=await SUPA_AUTH.auth.getSession();
     if(session?.access_token&&currentUser) currentUser._token=session.access_token;
   }catch(e){}
   return authHeaders();
@@ -60,7 +60,7 @@ async function loadWatchlist() {
 async function toggleWatchlist(symbol, name, market, label='watching') {
   if(!currentUser) { showToast('請先登入才能使用清單功能','#f87171'); return; }
   // 確保 token 最新
-  try{const{data:{session}}=await supabase.auth.getSession();if(session?.access_token)currentUser._token=session.access_token;}catch(e){}
+  try{const{data:{session}}=await SUPA_AUTH.auth.getSession();if(session?.access_token)currentUser._token=session.access_token;}catch(e){}
   try {
     // 先查是否已存在
     const cleanSym = symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
@@ -1816,27 +1816,6 @@ async function loadStockFutures(){
 
 
 
-async function searchCrypto(){
-  const input=document.getElementById('cryptoSearch').value.trim().toUpperCase();
-  const result=document.getElementById('cryptoSearchResult');
-  if(!input){result.innerHTML='';return;}
-  const sym=input.endsWith('USDT')?input:input+'USDT';
-  result.innerHTML='<div style="color:#94a3b8;padding:8px">查詢中...</div>';
-  try{
-    const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol='+sym);
-    if(!r.ok){result.innerHTML='<div style="color:#f87171;padding:8px">找不到 '+input+'，請確認代號是否正確</div>';return;}
-    const d=await r.json();
-    const pct=parseFloat(d.priceChangePercent);
-    const price=parseFloat(d.lastPrice);
-    const up=pct>=0;
-    result.innerHTML=`<div style="background:#1e3a5f;border:1px solid #2563eb;border-radius:12px;padding:20px;max-width:320px">
-      <div style="font-size:13px;color:#94a3b8;margin-bottom:4px">${input} / USDT</div>
-      <div style="font-size:28px;font-weight:700;color:#e2e8f0">$${price.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:6})}</div>
-      <div style="font-size:16px;color:${up?'#34d399':'#f87171'};margin-top:6px">${up?'▲ +':'▼ '}${pct.toFixed(2)}%</div>
-      <div style="font-size:12px;color:#64748b;margin-top:8px">24h量: ${parseFloat(d.volume).toLocaleString(undefined,{maximumFractionDigits:0})} | 高: $${parseFloat(d.highPrice).toLocaleString()} | 低: $${parseFloat(d.lowPrice).toLocaleString()}</div>
-    </div>`;
-  }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">查詢失敗，請稍後再試</div>';}
-}
 // Enter 鍵觸發搜尋
 document.addEventListener('DOMContentLoaded',()=>{
   const inp=document.getElementById('cryptoSearch');
