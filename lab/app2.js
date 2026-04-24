@@ -2132,7 +2132,7 @@ async function loadRealtimeQuote(code){
     const bidVols = (s.g||'').split('_').filter(Boolean).slice(0,5);
     const askVols = (s.f||'').split('_').filter(Boolean).slice(0,5);
     const price = parseFloat(s.z||s.y||0);
-    const prev = parseFloat(s.y||0);
+    const prev = parseFloat(s.y) || parseFloat(s.z) || parseFloat(s.b?.split('_')[0]) || 0;
     const maxVol = Math.max(...bidVols.map(Number), ...askVols.map(Number), 1);
     let html = `<div style="font-size:11px;color:#64748b;margin-bottom:6px">即時報價 · ${s.t||''}</div>`;
     html += `<table style="width:100%;border-collapse:collapse;font-size:12px">`;
@@ -2179,7 +2179,7 @@ async function loadIntradayChart(code){
     // 分時價格
     const prices = (s.pz||'').split('_').filter(Boolean).map(Number);
     const times = (s.pt||'').split('_').filter(Boolean);
-    const prev = parseFloat(s.y||0);
+    const prev = parseFloat(s.y) || parseFloat(s.z) || parseFloat(s.b?.split('_')[0]) || 0;
     if(!prices.length){ el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">尚無分時資料</div>'; return; }
     // 畫 SVG 分時圖
     const W=el.clientWidth||400, H=100;
@@ -2195,10 +2195,10 @@ async function loadIntradayChart(code){
       <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5"/>
       <text x="4" y="12" fill="#64748b" font-size="10">${times[0]||'09:00'}</text>
       <text x="${W-32}" y="12" fill="#64748b" font-size="10">${times[times.length-1]||'13:30'}</text>
-      <text x="${W-50}" y="${H-4}" fill="${color}" font-size="11" font-weight="bold">${lastP.toFixed(2)}</text>
+      <text x="${W-50}" y="${H-4}" fill="${color}" font-size="11" font-weight="bold">${isNaN(lastP)?'':lastP.toFixed(2)}</text>
     </svg>
     <div style="display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-top:2px">
-      <span>昨收 ${prev}</span><span style="color:${color}">${lastP>=prev?'▲':'▼'} ${Math.abs(((lastP-prev)/prev)*100).toFixed(2)}%</span>
+      <span>昨收 ${prev}</span><span style="color:${color}">${lastP>=prev?'▲':'▼'} ${prev>0?Math.abs(((lastP-prev)/prev)*100).toFixed(2):'0.00'}%</span>
     </div>`;
   }catch(e){
     el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">無法取得分時資料（CORS）</div>';
