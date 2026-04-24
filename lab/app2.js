@@ -661,13 +661,22 @@ async function loadRanking(type){
     else url+='&order=volume.desc';
     const r2=await fetch(url,{headers:SB_H});
     const data=await r2.json();
+    // 前端排序（change_percent在DB是null，用open→close計算）
+    data.sort((a,b)=>{
+      const ca=parseFloat(a.open_price)>0?(parseFloat(a.close_price)-parseFloat(a.open_price))/parseFloat(a.open_price)*100:0;
+      const cb=parseFloat(b.open_price)>0?(parseFloat(b.close_price)-parseFloat(b.open_price))/parseFloat(b.open_price)*100:0;
+      if(type==='volume')return parseFloat(b.volume||0)-parseFloat(a.volume||0);
+      if(type==='up')return cb-ca;
+      return ca-cb;
+    });
+    const rankData=data.slice(0,10);
     // 批次查名稱
-    const syms=data.map(d=>d.symbol).join(',');
+    const syms=rankData.map(d=>d.symbol).join(',');
     const rn=await fetch(BASE+'/stocks?symbol=in.('+syms+')&select=symbol,name',{headers:SB_H});
     const nameData=await rn.json();
     const nameMap={};nameData.forEach(s=>nameMap[s.symbol]=s.name);
     list.innerHTML='';
-    data.forEach((d,i)=>{
+    rankData.forEach((d,i)=>{
       const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const up=ch>=0;
       const closePx=parseFloat(d.close_price);
