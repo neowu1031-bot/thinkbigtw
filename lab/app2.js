@@ -2686,28 +2686,59 @@ function initSearchAutocomplete(){
   if(!dropdown){
     dropdown = document.createElement('div');
     dropdown.id = 'searchDropdown';
-    dropdown.style.cssText = 'position:absolute;z-index:9999;background:#1e293b;border:1px solid #334155;border-radius:8px;width:100%;max-height:240px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.4)';
+    dropdown.style.cssText = 'position:absolute;z-index:9999;background:#1e293b;border:1px solid #334155;border-radius:8px;width:100%;max-height:280px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.4);top:100%;left:0;margin-top:4px';
     input.parentElement.style.position='relative';
     input.parentElement.appendChild(dropdown);
   }
-  input.addEventListener('input', function(){
-    const q = this.value.trim().toLowerCase();
-    if(!q||q.length<1){dropdown.style.display='none';return;}
-    const matches = Object.entries(NAMES).filter(([code,name])=>
-      code.startsWith(q) || name.toLowerCase().includes(q)
-    ).slice(0,8);
+
+  function renderDropdown(matches){
     if(!matches.length){dropdown.style.display='none';return;}
     dropdown.innerHTML = matches.map(([code,name])=>`
       <div onclick="document.getElementById('stockInput').value='${code}';document.getElementById('searchDropdown').style.display='none';searchStock();"
-        style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #0f172a"
+        style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #0f172a;gap:8px"
         onmouseover="this.style.background='#2d3f55'" onmouseout="this.style.background='transparent'">
-        <span style="color:#60a5fa;font-weight:700;font-size:13px">${code}</span>
-        <span style="color:#94a3b8;font-size:12px">${name}</span>
+        <span style="color:#60a5fa;font-weight:700;font-size:13px;flex-shrink:0">${code}</span>
+        <span style="color:#94a3b8;font-size:12px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${name||''}</span>
       </div>`).join('');
     dropdown.style.display='block';
+  }
+
+  let _acTimer=null;
+  input.addEventListener('input', function(){
+    const q = this.value.trim();
+    if(!q||q.length<1){dropdown.style.display='none';clearTimeout(_acTimer);return;}
+    // 先用本地 NAMES 即時顯示
+    const qLow=q.toLowerCase();
+    const localMatches = Object.entries(NAMES).filter(([code,name])=>
+      code.startsWith(qLow)||name.toLowerCase().includes(qLow)
+    ).slice(0,8);
+    renderDropdown(localMatches);
+    // 再 debounce 查 Supabase stocks table
+    clearTimeout(_acTimer);
+    _acTimer = setTimeout(async()=>{
+      try{
+        const enc=encodeURIComponent(q);
+        const url=`${BASE}/stocks?or=(symbol.ilike.*${enc}*,name.ilike.*${enc}*)&select=symbol,name&limit=10`;
+        const r=await fetch(url,{headers:SB_H});
+        const data=await r.json();
+        if(Array.isArray(data)&&data.length>0){
+          const seen=new Set();
+          const merged=[];
+          data.forEach(d=>{if(!seen.has(d.symbol)){seen.add(d.symbol);merged.push([d.symbol,d.name||'']);}});
+          // 也補充本地 NAMES 未包含的項目（最多 10 筆）
+          renderDropdown(merged.slice(0,10));
+        }
+      }catch(e){}
+    },250);
   });
+
   document.addEventListener('click', function(e){
     if(!input.contains(e.target)&&!dropdown.contains(e.target)) dropdown.style.display='none';
+  });
+
+  // 按 Esc 關閉
+  input.addEventListener('keydown', function(e){
+    if(e.key==='Escape') dropdown.style.display='none';
   });
 }
 
