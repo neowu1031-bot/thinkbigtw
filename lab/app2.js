@@ -564,8 +564,8 @@ async function applyFilter(reset=false){
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r.json())[0].date;
     let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,open_price,change_percent,volume';
-    if(type==='up')url+='&order=change_percent.desc';
-    else if(type==='down')url+='&order=change_percent.asc';
+    if(type==='up')url+='';
+    else if(type==='down')url+='';
     else if(type==='volume')url+='&order=volume.desc';
     else if(type==='price_asc')url+='&order=close_price.asc';
     else url+='&order=close_price.desc';
@@ -586,7 +586,16 @@ async function applyFilter(reset=false){
     const needFund=!isNaN(maxPE)||!isNaN(minYield)||!isNaN(minROE);
     let fundMap={};
     if(needFund&&data.length){
-      const syms=data.map(d=>d.symbol).join(',');
+    // 前端排序（change_percent在DB是null）
+    data.sort((a,b)=>{
+      const ca=parseFloat(a.open_price)>0?(parseFloat(a.close_price)-parseFloat(a.open_price))/parseFloat(a.open_price)*100:0;
+      const cb=parseFloat(b.open_price)>0?(parseFloat(b.close_price)-parseFloat(b.open_price))/parseFloat(b.open_price)*100:0;
+      if(type==='volume')return parseFloat(b.volume||0)-parseFloat(a.volume||0);
+      if(type==='up')return cb-ca;
+      return ca-cb;
+    });
+    const top=data.slice(0,10);
+      const syms=top.map(d=>d.symbol).join(',');
       const rf=await fetch(BASE+'/stock_fundamentals?symbol=in.('+syms+')&select=symbol,pe_ratio,dividend_yield,roe',{headers:SB_H});
       (await rf.json()).forEach(f=>fundMap[f.symbol]=f);
       data=data.filter(d=>{
@@ -646,9 +655,9 @@ async function loadRanking(type){
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r.json())[0].date;
-    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=10&select=symbol,close_price,open_price,change_percent,volume';
-    if(type==='up')url+='&order=change_percent.desc';
-    else if(type==='down')url+='&order=change_percent.asc';
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,open_price,volume';
+    if(type==='up')url+='';
+    else if(type==='down')url+='';
     else url+='&order=volume.desc';
     const r2=await fetch(url,{headers:SB_H});
     const data=await r2.json();
@@ -1956,7 +1965,7 @@ async function loadMarketBreadth(){
     if(!j0||!j0.length)return;
     const latest=j0[0].date;
     // 抓當日所有個股（排除指數），使用 PostgREST Prefer count
-    const r=await fetch(BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&select=change_percent,close_price&limit=3000',{headers:SB_H});
+    const r=await fetch(BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&select=close_price,open_price&limit=3000',{headers:SB_H});
     const rows=await r.json();
     if(!rows||!rows.length)return;
     let up=0,down=0,flat=0;
