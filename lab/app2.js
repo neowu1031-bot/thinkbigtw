@@ -686,7 +686,7 @@ async function loadRanking(type){
         <div style="display:flex;align-items:center;gap:10px">
           <span style="color:#64748b;font-size:13px;width:20px">${i+1}</span>
           <div>
-            <div style="font-size:14px;color:#e2e8f0;font-weight:600">${nameMap[d.symbol]||NAMES[d.symbol]||d.symbol} <span style="color:#64748b;font-size:12px">${d.symbol}</span></div>
+            <div style="font-size:14px;color:#e2e8f0;font-weight:600">${nameMap[d.symbol]&&nameMap[d.symbol]!==d.symbol?nameMap[d.symbol]+'<span style="color:#64748b;font-size:11px;margin-left:4px">'+d.symbol+'</span>':d.symbol}</div>
             <div style="font-size:12px;color:#64748b">${type==='volume'?parseInt(d.volume).toLocaleString()+'張':'$'+parseFloat(d.close_price).toLocaleString()}</div>
           </div>
         </div>
