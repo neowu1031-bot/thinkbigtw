@@ -2350,7 +2350,11 @@ async function searchStock(){
       // 更新自選股按鈕（需登入）
       const ws=(watchlistCache||[]).map(w=>normalizeWlSymbol(w.symbol));
       const wBtn=document.getElementById('watchlistBtn');
-      if(wBtn){wBtn.textContent=ws.includes(code)?'✓ 已加入自選':'＋ 加入自選';wBtn.style.background=ws.includes(code)?'#166534':'#1d4ed8';}
+      if(wBtn){
+        wBtn.textContent=ws.includes(code)?'✓ 已加入自選':'＋ 加入自選';
+        wBtn.style.background=ws.includes(code)?'#166534':'#1d4ed8';
+        wBtn.onclick=function(){toggleWatchlist(code, stockDisplayName, 'tw');};
+      }
     }else{
       document.getElementById('stockName').textContent=code;
       document.getElementById('stockMeta').textContent='尚無數據';
