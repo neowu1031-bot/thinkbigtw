@@ -4147,8 +4147,14 @@ async function loadETFHot(){
       const arr=priceMap[e.sym]||[];
       const d=arr[0];
       if(d){
-        const prevClose=arr[1]?parseFloat(arr[1].close_price):parseFloat(d.close_price);
-        const pct=prevClose>0?((parseFloat(d.close_price)-prevClose)/prevClose*100):0;
+        // 當天漲跌：用 open→close（最能反映今天走勢）
+        // 若前一天收盤不同，優先用前後兩天收盤；否則用 open→close
+        const prevClose=arr[1]?parseFloat(arr[1].close_price):0;
+        const todayOpen=parseFloat(d.open_price)||0;
+        const todayClose=parseFloat(d.close_price)||0;
+        const pct = (prevClose>0 && prevClose!==todayClose)
+          ? (todayClose-prevClose)/prevClose*100
+          : (todayOpen>0 ? (todayClose-todayOpen)/todayOpen*100 : 0);
         const up=pct>=0;
         const etfColor=up?'#34d399':'#f87171';
         const etfChart=klineMap[e.sym]?miniSVG(klineMap[e.sym],etfColor):'';
