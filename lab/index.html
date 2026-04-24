@@ -452,11 +452,16 @@ textarea{height:80px;resize:vertical}
         <div class="chart-container" id="etfChartContainer" style="display:none">
           <div class="chart-header">
             <span class="chart-title" id="etfChartTitle">ETF K線圖</span>
-            <div class="chart-range">
-              <button class="range-btn active" onclick="loadETFChart(currentETF,30,this)">1M</button>
-              <button class="range-btn" onclick="loadETFChart(currentETF,90,this)">3M</button>
-              <button class="range-btn" onclick="loadETFChart(currentETF,180,this)">6M</button>
-              <button class="range-btn" onclick="loadETFChart(currentETF,365,this)">1Y</button>
+            <div style="display:flex;gap:4px;flex-wrap:wrap" id="etfDayKBtns">
+              <button class="range-btn active" onclick="switchETFChartMode('day',30,this)">1M</button>
+              <button class="range-btn" onclick="switchETFChartMode('day',90,this)">3M</button>
+              <button class="range-btn" onclick="switchETFChartMode('day',180,this)">6M</button>
+              <button class="range-btn" onclick="switchETFChartMode('day',365,this)">1Y</button>
+              <span style="width:1px;background:#334155;margin:0 2px;display:inline-block"></span>
+              <button class="range-btn" onclick="switchETFChartMode('week',365,this)">週1Y</button>
+              <button class="range-btn" onclick="switchETFChartMode('week',730,this)">週2Y</button>
+              <button class="range-btn" onclick="switchETFChartMode('month',730,this)">月2Y</button>
+              <button class="range-btn" onclick="switchETFChartMode('month',1825,this)">月5Y</button>
             </div>
           </div>
           <div id="etfChartWrap" style="height:280px"></div>

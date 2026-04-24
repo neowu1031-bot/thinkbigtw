@@ -4360,6 +4360,18 @@ function toggleETFGroup(gi){
   if(body.style.display==='none'){body.style.display='grid';arr.textContent='▼';}
   else{body.style.display='none';arr.textContent='▶';}
 }
+let currentETFChartMode='day';
+function switchETFChartMode(mode, period, btn){
+  currentETFChartMode = mode;
+  document.querySelectorAll('#etfChartContainer .range-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  if(mode==='day'){
+    loadETFChart(currentETF, period, null);
+  } else {
+    loadETFWeekMonthChart(currentETF, period, mode);
+  }
+}
+
 async function loadETFChart(code,days,btn){
   if(!code)return;
   if(btn){document.querySelectorAll('#etfChartContainer .range-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
@@ -4377,6 +4389,50 @@ async function loadETFChart(code,days,btn){
     cs.setData(data.map(d=>({time:d.date,open:parseFloat(d.open_price),high:parseFloat(d.high_price),low:parseFloat(d.low_price),close:parseFloat(d.close_price)})));
     etfChart.timeScale().fitContent();
   }catch(e){}
+}
+
+async function loadETFWeekMonthChart(code, days, mode){
+  if(!code)return;
+  const el=document.getElementById('etfChartWrap');
+  if(!el)return;
+  el.innerHTML='<div style="color:#64748b;padding:20px;text-align:center">載入'+(mode==='week'?'週K':'月K')+'中...</div>';
+  const since=new Date();since.setDate(since.getDate()-days);
+  const s=since.toISOString().split('T')[0];
+  try{
+    const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&date=gte.'+s+'&order=date.asc&limit=2000',{headers:SB_H});
+    const data=await r.json();
+    if(!data||!data.length){el.innerHTML='<div style="color:#64748b;padding:20px">無資料</div>';return;}
+    const aggregated=[];
+    let bucket=null;
+    for(const d of data){
+      const date=new Date(d.date);
+      let key;
+      if(mode==='week'){
+        const day=date.getDay();
+        const monday=new Date(date);
+        monday.setDate(date.getDate()-(day===0?6:day-1));
+        key=monday.toISOString().split('T')[0];
+      } else {
+        key=d.date.substring(0,7);
+      }
+      if(!bucket||bucket.time!==key){
+        if(bucket) aggregated.push(bucket);
+        bucket={time:key,open:parseFloat(d.open_price),high:parseFloat(d.high_price),low:parseFloat(d.low_price),close:parseFloat(d.close_price),volume:parseInt(d.volume||0)};
+      } else {
+        bucket.high=Math.max(bucket.high,parseFloat(d.high_price));
+        bucket.low=Math.min(bucket.low,parseFloat(d.low_price));
+        bucket.close=parseFloat(d.close_price);
+        bucket.volume+=parseInt(d.volume||0);
+      }
+    }
+    if(bucket) aggregated.push(bucket);
+    el.innerHTML='';
+    if(etfChart){try{etfChart.remove();}catch(e){}}
+    etfChart=LightweightCharts.createChart(el,{width:el.clientWidth,height:280,layout:{background:{color:'#0f172a'},textColor:'#94a3b8'},grid:{vertLines:{color:'#1e293b'},horzLines:{color:'#1e293b'}},rightPriceScale:{borderColor:'#334155'},timeScale:{borderColor:'#334155'}});
+    const cs=etfChart.addCandlestickSeries({upColor:'#34d399',downColor:'#f87171',borderUpColor:'#34d399',borderDownColor:'#f87171',wickUpColor:'#34d399',wickDownColor:'#f87171'});
+    cs.setData(aggregated);
+    etfChart.timeScale().fitContent();
+  }catch(e){el.innerHTML='<div style="color:#64748b;padding:20px">載入失敗</div>';}
 }
 
 async function loadDividendCalendar(){
