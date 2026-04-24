@@ -261,33 +261,7 @@ textarea{height:80px;resize:vertical}
         <div class="card"><h3>日經 N225</h3><div class="value" id="idx_N225">載入中...</div><div class="sub" id="idx_N225_pct">—</div></div>
       </div>
     </div>
-    <div class="section">
-      <div class="section-title" style="margin-bottom:12px">國際指數</div>
-      <div id="intlGrid" style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:20px">
-        <div id="intl-DJI" style="background:#1e293b;border-radius:8px;padding:10px;text-align:center">載入中...</div>
-        <div id="intl-IXIC" style="background:#1e293b;border-radius:8px;padding:10px;text-align:center">載入中...</div>
-        <div id="intl-SPX" style="background:#1e293b;border-radius:8px;padding:10px;text-align:center">載入中...</div>
-        <div id="intl-N225" style="background:#1e293b;border-radius:8px;padding:10px;text-align:center">載入中...</div>
-        
-      </div>
-      <div class="section-title">加權指數走勢</div>
-      <div class="chart-container">
-        <div class="chart-header">
-          <span class="chart-title">台灣加權指數 (TAIEX)</span>
-          <div class="chart-range">
-            <button class="range-btn active" onclick="loadTaiexChart(30,this)">1M</button>
-            <button class="range-btn" onclick="loadTaiexChart(90,this)">3M</button>
-            <button class="range-btn" onclick="loadTaiexChart(180,this)">6M</button>
-            <button class="range-btn" onclick="loadTaiexChart(365,this)">1Y</button>
-          </div>
-        </div>
-        <div id="taiexChart" style="height:300px"></div>
-      </div>
-    </div>
-    <div class="section" style="margin-bottom:8px">
-      <div class="section-title" style="cursor:pointer" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'grid':'none'">⭐ 我的自選股</div>
-      <div id="watchlistGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:10px"></div>
-    </div>
+    
     <div class="section">
       <div class="section-title">個股搜尋</div>
       <div class="stock-search">
@@ -849,7 +823,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
 </div>
-<script src="app2.js?v=123"></script>
+<script src="app2.js?v=124"></script>
 
 <script>
 (function(){
