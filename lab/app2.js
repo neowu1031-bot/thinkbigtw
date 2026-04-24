@@ -272,7 +272,8 @@ const FINNHUB_KEY='';
 
 function checkPw(){
   // 管理員入口已停用，請用 Google 或 Email 登入
-  document.getElementById('errMsg').textContent='請使用 Email 登入';
+  const err=document.getElementById('errMsg');
+  if(err)err.textContent='請使用 Email 登入';
 }
 
 function showPwBackdoor(){
@@ -285,6 +286,7 @@ function switchAuthTab(mode){
   const loginBtn=document.getElementById('authTabLogin');
   const signupBtn=document.getElementById('authTabSignup');
   const submitBtn=document.getElementById('authSubmitBtn');
+  if(!loginBtn||!signupBtn||!submitBtn)return;
   if(mode==='login'){
     loginBtn.style.background='#2563eb';loginBtn.style.color='#fff';
     signupBtn.style.background='transparent';signupBtn.style.color='#94a3b8';
@@ -294,7 +296,8 @@ function switchAuthTab(mode){
     loginBtn.style.background='transparent';loginBtn.style.color='#94a3b8';
     submitBtn.textContent='免費註冊';
   }
-  document.getElementById('errMsg').textContent='';
+  const err=document.getElementById('errMsg');
+  if(err)err.textContent='';
 }
 
 
@@ -309,9 +312,12 @@ async function yfQuote(symbol,range='1mo',interval='1d'){
 }
 
 async function authSubmit(){
-  const email=document.getElementById('authEmail').value.trim();
-  const password=document.getElementById('authPassword').value;
+  const emailEl=document.getElementById('authEmail');
+  const pwEl=document.getElementById('authPassword');
   const errEl=document.getElementById('errMsg');
+  if(!emailEl||!pwEl||!errEl)return;
+  const email=emailEl.value.trim();
+  const password=pwEl.value;
   errEl.textContent='';
   if(!SUPA_AUTH){errEl.textContent='系統未就緒，請稍後再試';return;}
   if(!email||!password){errEl.textContent='請輸入 Email 與密碼';return;}
@@ -437,11 +443,18 @@ async function checkExistingSession(){
   }catch(e){}
 }
 window.addEventListener('load',()=>{setTimeout(checkExistingSession,300);});
+let _marketIntervalId=null,_cryptoIntervalId=null,_alertIntervalId=null;
 function showDashboard(){
   if(!currentUser){showAuthGate();return;}
-  document.getElementById('lockScreen').style.display='none';
-  document.getElementById('dashboard').style.display='block';
-  loadMarketData();loadSupabaseData();loadDividendCalendar();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
+  const lock=document.getElementById('lockScreen');if(lock)lock.style.display='none';
+  const dash=document.getElementById('dashboard');if(dash)dash.style.display='block';
+  loadMarketData();loadSupabaseData();loadDividendCalendar();
+  // 預載自選股，讓星號狀態在首次渲染時就正確
+  loadWatchlist();
+  if(_marketIntervalId)clearInterval(_marketIntervalId);
+  _marketIntervalId=setInterval(loadMarketData,30000);
+  if(_cryptoIntervalId)clearInterval(_cryptoIntervalId);
+  _cryptoIntervalId=setInterval(()=>{const t=document.getElementById("tab-crypto");if(t&&t.classList.contains("active"))loadCrypto();},30000);
   loadRanking("up");setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
   // 載入自選股區塊
   setTimeout(renderWatchlist, 800);
@@ -563,27 +576,43 @@ function shareUS(){
 
 
 
-let alertList=JSON.parse(localStorage.getItem('priceAlerts')||'[]');
+// One-time migration from legacy keys to mr_ prefix
+try{
+  const legacy=[['priceAlerts','mr_price_alerts'],['portfolio','mr_portfolio']];
+  legacy.forEach(([oldK,newK])=>{
+    const v=localStorage.getItem(oldK);
+    if(v!==null && localStorage.getItem(newK)===null){
+      localStorage.setItem(newK,v);
+      localStorage.removeItem(oldK);
+    }
+  });
+}catch(e){}
+let alertList=JSON.parse(localStorage.getItem('mr_price_alerts')||'[]');
 
 function requestNotifyPermission(){
   if(!('Notification' in window)){alert('此瀏覽器不支援通知功能');return;}
   Notification.requestPermission().then(p=>{
     const btn=document.getElementById('notifyBtn');
+    if(!btn)return;
     if(p==='granted'){btn.textContent='🔔 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';}
     else{btn.textContent='🔕 通知已封鎖';btn.style.color='#f87171';}
   });
 }
 
 function addAlert(){
-  const sym=document.getElementById('alertSymbol').value.trim().toUpperCase();
-  const cond=document.getElementById('alertCondition').value;
-  const price=parseFloat(document.getElementById('alertPrice').value);
+  const symEl=document.getElementById('alertSymbol');
+  const condEl=document.getElementById('alertCondition');
+  const priceEl=document.getElementById('alertPrice');
+  if(!symEl||!condEl||!priceEl)return;
+  const sym=symEl.value.trim().toUpperCase();
+  const cond=condEl.value;
+  const price=parseFloat(priceEl.value);
   if(!sym||!price){alert('請填入股票代號和目標價');return;}
   const alert_item={id:Date.now(),symbol:sym,condition:cond,price:price,triggered:false};
   alertList.push(alert_item);
-  localStorage.setItem('priceAlerts',JSON.stringify(alertList));
-  document.getElementById('alertSymbol').value='';
-  document.getElementById('alertPrice').value='';
+  localStorage.setItem('mr_price_alerts',JSON.stringify(alertList));
+  symEl.value='';
+  priceEl.value='';
   renderAlerts();
   // 申請通知權限
   if(Notification.permission==='default')requestNotifyPermission();
@@ -591,7 +620,7 @@ function addAlert(){
 
 function removeAlert(id){
   alertList=alertList.filter(a=>a.id!==id);
-  localStorage.setItem('priceAlerts',JSON.stringify(alertList));
+  localStorage.setItem('mr_price_alerts',JSON.stringify(alertList));
   renderAlerts();
 }
 
@@ -640,7 +669,7 @@ async function checkAlerts(){
         }
       });
     }
-    localStorage.setItem('priceAlerts',JSON.stringify(alertList));
+    localStorage.setItem('mr_price_alerts',JSON.stringify(alertList));
     renderAlerts();
   }catch(e){}
 }
@@ -657,7 +686,8 @@ renderAlerts();
   }
 })();
 // 每分鐘檢查一次警示
-setInterval(checkAlerts,60000);
+if(_alertIntervalId)clearInterval(_alertIntervalId);
+_alertIntervalId=setInterval(checkAlerts,60000);
 async function applyFilter(reset=false){
   const result=document.getElementById('filterResult');
   if(!result)return;
@@ -666,14 +696,15 @@ async function applyFilter(reset=false){
     result.innerHTML='';
     return;
   }
-  const type=document.getElementById('filterType').value;
-  const minPct=parseFloat(document.getElementById('filterMinPct').value);
-  const minVol=parseFloat(document.getElementById('filterMinVol').value);
-  const minPrice=parseFloat(document.getElementById('filterMinPrice').value);
-  const maxPrice=parseFloat(document.getElementById('filterMaxPrice').value);
-  const maxPE=parseFloat(document.getElementById('filterMaxPE').value);
-  const minYield=parseFloat(document.getElementById('filterMinYield').value);
-  const minROE=parseFloat(document.getElementById('filterMinROE').value);
+  const getVal=(id)=>{const e=document.getElementById(id);return e?e.value:'';};
+  const type=getVal('filterType');
+  const minPct=parseFloat(getVal('filterMinPct'));
+  const minVol=parseFloat(getVal('filterMinVol'));
+  const minPrice=parseFloat(getVal('filterMinPrice'));
+  const maxPrice=parseFloat(getVal('filterMaxPrice'));
+  const maxPE=parseFloat(getVal('filterMaxPE'));
+  const minYield=parseFloat(getVal('filterMinYield'));
+  const minROE=parseFloat(getVal('filterMinROE'));
   result.innerHTML='<div style="color:#64748b">篩選中...</div>';
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
@@ -848,8 +879,9 @@ async function renderWatchlist(){
       const min=Math.min(...prices),max=Math.max(...prices);
       const range=max-min||1;
       const W=160,H=50;
+      const denom=prices.length>1?(prices.length-1):1;
       const pts=prices.map((p,i)=>{
-        const x=i*(W/(prices.length-1));
+        const x=i*(W/denom);
         const y=H-((p-min)/range)*(H-4)-2;
         return x+','+y;
       }).join(' ');
@@ -1378,8 +1410,6 @@ async function loadHKHot(){
   const grid=document.getElementById('hkHotGrid');
   if(!grid)return;
   grid.innerHTML='';
-  const _hk='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';
-  const _hu='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/yahoo-kline';
   for(const s of HK_HOT){
     try{
       const {price,pct}=await fetchHKQuote(s.sym);
@@ -1672,8 +1702,8 @@ function calcTool6(){
 }
 
 // =============== 投資組合分頁 ===============
-function getPortfolio(){return JSON.parse(localStorage.getItem('portfolio')||'[]');}
-function setPortfolio(arr){localStorage.setItem('portfolio',JSON.stringify(arr));}
+function getPortfolio(){return JSON.parse(localStorage.getItem('mr_portfolio')||'[]');}
+function setPortfolio(arr){localStorage.setItem('mr_portfolio',JSON.stringify(arr));}
 
 function addHolding(){
   const type=document.getElementById('holdType').value;
@@ -4519,7 +4549,7 @@ async function loadETFHoldings(code){
       el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">無法解析成分股資料</div>';
       return;
     }
-    const maxPct = holdings[0].pct;
+    const maxPct = holdings[0].pct || 1;
     let html = `<div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">🏆 成分股前10大</div>`;
     holdings.forEach((h,i)=>{
       const barW = (h.pct/maxPct*100).toFixed(0);
