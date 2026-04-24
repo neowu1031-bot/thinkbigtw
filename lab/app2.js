@@ -2654,20 +2654,42 @@ async function loadChipAnalysis(code){
         </div>
       </div>`;
 
-    // 近10天走勢
-    if(data.length > 1){
-      const maxAbs = Math.max(...data.map(d=>Math.abs(parseInt(d.foreign_buy||0))),1);
-      html += '<div style="font-size:11px;color:#64748b;margin-bottom:4px">外資近期動向</div>';
-      html += '<div style="display:flex;align-items:flex-end;gap:3px;height:50px;background:#0f172a;border-radius:8px;padding:6px">';
-      [...data].reverse().forEach(d=>{
-        const v = parseInt(d.foreign_buy||0);
-        const h = Math.max(Math.abs(v)/maxAbs*38, 2);
-        const c = v>=0?'#34d399':'#f87171';
-        html += `<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:${v>=0?'flex-end':'flex-start'}">
-          <div style="width:100%;height:${h}px;background:${c};border-radius:2px;opacity:0.8" title="${d.date}: ${v>=0?'+':''}${v}張"></div>
-        </div>`;
+    // 三大法人各自 5 天趨勢 mini SVG
+    const last5 = [...data].reverse().slice(-5);
+    function miniBarSVG5(vals, label){
+      const W=80,H=36;
+      const maxA=Math.max(...vals.map(v=>Math.abs(v)),1);
+      const mid=H/2;
+      const bw=Math.floor(W/vals.length)-2;
+      let bars='';
+      vals.forEach((v,i)=>{
+        const x=i*(bw+2)+1;
+        const bh=Math.max(Math.abs(v)/maxA*(mid-2),2);
+        const c=v>=0?'#34d399':'#f87171';
+        const y=v>=0?mid-bh:mid;
+        bars+=`<rect x="${x}" y="${y.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" fill="${c}" rx="1" opacity="0.9"/>`;
       });
-      html += '</div>';
+      return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><line x1="0" y1="${mid}" x2="${W}" y2="${mid}" stroke="#334155" stroke-width="0.5"/>${bars}</svg>`;
+    }
+    if(last5.length>=2){
+      const fVals=last5.map(d=>parseInt(d.foreign_buy||0));
+      const tVals=last5.map(d=>parseInt(d.investment_trust_buy||0));
+      const dVals=last5.map(d=>parseInt(d.dealer_buy||0));
+      html += `<div style="font-size:11px;color:#64748b;margin-bottom:6px">近 ${last5.length} 天趨勢</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+        <div style="background:#0f172a;border-radius:8px;padding:8px;text-align:center">
+          <div style="font-size:10px;color:#64748b;margin-bottom:4px">外資</div>
+          ${miniBarSVG5(fVals)}
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:8px;text-align:center">
+          <div style="font-size:10px;color:#64748b;margin-bottom:4px">投信</div>
+          ${miniBarSVG5(tVals)}
+        </div>
+        <div style="background:#0f172a;border-radius:8px;padding:8px;text-align:center">
+          <div style="font-size:10px;color:#64748b;margin-bottom:4px">自營</div>
+          ${miniBarSVG5(dVals)}
+        </div>
+      </div>`;
     }
 
     html += '</div>';
