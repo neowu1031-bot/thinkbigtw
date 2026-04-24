@@ -12,6 +12,56 @@ let currentUser=null;
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
 const PROXY_URL='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/twse-proxy';
+
+function showAuthGate(msg=''){
+  const dash=document.getElementById('dashboard');
+  if(dash)dash.style.display='none';
+  const lock=document.getElementById('lockScreen');
+  if(lock)lock.style.display='flex';
+  if(msg){
+    const err=document.getElementById('errMsg');
+    if(err){err.textContent=msg;err.style.color='#f87171';}
+  }
+  try{switchAuthTab('login');}catch(e){}
+  const emailEl=document.getElementById('authEmail');
+  if(emailEl)emailEl.focus();
+}
+
+function hideAuthGate(){
+  const lock=document.getElementById('lockScreen');
+  if(lock)lock.style.display='none';
+  const dash=document.getElementById('dashboard');
+  if(dash)dash.style.display='block';
+}
+
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'){
+    const lock=document.getElementById('lockScreen');
+    if(lock && lock.style.display!=='none'){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+  }
+},{capture:true});
+
+document.addEventListener('DOMContentLoaded',()=>{
+  if(!currentUser) showAuthGate();
+});
+
+if(SUPA_AUTH?.auth?.onAuthStateChange){
+  try{
+    SUPA_AUTH.auth.onAuthStateChange((event, session)=>{
+      if(event==='SIGNED_IN' && session?.user){
+        currentUser=session.user;
+        onAuthSuccess(session.user);
+        hideAuthGate();
+      }else if(event==='SIGNED_OUT'){
+        currentUser=null;
+        showAuthGate('請先登入以使用平台');
+      }
+    });
+  }catch(e){}
+}
 // Request deduplication: pending requests to same URL share one fetch
 // Stores JSON-data promises; each caller gets a copy via fake Response wrapper
 const _dedupMap = new Map();
@@ -388,6 +438,7 @@ async function checkExistingSession(){
 }
 window.addEventListener('load',()=>{setTimeout(checkExistingSession,300);});
 function showDashboard(){
+  if(!currentUser){showAuthGate();return;}
   document.getElementById('lockScreen').style.display='none';
   document.getElementById('dashboard').style.display='block';
   loadMarketData();loadSupabaseData();loadDividendCalendar();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
@@ -857,6 +908,7 @@ function trackEvent(eventName,params){
 }
 
 function switchTab(name,btn){
+  if(!currentUser){showAuthGate('請先登入以使用平台');return;}
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
   btn.classList.add('active');
@@ -1951,6 +2003,7 @@ async function searchCrypto(){
   }catch(e){result.innerHTML='<div style="color:#f87171;padding:8px">查詢失敗</div>';}
 }
 async function loadCrypto(){
+  if(!currentUser)return;
   const coins=[
     // 主流
     {sym:'BTCUSDT',name:'Bitcoin'},
@@ -2022,6 +2075,7 @@ async function loadCrypto(){
   }
 }
 async function loadMarketData(){
+  if(!currentUser)return;
   try{
     const r=await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=1',{headers:SB_H});
     const data=await r.json();
@@ -2244,6 +2298,7 @@ async function loadTaiexChart(days,btn){
 }
 
 async function searchStock(){
+  if(!currentUser)return;
   let code=document.getElementById('stockInput').value.trim();
   if(!code)return;
   // 支援中文名稱搜尋：在 NAMES 裡找對應代號
@@ -3979,6 +4034,7 @@ async function loadETFNav(code){
 }
 
 async function searchETF(){
+  if(!currentUser)return;
   let code=document.getElementById('etfInput').value.trim();
   if(!code)return;
   if(!/^\d/.test(code)){
@@ -4310,6 +4366,7 @@ async function loadFX(){
 }
 
 async function loadUSHot(){
+  if(!currentUser)return;
   const grid=document.getElementById('usHotGrid');
   if(!grid)return;
   grid.innerHTML='';
@@ -4330,6 +4387,7 @@ async function loadUSHot(){
   }
 }
 async function searchUS(){
+  if(!currentUser)return;
   const sym=document.getElementById('usSearch').value.trim().toUpperCase();
   const result=document.getElementById('usSearchResult');
   if(!sym){result.innerHTML='';return;}
@@ -4487,6 +4545,7 @@ async function loadETFHoldings(code){
 }
 
 async function loadETFHot(){
+  if(!currentUser)return;
   const wrap=document.getElementById('etfHotGrid');
   if(!wrap)return;
   // 改成分組：用一個容器放所有分組
@@ -4655,6 +4714,7 @@ async function loadETFWeekMonthChart(code, days, mode){
 }
 
 async function loadDividendCalendar(){
+  if(!currentUser)return;
   const el=document.getElementById('dividendCalendar');
   if(!el)return;
   try{
@@ -4726,6 +4786,7 @@ async function loadDividendCalendar(){
 }
 
 async function loadSupabaseData(){
+  if(!currentUser)return;
   try{
     const r=await fetch(BASE+'/ai_analysis?order=date.desc&limit=10',{headers:SB_H});
     const data=await r.json();
