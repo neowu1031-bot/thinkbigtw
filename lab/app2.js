@@ -1020,9 +1020,12 @@ async function loadSectors(){
   try{
     for(let i=0;i<allSyms.length;i+=50){
       const batch=allSyms.slice(i,i+50);
-      const r=await fetch(BASE+'/daily_prices?symbol=in.('+batch.join(',')+')&order=date.desc&limit=1000&select=symbol,date,close_price,change_percent',{headers:SB_H});
+      const r=await fetch(BASE+'/daily_prices?symbol=in.('+batch.join(',')+')&order=date.desc&limit=500&select=symbol,date,close_price',{headers:SB_H});
       const rows=await r.json();
-      rows.forEach(d=>{if(!priceMap[d.symbol])priceMap[d.symbol]=d;});
+      rows.forEach(d=>{
+        if(!priceMap[d.symbol]) priceMap[d.symbol]=[];
+        if(priceMap[d.symbol].length<2) priceMap[d.symbol].push(d);
+      });
     }
   }catch(e){}
   // 抓名稱
@@ -4124,7 +4127,10 @@ async function loadETFHot(){
       const r=await fetch(BASE+'/daily_prices?symbol=in.('+batch.join(',')+')&order=date.desc&limit=1000&select=symbol,date,close_price,change_percent,volume',{headers:SB_H});
       const rows=await r.json();
       // 各 symbol 取第一筆（最新日期）
-      rows.forEach(d=>{if(!priceMap[d.symbol])priceMap[d.symbol]=d;});
+      rows.forEach(d=>{
+        if(!priceMap[d.symbol]) priceMap[d.symbol]=[];
+        if(priceMap[d.symbol].length<2) priceMap[d.symbol].push(d);
+      });
     }catch(e){}
   }
 
@@ -4138,14 +4144,12 @@ async function loadETFHot(){
       </div>
       <div id="etfGroupBody_${gi}" style="display:${expandDefault?'grid':'none'};grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;padding:12px">`;
     g.items.forEach(e=>{
-      const d=priceMap[e.sym];
+      const arr=priceMap[e.sym]||[];
+      const d=arr[0];
       if(d){
-        const pct=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
-        const closePx=parseFloat(d.close_price);
-        const prev=closePx-pct;
-        const realPct=prev>0?(pct/prev*100):0;
-        const up=pct>=0;
-        const etfColor=up?'#34d399':'#f87171';
+        const prevClose=arr[1]?parseFloat(arr[1].close_price):parseFloat(d.close_price);
+        const pct=prevClose>0?((parseFloat(d.close_price)-prevClose)/prevClose*100):0;
+        const up=pct>=0;        const etfColor=up?'#34d399':'#f87171';
         const etfChart=klineMap[e.sym]?miniSVG(klineMap[e.sym],etfColor):'';
         html+=`<div onclick="document.getElementById('etfInput').value='${e.sym}';searchETF();" style="background:#0f172a;border-radius:8px;padding:10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
           <div style="display:flex;justify-content:space-between;align-items:flex-start">
