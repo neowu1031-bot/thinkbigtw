@@ -3305,8 +3305,9 @@ async function loadMonthlyRevenue(code){
     if(recent.length < 3){
       const latest = recent[recent.length-1];
       const latestRevDisplay = latest ? (latest.revenue/1e5).toFixed(1) : '-';
+      const latestLabel = latest ? latest.revenue_year+'年'+latest.revenue_month+'月' : '-';
       el.innerHTML=`<div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">
-        📊 月營收 · ${latest ? (parseInt(latest.year_month.substring(0,3))+1911)+'年'+parseInt(latest.year_month.substring(3,5))+'月' : '-'}
+        📊 月營收 · ${latestLabel}
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
         <div style="background:#0f172a;border-radius:8px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748b;margin-bottom:4px">當月營收</div><div style="font-size:16px;font-weight:700;color:#e2e8f0">${latestRevDisplay}億</div></div>
