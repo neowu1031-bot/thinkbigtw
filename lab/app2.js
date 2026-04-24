@@ -2633,40 +2633,52 @@ async function loadChipAnalysis(code){
         </div>
       </div>`;
 
-    // 三大法人各自 5 天趨勢 mini SVG
-    const last5 = [...data].reverse().slice(-5);
-    function miniBarSVG5(vals, label){
-      const W=80,H=36;
+    // 三大法人各自 5 天趨勢 mini SVG（sparkline 折線 + bar 複合）
+    const last5 = data.slice(0,5).reverse(); // 最近5天，從舊到新
+    function miniSparkSVG(vals, dates){
+      const W=96, H=44, PAD=4;
+      const n=vals.length;
+      if(!n) return '';
       const maxA=Math.max(...vals.map(v=>Math.abs(v)),1);
       const mid=H/2;
-      const bw=Math.floor(W/vals.length)-2;
-      let bars='';
+      const xStep=n>1?(W-PAD*2)/(n-1):0;
+      const bw=Math.max(Math.floor(xStep)-3, 3);
+      let rects='', circles='', polyPts=[];
       vals.forEach((v,i)=>{
-        const x=i*(bw+2)+1;
-        const bh=Math.max(Math.abs(v)/maxA*(mid-2),2);
+        const cx=PAD+i*xStep;
+        const bh=Math.max(Math.abs(v)/maxA*(mid-PAD),2);
         const c=v>=0?'#34d399':'#f87171';
-        const y=v>=0?mid-bh:mid;
-        bars+=`<rect x="${x}" y="${y.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" fill="${c}" rx="1" opacity="0.9"/>`;
+        const ry=v>=0?mid-bh:mid;
+        const title=`${dates&&dates[i]?dates[i]+': ':''}${v>=0?'+':''}${v.toLocaleString()}張`;
+        rects+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${ry.toFixed(1)}" width="${bw}" height="${bh.toFixed(1)}" fill="${c}" opacity="0.55" rx="1"><title>${title}</title></rect>`;
+        const py=mid-(v/maxA*(mid-PAD));
+        polyPts.push(`${cx.toFixed(1)},${py.toFixed(1)}`);
+        circles+=`<circle cx="${cx.toFixed(1)}" cy="${py.toFixed(1)}" r="2.2" fill="${c}"><title>${title}</title></circle>`;
       });
-      return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><line x1="0" y1="${mid}" x2="${W}" y2="${mid}" stroke="#334155" stroke-width="0.5"/>${bars}</svg>`;
+      const polyLine=n>=2?`<polyline points="${polyPts.join(' ')}" fill="none" stroke="#60a5fa" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>`:'';
+      return `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="overflow:visible">`+
+        `<line x1="0" y1="${mid}" x2="${W}" y2="${mid}" stroke="#334155" stroke-width="0.5"/>`+
+        rects+polyLine+circles+`</svg>`;
     }
     if(last5.length>=2){
+      const dates=last5.map(d=>d.date||'');
       const fVals=last5.map(d=>parseInt(d.foreign_buy||0));
       const tVals=last5.map(d=>parseInt(d.investment_trust_buy||0));
       const dVals=last5.map(d=>parseInt(d.dealer_buy||0));
-      html += `<div style="font-size:11px;color:#64748b;margin-bottom:6px">近 ${last5.length} 天趨勢</div>
+      const trendArrow=(arr)=>arr[arr.length-1]>=arr[0]?'↑':'↓';
+      html += `<div style="font-size:11px;color:#64748b;margin-bottom:6px;margin-top:4px">近 ${last5.length} 天趨勢（懸停查看明細）</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
         <div style="background:#0f172a;border-radius:8px;padding:8px;text-align:center">
-          <div style="font-size:10px;color:#64748b;margin-bottom:4px">外資</div>
-          ${miniBarSVG5(fVals)}
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">外資 <span style="color:${fVals[fVals.length-1]>=0?'#34d399':'#f87171'}">${trendArrow(fVals)}</span></div>
+          ${miniSparkSVG(fVals,dates)}
         </div>
         <div style="background:#0f172a;border-radius:8px;padding:8px;text-align:center">
-          <div style="font-size:10px;color:#64748b;margin-bottom:4px">投信</div>
-          ${miniBarSVG5(tVals)}
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">投信 <span style="color:${tVals[tVals.length-1]>=0?'#34d399':'#f87171'}">${trendArrow(tVals)}</span></div>
+          ${miniSparkSVG(tVals,dates)}
         </div>
         <div style="background:#0f172a;border-radius:8px;padding:8px;text-align:center">
-          <div style="font-size:10px;color:#64748b;margin-bottom:4px">自營</div>
-          ${miniBarSVG5(dVals)}
+          <div style="font-size:10px;color:#64748b;margin-bottom:3px">自營 <span style="color:${dVals[dVals.length-1]>=0?'#34d399':'#f87171'}">${trendArrow(dVals)}</span></div>
+          ${miniSparkSVG(dVals,dates)}
         </div>
       </div>`;
     }
