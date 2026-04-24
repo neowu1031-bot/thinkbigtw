@@ -330,6 +330,13 @@ textarea{height:80px;resize:vertical}
                 <button class="range-btn" onclick="switchChartMode('day',90,this)">3M</button>
                 <button class="range-btn" onclick="switchChartMode('day',180,this)">6M</button>
                 <button class="range-btn" onclick="switchChartMode('day',365,this)">1Y</button>
+                <span style="font-size:10px;color:#475569;margin:0 4px 0 8px">週K</span>
+                <button class="range-btn" onclick="switchChartMode('week',365,this)">1Y</button>
+                <button class="range-btn" onclick="switchChartMode('week',730,this)">2Y</button>
+                <button class="range-btn" onclick="switchChartMode('week',1095,this)">3Y</button>
+                <span style="font-size:10px;color:#475569;margin:0 4px 0 8px">月K</span>
+                <button class="range-btn" onclick="switchChartMode('month',730,this)">2Y</button>
+                <button class="range-btn" onclick="switchChartMode('month',1095,this)">3Y</button>
               </div>
               <div class="chart-range" id="minKBtns">
                 <span style="font-size:10px;color:#475569;margin-right:4px">分K</span>
@@ -842,7 +849,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
   </div>
 </div>
-<script src="app2.js?v=116"></script>
+<script src="app2.js?v=117"></script>
 
 <script>
 (function(){

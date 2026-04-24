@@ -2256,8 +2256,81 @@ function switchChartMode(mode, period, btn){
 
   if(mode === 'day'){
     loadStockChart(currentStock, period, null);
+  } else if(mode === 'week'){
+    loadWeekMonthChart(currentStock, period, 'week');
+  } else if(mode === 'month'){
+    loadWeekMonthChart(currentStock, period, 'month');
   } else {
     loadMinuteChart(currentStock, period);
+  }
+}
+
+// 週K/月K：從日K資料聚合
+async function loadWeekMonthChart(code, days, mode){
+  if(!code) return;
+  const el = document.getElementById('stockChartWrap');
+  if(!el) return;
+  const label = mode==='week'?'週K':'月K';
+  el.innerHTML = '<div style="color:#64748b;padding:20px;text-align:center">載入'+label+'中...</div>';
+
+  const since = new Date();
+  since.setDate(since.getDate() - days);
+  const s = since.toISOString().split('T')[0];
+  try{
+    const r = await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&date=gte.'+s+'&order=date.asc&limit=2000',{headers:SB_H});
+    const data = await r.json();
+    if(!data||!data.length){ el.innerHTML='<div style="color:#64748b;padding:20px">無資料</div>'; return; }
+
+    // 聚合函數：把日K聚合成週K或月K
+    const aggregated = [];
+    let bucket = null;
+    for(const d of data){
+      const date = new Date(d.date);
+      // 決定 bucket key：週K用 ISO week，月K用 年-月
+      let key;
+      if(mode==='week'){
+        // 取當週週一的日期作為 key
+        const day = date.getDay();
+        const monday = new Date(date);
+        monday.setDate(date.getDate() - (day===0?6:day-1));
+        key = monday.toISOString().split('T')[0];
+      } else {
+        key = d.date.substring(0,7); // YYYY-MM
+      }
+
+      if(!bucket || bucket.time !== key){
+        if(bucket) aggregated.push(bucket);
+        bucket = {
+          time: key,
+          open: parseFloat(d.open_price),
+          high: parseFloat(d.high_price),
+          low: parseFloat(d.low_price),
+          close: parseFloat(d.close_price),
+          volume: parseInt(d.volume||0),
+        };
+      } else {
+        bucket.high = Math.max(bucket.high, parseFloat(d.high_price));
+        bucket.low  = Math.min(bucket.low,  parseFloat(d.low_price));
+        bucket.close = parseFloat(d.close_price);
+        bucket.volume += parseInt(d.volume||0);
+      }
+    }
+    if(bucket) aggregated.push(bucket);
+
+    // 轉換成 renderStockChart 需要的格式（用 date 欄位）
+    const fmtData = aggregated.map(d=>({
+      date: d.time,
+      open_price: d.open,
+      high_price: d.high,
+      low_price: d.low,
+      close_price: d.close,
+      volume: d.volume,
+    }));
+
+    lastKData = fmtData;
+    renderStockChart(fmtData, code);
+  }catch(e){
+    el.innerHTML='<div style="color:#f87171;padding:20px">'+label+'載入失敗</div>';
   }
 }
 
