@@ -57,65 +57,136 @@ const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣�
 
 // ===== 我的清單 (Watchlist) =====
 let watchlistCache = null;
+const LS_WATCHLIST = 'mr_watchlist';
+
+function normalizeWlSymbol(symbol){
+  return (symbol||'').toString().trim().replace(/\.HK$|\.TWO$|\.TW$/i,'');
+}
+
+function readLocalWatchlist(){
+  try{
+    const raw = JSON.parse(localStorage.getItem(LS_WATCHLIST) || '[]');
+    if(!Array.isArray(raw)) return [];
+    return raw
+      .map(it=>{
+        if(typeof it === 'string'){
+          const sym = normalizeWlSymbol(it);
+          return sym ? {symbol: sym, name: NAMES[sym] || '', market: 'tw', label: 'watching'} : null;
+        }
+        if(it && typeof it === 'object'){
+          const sym = normalizeWlSymbol(it.symbol || it.sym || it.code);
+          if(!sym) return null;
+          return {
+            symbol: sym,
+            name: it.name || NAMES[sym] || '',
+            market: it.market || it.mkt || 'tw',
+            label: it.label || 'watching'
+          };
+        }
+        return null;
+      })
+      .filter(Boolean);
+  }catch(e){
+    return [];
+  }
+}
+
+function writeLocalWatchlist(list){
+  try{
+    const cleaned = (Array.isArray(list)?list:[]).map(w=>({
+      symbol: normalizeWlSymbol(w.symbol),
+      name: w.name || '',
+      market: w.market || 'tw',
+      label: w.label || 'watching'
+    })).filter(w=>w.symbol);
+    localStorage.setItem(LS_WATCHLIST, JSON.stringify(cleaned));
+  }catch(e){}
+}
+
+function updateWatchlistStars(list){
+  const wl = Array.isArray(list) ? list : [];
+  document.querySelectorAll('[data-wl-sym]').forEach(btn=>{
+    const sym = normalizeWlSymbol(btn.getAttribute('data-wl-sym'));
+    const mkt = btn.getAttribute('data-wl-mkt') || 'tw';
+    const inList = wl.some(w=>normalizeWlSymbol(w.symbol)===sym && (w.market||'tw')===mkt);
+    btn.style.color = inList ? '#f59e0b' : '#475569';
+    btn.textContent = inList ? '★' : '☆';
+    btn.title = inList ? '從清單移除' : '加入觀察清單';
+  });
+}
 
 async function loadWatchlist() {
-  if(!currentUser) return [];
+  if(!currentUser){
+    watchlistCache = readLocalWatchlist();
+    updateWatchlistStars(watchlistCache);
+    return watchlistCache;
+  }
   try {
     const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&order=created_at.desc', {headers:authHeaders()});
     watchlistCache = await r.json();
     // 更新頁面上所有星星狀態
-    if(watchlistCache){
-      document.querySelectorAll('[data-wl-sym]').forEach(btn=>{
-        const sym=btn.getAttribute('data-wl-sym');
-        const mkt=btn.getAttribute('data-wl-mkt');
-        const inList=(watchlistCache||[]).some(w=>w.symbol===sym&&w.market===mkt);
-        btn.style.color=inList?'#f59e0b':'#475569';
-        btn.textContent=inList?'★':'☆';
-      });
-    }
+    updateWatchlistStars(watchlistCache);
     return watchlistCache || [];
   } catch(e) { return []; }
 }
 
 async function toggleWatchlist(symbol, name, market, label='watching') {
-  if(!currentUser) { showToast('請先登入才能使用清單功能','#f87171'); return; }
+  const cleanSym = normalizeWlSymbol(symbol);
+  if(!cleanSym) return;
+  market = market || 'tw';
+
+  if(!currentUser){
+    let list = readLocalWatchlist();
+    const idx = list.findIndex(w=>normalizeWlSymbol(w.symbol)===cleanSym && (w.market||'tw')===market);
+    if(idx >= 0){
+      list.splice(idx, 1);
+      showToast('已從清單移除：'+(name||cleanSym), '#f87171');
+    }else{
+      list.push({symbol: cleanSym, name: name||NAMES[cleanSym]||'', market, label});
+      showToast((label==='holding'?'✅ 已加入持有中：':' 已加入觀察中：')+(name||cleanSym), '#34d399');
+    }
+    writeLocalWatchlist(list);
+    watchlistCache = list;
+    updateWatchlistStars(list);
+    try{ renderWatchlistTab(); }catch(e){}
+    try{ renderWatchlist(); }catch(e){}
+    return;
+  }
   // 確保 token 最新
   try{const{data:{session}}=await SUPA_AUTH.auth.getSession();if(session?.access_token)currentUser._token=session.access_token;}catch(e){}
   try {
     // 先查是否已存在
-    const cleanSym = symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
     const freshH = await authHeadersFresh();
     const r = await fetch(BASE+'/watchlist?user_id=eq.'+currentUser.id+'&symbol=eq.'+cleanSym+'&market=eq.'+market, {headers:freshH});
     const existing = await r.json();
     if(existing && existing.length > 0) {
       // 已存在 → 刪除
       await fetch(BASE+'/watchlist?id=eq.'+existing[0].id, {method:'DELETE', headers:freshH});
-      const _cs=symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
-      watchlistCache = (watchlistCache||[]).filter(w => !(w.symbol===_cs && w.market===market));
+      watchlistCache = (watchlistCache||[]).filter(w => !(normalizeWlSymbol(w.symbol)===cleanSym && w.market===market));
       showToast('已從清單移除：'+name, '#f87171');
     } else {
       // 不存在 → 新增
       await fetch(BASE+'/watchlist', {
         method:'POST',
         headers:{...freshH,'Prefer':'return=minimal'},
-        body: JSON.stringify({user_id:currentUser.id, symbol:symbol.replace(/\.HK$|\.TWO$|\.TW$/i,''), name, market, label})
+        body: JSON.stringify({user_id:currentUser.id, symbol: cleanSym, name, market, label})
       });
       if(!watchlistCache) watchlistCache = [];
-      watchlistCache.push({symbol, name, market, label});
+      watchlistCache.push({symbol: cleanSym, name, market, label});
       showToast((label==='holding'?'✅ 已加入持有中：':' 已加入觀察中：')+name, '#34d399');
     }
     // 更新按鈕狀態
-    document.querySelectorAll('[data-wl-sym="'+symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'')+'"][data-wl-mkt="'+market+'"]').forEach(btn => {
-      const inList = (watchlistCache||[]).some(w => w.symbol===symbol && w.market===market);
-      btn.style.color = inList ? '#f59e0b' : '#475569';
-      btn.textContent = inList ? '★' : '☆';
-    });
+    updateWatchlistStars(watchlistCache);
+    renderWatchlistTab();
+    renderWatchlist();
   } catch(e) { showToast('操作失敗，請重試', '#f87171'); }
 }
 
 function isInWatchlist(symbol, market) {
-  const s=symbol.replace(/\.HK$|\.TWO$|\.TW$/i,'');
-  return (watchlistCache||[]).some(w => w.symbol===s && w.market===market);
+  const s=normalizeWlSymbol(symbol);
+  market = market || 'tw';
+  const list = watchlistCache || (!currentUser ? readLocalWatchlist() : []);
+  return (list||[]).some(w => normalizeWlSymbol(w.symbol)===s && (w.market||'tw')===market);
 }
 
 function watchlistBtn(symbol, name, market) {
@@ -750,7 +821,7 @@ async function renderWatchlist(){
   if(!el)return;
   // 使用 Supabase watchlist (已登入) 或 localStorage 備援
   let wlist = watchlistCache;
-  if(!wlist && currentUser) wlist = await loadWatchlist();
+  if(!wlist) wlist = await loadWatchlist();
   const twItems = (wlist||[]).filter(w=>w.market==='tw'||w.market==='etf');
   // 更新標題計數
   const titleEl=document.getElementById('watchlistSectionTitle');
@@ -2273,7 +2344,7 @@ async function searchStock(){
       loadChipAnalysis(code);
       loadMarginData(code);
       // 更新自選股按鈕
-      const ws=JSON.parse(localStorage.getItem('mr_watchlist')||'[]');
+      const ws=readLocalWatchlist().map(w=>w.symbol);
       const wBtn=document.getElementById('watchlistBtn');
       if(wBtn){wBtn.textContent=ws.includes(code)?'✓ 已加入自選':'＋ 加入自選';wBtn.style.background=ws.includes(code)?'#166534':'#1d4ed8';}
     }else{
