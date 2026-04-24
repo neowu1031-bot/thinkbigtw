@@ -1963,6 +1963,8 @@ async function loadMarketData(){
   loadGlobalIndices();
   loadIntlGrid();
   initSearchAutocomplete();
+  initETFAutocomplete();
+  initUSAutocomplete();
   loadMarketBreadth();
 }
 
@@ -2742,6 +2744,102 @@ function initSearchAutocomplete(){
   });
 }
 
+// ===== ETF 搜尋自動完成 =====
+function initETFAutocomplete(){
+  const input = document.getElementById('etfInput');
+  if(!input) return;
+  let dropdown = document.getElementById('etfDropdown');
+  if(!dropdown){
+    dropdown = document.createElement('div');
+    dropdown.id = 'etfDropdown';
+    dropdown.style.cssText = 'position:absolute;z-index:9999;background:#1e293b;border:1px solid #334155;border-radius:8px;width:100%;max-height:280px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.4);top:100%;left:0;margin-top:4px';
+    input.parentElement.style.position='relative';
+    input.parentElement.appendChild(dropdown);
+  }
+  function renderDropdown(matches){
+    if(!matches.length){dropdown.style.display='none';return;}
+    dropdown.innerHTML = matches.map(([code,name])=>`
+      <div onclick="document.getElementById('etfInput').value='${code}';document.getElementById('etfDropdown').style.display='none';searchETF();"
+        style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #0f172a;gap:8px"
+        onmouseover="this.style.background='#2d3f55'" onmouseout="this.style.background='transparent'">
+        <span style="color:#a78bfa;font-weight:700;font-size:13px;flex-shrink:0">${code}</span>
+        <span style="color:#94a3b8;font-size:12px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${name||''}</span>
+      </div>`).join('');
+    dropdown.style.display='block';
+  }
+  let _etfAcTimer=null;
+  input.addEventListener('input', function(){
+    const q = this.value.trim();
+    if(!q||q.length<1){dropdown.style.display='none';clearTimeout(_etfAcTimer);return;}
+    const qLow=q.toLowerCase();
+    const localMatches = Object.entries(NAMES).filter(([code,name])=>
+      code.startsWith(qLow)||name.toLowerCase().includes(qLow)
+    ).slice(0,8);
+    renderDropdown(localMatches);
+    clearTimeout(_etfAcTimer);
+    _etfAcTimer = setTimeout(async()=>{
+      try{
+        const enc=encodeURIComponent(q);
+        const url=`${BASE}/stocks?or=(symbol.ilike.*${enc}*,name.ilike.*${enc}*)&select=symbol,name&limit=10`;
+        const r=await fetch(url,{headers:SB_H});
+        const data=await r.json();
+        if(Array.isArray(data)&&data.length>0){
+          const seen=new Set();
+          const merged=[];
+          data.forEach(d=>{if(!seen.has(d.symbol)){seen.add(d.symbol);merged.push([d.symbol,d.name||'']);}});
+          renderDropdown(merged.slice(0,10));
+        }
+      }catch(e){}
+    },250);
+  });
+  document.addEventListener('click', function(e){
+    if(!input.contains(e.target)&&!dropdown.contains(e.target)) dropdown.style.display='none';
+  });
+  input.addEventListener('keydown', function(e){
+    if(e.key==='Escape') dropdown.style.display='none';
+  });
+}
+
+// ===== 美股搜尋自動完成 =====
+const US_NAMES={'AAPL':'Apple','MSFT':'Microsoft','NVDA':'NVIDIA','GOOGL':'Alphabet','AMZN':'Amazon','META':'Meta','TSLA':'Tesla','AVGO':'Broadcom','JPM':'JPMorgan','V':'Visa','UNH':'UnitedHealth','XOM':'ExxonMobil','LLY':'Eli Lilly','JNJ':'Johnson & Johnson','MA':'Mastercard','PG':'Procter & Gamble','HD':'Home Depot','CVX':'Chevron','MRK':'Merck','ABBV':'AbbVie','COST':'Costco','AMD':'AMD','NFLX':'Netflix','CRM':'Salesforce','ORCL':'Oracle','QCOM':'Qualcomm','TXN':'Texas Instruments','INTC':'Intel','SOFI':'SoFi','PLTR':'Palantir','ARM':'Arm Holdings','MU':'Micron','ASML':'ASML','TSM':'TSMC ADR','BABA':'Alibaba','NIO':'NIO','PDD':'PDD Holdings','BIDU':'Baidu','JD':'JD.com','SPY':'S&P 500 ETF','QQQ':'Nasdaq ETF','DIA':'Dow Jones ETF','ARKK':'ARK Innovation ETF','GLD':'Gold ETF','TLT':'Treasury Bond ETF','VTI':'Vanguard Total Market','VOO':'Vanguard S&P 500','BRK.B':'Berkshire Hathaway','WMT':'Walmart','COIN':'Coinbase','MSTR':'MicroStrategy','HOOD':'Robinhood'};
+function initUSAutocomplete(){
+  const input = document.getElementById('usSearch');
+  if(!input) return;
+  const wrap = input.parentElement;
+  wrap.style.position='relative';
+  let dropdown = document.getElementById('usDropdown');
+  if(!dropdown){
+    dropdown = document.createElement('div');
+    dropdown.id = 'usDropdown';
+    dropdown.style.cssText = 'position:absolute;z-index:9999;background:#1e293b;border:1px solid #334155;border-radius:8px;width:calc(100% - 90px);max-height:280px;overflow-y:auto;display:none;box-shadow:0 8px 24px rgba(0,0,0,0.4);top:100%;left:0;margin-top:4px';
+    wrap.appendChild(dropdown);
+  }
+  function renderDropdown(matches){
+    if(!matches.length){dropdown.style.display='none';return;}
+    dropdown.innerHTML = matches.map(([code,name])=>`
+      <div onclick="document.getElementById('usSearch').value='${code}';document.getElementById('usDropdown').style.display='none';searchUS();"
+        style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #0f172a;gap:8px"
+        onmouseover="this.style.background='#2d3f55'" onmouseout="this.style.background='transparent'">
+        <span style="color:#34d399;font-weight:700;font-size:13px;flex-shrink:0">${code}</span>
+        <span style="color:#94a3b8;font-size:12px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${name||''}</span>
+      </div>`).join('');
+    dropdown.style.display='block';
+  }
+  input.addEventListener('input', function(){
+    const q = this.value.trim().toUpperCase();
+    if(!q||q.length<1){dropdown.style.display='none';return;}
+    const matches = Object.entries(US_NAMES).filter(([code,name])=>
+      code.startsWith(q)||name.toUpperCase().includes(q)
+    ).slice(0,10);
+    renderDropdown(matches);
+  });
+  document.addEventListener('click', function(e){
+    if(!input.contains(e.target)&&!dropdown.contains(e.target)) dropdown.style.display='none';
+  });
+  input.addEventListener('keydown', function(e){
+    if(e.key==='Escape') dropdown.style.display='none';
+  });
+}
 
 // ===== 零股投資試算 =====
 function loadOddLot(code){
