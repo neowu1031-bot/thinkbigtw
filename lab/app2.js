@@ -451,8 +451,15 @@ function _flashShareBtn(btnId,origText){
 function shareStock(){
   if(!currentStock)return;
   const url=`https://thinkbigtw.com/lab/?stock=${encodeURIComponent(currentStock)}`;
+  const name=NAMES[currentStock]||currentStock;
+  if(navigator.share){
+    navigator.share({title:'MoneyRadar™ - '+name,text:name+'('+currentStock+')',url})
+      .then(()=>trackEvent('share_stock',{stock_code:currentStock})).catch(()=>{});
+    return;
+  }
   copyToClipboard(url).then(()=>{
     _flashShareBtn('shareStockBtn','🔗 分享');
+    showToast('✓ 已複製！','#34d399');
     trackEvent('share_stock',{stock_code:currentStock});
   }).catch(()=>{prompt('複製這段網址：',url);});
 }
@@ -460,8 +467,15 @@ function shareStock(){
 function shareETF(){
   if(!currentETF)return;
   const url=`https://thinkbigtw.com/lab/?etf=${encodeURIComponent(currentETF)}`;
+  const name=NAMES[currentETF]||currentETF;
+  if(navigator.share){
+    navigator.share({title:'MoneyRadar™ - '+name,text:name+'('+currentETF+')',url})
+      .then(()=>trackEvent('share_etf',{etf_code:currentETF})).catch(()=>{});
+    return;
+  }
   copyToClipboard(url).then(()=>{
     _flashShareBtn('shareETFBtn','🔗 分享');
+    showToast('✓ 已複製！','#34d399');
     trackEvent('share_etf',{etf_code:currentETF});
   }).catch(()=>{prompt('複製這段網址：',url);});
 }
@@ -817,6 +831,7 @@ function dropWatchlistCard(event, targetCode){
 }
 // GA4 事件追蹤包裝（gtag 未載入時 no-op）
 function trackEvent(eventName,params){
+  console.debug('[GA4]', eventName, params||{});
   try{if(typeof gtag==='function')gtag('event',eventName,params||{});}catch(e){}
 }
 
@@ -1172,6 +1187,17 @@ function toggleSector(i){
 
 // =============== 總體經濟分頁 ===============
 async function loadMacro(){
+  // 台灣總經：加入資料來源連結（無免費即時 API，使用最新公告值）
+  const twSources=[
+    {id:'m_tw_rate', sub:'央行 <a href="https://www.cbc.gov.tw/tw/lp-499-1.html" target="_blank" style="color:#60a5fa;font-size:10px">→ 央行網站</a>'},
+    {id:'m_tw_cpi',  sub:'主計總處 <a href="https://www.dgbas.gov.tw/np.aspx?n=3184" target="_blank" style="color:#60a5fa;font-size:10px">→ 主計總處</a>'},
+    {id:'m_tw_gdp',  sub:'主計總處 <a href="https://www.dgbas.gov.tw/np.aspx?n=2841" target="_blank" style="color:#60a5fa;font-size:10px">→ GDP 資料</a>'},
+    {id:'m_tw_unemp',sub:'主計總處 <a href="https://www.dgbas.gov.tw/np.aspx?n=3339" target="_blank" style="color:#60a5fa;font-size:10px">→ 就業資料</a>'}
+  ];
+  twSources.forEach(({id,sub})=>{
+    const el=document.getElementById(id);
+    if(el){const s=el.closest('.card')?.querySelector('.sub');if(s)s.innerHTML=sub;}
+  });
   // 美國 Fed Rate
   try{
     const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=^TNX&token=${FINNHUB_KEY}`);
@@ -2005,6 +2031,7 @@ async function loadMarketData(){
   initETFAutocomplete();
   initUSAutocomplete();
   loadMarketBreadth();
+  loadTWSectorBars();
 }
 
 async function loadMarketBreadth(){
@@ -2042,6 +2069,53 @@ async function loadMarketBreadth(){
       ratioEl.className='value '+(up>down?'up':(down>up?'down':''));
     }
   }catch(e){console.log('breadth err',e);}
+}
+
+// ===== B10 產業別表現（TW 大盤總覽下方）=====
+async function loadTWSectorBars(){
+  const el=document.getElementById('twSectorBars');
+  if(!el)return;
+  try{
+    const r0=await fetchDedup(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const d0=await r0.json();
+    const today=d0[0]?.date;
+    if(!today){el.innerHTML='<div style="color:#64748b;font-size:12px">無交易資料</div>';return;}
+    const [r1,r2]=await Promise.all([
+      fetch(`${BASE}/daily_prices?date=eq.${today}&select=symbol,open_price,close_price&limit=2000`,{headers:SB_H}),
+      fetch(`${BASE}/stocks?select=symbol,industry&limit=2000`,{headers:SB_H})
+    ]);
+    const prices=await r1.json();
+    const stocks=await r2.json();
+    if(!Array.isArray(prices)||!Array.isArray(stocks)){el.innerHTML='<div style="color:#64748b;font-size:12px">資料載入失敗</div>';return;}
+    const indMap={};stocks.forEach(s=>{if(s.industry)indMap[s.symbol]=s.industry;});
+    const sectorMap={};
+    prices.forEach(d=>{
+      const ind=indMap[d.symbol];
+      if(!ind)return;
+      const open=parseFloat(d.open_price),close=parseFloat(d.close_price);
+      if(!open||!close||isNaN(open)||isNaN(close))return;
+      const pct=(close-open)/open*100;
+      if(!sectorMap[ind])sectorMap[ind]={total:0,count:0};
+      sectorMap[ind].total+=pct;sectorMap[ind].count++;
+    });
+    const sectors=Object.entries(sectorMap).map(([name,v])=>({name,pct:v.total/v.count}));
+    sectors.sort((a,b)=>b.pct-a.pct);
+    const top10=sectors.slice(0,10);
+    if(!top10.length){el.innerHTML='<div style="color:#64748b;font-size:12px">無產業資料（請稍後）</div>';return;}
+    const maxAbs=Math.max(...top10.map(s=>Math.abs(s.pct)),0.1);
+    el.innerHTML=top10.map(s=>{
+      const up=s.pct>=0;
+      const w=(Math.abs(s.pct)/maxAbs*100).toFixed(1);
+      const color=up?'#ef4444':'#22c55e'; // 台股：紅=漲，綠=跌
+      return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+        <div style="width:76px;font-size:11px;color:#94a3b8;text-align:right;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${s.name}">${s.name}</div>
+        <div style="flex:1;background:#0f172a;border-radius:3px;height:14px;position:relative;overflow:hidden">
+          <div style="position:absolute;${up?'left':'right'}:0;width:${w}%;background:${color};height:100%;border-radius:3px;opacity:0.85"></div>
+        </div>
+        <div style="width:52px;font-size:12px;font-weight:700;color:${color};flex-shrink:0;text-align:right">${up?'+':''}${s.pct.toFixed(2)}%</div>
+      </div>`;
+    }).join('')+'<div style="font-size:10px;color:#475569;margin-top:6px;text-align:right">台股 紅=漲 綠=跌</div>';
+  }catch(e){el.innerHTML='<div style="color:#64748b;font-size:12px">產業資料載入失敗</div>';}
 }
 
 async function loadGlobalIndices(){
@@ -2139,8 +2213,10 @@ async function searchStock(){
     if(data&&data.length>0){
       const d=data[0];
       const prev=data[1];
-      document.getElementById('stockName').textContent=(NAMES[code]||code)+' ('+code+')';
+      const stockDisplayName=NAMES[code]||code;
+      document.getElementById('stockName').textContent=stockDisplayName+' ('+code+')';
       document.getElementById('stockMeta').textContent='最新交易日：'+d.date;
+      saveSearchHistory(code, stockDisplayName);
       document.getElementById('sClose').textContent=d.close_price;
       // 漲跌幅：用前一日收盤計算
       const prevClose=prev?parseFloat(prev.close_price):parseFloat(d.close_price);
@@ -2753,6 +2829,31 @@ async function loadChipAnalysis(code){
 
 
 
+// ===== 搜尋歷史（C2）=====
+function saveSearchHistory(symbol, name){
+  const hist=JSON.parse(localStorage.getItem('mr_search_history')||'[]');
+  const filtered=hist.filter(h=>h.symbol!==symbol);
+  filtered.unshift({symbol,name:name||NAMES[symbol]||symbol});
+  localStorage.setItem('mr_search_history',JSON.stringify(filtered.slice(0,10)));
+}
+
+function showSearchHistory(dropdown){
+  const hist=JSON.parse(localStorage.getItem('mr_search_history')||'[]');
+  if(!hist.length){dropdown.style.display='none';return;}
+  dropdown.innerHTML=`<div style="padding:6px 14px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #334155">
+    <span style="font-size:11px;color:#64748b;font-weight:600">最近搜尋</span>
+    <span onclick="localStorage.removeItem('mr_search_history');this.closest('[id]').style.display='none';" style="font-size:11px;color:#475569;cursor:pointer;padding:2px 4px">清除</span>
+  </div>`+
+  hist.map(h=>`
+    <div onclick="document.getElementById('stockInput').value='${h.symbol}';document.getElementById('searchDropdown').style.display='none';searchStock();"
+      style="padding:10px 14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #0f172a;gap:8px"
+      onmouseover="this.style.background='#2d3f55'" onmouseout="this.style.background='transparent'">
+      <span style="color:#60a5fa;font-weight:700;font-size:13px;flex-shrink:0">${h.symbol}</span>
+      <span style="color:#94a3b8;font-size:12px;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${h.name}</span>
+    </div>`).join('');
+  dropdown.style.display='block';
+}
+
 // ===== 搜尋自動完成 =====
 function initSearchAutocomplete(){
   const input = document.getElementById('stockInput');
@@ -2781,7 +2882,8 @@ function initSearchAutocomplete(){
   let _acTimer=null;
   input.addEventListener('input', function(){
     const q = this.value.trim();
-    if(!q||q.length<1){dropdown.style.display='none';clearTimeout(_acTimer);return;}
+    if(!q||q.length<1){showSearchHistory(dropdown);clearTimeout(_acTimer);return;}
+    if(q.length<2){dropdown.style.display='none';clearTimeout(_acTimer);return;}
     // 先用本地 NAMES 即時顯示
     const qLow=q.toLowerCase();
     const localMatches = Object.entries(NAMES).filter(([code,name])=>
@@ -2800,20 +2902,24 @@ function initSearchAutocomplete(){
           const seen=new Set();
           const merged=[];
           data.forEach(d=>{if(!seen.has(d.symbol)){seen.add(d.symbol);merged.push([d.symbol,d.name||'']);}});
-          // 也補充本地 NAMES 未包含的項目（最多 10 筆）
           renderDropdown(merged.slice(0,10));
         }
       }catch(e){}
     },250);
   });
 
+  input.addEventListener('focus', function(){
+    if(!this.value.trim()) showSearchHistory(dropdown);
+  });
+
   document.addEventListener('click', function(e){
     if(!input.contains(e.target)&&!dropdown.contains(e.target)) dropdown.style.display='none';
   });
 
-  // 按 Esc 關閉
+  // 按 Esc 關閉，Enter 觸發搜尋
   input.addEventListener('keydown', function(e){
     if(e.key==='Escape') dropdown.style.display='none';
+    if(e.key==='Enter'){dropdown.style.display='none';searchStock();}
   });
 }
 
@@ -2870,6 +2976,7 @@ function initETFAutocomplete(){
   });
   input.addEventListener('keydown', function(e){
     if(e.key==='Escape') dropdown.style.display='none';
+    if(e.key==='Enter'){dropdown.style.display='none';searchETF();}
   });
 }
 

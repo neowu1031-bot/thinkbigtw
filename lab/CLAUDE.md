@@ -49,13 +49,18 @@ MoneyRadar™ 是一個台灣投資人使用的前端投資平台，主要檔案
 | v133 | 5ae962e | 2026-04-24 | 法人買賣超 sparkline 升級：bar+折線+dot+tooltip |
 | v134 | d4a4727 | 2026-04-24 | ETF 按鈕樣式統一：日K/週K/月K label spans |
 | v135 | a056f97 | 2026-04-24 | 全面 console error 修復（optional chaining + array guard） |
+| v136 | ec27532 | 2026-04-24 | 第二批：新聞、自選股優化、美股K線、ETF折溢價、服務條款 |
+| v137 | —       | 2026-04-24 | B4搜尋歷史+Enter鍵、B10產業別表現、C1 Google提示、C2搜尋歷史、C3 navigator.share、C6 GA4 console.debug、D6總經來源連結 |
 
 ## Key Functions
 | Function | Location | Description |
 |----------|----------|-------------|
-| `initSearchAutocomplete()` | app2.js:2697 | 台股 autocomplete（NAMES + Supabase ilike） |
-| `initETFAutocomplete()` | app2.js:2761 | ETF autocomplete（ETF_HOT + Supabase ilike） |
-| `initUSAutocomplete()` | app2.js:2818 | 美股 autocomplete（US_NAMES 靜態，即時） |
+| `initSearchAutocomplete()` | app2.js | 台股 autocomplete + 搜尋歷史（mr_search_history）+ Enter 觸發 |
+| `initETFAutocomplete()` | app2.js | ETF autocomplete + Enter 觸發 |
+| `initUSAutocomplete()` | app2.js | 美股 autocomplete（US_NAMES 靜態，即時）|
+| `saveSearchHistory(sym,name)` | app2.js | 搜尋成功後寫入 localStorage mr_search_history（最多10筆）|
+| `showSearchHistory(dropdown)` | app2.js | focus 空白輸入框時顯示最近搜尋 + 清除按鈕 |
+| `loadTWSectorBars()` | app2.js | 台股大盤產業別漲跌 CSS 水平長條圖（daily_prices+stocks join）|
 | `loadChipAnalysis(code)` | app2.js:2576 | 三大法人籌碼（miniSparkSVG: bar+折線+dot） |
 | `switchChartMode(mode,period,btn)` | app2.js:2251 | 台股日K/週K/月K/分K 切換 |
 | `switchETFChartMode(mode,period,btn)` | app2.js:4355 | ETF 週K/月K 切換 |
