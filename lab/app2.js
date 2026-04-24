@@ -563,7 +563,7 @@ async function applyFilter(reset=false){
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r.json())[0].date;
-    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,change_percent,volume';
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,open_price,change_percent,volume';
     if(type==='up')url+='&order=change_percent.desc';
     else if(type==='down')url+='&order=change_percent.asc';
     else if(type==='volume')url+='&order=volume.desc';
@@ -576,7 +576,7 @@ async function applyFilter(reset=false){
     let data=await r2.json();
     if(!isNaN(minPct)){
       data=data.filter(d=>{
-        const ch=parseFloat(d.change_percent);
+        const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
         const prev=parseFloat(d.close_price)-ch;
         const pct=prev>0?ch/prev*100:0;
         return pct>=minPct;
@@ -607,7 +607,7 @@ async function applyFilter(reset=false){
     }
     result.innerHTML=`<div style="color:#94a3b8;font-size:13px;margin-bottom:8px">找到 ${data.length} 檔（顯示前30）</div>`;
     data.slice(0,30).forEach((d,i)=>{
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const prev=parseFloat(d.close_price)-ch;
       const pct=prev>0?(ch/prev*100).toFixed(2):'—';
       const up=ch>=0;
@@ -646,7 +646,7 @@ async function loadRanking(type){
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r.json())[0].date;
-    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=10&select=symbol,close_price,change_percent,volume';
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=10&select=symbol,close_price,open_price,change_percent,volume';
     if(type==='up')url+='&order=change_percent.desc';
     else if(type==='down')url+='&order=change_percent.asc';
     else url+='&order=volume.desc';
@@ -659,7 +659,7 @@ async function loadRanking(type){
     const nameMap={};nameData.forEach(s=>nameMap[s.symbol]=s.name);
     list.innerHTML='';
     data.forEach((d,i)=>{
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const up=ch>=0;
       const closePx=parseFloat(d.close_price);
       const prevPx=closePx-ch;
@@ -695,7 +695,9 @@ async function renderWatchlist(){
       const data=await r.json();
       if(!data||!data.length)continue;
       const latest=data[0];
-      const ch=parseFloat(latest.change_percent);
+      const prev=data[1];
+      const prevClose=prev?parseFloat(prev.close_price):parseFloat(latest.open_price)||parseFloat(latest.close_price);
+      const ch=prevClose>0?((parseFloat(latest.close_price)-prevClose)/prevClose*100):0;
       const up=ch>=0;
       const color=up?'#34d399':'#f87171';
       const prices=data.map(d=>parseFloat(d.close_price)).reverse();
@@ -820,7 +822,7 @@ async function runScreener(){
   try{
     const r0=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r0.json())[0].date;
-    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=2000&select=symbol,close_price,change_percent,volume';
+    let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=2000&select=symbol,close_price,open_price,change_percent,volume';
     if(!isNaN(minPx))url+=`&close_price=gte.${minPx}`;
     if(!isNaN(maxPx))url+=`&close_price=lte.${maxPx}`;
     if(!isNaN(minVol))url+=`&volume=gte.${minVol*10000}`;
@@ -828,7 +830,7 @@ async function runScreener(){
     let prices=await r1.json();
     if(!isNaN(minPct)){
       prices=prices.filter(d=>{
-        const ch=parseFloat(d.change_percent);
+        const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
         const prev=parseFloat(d.close_price)-ch;
         return prev>0?(ch/prev*100>=minPct):false;
       });
@@ -858,7 +860,7 @@ async function runScreener(){
         return true;
       });
     }
-    prices.sort((a,b)=>parseFloat(b.change_percent)-parseFloat(a.change_percent));
+    prices.sort((a,b)=>(parseFloat(b.open_price)>0?((parseFloat(b.close_price)-parseFloat(b.open_price))/parseFloat(b.open_price)*100):0)-(parseFloat(a.open_price)>0?((parseFloat(a.close_price)-parseFloat(a.open_price))/parseFloat(a.open_price)*100):0));
     const show=prices.slice(0,50);
     if(show.length===0){result.innerHTML='<div style="color:#94a3b8;padding:12px">沒有符合條件的個股</div>';return;}
     const showSyms=show.map(d=>d.symbol).join(',');
@@ -870,7 +872,7 @@ async function runScreener(){
         <div>代號</div><div>名稱</div><div style="text-align:right">現價</div><div style="text-align:right">漲跌</div><div style="text-align:right">成交量</div><div style="text-align:right">PE</div><div style="text-align:right">殖利率</div><div style="text-align:right">ROE</div>
       </div>`;
     show.forEach(d=>{
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const closePx=parseFloat(d.close_price);
       const prev=closePx-ch;
       const pct=prev>0?(ch/prev*100):0;
@@ -973,7 +975,7 @@ async function loadBonds(){
         const d=map[sym];
         const nm=nameMap[sym]||NAMES[sym]||sym;
         if(d){
-          const pct=parseFloat(d.change_percent)||0;
+          const pct=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
           const closePx=parseFloat(d.close_price);
           const prev=closePx-pct;
           const realPct=prev>0?(pct/prev*100):0;
@@ -1034,7 +1036,7 @@ async function loadSectors(){
     const stocks=s.symbols.map(sym=>{
       const d=priceMap[sym];
       if(!d)return {sym,close:null,pct:0};
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const closePx=parseFloat(d.close_price);
       const prev=closePx-ch;
       const realPct=prev>0?(ch/prev*100):0;
@@ -1698,7 +1700,7 @@ async function loadFutures(){
     if(data&&data.length){
       const d=data[0];
       const price=parseFloat(d.close_price);
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const prev=price-ch;
       const pct=prev>0?(ch/prev*100):0;
       const up=ch>=0;
@@ -1919,7 +1921,7 @@ async function loadMarketData(){
     if(data&&data.length>0){
       const d=data[0];
       document.getElementById('taiex').textContent=parseFloat(d.close_price).toLocaleString();
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const el=document.getElementById('taiexChange');
       el.textContent=(ch>=0?'▲ +':'▼ ')+ch.toFixed(2)+' 點';
       el.className='sub '+(ch>=0?'up':'down');
@@ -1956,7 +1958,7 @@ async function loadMarketBreadth(){
     if(!rows||!rows.length)return;
     let up=0,down=0,flat=0;
     rows.forEach(d=>{
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       if(isNaN(ch)){flat++;return;}
       if(ch>0)up++;
       else if(ch<0)down++;
@@ -3092,7 +3094,7 @@ function renderStockChart(data,code){
     crosshair:{mode:1}
   });
   const volSeries=volChart.addHistogramSeries({priceFormat:{type:'volume'},priceScaleId:'right',scaleMargins:{top:0.1,bottom:0}});
-  volSeries.setData(data.map(d=>({time:d.date||d.time,value:parseFloat(d.volume||0),color:parseFloat(d.change_percent||0)>=0?'rgba(52,211,153,0.5)':'rgba(248,113,113,0.5)'})));
+  volSeries.setData(data.map(d=>({time:d.date||d.time,value:parseFloat(d.volume||0),color:(parseFloat(d.open_price)>0?(parseFloat(d.close_price)>=parseFloat(d.open_price)):true)?'rgba(52,211,153,0.5)':'rgba(248,113,113,0.5)'})));
   volChart.timeScale().fitContent();
 
   // 同步 crosshair
@@ -3532,7 +3534,7 @@ async function searchETF(){
       document.getElementById('etfName').textContent=(NAMES[code]||code)+' ('+code+')';
       document.getElementById('etfMeta').textContent='最新交易日：'+d.date;
       document.getElementById('eClose').textContent=d.close_price;
-      const ch=parseFloat(d.change_percent);
+      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
       const cel=document.getElementById('eChange');
       const pct=d.close_price>0?((ch/(parseFloat(d.close_price)-ch))*100).toFixed(2):ch.toFixed(2);cel.textContent=(ch>=0?'+':'')+pct+'%';
       cel.className='val '+(ch>=0?'up':'down');
@@ -4065,7 +4067,7 @@ async function loadETFHot(){
     g.items.forEach(e=>{
       const d=priceMap[e.sym];
       if(d){
-        const pct=parseFloat(d.change_percent)||0;
+        const pct=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
         const closePx=parseFloat(d.close_price);
         const prev=closePx-pct;
         const realPct=prev>0?(pct/prev*100):0;
