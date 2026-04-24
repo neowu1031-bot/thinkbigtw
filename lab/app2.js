@@ -2180,7 +2180,19 @@ async function loadIntradayChart(code){
     const prices = (s.pz||'').split('_').filter(Boolean).map(Number);
     const times = (s.pt||'').split('_').filter(Boolean);
     const prev = parseFloat(s.y) || parseFloat(s.z) || parseFloat(s.b?.split('_')[0]) || 0;
-    if(!prices.length){ el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">尚無分時資料</div>'; return; }
+    if(!prices.length){
+      // 盤後或休市：用收盤價顯示靜態資訊
+      const lastClose = parseFloat(s.z||s.y||0);
+      const prevClose = parseFloat(s.y||0);
+      const ch = lastClose && prevClose ? ((lastClose-prevClose)/prevClose*100) : 0;
+      const color = ch >= 0 ? '#34d399' : '#f87171';
+      el.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#0f172a;border-radius:8px">
+        <div><div style="font-size:11px;color:#475569;margin-bottom:2px">收盤價</div><div style="font-size:18px;font-weight:700;color:#e2e8f0">${lastClose||prev||'-'}</div></div>
+        <div style="text-align:right"><div style="font-size:11px;color:#475569;margin-bottom:2px">漲跌幅</div><div style="font-size:16px;font-weight:700;color:${color}">${ch>=0?'+':''}${prevClose>0?ch.toFixed(2):'0.00'}%</div></div>
+        <div style="font-size:11px;color:#475569">盤後・分時資料僅盤中提供</div>
+      </div>`;
+      return;
+    }
     // 畫 SVG 分時圖
     const W=el.clientWidth||400, H=100;
     const min=Math.min(prev*0.98,...prices), max=Math.max(prev*1.02,...prices);
