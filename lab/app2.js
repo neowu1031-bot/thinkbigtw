@@ -11,11 +11,30 @@ let currentUser=null;
 const BASE=SB_URL+'/rest/v1';
 const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
 const PROXY_URL='https://sirhskxufayklqrlxeep.supabase.co/functions/v1/twse-proxy';
-async function twseProxy(type, code=null){
+// Request deduplication: pending requests to same URL share one fetch
+// Stores JSON-data promises; each caller gets a copy via fake Response wrapper
+const _dedupMap = new Map();
+let _apiCallCount = 0;
+function fetchDedup(url, opts){
+  _apiCallCount++;
+  const key = url + (opts?.body||'');
+  let jsonProm;
+  if(_dedupMap.has(key)){
+    jsonProm = _dedupMap.get(key);
+  } else {
+    jsonProm = fetch(url, opts).then(r=>r.json());
+    _dedupMap.set(key, jsonProm);
+    jsonProm.finally(()=>setTimeout(()=>_dedupMap.delete(key),100));
+  }
+  // Return fake Response so callers can still do await r.json()
+  return jsonProm.then(data=>({ok:true,status:200,json:()=>Promise.resolve(JSON.parse(JSON.stringify(data)))}));
+}
+
+async function twseProxy(type, code=null, extra={}){
   const r = await fetch(PROXY_URL, {
     method:'POST',
     headers:{'Content-Type':'application/json','Authorization':'Bearer '+SB_KEY},
-    body: JSON.stringify({type, code})
+    body: JSON.stringify({type, code, ...extra})
   });
   const d = await r.json();
   if(!d.ok) throw new Error(d.error||'proxy error');
@@ -352,6 +371,10 @@ function showDashboard(){
   document.getElementById('dashboard').style.display='block';
   loadMarketData();loadSupabaseData();loadDividendCalendar();setInterval(loadMarketData,30000);setInterval(()=>{if(document.getElementById("tab-crypto").classList.contains("active"))loadCrypto();},30000);
   loadRanking("up");setTimeout(()=>loadTaiexChart(30,document.querySelector('#tab-tw .range-btn')),600);
+  // 載入自選股區塊
+  setTimeout(renderWatchlist, 800);
+  // 效能監控：3秒後記錄主頁 API 請求數
+  setTimeout(()=>console.log(`[MoneyRadar] 主頁初始 API 請求數：${_apiCallCount} 次（已去重複）`),3000);
   // 處理 URL 參數深連結
   handleURLParams();
 }
@@ -538,10 +561,15 @@ async function checkAlerts(){
 
 // 初始化
 renderAlerts();
-if(Notification.permission==='granted'){
+(function initNotifyBtn(){
   const btn=document.getElementById('notifyBtn');
-  if(btn){btn.textContent='🔔 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';}
-}
+  if(!btn||!('Notification' in window))return;
+  if(Notification.permission==='granted'){
+    btn.textContent='🔔 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';
+  }else if(Notification.permission==='denied'){
+    btn.textContent='🔕 通知已封鎖';btn.style.color='#f87171';btn.style.borderColor='#f87171';
+  }
+})();
 // 每分鐘檢查一次警示
 setInterval(checkAlerts,60000);
 async function applyFilter(reset=false){
@@ -655,7 +683,7 @@ async function loadRanking(type){
   if(!list)return;
   list.innerHTML='<div style="color:#64748b">載入中...</div>';
   try{
-    const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const r=await fetchDedup(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const latest=(await r.json())?.[0]?.date;
     if(!latest){list.innerHTML='<div style="color:#f87171">無法取得交易日期</div>';return;}
     let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,open_price,volume';
@@ -703,16 +731,25 @@ async function loadRanking(type){
 }
 // [舊版 toggleWatchlist 已移除，使用新版 Supabase 版本]
 async function renderWatchlist(){
-  const ws=JSON.parse(localStorage.getItem('watchlist')||'[]');
   const el=document.getElementById('watchlistGrid');
   if(!el)return;
-  if(ws.length===0){el.innerHTML='<div style="color:#64748b;padding:8px">尚未加入任何自選股，搜尋個股後點「加入自選」</div>';return;}
+  // 使用 Supabase watchlist (已登入) 或 localStorage 備援
+  let wlist = watchlistCache;
+  if(!wlist && currentUser) wlist = await loadWatchlist();
+  const twItems = (wlist||[]).filter(w=>w.market==='tw'||w.market==='etf');
+  // 更新標題計數
+  const titleEl=document.getElementById('watchlistSectionTitle');
+  if(titleEl) titleEl.textContent=`⭐ 我的自選股 (${twItems.length})`;
+  if(twItems.length===0){
+    el.innerHTML='<div style="color:#64748b;padding:8px">尚未加入任何自選股，搜尋個股後點 ☆ 加入</div>';
+    return;
+  }
   el.innerHTML='<div style="color:#64748b;font-size:12px;padding:4px 0 8px">載入中...</div>';
   const cards=[];
-  for(const code of ws){
+  for(const w of twItems){
+    const code=w.symbol;
     try{
-      // 抓近30天資料畫K線
-      const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30',{headers:SB_H});
+      const r=await fetchDedup(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30',{headers:SB_H});
       const data=await r.json();
       if(!data||!data.length)continue;
       const latest=data[0];
@@ -722,10 +759,9 @@ async function renderWatchlist(){
       const up=ch>=0;
       const color=up?'#34d399':'#f87171';
       const prices=data.map(d=>parseFloat(d.close_price)).reverse();
-      // 畫 SVG 迷你折線圖
-      const min=Math.min(...prices), max=Math.max(...prices);
+      const min=Math.min(...prices),max=Math.max(...prices);
       const range=max-min||1;
-      const W=160, H=50;
+      const W=160,H=50;
       const pts=prices.map((p,i)=>{
         const x=i*(W/(prices.length-1));
         const y=H-((p-min)/range)*(H-4)-2;
@@ -735,13 +771,21 @@ async function renderWatchlist(){
         <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round"/>
         <circle cx="${prices.length>1?(prices.length-1)*(W/(prices.length-1)):0}" cy="${H-((prices[prices.length-1]-min)/range)*(H-4)-2}" r="2.5" fill="${color}"/>
       </svg>`;
-      cards.push(`<div onclick="document.getElementById('stockInput').value='${code}';searchStock();" style="background:#1e293b;border-radius:12px;padding:14px 14px 10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'};transition:border-color 0.2s" onmouseover="this.style.borderColor='${color}'" onmouseout="this.style.borderColor='${up?'#1e4a3a':'#4a1e1e'}'">
+      const sName=(NAMES[code]||w.name||code).replace(/'/g,'&#39;');
+      cards.push(`<div draggable="true"
+        ondragstart="event.dataTransfer.setData('wl-code','${code}')"
+        ondragover="event.preventDefault();this.style.opacity='0.6'"
+        ondragleave="this.style.opacity='1'"
+        ondrop="dropWatchlistCard(event,'${code}');this.style.opacity='1'"
+        onclick="document.getElementById('stockInput').value='${code}';searchStock();"
+        style="background:#1e293b;border-radius:12px;padding:14px 14px 10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'};transition:border-color 0.2s;position:relative"
+        onmouseover="this.style.borderColor='${color}'"
+        onmouseout="this.style.borderColor='${up?'#1e4a3a':'#4a1e1e'}'">
+        <button onclick="event.stopPropagation();toggleWatchlist('${code}','${sName}','${w.market}')" title="移除"
+          style="position:absolute;top:6px;right:6px;background:#334155;border:none;color:#94a3b8;width:18px;height:18px;border-radius:50%;font-size:11px;cursor:pointer;line-height:18px;padding:0;text-align:center;z-index:2">×</button>
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
-          <div style="flex:1">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <div style="font-size:13px;font-weight:600;color:#e2e8f0">${NAMES[code]||code}</div>
-              ${watchlistBtn(code,NAMES[code]||code,'tw')}
-            </div>
+          <div style="flex:1;padding-right:22px">
+            <div style="font-size:13px;font-weight:600;color:#e2e8f0">${NAMES[code]||w.name||code}</div>
             <div style="font-size:11px;color:#64748b">${code}</div>
           </div>
           <div style="text-align:right">
@@ -758,6 +802,18 @@ async function renderWatchlist(){
     }catch(e){}
   }
   el.innerHTML=cards.length?cards.join(''):'<div style="color:#64748b;padding:8px">載入失敗，請重試</div>';
+}
+
+function dropWatchlistCard(event, targetCode){
+  event.preventDefault();
+  const dragCode=event.dataTransfer.getData('wl-code');
+  if(!dragCode||dragCode===targetCode||!watchlistCache)return;
+  const fromIdx=watchlistCache.findIndex(w=>w.symbol===dragCode);
+  const toIdx=watchlistCache.findIndex(w=>w.symbol===targetCode);
+  if(fromIdx<0||toIdx<0)return;
+  const [item]=watchlistCache.splice(fromIdx,1);
+  watchlistCache.splice(toIdx,0,item);
+  renderWatchlist();
 }
 // GA4 事件追蹤包裝（gtag 未載入時 no-op）
 function trackEvent(eventName,params){
@@ -1934,7 +1990,7 @@ async function loadMarketData(){
     }else document.getElementById('taiex').textContent='盤後更新';
   }catch(e){document.getElementById('taiex').textContent='盤後更新';}
   try{
-    const _latestDateR=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});const _latestDateD=await _latestDateR.json();const _latestDate=_latestDateD[0]?.date||new Date().toISOString().slice(0,10);const r2=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=1&date=eq.'+_latestDate,{headers:SB_H});
+    const _latestDateR=await fetchDedup(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});const _latestDateD=await _latestDateR.json();const _latestDate=_latestDateD[0]?.date||new Date().toISOString().slice(0,10);const r2=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=1&date=eq.'+_latestDate,{headers:SB_H});
     const d2=await r2.json();
     if(d2&&d2.length>0){
       const val=d2[0].foreign_buy||0;
@@ -1954,7 +2010,7 @@ async function loadMarketData(){
 async function loadMarketBreadth(){
   try{
     // 取最新交易日
-    const r0=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const r0=await fetchDedup(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
     const j0=await r0.json();
     if(!j0||!j0.length)return;
     const latest=j0[0].date;
@@ -3643,32 +3699,24 @@ async function loadStockNews(code){
   const el=document.getElementById('stockNews');
   if(!el)return;
   el.style.display='block';
-  el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📰 最新新聞</div><div style="color:#64748b;padding:8px">載入中...</div>';
+  el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📰 相關新聞</div><div style="color:#64748b;padding:8px">載入中...</div>';
   try{
-    const today=new Date();
-    const from=new Date(today.getTime()-7*86400000);
-    const fromStr=from.toISOString().slice(0,10);
-    const toStr=today.toISOString().slice(0,10);
-    // 台股代號加 .TW 後綴給 Finnhub
-    const sym=/^\d+$/.test(code)?code+'.TW':code;
-    const r=await fetch(`https://finnhub.io/api/v1/company-news?symbol=${sym}&from=${fromStr}&to=${toStr}&token=${FINNHUB_KEY}`);
-    const news=await r.json();
+    const stockName=NAMES[code]||code;
+    const news=await twseProxy('news', code, {name: stockName});
     if(!Array.isArray(news)||news.length===0){
-      el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📰 最新新聞</div><div style="color:#64748b;padding:8px;font-size:12px">尚無近期新聞</div>';
+      el.innerHTML='<div style="font-size:13px;color:#64748b;margin-bottom:8px">📰 相關新聞</div><div style="color:#64748b;padding:8px;font-size:12px">尚無近期新聞</div>';
       return;
     }
-    const latest=news.slice(0,5);
-    let html='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">📰 最新新聞（近7天）</div>';
+    let html='<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">📰 相關新聞</div>';
     html+='<div style="display:flex;flex-direction:column;gap:6px">';
-    latest.forEach(n=>{
-      const d=new Date((n.datetime||0)*1000);
-      const dStr=d.toISOString().slice(0,10);
-      const headline=(n.headline||'').replace(/"/g,'&quot;').replace(/</g,'&lt;');
-      const url=n.url||'#';
-      const src=(n.source||'').replace(/</g,'&lt;');
+    news.forEach(n=>{
+      const d=n.pubDate?new Date(n.pubDate):null;
+      const dStr=(d&&!isNaN(d.getTime()))?d.toISOString().slice(0,10):'';
+      const title=(n.title||'').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+      const url=n.link||'#';
       html+=`<a href="${url}" target="_blank" rel="noopener noreferrer" style="display:block;background:#0f172a;border-radius:8px;padding:10px 12px;text-decoration:none;color:inherit;border:1px solid #1e293b">
-        <div style="font-size:13px;color:#e2e8f0;line-height:1.4;margin-bottom:4px">${headline}</div>
-        <div style="font-size:11px;color:#64748b">${dStr} · ${src} ↗</div>
+        <div style="font-size:13px;color:#e2e8f0;line-height:1.4;margin-bottom:4px">${title}</div>
+        <div style="font-size:11px;color:#64748b">${dStr} · Google News ↗</div>
       </a>`;
     });
     html+='</div>';
@@ -3710,16 +3758,43 @@ async function loadETFNav(code){
   if(!el) return;
   el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:4px">載入折溢價...</div>';
   try{
-    // 用 bwibbu 拿殖利率/本益比
+    // 優先用 ETF_topmessage 取得真實淨值
+    const navData = await twseProxy('etf_nav', code);
+    if(navData){
+      const nav = parseFloat(navData['每單位淨值']||navData['ETF淨值']||0);
+      const closePrice = parseFloat(navData['上市收盤價']||navData['市場收盤價']||navData['收盤價']||0);
+      const premiumRaw = navData['折溢價(%)']||navData['折溢價率(%)']||navData['折溢價'];
+      const navDate = navData['淨值日期']||navData['報告日期']||'';
+      let premium = premiumRaw!=null ? parseFloat(premiumRaw) : (nav>0&&closePrice>0 ? (closePrice-nav)/nav*100 : null);
+      const color = premium==null?'#94a3b8':premium>0?'#f87171':premium<0?'#34d399':'#94a3b8';
+      const bg = premium==null?'#1e293b':premium>0?'#450a0a':premium<0?'#052e16':'#1e293b';
+      const label = premium==null?'—':premium>0?'溢價':premium<0?'折價':'平價';
+      el.innerHTML=`<div style="margin-bottom:8px">
+        <div style="display:inline-flex;align-items:center;gap:6px;background:${bg};border:1px solid ${color};border-radius:20px;padding:4px 12px;margin-bottom:8px">
+          <span style="font-size:12px;color:${color};font-weight:700">${label}${premium!=null?' '+Math.abs(premium).toFixed(2)+'%':''}</span>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          ${nav>0?`<div style="background:#0f172a;border-radius:8px;padding:8px 12px;text-align:center;border:1px solid #1e293b">
+            <div style="font-size:10px;color:#64748b;margin-bottom:2px">最新淨值${navDate?' ('+navDate+')':''}</div>
+            <div style="font-size:16px;font-weight:700;color:#e2e8f0">${nav.toFixed(4)}</div>
+          </div>`:''}
+          ${closePrice>0?`<div style="background:#0f172a;border-radius:8px;padding:8px 12px;text-align:center;border:1px solid #1e293b">
+            <div style="font-size:10px;color:#64748b;margin-bottom:2px">市價</div>
+            <div style="font-size:16px;font-weight:700;color:#60a5fa">${closePrice.toFixed(2)}</div>
+          </div>`:''}
+        </div>
+      </div>`;
+      el.style.display='block';
+      return;
+    }
+  }catch(e){}
+  // Fallback: 用 bwibbu PB ratio 估算
+  try{
     const bwi = await twseProxy('bwibbu', code);
     if(!bwi){ el.innerHTML=''; return; }
-
     const yield_ = bwi['DividendYield'] ? parseFloat(bwi['DividendYield']) : null;
     const pe = bwi['PEratio'] ? parseFloat(bwi['PEratio']) : null;
     const pb = bwi['PBratio'] ? parseFloat(bwi['PBratio']) : null;
-
-    // 折溢價：(市價-淨值)/淨值 × 100%
-    // 用 PB ratio 估算：PB = 市價/淨值，折溢價 = (PB-1)×100%
     let navHtml = '';
     if(pb !== null){
       const premium = (pb - 1) * 100;
@@ -3730,7 +3805,6 @@ async function loadETFNav(code){
         <span style="font-size:10px;color:#64748b">PB ${pb.toFixed(2)}x</span>
       </div>`;
     }
-
     el.innerHTML = `<div style="margin-bottom:8px">
       ${navHtml}
       <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -3742,16 +3816,10 @@ async function loadETFNav(code){
           <div style="font-size:10px;color:#64748b;margin-bottom:2px">本益比</div>
           <div style="font-size:16px;font-weight:700;color:#e2e8f0">${pe.toFixed(1)}x</div>
         </div>`:''}
-        ${pb!==null?`<div style="background:#0f172a;border-radius:8px;padding:8px 12px;text-align:center;border:1px solid #1e293b">
-          <div style="font-size:10px;color:#64748b;margin-bottom:2px">股價淨值比</div>
-          <div style="font-size:16px;font-weight:700;color:#60a5fa">${pb.toFixed(2)}x</div>
-        </div>`:''}
       </div>
     </div>`;
     el.style.display = 'block';
-  }catch(e){
-    el.innerHTML = '';
-  }
+  }catch(e){ el.innerHTML = ''; }
 }
 
 async function searchETF(){
@@ -4513,7 +4581,7 @@ async function loadSupabaseData(){
     if(data&&data.length>0)document.getElementById('sentimentList').innerHTML=data.map((d,i)=>{const tag=d.sentiment_score>=0.6?'tag-up">正面':d.sentiment_score<=0.4?'tag-down">負面':'tag-neutral">中性';return '<div class="rank-item"><div class="rank-num">'+(i+1)+'</div><div><div class="rank-name">'+(NAMES[d.symbol]||d.symbol)+' '+d.symbol+'</div><div class="rank-sub">今日討論 '+d.mention_count+' 則</div></div><span class="tag '+tag+'</span></div>';}).join('');
   }catch(e){}
   try{
-    const _ld3=await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});const _ld3d=await _ld3.json();const _ld3date=_ld3d[0]?.date||new Date().toISOString().slice(0,10);const r=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=5&date=eq.'+_ld3date,{headers:SB_H});
+    const _ld3=await fetchDedup(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});const _ld3d=await _ld3.json();const _ld3date=_ld3d[0]?.date||new Date().toISOString().slice(0,10);const r=await fetch(BASE+'/institutional_investors?order=total_buy.desc&limit=5&date=eq.'+_ld3date,{headers:SB_H});
     const data=await r.json();
     if(data&&data.length>0)document.getElementById('institutionalList').innerHTML=data.map((d,i)=>{const who=d.foreign_buy>0&&d.investment_trust_buy>0?'外資+投信':d.foreign_buy>0?'外資':'投信';const nm=NAMES[d.symbol]||d.symbol;const nm2=nm===d.symbol?d.symbol:nm+' '+d.symbol;const sheets=Math.round((d.total_buy||0)/1000);return '<div class="rank-item"><div class="rank-num">'+(i+1)+'</div><div><div class="rank-name">'+nm2+'</div><div class="rank-sub">'+who+'</div></div><div class="rank-val up">+'+sheets.toLocaleString()+'張</div></div>';}).join('');
   }catch(e){}

@@ -11,7 +11,7 @@ serve(async (req) => {
   }
 
   try {
-    const { type, code } = await req.json();
+    const { type, code, name } = await req.json();
     let url = '';
     let data = null;
 
@@ -36,9 +36,22 @@ serve(async (req) => {
         const prefix = (code.startsWith('6') || code.startsWith('8')) ? 'otc' : 'tse';
         url = `https://mis.twse.com.tw/stock/api/getStockInfo.jsp?ex_ch=${prefix}_${code}.tw&json=1&delay=0`;
         break;
-      case 'etf_nav':
-        url = 'https://openapi.twse.com.tw/v1/ETF/fund';
-        break;
+      case 'etf_nav': {
+        // ETF 折溢價 - TWSE opendata ETF_topmessage
+        const navRes = await fetch('https://openapi.twse.com.tw/v1/opendata/ETF_topmessage', { headers });
+        if (!navRes.ok) throw new Error(`upstream HTTP ${navRes.status}`);
+        const navAll = await navRes.json();
+        const navItem = Array.isArray(navAll) && code
+          ? navAll.find((d: any) =>
+              d['基金代碼'] === code ||
+              d['ETFcode'] === code ||
+              d['基金代號'] === code
+            )
+          : null;
+        return new Response(JSON.stringify({ ok: true, data: navItem || null }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
       case 'margin':
         // 融資融券 - 個股信用交易
         if (!code) throw new Error('code required');
@@ -87,6 +100,36 @@ serve(async (req) => {
         return new Response(JSON.stringify({ ok: true, data }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
+      case 'news': {
+        const q = encodeURIComponent((name || code || '') + ' 台股');
+        const rssUrl = `https://news.google.com/rss/search?q=${q}&hl=zh-TW&gl=TW&ceid=TW:zh-Hant`;
+        const rssRes = await fetch(rssUrl, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }
+        });
+        if (!rssRes.ok) throw new Error(`RSS fetch failed: ${rssRes.status}`);
+        const xmlText = await rssRes.text();
+        const newsItems: { title: string; link: string; pubDate: string }[] = [];
+        const itemMatches = xmlText.matchAll(/<item>([\s\S]*?)<\/item>/g);
+        for (const match of itemMatches) {
+          const itemXml = match[1];
+          const titleMatch =
+            itemXml.match(/<title><!\[CDATA\[([\s\S]*?)\]\]><\/title>/) ||
+            itemXml.match(/<title>([\s\S]*?)<\/title>/);
+          const linkMatch = itemXml.match(/<link>([\s\S]*?)<\/link>/);
+          const pubDateMatch = itemXml.match(/<pubDate>([\s\S]*?)<\/pubDate>/);
+          if (titleMatch) {
+            newsItems.push({
+              title: titleMatch[1].trim(),
+              link: linkMatch?.[1]?.trim() || '#',
+              pubDate: pubDateMatch?.[1]?.trim() || '',
+            });
+          }
+          if (newsItems.length >= 5) break;
+        }
+        return new Response(JSON.stringify({ ok: true, data: newsItems }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
       default:
         throw new Error('unknown type: ' + type);
     }

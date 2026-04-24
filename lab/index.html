@@ -241,6 +241,12 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content active" id="tab-tw">
     <div class="section">
+      <div class="section-title" id="watchlistSectionTitle">⭐ 我的自選股 (0)</div>
+      <div id="watchlistGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:4px">
+        <div style="color:#64748b;padding:8px;font-size:13px">登入後顯示自選股</div>
+      </div>
+    </div>
+    <div class="section">
       <div class="section-title">大盤總覽</div>
       <div class="grid">
         <div class="card"><h3>加權指數</h3><div class="value" id="taiex">載入中...</div><div class="sub" id="taiexChange">—</div></div>
@@ -426,7 +432,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-etf">
     <div class="section">
@@ -478,7 +484,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-us">
     <div class="section">
@@ -505,7 +511,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-fund">
     <div class="section">
@@ -514,7 +520,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-futures">
     <div class="section">
@@ -591,7 +597,7 @@ textarea{height:80px;resize:vertical}
         資料來源：TAIFEX 期交所 + Finnhub 國際商品。
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-tools">
     <div class="section">
@@ -601,7 +607,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-options">
     <div class="section">
@@ -665,7 +671,7 @@ textarea{height:80px;resize:vertical}
         </a>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-screener">
     <div class="section">
@@ -694,7 +700,7 @@ textarea{height:80px;resize:vertical}
       </div>
       <div id="screenerResult"><div style="color:#64748b;padding:8px">請設定篩選條件後按「開始選股」</div></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-bonds">
     <div class="section">
@@ -713,7 +719,7 @@ textarea{height:80px;resize:vertical}
       <div class="section-title">🇹🇼 台灣債券 ETF</div>
       <div id="bondsTW" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px"></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-sector">
     <div class="section">
@@ -723,7 +729,7 @@ textarea{height:80px;resize:vertical}
         <div style="color:#64748b;padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-macro">
     <div class="section">
@@ -773,7 +779,7 @@ textarea{height:80px;resize:vertical}
         <div style="font-size:11px;color:#64748b;margin-top:8px;text-align:center">數值由 ETF 殖利率近似（TLT/IEF/SHY 等），實際殖利率以 Treasury.gov 為準</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-portfolio">
     <div class="section">
@@ -800,7 +806,7 @@ textarea{height:80px;resize:vertical}
       <div id="portfolioList"></div>
       <div id="portfolioAlloc" style="margin-top:14px"></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-crypto">
     <div class="section">
@@ -829,10 +835,10 @@ textarea{height:80px;resize:vertical}
       <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門幣種</div>
       <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供</div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
 </div>
-<script src="app2.js?v=135"></script>
+<script src="app2.js?v=136"></script>
 
 <script>
 (function(){
