@@ -3301,6 +3301,21 @@ async function loadMonthlyRevenue(code){
       return {revenue_year:year, revenue_month:month, revenue:rev, mom, yoy};
     };
     const recent = rows.slice(-12).map(parseRow);
+    // 資料不足時顯示說明
+    if(recent.length < 3){
+      const latest = recent[recent.length-1];
+      const latestRevDisplay = latest ? (latest.revenue/1e5).toFixed(1) : '-';
+      el.innerHTML=`<div style="font-size:12px;color:#93c5fd;font-weight:700;margin-bottom:10px;border-left:3px solid #2563eb;padding-left:8px">
+        📊 月營收 · ${latest ? (parseInt(latest.year_month.substring(0,3))+1911)+'年'+parseInt(latest.year_month.substring(3,5))+'月' : '-'}
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+        <div style="background:#0f172a;border-radius:8px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748b;margin-bottom:4px">當月營收</div><div style="font-size:16px;font-weight:700;color:#e2e8f0">${latestRevDisplay}億</div></div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748b;margin-bottom:4px">月增率</div><div style="font-size:16px;font-weight:700;color:${latest?.mom>=0?'#34d399':'#f87171'}">${latest?(latest.mom>=0?'+':'')+latest.mom.toFixed(1)+'%':'-'}</div></div>
+        <div style="background:#0f172a;border-radius:8px;padding:10px;text-align:center"><div style="font-size:11px;color:#64748b;margin-bottom:4px">年增率</div><div style="font-size:16px;font-weight:700;color:${latest?.yoy>=0?'#34d399':'#f87171'}">${latest?(latest.yoy>=0?'+':'')+latest.yoy.toFixed(1)+'%':'-'}</div></div>
+      </div>
+      <div style="font-size:11px;color:#475569;text-align:center;padding:8px">📈 走勢圖將於累積3個月資料後顯示</div>`;
+      return;
+    }
     const latest = recent[recent.length-1];
     const prev = recent[recent.length-2];
     const latestRev = latest.revenue/1e5; // TWSE 單位是千元，/1e5 = 億
