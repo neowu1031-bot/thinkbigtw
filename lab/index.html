@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoneyRadar™ | 全方位即時看盤・台股・ETF・美股・外匯・加密貨幣</title>
+<meta name="description" content="台灣最完整投資工具，台股即時報價、ETF配息、美股行情、全球外匯黃金、加密貨幣，一站式全方位投資資訊平台">
+<meta name="keywords" content="台股,ETF,美股,外匯,黃金,加密貨幣,股票行情,投資工具">
+<meta property="og:title" content="MoneyRadar™ | 全方位看盤平台">
+<meta property="og:description" content="台灣最完整一站式投資工具">
+<meta property="og:url" content="https://thinkbigtw.com/lab">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MoneyRadar™ | 全方位看盤平台">
+<meta name="twitter:description" content="台灣最完整一站式投資工具">
+<link rel="canonical" href="https://thinkbigtw.com/lab/">
+<link rel="icon" type="image/png" href="/lab/icon.png">
+<link rel="apple-touch-icon" href="/lab/icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MoneyRadar™">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.1.3/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- Google Analytics GA4 (請把 G-7V41XYLLP5 換成你的實際 ID，例如 G-7V41XYLLP5) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;color:#e2e8f0;font-family:-apple-system,sans-serif;min-height:100vh}
+.lock-screen{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px}
+h1{font-size:26px;color:#60a5fa;margin-bottom:6px;font-weight:700}
+.subtitle{color:#94a3b8;margin-bottom:36px;font-size:14px}
+input[type=password]{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:14px 20px;border-radius:10px;font-size:16px;width:300px;display:block;margin:0 auto 12px;text-align:center;letter-spacing:6px}
+input[type=password]:focus{outline:none;border-color:#60a5fa}
+input[type=text],textarea{background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:10px 14px;border-radius:8px;font-size:14px;width:100%;margin-top:8px}
+textarea{height:80px;resize:vertical}
+.btn{background:#2563eb;color:#fff;border:none;padding:14px 40px;border-radius:10px;font-size:16px;cursor:pointer;width:300px;font-weight:600}
+.btn:hover{background:#1d4ed8}
+.btn-sm{background:#1e40af;color:#fff;border:none;padding:8px 20px;border-radius:8px;font-size:13px;cursor:pointer;margin-top:8px;width:100%}
+.btn-sm:hover{background:#1e3a8a}
+.error{color:#f87171;font-size:13px;margin-top:10px}
+.success{color:#34d399;font-size:13px;margin-top:6px}
+.dashboard{display:none;max-width:1100px;margin:0 auto;padding-bottom:60px}
+.header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px 0;margin-bottom:0}
+.header h1{font-size:20px;color:#f0f9ff}
+.badge{background:#1e293b;padding:4px 14px;border-radius:20px;font-size:12px;color:#94a3b8}
+.tab-nav-wrap{margin:16px 24px 0}
+.tab-nav{display:flex;gap:0;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-nav-row1{border-bottom:1px solid #1e293b}
+.tab-nav-row2{border-bottom:2px solid #1e293b;background:#0f172a}
+.tab-nav::-webkit-scrollbar{height:4px}
+.tab-nav::-webkit-scrollbar-thumb{background:#334155;border-radius:2px}
+.tab-row-label{font-size:10px;color:#475569;font-weight:700;padding:0 10px 0 2px;letter-spacing:1px;text-transform:uppercase;flex-shrink:0;border-right:1px solid #1e293b;margin-right:4px}
+.tab-btn{padding:11px 16px;border:none;background:none;color:#94a3b8;font-size:13px;font-weight:600;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all 0.2s;flex-shrink:0}
+.tab-btn:hover{color:#e2e8f0}
+.tab-btn.active{color:#60a5fa;border-bottom-color:#2563eb}
+.tab-content{display:none;padding:24px}
+.tab-content.active{display:block}
+.section{margin-bottom:28px}
+.section-title{font-size:15px;font-weight:700;color:#93c5fd;margin-bottom:12px;padding-left:10px;border-left:3px solid #2563eb}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:12px}
+.card{background:#1e293b;border-radius:12px;padding:18px;border:1px solid #334155}
+.card h3{font-size:11px;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.card .value{font-size:24px;font-weight:700;color:#e2e8f0}
+.card .sub{font-size:12px;color:#64748b;margin-top:4px}
+.up{color:#34d399}.down{color:#f87171}
+.chart-container{background:#1e293b;border-radius:12px;border:1px solid #334155;padding:16px;margin-bottom:20px}
+.chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.chart-title{font-size:14px;font-weight:700;color:#e2e8f0}
+.chart-range{display:flex;gap:6px}
+.range-btn{padding:4px 10px;border:1px solid #334155;background:none;color:#94a3b8;font-size:12px;border-radius:6px;cursor:pointer}
+.range-btn.active{background:#2563eb;border-color:#2563eb;color:#fff}
+.stock-search{display:flex;gap:10px;margin-bottom:14px}
+.stock-search input{flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:10px;font-size:15px}
+.stock-search input:focus{outline:none;border-color:#60a5fa}
+.stock-search button{background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:10px;font-size:15px;cursor:pointer;white-space:nowrap}
+.stock-result{background:#1e293b;border-radius:12px;padding:20px;border:1px solid #334155;margin-bottom:14px;display:none}
+.stock-result h2{font-size:20px;font-weight:700;margin-bottom:4px}
+.stock-meta{font-size:13px;color:#94a3b8;margin-bottom:14px}
+.stock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stock-item{background:#0f172a;border-radius:8px;padding:12px}
+.stock-item .label{font-size:11px;color:#64748b;margin-bottom:4px}
+.stock-item .val{font-size:16px;font-weight:600}
+.rank-list{background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden;margin-bottom:14px}
+.rank-item{display:flex;align-items:center;padding:12px 16px;border-bottom:1px solid #0f172a;gap:12px}
+.rank-item:last-child{border-bottom:none}
+.rank-num{font-size:13px;color:#64748b;width:24px}
+.rank-name{flex:1;font-size:14px;font-weight:600}
+.rank-sub{font-size:12px;color:#94a3b8}
+.rank-val{font-size:14px;font-weight:700}
+.ai-card{background:#1e293b;border-radius:12px;padding:20px;border:1px solid #334155;margin-bottom:14px}
+.ai-card .ai-tag{font-size:11px;background:#1e40af;color:#93c5fd;padding:2px 8px;border-radius:20px;display:inline-block;margin-bottom:10px}
+.ai-card .ai-text{font-size:14px;line-height:1.8;color:#cbd5e1}
+.ai-card .ai-stock{font-weight:700;color:#60a5fa}
+.tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;margin-right:4px}
+.tag-up{background:#064e3b;color:#34d399}
+.tag-down{background:#450a0a;color:#f87171}
+.tag-neutral{background:#1e293b;color:#94a3b8}
+.coming{background:#1e293b;border-radius:12px;padding:50px 20px;text-align:center;border:1px dashed #334155;color:#475569;margin-bottom:14px;font-size:14px}
+.logo-text{font-size:22px;font-weight:800;color:#60a5fa;letter-spacing:2px;margin-bottom:16px;border:2px solid #2563eb;padding:8px 18px;border-radius:8px;display:inline-block}
+.footer{text-align:center;padding:30px 0;color:#334155;font-size:12px}
+
+/* ===== RWD 手機版 ===== */
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr 1fr!important;gap:8px!important;}
+  .cards{grid-template-columns:1fr 1fr!important;}
+  .stock-grid{grid-template-columns:1fr 1fr!important;}
+  #taiexChart{height:220px!important;}
+  .tab-nav-wrap{margin:12px 8px 0!important;}
+  .tab-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
+  .tab-btn{padding:8px 12px!important;font-size:12px!important;flex-shrink:0;}
+  .tab-row-label{font-size:9px!important;padding:0 6px 0 2px!important;}
+  .section-title{font-size:14px!important;}
+  .card{padding:12px!important;}
+  .card .value{font-size:20px!important;}
+  #watchlistGrid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))!important;}
+  #cryptoGrid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))!important;}
+  #etfHotGrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;}
+  #usHotGrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;}
+  #fxGrid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))!important;}
+  #globalIndicesGrid{grid-template-columns:1fr 1fr!important;}
+  .stock-search{flex-direction:column!important;}
+  .stock-search input{width:100%!important;}
+  .stock-search button{width:100%!important;}
+  #stockChartWrap,#etfChartWrap{height:220px!important;}
+  h2{font-size:18px!important;}
+  .dashboard{padding:0 8px 60px!important;}
+  .header{padding:16px 12px 0!important;}
+  .tab-content{padding:14px 10px!important;}
+  .section{padding:4px 0!important;margin-bottom:18px!important;}
+}
+@media(max-width:480px){
+  .grid{grid-template-columns:1fr!important;}
+  .cards{grid-template-columns:1fr!important;}
+  .card .value{font-size:18px!important;}
+  .card h3{font-size:10px!important;}
+  .tab-btn{padding:6px 10px!important;font-size:11px!important;}
+  .tab-nav-wrap{margin:8px 4px 0!important;}
+  .tab-row-label{display:none;}
+  .tab-content{padding:10px 4px!important;}
+  .dashboard{padding:0 4px 40px!important;}
+  .header h1{font-size:17px!important;}
+  .badge{font-size:10px!important;padding:3px 8px!important;}
+  .stock-grid{grid-template-columns:1fr 1fr!important;gap:6px!important;}
+  .stock-item{padding:8px!important;}
+  .stock-item .val{font-size:14px!important;}
+  #watchlistGrid{grid-template-columns:1fr 1fr!important;}
+  #cryptoGrid{grid-template-columns:1fr 1fr!important;}
+  #etfHotGrid,#usHotGrid,#fxGrid{grid-template-columns:1fr 1fr!important;}
+  #globalIndicesGrid{grid-template-columns:1fr 1fr!important;}
+  #taiexChart{height:180px!important;}
+  #stockChartWrap,#etfChartWrap,#usChartWrap{height:200px!important;}
+  #indicatorChart{height:110px!important;}
+  input[type=text],input[type=number],select{font-size:13px!important;padding:8px 10px!important;}
+  .chart-range .range-btn{padding:3px 8px!important;font-size:11px!important;}
+  #dividendCalendar{padding:10px 6px!important;font-size:12px!important;}
+  #dividendCalendar > div{grid-template-columns:60px 1fr 80px 70px!important;gap:4px!important;font-size:11px!important;}
+  #stockRevenue > div:last-child{padding:12px 6px 4px!important;}
+  .ai-card{padding:14px!important;}
+  .ai-card .ai-text{font-size:13px!important;}
+}
+@media(max-width:375px){
+  .grid,.cards{grid-template-columns:1fr!important;gap:6px!important;}
+  .stock-grid{grid-template-columns:1fr 1fr!important;}
+  .tab-btn{padding:5px 8px!important;font-size:11px!important;}
+  .card .value{font-size:17px!important;}
+  .header h1{font-size:16px!important;}
+  #watchlistGrid,#cryptoGrid,#etfHotGrid,#usHotGrid,#fxGrid,#globalIndicesGrid{grid-template-columns:1fr!important;}
+  .dashboard{padding:0 2px 40px!important;}
+  .logo-text{font-size:18px!important;padding:6px 14px!important;}
+  input[type=password]{width:260px!important;}
+  .btn{width:260px!important;padding:12px 20px!important;}
+}
+</style>
+</head>
+<body>
+<div class="lock-screen" id="lockScreen">
+  <canvas id="lockKline" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.2;pointer-events:none;z-index:0"></canvas>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;width:100%">
+  
+  <h1 style="font-size:22px;font-weight:900;color:#f0f9ff;letter-spacing:-0.5px;margin:0;cursor:pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">Money<span style="color:#38bdf8">Radar</span><span style="font-size:13px;color:#64748b;font-weight:400">™</span></h1>
+  <p class="subtitle">MoneyRadar™ · 全方位看盤平台</p>
+  <div id="authBox" style="width:300px">
+    <div id="authTabs" style="display:flex;gap:6px;margin-bottom:14px;background:#1e293b;border-radius:8px;padding:4px">
+      <button id="authTabLogin" onclick="switchAuthTab('login')" style="flex:1;background:#2563eb;color:#fff;border:none;padding:8px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">登入</button>
+      <button id="authTabSignup" onclick="switchAuthTab('signup')" style="flex:1;background:transparent;color:#94a3b8;border:none;padding:8px;border-radius:6px;font-size:13px;cursor:pointer">免費註冊</button>
+    </div>
+    <input type="email" id="authEmail" placeholder="Email" autocomplete="email" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px;width:100%;margin-bottom:8px;letter-spacing:normal;text-align:left">
+    <input type="password" id="authPassword" placeholder="密碼（至少 6 字）" autocomplete="current-password" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px;width:100%;margin-bottom:10px;letter-spacing:normal;text-align:left" onkeydown="if(event.key==='Enter')authSubmit()">
+    <button class="btn" onclick="authSubmit()" style="margin-bottom:8px;width:100%" id="authSubmitBtn">登入</button>
+    <div style="text-align:right;margin-bottom:10px"><a href="#" onclick="forgotPassword();return false;" style="font-size:12px;color:#60a5fa;text-decoration:none">忘記密碼？</a></div>
+    <button onclick="loginGoogle()" style="background:#fff;color:#1f2937;border:none;padding:11px;border-radius:8px;font-size:14px;cursor:pointer;width:100%;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34.5 6.5 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 19 13 24 13c3.1 0 5.8 1.2 7.9 3l5.7-5.7C34.5 6.5 29.5 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.4 0 10.3-2.1 14-5.4l-6.5-5.5c-2 1.4-4.6 2.3-7.5 2.3-5.2 0-9.6-3.3-11.2-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.2-4 5.7l6.5 5.5c-.5.5 6.7-4.9 6.7-15.2 0-1.3-.1-2.4-.5-3.5z"/></svg>
+      使用 Google 登入
+    </button>
+    <div style="font-size:11px;color:#64748b;text-align:center;margin-bottom:8px">需完成 Google Cloud Console 設定後生效</div>
+    <div style="text-align:center;margin-top:6px"><a href="#" onclick="showPwBackdoor();return false;" style="font-size:11px;color:#475569;text-decoration:none">管理員入口</a></div>
+  </div>
+  <div id="pwBackdoor" style="display:none;width:300px;margin-top:14px;border-top:1px solid #1e293b;padding-top:14px">
+    <input type="password" id="pwInput" placeholder="管理員密碼" style="background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px;width:100%;margin-bottom:8px;letter-spacing:normal;text-align:left" onkeydown="if(event.key==='Enter')checkPw()">
+    <button onclick="checkPw()" style="background:#475569;color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;cursor:pointer;width:100%">管理員進入</button>
+  </div>
+  <div class="error" id="errMsg"></div>
+</div>
+  </div>
+<div class="dashboard" id="dashboard">
+  <div class="header">
+    <h1 style="font-size:22px;font-weight:900;color:#f0f9ff;letter-spacing:-0.5px;margin:0;cursor:pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">Money<span style="color:#38bdf8">Radar</span><span style="font-size:13px;color:#64748b;font-weight:400">™</span></h1>
+    <div style="display:flex;align-items:center;gap:10px">
+      <span class="badge" id="userBadge">—</span>
+      <button id="logoutBtn" onclick="logoutUser()" style="display:none;background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer">登出</button>
+    </div>
+  </div>
+  <div class="tab-nav-wrap">
+    <div class="tab-nav tab-nav-row1">
+      <span class="tab-row-label">主要</span>
+      <button class="tab-btn" onclick="switchTab('watchlist',this)">⭐ 我的清單</button>
+      <button class="tab-btn active" onclick="switchTab('tw',this)">台股</button>
+      <button class="tab-btn" onclick="switchTab('etf',this)">ETF</button>
+      <button class="tab-btn" onclick="switchTab('us',this)">美股</button>
+      
+      <button class="tab-btn" onclick="switchTab('fund',this)">外匯/黃金</button>
+      <button class="tab-btn" onclick="switchTab('crypto',this)">加密貨幣</button>
+    </div>
+    <div class="tab-nav tab-nav-row2">
+      <span class="tab-row-label">進階</span>
+      <button class="tab-btn" onclick="switchTab('futures',this)">期貨</button>
+      <button class="tab-btn" onclick="switchTab('options',this)">選擇權</button>
+      <button class="tab-btn" onclick="switchTab('bonds',this)">債券</button>
+      <button class="tab-btn" onclick="switchTab('sector',this)">產業</button>
+      <button class="tab-btn" onclick="switchTab('macro',this)">總經</button>
+      <button class="tab-btn" onclick="switchTab('screener',this)">選股</button>
+      <button class="tab-btn" onclick="switchTab('tools',this)">理財工具</button>
+      <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
+    </div>
+  </div>
+  <div class="tab-content active" id="tab-tw">
+    <div class="section">
+      <div class="section-title" id="watchlistSectionTitle">⭐ 我的自選股 (0)</div>
+      <div id="watchlistGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:4px">
+        <div style="color:#64748b;padding:8px;font-size:13px">登入後顯示自選股</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">大盤總覽</div>
+      <div class="grid">
+        <div class="card"><h3>加權指數</h3><div class="value" id="taiex">載入中...</div><div class="sub" id="taiexChange">—</div></div>
+        <div class="card"><h3>今日高點</h3><div class="value" id="taiexHigh">—</div></div><div class="card"><h3>今日低點</h3><div class="value" id="taiexLow">—</div></div>
+        <div class="card"><h3>外資今日</h3><div class="value" id="foreign">載入中...</div><div class="sub">張買賣超</div></div>
+      </div>
+      <div class="grid" style="margin-top:10px">
+        <div class="card"><h3>上漲家數</h3><div class="value up" id="breadthUp">—</div><div class="sub" id="breadthUpPct">—</div></div>
+        <div class="card"><h3>下跌家數</h3><div class="value down" id="breadthDown">—</div><div class="sub" id="breadthDownPct">—</div></div>
+        <div class="card"><h3>平盤家數</h3><div class="value" id="breadthFlat">—</div><div class="sub" id="breadthFlatPct">—</div></div>
+        <div class="card"><h3>漲跌比</h3><div class="value" id="breadthRatio">—</div><div class="sub">上漲/下跌</div></div>
+      </div>
+      <div class="section-title" style="margin-top:16px">📈 加權指數走勢</div>
+      <div class="chart-range" style="margin-bottom:8px">
+        <button class="range-btn active" onclick="loadTaiexChart(30,this)">1M</button>
+        <button class="range-btn" onclick="loadTaiexChart(90,this)">3M</button>
+        <button class="range-btn" onclick="loadTaiexChart(180,this)">6M</button>
+        <button class="range-btn" onclick="loadTaiexChart(365,this)">1Y</button>
+      </div>
+      <div id="taiexChart" style="width:100%;height:220px;background:#1e293b;border-radius:12px;border:1px solid #334155"></div>
+      <div class="section-title" style="margin-top:16px">🏭 產業別表現（今日）</div>
+      <div id="twSectorBars" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155">
+        <div style="color:#64748b;font-size:12px">載入中...</div>
+      </div>
+      <div class="section-title" style="margin-top:16px">🌍 國際指數</div>
+      <div class="grid" id="globalIndicesGrid">
+        <div class="card"><h3>道瓊 DIA</h3><div class="value" id="idx_DJI">載入中...</div><div class="sub" id="idx_DJI_pct">—</div></div>
+        <div class="card"><h3>那斯達克 QQQ</h3><div class="value" id="idx_IXIC">載入中...</div><div class="sub" id="idx_IXIC_pct">—</div></div>
+        <div class="card"><h3>S&amp;P500 SPY</h3><div class="value" id="idx_GSPC">載入中...</div><div class="sub" id="idx_GSPC_pct">—</div></div>
+        <div class="card"><h3>日經 EWJ</h3><div class="value" id="idx_N225">載入中...</div><div class="sub" id="idx_N225_pct">—</div></div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">個股搜尋</div>
+      <div class="stock-search">
+        <input type="text" id="stockInput" placeholder="輸入股票代號，例如：2330" onkeydown="if(event.key==='Enter')searchStock()">
+        <button onclick="searchStock()">查詢</button>
+      </div>
+      <div class="stock-result" id="stockResult">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <h2 id="stockName" style="margin:0">—</h2>
+          <div id="disposeWrap"></div>
+          <button id="watchlistBtn" onclick="toggleWatchlist()" style="background:#1d4ed8;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">＋ 加入自選</button>
+          <button id="shareStockBtn" onclick="shareStock()" style="background:#0f172a;color:#94a3b8;border:1px solid #334155;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">🔗 分享</button>
+        </div>
+        <div class="stock-meta" id="stockMeta">—</div>
+        <div class="stock-grid">
+          <div class="stock-item"><div class="label">收盤價</div><div class="val" id="sClose">—</div></div>
+          <div class="stock-item"><div class="label">漲跌幅</div><div class="val" id="sChange">—</div></div>
+          <div class="stock-item"><div class="label">成交量</div><div class="val" id="sVol">—</div></div>
+          <div class="stock-item"><div class="label">開盤</div><div class="val" id="sOpen">—</div></div>
+          <div class="stock-item"><div class="label">最高</div><div class="val" id="sHigh">—</div></div>
+          <div class="stock-item"><div class="label">最低</div><div class="val" id="sLow">—</div></div>
+        </div>
+        <div id="stockFundamentals" style="display:none;margin:12px 0"></div>
+        <div id="chipWrap" style="display:none;margin-bottom:12px"></div>
+<div id="etfHoldingsWrap" style="margin-top:8px;display:none"></div>
+<div id="revenueWrap" style="margin-top:8px;display:none"></div>
+<div id="oddLotWrap" style="margin-top:8px;display:none"></div>
+<div id="marginWrap" style="margin-top:8px;display:none"></div>
+          <div id="stockDividendWrap" style="display:none;margin-bottom:12px"></div>
+          <div id="stockRevenue" style="display:none;margin:14px 0"></div>
+        <div id="souvenirWrap" style="margin-bottom:12px"></div>
+          <div id="stockNews" style="display:none;margin:14px 0"></div>
+        <div class="chart-container" id="stockChartContainer" style="display:none">
+          <div class="chart-header">
+            <span class="chart-title" id="stockChartTitle">K線圖</span>
+            <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">
+              <div class="chart-range" id="dayKBtns">
+                <span style="font-size:10px;color:#475569;margin-right:4px">日K</span>
+                <button class="range-btn active" onclick="switchChartMode('day',30,this)">1M</button>
+                <button class="range-btn" onclick="switchChartMode('day',90,this)">3M</button>
+                <button class="range-btn" onclick="switchChartMode('day',180,this)">6M</button>
+                <button class="range-btn" onclick="switchChartMode('day',365,this)">1Y</button>
+                <span style="font-size:10px;color:#475569;margin:0 4px 0 8px">週K</span>
+                <button class="range-btn" onclick="switchChartMode('week',365,this)">1Y</button>
+                <button class="range-btn" onclick="switchChartMode('week',730,this)">2Y</button>
+                <button class="range-btn" onclick="switchChartMode('week',1095,this)">3Y</button>
+                <span style="font-size:10px;color:#475569;margin:0 4px 0 8px">月K</span>
+                <button class="range-btn" onclick="switchChartMode('month',730,this)">2Y</button>
+                <button class="range-btn" onclick="switchChartMode('month',1095,this)">3Y</button>
+              </div>
+              <div class="chart-range" id="minKBtns">
+                <span style="font-size:10px;color:#475569;margin-right:4px">分K</span>
+                <button class="range-btn" onclick="switchChartMode('min',1,this)">1分</button>
+                <button class="range-btn" onclick="switchChartMode('min',5,this)">5分</button>
+                <button class="range-btn" onclick="switchChartMode('min',15,this)">15分</button>
+                <button class="range-btn" onclick="switchChartMode('min',30,this)">30分</button>
+                <button class="range-btn" onclick="switchChartMode('min',60,this)">60分</button>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+              <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b">
+                <div style="font-size:10px;color:#64748b;margin-bottom:4px">📈 分時走勢</div>
+                <div id="intradayChartWrap"><div style="color:#475569;font-size:11px">查詢個股後顯示</div></div>
+              </div>
+              <div style="background:#0f172a;border-radius:8px;padding:10px;border:1px solid #1e293b">
+                <div style="font-size:10px;color:#64748b;margin-bottom:4px">📊 五檔委買委賣</div>
+                <div id="realtimeQuote"><div style="color:#475569;font-size:11px">查詢個股後顯示</div></div>
+              </div>
+            </div>
+            <div id="stockChartWrap" style="height:240px"></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding:0 4px;flex-wrap:wrap">
+            <span style="font-size:12px;color:#64748b">RSI(14):</span>
+            <span id="stockRSI" style="font-size:14px;font-weight:700;color:#e2e8f0">—</span>
+            <span id="stockRSILabel" style="font-size:12px;padding:2px 8px;border-radius:4px"></span>
+            <span style="font-size:12px;color:#64748b;margin-left:8px">MA5:</span>
+            <span style="font-size:12px;color:#fbbf24">■</span>
+            <span style="font-size:12px;color:#64748b;margin-left:4px">MA20:</span>
+            <span style="font-size:12px;color:#a78bfa">■</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:10px;padding:0 4px;flex-wrap:wrap">
+            <span style="font-size:12px;color:#64748b">副圖指標：</span>
+            <button class="indicator-btn" data-ind="none" onclick="switchIndicator('none',this)" style="padding:4px 10px;border:1px solid #2563eb;background:#2563eb;color:#fff;font-size:12px;border-radius:6px;cursor:pointer">無</button>
+            <button class="indicator-btn" data-ind="macd" onclick="switchIndicator('macd',this)" style="padding:4px 10px;border:1px solid #334155;background:#1e293b;color:#94a3b8;font-size:12px;border-radius:6px;cursor:pointer">MACD</button>
+            <button class="indicator-btn" data-ind="kd" onclick="switchIndicator('kd',this)" style="padding:4px 10px;border:1px solid #334155;background:#1e293b;color:#94a3b8;font-size:12px;border-radius:6px;cursor:pointer">KD</button>
+          </div>
+          <div id="indicatorWrap" style="display:none;margin-top:10px">
+            <div id="indicatorChart" style="height:140px"></div>
+            <div id="indicatorLegend" style="font-size:11px;color:#64748b;margin-top:4px;padding:0 4px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📣 價格警示</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
+        <input type="text" id="alertSymbol" placeholder="股票代號" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <select id="alertCondition" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px">
+          <option value="above">漲到</option>
+          <option value="below">跌到</option>
+        </select>
+        <input type="number" id="alertPrice" placeholder="目標價" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <button onclick="addAlert()" style="background:#2563eb;color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:13px;cursor:pointer">新增警示</button>
+        <button onclick="requestNotifyPermission()" id="notifyBtn" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer">🔔 開啟通知</button>
+      </div>
+      <div id="alertList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
+      <div class="section-title">選股篩選器</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
+        <select id="filterType" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px">
+          <option value="up">漲幅排序</option>
+          <option value="down">跌幅排序</option>
+          <option value="volume">成交量排序</option>
+          <option value="price_asc">價格低→高</option>
+          <option value="price_desc">價格高→低</option>
+        </select>
+        <input type="number" id="filterMinPct" placeholder="漲幅>%" title="最小漲幅%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <input type="number" id="filterMinVol" placeholder="成交量>張" title="最小成交量(張)" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:110px">
+        <input type="number" id="filterMinPrice" placeholder="價格≥" title="最低價" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:80px">
+        <input type="number" id="filterMaxPrice" placeholder="價格≤" title="最高價" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:80px">
+        <input type="number" id="filterMaxPE" placeholder="PE<" title="最大本益比" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:80px">
+        <input type="number" id="filterMinYield" placeholder="殖利率>%" title="最小殖利率%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
+        <input type="number" id="filterMinROE" placeholder="ROE>%" title="最小ROE%" style="background:#1e293b;color:#e2e8f0;border:1px solid #334155;padding:6px 10px;border-radius:6px;font-size:13px;width:90px">
+        <button onclick="applyFilter()" style="background:#2563eb;color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:13px;cursor:pointer">篩選</button>
+        <button onclick="applyFilter(true)" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer">重置</button>
+      </div>
+      <div id="filterResult" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
+      <div class="section-title">今日市場排行</div>
+      <div style="display:flex;gap:8px;margin-bottom:12px">
+        <button onclick="loadRanking('up')" id="rankUpBtn" style="background:#166534;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">▲ 漲幅</button>
+        <button onclick="loadRanking('down')" id="rankDownBtn" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">▼ 跌幅</button>
+        <button onclick="loadRanking('volume')" id="rankVolBtn" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">📊 成交量</button>
+      </div>
+      <div id="rankingList" style="display:flex;flex-direction:column;gap:8px"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">AI每日解讀</div>
+      <div class="ai-card">
+        <span class="ai-tag">AI 生成 · 僅供參考</span>
+        <button onclick="requirePro('AI 個股深度解讀')" style="float:right;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0a0f1e;border:none;padding:4px 12px;border-radius:14px;font-size:11px;cursor:pointer;font-weight:700">⭐ 升級 PRO 解鎖深度版</button>
+        <div class="ai-text" id="aiText">
+          <span class="ai-stock">台積電 (2330)</span> 今日外資買超逾5,000張，站上月線，技術面轉強。<br><br>
+          <span class="ai-stock">鴻海 (2317)</span> 籌碼面出現大戶承接訊號，PTT討論熱度為近30日最高。
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:#475569">注意：以上內容為AI自動生成，不構成投資建議</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">輿情雷達（PTT討論熱度）</div>
+      <div class="rank-list" id="sentimentList">
+        <div class="rank-item"><div class="rank-num">—</div><div><div class="rank-name">載入中...</div></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">三大法人今日買超排行</div>
+      <div class="rank-list" id="institutionalList">
+        <div class="rank-item"><div class="rank-num">—</div><div><div class="rank-name">載入中...</div></div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📅 近期除權息（未來30天）</div>
+      <div id="dividendCalendar" style="background:#1e293b;border-radius:12px;border:1px solid #334155;padding:14px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-etf">
+    <div class="section">
+      <div class="section-title">ETF 搜尋</div>
+      <div class="stock-search">
+        <input type="text" id="etfInput" placeholder="輸入ETF代號，例如：0050、00878" onkeydown="if(event.key==='Enter')searchETF()">
+        <button onclick="searchETF()">查詢</button>
+      </div>
+      <div class="stock-result" id="etfResult">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <h2 id="etfName" style="margin:0">—</h2>
+          <button id="shareETFBtn" onclick="shareETF()" style="background:#0f172a;color:#94a3b8;border:1px solid #334155;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">🔗 分享</button>
+        </div>
+        <div class="stock-meta" id="etfMeta">—</div>
+        <div class="stock-grid">
+          <div class="stock-item"><div class="label">收盤價</div><div class="val" id="eClose">—</div></div>
+          <div class="stock-item"><div class="label">漲跌幅</div><div class="val" id="eChange">—</div></div>
+          <div class="stock-item"><div class="label">成交量</div><div class="val" id="eVol">—</div></div>
+        </div>
+        <div id="etfNavWrap" style="display:none;margin-bottom:8px"></div>
+          <div id="etfDividend" style="display:none"></div>
+        <div id="etfHoldings" style="display:none;margin:12px 0"></div>
+        <div class="chart-container" id="etfChartContainer" style="display:none">
+          <div class="chart-header">
+            <span class="chart-title" id="etfChartTitle">ETF K線圖</span>
+            <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">
+              <div class="chart-range" id="etfDayKBtns">
+                <span style="font-size:10px;color:#475569;margin-right:4px">日K</span>
+                <button class="range-btn active" onclick="switchETFChartMode('day',30,this)">1M</button>
+                <button class="range-btn" onclick="switchETFChartMode('day',90,this)">3M</button>
+                <button class="range-btn" onclick="switchETFChartMode('day',180,this)">6M</button>
+                <button class="range-btn" onclick="switchETFChartMode('day',365,this)">1Y</button>
+                <span style="font-size:10px;color:#475569;margin:0 4px 0 8px">週K</span>
+                <button class="range-btn" onclick="switchETFChartMode('week',365,this)">1Y</button>
+                <button class="range-btn" onclick="switchETFChartMode('week',730,this)">2Y</button>
+                <span style="font-size:10px;color:#475569;margin:0 4px 0 8px">月K</span>
+                <button class="range-btn" onclick="switchETFChartMode('month',730,this)">2Y</button>
+                <button class="range-btn" onclick="switchETFChartMode('month',1825,this)">5Y</button>
+              </div>
+            </div>
+          </div>
+          <div id="etfChartWrap" style="height:280px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section" style="margin-top:8px">
+      <div class="section-title" style="font-size:14px;color:#64748b;margin-bottom:12px">熱門 ETF</div>
+      <div id="etfHotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-us">
+    <div class="section">
+      <div class="section-title">美股即時行情</div>
+      <div style="display:flex;gap:12px;margin-bottom:20px;padding-top:8px">
+        <input type="text" id="usSearch" placeholder="輸入美股代號，例如：AAPL、NVDA、TSLA" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
+        <button onclick="searchUS()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
+      </div>
+      <div id="usSearchResult" style="margin-bottom:20px"></div>
+      <div id="usChartContainer" style="display:none;margin-bottom:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span style="font-size:14px;font-weight:700;color:#93c5fd" id="usChartTitle">K線圖</span>
+          <div style="display:flex;gap:6px">
+            <button class="range-btn active" onclick="loadUSChart(currentUS,30,this)">1M</button>
+            <button class="range-btn" onclick="loadUSChart(currentUS,90,this)">3M</button>
+            <button class="range-btn" onclick="loadUSChart(currentUS,180,this)">6M</button>
+            <button class="range-btn" onclick="loadUSChart(currentUS,365,this)">1Y</button>
+          </div>
+        </div>
+        <div id="usChartWrap" style="height:260px"></div>
+      </div>
+      <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門美股</div>
+      <div id="usHotGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-fund">
+    <div class="section">
+      <div class="section-title">外匯 · 黃金 · 大宗商品即時行情</div>
+      <div id="fxGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;padding-top:8px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-futures">
+    <div class="section">
+      <div class="section-title">📈 台灣期貨主要商品</div>
+      <div class="grid" id="futuresIndexGrid">
+        <div class="card"><h3>台指期 TX</h3><div class="value" id="fut_TX">載入中...</div><div class="sub" id="fut_TX_pct">—</div></div>
+        <div class="card"><h3>電子期 TE</h3><div class="value" id="fut_TE">載入中...</div><div class="sub" id="fut_TE_pct">—</div></div>
+        <div class="card"><h3>金融期 TF</h3><div class="value" id="fut_TF">載入中...</div><div class="sub" id="fut_TF_pct">—</div></div>
+        <div class="card"><h3>小台 MTX</h3><div class="value" id="fut_MTX">載入中...</div><div class="sub" id="fut_MTX_pct">—</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🌍 國際商品期貨</div>
+      <div class="grid" id="futuresGlobalGrid">
+        <div class="card"><h3>黃金 GC=F</h3><div class="value" id="fut_GC">載入中...</div><div class="sub" id="fut_GC_pct">—</div></div>
+        <div class="card"><h3>WTI 原油 CL=F</h3><div class="value" id="fut_CL">載入中...</div><div class="sub" id="fut_CL_pct">—</div></div>
+        <div class="card"><h3>白銀 SI=F</h3><div class="value" id="fut_SI">載入中...</div><div class="sub" id="fut_SI_pct">—</div></div>
+        <div class="card"><h3>銅 HG=F</h3><div class="value" id="fut_HG">載入中...</div><div class="sub" id="fut_HG_pct">—</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🌾 農產品期貨</div>
+      <div class="grid">
+        <div class="card"><h3>小麥 ZW=F</h3><div class="value" id="fut_ZW">載入中...</div><div class="sub" id="fut_ZW_pct">—</div></div>
+        <div class="card"><h3>黃豆 ZS=F</h3><div class="value" id="fut_ZS">載入中...</div><div class="sub" id="fut_ZS_pct">—</div></div>
+        <div class="card"><h3>玉米 ZC=F</h3><div class="value" id="fut_ZC">載入中...</div><div class="sub" id="fut_ZC_pct">—</div></div>
+        <div class="card"><h3>布蘭特原油 BZ=F</h3><div class="value" id="fut_BZ">載入中...</div><div class="sub" id="fut_BZ_pct">—</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🔗 期交所官方連結</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
+        <a href="https://www.taifex.com.tw" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX 官網</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📋 台灣期貨交易所首頁 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/3/largeTraderFutQry" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📊 大額交易人未沖銷部位 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/3/futContractsDate" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">🏦 三大法人期貨未平倉 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/3/futDailyMarketView" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📈 期貨每日行情總覽 ↗</div>
+        </a>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📊 選擇權籌碼指標</div>
+      <div class="grid">
+        <div class="card"><h3>Put/Call Ratio</h3><div class="value" id="pcRatio">載入中...</div><div class="sub" id="pcRatioInterp">—</div></div>
+        <div class="card"><h3>外資期貨多空淨額</h3><div class="value" id="foreignFut">載入中...</div><div class="sub">口數</div></div>
+        <div class="card"><h3>台指期未平倉</h3><div class="value" id="futOI">—</div><div class="sub">總未平倉口數</div></div>
+        <div class="card"><h3>台灣 VIX</h3><div class="value" id="twVIX">—</div><div class="sub">恐慌指數</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🔥 熱門股票期貨（單一商品）</div>
+      <div id="stockFuturesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📅 期貨交易說明</div>
+      <div style="background:#1e293b;border-radius:12px;padding:16px;color:#94a3b8;font-size:13px;line-height:1.7">
+        台指期（TX）合約規格：契約價值 = 指數 × NT$200／點，逐筆撮合，最後交易日為當月第三個週三。<br>
+        小台指期（MTX）：契約價值為大台 1/4，新手入門首選。<br>
+        股票期貨：契約規模 2,000 股，保證金約原始 13.5%。<br>
+        ETF 期貨：0050、0056、00878 等熱門 ETF 皆有期貨商品。<br>
+        夜盤：14:50 收盤後 15:00～次日 5:00 提供夜盤交易。<br>
+        資料來源：TAIFEX 期交所 + Finnhub 國際商品。
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-tools">
+    <div class="section">
+      <div class="section-title">🛠 理財試算工具</div>
+      <div style="color:#64748b;font-size:13px;padding:8px 0 16px">輸入即時運算，無需按鈕。所有資料只在你的瀏覽器計算，不會上傳。</div>
+      <div id="toolsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-options">
+    <div class="section">
+      <div class="section-title">📊 台指選擇權核心指標</div>
+      <div class="grid">
+        <div class="card"><h3>Put/Call Ratio (口數)</h3><div class="value" id="opt_pcRatio">載入中...</div><div class="sub" id="opt_pcRatioInterp">—</div></div>
+        <div class="card"><h3>Put/Call Ratio (未平倉)</h3><div class="value" id="opt_pcOI">載入中...</div><div class="sub">P/C OI</div></div>
+        <div class="card"><h3>VIX 恐慌指數</h3><div class="value" id="opt_vix">參考</div><div class="sub">越高越恐慌</div></div>
+        <div class="card"><h3>最大未平倉</h3><div class="value" id="opt_maxOI">—</div><div class="sub">支撐/壓力</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📚 指標解讀</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
+        <div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+          <div style="font-size:14px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">Put/Call Ratio</div>
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.7">買權與賣權成交比例，反映市場情緒：
+          <div style="margin-top:8px;color:#34d399">• > 1.5：市場過度恐慌（反向指標 → 偏多訊號）</div>
+          <div style="color:#fbbf24">• 0.7 ~ 1.5：中性區間</div>
+          <div style="color:#f87171">• < 0.7：市場過度樂觀（反向指標 → 偏空訊號）</div>
+          <div style="margin-top:8px;color:#94a3b8;font-size:12px">資料來源：TAIFEX 期交所</div>
+          </div>
+        </div>
+        <div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+          <div style="font-size:14px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">VIX 恐慌指數</div>
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.7">由台指選擇權隱含波動率推算：
+          <div style="margin-top:8px;color:#34d399">• &lt; 15：市場平靜</div>
+          <div style="color:#fbbf24">• 15 ~ 25：正常波動</div>
+          <div style="color:#f87171">• > 30：恐慌情緒</div>
+          <div style="margin-top:8px;color:#94a3b8;font-size:12px">VIX 飆升通常伴隨指數急跌，投資人情緒緊張時是值得關注的反向指標。</div>
+          </div>
+        </div>
+        <div style="background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155">
+          <div style="font-size:14px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">最大未平倉</div>
+          <div style="font-size:13px;color:#cbd5e1;line-height:1.7">在哪個履約價聚集最多未平倉口數，常被視為心理關卡：
+          <div style="margin-top:8px;color:#34d399">• Call 最大未平倉 → 通常為「壓力位」</div>
+          <div style="color:#f87171">• Put 最大未平倉 → 通常為「支撐位」</div>
+          <div style="margin-top:8px;color:#94a3b8;font-size:12px">大型法人會在這些價位附近做價差或保護策略，因此這些位置在到期前常成為指數震盪的中軸。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🔗 期交所官方連結</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
+        <a href="https://www.taifex.com.tw/cht/3/optDailyMarketSummary" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📋 選擇權每日成交行情 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/3/pcRatio" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📊 Put/Call Ratio 歷史 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/5/optCalculator" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">🧮 選擇權計算機 ↗</div>
+        </a>
+        <a href="https://www.taifex.com.tw/cht/3/optContractsDate" target="_blank" rel="noopener" style="background:#1e293b;border-radius:10px;padding:14px;text-decoration:none;border:1px solid #334155;display:block">
+          <div style="font-size:12px;color:#94a3b8">TAIFEX</div>
+          <div style="font-size:14px;color:#60a5fa;font-weight:700;margin-top:2px">📅 選擇權契約規格 ↗</div>
+        </a>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-screener">
+    <div class="section">
+      <div class="section-title">🎯 智慧選股</div>
+      <div style="color:#64748b;font-size:13px;margin-bottom:10px">所有條件可組合（空白＝不限），點擊個股可跳到台股查詢</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+        <button onclick="applyScreenerTemplate('dividend')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">💎 存股族</button>
+        <button onclick="applyScreenerTemplate('growth')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">🚀 成長股</button>
+        <button onclick="applyScreenerTemplate('value')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">💰 價值股</button>
+        <button onclick="applyScreenerTemplate('momentum')" style="background:#1e3a5f;color:#93c5fd;border:1px solid #2563eb;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">⚡ 強勢股</button>
+        <button onclick="applyScreenerTemplate('reset')" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">重置</button>
+      </div>
+      <div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155;margin-bottom:14px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px">
+          <input type="number" id="sc_pct" placeholder="漲跌幅 > %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_vol" placeholder="成交量 > 萬張" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_pmin" placeholder="股價 ≥" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_pmax" placeholder="股價 ≤" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_pe" placeholder="本益比 < (0=不限)" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_yield" placeholder="殖利率 > %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_roe" placeholder="ROE > %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_eps" placeholder="EPS > 元" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="sc_w52" placeholder="52週位階 < %" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <button onclick="runScreener()" style="background:#2563eb;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">🔍 開始選股</button>
+        </div>
+      </div>
+      <div id="screenerResult"><div style="color:#64748b;padding:8px">請設定篩選條件後按「開始選股」</div></div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-bonds">
+    <div class="section">
+      <div class="section-title">💵 債券市場總覽</div>
+      <div id="bondsUS" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">💼 公司債 / 高收益債</div>
+      <div id="bondsCorp" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">🌏 新興市場債</div>
+      <div id="bondsEM" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
+    </div>
+    <div class="section">
+      <div class="section-title">🇹🇼 台灣債券 ETF</div>
+      <div id="bondsTW" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px"></div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-sector">
+    <div class="section">
+      <div class="section-title">🏭 產業族群熱度</div>
+      <div style="color:#64748b;font-size:13px;margin-bottom:12px">依台股個股當日漲跌幅平均，點擊展開看族群成分股</div>
+      <div id="sectorList" style="display:flex;flex-direction:column;gap:10px">
+        <div style="color:#64748b;padding:8px">載入中...</div>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-macro">
+    <div class="section">
+      <div class="section-title">🇹🇼 台灣總體經濟指標</div>
+      <div class="grid" id="macroTW">
+        <div class="card"><h3>央行利率</h3><div class="value" id="m_tw_rate">2.000%</div><div class="sub">2026年最新</div></div>
+        <div class="card"><h3>CPI 年增率</h3><div class="value" id="m_tw_cpi">2.1%</div><div class="sub">主計總處</div></div>
+        <div class="card"><h3>GDP 成長率</h3><div class="value" id="m_tw_gdp">3.5%</div><div class="sub">年增率</div></div>
+        <div class="card"><h3>失業率</h3><div class="value" id="m_tw_unemp">3.4%</div><div class="sub">主計總處</div></div>
+        <div class="card"><h3>外匯存底</h3><div class="value" id="m_tw_fx">5,750億 USD</div><div class="sub">央行</div></div>
+        <div class="card"><h3>貿易順差</h3><div class="value" id="m_tw_trade">+58億 USD</div><div class="sub">月份</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🇺🇸 美國總體經濟指標</div>
+      <div class="grid" id="macroUS">
+        <div class="card"><h3>聯準會利率</h3><div class="value" id="m_us_rate">載入中...</div><div class="sub">FedFunds</div></div>
+        <div class="card"><h3>10年公債殖利率</h3><div class="value" id="m_us_10y">載入中...</div><div class="sub">UST10Y</div></div>
+        <div class="card"><h3>CPI 年增率</h3><div class="value" id="m_us_cpi">3.2%</div><div class="sub">BLS</div></div>
+        <div class="card"><h3>失業率</h3><div class="value" id="m_us_unemp">3.9%</div><div class="sub">BLS</div></div>
+        <div class="card"><h3>製造業 PMI</h3><div class="value" id="m_us_pmi">49.5</div><div class="sub">ISM</div></div>
+        <div class="card"><h3>非農就業</h3><div class="value" id="m_us_nfp">+18.5萬</div><div class="sub">月變動</div></div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">🌐 全球央行利率比較</div>
+      <div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#334155;border-radius:8px;overflow:hidden">
+          <div style="background:#0f172a;padding:10px;font-size:12px;color:#64748b;text-align:center">國家/地區</div>
+          <div style="background:#0f172a;padding:10px;font-size:12px;color:#64748b;text-align:center">央行利率</div>
+          <div style="background:#0f172a;padding:10px;font-size:12px;color:#64748b;text-align:center">基準變動</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇺🇸 美國</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.25-5.50%</div><div style="background:#1e293b;padding:10px;color:#94a3b8;text-align:center">持平</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇹🇼 台灣</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">2.000%</div><div style="background:#1e293b;padding:10px;color:#94a3b8;text-align:center">持平</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇪🇺 歐盟</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.75%</div><div style="background:#1e293b;padding:10px;color:#34d399;text-align:center">↓ 25bp</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇬🇧 英國</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.00%</div><div style="background:#1e293b;padding:10px;color:#94a3b8;text-align:center">持平</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇯🇵 日本</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">0.25%</div><div style="background:#1e293b;padding:10px;color:#f87171;text-align:center">↑ 15bp</div>
+          <div style="background:#1e293b;padding:10px;color:#e2e8f0;text-align:center">🇨🇳 中國</div><div style="background:#1e293b;padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.10%</div><div style="background:#1e293b;padding:10px;color:#34d399;text-align:center">↓ 10bp</div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title">📈 美國公債殖利率曲線</div>
+      <div style="background:#1e293b;border-radius:12px;padding:18px;border:1px solid #334155">
+        <div id="yieldCurve" style="display:flex;align-items:flex-end;gap:14px;height:200px;padding:10px 0">
+          <div style="color:#64748b;padding:8px">載入中...</div>
+        </div>
+        <div style="font-size:11px;color:#64748b;margin-top:8px;text-align:center">數值由 ETF 殖利率近似（TLT/IEF/SHY 等），實際殖利率以 Treasury.gov 為準</div>
+      </div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-portfolio">
+    <div class="section">
+      <div class="section-title">💼 我的投資組合</div>
+      <div id="portfolioSummary" style="margin-bottom:14px"></div>
+      <div style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155;margin-bottom:14px">
+        <div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px">➕ 新增持倉</div>
+        <div style="display:grid;grid-template-columns:80px 90px 1fr 90px 90px 130px auto;gap:6px">
+          <select id="holdType" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+            <option value="tw">台股</option>
+            <option value="etf">ETF</option>
+            <option value="us">美股</option>
+            
+            <option value="crypto">加密幣</option>
+          </select>
+          <input type="text" id="holdSym" placeholder="代號" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="text" id="holdName" placeholder="名稱（選填）" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="holdPrice" placeholder="買入價" step="0.01" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="number" id="holdQty" placeholder="數量" step="1" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <input type="date" id="holdDate" title="買入日期" style="background:#0f172a;color:#e2e8f0;border:1px solid #334155;padding:8px;border-radius:6px;font-size:13px">
+          <button onclick="addHolding()" style="background:#2563eb;color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer">新增</button>
+        </div>
+      </div>
+      <div id="portfolioList"></div>
+      <div id="portfolioAlloc" style="margin-top:14px"></div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+  <div class="tab-content" id="tab-crypto">
+    <div class="section">
+      <div class="section-title">加密貨幣即時行情</div>
+      <div style="display:flex;gap:12px;margin-bottom:20px;padding-top:8px">
+        <input type="text" id="cryptoSearch" placeholder="輸入幣種代號，例如：BTC、ETH、SHIB" style="flex:1;background:#1e293b;border:1px solid #334155;color:#e2e8f0;padding:12px 16px;border-radius:8px;font-size:14px">
+        <button onclick="searchCrypto()" style="background:#2563eb;color:#fff;border:none;padding:12px 24px;border-radius:8px;font-size:14px;cursor:pointer;white-space:nowrap">查詢</button>
+      </div>
+      <div id="tab-watchlist" style="display:none">
+        <div style="padding:12px">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+            <div style="font-size:16px;font-weight:700;color:#e2e8f0">⭐ 我的清單</div>
+            <div style="font-size:12px;color:#64748b">點任意股票的 ☆ 加入清單</div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:12px">
+            <button onclick="filterWatchlist('all')" id="wl-all" style="background:#2563eb;color:#fff;border:none;padding:5px 14px;border-radius:16px;font-size:12px;cursor:pointer">全部</button>
+            <button onclick="filterWatchlist('watching')" id="wl-watching" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 14px;border-radius:16px;font-size:12px;cursor:pointer">👁 觀察中</button>
+            <button onclick="filterWatchlist('holding')" id="wl-holding" style="background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 14px;border-radius:16px;font-size:12px;cursor:pointer">✅ 持有中</button>
+          </div>
+          <div id="watchlistContent">
+            <div style="color:#64748b;padding:20px;text-align:center">載入中...</div>
+          </div>
+        </div>
+      </div>
+      <div id="cryptoSearchResult" style="margin-bottom:20px"></div>
+      <div style="font-size:13px;color:#64748b;margin-bottom:12px">熱門幣種</div>
+      <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
+    </div>
+    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
+  </div>
+</div>
+<script src="app2.js?v=127"></script>
+
+<script>
+(function(){
+  const canvas = document.getElementById('lockKline');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let candles = [], frame = 0;
+  function resize(){ canvas.width=canvas.offsetWidth; canvas.height=canvas.offsetHeight; }
+  function gen(){ candles=[]; const n=Math.floor((canvas.width||1440)/16); let p=150+Math.random()*100;
+    for(let i=0;i<n;i++){const c=(Math.random()-.46)*10;const o=p;p+=c;const cl=p;const h=Math.max(o,cl)+Math.random()*5;const l=Math.min(o,cl)-Math.random()*5;candles.push({o,cl,h,l});}}
+  function draw(){
+    if(!canvas.offsetWidth){requestAnimationFrame(draw);return;}
+    resize();ctx.clearRect(0,0,canvas.width,canvas.height);
+    if(!candles.length)gen();
+    const ps=candles.flatMap(c=>[c.h,c.l]);const mn=Math.min(...ps),mx=Math.max(...ps),rng=mx-mn||1;
+    const cw=canvas.width/candles.length,h=canvas.height,pad=20,off=(frame*.4)%cw;
+    candles.forEach((c,i)=>{
+      const x=i*cw-off+cw;if(x<-cw||x>canvas.width+cw)return;
+      const up=c.cl>=c.o,col=up?'#34d399':'#f87171';
+      const yH=pad+((mx-c.h)/rng)*(h-pad*2),yL=pad+((mx-c.l)/rng)*(h-pad*2);
+      const yO=pad+((mx-c.o)/rng)*(h-pad*2),yCl=pad+((mx-c.cl)/rng)*(h-pad*2);
+      ctx.strokeStyle=col;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x+cw/2,yH);ctx.lineTo(x+cw/2,yL);ctx.stroke();
+      ctx.fillStyle=col;ctx.fillRect(x+2,Math.min(yO,yCl),cw-4,Math.max(Math.abs(yCl-yO),1));
+    });
+    frame++;if(frame%300===0){candles.shift();const last=candles[candles.length-1]||{cl:150};const p2=last.cl;const c2=(Math.random()-.46)*10;const o2=p2,cl2=p2+c2;candles.push({o:o2,cl:cl2,h:Math.max(o2,cl2)+Math.random()*4,l:Math.min(o2,cl2)-Math.random()*4});}
+    requestAnimationFrame(draw);
+  }
+  resize();gen();draw();
+})();
+</script>
+</body>
+</html>
+  

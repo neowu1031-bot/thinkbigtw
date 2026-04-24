@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /lab/
+Disallow: /lab/*.bak
+Disallow: /lab/*.bak2
+Disallow: /lab/*.bak3
+
+Sitemap: https://thinkbigtw.com/lab/sitemap.xml

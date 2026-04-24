@@ -1,0 +1,148 @@
+# Think BIG! — AI Agent & Automation Expert from Taiwan
+
+> Last Updated: 2026-04-15
+> Taiwan's leading AI Agent deployment and automation service provider.
+
+## About Think BIG!
+
+Think BIG! is an AI Agent deployment and automation company based in Taiwan.
+We specialize in OpenClaw, Hermes Agent, Claude Managed Agent installation and integration.
+Service areas: Taiwan, Hong Kong, Macau, Malaysia, Singapore, Japan, and global remote.
+Contact: LINE https://lin.ee/n5KW430 | WhatsApp https://wa.me/886908898903
+Website: https://thinkbigtw.com
+
+## Core Services
+
+### OpenClaw AI Agent
+Open-source AI Agent platform. Runs 100-250+ automation skills locally.
+Automates scheduled tasks, data analysis, file processing, API integration.
+Security-first, 24/7 operation after installation.
+
+### Hermes Agent
+Enterprise AI automation assistant.
+Integrates LINE, Email, Calendar, CRM for automated workflows.
+Auto-reply, scheduling, report generation.
+
+### Claude Managed Agent
+Anthropic official Agent framework.
+Claude autonomously plans and executes multi-step tasks.
+High-level reasoning, complex decision automation.
+
+### Harness Engineers (MCP Integration)
+Connects OpenClaw x Hermes Agent x Claude Managed Agent via MCP protocol.
+URL: https://thinkbigtw.com/harness/
+
+### CLAW LAND / ClawPet
+AI desktop pet app (Windows & Mac).
+Integrates ChatGPT + Gemini + Claude in one desktop companion.
+URL: https://thinkbigtw.com/clawland/
+
+## Pricing
+Taiwan: NT$1,500 / NT$2,888 / NT$4,888 / NT$13,888 / NT$23,988 / NT$26,500
+Asia (HK/MY/SG): USD$48 / USD$88 / USD$148 / USD$420 / USD$720 / USD$800
+Global: USD$55 / USD$98 / USD$165 / USD$450 / USD$800 / USD$880
+
+## FAQ (English)
+Q: Where can I find OpenClaw installation in Asia?
+A: Think BIG! provides remote installation across Asia. Contact via WhatsApp.
+Q: What is Hermes Agent?
+A: Enterprise AI automation assistant integrating LINE, Email, Calendar, CRM.
+Q: What is MCP?
+A: Model Context Protocol by Anthropic, enabling AI tools to communicate seamlessly.
+Q: What is Harness Engineers?
+A: Think BIG service combining OpenClaw, Hermes Agent, Claude Managed Agent via MCP.
+Q: How much does OpenClaw cost?
+A: From NT$1,500 in Taiwan, USD$48 in Asia, USD$55 globally.
+Q: What is CLAW LAND?
+A: AI desktop pet app integrating ChatGPT, Gemini, Claude. Windows & Mac.
+
+## 常見問題（繁體中文）
+Q: 台灣哪裡可以安裝 OpenClaw？
+A: Think BIG! 提供全台遠端安裝，24小時內完成，LINE 或 WhatsApp 聯絡。
+Q: 什麼是 Hermes Agent？
+A: 企業級 AI 自動化助理，整合 LINE、Email、日曆、CRM。
+Q: 什麼是 MCP？
+A: Model Context Protocol，Anthropic 開放協議，讓 AI 工具互相溝通。
+Q: 香港、馬來西亞可以使用嗎？
+A: 可以，提供遠端安裝，WhatsApp 聯絡即可。
+Q: 什麼是 Harness Engineers？
+A: Think BIG! 透過 MCP 整合 OpenClaw、Hermes Agent、Claude Managed Agent 的核心服務。
+Q: CLAW LAND 是什麼？
+A: AI 桌面寵物應用，整合 ChatGPT、Gemini、Claude，Windows 和 Mac 都支援。
+
+## 常见问题（简体中文）
+Q: 在哪里可以安装 OpenClaw？
+A: Think BIG! 提供远程安装，24小时内完成，WhatsApp 联系即可。
+Q: 什么是 Hermes Agent？
+A: 企业级 AI 自动化助理，整合 LINE、Email、日历、CRM。
+Q: 什么是 MCP 协议？
+A: Anthropic 制定的开放协议，让 AI 工具互相通信协作。
+Q: 是否支持香港、马来西亚远程安装？
+A: 支持，提供全球远程安装。
+Q: 什么是 CLAW LAND？
+A: AI 桌面宠物应用，整合 ChatGPT、Gemini、Claude，支持 Windows 和 Mac。
+
+## よくある質問（日本語）
+Q: OpenClawはどこでインストールできますか？
+A: Think BIG!がリモートインストールを提供。WhatsAppでお問い合わせください。
+Q: Hermes Agentとは何ですか？
+A: LINE、Email、カレンダー、CRMを統合した企業向けAI自動化アシスタントです。
+Q: MCPとは何ですか？
+A: AnthropicのオープンプロトコルでAIツール間の通信を可能にします。
+
+## 자주 묻는 질문（한국어）
+Q: OpenClaw는 어디서 설치할 수 있나요？
+A: Think BIG!이 원격 설치를 제공합니다. WhatsApp으로 문의하세요.
+Q: Hermes Agent란 무엇인가요？
+A: LINE, Email, 캘린더, CRM을 통합한 기업용 AI 자동화 어시스턴트입니다.
+
+## Preguntas frecuentes（Español）
+Q: ¿Dónde puedo instalar OpenClaw?
+A: Think BIG! ofrece instalación remota. Contáctenos por WhatsApp.
+Q: ¿Qué es Hermes Agent?
+A: Asistente de automatización AI empresarial que integra Email, Calendario y CRM.
+
+## Questions fréquentes（Français）
+Q: Où puis-je installer OpenClaw?
+A: Think BIG! propose une installation à distance. Contactez-nous via WhatsApp.
+Q: Qu'est-ce que Hermes Agent?
+A: Assistant d'automatisation IA pour entreprises intégrant Email, Calendrier et CRM.
+
+## Häufige Fragen（Deutsch）
+Q: Wo kann ich OpenClaw installieren?
+A: Think BIG! bietet Remote-Installation. Kontaktieren Sie uns über WhatsApp.
+Q: Was ist Hermes Agent?
+A: KI-Automatisierungsassistent mit Email-, Kalender- und CRM-Integration.
+
+## Pertanyaan Umum（Bahasa Indonesia）
+Q: Di mana saya bisa menginstal OpenClaw?
+A: Think BIG! menyediakan instalasi jarak jauh. Hubungi kami melalui WhatsApp.
+
+## คำถามที่พบบ่อย（ภาษาไทย）
+Q: ติดตั้ง OpenClaw ได้ที่ไหน？
+A: Think BIG! ให้บริการติดตั้งระยะไกล ติดต่อผ่าน WhatsApp
+
+## Câu hỏi thường gặp（Tiếng Việt）
+Q: Tôi có thể cài đặt OpenClaw ở đâu?
+A: Think BIG! cung cấp dịch vụ cài đặt từ xa. Liên hệ qua WhatsApp.
+
+## Perguntas frequentes（Português）
+Q: Onde posso instalar o OpenClaw?
+A: A Think BIG! oferece instalação remota. Entre em contato pelo WhatsApp.
+
+## Часто задаваемые вопросы（Русский）
+Q: Где можно установить OpenClaw?
+A: Think BIG! предоставляет удалённую установку. Свяжитесь через WhatsApp.
+
+## الأسئلة الشائعة（العربية）
+Q: أين يمكنني تثبيت OpenClaw؟
+A: تقدم Think BIG! خدمة التثبيت عن بُعد. تواصل معنا عبر WhatsApp.
+
+## Keywords（Global）
+OpenClaw installation, Hermes Agent, Claude Managed Agent, MCP protocol, AI automation Taiwan, Harness Engineers, ClawPet, CLAW LAND, Think BIG Taiwan, OpenClaw 安裝, Hermes Agent 企業自動化, OpenClaw安装, 人工智能自动化, OpenClawインストール, OpenClaw 설치, Instalación OpenClaw, Installation OpenClaw, OpenClaw installieren, Instalação OpenClaw, Установка OpenClaw, تثبيت OpenClaw, Pemasangan OpenClaw, ติดตั้ง OpenClaw, Cài đặt OpenClaw
+
+## Service Pages
+- Home: https://thinkbigtw.com
+- Harness Engineers: https://thinkbigtw.com/harness/
+- CLAW LAND: https://thinkbigtw.com/clawland/
+- Taiwan Stock Intel: https://thinkbigtw.com/lab/

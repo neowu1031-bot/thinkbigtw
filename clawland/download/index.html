@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLAW LAND — 下載</title>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Space+Mono:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans TC',sans-serif;background:#1A1008;color:#FFF8E7;min-height:100vh;display:flex;align-items:center;justify-content:center;background-image:url('/clawland/bg.jpg');background-size:cover;background-position:center;background-attachment:fixed}
+body::before{content:'';position:fixed;inset:0;background:rgba(16,10,4,0.88);pointer-events:none;z-index:0}
+.container{position:relative;z-index:1;max-width:480px;width:90%;text-align:center;padding:40px 20px}
+.logo{font-family:'Space Mono',monospace;font-weight:700;font-size:48px;letter-spacing:4px;color:#FF2D87;-webkit-text-stroke:2px #fff;text-shadow:3px 3px 0 rgba(0,0,0,0.3);margin-bottom:8px}
+.sub{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:4px;color:#FFE500;text-transform:uppercase;margin-bottom:40px}
+.card{background:rgba(26,16,8,0.9);border:1px solid rgba(255,248,231,0.1);padding:36px 32px;backdrop-filter:blur(8px)}
+.label{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:3px;color:rgba(255,248,231,0.5);text-transform:uppercase;margin-bottom:12px;text-align:left}
+.input{width:100%;background:rgba(255,248,231,0.06);border:1px solid rgba(255,248,231,0.2);color:#FFF8E7;font-family:'Space Mono',monospace;font-size:16px;letter-spacing:3px;padding:14px 16px;text-align:center;text-transform:uppercase;outline:none;transition:border-color 0.2s;margin-bottom:20px}
+.input:focus{border-color:#FF2D87}
+.input::placeholder{color:rgba(255,248,231,0.25);letter-spacing:2px}
+.btn{width:100%;font-family:'Space Mono',monospace;font-weight:700;font-size:14px;letter-spacing:2px;padding:14px;background:#FF2D87;color:white;border:none;cursor:pointer;transition:all 0.15s;margin-bottom:12px}
+.btn:hover{background:#d4216e;transform:translateY(-1px)}
+.btn:disabled{background:#555;cursor:not-allowed;transform:none}
+.msg{font-family:'Space Mono',monospace;font-size:12px;line-height:1.7;padding:16px;margin-top:16px;display:none}
+.msg.error{background:rgba(255,45,135,0.1);border:1px solid rgba(255,45,135,0.3);color:#FF2D87}
+.msg.success{background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3);color:#39FF14}
+.download-links{margin-top:20px;display:none;gap:10px;flex-direction:column}
+.dl-btn{display:block;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:1px;padding:12px 20px;text-decoration:none;text-align:center;border:1px solid rgba(255,229,0,0.5);color:#FFE500;transition:all 0.15s}
+.dl-btn:hover{background:rgba(255,229,0,0.1)}
+.back{display:block;margin-top:24px;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:rgba(255,248,231,0.3);text-decoration:none;text-transform:uppercase}
+.back:hover{color:#FFE500}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="logo">CLAW LAND</div>
+  <div class="sub">Download Center</div>
+  <div class="card">
+    <div class="label">輸入你的驗證碼</div>
+    <input class="input" id="code" type="text" placeholder="CLAW-XXXX-XXXX" maxlength="14" oninput="this.value=this.value.toUpperCase()">
+    <button class="btn" id="btn" onclick="verify()">驗證並下載</button>
+    <div class="msg" id="msg"></div>
+    <div class="download-links" id="links">
+      <a class="dl-btn" id="mac-link" href="#" target="_blank">⬇ 下載 macOS 版 (.dmg)</a>
+      <a class="dl-btn" id="win-link" href="#" target="_blank">⬇ 下載 Windows 版 (.exe)</a>
+    </div>
+  </div>
+  <a class="back" href="/clawland/">← 返回 CLAW LAND</a>
+</div>
+<script>
+const SUPABASE_URL = 'https://xtucjknezgihrsvxyvpr.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh0dWNqa25lemdpaHJzdnh5dnByIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwODQzNjYsImV4cCI6MjA4OTY2MDM2Nn0.1qm8pWuyRvoo0F7L4l7GiWo6V1QutnHwLG_966C8ITg';
+
+async function verify() {
+  const code = document.getElementById('code').value.trim();
+  const btn = document.getElementById('btn');
+  const msg = document.getElementById('msg');
+  const links = document.getElementById('links');
+
+  if (!code || code.length < 8) {
+    showMsg('error', '請輸入有效的驗證碼');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '驗證中...';
+  msg.style.display = 'none';
+  links.style.display = 'none';
+
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/codes?code=eq.' + encodeURIComponent(code) + '&select=*', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    });
+    const data = await res.json();
+
+    if (!data || data.length === 0) {
+      showMsg('error', '驗證碼無效，請確認後重試');
+    } else if (data[0].status === 'used') {
+      showMsg('error', '此驗證碼已使用過了');
+    } else {
+      const row = data[0];
+      // 標記為已使用
+      await fetch(SUPABASE_URL + '/rest/v1/codes?id=eq.' + row.id, {
+        method: 'PATCH',
+        headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'used', used_at: new Date().toISOString() })
+      });
+      showMsg('success', '✓ 驗證成功！選擇你的平台下載');
+      document.getElementById('mac-link').href = row.mac_url || '#';
+      document.getElementById('win-link').href = row.win_url || '#';
+      links.style.display = 'flex';
+    }
+  } catch(e) {
+    showMsg('error', '連線錯誤，請重試');
+  }
+
+  btn.disabled = false;
+  btn.textContent = '驗證並下載';
+}
+
+function showMsg(type, text) {
+  const msg = document.getElementById('msg');
+  msg.className = 'msg ' + type;
+  msg.textContent = text;
+  msg.style.display = 'block';
+}
+
+document.getElementById('code').addEventListener('keydown', e => {
+  if (e.key === 'Enter') verify();
+});
+</script>
+</body>
+</html>

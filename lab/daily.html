@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">今日台股市場摘要 | 台股情報站</title>
+<meta name="description" content="每日台股收盤摘要：加權指數、外資買賣超、漲跌家數、三大法人買超排行、漲幅排行、金價匯率，每日更新。">
+<meta name="keywords" content="台股今日,加權指數,外資買賣超,三大法人,漲幅排行,台股摘要">
+<meta property="og:title" content="今日台股市場摘要 | 台股情報站">
+<meta property="og:description" content="每日台股收盤摘要與重點數據">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://thinkbigtw.com/lab/daily.html">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0f1e;color:#e2e8f0;font-family:-apple-system,"Helvetica Neue",Arial,sans-serif;min-height:100vh;line-height:1.6}
+.wrap{max-width:920px;margin:0 auto;padding:24px}
+.header{padding:30px 0 20px;text-align:center;border-bottom:1px solid #1e293b;margin-bottom:24px}
+.brand{display:inline-block;font-size:14px;font-weight:800;color:#60a5fa;letter-spacing:2px;border:2px solid #2563eb;padding:4px 12px;border-radius:6px;margin-bottom:14px}
+h1{font-size:28px;color:#e2e8f0;margin-bottom:6px;font-weight:700}
+.date{color:#94a3b8;font-size:14px}
+.section{margin-bottom:30px}
+.section h2{font-size:16px;color:#93c5fd;margin-bottom:14px;padding-left:10px;border-left:3px solid #2563eb;font-weight:700}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.card{background:#1e293b;border-radius:12px;padding:18px;border:1px solid #334155}
+.card h3{font-size:11px;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
+.card .value{font-size:24px;font-weight:700;color:#e2e8f0}
+.card .sub{font-size:12px;color:#64748b;margin-top:4px}
+.up{color:#34d399}.down{color:#f87171}
+.list{background:#1e293b;border-radius:12px;border:1px solid #334155;overflow:hidden}
+.row{display:grid;grid-template-columns:30px 1fr 100px 90px;gap:8px;padding:12px 14px;border-bottom:1px solid #0f172a;align-items:center;font-size:14px}
+.row:last-child{border-bottom:none}
+.row .num{color:#64748b;font-size:13px}
+.row .nm{color:#e2e8f0}
+.row .nm small{color:#64748b;font-size:11px;margin-left:6px}
+.row .px{color:#94a3b8;text-align:right}
+.row .pl{text-align:right;font-weight:700}
+.cta{margin-top:30px;padding:24px;background:linear-gradient(135deg,#1e3a5f,#1e293b);border-radius:14px;border:1px solid #2563eb;text-align:center}
+.cta h3{font-size:18px;color:#e2e8f0;margin-bottom:10px}
+.cta p{color:#94a3b8;font-size:13px;margin-bottom:16px}
+.cta a{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:12px 30px;border-radius:8px;font-size:14px;font-weight:600}
+.cta a:hover{background:#1d4ed8}
+.footer{text-align:center;padding:24px 0;color:#475569;font-size:12px;border-top:1px solid #1e293b;margin-top:30px}
+.footer a{color:#64748b;text-decoration:none;margin:0 8px}
+.loading{color:#64748b;padding:14px;text-align:center;font-size:13px}
+@media(max-width:600px){
+  .wrap{padding:14px}
+  .cards{grid-template-columns:1fr 1fr;gap:8px}
+  .card{padding:14px}
+  .card .value{font-size:20px}
+  .row{grid-template-columns:24px 1fr 80px 70px;font-size:13px;padding:10px}
+  h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">T B · LAB</div>
+    <h1 id="hdrTitle">今日台股市場摘要</h1>
+    <div class="date" id="hdrDate">載入中...</div>
+  </div>
+
+  <div class="section">
+    <h2>📊 大盤總覽</h2>
+    <div class="cards">
+      <div class="card"><h3>加權指數</h3><div class="value" id="taiex">—</div><div class="sub" id="taiexChange">—</div></div>
+      <div class="card"><h3>今日高點</h3><div class="value" id="taiexHigh">—</div></div>
+      <div class="card"><h3>今日低點</h3><div class="value" id="taiexLow">—</div></div>
+      <div class="card"><h3>外資買賣超</h3><div class="value" id="foreign">—</div><div class="sub">張</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📈 上漲下跌家數</h2>
+    <div class="cards">
+      <div class="card"><h3>上漲家數</h3><div class="value up" id="bUp">—</div></div>
+      <div class="card"><h3>下跌家數</h3><div class="value down" id="bDown">—</div></div>
+      <div class="card"><h3>平盤家數</h3><div class="value" id="bFlat">—</div></div>
+      <div class="card"><h3>漲跌比</h3><div class="value" id="bRatio">—</div><div class="sub">上漲/下跌</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🔥 今日漲幅前 5 名</h2>
+    <div class="list" id="topGainers"><div class="loading">載入中...</div></div>
+  </div>
+
+  <div class="section">
+    <h2>🏦 三大法人買超前 5 名</h2>
+    <div class="list" id="topInst"><div class="loading">載入中...</div></div>
+  </div>
+
+  <div class="section">
+    <h2>💱 今日匯率與商品</h2>
+    <div class="cards">
+      <div class="card"><h3>美元/台幣</h3><div class="value" id="usdTwd">—</div></div>
+      <div class="card"><h3>日圓100/台幣</h3><div class="value" id="jpyTwd">—</div></div>
+      <div class="card"><h3>黃金 (USD/oz)</h3><div class="value" id="gold">—</div></div>
+      <div class="card"><h3>WTI 原油</h3><div class="value" id="oil">—</div></div>
+    </div>
+  </div>
+
+  <div class="cta">
+    <h3>🚀 看更多即時資訊</h3>
+    <p>個股 K 線、選股篩選、ETF 持股、技術指標、AI 解讀、自選股、價格警示...</p>
+    <a href="/lab/">前往 台股情報站 →</a>
+  </div>
+
+  <div class="footer">
+    <a href="/lab/">完整版</a> · <a href="/lab/?tab=etf">ETF</a> · <a href="/lab/?tab=us">美股</a> · <a href="/lab/?tab=fund">外匯</a><br>
+    <span style="display:inline-block;margin-top:8px">© THINK BIG Lab · 內容僅供參考，不構成投資建議</span>
+  </div>
+</div>
+
+<script>
+const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
+const SB_KEY='';
+const BASE=SB_URL+'/rest/v1';
+const SB_H={'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY};
+const FINNHUB_KEY='';
+const NAMES={'2330':'台積電','2317':'鴻海','2454':'聯發科','2382':'廣達','3231':'緯創','2308':'台達電','2303':'聯電','2881':'富邦金','2882':'國泰金','2886':'兆豐金','2891':'中信金','2884':'玉山金','2885':'元大金','2892':'第一金','1216':'統一','2412':'中華電','3008':'大立光','2603':'長榮','2609':'陽明','2615':'萬海','2618':'長榮航','2330':'台積電','3711':'日月光投控','6669':'緯穎','2376':'技嘉','2357':'華碩'};
+
+function fmt(n,d=0){return Number(n).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});}
+
+(async function init(){
+  // 顯示日期
+  const today=new Date();
+  const ymd=today.toISOString().slice(0,10);
+  const tw=`${today.getFullYear()}年${today.getMonth()+1}月${today.getDate()}日`;
+  document.getElementById('hdrDate').textContent=tw+'（'+['日','一','二','三','四','五','六'][today.getDay()]+'）';
+  document.getElementById('hdrTitle').textContent=`${tw} 台股市場摘要`;
+  document.title=`${tw} 台股市場摘要 | 台股情報站`;
+
+  // 加權指數 + 高低
+  try{
+    const r=await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=1',{headers:SB_H});
+    const d=(await r.json())[0];
+    if(d){
+      const px=parseFloat(d.close_price);
+      const ch=parseFloat(d.change_percent);
+      const prev=px-ch;
+      const pct=prev>0?(ch/prev*100):0;
+      document.getElementById('taiex').textContent=fmt(px,0);
+      const cEl=document.getElementById('taiexChange');
+      cEl.textContent=(ch>=0?'▲ +':'▼ ')+Math.abs(ch).toFixed(2)+' ('+(ch>=0?'+':'')+pct.toFixed(2)+'%)';
+      cEl.className='sub '+(ch>=0?'up':'down');
+      document.getElementById('taiexHigh').textContent=fmt(parseFloat(d.high_price),0);
+      document.getElementById('taiexLow').textContent=fmt(parseFloat(d.low_price),0);
+    }
+  }catch(e){}
+
+  // 取最新交易日
+  let latestDate=ymd;
+  try{
+    const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    latestDate=((await r.json())[0]||{}).date||ymd;
+  }catch(e){}
+
+  // 上漲下跌家數
+  try{
+    const r=await fetch(BASE+'/daily_prices?date=eq.'+latestDate+'&symbol=neq.TAIEX&select=change_percent&limit=3000',{headers:SB_H});
+    const rows=await r.json();
+    let up=0,down=0,flat=0;
+    rows.forEach(d=>{const ch=parseFloat(d.change_percent);if(isNaN(ch))flat++;else if(ch>0)up++;else if(ch<0)down++;else flat++;});
+    document.getElementById('bUp').textContent=fmt(up);
+    document.getElementById('bDown').textContent=fmt(down);
+    document.getElementById('bFlat').textContent=fmt(flat);
+    document.getElementById('bRatio').textContent=down>0?(up/down).toFixed(2):'—';
+  }catch(e){}
+
+  // 外資買賣超
+  try{
+    const r=await fetch(BASE+'/institutional_investors?date=eq.'+latestDate+'&select=foreign_buy&limit=1000',{headers:SB_H});
+    const rows=await r.json();
+    let total=0;rows.forEach(r=>{total+=(r.foreign_buy||0);});
+    const fEl=document.getElementById('foreign');
+    fEl.textContent=(total>=0?'+':'')+fmt(total);
+    fEl.className='value '+(total>=0?'up':'down');
+  }catch(e){}
+
+  // 漲幅前5
+  try{
+    const r=await fetch(BASE+'/daily_prices?date=eq.'+latestDate+'&symbol=neq.TAIEX&order=change_percent.desc&limit=5&select=symbol,close_price,change_percent',{headers:SB_H});
+    const rows=await r.json();
+    const syms=rows.map(d=>d.symbol).join(',');
+    const rn=await fetch(BASE+'/stocks?symbol=in.('+syms+')&select=symbol,name',{headers:SB_H});
+    const nm={};(await rn.json()).forEach(s=>nm[s.symbol]=s.name);
+    const el=document.getElementById('topGainers');
+    el.innerHTML='';
+    rows.forEach((d,i)=>{
+      const ch=parseFloat(d.change_percent);
+      const px=parseFloat(d.close_price);
+      const prev=px-ch;
+      const pct=prev>0?(ch/prev*100):0;
+      el.innerHTML+=`<div class="row"><div class="num">${i+1}</div><div class="nm">${nm[d.symbol]||NAMES[d.symbol]||d.symbol}<small>${d.symbol}</small></div><div class="px">$${px.toFixed(2)}</div><div class="pl up">+${pct.toFixed(2)}%</div></div>`;
+    });
+    if(rows.length===0)el.innerHTML='<div class="loading">尚無資料</div>';
+  }catch(e){document.getElementById('topGainers').innerHTML='<div class="loading">載入失敗</div>';}
+
+  // 三大法人買超前5
+  try{
+    const r=await fetch(BASE+'/institutional_investors?date=eq.'+latestDate+'&order=total_buy.desc&limit=5&select=symbol,foreign_buy,investment_trust_buy,total_buy',{headers:SB_H});
+    const rows=await r.json();
+    const syms=rows.map(d=>d.symbol).join(',');
+    const rn=await fetch(BASE+'/stocks?symbol=in.('+syms+')&select=symbol,name',{headers:SB_H});
+    const nm={};(await rn.json()).forEach(s=>nm[s.symbol]=s.name);
+    const el=document.getElementById('topInst');
+    el.innerHTML='';
+    rows.forEach((d,i)=>{
+      const sheets=Math.round((d.total_buy||0)/1000);
+      const who=d.foreign_buy>0&&d.investment_trust_buy>0?'外資+投信':d.foreign_buy>0?'外資':d.investment_trust_buy>0?'投信':'—';
+      el.innerHTML+=`<div class="row"><div class="num">${i+1}</div><div class="nm">${nm[d.symbol]||NAMES[d.symbol]||d.symbol}<small>${d.symbol} · ${who}</small></div><div class="px">—</div><div class="pl up">+${fmt(sheets)}張</div></div>`;
+    });
+    if(rows.length===0)el.innerHTML='<div class="loading">尚無資料</div>';
+  }catch(e){document.getElementById('topInst').innerHTML='<div class="loading">載入失敗</div>';}
+
+  // 匯率/黃金/原油
+  try{
+    const r=await fetch('https://open.er-api.com/v6/latest/USD');
+    const d=await r.json();
+    if(d&&d.rates){
+      document.getElementById('usdTwd').textContent=d.rates.TWD?d.rates.TWD.toFixed(2):'—';
+      if(d.rates.JPY)document.getElementById('jpyTwd').textContent=((d.rates.TWD/d.rates.JPY)*100).toFixed(3);
+    }
+  }catch(e){}
+  // 黃金 PAXG
+  try{
+    const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol=PAXGUSDT');
+    const d=await r.json();
+    if(d&&d.lastPrice)document.getElementById('gold').textContent='$'+parseFloat(d.lastPrice).toFixed(2);
+  }catch(e){}
+  // 原油
+  try{
+    const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=CL%3DF&token=${FINNHUB_KEY}`);
+    const d=await r.json();
+    if(d&&d.c)document.getElementById('oil').textContent='$'+d.c.toFixed(2);
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
