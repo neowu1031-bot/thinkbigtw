@@ -2134,7 +2134,7 @@ async function loadRealtimeQuote(code){
     const bidVols = (s.g||'').split('_').filter(Boolean).slice(0,5);
     const askVols = (s.f||'').split('_').filter(Boolean).slice(0,5);
     const price = parseFloat(s.z||s.y||0);
-    const prev = parseFloat(s.y) || parseFloat(s.z) || parseFloat(s.b?.split('_')[0]) || 0;
+    const prev = parseFloat(s.y) || parseFloat(s.b?.split('_')[0]) || (prices.length ? prices[0] : 0);
     const maxVol = Math.max(...bidVols.map(Number), ...askVols.map(Number), 1);
     let html = `<div style="font-size:11px;color:#64748b;margin-bottom:6px">即時報價 · ${s.t||''}</div>`;
     html += `<table style="width:100%;border-collapse:collapse;font-size:12px">`;
@@ -2181,7 +2181,7 @@ async function loadIntradayChart(code){
     // 分時價格
     const prices = (s.pz||'').split('_').filter(Boolean).map(Number);
     const times = (s.pt||'').split('_').filter(Boolean);
-    const prev = parseFloat(s.y) || parseFloat(s.z) || parseFloat(s.b?.split('_')[0]) || 0;
+    const prev = parseFloat(s.y) || parseFloat(s.b?.split('_')[0]) || (prices.length ? prices[0] : 0);
     if(!prices.length){
       // 盤後或休市：用收盤價顯示靜態資訊
       const lastClose = parseFloat(s.z||s.y||0);
@@ -2200,7 +2200,7 @@ async function loadIntradayChart(code){
     const min=Math.min(prev*0.98,...prices), max=Math.max(prev*1.02,...prices);
     const range=max-min||1;
     const pts=prices.map((p,i)=>`${(i/(prices.length-1||1))*W},${H-((p-min)/range)*(H-8)-4}`).join(' ');
-    const prevY=H-((prev-min)/range)*(H-8)-4;
+    const safePrev=isNaN(prev)||prev===0?min:prev; const prevY=H-((safePrev-min)/range)*(H-8)-4;
     const lastP=prices[prices.length-1];
     const color=lastP>=prev?'#34d399':'#f87171';
     el.innerHTML=`<svg width="${W}" height="${H}" style="display:block">
@@ -2212,7 +2212,7 @@ async function loadIntradayChart(code){
       <text x="${W-50}" y="${H-4}" fill="${color}" font-size="11" font-weight="bold">${isNaN(lastP)?'':lastP.toFixed(2)}</text>
     </svg>
     <div style="display:flex;justify-content:space-between;font-size:10px;color:#475569;margin-top:2px">
-      <span>昨收 ${prev}</span><span style="color:${color}">${lastP>=prev?'▲':'▼'} ${prev>0?Math.abs(((lastP-prev)/prev)*100).toFixed(2):'0.00'}%</span>
+      <span>昨收 ${prev}</span><span style="color:${color}">${lastP>=safePrev?'▲':'▼'} ${safePrev>0?Math.abs(((lastP-safePrev)/safePrev)*100).toFixed(2):'0.00'}%</span>
     </div>`;
   }catch(e){
     el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">無法取得分時資料（CORS）</div>';
