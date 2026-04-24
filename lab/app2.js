@@ -510,7 +510,8 @@ async function checkAlerts(){
   const syms=[...new Set(activeAlerts.map(a=>a.symbol))];
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
-    const latest=(await r.json())[0].date;
+    const latest=(await r.json())?.[0]?.date;
+    if(!latest)return;
     for(const sym of syms){
       const r2=await fetch(BASE+'/daily_prices?symbol=eq.'+sym+'&date=eq.'+latest+'&select=close_price',{headers:SB_H});
       const data=await r2.json();
@@ -562,7 +563,8 @@ async function applyFilter(reset=false){
   result.innerHTML='<div style="color:#64748b">篩選中...</div>';
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
-    const latest=(await r.json())[0].date;
+    const latest=(await r.json())?.[0]?.date;
+    if(!latest){result.innerHTML='<div style="color:#f87171">無法取得交易日期</div>';return;}
     let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,open_price,change_percent,volume';
     if(type==='up')url+='';
     else if(type==='down')url+='';
@@ -654,7 +656,8 @@ async function loadRanking(type){
   list.innerHTML='<div style="color:#64748b">載入中...</div>';
   try{
     const r=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
-    const latest=(await r.json())[0].date;
+    const latest=(await r.json())?.[0]?.date;
+    if(!latest){list.innerHTML='<div style="color:#f87171">無法取得交易日期</div>';return;}
     let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=200&select=symbol,close_price,open_price,volume';
     if(type==='up')url+='';
     else if(type==='down')url+='';
@@ -674,7 +677,7 @@ async function loadRanking(type){
     const syms=rankData.map(d=>d.symbol).join(',');
     const rn=await fetch(BASE+'/stocks?symbol=in.('+syms+')&select=symbol,name',{headers:SB_H});
     const nameData=await rn.json();
-    const nameMap={};nameData.forEach(s=>nameMap[s.symbol]=s.name);
+    const nameMap={};(Array.isArray(nameData)?nameData:[]).forEach(s=>nameMap[s.symbol]=s.name);
     list.innerHTML='';
     rankData.forEach((d,i)=>{
       const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
@@ -839,7 +842,8 @@ async function runScreener(){
   result.innerHTML='<div style="color:#64748b;padding:8px">選股中...</div>';
   try{
     const r0=await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
-    const latest=(await r0.json())[0].date;
+    const latest=(await r0.json())?.[0]?.date;
+    if(!latest){result.innerHTML='<div style="color:#f87171;padding:8px">無法取得交易日期</div>';return;}
     let url=BASE+'/daily_prices?date=eq.'+latest+'&symbol=neq.TAIEX&limit=2000&select=symbol,close_price,open_price,change_percent,volume';
     if(!isNaN(minPx))url+=`&close_price=gte.${minPx}`;
     if(!isNaN(maxPx))url+=`&close_price=lte.${maxPx}`;
@@ -2136,7 +2140,7 @@ async function loadRealtimeQuote(code){
     const bidVols = (s.g||'').split('_').filter(Boolean).slice(0,5);
     const askVols = (s.f||'').split('_').filter(Boolean).slice(0,5);
     const price = parseFloat(s.z||s.y||0);
-    const prev = parseFloat(s.y) || parseFloat(s.b?.split('_')[0]) || (prices.length ? prices[0] : 0);
+    const prev = parseFloat(s.y) || parseFloat(s.b?.split('_')[0]) || 0;
     const maxVol = Math.max(...bidVols.map(Number), ...askVols.map(Number), 1);
     let html = `<div style="font-size:11px;color:#64748b;margin-bottom:6px">即時報價 · ${s.t||''}</div>`;
     html += `<table style="width:100%;border-collapse:collapse;font-size:12px">`;
