@@ -11,7 +11,7 @@ serve(async (req) => {
   }
 
   try {
-    const { type, code, name } = await req.json();
+    const { type, code, name, from, to } = await req.json();
     let url = '';
     let data = null;
 
@@ -127,6 +127,40 @@ serve(async (req) => {
           if (newsItems.length >= 5) break;
         }
         return new Response(JSON.stringify({ ok: true, data: newsItems }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      case 'us_quote': {
+        if (!code) throw new Error('code required');
+        const fhKey = Deno.env.get('FINNHUB_KEY');
+        if (!fhKey) throw new Error('FINNHUB_KEY not set');
+        const qRes = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(code)}&token=${fhKey}`);
+        if (!qRes.ok) throw new Error(`finnhub HTTP ${qRes.status}`);
+        const qData = await qRes.json();
+        return new Response(JSON.stringify({ ok: true, data: qData }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      case 'us_candle': {
+        if (!code) throw new Error('code required');
+        if (!from || !to) throw new Error('from and to required');
+        const fhKey = Deno.env.get('FINNHUB_KEY');
+        if (!fhKey) throw new Error('FINNHUB_KEY not set');
+        const cRes = await fetch(`https://finnhub.io/api/v1/stock/candle?symbol=${encodeURIComponent(code)}&resolution=D&from=${from}&to=${to}&token=${fhKey}`);
+        if (!cRes.ok) throw new Error(`finnhub HTTP ${cRes.status}`);
+        const cData = await cRes.json();
+        return new Response(JSON.stringify({ ok: true, data: cData }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        });
+      }
+      case 'us_economic': {
+        if (!code) throw new Error('code required');
+        const fhKey = Deno.env.get('FINNHUB_KEY');
+        if (!fhKey) throw new Error('FINNHUB_KEY not set');
+        const eRes = await fetch(`https://finnhub.io/api/v1/economic?code=${encodeURIComponent(code)}&token=${fhKey}`);
+        if (!eRes.ok) throw new Error(`finnhub HTTP ${eRes.status}`);
+        const eData = await eRes.json();
+        return new Response(JSON.stringify({ ok: true, data: eData }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         });
       }

@@ -197,7 +197,6 @@ async function toggleWatchlistLabel(id, symbol, market, newLabel) {
   } catch(e) {}
 }
 let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=null,currentStock='',currentETF='',currentUS='',currentIndicator='none',lastKData=[];
-const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
 function checkPw(){
   // 管理員入口已停用，請用 Google 或 Email 登入
@@ -1200,8 +1199,7 @@ async function loadMacro(){
   });
   // 美國 Fed Rate
   try{
-    const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=^TNX&token=${FINNHUB_KEY}`);
-    const d=await r.json();
+    const d=await twseProxy('us_quote','^TNX');
     if(d&&d.c){
       const el=document.getElementById('m_us_10y');
       if(el)el.textContent=(d.c/10).toFixed(3)+'%';
@@ -1209,8 +1207,7 @@ async function loadMacro(){
   }catch(e){}
   // FedFunds via economic API
   try{
-    const r=await fetch(`https://finnhub.io/api/v1/economic?code=MA-USA-148&token=${FINNHUB_KEY}`);
-    const d=await r.json();
+    const d=await twseProxy('us_economic','MA-USA-148');
     if(d&&d.data&&d.data.length){
       const last=d.data[d.data.length-1];
       const el=document.getElementById('m_us_rate');
@@ -1229,8 +1226,7 @@ async function loadYieldCurve(){
   // 嘗試從 Finnhub 抓 ^TNX (10Y) 即時值
   let y10=4.20;
   try{
-    const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=^TNX&token=${FINNHUB_KEY}`);
-    const d=await r.json();
+    const d=await twseProxy('us_quote','^TNX');
     if(d&&d.c)y10=d.c/10;
   }catch(e){}
   const data=[
@@ -1278,8 +1274,7 @@ async function fetchHKQuote(sym){
     }
   }catch(e){}
   // fallback 原邏輯
-  const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(sym)}&token=${FINNHUB_KEY}`);
-  const d=await r.json();
+  const d=await twseProxy('us_quote',sym);
   if(!d||!d.c)throw new Error('no data');
   const price=d.c;
   const prev=d.pc||price;
@@ -1786,8 +1781,7 @@ async function loadFutures(){
   ];
   for(const it of intl){
     try{
-      const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(it.sym)}&token=${FINNHUB_KEY}`);
-      const d=await r.json();
+      const d=await twseProxy('us_quote',it.sym);
       const px=document.getElementById('fut_'+it.key);
       const pc=document.getElementById('fut_'+it.key+'_pct');
       if(d&&d.c){
@@ -4110,8 +4104,7 @@ const US_HOT=[
   {sym:'TQQQ',name:'NASDAQ三倍正向'}
 ];
 async function fetchUSStock(sym){
-  const r=await fetch(`https://finnhub.io/api/v1/quote?symbol=${sym}&token=${FINNHUB_KEY}`);
-  const d=await r.json();
+  const d=await twseProxy('us_quote',sym);
   if(!d||!d.c)throw new Error('no data');
   const price=d.c;
   const prev=d.pc;
@@ -4310,8 +4303,7 @@ async function loadUSChart(sym,days,btn){
   try{
     const now=Math.floor(Date.now()/1000);
     const from=now-days*86400;
-    const r=await fetch(`https://finnhub.io/api/v1/stock/candle?symbol=${sym}&resolution=D&from=${from}&to=${now}&token=${FINNHUB_KEY}`);
-    const d=await r.json();
+    const d=await twseProxy('us_candle',sym,{from,to:now});
     if(!d||d.s==='no_data'||!d.t)throw new Error('no data');
     el.innerHTML='';
     if(usChart){try{usChart.remove();}catch(e){}}
