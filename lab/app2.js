@@ -3275,13 +3275,16 @@ async function loadMonthlyRevenue(code){
   el.style.display='block';
   el.innerHTML = '<div style="color:#64748b;font-size:12px;padding:8px">載入月營收中...</div>';
   try{
-    const r = await fetch(PROXY_URL,{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Authorization':'Bearer '+SB_KEY},
-      body:JSON.stringify({type:'monthly_revenue',code:code})
-    });
-    const res = await r.json();
-    const rows = res?.data || [];
+    // 月營收從 Supabase DB 讀（自建，每月1日自動更新）
+    const mrRes = await fetch(BASE+'/monthly_revenue?symbol=eq.'+code+'&order=year_month.asc&limit=13',{headers:SB_H});
+    const dbRows = mrRes.ok ? await mrRes.json() : [];
+    // 轉換格式
+    const rows = dbRows.map(r => ({
+      '資料年月': r.year_month,
+      '營業收入-當月營收': String(r.revenue||0),
+      '營業收入-上月比較增減(%)': String(r.mom_pct||0),
+      '營業收入-去年同月增減(%)': String(r.yoy_pct||0),
+    }));
     if(!Array.isArray(rows)||rows.length===0){
       el.innerHTML='<div style="color:#64748b;font-size:12px;padding:8px">暫無月營收資料</div>';
       return;
