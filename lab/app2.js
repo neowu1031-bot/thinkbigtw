@@ -2200,8 +2200,8 @@ async function loadIntradayChart(code){
     const min=Math.min(prev*0.98,...prices), max=Math.max(prev*1.02,...prices);
     const range=max-min||1;
     const pts=prices.map((p,i)=>`${(i/(prices.length-1||1))*W},${H-((p-min)/range)*(H-8)-4}`).join(' ');
-    const safePrev=isNaN(prev)||prev===0?min:prev; const prevY=H-((safePrev-min)/range)*(H-8)-4;
-    const lastP=prices[prices.length-1];
+    const safePrev=(!isNaN(prev)&&prev>0)?prev:min; const prevY=H-((safePrev-min)/range)*(H-8)-4;
+    const lastP=prices.filter(p=>!isNaN(p)&&p>0).pop()||safePrev;
     const color=lastP>=prev?'#34d399':'#f87171';
     el.innerHTML=`<svg width="${W}" height="${H}" style="display:block">
       <defs><linearGradient id="ig" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="${color}" stop-opacity="0.3"/><stop offset="100%" stop-color="${color}" stop-opacity="0"/></linearGradient></defs>
