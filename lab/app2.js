@@ -4124,7 +4124,7 @@ async function loadETFHot(){
     const batch=allSyms.slice(i,i+50);
     try{
       // 取每檔最新一筆：先抓最近一天日期，再抓該天資料
-      const r=await fetch(BASE+'/daily_prices?symbol=in.('+batch.join(',')+')&order=date.desc&limit=1000&select=symbol,date,close_price,change_percent,volume',{headers:SB_H});
+      const r=await fetch(BASE+'/daily_prices?symbol=in.('+batch.join(',')+')&order=date.desc&limit=500&select=symbol,date,close_price,open_price,volume',{headers:SB_H});
       const rows=await r.json();
       // 各 symbol 取第一筆（最新日期）
       rows.forEach(d=>{
