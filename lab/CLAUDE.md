@@ -48,6 +48,7 @@ MoneyRadar™ 是一個台灣投資人使用的前端投資平台，主要檔案
 | v132 | 8a96c36 | 2026-04-24 | Cowork 巡邏修正 checkpoint |
 | v133 | 5ae962e | 2026-04-24 | 法人買賣超 sparkline 升級：bar+折線+dot+tooltip |
 | v134 | d4a4727 | 2026-04-24 | ETF 按鈕樣式統一：日K/週K/月K label spans |
+| v135 | a056f97 | 2026-04-24 | 全面 console error 修復（optional chaining + array guard） |
 
 ## Key Functions
 | Function | Location | Description |
