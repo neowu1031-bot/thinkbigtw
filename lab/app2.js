@@ -910,26 +910,7 @@ function switchTab(name,btn){
   if(name==='sector')setTimeout(loadSectors,100);
   if(name==='macro')setTimeout(loadMacro,100);
   if(name==='options')setTimeout(loadOptions,100);
-  if(name==='watchlist'){
-    // watchlist 特殊處理：直接用 dashboard 主內容區顯示
-    document.querySelectorAll('.tab-content').forEach(c=>{c.classList.remove('active');c.style.display='none';});
-    let wlDiv = document.getElementById('tab-watchlist-standalone');
-    if(!wlDiv){
-      wlDiv = document.createElement('div');
-      wlDiv.id = 'tab-watchlist-standalone';
-      wlDiv.className = 'tab-content active';
-      wlDiv.style.cssText = 'display:block;padding:12px';
-      wlDiv.innerHTML = '<div id="watchlistContent"><div style="color:#64748b;padding:20px;text-align:center">載入中...</div></div>';
-      const dashboard = document.getElementById('dashboard');
-      const footer = dashboard.querySelector('.footer');
-      if(footer) dashboard.insertBefore(wlDiv, footer);
-      else dashboard.appendChild(wlDiv);
-    }
-    wlDiv.style.display = 'block';
-    wlDiv.classList.add('active');
-    setTimeout(renderWatchlistTab, 100);
-    return;
-  }
+  if(name==='watchlist')setTimeout(renderWatchlistTab,100);
 }
 
 // =============== 選擇權分頁 ===============
