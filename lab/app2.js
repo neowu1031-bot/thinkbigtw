@@ -895,9 +895,9 @@ function trackEvent(eventName,params){
 function switchTab(name,btn){
   if(!currentUser){showAuthGate('請先登入以使用平台');return;}
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>{c.classList.remove('active');c.style.display='none';});
   btn.classList.add('active');
-  document.getElementById('tab-'+name).classList.add('active');
+  const activeTab=document.getElementById('tab-'+name);activeTab.classList.add('active');activeTab.style.display='block';
   trackEvent('tab_switch',{tab_name:name});
   if(name==='crypto')setTimeout(loadCrypto,100);
   if(name==='etf')setTimeout(loadETFHot,100);
