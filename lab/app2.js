@@ -1,5 +1,5 @@
 
-// MoneyRadar™ v148 — 修復 switchTab insertBefore race（render token + replaceChild）+ 補 Finnhub key
+// MoneyRadar™ v149 — switchTab 改用 dashboard 顯示狀態當門禁，避免 session 還原期 currentUser=null 擋切 tab
 const ADMIN_EMAIL='neowu1031@gmail.com';
 let isAdmin=false;
 const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
@@ -1001,7 +1001,11 @@ function trackEvent(eventName,params){
 }
 
 function switchTab(name,btn){
-  if(!currentUser){showAuthGate('請先登入以使用平台');return;}
+  // 不在這裡檢查 currentUser：dashboard 顯示與否已由 showAuthGate/showDashboard 控制，
+  // session 還原期間 currentUser 可能短暫為 null，不應因此擋住 tab 切換。
+  // 若真的未登入，lockScreen 會蓋住整個畫面，根本點不到 tab。
+  const dash=document.getElementById('dashboard');
+  if(dash && dash.style.display==='none'){showAuthGate('請先登入以使用平台');return;}
   const activeTab=document.getElementById('tab-'+name);
   if(!activeTab){console.warn('switchTab: #tab-'+name+' not found in DOM');return;}
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
