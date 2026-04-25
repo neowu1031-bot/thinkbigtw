@@ -6,7 +6,19 @@ const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
 const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNpcmhza3h1ZmF5a2xxcmx4ZWVwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3NTc5ODQsImV4cCI6MjA5MDMzMzk4NH0.i0iNEGXq3tkLrQQbGq3WJbNPbNrnrV6ryg8UUB8Bz5g';
 // Supabase Auth client（CDN 自動暴露 window.supabase）
 let SUPA_AUTH=null;
-try{if(window.supabase&&window.supabase.createClient)SUPA_AUTH=window.supabase.createClient(SB_URL,SB_KEY);}catch(e){console.log('Supabase init err',e);}
+let _supaInitTried=false;
+function _initSupa(){
+  if(_supaInitTried)return;
+  _supaInitTried=true;
+  try{
+    if(window.supabase&&window.supabase.createClient){
+      SUPA_AUTH=window.supabase.createClient(SB_URL,SB_KEY);
+      console.log('Supabase init OK');
+    }
+  }catch(e){console.log('Supa init error',e);}
+}
+_initSupa();
+document.addEventListener('DOMContentLoaded',_initSupa);
 let currentAuthMode='login';
 let currentUser=null;
 const BASE=SB_URL+'/rest/v1';
