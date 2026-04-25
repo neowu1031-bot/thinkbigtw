@@ -1,5 +1,5 @@
 
-// MoneyRadar™ v146 — 自選股完整修復：tab-watchlist DOM 位置、session 還原 showDashboard、移除主頁 watchlist 區塊
+// MoneyRadar™ v147 — 我的清單 tab 升級：股票卡片風格（價格、漲跌幅、mini SVG K線、市場標籤、toggle、刪除）
 const ADMIN_EMAIL='neowu1031@gmail.com';
 let isAdmin=false;
 const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
@@ -235,6 +235,12 @@ function showToast(msg, color='#34d399') {
   t._timer = setTimeout(() => { t.style.opacity = '0'; }, 2500);
 }
 
+function _wlCardKey(w){ return 'wl-card-'+(w.id || (w.market+'-'+(w.symbol||'').replace(/[^a-zA-Z0-9]/g,'_'))); }
+
+function _wlCardSkeleton(w){
+  return `<div id="${_wlCardKey(w)}" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155;min-height:120px;color:#64748b;font-size:12px;display:flex;align-items:center;justify-content:center">載入 ${w.symbol}…</div>`;
+}
+
 async function renderWatchlistTab() {
   const el = document.getElementById('watchlistContent');
   if(!el) return;
@@ -248,34 +254,127 @@ async function renderWatchlistTab() {
     </div>`;
     return;
   }
-  // 分兩組：持有中 / 觀察中
   const holding = list.filter(w => w.label === 'holding');
-  const watching = list.filter(w => w.label === 'watching');
-  let html = '';
-  const renderGroup = (items, title, icon, color) => {
-    if(items.length === 0) return '';
-    let h = `<div style="font-size:13px;color:${color};font-weight:700;padding:8px 0 6px;border-bottom:1px solid #1e293b;margin-bottom:8px">${icon} ${title} (${items.length})</div>`;
-    items.forEach(w => {
-      const mktLabel = {tw:'台股',etf:'ETF',us:'美股',crypto:'加密',fx:'外匯'}[w.market]||w.market;
-      h += `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px;background:#0f172a;border-radius:8px;margin-bottom:6px;border:1px solid #1e293b">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:10px;background:#1e293b;color:#60a5fa;padding:2px 6px;border-radius:8px">${mktLabel}</span>
-          <div>
-            <div style="font-size:13px;color:#e2e8f0;font-weight:600">${w.symbol}</div>
-            <div style="font-size:11px;color:#64748b">${w.name||''}</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span onclick="toggleWatchlistLabel('${w.id}','${w.symbol}','${w.market}','${w.label==='holding'?'watching':'holding'}')" style="font-size:10px;padding:3px 8px;border-radius:10px;cursor:pointer;background:${w.label==='holding'?'#1e4a3a':'#1e293b'};color:${w.label==='holding'?'#34d399':'#94a3b8'};border:1px solid ${w.label==='holding'?'#34d399':'#334155'}">${w.label==='holding'?'持有中':'觀察中'}</span>
-          <span onclick="toggleWatchlist('${w.symbol}','${w.name||''}','${w.market}')" style="cursor:pointer;color:#ef4444;font-size:16px;padding:2px 4px" title="移除">×</span>
-        </div>
-      </div>`;
-    });
-    return h;
+  const watching = list.filter(w => w.label !== 'holding');
+  const renderSection = (items, title, icon, color) => {
+    if(!items.length) return '';
+    return `<div style="margin-bottom:18px">
+      <div style="font-size:13px;color:${color};font-weight:700;padding:8px 0 10px;border-bottom:1px solid #1e293b;margin-bottom:12px">${icon} ${title} (${items.length})</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px">
+        ${items.map(_wlCardSkeleton).join('')}
+      </div>
+    </div>`;
   };
-  html += renderGroup(holding, '持有中', '✅', '#34d399');
-  html += renderGroup(watching, '觀察中', '', '#60a5fa');
-  el.innerHTML = html;
+  el.innerHTML = `<div style="font-size:12px;color:#64748b;margin-bottom:10px">共 ${list.length} 檔（持有 ${holding.length} · 觀察 ${watching.length}）</div>`
+    + renderSection(holding, '持有中', '✅', '#34d399')
+    + renderSection(watching, '觀察中', '👁', '#60a5fa');
+  await Promise.all(list.map(w => renderWatchlistCard(w).catch(e=>console.log('wl card err',w.symbol,e))));
+}
+
+async function _fetchWatchlistQuote(w){
+  if(w.market==='tw' || w.market==='etf'){
+    const sym = (w.symbol||'').toString();
+    const r = await fetchDedup(BASE+'/daily_prices?symbol=eq.'+encodeURIComponent(sym)+'&order=date.desc&limit=30', {headers:SB_H});
+    const data = await r.json();
+    if(!Array.isArray(data) || !data.length) return {};
+    const latest = data[0];
+    const prev = data[1];
+    const price = parseFloat(latest.close_price);
+    const prevClose = prev ? parseFloat(prev.close_price) : (parseFloat(latest.open_price) || price);
+    const pct = prevClose>0 ? ((price-prevClose)/prevClose*100) : 0;
+    const prices = data.map(d=>parseFloat(d.close_price)).filter(p=>!isNaN(p)).reverse();
+    return {price, pct, prices, dateStr: latest.date||''};
+  }
+  if(w.market==='us'){
+    const d = await yfQuote(w.symbol, '1mo', '1d');
+    if(!d || d.error || !d.currentPrice) return {};
+    const price = d.currentPrice;
+    const prev = d.prevClose || price;
+    const pct = prev>0 ? (price-prev)/prev*100 : 0;
+    let prices = null;
+    if(Array.isArray(d.closes)) prices = d.closes.filter(p=>p!=null && !isNaN(p));
+    else if(Array.isArray(d.prices)) prices = d.prices.filter(p=>p!=null && !isNaN(p));
+    return {price, pct, prices};
+  }
+  if(w.market==='crypto'){
+    const raw = (w.symbol||'').toString().toUpperCase();
+    const sym = raw.endsWith('USDT') ? raw : raw+'USDT';
+    const r = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol='+sym);
+    const d = await r.json();
+    if(!d || !d.lastPrice) return {};
+    const price = parseFloat(d.lastPrice);
+    const pct = parseFloat(d.priceChangePercent);
+    let prices = null;
+    try{
+      const kr = await fetch('https://api.binance.com/api/v3/klines?symbol='+sym+'&interval=1d&limit=30');
+      const kd = await kr.json();
+      if(Array.isArray(kd) && kd.length>1) prices = kd.map(k=>parseFloat(k[4])).filter(p=>!isNaN(p));
+    }catch(e){}
+    return {price, pct, prices};
+  }
+  return {};
+}
+
+async function renderWatchlistCard(w){
+  const key = _wlCardKey(w);
+  let q = {};
+  try{ q = await _fetchWatchlistQuote(w) || {}; }catch(e){}
+  const cur = document.getElementById(key);
+  if(!cur) return;
+  cur.outerHTML = _buildWatchlistCardHTML(w, q.price, q.pct, q.prices, q.dateStr||'');
+}
+
+function _buildWatchlistCardHTML(w, price, pct, prices, dateStr){
+  const sName = (w.market==='tw' && NAMES[w.symbol]) ? NAMES[w.symbol] : (w.name || w.symbol);
+  const safeName = String(sName).replace(/'/g, "\\'");
+  const mktLabel = {tw:'台股', etf:'ETF', us:'美股', crypto:'加密', fx:'外匯'}[w.market] || w.market;
+  const isHolding = w.label === 'holding';
+  const hasPrice = price != null && !isNaN(price);
+  const p = hasPrice ? Number(pct||0) : 0;
+  const up = p >= 0;
+  const color = up ? '#34d399' : '#f87171';
+  const borderColor = !hasPrice ? '#334155' : (up ? '#1e4a3a' : '#4a1e1e');
+  const priceStr = hasPrice
+    ? ((w.market==='us' || w.market==='crypto')
+        ? '$'+price.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:price<1?6:2})
+        : price.toLocaleString())
+    : '—';
+  const pctStr = hasPrice ? `${up?'▲ +':'▼ '}${Math.abs(p).toFixed(2)}%` : '—';
+  const svg = (prices && prices.length>1) ? miniSVG(prices, color) : '';
+  const newLabel = isHolding ? 'watching' : 'holding';
+  let onCardClick = '';
+  if(w.market==='tw'){
+    onCardClick = `var i=document.getElementById('stockInput');if(i){i.value='${w.symbol}';searchStock();}var t=document.querySelector('[onclick*=&quot;switchTab(\\'tw\\'&quot;]');if(t)switchTab('tw',t);window.scrollTo({top:300,behavior:'smooth'});`;
+  } else if(w.market==='etf'){
+    onCardClick = `var i=document.getElementById('etfInput');if(i){i.value='${w.symbol}';searchETF();}var t=document.querySelector('[onclick*=&quot;switchTab(\\'etf\\'&quot;]');if(t)switchTab('etf',t);`;
+  } else if(w.market==='us'){
+    onCardClick = `var i=document.getElementById('usSearch');if(i){i.value='${w.symbol}';}var t=document.querySelector('[onclick*=&quot;switchTab(\\'us\\'&quot;]');if(t)switchTab('us',t);if(typeof searchUS==='function')searchUS();`;
+  } else if(w.market==='crypto'){
+    onCardClick = `var i=document.getElementById('cryptoSearch');if(i){i.value='${w.symbol}';if(typeof searchCrypto==='function')searchCrypto();}var t=document.querySelector('[onclick*=&quot;switchTab(\\'crypto\\'&quot;]');if(t)switchTab('crypto',t);`;
+  }
+  const labelToggle = w.id
+    ? `<span onclick="event.stopPropagation();toggleWatchlistLabel('${w.id}','${w.symbol}','${w.market}','${newLabel}')" style="font-size:9px;padding:2px 6px;border-radius:8px;cursor:pointer;background:${isHolding?'#1e4a3a':'#0f172a'};color:${isHolding?'#34d399':'#94a3b8'};border:1px solid ${isHolding?'#34d399':'#334155'};font-weight:600">${isHolding?'✅ 持有中':'👁 觀察中'}</span>`
+    : `<span style="font-size:9px;padding:2px 6px;border-radius:8px;background:${isHolding?'#1e4a3a':'#0f172a'};color:${isHolding?'#34d399':'#94a3b8'};border:1px solid ${isHolding?'#34d399':'#334155'};font-weight:600">${isHolding?'✅ 持有中':'👁 觀察中'}</span>`;
+  return `<div id="${_wlCardKey(w)}" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${borderColor};position:relative;transition:border-color 0.2s;${onCardClick?'cursor:pointer':''}" ${onCardClick?`onclick="${onCardClick}"`:''}>
+    <button onclick="event.stopPropagation();toggleWatchlist('${w.symbol}','${safeName}','${w.market}')" title="從清單移除"
+      style="position:absolute;top:6px;right:6px;background:#334155;border:none;color:#94a3b8;width:20px;height:20px;border-radius:50%;font-size:13px;cursor:pointer;line-height:18px;padding:0;text-align:center;z-index:2">×</button>
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;flex-wrap:wrap;padding-right:24px">
+      <span style="font-size:9px;background:#0f172a;color:#60a5fa;padding:2px 6px;border-radius:8px;font-weight:600;border:1px solid #1e3a5f">${mktLabel}</span>
+      ${labelToggle}
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px;gap:8px">
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:600;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" title="${sName}">${sName}</div>
+        <div style="font-size:11px;color:#64748b">${w.symbol}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:16px;font-weight:700;color:#e2e8f0">${priceStr}</div>
+        <div style="font-size:11px;color:${color}">${pctStr}</div>
+      </div>
+    </div>
+    ${svg ? `<div style="margin-top:6px;overflow:hidden;border-radius:4px">${svg}</div>` : '<div style="height:48px"></div>'}
+    ${dateStr ? `<div style="font-size:10px;color:#475569;margin-top:6px;text-align:right">${dateStr}</div>` : ''}
+  </div>`;
 }
 
 async function toggleWatchlistLabel(id, symbol, market, newLabel) {
