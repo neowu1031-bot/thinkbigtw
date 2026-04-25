@@ -1,5 +1,5 @@
 
-// MoneyRadar™ v2.1 — UI測試修復 T10 T12 T14 T22 T50 T64 T69
+// MoneyRadar™ v146 — 自選股完整修復：tab-watchlist DOM 位置、session 還原 showDashboard、移除主頁 watchlist 區塊
 const ADMIN_EMAIL='neowu1031@gmail.com';
 let isAdmin=false;
 const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
@@ -20,13 +20,10 @@ function _initSupa(){
           currentUser=session.user;
           if(session.access_token) currentUser._token=session.access_token;
           console.log('Session restored:', currentUser.email);
-          if(document.readyState!=='loading') showDashboard();
+          const run=()=>{ try{ onAuthSuccess(currentUser); }catch(e){ showDashboard(); } };
+          if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run,{once:true});
+          else run();
         }
-      });
-      SUPA_AUTH.auth.onAuthStateChange((event,session)=>{
-        console.log('Auth event:', event);
-        if(session?.user){currentUser=session.user;if(session.access_token)currentUser._token=session.access_token;}
-        else{currentUser=null;}
       });
     }
   }catch(e){console.log('Supa init error',e);}
@@ -77,10 +74,13 @@ document.addEventListener('DOMContentLoaded',()=>{
 if(SUPA_AUTH?.auth?.onAuthStateChange){
   try{
     SUPA_AUTH.auth.onAuthStateChange((event, session)=>{
-      if(event==='SIGNED_IN' && session?.user){
+      console.log('Auth event:', event, !!session?.user);
+      if((event==='SIGNED_IN'||event==='INITIAL_SESSION'||event==='TOKEN_REFRESHED'||event==='USER_UPDATED') && session?.user){
         currentUser=session.user;
-        onAuthSuccess(session.user);
-        hideAuthGate();
+        if(session.access_token) currentUser._token=session.access_token;
+        const run=()=>{ try{ onAuthSuccess(session.user); }catch(e){ showDashboard(); } hideAuthGate(); };
+        if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run,{once:true});
+        else run();
       }else if(event==='SIGNED_OUT'){
         currentUser=null;
         showAuthGate('請先登入以使用平台');
