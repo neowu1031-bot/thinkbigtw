@@ -873,80 +873,7 @@ async function loadRanking(type){
   }catch(e){list.innerHTML='<div style="color:#f87171">載入失敗</div>';}
 }
 // [舊版 toggleWatchlist 已移除，使用新版 Supabase 版本]
-async function renderWatchlist(){
-  const el=document.getElementById('watchlistGrid');
-  if(!el)return;
-  // 使用 Supabase watchlist (已登入) 或 localStorage 備援
-  let wlist = watchlistCache;
-  if(!wlist) wlist = await loadWatchlist();
-  const twItems = (wlist||[]).filter(w=>w.market==='tw'||w.market==='etf');
-  // 更新標題計數
-  const titleEl=document.getElementById('watchlistSectionTitle');
-  if(titleEl) titleEl.textContent=`⭐ 我的自選股 (${twItems.length})`;
-  if(twItems.length===0){
-    el.innerHTML='<div style="color:#64748b;padding:8px">尚未加入任何自選股，搜尋個股後點 ☆ 加入</div>';
-    return;
-  }
-  el.innerHTML='<div style="color:#64748b;font-size:12px;padding:4px 0 8px">載入中...</div>';
-  const cards=[];
-  for(const w of twItems){
-    const code=w.symbol;
-    try{
-      const r=await fetchDedup(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30',{headers:SB_H});
-      const data=await r.json();
-      if(!data||!data.length)continue;
-      const latest=data[0];
-      const prev=data[1];
-      const prevClose=prev?parseFloat(prev.close_price):parseFloat(latest.open_price)||parseFloat(latest.close_price);
-      const ch=prevClose>0?((parseFloat(latest.close_price)-prevClose)/prevClose*100):0;
-      const up=ch>=0;
-      const color=up?'#34d399':'#f87171';
-      const prices=data.map(d=>parseFloat(d.close_price)).reverse();
-      const min=Math.min(...prices),max=Math.max(...prices);
-      const range=max-min||1;
-      const W=160,H=50;
-      const denom=prices.length>1?(prices.length-1):1;
-      const pts=prices.map((p,i)=>{
-        const x=i*(W/denom);
-        const y=H-((p-min)/range)*(H-4)-2;
-        return x+','+y;
-      }).join(' ');
-      const svg=`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="display:block">
-        <polyline points="${pts}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round"/>
-        <circle cx="${prices.length>1?(prices.length-1)*(W/(prices.length-1)):0}" cy="${H-((prices[prices.length-1]-min)/range)*(H-4)-2}" r="2.5" fill="${color}"/>
-      </svg>`;
-      const sName=(NAMES[code]||w.name||code).replace(/'/g,'&#39;');
-      cards.push(`<div draggable="true"
-        ondragstart="event.dataTransfer.setData('wl-code','${code}')"
-        ondragover="event.preventDefault();this.style.opacity='0.6'"
-        ondragleave="this.style.opacity='1'"
-        ondrop="dropWatchlistCard(event,'${code}');this.style.opacity='1'"
-        onclick="document.getElementById('stockInput').value='${code}';searchStock();"
-        style="background:#1e293b;border-radius:12px;padding:14px 14px 10px;cursor:pointer;border:1px solid ${up?'#1e4a3a':'#4a1e1e'};transition:border-color 0.2s;position:relative"
-        onmouseover="this.style.borderColor='${color}'"
-        onmouseout="this.style.borderColor='${up?'#1e4a3a':'#4a1e1e'}'">
-        <button onclick="event.stopPropagation();toggleWatchlist('${code}','${sName}','${w.market}')" title="移除"
-          style="position:absolute;top:6px;right:6px;background:#334155;border:none;color:#94a3b8;width:18px;height:18px;border-radius:50%;font-size:11px;cursor:pointer;line-height:18px;padding:0;text-align:center;z-index:2">×</button>
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
-          <div style="flex:1;padding-right:22px">
-            <div style="font-size:13px;font-weight:600;color:#e2e8f0">${NAMES[code]||w.name||code}</div>
-            <div style="font-size:11px;color:#64748b">${code}</div>
-          </div>
-          <div style="text-align:right">
-            <div style="font-size:17px;font-weight:700;color:#e2e8f0">${parseFloat(latest.close_price).toLocaleString()}</div>
-            <div style="font-size:11px;color:${color}">${up?'▲ +':'▼ '}${ch.toFixed(2)}%</div>
-          </div>
-        </div>
-        <div style="margin-top:4px;overflow:hidden;border-radius:4px">${svg}</div>
-        <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#475569">
-          <span>量 ${(parseInt(latest.volume)||0).toLocaleString()}</span>
-          <span>${latest.date||''}</span>
-        </div>
-      </div>`);
-    }catch(e){}
-  }
-  el.innerHTML=cards.length?cards.join(''):'<div style="color:#64748b;padding:8px">載入失敗，請重試</div>';
-}
+async function renderWatchlist(){}
 
 function dropWatchlistCard(event, targetCode){
   event.preventDefault();
@@ -983,6 +910,7 @@ function switchTab(name,btn){
   if(name==='sector')setTimeout(loadSectors,100);
   if(name==='macro')setTimeout(loadMacro,100);
   if(name==='options')setTimeout(loadOptions,100);
+  if(name==='watchlist')setTimeout(renderWatchlistTab,100);
 }
 
 // =============== 選擇權分頁 ===============
