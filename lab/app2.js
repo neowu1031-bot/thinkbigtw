@@ -506,7 +506,7 @@ async function onAuthSuccess(user){
     if(rows&&rows.length&&rows[0].plan)plan=rows[0].plan;
   }catch(e){}
   currentUserPlan=plan;
-  const planLabel=plan==='pro'?'<span style="color:#fbbf24;font-weight:700">⭐ PRO</span>':'<span style="color:#60a5fa">免費版</span>';
+  const planLabel=plan==='pro'?'<span style="color:#fbbf24;font-weight:700">⭐ PRO</span>':'<span style="color:#60a5fa">測試版</span>';
   if(badge)badge.innerHTML=`Hi, ${handle} · ${planLabel}`;
   if(logoutBtn)logoutBtn.style.display='inline-block';
   showDashboard();
