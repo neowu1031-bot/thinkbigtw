@@ -1,5 +1,5 @@
 
-// MoneyRadar™ v147 — 我的清單 tab 升級：股票卡片風格（價格、漲跌幅、mini SVG K線、市場標籤、toggle、刪除）
+// MoneyRadar™ v148 — 修復 switchTab insertBefore race（render token + replaceChild）+ 補 Finnhub key
 const ADMIN_EMAIL='neowu1031@gmail.com';
 let isAdmin=false;
 const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
@@ -241,11 +241,15 @@ function _wlCardSkeleton(w){
   return `<div id="${_wlCardKey(w)}" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid #334155;min-height:120px;color:#64748b;font-size:12px;display:flex;align-items:center;justify-content:center">載入 ${w.symbol}…</div>`;
 }
 
+let _wlRenderToken = 0;
+
 async function renderWatchlistTab() {
+  const myToken = ++_wlRenderToken;
   const el = document.getElementById('watchlistContent');
   if(!el) return;
   el.innerHTML = '<div style="color:#64748b;padding:20px;text-align:center">載入中...</div>';
   const list = await loadWatchlist();
+  if(myToken !== _wlRenderToken) return;
   if(!list || list.length === 0) {
     el.innerHTML = `<div style="text-align:center;padding:40px;color:#64748b">
       <div style="font-size:40px;margin-bottom:12px">☆</div>
@@ -268,7 +272,7 @@ async function renderWatchlistTab() {
   el.innerHTML = `<div style="font-size:12px;color:#64748b;margin-bottom:10px">共 ${list.length} 檔（持有 ${holding.length} · 觀察 ${watching.length}）</div>`
     + renderSection(holding, '持有中', '✅', '#34d399')
     + renderSection(watching, '觀察中', '👁', '#60a5fa');
-  await Promise.all(list.map(w => renderWatchlistCard(w).catch(e=>console.log('wl card err',w.symbol,e))));
+  await Promise.all(list.map(w => renderWatchlistCard(w, myToken).catch(e=>console.log('wl card err',w.symbol,e))));
 }
 
 async function _fetchWatchlistQuote(w){
@@ -315,13 +319,18 @@ async function _fetchWatchlistQuote(w){
   return {};
 }
 
-async function renderWatchlistCard(w){
+async function renderWatchlistCard(w, myToken){
   const key = _wlCardKey(w);
   let q = {};
   try{ q = await _fetchWatchlistQuote(w) || {}; }catch(e){}
+  if(myToken !== undefined && myToken !== _wlRenderToken) return;
   const cur = document.getElementById(key);
-  if(!cur) return;
-  cur.outerHTML = _buildWatchlistCardHTML(w, q.price, q.pct, q.prices, q.dateStr||'');
+  if(!cur || !cur.parentNode) return;
+  const tmp = document.createElement('div');
+  tmp.innerHTML = _buildWatchlistCardHTML(w, q.price, q.pct, q.prices, q.dateStr||'');
+  const fresh = tmp.firstElementChild;
+  if(!fresh) return;
+  cur.parentNode.replaceChild(fresh, cur);
 }
 
 function _buildWatchlistCardHTML(w, price, pct, prices, dateStr){
@@ -393,7 +402,7 @@ async function toggleWatchlistLabel(id, symbol, market, newLabel) {
   } catch(e) {}
 }
 let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=null,currentStock='',currentETF='',currentUS='',currentIndicator='none',lastKData=[];
-const FINNHUB_KEY='';
+const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
 
 function checkPw(){
   // 管理員入口已停用，請用 Google 或 Email 登入
@@ -993,10 +1002,13 @@ function trackEvent(eventName,params){
 
 function switchTab(name,btn){
   if(!currentUser){showAuthGate('請先登入以使用平台');return;}
+  const activeTab=document.getElementById('tab-'+name);
+  if(!activeTab){console.warn('switchTab: #tab-'+name+' not found in DOM');return;}
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c=>{c.classList.remove('active');c.style.display='none';});
-  btn.classList.add('active');
-  const activeTab=document.getElementById('tab-'+name);activeTab.classList.add('active');activeTab.style.display='block';
+  if(btn&&btn.classList)btn.classList.add('active');
+  activeTab.classList.add('active');
+  activeTab.style.display='block';
   trackEvent('tab_switch',{tab_name:name});
   if(name==='crypto')setTimeout(loadCrypto,100);
   if(name==='etf')setTimeout(loadETFHot,100);
