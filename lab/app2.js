@@ -14,6 +14,20 @@ function _initSupa(){
     if(window.supabase&&window.supabase.createClient){
       SUPA_AUTH=window.supabase.createClient(SB_URL,SB_KEY);
       console.log('Supabase init OK');
+      // 立即恢復登入狀態
+      SUPA_AUTH.auth.getSession().then(({data:{session}})=>{
+        if(session?.user){
+          currentUser=session.user;
+          if(session.access_token) currentUser._token=session.access_token;
+          console.log('Session restored:', currentUser.email);
+          if(document.readyState!=='loading') showDashboard();
+        }
+      });
+      SUPA_AUTH.auth.onAuthStateChange((event,session)=>{
+        console.log('Auth event:', event);
+        if(session?.user){currentUser=session.user;if(session.access_token)currentUser._token=session.access_token;}
+        else{currentUser=null;}
+      });
     }
   }catch(e){console.log('Supa init error',e);}
 }
