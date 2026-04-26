@@ -33,8 +33,9 @@
   gtag('config', 'G-7V41XYLLP5');
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@700;800&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0f1e;color:#e2e8f0;font-family:-apple-system,sans-serif;min-height:100vh}
+body{background:#080c18;color:#e2e8f0;font-family:'DM Sans',sans-serif;min-height:100vh}
 .lock-screen{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px}
 h1{font-size:26px;color:#60a5fa;margin-bottom:6px;font-weight:700}
 .subtitle{color:#94a3b8;margin-bottom:36px;font-size:14px}
@@ -51,7 +52,7 @@ textarea{height:80px;resize:vertical}
 .dashboard{display:none;max-width:1100px;margin:0 auto;padding-bottom:60px}
 .header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px 0;margin-bottom:0}
 .header h1{font-size:20px;color:#f0f9ff}
-.badge{background:#1e293b;padding:4px 14px;border-radius:20px;font-size:12px;color:#94a3b8}
+.badge{background:#0f172a;padding:4px 14px;border-radius:4px;font-size:11px;color:#60a5fa;font-weight:600;letter-spacing:0.5px;border:1px solid #1e3a5f}
 .tab-nav-wrap{margin:16px 24px 0}
 .tab-nav{display:flex;gap:0;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab-nav-row1{border-bottom:1px solid #1e293b}
@@ -65,11 +66,11 @@ textarea{height:80px;resize:vertical}
 .tab-content{display:none;padding:24px}
 .tab-content.active{display:block}
 .section{margin-bottom:28px}
-.section-title{font-size:15px;font-weight:700;color:#93c5fd;margin-bottom:12px;padding-left:10px;border-left:3px solid #2563eb}
+.section-title{font-size:11px;font-weight:700;color:#93c5fd;margin-bottom:12px;padding-left:10px;border-left:2px solid #2563eb;text-transform:uppercase;letter-spacing:2px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:12px}
-.card{background:#1e293b;border-radius:12px;padding:18px;border:1px solid #334155}
+.card{background:#0f1729;border-radius:8px;padding:18px;border:1px solid #1e2d45;transition:border-color 0.2s}.card:hover{border-color:#2563eb}
 .card h3{font-size:11px;color:#94a3b8;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px}
-.card .value{font-size:24px;font-weight:700;color:#e2e8f0}
+.card .value{font-size:26px;font-weight:700;color:#e2e8f0;font-family:'Syne',sans-serif;letter-spacing:-0.5px}
 .card .sub{font-size:12px;color:#64748b;margin-top:4px}
 .up{color:#34d399}.down{color:#f87171}
 .chart-container{background:#1e293b;border-radius:12px;border:1px solid #334155;padding:16px;margin-bottom:20px}
@@ -177,6 +178,13 @@ textarea{height:80px;resize:vertical}
   input[type=password]{width:260px!important;}
   .btn{width:260px!important;padding:12px 20px!important;}
 }
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.tab-content.active .card{animation:fadeUp 0.35s ease forwards}
+.tab-content.active .card:nth-child(1){animation-delay:0s}
+.tab-content.active .card:nth-child(2){animation-delay:0.06s}
+.tab-content.active .card:nth-child(3){animation-delay:0.12s}
+.tab-content.active .card:nth-child(4){animation-delay:0.18s}
 </style>
 </head>
 <body>
@@ -842,7 +850,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
 </div>
-<script src="app2.js?v=150"></script>
+<script src="app2.js?v=151"></script>
 
 <script>
 (function(){
