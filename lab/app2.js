@@ -5576,6 +5576,8 @@ async function loadStockAnalysis(code){
 
 // ===== MoneyRadar v163: My Watchlist Digest (auto-inserted) =====
 function ensureMyDigestButton(){
+  // v174: 已停用 — 改由 v174RelocateDigestButton 把按鈕放在 watchlist 分頁
+  return;
   if (document.getElementById('my-digest-trigger')) return;
   const dbEl = document.getElementById('daily-briefing');
   if (!dbEl) return;
@@ -6104,4 +6106,73 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => setTimeout(v170AutoBindAll, 1500));
 } else {
   setTimeout(v170AutoBindAll, 1500);
+}
+
+
+// ===== MoneyRadar v174: Relocate Digest Button (auto-inserted) =====
+function v174RelocateDigestButton(){
+  // 1. 清掉可能在台股分頁的舊按鈕
+  const oldWrap = document.getElementById('my-digest-trigger');
+  if (oldWrap && !oldWrap.closest('#tab-watchlist')) {
+    oldWrap.remove();
+  }
+
+  // 2. 確保 watchlist 分頁裡有按鈕
+  const watchTab = document.getElementById('tab-watchlist');
+  if (!watchTab) return;
+  if (watchTab.querySelector('#my-digest-trigger')) return;
+
+  const target = document.getElementById('watchlist-grid-content');
+  if (!target) return;
+
+  const wrap = document.createElement('div');
+  wrap.id = 'my-digest-trigger';
+  wrap.style.cssText = 'margin-bottom:12px';
+
+  const btn = document.createElement('button');
+  btn.id = 'my-digest-btn';
+  btn.type = 'button';
+  btn.style.cssText = 'width:100%;background:linear-gradient(135deg,#064e3b,#065f46);color:#a7f3d0;border:1px solid #047857;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:space-between;font-family:inherit';
+  btn.innerHTML = '<span>✨ 我的自選股 AI 早報</span><span style="font-size:11px;opacity:0.8">點擊產生 →</span>';
+  btn.addEventListener('click', () => {
+    if (typeof loadMyDigest === 'function') loadMyDigest();
+  });
+
+  const area = document.createElement('div');
+  area.id = 'my-digest-area';
+  area.style.cssText = 'display:none;margin-top:12px';
+
+  wrap.appendChild(btn);
+  wrap.appendChild(area);
+
+  // 插在 watchlist-grid-content 之前
+  target.parentNode.insertBefore(wrap, target);
+}
+
+// v174: 自動執行 + 監聽 watchlist tab 切換
+function v174AutoBind(){
+  v174RelocateDigestButton();
+
+  const watchTab = document.getElementById('tab-watchlist');
+  if (watchTab && !watchTab.dataset.v174Watched) {
+    watchTab.dataset.v174Watched = '1';
+    const observer = new MutationObserver(() => {
+      if (watchTab.style.display !== 'none') {
+        v174RelocateDigestButton();
+      }
+    });
+    observer.observe(watchTab, { attributes: true, attributeFilter: ['style'] });
+  }
+
+  const watchBtn = [...document.querySelectorAll('button.tab-btn')].find(b => /自選|清單|⭐/.test(b.textContent || ''));
+  if (watchBtn && !watchBtn.dataset.v174Bound) {
+    watchBtn.dataset.v174Bound = '1';
+    watchBtn.addEventListener('click', () => setTimeout(v174RelocateDigestButton, 100));
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(v174AutoBind, 1700));
+} else {
+  setTimeout(v174AutoBind, 1700);
 }
