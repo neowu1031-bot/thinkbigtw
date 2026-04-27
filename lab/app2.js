@@ -5596,7 +5596,13 @@ async function loadMyDigest(){
 
   try{
     if (typeof watchlistCache === 'undefined' || !Array.isArray(watchlistCache) || watchlistCache.length === 0){
-      area.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;color:#64748b;font-size:13px">📋 請先加入自選股後再使用 AI 早報功能。</div><button onclick="document.getElementById('my-digest-trigger').remove()" style="margin-top:8px;background:transparent;border:none;color:#64748b;cursor:pointer;font-size:11px">✕ 收起</button>';
+      area.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;color:#64748b;font-size:13px">📋 請先加入自選股後再使用 AI 早報功能。</div>';
+      const closeBtn1 = document.createElement('button');
+      closeBtn1.type = 'button';
+      closeBtn1.textContent = '✕ 收起';
+      closeBtn1.style.cssText = 'margin-top:8px;background:transparent;border:none;color:#64748b;cursor:pointer;font-size:11px';
+      closeBtn1.addEventListener('click', function(){ const w = document.getElementById('my-digest-trigger'); if (w) w.remove(); });
+      area.appendChild(closeBtn1);
       return;
     }
 
@@ -5675,8 +5681,18 @@ async function loadMyDigest(){
       + '</div>'
       + '<p style="font-size:13px;color:#d1fae5;line-height:1.8;margin:0 0 10px">' + digestSafe + '</p>'
       + '<div style="font-size:11px;color:#475569;border-top:1px solid #047857;padding-top:8px">⚠️ ' + String(data.disclaimer || '本內容不構成投資建議').replace(/</g,'&lt;') + '</div>'
-      + '</div>'
-      + '<button onclick="document.getElementById('my-digest-area').style.display='none';document.getElementById('my-digest-btn').style.display='flex'" style="margin-top:6px;background:transparent;border:none;color:#64748b;cursor:pointer;font-size:11px">✕ 收起</button>';
+      + '</div>';
+    const closeBtn2 = document.createElement('button');
+    closeBtn2.type = 'button';
+    closeBtn2.textContent = '✕ 收起';
+    closeBtn2.style.cssText = 'margin-top:6px;background:transparent;border:none;color:#64748b;cursor:pointer;font-size:11px';
+    closeBtn2.addEventListener('click', function(){
+      const a = document.getElementById('my-digest-area');
+      const b = document.getElementById('my-digest-btn');
+      if (a) a.style.display = 'none';
+      if (b) b.style.display = 'flex';
+    });
+    area.appendChild(closeBtn2);
   }catch(e){
     area.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:13px;color:#a7f3d0;font-weight:700;margin-bottom:6px">✨ 我的自選股 AI 早報</div><div style="font-size:12px;color:#64748b">暫時無法載入早報：' + String(e.message || e).replace(/</g,'&lt;') + '</div></div>';
     console.warn('[My Digest]', e);
