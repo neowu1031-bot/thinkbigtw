@@ -5794,3 +5794,105 @@ async function loadIndustryHeatmap(){
     console.warn('[Industry Heatmap]', e);
   }
 }
+
+
+// ===== MoneyRadar v167: Asia Market (auto-inserted) =====
+async function loadAsiaMarket(){
+  const el = document.getElementById('asia-market-content');
+  if (!el) return;
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">🌏 亞洲市場 · 載入中...</div></div>';
+
+  const groups = [
+    {
+      key: 'hk', name: '🇭🇰 港股', flag: '#dc2626',
+      indexSym: '^HSI', indexLabel: '恆生指數',
+      stocks: [
+        { sym: '0700.HK', name: '騰訊控股' },
+        { sym: '9988.HK', name: '阿里巴巴' },
+        { sym: '3690.HK', name: '美團' },
+        { sym: '1810.HK', name: '小米集團' },
+        { sym: '1211.HK', name: '比亞迪股份' }
+      ]
+    },
+    {
+      key: 'jp', name: '🇯🇵 日股', flag: '#dc2626',
+      indexSym: '^N225', indexLabel: '日經 225',
+      stocks: [
+        { sym: '7203.T', name: '豐田汽車' },
+        { sym: '6758.T', name: 'Sony 集團' },
+        { sym: '9984.T', name: '軟銀集團' },
+        { sym: '7974.T', name: '任天堂' },
+        { sym: '9983.T', name: '迅銷 (Uniqlo)' }
+      ]
+    },
+    {
+      key: 'cn', name: '🇨🇳 中概 ADR', flag: '#fbbf24',
+      indexSym: null, indexLabel: null,
+      stocks: [
+        { sym: 'BABA', name: '阿里巴巴' },
+        { sym: 'JD', name: '京東' },
+        { sym: 'PDD', name: '拼多多' },
+        { sym: 'NIO', name: '蔚來' },
+        { sym: 'BIDU', name: '百度' }
+      ]
+    }
+  ];
+
+  const allSymbols = groups.flatMap(g => g.indexSym ? [g.indexSym, ...g.stocks.map(s => s.sym)] : g.stocks.map(s => s.sym));
+
+  try {
+    const r = await fetch((typeof AI_PROXY_URL !== 'undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symbols: allSymbols })
+    });
+    const data = await r.json();
+    const byKey = {};
+    (data.results || []).forEach(rs => { byKey[rs.symbol] = rs; });
+
+    let html = '';
+    groups.forEach(group => {
+      // 區塊標題 + 指數
+      const idxData = group.indexSym ? byKey[group.indexSym] : null;
+      const idxBlock = idxData && !idxData.error
+        ? '<div style="background:#0f172a;border-radius:8px;padding:10px 14px;border:1px solid #1e293b;margin-bottom:8px"><div style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:11px;color:#64748b">' + group.indexLabel + '</div><div style="font-size:18px;font-weight:700;color:' + (idxData.pct >= 0 ? '#22c55e' : '#ef4444') + '">' + Number(idxData.price).toLocaleString() + ' ' + (idxData.currency || '') + '</div></div><div style="text-align:right"><div style="font-size:14px;font-weight:700;color:' + (idxData.pct >= 0 ? '#22c55e' : '#ef4444') + '">' + (idxData.pct >= 0 ? '▲' : '▼') + ' ' + Math.abs(Number(idxData.change || 0)).toFixed(2) + '</div><div style="font-size:12px;color:' + (idxData.pct >= 0 ? '#22c55e' : '#ef4444') + '">' + (idxData.pct >= 0 ? '+' : '') + Number(idxData.pct || 0).toFixed(2) + '%</div></div></div></div>'
+        : '';
+
+      let stockCards = '';
+      group.stocks.forEach(s => {
+        const d = byKey[s.sym];
+        if (!d || d.error) {
+          stockCards += '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">' + s.sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + s.name + '</div><div style="font-size:11px;color:#475569;margin-top:2px">無報價</div></div>';
+          return;
+        }
+        const isUp = (d.pct || 0) >= 0;
+        stockCards += '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid ' + (isUp ? '#14532d' : '#450a0a') + ';cursor:default"><div style="font-size:11px;color:#64748b">' + s.sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + s.name + '</div><div style="display:flex;align-items:baseline;gap:6px;margin-top:2px"><span style="font-size:13px;font-weight:600;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + Number(d.price).toFixed(2) + '</span><span style="font-size:11px;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + (isUp ? '▲' : '▼') + Math.abs(Number(d.pct || 0)).toFixed(2) + '%</span><span style="font-size:10px;color:#64748b">' + (d.currency || '') + '</span></div></div>';
+      });
+
+      html += '<div style="margin-bottom:18px"><div style="font-size:13px;font-weight:700;color:' + group.flag + ';margin-bottom:8px;padding-left:10px;border-left:3px solid ' + group.flag + '">' + group.name + '</div>' + idxBlock + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + stockCards + '</div></div>';
+    });
+
+    el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px">🌏 亞洲市場 · 即時行情</div>' + html + '<div style="font-size:10px;color:#475569;border-top:1px solid #1e293b;padding-top:8px;margin-top:8px">資料來源：Yahoo Finance / Alpha Vantage · 延遲約 5-15 分鐘 · 僅供參考</div></div>';
+  } catch (e) {
+    el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;color:#64748b;font-size:13px">🌏 亞洲市場暫時無法載入，請稍後再試</div>';
+    console.warn('[Asia Market]', e);
+  }
+}
+
+function watchAsiaTab(){
+  const tab = document.getElementById('tab-asia');
+  if (!tab || tab.dataset.watched) return;
+  tab.dataset.watched = '1';
+  let loaded = false;
+  const check = () => {
+    if (!loaded && tab.style.display !== 'none' && document.getElementById('asia-market-content')) {
+      loaded = true;
+      loadAsiaMarket();
+    }
+  };
+  // 監聽 style 變化（switchTab 會改 display）
+  const observer = new MutationObserver(check);
+  observer.observe(tab, { attributes: true, attributeFilter: ['style'] });
+  // 初次也檢查（如果頁面載入時就已 visible）
+  check();
+}

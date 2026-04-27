@@ -557,6 +557,114 @@ async function handleDigest(request, env) {
   });
 }
 
+
+// ============== 全球報價代理 v10 — Alpha Vantage 主 + Yahoo 備援 + Cache 10 分鐘 ==============
+async function fetchAlphaVantageQuote(symbol, env) {
+  if (!env.ALPHA_VANTAGE_KEY) return null;
+  try {
+    const url = 'https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=' + encodeURIComponent(symbol) + '&apikey=' + env.ALPHA_VANTAGE_KEY;
+    const r = await fetch(url, { cf: { cacheTtl: 300, cacheEverything: true } });
+    if (!r.ok) return null;
+    const d = await r.json();
+    if (d.Note || d.Information) return { _quotaWarning: d.Note || d.Information };
+    const q = d['Global Quote'];
+    if (!q || !q['05. price']) return null;
+    const price = parseFloat(q['05. price']);
+    const prev = parseFloat(q['08. previous close']);
+    return {
+      symbol,
+      name: symbol,
+      price,
+      prev,
+      change: parseFloat(q['09. change']) || (price - prev),
+      pct: parseFloat(String(q['10. change percent'] || '0').replace('%', '')) || 0,
+      currency: '',
+      tradingDay: q['07. latest trading day'] || '',
+      source: 'alpha-vantage'
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchYahooQuote(symbol) {
+  try {
+    // range=5d 確保抓到至少 2 個交易日（避開週末/假日）
+    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=5d';
+    const r = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'application/json'
+      },
+      cf: { cacheTtl: 300, cacheEverything: true }
+    });
+    if (!r.ok) return null;
+    const d = await r.json();
+    const result = d && d.chart && d.chart.result && d.chart.result[0];
+    if (!result) return null;
+    const m = result.meta || {};
+    const closes = (result.indicators && result.indicators.quote && result.indicators.quote[0] && result.indicators.quote[0].close) || [];
+    const validCloses = closes.filter(c => c != null && !isNaN(c));
+
+    // 當前價：優先 meta.regularMarketPrice
+    const price = Number(m.regularMarketPrice) || (validCloses.length > 0 ? Number(validCloses[validCloses.length-1]) : 0);
+    if (!price) return null;
+
+    // 昨收：優先 meta.regularMarketPreviousClose（更準），否則用 closes 倒數第二個有效值
+    let prev = Number(m.regularMarketPreviousClose) || 0;
+    if (!prev && validCloses.length >= 2) {
+      // 用倒數第二個 close（避開當天可能的盤中跳空）
+      prev = Number(validCloses[validCloses.length-2]);
+    }
+    if (!prev) prev = Number(m.previousClose) || Number(m.chartPreviousClose) || 0;
+
+    return {
+      symbol,
+      name: m.longName || m.shortName || symbol,
+      price,
+      prev,
+      change: prev > 0 ? Number((price - prev).toFixed(4)) : 0,
+      pct: prev > 0 ? Number(((price - prev) / prev * 100).toFixed(2)) : 0,
+      currency: m.currency || '',
+      marketState: m.marketState || '',
+      exchange: m.exchangeName || m.fullExchangeName || '',
+      tradingDay: m.regularMarketTime ? new Date(m.regularMarketTime * 1000).toISOString().slice(0,10) : '',
+      source: 'yahoo'
+    };
+  } catch (e) {
+    return null;
+  }
+}
+
+async function fetchQuote(symbol, env) {
+  // 純美股代號（純大寫無後綴）→ 優先 Alpha Vantage（合法、NASDAQ 授權）
+  const isUS = /^[A-Z]{1,5}$/.test(symbol);
+  if (isUS && env.ALPHA_VANTAGE_KEY) {
+    const av = await fetchAlphaVantageQuote(symbol, env);
+    if (av && !av._quotaWarning && av.price) return av;
+  }
+  // 其他市場（港日韓歐...）或 Alpha Vantage 失敗 → Yahoo
+  const yh = await fetchYahooQuote(symbol);
+  if (yh) return yh;
+  return { symbol, error: 'no data', source: 'none' };
+}
+
+async function handleQuote(request, env) {
+  let body;
+  try { body = await request.json(); }
+  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const symbols = Array.isArray(body.symbols) ? body.symbols.slice(0, 30) : [];
+  if (symbols.length === 0) return jsonResponse({ error: 'symbols 必填' }, 400);
+
+  const results = await Promise.all(symbols.map(s => fetchQuote(String(s).trim(), env)));
+  return jsonResponse({
+    results,
+    sourceMix: results.reduce((acc, r) => { const k = r.source || 'unknown'; acc[k] = (acc[k]||0) + 1; return acc; }, {}),
+    updated: new Date().toISOString()
+  });
+}
+
 // ============== Router ==============
 export default {
   async fetch(request, env) {
@@ -579,6 +687,7 @@ export default {
       if (url.pathname === '/heatmap') return await handleHeatmap(request, env);
       if (url.pathname === '/analysis') return await handleAnalysis(request, env);
       if (url.pathname === '/digest') return await handleDigest(request, env);
+      if (url.pathname === '/quote') return await handleQuote(request, env);
       return await handleSummary(request, env);
     } catch (err) {
       return jsonResponse({ error: err.message || 'Internal error' }, 500);
