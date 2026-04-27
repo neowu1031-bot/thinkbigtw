@@ -403,6 +403,7 @@ async function toggleWatchlistLabel(id, symbol, market, newLabel) {
 }
 let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=null,currentStock='',currentETF='',currentUS='',currentIndicator='none',lastKData=[];
 const FINNHUB_KEY='d7fh9c1r01qpjqqkqkv0d7fh9c1r01qpjqqkqkvg';
+const AI_PROXY_URL='https://moneyradar-ai-proxy.thinkbigtw.workers.dev';
 
 function checkPw(){
   // 管理員入口已停用，請用 Google 或 Email 登入
@@ -2442,6 +2443,7 @@ async function searchStock(){
       loadRealtimeQuote(code);
       loadMonthlyRevenue(code);
       loadStockNews(code);
+      loadAISummary(code);
       checkDisposeStatus(code);
       loadStockDividend(code);
       loadChipAnalysis(code);
@@ -4905,4 +4907,71 @@ async function loadSupabaseData(){
     const data=await r.json();
     if(data&&data.length>0)document.getElementById('institutionalList').innerHTML=data.map((d,i)=>{const who=d.foreign_buy>0&&d.investment_trust_buy>0?'外資+投信':d.foreign_buy>0?'外資':'投信';const nm=NAMES[d.symbol]||d.symbol;const nm2=nm===d.symbol?d.symbol:nm+' '+d.symbol;const sheets=Math.round((d.total_buy||0)/1000);return '<div class="rank-item"><div class="rank-num">'+(i+1)+'</div><div><div class="rank-name">'+nm2+'</div><div class="rank-sub">'+who+'</div></div><div class="rank-val up">+'+sheets.toLocaleString()+'張</div></div>';}).join('');
   }catch(e){}
+}
+
+
+// ===== MoneyRadar AI 摘要 (auto-inserted) =====
+async function loadAISummary(code){
+  const newsEl = document.getElementById('stockNews');
+  if(!newsEl) return;
+  let box = document.getElementById('aiSummaryBox');
+  if(!box){
+    box = document.createElement('div');
+    box.id = 'aiSummaryBox';
+    box.style.marginTop = '12px';
+    newsEl.parentNode.insertBefore(box, newsEl.nextSibling);
+  }
+  box.innerHTML = '<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🤖 AI 消息摘要</div><div style="background:#0f172a;border-radius:8px;padding:12px;color:#64748b;font-size:12px">分析中...</div>';
+  try{
+    const stockName = (typeof NAMES !== 'undefined' && NAMES[code]) || code;
+    const news = await twseProxy('news', code, {name: stockName});
+    if(!Array.isArray(news) || news.length === 0){
+      box.innerHTML = '<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:8px;border-left:3px solid #2563eb;padding-left:8px">🤖 AI 消息摘要</div><div style="background:#0f172a;border-radius:8px;padding:12px;color:#64748b;font-size:12px">尚無相關新聞，無法產生摘要</div>';
+      return;
+    }
+    const formatted = news.slice(0,5).map(function(n){
+      return {
+        headline: String(n.title||'').slice(0,200),
+        source: 'Google News',
+        datetime: n.pubDate ? Math.floor(new Date(n.pubDate).getTime()/1000) : Math.floor(Date.now()/1000)
+      };
+    });
+    const r = await fetch(AI_PROXY_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({symbol: code, news: formatted, lang: 'zh-TW'})
+    });
+    const data = await r.json();
+    if(data.error && !data.summary) throw new Error(data.error);
+    const cfg = {
+      bullish:{label:'偏多',color:'#22c55e',bg:'#052e16'},
+      bearish:{label:'偏空',color:'#ef4444',bg:'#2d0a0a'},
+      neutral:{label:'中性',color:'#94a3b8',bg:'#1e293b'}
+    };
+    const s = cfg[data.sentiment] || cfg.neutral;
+    let summary = String(data.summary||'')
+      .replace(/【消息摘要】\s*/g,'')
+      .replace(/【市場情緒】\s*(偏多|偏空|中性)\s*/g,'')
+      .trim();
+    const safe = summary
+      .replace(/&/g,'&amp;')
+      .replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;')
+      .replace(/\n/g,'<br>');
+    const disclaimer = String(data.disclaimer||'本內容不構成投資建議').replace(/</g,'&lt;');
+    box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+      + '<span style="font-size:13px;color:#93c5fd;font-weight:700;border-left:3px solid #2563eb;padding-left:8px">🤖 AI 消息摘要</span>'
+      + '<span style="background:'+s.bg+';color:'+s.color+';border:1px solid '+s.color+';padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700">'+s.label+'</span>'
+      + '</div>'
+      + '<p style="font-size:13px;color:#cbd5e1;line-height:1.7;margin:0 0 10px">'+safe+'</p>'
+      + '<div style="font-size:11px;color:#475569;border-top:1px solid #1e293b;padding-top:8px">⚠️ '+disclaimer+'</div>'
+      + '</div>';
+  }catch(e){
+    box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:12px;border:1px solid #1e293b">'
+      + '<div style="font-size:13px;color:#93c5fd;font-weight:700;margin-bottom:6px;border-left:3px solid #2563eb;padding-left:8px">🤖 AI 消息摘要</div>'
+      + '<div style="font-size:12px;color:#64748b">暫時無法載入 AI 摘要，請稍後再試</div>'
+      + '</div>';
+    console.warn('[AI Summary]', e);
+  }
 }
