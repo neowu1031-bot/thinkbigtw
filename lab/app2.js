@@ -5919,3 +5919,189 @@ if (document.readyState === 'loading') {
 } else {
   setTimeout(v169AsiaAutoBind, 1500);
 }
+
+
+// ===== MoneyRadar v170-173: Commodities + Watchlist + Crypto + US Extras (auto-inserted) =====
+
+// 通用：渲染 grid 卡片（給 v170/172/173 共用）
+function v170RenderGridCard(sym, name, data){
+  if (!data || data.error) {
+    return '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">' + sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + name + '</div><div style="font-size:11px;color:#475569;margin-top:2px">無報價</div></div>';
+  }
+  const isUp = (data.pct || 0) >= 0;
+  const border = isUp ? '#14532d' : '#450a0a';
+  return '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid ' + border + '"><div style="font-size:11px;color:#64748b">' + sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + name + '</div><div style="display:flex;align-items:baseline;gap:6px;margin-top:2px"><span style="font-size:13px;font-weight:600;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + Number(data.price).toFixed(2) + '</span><span style="font-size:11px;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + (isUp ? '▲' : '▼') + Math.abs(Number(data.pct || 0)).toFixed(2) + '%</span><span style="font-size:10px;color:#64748b">' + (data.currency || '') + '</span></div></div>';
+}
+
+async function v170FetchQuotes(symbols){
+  try {
+    const r = await fetch((typeof AI_PROXY_URL !== 'undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/quote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symbols })
+    });
+    const data = await r.json();
+    const map = {};
+    (data.results || []).forEach(rs => { map[rs.symbol] = rs; });
+    return map;
+  } catch (e) {
+    return {};
+  }
+}
+
+// ===== v170: 全球商品 =====
+async function loadGlobalCommodities(){
+  const el = document.getElementById('global-commodities-content');
+  if (!el) return;
+  const items = [
+    { sym: 'GC=F', name: '黃金期貨' },
+    { sym: 'SI=F', name: '白銀期貨' },
+    { sym: 'HG=F', name: '銅期貨' },
+    { sym: 'CL=F', name: '原油 WTI' },
+    { sym: 'BZ=F', name: '原油 Brent' },
+    { sym: 'NG=F', name: '天然氣' },
+    { sym: 'ZC=F', name: '玉米期貨' },
+    { sym: 'ZW=F', name: '小麥期貨' },
+    { sym: 'VNQ', name: '美 REIT ETF' }
+  ];
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">🛢 全球商品 · 載入中...</div></div>';
+  const map = await v170FetchQuotes(items.map(x => x.sym));
+  const cards = items.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🛢 全球商品 / 貴金屬 / REIT</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div><div style="font-size:10px;color:#475569;margin-top:10px;border-top:1px solid #1e293b;padding-top:8px">資料：Yahoo Finance · 延遲 5-15 分鐘</div></div>';
+}
+
+// ===== v171: Watchlist Grid =====
+async function loadWatchlistGrid(){
+  const el = document.getElementById('watchlist-grid-content');
+  if (!el) return;
+  if (typeof watchlistCache === 'undefined' || !Array.isArray(watchlistCache) || watchlistCache.length === 0){
+    el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:20px;border:1px solid #1e293b;text-align:center;color:#64748b;font-size:13px">⭐ 目前沒有自選股<br><br>請至 <strong>台股</strong> 分頁查詢個股後加入自選</div>';
+    return;
+  }
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">⭐ 我的自選 · 載入中...</div></div>';
+
+  const items = watchlistCache.slice(0, 20).map(w => {
+    const sym = (typeof normalizeWlSymbol === 'function') ? normalizeWlSymbol(w.symbol) : w.symbol;
+    return { sym, name: (typeof NAMES !== 'undefined' && NAMES[sym]) || sym };
+  });
+
+  // 用 twseProxy realtime（台股）+ Worker /quote（其他）
+  const cards = await Promise.all(items.map(async x => {
+    let data = null;
+    if (/^\d+$/.test(x.sym)){
+      // 台股
+      try {
+        const q = await twseProxy('realtime', x.sym);
+        const m = q?.msgArray?.[0];
+        if (m){
+          const z = parseFloat(m.z), o = parseFloat(m.o), h = parseFloat(m.h), l = parseFloat(m.l), y = parseFloat(m.y);
+          const hasZ = !isNaN(z) && z > 0;
+          const hasMid = !isNaN(h) && !isNaN(l) && h > 0 && l > 0;
+          const price = hasZ ? z : (hasMid ? (h+l)/2 : (!isNaN(o) ? o : y));
+          const yest = !isNaN(y) && y > 0 ? y : 0;
+          if (price && yest) data = { price, prev: yest, pct: (price-yest)/yest*100, currency: 'TWD' };
+        }
+      } catch(e) {}
+    } else {
+      // 美股或其他
+      try {
+        const r = await fetch((typeof AI_PROXY_URL !== 'undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/quote', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ symbols: [x.sym] })
+        });
+        const d = await r.json();
+        data = d.results?.[0];
+      } catch(e) {}
+    }
+    return v170RenderGridCard(x.sym, x.name, data);
+  }));
+
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">⭐ 我的自選股（' + items.length + '）</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards.join('') + '</div></div>';
+}
+
+// ===== v172: 加密貨幣 Top 8 廣度 =====
+async function loadCryptoExtras(){
+  const el = document.getElementById('crypto-extras-content');
+  if (!el) return;
+  const items = [
+    { sym: 'BTC-USD', name: 'Bitcoin' },
+    { sym: 'ETH-USD', name: 'Ethereum' },
+    { sym: 'SOL-USD', name: 'Solana' },
+    { sym: 'BNB-USD', name: 'BNB' },
+    { sym: 'XRP-USD', name: 'Ripple' },
+    { sym: 'ADA-USD', name: 'Cardano' },
+    { sym: 'DOGE-USD', name: 'Dogecoin' },
+    { sym: 'AVAX-USD', name: 'Avalanche' }
+  ];
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">🪙 加密貨幣 Top 8 · 載入中...</div></div>';
+  const map = await v170FetchQuotes(items.map(x => x.sym));
+  const cards = items.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🪙 加密貨幣 Top 8 · 即時</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div></div>';
+}
+
+// ===== v173: 美股廣度（大盤指數 + 產業 ETF）=====
+async function loadUSExtras(){
+  const el = document.getElementById('us-extras-content');
+  if (!el) return;
+  const indices = [
+    { sym: '^DJI', name: '道瓊指數' },
+    { sym: '^GSPC', name: 'S&P 500' },
+    { sym: '^IXIC', name: 'Nasdaq' },
+    { sym: '^VIX', name: 'VIX 恐慌指數' }
+  ];
+  const sectors = [
+    { sym: 'XLK', name: '科技' },
+    { sym: 'XLF', name: '金融' },
+    { sym: 'XLV', name: '醫療' },
+    { sym: 'XLE', name: '能源' },
+    { sym: 'XLI', name: '工業' },
+    { sym: 'XLP', name: '必需消費' },
+    { sym: 'XLY', name: '非必需消費' }
+  ];
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">🇺🇸 美股廣度 · 載入中...</div></div>';
+  const map = await v170FetchQuotes([...indices, ...sectors].map(x => x.sym));
+  const idxCards = indices.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
+  const sectorCards = sectors.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🇺🇸 美股大盤指數</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:14px">' + idxCards + '</div><div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🏭 產業類股 ETF (SPDR)</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + sectorCards + '</div></div>';
+}
+
+// ===== 統一綁定：tab 切換時自動載入 =====
+function v170AutoBindAll(){
+  const tabMap = [
+    { tabId: 'tab-fund', contentId: 'global-commodities-content', loadFn: 'loadGlobalCommodities', btnText: ['外匯', '黃金'] },
+    { tabId: 'tab-watchlist', contentId: 'watchlist-grid-content', loadFn: 'loadWatchlistGrid', btnText: ['自選', '清單', '⭐'] },
+    { tabId: 'tab-crypto', contentId: 'crypto-extras-content', loadFn: 'loadCryptoExtras', btnText: ['加密'] },
+    { tabId: 'tab-us', contentId: 'us-extras-content', loadFn: 'loadUSExtras', btnText: ['美股'] }
+  ];
+  tabMap.forEach(cfg => {
+    const tab = document.getElementById(cfg.tabId);
+    const btn = [...document.querySelectorAll('button.tab-btn')].find(b => cfg.btnText.some(t => (b.textContent || '').includes(t)));
+    if (btn && !btn.dataset['v170Bound_' + cfg.loadFn]) {
+      btn.dataset['v170Bound_' + cfg.loadFn] = '1';
+      btn.addEventListener('click', () => {
+        setTimeout(() => {
+          if (typeof window[cfg.loadFn] === 'function') window[cfg.loadFn]();
+        }, 100);
+      });
+    }
+    // 也用 MutationObserver 監聽 tab 顯示
+    if (tab && !tab.dataset['v170Watched_' + cfg.loadFn]) {
+      tab.dataset['v170Watched_' + cfg.loadFn] = '1';
+      let loaded = false;
+      const observer = new MutationObserver(() => {
+        if (!loaded && tab.style.display !== 'none' && document.getElementById(cfg.contentId)) {
+          loaded = true;
+          if (typeof window[cfg.loadFn] === 'function') window[cfg.loadFn]();
+        }
+      });
+      observer.observe(tab, { attributes: true, attributeFilter: ['style'] });
+    }
+  });
+}
+
+// 自動執行
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(v170AutoBindAll, 1500));
+} else {
+  setTimeout(v170AutoBindAll, 1500);
+}
