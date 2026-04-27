@@ -256,18 +256,25 @@ async function handleBriefing(request, env) {
     const fNetText = fNet !== null
       ? `外資買賣超 ${fNet >= 0 ? '+' : ''}${fNet.toLocaleString()} 張`
       : '外資資料未提供';
-    const prompt = `加權指數收盤 ${close.toLocaleString()}，漲跌 ${change >= 0 ? '+' : ''}${change.toFixed(2)}（${pct.toFixed(2)}%）。${fNetText}。
+    const direction = pct >= 1 ? '大漲' : pct >= 0.3 ? '小漲' : pct <= -1 ? '大跌' : pct <= -0.3 ? '小跌' : '持平';
+    const fnDirection = fNet === null ? '' : fNet >= 5000 ? '大買' : fNet > 0 ? '買超' : fNet <= -5000 ? '大賣' : fNet < 0 ? '賣超' : '中性';
+    const prompt = `今日台股大盤狀況：方向=${direction}（${pct.toFixed(2)}%），外資=${fnDirection}。
 
-請用「不超過 25 字」的繁體中文寫一句【中性陳述】的市場觀察。
-範例：「大盤輕微震盪，外資觀望中」「指數小漲，外資連 3 日買超」「指數收黑，外資轉賣」。
+請用 18-22 字繁體中文寫一句【市場氛圍觀察】，要有質感、有畫面，**禁止複述任何數字**。
 
-要求：
-1. 不得預測未來走勢
-2. 不得使用「該買」「會漲」「會跌」「目標價」「保證」等字眼
-3. 只陳述當前資料事實
-4. 不要加標點以外的格式符號
+優秀範例（學這種風格）：
+「指數放量收紅，外資買盤湧進」
+「賣壓沉重，金融科技齊挫」
+「市場氣氛清淡，多空拉鋸」
+「外資轉買，指數扭轉跌勢」
+「量縮整理，類股表現分歧」
 
-直接回答觀察文字（不要前綴、不要解釋）：`;
+劣質範例（絕對不要）：
+✗「加權指數收盤漲704點」← 純複述數字
+✗「今日上漲X支下跌Y支」← 純複述
+✗「指數收紅外資買超」← 太簡陋
+
+只回觀察文字，不要前綴或解釋。`;
 
     const r = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
       messages: [
@@ -321,7 +328,10 @@ async function handleHeatmap(request, env) {
 
   let note = '';
   try {
-    const prompt = '今日台股' + totalCount + '支：上漲' + upCount + '、下跌' + downCount + '、強勢股(>+3%)' + strongUpCount + '支、弱勢股(<-3%)' + strongDownCount + '支。請用 25 字內中文寫一句中性的市場熱度觀察，純陳述事實，不預測、不買賣建議。直接回答觀察文字。';
+    const upRatio = upCount / totalCount;
+    const desc = upRatio >= 0.7 ? '多數類股齊漲' : upRatio >= 0.55 ? '漲多跌少' : upRatio <= 0.3 ? '多數類股下挫' : upRatio <= 0.45 ? '跌多漲少' : '漲跌互見';
+    const strongDesc = strongUpCount > strongDownCount * 2 ? '強勢股活躍' : strongDownCount > strongUpCount * 2 ? '弱勢股增加' : '';
+    const prompt = '台股盤面：' + desc + (strongDesc ? '，' + strongDesc : '') + '。\n\n請用 18-22 字繁體中文寫一句【市場氛圍觀察】，**禁止複述任何數字**。\n\n優秀範例：\n「類股普漲，多頭氣勢回溫」\n「賣壓沉重，金融科技皆挫」\n「漲跌互見，個股表現分歧」\n\n劣質範例（絕對不要）：\n✗「上漲X支下跌Y支」← 純複述\n\n只回觀察文字，不要前綴或解釋。';
     const r = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
       messages: [
         { role: 'system', content: '你只回 25 字內市場熱度觀察句，純陳述。' },
@@ -348,6 +358,106 @@ async function handleHeatmap(request, env) {
   });
 }
 
+
+// ============== 個股全方位分析 (NEW v6) ==============
+async function handleAnalysis(request, env) {
+  let body;
+  try { body = await request.json(); }
+  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const { symbol, name, fundamentals, institutional, priceData, news } = body;
+  if (!symbol) return jsonResponse({ error: 'Missing symbol' }, 400);
+
+  const fb = fundamentals || {};
+  const pd = priceData || {};
+  const inst = Array.isArray(institutional) ? institutional : [];
+  const newsList = (Array.isArray(news) ? news : []).slice(0, 3);
+
+  // 計算籌碼面：近 7 日外資累計（股 → 張）
+  const foreignTotalShares = inst.reduce((s, i) => s + (Number(i.foreign_buy) || 0), 0);
+  const foreignTotalLot = Math.round(foreignTotalShares / 1000);
+
+  const newsBlock = newsList.length > 0
+    ? newsList.map((n, i) => '[' + (i+1) + '] ' + (n.headline || n.title || '')).join('\n')
+    : '(無相關新聞)';
+
+  const fmt = (v, suffix) => v != null && !isNaN(Number(v)) ? Number(v).toFixed(2) + (suffix || '') : 'N/A';
+  const fmtPct = (v) => v != null && !isNaN(Number(v)) ? (Number(v) >= 0 ? '+' : '') + Number(v).toFixed(2) + '%' : 'N/A';
+
+  const prompt = '股票：' + (name || symbol) + ' (' + symbol + ')\n\n'
+    + '【基本面】\n'
+    + '- EPS: ' + fmt(fb.eps, ' 元') + '\n'
+    + '- 本益比: ' + fmt(fb.pe_ratio, 'x') + '\n'
+    + '- 殖利率: ' + fmt(fb.dividend_yield, '%') + '\n'
+    + '- ROE: ' + fmt(fb.roe, '%') + '\n'
+    + '- 52週區間: ' + fmt(fb.week52_low) + ' ~ ' + fmt(fb.week52_high) + '\n\n'
+    + '【籌碼面】\n'
+    + '- 近 7 日外資累計: ' + (foreignTotalLot >= 0 ? '+' : '') + foreignTotalLot.toLocaleString() + ' 張\n\n'
+    + '【技術面】\n'
+    + '- 當前: ' + fmt(pd.current) + '\n'
+    + '- 7 日變化: ' + fmtPct(pd.change_7d_pct) + '\n'
+    + '- 30 日變化: ' + fmtPct(pd.change_30d_pct) + '\n'
+    + '- 20 日區間: ' + fmt(pd.low20d) + ' ~ ' + fmt(pd.high20d) + '\n\n'
+    + '【近期新聞】\n' + newsBlock + '\n\n'
+    + '請寫一段 200-280 字的【全方位資訊整理】，繁體中文，依序：\n'
+    + '1. 基本面（EPS/本益比/殖利率/ROE 概況）\n'
+    + '2. 籌碼面（外資 7 日動向）\n'
+    + '3. 技術面（區間描述、波動，禁止預測）\n'
+    + '4. 新聞重點（1-2 句總結）\n\n'
+    + '【絕對禁止】\n'
+    + '- 不得用「建議買/賣」「目標價」「會漲到」「會跌到」「保證」「值得」「適合進場」\n'
+    + '- 不得評估投資價值\n'
+    + '- 不得預測股價\n\n'
+    + '【風格】專業財經整理、純陳述事實、簡潔有重點、不加結尾免責。\n\n'
+    + '直接回答整理文字。';
+
+  let analysis = '';
+  try {
+    const r = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+      messages: [
+        { role: 'system', content: '你是專業股市資訊整理員，只整理公開資訊，絕不提供投資建議或股價預測。' },
+        { role: 'user', content: prompt }
+      ],
+      max_tokens: 800,
+    });
+    analysis = r.response || '';
+  } catch (err) {
+    try {
+      const r2 = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
+        messages: [
+          { role: 'system', content: '你是專業股市資訊整理員，只整理公開資訊。' },
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 700,
+      });
+      analysis = r2.response || '';
+    } catch (err2) {
+      return jsonResponse({ error: 'AI 服務暫時無法使用' }, 503);
+    }
+  }
+
+  if (!isContentSafe(analysis)) {
+    analysis = '為符合金管會規範與避免誤導，本助理不能提供個股投資建議或股價預測。如需了解此股票公開資訊，建議您查閱公開財報、券商研究報告或官方公告。';
+  }
+
+  // 提取 highlights 標籤
+  const highlights = [];
+  if (fb.pe_ratio != null) highlights.push('本益比 ' + Number(fb.pe_ratio).toFixed(1) + 'x');
+  if (fb.dividend_yield != null) highlights.push('殖利率 ' + Number(fb.dividend_yield).toFixed(2) + '%');
+  if (fb.roe != null) highlights.push('ROE ' + Number(fb.roe).toFixed(1) + '%');
+  if (foreignTotalLot !== 0) highlights.push('外資 7 日 ' + (foreignTotalLot >= 0 ? '+' : '') + foreignTotalLot.toLocaleString() + ' 張');
+  if (pd.change_30d_pct != null) highlights.push('30 日 ' + (Number(pd.change_30d_pct) >= 0 ? '+' : '') + Number(pd.change_30d_pct).toFixed(2) + '%');
+
+  return jsonResponse({
+    symbol,
+    name: name || symbol,
+    analysis,
+    highlights,
+    disclaimer: DISCLAIMER,
+    updated: new Date().toISOString(),
+  });
+}
+
 // ============== Router ==============
 export default {
   async fetch(request, env) {
@@ -368,6 +478,7 @@ export default {
       if (url.pathname === '/chat') return await handleChat(request, env);
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
       if (url.pathname === '/heatmap') return await handleHeatmap(request, env);
+      if (url.pathname === '/analysis') return await handleAnalysis(request, env);
       return await handleSummary(request, env);
     } catch (err) {
       return jsonResponse({ error: err.message || 'Internal error' }, 500);

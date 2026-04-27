@@ -2445,6 +2445,7 @@ async function searchStock(){
       loadMonthlyRevenue(code);
       loadStockNews(code);
       loadAISummary(code);
+      loadStockAnalysis(code);
       checkDisposeStatus(code);
       loadStockDividend(code);
       loadChipAnalysis(code);
@@ -5476,5 +5477,96 @@ async function loadMarketHeatmap(){
   }catch(e){
     el.innerHTML = '';
     console.warn('[Heatmap]', e);
+  }
+}
+
+
+// ===== MoneyRadar v162: Stock AI Analysis (auto-inserted) =====
+async function loadStockAnalysis(code){
+  const newsEl = document.getElementById('stockNews');
+  if (!newsEl) return;
+  let box = document.getElementById('stockAnalysisBox');
+  if (!box){
+    box = document.createElement('div');
+    box.id = 'stockAnalysisBox';
+    box.style.marginTop = '12px';
+    const aiBox = document.getElementById('aiSummaryBox');
+    const anchor = aiBox || newsEl;
+    anchor.parentNode.insertBefore(box, anchor.nextSibling);
+  }
+  box.innerHTML = '<div style="background:linear-gradient(135deg,#0f172a,#1a0f2e);border-radius:8px;padding:14px 16px;border:1px solid #4c1d95;margin-top:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;color:#a78bfa;font-weight:700;border-left:3px solid #7c3aed;padding-left:8px">✨ AI 全方位分析</span><span style="font-size:11px;color:#64748b">收集資料中...</span></div></div>';
+
+  try{
+    const stockName = (typeof NAMES !== 'undefined' && NAMES[code]) || code;
+
+    // 並行抓 4 個資料源
+    const [fb, ii, pr, nw] = await Promise.all([
+      fetch(BASE+'/stock_fundamentals?symbol=eq.'+code+'&select=*',{headers:SB_H}).then(r=>r.json()).catch(()=>[]),
+      fetch(BASE+'/institutional_investors?symbol=eq.'+code+'&order=date.desc&limit=7&select=date,foreign_buy,total_buy',{headers:SB_H}).then(r=>r.json()).catch(()=>[]),
+      fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30&select=date,close_price',{headers:SB_H}).then(r=>r.json()).catch(()=>[]),
+      (typeof twseProxy === 'function') ? twseProxy('news', code, {name: stockName}).catch(()=>[]) : Promise.resolve([])
+    ]);
+
+    const fundamentals = (Array.isArray(fb) && fb.length) ? fb[0] : {};
+    const institutional = Array.isArray(ii) ? ii : [];
+    const pricesDesc = Array.isArray(pr) ? pr : [];
+    const news = Array.isArray(nw) ? nw : [];
+
+    // 排序: 升序時間
+    const prices = [...pricesDesc].sort((a,b) => (a.date||'').localeCompare(b.date||''));
+
+    // 計算 priceData
+    const priceData = {};
+    if (prices.length > 0){
+      const closes = prices.map(p => Number(p.close_price)).filter(x => !isNaN(x) && x > 0);
+      if (closes.length > 0){
+        priceData.current = closes[closes.length-1];
+        priceData.high20d = Math.max(...closes);
+        priceData.low20d = Math.min(...closes);
+        if (closes.length >= 8){
+          const wkAgo = closes[closes.length-8];
+          if (wkAgo > 0) priceData.change_7d_pct = (priceData.current - wkAgo) / wkAgo * 100;
+        }
+        if (closes.length >= 2){
+          const oldest = closes[0];
+          if (oldest > 0) priceData.change_30d_pct = (priceData.current - oldest) / oldest * 100;
+        }
+      }
+    }
+
+    box.querySelector('span:last-child').textContent = '分析中...';
+
+    const r = await fetch((typeof AI_PROXY_URL!=='undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/analysis', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        symbol: code,
+        name: stockName,
+        fundamentals,
+        institutional,
+        priceData,
+        news: news.slice(0, 3).map(n => ({headline: String(n.title || '').slice(0, 200), source: 'Google News'}))
+      })
+    });
+    const data = await r.json();
+    if (data.error && !data.analysis) throw new Error(data.error);
+
+    const analysis = String(data.analysis || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    const highlights = (data.highlights || []).map(h =>
+      '<span style="background:#1e1b3a;color:#c4b5fd;padding:3px 10px;border-radius:999px;font-size:11px;border:1px solid #4c1d95;font-weight:600">' + String(h).replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</span>'
+    ).join('');
+
+    box.innerHTML = '<div style="background:linear-gradient(135deg,#0f172a,#1a0f2e);border-radius:8px;padding:14px 16px;border:1px solid #4c1d95;margin-top:12px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+      + '<span style="font-size:13px;color:#a78bfa;font-weight:700;border-left:3px solid #7c3aed;padding-left:8px">✨ AI 全方位分析</span>'
+      + '<span style="font-size:10px;background:#4c1d95;color:#e9d5ff;padding:2px 8px;border-radius:4px;font-weight:600">Llama 70B</span>'
+      + '</div>'
+      + (highlights ? '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">' + highlights + '</div>' : '')
+      + '<p style="font-size:13px;color:#cbd5e1;line-height:1.8;margin:0 0 10px;letter-spacing:0.2px">' + analysis + '</p>'
+      + '<div style="font-size:11px;color:#475569;border-top:1px solid #1e1b3a;padding-top:8px">⚠️ ' + String(data.disclaimer || '本內容不構成投資建議').replace(/</g,'&lt;') + '</div>'
+      + '</div>';
+  }catch(e){
+    box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:12px;border:1px solid #1e293b;margin-top:12px"><div style="font-size:13px;color:#a78bfa;font-weight:700;margin-bottom:6px">✨ AI 全方位分析</div><div style="font-size:12px;color:#64748b">暫時無法載入分析，請稍後再試</div></div>';
+    console.warn('[Stock Analysis]', e);
   }
 }
