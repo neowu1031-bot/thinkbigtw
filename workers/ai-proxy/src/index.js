@@ -384,32 +384,35 @@ async function handleAnalysis(request, env) {
   const fmt = (v, suffix) => v != null && !isNaN(Number(v)) ? Number(v).toFixed(2) + (suffix || '') : 'N/A';
   const fmtPct = (v) => v != null && !isNaN(Number(v)) ? (Number(v) >= 0 ? '+' : '') + Number(v).toFixed(2) + '%' : 'N/A';
 
+  // 規則式 insight 描述（讓 AI 有方向感、不只 echo 數字）
+  const peLevel = fb.pe_ratio == null ? '' : Number(fb.pe_ratio) >= 30 ? '本益比偏高' : Number(fb.pe_ratio) >= 15 ? '本益比中等' : '本益比偏低';
+  const dyLevel = fb.dividend_yield == null ? '' : Number(fb.dividend_yield) >= 4 ? '殖利率偏高' : Number(fb.dividend_yield) >= 2 ? '殖利率中等' : '殖利率偏低';
+  const roeLevel = fb.roe == null ? '' : Number(fb.roe) >= 20 ? 'ROE 高水準' : Number(fb.roe) >= 10 ? 'ROE 中等' : 'ROE 偏低';
+  const fnLevel = foreignTotalLot >= 30000 ? '外資大幅加碼' : foreignTotalLot >= 5000 ? '外資加碼' : foreignTotalLot <= -30000 ? '外資大幅減碼' : foreignTotalLot <= -5000 ? '外資減碼' : '外資中性';
+  const techDir = pd.change_30d_pct == null ? '' : Number(pd.change_30d_pct) >= 10 ? '月線強勢上揚' : Number(pd.change_30d_pct) >= 3 ? '月線溫和上漲' : Number(pd.change_30d_pct) <= -10 ? '月線明顯回檔' : Number(pd.change_30d_pct) <= -3 ? '月線轉弱' : '月線整理';
+
   const prompt = '股票：' + (name || symbol) + ' (' + symbol + ')\n\n'
-    + '【基本面】\n'
-    + '- EPS: ' + fmt(fb.eps, ' 元') + '\n'
-    + '- 本益比: ' + fmt(fb.pe_ratio, 'x') + '\n'
-    + '- 殖利率: ' + fmt(fb.dividend_yield, '%') + '\n'
-    + '- ROE: ' + fmt(fb.roe, '%') + '\n'
-    + '- 52週區間: ' + fmt(fb.week52_low) + ' ~ ' + fmt(fb.week52_high) + '\n\n'
-    + '【籌碼面】\n'
-    + '- 近 7 日外資累計: ' + (foreignTotalLot >= 0 ? '+' : '') + foreignTotalLot.toLocaleString() + ' 張\n\n'
-    + '【技術面】\n'
-    + '- 當前: ' + fmt(pd.current) + '\n'
-    + '- 7 日變化: ' + fmtPct(pd.change_7d_pct) + '\n'
-    + '- 30 日變化: ' + fmtPct(pd.change_30d_pct) + '\n'
-    + '- 20 日區間: ' + fmt(pd.low20d) + ' ~ ' + fmt(pd.high20d) + '\n\n'
+    + '【基本面】' + [peLevel, dyLevel, roeLevel].filter(x=>x).join('、') + '\n'
+    + '   原始：EPS ' + fmt(fb.eps) + '、本益比 ' + fmt(fb.pe_ratio, 'x') + '、殖利率 ' + fmt(fb.dividend_yield, '%') + '、ROE ' + fmt(fb.roe, '%') + '\n\n'
+    + '【籌碼面】' + fnLevel + '\n'
+    + '   原始：近 7 日外資累計 ' + (foreignTotalLot >= 0 ? '+' : '') + foreignTotalLot.toLocaleString() + ' 張\n\n'
+    + '【技術面】' + techDir + '\n'
+    + '   原始：當前 ' + fmt(pd.current) + '、7 日 ' + fmtPct(pd.change_7d_pct) + '、30 日 ' + fmtPct(pd.change_30d_pct) + '、20 日區間 ' + fmt(pd.low20d) + '-' + fmt(pd.high20d) + '\n\n'
     + '【近期新聞】\n' + newsBlock + '\n\n'
-    + '請寫一段 200-280 字的【全方位資訊整理】，繁體中文，依序：\n'
-    + '1. 基本面（EPS/本益比/殖利率/ROE 概況）\n'
-    + '2. 籌碼面（外資 7 日動向）\n'
-    + '3. 技術面（區間描述、波動，禁止預測）\n'
-    + '4. 新聞重點（1-2 句總結）\n\n'
+    + '請寫 200-260 字的【全方位資訊整理】，繁體中文，分四段：\n'
+    + '1. 基本面段：用上方 insight 描述 + 帶 1-2 個關鍵數字\n'
+    + '2. 籌碼面段：用 insight 描述 + 1 個關鍵數字\n'
+    + '3. 技術面段：用 insight 描述 + 區間數字\n'
+    + '4. 新聞段：1-2 句總結重點消息\n\n'
+    + '優秀範例風格（請學）：\n'
+    + '「基本面方面，EPS 達 38 元，本益比 22 倍偏中等，搭配 ROE 接近 30% 的高獲利能力，反映公司獲利穩健。籌碼面外資加碼明顯，近 7 日累計 +21 萬張買超...」\n\n'
+    + '劣質範例（絕對不要）：\n'
+    + '✗「EPS 為 38.5 元，本益比為 22.5 倍，殖利率為 1.85%」← 只是把數字唸一遍，沒 insight\n\n'
     + '【絕對禁止】\n'
-    + '- 不得用「建議買/賣」「目標價」「會漲到」「會跌到」「保證」「值得」「適合進場」\n'
-    + '- 不得評估投資價值\n'
+    + '- 不得用「建議買/賣」「目標價」「會漲到」「值得」「適合進場」\n'
+    + '- 不得評估投資價值（不能說「便宜」「貴」「划算」）\n'
     + '- 不得預測股價\n\n'
-    + '【風格】專業財經整理、純陳述事實、簡潔有重點、不加結尾免責。\n\n'
-    + '直接回答整理文字。';
+    + '直接回答整理文字，不加結尾免責。';
 
   let analysis = '';
   try {
@@ -469,29 +472,49 @@ async function handleDigest(request, env) {
   if (stocks.length === 0) return jsonResponse({ error: '請先加入自選股' }, 400);
   if (stocks.length > 20) return jsonResponse({ error: '自選股上限 20 支' }, 400);
 
+  // 規則式描述每支股票（避免 AI 純 echo 數字）
   const stockBlock = stocks.map((s, i) => {
-    const fnText = s.foreign_7d_lot != null
-      ? '7日外資' + (s.foreign_7d_lot >= 0 ? '+' : '') + Number(s.foreign_7d_lot).toLocaleString() + '張'
-      : '外資資料未提供';
-    const pctText = s.change_30d_pct != null
-      ? '30日' + (s.change_30d_pct >= 0 ? '+' : '') + Number(s.change_30d_pct).toFixed(2) + '%'
-      : '';
-    return (i+1) + '. ' + (s.name || s.symbol) + ' (' + s.symbol + ')：' + fnText + (pctText ? '，' + pctText : '');
+    const fnLot = Number(s.foreign_7d_lot) || 0;
+    const fnDesc = s.foreign_7d_lot == null ? '外資資料未提供'
+      : fnLot >= 30000 ? '外資大買' : fnLot >= 5000 ? '外資買超'
+      : fnLot <= -30000 ? '外資大賣' : fnLot <= -5000 ? '外資賣超'
+      : fnLot > 0 ? '外資微買' : fnLot < 0 ? '外資微賣' : '外資中性';
+    const pct30 = Number(s.change_30d_pct);
+    const trendDesc = s.change_30d_pct == null ? ''
+      : pct30 >= 10 ? '30日強勢' : pct30 >= 3 ? '30日上揚'
+      : pct30 <= -10 ? '30日弱勢' : pct30 <= -3 ? '30日回檔'
+      : '30日整理';
+    return (i+1) + '. ' + (s.name || s.symbol) + ' (' + s.symbol + ')：' + fnDesc + (trendDesc ? '、' + trendDesc : '');
   }).join('\n');
 
-  const prompt = '以下是用戶自選的 ' + stocks.length + ' 支台股近期狀況：\n\n'
+  // 整體外資方向
+  const totalForLot = stocks.reduce((acc, s) => acc + (Number(s.foreign_7d_lot) || 0), 0);
+  const overallDir = totalForLot >= 50000 ? '整體外資大幅加碼' : totalForLot >= 10000 ? '整體外資偏買'
+    : totalForLot <= -50000 ? '整體外資大幅減碼' : totalForLot <= -10000 ? '整體外資偏賣'
+    : '整體外資觀望';
+
+  const prompt = '用戶自選 ' + stocks.length + ' 支台股近期狀況：\n\n'
     + stockBlock + '\n\n'
-    + '請產出【自選股 AI 早報】，繁體中文，依以下結構：\n\n'
+    + '整體：' + overallDir + '\n\n'
+    + '請產出【自選股 AI 早報】，繁體中文，結構如下：\n\n'
     + '【整體觀察】\n'
-    + '（30字內：這 ' + stocks.length + ' 支股票整體外資動向觀察）\n\n'
+    + '（一句話 25-35 字，描述外資動向氛圍，**禁止複述具體數字**）\n\n'
     + '【個股重點】\n'
-    + '（每支 15-25 字客觀觀察，不評價，格式：- 名稱 (代號)：觀察）\n\n'
+    + '（每支一行，15-25 字，格式：- 名稱 (代號)：觀察）\n\n'
+    + '優秀範例（學這種風格）：\n'
+    + '【整體觀察】外資加碼科技權值，整體偏多氣氛濃厚\n'
+    + '【個股重點】\n'
+    + '- 台積電 (2330)：外資大買，30 日強勢領漲\n'
+    + '- 鴻海 (2317)：外資轉賣，月線壓力浮現\n'
+    + '- 中信金 (2891)：外資微買，金融類股相對抗跌\n\n'
+    + '劣質範例（絕對不要）：\n'
+    + '✗「台積電 (2330)：7日外資買超34,462張」← 純複述數字\n'
+    + '✗「外資累計買超 X 張」← 純複述\n\n'
     + '【絕對禁止】\n'
-    + '- 不得用「建議買/賣」「目標價」「值得」「適合進場」「會漲到」等字眼\n'
+    + '- 不得用「建議買/賣」「目標價」「值得」「適合進場」「會漲到」\n'
     + '- 不得評估投資價值\n'
-    + '- 不得預測股價走勢\n\n'
-    + '【風格】客觀、簡潔、純陳述，不加結尾免責（系統會自動加）。\n\n'
-    + '直接回答早報內容。';
+    + '- 不得預測股價\n\n'
+    + '只回答早報內容，不加標題前綴或結尾免責。';
 
   let digest = '';
   try {

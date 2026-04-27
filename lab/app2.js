@@ -5379,6 +5379,7 @@ function v155UpgradeChatBubble(){
 function v155Init(){
   if (document.getElementById('daily-briefing')) loadDailyBriefing();
   if (document.getElementById('market-heatmap')) loadMarketHeatmap();
+  if (document.getElementById('industry-heatmap')) loadIndustryHeatmap();
   if (document.getElementById('hot-stocks-section')) loadHotStocks();
   if (typeof ensureMyDigestButton === 'function') ensureMyDigestButton();
   // chat UI 升級：等 IIFE 跑完
@@ -5696,5 +5697,100 @@ async function loadMyDigest(){
   }catch(e){
     area.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:13px;color:#a7f3d0;font-weight:700;margin-bottom:6px">✨ 我的自選股 AI 早報</div><div style="font-size:12px;color:#64748b">暫時無法載入早報：' + String(e.message || e).replace(/</g,'&lt;') + '</div></div>';
     console.warn('[My Digest]', e);
+  }
+}
+
+
+// ===== MoneyRadar v166: Industry Heatmap (auto-inserted) =====
+async function loadIndustryHeatmap(){
+  const el = document.getElementById('industry-heatmap');
+  if (!el) return;
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;margin-bottom:16px"><div style="font-size:11px;color:#64748b">🏭 產業熱度 · 載入中...</div></div>';
+
+  const industries = [
+    { key:'semi',     name:'半導體',     icon:'🔬', symbols:['2330','2454','2303'] },
+    { key:'fin',      name:'金融保險',   icon:'🏦', symbols:['2881','2891','2882'] },
+    { key:'shipping', name:'航運',       icon:'🚢', symbols:['2603','2609','2615'] },
+    { key:'elec',     name:'電子代工',   icon:'🔧', symbols:['2317','2308','2382'] },
+    { key:'tele',     name:'通訊',       icon:'📡', symbols:['2412','4904','3045'] },
+    { key:'steel',    name:'鋼鐵',       icon:'⚙️', symbols:['2002','2014'] },
+    { key:'plastic',  name:'塑化',       icon:'🧪', symbols:['1303','1301'] }
+  ];
+
+  try{
+    // 抓最新兩個交易日
+    const rDates = await fetch(BASE+'/daily_prices?order=date.desc&limit=200&select=date',{headers:SB_H});
+    const datesAll = await rDates.json();
+    const uniqueDates = [...new Set((datesAll||[]).map(d => d.date))].slice(0, 2);
+    if (uniqueDates.length < 2) throw new Error('need 2 dates');
+
+    const allSymbols = industries.flatMap(i => i.symbols);
+    const r2 = await fetch(BASE+'/daily_prices?date=in.(' + uniqueDates.join(',') + ')&symbol=in.(' + allSymbols.join(',') + ')&select=symbol,date,close_price&limit=200',{headers:SB_H});
+    const prices = await r2.json();
+    if (!Array.isArray(prices) || prices.length === 0) throw new Error('no prices');
+
+    const bySymbol = {};
+    prices.forEach(p => {
+      if (!bySymbol[p.symbol]) bySymbol[p.symbol] = {};
+      bySymbol[p.symbol][p.date] = Number(p.close_price) || 0;
+    });
+
+    const stats = industries.map(ind => {
+      const stockData = ind.symbols.map(sym => {
+        const today = bySymbol[sym]?.[uniqueDates[0]];
+        const yest = bySymbol[sym]?.[uniqueDates[1]];
+        if (today && yest && yest > 0){
+          return { sym, name: (typeof NAMES !== 'undefined' && NAMES[sym]) || sym, pct: (today - yest) / yest * 100 };
+        }
+        return null;
+      }).filter(x => x);
+      const avg = stockData.length > 0 ? stockData.reduce((s,x) => s + x.pct, 0) / stockData.length : null;
+      return { ...ind, avgPct: avg, stockData };
+    }).filter(i => i.avgPct !== null);
+
+    if (stats.length === 0) throw new Error('no valid industry data');
+
+    stats.sort((a, b) => (b.avgPct || 0) - (a.avgPct || 0));
+
+    // 計算最大絕對值用於 bar 寬度標準化
+    const maxAbs = Math.max(...stats.map(s => Math.abs(s.avgPct)), 0.5);
+
+    let html = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;margin-bottom:16px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'
+      + '<span style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px">🏭 產業熱度排行</span>'
+      + '<span style="font-size:11px;color:#475569">' + uniqueDates[0] + '</span>'
+      + '</div>'
+      + '<div style="display:flex;flex-direction:column;gap:8px">';
+
+    stats.forEach((ind, idx) => {
+      const isUp = ind.avgPct >= 0;
+      const color = isUp ? '#22c55e' : '#ef4444';
+      const bgColor = isUp ? '#052e16' : '#2d0a0a';
+      const barW = (Math.abs(ind.avgPct) / maxAbs * 100).toFixed(1);
+      const stocksDesc = ind.stockData.map(s => s.name + ' ' + (s.pct >= 0 ? '+' : '') + s.pct.toFixed(2) + '%').join(' · ');
+
+      html += '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid ' + (isUp ? '#14532d' : '#450a0a') + '">'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">'
+        + '<div style="display:flex;align-items:center;gap:8px">'
+        + '<span style="font-size:13px;font-weight:700;color:#94a3b8">#' + (idx+1) + '</span>'
+        + '<span style="font-size:14px">' + ind.icon + '</span>'
+        + '<span style="font-size:13px;font-weight:700;color:#e2e8f0">' + ind.name + '</span>'
+        + '</div>'
+        + '<span style="font-size:14px;font-weight:700;color:' + color + '">' + (isUp ? '+' : '') + ind.avgPct.toFixed(2) + '%</span>'
+        + '</div>'
+        + '<div style="display:flex;align-items:center;gap:8px">'
+        + '<div style="flex:1;height:6px;background:#1e293b;border-radius:3px;overflow:hidden">'
+        + (isUp ? '<div style="width:' + barW + '%;height:100%;background:linear-gradient(90deg,#14532d,#22c55e)"></div>' : '<div style="margin-left:auto;width:' + barW + '%;height:100%;background:linear-gradient(90deg,#ef4444,#7f1d1d)"></div>')
+        + '</div>'
+        + '</div>'
+        + '<div style="margin-top:6px;font-size:11px;color:#64748b">' + stocksDesc + '</div>'
+        + '</div>';
+    });
+
+    html += '</div></div>';
+    el.innerHTML = html;
+  }catch(e){
+    el.innerHTML = '';
+    console.warn('[Industry Heatmap]', e);
   }
 }
