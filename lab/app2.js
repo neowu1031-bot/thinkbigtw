@@ -2446,6 +2446,7 @@ async function searchStock(){
       loadStockNews(code);
       loadAISummary(code);
       loadStockAnalysis(code);
+      loadTechnicalIndicators(code);
       checkDisposeStatus(code);
       loadStockDividend(code);
       loadChipAnalysis(code);
@@ -6250,4 +6251,202 @@ function v178RenderBriefingCard(title, briefing){
     + '</div>'
     + '<div style="font-size:13px;color:#cbd5e1;line-height:1.6">💡 ' + safeNote + '</div>'
     + '</div>';
+}
+
+
+// ===== v183-186: Tech Indicators + Compare + Pro + PWA (auto-inserted) =====
+
+// ─────── v183: 技術指標計算 + 渲染 ───────
+function v183ComputeTechnical(prices){
+  if (!Array.isArray(prices) || prices.length < 20) return null;
+  const sorted = [...prices].sort((a,b) => (a.date||'').localeCompare(b.date||''));
+  const closes = sorted.map(p => Number(p.close_price)).filter(n => !isNaN(n) && n > 0);
+  if (closes.length < 20) return null;
+
+  // RSI(14)
+  let rsi = null;
+  if (closes.length >= 15) {
+    let gains = 0, losses = 0;
+    const start = closes.length - 14;
+    for (let i = start; i < closes.length; i++) {
+      const diff = closes[i] - closes[i-1];
+      if (diff >= 0) gains += diff;
+      else losses += -diff;
+    }
+    const avgGain = gains / 14;
+    const avgLoss = losses / 14;
+    rsi = avgLoss === 0 ? 100 : 100 - 100 / (1 + avgGain/avgLoss);
+  }
+
+  // KD(9)：簡化版只算當前 K，D 用近似
+  let k = null, d = null;
+  if (sorted.length >= 9 && sorted[sorted.length-1].high_price && sorted[sorted.length-1].low_price) {
+    const last9 = sorted.slice(-9);
+    const highs = last9.map(p => Number(p.high_price)).filter(n => !isNaN(n));
+    const lows = last9.map(p => Number(p.low_price)).filter(n => !isNaN(n));
+    if (highs.length === 9 && lows.length === 9) {
+      const hh = Math.max(...highs);
+      const ll = Math.min(...lows);
+      const cur = closes[closes.length-1];
+      const rsv = (hh - ll) === 0 ? 50 : (cur - ll) / (hh - ll) * 100;
+      k = rsv * 1/3 + 50 * 2/3;
+      d = k * 1/3 + 50 * 2/3;
+    }
+  }
+
+  // 布林通道(20)
+  const last20 = closes.slice(-20);
+  const sma20 = last20.reduce((s,c) => s+c, 0) / 20;
+  const variance = last20.reduce((s,c) => s + (c-sma20)*(c-sma20), 0) / 20;
+  const sd = Math.sqrt(variance);
+  const upper = sma20 + 2*sd;
+  const lower = sma20 - 2*sd;
+  const cur = closes[closes.length-1];
+
+  return {
+    rsi: rsi !== null ? Number(rsi.toFixed(2)) : null,
+    rsiLabel: rsi === null ? '—' : (rsi >= 70 ? '超買區' : rsi <= 30 ? '超賣區' : '正常區間'),
+    k: k !== null ? Number(k.toFixed(2)) : null,
+    d: d !== null ? Number(d.toFixed(2)) : null,
+    kdLabel: k === null ? '—' : (k >= 80 ? '超買區' : k <= 20 ? '超賣區' : '正常區間'),
+    bb: { upper: Number(upper.toFixed(2)), middle: Number(sma20.toFixed(2)), lower: Number(lower.toFixed(2)) },
+    bbLabel: cur > upper ? '突破上軌' : cur < lower ? '跌破下軌' : '通道內',
+    bbPosition: ((cur - lower) / (upper - lower) * 100).toFixed(0),
+    current: Number(cur.toFixed(2))
+  };
+}
+
+async function loadTechnicalIndicators(code){
+  const newsEl = document.getElementById('stockNews');
+  if (!newsEl) return;
+  let box = document.getElementById('stockTechBox');
+  if (!box){
+    box = document.createElement('div');
+    box.id = 'stockTechBox';
+    box.style.marginTop = '12px';
+    const anchor = document.getElementById('stockAnalysisBox') || newsEl;
+    anchor.parentNode.insertBefore(box, anchor.nextSibling);
+  }
+  box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#fbbf24;font-weight:700">📊 技術指標 · 載入中...</div></div>';
+
+  try{
+    const r = await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30&select=date,close_price,high_price,low_price',{headers:SB_H});
+    const data = await r.json();
+    if(!Array.isArray(data) || data.length < 20){
+      box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#fbbf24;font-weight:700;margin-bottom:6px">📊 技術指標</div><div style="font-size:12px;color:#64748b">資料不足，需至少 20 個交易日</div></div>';
+      return;
+    }
+    const t = v183ComputeTechnical(data);
+    if(!t){
+      box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:12px;color:#64748b">技術指標計算失敗</div></div>';
+      return;
+    }
+
+    const lblColor = (lbl) => lbl === '超買區' || lbl === '突破上軌' ? '#ef4444' : (lbl === '超賣區' || lbl === '跌破下軌' ? '#22c55e' : '#94a3b8');
+
+    box.innerHTML = '<div style="background:linear-gradient(135deg,#1a1410,#0f172a);border-radius:8px;padding:14px 16px;border:1px solid #f59e0b;margin-top:12px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'
+      + '<span style="font-size:13px;color:#fbbf24;font-weight:700;border-left:3px solid #f59e0b;padding-left:8px">📊 技術指標</span>'
+      + '<span style="font-size:10px;color:#64748b">最近 20 個交易日</span>'
+      + '</div>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">'
+      // RSI
+      + '<div style="background:#0a1421;border-radius:6px;padding:10px;border:1px solid #1e2d45"><div style="font-size:11px;color:#94a3b8">RSI(14)</div><div style="font-size:18px;font-weight:700;color:#e2e8f0">' + (t.rsi !== null ? t.rsi : '—') + '</div><div style="font-size:11px;color:' + lblColor(t.rsiLabel) + '">' + t.rsiLabel + '</div></div>'
+      // KD
+      + '<div style="background:#0a1421;border-radius:6px;padding:10px;border:1px solid #1e2d45"><div style="font-size:11px;color:#94a3b8">KD(9)</div><div style="font-size:14px;font-weight:700;color:#e2e8f0">K ' + (t.k !== null ? t.k : '—') + ' / D ' + (t.d !== null ? t.d : '—') + '</div><div style="font-size:11px;color:' + lblColor(t.kdLabel) + '">' + t.kdLabel + '</div></div>'
+      // 布林
+      + '<div style="background:#0a1421;border-radius:6px;padding:10px;border:1px solid #1e2d45"><div style="font-size:11px;color:#94a3b8">布林(20)</div><div style="font-size:11px;color:#e2e8f0">上 ' + t.bb.upper + '<br>中 ' + t.bb.middle + '<br>下 ' + t.bb.lower + '</div><div style="font-size:11px;color:' + lblColor(t.bbLabel) + ';margin-top:4px">' + t.bbLabel + ' (' + t.bbPosition + '%)</div></div>'
+      + '</div>'
+      + '<div style="font-size:10px;color:#475569;border-top:1px dashed #1e2d45;padding-top:8px;margin-top:10px">⚠️ 技術指標僅為公開資料統計，不構成投資建議。指標數值為中性陳述。</div>'
+      + '</div>';
+  }catch(e){
+    if(box) box.innerHTML = '';
+    console.warn('[Tech]', e);
+  }
+}
+
+// ─────── v184: 多股比較器 ───────
+function v184OpenCompareModal(){
+  if (document.getElementById('v184-compare-modal')) return;
+  const overlay = document.createElement('div');
+  overlay.id = 'v184-compare-modal';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px';
+
+  const modal = document.createElement('div');
+  modal.style.cssText = 'background:#0f172a;border:1px solid #334155;border-radius:12px;padding:20px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;font-family:inherit';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><span style="font-size:15px;font-weight:700;color:#e2e8f0">📊 多股比較器</span><span id="v184-close" style="cursor:pointer;color:#64748b;font-size:20px;padding:0 6px">✕</span></div><div style="font-size:12px;color:#94a3b8;margin-bottom:10px">輸入 2-5 個股票代號（逗號分隔，台股+美股+港股皆可）：</div><div style="display:flex;gap:8px;margin-bottom:14px"><input id="v184-input" type="text" placeholder="例：2330,2454,AAPL,0700.HK" style="flex:1;background:#1e293b;border:1px solid #334155;border-radius:6px;padding:8px 12px;color:#e2e8f0;font-size:13px"/><button id="v184-go" style="background:#2563eb;color:white;border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer">比較</button></div><div id="v184-result"></div>';
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  document.getElementById('v184-close').addEventListener('click', () => overlay.remove());
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+  document.getElementById('v184-go').addEventListener('click', v184RunCompare);
+  document.getElementById('v184-input').addEventListener('keydown', e => { if(e.key==='Enter') v184RunCompare(); });
+  document.getElementById('v184-input').focus();
+}
+
+async function v184RunCompare(){
+  const inp = document.getElementById('v184-input');
+  const result = document.getElementById('v184-result');
+  if (!inp || !result) return;
+  const symbols = inp.value.split(/[,，\s]+/).map(s => s.trim()).filter(Boolean).slice(0, 5);
+  if (symbols.length < 2){ result.innerHTML = '<div style="color:#ef4444;font-size:12px">請輸入至少 2 個代號</div>'; return; }
+  result.innerHTML = '<div style="color:#94a3b8;font-size:13px">查詢中...</div>';
+
+  try{
+    const r = await fetch((typeof AI_PROXY_URL!=='undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/quote', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ symbols })
+    });
+    const data = await r.json();
+    const rows = (data.results || []).map(d => {
+      if (d.error) return '<tr><td style="padding:8px;color:#64748b">' + (d.symbol||'') + '</td><td colspan="4" style="padding:8px;color:#ef4444">無資料</td></tr>';
+      const isUp = (d.pct||0) >= 0;
+      return '<tr><td style="padding:8px;color:#e2e8f0;font-weight:600">' + d.symbol + '</td><td style="padding:8px;color:#94a3b8">' + (d.name||'').slice(0,20) + '</td><td style="padding:8px;font-weight:600;color:' + (isUp?'#22c55e':'#ef4444') + '">' + (d.price?Number(d.price).toFixed(2):'—') + '</td><td style="padding:8px;font-weight:600;color:' + (isUp?'#22c55e':'#ef4444') + '">' + (isUp?'+':'') + (d.pct?d.pct.toFixed(2):'0') + '%</td><td style="padding:8px;color:#64748b;font-size:11px">' + (d.currency||'') + '</td></tr>';
+    }).join('');
+    result.innerHTML = '<table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:#1e293b;color:#94a3b8;text-align:left"><th style="padding:8px">代號</th><th style="padding:8px">名稱</th><th style="padding:8px">當前</th><th style="padding:8px">漲跌</th><th style="padding:8px">幣別</th></tr></thead><tbody>' + rows + '</tbody></table>';
+  }catch(e){
+    result.innerHTML = '<div style="color:#ef4444;font-size:12px">查詢失敗：' + String(e.message||e) + '</div>';
+  }
+}
+
+// 在 tools 分頁加按鈕
+function v184AddCompareButton(){
+  const toolsTab = document.getElementById('tab-tools');
+  if (!toolsTab || toolsTab.querySelector('#v184-compare-btn')) return;
+  const btn = document.createElement('button');
+  btn.id = 'v184-compare-btn';
+  btn.type = 'button';
+  btn.textContent = '📊 開啟多股比較器';
+  btn.style.cssText = 'width:100%;background:linear-gradient(135deg,#1e3a8a,#1e40af);color:#dbeafe;border:1px solid #2563eb;border-radius:10px;padding:14px;cursor:pointer;font-size:14px;font-weight:700;margin-bottom:14px;font-family:inherit';
+  btn.addEventListener('click', v184OpenCompareModal);
+  toolsTab.insertBefore(btn, toolsTab.firstChild);
+}
+
+// ─────── v186: PWA Service Worker 註冊 ───────
+function v186RegisterPWA(){
+  if (!('serviceWorker' in navigator)) return;
+  navigator.serviceWorker.register('/lab/sw.js', { scope: '/lab/' })
+    .then(() => console.log('[PWA] Service Worker registered'))
+    .catch(e => console.warn('[PWA] SW register failed', e));
+}
+
+// ─────── 全部 Auto-bind ───────
+function v183_186AutoBind(){
+  // v184 加比較器按鈕
+  v184AddCompareButton();
+  const toolsTab = document.getElementById('tab-tools');
+  if (toolsTab && !toolsTab.dataset.v184Watched) {
+    toolsTab.dataset.v184Watched = '1';
+    new MutationObserver(() => v184AddCompareButton()).observe(toolsTab, { attributes: true, attributeFilter: ['style'] });
+  }
+  // v186 註冊 PWA
+  v186RegisterPWA();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(v183_186AutoBind, 1800));
+} else {
+  setTimeout(v183_186AutoBind, 1800);
 }

@@ -233,6 +233,7 @@ textarea{height:80px;resize:vertical}
       <button class="tab-btn" onclick="switchTab('etf',this)">ETF</button>
       <button class="tab-btn" onclick="switchTab('us',this)">美股</button>
       <button class="tab-btn" onclick="switchTab('asia',this)">🌏 亞洲</button>
+      <button class="tab-btn" onclick="switchTab('pro',this)">💎 Pro</button>
       
       <button class="tab-btn" onclick="switchTab('fund',this)">外匯/黃金</button>
       <button class="tab-btn" onclick="switchTab('crypto',this)">加密貨幣</button>
@@ -859,7 +860,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
 </div>
-<script src="app2.js?v=181"></script>
+<script src="app2.js?v=186"></script>
 
 <script>
 (function(){
@@ -891,6 +892,31 @@ textarea{height:80px;resize:vertical}
 })();
 </script>
 <div id="tab-asia" class="tab-content" style="display:none"><div class="section-title">🌏 亞洲市場</div><div id="asia-market-content"></div></div>
+
+<div id="tab-pro" class="tab-content" style="display:none">
+  <div class="section-title">💎 升級 Pro · 解鎖完整功能</div>
+  <div style="background:linear-gradient(135deg,#1e1b3a,#0f172a);border-radius:12px;padding:20px;border:1px solid #4c1d95;margin-bottom:16px">
+    <div style="font-size:18px;font-weight:700;color:#a78bfa;margin-bottom:6px">MoneyRadar Pro · NT$299/月</div>
+    <div style="font-size:13px;color:#cbd5e1;line-height:1.6">解鎖無限 AI、即時數據（美/港/日）、無限自選股、進階警示、多股深度比較、Email 早報、無廣告</div>
+    <button id="pro-upgrade-btn" type="button" style="margin-top:14px;width:100%;background:linear-gradient(135deg,#7c3aed,#5b21b6);color:white;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer">🚀 我有興趣 · 通知我正式上線</button>
+  </div>
+  <div class="section-title">🎯 Free vs Pro 對比</div>
+  <div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;font-size:13px;color:#cbd5e1;line-height:1.8">
+    <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px;font-size:12px">
+      <div style="font-weight:700;color:#94a3b8">功能</div><div style="font-weight:700;color:#94a3b8;text-align:center">Free</div><div style="font-weight:700;color:#a78bfa;text-align:center">Pro</div>
+      <div>AI 個股摘要</div><div style="text-align:center">5 次/天</div><div style="text-align:center;color:#a78bfa">無限</div>
+      <div>AI 全方位分析</div><div style="text-align:center">3 次/天</div><div style="text-align:center;color:#a78bfa">無限</div>
+      <div>AI 聊天助理</div><div style="text-align:center">20 條/天</div><div style="text-align:center;color:#a78bfa">無限 + Claude 引擎</div>
+      <div>美股即時</div><div style="text-align:center">延遲 15 分</div><div style="text-align:center;color:#a78bfa">即時</div>
+      <div>港股/日股即時</div><div style="text-align:center">延遲</div><div style="text-align:center;color:#a78bfa">即時</div>
+      <div>自選股數量</div><div style="text-align:center">10 支</div><div style="text-align:center;color:#a78bfa">無限</div>
+      <div>價格警示</div><div style="text-align:center">5 條</div><div style="text-align:center;color:#a78bfa">無限</div>
+      <div>多股比較器</div><div style="text-align:center">2 支</div><div style="text-align:center;color:#a78bfa">5 支 + 深度</div>
+      <div>無廣告</div><div style="text-align:center">×</div><div style="text-align:center;color:#a78bfa">✓</div>
+    </div>
+  </div>
+  <div style="text-align:center;color:#475569;font-size:11px;margin-top:14px">目前 Beta 測試版功能全開免費 · 正式版預計 2026 Q3 上線</div>
+</div>
 </body>
 </html>
   

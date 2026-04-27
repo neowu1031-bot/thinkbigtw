@@ -1,25 +1,22 @@
 {
-  "name": "台股情報站",
-  "short_name": "台股情報",
-  "description": "一站式投資工具：台股、ETF、美股、港股、外匯、黃金、加密貨幣",
+  "name": "MoneyRadar™ 全方位看盤平台",
+  "short_name": "MoneyRadar",
+  "description": "台美港日股 + 加密 + 商品 + AI 看盤",
   "start_url": "/lab/",
   "scope": "/lab/",
   "display": "standalone",
-  "orientation": "portrait",
   "background_color": "#0f172a",
-  "theme_color": "#2563eb",
-  "lang": "zh-TW",
-  "dir": "ltr",
-  "categories": ["finance", "business", "productivity"],
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "https://thinkbigtw.com/lab/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon.png",
+      "src": "https://thinkbigtw.com/lab/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
