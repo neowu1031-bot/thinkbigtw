@@ -769,10 +769,34 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: CORS_HEADERS });
     }
-    const GET_ALLOWED_PATHS = ['/quote', '/market-briefing'];
-    if (request.method === 'GET' && GET_ALLOWED_PATHS.includes(url.pathname)) {
-      // pass through
-    } else if (request.method !== 'POST') {
+
+    // === Inline /quote GET handler (v199 hotfix) ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
+      const url2 = new URL(request.url);
+      const symbol = url2.searchParams.get('symbol');
+      if (!symbol) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        const yr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=2d', {
+          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MoneyRadar/1.0)' }
+        });
+        if (!yr.ok) return jsonResponse({ error: 'yahoo http ' + yr.status }, 502);
+        const yj = await yr.json();
+        const meta = yj && yj.chart && yj.chart.result && yj.chart.result[0] && yj.chart.result[0].meta;
+        if (!meta) return jsonResponse({ error: 'not found' }, 404);
+        const price = meta.regularMarketPrice;
+        const prev = meta.previousClose || meta.chartPreviousClose;
+        const changePercent = (prev && price) ? ((price - prev) / prev * 100) : 0;
+        return jsonResponse({
+          symbol, price, prevClose: prev, changePercent,
+          currency: meta.currency || '', marketState: meta.marketState || '',
+          source: 'yahoo', updated: new Date().toISOString()
+        });
+      } catch (e) {
+        return jsonResponse({ error: 'fetch failed: ' + (e.message || String(e)) }, 500);
+      }
+    }
+
+    if (request.method !== 'POST') {
       return new Response('Method not allowed', { status: 405, headers: CORS_HEADERS });
     }
 
