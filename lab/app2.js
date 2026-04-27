@@ -5890,9 +5890,32 @@ function watchAsiaTab(){
       loadAsiaMarket();
     }
   };
-  // 監聽 style 變化（switchTab 會改 display）
   const observer = new MutationObserver(check);
   observer.observe(tab, { attributes: true, attributeFilter: ['style'] });
-  // 初次也檢查（如果頁面載入時就已 visible）
   check();
+}
+
+// v169: 直接綁定 asia 按鈕點擊事件 (不依賴 v155Init)
+function v169AsiaAutoBind(){
+  const btns = document.querySelectorAll('button.tab-btn');
+  btns.forEach(b => {
+    const txt = (b.textContent || '').trim();
+    if ((txt.includes('亞洲') || txt.includes('🌏')) && !b.dataset.v169Bound) {
+      b.dataset.v169Bound = '1';
+      b.addEventListener('click', () => {
+        setTimeout(() => {
+          if (typeof loadAsiaMarket === 'function') loadAsiaMarket();
+        }, 100);
+      });
+    }
+  });
+  // 也啟動 watchAsiaTab (作為備援)
+  if (typeof watchAsiaTab === 'function') watchAsiaTab();
+}
+
+// 自動執行 (不依賴 v155Init)
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(v169AsiaAutoBind, 1500));
+} else {
+  setTimeout(v169AsiaAutoBind, 1500);
 }
