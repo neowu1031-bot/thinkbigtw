@@ -2447,6 +2447,9 @@ async function searchStock(){
       loadAISummary(code);
       loadStockAnalysis(code);
       loadTechnicalIndicators(code);
+      setTimeout(() => loadStockChips(code), 500);
+      setTimeout(() => loadStockRevenueChart(code), 700);
+      setTimeout(() => loadMACDIndicator(code), 1200);
       checkDisposeStatus(code);
       loadStockDividend(code);
       loadChipAnalysis(code);
