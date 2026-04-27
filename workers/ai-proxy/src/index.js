@@ -770,6 +770,16 @@ export default {
       return new Response(null, { headers: CORS_HEADERS });
     }
 
+    // === /health endpoint (v200) ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/health') {
+      return jsonResponse({
+        ok: true,
+        service: 'moneyradar-ai-proxy',
+        version: 'v200',
+        timestamp: new Date().toISOString(),
+        endpoints: ['/chat', '/briefing', '/heatmap', '/analysis', '/digest', '/quote', '/market-briefing', '/health']
+      });
+    }
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

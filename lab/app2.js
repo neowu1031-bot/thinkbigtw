@@ -6777,7 +6777,10 @@ async function loadFullCandleChart(code){
     body.innerHTML = v195RenderCandleSVG(prices);
   } catch(e){
     const body = document.getElementById('fcc-body-v195');
-    if (body) body.textContent = '載入失敗：' + (e.message || e);
+    if (body) {
+      body.innerHTML = '<div style="color:#dc2626;">載入失敗：' + (e.message || e) + '</div><div style="font-size:11px;color:#6b7280;margin-top:4px;">已自動 retry，仍失敗請重新整理</div>';
+      console.error('[v196 Treemap]', e);
+    }
   }
 }
 
@@ -6856,6 +6859,20 @@ function v195RenderCandleSVG(prices){
 }
 
 async function loadIndustryTreemap(){
+  // V196_RETRY_GUARD
+  const _key = (window.SUPABASE_ANON_KEY || '');
+  if (!_key) {
+    if (!window.__v196Retry) window.__v196Retry = 0;
+    window.__v196Retry++;
+    console.warn('[v196] SUPABASE_ANON_KEY not ready, retry ' + window.__v196Retry);
+    if (window.__v196Retry > 5) {
+      const b = document.getElementById('itm-body-v196');
+      if (b) b.innerHTML = '<div style="color:#dc2626;">Supabase 金鑰未載入，請重新整理頁面</div>';
+      return;
+    }
+    setTimeout(() => loadIndustryTreemap(), 2000);
+    return;
+  }
   try {
     let box = document.getElementById('industry-treemap-v196');
     if (!box) {
@@ -6923,7 +6940,10 @@ async function loadIndustryTreemap(){
       `<div style="font-size:11px;color:#3730a3;margin-top:6px;">紅 = 產業整體上漲 · 綠 = 下跌 · 寬度 ∝ 漲跌幅度（最多 16 個產業）</div>`;
   } catch(e){
     const body = document.getElementById('itm-body-v196');
-    if (body) body.textContent = '載入失敗：' + (e.message || e);
+    if (body) {
+      body.innerHTML = '<div style="color:#dc2626;">載入失敗：' + (e.message || e) + '</div><div style="font-size:11px;color:#6b7280;margin-top:4px;">已自動 retry，仍失敗請重新整理</div>';
+      console.error('[v196 Treemap]', e);
+    }
   }
 }
 
@@ -6931,7 +6951,7 @@ async function loadIndustryTreemap(){
 (function v196AutoTrigger(){
   if (window.__v196Wired) return;
   window.__v196Wired = true;
-  setTimeout(loadIndustryTreemap, 1500);
+  setTimeout(loadIndustryTreemap, 4000);
 })();
 
 // ===== v198 Resilience: Global Error Handler =====
