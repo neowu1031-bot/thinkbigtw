@@ -5397,18 +5397,28 @@ async function loadMarketHeatmap(){
   if (!el) return;
   el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;margin-bottom:16px"><div style="font-size:11px;color:#64748b">🔥 市場熱度 · 載入中...</div></div>';
   try{
-    const r1 = await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
-    const r1d = await r1.json();
-    if(!Array.isArray(r1d) || r1d.length === 0) throw new Error('no daily_prices');
-    const date = r1d[0].date;
-    const r2 = await fetch(BASE+'/daily_prices?date=eq.'+date+'&symbol=neq.TAIEX&select=change_percent&limit=3000',{headers:SB_H});
-    const prices = await r2.json();
-    if(!Array.isArray(prices) || prices.length === 0) throw new Error('no prices');
+    const rDates = await fetch(BASE+'/daily_prices?order=date.desc&limit=200&select=date',{headers:SB_H});
+    const datesAll = await rDates.json();
+    const uniqueDates = [...new Set((datesAll||[]).map(d => d.date))].slice(0, 2);
+    if(uniqueDates.length < 2) throw new Error('need 2 dates');
+    const date = uniqueDates[0];
+    const prevDate = uniqueDates[1];
+    const r2 = await fetch(BASE+'/daily_prices?date=in.(' + date + ',' + prevDate + ')&symbol=neq.TAIEX&select=symbol,date,close_price&limit=6000',{headers:SB_H});
+    const all = await r2.json();
+    if(!Array.isArray(all) || all.length === 0) throw new Error('no prices');
+    const bySymbol = {};
+    all.forEach(p => {
+      if(!bySymbol[p.symbol]) bySymbol[p.symbol] = {};
+      bySymbol[p.symbol][p.date] = Number(p.close_price) || 0;
+    });
     let upCount = 0, downCount = 0, flatCount = 0, strongUpCount = 0, strongDownCount = 0;
-    prices.forEach(p => {
-      const pct = Number(p.change_percent) || 0;
-      if (pct > 0) upCount++;
-      else if (pct < 0) downCount++;
+    Object.values(bySymbol).forEach(rec => {
+      const today = rec[date];
+      const yest = rec[prevDate];
+      if (!today || !yest || yest === 0) return;
+      const pct = (today - yest) / yest * 100;
+      if (pct > 0.05) upCount++;
+      else if (pct < -0.05) downCount++;
       else flatCount++;
       if (pct > 3) strongUpCount++;
       else if (pct < -3) strongDownCount++;
