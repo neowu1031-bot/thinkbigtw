@@ -5380,6 +5380,7 @@ function v155Init(){
   if (document.getElementById('daily-briefing')) loadDailyBriefing();
   if (document.getElementById('market-heatmap')) loadMarketHeatmap();
   if (document.getElementById('hot-stocks-section')) loadHotStocks();
+  if (typeof ensureMyDigestButton === 'function') ensureMyDigestButton();
   // chat UI 升級：等 IIFE 跑完
   setTimeout(() => v155UpgradeChatBubble(), 800);
 }
@@ -5568,5 +5569,116 @@ async function loadStockAnalysis(code){
   }catch(e){
     box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:12px;border:1px solid #1e293b;margin-top:12px"><div style="font-size:13px;color:#a78bfa;font-weight:700;margin-bottom:6px">✨ AI 全方位分析</div><div style="font-size:12px;color:#64748b">暫時無法載入分析，請稍後再試</div></div>';
     console.warn('[Stock Analysis]', e);
+  }
+}
+
+
+// ===== MoneyRadar v163: My Watchlist Digest (auto-inserted) =====
+function ensureMyDigestButton(){
+  if (document.getElementById('my-digest-trigger')) return;
+  const dbEl = document.getElementById('daily-briefing');
+  if (!dbEl) return;
+  const wrap = document.createElement('div');
+  wrap.id = 'my-digest-trigger';
+  wrap.style.cssText = 'margin-bottom:12px';
+  wrap.innerHTML = '<button id="my-digest-btn" type="button" style="width:100%;background:linear-gradient(135deg,#064e3b,#065f46);color:#a7f3d0;border:1px solid #047857;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:space-between;font-family:inherit"><span>✨ 我的自選股 AI 早報</span><span style="font-size:11px;opacity:0.8">點擊產生 →</span></button><div id="my-digest-area" style="display:none;margin-top:12px"></div>';
+  dbEl.parentNode.insertBefore(wrap, dbEl);
+  document.getElementById('my-digest-btn').addEventListener('click', loadMyDigest);
+}
+
+async function loadMyDigest(){
+  const area = document.getElementById('my-digest-area');
+  const btn = document.getElementById('my-digest-btn');
+  if (!area || !btn) return;
+  area.style.display = 'block';
+  btn.style.display = 'none';
+  area.innerHTML = '<div style="background:#064e3b;border-radius:10px;padding:14px 18px;border:1px solid #047857;display:flex;align-items:center;gap:10px"><span style="font-size:13px;color:#a7f3d0;font-weight:700;border-left:3px solid #10b981;padding-left:8px">✨ 我的自選股 AI 早報</span><span style="font-size:11px;color:#6ee7b7">收集中...</span></div>';
+
+  try{
+    if (typeof watchlistCache === 'undefined' || !Array.isArray(watchlistCache) || watchlistCache.length === 0){
+      area.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;color:#64748b;font-size:13px">📋 請先加入自選股後再使用 AI 早報功能。</div><button onclick="document.getElementById('my-digest-trigger').remove()" style="margin-top:8px;background:transparent;border:none;color:#64748b;cursor:pointer;font-size:11px">✕ 收起</button>';
+      return;
+    }
+
+    const symbols = watchlistCache.slice(0, 15).map(w => {
+      const s = (typeof normalizeWlSymbol === 'function') ? normalizeWlSymbol(w.symbol) : w.symbol;
+      return { symbol: s, name: (typeof NAMES !== 'undefined' && NAMES[s]) || s };
+    }).filter(x => x.symbol && /^\d+$/.test(x.symbol));
+
+    if (symbols.length === 0){
+      area.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;color:#64748b;font-size:13px">📋 自選股目前沒有可分析的台股代號。</div>';
+      return;
+    }
+
+    // 抓最新交易日
+    const rDate = await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const dDate = await rDate.json();
+    const latestDate = (Array.isArray(dDate) && dDate[0]) ? dDate[0].date : null;
+
+    const symbolList = symbols.map(s => s.symbol).join(',');
+
+    // 並行抓：7 日外資 + 30 日 close
+    const [iiRaw, prRaw] = await Promise.all([
+      fetch(BASE+'/institutional_investors?symbol=in.('+symbolList+')&order=date.desc&limit=200&select=symbol,date,foreign_buy',{headers:SB_H}).then(r=>r.json()).catch(()=>[]),
+      fetch(BASE+'/daily_prices?symbol=in.('+symbolList+')&order=date.desc&limit=600&select=symbol,date,close_price',{headers:SB_H}).then(r=>r.json()).catch(()=>[])
+    ]);
+
+    // 整理每支股票資料
+    const ii = Array.isArray(iiRaw) ? iiRaw : [];
+    const pr = Array.isArray(prRaw) ? prRaw : [];
+
+    const stocks = symbols.map(s => {
+      // 7 日外資累計（股 → 張）
+      const iiRecent = ii.filter(r => r.symbol === s.symbol).slice(0, 7);
+      const foreign7dShares = iiRecent.reduce((sum, r) => sum + (Number(r.foreign_buy) || 0), 0);
+      const foreign_7d_lot = iiRecent.length > 0 ? Math.round(foreign7dShares / 1000) : null;
+
+      // 30 日漲跌
+      const stockPrices = pr.filter(r => r.symbol === s.symbol).sort((a,b) => (b.date||'').localeCompare(a.date||''));
+      let change_30d_pct = null;
+      if (stockPrices.length >= 2){
+        const cur = Number(stockPrices[0].close_price);
+        const old = Number(stockPrices[stockPrices.length-1].close_price);
+        if (cur > 0 && old > 0) change_30d_pct = (cur - old) / old * 100;
+      }
+
+      return {
+        symbol: s.symbol,
+        name: s.name,
+        foreign_7d_lot,
+        change_30d_pct
+      };
+    });
+
+    area.querySelector('span:last-child').textContent = '分析中...';
+
+    const r = await fetch((typeof AI_PROXY_URL!=='undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/digest', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ stocks })
+    });
+    const data = await r.json();
+    if (data.error && !data.digest) throw new Error(data.error);
+
+    const digestSafe = String(data.digest || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    const totalFor = Number(data.totalForeign7d) || 0;
+    const totalForText = totalFor === 0 ? '' : (totalFor >= 0 ? '+' : '') + totalFor.toLocaleString();
+
+    area.innerHTML = '<div style="background:linear-gradient(135deg,#064e3b,#022c22);border-radius:10px;padding:14px 18px;border:1px solid #047857">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+      + '<span style="font-size:13px;color:#a7f3d0;font-weight:700;border-left:3px solid #10b981;padding-left:8px">✨ 我的自選股 AI 早報</span>'
+      + '<span style="font-size:10px;background:#047857;color:#d1fae5;padding:2px 8px;border-radius:4px;font-weight:600">Llama 70B</span>'
+      + '</div>'
+      + '<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px">'
+      + '<div><div style="font-size:11px;color:#6ee7b7">追蹤股票</div><div style="font-size:15px;font-weight:700;color:#a7f3d0">' + (data.stockCount || stocks.length) + '<small style="opacity:0.7;font-weight:400"> 支</small></div></div>'
+      + (totalForText ? '<div style="border-left:1px solid #047857;padding-left:14px"><div style="font-size:11px;color:#6ee7b7">整體 7 日外資</div><div style="font-size:15px;font-weight:700;color:' + (totalFor >= 0 ? '#22c55e' : '#ef4444') + '">' + totalForText + '<small style="opacity:0.7;font-weight:400"> 張</small></div></div>' : '')
+      + '</div>'
+      + '<p style="font-size:13px;color:#d1fae5;line-height:1.8;margin:0 0 10px">' + digestSafe + '</p>'
+      + '<div style="font-size:11px;color:#475569;border-top:1px solid #047857;padding-top:8px">⚠️ ' + String(data.disclaimer || '本內容不構成投資建議').replace(/</g,'&lt;') + '</div>'
+      + '</div>'
+      + '<button onclick="document.getElementById('my-digest-area').style.display='none';document.getElementById('my-digest-btn').style.display='flex'" style="margin-top:6px;background:transparent;border:none;color:#64748b;cursor:pointer;font-size:11px">✕ 收起</button>';
+  }catch(e){
+    area.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:13px;color:#a7f3d0;font-weight:700;margin-bottom:6px">✨ 我的自選股 AI 早報</div><div style="font-size:12px;color:#64748b">暫時無法載入早報：' + String(e.message || e).replace(/</g,'&lt;') + '</div></div>';
+    console.warn('[My Digest]', e);
   }
 }

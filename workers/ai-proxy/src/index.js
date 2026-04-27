@@ -458,6 +458,82 @@ async function handleAnalysis(request, env) {
   });
 }
 
+
+// ============== 自選股 AI 早報 (NEW v7) ==============
+async function handleDigest(request, env) {
+  let body;
+  try { body = await request.json(); }
+  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const stocks = Array.isArray(body.stocks) ? body.stocks : [];
+  if (stocks.length === 0) return jsonResponse({ error: '請先加入自選股' }, 400);
+  if (stocks.length > 20) return jsonResponse({ error: '自選股上限 20 支' }, 400);
+
+  const stockBlock = stocks.map((s, i) => {
+    const fnText = s.foreign_7d_lot != null
+      ? '7日外資' + (s.foreign_7d_lot >= 0 ? '+' : '') + Number(s.foreign_7d_lot).toLocaleString() + '張'
+      : '外資資料未提供';
+    const pctText = s.change_30d_pct != null
+      ? '30日' + (s.change_30d_pct >= 0 ? '+' : '') + Number(s.change_30d_pct).toFixed(2) + '%'
+      : '';
+    return (i+1) + '. ' + (s.name || s.symbol) + ' (' + s.symbol + ')：' + fnText + (pctText ? '，' + pctText : '');
+  }).join('\n');
+
+  const prompt = '以下是用戶自選的 ' + stocks.length + ' 支台股近期狀況：\n\n'
+    + stockBlock + '\n\n'
+    + '請產出【自選股 AI 早報】，繁體中文，依以下結構：\n\n'
+    + '【整體觀察】\n'
+    + '（30字內：這 ' + stocks.length + ' 支股票整體外資動向觀察）\n\n'
+    + '【個股重點】\n'
+    + '（每支 15-25 字客觀觀察，不評價，格式：- 名稱 (代號)：觀察）\n\n'
+    + '【絕對禁止】\n'
+    + '- 不得用「建議買/賣」「目標價」「值得」「適合進場」「會漲到」等字眼\n'
+    + '- 不得評估投資價值\n'
+    + '- 不得預測股價走勢\n\n'
+    + '【風格】客觀、簡潔、純陳述，不加結尾免責（系統會自動加）。\n\n'
+    + '直接回答早報內容。';
+
+  let digest = '';
+  try {
+    const r = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+      messages: [
+        { role: 'system', content: '你是專業股市資訊整理員，產出客觀的自選股早報，純陳述事實，絕不提供投資建議。' },
+        { role: 'user', content: prompt }
+      ],
+      max_tokens: 700,
+    });
+    digest = r.response || '';
+  } catch (err) {
+    try {
+      const r2 = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
+        messages: [
+          { role: 'system', content: '你是專業股市資訊整理員。' },
+          { role: 'user', content: prompt }
+        ],
+        max_tokens: 600,
+      });
+      digest = r2.response || '';
+    } catch (err2) {
+      return jsonResponse({ error: 'AI 服務暫時無法使用' }, 503);
+    }
+  }
+
+  if (!isContentSafe(digest)) {
+    digest = '為符合金管會規範，本助理不能對個股提供投資建議或股價預測。\n\n您可以手動逐支查詢個股，使用「AI 全方位分析」獲得詳細資訊整理。';
+  }
+
+  // 計算整體外資加總（張）
+  const totalForeign7d = stocks.reduce((s, st) => s + (Number(st.foreign_7d_lot) || 0), 0);
+
+  return jsonResponse({
+    digest,
+    stockCount: stocks.length,
+    totalForeign7d,
+    disclaimer: DISCLAIMER,
+    updated: new Date().toISOString(),
+  });
+}
+
 // ============== Router ==============
 export default {
   async fetch(request, env) {
@@ -479,6 +555,7 @@ export default {
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
       if (url.pathname === '/heatmap') return await handleHeatmap(request, env);
       if (url.pathname === '/analysis') return await handleAnalysis(request, env);
+      if (url.pathname === '/digest') return await handleDigest(request, env);
       return await handleSummary(request, env);
     } catch (err) {
       return jsonResponse({ error: err.message || 'Internal error' }, 500);
