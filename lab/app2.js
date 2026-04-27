@@ -7012,7 +7012,7 @@ async function v199LoadGlobalMarkets(){
   const body = document.getElementById('v199-global-body');
   body.innerHTML = '';
   const proxy = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=';
-  for (const key of ['kr','au','eu']) {
+  for (const key of ['us','kr','au','eu']) {
     const m = window.V199_MARKETS[key];
     const sec = document.createElement('div');
     sec.style.cssText = 'margin-bottom:14px;';
@@ -7051,4 +7051,175 @@ async function v199LoadGlobalMarkets(){
       v199LoadGlobalMarkets();
     }
   }, 1500);
+})();
+
+// ===== v201: 美股補完到全球延伸 =====
+(function(){
+  window.V199_MARKETS = window.V199_MARKETS || {};
+  if (!window.V199_MARKETS.us) {
+    window.V199_MARKETS.us = { flag:'🇺🇸', name:'美股科技龍頭', symbols:[
+      {s:'NVDA', n:'NVIDIA 輝達'},
+      {s:'MSFT', n:'微軟'},
+      {s:'META', n:'Meta'},
+      {s:'AMZN', n:'亞馬遜'},
+      {s:'GOOGL', n:'Google'}
+    ]};
+  }
+  window.__v199Loaded = false;
+})();
+
+// ===== v202: 一鍵 AI 個股解讀 =====
+window.v202QuickAnalysis = async function(symbol, name, price, changePercent, currency, btnEl){
+  const tid = 'v202-ana-' + symbol.replace(/[^A-Za-z0-9]/g, '_');
+  let panel = document.getElementById(tid);
+  if (panel) { panel.style.display = panel.style.display === 'none' ? 'block' : 'none'; return; }
+  panel = document.createElement('div');
+  panel.id = tid;
+  panel.style.cssText = 'margin-top:8px;padding:10px;background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;font-size:12px;color:#92400e;line-height:1.7;';
+  panel.innerHTML = '🤖 AI 分析中…';
+  if (btnEl && btnEl.parentNode) btnEl.parentNode.appendChild(panel);
+  if (btnEl) { btnEl.disabled = true; btnEl.textContent = '分析中…'; }
+  try {
+    const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/global-quick-analysis', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symbol, name, price, changePercent, currency })
+    });
+    const d = await res.json();
+    if (d.error) {
+      panel.innerHTML = '<span style="color:#dc2626;">⚠️ ' + d.error + '</span>';
+    } else {
+      panel.innerHTML = '<div style="font-weight:600;margin-bottom:4px;">🤖 AI 公開資訊整理</div>' +
+                        '<div>' + (d.analysis || '').replace(/\n/g, '<br>') + '</div>' +
+                        '<div style="margin-top:6px;font-size:10px;color:#6b7280;">' + (d.disclaimer || '') + '</div>';
+    }
+  } catch (e) {
+    panel.innerHTML = '<span style="color:#dc2626;">分析失敗：' + (e.message || e) + '</span>';
+  } finally {
+    if (btnEl) { btnEl.disabled = false; btnEl.textContent = '🤖 AI 解讀'; }
+  }
+};
+
+// 監聽 v199 cards 渲染，動態插入 AI 解讀按鈕
+(function(){
+  if (window.__v202Wired) return;
+  window.__v202Wired = true;
+  const observer = new MutationObserver(() => {
+    document.querySelectorAll('#v199-global-body [id^="px-"]').forEach(el => {
+      const card = el.parentNode;
+      if (!card || card.querySelector('.v202-ai-btn')) return;
+      const btn = document.createElement('button');
+      btn.className = 'v202-ai-btn';
+      btn.textContent = '🤖 AI 解讀';
+      btn.style.cssText = 'margin-top:6px;padding:4px 10px;font-size:11px;background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;cursor:pointer;color:#92400e;font-weight:600;width:100%;';
+      btn.addEventListener('click', async () => {
+        const divs = card.querySelectorAll(':scope > div');
+        const symbol = divs[0] ? divs[0].textContent.trim() : '';
+        const name = divs[1] ? divs[1].textContent.trim() : '';
+        if (btn.disabled) return;
+        btn.disabled = true; btn.textContent = '抓報價中…';
+        try {
+          const qr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(symbol));
+          const q = await qr.json();
+          window.v202QuickAnalysis(symbol, name, q.price || 0, q.changePercent || 0, q.currency || '', btn);
+        } catch(e){
+          btn.disabled = false; btn.textContent = '🤖 AI 解讀';
+          alert('抓報價失敗：' + (e.message || e));
+        }
+      });
+      card.appendChild(btn);
+    });
+  });
+  setInterval(() => {
+    const t = document.getElementById('v199-global-body');
+    if (t && !window.__v202Observing) {
+      window.__v202Observing = true;
+      observer.observe(t, { childList: true, subtree: true });
+      observer.takeRecords();
+      // trigger initial scan
+      t.dispatchEvent(new Event('scan'));
+    }
+  }, 1500);
+})();
+
+// ===== v203: Dividend Aristocrats 股息王名單 =====
+window.V203_ARISTOCRATS = [
+  {s:'KO',n:'可口可樂',y:62},{s:'JNJ',n:'嬌生',y:62},{s:'PG',n:'寶僑',y:67},
+  {s:'MMM',n:'3M',y:65},{s:'PEP',n:'百事',y:51},{s:'WMT',n:'沃爾瑪',y:50},
+  {s:'XOM',n:'埃克森美孚',y:41},{s:'CVX',n:'雪佛龍',y:36},{s:'IBM',n:'IBM',y:28},
+  {s:'MCD',n:'麥當勞',y:47},{s:'CL',n:'高露潔',y:60},{s:'ABBV',n:'艾伯維',y:51},
+  {s:'TGT',n:'Target',y:52},{s:'LOW',n:'勞氏',y:60},{s:'ADP',n:'ADP',y:48},
+  {s:'CINF',n:'辛辛那提金融',y:64},{s:'CTAS',n:'信達思',y:40},{s:'HRL',n:'荷美爾',y:58},
+  {s:'BDX',n:'BD',y:51},{s:'NUE',n:'紐柯鋼鐵',y:51},{s:'PNR',n:'濱特爾',y:48},
+  {s:'GD',n:'通用動力',y:32},{s:'EMR',n:'艾默生',y:67},{s:'GPC',n:'真力時',y:67},
+  {s:'ATO',n:'雅特摩斯',y:40},{s:'ED',n:'ConEd',y:49},{s:'WST',n:'West製藥',y:31},
+  {s:'AOS',n:'A.O. Smith',y:30},{s:'SWK',n:'史丹利百得',y:56},{s:'SHW',n:'宣偉塗料',y:46}
+];
+
+window.v203LoadAristocrats = async function(){
+  const host = document.getElementById('tab-us');
+  if (!host) return;
+  if (document.getElementById('v203-aristo-box')) return;
+  const box = document.createElement('div');
+  box.id = 'v203-aristo-box';
+  box.style.cssText = 'margin-top:24px;padding:16px;border:2px solid #ca8a04;border-radius:12px;background:linear-gradient(180deg,#fefce8,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#854d0e;font-size:16px;margin-bottom:6px;">👑 美股股息貴族（Dividend Aristocrats）</div>' +
+    '<div style="font-size:11px;color:#854d0e;margin-bottom:12px;">連續 25+ 年加發股息的精選 30 檔。退休族 / 被動收入族最愛。資料：Yahoo Finance（殖利率 = 過去 12 個月配息 / 現價）</div>' +
+    '<div id="v203-aristo-body">載入中…</div>';
+  host.appendChild(box);
+  const body = document.getElementById('v203-aristo-body');
+  try {
+    const symbols = window.V203_ARISTOCRATS.map(x => x.s).join(',');
+    const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote-batch?symbols=' + encodeURIComponent(symbols));
+    const data = await res.json();
+    if (!data.results) {
+      body.innerHTML = '<div style="color:#dc2626;">載入失敗：' + (data.error || '無資料') + '</div>';
+      return;
+    }
+    const rmap = {};
+    data.results.forEach(r => { rmap[r.symbol] = r; });
+    const enriched = window.V203_ARISTOCRATS.map(a => {
+      const q = rmap[a.s] || {};
+      let dy = q.dividendYield || 0;
+      if (dy > 0 && dy < 1) dy *= 100;
+      return {
+        ...a, price: q.price || 0, changePercent: q.changePercent || 0,
+        dy, peRatio: q.peRatio || 0
+      };
+    }).sort((x, y) => y.dy - x.dy);
+    let html = '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">';
+    html += '<thead style="background:#fef9c3;"><tr>';
+    html += '<th style="padding:6px;text-align:left;">代號</th><th style="padding:6px;text-align:left;">公司</th>';
+    html += '<th style="padding:6px;text-align:right;">連續加息</th><th style="padding:6px;text-align:right;">股價</th>';
+    html += '<th style="padding:6px;text-align:right;">今漲跌</th><th style="padding:6px;text-align:right;">殖利率</th>';
+    html += '<th style="padding:6px;text-align:right;">本益比</th></tr></thead><tbody>';
+    enriched.forEach((a, i) => {
+      const c = a.changePercent >= 0 ? '#dc2626' : '#16a34a';
+      const sn = a.changePercent >= 0 ? '+' : '';
+      const bg = i % 2 === 0 ? '#fffbeb' : '#fff';
+      html += '<tr style="background:' + bg + ';border-bottom:1px solid #fde68a;">';
+      html += '<td style="padding:6px;font-weight:600;color:#854d0e;">' + a.s + '</td>';
+      html += '<td style="padding:6px;">' + a.n + '</td>';
+      html += '<td style="padding:6px;text-align:right;">' + a.y + ' 年</td>';
+      html += '<td style="padding:6px;text-align:right;">$' + a.price.toFixed(2) + '</td>';
+      html += '<td style="padding:6px;text-align:right;color:' + c + ';font-weight:600;">' + sn + a.changePercent.toFixed(2) + '%</td>';
+      html += '<td style="padding:6px;text-align:right;font-weight:700;color:#ca8a04;">' + a.dy.toFixed(2) + '%</td>';
+      html += '<td style="padding:6px;text-align:right;">' + (a.peRatio > 0 ? a.peRatio.toFixed(1) : '-') + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    body.innerHTML = html;
+  } catch (e) {
+    body.innerHTML = '<div style="color:#dc2626;">載入失敗：' + (e.message || e) + '</div>';
+    console.error('[v203]', e);
+  }
+};
+
+(function(){
+  setInterval(() => {
+    const t = document.getElementById('tab-us');
+    if (t && getComputedStyle(t).display !== 'none' && !window.__v203Loaded) {
+      window.__v203Loaded = true;
+      window.v203LoadAristocrats();
+    }
+  }, 2000);
 })();

@@ -780,6 +780,73 @@ export default {
         endpoints: ['/chat', '/briefing', '/heatmap', '/analysis', '/digest', '/quote', '/market-briefing', '/health']
       });
     }
+        // === /global-quick-analysis (v202) ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/global-quick-analysis') {
+      try {
+        const body = await request.json();
+        const { symbol, name, price, changePercent, currency } = body;
+        if (!symbol) return jsonResponse({ error: 'symbol required' }, 400);
+        const sign = (changePercent || 0) >= 0 ? '+' : '';
+        const prompt = `你是 MoneyRadar 公開資訊整理員。針對下列股票，用繁體中文 100-150 字解析「市場可能反映哪些訊息」。
+
+股票：${name || symbol} (${symbol})
+今日價格：${price} ${currency || ''}
+漲跌：${sign}${(changePercent||0).toFixed(2)}%
+
+要求：
+1. 從產業趨勢、總體經濟、公司面三角度推測（用「市場或關注 XX」、「投資人可能擔心 XX」這類措詞）
+2. 不得給買賣建議（禁用：建議買、建議賣、目標價、會漲到、值得買）
+3. 不得預測股價
+4. 不得編造市值、EPS、營收等具體數字
+5. 結尾不需自己加免責聲明（系統會附）`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是公開資訊整理員，絕不提供投資建議。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 400
+        });
+        let analysis = aiRes.response || '';
+        if (!isContentSafe(analysis)) {
+          analysis = '⚠️ 為符合金管會規範，本助理不能提供投資建議。';
+        }
+        return jsonResponse({
+          symbol, analysis, disclaimer: DISCLAIMER, updated: new Date().toISOString()
+        });
+      } catch (e) {
+        return jsonResponse({ error: 'analysis failed: ' + (e.message || e) }, 500);
+      }
+    }
+
+        // === /quote-batch (v203) ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/quote-batch') {
+      const u = new URL(request.url);
+      const syms = (u.searchParams.get('symbols') || '').split(',').filter(Boolean);
+      if (syms.length === 0) return jsonResponse({ error: 'symbols required' }, 400);
+      if (syms.length > 50) return jsonResponse({ error: 'max 50 symbols' }, 400);
+      try {
+        const yu = 'https://query1.finance.yahoo.com/v7/finance/quote?symbols=' + encodeURIComponent(syms.join(','));
+        const yr = await fetch(yu, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MoneyRadar/1.0)' }
+        });
+        if (!yr.ok) return jsonResponse({ error: 'yahoo http ' + yr.status }, 502);
+        const yj = await yr.json();
+        const results = (yj.quoteResponse && yj.quoteResponse.result) || [];
+        const out = results.map(q => ({
+          symbol: q.symbol,
+          price: q.regularMarketPrice || 0,
+          changePercent: q.regularMarketChangePercent || 0,
+          currency: q.currency || '',
+          dividendYield: q.trailingAnnualDividendYield || 0,
+          marketCap: q.marketCap || 0,
+          peRatio: q.trailingPE || 0
+        }));
+        return jsonResponse({ symbols: syms, results: out, updated: new Date().toISOString() });
+      } catch (e) {
+        return jsonResponse({ error: 'fetch failed: ' + (e.message || e) }, 500);
+      }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);
