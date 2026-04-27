@@ -6450,3 +6450,30 @@ if (document.readyState === 'loading') {
 } else {
   setTimeout(v183_186AutoBind, 1800);
 }
+
+
+// ===== v188: Hide AI Bubble When Not Logged In (auto-inserted) =====
+function v188SyncBubbleVisibility(){
+  const bubble = document.getElementById('mr-chat-bubble');
+  const panel = document.getElementById('mr-chat-panel');
+  if (!bubble) return;
+
+  // 檢查 currentUser 全域變數（NEO 既有 user state）
+  const isLoggedIn = (typeof currentUser !== 'undefined' && currentUser !== null && currentUser !== '');
+
+  if (isLoggedIn) {
+    bubble.style.display = 'flex';
+  } else {
+    bubble.style.display = 'none';
+    if (panel) panel.classList.remove('open');
+  }
+}
+
+// 啟動：每 2 秒同步一次（捕捉登入/登出）
+setInterval(v188SyncBubbleVisibility, 2000);
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(v188SyncBubbleVisibility, 200));
+} else {
+  setTimeout(v188SyncBubbleVisibility, 200);
+}
