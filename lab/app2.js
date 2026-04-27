@@ -5377,6 +5377,7 @@ function v155UpgradeChatBubble(){
 // 啟動入口
 function v155Init(){
   if (document.getElementById('daily-briefing')) loadDailyBriefing();
+  if (document.getElementById('market-heatmap')) loadMarketHeatmap();
   if (document.getElementById('hot-stocks-section')) loadHotStocks();
   // chat UI 升級：等 IIFE 跑完
   setTimeout(() => v155UpgradeChatBubble(), 800);
@@ -5387,4 +5388,83 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => setTimeout(v155Init, 600));
 } else {
   setTimeout(v155Init, 600);
+}
+
+
+// ===== MoneyRadar v159: Market Heatmap (auto-inserted) =====
+async function loadMarketHeatmap(){
+  const el = document.getElementById('market-heatmap');
+  if (!el) return;
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;margin-bottom:16px"><div style="font-size:11px;color:#64748b">🔥 市場熱度 · 載入中...</div></div>';
+  try{
+    const r1 = await fetch(BASE+'/daily_prices?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const r1d = await r1.json();
+    if(!Array.isArray(r1d) || r1d.length === 0) throw new Error('no daily_prices');
+    const date = r1d[0].date;
+    const r2 = await fetch(BASE+'/daily_prices?date=eq.'+date+'&symbol=neq.TAIEX&select=change_percent&limit=3000',{headers:SB_H});
+    const prices = await r2.json();
+    if(!Array.isArray(prices) || prices.length === 0) throw new Error('no prices');
+    let upCount = 0, downCount = 0, flatCount = 0, strongUpCount = 0, strongDownCount = 0;
+    prices.forEach(p => {
+      const pct = Number(p.change_percent) || 0;
+      if (pct > 0) upCount++;
+      else if (pct < 0) downCount++;
+      else flatCount++;
+      if (pct > 3) strongUpCount++;
+      else if (pct < -3) strongDownCount++;
+    });
+    const totalCount = upCount + downCount + flatCount;
+    if (totalCount === 0) throw new Error('zero total');
+
+    let heat = 'neutral', label = '中性', note = '';
+    try{
+      const r3 = await fetch((typeof AI_PROXY_URL!=='undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/heatmap', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ stats: { upCount, downCount, flatCount, strongUpCount, strongDownCount } })
+      });
+      const d = await r3.json();
+      heat = d.heat || 'neutral';
+      label = d.label || '中性';
+      note = d.note || '';
+    }catch(e){}
+
+    const heatColors = {
+      hot:    {bg:'#1c1917',accent:'#dc2626',badge:'#7f1d1d',icon:'🔥'},
+      warm:   {bg:'#1a1410',accent:'#f59e0b',badge:'#78350f',icon:'☀️'},
+      neutral:{bg:'#0f172a',accent:'#94a3b8',badge:'#334155',icon:'⚖️'},
+      cool:   {bg:'#0a1421',accent:'#3b82f6',badge:'#1e3a8a',icon:'🌥'},
+      cold:   {bg:'#0a0f1a',accent:'#1d4ed8',badge:'#172554',icon:'❄️'}
+    };
+    const c = heatColors[heat] || heatColors.neutral;
+    const upRatio = (upCount / totalCount * 100);
+    const downRatio = (downCount / totalCount * 100);
+    const flatRatio = (flatCount / totalCount * 100);
+
+    el.innerHTML = '<div style="background:' + c.bg + ';border-radius:10px;padding:14px 18px;border:1px solid #1e293b;margin-bottom:16px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'
+      + '<span style="font-size:11px;font-weight:700;color:' + c.accent + ';text-transform:uppercase;letter-spacing:1.5px">' + c.icon + ' 市場熱度</span>'
+      + '<span style="background:' + c.badge + ';color:' + c.accent + ';border:1px solid ' + c.accent + ';padding:3px 12px;border-radius:999px;font-size:11px;font-weight:700">' + label + '</span>'
+      + '</div>'
+      + '<div style="display:flex;height:8px;border-radius:4px;overflow:hidden;background:#1e293b;margin-bottom:10px">'
+      + '<div style="background:#22c55e;width:' + upRatio.toFixed(1) + '%"></div>'
+      + '<div style="background:#64748b;width:' + flatRatio.toFixed(1) + '%"></div>'
+      + '<div style="background:#ef4444;width:' + downRatio.toFixed(1) + '%"></div>'
+      + '</div>'
+      + '<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px">'
+      + '<div><div style="font-size:11px;color:#64748b">↑ 上漲</div><div style="font-size:15px;font-weight:700;color:#22c55e">' + upCount + '<small style="opacity:0.6;font-weight:400"> 支 (' + upRatio.toFixed(0) + '%)</small></div></div>'
+      + '<div style="border-left:1px solid #1e293b;padding-left:14px"><div style="font-size:11px;color:#64748b">↓ 下跌</div><div style="font-size:15px;font-weight:700;color:#ef4444">' + downCount + '<small style="opacity:0.6;font-weight:400"> 支 (' + downRatio.toFixed(0) + '%)</small></div></div>'
+      + '<div style="border-left:1px solid #1e293b;padding-left:14px"><div style="font-size:11px;color:#64748b">— 平盤</div><div style="font-size:15px;font-weight:700;color:#94a3b8">' + flatCount + '<small style="opacity:0.6;font-weight:400"> 支</small></div></div>'
+      + '</div>'
+      + '<div style="display:flex;gap:14px;font-size:12px;color:#94a3b8;border-top:1px dashed #1e293b;padding-top:8px">'
+      + '<div>🚀 強勢股 (>+3%) <span style="color:#22c55e;font-weight:700">' + strongUpCount + '</span></div>'
+      + '<div>📉 弱勢股 (<-3%) <span style="color:#ef4444;font-weight:700">' + strongDownCount + '</span></div>'
+      + '<div style="margin-left:auto;color:#64748b;font-size:11px">資料：' + date + '</div>'
+      + '</div>'
+      + (note ? '<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #1e293b;font-size:12px;color:' + c.accent + '">💡 ' + note.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div>' : '')
+      + '</div>';
+  }catch(e){
+    el.innerHTML = '';
+    console.warn('[Heatmap]', e);
+  }
 }

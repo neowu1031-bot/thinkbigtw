@@ -294,6 +294,60 @@ async function handleBriefing(request, env) {
   });
 }
 
+
+// ============== 市場熱度儀表板 (NEW v4) ==============
+async function handleHeatmap(request, env) {
+  let body;
+  try { body = await request.json(); }
+  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const stats = body.stats || {};
+  const upCount = Number(stats.upCount) || 0;
+  const downCount = Number(stats.downCount) || 0;
+  const flatCount = Number(stats.flatCount) || 0;
+  const strongUpCount = Number(stats.strongUpCount) || 0;
+  const strongDownCount = Number(stats.strongDownCount) || 0;
+  const totalCount = upCount + downCount + flatCount;
+  if (totalCount === 0) return jsonResponse({ error: 'Empty stats' }, 400);
+
+  const upRatio = upCount / totalCount;
+  const strongRatio = strongUpCount / totalCount;
+  let heat = 'neutral';
+  let label = '中性';
+  if (upRatio >= 0.7 && strongRatio >= 0.1) { heat = 'hot'; label = '熱絡'; }
+  else if (upRatio >= 0.55) { heat = 'warm'; label = '偏熱'; }
+  else if (upRatio <= 0.3 && (strongDownCount / totalCount) >= 0.1) { heat = 'cold'; label = '寒冷'; }
+  else if (upRatio <= 0.45) { heat = 'cool'; label = '偏冷'; }
+
+  let note = '';
+  try {
+    const prompt = '今日台股' + totalCount + '支：上漲' + upCount + '、下跌' + downCount + '、強勢股(>+3%)' + strongUpCount + '支、弱勢股(<-3%)' + strongDownCount + '支。請用 25 字內中文寫一句中性的市場熱度觀察，純陳述事實，不預測、不買賣建議。直接回答觀察文字。';
+    const r = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+      messages: [
+        { role: 'system', content: '你只回 25 字內市場熱度觀察句，純陳述。' },
+        { role: 'user', content: prompt },
+      ],
+      max_tokens: 80,
+    });
+    note = (r.response || '').trim().replace(/^[「『]|[」』]$/g, '').slice(0, 80);
+    if (!isContentSafe(note)) note = '';
+  } catch (e) {}
+
+  if (!note) {
+    note = heat === 'hot' ? '多數類股上揚，市場氣氛熱絡' :
+           heat === 'warm' ? '多數類股收紅，市場偏多' :
+           heat === 'cold' ? '多數類股收黑，市場氣氛低迷' :
+           heat === 'cool' ? '多數類股收黑，市場偏空' :
+           '漲跌互見，市場分歧';
+  }
+
+  return jsonResponse({
+    heat, label, note,
+    stats: { upCount, downCount, flatCount, strongUpCount, strongDownCount, totalCount },
+    updated: new Date().toISOString(),
+  });
+}
+
 // ============== Router ==============
 export default {
   async fetch(request, env) {
@@ -313,6 +367,7 @@ export default {
     try {
       if (url.pathname === '/chat') return await handleChat(request, env);
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
+      if (url.pathname === '/heatmap') return await handleHeatmap(request, env);
       return await handleSummary(request, env);
     } catch (err) {
       return jsonResponse({ error: err.message || 'Internal error' }, 500);
