@@ -4975,3 +4975,211 @@ async function loadAISummary(code){
     console.warn('[AI Summary]', e);
   }
 }
+
+
+// ===== MoneyRadar AI Chat Bubble (auto-inserted) =====
+(function initAIChatBubble(){
+  if (document.getElementById('mr-chat-bubble')) return;
+
+  // CSS 注入
+  const style = document.createElement('style');
+  style.textContent = `
+    #mr-chat-bubble{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#1e40af);box-shadow:0 4px 16px rgba(37,99,235,0.4);cursor:pointer;z-index:9998;display:flex;align-items:center;justify-content:center;transition:transform 0.2s;border:none}
+    #mr-chat-bubble:hover{transform:scale(1.08)}
+    #mr-chat-bubble svg{width:28px;height:28px;fill:white}
+    #mr-chat-panel{position:fixed;right:20px;bottom:88px;width:360px;height:520px;background:#0f172a;border:1px solid #1e293b;border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.5);z-index:9999;display:none;flex-direction:column;overflow:hidden;font-family:-apple-system,"PingFang TC",sans-serif}
+    #mr-chat-panel.open{display:flex}
+    .mr-chat-header{padding:14px 16px;background:#1e293b;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #334155}
+    .mr-chat-title{font-size:14px;font-weight:700;color:#e2e8f0;display:flex;align-items:center;gap:8px}
+    .mr-chat-engine{font-size:10px;background:#0f172a;color:#94a3b8;padding:2px 8px;border-radius:999px;border:1px solid #334155}
+    .mr-chat-actions{display:flex;gap:8px}
+    .mr-chat-actions button{background:transparent;border:none;color:#94a3b8;cursor:pointer;font-size:12px;padding:4px 8px;border-radius:4px}
+    .mr-chat-actions button:hover{background:#334155;color:#e2e8f0}
+    #mr-chat-messages{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px}
+    .mr-msg{max-width:85%;padding:10px 12px;border-radius:12px;font-size:13px;line-height:1.6;word-wrap:break-word;white-space:pre-wrap}
+    .mr-msg.user{align-self:flex-end;background:#2563eb;color:white;border-bottom-right-radius:4px}
+    .mr-msg.assistant{align-self:flex-start;background:#1e293b;color:#e2e8f0;border:1px solid #334155;border-bottom-left-radius:4px}
+    .mr-msg.system{align-self:center;font-size:11px;color:#64748b;background:#0b1120;padding:8px 12px;border-radius:8px;text-align:center;max-width:100%}
+    .mr-msg.error{align-self:flex-start;background:#2d0a0a;color:#fca5a5;border:1px solid #7f1d1d}
+    .mr-msg-loading{display:flex;gap:4px;padding:10px}
+    .mr-msg-loading span{width:8px;height:8px;background:#64748b;border-radius:50%;animation:mrPulse 1.2s infinite}
+    .mr-msg-loading span:nth-child(2){animation-delay:0.2s}
+    .mr-msg-loading span:nth-child(3){animation-delay:0.4s}
+    @keyframes mrPulse{0%,80%,100%{opacity:0.3}40%{opacity:1}}
+    .mr-chat-input-wrap{padding:10px;border-top:1px solid #334155;background:#0b1120}
+    .mr-chat-input-row{display:flex;gap:8px;align-items:flex-end}
+    #mr-chat-input{flex:1;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:8px 12px;color:#e2e8f0;font-size:13px;font-family:inherit;resize:none;max-height:80px;min-height:36px;outline:none}
+    #mr-chat-input:focus{border-color:#2563eb}
+    #mr-chat-send{background:#2563eb;border:none;color:white;padding:0 14px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;height:36px;white-space:nowrap}
+    #mr-chat-send:hover:not(:disabled){background:#1d4ed8}
+    #mr-chat-send:disabled{background:#334155;cursor:not-allowed;opacity:0.6}
+    .mr-chat-disclaimer{font-size:10px;color:#475569;text-align:center;margin-top:6px}
+    @media (max-width:480px){
+      #mr-chat-panel{right:8px;left:8px;bottom:78px;width:auto;height:75vh}
+    }
+  `;
+  document.head.appendChild(style);
+
+  // 泡泡按鈕
+  const bubble = document.createElement('button');
+  bubble.id = 'mr-chat-bubble';
+  bubble.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10v2H7V9zm6 5H7v-2h6v2zm4-6H7V6h10v2z"/></svg>';
+  bubble.title = 'AI 助理';
+  document.body.appendChild(bubble);
+
+  // 面板
+  const panel = document.createElement('div');
+  panel.id = 'mr-chat-panel';
+  panel.innerHTML = `
+    <div class="mr-chat-header">
+      <div class="mr-chat-title">🤖 AI 助理 <span class="mr-chat-engine" id="mr-chat-engine">Cloudflare AI</span></div>
+      <div class="mr-chat-actions">
+        <button id="mr-chat-clear" title="清除對話">🗑</button>
+        <button id="mr-chat-close" title="關閉">✕</button>
+      </div>
+    </div>
+    <div id="mr-chat-messages"></div>
+    <div class="mr-chat-input-wrap">
+      <div class="mr-chat-input-row">
+        <textarea id="mr-chat-input" rows="1" placeholder="問我關於財經知識、公開新聞..."></textarea>
+        <button id="mr-chat-send">送出</button>
+      </div>
+      <div class="mr-chat-disclaimer">⚠️ 本助理只整理公開資訊，不提供投資建議</div>
+    </div>
+  `;
+  document.body.appendChild(panel);
+
+  const messagesEl = document.getElementById('mr-chat-messages');
+  const inputEl = document.getElementById('mr-chat-input');
+  const sendBtn = document.getElementById('mr-chat-send');
+
+  // 對話歷史（本次刷新就清掉）
+  const conversation = [];
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+
+  function appendMessage(role, content, opts){
+    opts = opts || {};
+    const div = document.createElement('div');
+    div.className = 'mr-msg ' + role;
+    if (opts.html) {
+      div.innerHTML = content;
+    } else {
+      div.textContent = content;
+    }
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  function appendLoading(){
+    const div = document.createElement('div');
+    div.className = 'mr-msg assistant mr-msg-loading';
+    div.innerHTML = '<span></span><span></span><span></span>';
+    messagesEl.appendChild(div);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return div;
+  }
+
+  function welcomeMessage(){
+    appendMessage('system', '🤖 哈囉！我可以幫你解釋財經名詞、整理當前個股的公開新聞、回答市場知識問題。\n\n依台灣《證券投資信託及顧問法》規定，我不能回答「該不該買」「會不會漲」這類個股建議問題。');
+  }
+
+  // 取得當前個股 context（如果使用者正在看個股）
+  function getCurrentContext(){
+    try{
+      const stockInput = document.getElementById('stockInput');
+      const symbol = stockInput && stockInput.value ? stockInput.value.trim() : null;
+      if (!symbol) return null;
+
+      // 試著從 stockNews 容器抓出新聞標題（轉成 Worker 期待的格式）
+      const newsEl = document.getElementById('stockNews');
+      const newsLinks = newsEl ? newsEl.querySelectorAll('a') : [];
+      const news = [];
+      newsLinks.forEach(a => {
+        const titleEl = a.querySelector('div');
+        if (titleEl && titleEl.textContent.trim()) {
+          news.push({ headline: titleEl.textContent.trim().slice(0, 200), source: 'Google News' });
+        }
+      });
+      return { currentSymbol: symbol, currentNews: news.slice(0, 5) };
+    }catch(e){ return null; }
+  }
+
+  async function sendMessage(){
+    const text = inputEl.value.trim();
+    if (!text) return;
+    if (text.length > 1500) {
+      appendMessage('error', '訊息過長（上限 1500 字），請縮短');
+      return;
+    }
+
+    inputEl.value = '';
+    inputEl.style.height = 'auto';
+    appendMessage('user', text);
+    conversation.push({ role: 'user', content: text });
+
+    sendBtn.disabled = true;
+    inputEl.disabled = true;
+    const loadingEl = appendLoading();
+
+    try {
+      const ctx = getCurrentContext();
+      const res = await fetch((typeof AI_PROXY_URL !== 'undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: conversation, context: ctx })
+      });
+      const data = await res.json();
+      loadingEl.remove();
+
+      if (data.error && !data.reply) {
+        appendMessage('error', '錯誤：' + data.error);
+      } else {
+        const reply = data.reply || '(AI 未回應)';
+        appendMessage('assistant', reply);
+        conversation.push({ role: 'assistant', content: reply });
+        const engineEl = document.getElementById('mr-chat-engine');
+        if (engineEl && data.engine) engineEl.textContent = data.engine + (data.plan === 'pro' ? ' Pro' : '');
+      }
+    } catch (e) {
+      loadingEl.remove();
+      appendMessage('error', '連線失敗，請稍後再試');
+      console.warn('[AI Chat]', e);
+    } finally {
+      sendBtn.disabled = false;
+      inputEl.disabled = false;
+      inputEl.focus();
+    }
+  }
+
+  // 事件綁定
+  bubble.addEventListener('click', () => {
+    panel.classList.add('open');
+    if (messagesEl.children.length === 0) welcomeMessage();
+    setTimeout(() => inputEl.focus(), 100);
+  });
+  document.getElementById('mr-chat-close').addEventListener('click', () => {
+    panel.classList.remove('open');
+  });
+  document.getElementById('mr-chat-clear').addEventListener('click', () => {
+    if (confirm('清除目前對話？')) {
+      conversation.length = 0;
+      messagesEl.innerHTML = '';
+      welcomeMessage();
+    }
+  });
+  sendBtn.addEventListener('click', sendMessage);
+  inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  inputEl.addEventListener('input', () => {
+    inputEl.style.height = 'auto';
+    inputEl.style.height = Math.min(inputEl.scrollHeight, 80) + 'px';
+  });
+})();
