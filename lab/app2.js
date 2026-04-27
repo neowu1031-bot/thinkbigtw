@@ -5862,7 +5862,12 @@ async function loadAsiaMarket(){
       html += '<div style="margin-bottom:18px"><div style="font-size:13px;font-weight:700;color:' + group.flag + ';margin-bottom:8px;padding-left:10px;border-left:3px solid ' + group.flag + '">' + group.name + '</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div></div>';
     });
 
-    el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px">🌏 亞洲市場 · 即時行情</div>' + html + '<div style="font-size:10px;color:#475569;border-top:1px solid #1e293b;padding-top:8px;margin-top:8px">資料來源：Yahoo Finance / Alpha Vantage · 延遲約 5-15 分鐘 · 僅供參考</div></div>';
+    // v180: 加 AI 早報
+    const allBriefingItems = groups.flatMap(g => g.indexSym ? [{sym: g.indexSym, name: g.indexLabel}, ...g.stocks] : g.stocks);
+    const briefingItems = allBriefingItems.map(s => { const d = byKey[s.sym]; return d && !d.error ? { symbol: s.sym, name: s.name, pct: d.pct } : null; }).filter(Boolean);
+    const briefing = await v178FetchMarketBriefing('asia', briefingItems);
+    const briefingHtml = v178RenderBriefingCard('🌏 亞洲早報', briefing);
+    el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px">🌏 亞洲市場 · 即時行情</div>' + html + '<div style="font-size:10px;color:#475569;border-top:1px solid #1e293b;padding-top:8px;margin-top:8px">資料來源：Yahoo Finance / Alpha Vantage · 延遲約 5-15 分鐘 · 僅供參考</div></div>';
   } catch (e) {
     el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;color:#64748b;font-size:13px">🌏 亞洲市場暫時無法載入，請稍後再試</div>';
     console.warn('[Asia Market]', e);
@@ -6065,7 +6070,11 @@ async function loadCryptoExtras(){
   el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">🪙 加密貨幣 Top 8 · 載入中...</div></div>';
   const map = await v170FetchQuotes(items.map(x => x.sym));
   const cards = items.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
-  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🪙 加密貨幣 Top 8 · 即時</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div></div>';
+  // v179: 加 AI 早報
+  const briefingItems = items.map(x => { const d = map[x.sym]; return d && !d.error ? { symbol: x.sym, name: x.name, pct: d.pct } : null; }).filter(Boolean);
+  const briefing = await v178FetchMarketBriefing('crypto', briefingItems);
+  const briefingHtml = v178RenderBriefingCard('🪙 加密貨幣早報', briefing);
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🪙 加密貨幣 Top 8 · 即時</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div></div>';
 }
 
 // ===== v173: 美股廣度（大盤指數 + 產業 ETF）=====
@@ -6091,7 +6100,12 @@ async function loadUSExtras(){
   const map = await v170FetchQuotes([...indices, ...sectors].map(x => x.sym));
   const idxCards = indices.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
   const sectorCards = sectors.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
-  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🇺🇸 美股大盤指數</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:14px">' + idxCards + '</div><div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🏭 產業類股 ETF (SPDR)</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + sectorCards + '</div></div>';
+  // v178: 加 AI 早報
+  const briefingItems = [...indices, ...sectors].map(x => { const d = map[x.sym]; return d && !d.error ? { symbol: x.sym, name: x.name, pct: d.pct } : null; }).filter(Boolean);
+  const briefing = await v178FetchMarketBriefing('us', briefingItems);
+  const briefingHtml = v178RenderBriefingCard('🇺🇸 美股早報', briefing);
+
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🇺🇸 美股大盤指數</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:14px">' + idxCards + '</div><div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🏭 產業類股 ETF (SPDR)</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + sectorCards + '</div></div>';
 }
 
 // ===== 統一綁定：tab 切換時自動載入 =====
@@ -6202,4 +6216,38 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => setTimeout(v174AutoBind, 1700));
 } else {
   setTimeout(v174AutoBind, 1700);
+}
+
+
+// ===== MoneyRadar v178-180: Market Briefing (auto-inserted) =====
+async function v178FetchMarketBriefing(market, items){
+  try{
+    const r = await fetch((typeof AI_PROXY_URL !== 'undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/market-briefing', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        market,
+        items: items.map(d => ({ symbol: d.symbol, name: d.name, pct: d.pct }))
+      })
+    });
+    return await r.json();
+  }catch(e){ return null; }
+}
+
+function v178RenderBriefingCard(title, briefing){
+  if (!briefing || briefing.error || !briefing.note) return '';
+  const cfg = {
+    bullish: { color: '#22c55e', bg: 'linear-gradient(135deg,#052e16,#0a1421)', border: '#14532d', badgeBg: '#052e16' },
+    bearish: { color: '#ef4444', bg: 'linear-gradient(135deg,#2d0a0a,#0a1421)', border: '#450a0a', badgeBg: '#2d0a0a' },
+    neutral: { color: '#94a3b8', bg: 'linear-gradient(135deg,#1e293b,#0a1421)', border: '#334155', badgeBg: '#1e293b' }
+  };
+  const s = cfg[briefing.sentiment] || cfg.neutral;
+  const safeNote = String(briefing.note || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return '<div style="background:' + s.bg + ';border-radius:10px;padding:14px 18px;border:1px solid ' + s.border + ';margin-bottom:14px">'
+    + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">'
+    + '<span style="font-size:12px;font-weight:700;color:' + s.color + ';text-transform:uppercase;letter-spacing:1px">' + title + '</span>'
+    + '<span style="background:' + s.badgeBg + ';color:' + s.color + ';border:1px solid ' + s.color + ';padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700">' + (briefing.label || '中性') + '</span>'
+    + '</div>'
+    + '<div style="font-size:13px;color:#cbd5e1;line-height:1.6">💡 ' + safeNote + '</div>'
+    + '</div>';
 }
