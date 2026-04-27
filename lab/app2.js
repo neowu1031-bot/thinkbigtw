@@ -5205,12 +5205,25 @@ async function loadDailyBriefing(){
     const pct = prevClose ? (change / prevClose * 100) : 0;
     const isUp = change >= 0;
 
-    // 2) 外資買賣超（Supabase institutional_investors 當日加總）
+    // 2) 外資買賣超（Supabase institutional_investors，當日無資料時 fallback 最近交易日）
     let foreignNet = null;
+    let foreignNetIsYesterday = false;
     try{
       const date = today0.date;
-      const ii = await fetch(BASE+'/institutional_investors?date=eq.'+date+'&select=foreign_buy,foreign_sell&limit=3000',{headers:SB_H});
-      const iiData = await ii.json();
+      let ii = await fetch(BASE+'/institutional_investors?date=eq.'+date+'&select=foreign_buy,foreign_sell&limit=3000',{headers:SB_H});
+      let iiData = await ii.json();
+      if(!Array.isArray(iiData) || iiData.length === 0){
+        const r2 = await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});
+        const r2d = await r2.json();
+        if(Array.isArray(r2d) && r2d.length > 0){
+          const lastDate = r2d[0].date;
+          if(lastDate !== date){
+            foreignNetIsYesterday = true;
+            const ii2 = await fetch(BASE+'/institutional_investors?date=eq.'+lastDate+'&select=foreign_buy,foreign_sell&limit=3000',{headers:SB_H});
+            iiData = await ii2.json();
+          }
+        }
+      }
       if(Array.isArray(iiData) && iiData.length){
         foreignNet = iiData.reduce((s,r) => s + (Number(r.foreign_buy)||0) - (Number(r.foreign_sell)||0), 0);
       }
@@ -5234,7 +5247,7 @@ async function loadDailyBriefing(){
 
     // 4) 渲染
     const fnText = foreignNet !== null
-      ? '<div style="font-size:13px;font-weight:600;color:' + (foreignNet >= 0 ? '#22c55e' : '#ef4444') + '">' + (foreignNet >= 0 ? '+' : '') + foreignNet.toLocaleString() + '</div><div style="font-size:11px;color:#64748b">張買賣超</div>'
+      ? '<div style="font-size:13px;font-weight:600;color:' + (foreignNet >= 0 ? '#22c55e' : '#ef4444') + '">' + (foreignNet >= 0 ? '+' : '') + foreignNet.toLocaleString() + (foreignNetIsYesterday ? ' <small style="opacity:0.7;font-weight:400">(昨)</small>' : '') + '</div><div style="font-size:11px;color:#64748b">張買賣超</div>'
       : '<div style="font-size:13px;color:#64748b">--</div><div style="font-size:11px;color:#64748b">資料未到</div>';
 
     const noteText = aiNote ? '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #1e3a5f;font-size:11px;color:#94a3b8">💡 ' + aiNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>' : '';
@@ -5267,7 +5280,7 @@ async function loadHotStocks(){
   const hotList = [
     {sym:'2330',name:'台積電'},{sym:'2317',name:'鴻海'},{sym:'2454',name:'聯發科'},
     {sym:'2308',name:'台達電'},{sym:'2382',name:'廣達'},{sym:'3711',name:'日月光投控'},
-    {sym:'2881',name:'富邦金'},{sym:'2412',name:'中華電'},{sym:'6505',name:'台塑化'},
+    {sym:'2881',name:'富邦金'},{sym:'2412',name:'中華電'},{sym:'2891',name:'中信金'},
     {sym:'2303',name:'聯電'}
   ];
   el.innerHTML = '<div style="margin-top:20px"><div style="font-size:11px;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;padding-left:10px;border-left:2px solid #2563eb">🔥 熱門股排行</div>'
