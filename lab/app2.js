@@ -5854,24 +5854,12 @@ async function loadAsiaMarket(){
 
     let html = '';
     groups.forEach(group => {
-      // 區塊標題 + 指數
-      const idxData = group.indexSym ? byKey[group.indexSym] : null;
-      const idxBlock = idxData && !idxData.error
-        ? '<div style="background:#0f172a;border-radius:8px;padding:10px 14px;border:1px solid #1e293b;margin-bottom:8px"><div style="display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:11px;color:#64748b">' + group.indexLabel + '</div><div style="font-size:18px;font-weight:700;color:' + (idxData.pct >= 0 ? '#22c55e' : '#ef4444') + '">' + Number(idxData.price).toLocaleString() + ' ' + (idxData.currency || '') + '</div></div><div style="text-align:right"><div style="font-size:14px;font-weight:700;color:' + (idxData.pct >= 0 ? '#22c55e' : '#ef4444') + '">' + (idxData.pct >= 0 ? '▲' : '▼') + ' ' + Math.abs(Number(idxData.change || 0)).toFixed(2) + '</div><div style="font-size:12px;color:' + (idxData.pct >= 0 ? '#22c55e' : '#ef4444') + '">' + (idxData.pct >= 0 ? '+' : '') + Number(idxData.pct || 0).toFixed(2) + '%</div></div></div></div>'
-        : '';
-
-      let stockCards = '';
-      group.stocks.forEach(s => {
-        const d = byKey[s.sym];
-        if (!d || d.error) {
-          stockCards += '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">' + s.sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + s.name + '</div><div style="font-size:11px;color:#475569;margin-top:2px">無報價</div></div>';
-          return;
-        }
-        const isUp = (d.pct || 0) >= 0;
-        stockCards += '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid ' + (isUp ? '#14532d' : '#450a0a') + ';cursor:default"><div style="font-size:11px;color:#64748b">' + s.sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + s.name + '</div><div style="display:flex;align-items:baseline;gap:6px;margin-top:2px"><span style="font-size:13px;font-weight:600;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + Number(d.price).toFixed(2) + '</span><span style="font-size:11px;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + (isUp ? '▲' : '▼') + Math.abs(Number(d.pct || 0)).toFixed(2) + '%</span><span style="font-size:10px;color:#64748b">' + (d.currency || '') + '</span></div></div>';
-      });
-
-      html += '<div style="margin-bottom:18px"><div style="font-size:13px;font-weight:700;color:' + group.flag + ';margin-bottom:8px;padding-left:10px;border-left:3px solid ' + group.flag + '">' + group.name + '</div>' + idxBlock + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + stockCards + '</div></div>';
+      // v177: 全部用 v170RenderGridCard 統一渲染（包括 index）
+      const allItems = group.indexSym
+        ? [{ sym: group.indexSym, name: group.indexLabel, isIndex: true }, ...group.stocks]
+        : group.stocks;
+      const cards = allItems.map(s => v170RenderGridCard(s.sym, s.name, byKey[s.sym], { isIndex: !!s.isIndex })).join('');
+      html += '<div style="margin-bottom:18px"><div style="font-size:13px;font-weight:700;color:' + group.flag + ';margin-bottom:8px;padding-left:10px;border-left:3px solid ' + group.flag + '">' + group.name + '</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div></div>';
     });
 
     el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px">🌏 亞洲市場 · 即時行情</div>' + html + '<div style="font-size:10px;color:#475569;border-top:1px solid #1e293b;padding-top:8px;margin-top:8px">資料來源：Yahoo Finance / Alpha Vantage · 延遲約 5-15 分鐘 · 僅供參考</div></div>';
@@ -5925,14 +5913,53 @@ if (document.readyState === 'loading') {
 
 // ===== MoneyRadar v170-173: Commodities + Watchlist + Crypto + US Extras (auto-inserted) =====
 
-// 通用：渲染 grid 卡片（給 v170/172/173 共用）
-function v170RenderGridCard(sym, name, data){
+// 通用：渲染 grid 卡片 v177 (sparkline + isIndex 樣式)
+function v177BuildSparkline(closes, isUp){
+  if (!closes || !Array.isArray(closes)) return '';
+  const valid = closes.filter(c => c != null && !isNaN(Number(c))).map(Number);
+  if (valid.length < 2) return '';
+  const w = 60, h = 18;
+  const min = Math.min(...valid), max = Math.max(...valid);
+  const range = (max - min) || 1;
+  const points = valid.map((c, i) => {
+    const x = (i / (valid.length - 1)) * w;
+    const y = h - ((c - min) / range) * h;
+    return x.toFixed(1) + ',' + y.toFixed(1);
+  }).join(' ');
+  const color = isUp ? '#22c55e' : '#ef4444';
+  return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '" style="display:block;flex-shrink:0"><polyline points="' + points + '" fill="none" stroke="' + color + '" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/></svg>';
+}
+
+function v170RenderGridCard(sym, name, data, opts){
+  opts = opts || {};
+  const isIndex = !!opts.isIndex;
+
   if (!data || data.error) {
-    return '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">' + sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + name + '</div><div style="font-size:11px;color:#475569;margin-top:2px">無報價</div></div>';
+    const idxBorder = isIndex ? '#4c1d95' : '#1e2d45';
+    return '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid ' + idxBorder + '"><div style="font-size:11px;color:#64748b">' + sym + (isIndex ? ' <span style="font-size:9px;color:#a78bfa;background:#1e1b3a;padding:1px 5px;border-radius:3px;margin-left:2px">INDEX</span>' : '') + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + name + '</div><div style="font-size:11px;color:#475569;margin-top:2px">無報價</div></div>';
   }
+
   const isUp = (data.pct || 0) >= 0;
-  const border = isUp ? '#14532d' : '#450a0a';
-  return '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid ' + border + '"><div style="font-size:11px;color:#64748b">' + sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + name + '</div><div style="display:flex;align-items:baseline;gap:6px;margin-top:2px"><span style="font-size:13px;font-weight:600;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + Number(data.price).toFixed(2) + '</span><span style="font-size:11px;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + (isUp ? '▲' : '▼') + Math.abs(Number(data.pct || 0)).toFixed(2) + '%</span><span style="font-size:10px;color:#64748b">' + (data.currency || '') + '</span></div></div>';
+  const border = isIndex
+    ? '#7c3aed'
+    : (isUp ? '#14532d' : '#450a0a');
+  const idxLabel = isIndex ? ' <span style="font-size:9px;color:#a78bfa;background:#1e1b3a;padding:1px 5px;border-radius:3px;margin-left:2px;font-weight:600">INDEX</span>' : '';
+  const spark = v177BuildSparkline(data.closes, isUp);
+
+  return '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid ' + border + '">'
+    + '<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">'
+    + '<div style="min-width:0;flex:1;overflow:hidden">'
+    + '<div style="font-size:11px;color:#64748b">' + sym + idxLabel + '</div>'
+    + '<div style="font-size:13px;font-weight:700;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + name + '</div>'
+    + '</div>'
+    + (spark ? '<div style="margin-top:2px">' + spark + '</div>' : '')
+    + '</div>'
+    + '<div style="display:flex;align-items:baseline;gap:6px;margin-top:4px;flex-wrap:wrap">'
+    + '<span style="font-size:13px;font-weight:600;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + Number(data.price).toFixed(2) + '</span>'
+    + '<span style="font-size:11px;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + (isUp ? '▲' : '▼') + Math.abs(Number(data.pct || 0)).toFixed(2) + '%</span>'
+    + '<span style="font-size:10px;color:#64748b">' + (data.currency || '') + '</span>'
+    + '</div>'
+    + '</div>';
 }
 
 async function v170FetchQuotes(symbols){
