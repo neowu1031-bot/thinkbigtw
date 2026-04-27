@@ -5205,29 +5205,24 @@ async function loadDailyBriefing(){
     const pct = prevClose ? (change / prevClose * 100) : 0;
     const isUp = change >= 0;
 
-    // 2) 外資買賣超（Supabase institutional_investors，當日無資料時 fallback 最近交易日）
+    // 2) 外資買賣超（II 表 schema: foreign_buy 是淨值/單位股/1000=張）
     let foreignNet = null;
     let foreignNetIsYesterday = false;
     try{
-      const date = today0.date;
-      let ii = await fetch(BASE+'/institutional_investors?date=eq.'+date+'&select=foreign_buy,foreign_sell&limit=3000',{headers:SB_H});
-      let iiData = await ii.json();
-      if(!Array.isArray(iiData) || iiData.length === 0){
-        const r2 = await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});
-        const r2d = await r2.json();
-        if(Array.isArray(r2d) && r2d.length > 0){
-          const lastDate = r2d[0].date;
-          if(lastDate !== date){
-            foreignNetIsYesterday = true;
-            const ii2 = await fetch(BASE+'/institutional_investors?date=eq.'+lastDate+'&select=foreign_buy,foreign_sell&limit=3000',{headers:SB_H});
-            iiData = await ii2.json();
-          }
+      const r2 = await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});
+      const r2d = await r2.json();
+      if(Array.isArray(r2d) && r2d.length > 0){
+        const lastDate = r2d[0].date;
+        const todayStr = new Date().toISOString().slice(0,10);
+        foreignNetIsYesterday = (lastDate !== todayStr);
+        const ii = await fetch(BASE+'/institutional_investors?date=eq.'+lastDate+'&select=foreign_buy&limit=3000',{headers:SB_H});
+        const iiData = await ii.json();
+        if(Array.isArray(iiData) && iiData.length){
+          const totalShares = iiData.reduce((s,r) => s + (Number(r.foreign_buy)||0), 0);
+          foreignNet = Math.round(totalShares / 1000);
         }
       }
-      if(Array.isArray(iiData) && iiData.length){
-        foreignNet = iiData.reduce((s,r) => s + (Number(r.foreign_buy)||0) - (Number(r.foreign_sell)||0), 0);
-      }
-    }catch(e){}
+    }catch(e){ console.warn('[Briefing] II fetch error', e); }
 
     // 3) Worker AI 情緒判讀
     let sentimentLabel = '中性';
