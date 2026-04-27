@@ -1,0 +1,45 @@
+name: MoneyRadar Smoke Test
+
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Frontend - index.html
+        run: curl -fsS -o /dev/null https://thinkbigtw.com/lab/
+      - name: Frontend - app2.js
+        run: curl -fsS -o /dev/null https://thinkbigtw.com/lab/app2.js
+      - name: Frontend - sw.js
+        run: curl -fsS -o /dev/null https://thinkbigtw.com/lab/sw.js
+      - name: Frontend - manifest.json
+        run: curl -fsS -o /dev/null https://thinkbigtw.com/lab/manifest.json
+      - name: Frontend - security.txt
+        run: curl -fsS https://thinkbigtw.com/lab/.well-known/security.txt | grep -q "Contact:"
+      - name: Worker - /health
+        run: curl -fsS https://moneyradar-ai-proxy.thinkbigtw.workers.dev/health | grep -q '"ok":true'
+      - name: Worker - /quote ASML.AS
+        run: curl -fsS 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=ASML.AS' | grep -q '"price"'
+      - name: Worker - /quote BHP.AX
+        run: curl -fsS 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=BHP.AX' | grep -q '"price"'
+      - name: Worker - /chat
+        run: |
+          curl -fsS -X POST -H 'Content-Type: application/json' \
+            -d '{"messages":[{"role":"user","content":"嗨"}]}' \
+            https://moneyradar-ai-proxy.thinkbigtw.workers.dev/chat | grep -q '"reply"'
+      - name: Notify on failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '🚨 MoneyRadar 健檢失敗 ' + new Date().toISOString(),
+              body: 'Workflow run: ' + context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId,
+              labels: ['monitoring', 'incident']
+            });
