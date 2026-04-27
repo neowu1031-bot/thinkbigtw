@@ -6477,3 +6477,270 @@ if (document.readyState === 'loading') {
 } else {
   setTimeout(v188SyncBubbleVisibility, 200);
 }
+
+
+// ===== Sprint A: v189-192 (Closing + Chips + Revenue + Multi-TF Tech) =====
+
+// 共用 sparkline（v177 已有但這裡再保留一份，獨立避免依賴）
+function v189Sparkline(values, color){
+  if (!Array.isArray(values) || values.length < 2) return '';
+  const valid = values.filter(v => v != null && !isNaN(Number(v))).map(Number);
+  if (valid.length < 2) return '';
+  const w = 80, h = 24;
+  const min = Math.min(...valid), max = Math.max(...valid);
+  const range = (max - min) || 1;
+  const points = valid.map((v, i) => {
+    const x = (i / (valid.length - 1)) * w;
+    const y = h - ((v - min) / range) * h;
+    return x.toFixed(1) + ',' + y.toFixed(1);
+  }).join(' ');
+  // 0 線（如果有）
+  const zeroLine = (min < 0 && max > 0) ? '<line x1="0" y1="' + (h - (0 - min) / range * h).toFixed(1) + '" x2="' + w + '" y2="' + (h - (0 - min) / range * h).toFixed(1) + '" stroke="#475569" stroke-width="0.5" stroke-dasharray="2,2"/>' : '';
+  return '<svg width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + ' ' + h + '">' + zeroLine + '<polyline points="' + points + '" fill="none" stroke="' + (color || '#3b82f6') + '" stroke-width="1.5" stroke-linejoin="round"/></svg>';
+}
+
+// ─────── v189: 盤後成交量 + 三大法人合計 ───────
+async function loadClosingSummary(){
+  const el = document.getElementById('closing-summary');
+  if (!el) return;
+  el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">📊 盤後摘要 · 載入中...</div></div>';
+
+  try{
+    // 抓最新 7 日 daily_prices（算成交量趨勢）
+    const r1 = await fetch(BASE+'/daily_prices?symbol=neq.TAIEX&order=date.desc&limit=2000&select=date,volume',{headers:SB_H});
+    const prices = await r1.json();
+    if(!Array.isArray(prices) || prices.length === 0) throw new Error('no prices');
+
+    // 按 date group sum volume
+    const volByDate = {};
+    prices.forEach(p => {
+      const v = Number(p.volume) || 0;
+      volByDate[p.date] = (volByDate[p.date] || 0) + v;
+    });
+    const sortedDates = Object.keys(volByDate).sort().reverse();
+    const last5Vol = sortedDates.slice(0, 5).map(d => volByDate[d]);
+    const todayVol = last5Vol[0] || 0;
+    const avg5Vol = last5Vol.length > 0 ? last5Vol.reduce((s,v) => s+v, 0) / last5Vol.length : 1;
+    const volRatio = avg5Vol > 0 ? (todayVol / avg5Vol * 100).toFixed(1) : 0;
+
+    // 抓三大法人合計（最新一天）
+    const rDate = await fetch(BASE+'/institutional_investors?order=date.desc&limit=1&select=date',{headers:SB_H});
+    const dDate = await rDate.json();
+    const lastDate = (Array.isArray(dDate) && dDate[0]) ? dDate[0].date : null;
+
+    let totalForeign = 0, totalTrust = 0, totalDealer = 0, totalAll = 0;
+    if(lastDate){
+      const ri = await fetch(BASE+'/institutional_investors?date=eq.'+lastDate+'&select=foreign_buy,investment_trust_buy,dealer_buy,total_buy&limit=3000',{headers:SB_H});
+      const data = await ri.json();
+      if(Array.isArray(data)){
+        data.forEach(d => {
+          totalForeign += Number(d.foreign_buy) || 0;
+          totalTrust += Number(d.investment_trust_buy) || 0;
+          totalDealer += Number(d.dealer_buy) || 0;
+          totalAll += Number(d.total_buy) || 0;
+        });
+      }
+    }
+    const fgLot = Math.round(totalForeign / 1000);
+    const trLot = Math.round(totalTrust / 1000);
+    const dlLot = Math.round(totalDealer / 1000);
+    const allLot = Math.round(totalAll / 1000);
+
+    const fmtLot = (n) => (n >= 0 ? '+' : '') + n.toLocaleString() + ' 張';
+    const colorOf = (n) => n >= 0 ? '#22c55e' : '#ef4444';
+
+    el.innerHTML = '<div style="background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:10px;padding:14px 18px;border:1px solid #1e3a5f">'
+      + '<div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📊 盤後摘要 · ' + (lastDate || '') + '</div>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">'
+      // 成交量
+      + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">大盤總成交量 (今日)</div><div style="font-size:14px;font-weight:700;color:#e2e8f0">' + (todayVol/1e8).toFixed(1) + ' 億</div><div style="font-size:11px;color:' + (volRatio >= 100 ? '#22c55e' : '#ef4444') + '">vs 5日均量 ' + volRatio + '%</div></div>'
+      // 三大法人合計
+      + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">三大法人合計</div><div style="font-size:14px;font-weight:700;color:' + colorOf(allLot) + '">' + fmtLot(allLot) + '</div><div style="font-size:11px;color:#64748b">外+投+自</div></div>'
+      // 外資
+      + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">外資</div><div style="font-size:13px;font-weight:700;color:' + colorOf(fgLot) + '">' + fmtLot(fgLot) + '</div></div>'
+      + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">投信</div><div style="font-size:13px;font-weight:700;color:' + colorOf(trLot) + '">' + fmtLot(trLot) + '</div></div>'
+      + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">自營商</div><div style="font-size:13px;font-weight:700;color:' + colorOf(dlLot) + '">' + fmtLot(dlLot) + '</div></div>'
+      + '</div></div>';
+  }catch(e){
+    el.innerHTML = '';
+    console.warn('[Closing]', e);
+  }
+}
+
+// ─────── v190: 個股法人籌碼深度（30 天三大法人 sparkline） ───────
+async function loadStockChips(code){
+  const newsEl = document.getElementById('stockNews');
+  if (!newsEl) return;
+  let box = document.getElementById('stockChipsBox');
+  if (!box){
+    box = document.createElement('div');
+    box.id = 'stockChipsBox';
+    box.style.marginTop = '12px';
+    const anchor = document.getElementById('stockTechBox') || document.getElementById('stockAnalysisBox') || newsEl;
+    anchor.parentNode.insertBefore(box, anchor.nextSibling);
+  }
+  box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#3b82f6;font-weight:700">🏛 法人籌碼深度 · 載入中...</div></div>';
+
+  try{
+    const r = await fetch(BASE+'/institutional_investors?symbol=eq.'+code+'&order=date.desc&limit=30&select=date,foreign_buy,investment_trust_buy,dealer_buy,total_buy',{headers:SB_H});
+    const raw = await r.json();
+    if(!Array.isArray(raw) || raw.length === 0){
+      box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#3b82f6;font-weight:700;margin-bottom:6px">🏛 法人籌碼深度</div><div style="font-size:12px;color:#64748b">尚無法人籌碼資料</div></div>';
+      return;
+    }
+    // 按 date 排序（舊→新）
+    const data = [...raw].sort((a,b) => (a.date||'').localeCompare(b.date||''));
+    const fgSeries = data.map(d => Number(d.foreign_buy) / 1000); // 轉張
+    const trSeries = data.map(d => Number(d.investment_trust_buy) / 1000);
+    const dlSeries = data.map(d => Number(d.dealer_buy) / 1000);
+
+    // 累計
+    const sum7 = (arr) => arr.slice(-7).reduce((s,v) => s + (Number(v)||0), 0);
+    const sum30 = (arr) => arr.reduce((s,v) => s + (Number(v)||0), 0);
+
+    const fgAcc7 = Math.round(sum7(fgSeries)), fgAcc30 = Math.round(sum30(fgSeries));
+    const trAcc7 = Math.round(sum7(trSeries)), trAcc30 = Math.round(sum30(trSeries));
+    const dlAcc7 = Math.round(sum7(dlSeries)), dlAcc30 = Math.round(sum30(dlSeries));
+
+    const fmt = (n) => (n >= 0 ? '+' : '') + n.toLocaleString();
+    const colorOf = (n) => n >= 0 ? '#22c55e' : '#ef4444';
+
+    box.innerHTML = '<div style="background:linear-gradient(135deg,#0a1421,#0f172a);border-radius:8px;padding:14px 16px;border:1px solid #2563eb;margin-top:12px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'
+      + '<span style="font-size:13px;color:#3b82f6;font-weight:700;border-left:3px solid #2563eb;padding-left:8px">🏛 法人籌碼深度</span>'
+      + '<span style="font-size:10px;color:#64748b">最近 ' + data.length + ' 個交易日</span>'
+      + '</div>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">'
+      // 外資
+      + '<div style="background:#0f172a;border-radius:6px;padding:10px;border:1px solid #1e2d45">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-size:11px;color:#94a3b8;font-weight:600">外資</span>' + v189Sparkline(fgSeries, '#22c55e') + '</div>'
+      + '<div style="font-size:11px;color:#64748b">7日 <span style="color:' + colorOf(fgAcc7) + ';font-weight:700">' + fmt(fgAcc7) + '</span> 張</div>'
+      + '<div style="font-size:11px;color:#64748b">30日 <span style="color:' + colorOf(fgAcc30) + ';font-weight:700">' + fmt(fgAcc30) + '</span> 張</div>'
+      + '</div>'
+      // 投信
+      + '<div style="background:#0f172a;border-radius:6px;padding:10px;border:1px solid #1e2d45">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-size:11px;color:#94a3b8;font-weight:600">投信</span>' + v189Sparkline(trSeries, '#a78bfa') + '</div>'
+      + '<div style="font-size:11px;color:#64748b">7日 <span style="color:' + colorOf(trAcc7) + ';font-weight:700">' + fmt(trAcc7) + '</span> 張</div>'
+      + '<div style="font-size:11px;color:#64748b">30日 <span style="color:' + colorOf(trAcc30) + ';font-weight:700">' + fmt(trAcc30) + '</span> 張</div>'
+      + '</div>'
+      // 自營商
+      + '<div style="background:#0f172a;border-radius:6px;padding:10px;border:1px solid #1e2d45">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><span style="font-size:11px;color:#94a3b8;font-weight:600">自營商</span>' + v189Sparkline(dlSeries, '#fbbf24') + '</div>'
+      + '<div style="font-size:11px;color:#64748b">7日 <span style="color:' + colorOf(dlAcc7) + ';font-weight:700">' + fmt(dlAcc7) + '</span> 張</div>'
+      + '<div style="font-size:11px;color:#64748b">30日 <span style="color:' + colorOf(dlAcc30) + ';font-weight:700">' + fmt(dlAcc30) + '</span> 張</div>'
+      + '</div>'
+      + '</div></div>';
+  }catch(e){
+    if(box) box.innerHTML = '';
+    console.warn('[Chips]', e);
+  }
+}
+
+// ─────── v191: 月營收 sparkline + YoY ───────
+async function loadStockRevenueChart(code){
+  const newsEl = document.getElementById('stockNews');
+  if (!newsEl) return;
+  let box = document.getElementById('stockRevenueBox');
+  if (!box){
+    box = document.createElement('div');
+    box.id = 'stockRevenueBox';
+    box.style.marginTop = '12px';
+    const anchor = document.getElementById('stockChipsBox') || document.getElementById('stockTechBox') || newsEl;
+    anchor.parentNode.insertBefore(box, anchor.nextSibling);
+  }
+  box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#10b981;font-weight:700">💰 月營收趨勢 · 載入中...</div></div>';
+
+  try{
+    const r = await fetch(BASE+'/monthly_revenue?symbol=eq.'+code+'&order=year_month.desc&limit=12&select=year_month,revenue,yoy,mom',{headers:SB_H});
+    const raw = await r.json();
+    if(!Array.isArray(raw) || raw.length === 0){
+      // 嘗試另一種 schema
+      const r2 = await fetch(BASE+'/monthly_revenue?symbol=eq.'+code+'&order=date.desc&limit=12',{headers:SB_H});
+      const raw2 = await r2.json();
+      if(!Array.isArray(raw2) || raw2.length === 0){
+        box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#10b981;font-weight:700;margin-bottom:6px">💰 月營收趨勢</div><div style="font-size:12px;color:#64748b">尚無月營收資料</div></div>';
+        return;
+      }
+    }
+
+    const data = [...raw].sort((a,b) => ((a.year_month||a.date||'')+'').localeCompare((b.year_month||b.date||'')+''));
+    const revSeries = data.map(d => Number(d.revenue) || 0);
+    const latest = data[data.length-1] || {};
+    const latestRev = Number(latest.revenue) || 0;
+    const latestYoy = Number(latest.yoy) || 0;
+    const latestMom = Number(latest.mom) || 0;
+    const yoyColor = latestYoy >= 0 ? '#22c55e' : '#ef4444';
+    const momColor = latestMom >= 0 ? '#22c55e' : '#ef4444';
+
+    box.innerHTML = '<div style="background:linear-gradient(135deg,#022c22,#0f172a);border-radius:8px;padding:14px 16px;border:1px solid #047857;margin-top:12px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+      + '<span style="font-size:13px;color:#10b981;font-weight:700;border-left:3px solid #10b981;padding-left:8px">💰 月營收趨勢</span>'
+      + '<span style="font-size:10px;color:#64748b">最近 ' + data.length + ' 個月</span>'
+      + '</div>'
+      + '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">'
+      + '<div>' + v189Sparkline(revSeries, '#10b981') + '</div>'
+      + '<div><div style="font-size:11px;color:#64748b">最新月營收</div><div style="font-size:15px;font-weight:700;color:#a7f3d0">' + (latestRev/1e8).toFixed(2) + ' 億</div></div>'
+      + '<div><div style="font-size:11px;color:#64748b">YoY</div><div style="font-size:14px;font-weight:700;color:' + yoyColor + '">' + (latestYoy >= 0 ? '+' : '') + latestYoy.toFixed(2) + '%</div></div>'
+      + '<div><div style="font-size:11px;color:#64748b">MoM</div><div style="font-size:14px;font-weight:700;color:' + momColor + '">' + (latestMom >= 0 ? '+' : '') + latestMom.toFixed(2) + '%</div></div>'
+      + '</div></div>';
+  }catch(e){
+    if(box) box.innerHTML = '';
+    console.warn('[Revenue]', e);
+  }
+}
+
+// ─────── v192: 多時間框架技術指標（加 MACD）───────
+function v192ComputeMACD(closes){
+  if (!Array.isArray(closes) || closes.length < 26) return null;
+  function ema(values, period){
+    const k = 2 / (period + 1);
+    let e = values[0];
+    for (let i = 1; i < values.length; i++) e = values[i] * k + e * (1 - k);
+    return e;
+  }
+  const ema12 = ema(closes, 12);
+  const ema26 = ema(closes, 26);
+  const macd = ema12 - ema26;
+  // signal = 9 日 EMA of MACD（簡化版只算當前）
+  return {
+    macd: Number(macd.toFixed(2)),
+    label: macd >= 0 ? '正值（中性偏多）' : '負值（中性偏空）'
+  };
+}
+
+async function loadMACDIndicator(code){
+  const techBox = document.getElementById('stockTechBox');
+  if (!techBox) return;
+  // 找 tech box 內加 MACD 卡
+  if (techBox.querySelector('[data-v192-macd]')) return;
+
+  try{
+    const r = await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=60&select=close_price',{headers:SB_H});
+    const data = await r.json();
+    if(!Array.isArray(data) || data.length < 26) return;
+    const closes = data.map(p => Number(p.close_price)).reverse();
+    const macd = v192ComputeMACD(closes);
+    if (!macd) return;
+
+    const lblColor = macd.macd >= 0 ? '#22c55e' : '#ef4444';
+    const macdCard = document.createElement('div');
+    macdCard.setAttribute('data-v192-macd', '1');
+    macdCard.style.cssText = 'background:#0a1421;border-radius:6px;padding:10px;border:1px solid #1e2d45';
+    macdCard.innerHTML = '<div style="font-size:11px;color:#94a3b8">MACD(12,26)</div><div style="font-size:18px;font-weight:700;color:#e2e8f0">' + macd.macd + '</div><div style="font-size:11px;color:' + lblColor + '">' + macd.label + '</div>';
+
+    // 找 grid 加進去
+    const grid = techBox.querySelector('[style*="grid-template-columns"]');
+    if (grid) grid.appendChild(macdCard);
+  }catch(e){ console.warn('[MACD]', e); }
+}
+
+// 啟動：v189 在 dashboard 載入；v190+v191+v192 在個股查詢時觸發
+function v189_192Init(){
+  if (document.getElementById('closing-summary')) loadClosingSummary();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(v189_192Init, 1500));
+} else {
+  setTimeout(v189_192Init, 1500);
+}
