@@ -7143,16 +7143,16 @@ window.v202QuickAnalysis = async function(symbol, name, price, changePercent, cu
 
 // ===== v203: Dividend Aristocrats 股息王名單 =====
 window.V203_ARISTOCRATS = [
-  {s:'KO',n:'可口可樂',y:62},{s:'JNJ',n:'嬌生',y:62},{s:'PG',n:'寶僑',y:67},
-  {s:'MMM',n:'3M',y:65},{s:'PEP',n:'百事',y:51},{s:'WMT',n:'沃爾瑪',y:50},
-  {s:'XOM',n:'埃克森美孚',y:41},{s:'CVX',n:'雪佛龍',y:36},{s:'IBM',n:'IBM',y:28},
-  {s:'MCD',n:'麥當勞',y:47},{s:'CL',n:'高露潔',y:60},{s:'ABBV',n:'艾伯維',y:51},
-  {s:'TGT',n:'Target',y:52},{s:'LOW',n:'勞氏',y:60},{s:'ADP',n:'ADP',y:48},
-  {s:'CINF',n:'辛辛那提金融',y:64},{s:'CTAS',n:'信達思',y:40},{s:'HRL',n:'荷美爾',y:58},
-  {s:'BDX',n:'BD',y:51},{s:'NUE',n:'紐柯鋼鐵',y:51},{s:'PNR',n:'濱特爾',y:48},
-  {s:'GD',n:'通用動力',y:32},{s:'EMR',n:'艾默生',y:67},{s:'GPC',n:'真力時',y:67},
-  {s:'ATO',n:'雅特摩斯',y:40},{s:'ED',n:'ConEd',y:49},{s:'WST',n:'West製藥',y:31},
-  {s:'AOS',n:'A.O. Smith',y:30},{s:'SWK',n:'史丹利百得',y:56},{s:'SHW',n:'宣偉塗料',y:46}
+  {s:'KO',n:'可口可樂',y:62,dy:3.0},{s:'JNJ',n:'嬌生',y:62,dy:3.4},{s:'PG',n:'寶僑',y:67,dy:2.5},
+  {s:'MMM',n:'3M',y:65,dy:2.7},{s:'PEP',n:'百事',y:51,dy:3.5},{s:'WMT',n:'沃爾瑪',y:50,dy:1.0},
+  {s:'XOM',n:'埃克森美孚',y:41,dy:3.4},{s:'CVX',n:'雪佛龍',y:36,dy:4.5},{s:'IBM',n:'IBM',y:28,dy:3.0},
+  {s:'MCD',n:'麥當勞',y:47,dy:2.5},{s:'CL',n:'高露潔',y:60,dy:2.4},{s:'ABBV',n:'艾伯維',y:51,dy:3.5},
+  {s:'TGT',n:'Target',y:52,dy:3.2},{s:'LOW',n:'勞氏',y:60,dy:1.8},{s:'ADP',n:'ADP',y:48,dy:2.0},
+  {s:'CINF',n:'辛辛那提金融',y:64,dy:2.7},{s:'CTAS',n:'信達思',y:40,dy:0.9},{s:'HRL',n:'荷美爾',y:58,dy:3.7},
+  {s:'BDX',n:'BD',y:51,dy:1.8},{s:'NUE',n:'紐柯鋼鐵',y:51,dy:1.5},{s:'PNR',n:'濱特爾',y:48,dy:1.4},
+  {s:'GD',n:'通用動力',y:32,dy:2.0},{s:'EMR',n:'艾默生',y:67,dy:2.0},{s:'GPC',n:'真力時',y:67,dy:3.1},
+  {s:'ATO',n:'雅特摩斯',y:40,dy:2.5},{s:'ED',n:'ConEd',y:49,dy:3.6},{s:'WST',n:'West製藥',y:31,dy:0.4},
+  {s:'AOS',n:'A.O. Smith',y:30,dy:2.0},{s:'SWK',n:'史丹利百得',y:56,dy:3.6},{s:'SHW',n:'宣偉塗料',y:46,dy:0.9}
 ];
 
 window.v203LoadAristocrats = async function(){
@@ -7179,8 +7179,8 @@ window.v203LoadAristocrats = async function(){
     data.results.forEach(r => { rmap[r.symbol] = r; });
     const enriched = window.V203_ARISTOCRATS.map(a => {
       const q = rmap[a.s] || {};
-      let dy = q.dividendYield || 0;
-      if (dy > 0 && dy < 1) dy *= 100;
+      let dy = (q.dividendYield || 0) * 100;
+      if (dy <= 0) dy = a.dy || 0;  // fallback 寫死值
       return {
         ...a, price: q.price || 0, changePercent: q.changePercent || 0,
         dy, peRatio: q.peRatio || 0

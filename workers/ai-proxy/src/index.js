@@ -818,32 +818,34 @@ export default {
       }
     }
 
-        // === /quote-batch (v203) ===
+        // === /quote-batch (v203, hotfix: 用並發 chart) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote-batch') {
       const u = new URL(request.url);
       const syms = (u.searchParams.get('symbols') || '').split(',').filter(Boolean);
       if (syms.length === 0) return jsonResponse({ error: 'symbols required' }, 400);
-      if (syms.length > 50) return jsonResponse({ error: 'max 50 symbols' }, 400);
+      if (syms.length > 30) return jsonResponse({ error: 'max 30 symbols' }, 400);
+      const fetchOne = async (sym) => {
+        try {
+          const yr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=2d', {
+            headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MoneyRadar/1.0)' }
+          });
+          if (!yr.ok) return { symbol: sym, price: 0, changePercent: 0, error: 'http ' + yr.status };
+          const yj = await yr.json();
+          const meta = yj && yj.chart && yj.chart.result && yj.chart.result[0] && yj.chart.result[0].meta;
+          if (!meta) return { symbol: sym, price: 0, changePercent: 0, error: 'no meta' };
+          const price = meta.regularMarketPrice || 0;
+          const prev = meta.previousClose || meta.chartPreviousClose || 0;
+          const changePercent = (prev && price) ? ((price - prev) / prev * 100) : 0;
+          return { symbol: sym, price, changePercent, currency: meta.currency || '' };
+        } catch (e) {
+          return { symbol: sym, price: 0, changePercent: 0, error: e.message || String(e) };
+        }
+      };
       try {
-        const yu = 'https://query1.finance.yahoo.com/v7/finance/quote?symbols=' + encodeURIComponent(syms.join(','));
-        const yr = await fetch(yu, {
-          headers: { 'User-Agent': 'Mozilla/5.0 (compatible; MoneyRadar/1.0)' }
-        });
-        if (!yr.ok) return jsonResponse({ error: 'yahoo http ' + yr.status }, 502);
-        const yj = await yr.json();
-        const results = (yj.quoteResponse && yj.quoteResponse.result) || [];
-        const out = results.map(q => ({
-          symbol: q.symbol,
-          price: q.regularMarketPrice || 0,
-          changePercent: q.regularMarketChangePercent || 0,
-          currency: q.currency || '',
-          dividendYield: q.trailingAnnualDividendYield || 0,
-          marketCap: q.marketCap || 0,
-          peRatio: q.trailingPE || 0
-        }));
-        return jsonResponse({ symbols: syms, results: out, updated: new Date().toISOString() });
+        const results = await Promise.all(syms.map(fetchOne));
+        return jsonResponse({ symbols: syms, results, updated: new Date().toISOString() });
       } catch (e) {
-        return jsonResponse({ error: 'fetch failed: ' + (e.message || e) }, 500);
+        return jsonResponse({ error: 'batch failed: ' + (e.message || e) }, 500);
       }
     }
 
