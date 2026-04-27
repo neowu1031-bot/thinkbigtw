@@ -6934,3 +6934,101 @@ async function loadIndustryTreemap(){
   setTimeout(loadIndustryTreemap, 1500);
 })();
 
+// ===== v198 Resilience: Global Error Handler =====
+(function(){
+  if (window.__v198) return;
+  window.__v198 = true;
+  const E = [];
+  window.addEventListener('error', e => {
+    E.push({ t: Date.now(), m: e.message, f: e.filename, l: e.lineno });
+    if (E.length > 50) E.shift();
+    console.warn('[v198 error]', e.message);
+  });
+  window.addEventListener('unhandledrejection', e => {
+    E.push({ t: Date.now(), m: String(e.reason) });
+    if (E.length > 50) E.shift();
+    console.warn('[v198 promise]', e.reason);
+  });
+  window.__getErrors = () => E;
+  window.__online = navigator.onLine;
+  window.addEventListener('online', () => { window.__online = true; });
+  window.addEventListener('offline', () => { window.__online = false; });
+  console.log('[v198] resilience layer active');
+})();
+
+// ===== v199 Sprint D: Global Markets (KR/AU/EU) =====
+window.V199_MARKETS = {
+  kr: { flag:'🇰🇷', name:'韓國 KOSPI', symbols:[
+    {s:'005930.KS', n:'三星電子'},
+    {s:'000660.KS', n:'SK 海力士'},
+    {s:'005380.KS', n:'現代汽車'},
+    {s:'051910.KS', n:'LG 化學'},
+    {s:'035420.KS', n:'Naver'}
+  ]},
+  au: { flag:'🇦🇺', name:'澳洲 ASX', symbols:[
+    {s:'BHP.AX', n:'BHP 必和必拓'},
+    {s:'CBA.AX', n:'澳洲聯邦銀行'},
+    {s:'CSL.AX', n:'CSL 生技'},
+    {s:'WBC.AX', n:'西太平洋銀行'},
+    {s:'RIO.AX', n:'Rio Tinto'}
+  ]},
+  eu: { flag:'🇪🇺', name:'歐洲精選', symbols:[
+    {s:'ASML.AS', n:'ASML 艾司摩爾'},
+    {s:'MC.PA', n:'LVMH'},
+    {s:'NESN.SW', n:'Nestlé'},
+    {s:'SAP.DE', n:'SAP'},
+    {s:'NOVO-B.CO', n:'Novo Nordisk'}
+  ]}
+};
+async function v199LoadGlobalMarkets(){
+  const host = document.getElementById('tab-asia');
+  if (!host) return;
+  if (document.getElementById('v199-global-box')) return;
+  const box = document.createElement('div');
+  box.id = 'v199-global-box';
+  box.style.cssText = 'margin-top:24px;padding:16px;border:2px solid #14b8a6;border-radius:12px;background:linear-gradient(180deg,#f0fdfa,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#0f766e;font-size:16px;margin-bottom:6px;">🌍 全球延伸（韓 / 澳 / 歐）</div><div style="font-size:11px;color:#0f766e;margin-bottom:12px;">資料：Yahoo Finance 公開報價（延遲 15 分鐘）</div><div id="v199-global-body">載入中…</div>';
+  host.appendChild(box);
+  const body = document.getElementById('v199-global-body');
+  body.innerHTML = '';
+  const proxy = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=';
+  for (const key of ['kr','au','eu']) {
+    const m = window.V199_MARKETS[key];
+    const sec = document.createElement('div');
+    sec.style.cssText = 'margin-bottom:14px;';
+    sec.innerHTML = '<div style="font-weight:600;color:#0f766e;margin-bottom:6px;">' + m.flag + ' ' + m.name + '</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;" id="v199-' + key + '"></div>';
+    body.appendChild(sec);
+    const grid = document.getElementById('v199-' + key);
+    m.symbols.forEach(sym => {
+      const safeId = 'px-' + sym.s.replace(/[^A-Za-z0-9]/g, '_');
+      const card = document.createElement('div');
+      card.style.cssText = 'padding:10px;border:1px solid #e5e7eb;border-radius:8px;background:white;';
+      card.innerHTML = '<div style="font-size:11px;color:#6b7280;">' + sym.s + '</div><div style="font-weight:600;font-size:13px;">' + sym.n + '</div><div id="' + safeId + '" style="margin-top:4px;color:#9ca3af;font-size:11px;">載入…</div>';
+      grid.appendChild(card);
+      fetch(proxy + encodeURIComponent(sym.s))
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+          const el = document.getElementById(safeId);
+          if (!el) return;
+          if (!d || !d.price) { el.textContent = 'N/A'; return; }
+          const pct = d.changePercent || 0;
+          const color = pct >= 0 ? '#dc2626' : '#16a34a';
+          const sign = pct >= 0 ? '+' : '';
+          el.innerHTML = '<span style="color:' + color + ';font-weight:600;">' + Number(d.price).toFixed(2) + '</span> <span style="color:' + color + ';font-size:10px;">(' + sign + pct.toFixed(2) + '%)</span>';
+        })
+        .catch(() => {
+          const el = document.getElementById(safeId);
+          if (el) el.textContent = 'N/A';
+        });
+    });
+  }
+}
+(function(){
+  setInterval(() => {
+    const t = document.getElementById('tab-asia');
+    if (t && getComputedStyle(t).display !== 'none' && !window.__v199Loaded) {
+      window.__v199Loaded = true;
+      v199LoadGlobalMarkets();
+    }
+  }, 1500);
+})();

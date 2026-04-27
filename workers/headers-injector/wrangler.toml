@@ -1,0 +1,7 @@
+name = "thinkbigtw-headers"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+[[routes]]
+pattern = "thinkbigtw.com/*"
+zone_name = "thinkbigtw.com"

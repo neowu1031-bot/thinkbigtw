@@ -118,9 +118,23 @@ ${newsText}
 // ============== AI 聊天助理 ==============
 const CHAT_SYSTEM_PROMPT = `你是 MoneyRadar™ 的 AI 助理（公開資訊整理員）。
 
-【你的身份】
-- 你只整理「公開可查證」的資訊
+【你的身份 - 嚴格範圍】
+- 你只服務「財經 / 股市 / 投資知識 / MoneyRadar 操作」相關問題
 - 你的服務範圍：解釋財經名詞、整理當前個股的公開新聞、教育性質的市場知識、操作 App 的問題
+
+【絕對拒絕的離題問題（必須拒絕）】
+- 旅遊、景點、餐廳、美食推薦、行程規劃
+- 料理、食譜、烹飪
+- 娛樂、電影、音樂、明星、體育
+- 政治、宗教、人際關係、感情諮詢
+- 天氣、健康、醫療、法律問題
+- 技術問題（程式設計、3C 產品等）
+- 任何與「財經、股市、投資、MoneyRadar 操作」無關的話題
+
+遇到離題問題，請禮貌且明確拒絕，例如：
+「我是 MoneyRadar 的財經 AI 助理，只能協助回答**財經、股市、投資知識、MoneyRadar 操作**相關問題。請問你想了解哪方面的市場資訊？例如：本益比是什麼、外資動向、特定個股的公開新聞等。」
+
+不要試圖在離題問題後「順便提供財經建議」連結，直接拒絕並引導回主題即可。
 
 【絕對禁止】
 1. 不得提供買賣建議（「該不該買 XX」、「OO 會漲嗎」這類問題你都要拒絕）
@@ -629,6 +643,7 @@ async function fetchYahooQuote(symbol) {
       marketState: m.marketState || '',
       exchange: m.exchangeName || m.fullExchangeName || '',
       tradingDay: m.regularMarketTime ? new Date(m.regularMarketTime * 1000).toISOString().slice(0,10) : '',
+      closes: validCloses.length >= 2 ? validCloses.slice(-7).map(c => Number(c.toFixed(4))) : null,
       source: 'yahoo'
     };
   } catch (e) {
@@ -665,6 +680,89 @@ async function handleQuote(request, env) {
   });
 }
 
+
+// ============== 通用市場早報 (NEW v13 — for /market-briefing) ==============
+async function handleMarketBriefing(request, env) {
+  let body;
+  try { body = await request.json(); }
+  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const market = body.market || 'unknown';
+  const items = Array.isArray(body.items) ? body.items : [];
+  if (items.length === 0) return jsonResponse({ error: 'items 必填' }, 400);
+
+  const validItems = items.filter(i => i.pct != null && !isNaN(Number(i.pct)));
+  if (validItems.length === 0) return jsonResponse({ error: '無有效資料' }, 400);
+
+  const upCount = validItems.filter(i => Number(i.pct) > 0).length;
+  const downCount = validItems.filter(i => Number(i.pct) < 0).length;
+  const flatCount = validItems.length - upCount - downCount;
+  const avgPct = validItems.reduce((s, i) => s + Number(i.pct), 0) / validItems.length;
+  const upRatio = upCount / validItems.length;
+  const strongUp = validItems.filter(i => Number(i.pct) >= 3).length;
+  const strongDown = validItems.filter(i => Number(i.pct) <= -3).length;
+
+  // 規則式情緒判定（避免 AI 偏多）
+  let sentiment = 'neutral';
+  let label = '中性';
+  if (avgPct >= 1.5 || (upRatio >= 0.7 && avgPct >= 0.3)) { sentiment = 'bullish'; label = '偏多'; }
+  else if (avgPct <= -1.5 || (upRatio <= 0.3 && avgPct <= -0.3)) { sentiment = 'bearish'; label = '偏空'; }
+
+  // 規則式描述（給 AI 風向感）
+  const marketLabels = { us: '美股', crypto: '加密貨幣', asia: '亞洲股市', global: '全球市場' };
+  const marketName = marketLabels[market] || '市場';
+  const dirDesc = avgPct >= 1 ? '大漲' : avgPct >= 0.3 ? '小漲' : avgPct <= -1 ? '大跌' : avgPct <= -0.3 ? '小跌' : '震盪';
+  const breadthDesc = upRatio >= 0.7 ? '普漲' : upRatio >= 0.55 ? '漲多跌少' : upRatio <= 0.3 ? '普跌' : upRatio <= 0.45 ? '跌多漲少' : '漲跌互見';
+  const strongDesc = strongUp > strongDown * 2 ? '強勢股活躍' : strongDown > strongUp * 2 ? '弱勢股增加' : '';
+
+  // AI 25 字市場觀察
+  const prompt = '今日' + marketName + '：' + dirDesc + '，' + breadthDesc + (strongDesc ? '，' + strongDesc : '') + '。\n\n'
+    + '請用 18-22 字繁體中文寫一句【市場氛圍觀察】，**禁止複述任何數字**。\n\n'
+    + '優秀範例（學風格）：\n'
+    + '「科技領漲，金融跟進，多頭氣勢延續」\n'
+    + '「賣壓沉重，類股普跌，市場氣氛謹慎」\n'
+    + '「漲跌互見，缺乏明確方向，量縮整理」\n'
+    + '「外資加碼，市場熱絡，買盤踴躍」\n\n'
+    + '劣質範例（不要）：\n'
+    + '✗「上漲 X 支下跌 Y 支」← 純複述數字\n'
+    + '✗「平均上漲 X%」← 太機械\n\n'
+    + '直接回答觀察文字，不加前綴或解釋。';
+
+  let note = '';
+  try {
+    const r = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+      messages: [
+        { role: 'system', content: '你只回 22 字內市場氛圍觀察句，純陳述事實，禁止複述數字。' },
+        { role: 'user', content: prompt }
+      ],
+      max_tokens: 80,
+    });
+    note = (r.response || '').trim().replace(/^[「『]|[」』]$/g, '').slice(0, 100);
+    if (!isContentSafe(note)) note = '';
+  } catch (e) {}
+
+  if (!note) {
+    note = sentiment === 'bullish' ? marketName + '多頭氣氛濃厚，類股齊漲'
+         : sentiment === 'bearish' ? marketName + '賣壓沉重，氣氛轉謹慎'
+         : marketName + '漲跌互見，缺乏明確方向';
+  }
+
+  return jsonResponse({
+    market,
+    sentiment,
+    label,
+    note,
+    stats: {
+      upCount, downCount, flatCount,
+      avgPct: Number(avgPct.toFixed(2)),
+      strongUp, strongDown,
+      total: validItems.length
+    },
+    disclaimer: DISCLAIMER,
+    updated: new Date().toISOString(),
+  });
+}
+
 // ============== Router ==============
 export default {
   async fetch(request, env) {
@@ -688,6 +786,7 @@ export default {
       if (url.pathname === '/analysis') return await handleAnalysis(request, env);
       if (url.pathname === '/digest') return await handleDigest(request, env);
       if (url.pathname === '/quote') return await handleQuote(request, env);
+      if (url.pathname === '/market-briefing') return await handleMarketBriefing(request, env);
       return await handleSummary(request, env);
     } catch (err) {
       return jsonResponse({ error: err.message || 'Internal error' }, 500);
