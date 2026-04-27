@@ -6509,8 +6509,12 @@ async function loadClosingSummary(){
   el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b"><div style="font-size:11px;color:#64748b">📊 盤後摘要 · 載入中...</div></div>';
 
   try{
-    // 抓最新 7 日 daily_prices（算成交量趨勢）
-    const r1 = await fetch(BASE+'/daily_prices?symbol=neq.TAIEX&order=date.desc&limit=2000&select=date,volume',{headers:SB_H});
+    // 抓最近 5 個交易日的 volume（按 date desc，limit 較小避免 PostgREST 限制）
+    const rDates = await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=5&select=date',{headers:SB_H});
+    const datesData = await rDates.json();
+    if(!Array.isArray(datesData) || datesData.length === 0) throw new Error('no TAIEX dates');
+    const dateList = datesData.map(d => d.date).filter(Boolean);
+    const r1 = await fetch(BASE+'/daily_prices?symbol=neq.TAIEX&date=in.(' + dateList.join(',') + ')&select=date,volume&limit=1000',{headers:SB_H});
     const prices = await r1.json();
     if(!Array.isArray(prices) || prices.length === 0) throw new Error('no prices');
 
@@ -6565,7 +6569,7 @@ async function loadClosingSummary(){
       + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45"><div style="font-size:11px;color:#64748b">自營商</div><div style="font-size:13px;font-weight:700;color:' + colorOf(dlLot) + '">' + fmtLot(dlLot) + '</div></div>'
       + '</div></div>';
   }catch(e){
-    el.innerHTML = '';
+    el.innerHTML = '<div style="background:#0f172a;border-radius:10px;padding:14px 18px;border:1px solid #1e293b;font-size:11px;color:#64748b">📊 盤後摘要：' + (e.message || '載入失敗') + '</div>';
     console.warn('[Closing]', e);
   }
 }
@@ -6654,24 +6658,20 @@ async function loadStockRevenueChart(code){
   box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#10b981;font-weight:700">💰 月營收趨勢 · 載入中...</div></div>';
 
   try{
-    const r = await fetch(BASE+'/monthly_revenue?symbol=eq.'+code+'&order=year_month.desc&limit=12&select=year_month,revenue,yoy,mom',{headers:SB_H});
+    // v194: 正確 schema 是 year_month/revenue/yoy_pct/mom_pct
+    const r = await fetch(BASE+'/monthly_revenue?symbol=eq.'+code+'&order=year_month.desc&limit=12&select=year_month,revenue,yoy_pct,mom_pct',{headers:SB_H});
     const raw = await r.json();
     if(!Array.isArray(raw) || raw.length === 0){
-      // 嘗試另一種 schema
-      const r2 = await fetch(BASE+'/monthly_revenue?symbol=eq.'+code+'&order=date.desc&limit=12',{headers:SB_H});
-      const raw2 = await r2.json();
-      if(!Array.isArray(raw2) || raw2.length === 0){
-        box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#10b981;font-weight:700;margin-bottom:6px">💰 月營收趨勢</div><div style="font-size:12px;color:#64748b">尚無月營收資料</div></div>';
-        return;
-      }
+      box.innerHTML = '<div style="background:#0f172a;border-radius:8px;padding:14px 16px;border:1px solid #1e293b"><div style="font-size:13px;color:#10b981;font-weight:700;margin-bottom:6px">💰 月營收趨勢</div><div style="font-size:12px;color:#64748b">尚無月營收資料</div></div>';
+      return;
     }
 
-    const data = [...raw].sort((a,b) => ((a.year_month||a.date||'')+'').localeCompare((b.year_month||b.date||'')+''));
+    const data = [...raw].sort((a,b) => ((a.year_month||'')+'').localeCompare((b.year_month||'')+''));
     const revSeries = data.map(d => Number(d.revenue) || 0);
     const latest = data[data.length-1] || {};
     const latestRev = Number(latest.revenue) || 0;
-    const latestYoy = Number(latest.yoy) || 0;
-    const latestMom = Number(latest.mom) || 0;
+    const latestYoy = Number(latest.yoy_pct) || 0;
+    const latestMom = Number(latest.mom_pct) || 0;
     const yoyColor = latestYoy >= 0 ? '#22c55e' : '#ef4444';
     const momColor = latestMom >= 0 ? '#22c55e' : '#ef4444';
 
