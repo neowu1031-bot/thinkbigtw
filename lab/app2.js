@@ -2447,7 +2447,7 @@ async function searchStock(){
       loadAISummary(code);
       loadStockAnalysis(code);
       loadTechnicalIndicators(code);
-      setTimeout(() => loadStockChips(code), 500);
+      setTimeout(() => loadStockChips(code), 500); setTimeout(() => loadFullCandleChart(code), 900);;
       setTimeout(() => loadStockRevenueChart(code), 700);
       setTimeout(() => loadMACDIndicator(code), 1200);
       checkDisposeStatus(code);
@@ -6747,3 +6747,190 @@ if (document.readyState === 'loading') {
 } else {
   setTimeout(v189_192Init, 1500);
 }
+
+
+// ===== Sprint B v195-v197: Full K-Chart + Treemap + PWA Cache =====
+async function loadFullCandleChart(code){
+  try {
+    const host = document.getElementById('stock-detail') || document.getElementById('search-result') || document.body;
+    let box = document.getElementById('full-candle-chart-v195');
+    if (!box) {
+      box = document.createElement('div');
+      box.id = 'full-candle-chart-v195';
+      box.style.cssText = 'margin:16px 0;padding:14px;border:2px solid #f59e0b;border-radius:12px;background:linear-gradient(180deg,#fffbeb,#fff);';
+      box.innerHTML = '<div style="font-weight:700;color:#b45309;margin-bottom:8px;">📈 完整 K 線（60 日，含 SMA20 + 布林通道）</div><div id="fcc-body-v195" style="color:#92400e;font-size:13px;">載入中…</div>';
+      host.appendChild(box);
+    }
+    const body = document.getElementById('fcc-body-v195');
+    body.textContent = '載入中…';
+    const sb = (window.SUPABASE_URL || 'https://gvscndrxmihaffbwgmku.supabase.co');
+    const key = (window.SUPABASE_ANON_KEY || '');
+    const url = sb + '/rest/v1/daily_prices?stock_code=eq.' + encodeURIComponent(code) +
+                '&select=date,open_price,high_price,low_price,close_price&order=date.desc&limit=60';
+    const r = await fetch(url, { headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {} });
+    if (!r.ok) { body.textContent = '無資料'; return; }
+    const rows = await r.json();
+    if (!rows || rows.length < 5) { body.textContent = '資料不足（需 ≥ 5 日）'; return; }
+    const prices = rows.map(x => ({
+      date: x.date, o: +x.open_price, h: +x.high_price, l: +x.low_price, c: +x.close_price
+    })).filter(x => isFinite(x.o) && isFinite(x.c));
+    body.innerHTML = v195RenderCandleSVG(prices);
+  } catch(e){
+    const body = document.getElementById('fcc-body-v195');
+    if (body) body.textContent = '載入失敗：' + (e.message || e);
+  }
+}
+
+function v195RenderCandleSVG(prices){
+  const sorted = [...prices].sort((a,b) => (a.date||'').localeCompare(b.date||''));
+  if (sorted.length < 5) return '<div>資料不足</div>';
+  const W = 640, H = 300, padTop = 10, padBot = 30, padL = 50, padR = 10;
+  const innerW = W - padL - padR;
+  const innerH = H - padTop - padBot;
+  const closes = sorted.map(p => p.c);
+  // SMA20
+  const sma = closes.map((_, i) => {
+    if (i < 19) return null;
+    let s = 0; for (let k = i-19; k <= i; k++) s += closes[k];
+    return s / 20;
+  });
+  // BB20 (2σ)
+  const bbU = [], bbL = [];
+  for (let i = 0; i < closes.length; i++){
+    if (i < 19) { bbU.push(null); bbL.push(null); continue; }
+    const m = sma[i];
+    let v = 0; for (let k = i-19; k <= i; k++) v += (closes[k]-m)*(closes[k]-m);
+    const sd = Math.sqrt(v/20);
+    bbU.push(m + 2*sd); bbL.push(m - 2*sd);
+  }
+  const allHi = sorted.map(p => p.h).concat(bbU.filter(x=>x!=null));
+  const allLo = sorted.map(p => p.l).concat(bbL.filter(x=>x!=null));
+  const yMax = Math.max(...allHi);
+  const yMin = Math.min(...allLo);
+  const range = (yMax - yMin) || 1;
+  const cw = Math.max(2, innerW / sorted.length - 2);
+  const x = (i) => padL + i * (innerW / sorted.length) + (innerW / sorted.length - cw) / 2;
+  const y = (v) => padTop + (1 - (v - yMin) / range) * innerH;
+  // candles
+  const candles = sorted.map((p, i) => {
+    const up = p.c >= p.o;
+    const color = up ? '#16a34a' : '#dc2626';
+    const top = y(Math.max(p.o, p.c));
+    const bot = y(Math.min(p.o, p.c));
+    const wickTop = y(p.h), wickBot = y(p.l);
+    const cx = x(i) + cw/2;
+    return `<line x1="${cx}" x2="${cx}" y1="${wickTop}" y2="${wickBot}" stroke="${color}" stroke-width="1"/>` +
+           `<rect x="${x(i)}" y="${top}" width="${cw}" height="${Math.max(1, bot-top)}" fill="${color}"/>`;
+  }).join('');
+  // lines
+  const linePath = (arr, color, dash) => {
+    let d = ''; let started = false;
+    arr.forEach((v, i) => {
+      if (v == null) return;
+      const px = x(i) + cw/2, py = y(v);
+      d += (started ? 'L' : 'M') + px.toFixed(1) + ',' + py.toFixed(1) + ' ';
+      started = true;
+    });
+    return d ? `<path d="${d}" fill="none" stroke="${color}" stroke-width="1.6"${dash?' stroke-dasharray="4,3"':''}/>` : '';
+  };
+  const smaPath = linePath(sma, '#eab308', false);
+  const bbUPath = linePath(bbU, '#a855f7', true);
+  const bbLPath = linePath(bbL, '#a855f7', true);
+  // y axis labels
+  const yLabels = [yMax, (yMax+yMin)/2, yMin].map(v =>
+    `<text x="6" y="${y(v)+3}" fill="#92400e" font-size="10">${v.toFixed(2)}</text>`
+  ).join('');
+  // x axis (first/middle/last)
+  const xIdx = [0, Math.floor(sorted.length/2), sorted.length-1];
+  const xLabels = xIdx.map(i => {
+    const d = (sorted[i].date || '').slice(5);
+    return `<text x="${x(i)}" y="${H-8}" fill="#92400e" font-size="10">${d}</text>`;
+  }).join('');
+  const legend = `<rect x="${padL+10}" y="${padTop+4}" width="10" height="10" fill="#eab308"/><text x="${padL+24}" y="${padTop+13}" fill="#92400e" font-size="11">SMA20</text>` +
+    `<rect x="${padL+90}" y="${padTop+4}" width="10" height="10" fill="#a855f7"/><text x="${padL+104}" y="${padTop+13}" fill="#92400e" font-size="11">布林 ±2σ</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;height:auto;">` +
+         `<rect x="0" y="0" width="${W}" height="${H}" fill="white"/>` +
+         candles + smaPath + bbUPath + bbLPath + yLabels + xLabels + legend +
+         `</svg>` +
+         `<div style="font-size:11px;color:#92400e;margin-top:4px;">資料：Supabase daily_prices · 黃色 SMA20 · 紫色虛線 = Bollinger Band (20, 2σ)</div>`;
+}
+
+async function loadIndustryTreemap(){
+  try {
+    let box = document.getElementById('industry-treemap-v196');
+    if (!box) {
+      const host = document.getElementById('industry-heatmap') || document.getElementById('hot-stocks-section') || document.body;
+      box = document.createElement('div');
+      box.id = 'industry-treemap-v196';
+      box.style.cssText = 'margin:16px 0;padding:14px;border:2px solid #6366f1;border-radius:12px;background:linear-gradient(180deg,#eef2ff,#fff);';
+      box.innerHTML = '<div style="font-weight:700;color:#4338ca;margin-bottom:8px;">🗺 產業 Treemap（依平均漲跌幅）</div><div id="itm-body-v196" style="color:#3730a3;font-size:13px;">載入中…</div>';
+      host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+    }
+    const body = document.getElementById('itm-body-v196');
+    if (!window.v196IndustryData) {
+      // fetch fresh: avg pct per industry from latest two days
+      const sb = (window.SUPABASE_URL || 'https://gvscndrxmihaffbwgmku.supabase.co');
+      const key = (window.SUPABASE_ANON_KEY || '');
+      const dr = await fetch(sb + '/rest/v1/daily_prices?select=date&order=date.desc&limit=2', {
+        headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {}
+      });
+      const dRows = await dr.json();
+      if (!dRows || dRows.length < 2) { body.textContent = '資料不足'; return; }
+      const today = dRows[0].date, yest = dRows[1].date;
+      const dpr = await fetch(sb + '/rest/v1/daily_prices?date=in.(' + today + ',' + yest + ')&select=stock_code,date,close_price', {
+        headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {}
+      });
+      const dp = await dpr.json();
+      const sr = await fetch(sb + '/rest/v1/stocks?select=stock_code,industry', {
+        headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {}
+      });
+      const stocks = await sr.json();
+      const indMap = {}; stocks.forEach(x => { indMap[x.stock_code] = x.industry || '其他'; });
+      const t = {}, y = {};
+      dp.forEach(r => { (r.date === today ? t : y)[r.stock_code] = +r.close_price; });
+      const indPct = {};
+      Object.keys(t).forEach(c => {
+        if (y[c] && y[c] > 0) {
+          const pct = (t[c] - y[c]) / y[c] * 100;
+          const ind = indMap[c] || '其他';
+          if (!indPct[ind]) indPct[ind] = [];
+          indPct[ind].push(pct);
+        }
+      });
+      const arr = Object.entries(indPct).map(([k, v]) => ({
+        name: k, avg: v.reduce((a,b)=>a+b,0)/v.length, n: v.length
+      })).filter(x => x.n >= 1).sort((a,b) => Math.abs(b.avg) - Math.abs(a.avg)).slice(0, 16);
+      window.v196IndustryData = arr;
+    }
+    const arr = window.v196IndustryData;
+    if (!arr || arr.length === 0) { body.textContent = '無產業資料'; return; }
+    // simple slice-and-dice treemap by |avg|+0.5 weight
+    const total = arr.reduce((s,x) => s + (Math.abs(x.avg) + 0.5), 0);
+    const W = 640, H = 240;
+    let xPos = 0;
+    const rects = arr.map(x => {
+      const w = (Math.abs(x.avg) + 0.5) / total * W;
+      const fill = x.avg > 0 ? `rgba(220,38,38,${Math.min(0.9, 0.25 + Math.abs(x.avg)/5)})`
+                              : `rgba(22,163,74,${Math.min(0.9, 0.25 + Math.abs(x.avg)/5)})`;
+      const r = `<g><rect x="${xPos}" y="0" width="${w-1}" height="${H}" fill="${fill}"/>` +
+        `<text x="${xPos + w/2}" y="${H/2 - 6}" text-anchor="middle" fill="white" font-size="13" font-weight="700">${x.name}</text>` +
+        `<text x="${xPos + w/2}" y="${H/2 + 14}" text-anchor="middle" fill="white" font-size="12">${x.avg>=0?'+':''}${x.avg.toFixed(2)}%</text>` +
+        `<text x="${xPos + w/2}" y="${H/2 + 30}" text-anchor="middle" fill="white" font-size="10" opacity="0.85">${x.n}檔</text></g>`;
+      xPos += w;
+      return r;
+    }).join('');
+    body.innerHTML = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;border-radius:8px;">${rects}</svg>` +
+      `<div style="font-size:11px;color:#3730a3;margin-top:6px;">紅 = 產業整體上漲 · 綠 = 下跌 · 寬度 ∝ 漲跌幅度（最多 16 個產業）</div>`;
+  } catch(e){
+    const body = document.getElementById('itm-body-v196');
+    if (body) body.textContent = '載入失敗：' + (e.message || e);
+  }
+}
+
+// auto-trigger Treemap after Industry Heatmap loads
+(function v196AutoTrigger(){
+  if (window.__v196Wired) return;
+  window.__v196Wired = true;
+  setTimeout(loadIndustryTreemap, 1500);
+})();
+
