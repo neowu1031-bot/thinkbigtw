@@ -5294,18 +5294,28 @@ async function loadHotStocks(){
       const q = await twseProxy('realtime', s.sym);
       // twse realtime API 格式：msgArray[0] 含 z(成交價)、y(昨收)、d(漲跌)
       const m = q?.msgArray?.[0] || q;
-      const price = parseFloat(m?.z || m?.price || 0);
-      const yest = parseFloat(m?.y || m?.prevClose || 0);
+      // 智慧 fallback: z (即時) → o (開盤) → y (昨收)
+      const z = parseFloat(m?.z);
+      const o = parseFloat(m?.o);
+      const h = parseFloat(m?.h);
+      const l = parseFloat(m?.l);
+      const y = parseFloat(m?.y);
+      const hasZ = !isNaN(z) && z > 0;
+      const hasO = !isNaN(o) && o > 0;
+      const hasMid = !isNaN(h) && !isNaN(l) && h > 0 && l > 0;
+      const price = hasZ ? z : (hasMid ? (h+l)/2 : (hasO ? o : y));
+      const yest = !isNaN(y) && y > 0 ? y : 0;
       const card = document.getElementById('hot-' + s.sym);
       const priceEl = card?.querySelector('.hot-price');
       if (price && yest && priceEl){
         const diff = price - yest;
         const pct = (diff / yest * 100);
         const isUp = diff >= 0;
-        priceEl.innerHTML = '<span style="color:' + (isUp ? '#22c55e' : '#ef4444') + ';font-weight:600">' + price.toFixed(2) + ' <small>' + (isUp ? '▲' : '▼') + Math.abs(pct).toFixed(2) + '%</small></span>';
+        const tag = hasZ ? '' : (hasMid ? ' <small style="opacity:0.6">(均價)</small>' : ' <small style="opacity:0.6">(開盤)</small>');
+        priceEl.innerHTML = '<span style="color:' + (isUp ? '#22c55e' : '#ef4444') + ';font-weight:600">' + price.toFixed(2) + ' <small>' + (isUp ? '▲' : '▼') + Math.abs(pct).toFixed(2) + '%</small></span>' + tag;
         card.style.borderColor = isUp ? '#14532d' : '#450a0a';
       } else if (priceEl) {
-        priceEl.textContent = '休市/無報價';
+        priceEl.textContent = yest > 0 ? '昨收 ' + yest.toFixed(2) : '休市/無報價';
       }
     }catch(e){
       const card = document.getElementById('hot-' + s.sym);
