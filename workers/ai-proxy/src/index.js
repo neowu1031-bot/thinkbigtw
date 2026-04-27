@@ -769,7 +769,10 @@ export default {
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: CORS_HEADERS });
     }
-    if (request.method !== 'POST') {
+    const GET_ALLOWED_PATHS = ['/quote', '/market-briefing'];
+    if (request.method === 'GET' && GET_ALLOWED_PATHS.includes(url.pathname)) {
+      // pass through
+    } else if (request.method !== 'POST') {
       return new Response('Method not allowed', { status: 405, headers: CORS_HEADERS });
     }
 
