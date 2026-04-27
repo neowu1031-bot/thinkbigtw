@@ -1,2 +1,9 @@
 .git-local/
 .claude/worktrees/
+**/.wrangler/
+node_modules/
+*.bak.*
+.DS_Store
+.env
+.env.local
+.dev.vars
