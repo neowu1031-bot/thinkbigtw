@@ -1,0 +1,12 @@
+name = "moneyradar-ai-proxy"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+[ai]
+binding = "AI"
+
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 30, period = 60 }

@@ -580,6 +580,7 @@ async function checkExistingSession(){
 window.addEventListener('load',()=>{setTimeout(checkExistingSession,300);});
 let _marketIntervalId=null,_cryptoIntervalId=null,_alertIntervalId=null;
 function showDashboard(){
+  if (typeof v155Init === 'function') setTimeout(v155Init, 100);
   if(!currentUser){showAuthGate();return;}
   const lock=document.getElementById('lockScreen');if(lock)lock.style.display='none';
   const dash=document.getElementById('dashboard');if(dash)dash.style.display='block';
@@ -5183,3 +5184,189 @@ async function loadAISummary(code){
     inputEl.style.height = Math.min(inputEl.scrollHeight, 80) + 'px';
   });
 })();
+
+
+// ===== MoneyRadar v155: Daily Briefing + Hot Stocks + Chat Quick (auto-inserted) =====
+async function loadDailyBriefing(){
+  const el = document.getElementById('daily-briefing');
+  if (!el) return;
+  const today = new Date().toLocaleDateString('zh-TW',{month:'long',day:'numeric',weekday:'short'});
+  el.innerHTML = '<div style="background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:10px;padding:14px 18px;border:1px solid #1e3a5f;margin-bottom:16px"><div style="font-size:11px;color:#64748b">📋 今日快報 ' + today + ' · 載入中...</div></div>';
+  try{
+    // 1) 加權指數（Supabase daily_prices）
+    const tx = await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=2',{headers:SB_H});
+    const txData = await tx.json();
+    if(!Array.isArray(txData) || txData.length === 0) throw new Error('no taiex');
+    const today0 = txData[0];
+    const yesterday = txData[1] || today0;
+    const close = Number(today0.close_price) || 0;
+    const prevClose = Number(yesterday.close_price) || close;
+    const change = close - prevClose;
+    const pct = prevClose ? (change / prevClose * 100) : 0;
+    const isUp = change >= 0;
+
+    // 2) 外資買賣超（Supabase institutional_investors 當日加總）
+    let foreignNet = null;
+    try{
+      const date = today0.date;
+      const ii = await fetch(BASE+'/institutional_investors?date=eq.'+date+'&select=foreign_buy,foreign_sell&limit=3000',{headers:SB_H});
+      const iiData = await ii.json();
+      if(Array.isArray(iiData) && iiData.length){
+        foreignNet = iiData.reduce((s,r) => s + (Number(r.foreign_buy)||0) - (Number(r.foreign_sell)||0), 0);
+      }
+    }catch(e){}
+
+    // 3) Worker AI 情緒判讀
+    let sentimentLabel = '中性';
+    let sentimentColor = '#94a3b8';
+    let aiNote = '';
+    try{
+      const r = await fetch((typeof AI_PROXY_URL!=='undefined' ? AI_PROXY_URL : 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev') + '/briefing', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ taiex:{close, change, pct}, foreign_net: foreignNet })
+      });
+      const d = await r.json();
+      sentimentLabel = d.label || '中性';
+      sentimentColor = d.sentiment === 'bullish' ? '#22c55e' : d.sentiment === 'bearish' ? '#ef4444' : '#94a3b8';
+      aiNote = d.note || '';
+    }catch(e){}
+
+    // 4) 渲染
+    const fnText = foreignNet !== null
+      ? '<div style="font-size:13px;font-weight:600;color:' + (foreignNet >= 0 ? '#22c55e' : '#ef4444') + '">' + (foreignNet >= 0 ? '+' : '') + foreignNet.toLocaleString() + '</div><div style="font-size:11px;color:#64748b">張買賣超</div>'
+      : '<div style="font-size:13px;color:#64748b">--</div><div style="font-size:11px;color:#64748b">資料未到</div>';
+
+    const noteText = aiNote ? '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #1e3a5f;font-size:11px;color:#94a3b8">💡 ' + aiNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>' : '';
+
+    el.innerHTML = '<div style="background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:10px;padding:14px 18px;border:1px solid #1e3a5f;margin-bottom:16px">'
+      + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
+      + '<span style="font-size:11px;font-weight:700;color:#60a5fa;text-transform:uppercase;letter-spacing:1.5px">📋 今日快報</span>'
+      + '<span style="font-size:11px;color:#475569">' + today + '</span>'
+      + '</div>'
+      + '<div style="display:flex;gap:16px;flex-wrap:wrap">'
+      + '<div><div style="font-size:11px;color:#64748b;margin-bottom:2px">加權指數</div>'
+      + '<div style="font-size:18px;font-weight:700;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + close.toLocaleString() + '</div>'
+      + '<div style="font-size:12px;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + (isUp ? '▲' : '▼') + ' ' + Math.abs(change).toFixed(2) + ' (' + (isUp ? '+' : '') + pct.toFixed(2) + '%)</div></div>'
+      + '<div style="border-left:1px solid #1e3a5f;padding-left:16px"><div style="font-size:11px;color:#64748b;margin-bottom:2px">外資動向</div>' + fnText + '</div>'
+      + '<div style="border-left:1px solid #1e3a5f;padding-left:16px"><div style="font-size:11px;color:#64748b;margin-bottom:2px">市場情緒</div>'
+      + '<div style="font-size:13px;font-weight:600;color:' + sentimentColor + '">⚡ ' + sentimentLabel + '</div>'
+      + '<div style="font-size:11px;color:#64748b">AI 判讀</div></div>'
+      + '</div>'
+      + noteText
+      + '</div>';
+  }catch(e){
+    el.innerHTML = '';
+    console.warn('[Daily Briefing]', e);
+  }
+}
+
+async function loadHotStocks(){
+  const el = document.getElementById('hot-stocks-section');
+  if (!el) return;
+  const hotList = [
+    {sym:'2330',name:'台積電'},{sym:'2317',name:'鴻海'},{sym:'2454',name:'聯發科'},
+    {sym:'2308',name:'台達電'},{sym:'2382',name:'廣達'},{sym:'3711',name:'日月光投控'},
+    {sym:'2881',name:'富邦金'},{sym:'2412',name:'中華電'},{sym:'6505',name:'台塑化'},
+    {sym:'2303',name:'聯電'}
+  ];
+  el.innerHTML = '<div style="margin-top:20px"><div style="font-size:11px;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;padding-left:10px;border-left:2px solid #2563eb">🔥 熱門股排行</div>'
+    + '<div id="hot-stocks-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">'
+    + hotList.map(s => '<div id="hot-' + s.sym + '" style="background:#0f1729;border-radius:8px;padding:10px 12px;border:1px solid #1e2d45;cursor:pointer" data-sym="' + s.sym + '"><div style="font-size:11px;color:#64748b">' + s.sym + '</div><div style="font-size:13px;font-weight:700;color:#e2e8f0">' + s.name + '</div><div class="hot-price" style="font-size:12px;color:#475569;margin-top:2px">載入中...</div></div>').join('')
+    + '</div></div>';
+
+  // 點擊跳到該股查詢
+  el.querySelectorAll('[data-sym]').forEach(card => {
+    card.addEventListener('click', () => {
+      const sym = card.getAttribute('data-sym');
+      const inp = document.getElementById('stockInput');
+      if (inp) {
+        inp.value = sym;
+        if (typeof searchStock === 'function') searchStock();
+      }
+    });
+  });
+
+  // 並行抓即時價格（用 twseProxy('realtime', code)）
+  for (const s of hotList){
+    try{
+      if (typeof twseProxy !== 'function') break;
+      const q = await twseProxy('realtime', s.sym);
+      // twse realtime API 格式：msgArray[0] 含 z(成交價)、y(昨收)、d(漲跌)
+      const m = q?.msgArray?.[0] || q;
+      const price = parseFloat(m?.z || m?.price || 0);
+      const yest = parseFloat(m?.y || m?.prevClose || 0);
+      const card = document.getElementById('hot-' + s.sym);
+      const priceEl = card?.querySelector('.hot-price');
+      if (price && yest && priceEl){
+        const diff = price - yest;
+        const pct = (diff / yest * 100);
+        const isUp = diff >= 0;
+        priceEl.innerHTML = '<span style="color:' + (isUp ? '#22c55e' : '#ef4444') + ';font-weight:600">' + price.toFixed(2) + ' <small>' + (isUp ? '▲' : '▼') + Math.abs(pct).toFixed(2) + '%</small></span>';
+        card.style.borderColor = isUp ? '#14532d' : '#450a0a';
+      } else if (priceEl) {
+        priceEl.textContent = '休市/無報價';
+      }
+    }catch(e){
+      const card = document.getElementById('hot-' + s.sym);
+      const priceEl = card?.querySelector('.hot-price');
+      if (priceEl) priceEl.textContent = '無報價';
+    }
+  }
+}
+
+// 升級既有 chat UI：加快捷問題列
+function v155UpgradeChatBubble(){
+  const panel = document.getElementById('mr-chat-panel');
+  if (!panel) return;
+  if (panel.querySelector('.mr-chat-quick')) return; // already upgraded
+
+  const inputWrap = panel.querySelector('.mr-chat-input-wrap');
+  if (!inputWrap) return;
+
+  const quickBar = document.createElement('div');
+  quickBar.className = 'mr-chat-quick';
+  quickBar.style.cssText = 'padding:8px 10px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid #334155;background:#0b1120';
+
+  const questions = [
+    {label:'本益比', q:'什麼是本益比 PE？簡短說明'},
+    {label:'三大法人', q:'什麼是三大法人？'},
+    {label:'融資融券', q:'什麼是融資融券？'},
+    {label:'殖利率', q:'什麼是殖利率？'},
+    {label:'ETF', q:'什麼是 ETF？'},
+  ];
+  questions.forEach(item => {
+    const btn = document.createElement('button');
+    btn.textContent = item.label;
+    btn.style.cssText = 'font-size:11px;padding:4px 10px;background:#1e293b;color:#93c5fd;border:1px solid #334155;border-radius:999px;cursor:pointer;white-space:nowrap;font-family:inherit';
+    btn.addEventListener('mouseenter', () => { btn.style.background = '#2563eb'; btn.style.color = 'white'; btn.style.borderColor = '#2563eb'; });
+    btn.addEventListener('mouseleave', () => { btn.style.background = '#1e293b'; btn.style.color = '#93c5fd'; btn.style.borderColor = '#334155'; });
+    btn.addEventListener('click', () => {
+      const inp = document.getElementById('mr-chat-input');
+      const send = document.getElementById('mr-chat-send');
+      if (inp && send) {
+        inp.value = item.q;
+        send.click();
+      }
+    });
+    quickBar.appendChild(btn);
+  });
+
+  // 插入在 input-wrap 之前
+  inputWrap.parentNode.insertBefore(quickBar, inputWrap);
+}
+
+// 啟動入口
+function v155Init(){
+  if (document.getElementById('daily-briefing')) loadDailyBriefing();
+  if (document.getElementById('hot-stocks-section')) loadHotStocks();
+  // chat UI 升級：等 IIFE 跑完
+  setTimeout(() => v155UpgradeChatBubble(), 800);
+}
+
+// 立即執行 + DOMContentLoaded 雙保險
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => setTimeout(v155Init, 600));
+} else {
+  setTimeout(v155Init, 600);
+}
