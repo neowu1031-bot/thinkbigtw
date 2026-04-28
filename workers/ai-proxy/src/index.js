@@ -189,7 +189,14 @@ async function handleChat(request, env) {
 
   const userPlan = await fetchSupabaseUserPlan(request.headers.get('Authorization'), env);
 
+  // v224-lang
+  const userLang = (body.lang || (context && context.lang) || 'zh-TW');
+  const langMap = { 'zh-TW': '繁體中文', 'en': 'English', 'ja': '日本語', 'ko': '한국어' };
+  const langName = langMap[userLang] || '繁體中文';
   let systemPrompt = CHAT_SYSTEM_PROMPT;
+  if (userLang !== 'zh-TW') {
+    systemPrompt += '\n\n【LANGUAGE OVERRIDE】Reply ENTIRELY in ' + langName + '. Translate all stock concepts. Keep [把握度]/[資料源]/[盲點] tags translated as [Confidence]/[Sources]/[BlindSpots] for English, [信頼度]/[情報源]/[盲点] for Japanese, [신뢰도]/[자료원]/[맹점] for Korean.';
+  }
   if (context && context.currentSymbol && Array.isArray(context.currentNews)) {
     const newsBlock = context.currentNews.slice(0, 5).map((n, i) =>
       `[${i + 1}] ${n.headline || n.title || ''} (${n.source || 'Google News'})`

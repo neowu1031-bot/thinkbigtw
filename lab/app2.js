@@ -8753,3 +8753,111 @@ window.v223OpenCoach = async function(){
     suggests.appendChild(btn);
   }, 2000);
 })();
+
+
+// ===== v224: AI 多語言切換（zh-TW / en / ja / ko）=====
+
+window.v224GetLang = function(){
+  try { const m = window.v211Memory ? window.v211Memory.load() : {}; return m.lang || 'zh-TW'; } catch(e) { return 'zh-TW'; }
+};
+window.v224SetLang = function(lang){
+  try { const m = window.v211Memory ? window.v211Memory.load() : {}; m.lang = lang; window.v211Memory.save(m); } catch(e) {}
+};
+
+// 攔截 v210Send 注入 lang
+(function(){
+  if (window.__v224Wired) return;
+  window.__v224Wired = true;
+  const observer = setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    if (document.getElementById('v224-lang-picker')) return;
+    const closeBtn = document.getElementById('v210-close');
+    if (!closeBtn) return;
+    const picker = document.createElement('select');
+    picker.id = 'v224-lang-picker';
+    picker.style.cssText = 'background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:4px 8px;border-radius:6px;font-size:12px;cursor:pointer;margin-right:8px;';
+    [['zh-TW','🇹🇼 繁中'],['en','🇺🇸 EN'],['ja','🇯🇵 日本'],['ko','🇰🇷 한국']].forEach(([code, label]) => {
+      const o = document.createElement('option');
+      o.value = code; o.textContent = label;
+      o.style.background = '#1f2937';
+      if (code === window.v224GetLang()) o.selected = true;
+      picker.appendChild(o);
+    });
+    picker.addEventListener('change', e => window.v224SetLang(e.target.value));
+    closeBtn.parentNode.insertBefore(picker, closeBtn);
+  }, 1500);
+})();
+
+// patch v210Send 在 fetch 前注入 lang
+(function(){
+  if (window.__v224SendPatched) return;
+  // 等 v210Send 存在
+  setInterval(() => {
+    if (!window.v210Send || window.__v224SendPatched) return;
+    window.__v224SendPatched = true;
+    const orig = window.v210Send;
+    // 重寫整個 v210Send 太複雜；改用 fetch 攔截
+    const origFetch = window.fetch;
+    window.fetch = function(url, opts){
+      try {
+        if (typeof url === 'string' && url.includes('moneyradar-ai-proxy.thinkbigtw.workers.dev/chat') && opts && opts.body) {
+          const body = JSON.parse(opts.body);
+          if (!body.lang) body.lang = window.v224GetLang();
+          if (body.context && !body.context.lang) body.context.lang = body.lang;
+          opts.body = JSON.stringify(body);
+        }
+      } catch(e){}
+      return origFetch.apply(this, arguments);
+    };
+  }, 500);
+})();
+
+
+// ===== v225: 語音輸入（Web Speech API）=====
+
+window.v225StartVoice = function(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { alert('您的瀏覽器不支援語音輸入。建議用 Chrome / Safari。'); return; }
+  const lang = window.v224GetLang ? window.v224GetLang() : 'zh-TW';
+  const langMap = { 'zh-TW': 'zh-TW', 'en': 'en-US', 'ja': 'ja-JP', 'ko': 'ko-KR' };
+  const recognition = new SR();
+  recognition.lang = langMap[lang] || 'zh-TW';
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+  const btn = document.getElementById('v225-mic-btn');
+  if (btn) { btn.textContent = '🎙️ 聽中…'; btn.style.background = '#dc2626'; }
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript;
+    const input = document.getElementById('v210-input');
+    if (input) input.value = text;
+    setTimeout(() => { if (window.v210Send) window.v210Send(); }, 200);
+  };
+  recognition.onerror = (e) => {
+    if (btn) { btn.textContent = '🎤'; btn.style.background = ''; }
+    console.warn('[v225]', e.error);
+  };
+  recognition.onend = () => {
+    if (btn) { btn.textContent = '🎤'; btn.style.background = ''; }
+  };
+  try { recognition.start(); } catch(e){ alert('啟動失敗：' + e.message); }
+};
+
+(function(){
+  if (window.__v225Wired) return;
+  window.__v225Wired = true;
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const send = document.getElementById('v210-send');
+    if (!send || document.getElementById('v225-mic-btn')) return;
+    const mic = document.createElement('button');
+    mic.id = 'v225-mic-btn';
+    mic.textContent = '🎤';
+    mic.title = '語音輸入';
+    mic.style.cssText = 'padding:12px 16px;background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:24px;cursor:pointer;font-size:18px;margin-right:6px;';
+    mic.addEventListener('click', () => window.v225StartVoice());
+    send.parentNode.insertBefore(mic, send);
+  }, 1500);
+})();
