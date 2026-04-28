@@ -7919,3 +7919,50 @@ window.v212Roundtable = async function(symbol, name){
     suggests.appendChild(btn);
   }, 2000);
 })();
+
+
+// ===== v212.1 UX hotfix: 隱藏所有舊 chat 泡泡 + 💎 移到右邊 =====
+
+(function(){
+  if (window.__v212UxFixed) return;
+  window.__v212UxFixed = true;
+  setInterval(() => {
+    const selectors = [
+      '#ai-chat-bubble', '#chat-bubble', '#chat-icon', '#ai-bubble',
+      '#floating-chat', '#chat-toggle', '.floating-chat', '.chat-bubble',
+      '[id*="chat-bub"]', '[id*="ai-chat"]', '[class*="chat-bubble"]'
+    ];
+    selectors.forEach(sel => {
+      try {
+        document.querySelectorAll(sel).forEach(el => {
+          if (el.id === 'v210-trigger' || el.id === 'v210-cfo-overlay') return;
+          if (el.closest && el.closest('#v210-cfo-overlay')) return;
+          el.style.display = 'none';
+          el.style.visibility = 'hidden';
+        });
+      } catch(e) {}
+    });
+    document.querySelectorAll('button, div').forEach(el => {
+      try {
+        if (el.id === 'v210-trigger' || el.id === 'v210-cfo-overlay') return;
+        if (el.closest && el.closest('#v210-cfo-overlay')) return;
+        const cs = getComputedStyle(el);
+        if (cs.position !== 'fixed') return;
+        const bot = parseInt(cs.bottom) || 9999;
+        const right = parseInt(cs.right) || 9999;
+        if (bot < 200 && right < 100 &&
+            (cs.borderRadius === '50%' || parseInt(cs.borderRadius) > 20) &&
+            el.offsetWidth < 80 && el.offsetWidth > 30) {
+          el.style.display = 'none';
+        }
+      } catch(e) {}
+    });
+    const t = document.getElementById('v210-trigger');
+    if (t) {
+      t.style.left = 'auto';
+      t.style.right = '20px';
+      t.style.bottom = '20px';
+    }
+  }, 1000);
+  console.log('[v212.1] UX hotfix wired');
+})();
