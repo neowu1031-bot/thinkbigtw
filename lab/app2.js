@@ -10154,3 +10154,203 @@ window.v243OpenBacktest = function(){
     suggests.appendChild(btn);
   }, 2000);
 })();
+
+
+// ===== v244: Macroeconomic Data Widget =====
+
+window.v244LoadMacro = async function(){
+  if (document.getElementById('v244-macro-box')) return;
+  const host = document.getElementById('hot-stocks-section') || document.getElementById('industry-treemap-v196') || document.body;
+  const box = document.createElement('div');
+  box.id = 'v244-macro-box';
+  box.style.cssText = 'margin-top:16px;padding:14px;border:2px solid #0e7490;border-radius:12px;background:linear-gradient(180deg,#ecfeff,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#155e75;margin-bottom:8px;">🌎 總體經濟即時儀表板</div><div id="v244-body">載入中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/macro');
+    const d = await r.json();
+    if (!d.results) { document.getElementById('v244-body').innerHTML = '<div style="color:#dc2626;">' + (d.error || '無資料') + '</div>'; return; }
+    let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;">';
+    d.results.forEach(m => {
+      if (m.error) return;
+      const pct = m.changePercent || 0;
+      const c = pct >= 0 ? '#dc2626' : '#16a34a';
+      const sign = pct >= 0 ? '+' : '';
+      html += '<div style="padding:10px;background:white;border:1px solid #cffafe;border-radius:6px;">';
+      html += '<div style="font-size:11px;color:#6b7280;">' + m.code + '</div>';
+      html += '<div style="font-size:13px;font-weight:600;">' + m.name + '</div>';
+      html += '<div style="margin-top:4px;"><span style="font-weight:600;">' + (m.price || 0).toFixed(2) + '</span> <span style="color:' + c + ';font-size:11px;">(' + sign + pct.toFixed(2) + '%)</span></div>';
+      html += '</div>';
+    });
+    html += '</div><div style="font-size:10px;color:#6b7280;margin-top:6px;">資料：Yahoo Finance · 8 大總經指標</div>';
+    document.getElementById('v244-body').innerHTML = html;
+  } catch (e) { document.getElementById('v244-body').innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+};
+
+(function(){
+  setTimeout(() => window.v244LoadMacro(), 4000);
+})();
+
+
+// ===== v245: K 棒形態 AI 辨識 =====
+
+window.v245LoadPattern = async function(symbol){
+  if (document.getElementById('v245-pattern-' + symbol)) return;
+  const host = document.getElementById('v241-ext-' + symbol) || document.getElementById('v219-ind-panel');
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v245-pattern-' + symbol;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #db2777;border-radius:12px;background:linear-gradient(180deg,#fdf2f8,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">🔮 AI K 棒形態辨識（' + symbol + '）</div><div id="v245-body-' + symbol + '">分析中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  try {
+    const cr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=2mo');
+    const cj = await cr.json();
+    const closes = (cj.chart.result[0].indicators.quote[0].close || []).filter(x => x != null);
+    if (closes.length < 20) { document.getElementById('v245-body-' + symbol).innerHTML = '資料不足'; return; }
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/pattern-detect', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symbol, closes })
+    });
+    const d = await r.json();
+    if (d.error) { document.getElementById('v245-body-' + symbol).innerHTML = '<div style="color:#dc2626;">' + d.error + '</div>'; return; }
+    document.getElementById('v245-body-' + symbol).innerHTML = '<div style="font-size:13px;line-height:1.7;color:#1f2937;background:white;padding:10px;border-radius:6px;">' + (d.analysis || '').replace(/\n/g, '<br>') + '</div>';
+  } catch (e) { document.getElementById('v245-body-' + symbol).innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+};
+
+(function(){
+  if (window.__v245Wired) return;
+  window.__v245Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v245LoadPattern(code), 5000);
+    return r;
+  };
+})();
+
+
+// ===== v246: ROE 杜邦拆解視覺化 =====
+
+window.v246LoadDupont = async function(symbol){
+  if (document.getElementById('v246-dupont-' + symbol)) return;
+  const host = document.getElementById('v230-fund-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (d.error) return;
+    const p = d.profitability || {}, fh = d.financialHealth || {}, g = d.growth || {};
+    const netMargin = (p.profitMargin || 0) * 100;
+    // 估算資產周轉率 = 營收 / 總資產（用 totalCash + totalDebt 近似總資產）
+    const totalAssets = (fh.totalCash || 0) + (fh.totalDebt || 0) * 2; // 粗估
+    const rev = g.totalRevenue || 1;
+    const assetTurnover = totalAssets > 0 ? rev / totalAssets : 1;
+    // 槓桿乘數 = 總資產 / 權益（估）
+    const equityRatio = 1 / (1 + (fh.debtToEquity || 0) / 100);
+    const leverage = equityRatio > 0 ? 1 / equityRatio : 1;
+    const calculatedROE = netMargin * assetTurnover * leverage;
+    const reportedROE = (p.roe || 0) * 100;
+    const box = document.createElement('div');
+    box.id = 'v246-dupont-' + symbol;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #b91c1c;border-radius:12px;background:linear-gradient(180deg,#fef2f2,#fff);';
+    box.innerHTML = ''
+      + '<div style="font-weight:700;color:#7f1d1d;margin-bottom:8px;">🧮 ROE 杜邦拆解（' + symbol + '）</div>'
+      + '<div style="text-align:center;font-size:13px;line-height:2;background:white;padding:14px;border-radius:8px;">'
+      + '<div style="font-weight:700;font-size:14px;color:#7f1d1d;">ROE = ' + reportedROE.toFixed(2) + '% (報表值)</div>'
+      + '<div style="margin-top:8px;color:#6b7280;font-size:11px;">↓ 拆解 ↓</div>'
+      + '<div style="font-weight:600;color:#1f2937;">淨利率 ' + netMargin.toFixed(2) + '% × 資產周轉率 ' + assetTurnover.toFixed(2) + ' × 槓桿乘數 ' + leverage.toFixed(2) + '</div>'
+      + '<div style="margin-top:6px;font-size:11px;color:#6b7280;">≈ ' + calculatedROE.toFixed(2) + '%（估算）</div>'
+      + '</div>'
+      + '<div style="margin-top:10px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;">'
+      + '<div style="padding:10px;background:#fef3c7;border-radius:6px;text-align:center;"><div style="font-size:10px;color:#92400e;">獲利能力</div><div style="font-weight:700;font-size:14px;color:#92400e;">' + netMargin.toFixed(1) + '%</div><div style="font-size:10px;color:#92400e;">淨利率</div></div>'
+      + '<div style="padding:10px;background:#dbeafe;border-radius:6px;text-align:center;"><div style="font-size:10px;color:#1e40af;">營運效率</div><div style="font-weight:700;font-size:14px;color:#1e40af;">' + assetTurnover.toFixed(2) + '</div><div style="font-size:10px;color:#1e40af;">資產周轉</div></div>'
+      + '<div style="padding:10px;background:#fce7f3;border-radius:6px;text-align:center;"><div style="font-size:10px;color:#9d174d;">財務槓桿</div><div style="font-weight:700;font-size:14px;color:#9d174d;">' + leverage.toFixed(2) + '</div><div style="font-size:10px;color:#9d174d;">槓桿乘數</div></div>'
+      + '</div>'
+      + '<div style="font-size:10px;color:#6b7280;margin-top:6px;">注：因 Yahoo 不直接提供總資產，槓桿與周轉率為估算值</div>';
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch (e) {}
+};
+
+(function(){
+  if (window.__v246Wired) return;
+  window.__v246Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v246LoadDupont(code), 5500);
+    return r;
+  };
+})();
+
+
+// ===== v247: 異常財報自動警示 =====
+
+window.v247CheckHealth = function(d){
+  const warnings = [];
+  const goods = [];
+  const v = d.valuation || {}, p = d.profitability || {}, g = d.growth || {}, fh = d.financialHealth || {}, dv = d.dividend || {};
+  // 紅燈
+  if (fh.debtToEquity > 200) warnings.push({ level: 'red', text: '負債權益比 ' + fh.debtToEquity.toFixed(0) + '% 過高（>200%）' });
+  if (fh.currentRatio && fh.currentRatio < 1) warnings.push({ level: 'red', text: '流動比 ' + fh.currentRatio.toFixed(2) + ' 過低（<1）短期償債風險' });
+  if (g.revenueGrowth < -0.2) warnings.push({ level: 'red', text: '營收 YoY ' + (g.revenueGrowth*100).toFixed(1) + '% 大幅衰退' });
+  if (p.profitMargin < 0) warnings.push({ level: 'red', text: '淨利率 ' + (p.profitMargin*100).toFixed(1) + '% 為負（虧損）' });
+  if (fh.freeCashflow < 0) warnings.push({ level: 'red', text: '自由現金流為負（' + (fh.freeCashflow/1e9).toFixed(2) + 'B）' });
+  if (v.peRatio > 60) warnings.push({ level: 'yellow', text: 'P/E ' + v.peRatio.toFixed(1) + ' 偏高（>60）' });
+  if (dv.payoutRatio > 1) warnings.push({ level: 'yellow', text: '配息率 ' + (dv.payoutRatio*100).toFixed(0) + '% 超過 100%（過度配息）' });
+  // 綠燈
+  if (p.roe > 0.2) goods.push('ROE ' + (p.roe*100).toFixed(1) + '% 優異');
+  if (p.grossMargin > 0.5) goods.push('毛利率 ' + (p.grossMargin*100).toFixed(1) + '% 強勁');
+  if (g.revenueGrowth > 0.3) goods.push('營收 YoY +' + (g.revenueGrowth*100).toFixed(1) + '% 高成長');
+  if (fh.freeCashflow > 0 && fh.totalCash > fh.totalDebt) goods.push('現金 > 總負債（財務健康）');
+  if (dv.dividendYield > 0.04 && dv.payoutRatio < 0.7) goods.push('殖利率 ' + (dv.dividendYield*100).toFixed(2) + '% 且配息率合理');
+  return { warnings, goods };
+};
+
+window.v247LoadAlerts = async function(symbol){
+  if (document.getElementById('v247-alert-' + symbol)) return;
+  const host = document.getElementById('v230-fund-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (d.error) return;
+    const { warnings, goods } = window.v247CheckHealth(d);
+    if (warnings.length === 0 && goods.length === 0) return;
+    const box = document.createElement('div');
+    box.id = 'v247-alert-' + symbol;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #ea580c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
+    let html = '<div style="font-weight:700;color:#9a3412;margin-bottom:8px;">⚠️ 體質警示（' + symbol + '）</div>';
+    if (goods.length > 0) {
+      html += '<div style="margin-bottom:8px;"><div style="font-size:12px;color:#16a34a;font-weight:600;margin-bottom:4px;">✅ 亮點</div>';
+      goods.forEach(g => { html += '<div style="font-size:12px;padding:4px 8px;background:#dcfce7;border-left:3px solid #16a34a;margin-bottom:2px;border-radius:4px;color:#166534;">' + g + '</div>'; });
+      html += '</div>';
+    }
+    if (warnings.length > 0) {
+      html += '<div><div style="font-size:12px;color:#dc2626;font-weight:600;margin-bottom:4px;">🚨 風險點</div>';
+      warnings.forEach(w => {
+        const c = w.level === 'red' ? '#fee2e2' : '#fef3c7';
+        const bc = w.level === 'red' ? '#dc2626' : '#f59e0b';
+        const tc = w.level === 'red' ? '#991b1b' : '#92400e';
+        html += '<div style="font-size:12px;padding:4px 8px;background:' + c + ';border-left:3px solid ' + bc + ';margin-bottom:2px;border-radius:4px;color:' + tc + ';">' + w.text + '</div>';
+      });
+      html += '</div>';
+    }
+    box.innerHTML = html;
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch (e) {}
+};
+
+(function(){
+  if (window.__v247Wired) return;
+  window.__v247Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v247LoadAlerts(code), 6000);
+    return r;
+  };
+})();

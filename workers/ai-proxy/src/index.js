@@ -1435,6 +1435,66 @@ export default {
       } catch (e) { return jsonResponse({ error: 'translate failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /macro (v244) - 總體經濟指標 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/macro') {
+      try {
+        const symbols = [
+          { code: '^TNX', name: '美國 10 年期公債殖利率' },
+          { code: '^FVX', name: '美國 5 年期公債殖利率' },
+          { code: 'DX-Y.NYB', name: '美元指數 DXY' },
+          { code: '^VIX', name: 'VIX 恐慌指數' },
+          { code: 'GC=F', name: '黃金期貨' },
+          { code: 'CL=F', name: '原油 WTI' },
+          { code: '^TWII', name: '台股加權指數' },
+          { code: '^GSPC', name: 'S&P 500' }
+        ];
+        const fetchOne = async (s) => {
+          try {
+            const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(s.code) + '?interval=1d&range=2d');
+            if (!r.ok) return { ...s, error: r.status };
+            const j = await r.json();
+            const meta = j.chart && j.chart.result && j.chart.result[0] && j.chart.result[0].meta;
+            if (!meta) return { ...s, error: 'no meta' };
+            const price = meta.regularMarketPrice || 0;
+            const prev = meta.previousClose || meta.chartPreviousClose || 0;
+            const pct = (prev && price) ? ((price - prev) / prev * 100) : 0;
+            return { ...s, price, changePercent: pct };
+          } catch(e) { return { ...s, error: e.message }; }
+        };
+        const results = await Promise.all(symbols.map(fetchOne));
+        return jsonResponse({ results, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'macro failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /pattern-detect (v245) - AI K 棒形態辨識 ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/pattern-detect') {
+      try {
+        const body = await request.json();
+        const { symbol, closes } = body;
+        if (!closes || closes.length < 20) return jsonResponse({ error: 'closes array required' }, 400);
+        // 簡化最近 20 個收盤價給 AI
+        const recent = closes.slice(-20).map(c => c.toFixed(2)).join(', ');
+        const prompt = `分析以下 ${symbol || '某股'} 最近 20 個收盤價，判斷可能的 K 棒形態（頭肩頂/雙底/突破/收斂三角/旗形等）。
+價格序列：${recent}
+
+請用繁體中文回答 80-120 字：
+1. 主要形態（直接命名）
+2. 一句話描述特徵
+3. 該形態通常代表什麼（多頭/空頭/觀望）
+不下買賣建議。結尾務必加 [把握度]/[資料源]/[盲點]`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是公開資訊整理員，只描述形態，不下建議。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 350
+        });
+        let analysis = aiRes.response || '';
+        if (!isContentSafe(analysis)) analysis = '⚠️ 為符合規範，本內容已過濾。';
+        return jsonResponse({ symbol, analysis, dataPoints: closes.length, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'pattern failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);
