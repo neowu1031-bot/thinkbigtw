@@ -7661,3 +7661,52 @@ window.v210Send = async function(){
     document.body.appendChild(btn);
   }, 2500);
 })();
+
+
+// ===== v210.2: 統一浮動按鈕（廢舊 chat + 收 v207 進 AI 介面）=====
+
+(function(){
+  // 每秒檢查並隱藏舊的浮動元素
+  setInterval(() => {
+    // 1. 隱藏 v152 系列舊 AI chat 泡泡
+    document.querySelectorAll('#ai-chat-bubble, #chat-bubble, .ai-chat-bubble, [id*="chat-bubble"]').forEach(el => {
+      if (el.id !== 'v210-trigger' && el.id !== 'v210-cfo-overlay') {
+        el.style.display = 'none';
+      }
+    });
+    // 2. 隱藏 v207 📊 浮動按鈕（功能整合進 v210）
+    const v207 = document.getElementById('v207-trigger');
+    if (v207) v207.style.display = 'none';
+    // 3. 隱藏 v207 panel（如果開著也關掉）
+    const p = document.getElementById('v207-panel');
+    if (p) p.style.display = 'none';
+  }, 1500);
+})();
+
+// 在 v210 對話介面內加「📊 多股比較」快速建議按鈕（讓 v207 功能可從 AI 介面觸發）
+(function(){
+  const orig = window.v210OpenCFO;
+  if (!orig || window.__v210ConsolidateWired) return;
+  window.__v210ConsolidateWired = true;
+  window.v210OpenCFO = function(){
+    orig();
+    // 等 overlay 渲染完，加額外快速按鈕
+    setTimeout(() => {
+      const suggestRow = document.querySelector('#v210-cfo-overlay [class*="v210-suggest"]');
+      if (!suggestRow) return;
+      const container = suggestRow.parentNode;
+      // 加 📊 多股比較按鈕（如果尚未存在）
+      if (!container.querySelector('.v210-tool-compare')) {
+        const compareBtn = document.createElement('button');
+        compareBtn.className = 'v210-suggest v210-tool-compare';
+        compareBtn.textContent = '📊 多股 K 線比較';
+        compareBtn.style.cssText = 'background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;';
+        compareBtn.addEventListener('click', () => {
+          // 開 v207 panel + 隱藏 v210 overlay 暫時讓 v207 顯示
+          if (window.v207OpenCompare) window.v207OpenCompare();
+        });
+        container.appendChild(compareBtn);
+      }
+    }, 100);
+  };
+})();
