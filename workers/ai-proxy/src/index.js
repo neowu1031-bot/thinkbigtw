@@ -1602,6 +1602,125 @@ export default {
       } catch (e) { return jsonResponse({ error: 'news-ner failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /stock-report (v258) - AI 個股深度報告 ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/stock-report') {
+      try {
+        const body = await request.json();
+        const { symbol, name } = body;
+        if (!symbol) return jsonResponse({ error: 'symbol required' }, 400);
+        // 並行抓 fundamentals + 報價
+        const [fr, qr] = await Promise.all([
+          fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(symbol)),
+          fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(symbol))
+        ]);
+        const f = await fr.json();
+        const q = await qr.json();
+        const v = f.valuation || {}, p = f.profitability || {}, g = f.growth || {}, fh = f.financialHealth || {}, dv = f.dividend || {}, an = f.analysts || {}, r = f.risk || {};
+        const ctx = `公司：${name || f.name || symbol} (${symbol})
+產業：${(f.profile || {}).sector || '?'} / ${(f.profile || {}).industry || '?'}
+當前價：${q.price || '?'} ${q.currency || ''}（${q.changePercent >= 0 ? '+' : ''}${(q.changePercent || 0).toFixed(2)}%）
+
+【估值】
+市值：$${(v.marketCap || 0) / 1e9}B / P/E ${v.peRatio || '?'} / P/B ${v.priceToBook || '?'} / PEG ${v.pegRatio || '?'}
+
+【獲利】
+ROE ${(p.roe * 100 || 0).toFixed(1)}% / 毛利率 ${(p.grossMargin * 100 || 0).toFixed(1)}% / 淨利率 ${(p.profitMargin * 100 || 0).toFixed(1)}%
+
+【成長】
+營收 YoY ${(g.revenueGrowth * 100 || 0).toFixed(1)}% / EPS YoY ${(g.earningsGrowth * 100 || 0).toFixed(1)}%
+
+【財務健康】
+負債/權益 ${fh.debtToEquity || 0} / 流動比 ${fh.currentRatio || 0}
+
+【分析師】
+平均目標價 $${an.targetMean || '?'} / 平均建議 ${an.recommendationMean || '?'}/5
+
+【風險】
+Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r.fiftyTwoWeekLow || '?'}`;
+        const prompt = ctx + `
+
+請扮演金融研究員，用繁體中文寫一份 300-400 字的「個股研究報告」，包含 5 段：
+1. 公司簡介
+2. 基本面亮點與隱憂
+3. 估值合理度
+4. 風險點 3 個
+5. 未來觀察重點 3 個
+
+不下買賣建議，只整理公開資訊讓投資人自己判斷。
+結尾務必加 [把握度]/[資料源]/[盲點]`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是公開資訊整理員，絕不提供買賣建議。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 1200
+        });
+        let report = aiRes.response || '';
+        if (!isContentSafe(report)) report = '⚠️ 為符合金管會規範，本內容已過濾。';
+        return jsonResponse({ symbol, name: f.name, report, fundamentals: f, quote: q, generated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'report failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /investment-diary (v259) - AI 個人投資日記 ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/investment-diary') {
+      try {
+        const body = await request.json();
+        const queries = (body.queries || []).slice(-15);
+        const watchlist = (body.watchlist || []).slice(0, 10);
+        const alerts = (body.alerts || []).slice(-5);
+        const risk = body.riskPreference || '';
+        const period = body.period || '本週';
+        const ctx = `【投資人最近 15 個查詢】\n${queries.join('\n')}\n\n【關注標的】${watchlist.join(', ')}\n\n【設過的提醒】${alerts.map(a => a.symbol + ' ' + a.condition).join(', ')}\n\n【風險偏好】${risk}\n\n【期間】${period}`;
+        const prompt = ctx + `\n\n請扮演投資日記助手，用繁體中文 200-250 字幫這位投資人寫一篇「${period}投資日記」：\n1. 您${period}的投資關注重點\n2. 從查詢模式看出的決策傾向\n3. 值得反思的 1 件事\n4. ${period}結束的一句話鼓勵\n\n措詞溫和，第二人稱「您」。不下買賣建議。\n結尾務必加 [把握度]/[資料源]/[盲點]`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是投資日記助手，溫和反思。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 600
+        });
+        let diary = aiRes.response || '';
+        if (!isContentSafe(diary)) diary = '⚠️ 為符合規範，本內容已過濾。';
+        return jsonResponse({ diary, period, dataPoints: queries.length + watchlist.length, generated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'diary failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /news-summary (v260) - 新聞 + AI 圖文摘要 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/news-summary') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(sym + ' stock') + '&hl=zh-TW';
+        const r = await fetch(rssUrl);
+        const xml = await r.text();
+        const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 5);
+        const news = items.map(m => {
+          const t = (m[1].match(/<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?<\/title>/) || [])[1] || '';
+          return { title: t.trim() };
+        }).filter(n => n.title);
+        if (news.length === 0) return jsonResponse({ symbol: sym, news: [], updated: new Date().toISOString() });
+        const numbered = news.map((n, i) => (i+1) + '. ' + n.title).join('\n');
+        const prompt = '對下列 ' + news.length + ' 篇新聞，每篇用繁體中文寫一句 25 字以內的摘要，每行回「序號. 摘要」：\n\n' + numbered;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是新聞摘要員，回答簡潔。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 400
+        });
+        const parsed = aiRes.response || '';
+        const lines = parsed.split('\n').filter(l => /^\d+\./.test(l));
+        const summaryMap = {};
+        lines.forEach(l => {
+          const m = l.match(/^(\d+)\.\s*(.+)$/);
+          if (m) summaryMap[parseInt(m[1])] = m[2].trim();
+        });
+        const result = news.map((n, i) => ({ ...n, summary: summaryMap[i+1] || n.title }));
+        return jsonResponse({ symbol: sym, news: result, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'news-sum failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

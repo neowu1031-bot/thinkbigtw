@@ -10841,3 +10841,179 @@ window.v257LoadNewsNER = async function(symbol){
     return r;
   };
 })();
+
+
+// ===== v258: AI 個股深度報告（PDF 列印）=====
+
+window.v258OpenStockReport = async function(){
+  const sym = prompt('輸入要產生 AI 報告的股票代號');
+  if (!sym) return;
+  const symbol = sym.toUpperCase();
+  const win = window.open('', '_blank');
+  if (!win) { alert('請允許彈出視窗'); return; }
+  win.document.write('<html><head><title>MoneyRadar 個股報告 - ' + symbol + '</title><style>body{font-family:-apple-system,"PingFang TC",sans-serif;max-width:800px;margin:30px auto;padding:20px;color:#1f2937;line-height:1.7;}h1{color:#1e3a8a;}h2{color:#2563eb;border-bottom:2px solid #93c5fd;padding-bottom:4px;margin-top:24px;}.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0;}.metric{padding:10px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;}.metric-label{font-size:11px;color:#6b7280;}.metric-value{font-size:14px;font-weight:600;color:#1f2937;}.report-text{background:#fef3c7;padding:14px;border-radius:8px;margin:12px 0;line-height:1.8;}.print-btn{position:fixed;top:20px;right:20px;padding:10px 20px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;}@media print{.print-btn{display:none;}}</style></head><body>');
+  win.document.write('<button class="print-btn" onclick="window.print()">🖨 列印 / 存 PDF</button>');
+  win.document.write('<h1>📊 MoneyRadar AI 個股深度報告</h1>');
+  win.document.write('<div style="color:#6b7280;font-size:13px;">' + symbol + ' · 生成時間：' + new Date().toLocaleString('zh-TW') + '</div>');
+  win.document.write('<div style="color:#9ca3af;text-align:center;padding:40px;" id="v258-loading">⏳ AI 撰寫中（約 15 秒）...</div>');
+  win.document.write('<div id="v258-content"></div>');
+  win.document.write('</body></html>');
+  win.document.close();
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/stock-report', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symbol })
+    });
+    const d = await r.json();
+    if (d.error) { win.document.getElementById('v258-loading').textContent = '失敗：' + d.error; return; }
+    win.document.getElementById('v258-loading').remove();
+    const f = d.fundamentals || {}, q = d.quote || {};
+    const v = f.valuation || {}, p = f.profitability || {}, g = f.growth || {};
+    const fmt = (val, type) => {
+      if (!val && val !== 0) return '-';
+      if (type === '%') return (val * 100).toFixed(2) + '%';
+      if (type === 'B') return val >= 1e9 ? (val/1e9).toFixed(2) + 'B' : val >= 1e6 ? (val/1e6).toFixed(2) + 'M' : val.toFixed(0);
+      return val.toFixed(2);
+    };
+    let html = '<h2>📌 標的概要</h2>';
+    html += '<div><strong>' + (d.name || symbol) + ' (' + symbol + ')</strong> · ' + ((f.profile || {}).sector || '?') + ' / ' + ((f.profile || {}).industry || '?') + '</div>';
+    html += '<div style="font-size:18px;margin-top:6px;"><strong>$' + fmt(q.price) + ' ' + (q.currency || '') + '</strong> <span style="color:' + (q.changePercent >= 0 ? '#dc2626' : '#16a34a') + ';">(' + (q.changePercent >= 0 ? '+' : '') + fmt(q.changePercent) + '%)</span></div>';
+    html += '<h2>💰 估值</h2><div class="metric-grid">';
+    html += '<div class="metric"><div class="metric-label">市值</div><div class="metric-value">$' + fmt(v.marketCap, 'B') + '</div></div>';
+    html += '<div class="metric"><div class="metric-label">P/E</div><div class="metric-value">' + fmt(v.peRatio) + '</div></div>';
+    html += '<div class="metric"><div class="metric-label">P/B</div><div class="metric-value">' + fmt(v.priceToBook) + '</div></div>';
+    html += '<div class="metric"><div class="metric-label">PEG</div><div class="metric-value">' + fmt(v.pegRatio) + '</div></div>';
+    html += '</div>';
+    html += '<h2>📈 獲利能力</h2><div class="metric-grid">';
+    html += '<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">' + fmt(p.roe, '%') + '</div></div>';
+    html += '<div class="metric"><div class="metric-label">ROA</div><div class="metric-value">' + fmt(p.roa, '%') + '</div></div>';
+    html += '<div class="metric"><div class="metric-label">毛利率</div><div class="metric-value">' + fmt(p.grossMargin, '%') + '</div></div>';
+    html += '<div class="metric"><div class="metric-label">淨利率</div><div class="metric-value">' + fmt(p.profitMargin, '%') + '</div></div>';
+    html += '</div>';
+    html += '<h2>🚀 成長</h2><div class="metric-grid">';
+    html += '<div class="metric"><div class="metric-label">營收 YoY</div><div class="metric-value">' + fmt(g.revenueGrowth, '%') + '</div></div>';
+    html += '<div class="metric"><div class="metric-label">EPS YoY</div><div class="metric-value">' + fmt(g.earningsGrowth, '%') + '</div></div>';
+    html += '</div>';
+    html += '<h2>🤖 AI 研究員報告</h2>';
+    html += '<div class="report-text">' + (d.report || '').replace(/\n/g, '<br>') + '</div>';
+    html += '<div style="margin-top:20px;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:10px;">⚠️ 本內容為公開資訊整理，不構成投資建議。MoneyRadar™ · ' + new Date().toISOString() + '</div>';
+    win.document.getElementById('v258-content').innerHTML = html;
+  } catch (e) {
+    win.document.getElementById('v258-loading').textContent = '失敗：' + (e.message || e);
+  }
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v258-pdf-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v258-pdf-btn';
+    btn.textContent = '📑 AI 個股報告';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(30,58,138,0.3),rgba(96,165,250,0.3));border:1px solid rgba(30,58,138,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v258OpenStockReport());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v259: AI 投資日記 =====
+
+window.v259OpenDiary = async function(){
+  const period = '本週';
+  const msgs = document.getElementById('v210-messages');
+  if (!msgs) { window.v210OpenCFO(); return setTimeout(() => window.v259OpenDiary(), 500); }
+  const intro = document.createElement('div');
+  intro.style.cssText = 'background:rgba(244,114,182,0.2);border:1px solid rgba(244,114,182,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#fbcfe8;">📔 AI 為您寫投資日記</div><div style="font-size:13px;color:rgba(255,255,255,0.85);">分析您的查詢、自選、提醒模式 → 寫成 ' + period + '日記</div>';
+  msgs.appendChild(intro);
+  const loading = document.createElement('div');
+  loading.style.cssText = 'background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;color:rgba(255,255,255,0.7);';
+  loading.innerHTML = '📔 AI 撰寫中...';
+  msgs.appendChild(loading);
+  msgs.scrollTop = msgs.scrollHeight;
+  try {
+    const m = window.v211Memory ? window.v211Memory.load() : {};
+    const queries = (m.queryHistory || []).map(x => x.q);
+    const alerts = window.v220Alerts ? window.v220Alerts.load() : [];
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/investment-diary', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        queries, watchlist: m.watchlist || [],
+        alerts: alerts.map(a => ({ symbol: a.symbol, condition: a.condition })),
+        riskPreference: m.riskPreference || '', period
+      })
+    });
+    const d = await r.json();
+    loading.remove();
+    if (d.error) {
+      const err = document.createElement('div');
+      err.style.cssText = 'background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+      err.innerHTML = '⚠️ ' + d.error;
+      msgs.appendChild(err);
+      return;
+    }
+    const card = document.createElement('div');
+    card.style.cssText = 'background:linear-gradient(135deg,rgba(244,114,182,0.2),rgba(168,85,247,0.15));border:1px solid rgba(244,114,182,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+    card.innerHTML = '<div style="font-weight:700;color:#fbcfe8;margin-bottom:6px;">📔 ' + new Date().toLocaleDateString('zh-TW') + ' 投資日記</div><div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:8px;">基於 ' + d.dataPoints + ' 個資料點</div><div style="font-size:13px;line-height:1.8;color:rgba(255,255,255,0.95);">' + (d.diary || '').replace(/\n/g, '<br>') + '</div>';
+    msgs.appendChild(card);
+  } catch (e) {
+    loading.innerHTML = '⚠️ 失敗：' + (e.message || e);
+  }
+  msgs.scrollTop = msgs.scrollHeight;
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v259-diary-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v259-diary-btn';
+    btn.textContent = '📔 投資日記';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(244,114,182,0.3),rgba(236,72,153,0.3));border:1px solid rgba(244,114,182,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v259OpenDiary());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v260: AI 圖文新聞摘要（升級 v222）=====
+
+window.v260LoadNewsSummary = async function(symbol){
+  if (document.getElementById('v260-sum-' + symbol)) return;
+  const host = document.getElementById('v222-news-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/news-summary?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (!d.news || d.news.length === 0) return;
+    const box = document.createElement('div');
+    box.id = 'v260-sum-' + symbol;
+    box.style.cssText = 'margin-top:10px;padding:10px;background:#f0f9ff;border:1px solid #93c5fd;border-radius:8px;';
+    let html = '<div style="font-weight:600;color:#1e40af;font-size:12px;margin-bottom:6px;">📝 AI 一句話摘要</div>';
+    d.news.forEach((n, i) => {
+      html += '<div style="font-size:11px;margin-bottom:6px;padding:6px;background:white;border-left:3px solid #2563eb;border-radius:4px;">';
+      html += '<div style="font-weight:600;color:#1e40af;font-size:11px;line-height:1.4;">' + n.title + '</div>';
+      html += '<div style="color:#1f2937;margin-top:2px;line-height:1.5;">📌 ' + (n.summary || '') + '</div>';
+      html += '</div>';
+    });
+    box.innerHTML = html;
+    host.appendChild(box);
+  } catch (e) {}
+};
+
+(function(){
+  if (window.__v260Wired) return;
+  window.__v260Wired = true;
+  const orig = window.v222LoadNewsSentiment;
+  if (!orig) return;
+  window.v222LoadNewsSentiment = async function(symbol){
+    const r = await orig(symbol);
+    setTimeout(() => window.v260LoadNewsSummary(symbol), 2500);
+    return r;
+  };
+})();
