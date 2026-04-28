@@ -9391,3 +9391,45 @@ setTimeout(() => window.v232CheckDailyBrief(), 5000);
   }, 1500);
   console.log('[v233] dedupe wired');
 })();
+
+
+// ===== v234: Onboarding mini tour（第一次開 💎 自動引導）=====
+
+window.v234ShowTour = function(){
+  if (localStorage.getItem('mr_v234_visited')) return;
+  const msgs = document.getElementById('v210-messages');
+  if (!msgs) return;
+  const tour = document.createElement('div');
+  tour.style.cssText = 'background:linear-gradient(135deg,rgba(251,191,36,0.25),rgba(244,63,94,0.15));border:2px solid rgba(251,191,36,0.6);border-radius:12px;padding:16px;max-width:90%;margin-bottom:12px;color:white;';
+  tour.innerHTML = ''
+    + '<div style="font-weight:700;font-size:16px;margin-bottom:10px;color:#fde68a;">👋 歡迎使用 MoneyRadar AI CFO</div>'
+    + '<div style="font-size:13px;line-height:1.8;color:rgba(255,255,255,0.95);">這 5 個 AI 功能最有用：</div>'
+    + '<ol style="margin-top:8px;margin-bottom:8px;padding-left:20px;font-size:13px;line-height:1.8;color:rgba(255,255,255,0.9);">'
+    + '<li><strong>🎭 圓桌會議</strong> — 3 位 AI 分析師對某檔股辯論（多頭/技術面/反方視角）</li>'
+    + '<li><strong>🌪 情境模擬</strong> — 「Fed 升息會怎樣？」AI 分析您 watchlist</li>'
+    + '<li><strong>🎓 成長教練</strong> — AI 觀察您過去查詢，給反思反饋</li>'
+    + '<li><strong>💼 投組健診</strong> — 輸入持股，AI 分析集中度</li>'
+    + '<li><strong>🔄 投組再平衡</strong> — AI 給可考慮觀察的類別</li>'
+    + '</ol>'
+    + '<div style="font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:10px;">💡 提示：先點 <strong>🧠 偏好</strong> 設定您的關注標的，下次開啟會自動跑「今日早報」。</div>'
+    + '<button id="v234-dismiss" style="padding:6px 14px;background:#fbbf24;color:#1e3a8a;border:none;border-radius:8px;cursor:pointer;font-weight:700;">知道了，開始體驗 →</button>';
+  msgs.appendChild(tour);
+  document.getElementById('v234-dismiss').addEventListener('click', () => {
+    tour.remove();
+    localStorage.setItem('mr_v234_visited', '1');
+  });
+};
+
+(function(){
+  if (window.__v234Wired) return;
+  window.__v234Wired = true;
+  let triggered = false;
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    if (overlay.style.display === 'none') return;
+    if (triggered) return;
+    triggered = true;
+    setTimeout(() => window.v234ShowTour(), 1200);
+  }, 1500);
+})();

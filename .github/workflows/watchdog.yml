@@ -1,20 +1,28 @@
-name: MoneyRadar Watchdog
+name: MoneyRadar Watchdog (Tier 3 auto-rollback)
 on:
   schedule:
-    - cron: '*/2 * * * *'   # 每 2 分鐘
+    - cron: '*/2 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
 
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 5
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 5
       - name: Health probes
         id: probe
         continue-on-error: true
         run: |
           set +e
           fail=0
+          failed_endpoints=""
           for url in \
             "https://thinkbigtw.com/lab/" \
             "https://thinkbigtw.com/lab/app2.js" \
@@ -22,30 +30,71 @@ jobs:
           do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
             if [ "$code" != "200" ]; then
-              echo "❌ $url → HTTP $code"
+              failed_endpoints="$failed_endpoints\n  - $url (HTTP $code)"
               fail=$((fail+1))
             fi
           done
-          # /quote 抽樣
           q=$(curl -s 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=NVDA')
           if ! echo "$q" | grep -q '"price"'; then
-            echo "❌ /quote NVDA 失敗"
+            failed_endpoints="$failed_endpoints\n  - /quote NVDA (no price)"
             fail=$((fail+1))
           fi
           echo "fail_count=$fail" >> $GITHUB_OUTPUT
+          echo "failed_list<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$failed_endpoints" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
           exit 0
-      - name: Open incident on failure
+      - name: Auto-rollback if last commit < 5 min and not already a rollback
+        id: rollback
+        if: steps.probe.outputs.fail_count != '0'
+        run: |
+          last_msg=$(git log -1 --format=%s)
+          last_time=$(git log -1 --format=%ct)
+          now=$(date +%s)
+          age=$((now - last_time))
+          echo "Last commit: $last_msg ($age sec ago)"
+          # 避免 rollback loop
+          if echo "$last_msg" | grep -q '\[auto-rollback\]'; then
+            echo "rolled_back=skip" >> $GITHUB_OUTPUT
+            echo "Last commit is already an auto-rollback, skipping"
+            exit 0
+          fi
+          if [ $age -lt 300 ]; then
+            echo "🔄 Last commit < 5 min ago, auto-rolling back..."
+            git config user.email "watchdog@thinkbigtw.com"
+            git config user.name "MoneyRadar Watchdog"
+            git revert --no-edit HEAD
+            # 改 commit message 加 [auto-rollback] tag
+            git commit --amend -m "[auto-rollback] Revert last commit (Watchdog Tier 3) - failed: ${{ steps.probe.outputs.fail_count }} endpoints"
+            git push
+            echo "rolled_back=yes" >> $GITHUB_OUTPUT
+          else
+            echo "⏱ Last commit > 5 min ago, manual review needed"
+            echo "rolled_back=no" >> $GITHUB_OUTPUT
+          fi
+      - name: Open incident issue
         if: steps.probe.outputs.fail_count != '0'
         uses: actions/github-script@v7
         with:
           script: |
             const fc = '${{ steps.probe.outputs.fail_count }}';
+            const list = `${{ steps.probe.outputs.failed_list }}`;
+            const rb = '${{ steps.rollback.outputs.rolled_back }}';
+            let title = '🚨 Watchdog 偵測異常 ' + new Date().toISOString();
+            let body = '監測時間：' + new Date().toISOString() + '\n失敗端點：' + fc + ' 個\n' + list + '\n\n';
+            if (rb === 'yes') {
+              title = '🔄 Watchdog 已自動 rollback - ' + new Date().toISOString();
+              body += '✅ **已自動 revert 最後一個 commit**（Tier 3 自動修復）\n\n請檢查：\n1. rollback 後是否恢復\n2. 原 commit 是哪裡有問題\n3. 是否需要進一步修復\n';
+            } else if (rb === 'skip') {
+              body += '⚠️ 上一個 commit 已是自動 rollback，避免 loop 跳過。**需要人工介入**。\n';
+            } else {
+              body += '⚠️ 最後 commit 超過 5 分鐘，未自動 rollback。**需要人工檢查**。\n';
+            }
+            body += '\n🔍 [查看 Workflow Run](' + context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId + ')';
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: '🚨 Watchdog 偵測異常 ' + new Date().toISOString() + ' (failed: ' + fc + ')',
-              body: '監測：' + new Date().toISOString() + '\\n失敗端點：' + fc + ' 個\\n\\n' +
-                    '🔍 [查看 Workflow Run](' + context.serverUrl + '/' + context.repo.owner + '/' + context.repo.repo + '/actions/runs/' + context.runId + ')\\n\\n' +
-                    '建議檢查：1) Cloudflare Worker 狀態 2) GitHub Pages 部署 3) Yahoo Finance API',
-              labels: ['watchdog', 'incident', 'auto-detected']
+              title: title,
+              body: body,
+              labels: ['watchdog', 'incident', rb === 'yes' ? 'auto-rolled-back' : 'needs-manual']
             });
