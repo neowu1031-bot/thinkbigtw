@@ -1531,6 +1531,77 @@ export default {
       } catch (e) { return jsonResponse({ error: 'pattern failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /margin (v253) - TWSE 融資融券（當日全市場）===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/margin') {
+      const u = new URL(request.url);
+      const stock = u.searchParams.get('stock');
+      try {
+        const r = await fetch('https://openapi.twse.com.tw/v1/exchangeReport/MI_MARGN', {
+          headers: { 'User-Agent': 'MoneyRadar/1.0' }
+        });
+        if (!r.ok) return jsonResponse({ error: 'TWSE ' + r.status }, 502);
+        const data = await r.json();
+        if (stock) {
+          const found = data.find(d => d.Code === stock || d.stock_id === stock);
+          if (!found) return jsonResponse({ error: 'stock not found in TWSE today' }, 404);
+          return jsonResponse({ stock, data: found, updated: new Date().toISOString() });
+        }
+        return jsonResponse({ count: data.length, data: data.slice(0, 50), updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'TWSE failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /monthly-revenue (v256) - 台股月營收 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/monthly-revenue') {
+      const u = new URL(request.url);
+      const stock = u.searchParams.get('stock');
+      if (!stock) return jsonResponse({ error: 'stock required' }, 400);
+      try {
+        const sb = 'https://gvscndrxmihaffbwgmku.supabase.co';
+        const r = await fetch(sb + '/rest/v1/monthly_revenue?stock_code=eq.' + encodeURIComponent(stock) + '&select=year_month,revenue,yoy_pct,mom_pct&order=year_month.desc&limit=24', {
+          headers: { apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2c2NuZHJ4bWloYWZmYndnbWt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA4MzQyMjEsImV4cCI6MjA1NjQxMDIyMX0.O2WMkNPBjXPSHlPbgU6nJP6sV1AXr_C-JbtBEa9JIQk' }
+        });
+        if (!r.ok) return jsonResponse({ error: 'Supabase ' + r.status }, 502);
+        const rows = await r.json();
+        return jsonResponse({ stock, rows, count: rows.length, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'monthly-rev failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /news-ner (v257) - 新聞 + AI Entity 標記 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/news-ner') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(sym + ' stock') + '&hl=zh-TW';
+        const r = await fetch(rssUrl);
+        const xml = await r.text();
+        const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 5);
+        const news = items.map(m => {
+          const t = (m[1].match(/<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?<\/title>/) || [])[1] || '';
+          return { title: t.trim() };
+        }).filter(n => n.title);
+        if (news.length === 0) return jsonResponse({ symbol: sym, news: [], updated: new Date().toISOString() });
+        const numbered = news.map((n, i) => (i+1) + '. ' + n.title).join('\n');
+        const prompt = '對下列 ' + news.length + ' 篇新聞標題抽取重要實體（公司/人名/產品/事件），每行回「序號. [實體1, 實體2, ...]」：\n\n' + numbered;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是 NER 實體抽取器，回答簡潔。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 400
+        });
+        const parsed = aiRes.response || '';
+        const lines = parsed.split('\n').filter(l => /^\d+\./.test(l));
+        const entityMap = {};
+        lines.forEach(l => {
+          const m = l.match(/^(\d+)\.\s*\[(.+)\]/);
+          if (m) entityMap[parseInt(m[1])] = m[2].split(',').map(x => x.trim()).filter(Boolean);
+        });
+        const result = news.map((n, i) => ({ ...n, entities: entityMap[i+1] || [] }));
+        return jsonResponse({ symbol: sym, news: result, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'news-ner failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

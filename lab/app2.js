@@ -10614,3 +10614,230 @@ window.v252ApplyHidden = function(){
     suggests.appendChild(btn);
   }, 2000);
 })();
+
+
+// ===== v253: 融資融券（TWSE）=====
+
+window.v253LoadMargin = async function(stockCode){
+  if (!stockCode || !/^\d{4}$/.test(stockCode)) return;
+  if (document.getElementById('v253-margin-' + stockCode)) return;
+  const host = document.getElementById('v239-inst-' + stockCode) || document.getElementById('v230-fund-' + stockCode);
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v253-margin-' + stockCode;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #c2410c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">💰 融資融券（' + stockCode + '）</div><div id="v253-body-' + stockCode + '">載入中…</div>';
+  host.parentNode.insertBefore(box, host.nextSibling);
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/margin?stock=' + stockCode);
+    const d = await r.json();
+    const body = document.getElementById('v253-body-' + stockCode);
+    if (d.error) { body.innerHTML = '<div style="color:#9ca3af;">' + d.error + '（可能非交易日）</div>'; return; }
+    const x = d.data || {};
+    const html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;font-size:12px;">'
+      + '<div style="padding:8px;background:white;border:1px solid #fed7aa;border-radius:6px;"><div style="color:#6b7280;font-size:10px;">融資餘額（張）</div><div style="font-weight:700;color:#dc2626;">' + (x.MarginPurchaseTodayBalance || x['融資餘額'] || x.margin_balance || '-') + '</div></div>'
+      + '<div style="padding:8px;background:white;border:1px solid #fed7aa;border-radius:6px;"><div style="color:#6b7280;font-size:10px;">融券餘額（張）</div><div style="font-weight:700;color:#16a34a;">' + (x.ShortSaleTodayBalance || x['融券餘額'] || x.short_balance || '-') + '</div></div>'
+      + '<div style="padding:8px;background:white;border:1px solid #fed7aa;border-radius:6px;"><div style="color:#6b7280;font-size:10px;">資券比</div><div style="font-weight:700;">'
+        + ((x.MarginPurchaseTodayBalance && x.ShortSaleTodayBalance) ? ((+x.MarginPurchaseTodayBalance / +x.ShortSaleTodayBalance).toFixed(1)) : '-')
+        + '</div></div>'
+      + '</div><div style="font-size:10px;color:#6b7280;margin-top:6px;">資料：證交所 TWSE OpenAPI · 當日</div>';
+    body.innerHTML = html;
+  } catch (e) {
+    document.getElementById('v253-body-' + stockCode).innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
+  }
+};
+
+(function(){
+  if (window.__v253Wired) return;
+  window.__v253Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v253LoadMargin(code), 6500);
+    return r;
+  };
+})();
+
+
+// ===== v254: 股利政策日曆 =====
+
+window.v254OpenDividendCalendar = async function(){
+  let modal = document.getElementById('v254-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v254-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:520px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">📅 股利日曆（從您的關注標的）</div><button id="v254-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div id="v254-body">載入中…</div>';
+  document.body.appendChild(modal);
+  document.getElementById('v254-close').addEventListener('click', () => modal.remove());
+  const m = window.v211Memory ? window.v211Memory.load() : { watchlist: [] };
+  const wl = (m.watchlist || []).slice(0, 10);
+  if (wl.length === 0) { document.getElementById('v254-body').innerHTML = '請先設定 🧠 偏好中的關注標的'; return; }
+  try {
+    const results = await Promise.all(wl.map(async sym => {
+      const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(sym));
+      if (!r.ok) return { sym, error: r.status };
+      const d = await r.json();
+      return { sym, name: d.name, dividend: d.dividend, valuation: d.valuation };
+    }));
+    let html = '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;"><thead style="background:#fef9c3;"><tr><th style="padding:6px;text-align:left;">代號</th><th style="padding:6px;text-align:right;">殖利率</th><th style="padding:6px;text-align:right;">配息率</th><th style="padding:6px;text-align:right;">5 年均</th><th style="padding:6px;text-align:right;">年配息</th></tr></thead><tbody>';
+    results.forEach(r => {
+      if (r.error) return;
+      const dv = r.dividend || {};
+      html += '<tr style="border-bottom:1px solid #fde68a;"><td style="padding:6px;font-weight:600;">' + r.sym + '</td>';
+      html += '<td style="padding:6px;text-align:right;color:#ca8a04;font-weight:700;">' + (dv.dividendYield ? (dv.dividendYield*100).toFixed(2) + '%' : '-') + '</td>';
+      html += '<td style="padding:6px;text-align:right;">' + (dv.payoutRatio ? (dv.payoutRatio*100).toFixed(0) + '%' : '-') + '</td>';
+      html += '<td style="padding:6px;text-align:right;">' + (dv.fiveYearAvgYield ? dv.fiveYearAvgYield.toFixed(2) + '%' : '-') + '</td>';
+      html += '<td style="padding:6px;text-align:right;">$' + (dv.dividendRate ? dv.dividendRate.toFixed(2) : '-') + '</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    document.getElementById('v254-body').innerHTML = html;
+  } catch (e) { document.getElementById('v254-body').innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v254-div-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v254-div-btn';
+    btn.textContent = '📅 股利日曆';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(202,138,4,0.3),rgba(234,179,8,0.3));border:1px solid rgba(202,138,4,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v254OpenDividendCalendar());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v255: 50+ 財務指標選股模式（10 經典策略）=====
+
+(function(){
+  if (window.__v255Wired) return;
+  window.__v255Wired = true;
+  setInterval(() => {
+    const modal = document.getElementById('v236-modal');
+    if (!modal) return;
+    const presetRow = modal.querySelector('.v236-preset')?.parentNode;
+    if (!presetRow || presetRow.querySelector('.v255-preset')) return;
+    const newPresets = [
+      ['🏛 葛拉漢防禦型', { maxPE: 15, maxPB: 1.5, minDivYield: 2, maxDebtToEquity: 50, minMarketCapB: 5 }],
+      ['🚀 彼得林區成長', { minRevGrowth: 25, minROE: 18, maxPE: 30 }],
+      ['💎 護城河寬廣', { minROE: 25, minGrossMargin: 50, maxDebtToEquity: 50 }],
+      ['🌟 高 EPS 成長', { minRevGrowth: 30, minROE: 20 }],
+      ['🛡 防禦+股息', { minDivYield: 4, maxDebtToEquity: 80, maxPE: 20 }],
+      ['💰 富國銀行式', { minROE: 15, maxPB: 2, maxPE: 18, minDivYield: 1.5 }]
+    ];
+    newPresets.forEach(([label, filters]) => {
+      const btn = document.createElement('button');
+      btn.className = 'v236-preset v255-preset';
+      btn.textContent = label;
+      btn.style.cssText = 'padding:5px 10px;font-size:11px;background:#f3f4f6;border:1px solid #9ca3af;border-radius:14px;cursor:pointer;color:#374151;margin:2px;';
+      btn.addEventListener('click', () => {
+        const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val !== undefined ? val : ''; };
+        set('v236-maxPE', filters.maxPE); set('v236-maxPB', filters.maxPB); set('v236-minROE', filters.minROE);
+        set('v236-minGM', filters.minGrossMargin); set('v236-minRevG', filters.minRevGrowth);
+        set('v236-minDY', filters.minDivYield); set('v236-maxDE', filters.maxDebtToEquity); set('v236-minMC', filters.minMarketCapB);
+      });
+      presetRow.appendChild(btn);
+    });
+  }, 1500);
+})();
+
+
+// ===== v256: 月營收 YoY/MoM 趨勢（台股）=====
+
+window.v256LoadMonthlyRevenue = async function(stockCode){
+  if (!stockCode || !/^\d{4}$/.test(stockCode)) return;
+  if (document.getElementById('v256-rev-' + stockCode)) return;
+  const host = document.getElementById('v253-margin-' + stockCode) || document.getElementById('v239-inst-' + stockCode);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/monthly-revenue?stock=' + stockCode);
+    const d = await r.json();
+    if (d.error || !d.rows || d.rows.length === 0) return;
+    const rows = [...d.rows].reverse(); // 最舊到最新
+    const box = document.createElement('div');
+    box.id = 'v256-rev-' + stockCode;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #15803d;border-radius:12px;background:linear-gradient(180deg,#f0fdf4,#fff);';
+    // SVG bar chart
+    const W = 600, H = 200, padL = 50, padR = 10, padT = 10, padB = 30;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const yoys = rows.map(r => +r.yoy_pct || 0);
+    const yMax = Math.max(...yoys, 0), yMin = Math.min(...yoys, 0);
+    const range = (yMax - yMin) || 1;
+    const bw = innerW / Math.max(1, rows.length);
+    const x = i => padL + i * bw;
+    const y = v => padT + (1 - (v - yMin) / range) * innerH;
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;background:white;border:1px solid #bbf7d0;border-radius:6px;">';
+    svg += '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y(0) + '" y2="' + y(0) + '" stroke="#9ca3af" stroke-dasharray="3,3"/>';
+    rows.forEach((r, i) => {
+      const v = +r.yoy_pct || 0;
+      const c = v >= 0 ? '#16a34a' : '#dc2626';
+      const top = v >= 0 ? y(v) : y(0);
+      const ht = Math.abs(y(v) - y(0));
+      svg += '<rect x="' + x(i) + '" y="' + top + '" width="' + (bw - 1) + '" height="' + ht + '" fill="' + c + '"/>';
+    });
+    svg += '<text x="6" y="' + (y(yMax)+3) + '" font-size="9" fill="#6b7280">' + yMax.toFixed(0) + '%</text>';
+    svg += '<text x="6" y="' + (y(yMin)+3) + '" font-size="9" fill="#6b7280">' + yMin.toFixed(0) + '%</text>';
+    svg += '<text x="6" y="' + (y(0)+3) + '" font-size="9" fill="#6b7280">0</text>';
+    svg += '</svg>';
+    box.innerHTML = '<div style="font-weight:700;color:#166534;margin-bottom:6px;">📈 月營收 YoY 趨勢（' + stockCode + '，最近 ' + rows.length + ' 個月）</div>' + svg + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">最新月：' + (rows[rows.length-1].year_month || '-') + ' · YoY ' + (yoys[yoys.length-1] >= 0 ? '+' : '') + yoys[yoys.length-1].toFixed(2) + '%</div>';
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch (e) {}
+};
+
+(function(){
+  if (window.__v256Wired) return;
+  window.__v256Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v256LoadMonthlyRevenue(code), 7000);
+    return r;
+  };
+})();
+
+
+// ===== v257: 新聞 entity 自動標記 =====
+
+window.v257LoadNewsNER = async function(symbol){
+  if (document.getElementById('v257-ner-' + symbol)) return;
+  const host = document.getElementById('v222-news-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/news-ner?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (!d.news || d.news.length === 0) return;
+    const box = document.createElement('div');
+    box.id = 'v257-ner-' + symbol;
+    box.style.cssText = 'margin-top:10px;padding:10px;background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;';
+    let html = '<div style="font-weight:600;color:#92400e;font-size:12px;margin-bottom:6px;">🏷 AI 抽取重要實體</div>';
+    d.news.forEach((n, i) => {
+      if (!n.entities || n.entities.length === 0) return;
+      html += '<div style="font-size:11px;margin-bottom:4px;"><span style="color:#6b7280;">' + (i+1) + '.</span> ';
+      n.entities.forEach(e => {
+        html += '<span style="display:inline-block;padding:1px 6px;margin:1px;background:white;border:1px solid #fbbf24;border-radius:8px;color:#92400e;font-weight:600;">' + e + '</span>';
+      });
+      html += '</div>';
+    });
+    box.innerHTML = html;
+    host.appendChild(box);
+  } catch (e) {}
+};
+
+(function(){
+  if (window.__v257Wired) return;
+  window.__v257Wired = true;
+  const orig = window.v222LoadNewsSentiment;
+  if (!orig) return;
+  window.v222LoadNewsSentiment = async function(symbol){
+    const r = await orig(symbol);
+    setTimeout(() => window.v257LoadNewsNER(symbol), 1500);
+    return r;
+  };
+})();
