@@ -8469,3 +8469,174 @@ window.v219LoadIndicatorPanel = async function(symbol){
     return r;
   };
 })();
+
+
+// ===== v220: Custom alerts (價格穿越 / 技術訊號 / Web Push) =====
+
+window.v220Alerts = {
+  KEY: 'mr_v220_alerts',
+  load: function(){ try { return JSON.parse(localStorage.getItem(this.KEY) || '[]'); } catch(e) { return []; } },
+  save: function(arr){ localStorage.setItem(this.KEY, JSON.stringify(arr)); },
+  add: function(a){ const arr = this.load(); a.id = 'a_' + Date.now() + '_' + Math.random().toString(36).slice(2,6); a.created = Date.now(); a.triggered = false; arr.push(a); this.save(arr); return a.id; },
+  remove: function(id){ this.save(this.load().filter(a => a.id !== id)); },
+  markTriggered: function(id){ const arr = this.load(); const a = arr.find(x => x.id === id); if (a) { a.triggered = true; a.triggeredAt = Date.now(); this.save(arr); } }
+};
+window.v220OpenAlertModal = function(symbol){
+  let modal = document.getElementById('v220-alert-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v220-alert-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:420px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">⏰ 設定提醒</div><button id="v220-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="margin-bottom:14px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">標的代號</label><input id="v220-sym" value="' + (symbol || '') + '" placeholder="NVDA / 2330" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"></div><div style="margin-bottom:14px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">提醒條件</label><select id="v220-cond" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"><option value="price_above">價格突破 ↑</option><option value="price_below">價格跌破 ↓</option><option value="pct_up">24h 漲幅 ≥</option><option value="pct_down">24h 跌幅 ≥</option><option value="rsi_overbought">RSI ≥ 70（超買）</option><option value="rsi_oversold">RSI ≤ 30（超賣）</option></select></div><div style="margin-bottom:16px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">閾值</label><input id="v220-val" type="number" step="0.01" placeholder="例：200 或 5" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"></div><button id="v220-save" style="width:100%;padding:10px;background:#dc2626;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">⏰ 啟用提醒</button>';
+  document.body.appendChild(modal);
+  document.getElementById('v220-close').addEventListener('click', () => modal.remove());
+  document.getElementById('v220-save').addEventListener('click', async () => {
+    const sym = document.getElementById('v220-sym').value.trim().toUpperCase();
+    const cond = document.getElementById('v220-cond').value;
+    const val = parseFloat(document.getElementById('v220-val').value);
+    if (!sym || isNaN(val)) { alert('請填完整'); return; }
+    if ('Notification' in window && Notification.permission !== 'granted') {
+      try { await Notification.requestPermission(); } catch(e){}
+    }
+    window.v220Alerts.add({ symbol: sym, condition: cond, threshold: val });
+    modal.remove();
+    alert('✅ 提醒已設定');
+  });
+};
+(async function v220Loop(){
+  if (window.__v220Wired) return;
+  window.__v220Wired = true;
+  while (true) {
+    await new Promise(r => setTimeout(r, 30000));
+    try {
+      const alerts = window.v220Alerts.load().filter(a => !a.triggered);
+      for (const a of alerts) {
+        try {
+          const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(a.symbol));
+          if (!r.ok) continue;
+          const q = await r.json();
+          let hit = false, label = '';
+          if (a.condition === 'price_above' && q.price >= a.threshold) { hit = true; label = '突破 ' + a.threshold; }
+          else if (a.condition === 'price_below' && q.price <= a.threshold) { hit = true; label = '跌破 ' + a.threshold; }
+          else if (a.condition === 'pct_up' && q.changePercent >= a.threshold) { hit = true; label = '24h 漲 ' + q.changePercent.toFixed(2) + '%'; }
+          else if (a.condition === 'pct_down' && q.changePercent <= -a.threshold) { hit = true; label = '24h 跌 ' + Math.abs(q.changePercent).toFixed(2) + '%'; }
+          else if (a.condition === 'rsi_overbought' || a.condition === 'rsi_oversold') {
+            const cr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(a.symbol) + '?interval=1d&range=2mo');
+            if (cr.ok) {
+              const cj = await cr.json();
+              const closes = (cj.chart.result[0].indicators.quote[0].close || []).filter(x => x != null);
+              if (closes.length > 14 && window.v219Indicators) {
+                const rsi = window.v219Indicators.rsi(closes, 14);
+                const last = rsi[rsi.length - 1];
+                if (a.condition === 'rsi_overbought' && last >= 70) { hit = true; label = 'RSI ' + last.toFixed(1); }
+                else if (a.condition === 'rsi_oversold' && last <= 30) { hit = true; label = 'RSI ' + last.toFixed(1); }
+              }
+            }
+          }
+          if (hit) {
+            window.v220Alerts.markTriggered(a.id);
+            const msg = '🔔 ' + a.symbol + ' ' + label;
+            if ('Notification' in window && Notification.permission === 'granted') {
+              new Notification('MoneyRadar 提醒', { body: msg, icon: '/lab/icon-192.png' });
+            }
+            const overlay = document.getElementById('v210-cfo-overlay');
+            if (overlay) {
+              const toast = document.createElement('div');
+              toast.style.cssText = 'background:rgba(220,38,38,0.3);border:2px solid #dc2626;border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;color:white;font-weight:600;';
+              toast.textContent = msg;
+              const msgs = document.getElementById('v210-messages');
+              if (msgs) msgs.insertBefore(toast, msgs.firstChild);
+            }
+          }
+        } catch (e) {}
+      }
+    } catch (e) {}
+  }
+})();
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v220-alert-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v220-alert-btn';
+    btn.textContent = '⏰ 設定提醒';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(220,38,38,0.3),rgba(251,113,133,0.3));border:1px solid rgba(220,38,38,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v220OpenAlertModal(''));
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v221: Intraday timeframes（1m/5m/15m/30m/1h）=====
+
+(function(){
+  if (window.__v221Wired) return;
+  window.__v221Wired = true;
+  if (!window.v217LoadMultiTF) return;
+  window.v217LoadMultiTF = async function(symbol, tf){
+    tf = tf || '1d';
+    const intervalMap = {
+      '1m': { interval: '1m', range: '1d', label: '1分' },
+      '5m': { interval: '5m', range: '5d', label: '5分' },
+      '15m': { interval: '15m', range: '5d', label: '15分' },
+      '30m': { interval: '30m', range: '1mo', label: '30分' },
+      '1h': { interval: '60m', range: '3mo', label: '1時' },
+      '1d': { interval: '1d', range: '3mo', label: '日' },
+      '1wk': { interval: '1wk', range: '1y', label: '週' },
+      '1mo': { interval: '1mo', range: '5y', label: '月' }
+    };
+    const cfg = intervalMap[tf] || intervalMap['1d'];
+    let box = document.getElementById('v217-mtf-box');
+    if (!box) {
+      const host = document.getElementById('full-candle-chart-v195') || document.getElementById('stock-detail') || document.body;
+      box = document.createElement('div');
+      box.id = 'v217-mtf-box';
+      box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #2563eb;border-radius:12px;background:linear-gradient(180deg,#eff6ff,#fff);';
+      box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;"><div style="font-weight:700;color:#1d4ed8;">📈 多時段 K 線（' + symbol + '）</div><div id="v217-tabs" style="display:flex;gap:4px;flex-wrap:wrap;"></div></div><div id="v217-body">載入中…</div>';
+      host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+    }
+    const tabs = document.getElementById('v217-tabs');
+    if (tabs) {
+      tabs.innerHTML = '';
+      ['1m','5m','15m','30m','1h','1d','1wk','1mo'].forEach(t => {
+        const tb = document.createElement('button');
+        tb.textContent = intervalMap[t].label;
+        tb.style.cssText = 'padding:4px 10px;font-size:11px;background:white;border:1px solid #93c5fd;border-radius:4px;cursor:pointer;color:#1d4ed8;';
+        if (t === tf) { tb.style.background = '#2563eb'; tb.style.color = 'white'; }
+        tb.addEventListener('click', () => window.v217LoadMultiTF(symbol, t));
+        tabs.appendChild(tb);
+      });
+    }
+    const body = document.getElementById('v217-body');
+    body.innerHTML = '載入中…';
+    try {
+      const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=' + cfg.interval + '&range=' + cfg.range;
+      const r = await fetch(url);
+      const j = await r.json();
+      const result = j.chart && j.chart.result && j.chart.result[0];
+      if (!result) { body.innerHTML = '<div style="color:#dc2626;">無資料（intraday 可能因市場休市無資料）</div>'; return; }
+      const closes = (result.indicators.quote[0].close || []).filter(x => x != null);
+      if (closes.length < 5) { body.innerHTML = '<div>資料不足</div>'; return; }
+      const W = 600, H = 180, padL = 40, padR = 10, padT = 10, padB = 24;
+      const innerW = W - padL - padR, innerH = H - padT - padB;
+      const yMax = Math.max(...closes), yMin = Math.min(...closes);
+      const range = (yMax - yMin) || 1;
+      const x = i => padL + (i / Math.max(1, closes.length - 1)) * innerW;
+      const y = v => padT + (1 - (v - yMin) / range) * innerH;
+      let path = '';
+      closes.forEach((c, i) => { path += (i === 0 ? 'M' : 'L') + x(i).toFixed(1) + ',' + y(c).toFixed(1) + ' '; });
+      const first = closes[0], last = closes[closes.length - 1];
+      const pct = ((last - first) / first) * 100;
+      const color = pct >= 0 ? '#dc2626' : '#16a34a';
+      let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:600px;border:1px solid #dbeafe;border-radius:6px;background:white;">';
+      svg += '<path d="' + path + '" fill="none" stroke="' + color + '" stroke-width="2"/>';
+      svg += '<text x="6" y="' + (y(yMax) + 3) + '" fill="#6b7280" font-size="9">' + yMax.toFixed(2) + '</text>';
+      svg += '<text x="6" y="' + (y(yMin) + 3) + '" fill="#6b7280" font-size="9">' + yMin.toFixed(2) + '</text>';
+      svg += '<text x="' + (W - padR) + '" y="14" fill="' + color + '" font-size="11" text-anchor="end">' + (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%</text>';
+      svg += '</svg>';
+      body.innerHTML = svg + '<div style="font-size:10px;color:#6b7280;margin-top:4px;">' + cfg.label + ' · 區間：' + cfg.range + ' · ' + closes.length + ' 點</div>';
+    } catch (e) { body.innerHTML = '<div style="color:#dc2626;">載入失敗：' + (e.message || e) + '</div>'; }
+  };
+})();
