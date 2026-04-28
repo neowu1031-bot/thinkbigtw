@@ -11693,3 +11693,122 @@ window.v271LoadOwnership = async function(symbol){
     return r;
   };
 })();
+
+
+// ===== v272: 用戶可拖拉自訂 Dashboard（GridStack）=====
+
+window.v272 = {
+  KEY: 'mr_v272_layout',
+  // 預設 widget 配置：[id, x, y, w, h]
+  DEFAULTS: [
+    ['daily-briefing',      0, 0, 12, 3],
+    ['closing-summary',     0, 3, 12, 4],
+    ['market-heatmap',      0, 7, 6, 3],
+    ['industry-heatmap',    6, 7, 6, 3],
+    ['industry-treemap-v196', 0, 10, 12, 4],
+    ['v244-macro-box',      0, 14, 6, 4],
+    ['hot-stocks-section',  6, 14, 6, 4],
+    ['v205-crypto-box',     0, 18, 12, 4]
+  ],
+  enabled: false,
+  grid: null
+};
+
+window.v272Init = function(){
+  if (window.v272.enabled) return;
+  if (typeof GridStack === 'undefined') {
+    setTimeout(window.v272Init, 1000);
+    return;
+  }
+  // 找主 container（首頁 main 區）
+  const tabTW = document.getElementById('tab-tw') || document.querySelector('.tab-content[id]');
+  if (!tabTW) { setTimeout(window.v272Init, 2000); return; }
+  // 把已知 widgets 包成 grid items
+  const wrap = document.createElement('div');
+  wrap.className = 'grid-stack';
+  wrap.id = 'v272-grid';
+  wrap.style.cssText = 'background:transparent;margin-top:14px;';
+  tabTW.appendChild(wrap);
+  const saved = (function(){ try { return JSON.parse(localStorage.getItem(window.v272.KEY) || '[]'); } catch(e) { return []; } })();
+  const layoutMap = {};
+  saved.forEach(item => { layoutMap[item.id] = item; });
+  // 等 widgets render 後再 wrap
+  setTimeout(() => {
+    window.v272.DEFAULTS.forEach(def => {
+      const [id, dx, dy, dw, dh] = def;
+      const widget = document.getElementById(id);
+      if (!widget) return;
+      // 已經被 wrap 過跳過
+      if (widget.closest('.grid-stack-item')) return;
+      const item = document.createElement('div');
+      item.className = 'grid-stack-item';
+      item.setAttribute('gs-id', id);
+      const saved = layoutMap[id];
+      item.setAttribute('gs-x', saved ? saved.x : dx);
+      item.setAttribute('gs-y', saved ? saved.y : dy);
+      item.setAttribute('gs-w', saved ? saved.w : dw);
+      item.setAttribute('gs-h', saved ? saved.h : dh);
+      const content = document.createElement('div');
+      content.className = 'grid-stack-item-content';
+      content.style.cssText = 'overflow:auto;background:transparent;';
+      // 把 widget 移進來
+      content.appendChild(widget);
+      item.appendChild(content);
+      wrap.appendChild(item);
+    });
+    // Init GridStack（先鎖定）
+    window.v272.grid = GridStack.init({
+      cellHeight: 70,
+      margin: 8,
+      column: 12,
+      disableDrag: true,
+      disableResize: true,
+      animate: true
+    }, '#v272-grid');
+    window.v272.grid.on('change', () => {
+      const layout = window.v272.grid.save(false);
+      localStorage.setItem(window.v272.KEY, JSON.stringify(layout));
+    });
+    window.v272.enabled = true;
+    console.log('[v272] GridStack initialized (locked)');
+  }, 5000);
+};
+
+window.v272ToggleLock = function(){
+  if (!window.v272.grid) return;
+  const isLocked = window.v272.grid.opts.disableDrag;
+  if (isLocked) {
+    window.v272.grid.enableMove(true);
+    window.v272.grid.enableResize(true);
+    document.getElementById('v272-lock-btn').textContent = '🔓 編輯模式中（拖拉/縮放）';
+    document.getElementById('v272-lock-btn').style.background = '#fef3c7';
+    document.querySelectorAll('.grid-stack-item').forEach(it => { it.style.outline = '2px dashed #f59e0b'; });
+  } else {
+    window.v272.grid.enableMove(false);
+    window.v272.grid.enableResize(false);
+    document.getElementById('v272-lock-btn').textContent = '🔒 自訂版面';
+    document.getElementById('v272-lock-btn').style.background = '';
+    document.querySelectorAll('.grid-stack-item').forEach(it => { it.style.outline = ''; });
+  }
+};
+
+window.v272Reset = function(){
+  if (!confirm('重設為預設版面？')) return;
+  localStorage.removeItem(window.v272.KEY);
+  location.reload();
+};
+
+// 加全域控制按鈕
+(function(){
+  setTimeout(() => {
+    if (document.getElementById('v272-controls')) return;
+    const ctrl = document.createElement('div');
+    ctrl.id = 'v272-controls';
+    ctrl.style.cssText = 'position:fixed;top:80px;left:20px;display:flex;gap:6px;z-index:9997;';
+    ctrl.innerHTML = '<button id="v272-lock-btn" onclick="window.v272ToggleLock()" style="padding:8px 14px;background:white;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:#1f2937;box-shadow:0 2px 6px rgba(0,0,0,0.1);">🔒 自訂版面</button>'
+      + '<button onclick="window.v272Reset()" style="padding:8px 14px;background:white;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;font-size:12px;color:#6b7280;box-shadow:0 2px 6px rgba(0,0,0,0.1);">↩️ 重設</button>';
+    document.body.appendChild(ctrl);
+  }, 3000);
+  // 啟動
+  setTimeout(window.v272Init, 4000);
+})();
