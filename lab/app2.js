@@ -9357,3 +9357,37 @@ window.v232CheckDailyBrief = async function(){
 
 // 頁面載入後檢查（延遲 5 秒讓其他模組先載）
 setTimeout(() => window.v232CheckDailyBrief(), 5000);
+
+
+// ===== v233 hotfix: 清除重複 AI 按鈕 + 抓報價 timeout =====
+
+(function(){
+  if (window.__v233Wired) return;
+  window.__v233Wired = true;
+  setInterval(() => {
+    // 1. 每張 v199 卡片只保留一個 AI 解讀按鈕
+    document.querySelectorAll('[id^="px-"]').forEach(el => {
+      const card = el.parentNode;
+      if (!card) return;
+      const buttons = card.querySelectorAll('.v202-ai-btn, .v204-ai-btn');
+      if (buttons.length > 1) {
+        for (let i = 1; i < buttons.length; i++) buttons[i].remove();
+      }
+    });
+    // 2. 修「抓報價中…」卡死：> 8 秒 reset
+    document.querySelectorAll('button.v202-ai-btn, button.v204-ai-btn').forEach(btn => {
+      if (btn.textContent === '抓報價中…') {
+        if (!btn.dataset.v233Started) {
+          btn.dataset.v233Started = Date.now();
+        } else if (Date.now() - parseInt(btn.dataset.v233Started) > 8000) {
+          btn.disabled = false;
+          btn.textContent = '🤖 AI 解讀';
+          delete btn.dataset.v233Started;
+        }
+      } else {
+        delete btn.dataset.v233Started;
+      }
+    });
+  }, 1500);
+  console.log('[v233] dedupe wired');
+})();
