@@ -9583,3 +9583,155 @@ window.v238LoadPEBand = async function(symbol){
     return r;
   };
 })();
+
+
+// ===== v237: 同產業跨公司比較表 =====
+
+window.v237OpenPeerCompare = function(){
+  let modal = document.getElementById('v237-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v237-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:95%;max-width:720px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = ''
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⚖️ 同產業跨公司比較（對標 Koyfin/Goodinfo）</div><button id="v237-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="font-size:12px;color:#6b7280;margin-bottom:10px;">輸入 2-8 個股票代號，逗號分隔（同產業最有意義）</div>'
+    + '<div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;"><button class="v237-preset" data-s="NVDA,AMD,INTC,QCOM,AVGO" style="padding:5px 10px;font-size:11px;background:#e0e7ff;border:1px solid #818cf8;border-radius:14px;cursor:pointer;color:#3730a3;">半導體</button><button class="v237-preset" data-s="MSFT,GOOGL,META,AAPL,AMZN" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">FAANG+</button><button class="v237-preset" data-s="JPM,BAC,WFC,GS,MS" style="padding:5px 10px;font-size:11px;background:#dbeafe;border:1px solid #93c5fd;border-radius:14px;cursor:pointer;color:#1e40af;">大型銀行</button><button class="v237-preset" data-s="JNJ,PFE,LLY,MRK,ABBV" style="padding:5px 10px;font-size:11px;background:#fce7f3;border:1px solid #f9a8d4;border-radius:14px;cursor:pointer;color:#9d174d;">大型藥廠</button></div>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v237-input" type="text" placeholder="NVDA,AMD,INTC" style="flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;"><button id="v237-go" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">⚖️ 比較</button></div>'
+    + '<div id="v237-result"></div>';
+  document.body.appendChild(modal);
+  document.getElementById('v237-close').addEventListener('click', () => modal.remove());
+  modal.querySelectorAll('.v237-preset').forEach(b => b.addEventListener('click', e => { document.getElementById('v237-input').value = e.target.dataset.s; }));
+  document.getElementById('v237-go').addEventListener('click', async () => {
+    const symbols = document.getElementById('v237-input').value.split(',').map(x => x.trim().toUpperCase()).filter(Boolean).slice(0, 8);
+    if (symbols.length < 2) { alert('至少 2 檔'); return; }
+    const result = document.getElementById('v237-result');
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">⚖️ 並列抓 ' + symbols.length + ' 檔基本面...</div>';
+    try {
+      const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/peer-compare', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symbols })
+      });
+      const d = await res.json();
+      if (!d.results || d.results.length === 0) { result.innerHTML = '<div style="color:#dc2626;">無資料</div>'; return; }
+      const rows = [
+        ['市值（B）', r => r.valuation && r.valuation.marketCap ? (r.valuation.marketCap/1e9).toFixed(0) : '-'],
+        ['P/E', r => r.valuation && r.valuation.peRatio ? r.valuation.peRatio.toFixed(1) : '-'],
+        ['前瞻 P/E', r => r.valuation && r.valuation.forwardPE ? r.valuation.forwardPE.toFixed(1) : '-'],
+        ['P/B', r => r.valuation && r.valuation.priceToBook ? r.valuation.priceToBook.toFixed(1) : '-'],
+        ['PEG', r => r.valuation && r.valuation.pegRatio ? r.valuation.pegRatio.toFixed(2) : '-'],
+        ['EV/EBITDA', r => r.valuation && r.valuation.evToEBITDA ? r.valuation.evToEBITDA.toFixed(1) : '-'],
+        ['ROE', r => r.profitability && r.profitability.roe ? (r.profitability.roe*100).toFixed(1) + '%' : '-'],
+        ['ROA', r => r.profitability && r.profitability.roa ? (r.profitability.roa*100).toFixed(1) + '%' : '-'],
+        ['毛利率', r => r.profitability && r.profitability.grossMargin ? (r.profitability.grossMargin*100).toFixed(1) + '%' : '-'],
+        ['營業利益率', r => r.profitability && r.profitability.operatingMargin ? (r.profitability.operatingMargin*100).toFixed(1) + '%' : '-'],
+        ['淨利率', r => r.profitability && r.profitability.profitMargin ? (r.profitability.profitMargin*100).toFixed(1) + '%' : '-'],
+        ['營收 YoY', r => r.growth && r.growth.revenueGrowth ? (r.growth.revenueGrowth*100).toFixed(1) + '%' : '-'],
+        ['EPS YoY', r => r.growth && r.growth.earningsGrowth ? (r.growth.earningsGrowth*100).toFixed(1) + '%' : '-'],
+        ['負債/權益', r => r.financialHealth && r.financialHealth.debtToEquity ? r.financialHealth.debtToEquity.toFixed(0) : '-'],
+        ['殖利率', r => r.dividend && r.dividend.dividendYield ? (r.dividend.dividendYield*100).toFixed(2) + '%' : '-'],
+        ['Beta', r => r.risk && r.risk.beta ? r.risk.beta.toFixed(2) : '-']
+      ];
+      let html = '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">';
+      html += '<thead style="background:#f3f4f6;"><tr><th style="padding:6px;text-align:left;">指標</th>';
+      d.results.forEach(r => { html += '<th style="padding:6px;text-align:right;">' + r.symbol + '</th>'; });
+      html += '</tr></thead><tbody>';
+      rows.forEach(([label, fn], i) => {
+        const bg = i % 2 === 0 ? '#fafafa' : '#fff';
+        html += '<tr style="background:' + bg + ';border-bottom:1px solid #e5e7eb;"><td style="padding:6px;font-weight:600;">' + label + '</td>';
+        d.results.forEach(r => { html += '<td style="padding:6px;text-align:right;">' + fn(r) + '</td>'; });
+        html += '</tr>';
+      });
+      html += '</tbody></table></div>';
+      result.innerHTML = html;
+    } catch (e) { result.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+  });
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v237-peer-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v237-peer-btn';
+    btn.textContent = '⚖️ 跨公司比較';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(8,145,178,0.3),rgba(34,211,238,0.3));border:1px solid rgba(8,145,178,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v237OpenPeerCompare());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v239: 法人籌碼面歷史視覺化（台股）=====
+
+window.v239LoadInstitutional = async function(stockCode){
+  if (!stockCode || !/^\d{4}$/.test(stockCode)) return;
+  if (document.getElementById('v239-inst-' + stockCode)) return;
+  const host = document.getElementById('v238-pe-' + stockCode) || document.getElementById('v230-fund-' + stockCode) || document.getElementById('v219-ind-panel');
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v239-inst-' + stockCode;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #ea580c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">📊 法人籌碼動向（' + stockCode + '，過去 30 日）</div><div id="v239-body-' + stockCode + '">載入中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  const body = document.getElementById('v239-body-' + stockCode);
+  try {
+    const sb = (window.SUPABASE_URL || 'https://gvscndrxmihaffbwgmku.supabase.co');
+    const key = (window.SUPABASE_ANON_KEY || '');
+    const url = sb + '/rest/v1/institutional_investors?stock_code=eq.' + encodeURIComponent(stockCode) + '&select=date,foreign_buy,investment_trust_buy,dealer_buy&order=date.desc&limit=30';
+    const r = await fetch(url, { headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {} });
+    if (!r.ok) { body.innerHTML = '<div style="color:#dc2626;">資料載入失敗（HTTP ' + r.status + '）</div>'; return; }
+    const rows = await r.json();
+    if (!rows || rows.length === 0) {
+      body.innerHTML = '<div style="color:#9ca3af;">此股票暫無籌碼資料（NEO 的 Supabase crawler 可能還沒涵蓋）</div>';
+      return;
+    }
+    rows.reverse(); // 最舊到最新
+    // 累計買賣超
+    let cumF = 0, cumI = 0, cumD = 0;
+    const cumData = rows.map(r => {
+      cumF += (r.foreign_buy || 0) / 1000;
+      cumI += (r.investment_trust_buy || 0) / 1000;
+      cumD += (r.dealer_buy || 0) / 1000;
+      return { date: r.date, f: cumF, i: cumI, d: cumD, total: cumF + cumI + cumD };
+    });
+    // SVG render
+    const W = 600, H = 200, padL = 50, padR = 10, padT = 10, padB = 30;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const allVals = cumData.flatMap(x => [x.f, x.i, x.d, x.total]);
+    const yMax = Math.max(...allVals, 0), yMin = Math.min(...allVals, 0);
+    const range = (yMax - yMin) || 1;
+    const x = i => padL + (i / Math.max(1, cumData.length - 1)) * innerW;
+    const y = v => padT + (1 - (v - yMin) / range) * innerH;
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;background:white;border:1px solid #fed7aa;border-radius:6px;">';
+    svg += '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y(0) + '" y2="' + y(0) + '" stroke="#9ca3af" stroke-dasharray="3,3"/>';
+    [['#dc2626', 'f', '外資'], ['#2563eb', 'i', '投信'], ['#16a34a', 'd', '自營商']].forEach(([color, key, label], idx) => {
+      let path = '';
+      cumData.forEach((c, i) => { path += (i === 0 ? 'M' : 'L') + x(i).toFixed(1) + ',' + y(c[key]).toFixed(1) + ' '; });
+      svg += '<path d="' + path + '" fill="none" stroke="' + color + '" stroke-width="2"/>';
+      svg += '<rect x="' + (padL + 10 + idx * 80) + '" y="' + (padT) + '" width="10" height="3" fill="' + color + '"/><text x="' + (padL + 24 + idx * 80) + '" y="' + (padT + 6) + '" font-size="10" fill="' + color + '">' + label + '</text>';
+    });
+    svg += '<text x="6" y="' + (y(yMax) + 3) + '" font-size="9" fill="#6b7280">' + yMax.toFixed(0) + ' 張</text>';
+    svg += '<text x="6" y="' + (y(yMin) + 3) + '" font-size="9" fill="#6b7280">' + yMin.toFixed(0) + ' 張</text>';
+    svg += '<text x="6" y="' + (y(0) + 3) + '" font-size="9" fill="#6b7280">0</text>';
+    svg += '</svg>';
+    const last = cumData[cumData.length - 1];
+    body.innerHTML = svg + '<div style="font-size:12px;margin-top:8px;color:#1f2937;">累計買賣超：外資 <strong style="color:#dc2626;">' + last.f.toFixed(0) + '</strong> / 投信 <strong style="color:#2563eb;">' + last.i.toFixed(0) + '</strong> / 自營商 <strong style="color:#16a34a;">' + last.d.toFixed(0) + '</strong> 張</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">資料：Supabase 自爬 · 最近 ' + rows.length + ' 個交易日 · 1 張 = 1000 股</div>';
+  } catch (e) {
+    body.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
+  }
+};
+
+(function(){
+  if (window.__v239Wired) return;
+  window.__v239Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v239LoadInstitutional(code), 4000);
+    return r;
+  };
+})();

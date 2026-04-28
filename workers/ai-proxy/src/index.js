@@ -1380,6 +1380,24 @@ export default {
       } catch (e) { return jsonResponse({ error: 'pe-band failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /peer-compare (v237) - 同產業跨公司比較 ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/peer-compare') {
+      try {
+        const body = await request.json();
+        const symbols = (body.symbols || []).slice(0, 8);
+        if (symbols.length < 2) return jsonResponse({ error: 'at least 2 symbols' }, 400);
+        const fetchOne = async (sym) => {
+          try {
+            const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(sym));
+            return r.ok ? await r.json() : null;
+          } catch (e) { return null; }
+        };
+        const all = await Promise.all(symbols.map(fetchOne));
+        const valid = all.filter(x => x && !x.error);
+        return jsonResponse({ symbols, results: valid, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'peer-compare failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);
