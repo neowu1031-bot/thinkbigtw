@@ -10354,3 +10354,263 @@ window.v247LoadAlerts = async function(symbol){
     return r;
   };
 })();
+
+
+// ===== v249: Multi-chart layout（4 K 線並列）=====
+
+window.v249OpenMultiChart = function(){
+  let modal = document.getElementById('v249-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v249-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:95%;max-width:840px;background:white;color:#1f2937;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = ''
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">📊 多股並列 K 線</div><button id="v249-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v249-input" type="text" value="NVDA,AAPL,MSFT,GOOGL" placeholder="4 個代號 逗號分隔" style="flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"><button id="v249-go" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">📊 顯示</button></div>'
+    + '<div id="v249-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>';
+  document.body.appendChild(modal);
+  document.getElementById('v249-close').addEventListener('click', () => modal.remove());
+  document.getElementById('v249-go').addEventListener('click', async () => {
+    const syms = document.getElementById('v249-input').value.split(',').map(x => x.trim().toUpperCase()).filter(Boolean).slice(0, 4);
+    const grid = document.getElementById('v249-grid');
+    grid.innerHTML = '';
+    syms.forEach(sym => {
+      const cell = document.createElement('div');
+      cell.style.cssText = 'border:1px solid #e5e7eb;border-radius:8px;padding:10px;';
+      cell.innerHTML = '<div style="font-weight:700;margin-bottom:6px;">' + sym + '</div><div id="v249-cell-' + sym + '">載入中…</div>';
+      grid.appendChild(cell);
+      fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=1mo')
+        .then(r => r.json())
+        .then(j => {
+          const result = j.chart && j.chart.result && j.chart.result[0];
+          if (!result) { document.getElementById('v249-cell-' + sym).innerHTML = '無資料'; return; }
+          const closes = (result.indicators.quote[0].close || []).filter(x => x != null);
+          if (closes.length < 5) { document.getElementById('v249-cell-' + sym).innerHTML = '資料不足'; return; }
+          const W = 380, H = 140, padL = 30, padR = 6, padT = 8, padB = 16;
+          const innerW = W - padL - padR, innerH = H - padT - padB;
+          const yMax = Math.max(...closes), yMin = Math.min(...closes);
+          const range = (yMax - yMin) || 1;
+          const x = i => padL + (i / (closes.length - 1)) * innerW;
+          const y = v => padT + (1 - (v - yMin) / range) * innerH;
+          let path = '';
+          closes.forEach((c, i) => { path += (i === 0 ? 'M' : 'L') + x(i).toFixed(1) + ',' + y(c).toFixed(1) + ' '; });
+          const first = closes[0], last = closes[closes.length - 1];
+          const pct = ((last - first) / first) * 100;
+          const color = pct >= 0 ? '#dc2626' : '#16a34a';
+          let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;background:#fafafa;border-radius:4px;">';
+          svg += '<path d="' + path + '" fill="none" stroke="' + color + '" stroke-width="1.5"/>';
+          svg += '<text x="6" y="' + (y(yMax) + 2) + '" font-size="8" fill="#6b7280">' + yMax.toFixed(1) + '</text>';
+          svg += '<text x="6" y="' + (y(yMin) + 2) + '" font-size="8" fill="#6b7280">' + yMin.toFixed(1) + '</text>';
+          svg += '<text x="' + (W - padR) + '" y="12" font-size="10" fill="' + color + '" text-anchor="end" font-weight="700">' + (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%</text>';
+          svg += '</svg>';
+          document.getElementById('v249-cell-' + sym).innerHTML = svg + '<div style="font-size:11px;margin-top:2px;color:#6b7280;">' + last.toFixed(2) + '</div>';
+        }).catch(() => { document.getElementById('v249-cell-' + sym).innerHTML = '失敗'; });
+    });
+  });
+  document.getElementById('v249-go').click();
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v249-mc-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v249-mc-btn';
+    btn.textContent = '📊 多股並列';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(8,145,178,0.3),rgba(67,56,202,0.3));border:1px solid rgba(8,145,178,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v249OpenMultiChart());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v250: Bar Replay（K 棒回放）=====
+
+window.v250OpenReplay = function(){
+  let modal = document.getElementById('v250-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v250-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:560px;background:white;color:#1f2937;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;';
+  modal.innerHTML = ''
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⏯ Bar Replay（K 棒回放練習）</div><button id="v250-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="font-size:12px;color:#6b7280;margin-bottom:12px;">輸入個股，逐根 reveal K 棒（沒有未來資訊，練習判斷）</div>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v250-sym" value="NVDA" style="flex:1;padding:8px;border:1px solid #d1d5db;border-radius:6px;"><button id="v250-load" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">⏯ 載入</button></div>'
+    + '<div id="v250-chart" style="margin-bottom:14px;"></div>'
+    + '<div style="display:flex;gap:8px;justify-content:center;"><button id="v250-prev" style="padding:6px 14px;background:#fee2e2;border:none;border-radius:6px;cursor:pointer;color:#991b1b;font-weight:600;">⏮ 上一根</button><span id="v250-info" style="padding:6px 14px;font-weight:600;">請載入</span><button id="v250-next" style="padding:6px 14px;background:#dcfce7;border:none;border-radius:6px;cursor:pointer;color:#166534;font-weight:600;">下一根 ⏭</button></div>';
+  document.body.appendChild(modal);
+  let allData = [], currentIdx = 0;
+  document.getElementById('v250-close').addEventListener('click', () => modal.remove());
+  const render = () => {
+    if (allData.length === 0 || currentIdx < 5) { document.getElementById('v250-chart').innerHTML = '請先載入或往後'; return; }
+    const data = allData.slice(0, currentIdx);
+    const W = 500, H = 200, padL = 40, padR = 10, padT = 10, padB = 20;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const closes = data.map(d => d.c);
+    const yMax = Math.max(...data.map(d => d.h)), yMin = Math.min(...data.map(d => d.l));
+    const range = (yMax - yMin) || 1;
+    const cw = Math.max(2, innerW / Math.max(allData.length, 60) - 1);
+    const x = i => padL + i * (innerW / Math.max(allData.length, 60)) + (innerW / Math.max(allData.length, 60) - cw) / 2;
+    const y = v => padT + (1 - (v - yMin) / range) * innerH;
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;background:white;border:1px solid #e5e7eb;border-radius:6px;">';
+    data.forEach((d, i) => {
+      const up = d.c >= d.o;
+      const c = up ? '#16a34a' : '#dc2626';
+      const top = y(Math.max(d.o, d.c)), bot = y(Math.min(d.o, d.c));
+      const cx = x(i) + cw/2;
+      svg += '<line x1="' + cx + '" x2="' + cx + '" y1="' + y(d.h) + '" y2="' + y(d.l) + '" stroke="' + c + '"/>';
+      svg += '<rect x="' + x(i) + '" y="' + top + '" width="' + cw + '" height="' + Math.max(1, bot - top) + '" fill="' + c + '"/>';
+    });
+    svg += '<text x="6" y="' + (y(yMax)+3) + '" font-size="9" fill="#6b7280">' + yMax.toFixed(2) + '</text>';
+    svg += '<text x="6" y="' + (y(yMin)+3) + '" font-size="9" fill="#6b7280">' + yMin.toFixed(2) + '</text>';
+    svg += '</svg>';
+    document.getElementById('v250-chart').innerHTML = svg;
+    document.getElementById('v250-info').textContent = currentIdx + ' / ' + allData.length;
+  };
+  document.getElementById('v250-load').addEventListener('click', async () => {
+    const sym = document.getElementById('v250-sym').value.trim().toUpperCase();
+    document.getElementById('v250-chart').innerHTML = '載入中...';
+    try {
+      const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=6mo');
+      const j = await r.json();
+      const res = j.chart.result[0];
+      const q = res.indicators.quote[0];
+      const opens = q.open, highs = q.high, lows = q.low, closes = q.close;
+      allData = closes.map((c, i) => ({ o: opens[i], h: highs[i], l: lows[i], c: closes[i] })).filter(d => d.c != null);
+      currentIdx = 30;
+      render();
+    } catch (e) { document.getElementById('v250-chart').innerHTML = '失敗：' + e.message; }
+  });
+  document.getElementById('v250-prev').addEventListener('click', () => { if (currentIdx > 5) { currentIdx--; render(); } });
+  document.getElementById('v250-next').addEventListener('click', () => { if (currentIdx < allData.length) { currentIdx++; render(); } });
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v250-replay-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v250-replay-btn';
+    btn.textContent = '⏯ K 棒回放';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(67,56,202,0.3),rgba(99,102,241,0.3));border:1px solid rgba(67,56,202,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v250OpenReplay());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v251: PDF / CSV 匯出 =====
+
+window.v251ExportCSV = async function(symbol){
+  if (!symbol) { symbol = prompt('輸入要匯出的股票代號'); if (!symbol) return; }
+  symbol = symbol.toUpperCase();
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (d.error) { alert('失敗：' + d.error); return; }
+    const rows = [['指標', '值']];
+    const flatten = (obj, prefix) => {
+      Object.entries(obj || {}).forEach(([k, v]) => {
+        if (typeof v === 'object' && v !== null) flatten(v, prefix + k + '.');
+        else rows.push([prefix + k, v]);
+      });
+    };
+    flatten(d, '');
+    const csv = rows.map(r => r.map(c => '"' + String(c).replace(/"/g, '""') + '"').join(',')).join('\n');
+    const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'MoneyRadar_' + symbol + '_' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (e) { alert('失敗：' + e.message); }
+};
+
+window.v251ExportPDF = function(){
+  // 用 print API（最簡實作）
+  const oldTitle = document.title;
+  document.title = 'MoneyRadar 個股報告 - ' + new Date().toISOString().slice(0,10);
+  window.print();
+  document.title = oldTitle;
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v251-export-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v251-export-btn';
+    btn.textContent = '📥 匯出 CSV';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(34,197,94,0.3),rgba(22,163,74,0.3));border:1px solid rgba(34,197,94,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v251ExportCSV());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v252: 自訂 Dashboard widgets =====
+
+window.v252Widgets = {
+  'v244-macro-box': '🌎 總體經濟儀表板',
+  'industry-treemap-v196': '🗺 產業 Treemap',
+  'industry-heatmap': '🌡 產業熱度',
+  'hot-stocks-section': '🔥 熱門股',
+  'market-heatmap': '📊 市場熱度',
+  'daily-briefing': '📋 今日快報',
+  'closing-summary': '📈 盤後摘要'
+};
+
+window.v252OpenSettings = function(){
+  let modal = document.getElementById('v252-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v252-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:420px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;';
+  let html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⚙️ 自訂 Dashboard</div><button id="v252-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>';
+  html += '<div style="font-size:12px;color:#6b7280;margin-bottom:14px;">勾選要顯示的 widgets（變更立即生效）</div>';
+  const hidden = JSON.parse(localStorage.getItem('mr_v252_hidden') || '[]');
+  Object.entries(window.v252Widgets).forEach(([id, name]) => {
+    const isHidden = hidden.includes(id);
+    html += '<label style="display:flex;align-items:center;gap:8px;padding:8px;cursor:pointer;border-radius:6px;background:#f9fafb;margin-bottom:4px;"><input type="checkbox" data-id="' + id + '" ' + (isHidden ? '' : 'checked') + '><span style="font-size:13px;">' + name + '</span></label>';
+  });
+  modal.innerHTML = html + '<button id="v252-save" style="width:100%;margin-top:14px;padding:10px;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">💾 套用</button>';
+  document.body.appendChild(modal);
+  document.getElementById('v252-close').addEventListener('click', () => modal.remove());
+  document.getElementById('v252-save').addEventListener('click', () => {
+    const hide = [];
+    modal.querySelectorAll('input[type="checkbox"]').forEach(cb => { if (!cb.checked) hide.push(cb.dataset.id); });
+    localStorage.setItem('mr_v252_hidden', JSON.stringify(hide));
+    window.v252ApplyHidden();
+    modal.remove();
+  });
+};
+
+window.v252ApplyHidden = function(){
+  const hidden = JSON.parse(localStorage.getItem('mr_v252_hidden') || '[]');
+  Object.keys(window.v252Widgets).forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = hidden.includes(id) ? 'none' : '';
+  });
+};
+
+(function(){
+  setInterval(() => {
+    window.v252ApplyHidden();
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v252-cfg-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v252-cfg-btn';
+    btn.textContent = '⚙️ 自訂 Dashboard';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(107,114,128,0.3),rgba(156,163,175,0.3));border:1px solid rgba(107,114,128,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v252OpenSettings());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
