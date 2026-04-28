@@ -1166,6 +1166,69 @@ export default {
       }
     }
 
+        // === /scenario-simulation (v226) ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/scenario-simulation') {
+      try {
+        const body = await request.json();
+        const scenario = body.scenario || '';
+        const symbols = (body.symbols || []).slice(0, 10);
+        if (!scenario || symbols.length === 0) return jsonResponse({ error: 'scenario+symbols required' }, 400);
+        const prompt = `情境：${scenario}
+用戶關注標的：${symbols.join(', ')}
+
+請用 200-300 字繁中分析這個情境發生時：
+1. 整體市場可能反應方向
+2. 對用戶各檔關注標的可能影響（用「可能受惠/可能受壓/影響不明」標註，不下買賣建議）
+3. 投資人或可關注的事件或數據
+
+措詞：用「歷史上類似情境」「市場或反映」「投資人或關注」這類推測措詞。
+結尾務必加 [把握度]/[資料源]/[盲點]`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是公開資訊整理員，絕不提供買賣建議。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 700
+        });
+        let analysis = aiRes.response || '';
+        if (!isContentSafe(analysis)) analysis = '⚠️ 為符合金管會規範，本內容已過濾。';
+        return jsonResponse({ scenario, symbols, analysis, disclaimer: DISCLAIMER, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'scenario failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /rebalance-suggest (v227) ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/rebalance-suggest') {
+      try {
+        const body = await request.json();
+        const holdings = body.holdings || [];
+        const risk = body.riskPreference || '未設定';
+        if (holdings.length === 0) return jsonResponse({ error: 'holdings required' }, 400);
+        const totalCost = holdings.reduce((s, h) => s + (h.shares * h.cost || 0), 0);
+        const enriched = holdings.map(h => ({ ...h, weight: totalCost > 0 ? ((h.shares * h.cost) / totalCost * 100) : 0 }));
+        const summary = enriched.map(h => `${h.symbol}（${h.weight.toFixed(1)}%）`).join('、');
+        const prompt = `用戶投資組合：${summary}
+風險偏好：${risk}
+
+請用 200-300 字繁中提供「投組再平衡觀察」（不是買賣建議）：
+1. 評估行業集中度（如全是科技 / 全是金融）
+2. 評估地理分散（美股 vs 台股 vs 全球）
+3. 評估風格分散（成長 vs 價值 vs 配息）
+4. 結合風險偏好，提出「可考慮觀察的 3 個類別」（用「您可能想了解 XX」這類措詞，不指定個股）
+
+結尾務必加 [把握度]/[資料源]/[盲點]`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是公開資訊整理員，絕不指定買賣個股。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 700
+        });
+        let suggestion = aiRes.response || '';
+        if (!isContentSafe(suggestion)) suggestion = '⚠️ 為符合金管會規範，本建議已過濾。';
+        return jsonResponse({ holdings: enriched, suggestion, riskPreference: risk, disclaimer: DISCLAIMER, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'rebalance failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

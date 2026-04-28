@@ -8861,3 +8861,123 @@ window.v225StartVoice = function(){
     send.parentNode.insertBefore(mic, send);
   }, 1500);
 })();
+
+
+// ===== v226: AI 情境模擬 =====
+
+window.v226OpenScenario = function(){
+  let modal = document.getElementById('v226-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v226-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;';
+  const presets = [
+    'Fed 升息 50bp', 'Fed 降息 25bp', '美中關係惡化', '台海緊張', '美元走強', '美元走弱',
+    '通膨意外攀升', '經濟陷入衰退', 'AI 泡沫破裂', '油價突破 $100', '半導體景氣反轉'
+  ];
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">🌪 AI 情境模擬</div><button id="v226-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="font-size:12px;color:#6b7280;margin-bottom:12px;">選擇一個情境，AI 分析您關注標的可能受到的影響（不下買賣建議）</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">' + presets.map(p => '<button class="v226-preset" data-s="' + p + '" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">' + p + '</button>').join('') + '</div><textarea id="v226-input" placeholder="或自訂情境..." style="width:100%;min-height:60px;padding:8px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;margin-bottom:12px;"></textarea><button id="v226-go" style="width:100%;padding:10px;background:#7c2d12;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🌪 模擬</button><div id="v226-result" style="margin-top:14px;"></div>';
+  document.body.appendChild(modal);
+  document.getElementById('v226-close').addEventListener('click', () => modal.remove());
+  modal.querySelectorAll('.v226-preset').forEach(b => b.addEventListener('click', e => { document.getElementById('v226-input').value = e.target.dataset.s; }));
+  document.getElementById('v226-go').addEventListener('click', async () => {
+    const scenario = document.getElementById('v226-input').value.trim();
+    if (!scenario) return;
+    const m = window.v211Memory ? window.v211Memory.load() : { watchlist: [] };
+    if (!m.watchlist || m.watchlist.length === 0) { alert('請先設定關注標的（🧠 偏好）'); return; }
+    const result = document.getElementById('v226-result');
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🌪 模擬中（約 8 秒）...</div>';
+    try {
+      const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/scenario-simulation', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scenario, symbols: m.watchlist })
+      });
+      const d = await res.json();
+      if (d.error) { result.innerHTML = '<div style="color:#dc2626;">' + d.error + '</div>'; return; }
+      result.innerHTML = '<div style="background:#fff7ed;border-left:4px solid #ea580c;padding:14px;border-radius:8px;font-size:13px;line-height:1.7;">' + (d.analysis || '').replace(/\n/g, '<br>') + '</div><div style="font-size:11px;color:#6b7280;margin-top:6px;">' + (d.disclaimer || '') + '</div>';
+    } catch (e) { result.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+  });
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v226-scenario-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v226-scenario-btn';
+    btn.textContent = '🌪 情境模擬';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(234,88,12,0.3),rgba(251,191,36,0.3));border:1px solid rgba(234,88,12,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v226OpenScenario());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v227: AI 投組再平衡建議 =====
+
+window.v227OpenRebalance = function(){
+  let modal = document.getElementById('v227-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v227-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">🔄 AI 投組再平衡建議</div><button id="v227-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="font-size:12px;color:#6b7280;margin-bottom:12px;">輸入您的持股，AI 評估行業/地理/風格分散，給「可考慮觀察的類別」（不指定個股）</div><div id="v227-rows"></div><button id="v227-add" style="width:100%;padding:8px;border:1px dashed #d1d5db;background:#f9fafb;border-radius:8px;cursor:pointer;font-size:13px;color:#6b7280;margin-bottom:12px;">+ 新增一檔</button><button id="v227-go" style="width:100%;padding:12px;background:#0891b2;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 開始分析</button><div id="v227-result" style="margin-top:14px;"></div>';
+  document.body.appendChild(modal);
+  document.getElementById('v227-close').addEventListener('click', () => modal.remove());
+  const rowsBox = document.getElementById('v227-rows');
+  const addRow = (sym='', shares='', cost='') => {
+    if (rowsBox.children.length >= 8) return;
+    const row = document.createElement('div');
+    row.className = 'v227-row';
+    row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 1fr 36px;gap:6px;margin-bottom:6px;';
+    row.innerHTML = '<input class="v227-sym" placeholder="代號" value="' + sym + '" style="padding:6px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;"><input class="v227-shares" type="number" placeholder="股數" value="' + shares + '" style="padding:6px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;"><input class="v227-cost" type="number" placeholder="均價" value="' + cost + '" style="padding:6px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;"><button class="v227-del" style="background:#fee2e2;border:none;border-radius:6px;cursor:pointer;color:#991b1b;">✕</button>';
+    row.querySelector('.v227-del').addEventListener('click', () => row.remove());
+    rowsBox.appendChild(row);
+  };
+  const m = window.v211Memory ? window.v211Memory.load() : {};
+  (m.watchlist || []).slice(0, 3).forEach(sym => addRow(sym));
+  if (rowsBox.children.length === 0) addRow();
+  document.getElementById('v227-add').addEventListener('click', () => addRow());
+  document.getElementById('v227-go').addEventListener('click', async () => {
+    const holdings = [];
+    rowsBox.querySelectorAll('.v227-row').forEach(r => {
+      const sym = r.querySelector('.v227-sym').value.trim().toUpperCase();
+      const shares = parseFloat(r.querySelector('.v227-shares').value);
+      const cost = parseFloat(r.querySelector('.v227-cost').value);
+      if (sym && shares > 0 && cost > 0) holdings.push({ symbol: sym, shares, cost });
+    });
+    if (holdings.length === 0) { alert('請輸入有效持股'); return; }
+    const result = document.getElementById('v227-result');
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🔄 AI 分析中...</div>';
+    try {
+      const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/rebalance-suggest', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ holdings, riskPreference: m.riskPreference || '' })
+      });
+      const d = await res.json();
+      if (d.error) { result.innerHTML = '<div style="color:#dc2626;">' + d.error + '</div>'; return; }
+      let html = '<div style="background:#ecfeff;border:1px solid #67e8f9;border-radius:8px;padding:12px;margin-bottom:10px;font-size:12px;">';
+      d.holdings.forEach(h => { html += h.symbol + ' · ' + h.weight.toFixed(1) + '%　'; });
+      html += '</div>';
+      html += '<div style="background:#cffafe;border-left:4px solid #0891b2;padding:14px;border-radius:8px;font-size:13px;line-height:1.7;">' + (d.suggestion || '').replace(/\n/g, '<br>') + '</div>';
+      html += '<div style="font-size:11px;color:#6b7280;margin-top:6px;">' + (d.disclaimer || '') + '</div>';
+      result.innerHTML = html;
+    } catch (e) { result.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+  });
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v227-rebalance-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v227-rebalance-btn';
+    btn.textContent = '🔄 投組再平衡';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(8,145,178,0.3),rgba(34,211,238,0.3));border:1px solid rgba(8,145,178,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v227OpenRebalance());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
