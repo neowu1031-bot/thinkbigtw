@@ -1229,6 +1229,76 @@ export default {
       } catch (e) { return jsonResponse({ error: 'rebalance failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /fundamentals (v230) - Yahoo crumb auth hack 拿 50+ metrics ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/fundamentals') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        // Step 1: Yahoo crumb auth
+        let crumb = '', cookieHeader = '';
+        try {
+          const sessRes = await fetch('https://fc.yahoo.com', {
+            redirect: 'manual',
+            headers: { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36' }
+          });
+          const sc = sessRes.headers.get('set-cookie') || '';
+          const a1 = (sc.match(/A1=([^;,]+)/) || [])[1];
+          const a3 = (sc.match(/A3=([^;,]+)/) || [])[1];
+          const a1s = (sc.match(/A1S=([^;,]+)/) || [])[1];
+          cookieHeader = [a1 ? 'A1=' + a1 : '', a3 ? 'A3=' + a3 : '', a1s ? 'A1S=' + a1s : ''].filter(Boolean).join('; ');
+          if (cookieHeader) {
+            const crumbRes = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', {
+              headers: { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' }
+            });
+            if (crumbRes.ok) crumb = (await crumbRes.text()).trim();
+          }
+        } catch (e) {}
+        // Step 2: quoteSummary
+        const modules = 'summaryDetail,defaultKeyStatistics,financialData,assetProfile,price';
+        const qsUrl = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/' + encodeURIComponent(sym) +
+                      '?modules=' + modules + (crumb ? '&crumb=' + encodeURIComponent(crumb) : '');
+        const qsRes = await fetch(qsUrl, {
+          headers: cookieHeader ? { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' } : { 'User-Agent': 'Mozilla/5.0' }
+        });
+        if (!qsRes.ok) {
+          // Fallback: 用 chart endpoint 抓 minimal
+          const cr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=1y');
+          if (!cr.ok) return jsonResponse({ error: 'all sources failed; qs=' + qsRes.status + ' chart=' + cr.status }, 502);
+          const cj = await cr.json();
+          const meta = cj.chart?.result?.[0]?.meta || {};
+          return jsonResponse({
+            symbol: sym, source: 'chart-fallback',
+            valuation: { marketCap: 0, peRatio: 0 },
+            risk: { fiftyTwoWeekHigh: meta.fiftyTwoWeekHigh || 0, fiftyTwoWeekLow: meta.fiftyTwoWeekLow || 0 },
+            note: 'crumb auth 失敗，僅有部分資料',
+            updated: new Date().toISOString()
+          });
+        }
+        const qs = await qsRes.json();
+        const result = qs.quoteSummary && qs.quoteSummary.result && qs.quoteSummary.result[0];
+        if (!result) return jsonResponse({ error: 'no fundamentals data' }, 404);
+        const sd = result.summaryDetail || {}, ks = result.defaultKeyStatistics || {}, fd = result.financialData || {}, ap = result.assetProfile || {}, pr = result.price || {};
+        const raw = (obj, key) => (obj[key] && typeof obj[key] === 'object' ? (obj[key].raw || 0) : (obj[key] || 0));
+        return jsonResponse({
+          symbol: sym, source: 'yahoo-crumb',
+          name: pr.longName || pr.shortName || sym,
+          profile: { sector: ap.sector || '', industry: ap.industry || '', employees: raw(ap, 'fullTimeEmployees'), country: ap.country || '', website: ap.website || '' },
+          valuation: { marketCap: raw(sd, 'marketCap'), peRatio: raw(sd, 'trailingPE'), forwardPE: raw(sd, 'forwardPE'), pegRatio: raw(ks, 'pegRatio'), priceToBook: raw(ks, 'priceToBook'), priceToSales: raw(sd, 'priceToSalesTrailing12Months'), enterpriseValue: raw(ks, 'enterpriseValue'), evToRevenue: raw(ks, 'enterpriseToRevenue'), evToEBITDA: raw(ks, 'enterpriseToEbitda') },
+          profitability: { roe: raw(fd, 'returnOnEquity'), roa: raw(fd, 'returnOnAssets'), grossMargin: raw(fd, 'grossMargins'), operatingMargin: raw(fd, 'operatingMargins'), profitMargin: raw(fd, 'profitMargins'), ebitda: raw(fd, 'ebitda'), ebitdaMargin: raw(fd, 'ebitdaMargins') },
+          growth: { revenueGrowth: raw(fd, 'revenueGrowth'), earningsGrowth: raw(fd, 'earningsGrowth'), earningsQuarterlyGrowth: raw(ks, 'earningsQuarterlyGrowth'), totalRevenue: raw(fd, 'totalRevenue') },
+          financialHealth: { debtToEquity: raw(fd, 'debtToEquity'), currentRatio: raw(fd, 'currentRatio'), quickRatio: raw(fd, 'quickRatio'), totalCash: raw(fd, 'totalCash'), totalDebt: raw(fd, 'totalDebt'), freeCashflow: raw(fd, 'freeCashflow'), operatingCashflow: raw(fd, 'operatingCashflow') },
+          dividend: { dividendYield: raw(sd, 'dividendYield'), payoutRatio: raw(sd, 'payoutRatio'), fiveYearAvgYield: raw(sd, 'fiveYearAvgDividendYield'), dividendRate: raw(sd, 'dividendRate'), exDividendDate: raw(sd, 'exDividendDate') },
+          analysts: { targetMean: raw(fd, 'targetMeanPrice'), targetHigh: raw(fd, 'targetHighPrice'), targetLow: raw(fd, 'targetLowPrice'), recommendationMean: raw(fd, 'recommendationMean'), recommendationKey: fd.recommendationKey || '', numberOfAnalysts: raw(fd, 'numberOfAnalystOpinions') },
+          risk: { beta: raw(sd, 'beta'), fiftyTwoWeekHigh: raw(sd, 'fiftyTwoWeekHigh'), fiftyTwoWeekLow: raw(sd, 'fiftyTwoWeekLow'), fiftyTwoWeekChange: raw(ks, '52WeekChange'), shortRatio: raw(ks, 'shortRatio'), shortPercentOfFloat: raw(ks, 'shortPercentOfFloat'), heldPercentInsiders: raw(ks, 'heldPercentInsiders'), heldPercentInstitutions: raw(ks, 'heldPercentInstitutions') },
+          eps: { trailingEps: raw(ks, 'trailingEps'), forwardEps: raw(ks, 'forwardEps'), bookValue: raw(ks, 'bookValue'), revenuePerShare: raw(fd, 'revenuePerShare') },
+          updated: new Date().toISOString()
+        });
+      } catch (e) {
+        return jsonResponse({ error: 'fundamentals failed: ' + (e.message || e) }, 500);
+      }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

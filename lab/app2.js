@@ -9098,3 +9098,127 @@ window.v229Translate = function(){
     if (document.getElementById('v210-cfo-overlay')) window.v229Translate();
   }, 2000);
 })();
+
+
+// ===== v230: 基本面深度（50+ metrics 對標 Koyfin）=====
+
+window.v230LoadFundamentals = async function(symbol){
+  if (document.getElementById('v230-fund-' + symbol)) return;
+  const host = document.getElementById('v222-news-' + symbol) || document.getElementById('v219-ind-panel') || document.getElementById('full-candle-chart-v195') || document.getElementById('stock-detail');
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v230-fund-' + symbol;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #059669;border-radius:12px;background:linear-gradient(180deg,#ecfdf5,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#065f46;margin-bottom:6px;">💎 基本面深度（' + symbol + '）</div><div id="v230-body-' + symbol + '">載入中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    const body = document.getElementById('v230-body-' + symbol);
+    if (d.error) { body.innerHTML = '<div style="color:#dc2626;">' + d.error + '</div>'; return; }
+    if (d.note) { body.innerHTML = '<div style="color:#9a3412;">' + d.note + '</div>'; return; }
+    const fmt = (v, type) => {
+      if (!v && v !== 0) return '-';
+      if (type === '%') return (v * 100).toFixed(2) + '%';
+      if (type === 'B') return v >= 1e12 ? (v/1e12).toFixed(2) + 'T' : v >= 1e9 ? (v/1e9).toFixed(2) + 'B' : v >= 1e6 ? (v/1e6).toFixed(2) + 'M' : v.toFixed(0);
+      if (type === 'x') return v.toFixed(2) + 'x';
+      return v.toFixed(2);
+    };
+    const section = (title, items) => {
+      let html = '<div style="margin-bottom:14px;"><div style="font-weight:600;color:#065f46;font-size:13px;margin-bottom:6px;">' + title + '</div>';
+      html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px;">';
+      items.forEach(([label, value]) => {
+        html += '<div style="padding:6px 10px;background:white;border:1px solid #d1fae5;border-radius:6px;">';
+        html += '<div style="font-size:10px;color:#6b7280;">' + label + '</div>';
+        html += '<div style="font-size:13px;font-weight:600;color:#065f46;">' + value + '</div></div>';
+      });
+      return html + '</div></div>';
+    };
+    let html = '';
+    if (d.profile) html += section('🏢 公司資訊', [
+      ['產業', d.profile.sector + ' / ' + d.profile.industry],
+      ['員工數', fmt(d.profile.employees, 'B')],
+      ['註冊地', d.profile.country || '-']
+    ]);
+    if (d.valuation) html += section('💰 估值', [
+      ['市值', '$' + fmt(d.valuation.marketCap, 'B')],
+      ['本益比 P/E', fmt(d.valuation.peRatio, 'x')],
+      ['前瞻 P/E', fmt(d.valuation.forwardPE, 'x')],
+      ['PEG', fmt(d.valuation.pegRatio, 'x')],
+      ['股價淨值比 P/B', fmt(d.valuation.priceToBook, 'x')],
+      ['市銷比 P/S', fmt(d.valuation.priceToSales, 'x')],
+      ['EV', '$' + fmt(d.valuation.enterpriseValue, 'B')],
+      ['EV/Revenue', fmt(d.valuation.evToRevenue, 'x')],
+      ['EV/EBITDA', fmt(d.valuation.evToEBITDA, 'x')]
+    ]);
+    if (d.profitability) html += section('📈 獲利能力', [
+      ['ROE', fmt(d.profitability.roe, '%')],
+      ['ROA', fmt(d.profitability.roa, '%')],
+      ['毛利率', fmt(d.profitability.grossMargin, '%')],
+      ['營業利益率', fmt(d.profitability.operatingMargin, '%')],
+      ['淨利率', fmt(d.profitability.profitMargin, '%')],
+      ['EBITDA', '$' + fmt(d.profitability.ebitda, 'B')],
+      ['EBITDA Margin', fmt(d.profitability.ebitdaMargin, '%')]
+    ]);
+    if (d.growth) html += section('🚀 成長', [
+      ['營收成長 YoY', fmt(d.growth.revenueGrowth, '%')],
+      ['EPS 成長 YoY', fmt(d.growth.earningsGrowth, '%')],
+      ['EPS 季度成長', fmt(d.growth.earningsQuarterlyGrowth, '%')],
+      ['總營收', '$' + fmt(d.growth.totalRevenue, 'B')]
+    ]);
+    if (d.financialHealth) html += section('💪 財務健康', [
+      ['負債/權益', fmt(d.financialHealth.debtToEquity)],
+      ['流動比', fmt(d.financialHealth.currentRatio, 'x')],
+      ['速動比', fmt(d.financialHealth.quickRatio, 'x')],
+      ['現金', '$' + fmt(d.financialHealth.totalCash, 'B')],
+      ['總負債', '$' + fmt(d.financialHealth.totalDebt, 'B')],
+      ['自由現金流', '$' + fmt(d.financialHealth.freeCashflow, 'B')],
+      ['營業現金流', '$' + fmt(d.financialHealth.operatingCashflow, 'B')]
+    ]);
+    if (d.dividend) html += section('💵 股息', [
+      ['殖利率', fmt(d.dividend.dividendYield, '%')],
+      ['配息率', fmt(d.dividend.payoutRatio, '%')],
+      ['5 年平均殖利率', fmt(d.dividend.fiveYearAvgYield)],
+      ['年配息', '$' + fmt(d.dividend.dividendRate)]
+    ]);
+    if (d.analysts) html += section('🎯 分析師', [
+      ['平均目標價', '$' + fmt(d.analysts.targetMean)],
+      ['最高目標價', '$' + fmt(d.analysts.targetHigh)],
+      ['最低目標價', '$' + fmt(d.analysts.targetLow)],
+      ['建議分數', fmt(d.analysts.recommendationMean) + '（1 強買-5 強賣）'],
+      ['分析師人數', fmt(d.analysts.numberOfAnalysts, 'B')]
+    ]);
+    if (d.risk) html += section('⚖️ 風險', [
+      ['Beta', fmt(d.risk.beta)],
+      ['52 週高', '$' + fmt(d.risk.fiftyTwoWeekHigh)],
+      ['52 週低', '$' + fmt(d.risk.fiftyTwoWeekLow)],
+      ['52 週變動', fmt(d.risk.fiftyTwoWeekChange, '%')],
+      ['做空比', fmt(d.risk.shortRatio)],
+      ['做空 % of Float', fmt(d.risk.shortPercentOfFloat, '%')],
+      ['內部人持股', fmt(d.risk.heldPercentInsiders, '%')],
+      ['機構持股', fmt(d.risk.heldPercentInstitutions, '%')]
+    ]);
+    if (d.eps) html += section('💎 每股指標', [
+      ['過去 EPS', '$' + fmt(d.eps.trailingEps)],
+      ['前瞻 EPS', '$' + fmt(d.eps.forwardEps)],
+      ['每股淨值', '$' + fmt(d.eps.bookValue)],
+      ['每股營收', '$' + fmt(d.eps.revenuePerShare)]
+    ]);
+    html += '<div style="font-size:10px;color:#6b7280;margin-top:8px;">資料：Yahoo Finance 即時 · 50+ metrics（對標 Koyfin）· ' + (d.source || 'yahoo') + '</div>';
+    body.innerHTML = html;
+  } catch (e) {
+    document.getElementById('v230-body-' + symbol).innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
+  }
+};
+
+(function(){
+  if (window.__v230Wired) return;
+  window.__v230Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v230LoadFundamentals(code), 2500);
+    return r;
+  };
+})();
