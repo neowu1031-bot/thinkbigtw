@@ -11258,3 +11258,438 @@ window.v263LoadFinHistory = async function(symbol){
     if (charts.innerHTML) result.appendChild(charts);
   }, 1500);
 })();
+
+
+// ===== v266: 6 個進階技術指標（DEMA/TEMA/ADX/Aroon/AO/Hull MA）=====
+
+window.v266MoreIndicators = {
+  dema: function(closes, period){
+    const ema1 = window.v241Indicators.ema(closes, period);
+    const ema2 = window.v241Indicators.ema(ema1, period);
+    return ema1.map((v, i) => 2 * v - ema2[i]);
+  },
+  tema: function(closes, period){
+    const e1 = window.v241Indicators.ema(closes, period);
+    const e2 = window.v241Indicators.ema(e1, period);
+    const e3 = window.v241Indicators.ema(e2, period);
+    return e1.map((v, i) => 3 * v - 3 * e2[i] + e3[i]);
+  },
+  // ADX(14) - Average Directional Index
+  adx: function(highs, lows, closes, period){
+    period = period || 14;
+    const tr = [], plusDM = [], minusDM = [];
+    for (let i = 0; i < closes.length; i++) {
+      if (i === 0) { tr.push(highs[i] - lows[i]); plusDM.push(0); minusDM.push(0); continue; }
+      tr.push(Math.max(highs[i] - lows[i], Math.abs(highs[i] - closes[i-1]), Math.abs(lows[i] - closes[i-1])));
+      const upMove = highs[i] - highs[i-1];
+      const downMove = lows[i-1] - lows[i];
+      plusDM.push(upMove > downMove && upMove > 0 ? upMove : 0);
+      minusDM.push(downMove > upMove && downMove > 0 ? downMove : 0);
+    }
+    const smooth = (arr, p) => {
+      const out = [];
+      let s = 0;
+      for (let i = 0; i < p; i++) s += arr[i] || 0;
+      out[p-1] = s;
+      for (let i = p; i < arr.length; i++) out.push(out[i-1] - out[i-1]/p + arr[i]);
+      return out;
+    };
+    const trS = smooth(tr, period), plusS = smooth(plusDM, period), minusS = smooth(minusDM, period);
+    const plusDI = plusS.map((v, i) => trS[i] ? v / trS[i] * 100 : 0);
+    const minusDI = minusS.map((v, i) => trS[i] ? v / trS[i] * 100 : 0);
+    const dx = plusDI.map((p, i) => (p + minusDI[i]) ? Math.abs(p - minusDI[i]) / (p + minusDI[i]) * 100 : 0);
+    return { adx: window.v241Indicators.ema(dx, period), plusDI, minusDI };
+  },
+  // Aroon(25)
+  aroon: function(highs, lows, period){
+    period = period || 25;
+    const up = new Array(highs.length).fill(null), down = new Array(highs.length).fill(null);
+    for (let i = period; i < highs.length; i++) {
+      let highIdx = 0, lowIdx = 0, h = -Infinity, l = Infinity;
+      for (let j = i - period; j <= i; j++) {
+        if (highs[j] > h) { h = highs[j]; highIdx = j; }
+        if (lows[j] < l) { l = lows[j]; lowIdx = j; }
+      }
+      up[i] = ((period - (i - highIdx)) / period) * 100;
+      down[i] = ((period - (i - lowIdx)) / period) * 100;
+    }
+    return { up, down };
+  },
+  // Awesome Oscillator
+  ao: function(highs, lows){
+    const median = highs.map((h, i) => (h + lows[i]) / 2);
+    const sma5 = window.v241Indicators.sma(median, 5);
+    const sma34 = window.v241Indicators.sma(median, 34);
+    return sma5.map((v, i) => v != null && sma34[i] != null ? v - sma34[i] : null);
+  },
+  // Hull MA
+  hullMA: function(closes, period){
+    period = period || 14;
+    const half = Math.floor(period / 2);
+    const sqrtP = Math.floor(Math.sqrt(period));
+    const wma1 = window.v241Indicators.wma(closes, half);
+    const wma2 = window.v241Indicators.wma(closes, period);
+    const diff = wma1.map((v, i) => v != null && wma2[i] != null ? 2 * v - wma2[i] : null);
+    return window.v241Indicators.wma(diff.filter(x => x != null), sqrtP);
+  }
+};
+
+window.v266RenderAdvanced = async function(symbol){
+  if (document.getElementById('v266-adv-' + symbol)) return;
+  const host = document.getElementById('v241-ext-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=3mo');
+    const j = await r.json();
+    const result = j.chart?.result?.[0];
+    if (!result) return;
+    const q = result.indicators.quote[0];
+    const closes = (q.close || []).filter(x => x != null);
+    const highs = (q.high || []).filter(x => x != null);
+    const lows = (q.low || []).filter(x => x != null);
+    if (closes.length < 35) return;
+    const m = window.v266MoreIndicators;
+    const last = (a) => a[a.length - 1];
+    const dema = m.dema(closes, 14);
+    const tema = m.tema(closes, 14);
+    const adx = m.adx(highs, lows, closes, 14);
+    const aroon = m.aroon(highs, lows, 25);
+    const ao = m.ao(highs, lows);
+    const hull = m.hullMA(closes, 14);
+    const items = [
+      ['DEMA(14)', last(dema)?.toFixed(2)],
+      ['TEMA(14)', last(tema)?.toFixed(2)],
+      ['ADX(14)', last(adx.adx)?.toFixed(1)],
+      ['+DI', last(adx.plusDI)?.toFixed(1)],
+      ['-DI', last(adx.minusDI)?.toFixed(1)],
+      ['Aroon Up', last(aroon.up)?.toFixed(0)],
+      ['Aroon Down', last(aroon.down)?.toFixed(0)],
+      ['AO', last(ao)?.toFixed(2)],
+      ['Hull MA', last(hull)?.toFixed(2)]
+    ];
+    const box = document.createElement('div');
+    box.id = 'v266-adv-' + symbol;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #6d28d9;border-radius:12px;background:linear-gradient(180deg,#f5f3ff,#fff);';
+    box.innerHTML = '<div style="font-weight:700;color:#5b21b6;margin-bottom:6px;">📊 進階技術指標 v2（' + symbol + '）</div>'
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px;">'
+      + items.map(([l, v]) => '<div style="padding:8px;background:white;border:1px solid #ddd6fe;border-radius:6px;"><div style="font-size:10px;color:#6b7280;">' + l + '</div><div style="font-size:13px;font-weight:600;color:#5b21b6;">' + (v || '-') + '</div></div>').join('')
+      + '</div><div style="font-size:10px;color:#6b7280;margin-top:6px;">DEMA/TEMA/ADX/Aroon/AO/Hull MA · 共 9 指標（與既有合計 27+）</div>';
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch(e){}
+};
+(function(){
+  if (window.__v266Wired) return;
+  window.__v266Wired = true;
+  const orig = window.v241RenderExtended;
+  if (!orig) return;
+  window.v241RenderExtended = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v266RenderAdvanced(code), 1500);
+    return r;
+  };
+})();
+
+
+// ===== v267: 8 個 Drawing Tools 擴充 =====
+
+(function(){
+  if (window.__v267Wired) return;
+  window.__v267Wired = true;
+  // 升級 v242 toolbar 加更多工具
+  setInterval(() => {
+    const toolbar = document.getElementById('v242-toolbar');
+    if (!toolbar || toolbar.querySelector('.v267-tool')) return;
+    const moreTools = [
+      { mode: 'hline', icon: '─', title: '水平線' },
+      { mode: 'vline', icon: '│', title: '垂直線' },
+      { mode: 'fib', icon: '🌀', title: '斐波那契' },
+      { mode: 'channel', icon: '⫽', title: '平行通道' },
+      { mode: 'ellipse', icon: '⬭', title: '橢圓' },
+      { mode: 'arrow', icon: '➤', title: '箭頭' },
+      { mode: 'text', icon: 'T', title: '文字' },
+      { mode: 'cross', icon: '✚', title: '十字游標' }
+    ];
+    moreTools.forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'v242-tool v267-tool';
+      btn.dataset.mode = t.mode;
+      btn.title = t.title;
+      btn.textContent = t.icon;
+      btn.style.cssText = 'padding:6px;border:none;background:none;cursor:pointer;font-size:14px;';
+      btn.addEventListener('click', () => {
+        window.v242DrawingMode = t.mode;
+        toolbar.querySelectorAll('button').forEach(x => x.style.background = 'none');
+        btn.style.background = '#fef3c7';
+      });
+      toolbar.appendChild(btn);
+    });
+  }, 1500);
+  // 擴充 attach 處理新模式
+  const origAttach = window.v242AttachToChart;
+  if (!origAttach) return;
+  // 重寫 attach 處理 8 個新模式
+  window.v242AttachToChart = function(svgContainerId){
+    const svg = document.querySelector('#' + svgContainerId + ' svg');
+    if (!svg || svg.dataset.v267Attached) return;
+    svg.dataset.v267Attached = '1';
+    if (!svg.dataset.v242Attached) origAttach(svgContainerId);
+    let startX = null, startY = null;
+    const getMouse = (e) => {
+      const rect = svg.getBoundingClientRect();
+      const vb = svg.viewBox.baseVal;
+      return { x: (e.clientX - rect.left) / rect.width * vb.width, y: (e.clientY - rect.top) / rect.height * vb.height };
+    };
+    svg.addEventListener('mousedown', (e) => { if (window.v242DrawingMode) { const m = getMouse(e); startX = m.x; startY = m.y; } });
+    svg.addEventListener('mouseup', (e) => {
+      if (!window.v242DrawingMode || startX === null) return;
+      const m = getMouse(e);
+      const NS = 'http://www.w3.org/2000/svg';
+      const mode = window.v242DrawingMode;
+      if (mode === 'hline') {
+        const line = document.createElementNS(NS, 'line');
+        const vb = svg.viewBox.baseVal;
+        line.setAttribute('x1', 0); line.setAttribute('y1', startY);
+        line.setAttribute('x2', vb.width); line.setAttribute('y2', startY);
+        line.setAttribute('stroke', '#dc2626'); line.setAttribute('stroke-width', '1.5');
+        svg.appendChild(line);
+      } else if (mode === 'vline') {
+        const line = document.createElementNS(NS, 'line');
+        const vb = svg.viewBox.baseVal;
+        line.setAttribute('x1', startX); line.setAttribute('y1', 0);
+        line.setAttribute('x2', startX); line.setAttribute('y2', vb.height);
+        line.setAttribute('stroke', '#2563eb'); line.setAttribute('stroke-width', '1.5');
+        svg.appendChild(line);
+      } else if (mode === 'fib') {
+        const levels = [0, 0.236, 0.382, 0.5, 0.618, 0.786, 1];
+        levels.forEach(L => {
+          const y = startY + (m.y - startY) * L;
+          const line = document.createElementNS(NS, 'line');
+          const vb = svg.viewBox.baseVal;
+          line.setAttribute('x1', 0); line.setAttribute('y1', y);
+          line.setAttribute('x2', vb.width); line.setAttribute('y2', y);
+          line.setAttribute('stroke', '#9333ea'); line.setAttribute('stroke-width', '1');
+          line.setAttribute('stroke-dasharray', '3,3');
+          svg.appendChild(line);
+          const t = document.createElementNS(NS, 'text');
+          t.setAttribute('x', vb.width - 30); t.setAttribute('y', y - 2);
+          t.setAttribute('font-size', '9'); t.setAttribute('fill', '#9333ea');
+          t.textContent = (L * 100).toFixed(1) + '%';
+          svg.appendChild(t);
+        });
+      } else if (mode === 'channel') {
+        const offset = 30;
+        [0, offset].forEach(off => {
+          const line = document.createElementNS(NS, 'line');
+          line.setAttribute('x1', startX); line.setAttribute('y1', startY + off);
+          line.setAttribute('x2', m.x); line.setAttribute('y2', m.y + off);
+          line.setAttribute('stroke', '#0891b2'); line.setAttribute('stroke-width', '1.5');
+          svg.appendChild(line);
+        });
+      } else if (mode === 'ellipse') {
+        const ellipse = document.createElementNS(NS, 'ellipse');
+        ellipse.setAttribute('cx', (startX + m.x) / 2); ellipse.setAttribute('cy', (startY + m.y) / 2);
+        ellipse.setAttribute('rx', Math.abs(m.x - startX) / 2); ellipse.setAttribute('ry', Math.abs(m.y - startY) / 2);
+        ellipse.setAttribute('fill', 'none'); ellipse.setAttribute('stroke', '#16a34a'); ellipse.setAttribute('stroke-width', '1.5');
+        svg.appendChild(ellipse);
+      } else if (mode === 'arrow') {
+        const line = document.createElementNS(NS, 'line');
+        line.setAttribute('x1', startX); line.setAttribute('y1', startY);
+        line.setAttribute('x2', m.x); line.setAttribute('y2', m.y);
+        line.setAttribute('stroke', '#ea580c'); line.setAttribute('stroke-width', '2');
+        line.setAttribute('marker-end', 'url(#v267arrow)');
+        if (!svg.querySelector('#v267arrow')) {
+          const defs = document.createElementNS(NS, 'defs');
+          defs.innerHTML = '<marker id="v267arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><polygon points="0 0, 6 3, 0 6" fill="#ea580c"/></marker>';
+          svg.insertBefore(defs, svg.firstChild);
+        }
+        svg.appendChild(line);
+      } else if (mode === 'text') {
+        const t = prompt('輸入文字');
+        if (t) {
+          const text = document.createElementNS(NS, 'text');
+          text.setAttribute('x', startX); text.setAttribute('y', startY);
+          text.setAttribute('font-size', '12'); text.setAttribute('fill', '#1f2937'); text.setAttribute('font-weight', '700');
+          text.textContent = t;
+          svg.appendChild(text);
+        }
+      }
+      startX = null;
+    });
+  };
+})();
+
+
+// ===== v268: SEC EDGAR 10-K/10-Q 連結 =====
+
+window.v268AddSECLink = function(symbol){
+  if (!/^[A-Z]+$/.test(symbol)) return; // 美股才有 SEC
+  if (document.getElementById('v268-sec-' + symbol)) return;
+  const host = document.getElementById('v230-fund-' + symbol);
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v268-sec-' + symbol;
+  box.style.cssText = 'margin-top:10px;padding:10px;background:#eff6ff;border:1px solid #93c5fd;border-radius:8px;display:flex;gap:8px;flex-wrap:wrap;';
+  box.innerHTML = '<div style="font-weight:600;color:#1e40af;font-size:12px;width:100%;">📄 SEC 官方申報文件</div>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=10-K" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1e40af;text-decoration:none;font-weight:600;">📋 10-K 年報</a>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=10-Q" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1e40af;text-decoration:none;font-weight:600;">📊 10-Q 季報</a>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=8-K" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1e40af;text-decoration:none;font-weight:600;">⚡ 8-K 重大事件</a>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=DEF+14A" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1e40af;text-decoration:none;font-weight:600;">🗳 委託書 DEF 14A</a>';
+  host.appendChild(box);
+};
+(function(){
+  if (window.__v268Wired) return;
+  window.__v268Wired = true;
+  const orig = window.v230LoadFundamentals;
+  if (!orig) return;
+  window.v230LoadFundamentals = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v268AddSECLink(code), 2500);
+    return r;
+  };
+})();
+
+
+// ===== v269: 即時報價強化（每 30 秒輪詢 watchlist）=====
+
+window.v269RealtimeMode = false;
+window.v269StartRealtime = function(){
+  if (window.v269RealtimeMode) return;
+  window.v269RealtimeMode = true;
+  setInterval(() => {
+    if (!window.v269RealtimeMode) return;
+    document.querySelectorAll('[id^="px-"]').forEach(el => {
+      const card = el.parentNode;
+      if (!card) return;
+      const data = window.v204ExtractCardData ? window.v204ExtractCardData(card) : null;
+      if (!data) return;
+      // 每 30 秒重抓 (Yahoo 不支援即時，但最快 1 分鐘 update)
+      fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(data.symbol))
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+          if (!d || !d.price) return;
+          const pct = d.changePercent || 0;
+          const c = pct >= 0 ? '#dc2626' : '#16a34a';
+          el.innerHTML = '<span style="color:' + c + ';font-weight:600;">' + d.price.toFixed(2) + '</span> <span style="color:' + c + ';font-size:10px;">(' + (pct>=0?'+':'') + pct.toFixed(2) + '%)</span>';
+          card.style.borderColor = '#fbbf24';
+          setTimeout(() => { card.style.borderColor = ''; }, 800);
+        }).catch(()=>{});
+    });
+  }, 30000);
+  console.log('[v269] realtime mode ON (30s interval)');
+};
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v269-rt-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v269-rt-btn';
+    btn.textContent = '⚡ 即時模式';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(220,38,38,0.3),rgba(245,158,11,0.3));border:1px solid rgba(220,38,38,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => {
+      window.v269StartRealtime();
+      btn.textContent = '⚡ 即時 ON';
+      btn.disabled = true;
+    });
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v270: 過去 4 季 Earnings Surprise =====
+
+window.v270LoadEarnings = async function(symbol){
+  if (document.getElementById('v270-er-' + symbol)) return;
+  const host = document.getElementById('v263-fh-' + symbol) || document.getElementById('v230-fund-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/earnings-surprise?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (d.error || !d.history || d.history.length === 0) return;
+    let html = '<div style="font-weight:700;color:#0c4a6e;margin-bottom:8px;">📊 過去 4 季 Earnings Surprise</div>';
+    html += '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">';
+    html += '<thead style="background:#dbeafe;"><tr><th style="padding:6px;text-align:left;">季度</th><th style="padding:6px;text-align:right;">實際 EPS</th><th style="padding:6px;text-align:right;">預估 EPS</th><th style="padding:6px;text-align:right;">差異</th><th style="padding:6px;text-align:right;">超預期 %</th></tr></thead><tbody>';
+    d.history.slice(0, 4).forEach(h => {
+      const c = h.surprisePct >= 0 ? '#dc2626' : '#16a34a';
+      const sign = h.surprisePct >= 0 ? '+' : '';
+      html += '<tr style="border-bottom:1px solid #e0f2fe;">';
+      html += '<td style="padding:6px;font-weight:600;">' + h.date + '</td>';
+      html += '<td style="padding:6px;text-align:right;">$' + h.actualEPS.toFixed(2) + '</td>';
+      html += '<td style="padding:6px;text-align:right;color:#6b7280;">$' + h.estimateEPS.toFixed(2) + '</td>';
+      html += '<td style="padding:6px;text-align:right;color:' + c + ';">' + (h.surprise >= 0 ? '+' : '') + h.surprise.toFixed(2) + '</td>';
+      html += '<td style="padding:6px;text-align:right;color:' + c + ';font-weight:600;">' + sign + (h.surprisePct * 100).toFixed(1) + '%</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    if (d.nextEarnings && d.nextEarnings.date) {
+      html += '<div style="margin-top:8px;padding:8px;background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;font-size:12px;color:#92400e;">📅 下次財報日：<strong>' + d.nextEarnings.date + '</strong> · 預估 EPS：$' + d.nextEarnings.estimate.toFixed(2) + '</div>';
+    }
+    const box = document.createElement('div');
+    box.id = 'v270-er-' + symbol;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #0284c7;border-radius:12px;background:linear-gradient(180deg,#f0f9ff,#fff);';
+    box.innerHTML = html;
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch(e){}
+};
+(function(){
+  if (window.__v270Wired) return;
+  window.__v270Wired = true;
+  const orig = window.v263LoadFinHistory;
+  if (!orig) return;
+  window.v263LoadFinHistory = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v270LoadEarnings(code), 2000);
+    return r;
+  };
+})();
+
+
+// ===== v271: 內部人 / 機構持股變動 =====
+
+window.v271LoadOwnership = async function(symbol){
+  if (document.getElementById('v271-own-' + symbol)) return;
+  const host = document.getElementById('v270-er-' + symbol) || document.getElementById('v230-fund-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/insider-ownership?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (d.error) return;
+    let html = '<div style="font-weight:700;color:#7c2d12;margin-bottom:8px;">👥 持股結構</div>';
+    if (d.summary) {
+      html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;">';
+      html += '<div style="padding:8px;background:white;border:1px solid #fed7aa;border-radius:6px;text-align:center;"><div style="font-size:10px;color:#6b7280;">內部人持股</div><div style="font-size:14px;font-weight:700;color:#7c2d12;">' + d.summary.insiderPct.toFixed(2) + '%</div></div>';
+      html += '<div style="padding:8px;background:white;border:1px solid #fed7aa;border-radius:6px;text-align:center;"><div style="font-size:10px;color:#6b7280;">機構持股</div><div style="font-size:14px;font-weight:700;color:#7c2d12;">' + d.summary.institutionPct.toFixed(2) + '%</div></div>';
+      html += '<div style="padding:8px;background:white;border:1px solid #fed7aa;border-radius:6px;text-align:center;"><div style="font-size:10px;color:#6b7280;">機構數</div><div style="font-size:14px;font-weight:700;color:#7c2d12;">' + d.summary.institutionCount + '</div></div>';
+      html += '</div>';
+    }
+    if (d.topInstitutions && d.topInstitutions.length > 0) {
+      html += '<div style="font-weight:600;font-size:12px;color:#7c2d12;margin-bottom:4px;">前 5 大機構持股</div>';
+      d.topInstitutions.forEach(t => {
+        html += '<div style="font-size:11px;padding:4px 8px;background:white;border-left:3px solid #ea580c;margin-bottom:2px;border-radius:4px;display:flex;justify-content:space-between;"><span>' + t.name + '</span><span style="font-weight:600;">' + t.pct.toFixed(2) + '%</span></div>';
+      });
+    }
+    if (d.recentTransactions && d.recentTransactions.length > 0) {
+      html += '<div style="font-weight:600;font-size:12px;color:#7c2d12;margin:8px 0 4px;">最近內部人交易</div>';
+      d.recentTransactions.slice(0, 5).forEach(t => {
+        html += '<div style="font-size:10px;padding:4px 8px;background:white;border-left:3px solid #f97316;margin-bottom:2px;border-radius:4px;"><strong>' + t.name + '</strong> · ' + t.type + ' · ' + (t.shares ? t.shares.toLocaleString() : '-') + ' 股 · ' + t.date + '</div>';
+      });
+    }
+    const box = document.createElement('div');
+    box.id = 'v271-own-' + symbol;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #ea580c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
+    box.innerHTML = html;
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch(e){}
+};
+(function(){
+  if (window.__v271Wired) return;
+  window.__v271Wired = true;
+  const orig = window.v270LoadEarnings;
+  if (!orig) return;
+  window.v270LoadEarnings = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v271LoadOwnership(code), 2500);
+    return r;
+  };
+})();

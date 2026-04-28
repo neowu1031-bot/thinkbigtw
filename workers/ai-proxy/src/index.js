@@ -1822,6 +1822,91 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
       } catch (e) { return jsonResponse({ error: 'fin-history failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /earnings-surprise (v270) - 過去 4 季財報意外 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/earnings-surprise') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        let crumb = '', cookieHeader = '';
+        try {
+          const sr = await fetch('https://fc.yahoo.com', { redirect: 'manual', headers: { 'User-Agent': 'Mozilla/5.0' } });
+          const sc = sr.headers.get('set-cookie') || '';
+          const a1 = (sc.match(/A1=([^;,]+)/) || [])[1];
+          const a3 = (sc.match(/A3=([^;,]+)/) || [])[1];
+          cookieHeader = [a1 ? 'A1=' + a1 : '', a3 ? 'A3=' + a3 : ''].filter(Boolean).join('; ');
+          if (cookieHeader) {
+            const cr = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', { headers: { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' } });
+            if (cr.ok) crumb = (await cr.text()).trim();
+          }
+        } catch(e){}
+        const url = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/' + encodeURIComponent(sym) + '?modules=earningsHistory,calendarEvents' + (crumb ? '&crumb=' + encodeURIComponent(crumb) : '');
+        const r = await fetch(url, { headers: cookieHeader ? { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' } : { 'User-Agent': 'Mozilla/5.0' } });
+        if (!r.ok) return jsonResponse({ error: 'yahoo ' + r.status }, 502);
+        const j = await r.json();
+        const result = j.quoteSummary?.result?.[0];
+        if (!result) return jsonResponse({ error: 'no data' }, 404);
+        const raw = (o, k) => (o?.[k]?.raw ?? 0);
+        const eh = (result.earningsHistory?.history || []).map(q => ({
+          date: q.quarter?.fmt || '',
+          actualEPS: raw(q, 'epsActual'),
+          estimateEPS: raw(q, 'epsEstimate'),
+          surprise: raw(q, 'surpriseDifference'),
+          surprisePct: raw(q, 'surprisePercent')
+        }));
+        const next = result.calendarEvents?.earnings || {};
+        return jsonResponse({
+          symbol: sym, history: eh,
+          nextEarnings: { date: next.earningsDate?.[0]?.fmt || '', estimate: raw(next, 'earningsAverage') },
+          updated: new Date().toISOString()
+        });
+      } catch (e) { return jsonResponse({ error: 'earnings failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /insider-ownership (v271) - 內部人 / 機構持股 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/insider-ownership') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        let crumb = '', cookieHeader = '';
+        try {
+          const sr = await fetch('https://fc.yahoo.com', { redirect: 'manual', headers: { 'User-Agent': 'Mozilla/5.0' } });
+          const sc = sr.headers.get('set-cookie') || '';
+          const a1 = (sc.match(/A1=([^;,]+)/) || [])[1];
+          const a3 = (sc.match(/A3=([^;,]+)/) || [])[1];
+          cookieHeader = [a1 ? 'A1=' + a1 : '', a3 ? 'A3=' + a3 : ''].filter(Boolean).join('; ');
+          if (cookieHeader) {
+            const cr = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', { headers: { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' } });
+            if (cr.ok) crumb = (await cr.text()).trim();
+          }
+        } catch(e){}
+        const url = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/' + encodeURIComponent(sym) + '?modules=insiderHolders,institutionOwnership,majorHoldersBreakdown,insiderTransactions' + (crumb ? '&crumb=' + encodeURIComponent(crumb) : '');
+        const r = await fetch(url, { headers: cookieHeader ? { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' } : { 'User-Agent': 'Mozilla/5.0' } });
+        if (!r.ok) return jsonResponse({ error: 'yahoo ' + r.status }, 502);
+        const j = await r.json();
+        const result = j.quoteSummary?.result?.[0];
+        if (!result) return jsonResponse({ error: 'no data' }, 404);
+        const raw = (o, k) => (o?.[k]?.raw ?? 0);
+        const insiderH = (result.insiderHolders?.holders || []).slice(0, 5).map(h => ({
+          name: h.name, position: h.relation || '', shares: raw(h, 'positionDirect'), date: h.latestTransDate?.fmt || ''
+        }));
+        const instOwn = (result.institutionOwnership?.ownershipList || []).slice(0, 5).map(h => ({
+          name: h.organization, pct: raw(h, 'pctHeld') * 100, value: raw(h, 'value'), shares: raw(h, 'position')
+        }));
+        const major = result.majorHoldersBreakdown || {};
+        const insiderTxns = (result.insiderTransactions?.transactions || []).slice(0, 8).map(t => ({
+          name: t.filerName, type: t.transactionText || '', shares: raw(t, 'shares'), value: raw(t, 'value'), date: t.startDate?.fmt || ''
+        }));
+        return jsonResponse({
+          symbol: sym,
+          summary: { insiderPct: raw(major, 'insidersPercentHeld') * 100, institutionPct: raw(major, 'institutionsPercentHeld') * 100, institutionCount: raw(major, 'institutionsCount') },
+          topInsiders: insiderH, topInstitutions: instOwn, recentTransactions: insiderTxns,
+          updated: new Date().toISOString()
+        });
+      } catch (e) { return jsonResponse({ error: 'insider failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);
