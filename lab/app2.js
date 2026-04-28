@@ -7223,3 +7223,111 @@ window.v203LoadAristocrats = async function(){
     }
   }, 2000);
 })();
+
+// ===== v204: AI 解讀普及化（Universal）=====
+
+// 通用 card 資料抽取（heuristic）
+window.v204ExtractCardData = function(card){
+  if (!card || card.nodeType !== 1) return null;
+  // 1. data-symbol 優先
+  if (card.dataset && card.dataset.symbol) {
+    return { symbol: card.dataset.symbol, name: card.dataset.name || '' };
+  }
+  // 2. 第一個子 div 看起來像股票代號
+  const firstDiv = card.querySelector(':scope > div');
+  if (firstDiv) {
+    const sym = firstDiv.textContent.trim();
+    if (sym.length >= 1 && sym.length <= 12 &&
+        /^[A-Z0-9]{1,6}(?:[-.][A-Z0-9]{1,4})?(?:[-.][A-Z0-9]{1,4})?$/.test(sym)) {
+      const next = firstDiv.nextElementSibling;
+      const name = next ? next.textContent.trim() : '';
+      return { symbol: sym, name };
+    }
+  }
+  return null;
+};
+
+// 注入 AI 解讀按鈕到單張卡片
+window.v204AddAIButton = function(card){
+  if (!card || card.nodeType !== 1) return false;
+  if (card.querySelector('.v202-ai-btn, .v204-ai-btn')) return false;
+  const data = window.v204ExtractCardData(card);
+  if (!data || !data.symbol) return false;
+  const btn = document.createElement('button');
+  btn.className = 'v204-ai-btn';
+  btn.textContent = '🤖 AI 解讀';
+  btn.style.cssText = 'margin-top:6px;padding:4px 10px;font-size:11px;background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;cursor:pointer;color:#92400e;font-weight:600;width:100%;';
+  btn.addEventListener('click', async () => {
+    if (btn.disabled) return;
+    btn.disabled = true; btn.textContent = '抓報價中…';
+    try {
+      const qr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(data.symbol));
+      const q = await qr.json();
+      if (window.v202QuickAnalysis) {
+        window.v202QuickAnalysis(data.symbol, data.name, q.price || 0, q.changePercent || 0, q.currency || '', btn);
+      } else {
+        btn.disabled = false; btn.textContent = '🤖 AI 解讀';
+        alert('AI 解讀模組未載入');
+      }
+    } catch (e) {
+      btn.disabled = false; btn.textContent = '🤖 AI 解讀';
+      alert('抓報價失敗：' + (e.message || e));
+    }
+  });
+  card.appendChild(btn);
+  return true;
+};
+
+// 全域掃描所有已知 card patterns
+window.v204ScanAll = function(){
+  let added = 0;
+  // Pattern A: v199 px-XXX cards (亞洲全球延伸)
+  document.querySelectorAll('[id^="px-"]').forEach(el => {
+    if (window.v204AddAIButton(el.parentNode)) added++;
+  });
+  // Pattern B: 已知容器內的直接子 div
+  const containers = [
+    '#watchlist-grid', '#my-watchlist',
+    '#hot-stocks-section', '#hot-cards',
+    '#asia-stocks-grid', '#asia-grid',
+    '#us-grid', '#crypto-grid', '#commodities-grid',
+    '[id^="grid-"]'
+  ];
+  containers.forEach(sel => {
+    document.querySelectorAll(sel).forEach(c => {
+      c.querySelectorAll(':scope > div').forEach(card => {
+        if (window.v204AddAIButton(card)) added++;
+      });
+    });
+  });
+  // Pattern C: 任何 [data-symbol] 元素（新 cards 主動標記用）
+  document.querySelectorAll('[data-symbol]').forEach(card => {
+    if (window.v204AddAIButton(card)) added++;
+  });
+  return added;
+};
+
+// MutationObserver + 定期 scan
+(function(){
+  if (window.__v204Wired) return;
+  window.__v204Wired = true;
+  // 首次延遲 scan（等其他模組 hydrate）
+  setTimeout(() => {
+    const n = window.v204ScanAll();
+    if (n > 0) console.log('[v204] initial scan added ' + n + ' AI buttons');
+  }, 2500);
+  // 每 3 秒 re-scan（補新 render 的 cards）
+  setInterval(window.v204ScanAll, 3000);
+  // 也用 MutationObserver 即時抓
+  if (window.MutationObserver) {
+    const obs = new MutationObserver(records => {
+      let need = false;
+      for (const r of records) {
+        if (r.addedNodes && r.addedNodes.length > 0) { need = true; break; }
+      }
+      if (need) window.v204ScanAll();
+    });
+    obs.observe(document.body, { childList: true, subtree: true });
+  }
+  console.log('[v204] universal AI button observer wired');
+})();
