@@ -6763,9 +6763,9 @@ async function loadFullCandleChart(code){
     }
     const body = document.getElementById('fcc-body-v195');
     body.textContent = '載入中…';
-    const sb = (window.SUPABASE_URL || 'https://sirhskxufayklqrlxeep.supabase.co');
+    const sb = (window.SUPABASE_URL || 'https://gvscndrxmihaffbwgmku.supabase.co');
     const key = (window.SUPABASE_ANON_KEY || '');
-    const url = sb + '/rest/v1/daily_prices?symbol=eq.' + encodeURIComponent(code) +
+    const url = sb + '/rest/v1/daily_prices?stock_code=eq.' + encodeURIComponent(code) +
                 '&select=date,open_price,high_price,low_price,close_price&order=date.desc&limit=60';
     const r = await fetch(url, { headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {} });
     if (!r.ok) { body.textContent = '無資料'; return; }
@@ -6886,7 +6886,7 @@ async function loadIndustryTreemap(){
     const body = document.getElementById('itm-body-v196');
     if (!window.v196IndustryData) {
       // fetch fresh: avg pct per industry from latest two days
-      const sb = (window.SUPABASE_URL || 'https://sirhskxufayklqrlxeep.supabase.co');
+      const sb = (window.SUPABASE_URL || 'https://gvscndrxmihaffbwgmku.supabase.co');
       const key = (window.SUPABASE_ANON_KEY || '');
       const dr = await fetch(sb + '/rest/v1/daily_prices?select=date&order=date.desc&limit=2', {
         headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {}
@@ -6894,17 +6894,17 @@ async function loadIndustryTreemap(){
       const dRows = await dr.json();
       if (!dRows || dRows.length < 2) { body.textContent = '資料不足'; return; }
       const today = dRows[0].date, yest = dRows[1].date;
-      const dpr = await fetch(sb + '/rest/v1/daily_prices?date=in.(' + today + ',' + yest + ')&select=symbol,date,close_price', {
+      const dpr = await fetch(sb + '/rest/v1/daily_prices?date=in.(' + today + ',' + yest + ')&select=stock_code,date,close_price', {
         headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {}
       });
       const dp = await dpr.json();
-      const sr = await fetch(sb + '/rest/v1/stocks?select=symbol,industry', {
+      const sr = await fetch(sb + '/rest/v1/stocks?select=stock_code,industry', {
         headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {}
       });
       const stocks = await sr.json();
-      const indMap = {}; stocks.forEach(x => { indMap[x.symbol] = x.industry || '其他'; });
+      const indMap = {}; stocks.forEach(x => { indMap[x.stock_code] = x.industry || '其他'; });
       const t = {}, y = {};
-      dp.forEach(r => { (r.date === today ? t : y)[r.symbol] = +r.close_price; });
+      dp.forEach(r => { (r.date === today ? t : y)[r.stock_code] = +r.close_price; });
       const indPct = {};
       Object.keys(t).forEach(c => {
         if (y[c] && y[c] > 0) {
@@ -9678,9 +9678,9 @@ window.v239LoadInstitutional = async function(stockCode){
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   const body = document.getElementById('v239-body-' + stockCode);
   try {
-    const sb = (window.SUPABASE_URL || 'https://sirhskxufayklqrlxeep.supabase.co');
+    const sb = (window.SUPABASE_URL || 'https://gvscndrxmihaffbwgmku.supabase.co');
     const key = (window.SUPABASE_ANON_KEY || '');
-    const url = sb + '/rest/v1/institutional_investors?symbol=eq.' + encodeURIComponent(stockCode) + '&select=date,foreign_buy,investment_trust_buy,dealer_buy&order=date.desc&limit=30';
+    const url = sb + '/rest/v1/institutional_investors?stock_code=eq.' + encodeURIComponent(stockCode) + '&select=date,foreign_buy,investment_trust_buy,dealer_buy&order=date.desc&limit=30';
     const r = await fetch(url, { headers: key ? { apikey: key, Authorization: 'Bearer ' + key } : {} });
     if (!r.ok) { body.innerHTML = '<div style="color:#dc2626;">資料載入失敗（HTTP ' + r.status + '）</div>'; return; }
     const rows = await r.json();

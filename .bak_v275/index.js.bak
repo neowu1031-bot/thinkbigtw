@@ -1556,8 +1556,8 @@ export default {
       const stock = u.searchParams.get('stock');
       if (!stock) return jsonResponse({ error: 'stock required' }, 400);
       try {
-        const sb = 'https://sirhskxufayklqrlxeep.supabase.co';
-        const r = await fetch(sb + '/rest/v1/monthly_revenue?symbol=eq.' + encodeURIComponent(stock) + '&select=year_month,revenue,yoy_pct,mom_pct&order=year_month.desc&limit=24', {
+        const sb = 'https://gvscndrxmihaffbwgmku.supabase.co';
+        const r = await fetch(sb + '/rest/v1/monthly_revenue?stock_code=eq.' + encodeURIComponent(stock) + '&select=year_month,revenue,yoy_pct,mom_pct&order=year_month.desc&limit=24', {
           headers: { apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2c2NuZHJ4bWloYWZmYndnbWt1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA4MzQyMjEsImV4cCI6MjA1NjQxMDIyMX0.O2WMkNPBjXPSHlPbgU6nJP6sV1AXr_C-JbtBEa9JIQk' }
         });
         if (!r.ok) return jsonResponse({ error: 'Supabase ' + r.status }, 502);
