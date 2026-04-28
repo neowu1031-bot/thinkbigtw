@@ -11812,3 +11812,165 @@ window.v272Reset = function(){
   // 啟動
   setTimeout(window.v272Init, 4000);
 })();
+
+
+// ===== v273: 病毒分享卡片（html2canvas + Share API）=====
+
+window.v273CaptureAndShare = async function(targetEl, title){
+  if (!targetEl) return;
+  if (typeof html2canvas === 'undefined') { alert('html2canvas 還在載入...'); return; }
+  // 加 watermark
+  const watermark = document.createElement('div');
+  watermark.style.cssText = 'position:absolute;bottom:8px;right:12px;font-size:10px;color:rgba(0,0,0,0.4);background:rgba(255,255,255,0.8);padding:2px 6px;border-radius:4px;font-family:sans-serif;';
+  watermark.textContent = '📊 MoneyRadar.thinkbigtw.com';
+  targetEl.style.position = 'relative';
+  targetEl.appendChild(watermark);
+  try {
+    const canvas = await html2canvas(targetEl, {
+      backgroundColor: '#ffffff',
+      scale: 2,
+      logging: false,
+      useCORS: true
+    });
+    watermark.remove();
+    canvas.toBlob(async (blob) => {
+      if (!blob) { alert('截圖失敗'); return; }
+      // Web Share API（手機友善）
+      if (navigator.canShare && navigator.canShare({ files: [new File([blob], 'moneyradar.png', { type: 'image/png' })] })) {
+        try {
+          await navigator.share({
+            title: title || 'MoneyRadar 分析',
+            text: '由 MoneyRadar AI 產生 · thinkbigtw.com/lab/',
+            files: [new File([blob], 'moneyradar.png', { type: 'image/png' })]
+          });
+          return;
+        } catch(e){}
+      }
+      // Fallback: 下載
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'moneyradar_' + Date.now() + '.png';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      alert('✅ 已下載圖片，可分享到任何社群平台');
+    }, 'image/png');
+  } catch (e) {
+    watermark.remove();
+    alert('截圖失敗：' + e.message);
+  }
+};
+
+// 為所有 AI 分析容器加 「📤 分享」按鈕
+window.v273InjectShareButtons = function(){
+  const targets = [
+    { selector: '#v210-messages > div', title: 'AI CFO 對話' },
+    { selector: '[id^="v202-ana-"]', title: 'AI 個股解讀' },
+    { selector: '#v230-fund-', title: '基本面深度' },
+    { selector: '#v246-dupont-', title: 'ROE 杜邦拆解' },
+    { selector: '#v247-alert-', title: '體質警示' },
+    { selector: '#v270-er-', title: 'Earnings Surprise' },
+    { selector: '#v271-own-', title: '持股結構' },
+    { selector: '#v238-pe-', title: 'PE 河流圖' },
+    { selector: '#v244-macro-box', title: 'Macro 儀表板' },
+    { selector: '#v205-crypto-box', title: '加密貨幣' }
+  ];
+  targets.forEach(t => {
+    document.querySelectorAll(t.selector + (t.selector.endsWith('-') ? '*' : '')).forEach(el => {
+      if (el.querySelector('.v273-share-btn')) return;
+      // skip 太小的元素
+      if (el.offsetHeight < 80) return;
+      const btn = document.createElement('button');
+      btn.className = 'v273-share-btn';
+      btn.textContent = '📤 分享';
+      btn.title = '截圖分享 ' + t.title;
+      btn.style.cssText = 'position:absolute;top:8px;right:8px;padding:4px 10px;background:rgba(255,255,255,0.9);border:1px solid #d1d5db;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;color:#1f2937;z-index:5;box-shadow:0 1px 3px rgba(0,0,0,0.1);';
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        window.v273CaptureAndShare(el, t.title);
+      });
+      el.style.position = 'relative';
+      el.appendChild(btn);
+    });
+  });
+};
+
+(function(){
+  if (window.__v273Wired) return;
+  window.__v273Wired = true;
+  setInterval(window.v273InjectShareButtons, 3000);
+})();
+
+
+// ===== v274: TradingView Widget 嵌入（站在巨人肩膀上）=====
+
+window.v274LoadTradingView = function(symbol){
+  if (!symbol) return;
+  if (document.getElementById('v274-tv-' + symbol)) return;
+  const host = document.getElementById('v195-candle-' + symbol) || document.getElementById('full-candle-chart-v195') || document.getElementById('v217-mtf-box');
+  if (!host) return;
+  // TradingView symbol mapping（台股要加 :）
+  let tvSymbol = symbol;
+  if (/^\d{4}$/.test(symbol)) {
+    tvSymbol = 'TPE:' + symbol;
+  } else if (symbol.endsWith('.TW')) {
+    tvSymbol = 'TPE:' + symbol.replace('.TW', '');
+  } else if (symbol.endsWith('.HK')) {
+    tvSymbol = 'HKEX:' + symbol.replace('.HK', '');
+  } else if (symbol.endsWith('.AX')) {
+    tvSymbol = 'ASX:' + symbol.replace('.AX', '');
+  } else if (symbol.endsWith('.AS')) {
+    tvSymbol = 'EURONEXT:' + symbol.replace('.AS', '');
+  } else if (symbol.endsWith('.PA')) {
+    tvSymbol = 'EURONEXT:' + symbol.replace('.PA', '');
+  } else if (symbol.endsWith('.DE')) {
+    tvSymbol = 'XETR:' + symbol.replace('.DE', '');
+  } else if (symbol.endsWith('.SW')) {
+    tvSymbol = 'SIX:' + symbol.replace('.SW', '');
+  } else if (symbol.endsWith('.KS')) {
+    tvSymbol = 'KRX:' + symbol.replace('.KS', '');
+  } else {
+    tvSymbol = 'NASDAQ:' + symbol;
+  }
+  const box = document.createElement('div');
+  box.id = 'v274-tv-' + symbol;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #2962ff;border-radius:12px;background:linear-gradient(180deg,#e3f2fd,#fff);';
+  box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-weight:700;color:#0d47a1;">📊 TradingView 進階圖表（' + symbol + '）</div><div style="font-size:11px;color:#1976d2;">100+ 指標 + Pine Script + Drawing</div></div>'
+    + '<div class="tradingview-widget-container" style="height:500px;"><div id="tv-widget-' + symbol + '" style="height:100%;"></div></div>'
+    + '<div style="font-size:10px;color:#6b7280;margin-top:6px;">資料：TradingView (' + tvSymbol + ')</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  // 動態載入 TradingView widget script
+  const script = document.createElement('script');
+  script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+  script.async = true;
+  script.innerHTML = JSON.stringify({
+    autosize: true,
+    symbol: tvSymbol,
+    interval: 'D',
+    timezone: 'Asia/Taipei',
+    theme: 'light',
+    style: '1',
+    locale: 'zh_TW',
+    enable_publishing: false,
+    allow_symbol_change: true,
+    save_image: false,
+    container_id: 'tv-widget-' + symbol,
+    studies: [
+      'STD;SMA',
+      'STD;Bollinger_Bands',
+      'STD;RSI'
+    ]
+  });
+  document.getElementById('tv-widget-' + symbol).appendChild(script);
+};
+
+(function(){
+  if (window.__v274Wired) return;
+  window.__v274Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v274LoadTradingView(code), 9000);
+    return r;
+  };
+})();
