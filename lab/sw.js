@@ -1,4 +1,4 @@
-const CACHE = 'mr-v2102';
+const CACHE = 'mr-v211';
 const PRECACHE = ['/lab/', '/lab/index.html', '/lab/manifest.json'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)).catch(()=>{}));

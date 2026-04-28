@@ -7606,7 +7606,11 @@ window.v210Send = async function(){
     const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: window.v210Messages, context: ctx })
+      body: (function(){
+      const _pc = window.v211Memory ? window.v211Memory.buildContext() : {};
+      Object.assign(ctx, _pc);
+      return JSON.stringify({ messages: window.v210Messages, context: ctx });
+    })()
     });
     const data = await res.json();
     if (data.error) {
@@ -7709,4 +7713,120 @@ window.v210Send = async function(){
       }
     }, 100);
   };
+})();
+
+
+// ===== v211: AI 個人化記憶（client-side localStorage 零隱私風險）=====
+
+window.v211Memory = {
+  KEY: 'mr_v211_memory',
+  load: function(){
+    try {
+      const raw = localStorage.getItem(this.KEY);
+      return raw ? JSON.parse(raw) : { watchlist: [], queryHistory: [], riskPreference: null, holdings: [] };
+    } catch (e) { return { watchlist: [], queryHistory: [], riskPreference: null, holdings: [] }; }
+  },
+  save: function(m){ try { localStorage.setItem(this.KEY, JSON.stringify(m)); } catch (e) {} },
+  addQuery: function(q){
+    const m = this.load();
+    m.queryHistory = (m.queryHistory || []).slice(-19).concat({ q, t: Date.now() });
+    this.save(m);
+  },
+  addToWatchlist: function(symbol){
+    const m = this.load();
+    m.watchlist = m.watchlist || [];
+    if (!m.watchlist.includes(symbol)) { m.watchlist.push(symbol); this.save(m); }
+  },
+  setRisk: function(level){
+    const m = this.load();
+    m.riskPreference = level;
+    this.save(m);
+  },
+  buildContext: function(){
+    const m = this.load();
+    const recent = (m.queryHistory || []).slice(-5).map(x => x.q).join(' / ');
+    const watchlist = (m.watchlist || []).slice(0, 10).join(',');
+    return {
+      recentQueries: recent,
+      watchlistSymbols: watchlist,
+      riskPreference: m.riskPreference || ''
+    };
+  }
+};
+
+// 攔截 v210Send，改成把個人化 context 帶過去
+(function(){
+  if (window.__v211Wired) return;
+  window.__v211Wired = true;
+  const origSend = window.v210Send;
+  if (!origSend) { console.warn('[v211] v210Send not found'); return; }
+  window.v210Send = async function(){
+    const input = document.getElementById('v210-input');
+    const text = input ? input.value.trim() : '';
+    if (text) window.v211Memory.addQuery(text);
+    return origSend.apply(this, arguments);
+  };
+})();
+
+// 在 v210 對話介面右上角加「🧠 我的偏好」按鈕（用戶主動設定）
+window.v211OpenPreferences = function(){
+  let modal = document.getElementById('v211-pref-modal');
+  if (modal) { modal.remove(); return; }
+  const m = window.v211Memory.load();
+  modal = document.createElement('div');
+  modal.id = 'v211-pref-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100000;font-family:-apple-system,sans-serif;';
+  modal.innerHTML = ''
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">'
+    + '  <div style="font-size:18px;font-weight:700;">🧠 您的投資偏好</div>'
+    + '  <button id="v211-pref-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button>'
+    + '</div>'
+    + '<div style="font-size:12px;color:#6b7280;margin-bottom:16px;">資料儲存在您的瀏覽器本地，AI 對話時會自動帶入做個人化建議（永不上傳伺服器）</div>'
+    + '<div style="margin-bottom:16px;">'
+    + '  <label style="font-weight:600;font-size:14px;display:block;margin-bottom:6px;">⚖️ 風險偏好</label>'
+    + '  <select id="v211-risk" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;">'
+    + '    <option value="">未設定</option>'
+    + '    <option value="保守">保守（重視穩定配息）</option>'
+    + '    <option value="平衡">平衡（穩健成長）</option>'
+    + '    <option value="積極">積極（高風險高報酬）</option>'
+    + '  </select>'
+    + '</div>'
+    + '<div style="margin-bottom:16px;">'
+    + '  <label style="font-weight:600;font-size:14px;display:block;margin-bottom:6px;">⭐ 我的關注標的（逗號分隔）</label>'
+    + '  <input id="v211-wl" type="text" placeholder="例：2330,NVDA,ASML.AS" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;">'
+    + '</div>'
+    + '<div style="margin-bottom:20px;font-size:12px;color:#6b7280;">'
+    + '  <div>📊 過去 5 個查詢：</div>'
+    + '  <div style="margin-top:4px;color:#374151;font-size:11px;" id="v211-history">' + ((m.queryHistory || []).slice(-5).map(x => '• ' + x.q).join('<br>') || '（尚無紀錄）') + '</div>'
+    + '</div>'
+    + '<button id="v211-pref-save" style="width:100%;padding:10px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">💾 儲存偏好</button>';
+  document.body.appendChild(modal);
+  document.getElementById('v211-risk').value = m.riskPreference || '';
+  document.getElementById('v211-wl').value = (m.watchlist || []).join(',');
+  document.getElementById('v211-pref-close').addEventListener('click', () => modal.remove());
+  document.getElementById('v211-pref-save').addEventListener('click', () => {
+    const m2 = window.v211Memory.load();
+    m2.riskPreference = document.getElementById('v211-risk').value;
+    m2.watchlist = document.getElementById('v211-wl').value.split(',').map(x => x.trim()).filter(Boolean);
+    window.v211Memory.save(m2);
+    modal.remove();
+    alert('✅ 已儲存。下次與 AI 對話會自動參考。');
+  });
+};
+
+// 在 v210 對話介面 header 注入「🧠 偏好」按鈕
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const closeBtn = document.getElementById('v210-close');
+    if (!closeBtn || closeBtn.parentNode.querySelector('.v211-pref-btn')) return;
+    const prefBtn = document.createElement('button');
+    prefBtn.className = 'v211-pref-btn';
+    prefBtn.textContent = '🧠';
+    prefBtn.title = '我的投資偏好';
+    prefBtn.style.cssText = 'background:rgba(255,255,255,0.1);border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;margin-right:8px;';
+    prefBtn.addEventListener('click', window.v211OpenPreferences);
+    closeBtn.parentNode.insertBefore(prefBtn, closeBtn);
+  }, 2000);
 })();
