@@ -1721,6 +1721,107 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
       } catch (e) { return jsonResponse({ error: 'news-sum failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /margin-history (v261) - TWSE 個股 30 日融資融券歷史 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/margin-history') {
+      const u = new URL(request.url);
+      const stock = u.searchParams.get('stock');
+      const days = Math.min(parseInt(u.searchParams.get('days') || '30'), 30);
+      if (!stock) return jsonResponse({ error: 'stock required' }, 400);
+      try {
+        // 產生過去 N 個交易日（粗估，跳週末）
+        const dates = [];
+        let d = new Date();
+        while (dates.length < days) {
+          d.setDate(d.getDate() - 1);
+          if (d.getDay() === 0 || d.getDay() === 6) continue;
+          const ymd = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+          dates.push(ymd);
+        }
+        const fetchDay = async (ymd) => {
+          try {
+            const r = await fetch('https://www.twse.com.tw/exchangeReport/MI_MARGN?response=json&date=' + ymd + '&selectType=ALL');
+            if (!r.ok) return null;
+            const j = await r.json();
+            if (!j.data) return null;
+            const found = j.data.find(row => row[0] === stock);
+            if (!found) return null;
+            return {
+              date: ymd,
+              margin_buy: parseInt(found[2]?.replace(/,/g, '') || 0),
+              margin_balance: parseInt(found[6]?.replace(/,/g, '') || 0),
+              short_balance: parseInt(found[12]?.replace(/,/g, '') || 0)
+            };
+          } catch(e) { return null; }
+        };
+        const results = await Promise.all(dates.slice(0, 20).map(fetchDay));
+        const valid = results.filter(x => x);
+        return jsonResponse({ stock, days: valid.length, history: valid, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'margin-history failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /broker-rank (v262) - 當日券商買賣超排行 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/broker-rank') {
+      try {
+        const r = await fetch('https://openapi.twse.com.tw/v1/exchangeReport/BFI82U');
+        if (!r.ok) return jsonResponse({ error: 'TWSE ' + r.status }, 502);
+        const data = await r.json();
+        return jsonResponse({ count: data.length, data: data.slice(0, 50), updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'broker-rank failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /financials-history (v263) - Yahoo 4 年財報歷史 ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/financials-history') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        // 重用 v230 的 crumb auth 邏輯
+        let crumb = '', cookieHeader = '';
+        try {
+          const sessRes = await fetch('https://fc.yahoo.com', { redirect: 'manual', headers: { 'User-Agent': 'Mozilla/5.0' } });
+          const sc = sessRes.headers.get('set-cookie') || '';
+          const a1 = (sc.match(/A1=([^;,]+)/) || [])[1];
+          const a3 = (sc.match(/A3=([^;,]+)/) || [])[1];
+          cookieHeader = [a1 ? 'A1=' + a1 : '', a3 ? 'A3=' + a3 : ''].filter(Boolean).join('; ');
+          if (cookieHeader) {
+            const cr = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', { headers: { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' } });
+            if (cr.ok) crumb = (await cr.text()).trim();
+          }
+        } catch(e) {}
+        const modules = 'incomeStatementHistory,balanceSheetHistory,cashflowStatementHistory,earningsHistory';
+        const url = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/' + encodeURIComponent(sym) + '?modules=' + modules + (crumb ? '&crumb=' + encodeURIComponent(crumb) : '');
+        const r = await fetch(url, { headers: cookieHeader ? { Cookie: cookieHeader, 'User-Agent': 'Mozilla/5.0' } : { 'User-Agent': 'Mozilla/5.0' } });
+        if (!r.ok) return jsonResponse({ error: 'yahoo ' + r.status }, 502);
+        const j = await r.json();
+        const result = j.quoteSummary && j.quoteSummary.result && j.quoteSummary.result[0];
+        if (!result) return jsonResponse({ error: 'no data' }, 404);
+        const raw = (obj, key) => (obj && obj[key] && typeof obj[key] === 'object' ? (obj[key].raw || 0) : (obj && obj[key]) || 0);
+        const income = (result.incomeStatementHistory && result.incomeStatementHistory.incomeStatementHistory || []).map(r => ({
+          date: r.endDate && r.endDate.fmt || '',
+          revenue: raw(r, 'totalRevenue'),
+          grossProfit: raw(r, 'grossProfit'),
+          operatingIncome: raw(r, 'operatingIncome'),
+          netIncome: raw(r, 'netIncome'),
+          eps: raw(r, 'dilutedEPS')
+        }));
+        const balance = (result.balanceSheetHistory && result.balanceSheetHistory.balanceSheetStatements || []).map(r => ({
+          date: r.endDate && r.endDate.fmt || '',
+          totalAssets: raw(r, 'totalAssets'),
+          totalLiabilities: raw(r, 'totalLiab'),
+          totalEquity: raw(r, 'totalStockholderEquity'),
+          cash: raw(r, 'cash')
+        }));
+        const cashflow = (result.cashflowStatementHistory && result.cashflowStatementHistory.cashflowStatements || []).map(r => ({
+          date: r.endDate && r.endDate.fmt || '',
+          operating: raw(r, 'totalCashFromOperatingActivities'),
+          investing: raw(r, 'totalCashflowsFromInvestingActivities'),
+          financing: raw(r, 'totalCashFromFinancingActivities'),
+          capex: raw(r, 'capitalExpenditures')
+        }));
+        return jsonResponse({ symbol: sym, income, balance, cashflow, years: income.length, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'fin-history failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

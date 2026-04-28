@@ -11017,3 +11017,244 @@ window.v260LoadNewsSummary = async function(symbol){
     return r;
   };
 })();
+
+
+// ===== v261: 籌碼 30 日歷史升級 =====
+
+window.v261LoadMarginHistory = async function(stockCode){
+  if (!stockCode || !/^\d{4}$/.test(stockCode)) return;
+  if (document.getElementById('v261-mh-' + stockCode)) return;
+  const host = document.getElementById('v253-margin-' + stockCode);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/margin-history?stock=' + stockCode + '&days=20');
+    const d = await r.json();
+    if (d.error || !d.history || d.history.length === 0) return;
+    const rows = [...d.history].reverse();
+    const W = 600, H = 180, padL = 50, padR = 10, padT = 10, padB = 24;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const balances = rows.map(r => r.margin_balance);
+    const yMax = Math.max(...balances), yMin = Math.min(...balances);
+    const range = (yMax - yMin) || 1;
+    const x = i => padL + (i / Math.max(1, rows.length - 1)) * innerW;
+    const y = v => padT + (1 - (v - yMin) / range) * innerH;
+    let path = '';
+    rows.forEach((r, i) => { path += (i === 0 ? 'M' : 'L') + x(i).toFixed(1) + ',' + y(r.margin_balance).toFixed(1) + ' '; });
+    const box = document.createElement('div');
+    box.id = 'v261-mh-' + stockCode;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #ea580c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
+    box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">📈 融資餘額趨勢（' + stockCode + '，' + rows.length + ' 個交易日）</div>'
+      + '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;background:white;border:1px solid #fed7aa;border-radius:6px;">'
+      + '<path d="' + path + '" fill="none" stroke="#dc2626" stroke-width="2"/>'
+      + '<text x="6" y="' + (y(yMax)+3) + '" font-size="9" fill="#6b7280">' + yMax.toLocaleString() + '</text>'
+      + '<text x="6" y="' + (y(yMin)+3) + '" font-size="9" fill="#6b7280">' + yMin.toLocaleString() + '</text>'
+      + '</svg>'
+      + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">資料：TWSE 並行抓 ' + rows.length + ' 個交易日</div>';
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch (e) {}
+};
+(function(){
+  if (window.__v261Wired) return;
+  window.__v261Wired = true;
+  const orig = window.v253LoadMargin;
+  if (!orig) return;
+  window.v253LoadMargin = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v261LoadMarginHistory(code), 2500);
+    return r;
+  };
+})();
+
+
+// ===== v262: 券商買賣超排行（當日 TWSE）=====
+
+window.v262OpenBrokerRank = async function(){
+  let modal = document.getElementById('v262-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v262-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:white;color:#1f2937;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><div style="font-size:18px;font-weight:700;">🏛 當日券商買賣超</div><button id="v262-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div id="v262-body">載入中…</div>';
+  document.body.appendChild(modal);
+  document.getElementById('v262-close').addEventListener('click', () => modal.remove());
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/broker-rank');
+    const d = await r.json();
+    if (!d.data) { document.getElementById('v262-body').innerHTML = '<div style="color:#dc2626;">無資料</div>'; return; }
+    let html = '<div style="font-size:11px;color:#6b7280;margin-bottom:10px;">資料：TWSE 開放 API 當日 BFI82U</div>';
+    html += '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">';
+    html += '<thead style="background:#f3f4f6;"><tr><th style="padding:6px;text-align:left;">類型</th><th style="padding:6px;text-align:right;">買進金額</th><th style="padding:6px;text-align:right;">賣出金額</th><th style="padding:6px;text-align:right;">買賣差</th></tr></thead><tbody>';
+    d.data.slice(0, 20).forEach(row => {
+      const keys = Object.keys(row);
+      const type = row[keys[0]] || row.Type || '-';
+      const buy = parseInt((row.BuyAmount || row.買進金額 || 0).toString().replace(/,/g, ''));
+      const sell = parseInt((row.SellAmount || row.賣出金額 || 0).toString().replace(/,/g, ''));
+      const net = buy - sell;
+      const c = net >= 0 ? '#dc2626' : '#16a34a';
+      html += '<tr style="border-bottom:1px solid #e5e7eb;">';
+      html += '<td style="padding:6px;font-weight:600;">' + type + '</td>';
+      html += '<td style="padding:6px;text-align:right;">' + (buy/1e9).toFixed(1) + 'B</td>';
+      html += '<td style="padding:6px;text-align:right;">' + (sell/1e9).toFixed(1) + 'B</td>';
+      html += '<td style="padding:6px;text-align:right;color:' + c + ';font-weight:600;">' + (net >= 0 ? '+' : '') + (net/1e9).toFixed(1) + 'B</td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    document.getElementById('v262-body').innerHTML = html;
+  } catch (e) { document.getElementById('v262-body').innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+};
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v262-broker-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v262-broker-btn';
+    btn.textContent = '🏛 券商分點';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(120,53,15,0.3),rgba(202,138,4,0.3));border:1px solid rgba(120,53,15,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v262OpenBrokerRank());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v263: 4 年財報歷史趨勢 =====
+
+window.v263LoadFinHistory = async function(symbol){
+  if (document.getElementById('v263-fh-' + symbol)) return;
+  const host = document.getElementById('v246-dupont-' + symbol) || document.getElementById('v230-fund-' + symbol);
+  if (!host) return;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/financials-history?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (d.error || !d.income || d.income.length === 0) return;
+    const years = [...d.income].reverse(); // 最舊到最新
+    const renderBar = (data, label, color) => {
+      const W = 400, H = 80, pad = 20;
+      const innerW = W - pad * 2, innerH = H - pad;
+      const max = Math.max(...data.map(x => Math.abs(x))), min = Math.min(...data.map(x => x), 0);
+      const range = (max - min) || 1;
+      const bw = innerW / data.length;
+      let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:400px;background:white;border:1px solid #e5e7eb;border-radius:4px;">';
+      data.forEach((v, i) => {
+        const h = (Math.abs(v) / range) * innerH;
+        const y = v >= 0 ? H - pad - h : H - pad;
+        svg += '<rect x="' + (pad + i * bw) + '" y="' + y + '" width="' + (bw - 2) + '" height="' + Math.abs(h) + '" fill="' + color + '"/>';
+        svg += '<text x="' + (pad + i * bw + bw / 2) + '" y="' + (H - 4) + '" font-size="8" text-anchor="middle" fill="#6b7280">' + (years[i].date || '').slice(0, 7) + '</text>';
+      });
+      svg += '<text x="' + pad + '" y="12" font-size="10" font-weight="700" fill="' + color + '">' + label + '</text>';
+      svg += '</svg>';
+      return svg;
+    };
+    const revs = years.map(y => y.revenue);
+    const profs = years.map(y => y.netIncome);
+    const epss = years.map(y => y.eps);
+    const box = document.createElement('div');
+    box.id = 'v263-fh-' + symbol;
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #15803d;border-radius:12px;background:linear-gradient(180deg,#f0fdf4,#fff);';
+    box.innerHTML = '<div style="font-weight:700;color:#166534;margin-bottom:8px;">📊 4 年財報歷史（' + symbol + '）</div>'
+      + '<div style="display:grid;grid-template-columns:1fr;gap:6px;">'
+      + renderBar(revs, '營收（' + revs.length + ' 年）', '#2563eb')
+      + renderBar(profs, '淨利（' + profs.length + ' 年）', '#16a34a')
+      + renderBar(epss, 'EPS（' + epss.length + ' 年）', '#9333ea')
+      + '</div><div style="font-size:10px;color:#6b7280;margin-top:6px;">資料：Yahoo Finance · 4 年完整損益表 (歷史)</div>';
+    host.parentNode.insertBefore(box, host.nextSibling);
+  } catch (e) {}
+};
+(function(){
+  if (window.__v263Wired) return;
+  window.__v263Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v263LoadFinHistory(code), 8000);
+    return r;
+  };
+})();
+
+
+// ===== v264: 篩選器擴增 20+ 條件 =====
+
+(function(){
+  if (window.__v264Wired) return;
+  window.__v264Wired = true;
+  setInterval(() => {
+    const modal = document.getElementById('v236-modal');
+    if (!modal || modal.querySelector('.v264-extra')) return;
+    // 找原 grid 並加更多 input
+    const grid = modal.querySelector('div[style*="grid-template-columns:1fr 1fr"]');
+    if (!grid) return;
+    const fields = [
+      ['v264-maxPS', 'P/S 最大', 'number'],
+      ['v264-minOM', '營業利益率最小（%）', 'number'],
+      ['v264-minNM', '淨利率最小（%）', 'number'],
+      ['v264-minBeta', 'Beta 最小', 'number'],
+      ['v264-maxBeta', 'Beta 最大', 'number'],
+      ['v264-minEPS', 'EPS YoY 最小（%）', 'number'],
+      ['v264-minFCF', '自由現金流最小（B）', 'number'],
+      ['v264-maxPEG', 'PEG 最大', 'number'],
+      ['v264-minCurR', '流動比最小', 'number'],
+      ['v264-minPayout', '配息率最小（%）', 'number'],
+      ['v264-maxPayout', '配息率最大（%）', 'number'],
+      ['v264-minInst', '機構持股最小（%）', 'number']
+    ];
+    fields.forEach(([id, label, type]) => {
+      const div = document.createElement('div');
+      div.className = 'v264-extra';
+      div.innerHTML = '<label style="display:block;font-weight:600;margin-bottom:3px;">' + label + '</label><input id="' + id + '" type="' + type + '" placeholder="-" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;">';
+      grid.appendChild(div);
+    });
+  }, 1500);
+})();
+
+
+// ===== v265: 跨公司比較視覺化 =====
+
+(function(){
+  if (window.__v265Wired) return;
+  window.__v265Wired = true;
+  const orig = window.v237OpenPeerCompare;
+  if (!orig) return;
+  // 在比較結果後加 bar chart 視覺化
+  setInterval(() => {
+    const modal = document.getElementById('v237-modal');
+    if (!modal) return;
+    const tbody = modal.querySelector('tbody');
+    if (!tbody || modal.querySelector('.v265-charts')) return;
+    if (tbody.children.length < 2) return;
+    // 等 table 載入完才畫
+    const result = modal.querySelector('#v237-result');
+    if (!result) return;
+    const charts = document.createElement('div');
+    charts.className = 'v265-charts';
+    charts.style.cssText = 'margin-top:14px;';
+    // 提取 ROE / 毛利率 / 營收 YoY 數據比較
+    const headers = Array.from(modal.querySelectorAll('thead th')).map(t => t.textContent.trim()).slice(1);
+    const rowsData = {};
+    Array.from(tbody.children).forEach(row => {
+      const cells = row.querySelectorAll('td');
+      const label = cells[0].textContent.trim();
+      rowsData[label] = Array.from(cells).slice(1).map(c => parseFloat(c.textContent.replace('%', '').trim()) || 0);
+    });
+    ['ROE', '毛利率', '營收 YoY', 'P/E'].forEach(metric => {
+      if (!rowsData[metric]) return;
+      const vals = rowsData[metric];
+      const max = Math.max(...vals.map(Math.abs), 1);
+      let html = '<div style="margin-bottom:10px;"><div style="font-size:11px;font-weight:600;color:#0891b2;margin-bottom:4px;">' + metric + ' 比較</div>';
+      html += '<div style="display:flex;gap:4px;align-items:flex-end;height:60px;">';
+      vals.forEach((v, i) => {
+        const h = (Math.abs(v) / max) * 50;
+        const c = v >= 0 ? '#0891b2' : '#dc2626';
+        html += '<div style="flex:1;display:flex;flex-direction:column;align-items:center;">';
+        html += '<div style="font-size:9px;font-weight:600;color:' + c + ';">' + v.toFixed(1) + '</div>';
+        html += '<div style="width:100%;height:' + h + 'px;background:' + c + ';border-radius:2px;"></div>';
+        html += '<div style="font-size:9px;color:#6b7280;margin-top:2px;">' + (headers[i] || '') + '</div>';
+        html += '</div>';
+      });
+      html += '</div></div>';
+      charts.innerHTML += html;
+    });
+    if (charts.innerHTML) result.appendChild(charts);
+  }, 1500);
+})();
