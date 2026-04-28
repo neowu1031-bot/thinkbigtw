@@ -9222,3 +9222,138 @@ window.v230LoadFundamentals = async function(symbol){
     return r;
   };
 })();
+
+
+// ===== v231: 即時 WebSocket 加密貨幣（Binance WSS）=====
+
+window.v231ConnectBinance = function(){
+  if (window.__v231WS && window.__v231WS.readyState === WebSocket.OPEN) return;
+  if (!('WebSocket' in window)) return;
+  const symbols = ['btcusdt','ethusdt','solusdt','bnbusdt','xrpusdt','adausdt','avaxusdt','dogeusdt','linkusdt','trxusdt'];
+  const streams = symbols.map(s => s + '@ticker').join('/');
+  try {
+    const ws = new WebSocket('wss://stream.binance.com/stream?streams=' + streams);
+    window.__v231WS = ws;
+    ws.onopen = () => {
+      console.log('[v231] Binance WSS connected');
+      // 加 LIVE badge
+      const box = document.getElementById('v205-crypto-box');
+      if (box && !box.querySelector('.v231-live-badge')) {
+        const badge = document.createElement('span');
+        badge.className = 'v231-live-badge';
+        badge.textContent = '⚡ LIVE 即時';
+        badge.style.cssText = 'display:inline-block;padding:2px 8px;background:#16a34a;color:white;font-size:10px;border-radius:10px;font-weight:700;margin-left:8px;animation:v231Pulse 1.5s infinite;';
+        const title = box.querySelector('div[style*="font-weight:700"]');
+        if (title) title.appendChild(badge);
+      }
+      document.head.insertAdjacentHTML('beforeend', '<style>@keyframes v231Pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }</style>');
+    };
+    ws.onmessage = (ev) => {
+      try {
+        const msg = JSON.parse(ev.data);
+        const d = msg.data;
+        if (!d) return;
+        const symbol = d.s.replace('USDT', '');
+        const price = parseFloat(d.c);
+        const pct = parseFloat(d.P);
+        // 找 v205 卡片
+        document.querySelectorAll('#v205-crypto-body [data-symbol="' + symbol + '"]').forEach(card => {
+          const priceDiv = card.querySelector('div[style*="margin-top:4px"]');
+          if (priceDiv) {
+            const color = pct >= 0 ? '#dc2626' : '#16a34a';
+            const sign = pct >= 0 ? '+' : '';
+            const fmt = price > 100 ? price.toLocaleString('en', {maximumFractionDigits: 2}) : price.toLocaleString('en', {maximumFractionDigits: 4});
+            priceDiv.innerHTML = '<span style="color:' + color + ';font-weight:600;">$' + fmt + '</span> <span style="color:' + color + ';font-size:11px;">(' + sign + pct.toFixed(2) + '%)</span>';
+            card.style.borderColor = '#16a34a';
+            setTimeout(() => { card.style.borderColor = '#fed7aa'; }, 500);
+          }
+        });
+      } catch(e){}
+    };
+    ws.onclose = () => {
+      console.log('[v231] WSS closed, reconnect in 5s');
+      setTimeout(() => window.v231ConnectBinance(), 5000);
+    };
+    ws.onerror = (e) => console.warn('[v231] WSS error', e);
+  } catch (e) {
+    console.warn('[v231] WSS failed', e);
+  }
+};
+
+(function(){
+  if (window.__v231Wired) return;
+  window.__v231Wired = true;
+  // 等 v205 加密卡片載入完才連 WSS
+  const interval = setInterval(() => {
+    const box = document.getElementById('v205-crypto-box');
+    if (box && box.querySelectorAll('[data-symbol]').length >= 5) {
+      clearInterval(interval);
+      window.v231ConnectBinance();
+    }
+  }, 2000);
+})();
+
+
+// ===== v232: 推播通知 + 每日早報 reminder =====
+
+window.v232EnsureNotifPermission = async function(){
+  if (!('Notification' in window)) return false;
+  if (Notification.permission === 'granted') return true;
+  if (Notification.permission === 'denied') return false;
+  try {
+    const p = await Notification.requestPermission();
+    return p === 'granted';
+  } catch(e){ return false; }
+};
+
+window.v232TodayKey = () => 'mr_v232_brief_' + new Date().toISOString().slice(0, 10);
+
+window.v232CheckDailyBrief = async function(){
+  const key = window.v232TodayKey();
+  if (localStorage.getItem(key)) return; // 今天已顯示過
+  const m = window.v211Memory ? window.v211Memory.load() : {};
+  if (!m.dailyBriefEnabled) return;
+  if (!m.watchlist || m.watchlist.length === 0) return;
+  const ok = await window.v232EnsureNotifPermission();
+  if (!ok) return;
+  // 顯示 notification 提醒打開 AI CFO 看早報
+  new Notification('🌅 MoneyRadar 早報已備妥', {
+    body: '您關注的 ' + m.watchlist.length + ' 檔標的今日動態已整理。點 💎 查看。',
+    icon: '/lab/icon-192.png',
+    tag: 'daily-brief',
+    requireInteraction: false
+  });
+  localStorage.setItem(key, '1');
+};
+
+// 在 🧠 偏好加 toggle
+(function(){
+  if (window.__v232Wired) return;
+  window.__v232Wired = true;
+  const orig = window.v211OpenPreferences;
+  if (!orig) return;
+  window.v211OpenPreferences = function(){
+    orig();
+    setTimeout(() => {
+      const modal = document.getElementById('v211-pref-modal');
+      if (!modal || modal.querySelector('.v232-notif-toggle')) return;
+      const m = window.v211Memory.load();
+      const saveBtn = modal.querySelector('#v211-pref-save');
+      if (!saveBtn) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'v232-notif-toggle';
+      wrap.style.cssText = 'margin-bottom:16px;padding:10px;background:#eff6ff;border-radius:8px;';
+      wrap.innerHTML = '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#1e40af;font-weight:600;"><input type="checkbox" id="v232-notif-cb" ' + (m.dailyBriefEnabled ? 'checked' : '') + '> 🔔 啟用每日早報通知</label><div style="font-size:11px;color:#2563eb;margin-top:4px;margin-left:24px;">每天首次開啟頁面時推播「您的關注標的今日動態已備妥」</div>';
+      saveBtn.parentNode.insertBefore(wrap, saveBtn);
+      saveBtn.addEventListener('click', async () => {
+        const m2 = window.v211Memory.load();
+        m2.dailyBriefEnabled = document.getElementById('v232-notif-cb').checked;
+        window.v211Memory.save(m2);
+        if (m2.dailyBriefEnabled) await window.v232EnsureNotifPermission();
+      }, { capture: true, once: true });
+    }, 100);
+  };
+})();
+
+// 頁面載入後檢查（延遲 5 秒讓其他模組先載）
+setTimeout(() => window.v232CheckDailyBrief(), 5000);
