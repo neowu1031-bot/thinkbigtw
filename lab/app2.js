@@ -11974,3 +11974,22 @@ window.v274LoadTradingView = function(symbol){
     return r;
   };
 })();
+
+
+// ===== v272.1 hotfix: 拖拉按鈕只在登入後顯示 =====
+
+(function(){
+  if (window.__v272HFWired) return;
+  window.__v272HFWired = true;
+  setInterval(() => {
+    const ctrl = document.getElementById('v272-controls');
+    if (!ctrl) return;
+    const loggedIn = !!window.currentUser;
+    ctrl.style.display = loggedIn ? 'flex' : 'none';
+    // 同時，未登入時不要 init GridStack（避免 widgets 被 wrap 但用戶看不到）
+    if (!loggedIn && window.v272 && !window.v272.enabled) {
+      // 阻止 init
+      window.v272.enabled = 'wait-for-login';
+    }
+  }, 1500);
+})();
