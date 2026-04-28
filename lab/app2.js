@@ -7348,6 +7348,8 @@ window.v205LoadCrypto = async function(){
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/crypto-top');
     const d = await r.json();
     if (!d.results) { body.innerHTML = '<div style="color:#dc2626;">載入失敗</div>'; return; }
+    const meta = document.getElementById('v205-meta');
+    if (meta) meta.textContent = '資料：' + (d.source === 'coingecko' ? 'CoinGecko' : 'CoinCap') + ' · ' + (d.currency || 'USD') + ' 計價 · 24h 漲跌';
     let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">';
     d.results.forEach(c => {
       const color = c.change24h >= 0 ? '#dc2626' : '#16a34a';

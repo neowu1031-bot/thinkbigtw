@@ -849,14 +849,34 @@ export default {
       }
     }
 
-        // === /crypto-top (v205) ===
+        // === /crypto-top (v205 hotfix: CoinCap fallback + 90s edge cache) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/crypto-top') {
       try {
-        const r = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=twd&order=market_cap_desc&per_page=10&page=1&sparkline=false', { headers: { 'User-Agent': 'MoneyRadar/1.0' } });
-        if (!r.ok) return jsonResponse({ error: 'CoinGecko ' + r.status }, 502);
-        const data = await r.json();
-        const out = data.map(c => ({ id: c.id, symbol: (c.symbol||'').toUpperCase(), name: c.name, price: c.current_price||0, change24h: c.price_change_percentage_24h||0, marketCap: c.market_cap||0, image: c.image||'' }));
-        return jsonResponse({ results: out, currency: 'TWD', updated: new Date().toISOString() });
+        let result = null;
+        // Primary: CoinGecko (TWD 直接計價)
+        try {
+          const r1 = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=twd&order=market_cap_desc&per_page=10&page=1&sparkline=false', { headers: { 'User-Agent': 'MoneyRadar/1.0' } });
+          if (r1.ok) {
+            const d1 = await r1.json();
+            result = {
+              source: 'coingecko', currency: 'TWD',
+              results: d1.map(c => ({ symbol:(c.symbol||'').toUpperCase(), name:c.name, price:c.current_price||0, change24h:c.price_change_percentage_24h||0, marketCap:c.market_cap||0, image:c.image||'' }))
+            };
+          }
+        } catch (e) {}
+        // Fallback: CoinCap (USD, 200 calls/min 不太會 rate limit)
+        if (!result) {
+          const r2 = await fetch('https://api.coincap.io/v2/assets?limit=10', { headers: { 'User-Agent': 'MoneyRadar/1.0' } });
+          if (!r2.ok) return jsonResponse({ error: 'CoinCap ' + r2.status }, 502);
+          const d2 = (await r2.json()).data || [];
+          result = {
+            source: 'coincap', currency: 'USD',
+            results: d2.map(c => ({ symbol:c.symbol, name:c.name, price:parseFloat(c.priceUsd)||0, change24h:parseFloat(c.changePercent24Hr)||0, marketCap:parseFloat(c.marketCapUsd)||0, image:'' }))
+          };
+        }
+        const resp = jsonResponse({ ...result, updated: new Date().toISOString() });
+        resp.headers.set('Cache-Control', 'public, s-maxage=90');
+        return resp;
       } catch (e) { return jsonResponse({ error: e.message || String(e) }, 500); }
     }
 
