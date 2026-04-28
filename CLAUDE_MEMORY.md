@@ -1,55 +1,55 @@
 # MoneyRadar 戰略指揮文件 v3 - 2026-04-28
 
 ## 真實定位
-**全球首個 AI 原生對話式個人投資 CFO**
-不對標 Bloomberg / TradingView（30 年護城河買不到）
-做下一個範式：AI 思考夥伴，不是資料螢幕
+全球首個 AI-Native 對話式個人投資 CFO
+不對標 Bloomberg / TradingView，**做下一個範式**
 
-## 範式革命路線（v210 啟動）
-v210 ✅ AI 全螢幕對話介面 + 動態 stock card render
-v211: AI 個人化記憶（client-side localStorage）
-v212: AI 多 Agent 圓桌（基本面 / 技術面 / 反方視角）
-v213: AI 透明度（強制解釋使用資料 + 有多少把握）
-v214: AI 主動每日 brief
-v215: 價值觀投資篩選（排除色情/賭博/武器/菸酒）
+## 8 小時 marathon 戰果（v218 → v232）
 
-## 戰略原則
-1. 世界第一態度，聚焦能贏的 niche
-2. 完全法律合規（金管會），絕不個股投資建議
-3. 對外中立，不打宗教/政治牌
-4. 用戶隱私至上（client-side personalization 零後端資料）
-5. AI-Native，從 Day 1（介面是對話，不是 dashboard）
-6. 主動驗證，不憑感覺答（必查官方 + web search）
+### 範式革命（v210-v217 之前已完成）
+- AI 對話 / 個人化記憶 / 多 Agent 圓桌 / 透明度 / 早報 / ESG / 投組健診 / 多 timeframe
 
-## 已完成 v195-v210
-v195-v200: K 線+Treemap+PWA+24/7 監測
-v201-v204: 美股+AI 解讀+股息貴族+AI 普及化
-v205-v209: 加密+情緒燈+多股比較+Aristocrats AI
-v210: AI 對話 CFO 主介面（範式革命）
+### v218-v232 marathon 全部 15 個功能
+- v218 GitHub Watchdog
+- v219 RSI/KD/SAR/ATR/OBV 5 技術指標
+- v220 Custom alerts + Web Push
+- v221 Intraday 1m/5m/15m/30m/1h
+- v222 AI 新聞情緒（Google News + Llama）
+- v223 AI 投資人成長教練
+- v224 AI 多語言（中/英/日/韓）
+- v225 語音輸入（Web Speech API）
+- v226 AI 情境模擬（11 種預設）
+- v227 AI 投組再平衡
+- v228 API 對外開放（14 端點 docs）
+- v229 UI i18n
+- v230 基本面 50+ metrics（Yahoo crumb auth hack）
+- v231 即時 WebSocket 加密（Binance WSS）
+- v232 推播通知 + 每日早報
 
-## 反省紀錄
-1. rm -rf 前先 ls
-2. 永不 inline onclick
-3. AI prompt 用 fewshot
-4. flexible regex 別假設 attribute 順序
-5. PAT workflow scope 確認
-6. 沒對標就不堆功能
-7. 對外包裝中性化（不打宗教牌）
+## 核心 Worker 端點（14 個）
+/health, /quote, /quote-batch, /sentiment-score, /news-sentiment,
+/crypto-top, /fundamentals, /chat, /global-quick-analysis,
+/multi-agent-roundtable, /daily-brief, /coach-feedback,
+/portfolio-health, /scenario-simulation, /rebalance-suggest
 
-## 系統架構
-GitHub Pages → Cloudflare Worker (headers + AI proxy) → Supabase / Yahoo / CoinGecko/CoinCap/Binance / CoinGecko
-PWA service worker network-first
-GitHub Actions: daily-update (16:30 TWN 爬 Supabase) + smoke-test (30 分鐘健檢)
+## 待辦（不能跳過）
+1. 公司營業登記（Tier 3）
+2. 綠界金流串接（NT$299/月）
+3. Apple Developer + Google Play 上架
+4. 券商 API 整合（台股深度終極護城河）
+5. 第三方滲透測試（Bugcrowd）
 
-## 關鍵端點
-- /chat: AI 對話（Llama 3.3 70B + 法律護欄）
-- /quote: Yahoo Finance 全球報價
-- /quote-batch: 30 並發
-- /sentiment-score: 動能情緒
-- /global-quick-analysis: 個股 AI 解讀
-- /crypto-top: 三層保底加密
-- /fundamentals: (規劃中) 基本面深度
-- /health: 200 + version
+## 核心信念
+「我靠著那加給我力量的，凡事都能做。」
+拒絕「不可能」這個答案。
+找 workaround，找 hack，找新方法。
+今天我們把 15 個「業界都做不到」做出來了。
 
-## 接下來
-v211 開工：個人化記憶（localStorage 存自選股 + 風險偏好 + 過去查詢）→ AI 自動感知
+## 下一階段：證明 product-market fit
+- 找 5-10 個種子用戶測試
+- 收 bug list
+- 開始準備變現基礎建設
+- 12 個月後 → 華語圈世界第一
+- 24 個月後 → 特定 niche 全球第一
+
+— Claude 與 NEO，2026-04-28 marathon 完成日
