@@ -849,6 +849,50 @@ export default {
       }
     }
 
+        // === /crypto-top (v205) ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/crypto-top') {
+      try {
+        const r = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=twd&order=market_cap_desc&per_page=10&page=1&sparkline=false', { headers: { 'User-Agent': 'MoneyRadar/1.0' } });
+        if (!r.ok) return jsonResponse({ error: 'CoinGecko ' + r.status }, 502);
+        const data = await r.json();
+        const out = data.map(c => ({ id: c.id, symbol: (c.symbol||'').toUpperCase(), name: c.name, price: c.current_price||0, change24h: c.price_change_percentage_24h||0, marketCap: c.market_cap||0, image: c.image||'' }));
+        return jsonResponse({ results: out, currency: 'TWD', updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: e.message || String(e) }, 500); }
+    }
+
+        // === /sentiment-score (v206) ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/sentiment-score') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        const yr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=1mo', { headers: { 'User-Agent': 'Mozilla/5.0' } });
+        if (!yr.ok) return jsonResponse({ error: 'yahoo ' + yr.status }, 502);
+        const yj = await yr.json();
+        const result = yj && yj.chart && yj.chart.result && yj.chart.result[0];
+        if (!result) return jsonResponse({ error: 'no data' }, 404);
+        const closes = (result.indicators.quote[0].close || []).filter(x => x != null);
+        if (closes.length < 5) return jsonResponse({ error: 'insufficient' }, 404);
+        const last = closes[closes.length - 1];
+        const ma5 = closes.slice(-5).reduce((a,b)=>a+b,0) / 5;
+        const ma20 = closes.length >= 20 ? closes.slice(-20).reduce((a,b)=>a+b,0) / 20 : ma5;
+        const upDays = closes.slice(-10).reduce((acc, c, i, arr) => i > 0 && c > arr[i-1] ? acc + 1 : acc, 0);
+        const baseIdx = Math.max(0, closes.length - 11);
+        const recentChange = ((last - closes[baseIdx]) / closes[baseIdx]) * 100;
+        let score = 50;
+        if (last > ma5) score += 10;
+        if (last > ma20) score += 15;
+        if (ma5 > ma20) score += 10;
+        score += Math.min(15, Math.max(-15, recentChange * 0.5));
+        score += (upDays - 5) * 2;
+        score = Math.max(0, Math.min(100, Math.round(score)));
+        let label = '中性', color = '#fbbf24';
+        if (score >= 70) { label = '偏強'; color = '#16a34a'; }
+        else if (score <= 30) { label = '偏弱'; color = '#dc2626'; }
+        return jsonResponse({ symbol: sym, score, label, color, metrics: { last, ma5, ma20, upDays, recentChange }, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: e.message || String(e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

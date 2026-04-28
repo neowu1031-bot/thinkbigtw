@@ -7331,3 +7331,215 @@ window.v204ScanAll = function(){
   }
   console.log('[v204] universal AI button observer wired');
 })();
+
+
+// ===== v205: 加密貨幣前 10 =====
+
+window.v205LoadCrypto = async function(){
+  const host = document.getElementById('tab-crypto');
+  if (!host || document.getElementById('v205-crypto-box')) return;
+  const box = document.createElement('div');
+  box.id = 'v205-crypto-box';
+  box.style.cssText = 'margin-top:24px;padding:16px;border:2px solid #f97316;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#9a3412;font-size:16px;margin-bottom:6px;">🪙 加密貨幣市值前 10</div><div style="font-size:11px;color:#9a3412;margin-bottom:12px;">資料：CoinGecko · TWD 計價 · 24h 漲跌</div><div id="v205-crypto-body">載入中…</div>';
+  host.appendChild(box);
+  const body = document.getElementById('v205-crypto-body');
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/crypto-top');
+    const d = await r.json();
+    if (!d.results) { body.innerHTML = '<div style="color:#dc2626;">載入失敗</div>'; return; }
+    let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;">';
+    d.results.forEach(c => {
+      const color = c.change24h >= 0 ? '#dc2626' : '#16a34a';
+      const sign = c.change24h >= 0 ? '+' : '';
+      const fmt = c.price > 100 ? c.price.toLocaleString('en', {maximumFractionDigits:0}) : c.price.toLocaleString('en', {maximumFractionDigits:2});
+      html += '<div data-symbol="' + c.symbol + '" data-name="' + c.name + '" style="padding:10px;border:1px solid #fed7aa;border-radius:8px;background:white;">';
+      html += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">';
+      if (c.image) html += '<img src="' + c.image + '" alt="" style="width:18px;height:18px;border-radius:50%;">';
+      html += '<div style="font-size:11px;color:#6b7280;">' + c.symbol + '</div></div>';
+      html += '<div style="font-weight:600;font-size:13px;">' + c.name + '</div>';
+      html += '<div style="margin-top:4px;font-size:13px;"><span style="color:' + color + ';font-weight:600;">NT$' + fmt + '</span> <span style="color:' + color + ';font-size:11px;">(' + sign + c.change24h.toFixed(2) + '%)</span></div></div>';
+    });
+    body.innerHTML = html + '</div>';
+  } catch (e) { body.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+};
+(function(){
+  setInterval(() => {
+    const t = document.getElementById('tab-crypto');
+    if (t && getComputedStyle(t).display !== 'none' && !window.__v205Loaded) {
+      window.__v205Loaded = true; window.v205LoadCrypto();
+    }
+  }, 2000);
+})();
+
+
+// ===== v206: 動能情緒小燈 =====
+
+window.v206FetchSentiment = async function(symbol){
+  if (!window.__v206Cache) window.__v206Cache = {};
+  const c = window.__v206Cache[symbol];
+  if (c && (Date.now() - c.t < 600000)) return c.data;
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/sentiment-score?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    if (d.error) return null;
+    window.__v206Cache[symbol] = { data: d, t: Date.now() };
+    return d;
+  } catch (e) { return null; }
+};
+
+window.v206AddSentimentDot = async function(card){
+  if (!card || card.querySelector('.v206-dot')) return;
+  const data = window.v204ExtractCardData ? window.v204ExtractCardData(card) : null;
+  if (!data || !data.symbol) return;
+  const dot = document.createElement('span');
+  dot.className = 'v206-dot';
+  dot.style.cssText = 'display:inline-block;width:8px;height:8px;border-radius:50%;background:#ddd;margin-left:6px;vertical-align:middle;';
+  dot.title = '載入動能…';
+  const firstDiv = card.querySelector(':scope > div');
+  if (firstDiv) firstDiv.appendChild(dot);
+  const sent = await window.v206FetchSentiment(data.symbol);
+  if (sent) {
+    dot.style.background = sent.color;
+    dot.title = '動能：' + sent.label + '（' + sent.score + '/100）';
+  } else {
+    dot.style.display = 'none';
+  }
+};
+
+(function(){
+  if (window.__v206Wired) return;
+  window.__v206Wired = true;
+  setInterval(() => {
+    document.querySelectorAll('[id^="px-"]').forEach(el => {
+      window.v206AddSentimentDot(el.parentNode);
+    });
+  }, 4000);
+})();
+
+
+// ===== v207: 多股 K 線重疊 =====
+
+window.v207OpenCompare = function(){
+  let panel = document.getElementById('v207-panel');
+  if (panel) { panel.remove(); return; }
+  panel = document.createElement('div');
+  panel.id = 'v207-panel';
+  panel.style.cssText = 'position:fixed;bottom:20px;right:20px;width:90%;max-width:600px;max-height:80vh;overflow:auto;padding:16px;border:2px solid #2563eb;border-radius:12px;background:white;box-shadow:0 12px 32px rgba(37,99,235,0.25);z-index:9999;';
+  panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div style="font-weight:700;color:#1d4ed8;">📊 多股 K 線重疊（3個月）</div><button id="v207-close" style="background:none;border:none;cursor:pointer;font-size:18px;">✕</button></div><div style="font-size:11px;color:#6b7280;margin-bottom:8px;">2-5 檔逗號分隔，例：NVDA,MSFT,GOOGL</div><div style="display:flex;gap:6px;margin-bottom:10px;"><input id="v207-input" type="text" value="NVDA,MSFT,GOOGL" style="flex:1;padding:6px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;"><button id="v207-go" style="padding:6px 12px;background:#2563eb;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px;">比較</button></div><div id="v207-chart"></div>';
+  document.body.appendChild(panel);
+  document.getElementById('v207-close').addEventListener('click', () => panel.remove());
+  document.getElementById('v207-go').addEventListener('click', window.v207RenderCompare);
+  // auto run
+  setTimeout(window.v207RenderCompare, 300);
+};
+
+window.v207RenderCompare = async function(){
+  const inp = document.getElementById('v207-input');
+  const chart = document.getElementById('v207-chart');
+  if (!inp || !chart) return;
+  const syms = inp.value.split(',').map(x => x.trim().toUpperCase()).filter(Boolean).slice(0, 5);
+  if (syms.length < 2) { chart.innerHTML = '<div style="color:#dc2626;">至少 2 檔</div>'; return; }
+  chart.innerHTML = '抓資料中…';
+  try {
+    const sets = await Promise.all(syms.map(async sym => {
+      const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=3mo');
+      const j = await r.json();
+      const result = j.chart && j.chart.result && j.chart.result[0];
+      if (!result) return { sym, closes: [] };
+      const closes = (result.indicators.quote[0].close || []).filter(x => x != null);
+      return { sym, closes };
+    }));
+    const valid = sets.filter(x => x.closes.length > 5);
+    if (valid.length < 2) { chart.innerHTML = '<div style="color:#dc2626;">資料不足</div>'; return; }
+    const series = valid.map(x => {
+      const base = x.closes[0];
+      return { sym: x.sym, pts: x.closes.map(c => (c - base) / base * 100) };
+    });
+    const W = 540, H = 280, padL = 40, padR = 10, padT = 10, padB = 30;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    let yMin = Infinity, yMax = -Infinity, maxLen = 0;
+    series.forEach(s => {
+      s.pts.forEach(p => { if (p < yMin) yMin = p; if (p > yMax) yMax = p; });
+      if (s.pts.length > maxLen) maxLen = s.pts.length;
+    });
+    const range = (yMax - yMin) || 1;
+    const colors = ['#dc2626','#2563eb','#16a34a','#9333ea','#ea580c'];
+    const x = i => padL + (i / Math.max(1, maxLen - 1)) * innerW;
+    const y = v => padT + (1 - (v - yMin) / range) * innerH;
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;height:auto;border:1px solid #e5e7eb;border-radius:8px;background:white;">';
+    svg += '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y(0) + '" y2="' + y(0) + '" stroke="#9ca3af" stroke-dasharray="3,3"/>';
+    series.forEach((s, i) => {
+      let d = '';
+      s.pts.forEach((p, idx) => { d += (idx === 0 ? 'M' : 'L') + x(idx).toFixed(1) + ',' + y(p).toFixed(1) + ' '; });
+      svg += '<path d="' + d + '" fill="none" stroke="' + colors[i] + '" stroke-width="2"/>';
+      const lastP = s.pts[s.pts.length - 1];
+      svg += '<text x="' + (W - padR + 2) + '" y="' + (y(lastP) + 3) + '" fill="' + colors[i] + '" font-size="10" text-anchor="end">' + s.sym + ' ' + (lastP >= 0 ? '+' : '') + lastP.toFixed(1) + '%</text>';
+    });
+    svg += '<text x="6" y="' + (y(yMax) + 3) + '" fill="#6b7280" font-size="9">' + yMax.toFixed(0) + '%</text>';
+    svg += '<text x="6" y="' + (y(yMin) + 3) + '" fill="#6b7280" font-size="9">' + yMin.toFixed(0) + '%</text>';
+    svg += '</svg>';
+    chart.innerHTML = svg + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">3 個月走勢，第一天 normalize 為 0%</div>';
+  } catch (e) { chart.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+};
+
+(function(){
+  setTimeout(() => {
+    if (document.getElementById('v207-trigger')) return;
+    const btn = document.createElement('button');
+    btn.id = 'v207-trigger';
+    btn.textContent = '📊';
+    btn.title = '多股 K 線重疊比較';
+    btn.style.cssText = 'position:fixed;bottom:80px;right:20px;width:48px;height:48px;border-radius:50%;background:#2563eb;color:white;border:none;cursor:pointer;font-size:20px;box-shadow:0 4px 12px rgba(37,99,235,0.4);z-index:9998;';
+    btn.addEventListener('click', window.v207OpenCompare);
+    document.body.appendChild(btn);
+  }, 2500);
+})();
+
+
+// ===== v209: Aristocrats 表格 AI 按鈕 =====
+
+(function(){
+  setInterval(() => {
+    document.querySelectorAll('#v203-aristo-body tbody tr').forEach(tr => {
+      if (tr.querySelector('.v209-btn')) return;
+      const cells = tr.querySelectorAll('td');
+      if (cells.length < 2) return;
+      const symbol = cells[0].textContent.trim();
+      const name = cells[1].textContent.trim();
+      if (!symbol) return;
+      const btn = document.createElement('button');
+      btn.className = 'v209-btn';
+      btn.textContent = '🤖';
+      btn.title = 'AI 解讀 ' + symbol;
+      btn.style.cssText = 'margin-left:6px;padding:2px 5px;font-size:11px;background:#fef3c7;border:1px solid #f59e0b;border-radius:4px;cursor:pointer;';
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        if (btn.disabled) return;
+        btn.disabled = true; btn.textContent = '...';
+        try {
+          const qr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(symbol));
+          const q = await qr.json();
+          let exp = tr.parentNode.querySelector('.v209-exp-' + symbol);
+          if (exp) { exp.style.display = exp.style.display === 'none' ? '' : 'none'; btn.disabled = false; btn.textContent = '🤖'; return; }
+          exp = document.createElement('tr');
+          exp.className = 'v209-exp-' + symbol;
+          const cell = document.createElement('td');
+          cell.colSpan = cells.length;
+          cell.style.cssText = 'padding:10px;background:#fffbeb;';
+          const fakeBtn = document.createElement('span');
+          Object.defineProperty(fakeBtn, 'parentNode', { value: { appendChild: el => cell.appendChild(el) } });
+          fakeBtn.disabled = false;
+          exp.appendChild(cell);
+          tr.parentNode.insertBefore(exp, tr.nextSibling);
+          window.v202QuickAnalysis(symbol, name, q.price || 0, q.changePercent || 0, q.currency || 'USD', fakeBtn);
+          btn.disabled = false; btn.textContent = '🤖';
+        } catch (err) {
+          btn.disabled = false; btn.textContent = '🤖';
+          alert('失敗：' + (err.message || err));
+        }
+      });
+      cells[cells.length - 1].appendChild(btn);
+    });
+  }, 2500);
+})();
