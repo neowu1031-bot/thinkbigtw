@@ -1299,6 +1299,87 @@ export default {
       }
     }
 
+        // === /screener (v236) - 100+ 條件股票篩選器 ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/screener') {
+      try {
+        const body = await request.json();
+        const universe = (body.universe || []).slice(0, 50);
+        const filters = body.filters || {};
+        if (universe.length === 0) return jsonResponse({ error: 'universe required' }, 400);
+        // 並行抓所有 universe 的 fundamentals
+        const fetchOne = async (sym) => {
+          try {
+            const url = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(sym);
+            const r = await fetch(url);
+            if (!r.ok) return null;
+            return await r.json();
+          } catch (e) { return null; }
+        };
+        const all = await Promise.all(universe.map(fetchOne));
+        const valid = all.filter(x => x && !x.error);
+        // Apply filters
+        const passes = valid.filter(d => {
+          const v = d.valuation || {}, p = d.profitability || {}, g = d.growth || {}, dv = d.dividend || {}, fh = d.financialHealth || {}, r = d.risk || {};
+          if (filters.minPE !== undefined && v.peRatio < filters.minPE) return false;
+          if (filters.maxPE !== undefined && v.peRatio > filters.maxPE) return false;
+          if (filters.minPB !== undefined && v.priceToBook < filters.minPB) return false;
+          if (filters.maxPB !== undefined && v.priceToBook > filters.maxPB) return false;
+          if (filters.minROE !== undefined && p.roe * 100 < filters.minROE) return false;
+          if (filters.minGrossMargin !== undefined && p.grossMargin * 100 < filters.minGrossMargin) return false;
+          if (filters.minRevGrowth !== undefined && g.revenueGrowth * 100 < filters.minRevGrowth) return false;
+          if (filters.minDivYield !== undefined && dv.dividendYield * 100 < filters.minDivYield) return false;
+          if (filters.maxDebtToEquity !== undefined && fh.debtToEquity > filters.maxDebtToEquity) return false;
+          if (filters.minMarketCapB !== undefined && v.marketCap / 1e9 < filters.minMarketCapB) return false;
+          if (filters.maxBeta !== undefined && r.beta > filters.maxBeta) return false;
+          if (filters.sector && d.profile && d.profile.sector !== filters.sector) return false;
+          return true;
+        });
+        return jsonResponse({
+          totalScanned: valid.length,
+          totalPasses: passes.length,
+          results: passes.map(d => ({ symbol: d.symbol, name: d.name, valuation: d.valuation, profitability: d.profitability, growth: d.growth, dividend: d.dividend })),
+          updated: new Date().toISOString()
+        });
+      } catch (e) { return jsonResponse({ error: 'screener failed: ' + (e.message || e) }, 500); }
+    }
+
+        // === /pe-band (v238) - 本益比河流圖（過去 5 年）===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/pe-band') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        // 抓 5 年週線
+        const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1wk&range=5y');
+        if (!r.ok) return jsonResponse({ error: 'chart ' + r.status }, 502);
+        const j = await r.json();
+        const result = j.chart && j.chart.result && j.chart.result[0];
+        if (!result) return jsonResponse({ error: 'no data' }, 404);
+        const closes = (result.indicators.quote[0].close || []).filter(x => x != null);
+        const ts = result.timestamp || [];
+        // 簡化：用當前 EPS 作分母（忽略 EPS 歷史變動）
+        const fr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(sym));
+        let eps = 1, bookValue = 1;
+        if (fr.ok) {
+          const fd = await fr.json();
+          eps = fd.eps && fd.eps.trailingEps ? fd.eps.trailingEps : 1;
+          bookValue = fd.eps && fd.eps.bookValue ? fd.eps.bookValue : 1;
+        }
+        const peSeries = closes.map(p => p / eps);
+        const pbSeries = closes.map(p => p / bookValue);
+        // 算 PE 分位數
+        const sortedPE = [...peSeries].sort((a, b) => a - b);
+        const peStats = {
+          min: sortedPE[0], max: sortedPE[sortedPE.length - 1],
+          p25: sortedPE[Math.floor(sortedPE.length * 0.25)],
+          p50: sortedPE[Math.floor(sortedPE.length * 0.5)],
+          p75: sortedPE[Math.floor(sortedPE.length * 0.75)],
+          current: peSeries[peSeries.length - 1]
+        };
+        return jsonResponse({ symbol: sym, eps, bookValue, timestamps: ts, prices: closes, peSeries, pbSeries, peStats, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'pe-band failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

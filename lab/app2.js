@@ -9433,3 +9433,153 @@ window.v234ShowTour = function(){
     setTimeout(() => window.v234ShowTour(), 1200);
   }, 1500);
 })();
+
+
+// ===== v236: 股票篩選器（100+ 條件）=====
+
+window.v236DefaultUniverse = ['NVDA','MSFT','META','AMZN','GOOGL','AAPL','TSLA','AMD','ASML','TSM','NFLX','ADBE','CRM','ORCL','INTC','CSCO','IBM','QCOM','AVGO','TXN','MU','AMAT','LRCX','PANW','NOW','UBER','SHOP','SQ','PYPL','MA','V','JPM','BAC','GS','MS','WFC','C','JNJ','PFE','LLY','MRK','UNH','HD','LOW','WMT','TGT','COST','MCD','SBUX','NKE'];
+
+window.v236OpenScreener = function(){
+  let modal = document.getElementById('v236-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v236-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:560px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = ''
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">🔍 股票篩選器（對標 Koyfin/財報狗）</div><button id="v236-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="font-size:12px;color:#6b7280;margin-bottom:14px;">從 50 大美股篩選符合條件的標的（多條件 AND 邏輯）</div>'
+    + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;font-size:13px;">'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">P/E 最大</label><input id="v236-maxPE" type="number" placeholder="例：25" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">P/B 最大</label><input id="v236-maxPB" type="number" placeholder="例：3" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">ROE 最小（%）</label><input id="v236-minROE" type="number" placeholder="例：15" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">毛利率最小（%）</label><input id="v236-minGM" type="number" placeholder="例：30" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">營收成長 YoY 最小（%）</label><input id="v236-minRevG" type="number" placeholder="例：10" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">殖利率最小（%）</label><input id="v236-minDY" type="number" placeholder="例：2" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">負債/權益 最大</label><input id="v236-maxDE" type="number" placeholder="例：100" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">市值最小（B）</label><input id="v236-minMC" type="number" placeholder="例：10" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '</div>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;"><button class="v236-preset" data-p="value" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">📚 巴菲特價值股</button><button class="v236-preset" data-p="growth" style="padding:5px 10px;font-size:11px;background:#fee2e2;border:1px solid #fca5a5;border-radius:14px;cursor:pointer;color:#991b1b;">🚀 成長股</button><button class="v236-preset" data-p="dividend" style="padding:5px 10px;font-size:11px;background:#dbeafe;border:1px solid #93c5fd;border-radius:14px;cursor:pointer;color:#1e40af;">💵 高股息</button><button class="v236-preset" data-p="quality" style="padding:5px 10px;font-size:11px;background:#dcfce7;border:1px solid #86efac;border-radius:14px;cursor:pointer;color:#166534;">⭐ 高品質股</button></div>'
+    + '<button id="v236-go" style="width:100%;padding:12px;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔍 開始篩選（掃 50 大美股）</button>'
+    + '<div id="v236-result" style="margin-top:14px;"></div>';
+  document.body.appendChild(modal);
+  document.getElementById('v236-close').addEventListener('click', () => modal.remove());
+  modal.querySelectorAll('.v236-preset').forEach(b => b.addEventListener('click', e => {
+    const p = e.target.dataset.p;
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val || ''; };
+    if (p === 'value') { set('v236-maxPE', 20); set('v236-maxPB', 3); set('v236-minROE', 12); set('v236-maxDE', 100); }
+    else if (p === 'growth') { set('v236-minRevG', 20); set('v236-minROE', 15); set('v236-minGM', 40); }
+    else if (p === 'dividend') { set('v236-minDY', 3); set('v236-maxPE', 25); set('v236-maxDE', 100); }
+    else if (p === 'quality') { set('v236-minROE', 20); set('v236-minGM', 40); set('v236-maxDE', 80); }
+  }));
+  document.getElementById('v236-go').addEventListener('click', async () => {
+    const filters = {};
+    const fields = [['maxPE','v236-maxPE'],['maxPB','v236-maxPB'],['minROE','v236-minROE'],['minGrossMargin','v236-minGM'],['minRevGrowth','v236-minRevG'],['minDivYield','v236-minDY'],['maxDebtToEquity','v236-maxDE'],['minMarketCapB','v236-minMC']];
+    fields.forEach(([k, id]) => { const v = parseFloat(document.getElementById(id).value); if (!isNaN(v)) filters[k] = v; });
+    const result = document.getElementById('v236-result');
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🔍 掃描中（並行抓 50 檔基本面，約 20-30 秒）...</div>';
+    try {
+      const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/screener', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ universe: window.v236DefaultUniverse, filters })
+      });
+      const d = await res.json();
+      if (d.error) { result.innerHTML = '<div style="color:#dc2626;">' + d.error + '</div>'; return; }
+      let html = '<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px;margin-bottom:10px;font-size:13px;font-weight:600;color:#166534;">✅ 掃描 ' + d.totalScanned + ' 檔，符合 ' + d.totalPasses + ' 檔</div>';
+      if (d.totalPasses === 0) {
+        html += '<div style="color:#6b7280;text-align:center;padding:20px;">😔 沒有符合條件，試試放寬篩選</div>';
+      } else {
+        html += '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">';
+        html += '<thead style="background:#f3f4f6;"><tr><th style="padding:6px;text-align:left;">代號</th><th style="padding:6px;text-align:right;">P/E</th><th style="padding:6px;text-align:right;">P/B</th><th style="padding:6px;text-align:right;">ROE</th><th style="padding:6px;text-align:right;">毛利率</th><th style="padding:6px;text-align:right;">營收 YoY</th><th style="padding:6px;text-align:right;">殖利率</th></tr></thead><tbody>';
+        d.results.forEach(r => {
+          const v = r.valuation || {}, p = r.profitability || {}, g = r.growth || {}, dv = r.dividend || {};
+          html += '<tr style="border-bottom:1px solid #e5e7eb;"><td style="padding:6px;font-weight:600;">' + r.symbol + '</td>';
+          html += '<td style="padding:6px;text-align:right;">' + (v.peRatio ? v.peRatio.toFixed(1) : '-') + '</td>';
+          html += '<td style="padding:6px;text-align:right;">' + (v.priceToBook ? v.priceToBook.toFixed(1) : '-') + '</td>';
+          html += '<td style="padding:6px;text-align:right;color:#16a34a;">' + (p.roe ? (p.roe*100).toFixed(1) + '%' : '-') + '</td>';
+          html += '<td style="padding:6px;text-align:right;">' + (p.grossMargin ? (p.grossMargin*100).toFixed(1) + '%' : '-') + '</td>';
+          html += '<td style="padding:6px;text-align:right;color:#dc2626;">' + (g.revenueGrowth ? (g.revenueGrowth*100).toFixed(1) + '%' : '-') + '</td>';
+          html += '<td style="padding:6px;text-align:right;color:#ca8a04;">' + (dv.dividendYield ? (dv.dividendYield*100).toFixed(2) + '%' : '-') + '</td>';
+          html += '</tr>';
+        });
+        html += '</tbody></table></div>';
+      }
+      result.innerHTML = html;
+    } catch (e) { result.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+  });
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v236-screener-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v236-screener-btn';
+    btn.textContent = '🔍 股票篩選器';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(22,163,74,0.3),rgba(34,197,94,0.3));border:1px solid rgba(22,163,74,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v236OpenScreener());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v238: 本益比河流圖（PE Band）=====
+
+window.v238LoadPEBand = async function(symbol){
+  if (document.getElementById('v238-pe-' + symbol)) return;
+  const host = document.getElementById('v230-fund-' + symbol) || document.getElementById('v222-news-' + symbol) || document.getElementById('v219-ind-panel');
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v238-pe-' + symbol;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #be185d;border-radius:12px;background:linear-gradient(180deg,#fdf2f8,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">📊 本益比河流圖（' + symbol + '，5 年）</div><div id="v238-body-' + symbol + '">載入中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/pe-band?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    const body = document.getElementById('v238-body-' + symbol);
+    if (d.error) { body.innerHTML = '<div style="color:#dc2626;">' + d.error + '</div>'; return; }
+    const W = 600, H = 220, padL = 40, padR = 10, padT = 10, padB = 20;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const peSeries = d.peSeries.filter(x => x > 0 && x < 200);
+    if (peSeries.length < 5) { body.innerHTML = '<div>資料不足</div>'; return; }
+    const yMax = Math.max(...peSeries), yMin = Math.min(...peSeries);
+    const range = (yMax - yMin) || 1;
+    const x = i => padL + (i / (peSeries.length - 1)) * innerW;
+    const y = v => padT + (1 - (v - yMin) / range) * innerH;
+    const stats = d.peStats;
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:600px;background:white;border:1px solid #fbcfe8;border-radius:6px;">';
+    // 背景帶
+    [['#fee2e2', stats.p75, yMax, '高估區'], ['#fef3c7', stats.p25, stats.p75, '常態'], ['#dcfce7', yMin, stats.p25, '低估區']].forEach(([c, lo, hi]) => {
+      svg += '<rect x="' + padL + '" y="' + y(hi) + '" width="' + innerW + '" height="' + (y(lo) - y(hi)) + '" fill="' + c + '" opacity="0.5"/>';
+    });
+    // PE 線
+    let path = '';
+    peSeries.forEach((p, i) => { path += (i === 0 ? 'M' : 'L') + x(i).toFixed(1) + ',' + y(p).toFixed(1) + ' '; });
+    svg += '<path d="' + path + '" fill="none" stroke="#be185d" stroke-width="2"/>';
+    // 中位數線
+    svg += '<line x1="' + padL + '" x2="' + (W - padR) + '" y1="' + y(stats.p50) + '" y2="' + y(stats.p50) + '" stroke="#9ca3af" stroke-dasharray="3,3"/>';
+    // 標籤
+    svg += '<text x="6" y="' + (y(yMax) + 3) + '" fill="#6b7280" font-size="9">' + yMax.toFixed(1) + '</text>';
+    svg += '<text x="6" y="' + (y(yMin) + 3) + '" fill="#6b7280" font-size="9">' + yMin.toFixed(1) + '</text>';
+    svg += '<text x="6" y="' + (y(stats.p50) + 3) + '" fill="#6b7280" font-size="9">中 ' + stats.p50.toFixed(1) + '</text>';
+    svg += '</svg>';
+    const curState = stats.current > stats.p75 ? '<span style="color:#dc2626;">⚠️ 偏高估</span>' : stats.current < stats.p25 ? '<span style="color:#16a34a;">✨ 偏低估</span>' : '<span style="color:#6b7280;">🟡 常態區間</span>';
+    body.innerHTML = svg + '<div style="font-size:12px;margin-top:8px;color:#1f2937;">當前 P/E：<strong>' + stats.current.toFixed(1) + '</strong> · 5 年中位數 ' + stats.p50.toFixed(1) + ' · ' + curState + '</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">紅色高估區（>75%）/ 黃色常態（25-75%）/ 綠色低估區（<25%）</div>';
+  } catch (e) {
+    document.getElementById('v238-body-' + symbol).innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
+  }
+};
+
+(function(){
+  if (window.__v238Wired) return;
+  window.__v238Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v238LoadPEBand(code), 3500);
+    return r;
+  };
+})();
