@@ -866,12 +866,38 @@ export default {
         } catch (e) {}
         // Fallback: CoinCap (USD, 200 calls/min 不太會 rate limit)
         if (!result) {
-          const r2 = await fetch('https://api.coincap.io/v2/assets?limit=10', { headers: { 'User-Agent': 'MoneyRadar/1.0' } });
-          if (!r2.ok) return jsonResponse({ error: 'CoinCap ' + r2.status }, 502);
-          const d2 = (await r2.json()).data || [];
+          try {
+            const r2 = await fetch('https://api.coincap.io/v2/assets?limit=10', { headers: { 'User-Agent': 'MoneyRadar/1.0' } });
+            if (r2.ok) {
+              const d2 = (await r2.json()).data || [];
+              result = {
+                source: 'coincap', currency: 'USD',
+                results: d2.map(c => ({ symbol:c.symbol, name:c.name, price:parseFloat(c.priceUsd)||0, change24h:parseFloat(c.changePercent24Hr)||0, marketCap:parseFloat(c.marketCapUsd)||0, image:'' }))
+              };
+            }
+          } catch (e) {}
+        }
+        // Binance fallback (第三層)
+        if (!result) {
+          const map = [
+            {s:'BTCUSDT',n:'Bitcoin',sym:'BTC'},{s:'ETHUSDT',n:'Ethereum',sym:'ETH'},
+            {s:'SOLUSDT',n:'Solana',sym:'SOL'},{s:'BNBUSDT',n:'BNB',sym:'BNB'},
+            {s:'XRPUSDT',n:'XRP',sym:'XRP'},{s:'ADAUSDT',n:'Cardano',sym:'ADA'},
+            {s:'AVAXUSDT',n:'Avalanche',sym:'AVAX'},{s:'DOGEUSDT',n:'Dogecoin',sym:'DOGE'},
+            {s:'LINKUSDT',n:'Chainlink',sym:'LINK'},{s:'TRXUSDT',n:'TRON',sym:'TRX'}
+          ];
+          const symbolsParam = encodeURIComponent(JSON.stringify(map.map(x => x.s)));
+          const r3 = await fetch('https://api.binance.com/api/v3/ticker/24hr?symbols=' + symbolsParam);
+          if (!r3.ok) return jsonResponse({ error: 'all sources failed; binance ' + r3.status }, 502);
+          const d3 = await r3.json();
+          const dmap = {};
+          d3.forEach(t => { dmap[t.symbol] = t; });
           result = {
-            source: 'coincap', currency: 'USD',
-            results: d2.map(c => ({ symbol:c.symbol, name:c.name, price:parseFloat(c.priceUsd)||0, change24h:parseFloat(c.changePercent24Hr)||0, marketCap:parseFloat(c.marketCapUsd)||0, image:'' }))
+            source: 'binance', currency: 'USD',
+            results: map.map(m => {
+              const t = dmap[m.s] || {};
+              return { symbol: m.sym, name: m.n, price: parseFloat(t.lastPrice)||0, change24h: parseFloat(t.priceChangePercent)||0, marketCap: 0, image: '' };
+            })
           };
         }
         const resp = jsonResponse({ ...result, updated: new Date().toISOString() });
