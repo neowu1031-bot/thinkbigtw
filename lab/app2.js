@@ -8323,3 +8323,149 @@ window.v217LoadMultiTF = async function(symbol, tf){
     return r;
   };
 })();
+
+
+// ===== v219: 5 技術指標（RSI/KD/SAR/ATR/OBV）=====
+
+window.v219Indicators = {
+  // RSI(14) - Relative Strength Index
+  rsi: function(closes, period){
+    period = period || 14;
+    if (closes.length < period + 1) return [];
+    const out = new Array(closes.length).fill(null);
+    let gainSum = 0, lossSum = 0;
+    for (let i = 1; i <= period; i++) {
+      const diff = closes[i] - closes[i-1];
+      if (diff > 0) gainSum += diff; else lossSum += -diff;
+    }
+    let avgGain = gainSum / period, avgLoss = lossSum / period;
+    out[period] = 100 - 100 / (1 + (avgLoss === 0 ? 100 : avgGain / avgLoss));
+    for (let i = period + 1; i < closes.length; i++) {
+      const diff = closes[i] - closes[i-1];
+      const g = diff > 0 ? diff : 0, l = diff < 0 ? -diff : 0;
+      avgGain = (avgGain * (period - 1) + g) / period;
+      avgLoss = (avgLoss * (period - 1) + l) / period;
+      out[i] = 100 - 100 / (1 + (avgLoss === 0 ? 100 : avgGain / avgLoss));
+    }
+    return out;
+  },
+  // KD(9, 3, 3) - Stochastic
+  kd: function(highs, lows, closes, period){
+    period = period || 9;
+    const k = new Array(closes.length).fill(null);
+    const d = new Array(closes.length).fill(null);
+    for (let i = period - 1; i < closes.length; i++) {
+      const h = Math.max(...highs.slice(i - period + 1, i + 1));
+      const l = Math.min(...lows.slice(i - period + 1, i + 1));
+      const rsv = h === l ? 50 : ((closes[i] - l) / (h - l)) * 100;
+      k[i] = i === period - 1 ? rsv : (k[i-1] * 2 + rsv) / 3;
+      d[i] = i === period - 1 ? k[i] : (d[i-1] * 2 + k[i]) / 3;
+    }
+    return { k, d };
+  },
+  // ATR(14) - Average True Range
+  atr: function(highs, lows, closes, period){
+    period = period || 14;
+    const tr = [], out = new Array(closes.length).fill(null);
+    for (let i = 0; i < closes.length; i++) {
+      if (i === 0) { tr.push(highs[i] - lows[i]); continue; }
+      tr.push(Math.max(highs[i] - lows[i], Math.abs(highs[i] - closes[i-1]), Math.abs(lows[i] - closes[i-1])));
+    }
+    let sum = 0;
+    for (let i = 0; i < period && i < tr.length; i++) sum += tr[i];
+    if (tr.length >= period) out[period - 1] = sum / period;
+    for (let i = period; i < tr.length; i++) {
+      out[i] = (out[i-1] * (period - 1) + tr[i]) / period;
+    }
+    return out;
+  },
+  // OBV - On Balance Volume
+  obv: function(closes, volumes){
+    const out = [0];
+    for (let i = 1; i < closes.length; i++) {
+      if (closes[i] > closes[i-1]) out.push(out[i-1] + (volumes[i] || 0));
+      else if (closes[i] < closes[i-1]) out.push(out[i-1] - (volumes[i] || 0));
+      else out.push(out[i-1]);
+    }
+    return out;
+  },
+  // SAR(0.02, 0.2) - Parabolic SAR
+  sar: function(highs, lows){
+    const out = new Array(highs.length).fill(null);
+    if (highs.length < 2) return out;
+    let trend = highs[1] > highs[0] ? 1 : -1; // 1=up, -1=down
+    let af = 0.02, ep = trend === 1 ? highs[0] : lows[0];
+    out[0] = trend === 1 ? lows[0] : highs[0];
+    for (let i = 1; i < highs.length; i++) {
+      const prev = out[i-1];
+      let cur = prev + af * (ep - prev);
+      if (trend === 1) {
+        cur = Math.min(cur, lows[i-1], i >= 2 ? lows[i-2] : Infinity);
+        if (highs[i] > ep) { ep = highs[i]; af = Math.min(af + 0.02, 0.2); }
+        if (lows[i] < cur) { trend = -1; cur = ep; ep = lows[i]; af = 0.02; }
+      } else {
+        cur = Math.max(cur, highs[i-1], i >= 2 ? highs[i-2] : -Infinity);
+        if (lows[i] < ep) { ep = lows[i]; af = Math.min(af + 0.02, 0.2); }
+        if (highs[i] > cur) { trend = 1; cur = ep; ep = highs[i]; af = 0.02; }
+      }
+      out[i] = cur;
+    }
+    return out;
+  }
+};
+
+// 在個股查詢時自動 render 技術指標儀表板
+window.v219LoadIndicatorPanel = async function(symbol){
+  if (document.getElementById('v219-ind-panel')) return;
+  const host = document.getElementById('v217-mtf-box') || document.getElementById('full-candle-chart-v195') || document.getElementById('stock-detail');
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v219-ind-panel';
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #7c3aed;border-radius:12px;background:linear-gradient(180deg,#faf5ff,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#5b21b6;margin-bottom:8px;">📊 技術指標儀表板（' + symbol + '）</div><div id="v219-ind-body">載入中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  try {
+    const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=3mo');
+    const j = await r.json();
+    const result = j.chart && j.chart.result && j.chart.result[0];
+    if (!result) { document.getElementById('v219-ind-body').innerHTML = '無資料'; return; }
+    const q = result.indicators.quote[0];
+    const closes = (q.close || []).filter(x => x != null);
+    const highs = (q.high || []).filter(x => x != null);
+    const lows = (q.low || []).filter(x => x != null);
+    const volumes = (q.volume || []).filter(x => x != null);
+    if (closes.length < 30) { document.getElementById('v219-ind-body').innerHTML = '資料不足'; return; }
+    const rsi = window.v219Indicators.rsi(closes, 14);
+    const kd = window.v219Indicators.kd(highs, lows, closes, 9);
+    const atr = window.v219Indicators.atr(highs, lows, closes, 14);
+    const obv = window.v219Indicators.obv(closes, volumes);
+    const sar = window.v219Indicators.sar(highs, lows);
+    const last = (arr) => arr[arr.length - 1];
+    const lastRSI = last(rsi), lastK = last(kd.k), lastD = last(kd.d), lastATR = last(atr), lastSAR = last(sar);
+    const rsiSig = lastRSI > 70 ? '<span style="color:#dc2626;">超買</span>' : lastRSI < 30 ? '<span style="color:#16a34a;">超賣</span>' : '<span style="color:#6b7280;">中性</span>';
+    const kdSig = lastK > 80 ? '<span style="color:#dc2626;">超買</span>' : lastK < 20 ? '<span style="color:#16a34a;">超賣</span>' : (lastK > lastD ? '<span style="color:#dc2626;">多頭</span>' : '<span style="color:#16a34a;">空頭</span>');
+    const sarSig = closes[closes.length - 1] > lastSAR ? '<span style="color:#dc2626;">多頭</span>' : '<span style="color:#16a34a;">空頭</span>';
+    document.getElementById('v219-ind-body').innerHTML = ''
+      + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;">'
+      + '<div style="padding:10px;background:white;border:1px solid #e5e7eb;border-radius:6px;"><div style="font-size:11px;color:#6b7280;">RSI(14)</div><div style="font-size:18px;font-weight:700;">' + lastRSI.toFixed(1) + '</div><div style="font-size:11px;">' + rsiSig + '</div></div>'
+      + '<div style="padding:10px;background:white;border:1px solid #e5e7eb;border-radius:6px;"><div style="font-size:11px;color:#6b7280;">KD(9,3,3)</div><div style="font-size:14px;font-weight:600;">K=' + lastK.toFixed(1) + ' D=' + lastD.toFixed(1) + '</div><div style="font-size:11px;">' + kdSig + '</div></div>'
+      + '<div style="padding:10px;background:white;border:1px solid #e5e7eb;border-radius:6px;"><div style="font-size:11px;color:#6b7280;">ATR(14)</div><div style="font-size:18px;font-weight:700;">' + lastATR.toFixed(2) + '</div><div style="font-size:11px;color:#6b7280;">波動度</div></div>'
+      + '<div style="padding:10px;background:white;border:1px solid #e5e7eb;border-radius:6px;"><div style="font-size:11px;color:#6b7280;">SAR</div><div style="font-size:18px;font-weight:700;">' + lastSAR.toFixed(2) + '</div><div style="font-size:11px;">' + sarSig + '</div></div>'
+      + '<div style="padding:10px;background:white;border:1px solid #e5e7eb;border-radius:6px;"><div style="font-size:11px;color:#6b7280;">OBV</div><div style="font-size:14px;font-weight:600;">' + (last(obv) / 1e6).toFixed(1) + 'M</div><div style="font-size:11px;color:#6b7280;">能量潮</div></div>'
+      + '</div><div style="font-size:10px;color:#6b7280;margin-top:8px;">資料：Yahoo Finance · 計算週期：3 個月</div>';
+  } catch (e) {
+    document.getElementById('v219-ind-body').innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
+  }
+};
+
+(function(){
+  if (window.__v219Wired) return;
+  window.__v219Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v219LoadIndicatorPanel(code), 1800);
+    return r;
+  };
+})();
