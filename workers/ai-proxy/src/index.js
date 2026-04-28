@@ -1398,6 +1398,43 @@ export default {
       } catch (e) { return jsonResponse({ error: 'peer-compare failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /ai-screener-translate (v240) - 自然語言 → screener filter JSON ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/ai-screener-translate') {
+      try {
+        const body = await request.json();
+        const description = body.description || '';
+        if (!description) return jsonResponse({ error: 'description required' }, 400);
+        const prompt = `將以下自然語言投資需求翻譯成 JSON filter 物件。可用欄位：
+- maxPE / minPE: 本益比上下限
+- maxPB: 股價淨值比上限
+- minROE: ROE 最小值（%）
+- minGrossMargin: 毛利率最小值（%）
+- minRevGrowth: 營收成長 YoY 最小值（%）
+- minDivYield: 殖利率最小值（%）
+- maxDebtToEquity: 負債權益比上限
+- minMarketCapB: 市值最小值（十億美元）
+
+需求：「${description}」
+
+只回 JSON，不要解釋。範例：{"maxPE": 20, "minROE": 15}`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是 JSON 翻譯器，只回 JSON。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 200
+        });
+        const text = aiRes.response || '';
+        // Extract JSON
+        const jsonMatch = text.match(/\{[\s\S]*?\}/);
+        let filters = {};
+        if (jsonMatch) {
+          try { filters = JSON.parse(jsonMatch[0]); } catch(e){}
+        }
+        return jsonResponse({ description, filters, aiText: text, updated: new Date().toISOString() });
+      } catch (e) { return jsonResponse({ error: 'translate failed: ' + (e.message || e) }, 500); }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);

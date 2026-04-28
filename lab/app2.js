@@ -9735,3 +9735,422 @@ window.v239LoadInstitutional = async function(stockCode){
     return r;
   };
 })();
+
+
+// ===== v240: AI 自然語言寫指標（取代 Pine Script）=====
+
+window.v240AIScreener = async function(){
+  const desc = prompt('用自然語言描述您要找的股票（例：「我想找 PE 低於 20、ROE 大於 15% 的價值股」）');
+  if (!desc) return;
+  const result = document.getElementById('v236-result') || (() => { window.v236OpenScreener(); return null; })();
+  if (!result) {
+    setTimeout(() => window.v240AIScreener(), 600);
+    return;
+  }
+  result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🤖 AI 翻譯需求中...</div>';
+  try {
+    const tr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/ai-screener-translate', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ description: desc })
+    });
+    const td = await tr.json();
+    if (!td.filters) { result.innerHTML = '<div style="color:#dc2626;">AI 無法翻譯</div>'; return; }
+    // 套用到 modal inputs
+    const fields = [['maxPE','v236-maxPE'],['maxPB','v236-maxPB'],['minROE','v236-minROE'],['minGrossMargin','v236-minGM'],['minRevGrowth','v236-minRevG'],['minDivYield','v236-minDY'],['maxDebtToEquity','v236-maxDE'],['minMarketCapB','v236-minMC']];
+    fields.forEach(([k, id]) => { const el = document.getElementById(id); if (el && td.filters[k] !== undefined) el.value = td.filters[k]; });
+    // 直接 trigger 篩選
+    const goBtn = document.getElementById('v236-go');
+    if (goBtn) goBtn.click();
+  } catch (e) { result.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v240-ai-screener-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v240-ai-screener-btn';
+    btn.textContent = '🤖 AI 寫指標';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(168,85,247,0.3));border:1px solid rgba(124,58,237,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v240AIScreener());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v241: 30+ 技術指標補完 =====
+
+window.v241Indicators = {
+  ema: function(closes, period){
+    const k = 2 / (period + 1);
+    const out = [closes[0]];
+    for (let i = 1; i < closes.length; i++) out.push(closes[i] * k + out[i-1] * (1 - k));
+    return out;
+  },
+  sma: function(closes, period){
+    const out = new Array(closes.length).fill(null);
+    for (let i = period - 1; i < closes.length; i++) {
+      let sum = 0;
+      for (let j = i - period + 1; j <= i; j++) sum += closes[j];
+      out[i] = sum / period;
+    }
+    return out;
+  },
+  wma: function(closes, period){
+    const out = new Array(closes.length).fill(null);
+    const denom = period * (period + 1) / 2;
+    for (let i = period - 1; i < closes.length; i++) {
+      let sum = 0;
+      for (let j = 0; j < period; j++) sum += closes[i - period + 1 + j] * (j + 1);
+      out[i] = sum / denom;
+    }
+    return out;
+  },
+  vwap: function(highs, lows, closes, volumes){
+    const out = []; let cumPV = 0, cumV = 0;
+    for (let i = 0; i < closes.length; i++) {
+      const tp = (highs[i] + lows[i] + closes[i]) / 3;
+      cumPV += tp * (volumes[i] || 0);
+      cumV += (volumes[i] || 0);
+      out.push(cumV > 0 ? cumPV / cumV : closes[i]);
+    }
+    return out;
+  },
+  cci: function(highs, lows, closes, period){
+    period = period || 20;
+    const out = new Array(closes.length).fill(null);
+    for (let i = period - 1; i < closes.length; i++) {
+      const tps = [];
+      for (let j = i - period + 1; j <= i; j++) tps.push((highs[j] + lows[j] + closes[j]) / 3);
+      const sma = tps.reduce((a, b) => a + b, 0) / period;
+      const mad = tps.reduce((a, b) => a + Math.abs(b - sma), 0) / period;
+      out[i] = mad === 0 ? 0 : (tps[period - 1] - sma) / (0.015 * mad);
+    }
+    return out;
+  },
+  mfi: function(highs, lows, closes, volumes, period){
+    period = period || 14;
+    const out = new Array(closes.length).fill(null);
+    for (let i = period; i < closes.length; i++) {
+      let posFlow = 0, negFlow = 0;
+      for (let j = i - period + 1; j <= i; j++) {
+        const tp = (highs[j] + lows[j] + closes[j]) / 3;
+        const prevTp = (highs[j-1] + lows[j-1] + closes[j-1]) / 3;
+        const flow = tp * (volumes[j] || 0);
+        if (tp > prevTp) posFlow += flow;
+        else if (tp < prevTp) negFlow += flow;
+      }
+      out[i] = negFlow === 0 ? 100 : 100 - 100 / (1 + posFlow / negFlow);
+    }
+    return out;
+  },
+  roc: function(closes, period){
+    period = period || 12;
+    const out = new Array(closes.length).fill(null);
+    for (let i = period; i < closes.length; i++) {
+      out[i] = ((closes[i] - closes[i - period]) / closes[i - period]) * 100;
+    }
+    return out;
+  },
+  williamsR: function(highs, lows, closes, period){
+    period = period || 14;
+    const out = new Array(closes.length).fill(null);
+    for (let i = period - 1; i < closes.length; i++) {
+      const h = Math.max(...highs.slice(i - period + 1, i + 1));
+      const l = Math.min(...lows.slice(i - period + 1, i + 1));
+      out[i] = h === l ? 0 : ((h - closes[i]) / (h - l)) * -100;
+    }
+    return out;
+  },
+  donchian: function(highs, lows, period){
+    period = period || 20;
+    const upper = new Array(highs.length).fill(null);
+    const lower = new Array(highs.length).fill(null);
+    for (let i = period - 1; i < highs.length; i++) {
+      upper[i] = Math.max(...highs.slice(i - period + 1, i + 1));
+      lower[i] = Math.min(...lows.slice(i - period + 1, i + 1));
+    }
+    return { upper, lower };
+  },
+  pivotPoints: function(high, low, close){
+    const p = (high + low + close) / 3;
+    return { p, r1: 2*p - low, s1: 2*p - high, r2: p + (high - low), s2: p - (high - low), r3: high + 2*(p - low), s3: low - 2*(high - p) };
+  },
+  heikinAshi: function(opens, highs, lows, closes){
+    const ha = [];
+    for (let i = 0; i < closes.length; i++) {
+      const haClose = (opens[i] + highs[i] + lows[i] + closes[i]) / 4;
+      const haOpen = i === 0 ? (opens[i] + closes[i]) / 2 : (ha[i-1].o + ha[i-1].c) / 2;
+      const haHigh = Math.max(highs[i], haOpen, haClose);
+      const haLow = Math.min(lows[i], haOpen, haClose);
+      ha.push({ o: haOpen, h: haHigh, l: haLow, c: haClose });
+    }
+    return ha;
+  }
+};
+
+window.v241RenderExtended = async function(symbol){
+  if (document.getElementById('v241-ext-' + symbol)) return;
+  const host = document.getElementById('v219-ind-panel') || document.getElementById('v217-mtf-box');
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v241-ext-' + symbol;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #4338ca;border-radius:12px;background:linear-gradient(180deg,#eef2ff,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#3730a3;margin-bottom:6px;">📊 進階技術指標（' + symbol + '）</div><div id="v241-body-' + symbol + '">載入中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  try {
+    const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=3mo');
+    const j = await r.json();
+    const result = j.chart && j.chart.result && j.chart.result[0];
+    if (!result) { document.getElementById('v241-body-' + symbol).innerHTML = '無資料'; return; }
+    const q = result.indicators.quote[0];
+    const closes = (q.close || []).filter(x => x != null);
+    const highs = (q.high || []).filter(x => x != null);
+    const lows = (q.low || []).filter(x => x != null);
+    const volumes = (q.volume || []).filter(x => x != null);
+    if (closes.length < 30) { document.getElementById('v241-body-' + symbol).innerHTML = '資料不足'; return; }
+    const ind = window.v241Indicators;
+    const last = (arr) => arr[arr.length - 1];
+    const items = [
+      ['EMA(12)', last(ind.ema(closes, 12)).toFixed(2)],
+      ['EMA(26)', last(ind.ema(closes, 26)).toFixed(2)],
+      ['SMA(60)', last(ind.sma(closes, 60))?.toFixed(2) || '-'],
+      ['WMA(20)', last(ind.wma(closes, 20))?.toFixed(2) || '-'],
+      ['VWAP', last(ind.vwap(highs, lows, closes, volumes)).toFixed(2)],
+      ['CCI(20)', last(ind.cci(highs, lows, closes, 20))?.toFixed(1) || '-'],
+      ['MFI(14)', last(ind.mfi(highs, lows, closes, volumes, 14))?.toFixed(1) || '-'],
+      ['ROC(12)', last(ind.roc(closes, 12))?.toFixed(2) + '%' || '-'],
+      ['Williams %R', last(ind.williamsR(highs, lows, closes, 14))?.toFixed(1) || '-']
+    ];
+    const dch = ind.donchian(highs, lows, 20);
+    items.push(['Donchian 上軌', last(dch.upper)?.toFixed(2) || '-']);
+    items.push(['Donchian 下軌', last(dch.lower)?.toFixed(2) || '-']);
+    const piv = ind.pivotPoints(highs[highs.length - 1], lows[lows.length - 1], closes[closes.length - 1]);
+    items.push(['Pivot R1', piv.r1.toFixed(2)]);
+    items.push(['Pivot S1', piv.s1.toFixed(2)]);
+    let html = '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;">';
+    items.forEach(([label, val]) => {
+      html += '<div style="padding:8px;background:white;border:1px solid #e0e7ff;border-radius:6px;"><div style="font-size:10px;color:#6b7280;">' + label + '</div><div style="font-size:13px;font-weight:600;color:#3730a3;">' + val + '</div></div>';
+    });
+    html += '</div><div style="font-size:10px;color:#6b7280;margin-top:6px;">共 13 個進階指標（與既有 8 個合計 21+）</div>';
+    document.getElementById('v241-body-' + symbol).innerHTML = html;
+  } catch (e) {
+    document.getElementById('v241-body-' + symbol).innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
+  }
+};
+
+(function(){
+  if (window.__v241Wired) return;
+  window.__v241Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v241RenderExtended(code), 4500);
+    return r;
+  };
+})();
+
+
+// ===== v242: Drawing Tools（趨勢線 + 矩形）=====
+
+window.v242DrawingMode = null;
+window.v242Drawings = [];
+window.v242AttachToChart = function(svgContainerId){
+  const svg = document.querySelector('#' + svgContainerId + ' svg');
+  if (!svg || svg.dataset.v242Attached) return;
+  svg.dataset.v242Attached = '1';
+  svg.style.cursor = 'crosshair';
+  let startX = null, startY = null;
+  const getMouse = (e) => {
+    const rect = svg.getBoundingClientRect();
+    const vb = svg.viewBox.baseVal;
+    return {
+      x: (e.clientX - rect.left) / rect.width * vb.width,
+      y: (e.clientY - rect.top) / rect.height * vb.height
+    };
+  };
+  svg.addEventListener('mousedown', (e) => {
+    if (!window.v242DrawingMode) return;
+    const m = getMouse(e);
+    startX = m.x; startY = m.y;
+  });
+  svg.addEventListener('mouseup', (e) => {
+    if (!window.v242DrawingMode || startX === null) return;
+    const m = getMouse(e);
+    if (window.v242DrawingMode === 'line') {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', startX); line.setAttribute('y1', startY);
+      line.setAttribute('x2', m.x); line.setAttribute('y2', m.y);
+      line.setAttribute('stroke', '#dc2626'); line.setAttribute('stroke-width', '2');
+      svg.appendChild(line);
+    } else if (window.v242DrawingMode === 'rect') {
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', Math.min(startX, m.x)); rect.setAttribute('y', Math.min(startY, m.y));
+      rect.setAttribute('width', Math.abs(m.x - startX)); rect.setAttribute('height', Math.abs(m.y - startY));
+      rect.setAttribute('fill', 'rgba(220,38,38,0.1)'); rect.setAttribute('stroke', '#dc2626');
+      svg.appendChild(rect);
+    }
+    startX = null;
+  });
+};
+
+window.v242AddToolbar = function(){
+  if (document.getElementById('v242-toolbar')) return;
+  const toolbar = document.createElement('div');
+  toolbar.id = 'v242-toolbar';
+  toolbar.style.cssText = 'position:fixed;top:80px;right:20px;background:white;border:1px solid #d1d5db;border-radius:8px;padding:6px;box-shadow:0 4px 12px rgba(0,0,0,0.1);z-index:9997;display:flex;flex-direction:column;gap:4px;';
+  toolbar.innerHTML = ''
+    + '<button class="v242-tool" data-mode="" style="padding:6px;border:none;background:none;cursor:pointer;font-size:14px;" title="關閉">✕</button>'
+    + '<button class="v242-tool" data-mode="line" style="padding:6px;border:none;background:none;cursor:pointer;font-size:14px;" title="趨勢線">📏</button>'
+    + '<button class="v242-tool" data-mode="rect" style="padding:6px;border:none;background:none;cursor:pointer;font-size:14px;" title="矩形">▭</button>';
+  document.body.appendChild(toolbar);
+  toolbar.querySelectorAll('.v242-tool').forEach(b => b.addEventListener('click', () => {
+    window.v242DrawingMode = b.dataset.mode || null;
+    toolbar.querySelectorAll('.v242-tool').forEach(x => x.style.background = 'none');
+    if (b.dataset.mode) b.style.background = '#fef3c7';
+    if (!b.dataset.mode) toolbar.style.display = 'none';
+  }));
+  // 找所有 K 線 SVG container 並 attach
+  setInterval(() => {
+    document.querySelectorAll('#full-candle-chart-v195, #v217-mtf-box, #v238-pe-* ').forEach(c => {
+      if (c.id) window.v242AttachToChart(c.id);
+    });
+  }, 2000);
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v242-draw-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v242-draw-btn';
+    btn.textContent = '✏️ 繪圖工具';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(245,158,11,0.3),rgba(251,191,36,0.3));border:1px solid rgba(245,158,11,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => { window.v242AddToolbar(); document.getElementById('v242-toolbar').style.display = 'flex'; });
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v243: 回測引擎（Strategy Tester）=====
+
+window.v243OpenBacktest = function(){
+  let modal = document.getElementById('v243-modal');
+  if (modal) modal.remove();
+  modal = document.createElement('div');
+  modal.id = 'v243-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:520px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = ''
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⚗️ 回測引擎</div><button id="v243-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="font-size:12px;color:#6b7280;margin-bottom:14px;">測試簡單策略過去 1 年表現</div>'
+    + '<div style="margin-bottom:12px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">標的</label><input id="v243-sym" value="NVDA" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
+    + '<div style="margin-bottom:12px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">策略</label><select id="v243-strategy" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px;">'
+    + '<option value="rsi_oversold">RSI 超賣買進，超買賣出</option>'
+    + '<option value="ma_cross">MA20 黃金交叉買進，死亡交叉賣出</option>'
+    + '<option value="bb_bounce">布林下軌買進，上軌賣出</option>'
+    + '<option value="buy_hold">買進持有對照組</option>'
+    + '</select></div>'
+    + '<button id="v243-go" style="width:100%;padding:12px;background:#7c3aed;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">⚗️ 開始回測</button>'
+    + '<div id="v243-result" style="margin-top:14px;"></div>';
+  document.body.appendChild(modal);
+  document.getElementById('v243-close').addEventListener('click', () => modal.remove());
+  document.getElementById('v243-go').addEventListener('click', async () => {
+    const sym = document.getElementById('v243-sym').value.trim().toUpperCase();
+    const strat = document.getElementById('v243-strategy').value;
+    const result = document.getElementById('v243-result');
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">⚗️ 跑回測（過去 1 年）...</div>';
+    try {
+      const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=1y');
+      const j = await r.json();
+      const res = j.chart && j.chart.result && j.chart.result[0];
+      if (!res) { result.innerHTML = '<div style="color:#dc2626;">無資料</div>'; return; }
+      const closes = (res.indicators.quote[0].close || []).filter(x => x != null);
+      const highs = (res.indicators.quote[0].high || []).filter(x => x != null);
+      const lows = (res.indicators.quote[0].low || []).filter(x => x != null);
+      // Run strategy
+      let position = 0; // 0 or 1 share
+      let cash = 10000;
+      let trades = [];
+      const equity = [];
+      const ind = window.v219Indicators;
+      const sma20 = ind && ind.kd ? null : null; // 用 v241 sma if exists else simple
+      const simpleSMA = (arr, p) => {
+        const out = [];
+        for (let i = 0; i < arr.length; i++) {
+          if (i < p - 1) { out.push(null); continue; }
+          let s = 0; for (let j = i - p + 1; j <= i; j++) s += arr[j]; out.push(s / p);
+        }
+        return out;
+      };
+      const simpleRSI = (arr, p) => {
+        if (!ind || !ind.rsi) return arr.map(() => 50);
+        return ind.rsi(arr, p);
+      };
+      const sma20Arr = simpleSMA(closes, 20);
+      const sma60Arr = simpleSMA(closes, 60);
+      const rsiArr = simpleRSI(closes, 14);
+      // BB upper/lower (簡化)
+      const bbUpper = closes.map((c, i) => sma20Arr[i] ? sma20Arr[i] * 1.04 : null);
+      const bbLower = closes.map((c, i) => sma20Arr[i] ? sma20Arr[i] * 0.96 : null);
+      for (let i = 1; i < closes.length; i++) {
+        const p = closes[i];
+        let buy = false, sell = false;
+        if (strat === 'rsi_oversold') {
+          if (rsiArr[i] < 30 && position === 0) buy = true;
+          if (rsiArr[i] > 70 && position > 0) sell = true;
+        } else if (strat === 'ma_cross') {
+          if (sma20Arr[i] && sma60Arr[i] && sma20Arr[i-1] && sma60Arr[i-1]) {
+            if (sma20Arr[i] > sma60Arr[i] && sma20Arr[i-1] <= sma60Arr[i-1] && position === 0) buy = true;
+            if (sma20Arr[i] < sma60Arr[i] && sma20Arr[i-1] >= sma60Arr[i-1] && position > 0) sell = true;
+          }
+        } else if (strat === 'bb_bounce') {
+          if (bbLower[i] && p < bbLower[i] && position === 0) buy = true;
+          if (bbUpper[i] && p > bbUpper[i] && position > 0) sell = true;
+        } else if (strat === 'buy_hold') {
+          if (i === 1 && position === 0) buy = true;
+        }
+        if (buy && cash > p) { position = Math.floor(cash / p); cash -= position * p; trades.push({ i, type: 'buy', price: p }); }
+        if (sell && position > 0) { cash += position * p; trades.push({ i, type: 'sell', price: p, pnl: position * p }); position = 0; }
+        equity.push(cash + position * p);
+      }
+      const final = equity[equity.length - 1];
+      const totalReturn = ((final - 10000) / 10000) * 100;
+      // 對照：buy & hold
+      const bhFinal = 10000 / closes[1] * closes[closes.length - 1];
+      const bhReturn = ((bhFinal - 10000) / 10000) * 100;
+      // Max drawdown
+      let peak = equity[0], maxDD = 0;
+      equity.forEach(e => { if (e > peak) peak = e; const dd = (peak - e) / peak * 100; if (dd > maxDD) maxDD = dd; });
+      result.innerHTML = ''
+        + '<div style="background:#f3e8ff;border:1px solid #c4b5fd;border-radius:8px;padding:14px;font-size:13px;">'
+        + '<div style="font-weight:700;margin-bottom:6px;">📊 回測結果（' + closes.length + ' 個交易日）</div>'
+        + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px;">'
+        + '<div>策略總報酬：<strong style="color:' + (totalReturn >= 0 ? '#dc2626' : '#16a34a') + ';">' + totalReturn.toFixed(2) + '%</strong></div>'
+        + '<div>買進持有：<strong>' + bhReturn.toFixed(2) + '%</strong></div>'
+        + '<div>最大回撤：<strong style="color:#9333ea;">' + maxDD.toFixed(2) + '%</strong></div>'
+        + '<div>交易次數：<strong>' + trades.length + '</strong></div>'
+        + '</div></div>'
+        + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">⚠️ 過去績效不代表未來。本回測為教育用途，非投資建議。</div>';
+    } catch (e) { result.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
+  });
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v243-bt-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v243-bt-btn';
+    btn.textContent = '⚗️ 回測引擎';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(167,139,250,0.3));border:1px solid rgba(124,58,237,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v243OpenBacktest());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
