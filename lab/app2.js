@@ -7830,3 +7830,92 @@ window.v211OpenPreferences = function(){
     closeBtn.parentNode.insertBefore(prefBtn, closeBtn);
   }, 2000);
 })();
+
+
+// ===== v212: AI 多 Agent 圓桌會議（世界第一級護城河）=====
+
+window.v212Roundtable = async function(symbol, name){
+  if (!symbol) {
+    const ans = prompt('請輸入要召開圓桌會議的股票代號（例：NVDA / 2330 / ASML.AS）');
+    if (!ans) return;
+    symbol = ans.trim().toUpperCase();
+    name = symbol;
+  }
+  const msgs = document.getElementById('v210-messages');
+  if (!msgs) { window.v210OpenCFO(); return setTimeout(() => window.v212Roundtable(symbol, name), 500); }
+  // 加 system 訊息
+  const intro = document.createElement('div');
+  intro.style.cssText = 'background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#e9d5ff;">🎭 圓桌會議啟動</div><div style="font-size:13px;">召集 3 位 AI 分析師對 <strong>' + symbol + '</strong> 公開辯論，讓您看不同視角。</div><div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.6);">⚠️ 三個視角為 AI 模擬，並非實際分析師意見</div>';
+  msgs.appendChild(intro);
+  // Loading placeholder
+  const loadingMsg = document.createElement('div');
+  loadingMsg.style.cssText = 'background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;color:rgba(255,255,255,0.7);';
+  loadingMsg.innerHTML = '🎭 三位分析師思考中（約 10-15 秒）...';
+  msgs.appendChild(loadingMsg);
+  msgs.scrollTop = msgs.scrollHeight;
+  try {
+    // 先抓報價
+    const qr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(symbol));
+    const q = await qr.json();
+    // 開圓桌
+    const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/multi-agent-roundtable', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        symbol, name: name || symbol,
+        price: q.price || 0, changePercent: q.changePercent || 0, currency: q.currency || '',
+        userQuestion: '對這檔的綜合看法'
+      })
+    });
+    const data = await res.json();
+    loadingMsg.remove();
+    if (data.error) {
+      const errMsg = document.createElement('div');
+      errMsg.style.cssText = 'background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+      errMsg.innerHTML = '⚠️ 圓桌會議失敗：' + data.error;
+      msgs.appendChild(errMsg);
+    } else {
+      // 先 render 報價卡片
+      const priceMsg = document.createElement('div');
+      priceMsg.style.cssText = 'background:rgba(255,255,255,0.08);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+      const pct = q.changePercent || 0;
+      const c = pct >= 0 ? '#fca5a5' : '#86efac';
+      const sn = pct >= 0 ? '+' : '';
+      priceMsg.innerHTML = '<div style="font-weight:700;font-size:16px;margin-bottom:4px;">' + symbol + (name && name !== symbol ? ' · ' + name : '') + '</div><div style="font-size:14px;">' + (q.price || 0).toFixed(2) + ' ' + (q.currency || '') + ' <span style="color:' + c + ';">' + sn + pct.toFixed(2) + '%</span></div>';
+      msgs.appendChild(priceMsg);
+      // Render 3 agents
+      const colors = ['#86efac', '#fbbf24', '#fca5a5'];
+      data.agents.forEach((a, i) => {
+        const card = document.createElement('div');
+        card.style.cssText = 'background:rgba(255,255,255,0.08);border-left:3px solid ' + colors[i] + ';border-radius:8px;padding:14px;max-width:90%;margin-bottom:10px;';
+        card.innerHTML = '<div style="font-weight:700;color:' + colors[i] + ';margin-bottom:6px;">' + a.role + '</div><div style="font-size:13px;line-height:1.7;">' + a.content.replace(/\n/g, '<br>') + '</div>';
+        msgs.appendChild(card);
+      });
+      // Render 結論提醒
+      const concl = document.createElement('div');
+      concl.style.cssText = 'background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);border-radius:8px;padding:10px 14px;max-width:90%;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.7);';
+      concl.innerHTML = '💡 三個視角已呈現。<strong>由您自行判斷</strong>哪些風險與機會適合您的偏好。' + (data.disclaimer || '');
+      msgs.appendChild(concl);
+    }
+  } catch (e) {
+    loadingMsg.innerHTML = '⚠️ 圓桌會議失敗：' + (e.message || e);
+  }
+  msgs.scrollTop = msgs.scrollHeight;
+};
+
+// 在 v210 對話介面加「🎭 圓桌會議」快速建議按鈕
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v212-roundtable-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v212-roundtable-btn';
+    btn.textContent = '🎭 圓桌會議';
+    btn.title = '召集 3 位 AI 分析師多視角辯論';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(168,85,247,0.3),rgba(236,72,153,0.3));border:1px solid rgba(168,85,247,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v212Roundtable());
+    suggests.appendChild(btn);
+  }, 2000);
+})();

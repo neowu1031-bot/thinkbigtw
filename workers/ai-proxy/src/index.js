@@ -939,6 +939,49 @@ export default {
       } catch (e) { return jsonResponse({ error: e.message || String(e) }, 500); }
     }
 
+        // === /multi-agent-roundtable (v212) ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/multi-agent-roundtable') {
+      try {
+        const body = await request.json();
+        const { symbol, name, price, changePercent, currency, userQuestion } = body;
+        if (!symbol) return jsonResponse({ error: 'symbol required' }, 400);
+        const ctx = `股票：${name || symbol} (${symbol})\n當前價格：${price} ${currency || ''}\n今日漲跌：${(changePercent||0).toFixed(2)}%\n用戶問題：${userQuestion || '對這檔的看法'}`;
+        const agents = [
+          {
+            role: '🧮 基本面分析師（多頭立場）',
+            prompt: `你是基本面分析師，擅長從營收/獲利/競爭力角度看股票。針對下列標的用 80-120 字繁中分析「市場可能看好的點」（多頭視角）：\n\n${ctx}\n\n要求：\n1. 只談公開可推測的訊息，不編造數字\n2. 不下買賣建議，只說「市場或看好 XX」\n3. 結尾不需自加免責聲明`
+          },
+          {
+            role: '📊 技術面分析師（謹慎立場）',
+            prompt: `你是技術面分析師，擅長從 K 線/動能/超買超賣角度看股票。針對下列標的用 80-120 字繁中分析「技術面值得關注的訊號」（謹慎視角）：\n\n${ctx}\n\n要求：\n1. 從漲幅、動能、可能超買角度看\n2. 不下買賣建議，只說「技術上或顯示 XX」\n3. 結尾不需自加免責聲明`
+          },
+          {
+            role: '⚠️ 反方分析師（魔鬼代言人）',
+            prompt: `你是反方分析師，刻意找風險點。針對下列標的用 80-120 字繁中提出「**為什麼這檔可能不該買的 3 個風險點**」：\n\n${ctx}\n\n要求：\n1. 列舉具體風險（估值、競爭、總體經濟、產業、流動性等）\n2. 用「投資人應警惕 XX」這類措詞\n3. 不下不買的建議，只說「風險點是 XX」\n4. 結尾不需自加免責聲明`
+          }
+        ];
+        const results = await Promise.all(agents.map(async a => {
+          const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+            messages: [
+              { role: 'system', content: '你是公開資訊整理員，絕不提供買賣建議。' },
+              { role: 'user', content: a.prompt }
+            ],
+            max_tokens: 350
+          });
+          let text = aiRes.response || '';
+          if (!isContentSafe(text)) text = '為符合金管會規範，本視角內容已過濾。';
+          return { role: a.role, content: text };
+        }));
+        return jsonResponse({
+          symbol, name, agents: results,
+          disclaimer: DISCLAIMER + ' 三個視角為 AI 模擬辯論，並非實際分析師意見。',
+          updated: new Date().toISOString()
+        });
+      } catch (e) {
+        return jsonResponse({ error: 'roundtable failed: ' + (e.message || e) }, 500);
+      }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);
