@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>MoneyRadar API Documentation</title>
+<style>
+body { font-family: -apple-system, "PingFang TC", sans-serif; max-width: 900px; margin: 40px auto; padding: 20px; color: #1f2937; line-height: 1.6; }
+h1 { color: #1e3a8a; }
+h2 { color: #2563eb; border-bottom: 2px solid #93c5fd; padding-bottom: 4px; margin-top: 32px; }
+h3 { color: #1d4ed8; margin-top: 24px; }
+code, pre { background: #f3f4f6; border-radius: 4px; padding: 2px 6px; font-family: 'SF Mono', Menlo, monospace; font-size: 13px; }
+pre { padding: 12px; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+th, td { padding: 8px 12px; border: 1px solid #e5e7eb; text-align: left; }
+th { background: #f9fafb; }
+.method { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+.get { background: #dcfce7; color: #166534; }
+.post { background: #dbeafe; color: #1e40af; }
+.note { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 10px 14px; border-radius: 4px; margin: 12px 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h1>📡 MoneyRadar API</h1>
+<p>歡迎使用 MoneyRadar API。本 API 提供全球股票報價、AI 解讀、技術指標、新聞情緒、投組分析等服務。</p>
+
+<div class="note">
+⚠️ <strong>使用條款</strong>：本 API 僅供個人非商業用途。商業使用請聯絡 ceo-nini@agentmail.to。本 API 提供之資料為「公開資訊整理」，不構成投資建議。
+</div>
+
+<h2>🌐 Base URL</h2>
+<pre>https://moneyradar-ai-proxy.thinkbigtw.workers.dev</pre>
+
+<h2>📋 端點清單</h2>
+
+<table>
+<tr><th>方法</th><th>端點</th><th>說明</th></tr>
+<tr><td><span class="method get">GET</span></td><td>/health</td><td>健康檢查</td></tr>
+<tr><td><span class="method get">GET</span></td><td>/quote?symbol=X</td><td>單檔報價（Yahoo Finance）</td></tr>
+<tr><td><span class="method get">GET</span></td><td>/quote-batch?symbols=A,B,C</td><td>批次報價（最多 30 檔）</td></tr>
+<tr><td><span class="method get">GET</span></td><td>/sentiment-score?symbol=X</td><td>動能情緒分數（0-100）</td></tr>
+<tr><td><span class="method get">GET</span></td><td>/news-sentiment?symbol=X</td><td>新聞情緒分類（Google News + AI）</td></tr>
+<tr><td><span class="method get">GET</span></td><td>/crypto-top</td><td>加密貨幣前 10（CoinGecko/CoinCap/Binance 三層保底）</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/chat</td><td>AI 對話（Llama 3.3 70B + 法律護欄）</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/global-quick-analysis</td><td>個股快速 AI 解讀</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/multi-agent-roundtable</td><td>多 Agent 圓桌（基本面/技術面/反方）</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/daily-brief</td><td>每日早報（基於 watchlist）</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/coach-feedback</td><td>投資人成長教練反饋</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/portfolio-health</td><td>投組健診</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/scenario-simulation</td><td>情境模擬（升息/戰爭/衰退等）</td></tr>
+<tr><td><span class="method post">POST</span></td><td>/rebalance-suggest</td><td>投組再平衡建議</td></tr>
+</table>
+
+<h2>📝 範例：取得單檔報價</h2>
+<h3>cURL</h3>
+<pre>curl 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=NVDA'</pre>
+<h3>JavaScript</h3>
+<pre>const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=NVDA');
+const data = await res.json();
+console.log(data.price, data.changePercent);</pre>
+<h3>Python</h3>
+<pre>import requests
+r = requests.get('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote', params={'symbol': 'NVDA'})
+print(r.json())</pre>
+
+<h2>📝 範例：AI 對話</h2>
+<pre>curl -X POST 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/chat' \
+  -H 'Content-Type: application/json' \
+  -d '{"messages":[{"role":"user","content":"NVDA 為什麼漲？"}]}'</pre>
+
+<h2>📝 範例：多 Agent 圓桌</h2>
+<pre>curl -X POST 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/multi-agent-roundtable' \
+  -H 'Content-Type: application/json' \
+  -d '{"symbol":"NVDA","name":"NVIDIA","price":216.61,"changePercent":8.5,"currency":"USD"}'</pre>
+
+<h2>⏱ Rate Limits</h2>
+<ul>
+<li>免費使用：每 IP 60 calls/分鐘</li>
+<li>商業合作：聯絡 ceo-nini@agentmail.to</li>
+</ul>
+
+<h2>📜 法律聲明</h2>
+<ul>
+<li>本 API 不提供個股投資建議（金管會合規）</li>
+<li>所有 AI 回應內含「[把握度] / [資料源] / [盲點]」透明度標籤</li>
+<li>資料來源：Yahoo Finance、Google News、CoinGecko、Binance、Cloudflare Workers AI（Llama 3.3 70B）</li>
+</ul>
+
+<p style="margin-top:40px;color:#6b7280;font-size:12px;border-top:1px solid #e5e7eb;padding-top:14px;">
+MoneyRadar™ · <a href="/lab/">回到主頁</a> · <a href="/lab/STATUS.md">系統狀態</a> · <a href="/lab/.well-known/security.txt">資安通報</a>
+</p>
+
+</body>
+</html>

@@ -8981,3 +8981,120 @@ window.v227OpenRebalance = function(){
     suggests.appendChild(btn);
   }, 2000);
 })();
+
+
+// ===== v229: UI i18n（v210 對話介面文字翻譯）=====
+
+window.v229I18n = {
+  'en': {
+    '您的 AI 投資長': 'Your AI CFO',
+    '您好 NEO，我是您的 AI 投資長。我可以幫您：': 'Hi! I am your AI CFO. I can help you:',
+    '解讀您的自選股今日漲跌原因': 'Explain why your watchlist moved today',
+    '整理今日全球市場動態': 'Summarize today global market',
+    '查詢任何個股公開資料': 'Query any stock public data',
+    '解釋財經名詞': 'Explain financial terms',
+    '我不能提供個股投資建議（金管會合規）— 但我可以幫您整理公開資訊讓您自己判斷。': 'I cannot provide individual stock investment advice (regulatory compliance) — but I can help you organize public information for your own judgment.',
+    '今日全球市場': 'Today Markets',
+    'NVDA 為什麼漲': 'Why NVDA up',
+    '台積電新聞': 'TSMC News',
+    '學財經名詞': 'Learn Terms',
+    '問我任何投資相關問題...': 'Ask me anything about investing...',
+    '送出': 'Send',
+    '思考中...': 'Thinking...',
+    '今日早報': 'Today Brief',
+    '圓桌會議': 'Roundtable',
+    'AI 解讀': 'AI Insight',
+    '設定提醒': 'Set Alert',
+    '投組健診': 'Portfolio Check',
+    '成長教練': 'Growth Coach',
+    '情境模擬': 'Scenario',
+    '投組再平衡': 'Rebalance',
+    '多股 K 線比較': 'Compare Charts',
+    '我的投資偏好': 'My Preferences',
+    '為什麼這樣回答？': 'Why this answer?',
+    '把握度': 'Confidence',
+    '資料源': 'Sources',
+    '盲點': 'Blind Spots'
+  },
+  'ja': {
+    '您的 AI 投資長': 'あなたのAI投資責任者',
+    '您好 NEO，我是您的 AI 投資長。我可以幫您：': 'こんにちは、私はあなたのAI投資責任者です。お手伝いできること：',
+    '解讀您的自選股今日漲跌原因': 'ウォッチリストの値動きを解説',
+    '整理今日全球市場動態': '今日の世界市場動向',
+    '查詢任何個股公開資料': '個別株の公開情報',
+    '解釋財經名詞': '金融用語の説明',
+    '今日全球市場': '今日の市場',
+    '台積電新聞': 'TSMC ニュース',
+    '學財經名詞': '用語学習',
+    '問我任何投資相關問題...': '投資に関する質問をどうぞ...',
+    '送出': '送信',
+    '今日早報': '今日のブリーフ',
+    '圓桌會議': '円卓会議',
+    'AI 解讀': 'AI 解析',
+    '設定提醒': 'アラート設定',
+    '投組健診': 'ポートフォリオ診断',
+    '成長教練': 'コーチング',
+    '情境模擬': 'シナリオ',
+    '投組再平衡': 'リバランス'
+  },
+  'ko': {
+    '您的 AI 投資長': '당신의 AI CFO',
+    '您好 NEO，我是您的 AI 投資長。我可以幫您：': '안녕하세요, 저는 당신의 AI CFO입니다. 도움드릴 수 있는 것:',
+    '解讀您的自選股今日漲跌原因': '관심 종목의 등락 원인 설명',
+    '整理今日全球市場動態': '오늘의 글로벌 시장 동향',
+    '今日全球市場': '오늘의 시장',
+    '台積電新聞': 'TSMC 뉴스',
+    '學財經名詞': '용어 학습',
+    '送出': '전송',
+    '今日早報': '오늘의 브리핑',
+    '圓桌會議': '원탁회의',
+    'AI 解讀': 'AI 해석',
+    '設定提醒': '알림 설정',
+    '投組健診': '포트폴리오 진단',
+    '成長教練': '코칭',
+    '情境模擬': '시나리오',
+    '投組再平衡': '리밸런싱'
+  }
+};
+
+window.v229Translate = function(){
+  const lang = window.v224GetLang ? window.v224GetLang() : 'zh-TW';
+  if (lang === 'zh-TW') return;
+  const dict = window.v229I18n[lang];
+  if (!dict) return;
+  const targets = [document.getElementById('v210-cfo-overlay'), document.getElementById('v210-trigger')];
+  targets.forEach(target => {
+    if (!target) return;
+    target.querySelectorAll('button, div, span, label, option, input[placeholder]').forEach(el => {
+      if (el.tagName === 'INPUT' && el.placeholder) {
+        for (const [zh, tr] of Object.entries(dict)) {
+          if (el.placeholder === zh || el.placeholder.includes(zh)) {
+            if (!el.dataset.v229Original) el.dataset.v229Original = el.placeholder;
+            el.placeholder = el.dataset.v229Original.replace(zh, tr);
+          }
+        }
+      } else if (el.children.length === 0) {
+        const text = el.textContent.trim();
+        for (const [zh, tr] of Object.entries(dict)) {
+          if (text === zh) {
+            if (!el.dataset.v229Original) el.dataset.v229Original = text;
+            el.textContent = tr;
+            break;
+          } else if (text.includes(zh)) {
+            if (!el.dataset.v229Original) el.dataset.v229Original = text;
+            el.textContent = el.dataset.v229Original.split(zh).join(tr);
+            break;
+          }
+        }
+      }
+    });
+  });
+};
+
+(function(){
+  if (window.__v229Wired) return;
+  window.__v229Wired = true;
+  setInterval(() => {
+    if (document.getElementById('v210-cfo-overlay')) window.v229Translate();
+  }, 2000);
+})();
