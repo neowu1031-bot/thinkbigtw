@@ -7966,3 +7966,125 @@ window.v212Roundtable = async function(symbol, name){
   }, 1000);
   console.log('[v212.1] UX hotfix wired');
 })();
+
+
+// ===== v213: AI 透明度（解析 metadata + 展開「為什麼這樣回答」）=====
+
+window.v213ParseAIMeta = function(reply){
+  // parse [把握度] / [資料源] / [盲點]
+  const meta = { confidence: '', sources: '', blindSpots: '' };
+  const c = reply.match(/\[把握度\][\s:：]*([^\n]+)/);
+  const sr = reply.match(/\[資料源\][\s:：]*([^\n]+)/);
+  const b = reply.match(/\[盲點\][\s:：]*([^\n]+)/);
+  if (c) meta.confidence = c[1].trim();
+  if (sr) meta.sources = sr[1].trim();
+  if (b) meta.blindSpots = b[1].trim();
+  // 從原文移除 metadata block
+  const cleanReply = reply.replace(/\[把握度\][\s:：][^\n]*\n?/g, '').replace(/\[資料源\][\s:：][^\n]*\n?/g, '').replace(/\[盲點\][\s:：][^\n]*\n?/g, '').trim();
+  return { cleanReply, meta };
+};
+
+window.v213RenderTransparency = function(meta){
+  if (!meta.confidence && !meta.sources && !meta.blindSpots) return '';
+  const c = meta.confidence || '中';
+  const colorMap = { '高': '#86efac', '中': '#fbbf24', '低': '#fca5a5' };
+  const color = colorMap[c] || '#fbbf24';
+  const id = 'v213-meta-' + Math.random().toString(36).slice(2, 8);
+  return '<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,0.15);padding-top:8px;">'
+    + '<button onclick="document.getElementById(\'' + id + '\').style.display=document.getElementById(\'' + id + '\').style.display===\'none\'?\'block\':\'none\'" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:11px;padding:0;">🔍 為什麼這樣回答？</button>'
+    + '<div id="' + id + '" style="display:none;margin-top:8px;font-size:11px;line-height:1.7;color:rgba(255,255,255,0.85);">'
+    + '<div>📊 我的把握度：<span style="color:' + color + ';font-weight:600;">' + c + '</span></div>'
+    + (meta.sources ? '<div>📚 主要資料源：' + meta.sources + '</div>' : '')
+    + (meta.blindSpots ? '<div>⚠️ 我可能遺漏：' + meta.blindSpots + '</div>' : '')
+    + '<div style="margin-top:6px;color:rgba(255,255,255,0.5);">AI 不是萬能。請結合其他資訊獨立判斷。</div>'
+    + '</div></div>';
+};
+
+// patch v210Send 渲染流程：加入 metadata 解析 + 透明度展開
+(function(){
+  if (window.__v213Wired) return;
+  window.__v213Wired = true;
+  // 用 MutationObserver 監聽 v210-messages 新增的 AI 回應
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    overlay.querySelectorAll('#v210-messages > div').forEach(msg => {
+      if (msg.dataset.v213Parsed) return;
+      // 只處理 AI 回應（左對齊）
+      if (msg.style.marginLeft === 'auto') return;
+      // 找文字 div
+      const txtDiv = msg.querySelector('div:not([style*="font-weight:600"])');
+      if (!txtDiv) return;
+      const html = txtDiv.innerHTML || '';
+      if (!/\[把握度\]|\[資料源\]|\[盲點\]/.test(html)) return;
+      // 把 <br> 還原成 \n 給 parser
+      const raw = html.replace(/<br\s*\/?>/g, '\n');
+      const parsed = window.v213ParseAIMeta(raw);
+      txtDiv.innerHTML = parsed.cleanReply.replace(/\n/g, '<br>');
+      // 加透明度區
+      const transparency = window.v213RenderTransparency(parsed.meta);
+      if (transparency) msg.insertAdjacentHTML('beforeend', transparency);
+      msg.dataset.v213Parsed = '1';
+    });
+  }, 1500);
+})();
+
+
+// ===== v214: AI 主動每日 brief（開啟對話介面自動 trigger）=====
+
+window.v214LoadDailyBrief = async function(){
+  const msgs = document.getElementById('v210-messages');
+  if (!msgs) return;
+  if (msgs.querySelector('.v214-brief')) return;
+  // 取 watchlist
+  const m = window.v211Memory ? window.v211Memory.load() : { watchlist: [], riskPreference: '' };
+  const wl = (m.watchlist || []).slice(0, 8);
+  if (wl.length === 0) return; // 沒設關注標的就不跑
+  const brief = document.createElement('div');
+  brief.className = 'v214-brief';
+  brief.style.cssText = 'background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,63,94,0.15));border:1px solid rgba(251,191,36,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+  brief.innerHTML = '<div style="font-weight:700;color:#fde68a;margin-bottom:6px;">🌅 ' + new Date().toLocaleDateString('zh-TW') + ' 您的早報</div><div style="font-size:13px;color:rgba(255,255,255,0.85);">📊 整理您 ' + wl.length + ' 檔關注標的中…</div>';
+  msgs.insertBefore(brief, msgs.firstChild);
+  msgs.scrollTop = 0;
+  try {
+    const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/daily-brief', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ symbols: wl, riskPreference: m.riskPreference || '' })
+    });
+    const d = await res.json();
+    if (d.error) {
+      brief.innerHTML = '<div style="font-weight:700;color:#fde68a;margin-bottom:6px;">🌅 早報</div><div style="font-size:12px;color:#fca5a5;">⚠️ ' + d.error + '</div>';
+      return;
+    }
+    let html = '<div style="font-weight:700;color:#fde68a;margin-bottom:8px;">🌅 ' + new Date().toLocaleDateString('zh-TW') + ' 您的早報</div>';
+    // mini quote cards
+    if (d.quotes && d.quotes.length > 0) {
+      html += '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">';
+      d.quotes.forEach(q => {
+        const c = q.changePercent >= 0 ? '#fca5a5' : '#86efac';
+        const sn = q.changePercent >= 0 ? '+' : '';
+        html += '<div style="background:rgba(255,255,255,0.08);border-radius:6px;padding:6px 10px;font-size:11px;"><div style="font-weight:700;">' + q.symbol + '</div><div style="color:' + c + ';">' + sn + q.changePercent.toFixed(2) + '%</div></div>';
+      });
+      html += '</div>';
+    }
+    html += '<div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.9);">' + (d.brief || '').replace(/\n/g, '<br>') + '</div>';
+    html += '<div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,0.5);">' + (d.disclaimer || '') + '</div>';
+    brief.innerHTML = html;
+  } catch (e) {
+    brief.innerHTML = '<div style="font-weight:700;color:#fde68a;">🌅 早報</div><div style="font-size:12px;color:#fca5a5;">載入失敗：' + (e.message || e) + '</div>';
+  }
+};
+
+// 攔截 v210OpenCFO 第一次開啟時自動跑早報
+(function(){
+  if (window.__v214Wired) return;
+  window.__v214Wired = true;
+  let triggered = false;
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay || overlay.style.display === 'none') return;
+    if (triggered) return;
+    triggered = true;
+    setTimeout(() => window.v214LoadDailyBrief(), 800);
+  }, 1000);
+})();

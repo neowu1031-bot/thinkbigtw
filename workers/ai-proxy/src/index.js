@@ -982,6 +982,58 @@ export default {
       }
     }
 
+        // === /daily-brief (v214) ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/daily-brief') {
+      try {
+        const body = await request.json();
+        const symbols = (body.symbols || []).slice(0, 8);
+        const riskPref = body.riskPreference || '';
+        if (symbols.length === 0) return jsonResponse({ error: 'symbols required' }, 400);
+        // 並行抓每檔報價
+        const quotes = await Promise.all(symbols.map(async sym => {
+          try {
+            const yr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=2d', { headers: { 'User-Agent': 'Mozilla/5.0' } });
+            if (!yr.ok) return { symbol: sym, error: 'http ' + yr.status };
+            const yj = await yr.json();
+            const meta = yj && yj.chart && yj.chart.result && yj.chart.result[0] && yj.chart.result[0].meta;
+            if (!meta) return { symbol: sym, error: 'no meta' };
+            const price = meta.regularMarketPrice || 0;
+            const prev = meta.previousClose || meta.chartPreviousClose || 0;
+            const pct = (prev && price) ? ((price - prev) / prev * 100) : 0;
+            return { symbol: sym, price, changePercent: pct, currency: meta.currency || '' };
+          } catch (e) { return { symbol: sym, error: e.message }; }
+        }));
+        // 組 prompt
+        const validQuotes = quotes.filter(q => !q.error);
+        const summary = validQuotes.map(q => `${q.symbol}: ${q.price.toFixed(2)} ${q.currency} (${q.changePercent >= 0 ? '+' : ''}${q.changePercent.toFixed(2)}%)`).join(' / ');
+        const prompt = `今日 (${new Date().toLocaleDateString('zh-TW')}) 您關注的標的表現：${summary}${riskPref ? '\n用戶風險偏好：' + riskPref : ''}
+
+請用 100-150 字繁中產出「今日早報」：
+1. 整體觀察（漲跌結構、是否分歧）
+2. 最值得留意的 1-2 檔（用「市場或關注 XX」措詞）
+3. 不下任何買賣建議
+4. 結尾不需自加免責`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是公開資訊整理員，絕不提供買賣建議。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 350
+        });
+        let brief = aiRes.response || '';
+        if (!isContentSafe(brief)) brief = '今日資訊整理已過濾。請參考各標的卡片資料。';
+        return jsonResponse({
+          quotes: validQuotes,
+          brief,
+          riskPreference: riskPref,
+          disclaimer: DISCLAIMER,
+          updated: new Date().toISOString()
+        });
+      } catch (e) {
+        return jsonResponse({ error: 'brief failed: ' + (e.message || e) }, 500);
+      }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);
