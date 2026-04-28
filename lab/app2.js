@@ -8640,3 +8640,116 @@ window.v220OpenAlertModal = function(symbol){
     } catch (e) { body.innerHTML = '<div style="color:#dc2626;">載入失敗：' + (e.message || e) + '</div>'; }
   };
 })();
+
+
+// ===== v222: AI 新聞情緒（Google News RSS + Llama 分類）=====
+
+window.v222LoadNewsSentiment = async function(symbol){
+  if (document.getElementById('v222-news-' + symbol)) return;
+  const host = document.getElementById('v219-ind-panel') || document.getElementById('v217-mtf-box') || document.getElementById('full-candle-chart-v195') || document.getElementById('stock-detail');
+  if (!host) return;
+  const box = document.createElement('div');
+  box.id = 'v222-news-' + symbol;
+  box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #db2777;border-radius:12px;background:linear-gradient(180deg,#fdf2f8,#fff);';
+  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">📰 新聞情緒（' + symbol + '）</div><div id="v222-body-' + symbol + '">載入中…</div>';
+  host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+  try {
+    const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/news-sentiment?symbol=' + encodeURIComponent(symbol));
+    const d = await r.json();
+    const body = document.getElementById('v222-body-' + symbol);
+    if (!d.news || d.news.length === 0) { body.innerHTML = '<div style="color:#9ca3af;">無新聞資料</div>'; return; }
+    const stats = d.stats || {};
+    const overallColor = d.overall === '偏正面' ? '#dc2626' : d.overall === '偏負面' ? '#16a34a' : '#9ca3af';
+    let html = '<div style="display:flex;gap:10px;margin-bottom:10px;font-size:12px;">'
+      + '<span style="background:#fee2e2;color:#dc2626;padding:4px 10px;border-radius:12px;font-weight:600;">正面 ' + (stats.正面 || 0) + '</span>'
+      + '<span style="background:#f3f4f6;color:#6b7280;padding:4px 10px;border-radius:12px;font-weight:600;">中性 ' + (stats.中性 || 0) + '</span>'
+      + '<span style="background:#dcfce7;color:#16a34a;padding:4px 10px;border-radius:12px;font-weight:600;">負面 ' + (stats.負面 || 0) + '</span>'
+      + '<span style="margin-left:auto;color:' + overallColor + ';font-weight:700;">整體：' + (d.overall || '中性') + '</span>'
+      + '</div>';
+    d.news.slice(0, 5).forEach(n => {
+      const sc = n.sentiment === '正面' ? '#dc2626' : n.sentiment === '負面' ? '#16a34a' : '#6b7280';
+      html += '<div style="padding:8px;border-left:3px solid ' + sc + ';background:white;margin-bottom:6px;border-radius:4px;">'
+        + '<div style="font-size:13px;font-weight:600;line-height:1.4;">' + n.title + '</div>'
+        + '<div style="font-size:11px;color:' + sc + ';margin-top:2px;">[' + n.sentiment + '] ' + n.reason + '</div>'
+        + '</div>';
+    });
+    html += '<div style="font-size:10px;color:#9ca3af;margin-top:6px;">資料：Google News · AI 自動分類</div>';
+    body.innerHTML = html;
+  } catch (e) {
+    document.getElementById('v222-body-' + symbol).innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
+  }
+};
+
+(function(){
+  if (window.__v222Wired) return;
+  window.__v222Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v222LoadNewsSentiment(code), 2200);
+    return r;
+  };
+})();
+
+
+// ===== v223: AI 投資人成長教練（reflective feedback）=====
+
+window.v223OpenCoach = async function(){
+  const msgs = document.getElementById('v210-messages');
+  if (!msgs) { window.v210OpenCFO(); return setTimeout(() => window.v223OpenCoach(), 500); }
+  const intro = document.createElement('div');
+  intro.style.cssText = 'background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#e9d5ff;">🎓 投資成長教練啟動</div><div style="font-size:13px;">分析您過去的查詢、自選、提醒模式，給出反思反饋。</div>';
+  msgs.appendChild(intro);
+  const loading = document.createElement('div');
+  loading.style.cssText = 'background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;color:rgba(255,255,255,0.7);';
+  loading.innerHTML = '🎓 教練分析中（約 8 秒）...';
+  msgs.appendChild(loading);
+  msgs.scrollTop = msgs.scrollHeight;
+  try {
+    const m = window.v211Memory ? window.v211Memory.load() : {};
+    const queries = (m.queryHistory || []).map(x => x.q);
+    const watchlist = m.watchlist || [];
+    const alerts = window.v220Alerts ? window.v220Alerts.load() : [];
+    const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/coach-feedback', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        queries, watchlist,
+        alerts: alerts.map(a => ({ symbol: a.symbol, condition: a.condition, threshold: a.threshold })),
+        riskPreference: m.riskPreference || ''
+      })
+    });
+    const d = await res.json();
+    loading.remove();
+    if (d.error) {
+      const err = document.createElement('div');
+      err.style.cssText = 'background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+      err.innerHTML = '⚠️ ' + d.error;
+      msgs.appendChild(err);
+      return;
+    }
+    const card = document.createElement('div');
+    card.style.cssText = 'background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(236,72,153,0.15));border:1px solid rgba(168,85,247,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
+    card.innerHTML = '<div style="font-weight:700;color:#e9d5ff;margin-bottom:6px;">🎓 您的成長教練反饋</div><div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:8px;">分析 ' + d.dataPoints + ' 個資料點</div><div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.95);">' + (d.feedback || '').replace(/\n/g, '<br>') + '</div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,0.5);">' + (d.disclaimer || '') + '</div>';
+    msgs.appendChild(card);
+  } catch (e) {
+    loading.innerHTML = '⚠️ 失敗：' + (e.message || e);
+  }
+  msgs.scrollTop = msgs.scrollHeight;
+};
+
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v223-coach-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v223-coach-btn';
+    btn.textContent = '🎓 成長教練';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(168,85,247,0.3),rgba(236,72,153,0.3));border:1px solid rgba(168,85,247,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v223OpenCoach());
+    suggests.appendChild(btn);
+  }, 2000);
+})();

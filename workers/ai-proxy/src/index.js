@@ -1079,6 +1079,86 @@ export default {
       } catch (e) { return jsonResponse({ error: 'health failed: ' + (e.message || e) }, 500); }
     }
 
+        // === /news-sentiment (v222) ===
+    if (request.method === 'GET' && new URL(request.url).pathname === '/news-sentiment') {
+      const u = new URL(request.url);
+      const sym = u.searchParams.get('symbol');
+      if (!sym) return jsonResponse({ error: 'symbol required' }, 400);
+      try {
+        // Google News RSS（免 auth）
+        const rssUrl = 'https://news.google.com/rss/search?q=' + encodeURIComponent(sym + ' stock') + '&hl=zh-TW&gl=TW&ceid=TW:zh-Hant';
+        const r = await fetch(rssUrl);
+        if (!r.ok) return jsonResponse({ error: 'rss ' + r.status }, 502);
+        const xml = await r.text();
+        const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].slice(0, 8);
+        const news = items.map(m => {
+          const t = (m[1].match(/<title>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?<\/title>/) || [])[1] || '';
+          const l = (m[1].match(/<link>(?:<!\[CDATA\[)?(.*?)(?:\]\]>)?<\/link>/) || [])[1] || '';
+          return { title: t.trim(), link: l.trim() };
+        }).filter(n => n.title);
+        if (news.length === 0) return jsonResponse({ symbol: sym, news: [], summary: '', updated: new Date().toISOString() });
+        // Llama 批次分類
+        const numbered = news.map((n, i) => (i+1) + '. ' + n.title).join('\n');
+        const prompt = '請對下列 ' + news.length + ' 篇新聞標題做情緒分類，每行回覆「序號. [正面/中性/負面] 一句話原因（<15字）」：\n\n' + numbered;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是新聞情緒分類器，回答簡潔。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 500
+        });
+        const parsed = aiRes.response || '';
+        // 解析 AI 回應
+        const lines = parsed.split('\n').filter(l => /^\d+\./.test(l));
+        const sentMap = {};
+        lines.forEach(l => {
+          const m = l.match(/^(\d+)\.\s*\[(正面|中性|負面)\]\s*(.+)$/);
+          if (m) sentMap[parseInt(m[1])] = { sentiment: m[2], reason: m[3].trim() };
+        });
+        const result = news.map((n, i) => ({
+          ...n,
+          sentiment: (sentMap[i+1] || {}).sentiment || '中性',
+          reason: (sentMap[i+1] || {}).reason || ''
+        }));
+        // 統計
+        const stats = { 正面: 0, 中性: 0, 負面: 0 };
+        result.forEach(r => stats[r.sentiment]++);
+        const overall = stats.正面 > stats.負面 ? '偏正面' : stats.負面 > stats.正面 ? '偏負面' : '中性';
+        return jsonResponse({ symbol: sym, news: result, stats, overall, updated: new Date().toISOString() });
+      } catch (e) {
+        return jsonResponse({ error: 'news failed: ' + (e.message || e) }, 500);
+      }
+    }
+
+        // === /coach-feedback (v223) ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/coach-feedback') {
+      try {
+        const body = await request.json();
+        const queries = (body.queries || []).slice(-20);
+        const watchlist = body.watchlist || [];
+        const alerts = (body.alerts || []).slice(-10);
+        const risk = body.riskPreference || '未設定';
+        if (queries.length === 0 && watchlist.length === 0) return jsonResponse({ error: 'no data to analyze' }, 400);
+        const ctx = '【用戶過去 20 個查詢】\n' + queries.map(q => '- ' + q).join('\n') +
+                    '\n\n【關注標的】\n' + watchlist.join(', ') +
+                    '\n\n【設過的提醒】\n' + alerts.map(a => a.symbol + ' ' + a.condition + ' ' + a.threshold).join(', ') +
+                    '\n\n【風險偏好】' + risk;
+        const prompt = ctx + '\n\n請扮演投資人成長教練，用 150-200 字繁中觀察這位投資人的「決策模式」並給「反饋」（不是建議買賣）：\n1. 觀察到的模式（例：是否關注特定行業？是否常追熱門？查詢主題是否一致？）\n2. 可能的盲點或可改善的習慣\n3. 一句鼓勵\n\n措詞：用「您可能」「我觀察到」「值得反思」這類溫和措詞。\n結尾務必加 [把握度]/[資料源]/[盲點]';
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是投資人行為觀察員，給反饋不給建議。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 600
+        });
+        let feedback = aiRes.response || '';
+        if (!isContentSafe(feedback)) feedback = '⚠️ 為符合金管會規範，本反饋已過濾。';
+        return jsonResponse({ feedback, dataPoints: queries.length + watchlist.length + alerts.length, disclaimer: DISCLAIMER, updated: new Date().toISOString() });
+      } catch (e) {
+        return jsonResponse({ error: 'coach failed: ' + (e.message || e) }, 500);
+      }
+    }
+
     // === Inline /quote GET handler (v199 hotfix) ===
     if (request.method === 'GET' && new URL(request.url).pathname === '/quote') {
       const url2 = new URL(request.url);
