@@ -8088,3 +8088,238 @@ window.v214LoadDailyBrief = async function(){
     setTimeout(() => window.v214LoadDailyBrief(), 800);
   }, 1000);
 })();
+
+
+// ===== v215: ESG+ 責任投資篩選器 =====
+
+window.V215_BLACKLIST = {
+  '菸酒': ['MO','PM','BTI','STZ','DEO','BUD','SAM','TAP'],
+  '賭博': ['LVS','MGM','WYNN','MLCO','PENN','DKNG'],
+  '武器': ['LMT','RTX','NOC','GD','LHX','BA'],
+  '化石燃料': ['XOM','CVX','COP','BP','SHEL','OXY'],
+  '色情娛樂': ['PLBY']
+};
+
+window.v215IsRestricted = function(symbol){
+  for (const [cat, list] of Object.entries(window.V215_BLACKLIST)) {
+    if (list.includes(symbol)) return cat;
+  }
+  return null;
+};
+
+window.v215IsEnabled = function(){
+  try {
+    const m = window.v211Memory ? window.v211Memory.load() : {};
+    return m.esgEnabled === true;
+  } catch(e) { return false; }
+};
+
+// 在 v210 偏好 modal 加 ESG toggle（攔截 v211OpenPreferences）
+(function(){
+  if (window.__v215Wired) return;
+  window.__v215Wired = true;
+  const orig = window.v211OpenPreferences;
+  if (!orig) return;
+  window.v211OpenPreferences = function(){
+    orig();
+    setTimeout(() => {
+      const modal = document.getElementById('v211-pref-modal');
+      if (!modal || modal.querySelector('.v215-esg-toggle')) return;
+      const m = window.v211Memory.load();
+      const saveBtn = modal.querySelector('#v211-pref-save');
+      if (!saveBtn) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'v215-esg-toggle';
+      wrap.style.cssText = 'margin-bottom:16px;padding:10px;background:#f0fdf4;border-radius:8px;';
+      wrap.innerHTML = '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#166534;font-weight:600;"><input type="checkbox" id="v215-esg-cb" ' + (m.esgEnabled ? 'checked' : '') + '> 🌿 啟用 ESG+ 責任投資篩選</label><div style="font-size:11px;color:#16a34a;margin-top:4px;margin-left:24px;">排除菸酒/賭博/武器/化石燃料/色情娛樂類股 — 卡片會顯示 ⚠️ 標記</div>';
+      saveBtn.parentNode.insertBefore(wrap, saveBtn);
+      // 攔截 save
+      const origClick = saveBtn.onclick;
+      saveBtn.addEventListener('click', () => {
+        const m2 = window.v211Memory.load();
+        m2.esgEnabled = document.getElementById('v215-esg-cb').checked;
+        window.v211Memory.save(m2);
+      }, { capture: true, once: true });
+    }, 100);
+  };
+})();
+
+// 給每張卡片加 ESG warning（如果啟用且符合黑名單）
+(function(){
+  setInterval(() => {
+    if (!window.v215IsEnabled()) {
+      // 移除既有警示（如果用戶關掉了）
+      document.querySelectorAll('.v215-warning').forEach(el => el.remove());
+      return;
+    }
+    document.querySelectorAll('[id^="px-"]').forEach(el => {
+      const card = el.parentNode;
+      if (!card || card.querySelector('.v215-warning')) return;
+      const data = window.v204ExtractCardData ? window.v204ExtractCardData(card) : null;
+      if (!data) return;
+      const cat = window.v215IsRestricted(data.symbol);
+      if (!cat) return;
+      const w = document.createElement('div');
+      w.className = 'v215-warning';
+      w.style.cssText = 'margin-top:6px;padding:4px 8px;background:#fef2f2;border:1px solid #fca5a5;border-radius:4px;font-size:10px;color:#991b1b;font-weight:600;';
+      w.textContent = '⚠️ ESG: ' + cat;
+      card.appendChild(w);
+    });
+  }, 3000);
+})();
+
+
+// ===== v216: AI 投組健診 =====
+
+window.v216OpenHealth = function(){
+  let modal = document.getElementById('v216-health-modal');
+  if (modal) { modal.remove(); return; }
+  modal = document.createElement('div');
+  modal.id = 'v216-health-modal';
+  modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:520px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100001;font-family:-apple-system,sans-serif;max-height:90vh;overflow-y:auto;';
+  modal.innerHTML = ''
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">💼 AI 投組健診</div><button id="v216-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="font-size:12px;color:#6b7280;margin-bottom:12px;">輸入您的持股（最多 8 檔），AI 會分析集中度 / 行業分散 / 風險匹配並給改善建議</div>'
+    + '<div id="v216-rows"></div>'
+    + '<button id="v216-add" style="width:100%;padding:8px;border:1px dashed #d1d5db;background:#f9fafb;border-radius:8px;cursor:pointer;font-size:13px;color:#6b7280;margin-bottom:12px;">+ 新增一檔</button>'
+    + '<button id="v216-go" style="width:100%;padding:12px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🩺 開始健診</button>'
+    + '<div id="v216-result" style="margin-top:16px;"></div>';
+  document.body.appendChild(modal);
+  document.getElementById('v216-close').addEventListener('click', () => modal.remove());
+  const rowsBox = document.getElementById('v216-rows');
+  const addRow = (symbol = '', shares = '', cost = '') => {
+    if (rowsBox.children.length >= 8) { alert('最多 8 檔'); return; }
+    const row = document.createElement('div');
+    row.className = 'v216-row';
+    row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 1fr 36px;gap:6px;margin-bottom:6px;';
+    row.innerHTML = '<input class="v216-sym" placeholder="代號" value="' + symbol + '" style="padding:6px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;"><input class="v216-shares" type="number" placeholder="股數" value="' + shares + '" style="padding:6px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;"><input class="v216-cost" type="number" placeholder="均價" value="' + cost + '" style="padding:6px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;"><button class="v216-del" style="background:#fee2e2;border:none;border-radius:6px;cursor:pointer;color:#991b1b;">✕</button>';
+    row.querySelector('.v216-del').addEventListener('click', () => row.remove());
+    rowsBox.appendChild(row);
+  };
+  // 從 watchlist 預填
+  const m = window.v211Memory ? window.v211Memory.load() : {};
+  (m.watchlist || []).slice(0, 3).forEach(sym => addRow(sym));
+  if (rowsBox.children.length === 0) addRow();
+  document.getElementById('v216-add').addEventListener('click', () => addRow());
+  document.getElementById('v216-go').addEventListener('click', async () => {
+    const holdings = [];
+    rowsBox.querySelectorAll('.v216-row').forEach(r => {
+      const sym = r.querySelector('.v216-sym').value.trim().toUpperCase();
+      const shares = parseFloat(r.querySelector('.v216-shares').value);
+      const cost = parseFloat(r.querySelector('.v216-cost').value);
+      if (sym && shares > 0 && cost > 0) holdings.push({ symbol: sym, shares, cost });
+    });
+    if (holdings.length === 0) { alert('請至少輸入一檔有效持股'); return; }
+    const result = document.getElementById('v216-result');
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🩺 AI 健診中（約 8-10 秒）...</div>';
+    try {
+      const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/portfolio-health', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ holdings, riskPreference: m.riskPreference || '' })
+      });
+      const d = await res.json();
+      if (d.error) { result.innerHTML = '<div style="color:#dc2626;padding:12px;background:#fef2f2;border-radius:8px;">⚠️ ' + d.error + '</div>'; return; }
+      let html = '<div style="background:#f0f9ff;border:1px solid #93c5fd;border-radius:8px;padding:14px;margin-bottom:10px;">';
+      html += '<div style="font-weight:600;margin-bottom:6px;">📊 持股結構</div>';
+      d.holdings.forEach(h => {
+        html += '<div style="font-size:12px;margin-top:2px;">' + h.symbol + ' · ' + h.weight.toFixed(1) + '%</div>';
+      });
+      html += '<div style="font-size:11px;color:#6b7280;margin-top:6px;">最大單一持股：' + d.maxWeight.toFixed(1) + '%</div>';
+      html += '</div>';
+      html += '<div style="background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:14px;font-size:13px;line-height:1.7;color:#1f2937;">' + (d.analysis || '').replace(/\n/g, '<br>') + '</div>';
+      html += '<div style="font-size:11px;color:#6b7280;margin-top:8px;">' + (d.disclaimer || '') + '</div>';
+      result.innerHTML = html;
+    } catch (e) { result.innerHTML = '<div style="color:#dc2626;">健診失敗：' + (e.message || e) + '</div>'; }
+  });
+};
+
+// 在 v210 對話介面加「💼 投組健診」快速按鈕
+(function(){
+  setInterval(() => {
+    const overlay = document.getElementById('v210-cfo-overlay');
+    if (!overlay) return;
+    const suggests = overlay.querySelector('[class*="v210-suggest"]')?.parentNode;
+    if (!suggests || suggests.querySelector('.v216-health-btn')) return;
+    const btn = document.createElement('button');
+    btn.className = 'v210-suggest v216-health-btn';
+    btn.textContent = '💼 投組健診';
+    btn.style.cssText = 'background:linear-gradient(135deg,rgba(37,99,235,0.3),rgba(96,165,250,0.3));border:1px solid rgba(37,99,235,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
+    btn.addEventListener('click', () => window.v216OpenHealth());
+    suggests.appendChild(btn);
+  }, 2000);
+})();
+
+
+// ===== v217: 多 timeframe K 線（1d/1w/1mo/1y）=====
+
+window.v217LoadMultiTF = async function(symbol, tf){
+  tf = tf || '3mo';
+  let box = document.getElementById('v217-mtf-box');
+  if (!box) {
+    const host = document.getElementById('full-candle-chart-v195') || document.getElementById('stock-detail') || document.body;
+    box = document.createElement('div');
+    box.id = 'v217-mtf-box';
+    box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #2563eb;border-radius:12px;background:linear-gradient(180deg,#eff6ff,#fff);';
+    box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-weight:700;color:#1d4ed8;">📈 多時段 K 線（' + symbol + '）</div><div id="v217-tabs" style="display:flex;gap:4px;"></div></div><div id="v217-body">載入中…</div>';
+    host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
+    // 加 tabs
+    const tabs = document.getElementById('v217-tabs');
+    ['1mo','3mo','6mo','1y','5y','max'].forEach(t => {
+      const tb = document.createElement('button');
+      tb.textContent = t;
+      tb.style.cssText = 'padding:4px 10px;font-size:11px;background:white;border:1px solid #93c5fd;border-radius:4px;cursor:pointer;color:#1d4ed8;';
+      if (t === tf) tb.style.background = '#2563eb', tb.style.color = 'white';
+      tb.addEventListener('click', () => window.v217LoadMultiTF(symbol, t));
+      tabs.appendChild(tb);
+    });
+  } else {
+    document.querySelectorAll('#v217-tabs button').forEach(b => {
+      if (b.textContent === tf) b.style.background = '#2563eb', b.style.color = 'white';
+      else b.style.background = 'white', b.style.color = '#1d4ed8';
+    });
+  }
+  const body = document.getElementById('v217-body');
+  body.innerHTML = '載入中…';
+  try {
+    const url = 'https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=' + (tf === 'max' || tf === '5y' ? '1mo' : tf === '1y' ? '1d' : '1d') + '&range=' + tf;
+    const r = await fetch(url);
+    const j = await r.json();
+    const result = j.chart && j.chart.result && j.chart.result[0];
+    if (!result) { body.innerHTML = '<div style="color:#dc2626;">無資料</div>'; return; }
+    const closes = (result.indicators.quote[0].close || []).filter(x => x != null);
+    const ts = result.timestamp || [];
+    if (closes.length < 5) { body.innerHTML = '<div>資料不足</div>'; return; }
+    // SVG line chart
+    const W = 600, H = 180, padL = 40, padR = 10, padT = 10, padB = 24;
+    const innerW = W - padL - padR, innerH = H - padT - padB;
+    const yMax = Math.max(...closes), yMin = Math.min(...closes);
+    const range = (yMax - yMin) || 1;
+    const x = i => padL + (i / Math.max(1, closes.length - 1)) * innerW;
+    const y = v => padT + (1 - (v - yMin) / range) * innerH;
+    let path = '';
+    closes.forEach((c, i) => { path += (i === 0 ? 'M' : 'L') + x(i).toFixed(1) + ',' + y(c).toFixed(1) + ' '; });
+    const first = closes[0], last = closes[closes.length - 1];
+    const pct = ((last - first) / first) * 100;
+    const color = pct >= 0 ? '#dc2626' : '#16a34a';
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;max-width:600px;border:1px solid #dbeafe;border-radius:6px;background:white;">';
+    svg += '<path d="' + path + '" fill="none" stroke="' + color + '" stroke-width="2"/>';
+    svg += '<text x="6" y="' + (y(yMax) + 3) + '" fill="#6b7280" font-size="9">' + yMax.toFixed(2) + '</text>';
+    svg += '<text x="6" y="' + (y(yMin) + 3) + '" fill="#6b7280" font-size="9">' + yMin.toFixed(2) + '</text>';
+    svg += '<text x="' + (W - padR) + '" y="14" fill="' + color + '" font-size="11" text-anchor="end">' + (pct >= 0 ? '+' : '') + pct.toFixed(2) + '%</text>';
+    svg += '</svg>';
+    body.innerHTML = svg + '<div style="font-size:10px;color:#6b7280;margin-top:4px;">資料：Yahoo Finance · 期間：' + tf + ' · ' + closes.length + ' 個資料點</div>';
+  } catch (e) { body.innerHTML = '<div style="color:#dc2626;">載入失敗：' + (e.message || e) + '</div>'; }
+};
+
+// 攔截既有 loadFullCandleChart 觸發後也跑 v217
+(function(){
+  if (window.__v217Wired) return;
+  window.__v217Wired = true;
+  const orig = window.loadFullCandleChart;
+  if (!orig) return;
+  window.loadFullCandleChart = async function(code){
+    const r = await orig(code);
+    setTimeout(() => window.v217LoadMultiTF(code, '3mo'), 1500);
+    return r;
+  };
+})();

@@ -118,34 +118,19 @@ ${newsText}
 // ============== AI 聊天助理 ==============
 const CHAT_SYSTEM_PROMPT = `你是 MoneyRadar™ 的 AI 助理（公開資訊整理員）。
 
-【你的身份 - 嚴格範圍】
-- 你只服務「財經 / 股市 / 投資知識 / MoneyRadar 操作」相關問題
-- 你的服務範圍：解釋財經名詞、整理當前個股的公開新聞、教育性質的市場知識、操作 App 的問題
-
-【絕對拒絕的離題問題（必須拒絕）】
-- 旅遊、景點、餐廳、美食推薦、行程規劃
-- 料理、食譜、烹飪
-- 娛樂、電影、音樂、明星、體育
-- 政治、宗教、人際關係、感情諮詢
-- 天氣、健康、醫療、法律問題
-- 技術問題（程式設計、3C 產品等）
-- 任何與「財經、股市、投資、MoneyRadar 操作」無關的話題
-
-遇到離題問題，請禮貌且明確拒絕，例如：
-「我是 MoneyRadar 的財經 AI 助理，只能協助回答**財經、股市、投資知識、MoneyRadar 操作**相關問題。請問你想了解哪方面的市場資訊？例如：本益比是什麼、外資動向、特定個股的公開新聞等。」
-
-不要試圖在離題問題後「順便提供財經建議」連結，直接拒絕並引導回主題即可。
+【你的身份】
+- 你只整理「公開可查證」的資訊
+- 服務範圍：解釋財經名詞、整理當前個股的公開新聞、教育性質的市場知識、操作 App 的問題
 
 【絕對禁止】
-1. 不得提供買賣建議（「該不該買 XX」、「OO 會漲嗎」這類問題你都要拒絕）
-2. 不得預測股價（「目標價」「會漲到多少」「會跌到多少」一律不答）
+1. 不得提供買賣建議
+2. 不得預測股價（「目標價」「會漲到多少」一律不答）
 3. 不得評估個股投資價值
 4. 不得編造資料 — 沒有的就明說「我目前資料中沒有」
 5. 不得使用以下詞語：建議買入、建議賣出、一定會漲、保證、必漲、必跌、目標價
 
-【抗假消息守則】
-- 如果使用者引用某則消息，你必須先確認該消息是否在「參考新聞」中
-- 沒看到就回：「我目前資料中沒有這則消息，建議您從原始來源核對。」
+【離題拒絕】
+旅遊、料理、政治、娛樂、醫療等非投資相關問題，請禮貌拒絕並引導回投資相關問題。
 
 【法律邊界】
 依台灣《證券投資信託及顧問法》規定，未取得執照不得提供個股投資建議。
@@ -155,7 +140,23 @@ const CHAT_SYSTEM_PROMPT = `你是 MoneyRadar™ 的 AI 助理（公開資訊整
 【回答格式】
 - 100-200 字
 - 必要時用條列
-- 永遠用繁體中文`;
+- 永遠用繁體中文
+
+【🚨 強制：每次回答結尾必加 metadata（v213 透明度）】
+回答主體完成後，務必另起一段空白，加這 3 行（缺一不可）：
+[把握度] 高 / 中 / 低
+[資料源] 用什麼資料判斷的（公開新聞 / 技術指標 / 財報 / 市場推測 等）
+[盲點] 1-2 個你可能遺漏或不確定的點
+
+【完整範例】
+用戶問：「NVDA 為什麼漲？」
+你回答：
+
+NVIDIA 近期漲幅可能反映市場對 AI 晶片需求持續強勁的預期。投資人或關注其資料中心業務成長、新一代 GPU 發布節奏，以及與雲端大廠的合約進展。
+
+[把握度] 中
+[資料源] 公開新聞、市場推測
+[盲點] 未涵蓋下季財報實際表現、未涵蓋私人交易資訊`;
 
 async function fetchSupabaseUserPlan(authHeader, env) {
   return 'free';
@@ -1032,6 +1033,50 @@ export default {
       } catch (e) {
         return jsonResponse({ error: 'brief failed: ' + (e.message || e) }, 500);
       }
+    }
+
+        // === /portfolio-health (v216) ===
+    if (request.method === 'POST' && new URL(request.url).pathname === '/portfolio-health') {
+      try {
+        const body = await request.json();
+        const holdings = body.holdings || [];
+        const riskPref = body.riskPreference || '未設定';
+        if (holdings.length === 0) return jsonResponse({ error: 'holdings required' }, 400);
+        // 算總價值 + 各檔比重
+        const totalCost = holdings.reduce((s, h) => s + (h.shares * h.cost || 0), 0);
+        const enriched = holdings.map(h => ({ ...h, weight: totalCost > 0 ? ((h.shares * h.cost) / totalCost * 100) : 0 }));
+        const summary = enriched.map(h => `${h.symbol}（${h.weight.toFixed(1)}%）`).join('、');
+        const maxWeight = Math.max(...enriched.map(h => h.weight));
+        const prompt = `用戶投資組合：${summary}
+持股總數：${holdings.length} 檔
+最大單一持股比重：${maxWeight.toFixed(1)}%
+用戶風險偏好：${riskPref}
+
+請用 150-200 字繁中對這個投資組合做健診：
+1. 集中度評估（單一持股 > 20% 算集中）
+2. 行業分散觀察（如全是科技股算過度集中）
+3. 與風險偏好的匹配度
+4. 3 個可改善方向（不下買賣建議，只說「可考慮觀察 XX 類別」）
+
+回答結尾務必加：
+[把握度] 高/中/低
+[資料源] 投資組合理論
+[盲點] 1-2 個你可能遺漏的點`;
+        const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [
+            { role: 'system', content: '你是公開資訊整理員，絕不提供買賣建議。' },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 600
+        });
+        let analysis = aiRes.response || '';
+        if (!isContentSafe(analysis)) analysis = '⚠️ 為符合金管會規範，本健診內容已過濾。';
+        return jsonResponse({
+          holdings: enriched, totalCost, maxWeight,
+          analysis, riskPreference: riskPref,
+          disclaimer: DISCLAIMER, updated: new Date().toISOString()
+        });
+      } catch (e) { return jsonResponse({ error: 'health failed: ' + (e.message || e) }, 500); }
     }
 
     // === Inline /quote GET handler (v199 hotfix) ===
