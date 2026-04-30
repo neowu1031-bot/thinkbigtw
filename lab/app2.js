@@ -11875,7 +11875,7 @@ window.v273InjectShareButtons = function(){
     { selector: '#v205-crypto-box', title: '加密貨幣' }
   ];
   targets.forEach(t => {
-    document.querySelectorAll(t.selector + (t.selector.endsWith('-') ? '*' : '')).forEach(el => {
+    document.querySelectorAll((t.selector.endsWith('-') ? '[id^=' + t.selector.slice(1) + ']' : t.selector)).forEach(el => {
       if (el.querySelector('.v273-share-btn')) return;
       // skip 太小的元素
       if (el.offsetHeight < 80) return;
