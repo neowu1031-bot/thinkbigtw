@@ -908,6 +908,14 @@ async function handleEarnings(request, env) {
 
 export default {
   async fetch(request, env, ctx) {
+    // === V279_EARLY_INTERCEPT ===
+    try {
+      const _u = new URL(request.url);
+      if (_u.pathname === "/options") return handleOptions(request, env);
+      if (_u.pathname === "/earnings") return handleEarnings(request, env);
+    } catch (_e) {}
+    // === END V279_EARLY_INTERCEPT ===
+
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: CORS_HEADERS });
     }
