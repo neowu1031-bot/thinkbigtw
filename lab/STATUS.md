@@ -27,3 +27,53 @@
 
 ---
 Think BIG · 詩篇 127:1
+
+
+## 2026-04-30 v275-v276 大整合戰報
+
+### Plan A migration（兩個 Supabase 統一）
+- 起點：split-brain（gvscndrxmihaffbwgmku Free 寫不到、sirhskxufayklqrlxeep Pro 沒人讀）
+- - 修復：升 Pro Plan + Compute Small ($25+$15/月)、Worker patch URL+anon key、前端 stock_code→symbol
+  - - 驗收：daily-update.yml #7 ✅ Success 52s、770k daily_prices/16k institutional/2125 stocks/1000 monthly_revenue 全通
+   
+    - ### v275 cache bump（commit 8b80557）
+    - - lab/index.html: app2.js?v=2721 → ?v=275
+      - - lab/sw.js: mr-v2721 → mr-v275
+       
+        - ### v275 拖拉 Dashboard hotfix（commit 11ee3ee）
+        - - 起點：v272 GridStack init 卡 'wait-for-login'，HTML 沒 .grid-stack 容器，結構性 bug
+          - - 修復：放棄 v272，注入 inline SortableJS hotfix 到 lab/index.html（line 924）
+            - - 機制：每個 .section 加 ⋮⋮ drag handle、onEnd 存 localStorage `mr_v275_<tab-id>`
+             
+              - ### v275.1 16 tabs 擴展（commit e5d202e）
+              - - 從 7 個 tabs 擴展到 16 個 tabs（補 fund/futures/tools/options/screener/bonds/sector/macro/portfolio/pro）
+                - - 移除不存在的 tab-fx
+                 
+                  - ### v275.2 v273 selector 修復（commit 96810c3）
+                  - - Bug：app2.js:11878 構造 '#v230-fund-*' 不是合法 CSS（每 3 秒 throw 一次）
+                    - - 修復：改用 attribute selector `[id^=v230-fund-]`
+                      - - 驗收：share button 真的能 inject
+                       
+                        - ### v276 cache invalidate（commits 3114996 + cc62dcc）
+                        - - lab/sw.js: mr-v275 → mr-v276（強制 SW 重 fetch 全部 resources）
+                          - - lab/index.html: app2.js?v=275 → ?v=276（強制繞過 CDN cache）
+                           
+                            - ### 線上驗收實測（Chrome MCP）
+                            - ```
+                              ✅ app2.js?v=276 載入新版
+                              ✅ 35 個 ⋮⋮ drag handles 跨 16 個 tabs
+                              ✅ Sortable.js 1.15.2 loaded
+                              ✅ window.v275Reset() 可用
+                              ✅ v273InjectShareButtons() NO_THROW（之前 throw）
+                              ✅ Share buttons inject 成功
+                              ✅ Service Worker mr-v276 active
+                              ✅ Console 完全乾淨（v273 errors 消失）
+                              ✅ Pro Supabase 770k records 順暢讀寫
+                              ```
+
+                              ### 工程紀錄
+                              - GitHub web editor (CodeMirror 6) 大檔 paste 會截斷（5KB→1.6KB），改用 github.dev (Monaco) 才穩
+                              - - github.dev Cmd+Enter 提交（不是 Ctrl+Enter）
+                                - - Service Worker cache 名稱 bump 是強制 returning users 拿新版的關鍵
+                                  - - Supabase 2026 新 publishable_key 只能用 RLS 表，root REST 401，要從 Legacy Tab 取 JWT
+                                    - 
