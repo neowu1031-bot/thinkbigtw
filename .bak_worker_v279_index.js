@@ -808,104 +808,6 @@ async function handleMarketBriefing(request, env) {
 }
 
 // ============== Router ==============
-
-// ============= v279 /options endpoint (Yahoo Finance options chain) =============
-async function handleOptions(request, env) {
-  const url = new URL(request.url);
-  const symbol = url.searchParams.get('symbol');
-  if (!symbol) return jsonResponse({ error: 'missing symbol' }, 400);
-  try {
-    // Yahoo crumb auth (existing /quote already does this — extract crumb fetch)
-    const cookieRes = await fetch('https://fc.yahoo.com', { headers: { 'User-Agent': 'Mozilla/5.0' } });
-    const cookies = cookieRes.headers.get('set-cookie') || '';
-    const cookieStr = cookies.split(',').map(c => c.split(';')[0]).join('; ');
-    const crumbRes = await fetch('https://query2.finance.yahoo.com/v1/test/getcrumb', { headers: { 'User-Agent': 'Mozilla/5.0', 'Cookie': cookieStr } });
-    const crumb = (await crumbRes.text()).trim();
-    // Yahoo options API
-    const apiUrl = `https://query2.finance.yahoo.com/v7/finance/options/${encodeURIComponent(symbol)}?crumb=${encodeURIComponent(crumb)}`;
-    const r = await fetch(apiUrl, { headers: { 'User-Agent': 'Mozilla/5.0', 'Cookie': cookieStr } });
-    if (!r.ok) return jsonResponse({ error: `Yahoo options ${r.status}` }, 502);
-    const j = await r.json();
-    const result = j.optionChain && j.optionChain.result && j.optionChain.result[0];
-    if (!result) return jsonResponse({ error: 'no options data' });
-    const opt = result.options && result.options[0];
-    return jsonResponse({
-      symbol: result.underlyingSymbol,
-      underlyingPrice: result.quote && result.quote.regularMarketPrice,
-      expirationDate: opt && opt.expirationDate,
-      expirationDates: result.expirationDates,
-      strikes: result.strikes,
-      calls: (opt && opt.calls) || [],
-      puts: (opt && opt.puts) || [],
-      _source: 'YAHOO_OPTIONS'
-    });
-  } catch (e) {
-    return jsonResponse({ error: e.message }, 500);
-  }
-}
-
-// ============= v279 /earnings endpoint (Llama 3.3 70B summarize SEC 8-K) =============
-async function handleEarnings(request, env) {
-  const url = new URL(request.url);
-  const symbol = url.searchParams.get('symbol');
-  if (!symbol) return jsonResponse({ error: 'missing symbol' }, 400);
-  try {
-    // Step 1: get CIK from SEC tickers
-    const tickersRes = await fetch('https://www.sec.gov/files/company_tickers.json', { headers: { 'User-Agent': 'MoneyRadar contact@thinkbigtw.com' } });
-    const tickers = await tickersRes.json();
-    let cik = null;
-    for (const k in tickers) {
-      if (tickers[k].ticker === symbol.toUpperCase()) { cik = String(tickers[k].cik_str).padStart(10, '0'); break; }
-    }
-    if (!cik) return jsonResponse({ error: 'CIK not found for ' + symbol });
-
-    // Step 2: get most recent 8-K filing
-    const subRes = await fetch(`https://data.sec.gov/submissions/CIK${cik}.json`, { headers: { 'User-Agent': 'MoneyRadar contact@thinkbigtw.com' } });
-    const sub = await subRes.json();
-    const recent = sub.filings && sub.filings.recent;
-    if (!recent) return jsonResponse({ error: 'no filings' });
-    let idx = -1;
-    for (let i = 0; i < recent.form.length; i++) {
-      if (recent.form[i] === '8-K') { idx = i; break; }
-    }
-    if (idx < 0) return jsonResponse({ error: 'no 8-K filing' });
-    const accessionRaw = recent.accessionNumber[idx].replace(/-/g, '');
-    const filingDate = recent.filingDate[idx];
-    const primaryDoc = recent.primaryDocument[idx];
-    const filingUrl = `https://www.sec.gov/Archives/edgar/data/${parseInt(cik)}/${accessionRaw}/${primaryDoc}`;
-
-    // Step 3: fetch filing content (HTML or text)
-    const docRes = await fetch(filingUrl, { headers: { 'User-Agent': 'MoneyRadar contact@thinkbigtw.com' } });
-    let content = await docRes.text();
-    // Strip HTML tags
-    content = content.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
-    content = content.slice(0, 12000); // limit for AI prompt
-
-    // Step 4: Llama 3.3 70B summary via Cloudflare Workers AI
-    const ai = env.AI;
-    if (!ai) return jsonResponse({ error: 'AI binding not available' }, 500);
-    const aiRes = await ai.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
-      messages: [
-        { role: 'system', content: '你是專業財報分析師。用繁體中文摘要這份 SEC 8-K filing，重點：(1) 公司事件性質（財報/併購/高層異動/重大事項？）(2) 關鍵數據（營收/EPS/guidance？）(3) 對股價短期影響（中性/利多/利空）(4) 投資人需要關注的點。控制在 400 字內，條列式。' },
-        { role: 'user', content: `公司: ${symbol}\nFiling 日期: ${filingDate}\n\n內容:\n${content}` }
-      ],
-      max_tokens: 800
-    });
-    const summary = (aiRes && aiRes.response) || '無摘要';
-    return jsonResponse({
-      symbol,
-      cik,
-      filingDate,
-      filingType: '8-K',
-      sourceUrl: filingUrl,
-      summary,
-      _source: 'LLAMA_3_3_70B'
-    });
-  } catch (e) {
-    return jsonResponse({ error: e.message }, 500);
-  }
-}
-
 export default {
   async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') {
@@ -2048,8 +1950,6 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
       if (url.pathname === '/analysis') return await handleAnalysis(request, env);
       if (url.pathname === '/digest') return await handleDigest(request, env);
       if (url.pathname === '/quote') return await handleQuote(request, env);
-    if (url.pathname === '/options') return handleOptions(request, env);
-    if (url.pathname === '/earnings') return handleEarnings(request, env);
       if (url.pathname === '/market-briefing') return await handleMarketBriefing(request, env);
       return await handleSummary(request, env);
     } catch (err) {
