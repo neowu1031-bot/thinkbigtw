@@ -1324,7 +1324,7 @@ async function handleScreener(request, env) {
 }
 
 // ============= v285 /heatmap (市場熱力圖) =============
-async function handleHeatmap(request, env) {
+async function handleHeatmapTreemap(request, env) {
   const url = new URL(request.url);
   const market = url.searchParams.get('market') || 'sp500';
   try {
@@ -1627,6 +1627,7 @@ export default {
       if (_u.pathname === "/monthly-report") return handleMonthlyReport(request, env);
       if (_u.pathname === "/screener") return handleScreener(request, env);
       if (_u.pathname === "/heatmap") return handleHeatmap(request, env);
+      if (_u.pathname === "/heatmap-tree") return handleHeatmapTreemap(request, env);
       if (_u.pathname === "/earnings-calendar") return handleEarningsCalendar(request, env);
       if (_u.pathname === "/backtest") return handleBacktest(request, env);
       // === END V279_EARLY_INTERCEPT ===

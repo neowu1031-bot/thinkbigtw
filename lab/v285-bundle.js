@@ -298,7 +298,7 @@
       const cv = $('hm-canvas');
       cv.innerHTML = '<p style="color:#fbbf24;text-align:center;padding:40px">🔄 載入熱力圖...</p>';
       try {
-        const r = await fetch(`${W}/heatmap?market=${mkt}`);
+        const r = await fetch(`${W}/heatmap-tree?market=${mkt}`);
         const j = await r.json();
         const items = (j.constituents || []).map(s => ({
           symbol: s.symbol, name: s.name || s.symbol,
