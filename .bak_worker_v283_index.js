@@ -809,23 +809,6 @@ async function handleMarketBriefing(request, env) {
 
 // ============== Router ==============
 
-
-// === V283_CORS preflight handler (handles all POST endpoints) ===
-function v283CORS(request) {
-  if (request.method === 'OPTIONS') {
-    return new Response(null, {
-      status: 204,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'Access-Control-Max-Age': '86400'
-      }
-    });
-  }
-  return null;
-}
-
 // ============= v279 /options endpoint (Yahoo Finance options chain) =============
 async function handleOptions(request, env) {
   const url = new URL(request.url);
@@ -1103,140 +1086,9 @@ async function handleCoach(request, env) {
   } catch (e) { return jsonResponse({ error: e.message }, 500); }
 }
 
-
-// ============= v283 /tpex (TPEx 櫃買中心) =============
-async function handleTpex(request, env) {
-  const url = new URL(request.url);
-  const type = url.searchParams.get('type') || 'otc';
-  try {
-    if (type === 'otc') {
-      // 櫃買加權指數
-      const r = await fetch('https://www.tpex.org.tw/web/stock/aftertrading/otc_quotes_no1430/stk_wn1430_result.php?l=zh-tw&o=json', {
-        headers: { 'User-Agent': 'Mozilla/5.0 MoneyRadar' }
-      });
-      const j = await r.json();
-      return jsonResponse({
-        date: j.reportDate || '',
-        index: { close: j.iTotalRecords || 0 }, // simplified
-        list: (j.aaData || []).slice(0, 50).map(row => ({
-          symbol: row[0], name: row[1], close: parseFloat(row[2]), change: parseFloat(row[3]),
-          change_pct: parseFloat(row[4]), volume: parseFloat(row[8])
-        })),
-        _source: 'TPEX'
-      });
-    } else if (type === 'ranking') {
-      const r = await fetch('https://www.tpex.org.tw/web/stock/aftertrading/index_summary/summary_table_result.php?l=zh-tw&o=json', {
-        headers: { 'User-Agent': 'Mozilla/5.0 MoneyRadar' }
-      });
-      const j = await r.json();
-      return jsonResponse({ raw: j, _source: 'TPEX' });
-    } else {
-      return jsonResponse({ error: 'unknown type' }, 400);
-    }
-  } catch (e) { return jsonResponse({ error: e.message }, 500); }
-}
-
-// ============= v283 /taifex (期交所每日統計) =============
-async function handleTaifex(request, env) {
-  const url = new URL(request.url);
-  const type = url.searchParams.get('type') || 'futures';
-  try {
-    if (type === 'institutional') {
-      // 三大法人期貨持倉淨額
-      const r = await fetch('https://www.taifex.com.tw/cht/3/futContractsDate', {
-        headers: { 'User-Agent': 'Mozilla/5.0 MoneyRadar', 'Accept-Language': 'zh-TW' }
-      });
-      const html = await r.text();
-      // Naive parse
-      return jsonResponse({
-        summary: '三大法人期貨持倉（最新交易日）',
-        headers: ['身份', '商品', '多單', '空單', '淨額'],
-        rows: [
-          ['資料源', 'TAIFEX', '請至', '官網查看', '完整資料']
-        ],
-        date: new Date().toISOString().slice(0, 10),
-        url: 'https://www.taifex.com.tw/cht/3/futContractsDate',
-        _source: 'TAIFEX'
-      });
-    } else if (type === 'futures') {
-      return jsonResponse({
-        summary: '台指期當日成交統計',
-        headers: ['契約', '收盤', '漲跌', '成交量', '未平倉'],
-        rows: [
-          ['TX 台指期', '請查 TAIFEX 官網', '-', '-', '-']
-        ],
-        date: new Date().toISOString().slice(0, 10),
-        url: 'https://www.taifex.com.tw/cht/3/totalTableDate',
-        _source: 'TAIFEX'
-      });
-    } else {
-      return jsonResponse({
-        summary: '選擇權每日統計',
-        headers: ['類型', '收盤', '成交量', '未平倉'],
-        rows: [
-          ['TXO Call', '請查 TAIFEX 官網', '-', '-'],
-          ['TXO Put', '請查 TAIFEX 官網', '-', '-']
-        ],
-        date: new Date().toISOString().slice(0, 10),
-        _source: 'TAIFEX'
-      });
-    }
-  } catch (e) { return jsonResponse({ error: e.message }, 500); }
-}
-
-// ============= v283 /mops (公開資訊觀測站) =============
-async function handleMops(request, env) {
-  const url = new URL(request.url);
-  const symbol = url.searchParams.get('symbol') || '';
-  try {
-    // MOPS 重大訊息查詢 API
-    const formData = new URLSearchParams();
-    formData.append('encodeURIComponent', '1');
-    formData.append('step', '0');
-    formData.append('firstin', '1');
-    formData.append('off', '1');
-    formData.append('co_id', symbol);
-    const r = await fetch('https://mops.twse.com.tw/mops/web/ajax_t05st02', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': 'Mozilla/5.0 MoneyRadar' },
-      body: formData.toString()
-    });
-    const html = await r.text();
-    // Very naive parse — extract title rows
-    const announcements = [];
-    const rowRe = /<tr[^>]*>[\s\S]*?<\/tr>/g;
-    let m;
-    let count = 0;
-    while ((m = rowRe.exec(html)) !== null && count < 30) {
-      const cells = m[0].match(/<td[^>]*>([\s\S]*?)<\/td>/g);
-      if (cells && cells.length >= 4) {
-        const clean = s => s.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
-        const title = clean(cells[3] || '');
-        if (title && title.length > 5) {
-          announcements.push({
-            symbol: clean(cells[0] || ''),
-            name: clean(cells[1] || ''),
-            date: clean(cells[2] || ''),
-            title: title
-          });
-          count++;
-        }
-      }
-    }
-    return jsonResponse({
-      announcements,
-      note: '若無公告請至 https://mops.twse.com.tw 查看完整重大訊息',
-      _source: 'MOPS'
-    });
-  } catch (e) { return jsonResponse({ error: e.message }, 500); }
-}
-
 export default {
   async fetch(request, env, ctx) {
     // === V279_EARLY_INTERCEPT ===
-      // CORS preflight first
-      const _cors = v283CORS(request);
-      if (_cors) return _cors;
     try {
       const _u = new URL(request.url);
       if (_u.pathname === "/options") return handleOptions(request, env);
@@ -1247,9 +1099,6 @@ export default {
     if (_u.pathname === "/translate") return handleTranslate(request, env);
       if (_u.pathname === "/article") return handleArticle(request, env);
       if (_u.pathname === "/coach") return handleCoach(request, env);
-      if (_u.pathname === "/tpex") return handleTpex(request, env);
-      if (_u.pathname === "/taifex") return handleTaifex(request, env);
-      if (_u.pathname === "/mops") return handleMops(request, env);
       // === END V279_EARLY_INTERCEPT ===
 
     if (request.method === 'OPTIONS') {
