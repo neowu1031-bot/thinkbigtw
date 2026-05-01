@@ -1433,8 +1433,7 @@ export default {
       if (_u.pathname === "/earnings") return handleEarnings(request, env);
       if (_u.pathname === "/reddit") return handleReddit(request, env);
       if (_u.pathname === "/news-summary") return handleNewsSummary(request, env);
-    } catch (_e) {}
-    
+
       // SAFE patches early intercept
       if (_u.pathname === "/article" && (request.method === "POST" || request.method === "OPTIONS")) return SAFE_handleArticle(request, env);
       if (_u.pathname === "/translate" && (request.method === "POST" || request.method === "OPTIONS")) return SAFE_handleTranslate(request, env);
@@ -1457,7 +1456,8 @@ export default {
       if (_u.pathname === "/ai-blackswan") return SAFE_handleBlackSwan(request, env);
       if (_u.pathname === "/ai-pattern") return SAFE_handlePattern(request, env);
 
-      // === END V279_EARLY_INTERCEPT ===
+    } catch (_e) {}
+    // === END V279_EARLY_INTERCEPT ===
 
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: CORS_HEADERS });

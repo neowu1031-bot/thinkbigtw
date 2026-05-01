@@ -475,22 +475,23 @@ if not match:
     print('❌ Cannot find export default'); sys.exit(1)
 patched = src[:match.start()] + HANDLERS + '\n' + src[match.start():]
 
-# 注入 routes 在 END V279_EARLY_INTERCEPT 之前（這時 _u 已經 declare 了）
-if '// === END V279_EARLY_INTERCEPT ===' in patched:
+# ✅ 注入 routes 在 try block 結束之前（} catch (_e) {} 之前），這時 _u 仍在 scope
+target_catch = '    } catch (_e) {}'
+if target_catch in patched:
     patched = patched.replace(
-        '// === END V279_EARLY_INTERCEPT ===',
-        ROUTES + '\n      // === END V279_EARLY_INTERCEPT ===',
+        target_catch,
+        ROUTES + '\n' + target_catch,
         1
     )
-elif '// === V279_EARLY_INTERCEPT ===' in patched:
-    # 如果只有開始標記沒有結束標記，注入 routes 在開始標記之後並自帶 _u declare
+elif '// === END V279_EARLY_INTERCEPT ===' in patched:
+    # Fallback 1: 在 END 標記前面注入並自帶 _u declare
     patched = patched.replace(
-        '// === V279_EARLY_INTERCEPT ===',
-        '// === V279_EARLY_INTERCEPT ===\n      const _u = _u || new URL(request.url);\n' + ROUTES,
+        '// === END V279_EARLY_INTERCEPT ===',
+        '      const _u = new URL(request.url);\n' + ROUTES + '\n      // === END V279_EARLY_INTERCEPT ===',
         1
     )
 else:
-    # Fallback：注入在 fetch handler 開始
+    # Fallback 2: 注入在 fetch handler 開始
     patched = re.sub(
         r'(async\s+fetch\s*\(\s*request\s*,\s*env\s*[^)]*\)\s*\{)',
         r'\1\n      const _u = new URL(request.url);\n' + ROUTES + '\n',
