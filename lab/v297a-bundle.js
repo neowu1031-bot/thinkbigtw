@@ -96,20 +96,33 @@
 
   // ============================================================
   // 4. 加「記住我」checkbox
+  // 規則：必須是 submit 登入按鈕（其往上 5 層內必須包含 email/password input）
+  // 排除：tab 切換的「登入」按鈕（旁邊有「免費註冊」tab，且無 input）
   // ============================================================
   function V297a_addRememberMe() {
-    // 找登入按鈕（中央那個，文字是「登入」且偏大）
+    // 先把舊版錯加的 checkbox 全部清除（避免重複/位置錯）
+    document.querySelectorAll('.v297a-remember-wrap').forEach(el => el.remove());
+
     const buttons = Array.from(document.querySelectorAll('button'));
     const loginBtns = buttons.filter(b => {
       const t = (b.textContent || '').trim();
-      return t === '登入' && b.offsetWidth > 100;
+      if (t !== '登入') return false;
+      if (b.offsetWidth < 200) return false; // 排除小的 tab 按鈕
+      // 必須在表單內：往上找 5 層，看是否有 email/password input
+      let parent = b.parentElement;
+      for (let i = 0; i < 5 && parent; i++) {
+        const hasEmail = parent.querySelector('input[type="email"], input[name="email"], input[placeholder*="Email"], input[placeholder*="email"]');
+        const hasPw = parent.querySelector('input[type="password"]');
+        if (hasEmail && hasPw) return true;
+        parent = parent.parentElement;
+      }
+      return false;
     });
+
     loginBtns.forEach(btn => {
-      // 防止重複加
       const parent = btn.parentNode;
       if (!parent) return;
-      const sibling = btn.previousElementSibling;
-      if (sibling && sibling.classList.contains('v297a-remember-wrap')) return;
+      // 確保 checkbox 緊接在 submit 按鈕前
       const remember = document.createElement('label');
       remember.className = 'v297a-remember-wrap';
       remember.innerHTML = `<input type="checkbox" id="v297a-remember-cb" ${localStorage.getItem('mr_remember_me') === '1' ? 'checked' : ''}><span>記住我（30 天）</span>`;
