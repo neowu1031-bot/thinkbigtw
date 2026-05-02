@@ -90,7 +90,7 @@
   function V295_showCookieBanner() {
     if (localStorage.getItem('mr_v295_cookie_accepted')) return;
     const banner = V295_el(`<div id="v295-cookie" style="position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;border-top:2px solid #4ade80;padding:16px;z-index:99998;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center">
-      <span style="color:#fff;font-size:13px">🍪 本網站使用必要 Cookie 以維持服務正常運作。我們不追蹤您的個人資料。</span>
+      <span style="color:#fff;font-size:13px">本網站使用必要 Cookie 以維持服務正常運作。我們不追蹤您的個人資料。</span>
       <button id="v295-cookie-accept" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">同意</button>
       <a href="/privacy.html" target="_blank" style="color:#4ade80;font-size:13px">了解更多</a>
     </div>`);

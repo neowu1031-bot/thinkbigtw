@@ -50,22 +50,14 @@
   }
 
   // ============================================================
-  // 👤 Auth UI — 右上角登入按鈕
+  // 👤 Auth UI — v297a hotfix: 拿掉 v294 自己的右上角按鈕（NEO 主程式已有登入頁）
+  // 此函式改為 no-op，僅保留 currentUser tracking 給 sync 邏輯使用
   // ============================================================
   function V294_renderAuthUI() {
-    let btn = document.getElementById('mr-v294-auth-btn');
-    if (!btn) {
-      btn = V294_el(`<div id="mr-v294-auth-btn" style="position:fixed;top:12px;right:12px;z-index:9999;background:#1a1a2e;padding:6px 12px;border-radius:20px;border:1px solid #4ade80;cursor:pointer;color:#fff;font-size:13px;display:flex;align-items:center;gap:6px"></div>`);
-      btn.onclick = V294_openAuthModal;
-      document.body.appendChild(btn);
-    }
-    if (currentUser) {
-      const email = currentUser.email || currentUser.user_metadata?.email || 'User';
-      const initials = email.charAt(0).toUpperCase();
-      btn.innerHTML = `<div style="width:24px;height:24px;background:#4ade80;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:bold">${initials}</div><span>${email.split('@')[0]}</span><span style="color:#aaa;font-size:11px">▼</span>`;
-    } else {
-      btn.innerHTML = `<span style="color:#4ade80">👤</span><span>登入 / 註冊</span>`;
-    }
+    // 如果之前 v294 加過按鈕，移除掉
+    const oldBtn = document.getElementById('mr-v294-auth-btn');
+    if (oldBtn) oldBtn.remove();
+    // 不再產生 v294 自己的 UI（避免與 NEO 原有登入頁重複）
   }
 
   function V294_openAuthModal() {
