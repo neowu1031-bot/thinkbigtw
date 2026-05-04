@@ -33,7 +33,7 @@ jobs:
             https://moneyradar-ai-proxy.thinkbigtw.workers.dev/chat | grep -q '"reply"'
       - name: Notify on failure
         if: failure()
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             await github.rest.issues.create({
