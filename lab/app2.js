@@ -1,5 +1,5 @@
 
-// MoneyRadar™ v149 — switchTab 改用 dashboard 顯示狀態當門禁，避免 session 還原期 currentUser=null 擋切 tab
+// MoneyRadar™ v150 — 修復 ETF 漲跌幅計算、產業族群 NaN、Remember Me、期貨百分比、加密貨幣並行載入
 const ADMIN_EMAIL='neowu1031@gmail.com';
 let isAdmin=false;
 const SB_URL='https://sirhskxufayklqrlxeep.supabase.co';
@@ -495,6 +495,17 @@ async function loginGoogle(){
 }
 
 async function onAuthSuccess(user){
+  // 記住我：存取 localStorage
+  try{
+    const cb=document.getElementById('rememberMe');
+    if(cb&&cb.checked){
+      localStorage.setItem('mr_remember','1');
+      localStorage.setItem('mr_remember_email',user.email||'');
+    }else{
+      localStorage.removeItem('mr_remember');
+      localStorage.removeItem('mr_remember_email');
+    }
+  }catch(e){}
   const badge=document.getElementById('userBadge');
   const logoutBtn=document.getElementById('logoutBtn');
   // 從 email 取 @ 前面作為暱稱
@@ -1306,13 +1317,14 @@ async function loadSectors(){
   // 計算每個族群平均漲跌幅
   const sectorData=SECTORS.map(s=>{
     const stocks=s.symbols.map(sym=>{
-      const d=priceMap[sym];
-      if(!d)return {sym,close:null,pct:0};
-      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
-      const closePx=parseFloat(d.close_price);
-      const prev=closePx-ch;
-      const realPct=prev>0?(ch/prev*100):0;
-      return {sym,close:closePx,pct:realPct,name:nameMap[sym]||NAMES[sym]||sym};
+      const arr=priceMap[sym];
+      if(!arr||!arr.length)return {sym,close:null,pct:0};
+      const latest=arr[0];
+      const prev=arr[1];
+      const closePx=parseFloat(latest.close_price);
+      const prevClose=prev?parseFloat(prev.close_price):(parseFloat(latest.open_price)||closePx);
+      const pct=prevClose>0?((closePx-prevClose)/prevClose*100):0;
+      return {sym,close:closePx,pct,name:nameMap[sym]||NAMES[sym]||sym};
     });
     const validStocks=stocks.filter(x=>x.close!=null);
     const avgPct=validStocks.length>0?validStocks.reduce((a,b)=>a+b.pct,0)/validStocks.length:0;
@@ -1517,7 +1529,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const savedEmail=localStorage.getItem('mr_remember_email');
     if(savedEmail){
       setTimeout(()=>{
-        const inp=document.getElementById('loginEmail');
+        const inp=document.getElementById('authEmail');
         const cb=document.getElementById('rememberMe');
         if(inp)inp.value=savedEmail;
         if(cb)cb.checked=true;
@@ -1976,15 +1988,16 @@ async function loadFutures(){
   }
   // 台指期：用加權指數作為近似（期交所原始 API 受 CORS 限制）
   try{
-    const r=await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=1',{headers:SB_H});
+    const r=await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=2',{headers:SB_H});
     const data=await r.json();
     if(data&&data.length){
       const d=data[0];
+      const prevData=data[1];
       const price=parseFloat(d.close_price);
-      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
-      const prev=price-ch;
-      const pct=prev>0?(ch/prev*100):0;
-      const up=ch>=0;
+      const prevClose=prevData?parseFloat(prevData.close_price):(parseFloat(d.open_price)||price);
+      const chg=price-prevClose;
+      const pct=prevClose>0?(chg/prevClose*100):0;
+      const up=chg>=0;
       // 期貨價格 ≈ 現貨 (簡化)
       const setIdx=(k,p,c,pc)=>{
         const px=document.getElementById('fut_'+k);
@@ -1992,11 +2005,11 @@ async function loadFutures(){
         if(px)px.textContent=p.toLocaleString(undefined,{maximumFractionDigits:2});
         if(pcEl){pcEl.textContent=(c>=0?'▲ +':'▼ ')+Math.abs(c).toFixed(2)+' ('+(c>=0?'+':'')+pc.toFixed(2)+'%)';pcEl.className='sub '+(c>=0?'up':'down');}
       };
-      setIdx('TX',price,ch,pct);
-      setIdx('MTX',price,ch,pct);
+      setIdx('TX',price,chg,pct);
+      setIdx('MTX',price,chg,pct);
       // 電子/金融用近似（缺實際數據時隱藏）
-      setIdx('TE',price*0.65,ch*0.65,pct);
-      setIdx('TF',price*0.13,ch*0.13,pct);
+      setIdx('TE',price*0.65,chg*0.65,pct);
+      setIdx('TF',price*0.13,chg*0.13,pct);
     }
   }catch(e){}
   // Put/Call Ratio：透過 CORS proxy 抓 TAIFEX
@@ -2136,26 +2149,24 @@ async function loadCrypto(){
   ];
   const grid=document.getElementById('cryptoGrid');
   if(!grid)return;
-  grid.innerHTML='';
-  for(const c of coins){
+  grid.innerHTML='<div style="color:#64748b;padding:8px">載入中...</div>';
+  // 並行抓所有幣種報價+K線
+  const results=await Promise.all(coins.map(async c=>{
     try{
-      const r=await fetch('https://api.binance.com/api/v3/ticker/24hr?symbol='+c.sym);
-      const d=await r.json();
-      const pct=parseFloat(d.priceChangePercent);
-      const price=parseFloat(d.lastPrice);
+      const [r,kr]=await Promise.all([
+        fetch('https://api.binance.com/api/v3/ticker/24hr?symbol='+c.sym).then(r=>r.json()),
+        fetch('https://api.binance.com/api/v3/klines?symbol='+c.sym+'&interval=1d&limit=30').then(r=>r.json()).catch(()=>[])
+      ]);
+      const pct=parseFloat(r.priceChangePercent);
+      const price=parseFloat(r.lastPrice);
       const up=pct>=0;
-      // 抓K線
       let kChart='';
-      try{
-        const kr=await fetch('https://api.binance.com/api/v3/klines?symbol='+c.sym+'&interval=1d&limit=30');
-        const kd=await kr.json();
-        if(Array.isArray(kd)&&kd.length>1){
-          const prices=kd.map(k=>parseFloat(k[4]));
-          kChart=miniSVG(prices,up?'#34d399':'#f87171');
-        }
-      }catch(e){}
+      if(Array.isArray(kr)&&kr.length>1){
+        const prices=kr.map(k=>parseFloat(k[4]));
+        kChart=miniSVG(prices,up?'#34d399':'#f87171');
+      }
       const color=up?'#34d399':'#f87171';
-      grid.innerHTML+=`<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
+      return `<div class="stock-card" style="background:#1e293b;border-radius:12px;padding:14px;border:1px solid ${up?'#1e4a3a':'#4a1e1e'}">
         <div style="display:flex;justify-content:space-between;align-items:flex-start">
           <div style="flex:1">
             <div style="display:flex;justify-content:space-between;align-items:center">
@@ -2170,10 +2181,11 @@ async function loadCrypto(){
           </div>
         </div>
         ${kChart?`<div style="margin-top:8px">${kChart}</div>`:''}
-        <div style="font-size:11px;color:#64748b;margin-top:4px">24h量: ${parseFloat(d.volume).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
+        <div style="font-size:11px;color:#64748b;margin-top:4px">24h量: ${parseFloat(r.volume).toLocaleString(undefined,{maximumFractionDigits:0})}</div>
       </div>`;
-    }catch(e){}
-  }
+    }catch(e){return '';}
+  }));
+  grid.innerHTML=results.filter(Boolean).join('');
 }
 async function loadMarketData(){
   if(!currentUser)return;
@@ -4156,18 +4168,22 @@ async function searchETF(){
   currentETF=code;
   trackEvent('search_etf',{etf_code:code});
   try{
-    const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=1',{headers:SB_H});
+    const r=await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=2',{headers:SB_H});
     const data=await r.json();
     const res=document.getElementById('etfResult');
     res.style.display='block';
     if(data&&data.length>0){
       const d=data[0];
+      const prev=data[1];
       document.getElementById('etfName').textContent=(NAMES[code]||code)+' ('+code+')';
       document.getElementById('etfMeta').textContent='最新交易日：'+d.date;
       document.getElementById('eClose').textContent=d.close_price;
-      const ch=parseFloat(d.open_price)>0?((parseFloat(d.close_price)-parseFloat(d.open_price))/parseFloat(d.open_price)*100):0;
+      // 漲跌幅：用前一日收盤計算（與 searchStock 一致）
+      const prevClose=prev?parseFloat(prev.close_price):parseFloat(d.open_price)||parseFloat(d.close_price);
+      const ch=parseFloat(d.close_price)-prevClose;
+      const pct=prevClose>0?(ch/prevClose*100).toFixed(2):'0.00';
       const cel=document.getElementById('eChange');
-      const pct=d.close_price>0?((ch/(parseFloat(d.close_price)-ch))*100).toFixed(2):ch.toFixed(2);cel.textContent=(ch>=0?'+':'')+pct+'%';
+      cel.textContent=(ch>=0?'+':'')+pct+'%';
       cel.className='val '+(ch>=0?'up':'down');
       document.getElementById('eVol').textContent=parseInt(d.volume).toLocaleString();
       document.getElementById('etfChartContainer').style.display='block';setTimeout(()=>document.getElementById('etfChartContainer').scrollIntoView({behavior:'smooth',block:'start'}),50);
