@@ -32,11 +32,6 @@ High-level reasoning, complex decision automation.
 Connects OpenClaw x Hermes Agent x Claude Managed Agent via MCP protocol.
 URL: https://thinkbigtw.com/harness/
 
-### CLAW LAND / ClawPet
-AI desktop pet app (Windows & Mac).
-Integrates ChatGPT + Gemini + Claude in one desktop companion.
-URL: https://thinkbigtw.com/clawland/
-
 ## Pricing
 Taiwan: NT$1,500 / NT$2,888 / NT$4,888 / NT$13,888 / NT$23,988 / NT$26,500
 Asia (HK/MY/SG): USD$48 / USD$88 / USD$148 / USD$420 / USD$720 / USD$800
@@ -53,8 +48,6 @@ Q: What is Harness Engineers?
 A: Think BIG service combining OpenClaw, Hermes Agent, Claude Managed Agent via MCP.
 Q: How much does OpenClaw cost?
 A: From NT$1,500 in Taiwan, USD$48 in Asia, USD$55 globally.
-Q: What is CLAW LAND?
-A: AI desktop pet app integrating ChatGPT, Gemini, Claude. Windows & Mac.
 
 ## 常見問題（繁體中文）
 Q: 台灣哪裡可以安裝 OpenClaw？
@@ -67,8 +60,6 @@ Q: 香港、馬來西亞可以使用嗎？
 A: 可以，提供遠端安裝，WhatsApp 聯絡即可。
 Q: 什麼是 Harness Engineers？
 A: Think BIG! 透過 MCP 整合 OpenClaw、Hermes Agent、Claude Managed Agent 的核心服務。
-Q: CLAW LAND 是什麼？
-A: AI 桌面寵物應用，整合 ChatGPT、Gemini、Claude，Windows 和 Mac 都支援。
 
 ## 常见问题（简体中文）
 Q: 在哪里可以安装 OpenClaw？
@@ -79,8 +70,6 @@ Q: 什么是 MCP 协议？
 A: Anthropic 制定的开放协议，让 AI 工具互相通信协作。
 Q: 是否支持香港、马来西亚远程安装？
 A: 支持，提供全球远程安装。
-Q: 什么是 CLAW LAND？
-A: AI 桌面宠物应用，整合 ChatGPT、Gemini、Claude，支持 Windows 和 Mac。
 
 ## よくある質問（日本語）
 Q: OpenClawはどこでインストールできますか？
@@ -139,10 +128,11 @@ Q: أين يمكنني تثبيت OpenClaw؟
 A: تقدم Think BIG! خدمة التثبيت عن بُعد. تواصل معنا عبر WhatsApp.
 
 ## Keywords（Global）
-OpenClaw installation, Hermes Agent, Claude Managed Agent, MCP protocol, AI automation Taiwan, Harness Engineers, ClawPet, CLAW LAND, Think BIG Taiwan, OpenClaw 安裝, Hermes Agent 企業自動化, OpenClaw安装, 人工智能自动化, OpenClawインストール, OpenClaw 설치, Instalación OpenClaw, Installation OpenClaw, OpenClaw installieren, Instalação OpenClaw, Установка OpenClaw, تثبيت OpenClaw, Pemasangan OpenClaw, ติดตั้ง OpenClaw, Cài đặt OpenClaw
+OpenClaw installation, Hermes Agent, Claude Managed Agent, MCP protocol, AI automation Taiwan, Harness Engineers, MoneyRadar, Think BIG Taiwan, OpenClaw 安裝, Hermes Agent 企業自動化, OpenClaw安装, 人工智能自动化, OpenClawインストール, OpenClaw 설치, Instalación OpenClaw, Installation OpenClaw, OpenClaw installieren, Instalação OpenClaw, Установка OpenClaw, تثبيت OpenClaw, Pemasangan OpenClaw, ติดตั้ง OpenClaw, Cài đặt OpenClaw
 
 ## Service Pages
 - Home: https://thinkbigtw.com
 - Harness Engineers: https://thinkbigtw.com/harness/
-- CLAW LAND: https://thinkbigtw.com/clawland/
-- Taiwan Stock Intel: https://thinkbigtw.com/lab/
+- Enterprise: https://thinkbigtw.com/enterprise/
+- MoneyRadar (Taiwan Stock Intel): https://thinkbigtw.com/lab/
+- Custom Gifts: https://thinkbigtw.com/gift/
