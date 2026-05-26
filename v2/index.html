@@ -555,7 +555,7 @@ const bgMat = new THREE.ShaderMaterial({
     varying float vAlpha;
     void main(){
       vec3 p=position;
-      float spd = uTime * 0.3 * uSpeed;
+      float spd = uTime * 1.2 * uSpeed;
       p.y+=sin(spd+p.x*0.3)*0.5;
       p.x+=cos(spd*0.7+p.z*0.2)*0.3;
       vec4 mv=modelViewMatrix*vec4(p,1.0);
@@ -633,9 +633,9 @@ document.addEventListener('mousemove',(e)=>{
   mouse.tx=(e.clientX/window.innerWidth-0.5)*2;
   mouse.ty=(e.clientY/window.innerHeight-0.5)*2;
 });
-document.addEventListener('mousedown',()=>{isHolding=true;targetSpeed=3});
+document.addEventListener('mousedown',()=>{isHolding=true;targetSpeed=5});
 document.addEventListener('mouseup',()=>{isHolding=false;targetSpeed=1});
-document.addEventListener('touchstart',()=>{isHolding=true;targetSpeed=3},{passive:true});
+document.addEventListener('touchstart',()=>{isHolding=true;targetSpeed=5},{passive:true});
 document.addEventListener('touchend',()=>{isHolding=false;targetSpeed=1});
 
 window.addEventListener('resize',()=>{
@@ -684,18 +684,18 @@ function animate(){
       const spd = r.speed * speed;
       const time = t * spd;
       
-      // Z: continuous fly toward camera, loop back
-      const zPos = ((r.sz + time * 1.5) % 26) - 18;
+      // Z: continuous fly toward camera FAST, loop back
+      const zPos = ((r.sz + time * 5.0) % 26) - 18;
       
-      // X/Y: gentle drift
-      dummy.position.x = r.sx + Math.sin(time * 0.6 + r.ox) * 2.5;
-      dummy.position.y = r.sy + Math.cos(time * 0.4 + r.oy) * 1.8;
+      // X/Y: faster drift
+      dummy.position.x = r.sx + Math.sin(time * 1.8 + r.ox) * 3.0;
+      dummy.position.y = r.sy + Math.cos(time * 1.2 + r.oy) * 2.2;
       dummy.position.z = zPos;
       
-      // Tumble rotation
-      dummy.rotation.x = t * r.rotSpeed * speed * 0.4;
-      dummy.rotation.y = t * r.rotSpeed * speed * 0.25;
-      dummy.rotation.z = t * r.rotSpeed * speed * 0.15;
+      // Tumble rotation (fast even at idle)
+      dummy.rotation.x = t * r.rotSpeed * speed * 1.2;
+      dummy.rotation.y = t * r.rotSpeed * speed * 0.8;
+      dummy.rotation.z = t * r.rotSpeed * speed * 0.5;
       
       // Scale pulse
       const pulse = 1 + (speed - 1) * 0.4 + Math.sin(time * 2.5) * 0.1;
