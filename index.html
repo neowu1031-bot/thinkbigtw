@@ -539,6 +539,8 @@ function createDustLayer(geo, count, color, sizeRange, spreadX, spreadY) {
       sx: dummy.position.x,
       sy: dummy.position.y,
       sc: dummy.scale.x,
+      twinkleSpeed: THREE.MathUtils.randFloat(2, 8),
+      twinkleOffset: Math.random() * Math.PI * 2,
     });
   }
   mesh.instanceMatrix.needsUpdate = true;
@@ -547,22 +549,40 @@ function createDustLayer(geo, count, color, sizeRange, spreadX, spreadY) {
   dustMeshes.push(mesh);
 }
 
-// Layer 1: Large octahedrons (most visible, few)
+// Layer 1: RED — main brand accent (large)
 createDustLayer(
-  new THREE.OctahedronGeometry(1, 0), // 1 unit radius!
-  30, RED, [0.15, 0.5], 12, 8
+  new THREE.OctahedronGeometry(1, 0),
+  20, RED, [0.15, 0.45], 12, 8
 );
 
-// Layer 2: Medium icosahedrons
+// Layer 2: CYAN / TEAL — cool contrast
 createDustLayer(
   new THREE.IcosahedronGeometry(0.8, 0),
-  50, new THREE.Color(0xff5533), [0.1, 0.35], 14, 9
+  25, new THREE.Color(0x00e5ff), [0.1, 0.35], 14, 9
 );
 
-// Layer 3: Small tetrahedrons (lots, background depth)
+// Layer 3: MAGENTA / PINK — neon pop
 createDustLayer(
-  new THREE.TetrahedronGeometry(0.6, 0),
-  60, new THREE.Color(0xff3311), [0.05, 0.2], 16, 10
+  new THREE.TetrahedronGeometry(0.7, 0),
+  25, new THREE.Color(0xff00aa), [0.08, 0.3], 13, 8
+);
+
+// Layer 4: GOLD / AMBER — warm sparkle
+createDustLayer(
+  new THREE.OctahedronGeometry(0.6, 0),
+  30, new THREE.Color(0xffaa00), [0.06, 0.25], 15, 10
+);
+
+// Layer 5: ELECTRIC BLUE — depth
+createDustLayer(
+  new THREE.IcosahedronGeometry(0.5, 0),
+  30, new THREE.Color(0x4466ff), [0.05, 0.2], 16, 10
+);
+
+// Layer 6: WHITE — bright sparkle dots
+createDustLayer(
+  new THREE.TetrahedronGeometry(0.4, 0),
+  30, new THREE.Color(0xffffff), [0.03, 0.15], 14, 9
 );
 
 // Also keep small background point particles for depth
@@ -581,11 +601,12 @@ bgGeo.setAttribute('aSize', new THREE.BufferAttribute(bgSizes, 1));
 
 const bgMat = new THREE.ShaderMaterial({
   transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
-  uniforms:{uTime:{value:0},uSpeed:{value:1},uColor:{value:new THREE.Color(0xff4422)}},
+  uniforms:{uTime:{value:0},uSpeed:{value:1}},
   vertexShader:`
     attribute float aSize;
     uniform float uTime, uSpeed;
     varying float vAlpha;
+    varying vec3 vColor;
     void main(){
       vec3 p=position;
       float spd = uTime * 1.2 * uSpeed;
@@ -593,16 +614,28 @@ const bgMat = new THREE.ShaderMaterial({
       p.x+=cos(spd*0.7+p.z*0.2)*0.3;
       vec4 mv=modelViewMatrix*vec4(p,1.0);
       gl_PointSize=aSize*(60.0/-mv.z);
-      vAlpha = smoothstep(25.0, 5.0, -mv.z) * 0.4;
+      vAlpha = smoothstep(25.0, 5.0, -mv.z) * 0.5;
+      // Per-particle color based on position hash
+      float h = fract(sin(dot(position.xz, vec2(12.9898,78.233))) * 43758.5453);
+      // Twinkle
+      float twinkle = sin(uTime * (3.0 + h * 5.0) + h * 6.28) * 0.5 + 0.5;
+      vAlpha *= 0.4 + twinkle * 0.6;
+      // Color palette: red, cyan, magenta, gold, blue, white
+      if(h < 0.25) vColor = vec3(0.91, 0.26, 0.16); // red
+      else if(h < 0.4) vColor = vec3(0.0, 0.9, 1.0); // cyan
+      else if(h < 0.55) vColor = vec3(1.0, 0.0, 0.67); // magenta
+      else if(h < 0.7) vColor = vec3(1.0, 0.67, 0.0); // gold
+      else if(h < 0.85) vColor = vec3(0.27, 0.4, 1.0); // blue
+      else vColor = vec3(1.0, 1.0, 1.0); // white
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
-    varying float vAlpha; uniform vec3 uColor;
+    varying float vAlpha; varying vec3 vColor;
     void main(){
       float d=length(gl_PointCoord-0.5);
       if(d>0.5)discard;
       float a=smoothstep(0.5,0.0,d)*vAlpha;
-      gl_FragColor=vec4(uColor,a);
+      gl_FragColor=vec4(vColor,a);
     }`,
 });
 scene.add(new THREE.Points(bgGeo, bgMat));
@@ -730,7 +763,7 @@ function animate(){
   }
 
   // Uniforms
-  // Animate dust particles (multi-layer wireframe flying through scene)
+  // Animate dust particles (multicolor + twinkling)
   const dummy = new THREE.Object3D();
   dustMeshes.forEach(mesh => {
     if (!mesh.userData.randoms) return;
@@ -742,28 +775,33 @@ function animate(){
       const spd = r.speed * speed;
       const time = t * spd;
       
-      // Z: continuous fly toward camera FAST, loop back
+      // Z: fly toward camera FAST
       const zPos = ((r.sz + time * 5.0) % 26) - 18;
       
-      // X/Y: faster drift
+      // X/Y: drift
       dummy.position.x = r.sx + Math.sin(time * 1.8 + r.ox) * 3.0;
       dummy.position.y = r.sy + Math.cos(time * 1.2 + r.oy) * 2.2;
       dummy.position.z = zPos;
       
-      // Tumble rotation (fast even at idle)
+      // Tumble
       dummy.rotation.x = t * r.rotSpeed * speed * 1.2;
       dummy.rotation.y = t * r.rotSpeed * speed * 0.8;
       dummy.rotation.z = t * r.rotSpeed * speed * 0.5;
       
-      // Scale pulse
-      const pulse = 1 + (speed - 1) * 0.4 + Math.sin(time * 2.5) * 0.1;
-      dummy.scale.setScalar(r.sc * pulse);
+      // TWINKLE: scale pulses rapidly between near-zero and full
+      const twinkle = Math.sin(t * r.twinkleSpeed + r.twinkleOffset);
+      const twinkleScale = 0.3 + (twinkle * 0.5 + 0.5) * 0.7; // range 0.3 to 1.0
+      const pulse = 1 + (speed - 1) * 0.4;
+      dummy.scale.setScalar(r.sc * pulse * twinkleScale);
       
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
     }
     mesh.instanceMatrix.needsUpdate = true;
-    mesh.material.opacity = Math.min(0.85 + (speed - 1) * 0.4, 1);
+    
+    // Twinkle opacity too
+    const globalTwinkle = 0.7 + Math.sin(t * 3 + mesh.id) * 0.3;
+    mesh.material.opacity = Math.min(globalTwinkle + (speed - 1) * 0.3, 1);
   });
   
   bgMat.uniforms.uTime.value = t;
