@@ -502,91 +502,89 @@ setTimeout(() => {
   }
 }, 8000);
 
-// ── DUST PARTICLES (ASTRODITHER-style: InstancedMesh wireframe flying through scene) ──
-const DUST_COUNT = 120;
-let dustMeshes = [];
-const dustData = [];
+// ── METEOR STREAKS (shooting stars with tails, straight-line flight, multicolor, twinkling) ──
+const METEOR_COUNT = 180;
+const meteorColors = [
+  new THREE.Color(0xe8422a), // red (brand)
+  new THREE.Color(0xe8422a), // red (more)
+  new THREE.Color(0x00e5ff), // cyan
+  new THREE.Color(0xff00aa), // magenta
+  new THREE.Color(0xffaa00), // gold
+  new THREE.Color(0x4466ff), // blue
+  new THREE.Color(0xffffff), // white
+  new THREE.Color(0xff6644), // orange
+  new THREE.Color(0x44ffaa), // green
+];
 
-function createDustLayer(geo, count, color, sizeRange, spreadX, spreadY) {
-  const mat = new THREE.MeshBasicMaterial({
-    color: color,
-    wireframe: true,
+// Each meteor = a short line (head bright, tail fades)
+const meteorGroup = new THREE.Group();
+const meteors = [];
+
+for (let i = 0; i < METEOR_COUNT; i++) {
+  const tailLen = THREE.MathUtils.randFloat(0.3, 2.0);
+  const headColor = meteorColors[Math.floor(Math.random() * meteorColors.length)];
+  
+  // Direction: mostly forward (Z) with slight X/Y angle
+  const dirX = THREE.MathUtils.randFloat(-0.15, 0.15);
+  const dirY = THREE.MathUtils.randFloat(-0.1, 0.1);
+  const dirZ = THREE.MathUtils.randFloat(-0.8, -1.0); // flying toward camera
+  const dir = new THREE.Vector3(dirX, dirY, dirZ).normalize();
+  
+  // Line geometry: head → tail (tail = head + dir * tailLen)
+  const positions = new Float32Array(6); // 2 vertices × 3
+  const colors = new Float32Array(6);
+  // Head (bright)
+  positions[0] = 0; positions[1] = 0; positions[2] = 0;
+  colors[0] = headColor.r; colors[1] = headColor.g; colors[2] = headColor.b;
+  // Tail (dim)
+  positions[3] = dir.x * tailLen;
+  positions[4] = dir.y * tailLen;
+  positions[5] = dir.z * tailLen;
+  colors[3] = headColor.r * 0.1;
+  colors[4] = headColor.g * 0.1;
+  colors[5] = headColor.b * 0.1;
+  
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  
+  const mat = new THREE.LineBasicMaterial({
+    vertexColors: true,
     transparent: true,
-    opacity: 0.85,
+    opacity: 0.9,
     blending: THREE.AdditiveBlending,
     depthWrite: false,
+    linewidth: 1,
   });
   
-  const mesh = new THREE.InstancedMesh(geo, mat, count);
-  const dummy = new THREE.Object3D();
-  const randoms = [];
+  const line = new THREE.Line(geo, mat);
   
-  for (let i = 0; i < count; i++) {
-    dummy.position.x = THREE.MathUtils.randFloat(-spreadX, spreadX);
-    dummy.position.y = THREE.MathUtils.randFloat(-spreadY, spreadY);
-    dummy.position.z = THREE.MathUtils.randFloat(-18, 8);
-    dummy.scale.setScalar(THREE.MathUtils.randFloat(sizeRange[0], sizeRange[1]));
-    dummy.rotation.set(Math.random()*Math.PI*2, Math.random()*Math.PI*2, Math.random()*Math.PI*2);
-    dummy.updateMatrix();
-    mesh.setMatrixAt(i, dummy.matrix);
-    
-    randoms.push({
-      speed: THREE.MathUtils.randFloat(0.5, 2.0),
-      rotSpeed: THREE.MathUtils.randFloat(1, 4),
-      ox: Math.random() * 100,
-      oy: Math.random() * 100,
-      sz: dummy.position.z,
-      sx: dummy.position.x,
-      sy: dummy.position.y,
-      sc: dummy.scale.x,
-      twinkleSpeed: THREE.MathUtils.randFloat(2, 8),
-      twinkleOffset: Math.random() * Math.PI * 2,
-    });
-  }
-  mesh.instanceMatrix.needsUpdate = true;
-  mesh.userData.randoms = randoms;
-  scene.add(mesh);
-  dustMeshes.push(mesh);
+  // Random starting position
+  line.position.set(
+    THREE.MathUtils.randFloat(-14, 14),
+    THREE.MathUtils.randFloat(-8, 8),
+    THREE.MathUtils.randFloat(-20, 10)
+  );
+  
+  meteorGroup.add(line);
+  
+  meteors.push({
+    line,
+    dir: dir.clone(),
+    speed: THREE.MathUtils.randFloat(3, 12),
+    sx: line.position.x,
+    sy: line.position.y,
+    sz: line.position.z,
+    twinkleSpeed: THREE.MathUtils.randFloat(3, 12),
+    twinkleOffset: Math.random() * Math.PI * 2,
+    baseOpacity: THREE.MathUtils.randFloat(0.5, 1.0),
+    headColor,
+  });
 }
+scene.add(meteorGroup);
 
-// Layer 1: RED — main brand accent (large)
-createDustLayer(
-  new THREE.OctahedronGeometry(1, 0),
-  20, RED, [0.15, 0.45], 12, 8
-);
-
-// Layer 2: CYAN / TEAL — cool contrast
-createDustLayer(
-  new THREE.IcosahedronGeometry(0.8, 0),
-  25, new THREE.Color(0x00e5ff), [0.1, 0.35], 14, 9
-);
-
-// Layer 3: MAGENTA / PINK — neon pop
-createDustLayer(
-  new THREE.TetrahedronGeometry(0.7, 0),
-  25, new THREE.Color(0xff00aa), [0.08, 0.3], 13, 8
-);
-
-// Layer 4: GOLD / AMBER — warm sparkle
-createDustLayer(
-  new THREE.OctahedronGeometry(0.6, 0),
-  30, new THREE.Color(0xffaa00), [0.06, 0.25], 15, 10
-);
-
-// Layer 5: ELECTRIC BLUE — depth
-createDustLayer(
-  new THREE.IcosahedronGeometry(0.5, 0),
-  30, new THREE.Color(0x4466ff), [0.05, 0.2], 16, 10
-);
-
-// Layer 6: WHITE — bright sparkle dots
-createDustLayer(
-  new THREE.TetrahedronGeometry(0.4, 0),
-  30, new THREE.Color(0xffffff), [0.03, 0.15], 14, 9
-);
-
-// Also keep small background point particles for depth
-const bgCount = 2000;
+// Background sparkle points (small, multicolor, twinkling)
+const bgCount = 1500;
 const bgGeo = new THREE.BufferGeometry();
 const bgPos = new Float32Array(bgCount * 3);
 const bgSizes = new Float32Array(bgCount);
@@ -615,18 +613,15 @@ const bgMat = new THREE.ShaderMaterial({
       vec4 mv=modelViewMatrix*vec4(p,1.0);
       gl_PointSize=aSize*(60.0/-mv.z);
       vAlpha = smoothstep(25.0, 5.0, -mv.z) * 0.5;
-      // Per-particle color based on position hash
       float h = fract(sin(dot(position.xz, vec2(12.9898,78.233))) * 43758.5453);
-      // Twinkle
       float twinkle = sin(uTime * (3.0 + h * 5.0) + h * 6.28) * 0.5 + 0.5;
-      vAlpha *= 0.4 + twinkle * 0.6;
-      // Color palette: red, cyan, magenta, gold, blue, white
-      if(h < 0.25) vColor = vec3(0.91, 0.26, 0.16); // red
-      else if(h < 0.4) vColor = vec3(0.0, 0.9, 1.0); // cyan
-      else if(h < 0.55) vColor = vec3(1.0, 0.0, 0.67); // magenta
-      else if(h < 0.7) vColor = vec3(1.0, 0.67, 0.0); // gold
-      else if(h < 0.85) vColor = vec3(0.27, 0.4, 1.0); // blue
-      else vColor = vec3(1.0, 1.0, 1.0); // white
+      vAlpha *= 0.3 + twinkle * 0.7;
+      if(h < 0.25) vColor = vec3(0.91, 0.26, 0.16);
+      else if(h < 0.4) vColor = vec3(0.0, 0.9, 1.0);
+      else if(h < 0.55) vColor = vec3(1.0, 0.0, 0.67);
+      else if(h < 0.7) vColor = vec3(1.0, 0.67, 0.0);
+      else if(h < 0.85) vColor = vec3(0.27, 0.4, 1.0);
+      else vColor = vec3(1.0, 1.0, 1.0);
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
@@ -760,46 +755,25 @@ function animate(){
   }
 
   // Uniforms
-  // Animate dust particles (multicolor + twinkling)
-  const dummy = new THREE.Object3D();
-  dustMeshes.forEach(mesh => {
-    if (!mesh.userData.randoms) return;
-    const randoms = mesh.userData.randoms;
-    const count = randoms.length;
+  // Animate meteors (straight-line flight + twinkling flash)
+  for (let i = 0; i < meteors.length; i++) {
+    const m = meteors[i];
+    const spd = m.speed * speed;
+    const time = t * spd;
     
-    for (let i = 0; i < count; i++) {
-      const r = randoms[i];
-      const spd = r.speed * speed;
-      const time = t * spd;
-      
-      // Z: fly toward camera FAST
-      const zPos = ((r.sz + time * 5.0) % 26) - 18;
-      
-      // X/Y: drift
-      dummy.position.x = r.sx + Math.sin(time * 1.8 + r.ox) * 3.0;
-      dummy.position.y = r.sy + Math.cos(time * 1.2 + r.oy) * 2.2;
-      dummy.position.z = zPos;
-      
-      // Tumble
-      dummy.rotation.x = t * r.rotSpeed * speed * 1.2;
-      dummy.rotation.y = t * r.rotSpeed * speed * 0.8;
-      dummy.rotation.z = t * r.rotSpeed * speed * 0.5;
-      
-      // TWINKLE: scale pulses rapidly between near-zero and full
-      const twinkle = Math.sin(t * r.twinkleSpeed + r.twinkleOffset);
-      const twinkleScale = 0.3 + (twinkle * 0.5 + 0.5) * 0.7; // range 0.3 to 1.0
-      const pulse = 1 + (speed - 1) * 0.4;
-      dummy.scale.setScalar(r.sc * pulse * twinkleScale);
-      
-      dummy.updateMatrix();
-      mesh.setMatrixAt(i, dummy.matrix);
-    }
-    mesh.instanceMatrix.needsUpdate = true;
+    // Straight-line flight along direction vector, loop
+    const travel = time * 1.5;
+    const x = m.sx + m.dir.x * travel;
+    const y = m.sy + m.dir.y * travel;
+    const z = ((m.sz + m.dir.z * travel) % 30 + 30) % 30 - 20;
     
-    // Twinkle opacity too
-    const globalTwinkle = 0.7 + Math.sin(t * 3 + mesh.id) * 0.3;
-    mesh.material.opacity = Math.min(globalTwinkle + (speed - 1) * 0.3, 1);
-  });
+    m.line.position.set(x % 28 - 14, ((y % 16) + 16) % 16 - 8, z);
+    
+    // Twinkling: random bright flashes
+    const twinkle = Math.sin(t * m.twinkleSpeed + m.twinkleOffset);
+    const flash = twinkle > 0.7 ? 1.0 : (twinkle > 0.3 ? 0.4 : 0.15);
+    m.line.material.opacity = m.baseOpacity * flash * (0.7 + speed * 0.3);
+  }
   
   bgMat.uniforms.uTime.value = t;
   bgMat.uniforms.uSpeed.value = speed;
