@@ -82,6 +82,23 @@ html,body{
 }
 #nav .links a:hover{color:var(--white)}
 #nav .links a:hover::after{width:100%}
+/* Tooltip */
+#nav .links a .tip{
+  position:absolute;top:calc(100% + 10px);left:50%;
+  transform:translateX(-50%) translateY(4px);
+  font-family:var(--tc);font-size:0.62rem;
+  font-weight:400;letter-spacing:0.02em;
+  text-transform:none;white-space:nowrap;
+  color:var(--white);background:rgba(20,20,20,0.92);
+  border:1px solid rgba(232,66,42,0.25);
+  padding:6px 12px;border-radius:4px;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s ease, transform 0.3s ease;
+  backdrop-filter:blur(8px);
+}
+#nav .links a:hover .tip{
+  opacity:1;transform:translateX(-50%) translateY(0);
+}
 
 /* ── HERO ── */
 #hero{
@@ -219,11 +236,27 @@ html,body{
 
 /* ── RESPONSIVE ── */
 @media(max-width:768px){
-  #nav{padding:16px 20px;flex-direction:column;gap:10px}
-  #nav .links{gap:14px;flex-wrap:wrap;justify-content:center}
-  #hero h1{font-size:clamp(2.2rem,14vw,4.5rem)}
+  #nav{
+    padding:14px 16px;flex-direction:column;gap:6px;
+    align-items:center;
+  }
+  #nav .slogan{font-size:0.6rem;margin-bottom:2px}
+  #nav .links{
+    gap:0;flex-wrap:wrap;justify-content:center;
+    width:100%;
+  }
+  #nav .links a{
+    font-size:0.5rem;letter-spacing:0.1em;
+    padding:5px 10px;
+  }
+  #nav .links a .tip{display:none}
+  #hero{bottom:8%}
+  #hero h1{font-size:clamp(2.5rem,16vw,5rem)}
+  #hero .tagline{font-size:0.5rem;letter-spacing:0.25em}
   #ai-chat{width:calc(100vw - 24px);right:12px;bottom:88px;height:55vh}
   #ai-agent-btn{width:44px;height:44px;bottom:20px;right:20px}
+  #hold-indicator,#speed-display{display:none}
+  .corner{display:none}
 }
 </style>
 </head>
@@ -247,10 +280,10 @@ html,body{
 <nav id="nav">
   <div class="slogan">Think <span>BIG!</span> Make it Real.</div>
   <div class="links">
-    <a href="/lab/" target="_blank">MoneyRadar</a>
-    <a href="/enterprise/" target="_blank">Enterprise</a>
-    <a href="/harness/" target="_blank">Harness Engineers</a>
-    <a href="/erp/" target="_blank">AI Agent ERP</a>
+    <a href="/lab/" target="_blank">MoneyRadar<span class="tip">全球頂尖 AI 看盤神器</span></a>
+    <a href="/enterprise/" target="_blank">Enterprise<span class="tip">企業化 AI Agent 系統導入</span></a>
+    <a href="/harness/" target="_blank">Harness Engineers<span class="tip">個人 AI Agent 搭建</span></a>
+    <a href="/erp/" target="_blank">AI ERP<span class="tip">AI Agent ＋ ERP 訂制</span></a>
   </div>
 </nav>
 
