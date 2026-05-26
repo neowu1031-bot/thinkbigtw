@@ -408,7 +408,7 @@ const loader = document.getElementById('loader');
 let modelLoaded = false;
 
 gltfLoader.load(
-  './v2/robot.glb',
+  './robot.glb',
   (gltf) => {
     robotGroup = gltf.scene;
     
@@ -424,7 +424,7 @@ gltfLoader.load(
     
     // Center horizontally, stand on ground
     robotGroup.position.x = -center.x * scale;
-    robotGroup.position.y = (-box.min.y * scale) - 0.3;
+    robotGroup.position.y = (-box.min.y * scale) - 1.1;
     robotGroup.position.z = -center.z * scale;
     
     // Enhance materials for better look in dark scene
@@ -487,7 +487,7 @@ function createPlaceholder() {
   antBall.position.set(0, 2.52, 0);
   
   robotGroup.add(head, eyeL, eyeR, body, chestGlow, armL, armR, legL, legR, ant, antBall);
-  robotGroup.position.y = -0.3;
+  robotGroup.position.y = -1.1;
   scene.add(robotGroup);
   robotReady = true;
 }
