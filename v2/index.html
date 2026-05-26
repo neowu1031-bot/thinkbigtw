@@ -469,37 +469,97 @@ setTimeout(() => {
   }
 }, 8000);
 
-// ── PARTICLES ──
-const pGeo = new THREE.BufferGeometry();
-const pos = new Float32Array(PARTICLE_COUNT * 3);
-const pSizes = new Float32Array(PARTICLE_COUNT);
-const pAlphas = new Float32Array(PARTICLE_COUNT);
+// ── DUST PARTICLES (ASTRODITHER-style: InstancedMesh wireframe flying through scene) ──
+const DUST_COUNT = 150;
+let dustMesh = null;
+const dustUniforms = { uTime: { value: 0 }, uSpeed: { value: 1 }, uOpening: { value: 0 } };
 
-for (let i = 0; i < PARTICLE_COUNT; i++) {
-  pos[i*3] = (Math.random()-0.5)*18;
-  pos[i*3+1] = (Math.random()-0.5)*12;
-  pos[i*3+2] = (Math.random()-0.5)*18;
-  pSizes[i] = Math.random()*6+1.5;
-  pAlphas[i] = Math.random()*0.8+0.2;
+// Load dust.glb (tiny wireframe geometry) or create fallback
+gltfLoader.load('./dust.glb', (gltf) => {
+  const dustGeo = gltf.scene.getObjectByName('merged')?.geometry || gltf.scene.children[0]?.geometry;
+  if (dustGeo) setupDust(dustGeo);
+  else setupDustFallback();
+}, undefined, () => setupDustFallback());
+
+function setupDustFallback() {
+  // Fallback: small icosahedron as dust particle
+  const geo = new THREE.IcosahedronGeometry(0.04, 0);
+  setupDust(geo);
 }
-pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-pGeo.setAttribute('aSize', new THREE.BufferAttribute(pSizes, 1));
-pGeo.setAttribute('aAlpha', new THREE.BufferAttribute(pAlphas, 1));
 
-const pMat = new THREE.ShaderMaterial({
+function setupDust(geo) {
+  const mat = new THREE.MeshBasicMaterial({
+    color: RED,
+    wireframe: true,
+    transparent: true,
+    opacity: 0.9,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+  
+  dustMesh = new THREE.InstancedMesh(geo, mat, DUST_COUNT);
+  const dummy = new THREE.Object3D();
+  const randoms = [];
+  
+  for (let i = 0; i < DUST_COUNT; i++) {
+    // Random position spread across screen-sized volume
+    dummy.position.x = THREE.MathUtils.randFloat(-10, 10);
+    dummy.position.y = THREE.MathUtils.randFloat(-7, 7);
+    dummy.position.z = THREE.MathUtils.randFloat(-15, 5);
+    dummy.scale.setScalar(THREE.MathUtils.randFloat(0.4, 1.2));
+    dummy.rotation.set(Math.random()*Math.PI, Math.random()*Math.PI, Math.random()*Math.PI);
+    dummy.updateMatrix();
+    dustMesh.setMatrixAt(i, dummy.matrix);
+    
+    // Store random seeds per particle
+    randoms.push({
+      speed: THREE.MathUtils.randFloat(0.3, 1.5),
+      rotSpeed: THREE.MathUtils.randFloat(0.5, 3),
+      offsetX: Math.random() * 100,
+      offsetY: Math.random() * 100,
+      startZ: dummy.position.z,
+      startX: dummy.position.x,
+      startY: dummy.position.y,
+      scale: dummy.scale.x,
+    });
+  }
+  dustMesh.instanceMatrix.needsUpdate = true;
+  dustMesh.userData.randoms = randoms;
+  scene.add(dustMesh);
+  
+  // Entry animation
+  setTimeout(() => { dustUniforms.uOpening.value = 1; }, 500);
+}
+
+// Also keep small background point particles for depth
+const bgCount = 2000;
+const bgGeo = new THREE.BufferGeometry();
+const bgPos = new Float32Array(bgCount * 3);
+const bgSizes = new Float32Array(bgCount);
+for (let i = 0; i < bgCount; i++) {
+  bgPos[i*3] = (Math.random()-0.5)*30;
+  bgPos[i*3+1] = (Math.random()-0.5)*20;
+  bgPos[i*3+2] = (Math.random()-0.5)*30;
+  bgSizes[i] = Math.random()*2+0.5;
+}
+bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPos, 3));
+bgGeo.setAttribute('aSize', new THREE.BufferAttribute(bgSizes, 1));
+
+const bgMat = new THREE.ShaderMaterial({
   transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
-  uniforms:{uTime:{value:0},uSpeed:{value:1},uColor:{value:RED}},
+  uniforms:{uTime:{value:0},uSpeed:{value:1},uColor:{value:new THREE.Color(0xff4422)}},
   vertexShader:`
-    attribute float aSize; attribute float aAlpha;
-    varying float vAlpha; uniform float uTime; uniform float uSpeed;
+    attribute float aSize;
+    uniform float uTime, uSpeed;
+    varying float vAlpha;
     void main(){
-      vAlpha=aAlpha;
       vec3 p=position;
-      p.y+=sin(uTime*1.2*uSpeed+p.x*0.8)*0.8;
-      p.x+=cos(uTime*0.8*uSpeed+p.z*0.5)*0.6;
-      p.z+=sin(uTime*0.6*uSpeed+p.y*0.4)*0.4;
+      float spd = uTime * 0.3 * uSpeed;
+      p.y+=sin(spd+p.x*0.3)*0.5;
+      p.x+=cos(spd*0.7+p.z*0.2)*0.3;
       vec4 mv=modelViewMatrix*vec4(p,1.0);
-      gl_PointSize=aSize*(150.0/-mv.z);
+      gl_PointSize=aSize*(60.0/-mv.z);
+      vAlpha = smoothstep(25.0, 5.0, -mv.z) * 0.4;
       gl_Position=projectionMatrix*mv;
     }`,
   fragmentShader:`
@@ -508,63 +568,10 @@ const pMat = new THREE.ShaderMaterial({
       float d=length(gl_PointCoord-0.5);
       if(d>0.5)discard;
       float a=smoothstep(0.5,0.0,d)*vAlpha;
-      gl_FragColor=vec4(uColor,a*0.9);
+      gl_FragColor=vec4(uColor,a);
     }`,
 });
-scene.add(new THREE.Points(pGeo, pMat));
-
-// ── STREAKING PARTICLES (large, fast, clearly visible) ──
-const streakCount = 200;
-const streakGeo = new THREE.BufferGeometry();
-const streakPos = new Float32Array(streakCount * 3);
-const streakSizes = new Float32Array(streakCount);
-const streakAlphas = new Float32Array(streakCount);
-const streakSpeeds = new Float32Array(streakCount);
-
-for (let i = 0; i < streakCount; i++) {
-  streakPos[i*3] = (Math.random()-0.5)*30;
-  streakPos[i*3+1] = (Math.random()-0.5)*20;
-  streakPos[i*3+2] = (Math.random()-0.5)*30;
-  streakSizes[i] = Math.random()*12+4;
-  streakAlphas[i] = Math.random()*0.6+0.3;
-  streakSpeeds[i] = Math.random()*2+1;
-}
-streakGeo.setAttribute('position', new THREE.BufferAttribute(streakPos, 3));
-streakGeo.setAttribute('aSize', new THREE.BufferAttribute(streakSizes, 1));
-streakGeo.setAttribute('aAlpha', new THREE.BufferAttribute(streakAlphas, 1));
-streakGeo.setAttribute('aSpeed', new THREE.BufferAttribute(streakSpeeds, 1));
-
-const streakMat = new THREE.ShaderMaterial({
-  transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
-  uniforms:{uTime:{value:0},uSpeed:{value:1},uColor:{value:new THREE.Color(0xff6b4a)}},
-  vertexShader:`
-    attribute float aSize; attribute float aAlpha; attribute float aSpeed;
-    varying float vAlpha; uniform float uTime; uniform float uSpeed;
-    void main(){
-      vAlpha=aAlpha;
-      vec3 p=position;
-      // Continuous upward drift + horizontal sweep
-      float t = uTime * aSpeed * uSpeed;
-      p.y = mod(p.y + t * 0.8, 20.0) - 10.0;
-      p.x += sin(t * 0.7 + p.z) * 1.5;
-      p.z += cos(t * 0.5 + p.x) * 1.0;
-      vec4 mv=modelViewMatrix*vec4(p,1.0);
-      gl_PointSize=aSize*(120.0/-mv.z);
-      gl_Position=projectionMatrix*mv;
-    }`,
-  fragmentShader:`
-    varying float vAlpha; uniform vec3 uColor;
-    void main(){
-      float d=length(gl_PointCoord-0.5);
-      if(d>0.5)discard;
-      // Soft glow with bright center
-      float a=smoothstep(0.5,0.05,d)*vAlpha;
-      float core=smoothstep(0.15,0.0,d)*0.5;
-      gl_FragColor=vec4(uColor,(a+core)*0.8);
-    }`,
-});
-const streaks = new THREE.Points(streakGeo, streakMat);
-scene.add(streaks);
+scene.add(new THREE.Points(bgGeo, bgMat));
 
 // ── GROUND GRID ──
 const grid = new THREE.GridHelper(24, 48, RED_DIM, new THREE.Color(0x111111));
@@ -664,10 +671,44 @@ function animate(){
   }
 
   // Uniforms
-  pMat.uniforms.uTime.value=t;
-  pMat.uniforms.uSpeed.value=speed;
-  streakMat.uniforms.uTime.value=t;
-  streakMat.uniforms.uSpeed.value=speed;
+  // Animate dust particles (ASTRODITHER-style: fly through Z, rotate, pulse)
+  if (dustMesh && dustMesh.userData.randoms) {
+    const dummy = new THREE.Object3D();
+    const randoms = dustMesh.userData.randoms;
+    const zRange = 24; // total Z travel distance
+    
+    for (let i = 0; i < DUST_COUNT; i++) {
+      const r = randoms[i];
+      const spd = r.speed * speed;
+      const time = t * spd;
+      
+      // Z-axis: continuous forward motion (flying toward camera)
+      const zPos = ((r.startZ + time * 2) % zRange) - zRange/2;
+      
+      // X/Y: gentle sine wave drift
+      dummy.position.x = r.startX + Math.sin(time * 0.5 + r.offsetX) * 2;
+      dummy.position.y = r.startY + Math.cos(time * 0.4 + r.offsetY) * 1.5;
+      dummy.position.z = zPos;
+      
+      // Rotation: tumbling
+      dummy.rotation.x = t * r.rotSpeed * speed * 0.5;
+      dummy.rotation.y = t * r.rotSpeed * speed * 0.3;
+      
+      // Scale: pulse with speed
+      const pulse = 1 + (speed - 1) * 0.5 + Math.sin(time * 2) * 0.15;
+      dummy.scale.setScalar(r.scale * pulse);
+      
+      dummy.updateMatrix();
+      dustMesh.setMatrixAt(i, dummy.matrix);
+    }
+    dustMesh.instanceMatrix.needsUpdate = true;
+    
+    // Brighten wireframe with speed
+    dustMesh.material.opacity = Math.min(0.9 + (speed - 1) * 0.3, 1);
+  }
+  
+  bgMat.uniforms.uTime.value = t;
+  bgMat.uniforms.uSpeed.value = speed;
   redPoint.intensity=6+Math.sin(t*1.8*speed)*3;
   ditherPass.uniforms.uTime.value=t;
   ditherPass.uniforms.uAberr.value=0.0015+(speed-1)*0.003;
