@@ -502,86 +502,73 @@ setTimeout(() => {
   }
 }, 8000);
 
-// ── METEOR STREAKS (shooting stars with tails, straight-line flight, multicolor, twinkling) ──
-const METEOR_COUNT = 180;
+// ── METEOR STREAKS (5000 shooting stars — single draw call for performance) ──
+const METEOR_COUNT = 5000;
 const meteorColors = [
-  new THREE.Color(0xe8422a), // red (brand)
-  new THREE.Color(0xe8422a), // red (more)
-  new THREE.Color(0x00e5ff), // cyan
-  new THREE.Color(0xff00aa), // magenta
-  new THREE.Color(0xffaa00), // gold
-  new THREE.Color(0x4466ff), // blue
-  new THREE.Color(0xffffff), // white
-  new THREE.Color(0xff6644), // orange
-  new THREE.Color(0x44ffaa), // green
+  [0.91, 0.26, 0.16], // red
+  [0.91, 0.26, 0.16], // red (more)
+  [0.91, 0.26, 0.16], // red (even more — brand dominant)
+  [0.0, 0.9, 1.0],    // cyan
+  [1.0, 0.0, 0.67],   // magenta
+  [1.0, 0.67, 0.0],   // gold
+  [0.27, 0.4, 1.0],   // blue
+  [1.0, 1.0, 1.0],    // white
+  [1.0, 0.4, 0.27],   // orange
+  [0.27, 1.0, 0.67],  // green
 ];
 
-// Each meteor = a short line (head bright, tail fades)
-const meteorGroup = new THREE.Group();
-const meteors = [];
+const meteorData = [];
+const mPositions = new Float32Array(METEOR_COUNT * 6); // 2 verts × 3 coords
+const mColors = new Float32Array(METEOR_COUNT * 6);
 
 for (let i = 0; i < METEOR_COUNT; i++) {
-  const tailLen = THREE.MathUtils.randFloat(0.3, 2.0);
-  const headColor = meteorColors[Math.floor(Math.random() * meteorColors.length)];
+  const col = meteorColors[Math.floor(Math.random() * meteorColors.length)];
+  const tailLen = THREE.MathUtils.randFloat(0.2, 1.8);
   
-  // Direction: mostly forward (Z) with slight X/Y angle
-  const dirX = THREE.MathUtils.randFloat(-0.15, 0.15);
-  const dirY = THREE.MathUtils.randFloat(-0.1, 0.1);
-  const dirZ = THREE.MathUtils.randFloat(-0.8, -1.0); // flying toward camera
-  const dir = new THREE.Vector3(dirX, dirY, dirZ).normalize();
+  // Direction: mostly Z-forward with slight spread
+  const dirX = THREE.MathUtils.randFloat(-0.2, 0.2);
+  const dirY = THREE.MathUtils.randFloat(-0.15, 0.15);
+  const dirZ = -1;
+  const len = Math.sqrt(dirX*dirX + dirY*dirY + dirZ*dirZ);
+  const dx = dirX/len, dy = dirY/len, dz = dirZ/len;
   
-  // Line geometry: head → tail (tail = head + dir * tailLen)
-  const positions = new Float32Array(6); // 2 vertices × 3
-  const colors = new Float32Array(6);
-  // Head (bright)
-  positions[0] = 0; positions[1] = 0; positions[2] = 0;
-  colors[0] = headColor.r; colors[1] = headColor.g; colors[2] = headColor.b;
-  // Tail (dim)
-  positions[3] = dir.x * tailLen;
-  positions[4] = dir.y * tailLen;
-  positions[5] = dir.z * tailLen;
-  colors[3] = headColor.r * 0.1;
-  colors[4] = headColor.g * 0.1;
-  colors[5] = headColor.b * 0.1;
+  const sx = THREE.MathUtils.randFloat(-16, 16);
+  const sy = THREE.MathUtils.randFloat(-10, 10);
+  const sz = THREE.MathUtils.randFloat(-25, 10);
   
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  // Head vertex
+  const idx = i * 6;
+  mPositions[idx] = sx; mPositions[idx+1] = sy; mPositions[idx+2] = sz;
+  mColors[idx] = col[0]; mColors[idx+1] = col[1]; mColors[idx+2] = col[2];
+  // Tail vertex
+  mPositions[idx+3] = sx + dx*tailLen;
+  mPositions[idx+4] = sy + dy*tailLen;
+  mPositions[idx+5] = sz + dz*tailLen;
+  mColors[idx+3] = col[0]*0.05; mColors[idx+4] = col[1]*0.05; mColors[idx+5] = col[2]*0.05;
   
-  const mat = new THREE.LineBasicMaterial({
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.9,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-    linewidth: 1,
-  });
-  
-  const line = new THREE.Line(geo, mat);
-  
-  // Random starting position
-  line.position.set(
-    THREE.MathUtils.randFloat(-14, 14),
-    THREE.MathUtils.randFloat(-8, 8),
-    THREE.MathUtils.randFloat(-20, 10)
-  );
-  
-  meteorGroup.add(line);
-  
-  meteors.push({
-    line,
-    dir: dir.clone(),
-    speed: THREE.MathUtils.randFloat(3, 12),
-    sx: line.position.x,
-    sy: line.position.y,
-    sz: line.position.z,
-    twinkleSpeed: THREE.MathUtils.randFloat(3, 12),
-    twinkleOffset: Math.random() * Math.PI * 2,
-    baseOpacity: THREE.MathUtils.randFloat(0.5, 1.0),
-    headColor,
+  meteorData.push({
+    sx, sy, sz, dx, dy, dz, tailLen,
+    speed: THREE.MathUtils.randFloat(2, 14),
+    twinkleSpd: THREE.MathUtils.randFloat(2, 15),
+    twinkleOff: Math.random() * Math.PI * 2,
+    baseAlpha: THREE.MathUtils.randFloat(0.3, 1.0),
+    col,
   });
 }
-scene.add(meteorGroup);
+
+const meteorGeo = new THREE.BufferGeometry();
+meteorGeo.setAttribute('position', new THREE.BufferAttribute(mPositions, 3));
+meteorGeo.setAttribute('color', new THREE.BufferAttribute(mColors, 3));
+
+const meteorMat = new THREE.LineBasicMaterial({
+  vertexColors: true,
+  transparent: true,
+  opacity: 0.9,
+  blending: THREE.AdditiveBlending,
+  depthWrite: false,
+});
+const meteorMesh = new THREE.LineSegments(meteorGeo, meteorMat);
+scene.add(meteorMesh);
 
 // Background sparkle points (small, multicolor, twinkling)
 const bgCount = 1500;
@@ -755,25 +742,36 @@ function animate(){
   }
 
   // Uniforms
-  // Animate meteors (straight-line flight + twinkling flash)
-  for (let i = 0; i < meteors.length; i++) {
-    const m = meteors[i];
+  // Animate 5000 meteors (update buffer positions directly — single draw call)
+  const mPos = meteorGeo.attributes.position.array;
+  const mCol = meteorGeo.attributes.color.array;
+  for (let i = 0; i < METEOR_COUNT; i++) {
+    const m = meteorData[i];
     const spd = m.speed * speed;
-    const time = t * spd;
+    const travel = t * spd * 1.5;
     
-    // Straight-line flight along direction vector, loop
-    const travel = time * 1.5;
-    const x = m.sx + m.dir.x * travel;
-    const y = m.sy + m.dir.y * travel;
-    const z = ((m.sz + m.dir.z * travel) % 30 + 30) % 30 - 20;
+    // Straight-line flight, loop in bounds
+    let hx = ((m.sx + m.dx * travel) % 32 + 32) % 32 - 16;
+    let hy = ((m.sy + m.dy * travel) % 20 + 20) % 20 - 10;
+    let hz = ((m.sz + m.dz * travel) % 35 + 35) % 35 - 25;
     
-    m.line.position.set(x % 28 - 14, ((y % 16) + 16) % 16 - 8, z);
+    const idx = i * 6;
+    // Head
+    mPos[idx] = hx; mPos[idx+1] = hy; mPos[idx+2] = hz;
+    // Tail
+    mPos[idx+3] = hx + m.dx*m.tailLen;
+    mPos[idx+4] = hy + m.dy*m.tailLen;
+    mPos[idx+5] = hz + m.dz*m.tailLen;
     
-    // Twinkling: random bright flashes
-    const twinkle = Math.sin(t * m.twinkleSpeed + m.twinkleOffset);
-    const flash = twinkle > 0.7 ? 1.0 : (twinkle > 0.3 ? 0.4 : 0.15);
-    m.line.material.opacity = m.baseOpacity * flash * (0.7 + speed * 0.3);
+    // Twinkle: flash the head color brightness
+    const tw = Math.sin(t * m.twinkleSpd + m.twinkleOff);
+    const flash = tw > 0.6 ? 1.0 : (tw > 0.1 ? 0.35 : 0.08);
+    const bright = m.baseAlpha * flash;
+    mCol[idx] = m.col[0]*bright; mCol[idx+1] = m.col[1]*bright; mCol[idx+2] = m.col[2]*bright;
+    mCol[idx+3] = m.col[0]*bright*0.05; mCol[idx+4] = m.col[1]*bright*0.05; mCol[idx+5] = m.col[2]*bright*0.05;
   }
+  meteorGeo.attributes.position.needsUpdate = true;
+  meteorGeo.attributes.color.needsUpdate = true;
   
   bgMat.uniforms.uTime.value = t;
   bgMat.uniforms.uSpeed.value = speed;
