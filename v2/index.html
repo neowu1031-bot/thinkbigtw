@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Think BIG! — Make it Real.</title>
+<meta name="description" content="Think BIG! AI 自動化顧問 — MoneyRadar™、企業方案、Harness Engineers、AI Agent ERP">
+<meta name="theme-color" content="#080808">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#e8422a;
+  --red-glow:rgba(232,66,42,0.6);
+  --bg:#080808;
+  --white:#f0f0f0;
+  --mono:'Azeret Mono',monospace;
+  --tc:'Noto Sans TC',sans-serif;
+}
+html,body{
+  width:100%;height:100vh;overflow:hidden;
+  background:var(--bg);color:var(--white);
+  font-family:var(--mono);
+  cursor:crosshair;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── LOADING ── */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  transition:opacity 1s ease, visibility 1s ease;
+}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#loader .logo-text{
+  font-family:var(--mono);font-size:clamp(2rem,5vw,3.5rem);
+  font-weight:800;letter-spacing:0.15em;text-transform:uppercase;
+}
+#loader .logo-text span{color:var(--red)}
+#loader .sub{
+  font-size:0.7rem;letter-spacing:0.35em;
+  margin-top:12px;opacity:0.4;text-transform:uppercase;
+}
+#loader .bar-wrap{
+  width:180px;height:1px;background:rgba(255,255,255,0.08);
+  margin-top:28px;overflow:hidden;
+}
+#loader .bar-fill{width:0%;height:100%;background:var(--red);transition:width 0.3s ease}
+
+/* ── CANVAS ── */
+#canvas3d{position:fixed;inset:0;z-index:1}
+
+/* ── NAV ── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 44px;
+  pointer-events:none;
+}
+#nav>*{pointer-events:auto}
+#nav .slogan{
+  font-size:clamp(0.55rem,1vw,0.72rem);
+  font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
+}
+#nav .slogan span{color:var(--red)}
+#nav .links{display:flex;gap:28px}
+#nav .links a{
+  font-size:0.58rem;font-weight:500;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(240,240,240,0.6);text-decoration:none;
+  position:relative;transition:color 0.3s ease;
+  padding:4px 0;
+}
+#nav .links a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;background:var(--red);
+  transition:width 0.4s cubic-bezier(0.25,1,0.5,1);
+}
+#nav .links a:hover{color:var(--white)}
+#nav .links a:hover::after{width:100%}
+
+/* ── HERO ── */
+#hero{
+  position:fixed;z-index:10;
+  bottom:12%;left:50%;transform:translateX(-50%);
+  text-align:center;pointer-events:none;
+  opacity:0;animation:fadeInUp 1.2s ease 0.5s forwards;
+}
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateX(-50%) translateY(30px)}
+  to{opacity:1;transform:translateX(-50%) translateY(0)}
+}
+#hero h1{
+  font-family:var(--mono);
+  font-size:clamp(3rem,9vw,8rem);
+  font-weight:900;letter-spacing:0.06em;
+  text-transform:uppercase;line-height:0.9;
+  text-shadow:0 0 80px rgba(232,66,42,0.15);
+}
+#hero h1 .big{color:var(--red)}
+#hero .tagline{
+  font-size:clamp(0.55rem,1vw,0.72rem);
+  letter-spacing:0.4em;text-transform:uppercase;
+  margin-top:20px;opacity:0.35;font-weight:300;
+}
+
+/* ── HOLD/SPEED ── */
+#hold-indicator{
+  position:fixed;bottom:32px;left:50%;
+  transform:translateX(-50%);z-index:10;
+  font-size:0.5rem;letter-spacing:0.3em;
+  text-transform:uppercase;opacity:0.2;
+  transition:all 0.4s ease;pointer-events:none;
+}
+#hold-indicator.active{opacity:0.8;color:var(--red);letter-spacing:0.5em}
+#speed-display{
+  position:fixed;bottom:32px;right:44px;z-index:10;
+  font-size:0.5rem;letter-spacing:0.15em;
+  font-variant-numeric:tabular-nums;opacity:0.2;
+}
+
+/* ── CORNER MARKS ── */
+.corner{position:fixed;z-index:10;width:20px;height:20px;opacity:0.1}
+.corner-tl{top:16px;left:16px;border-top:1px solid var(--white);border-left:1px solid var(--white)}
+.corner-tr{top:16px;right:16px;border-top:1px solid var(--white);border-right:1px solid var(--white)}
+.corner-bl{bottom:16px;left:16px;border-bottom:1px solid var(--white);border-left:1px solid var(--white)}
+.corner-br{bottom:16px;right:16px;border-bottom:1px solid var(--white);border-right:1px solid var(--white)}
+
+/* ── DITHER + SCANLINES ── */
+#dither-overlay{
+  position:fixed;inset:0;z-index:2;pointer-events:none;
+  mix-blend-mode:overlay;opacity:0.06;
+  background-image:url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E");
+  background-size:4px 4px;
+}
+#scanlines{
+  position:fixed;inset:0;z-index:3;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px);
+}
+
+/* ── AI AGENT ── */
+#ai-agent-btn{
+  position:fixed;bottom:28px;right:28px;z-index:200;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--bg);border:1px solid rgba(232,66,42,0.5);
+  cursor:pointer;overflow:visible;
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+  display:flex;align-items:center;justify-content:center;
+}
+#ai-agent-btn:hover{transform:scale(1.12);box-shadow:0 0 30px var(--red-glow)}
+#ai-agent-btn .pulse{
+  position:absolute;width:100%;height:100%;border-radius:50%;
+  border:1px solid var(--red);animation:pulse-ring 2.5s ease-out infinite;
+}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:0.5}100%{transform:scale(2);opacity:0}}
+#ai-agent-btn svg{width:24px;height:24px;fill:var(--red)}
+
+/* ── AI CHAT ── */
+#ai-chat{
+  position:fixed;bottom:92px;right:28px;z-index:200;
+  width:340px;height:440px;
+  background:rgba(10,10,10,0.96);
+  border:1px solid rgba(232,66,42,0.2);border-radius:10px;
+  backdrop-filter:blur(24px);
+  display:none;flex-direction:column;overflow:hidden;
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+#ai-chat.open{display:flex;animation:slideUp 0.35s ease}
+#ai-chat .chat-header{
+  padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.04);
+  display:flex;align-items:center;justify-content:space-between;
+}
+#ai-chat .chat-header .agent-info{display:flex;align-items:center;gap:10px}
+#ai-chat .chat-header .agent-avatar{
+  width:28px;height:28px;border-radius:50%;
+  background:linear-gradient(135deg,var(--red),#ff6b4a);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.6rem;font-weight:700;
+}
+#ai-chat .chat-header .agent-name{font-size:0.62rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase}
+#ai-chat .chat-header .status{font-size:0.48rem;opacity:0.4;display:flex;align-items:center;gap:5px}
+#ai-chat .chat-header .status::before{content:'';width:5px;height:5px;border-radius:50%;background:#4ade80}
+#ai-chat .chat-header .close-btn{
+  background:none;border:none;color:var(--white);
+  cursor:pointer;font-size:1.1rem;opacity:0.3;transition:opacity 0.2s;
+}
+#ai-chat .chat-header .close-btn:hover{opacity:1}
+#ai-chat .chat-body{flex:1;overflow-y:auto;padding:14px 18px;display:flex;flex-direction:column;gap:10px}
+#ai-chat .chat-body::-webkit-scrollbar{width:3px}
+#ai-chat .chat-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+#ai-chat .msg{
+  font-family:var(--tc);font-size:0.78rem;
+  line-height:1.65;padding:10px 13px;border-radius:8px;max-width:88%;
+}
+#ai-chat .msg.bot{background:rgba(255,255,255,0.04);align-self:flex-start;border:1px solid rgba(255,255,255,0.04)}
+#ai-chat .msg.user{background:rgba(232,66,42,0.12);align-self:flex-end;border:1px solid rgba(232,66,42,0.15)}
+#ai-chat .chat-input{
+  padding:10px 14px;border-top:1px solid rgba(255,255,255,0.04);display:flex;gap:6px;
+}
+#ai-chat .chat-input input{
+  flex:1;background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);border-radius:6px;
+  padding:8px 12px;color:var(--white);font-family:var(--tc);font-size:0.72rem;
+  outline:none;transition:border-color 0.2s;
+}
+#ai-chat .chat-input input:focus{border-color:rgba(232,66,42,0.5)}
+#ai-chat .chat-input input::placeholder{color:rgba(255,255,255,0.2)}
+#ai-chat .chat-input button{
+  background:var(--red);border:none;border-radius:6px;
+  padding:8px 12px;color:#fff;cursor:pointer;
+  font-family:var(--mono);font-size:0.55rem;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;transition:background 0.2s;
+}
+#ai-chat .chat-input button:hover{background:#d03822}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  #nav{padding:16px 20px;flex-direction:column;gap:10px}
+  #nav .links{gap:14px;flex-wrap:wrap;justify-content:center}
+  #hero h1{font-size:clamp(2.2rem,14vw,4.5rem)}
+  #ai-chat{width:calc(100vw - 24px);right:12px;bottom:88px;height:55vh}
+  #ai-agent-btn{width:44px;height:44px;bottom:20px;right:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="loader">
+  <div class="logo-text">Think <span>BIG!</span></div>
+  <div class="sub">Make it Real.</div>
+  <div class="bar-wrap"><div class="bar-fill" id="load-bar"></div></div>
+</div>
+
+<div id="dither-overlay"></div>
+<div id="scanlines"></div>
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+
+<!-- NAV — 四個業務 -->
+<nav id="nav">
+  <div class="slogan">Think <span>BIG!</span> Make it Real.</div>
+  <div class="links">
+    <a href="/lab/" target="_blank">MoneyRadar</a>
+    <a href="/enterprise/" target="_blank">Enterprise</a>
+    <a href="/harness/" target="_blank">Harness Engineers</a>
+    <a href="/erp/" target="_blank">AI Agent ERP</a>
+  </div>
+</nav>
+
+<!-- CANVAS -->
+<canvas id="canvas3d"></canvas>
+
+<!-- HERO -->
+<div id="hero">
+  <h1>Think<br><span class="big">BIG!</span></h1>
+  <div class="tagline">AI Automation &mdash; Make it Real</div>
+</div>
+
+<div id="hold-indicator">[ Hold to accelerate ]</div>
+<div id="speed-display">1.00x</div>
+
+<!-- AI AGENT -->
+<div id="ai-agent-btn" onclick="toggleChat()">
+  <div class="pulse"></div>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2a2 2 0 012 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 017 7h1a1 1 0 011 1v3a1 1 0 01-1 1h-1.17A7 7 0 0113 22h-2a7 7 0 01-6.83-3H3a1 1 0 01-1-1v-3a1 1 0 011-1h1a7 7 0 017-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 012-2zm-3 12a1.5 1.5 0 100 3 1.5 1.5 0 000-3zm6 0a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/>
+  </svg>
+</div>
+
+<div id="ai-chat">
+  <div class="chat-header">
+    <div class="agent-info">
+      <div class="agent-avatar">H</div>
+      <div>
+        <div class="agent-name">Hermes Agent</div>
+        <div class="status">Online</div>
+      </div>
+    </div>
+    <button class="close-btn" onclick="toggleChat()">&times;</button>
+  </div>
+  <div class="chat-body" id="chat-body">
+    <div class="msg bot">嗨！我是 Think BIG 的 AI 助理 🦞<br>關於 AI 自動化、OpenClaw、企業 ERP 整合，都可以問我！</div>
+  </div>
+  <div class="chat-input">
+    <input type="text" id="chat-msg" placeholder="輸入訊息..." onkeydown="if(event.key==='Enter')sendMsg()">
+    <button onclick="sendMsg()">Send</button>
+  </div>
+</div>
+
+<!-- THREE.JS -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.170.0/three.module.min.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+
+const RED = new THREE.Color(0xe8422a);
+const RED_DIM = new THREE.Color(0x5a1a10);
+const BG = new THREE.Color(0x080808);
+const PARTICLE_COUNT = 1800;
+
+// ── RENDERER ──
+const canvas = document.getElementById('canvas3d');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(BG);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+
+const scene = new THREE.Scene();
+scene.fog = new THREE.FogExp2(BG, 0.04);
+
+const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 1.2, 5.5);
+camera.lookAt(0, 0.6, 0);
+
+// ── LIGHTING ──
+scene.add(new THREE.AmbientLight(0x1a1a1a, 1));
+
+const keyLight = new THREE.DirectionalLight(0xffffff, 2);
+keyLight.position.set(3, 4, 4);
+scene.add(keyLight);
+
+const redPoint = new THREE.PointLight(RED, 4, 12);
+redPoint.position.set(-2, 2, 3);
+scene.add(redPoint);
+
+const redPoint2 = new THREE.PointLight(RED, 2, 8);
+redPoint2.position.set(2, -0.5, 2);
+scene.add(redPoint2);
+
+const rimLight = new THREE.DirectionalLight(0x330a0a, 1.5);
+rimLight.position.set(-3, 1, -3);
+scene.add(rimLight);
+
+const topLight = new THREE.PointLight(0xffffff, 0.8, 10);
+topLight.position.set(0, 5, 0);
+scene.add(topLight);
+
+// ── ROBOT MODEL ──
+let robotGroup = null;
+let robotReady = false;
+
+const gltfLoader = new GLTFLoader();
+gltfLoader.setMeshoptDecoder(MeshoptDecoder);
+
+// Progress for loading bar
+const loadBar = document.getElementById('load-bar');
+const loader = document.getElementById('loader');
+let modelLoaded = false;
+
+gltfLoader.load(
+  './robot.glb',
+  (gltf) => {
+    robotGroup = gltf.scene;
+    
+    // Calculate bounding box to center and scale
+    const box = new THREE.Box3().setFromObject(robotGroup);
+    const size = box.getSize(new THREE.Vector3());
+    const center = box.getCenter(new THREE.Vector3());
+    
+    // Scale to ~3 units tall
+    const targetHeight = 3;
+    const scale = targetHeight / size.y;
+    robotGroup.scale.setScalar(scale);
+    
+    // Center horizontally, stand on ground
+    robotGroup.position.x = -center.x * scale;
+    robotGroup.position.y = (-box.min.y * scale) - 0.3;
+    robotGroup.position.z = -center.z * scale;
+    
+    // Enhance materials for better look in dark scene
+    robotGroup.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        if (child.material) {
+          child.material.envMapIntensity = 1.5;
+        }
+      }
+    });
+
+    scene.add(robotGroup);
+    robotReady = true;
+    modelLoaded = true;
+    
+    // Hide loader
+    loadBar.style.width = '100%';
+    setTimeout(() => loader.classList.add('hidden'), 600);
+  },
+  (progress) => {
+    if (progress.total > 0) {
+      const pct = (progress.loaded / progress.total) * 90;
+      loadBar.style.width = pct + '%';
+    }
+  },
+  (error) => {
+    console.warn('GLB failed, using placeholder:', error);
+    createPlaceholder();
+    modelLoaded = true;
+    loadBar.style.width = '100%';
+    setTimeout(() => loader.classList.add('hidden'), 600);
+  }
+);
+
+// Fallback placeholder
+function createPlaceholder() {
+  robotGroup = new THREE.Group();
+  const bMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, metalness: 0.8, roughness: 0.3 });
+  const gMat = new THREE.MeshStandardMaterial({ color: RED, emissive: RED, emissiveIntensity: 2 });
+  
+  const head = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.5, 0.6), bMat);
+  head.position.y = 2.0;
+  const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.07, 8, 8), gMat);
+  eyeL.position.set(-0.16, 2.05, 0.31);
+  const eyeR = eyeL.clone(); eyeR.position.x = 0.16;
+  const body = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.7, 0.5), bMat);
+  body.position.y = 1.3;
+  const chestGlow = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.35), gMat);
+  chestGlow.position.set(0, 1.35, 0.26);
+  const armL = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.6, 8), bMat);
+  armL.position.set(-0.52, 1.3, 0); armL.rotation.z = 0.12;
+  const armR = armL.clone(); armR.position.x = 0.52; armR.rotation.z = -0.12;
+  const legL = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.08, 0.7, 8), bMat);
+  legL.position.set(-0.2, 0.5, 0);
+  const legR = legL.clone(); legR.position.x = 0.2;
+  const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.25, 6), bMat);
+  ant.position.set(0, 2.38, 0);
+  const antBall = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8, 8), gMat);
+  antBall.position.set(0, 2.52, 0);
+  
+  robotGroup.add(head, eyeL, eyeR, body, chestGlow, armL, armR, legL, legR, ant, antBall);
+  robotGroup.position.y = -0.3;
+  scene.add(robotGroup);
+  robotReady = true;
+}
+
+// Timeout fallback
+setTimeout(() => {
+  if (!modelLoaded) {
+    createPlaceholder();
+    modelLoaded = true;
+    loadBar.style.width = '100%';
+    setTimeout(() => loader.classList.add('hidden'), 400);
+  }
+}, 8000);
+
+// ── PARTICLES ──
+const pGeo = new THREE.BufferGeometry();
+const pos = new Float32Array(PARTICLE_COUNT * 3);
+const pSizes = new Float32Array(PARTICLE_COUNT);
+const pAlphas = new Float32Array(PARTICLE_COUNT);
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  pos[i*3] = (Math.random()-0.5)*18;
+  pos[i*3+1] = (Math.random()-0.5)*12;
+  pos[i*3+2] = (Math.random()-0.5)*18;
+  pSizes[i] = Math.random()*2.5+0.3;
+  pAlphas[i] = Math.random()*0.4+0.05;
+}
+pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+pGeo.setAttribute('aSize', new THREE.BufferAttribute(pSizes, 1));
+pGeo.setAttribute('aAlpha', new THREE.BufferAttribute(pAlphas, 1));
+
+const pMat = new THREE.ShaderMaterial({
+  transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
+  uniforms:{uTime:{value:0},uSpeed:{value:1},uColor:{value:RED}},
+  vertexShader:`
+    attribute float aSize; attribute float aAlpha;
+    varying float vAlpha; uniform float uTime; uniform float uSpeed;
+    void main(){
+      vAlpha=aAlpha;
+      vec3 p=position;
+      p.y+=sin(uTime*0.4*uSpeed+p.x*0.5)*0.25;
+      p.x+=cos(uTime*0.25*uSpeed+p.z*0.3)*0.15;
+      vec4 mv=modelViewMatrix*vec4(p,1.0);
+      gl_PointSize=aSize*(70.0/-mv.z);
+      gl_Position=projectionMatrix*mv;
+    }`,
+  fragmentShader:`
+    varying float vAlpha; uniform vec3 uColor;
+    void main(){
+      float d=length(gl_PointCoord-0.5);
+      if(d>0.5)discard;
+      float a=smoothstep(0.5,0.0,d)*vAlpha;
+      gl_FragColor=vec4(uColor,a*0.5);
+    }`,
+});
+scene.add(new THREE.Points(pGeo, pMat));
+
+// ── GROUND GRID ──
+const grid = new THREE.GridHelper(24, 48, RED_DIM, new THREE.Color(0x111111));
+grid.position.y = -0.3;
+grid.material.transparent = true;
+grid.material.opacity = 0.2;
+scene.add(grid);
+
+// ── POST-PROCESSING ──
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+
+const bloom = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight), 0.7, 0.3, 0.9
+);
+composer.addPass(bloom);
+
+const DitherShader = {
+  uniforms:{
+    tDiffuse:{value:null},
+    uRes:{value:new THREE.Vector2(window.innerWidth,window.innerHeight)},
+    uTime:{value:0},
+    uDither:{value:0.05},
+    uAberr:{value:0.0015}
+  },
+  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+  fragmentShader:`
+    uniform sampler2D tDiffuse;uniform vec2 uRes;uniform float uTime,uDither,uAberr;
+    varying vec2 vUv;
+    float bayer4(vec2 p){
+      vec2 i=floor(mod(p,4.0));int idx=int(i.x)+int(i.y)*4;
+      float m[16]; m[0]=0.0;m[1]=8.0;m[2]=2.0;m[3]=10.0;m[4]=12.0;m[5]=4.0;
+      m[6]=14.0;m[7]=6.0;m[8]=3.0;m[9]=11.0;m[10]=1.0;m[11]=9.0;
+      m[12]=15.0;m[13]=7.0;m[14]=13.0;m[15]=5.0;
+      return m[idx]/16.0;
+    }
+    void main(){
+      vec2 d=vUv-0.5;float dist=length(d);float ab=uAberr*dist;
+      float r=texture2D(tDiffuse,vUv+d*ab).r;
+      float g=texture2D(tDiffuse,vUv).g;
+      float b=texture2D(tDiffuse,vUv-d*ab).b;
+      vec3 c=vec3(r,g,b);
+      vec2 px=vUv*uRes;float th=bayer4(px);
+      c+=(th-0.5)*uDither;
+      c*=1.0-dist*0.6;
+      gl_FragColor=vec4(c,1.0);
+    }`
+};
+const ditherPass = new ShaderPass(DitherShader);
+composer.addPass(ditherPass);
+
+// ── INTERACTION ──
+const mouse = {x:0,y:0,tx:0,ty:0};
+let isHolding=false, speed=1, targetSpeed=1;
+const clock = new THREE.Clock();
+
+document.addEventListener('mousemove',(e)=>{
+  mouse.tx=(e.clientX/window.innerWidth-0.5)*2;
+  mouse.ty=(e.clientY/window.innerHeight-0.5)*2;
+});
+document.addEventListener('mousedown',()=>{isHolding=true;targetSpeed=3});
+document.addEventListener('mouseup',()=>{isHolding=false;targetSpeed=1});
+document.addEventListener('touchstart',()=>{isHolding=true;targetSpeed=3},{passive:true});
+document.addEventListener('touchend',()=>{isHolding=false;targetSpeed=1});
+
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+  composer.setSize(window.innerWidth,window.innerHeight);
+  ditherPass.uniforms.uRes.value.set(window.innerWidth,window.innerHeight);
+});
+
+// ── ANIMATE ──
+function animate(){
+  requestAnimationFrame(animate);
+  const dt=clock.getDelta();
+  const t=clock.getElapsedTime();
+
+  mouse.x+=(mouse.tx-mouse.x)*0.04;
+  mouse.y+=(mouse.ty-mouse.y)*0.04;
+  speed+=(targetSpeed-speed)*0.025;
+
+  // Camera subtle orbit
+  camera.position.x=Math.sin(mouse.x*0.4)*5.5;
+  camera.position.y=1.2+mouse.y*-0.4;
+  camera.position.z=Math.cos(mouse.x*0.4)*5.5;
+  camera.lookAt(0,0.8,0);
+
+  // Robot idle
+  if(robotGroup && robotReady){
+    robotGroup.rotation.y+=((mouse.x*0.3)-robotGroup.rotation.y)*0.02;
+    const bob=Math.sin(t*0.7*speed)*0.04;
+    robotGroup.position.y=robotGroup.position.y<-10?robotGroup.position.y:
+      (robotGroup.userData.baseY||robotGroup.position.y)+bob;
+    if(!robotGroup.userData.baseY) robotGroup.userData.baseY=robotGroup.position.y;
+  }
+
+  // Uniforms
+  pMat.uniforms.uTime.value=t;
+  pMat.uniforms.uSpeed.value=speed;
+  redPoint.intensity=4+Math.sin(t*1.8*speed)*2;
+  ditherPass.uniforms.uTime.value=t;
+  ditherPass.uniforms.uAberr.value=0.0015+(speed-1)*0.003;
+  ditherPass.uniforms.uDither.value=0.05+(speed-1)*0.035;
+  bloom.strength=0.7+(speed-1)*0.5;
+
+  document.getElementById('hold-indicator').classList.toggle('active',isHolding);
+  document.getElementById('speed-display').textContent=speed.toFixed(2)+'x';
+
+  composer.render();
+}
+animate();
+</script>
+
+<script>
+function toggleChat(){document.getElementById('ai-chat').classList.toggle('open')}
+function sendMsg(){
+  const input=document.getElementById('chat-msg');
+  const body=document.getElementById('chat-body');
+  const text=input.value.trim();
+  if(!text)return;
+  const u=document.createElement('div');u.className='msg user';u.textContent=text;
+  body.appendChild(u);input.value='';body.scrollTop=body.scrollHeight;
+  setTimeout(()=>{
+    const b=document.createElement('div');b.className='msg bot';
+    const r=['感謝您的詢問！我們的 AI 自動化顧問正在處理中 🦞',
+      '這個問題很好！讓我為您找到最佳解決方案。',
+      '我們提供 OpenClaw 安裝、Hermes Agent 整合、以及企業 AI ERP 系統。想了解哪一項呢？',
+      '如需更詳細的諮詢，歡迎加入我們的 LINE@ 官方帳號！'];
+    b.innerHTML=r[Math.floor(Math.random()*r.length)];
+    body.appendChild(b);body.scrollTop=body.scrollHeight;
+  },600+Math.random()*400);
+}
+</script>
+</body>
+</html>
