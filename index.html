@@ -661,7 +661,7 @@ const DitherShader = {
     tDiffuse:{value:null},
     uRes:{value:new THREE.Vector2(window.innerWidth,window.innerHeight)},
     uTime:{value:0},
-    uPixelSize:{value:3.0},
+    uPixelSize:{value:1.5},
     uDither:{value:0.15},
     uAberr:{value:0.002}
   },
@@ -687,14 +687,11 @@ const DitherShader = {
     }
     
     void main(){
-      // PIXELATION: snap UV to pixel grid
-      vec2 pixelUv = floor(vUv * uRes / uPixelSize) * uPixelSize / uRes;
-      
-      // Chromatic aberration (on pixelated coords)
-      vec2 d=pixelUv-0.5; float dist=length(d); float ab=uAberr*dist;
-      float r=texture2D(tDiffuse, pixelUv+d*ab).r;
-      float g=texture2D(tDiffuse, pixelUv).g;
-      float b=texture2D(tDiffuse, pixelUv-d*ab).b;
+      // NO pixelation — sample directly
+      vec2 d=vUv-0.5; float dist=length(d); float ab=uAberr*dist;
+      float r=texture2D(tDiffuse, vUv+d*ab).r;
+      float g=texture2D(tDiffuse, vUv).g;
+      float b=texture2D(tDiffuse, vUv-d*ab).b;
       vec3 c=vec3(r,g,b);
       
       // Brightness boost
@@ -810,7 +807,7 @@ function animate(){
   ditherPass.uniforms.uTime.value=t;
   ditherPass.uniforms.uAberr.value=0.002+(speed-1)*0.004;
   ditherPass.uniforms.uDither.value=0.15+(speed-1)*0.1;
-  ditherPass.uniforms.uPixelSize.value=3.0+(speed-1)*1.5;
+  ditherPass.uniforms.uPixelSize.value=1.5+(speed-1)*0.5;
   bloom.strength=1.0+(speed-1)*0.6;
 
   document.getElementById('hold-indicator').classList.toggle('active',isHolding);
