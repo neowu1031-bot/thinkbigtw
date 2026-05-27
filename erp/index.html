@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Think BIG! AI Agent ERP — 企業級智慧管理系統</title>
-<meta name="description" content="Think BIG! AI Agent ERP：訂單管理、庫存管理、財務會計、CRM、生產製造、商業智慧 — 12大模組完整互動展示">
+<meta name="description" content="Think BIG! AI Agent ERP：訂單管理、庫存管理、財務會計、CRM、生產製造、商業智慧、打卡系統 — 12大模組完整互動展示">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -3336,8 +3336,727 @@ function PgCRM({
 
 // ══ HR ══
 function PgHR() {
+  const [tab, setTab] = useState("clock");
   const [sel, setSel] = useState(null);
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+  const [now, setNow] = useState(new Date());
+  const [clockIn, setClockIn] = useState(null);
+  const [clockOut, setClockOut] = useState(null);
+  const [leaveOpen, setLeaveOpen] = useState(false);
+  const [leaveForm, setLeaveForm] = useState({
+    type: "特休",
+    start: "",
+    end: "",
+    reason: ""
+  });
+  const [leaves, setLeaves] = useState([{
+    id: "LV-001",
+    emp: "張博文",
+    type: "特休",
+    start: "2026-05-30",
+    end: "2026-05-31",
+    days: 2,
+    reason: "家庭旅遊",
+    st: "approved",
+    applyDt: "2026-05-20"
+  }, {
+    id: "LV-002",
+    emp: "王雅琪",
+    type: "病假",
+    start: "2026-05-28",
+    end: "2026-05-28",
+    days: 1,
+    reason: "感冒就醫",
+    st: "approved",
+    applyDt: "2026-05-27"
+  }, {
+    id: "LV-003",
+    emp: "林俊宏",
+    type: "事假",
+    start: "2026-06-03",
+    end: "2026-06-03",
+    days: 1,
+    reason: "處理銀行業務",
+    st: "pending",
+    applyDt: "2026-05-27"
+  }, {
+    id: "LV-004",
+    emp: "許家豪",
+    type: "特休",
+    start: "2026-06-10",
+    end: "2026-06-14",
+    days: 5,
+    reason: "年假規劃",
+    st: "pending",
+    applyDt: "2026-05-26"
+  }]);
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  // Mock monthly attendance records
+  const monthAtt = [{
+    d: "05/27",
+    in: "08:55",
+    out: "-",
+    hrs: "-",
+    st: "working"
+  }, {
+    d: "05/26",
+    in: "08:52",
+    out: "18:15",
+    hrs: "9.4h",
+    st: "normal"
+  }, {
+    d: "05/23",
+    in: "09:08",
+    out: "18:30",
+    hrs: "9.4h",
+    st: "late"
+  }, {
+    d: "05/22",
+    in: "08:45",
+    out: "18:02",
+    hrs: "9.3h",
+    st: "normal"
+  }, {
+    d: "05/21",
+    in: "08:50",
+    out: "17:45",
+    hrs: "8.9h",
+    st: "early"
+  }, {
+    d: "05/20",
+    in: "08:48",
+    out: "18:20",
+    hrs: "9.5h",
+    st: "normal"
+  }, {
+    d: "05/19",
+    in: "08:55",
+    out: "18:00",
+    hrs: "9.1h",
+    st: "normal"
+  }, {
+    d: "05/16",
+    in: "-",
+    out: "-",
+    hrs: "-",
+    st: "leave"
+  }, {
+    d: "05/15",
+    in: "08:50",
+    out: "18:10",
+    hrs: "9.3h",
+    st: "normal"
+  }, {
+    d: "05/14",
+    in: "08:42",
+    out: "19:05",
+    hrs: "10.4h",
+    st: "normal"
+  }];
+  // Department-wide live attendance status
+  const liveAtt = [{
+    n: "張博文",
+    d: "研發部",
+    in: "08:55",
+    st: "在崗",
+    c: T.g
+  }, {
+    n: "李明德",
+    d: "生產部",
+    in: "08:30",
+    st: "在崗",
+    c: T.g
+  }, {
+    n: "王雅琪",
+    d: "業務部",
+    in: "-",
+    st: "病假",
+    c: T.bl2
+  }, {
+    n: "陳佳慧",
+    d: "行銷部",
+    in: "09:02",
+    st: "在崗",
+    c: T.g
+  }, {
+    n: "林俊宏",
+    d: "客服部",
+    in: "08:58",
+    st: "在崗",
+    c: T.g
+  }, {
+    n: "黃淑芬",
+    d: "財務部",
+    in: "08:45",
+    st: "在崗",
+    c: T.g
+  }, {
+    n: "許家豪",
+    d: "研發部",
+    in: "09:15",
+    st: "遲到",
+    c: T.am
+  }, {
+    n: "蔡雨潔",
+    d: "業務部",
+    in: "-",
+    st: "未打卡",
+    c: "#ef4444"
+  }];
+  const timeStr = now.toLocaleTimeString("zh-TW", {
+    hour12: false
+  });
+  const dateStr = now.toLocaleDateString("zh-TW", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "long"
+  });
+  const workedHrs = clockIn ? ((now - clockIn) / 1000 / 3600).toFixed(2) : "0.00";
+  const handleClockIn = () => {
+    setClockIn(new Date());
+    setClockOut(null);
+  };
+  const handleClockOut = () => {
+    setClockOut(new Date());
+  };
+  const submitLeave = () => {
+    if (!leaveForm.start || !leaveForm.end) {
+      alert("請填寫請假日期");
+      return;
+    }
+    const days = Math.ceil((new Date(leaveForm.end) - new Date(leaveForm.start)) / 86400000) + 1;
+    setLeaves(p => [{
+      id: `LV-${String(p.length + 1).padStart(3, "0")}`,
+      emp: "張博文（我）",
+      ...leaveForm,
+      days,
+      st: "pending",
+      applyDt: new Date().toISOString().slice(0, 10)
+    }, ...p]);
+    setLeaveOpen(false);
+    setLeaveForm({
+      type: "特休",
+      start: "",
+      end: "",
+      reason: ""
+    });
+  };
+  const approveLeave = id => setLeaves(p => p.map(l => l.id === id ? {
+    ...l,
+    st: "approved"
+  } : l));
+  const rejectLeave = id => setLeaves(p => p.map(l => l.id === id ? {
+    ...l,
+    st: "cancelled"
+  } : l));
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Tabs, {
+    tabs: [{
+      id: "clock",
+      label: "🕐 打卡系統"
+    }, {
+      id: "team",
+      label: "👥 團隊出勤"
+    }, {
+      id: "leave",
+      label: `🏖️ 請假申請 (${leaves.filter(l => l.st === "pending").length})`
+    }, {
+      id: "emp",
+      label: "📋 員工名冊"
+    }, {
+      id: "stat",
+      label: "📊 統計"
+    }],
+    active: tab,
+    onChange: setTab
+  }), tab === "clock" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1.2fr 1fr",
+      gap: 14
+    }
+  }, /*#__PURE__*/React.createElement(Card, {
+    s: {
+      padding: 32,
+      textAlign: "center",
+      background: "linear-gradient(135deg, #fff 0%, #fafafa 100%)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: T.tm,
+      fontFamily: T.mo,
+      letterSpacing: "0.15em",
+      marginBottom: 8
+    }
+  }, "WELCOME BACK"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 600,
+      marginBottom: 4
+    }
+  }, "\u5F35\u535A\u6587\uFF08\u7814\u767C\u90E8 \u526F\u7E3D\u7D93\u7406\uFF09"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: T.ts,
+      marginBottom: 24
+    }
+  }, dateStr), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 64,
+      fontWeight: 700,
+      fontFamily: T.mo,
+      letterSpacing: "-0.04em",
+      lineHeight: 1,
+      marginBottom: 8,
+      background: `linear-gradient(135deg, ${T.t} 0%, ${T.r} 100%)`,
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+      backgroundClip: "text"
+    }
+  }, timeStr), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: T.tm,
+      fontFamily: T.mo,
+      marginBottom: 28
+    }
+  }, Intl.DateTimeFormat().resolvedOptions().timeZone), !clockIn ? /*#__PURE__*/React.createElement("button", {
+    onClick: handleClockIn,
+    style: {
+      padding: "18px 60px",
+      fontSize: 16,
+      fontWeight: 700,
+      fontFamily: T.mo,
+      letterSpacing: "0.15em",
+      background: T.r,
+      color: "#fff",
+      border: "none",
+      borderRadius: 50,
+      cursor: "pointer",
+      boxShadow: "0 8px 24px rgba(232,66,42,0.3)",
+      transition: "all 0.2s"
+    },
+    onMouseEnter: e => {
+      e.currentTarget.style.transform = "translateY(-2px)";
+      e.currentTarget.style.boxShadow = "0 12px 32px rgba(232,66,42,0.4)";
+    },
+    onMouseLeave: e => {
+      e.currentTarget.style.transform = "";
+      e.currentTarget.style.boxShadow = "0 8px 24px rgba(232,66,42,0.3)";
+    }
+  }, "\uD83D\uDFE2 \u4E0A\u73ED\u6253\u5361 CLOCK IN") : !clockOut ? /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "16px 24px",
+      background: T.gbg,
+      border: `1px solid #86efac`,
+      borderRadius: 12,
+      marginBottom: 14,
+      display: "inline-block"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: T.g,
+      fontFamily: T.mo,
+      letterSpacing: "0.1em",
+      marginBottom: 4
+    }
+  }, "\u2705 CLOCKED IN AT"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 24,
+      fontWeight: 700,
+      fontFamily: T.mo,
+      color: T.g
+    }
+  }, clockIn.toLocaleTimeString("zh-TW", {
+    hour12: false
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: T.ts,
+      marginTop: 4
+    }
+  }, "\u5DF2\u5DE5\u4F5C ", /*#__PURE__*/React.createElement("b", {
+    style: {
+      fontFamily: T.mo,
+      color: T.t
+    }
+  }, workedHrs, "h"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+    onClick: handleClockOut,
+    style: {
+      padding: "14px 48px",
+      fontSize: 14,
+      fontWeight: 700,
+      fontFamily: T.mo,
+      letterSpacing: "0.12em",
+      background: "#fff",
+      color: T.r,
+      border: `2px solid ${T.r}`,
+      borderRadius: 50,
+      cursor: "pointer"
+    }
+  }, "\uD83D\uDD34 \u4E0B\u73ED\u6253\u5361 CLOCK OUT"))) : /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "16px 24px",
+      background: T.blbg,
+      border: `1px solid #93c5fd`,
+      borderRadius: 12,
+      marginBottom: 14,
+      display: "inline-block"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: T.bl2,
+      fontFamily: T.mo,
+      letterSpacing: "0.1em",
+      marginBottom: 4
+    }
+  }, "\u2705 \u4ECA\u65E5\u6253\u5361\u5B8C\u6210"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 13,
+      marginTop: 6,
+      fontFamily: T.mo
+    }
+  }, "\u4E0A\u73ED ", clockIn.toLocaleTimeString("zh-TW", {
+    hour12: false
+  }), " \u2192 \u4E0B\u73ED ", clockOut.toLocaleTimeString("zh-TW", {
+    hour12: false
+  })), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 16,
+      fontWeight: 700,
+      fontFamily: T.mo,
+      color: T.bl2,
+      marginTop: 6
+    }
+  }, "\u7E3D\u5DE5\u6642 ", ((clockOut - clockIn) / 1000 / 3600).toFixed(2), "h"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      justifyContent: "center",
+      marginTop: 24,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    small: true,
+    onClick: () => setLeaveOpen(true)
+  }, "\uD83C\uDFD6\uFE0F \u8ACB\u5047\u7533\u8ACB"), /*#__PURE__*/React.createElement(Btn, {
+    small: true
+  }, "\uD83D\uDD04 \u88DC\u5361\u7533\u8ACB"), /*#__PURE__*/React.createElement(Btn, {
+    small: true
+  }, "\uD83D\uDCCD \u7570\u5730\u6253\u5361"), /*#__PURE__*/React.createElement(Btn, {
+    small: true
+  }, "\uD83D\uDCDD \u52A0\u73ED\u7533\u8ACB"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      flexDirection: "column",
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement(Sec, {
+    title: "\u672C\u6708\u500B\u4EBA\u72C0\u614B",
+    en: "My Status \u2014 May 2026"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 8
+    }
+  }, [{
+    l: "應出勤",
+    v: "21天",
+    c: T.t
+  }, {
+    l: "已出勤",
+    v: "19天",
+    c: T.g
+  }, {
+    l: "遲到",
+    v: "1次",
+    c: T.am
+  }, {
+    l: "請假",
+    v: "1天",
+    c: T.bl2
+  }, {
+    l: "加班",
+    v: "8.5h",
+    c: T.pu
+  }, {
+    l: "剩餘特休",
+    v: "7天",
+    c: T.r
+  }].map((s, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      background: T.bg,
+      borderRadius: 8,
+      padding: "10px 12px"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: T.tm
+    }
+  }, s.l), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 700,
+      fontFamily: T.mo,
+      color: s.c
+    }
+  }, s.v))))), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement(Sec, {
+    title: "\u672C\u6708\u6253\u5361\u8A18\u9304",
+    en: "Recent Records",
+    right: /*#__PURE__*/React.createElement(Btn, {
+      small: true
+    }, "\u67E5\u770B\u5168\u90E8")
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      maxHeight: 180,
+      overflowY: "auto"
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: "100%",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    style: {
+      position: "sticky",
+      top: 0,
+      background: "#fff"
+    }
+  }, /*#__PURE__*/React.createElement(Th, null, "\u65E5\u671F"), /*#__PURE__*/React.createElement(Th, null, "\u4E0A\u73ED"), /*#__PURE__*/React.createElement(Th, null, "\u4E0B\u73ED"), /*#__PURE__*/React.createElement(Th, null, "\u5DE5\u6642"), /*#__PURE__*/React.createElement(Th, null, "\u72C0\u614B"))), /*#__PURE__*/React.createElement("tbody", null, monthAtt.map((a, i) => /*#__PURE__*/React.createElement("tr", {
+    key: i,
+    style: {
+      borderBottom: `1px solid ${T.bl}`
+    }
+  }, /*#__PURE__*/React.createElement(Td, {
+    mono: true,
+    c: T.ts
+  }, a.d), /*#__PURE__*/React.createElement(Td, {
+    mono: true,
+    c: a.st === "late" ? T.am : T.t
+  }, a.in), /*#__PURE__*/React.createElement(Td, {
+    mono: true
+  }, a.out), /*#__PURE__*/React.createElement(Td, {
+    mono: true,
+    bold: true
+  }, a.hrs), /*#__PURE__*/React.createElement(Td, null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 10,
+      fontWeight: 600,
+      padding: "2px 6px",
+      borderRadius: 3,
+      background: a.st === "normal" ? T.gbg : a.st === "late" ? T.abg : a.st === "early" ? T.abg : a.st === "leave" ? T.blbg : T.rbg,
+      color: a.st === "normal" ? T.g : a.st === "late" || a.st === "early" ? T.am : a.st === "leave" ? T.bl2 : a.st === "working" ? T.bl2 : "#ef4444"
+    }
+  }, a.st === "normal" ? "正常" : a.st === "late" ? "遲到" : a.st === "early" ? "早退" : a.st === "leave" ? "請假" : a.st === "working" ? "在崗" : "異常")))))))))), tab === "team" && /*#__PURE__*/React.createElement(Card, {
+    s: {
+      padding: 0,
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "14px 18px",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center"
+    }
+  }, /*#__PURE__*/React.createElement(Sec, {
+    title: "\u5718\u968A\u5373\u6642\u51FA\u52E4",
+    en: "Live Team Attendance"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 14,
+      fontSize: 11
+    }
+  }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDFE2 \u5728\u5D17 ", liveAtt.filter(a => a.st === "在崗").length), /*#__PURE__*/React.createElement("span", null, "\uD83D\uDFE1 \u9072\u5230 ", liveAtt.filter(a => a.st === "遲到").length), /*#__PURE__*/React.createElement("span", null, "\uD83D\uDD35 \u8ACB\u5047 ", liveAtt.filter(a => a.st === "病假" || a.st === "特休" || a.st === "事假").length), /*#__PURE__*/React.createElement("span", null, "\uD83D\uDD34 \u672A\u6253\u5361 ", liveAtt.filter(a => a.st === "未打卡").length))), /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: "100%",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: T.bg
+    }
+  }, /*#__PURE__*/React.createElement(Th, null, "\u59D3\u540D"), /*#__PURE__*/React.createElement(Th, null, "\u90E8\u9580"), /*#__PURE__*/React.createElement(Th, null, "\u4E0A\u73ED\u6642\u9593"), /*#__PURE__*/React.createElement(Th, null, "\u72C0\u614B"), /*#__PURE__*/React.createElement(Th, null, "\u64CD\u4F5C"))), /*#__PURE__*/React.createElement("tbody", null, liveAtt.map((a, i) => /*#__PURE__*/React.createElement("tr", {
+    key: i,
+    style: {
+      borderBottom: `1px solid ${T.bl}`
+    }
+  }, /*#__PURE__*/React.createElement(Td, {
+    bold: true
+  }, a.n), /*#__PURE__*/React.createElement(Td, {
+    c: T.ts
+  }, a.d), /*#__PURE__*/React.createElement(Td, {
+    mono: true
+  }, a.in), /*#__PURE__*/React.createElement(Td, null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      fontWeight: 600,
+      padding: "2px 8px",
+      borderRadius: 4,
+      background: a.c + "20",
+      color: a.c
+    }
+  }, a.st)), /*#__PURE__*/React.createElement(Td, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 4
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    small: true
+  }, $.mail({
+    s: 11,
+    c: T.ts
+  })), /*#__PURE__*/React.createElement(Btn, {
+    small: true
+  }, $.phone({
+    s: 11,
+    c: T.ts
+  }))))))))), tab === "leave" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      justifyContent: "space-between",
+      marginBottom: 12
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 10
+    }
+  }, [{
+    l: "待審核",
+    v: leaves.filter(l => l.st === "pending").length,
+    c: T.am
+  }, {
+    l: "已核准",
+    v: leaves.filter(l => l.st === "approved").length,
+    c: T.g
+  }, {
+    l: "已取消",
+    v: leaves.filter(l => l.st === "cancelled").length,
+    c: T.tm
+  }].map((s, i) => /*#__PURE__*/React.createElement("div", {
+    key: i,
+    style: {
+      background: "#fff",
+      border: `1px solid ${T.b}`,
+      borderRadius: 8,
+      padding: "8px 16px",
+      display: "flex",
+      alignItems: "center",
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 18,
+      fontWeight: 700,
+      fontFamily: T.mo,
+      color: s.c
+    }
+  }, s.v), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 11,
+      color: T.ts
+    }
+  }, s.l)))), /*#__PURE__*/React.createElement(Btn, {
+    primary: true,
+    small: true,
+    onClick: () => setLeaveOpen(true)
+  }, $.plus({
+    s: 11,
+    c: "#fff"
+  }), " \u7533\u8ACB\u8ACB\u5047")), /*#__PURE__*/React.createElement(Card, {
+    s: {
+      padding: 0,
+      overflow: "hidden"
+    }
+  }, /*#__PURE__*/React.createElement("table", {
+    style: {
+      width: "100%",
+      borderCollapse: "collapse"
+    }
+  }, /*#__PURE__*/React.createElement("thead", null, /*#__PURE__*/React.createElement("tr", {
+    style: {
+      background: T.bg
+    }
+  }, /*#__PURE__*/React.createElement(Th, null, "\u55AE\u865F"), /*#__PURE__*/React.createElement(Th, null, "\u7533\u8ACB\u4EBA"), /*#__PURE__*/React.createElement(Th, null, "\u5047\u5225"), /*#__PURE__*/React.createElement(Th, null, "\u8D77\u59CB"), /*#__PURE__*/React.createElement(Th, null, "\u7D50\u675F"), /*#__PURE__*/React.createElement(Th, null, "\u5929\u6578"), /*#__PURE__*/React.createElement(Th, null, "\u4E8B\u7531"), /*#__PURE__*/React.createElement(Th, null, "\u7533\u8ACB\u65E5"), /*#__PURE__*/React.createElement(Th, null, "\u72C0\u614B"), /*#__PURE__*/React.createElement(Th, null, "\u64CD\u4F5C"))), /*#__PURE__*/React.createElement("tbody", null, leaves.map(l => /*#__PURE__*/React.createElement("tr", {
+    key: l.id,
+    style: {
+      borderBottom: `1px solid ${T.bl}`
+    }
+  }, /*#__PURE__*/React.createElement(Td, {
+    mono: true,
+    c: T.ts
+  }, l.id), /*#__PURE__*/React.createElement(Td, {
+    bold: true
+  }, l.emp), /*#__PURE__*/React.createElement(Td, null, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 11,
+      fontWeight: 600,
+      padding: "2px 6px",
+      borderRadius: 3,
+      background: l.type === "特休" ? T.gbg : l.type === "病假" ? T.rbg : T.abg,
+      color: l.type === "特休" ? T.g : l.type === "病假" ? "#ef4444" : T.am
+    }
+  }, l.type)), /*#__PURE__*/React.createElement(Td, {
+    mono: true
+  }, l.start), /*#__PURE__*/React.createElement(Td, {
+    mono: true
+  }, l.end), /*#__PURE__*/React.createElement(Td, {
+    mono: true,
+    bold: true
+  }, l.days, "\u5929"), /*#__PURE__*/React.createElement(Td, {
+    c: T.ts,
+    s: {
+      maxWidth: 200,
+      overflow: "hidden",
+      textOverflow: "ellipsis",
+      whiteSpace: "nowrap"
+    }
+  }, l.reason), /*#__PURE__*/React.createElement(Td, {
+    mono: true,
+    c: T.tm
+  }, l.applyDt.slice(5)), /*#__PURE__*/React.createElement(Td, null, /*#__PURE__*/React.createElement(Badge, {
+    s: l.st
+  })), /*#__PURE__*/React.createElement(Td, null, l.st === "pending" && /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 3
+    }
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: () => approveLeave(l.id),
+    style: {
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      padding: 2
+    },
+    title: "\u6838\u51C6"
+  }, $.chk({
+    s: 14,
+    c: T.g
+  })), /*#__PURE__*/React.createElement("button", {
+    onClick: () => rejectLeave(l.id),
+    style: {
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      padding: 2
+    },
+    title: "\u99C1\u56DE"
+  }, $.x({
+    s: 14,
+    c: "#ef4444"
+  })))))))))), tab === "emp" && /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "2fr 1fr",
@@ -3407,13 +4126,7 @@ function PgHR() {
     }
   }, e.perf))), /*#__PURE__*/React.createElement(Td, null, /*#__PURE__*/React.createElement(Badge, {
     s: e.st
-  }))))))), /*#__PURE__*/React.createElement("div", {
-    style: {
-      display: "flex",
-      flexDirection: "column",
-      gap: 12
-    }
-  }, /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement(Sec, {
+  }))))))), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement(Sec, {
     title: "\u90E8\u9580\u4EBA\u529B",
     en: "Headcount"
   }), depts.map((d, i) => /*#__PURE__*/React.createElement("div", {
@@ -3422,7 +4135,7 @@ function PgHR() {
       display: "flex",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: "6px 0",
+      padding: "7px 0",
       borderBottom: `1px solid ${T.bl}`
     }
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -3441,48 +4154,157 @@ function PgHR() {
       fontFamily: T.mo,
       fontWeight: 600
     }
-  }, Math.round(d.u / d.b * 100), "%")))), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement(Sec, {
-    title: "\u51FA\u52E4",
-    en: "Attendance"
-  }), /*#__PURE__*/React.createElement("div", {
+  }, Math.round(d.u / d.b * 100), "%"))))), tab === "stat" && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     style: {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr 1fr",
-      gap: 6
+      gridTemplateColumns: "repeat(4,1fr)",
+      gap: 10,
+      marginBottom: 14
     }
   }, [{
-    l: "出勤率",
+    l: "全公司出勤率",
     v: "97.2%",
     c: T.g
   }, {
-    l: "遲到",
-    v: "12",
+    l: "平均工時",
+    v: "9.2h",
+    c: T.bl2
+  }, {
+    l: "本月遲到次數",
+    v: "12次",
     c: T.am
   }, {
-    l: "請假",
-    v: "28天",
-    c: T.bl2
-  }].map((s, i) => /*#__PURE__*/React.createElement("div", {
+    l: "加班總時數",
+    v: "248h",
+    c: T.pu
+  }].map((k, i) => /*#__PURE__*/React.createElement("div", {
     key: i,
     style: {
-      background: T.bg,
-      borderRadius: 6,
-      padding: 10,
+      background: "#fff",
+      border: `1px solid ${T.b}`,
+      borderRadius: 10,
+      padding: 14,
       textAlign: "center"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 16,
+      fontSize: 22,
       fontWeight: 700,
       fontFamily: T.mo,
-      color: s.c
+      color: k.c
     }
-  }, s.v), /*#__PURE__*/React.createElement("div", {
+  }, k.v), /*#__PURE__*/React.createElement("div", {
     style: {
-      fontSize: 10,
-      color: T.tm
+      fontSize: 11,
+      color: T.tm,
+      marginTop: 3
     }
-  }, s.l))))))), /*#__PURE__*/React.createElement(Modal, {
+  }, k.l)))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 12
+    }
+  }, /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement(Sec, {
+    title: "\u6708\u5EA6\u51FA\u52E4\u8DA8\u52E2",
+    en: "Attendance Trend"
+  }), /*#__PURE__*/React.createElement(ResponsiveContainer, {
+    width: "100%",
+    height: 180
+  }, /*#__PURE__*/React.createElement(LineChart, {
+    data: [{
+      m: "1月",
+      a: 96.5
+    }, {
+      m: "2月",
+      a: 97.1
+    }, {
+      m: "3月",
+      a: 97.8
+    }, {
+      m: "4月",
+      a: 97.2
+    }, {
+      m: "5月",
+      a: 97.2
+    }]
+  }, /*#__PURE__*/React.createElement(CartesianGrid, {
+    strokeDasharray: "3 3",
+    stroke: T.bl
+  }), /*#__PURE__*/React.createElement(XAxis, {
+    dataKey: "m",
+    tick: {
+      fill: T.tm,
+      fontSize: 10
+    }
+  }), /*#__PURE__*/React.createElement(YAxis, {
+    domain: [95, 100],
+    tick: {
+      fill: T.tm,
+      fontSize: 10
+    },
+    tickFormatter: v => `${v}%`
+  }), /*#__PURE__*/React.createElement(Tooltip, {
+    contentStyle: {
+      background: "#fff",
+      border: `1px solid ${T.b}`,
+      borderRadius: 8,
+      fontSize: 11
+    }
+  }), /*#__PURE__*/React.createElement(Line, {
+    type: "monotone",
+    dataKey: "a",
+    stroke: T.g,
+    strokeWidth: 2.5,
+    dot: {
+      fill: T.g,
+      r: 4
+    },
+    name: "\u51FA\u52E4\u7387"
+  })))), /*#__PURE__*/React.createElement(Card, null, /*#__PURE__*/React.createElement(Sec, {
+    title: "\u90E8\u9580\u51FA\u52E4\u7387",
+    en: "By Department"
+  }), /*#__PURE__*/React.createElement(ResponsiveContainer, {
+    width: "100%",
+    height: 180
+  }, /*#__PURE__*/React.createElement(BarChart, {
+    data: depts.map(d => ({
+      n: d.n,
+      r: 95 + Math.random() * 5
+    })),
+    layout: "vertical"
+  }, /*#__PURE__*/React.createElement(CartesianGrid, {
+    strokeDasharray: "3 3",
+    stroke: T.bl
+  }), /*#__PURE__*/React.createElement(XAxis, {
+    type: "number",
+    domain: [90, 100],
+    tick: {
+      fill: T.tm,
+      fontSize: 10
+    },
+    tickFormatter: v => `${v.toFixed(0)}%`
+  }), /*#__PURE__*/React.createElement(YAxis, {
+    dataKey: "n",
+    type: "category",
+    tick: {
+      fill: T.tm,
+      fontSize: 10
+    },
+    width: 55
+  }), /*#__PURE__*/React.createElement(Tooltip, {
+    contentStyle: {
+      background: "#fff",
+      border: `1px solid ${T.b}`,
+      borderRadius: 8,
+      fontSize: 11
+    },
+    formatter: v => `${v.toFixed(1)}%`
+  }), /*#__PURE__*/React.createElement(Bar, {
+    dataKey: "r",
+    fill: T.bl2,
+    radius: [0, 4, 4, 0]
+  })))))), /*#__PURE__*/React.createElement(Modal, {
     open: !!sel,
     onClose: () => setSel(null),
     title: `${sel?.name} — ${sel?.title}`
@@ -3547,7 +4369,60 @@ function PgHR() {
       fontSize: 10,
       color: T.tm
     }
-  }, "\u6708\u85AA"))))));
+  }, "\u6708\u85AA"))))), /*#__PURE__*/React.createElement(Modal, {
+    open: leaveOpen,
+    onClose: () => setLeaveOpen(false),
+    title: "\u8ACB\u5047\u7533\u8ACB"
+  }, /*#__PURE__*/React.createElement(Select, {
+    label: "\u5047\u5225",
+    value: leaveForm.type,
+    onChange: v => setLeaveForm(p => ({
+      ...p,
+      type: v
+    })),
+    options: ["特休", "病假", "事假", "婚假", "喪假", "產假", "陪產假"]
+  }), /*#__PURE__*/React.createElement(Input, {
+    label: "\u8D77\u59CB\u65E5\u671F",
+    type: "date",
+    value: leaveForm.start,
+    onChange: v => setLeaveForm(p => ({
+      ...p,
+      start: v
+    }))
+  }), /*#__PURE__*/React.createElement(Input, {
+    label: "\u7D50\u675F\u65E5\u671F",
+    type: "date",
+    value: leaveForm.end,
+    onChange: v => setLeaveForm(p => ({
+      ...p,
+      end: v
+    }))
+  }), /*#__PURE__*/React.createElement(Input, {
+    label: "\u4E8B\u7531",
+    value: leaveForm.reason,
+    onChange: v => setLeaveForm(p => ({
+      ...p,
+      reason: v
+    })),
+    placeholder: "\u8ACB\u8AAA\u660E\u8ACB\u5047\u4E8B\u7531"
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      justifyContent: "flex-end",
+      marginTop: 14,
+      paddingTop: 12,
+      borderTop: `1px solid ${T.bl}`
+    }
+  }, /*#__PURE__*/React.createElement(Btn, {
+    onClick: () => setLeaveOpen(false)
+  }, "\u53D6\u6D88"), /*#__PURE__*/React.createElement(Btn, {
+    primary: true,
+    onClick: submitLeave
+  }, $.save({
+    s: 13,
+    c: "#fff"
+  }), " \u9001\u51FA\u7533\u8ACB"))));
 }
 
 // ══ MANUFACTURING ══
