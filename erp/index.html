@@ -2,24 +2,29 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Think BIG! AI Agent ERP — 企業級智慧管理系統</title>
 <meta name="description" content="Think BIG! AI Agent ERP：訂單管理、庫存管理、財務會計、CRM、生產製造、商業智慧、打卡系統 — 12大模組完整互動展示">
+<meta name="theme-color" content="#e8422a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Noto Sans TC',-apple-system,sans-serif;background:#f8f9fa;overflow:hidden}
-#root{height:100vh}
+html,body{height:100%;overflow:hidden;-webkit-text-size-adjust:100%}
+body{font-family:'Noto Sans TC',-apple-system,sans-serif;background:#f8f9fa}
+#root{height:100vh;height:100dvh}
 #loading{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:16px}
 #loading .spinner{width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#e8422a;border-radius:50%;animation:spin 0.6s linear infinite}
 #loading .text{font-family:'Azeret Mono',monospace;font-size:12px;color:#9ca3af;letter-spacing:0.1em}
-::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar{width:4px;height:4px}
 ::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
 ::-webkit-scrollbar-track{background:transparent}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes slideD{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:767px){
+  body{font-size:14px}
+}
 </style>
 </head>
 <body>
@@ -5485,6 +5490,8 @@ function Dash({
 }) {
   const S = useStore();
   const [tab, setTab] = useState("dashboard");
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth < 768);
+  const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
   const [col, setCol] = useState(false);
   const [aiOpen, setAi] = useState(false);
   const [aiMsgs, setMsgs] = useState([{
@@ -5496,6 +5503,15 @@ function Dash({
   useEffect(() => {
     const t = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(t);
+  }, []);
+  useEffect(() => {
+    const h = () => {
+      const m = window.innerWidth < 768;
+      setIsMobile(m);
+      if (!m) setSidebarOpen(true);else setSidebarOpen(false);
+    };
+    window.addEventListener("resize", h);
+    return () => window.removeEventListener("resize", h);
   }, []);
   const nav = [{
     id: "dashboard",
@@ -5594,6 +5610,26 @@ function Dash({
       }]);
     }, 400);
   };
+  const handleNavClick = id => {
+    setTab(id);
+    if (isMobile) setSidebarOpen(false);
+  };
+
+  // Sidebar dimensions
+  const sbWidth = isMobile ? 260 : col ? 52 : 200;
+  const sbStyle = isMobile ? {
+    position: "fixed",
+    top: 0,
+    left: sidebarOpen ? 0 : -280,
+    height: "100vh",
+    width: sbWidth,
+    zIndex: 2000,
+    boxShadow: sidebarOpen ? "4px 0 24px rgba(0,0,0,0.15)" : "none",
+    transition: "left 0.28s cubic-bezier(0.16,1,0.3,1)"
+  } : {
+    width: sbWidth,
+    transition: "width 0.2s"
+  };
   return /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
@@ -5601,12 +5637,21 @@ function Dash({
       background: T.bg,
       fontFamily: T.f,
       color: T.t,
-      overflow: "hidden"
+      overflow: "hidden",
+      position: "relative"
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, isMobile && sidebarOpen && /*#__PURE__*/React.createElement("div", {
+    onClick: () => setSidebarOpen(false),
     style: {
-      width: col ? 52 : 200,
-      transition: "width 0.2s",
+      position: "fixed",
+      inset: 0,
+      background: "rgba(0,0,0,0.4)",
+      zIndex: 1999,
+      animation: "fadeIn 0.2s ease"
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      ...sbStyle,
       background: "#fff",
       borderRight: `1px solid ${T.b}`,
       display: "flex",
@@ -5616,17 +5661,17 @@ function Dash({
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: col ? "12px 6px" : "12px 14px",
+      padding: !isMobile && col ? "12px 6px" : "12px 14px",
       borderBottom: `1px solid ${T.bl}`,
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      minHeight: 44
+      minHeight: isMobile ? 52 : 44
     }
-  }, !col && /*#__PURE__*/React.createElement("div", {
+  }, (!col || isMobile) && /*#__PURE__*/React.createElement("div", {
     style: {
       fontFamily: T.mo,
-      fontSize: 13,
+      fontSize: isMobile ? 15 : 13,
       fontWeight: 800,
       letterSpacing: "0.06em",
       whiteSpace: "nowrap"
@@ -5636,56 +5681,54 @@ function Dash({
       color: T.r
     }
   }, "BIG!")), /*#__PURE__*/React.createElement("button", {
-    onClick: () => setCol(!col),
+    onClick: () => isMobile ? setSidebarOpen(false) : setCol(!col),
     style: {
       background: "none",
       border: "none",
       cursor: "pointer",
-      padding: 3
+      padding: 6,
+      display: "flex"
     }
-  }, $.menu({
+  }, isMobile ? $.x({
+    s: 18,
+    c: T.tm
+  }) : $.menu({
     s: 15,
     c: T.tm
   }))), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
-      padding: "4px 3px",
+      padding: isMobile ? "8px 6px" : "4px 3px",
       overflowY: "auto",
       display: "flex",
       flexDirection: "column",
-      gap: 1
+      gap: isMobile ? 3 : 1
     }
   }, nav.map(n => /*#__PURE__*/React.createElement("button", {
     key: n.id,
-    onClick: () => setTab(n.id),
+    onClick: () => handleNavClick(n.id),
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 8,
-      padding: col ? "7px" : "7px 9px",
-      borderRadius: 6,
+      gap: isMobile ? 12 : 8,
+      padding: isMobile ? "12px 14px" : !col ? "7px 9px" : "7px",
+      borderRadius: isMobile ? 8 : 6,
       background: tab === n.id ? T.rbg : "transparent",
       border: tab === n.id ? `1px solid ${T.rb}` : "1px solid transparent",
       color: tab === n.id ? T.r : T.ts,
       cursor: "pointer",
       width: "100%",
-      justifyContent: col ? "center" : "flex-start",
-      fontSize: 12,
+      justifyContent: col && !isMobile ? "center" : "flex-start",
+      fontSize: isMobile ? 14 : 12,
       fontWeight: tab === n.id ? 600 : 400,
       transition: "all 0.15s"
-    },
-    onMouseEnter: e => {
-      if (tab !== n.id) e.currentTarget.style.background = "#f4f4f5";
-    },
-    onMouseLeave: e => {
-      if (tab !== n.id) e.currentTarget.style.background = "transparent";
     }
   }, n.icon({
-    s: 15,
+    s: isMobile ? 18 : 15,
     c: tab === n.id ? T.r : T.tm
-  }), !col && /*#__PURE__*/React.createElement("span", null, n.l)))), /*#__PURE__*/React.createElement("div", {
+  }), (!col || isMobile) && /*#__PURE__*/React.createElement("span", null, n.l)))), /*#__PURE__*/React.createElement("div", {
     style: {
-      padding: "4px 3px",
+      padding: isMobile ? "8px 6px" : "4px 3px",
       borderTop: `1px solid ${T.bl}`
     }
   }, /*#__PURE__*/React.createElement("button", {
@@ -5693,45 +5736,72 @@ function Dash({
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 8,
-      padding: col ? "7px" : "7px 9px",
-      borderRadius: 6,
+      gap: isMobile ? 12 : 8,
+      padding: isMobile ? "12px 14px" : !col ? "7px 9px" : "7px",
+      borderRadius: isMobile ? 8 : 6,
       background: "none",
       border: "none",
       color: T.tm,
       cursor: "pointer",
       width: "100%",
-      justifyContent: col ? "center" : "flex-start",
-      fontSize: 11
+      justifyContent: col && !isMobile ? "center" : "flex-start",
+      fontSize: isMobile ? 13 : 11
     }
   }, $.out({
-    s: 14,
+    s: isMobile ? 17 : 14,
     c: T.tm
-  }), !col && "登出"))), /*#__PURE__*/React.createElement("div", {
+  }), (!col || isMobile) && "登出"))), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
       display: "flex",
       flexDirection: "column",
-      overflow: "hidden"
+      overflow: "hidden",
+      width: "100%"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
-      height: 46,
+      height: isMobile ? 52 : 46,
       display: "flex",
       alignItems: "center",
       justifyContent: "space-between",
-      padding: "0 16px",
+      padding: isMobile ? "0 12px" : "0 16px",
       borderBottom: `1px solid ${T.b}`,
       background: "#fff",
+      flexShrink: 0,
+      gap: 8
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      minWidth: 0,
+      flex: 1
+    }
+  }, isMobile && /*#__PURE__*/React.createElement("button", {
+    onClick: () => setSidebarOpen(true),
+    style: {
+      background: "none",
+      border: `1px solid ${T.b}`,
+      borderRadius: 8,
+      padding: "7px",
+      cursor: "pointer",
+      display: "flex",
       flexShrink: 0
     }
-  }, /*#__PURE__*/React.createElement("h2", {
+  }, $.menu({
+    s: 18,
+    c: T.t
+  })), /*#__PURE__*/React.createElement("h2", {
     style: {
-      fontSize: 13,
+      fontSize: isMobile ? 14 : 13,
       fontWeight: 600,
-      margin: 0
+      margin: 0,
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      textOverflow: "ellipsis"
     }
-  }, nav.find(n => n.id === tab)?.l, /*#__PURE__*/React.createElement("span", {
+  }, nav.find(n => n.id === tab)?.l, !isMobile && /*#__PURE__*/React.createElement("span", {
     style: {
       color: T.tm,
       marginLeft: 6,
@@ -5739,13 +5809,14 @@ function Dash({
       fontFamily: T.mo,
       fontWeight: 400
     }
-  }, nav.find(n => n.id === tab)?.en)), /*#__PURE__*/React.createElement("div", {
+  }, nav.find(n => n.id === tab)?.en))), /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
-      gap: 6
+      gap: 6,
+      flexShrink: 0
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, !isMobile && /*#__PURE__*/React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -5768,7 +5839,7 @@ function Dash({
       fontSize: 11,
       width: "100%"
     }
-  })), /*#__PURE__*/React.createElement("span", {
+  })), !isMobile && /*#__PURE__*/React.createElement("span", {
     style: {
       fontSize: 10,
       fontFamily: T.mo,
@@ -5783,19 +5854,19 @@ function Dash({
       display: "flex",
       alignItems: "center",
       gap: 3,
-      padding: "4px 8px",
-      borderRadius: 6,
+      padding: isMobile ? "7px 9px" : "4px 8px",
+      borderRadius: isMobile ? 8 : 6,
       background: aiOpen ? T.rbg : "#fff",
       border: `1px solid ${aiOpen ? T.rb : T.b}`,
       color: aiOpen ? T.r : T.ts,
       cursor: "pointer",
-      fontSize: 10,
+      fontSize: isMobile ? 12 : 10,
       fontWeight: 600
     }
   }, $.bot({
-    s: 12,
+    s: isMobile ? 14 : 12,
     c: aiOpen ? T.r : T.tm
-  }), " AI"), /*#__PURE__*/React.createElement("div", {
+  }), !isMobile && " AI"), !isMobile && /*#__PURE__*/React.createElement("div", {
     style: {
       position: "relative"
     }
@@ -5816,22 +5887,38 @@ function Dash({
     style: {
       flex: 1,
       display: "flex",
-      overflow: "hidden"
+      overflow: "hidden",
+      flexDirection: isMobile ? "column" : "row"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
       overflowY: "auto",
-      padding: 16
+      overflowX: "auto",
+      padding: isMobile ? 12 : 16,
+      WebkitOverflowScrolling: "touch"
     }
   }, pages[tab]), aiOpen && /*#__PURE__*/React.createElement("div", {
     style: {
-      width: 280,
-      borderLeft: `1px solid ${T.b}`,
+      ...(isMobile ? {
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        height: "70vh",
+        zIndex: 2500,
+        borderTop: `1px solid ${T.b}`,
+        boxShadow: "0 -8px 32px rgba(0,0,0,0.2)",
+        borderRadius: "16px 16px 0 0"
+      } : {
+        width: 280,
+        borderLeft: `1px solid ${T.b}`
+      }),
       background: "#fff",
       display: "flex",
       flexDirection: "column",
-      flexShrink: 0
+      flexShrink: 0,
+      animation: isMobile ? "slideUpPanel 0.3s ease" : "none"
     }
   }, /*#__PURE__*/React.createElement("div", {
     style: {
@@ -5875,7 +5962,8 @@ function Dash({
     style: {
       background: "none",
       border: "none",
-      cursor: "pointer"
+      cursor: "pointer",
+      padding: 4
     }
   }, $.x({
     s: 14,
@@ -5895,7 +5983,7 @@ function Dash({
       padding: "8px 10px",
       borderRadius: 8,
       maxWidth: "90%",
-      fontSize: 11,
+      fontSize: isMobile ? 13 : 11,
       lineHeight: 1.6,
       whiteSpace: "pre-wrap",
       ...(m.r === "bot" ? {
@@ -5922,11 +6010,11 @@ function Dash({
     placeholder: "\u554F\u6211...",
     style: {
       flex: 1,
-      padding: "6px 8px",
+      padding: isMobile ? "10px 12px" : "6px 8px",
       background: T.bg,
       border: `1px solid ${T.b}`,
-      borderRadius: 6,
-      fontSize: 11,
+      borderRadius: isMobile ? 8 : 6,
+      fontSize: isMobile ? 14 : 11,
       outline: "none"
     }
   }), /*#__PURE__*/React.createElement("button", {
@@ -5934,13 +6022,13 @@ function Dash({
     style: {
       background: T.r,
       border: "none",
-      borderRadius: 6,
-      padding: "6px 8px",
+      borderRadius: isMobile ? 8 : 6,
+      padding: isMobile ? "10px 14px" : "6px 8px",
       color: "#fff",
       cursor: "pointer"
     }
   }, $.send({
-    s: 12,
+    s: isMobile ? 15 : 12,
     c: "#fff"
   })))))), S.toasts.map(t => /*#__PURE__*/React.createElement("div", {
     key: t.id,
@@ -5957,7 +6045,8 @@ function Dash({
       fontSize: 12,
       fontWeight: 600,
       boxShadow: "0 8px 30px rgba(0,0,0,0.1)",
-      animation: "slideD 0.3s ease"
+      animation: "slideD 0.3s ease",
+      maxWidth: "calc(100vw - 24px)"
     }
   }, t.type === "success" ? $.chk({
     s: 14,
@@ -5965,7 +6054,7 @@ function Dash({
   }) : $.warn({
     s: 14,
     c: "#ef4444"
-  }), " ", t.msg)), /*#__PURE__*/React.createElement("style", null, `@keyframes spin{to{transform:rotate(360deg)}}@keyframes slideD{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:${T.b};border-radius:2px}::-webkit-scrollbar-track{background:transparent}`));
+  }), " ", t.msg)), /*#__PURE__*/React.createElement("style", null, `@keyframes spin{to{transform:rotate(360deg)}}@keyframes slideD{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes slideUpPanel{from{transform:translateY(100%)}to{transform:translateY(0)}}::-webkit-scrollbar{width:4px;height:4px}::-webkit-scrollbar-thumb{background:${T.b};border-radius:2px}::-webkit-scrollbar-track{background:transparent}@media(max-width:767px){table{font-size:11px !important}td,th{padding:6px 8px !important;white-space:nowrap}}`));
 }
 const AppMain = function App() {
   const [in_, setIn] = useState(false);
