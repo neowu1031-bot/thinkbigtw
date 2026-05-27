@@ -12,6 +12,9 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans TC',-apple-system,sans-serif;background:#f8f9fa;overflow:hidden}
 #root{height:100vh}
+#loading{display:flex;align-items:center;justify-content:center;height:100vh;flex-direction:column;gap:16px}
+#loading .spinner{width:32px;height:32px;border:3px solid #e5e7eb;border-top-color:#e8422a;border-radius:50%;animation:spin 0.6s linear infinite}
+#loading .text{font-family:'Azeret Mono',monospace;font-size:12px;color:#9ca3af;letter-spacing:0.1em}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:2px}
 ::-webkit-scrollbar-track{background:transparent}
@@ -20,12 +23,40 @@ body{font-family:'Noto Sans TC',-apple-system,sans-serif;background:#f8f9fa;over
 </style>
 </head>
 <body>
-<div id="root"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.7/Recharts.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
-<script type="text/babel" data-type="module">
+<div id="root">
+  <div id="loading">
+    <div class="spinner"></div>
+    <div class="text">LOADING ERP SYSTEM...</div>
+  </div>
+</div>
+
+<!-- React MUST load first as globals -->
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<!-- prop-types needed by recharts UMD -->
+<script crossorigin src="https://unpkg.com/prop-types@15/prop-types.min.js"></script>
+<!-- Recharts UMD (needs React + ReactDOM + PropTypes as globals) -->
+<script>
+// Recharts UMD expects require("react"), require("prop-types"), require("react-dom")
+// We need to shim this
+window.module = { exports: {} };
+window.exports = window.module.exports;
+window.require = function(name) {
+  if (name === "react") return window.React;
+  if (name === "react-dom") return window.ReactDOM;
+  if (name === "prop-types") return window.PropTypes;
+  return {};
+};
+</script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.7/Recharts.min.js"></script>
+<script>
+// After recharts loads, capture its exports
+window.Recharts = window.module.exports || window.Recharts;
+</script>
+<!-- Babel for JSX transform -->
+<script crossorigin src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+
+<script type="text/babel" data-presets="react">
 const { useState, useEffect, useMemo, useCallback, useRef } = React;
 const { AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart, Line, LineChart } = Recharts;
 
@@ -471,7 +502,8 @@ const AppMain = function App(){
   return in_?<Dash onLogout={()=>setIn(false)}/>:<Login onLogin={()=>setIn(true)}/>;
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(AppMain));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(AppMain));
 </script>
 </body>
 </html>
