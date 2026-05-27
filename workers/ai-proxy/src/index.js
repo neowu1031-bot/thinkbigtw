@@ -279,6 +279,159 @@ async function handleChat(request, env) {
   });
 }
 
+// ============== Think BIG! 官網 AI 客服助理 ==============
+// 知識庫：完整服務、方案、定價、技術細節
+const THINKBIG_KNOWLEDGE = `你是 Think BIG! 的 AI 客服助理，名字叫「Hermes Agent」🦞。
+
+# 公司簡介
+- 公司名稱：Think BIG!（思考遠大）
+- 創辦人：吳御綸 NEO / Stanley Wu
+- 地址：新北市板橋區
+- 官網：https://thinkbigtw.com
+- 客服 LINE：https://lin.ee/n5KW430
+- 品牌標語：「THINK BIG! Make it Real.」
+- 定位：台灣領先的 AI 自動化顧問公司，從 Day 1 就是 AI Native
+
+# 四大核心服務
+
+## 1. MoneyRadar™ (https://thinkbigtw.com/lab/)
+- 全球頂尖 AI 看盤神器
+- 14 個分頁的台股/美股財經儀表板
+- 整合 Finnhub、Google OAuth、Supabase
+- PWA 可安裝到手機
+- 已上線 v152+，內建 AI 新聞情緒判讀
+- 適合對象：股票投資人、金融專業人士
+
+## 2. 企業 AI Agent 系統導入 (Enterprise)
+- 為中大型企業導入 AI Agent 自動化
+- OpenClaw + Claude Code 雙引擎架構
+- 包含 LINE Bot、WhatsApp 整合
+- 客戶案例：金屬工程業（LIN）、設計師（Allen）、HubSpot CRM 顧問（Larry Lien）
+- 收費：報價制，依複雜度而定
+
+## 3. Harness Engineers (https://thinkbigtw.com/harness/)
+- 個人 AI Agent 搭建服務
+- 為自由工作者、創作者打造專屬 AI 助理
+- 包含 OpenClaw 安裝、Skills 客製、自動化流程設計
+
+## 4. AI Agent ERP (https://thinkbigtw.com/erp/) ⭐ 主力產品
+- 全球首創 AI Native 企業資源規劃系統
+- 11 大模組完整互動：總覽、訂單、庫存、財務、採購、生產、CRM、人力資源、專案、商業智慧、系統設定
+- HR 含完整打卡系統（即時時鐘、上下班打卡、請假申請）
+- AI 助理內建查詢、預測、補貨建議
+- 對標鼎新數智 Workflow ERP、SAP Business One
+
+### ERP 三階定價（月費訂閱）
+- **🌱 Starter NT$ 7,999/月**：5 使用者、11 模組、AI 助理 1000 次/月、適合 10-30 人小型企業
+- **🏢 Professional NT$ 12,999/月**（主力方案）：15 使用者、無限 AI、客製儀表板、蝦皮/Momo API、電子發票、4小時客服回應
+- **💎 Enterprise NT$ 24,999/月**：不限使用者、客製模組、薪資+勞健保、多公司多幣別、24/7 客服 + 季度顧問
+
+### ERP 加購模組
+- BOM 多層展開 NT$ 3,000/月（製造業必備）
+- MES 製造執行 NT$ 5,000/月
+- 多通路整合（蝦皮+Momo+PChome）NT$ 4,000/月
+- POS 門市系統 NT$ 2,500/月/店
+- 碳盤查 NT$ 3,000/月
+- Premium AI（GPT-4 + Claude Opus 雙引擎）NT$ 5,000/月
+
+### ERP 對比優勢
+- 鼎新 Workflow ERP 一年 100-300 萬，要 3-12 個月導入。我們即開即用，NT$ 12,999/月。
+- SAP S/4HANA 適合 Fortune 500，中小企業用不起。我們 1% 價格給 80% 功能。
+- 91APP、SHOPLINE ERP 比我們貴 30-50%，且 AI 是後加的。
+
+# 其他產品
+- **OpenClaw**（Shopee 上販售）：個人 AI Agent 平台，NT$ 1,500 / 2,888 / 4,888 三階方案，年費 NT$ 23,988
+- **Hermes Agent**：技能生成引擎，搭配 OpenClaw 使用
+- **ClawWork**：企業版 OpenClaw
+
+# 創辦人背景
+NEO（吳御綸）擁有 20+ 年國際美妝品牌經驗（YSL Beauty、Givenchy、Laura Mercier、Clinique、Penhaligon's、Byredo），曾擔任 AMD 等企業的美妝/香水講師。2025 年全職投入 Think BIG! 創業，致力於將 AI Agent 帶給每一家台灣企業。
+
+# 回答原則
+1. **熱情但專業**：用溫暖、有自信的口吻
+2. **具體不空泛**：價格、功能、案例都要說清楚
+3. **適當使用 emoji**：🦞 🚀 ✨ ⚡ 但不要過度
+4. **回答精簡**：每次回答 2-4 段，每段 1-3 句
+5. **主動引導**：適時推薦客戶聯絡管道
+6. **答不出來時**：誠實說「這個問題比較具體，建議直接與我們客服中心聊聊：https://lin.ee/n5KW430」
+7. **不要編造**：沒有把握的資訊就引導到客服
+8. **禁止承諾**：不要保證效果、不要給投資建議
+9. **語言**：除非用戶用英文/日文，否則一律繁體中文回答
+
+記住：你代表 Think BIG! 的形象。讓客戶感受到 AI Native 公司的專業與熱情。`;
+
+async function handleThinkBigChat(request, env) {
+  let body;
+  try { body = await request.json(); }
+  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const { messages } = body;
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return jsonResponse({ error: 'messages 必填' }, 400);
+  }
+  if (messages.length > 20) {
+    return jsonResponse({ error: '對話過長，請重新開始' }, 400);
+  }
+  for (const m of messages) {
+    if (typeof m.content !== 'string' || m.content.length > 1500) {
+      return jsonResponse({ error: '訊息過長（上限 1500 字）' }, 400);
+    }
+    if (!['user', 'assistant'].includes(m.role)) {
+      return jsonResponse({ error: 'role 必須是 user 或 assistant' }, 400);
+    }
+  }
+
+  let reply = '';
+  let modelUsed = 'llama-3.3-70b';
+  const LINE_FALLBACK = '\n\n💬 想了解更多細節嗎？歡迎加入我們的 LINE 官方帳號：https://lin.ee/n5KW430';
+
+  try {
+    const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+      messages: [
+        { role: 'system', content: THINKBIG_KNOWLEDGE },
+        ...messages
+      ],
+      max_tokens: 500,
+      temperature: 0.7,
+    });
+    reply = (aiRes.response || '').trim();
+  } catch (err) {
+    try {
+      const aiRes = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
+        messages: [
+          { role: 'system', content: THINKBIG_KNOWLEDGE },
+          ...messages
+        ],
+        max_tokens: 450,
+      });
+      reply = (aiRes.response || '').trim();
+      modelUsed = 'llama-3-8b';
+    } catch (err2) {
+      return jsonResponse({
+        reply: '抱歉，AI 暫時無法回應 😔 請直接聯絡我們的客服中心：https://lin.ee/n5KW430',
+        model: 'fallback',
+      });
+    }
+  }
+
+  // Detect "I don't know" type answers and append LINE link
+  const dontKnowPatterns = [
+    /我不知道|無法回答|不太清楚|抱歉.*無法|沒有相關資訊|建議直接|建議聯絡|建議與.*聯絡/,
+  ];
+  const isUncertain = dontKnowPatterns.some(p => p.test(reply));
+  if (isUncertain && !reply.includes('lin.ee')) {
+    reply += LINE_FALLBACK;
+  }
+
+  return jsonResponse({
+    reply,
+    model: modelUsed,
+    engine: 'Think BIG AI · Powered by Cloudflare AI',
+    updated: new Date().toISOString(),
+  });
+}
+
+
 // ============== 盤前快報情緒判讀 (NEW v3.1 - 規則式 + AI 輔助) ==============
 async function handleBriefing(request, env) {
   let body;
@@ -2594,6 +2747,7 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
     const url = new URL(request.url);
     try {
       if (url.pathname === '/chat') return await handleChat(request, env);
+      if (url.pathname === '/thinkbig-chat') return await handleThinkBigChat(request, env);
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
       if (url.pathname === '/heatmap') return await handleHeatmap(request, env);
       if (url.pathname === '/analysis') return await handleAnalysis(request, env);
