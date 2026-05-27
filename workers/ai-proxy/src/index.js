@@ -382,35 +382,74 @@ async function handleThinkBigChat(request, env) {
   }
 
   let reply = '';
-  let modelUsed = 'llama-3.3-70b';
+  let modelUsed = 'MiniMax-M2';
   const LINE_FALLBACK = '\n\n💬 想了解更多細節嗎？歡迎加入我們的 LINE 官方帳號：https://lin.ee/n5KW430';
 
-  try {
-    const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
-      messages: [
-        { role: 'system', content: THINKBIG_KNOWLEDGE },
-        ...messages
-      ],
-      max_tokens: 500,
-      temperature: 0.7,
-    });
-    reply = (aiRes.response || '').trim();
-  } catch (err) {
+  // ============== MiniMax M2 (Primary) ==============
+  const MINIMAX_KEY = env.MINIMAX_API_KEY;
+  
+  if (MINIMAX_KEY) {
     try {
-      const aiRes = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
+      const mxRes = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${MINIMAX_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          model: 'MiniMax-M2',
+          messages: [
+            { role: 'system', content: THINKBIG_KNOWLEDGE },
+            ...messages
+          ],
+          max_tokens: 600,
+          temperature: 0.7,
+        }),
+      });
+      
+      if (mxRes.ok) {
+        const data = await mxRes.json();
+        if (data.base_resp && data.base_resp.status_code === 0 && data.choices && data.choices[0]) {
+          reply = (data.choices[0].message?.content || '').trim();
+          // Strip <think>...</think> blocks if any leak through
+          reply = reply.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+        }
+      }
+    } catch (err) {
+      console.error('MiniMax error:', err);
+    }
+  }
+
+  // ============== Fallback: Cloudflare AI (Llama 3.3 70B) ==============
+  if (!reply) {
+    try {
+      const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
         messages: [
           { role: 'system', content: THINKBIG_KNOWLEDGE },
           ...messages
         ],
-        max_tokens: 450,
+        max_tokens: 500,
+        temperature: 0.7,
       });
       reply = (aiRes.response || '').trim();
-      modelUsed = 'llama-3-8b';
-    } catch (err2) {
-      return jsonResponse({
-        reply: '抱歉，AI 暫時無法回應 😔 請直接聯絡我們的客服中心：https://lin.ee/n5KW430',
-        model: 'fallback',
-      });
+      modelUsed = 'llama-3.3-70b-fallback';
+    } catch (err) {
+      try {
+        const aiRes = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
+          messages: [
+            { role: 'system', content: THINKBIG_KNOWLEDGE },
+            ...messages
+          ],
+          max_tokens: 450,
+        });
+        reply = (aiRes.response || '').trim();
+        modelUsed = 'llama-3-8b-fallback';
+      } catch (err2) {
+        return jsonResponse({
+          reply: '抱歉，AI 暫時無法回應 😔 請直接聯絡我們的客服中心：https://lin.ee/n5KW430',
+          model: 'fallback',
+        });
+      }
     }
   }
 
@@ -426,7 +465,7 @@ async function handleThinkBigChat(request, env) {
   return jsonResponse({
     reply,
     model: modelUsed,
-    engine: 'Think BIG AI · Powered by Cloudflare AI',
+    engine: 'Think BIG AI · Powered by MiniMax M2',
     updated: new Date().toISOString(),
   });
 }
