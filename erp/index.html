@@ -26,6 +26,46 @@ body{font-family:'Noto Sans TC',-apple-system,sans-serif;background:#f8f9fa}
   body{font-size:14px}
 }
 </style>
+
+<!-- ═══ JSON-LD 結構化資料 (SEO/GEO) ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#organization",
+      "name": "Think BIG!",
+      "alternateName": ["思考遠大", "ThinkBIG TW"],
+      "url": "https://thinkbigtw.com/",
+      "founder": {"@type": "Person", "name": "吳御綸", "alternateName": "NEO Stanley Wu"},
+      "address": {"@type": "PostalAddress", "addressRegion": "新北市", "addressLocality": "板橋區", "addressCountry": "TW"},
+      "sameAs": ["https://lin.ee/n5KW430"]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://thinkbigtw.com/#product-erp",
+      "name": "AI Agent ERP",
+      "brand": {"@id": "https://thinkbigtw.com/#organization"},
+      "category": "企業資源規劃系統 (ERP)",
+      "description": "全球首創 AI Native 企業資源規劃系統，11 大模組完整互動：總覽、訂單、庫存、財務、採購、生產、CRM、人力資源（含打卡與請假）、專案、商業智慧、系統設定。AI 助理內建自然語言查詢、銷售預測與智能補貨建議。對標鼎新數智 Workflow ERP 與 SAP Business One。",
+      "url": "https://thinkbigtw.com/erp/",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/erp/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "AI Agent ERP 有哪些模組？", "acceptedAnswer": {"@type": "Answer", "text": "AI Agent ERP 內建 11 大模組：總覽儀表板、訂單管理、庫存管理、財務會計、採購供應鏈、生產製造、CRM 客戶關係、人力資源（含打卡與請假系統）、專案管理、商業智慧分析、系統設定。各模組跨模組連動，訂單會即時反映到 KPI、庫存與補貨建議。"}},
+        {"@type": "Question", "name": "AI Agent ERP 的 AI 助理能做什麼？", "acceptedAnswer": {"@type": "Answer", "text": "ERP 內建的 AI 助理可用自然語言查詢任何資料（例如「這個月營收多少」「庫存警告」「供應商排名」），並提供銷售預測與智能補貨建議，不需要學習複雜的報表操作。"}},
+        {"@type": "Question", "name": "AI Agent ERP 和鼎新數智 Workflow ERP 有什麼不同？", "acceptedAnswer": {"@type": "Answer", "text": "AI Agent ERP 從 Day 1 就是 AI Native，AI 為核心而非外加模組；提供線上即點即用的完整 Demo，不需業務拜訪與數月導入期；介面現代化、即開即用。"}},
+        {"@type": "Question", "name": "AI Agent ERP 適合哪些企業？", "acceptedAnswer": {"@type": "Answer", "text": "適合中小製造業、電商品牌、連鎖門市與專業服務業。可線上開啟完整 Demo 體驗所有模組。"}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div id="root">

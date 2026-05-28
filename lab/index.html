@@ -190,6 +190,44 @@ textarea{height:80px;resize:vertical}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@9.5.0/dist/gridstack.min.css">
   <script src="https://cdn.jsdelivr.net/npm/gridstack@9.5.0/dist/gridstack-all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<!-- ═══ JSON-LD 結構化資料 (SEO/GEO) ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#organization",
+      "name": "Think BIG!",
+      "alternateName": ["思考遠大", "ThinkBIG TW"],
+      "url": "https://thinkbigtw.com/",
+      "founder": {"@type": "Person", "name": "吳御綸", "alternateName": "NEO Stanley Wu"},
+      "sameAs": ["https://lin.ee/n5KW430"]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://thinkbigtw.com/#product-moneyradar",
+      "name": "MoneyRadar",
+      "brand": {"@id": "https://thinkbigtw.com/#organization"},
+      "category": "AI 金融分析工具",
+      "description": "全球頂尖 AI 看盤神器，14 分頁台股美股財經儀表板，整合 AI 新聞情緒判讀、即時報價與技術分析。支援 PWA 安裝到手機。",
+      "url": "https://thinkbigtw.com/lab/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web, PWA"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/lab/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "MoneyRadar 是什麼？", "acceptedAnswer": {"@type": "Answer", "text": "MoneyRadar 是 Think BIG! 推出的 AI 看盤神器，提供 14 分頁的台股與美股財經儀表板，整合 AI 新聞情緒判讀、即時報價與技術分析，可安裝為手機 PWA。"}},
+        {"@type": "Question", "name": "MoneyRadar 適合誰使用？", "acceptedAnswer": {"@type": "Answer", "text": "適合台股與美股投資人、金融專業人士，以及希望用 AI 輔助判讀市場情緒與盤勢的使用者。"}},
+        {"@type": "Question", "name": "MoneyRadar 支援哪些市場？", "acceptedAnswer": {"@type": "Answer", "text": "MoneyRadar 同時支援台股與美股，提供即時報價、新聞情緒分析與多分頁財經儀表板。"}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="lock-screen" id="lockScreen">

@@ -18,19 +18,7 @@
 <meta name="twitter:description" content="輸入產業秒出自動化清單與報價。OpenClaw + Hermes Agent 企業部署。"/>
 <meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg"/>
 <link rel="canonical" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="zh-TW" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="zh-HK" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="ja" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="ko" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="de" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="fr" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="es" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="th" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="id" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="ms" href="https://thinkbigtw.com/enterprise/"/>
-<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/enterprise/"/>
-<meta name="description" content="Think BIG! 企業 AI 自動化部署。輸入任何產業秒出自動化清單與報價。100+ 產業覆蓋，OpenClaw + Hermes Agent 專業部署，24h 完成，一次買斷無月費。aw + Hermes Agent實現企業自動化。">
+<meta name="description" content="Think BIG! 企業 AI 自動化部署。輸入任何產業秒出自動化清單。100+ 產業覆蓋，OpenClaw + Hermes Agent 專業部署，協助企業導入 AI Agent 實現流程自動化。">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <div id="google_translate_element" style="display:none"></div>
 <script>
@@ -147,14 +135,36 @@ footer a:hover{color:var(--text)}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type":"Question","name":"台灣哪裡有企業 AI 自動化部署服務？","acceptedAnswer":{"@type":"Answer","text":"Think BIG! 是台灣首家 OpenClaw AI Agent 企業部署服務商，提供 100+ 產業自動化分析、即時報價、遠端安裝與月度維護。"}},
-    {"@type":"Question","name":"AI 自動化部署費用多少？","acceptedAnswer":{"@type":"Answer","text":"依企業規模分為：個人/小型 NT$15,000 起、中小企業 NT$28,880 起、多部門/全通路 NT$48,880 起、多機/企業級 NT$138,880 起。一次買斷，無月費。"}},
-    {"@type":"Question","name":"What industries support AI automation deployment?","acceptedAnswer":{"@type":"Answer","text":"Think BIG! supports 100+ industries including medical, real estate, e-commerce, F&B, accounting, manufacturing, beauty, education, legal, government, logistics, and more."}},
-    {"@type":"Question","name":"How long does AI automation deployment take?","acceptedAnswer":{"@type":"Answer","text":"Standard deployment completes within 24 hours. Enterprise multi-machine deployment takes 3-7 business days depending on complexity."}},
-    {"@type":"Question","name":"AIオートメーション導入にはどれくらいかかりますか？","acceptedAnswer":{"@type":"Answer","text":"Think BIG!は台湾のOpenClaw AI Agentの専門導入会社です。個人・小規模からNT$15,000、中小企業からNT$28,880で提供しています。"}},
-    {"@type":"Question","name":"AI 자동화 배포 비용은 얼마입니까？","acceptedAnswer":{"@type":"Answer","text":"Think BIG!는 대만 최초 OpenClaw AI Agent 기업 배포 서비스입니다. 개인/소규모 NT$15,000부터 시작합니다."}}
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#organization",
+      "name": "Think BIG!",
+      "alternateName": ["思考遠大", "ThinkBIG TW"],
+      "url": "https://thinkbigtw.com/",
+      "founder": {"@type": "Person", "name": "吳御綸", "alternateName": "NEO Stanley Wu"},
+      "address": {"@type": "PostalAddress", "addressRegion": "新北市", "addressLocality": "板橋區", "addressCountry": "TW"},
+      "sameAs": ["https://lin.ee/n5KW430"]
+    },
+    {
+      "@type": "Service",
+      "@id": "https://thinkbigtw.com/#service-enterprise",
+      "name": "企業 AI 系統導入",
+      "provider": {"@id": "https://thinkbigtw.com/#organization"},
+      "serviceType": "AI 自動化導入顧問",
+      "description": "為企業導入 AI Agent 自動化，採 OpenClaw + Hermes Agent 雙引擎架構，涵蓋 100+ 產業，整合 RAG、流程自動化與外部系統串接（LINE/Email/CRM）。",
+      "areaServed": {"@type": "Country", "name": "Taiwan"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/enterprise/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "台灣哪裡有企業 AI 自動化部署服務？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 是台灣專業的 OpenClaw AI Agent 企業部署服務商，提供 100+ 產業的自動化分析、遠端安裝與後續維護，協助企業導入 AI Agent。"}},
+        {"@type": "Question", "name": "企業 AI 自動化導入支援哪些產業？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 支援 100+ 產業，包含醫療、房地產、電商、餐飲、會計、製造、美業、教育、法律、政府機關、物流等。"}},
+        {"@type": "Question", "name": "企業 AI 自動化導入採用什麼技術架構？", "acceptedAnswer": {"@type": "Answer", "text": "採用 OpenClaw + Hermes Agent 雙引擎架構，透過 MCP 協定整合，可串接 LINE、Email、CRM 等外部系統，並支援 RAG 知識庫與企業流程自動化。"}},
+        {"@type": "Question", "name": "企業 AI 自動化導入需要多久？", "acceptedAnswer": {"@type": "Answer", "text": "標準導入通常可在短時間內完成，企業級多機部署則依複雜度評估時程。詳細規劃會由 Think BIG! 與企業共同確認。"}}
+      ]
+    }
   ]
 }
 </script>
