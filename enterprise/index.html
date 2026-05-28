@@ -175,7 +175,7 @@ footer a:hover{color:var(--text)}
 
 <nav>
   <a class="nav-logo" href="/">Think <span>BIG!</span></a>
-  <a class="nav-cta" href="https://lin.ee/n5KW430" target="_blank">立即諮詢</a>
+  <a class="nav-cta" href="javascript:void(0)" onclick="toggleChat()">問問 AI</a>
 </nav>
 
 <section class="hero">
@@ -183,7 +183,7 @@ footer a:hover{color:var(--text)}
   <h1 class="hero-title">你的產業，<em>我們幫你自動化</em></h1>
   <p class="hero-desc">不只是安裝 AI 工具，而是為你的產業設計專屬自動化流程。把重複的工作交給 AI，讓你專注在真正重要的事。</p>
   <div class="hero-btns">
-    <a class="btn-primary" href="https://lin.ee/n5KW430" target="_blank">立即諮詢</a>
+    <a class="btn-primary" href="javascript:void(0)" onclick="toggleChat()">問問 AI 助理</a>
     <a class="btn-secondary" href="https://thinkbigtw.com/harness/">了解技術架構</a>
   </div>
 </section>
@@ -467,7 +467,7 @@ function aiaRun(){
   var r=aiaFind(q);
   document.getElementById("aia-input").style.display="none";
   if(!r){
-    document.getElementById("aia-result").innerHTML='<div class="aiaIn q-card"><div class="q-body" style="text-align:center;padding:40px"><div style="font-size:40px;margin-bottom:16px"></div><p style="font-size:14px;color:#7aad7a;margin-bottom:20px">找不到精確比對 — 歡迎直接告訴我們你的行業，我們幫你客製分析！</p><div class="q-cta-row" style="justify-content:center"><a class="q-btn-line" href="https://lin.ee/n5KW430" target="_blank"> LINE 諮詢 →</a><a class="q-btn-wa" href="https://wa.me/886908898903" target="_blank"> WhatsApp</a></div><br><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:8px">← 重新輸入</button></div></div>';
+    document.getElementById("aia-result").innerHTML='<div class="aiaIn q-card"><div class="q-body" style="text-align:center;padding:40px"><div style="font-size:40px;margin-bottom:16px"></div><p style="font-size:14px;color:#7aad7a;margin-bottom:20px">找不到精確比對 — 歡迎直接告訴我們你的行業，我們幫你客製分析！</p><div class="q-cta-row" style="justify-content:center"><a class="q-btn-line" href="javascript:void(0)" onclick="toggleChat()"> 問問 AI 助理 →</a></div><br><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:8px">← 重新輸入</button></div></div>';
     document.getElementById("aia-result").style.display="block";return;
   }
   var pH=r.p.map(function(p){return '<div class="q-pain-item"><span style="color:#e8422a;flex-shrink:0"></span><span style="font-size:12px;color:#888">'+p+'</span></div>';}).join("");
@@ -488,8 +488,7 @@ function aiaRun(){
     '<div class="q-roi"> '+r.roi+'</div>'+
     '<div style="margin-bottom:10px;font-family:Space Mono,monospace;font-size:8px;letter-spacing:4px;color:#00ff41;text-transform:uppercase">一鍵傳送這份報價單 → Think BIG 30 分鐘內回覆</div>'+
     '<div class="q-cta-row">'+
-    '<a class="q-btn-line" href="https://lin.ee/n5KW430" target="_blank"> LINE 立即部署</a>'+
-    '<a class="q-btn-wa" href="https://wa.me/886908898903?text='+waMsg+'" target="_blank"> WhatsApp</a>'+
+    '<a class="q-btn-line" href="javascript:void(0)" onclick="toggleChat()"> 問問 AI 助理</a>'+
     '<button class="q-btn-reset" onclick="aiaReset()">換個產業</button></div>'+
     '<p style="font-size:10px;color:#2a4a2a;margin-top:10px;font-family:Space Mono,monospace">點擊後開啟對應 App → 發送報價單給 Think BIG 團隊</p>'+
     '</div></div>';
@@ -558,5 +557,6 @@ document.querySelectorAll('.industry-card,.security-item').forEach(el=>{
   "provider": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com"}
 }
 </script>
+<script src="/ask-ai.js" defer></script>
 </body>
 </html>
