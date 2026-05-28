@@ -124,6 +124,16 @@ html,body{
   letter-spacing:0.4em;text-transform:uppercase;
   margin-top:20px;opacity:0.35;font-weight:300;
 }
+#hero .hero-cta-zh{
+  font-family:var(--tc);
+  font-size:clamp(1rem,3.4vw,1.6rem);
+  font-weight:500;letter-spacing:0.05em;
+  margin-top:14px;opacity:0.92;
+  color:#fff;line-height:1.4;
+  text-shadow:0 0 30px rgba(232,66,42,0.4);
+  white-space:nowrap;
+}
+#hero .hero-cta-zh b{color:var(--red);font-weight:700}
 
 /* ── HOLD/SPEED ── */
 #hold-indicator{
@@ -380,6 +390,7 @@ html,body{
   #hero{bottom:8%}
   #hero h1{font-size:clamp(2.5rem,16vw,5rem)}
   #hero .tagline{font-size:0.5rem;letter-spacing:0.25em}
+  #hero .hero-cta-zh{font-size:clamp(0.95rem,4.6vw,1.3rem);margin-top:10px}
   #ai-chat{width:calc(100vw - 24px);right:12px;bottom:88px;height:55vh}
   #ai-agent-btn{width:44px;height:44px;bottom:20px;right:20px}
   #hold-indicator,#speed-display{display:none}
@@ -492,6 +503,7 @@ html,body{
 <div id="hero">
   <h1>Think<br><span class="big">BIG!</span></h1>
   <div class="tagline">AI Automation &mdash; Make it Real</div>
+  <div class="hero-cta-zh">現在，讓 <b>AI</b> 開始為你工作</div>
 </div>
 
 <div id="hold-indicator">[ Hold to accelerate ]</div>
