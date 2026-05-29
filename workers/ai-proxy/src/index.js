@@ -1357,20 +1357,60 @@ async function SAFE_handleArticle(request, env) {
 async function SAFE_handleTranslate(request, env) {
   const cors = SAFE_corsPreflightOrNull(request); if (cors) return cors;
   if (request.method !== 'POST') return SAFE_jsonResponse({ error: 'POST only' }, 405);
+  let body;
+  try { body = await request.json(); } catch(e) { return SAFE_jsonResponse({ error: 'Invalid JSON' }, 400); }
+
+  const targetLang = body.targetLang || body.target || 'en';
+  const texts = body.texts;
+  const singleText = body.text || '';
+
+  // Batch mode: { texts: [...], target/targetLang }
+  if (texts && Array.isArray(texts) && texts.length > 0) {
+    if (texts.length > 500) return SAFE_jsonResponse({ error: '單次最多 500 筆' }, 400);
+    const langMap = { en: 'English', ja: '日本語', ko: '한국어', 'zh-TW': '繁體中文', 'zh-CN': '简体中文', vi: 'Tiếng Việt', id: 'Bahasa Indonesia', th: 'ภาษาไทย', es: 'Español' };
+    const prompt = `你是專業翻譯引擎。把以下 JSON 陣列裡的每個字串翻譯成「${langMap[targetLang] || targetLang}」。\n只回傳翻譯後的 JSON 陣列，不加任何解釋、不加 markdown。\n原始陣列：${JSON.stringify(texts)}`;
+
+    let translated = [];
+    let modelUsed = 'llama-3.3-70b';
+    try {
+      const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+        messages: [{ role: 'user', content: prompt }],
+        max_tokens: 4000,
+        temperature: 0.1,
+      });
+      const raw = (aiRes.response || '').trim().replace(/```json|```/g, '').trim();
+      translated = JSON.parse(raw);
+    } catch(err) {
+      try {
+        const aiRes = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 3000,
+        });
+        const raw = (aiRes.response || '').trim().replace(/```json|```/g, '').trim();
+        translated = JSON.parse(raw);
+        modelUsed = 'llama-3-8b-fallback';
+      } catch(err2) {
+        return SAFE_jsonResponse({ error: '翻譯失敗，請稍後再試' }, 500);
+      }
+    }
+    // Build { translations: { orig: translated } } map for v282 frontend
+    const translations = {};
+    texts.forEach((t, i) => { translations[t] = (translated[i] != null) ? translated[i] : t; });
+    return SAFE_jsonResponse({ translated, translations, model: modelUsed, targetLang, count: translated.length, _source: 'SAFE_Translate_Batch' });
+  }
+
+  // Single text mode (backward compat): { text, target }
+  if (!singleText) return SAFE_jsonResponse({ error: 'text 或 texts 必填' }, 400);
+  const langMap = { en: '英文', ja: '日文', ko: '韓文', 'zh-TW': '繁體中文', 'zh-CN': '簡體中文', es: '西班牙文' };
   try {
-    const body = await request.json();
-    const text = body.text || '';
-    const target = body.target || 'en';
-    if (!text) return SAFE_jsonResponse({ error: 'text required' }, 400);
-    const langMap = { en: '英文', ja: '日文', ko: '韓文', 'zh-TW': '繁體中文', 'zh-CN': '簡體中文', es: '西班牙文' };
     const aiR = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
       messages: [
-        { role: 'system', content: `將以下文字翻譯成${langMap[target] || target}，保持原意。只回譯文。` },
-        { role: 'user', content: text }
+        { role: 'system', content: `將以下文字翻譯成${langMap[targetLang] || targetLang}，保持原意。只回譯文。` },
+        { role: 'user', content: singleText }
       ],
       max_tokens: 2000
     });
-    return SAFE_jsonResponse({ original: text, translated: aiR.response || '', target, _source: 'SAFE_Translate' });
+    return SAFE_jsonResponse({ original: singleText, translated: aiR.response || '', target: targetLang, _source: 'SAFE_Translate' });
   } catch (e) { return SAFE_jsonResponse({ error: e.message }, 500); }
 }
 

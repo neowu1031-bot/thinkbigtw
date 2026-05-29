@@ -180,6 +180,17 @@ textarea{height:80px;resize:vertical}
   .btn{width:260px!important;padding:12px 20px!important;}
 }
 
+/* v282 語言按鈕 + v281 日夜按鈕 + 登出按鈕 手機版防疊層 */
+@media(max-width:768px){
+  #v282-lang-btn{position:fixed!important;top:16px!important;right:unset!important;left:12px!important;font-size:11px!important;padding:4px 8px!important;z-index:9998!important;}
+  #v281-theme-btn{position:fixed!important;top:16px!important;right:unset!important;left:80px!important;font-size:13px!important;padding:4px 8px!important;z-index:9998!important;}
+  #logoutBtn{font-size:10px!important;padding:3px 8px!important;white-space:nowrap!important;}
+}
+@media(max-width:480px){
+  #v282-lang-btn{font-size:10px!important;padding:3px 6px!important;left:8px!important;top:17px!important;}
+  #v281-theme-btn{font-size:12px!important;padding:3px 6px!important;left:70px!important;top:17px!important;}
+}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 .tab-content.active .card{animation:fadeUp 0.35s ease forwards}
 .tab-content.active .card:nth-child(1){animation-delay:0s}

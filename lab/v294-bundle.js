@@ -200,9 +200,9 @@
         }
         console.log('[v294] ☁️ Pulled from cloud, please refresh');
         // 顯示提示
-        const banner = V294_el(`<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#4ade80;color:#000;padding:12px 24px;border-radius:8px;z-index:99999;font-weight:bold">☁️ 雲端資料已同步！重新整理頁面以查看 <button onclick="location.reload()" style="margin-left:8px;padding:4px 12px;background:#000;color:#4ade80;border:none;border-radius:4px;cursor:pointer">重新整理</button></div>`);
+        const banner = V294_el(`<div style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#4ade80;color:#000;padding:12px 24px;border-radius:8px;z-index:99999;font-weight:bold;transition:opacity 0.5s ease">☁️ 雲端資料已同步！重新整理頁面以查看 <button onclick="location.reload()" style="margin-left:8px;padding:4px 12px;background:#000;color:#4ade80;border:none;border-radius:4px;cursor:pointer">重新整理</button><button onclick="this.parentElement.style.opacity='0';setTimeout(()=>this.parentElement.remove(),500)" style="margin-left:8px;padding:2px 8px;background:transparent;color:#000;border:1px solid rgba(0,0,0,0.3);border-radius:4px;cursor:pointer;font-weight:bold;font-size:14px;line-height:1">✕</button></div>`);
         document.body.appendChild(banner);
-        setTimeout(() => banner.remove(), 30000);
+        setTimeout(() => { banner.style.opacity='0'; setTimeout(()=>banner.remove(),500); }, 4000);
       }
     } catch (e) { console.error('[v294] pull failed', e); }
   }

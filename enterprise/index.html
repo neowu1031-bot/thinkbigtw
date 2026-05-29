@@ -524,12 +524,12 @@ function renderCard(t,opts){
     '<div class="q-sec-label" style="color:#5aa9ff">三階段路線圖</div><div class="q-roadmap">'+phase(rm.phase1)+phase(rm.phase2)+phase(rm.phase3)+'</div>'+
     '<div class="q-sec-label" style="color:#fbbf24">預期效益（可量化）</div><div class="q-roi-grid">'+cell('時間節省',roi.time)+cell('營收 / 回購',roi.revenue)+cell('客戶體驗',roi.experience)+cell('回收期',roi.payback)+'</div>'+
     '<div class="q-plan2"><div class="q-fn-h">適合搭配的方案</div><p>'+aiaEsc(t.plan)+'</p></div>'+
-    '<div class="q-cta2"><p>想知道怎麼開始導入？點右下角 ASK AI，Hermes 幫您客製</p><button class="q-btn-reset" onclick="aiaReset()">↺ 換個產業</button></div>'+
+    '<div class="q-cta2"><p>想知道怎麼開始導入？點右下角圓鈕，Hermes 幫您客製</p><button class="q-btn-reset" onclick="aiaReset()">↺ 換個產業</button></div>'+
     '</div>';
 }
 function aiaShow(html){var el=document.getElementById("aia-result");el.innerHTML=html;el.style.display="block";document.getElementById("aia").scrollIntoView({behavior:"smooth",block:"start"});}
 function aiaAskFallback(msg){
-  return '<div class="aiaIn q-card2"><div style="text-align:center;padding:44px 24px"><p style="font-size:14px;color:#e8f5e8;margin-bottom:20px">'+aiaEsc(msg)+'</p><button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat===\'function\'){toggleChat()}" style="background:#e8422a;color:#fff;border:none;padding:14px 36px;font-family:Space Mono,monospace;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:4px">ASK AI</button><br><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:14px">換個產業</button></div></div>';
+  return '<div class="aiaIn q-card2"><div style="text-align:center;padding:44px 24px"><p style="font-size:14px;color:#e8f5e8;margin-bottom:20px">'+aiaEsc(msg)+'</p><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:14px">↺ 換個產業</button></div></div>';
 }
 function aiaRun(){
   var q=document.getElementById("aia-q").value.trim();
@@ -546,7 +546,7 @@ function aiaRun(){
         if(res.mode==='generated'&&res.template){aiaShow(renderCard(res.template,{generated:true}));return;}
         aiaShow(aiaAskFallback(res.message||'這個產業我們想更深入了解，讓 Hermes 為您客製設計。'));
       })
-      .catch(function(){aiaShow(aiaAskFallback('AI 生成暫時忙線，您可以點右下角 ASK AI 由 Hermes 直接為您客製。'));});
+      .catch(function(){aiaShow(aiaAskFallback('AI 生成暫時忙線，請點右下角圓鈕由 Hermes 直接為您客製。'));});
   });
 }
 loadTpl();
