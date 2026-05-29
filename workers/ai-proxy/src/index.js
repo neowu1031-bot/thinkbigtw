@@ -1764,61 +1764,80 @@ async function handleIndustryDesign(request, env){
       }
     }
 
-    // 2) AI 智慧分類（信心度 > 0.7 → 用該熱門範本）
+    function _extractJSON(txt){
+      if(!txt) return null;
+      let s = String(txt).replace(/```[a-zA-Z]*/g,'').trim();
+      const a = s.indexOf('{'), b = s.lastIndexOf('}');
+      if(a<0||b<0) return null;
+      s = s.slice(a, b+1).replace(/,\s*([}\]])/g, '$1');
+      try{ return JSON.parse(s); }catch(_e){ return null; }
+    }
+
+    // 2) AI 智慧分類（保留最佳猜測；信心度 > 0.7 直接用熱門範本）
+    let bestKey = null, bestConf = 0;
     try{
       const names = INDUSTRY_INDEX.map(i => i.key + ': ' + i.name).join('\n');
       const clsRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
         messages: [
           { role:'system', content:'你是產業分類器，只輸出 JSON，不要多餘文字。' },
           { role:'user', content: '使用者輸入產業：「'+industry+'」。\n下面是 32 個既有範本（key: 名稱）：\n'+names+'\n\n判斷最接近哪一個 key，並給 0~1 信心度。只輸出 JSON：{"key":"<key或null>","confidence":<數字>}' }
-        ], max_tokens: 120
+        ], max_tokens: 200
       });
-      const mm = (clsRes.response||'').match(/\{[\s\S]*\}/);
-      if (mm){
-        const cls = JSON.parse(mm[0]);
-        if (cls && cls.key && cls.confidence > 0.7 && INDUSTRY_INDEX.some(i => i.key === cls.key)){
-          const it = INDUSTRY_INDEX.find(i => i.key === cls.key);
-          const r = { mode:'template', key: cls.key, matched: it.name, confidence: cls.confidence };
+      const cls = _extractJSON(clsRes.response);
+      if (cls && cls.key && INDUSTRY_INDEX.some(i => i.key === cls.key)){
+        bestKey = cls.key; bestConf = Number(cls.confidence) || 0;
+        if (bestConf > 0.7){
+          const it = INDUSTRY_INDEX.find(i => i.key === bestKey);
+          const r = { mode:'template', key: bestKey, matched: it.name, confidence: bestConf };
           _industryCache.set(cacheKey, r); return jsonResponse(r);
         }
       }
     }catch(_e){}
 
     // 3) AI 即時生成（依 10A 結構；server 端統一補 steps / security）
-    let gen = null;
+    let gen = null, rawGen = '';
     try{
       const genRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
         messages: [
-          { role:'system', content:'你是 Think BIG 的企業 AI 自動化顧問。只輸出繁體中文 JSON，不要任何多餘文字或 markdown。不得編造客戶案例。通訊軟體一律用「賴 OA / tele 紙飛機」。' },
-          { role:'user', content: '為「'+industry+'」這個產業設計 AI 自動化流程。只輸出 JSON：\n{"painPoints":["痛點1(具體有數字感)","痛點2","痛點3"],"functions":[{"name":"功能名","desc":"15-25字","systems":"賴 OA + 相關系統","eta":"3-7 工作天","benefit":"可量化效益"}],"roadmap":{"phase1":"第一階段","phase2":"第二階段","phase3":"第三階段"},"roi":{"time":"每月省X小時","revenue":"提升X%","experience":"回應X分鐘→X秒","payback":"X個月回收"},"plan":"個人方案 / 企業方案 / 雙 Agent 方案"}\nfunctions 要剛好 4 個。' }
-        ], max_tokens: 1600
+          { role:'system', content:'你是 Think BIG 的企業 AI 自動化顧問。只輸出合法 JSON（半形雙引號），不要任何解釋或 markdown。不得編造客戶案例。通訊軟體一律用「賴 OA / tele 紙飛機」。' },
+          { role:'user', content: '為「'+industry+'」設計 AI 自動化流程。嚴格只輸出此 JSON 結構：\n{"painPoints":["痛點1具體有數字感","痛點2","痛點3"],"functions":[{"name":"功能名","desc":"15-25字","systems":"賴 OA + 相關系統","eta":"3-7 工作天","benefit":"可量化效益"}],"roadmap":{"phase1":"第一階段內容","phase2":"第二階段內容","phase3":"第三階段內容"},"roi":{"time":"每月省X小時","revenue":"提升X%","experience":"回應X分鐘→X秒","payback":"X個月回收"},"plan":"個人方案 / 企業方案 / 雙 Agent 方案"}\nfunctions 必須剛好 4 個物件。直接輸出 JSON。' }
+        ], max_tokens: 3000
       });
-      const gm = (genRes.response||'').match(/\{[\s\S]*\}/);
-      if (gm) gen = JSON.parse(gm[0]);
+      rawGen = genRes.response || '';
+      gen = _extractJSON(rawGen);
     }catch(_e){}
 
-    if (!gen || !Array.isArray(gen.functions) || !gen.functions.length){
-      const r = { mode:'fallback', key: null, message: 'AI 即時生成暫時無法完成，請稍後再試或點右下角 ASK AI 由 Hermes 為您客製。' };
+    if (gen && Array.isArray(gen.functions) && gen.functions.length){
+      const rm = gen.roadmap || {};
+      const tpl = {
+        key: 'gen-' + cacheKey, name: industry, aliases: [industry], generated: true,
+        painPoints: Array.isArray(gen.painPoints) ? gen.painPoints.slice(0,4) : [],
+        functions: gen.functions.slice(0,4).map(f => ({
+          name: f.name, desc: f.desc, systems: f.systems,
+          steps: _mkSteps(f.systems), security: _SEC_STD,
+          eta: f.eta || '3-7 工作天', benefit: f.benefit
+        })),
+        roadmap: {
+          phase1: { title:'第一階段（立即上線，1-2 週）', detail: rm.phase1 || '' },
+          phase2: { title:'第二階段（成熟運作，1-2 個月）', detail: rm.phase2 || '' },
+          phase3: { title:'第三階段（規模擴張，3-6 個月）', detail: rm.phase3 || '' }
+        },
+        roi: gen.roi || {}, plan: gen.plan || '個人方案 / 企業方案 / 雙 Agent 方案'
+      };
+      const r = { mode:'generated', template: tpl };
+      _industryCache.set(cacheKey, r);
       return jsonResponse(r);
     }
-    const rm = gen.roadmap || {};
-    const tpl = {
-      key: 'gen-' + cacheKey, name: industry, aliases: [industry], generated: true,
-      painPoints: Array.isArray(gen.painPoints) ? gen.painPoints.slice(0,4) : [],
-      functions: gen.functions.slice(0,4).map(f => ({
-        name: f.name, desc: f.desc, systems: f.systems,
-        steps: _mkSteps(f.systems), security: _SEC_STD,
-        eta: f.eta || '3-7 工作天', benefit: f.benefit
-      })),
-      roadmap: {
-        phase1: { title:'第一階段（立即上線，1-2 週）', detail: rm.phase1 || '' },
-        phase2: { title:'第二階段（成熟運作，1-2 個月）', detail: rm.phase2 || '' },
-        phase3: { title:'第三階段（規模擴張，3-6 個月）', detail: rm.phase3 || '' }
-      },
-      roi: gen.roi || {}, plan: gen.plan || '個人方案 / 企業方案 / 雙 Agent 方案'
-    };
-    const r = { mode:'generated', template: tpl };
-    _industryCache.set(cacheKey, r);
+
+    // 4) 生成失敗 → 退回最接近的熱門範本（比死路好），仍無則 fallback
+    if (bestKey){
+      const it = INDUSTRY_INDEX.find(i => i.key === bestKey);
+      const r = { mode:'template', key: bestKey, matched: it.name, confidence: bestConf, approximate: true };
+      _industryCache.set(cacheKey, r); return jsonResponse(r);
+    }
+    const _dbg = (new URL(request.url)).searchParams.get('debug');
+    const r = { mode:'fallback', key: null, message: 'AI 即時生成暫時無法完成，請稍後再試或點右下角 ASK AI 由 Hermes 為您客製。' };
+    if (_dbg) r.raw = (rawGen||'').slice(0,1500);
     return jsonResponse(r);
   }catch(e){
     return jsonResponse({ error: String(e && e.message || e) }, 500);
