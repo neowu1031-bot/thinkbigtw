@@ -186,134 +186,48 @@ textarea{height:80px;resize:vertical}
 .tab-content.active .card:nth-child(2){animation-delay:0.06s}
 .tab-content.active .card:nth-child(3){animation-delay:0.12s}
 .tab-content.active .card:nth-child(4){animation-delay:0.18s}
-
-/* ==================================================================
-   v298 改版：AI 為主力的對話式投資分析師（依改版執行文件 v1.0）
-   注入策略：保留 v297 全功能、預設啟用新 UI、提供「切回經典版」toggle
-   ================================================================== */
-:root{
-  /* 主色調（深藍 — 金融工具最有效色彩，消費心理學）*/
-  --mr-primary: #1a3a5c;
-  --mr-primary-light: #2d5f8a;
-  --mr-accent: #4a90d9;
-  /* 背景層次 */
-  --mr-bg-deep: #0a0e1a;
-  --mr-bg-card: #111827;
-  --mr-bg-elevated: #1a2332;
-  /* AI 對話區 */
-  --mr-chat-bg: #0f172a;
-  --mr-chat-border: rgba(74,144,217,0.18);
-  --mr-chat-bubble-user: linear-gradient(135deg,#6366f1,#4f46e5);
-  --mr-chat-bubble-ai: #1a2332;
-  /* 漲跌（台灣慣例：紅漲綠跌）*/
-  --mr-up: #ef4444;
-  --mr-down: #22c55e;
-  --mr-neutral: #94a3b8;
-  /* 評分卡 */
-  --mr-score-high: #22c55e;
-  --mr-score-mid: #f59e0b;
-  --mr-score-low: #ef4444;
-  /* 字型 */
-  --mr-font-numeric: 'JetBrains Mono','Fira Code','SF Mono',Consolas,monospace;
-}
-/* v298 主畫面容器 */
-#v298-landing{display:none;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,rgba(74,144,217,.08),transparent 60%),var(--mr-bg-deep);padding:0;animation:fadeUp .5s ease both}
-body.v298-mode #v298-landing{display:block}
-body.v298-mode #dashboard{display:none!important}
-/* v298 Logo header */
-.v298-header{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:0.5px solid rgba(255,255,255,.06);max-width:1280px;margin:0 auto}
-.v298-logo{font-size:24px;font-weight:900;letter-spacing:-0.5px;color:#f0f9ff;cursor:pointer}
-.v298-logo span{color:var(--mr-accent)}
-.v298-logo sup{font-size:11px;color:#64748b;font-weight:400;margin-left:2px}
-.v298-header-actions{display:flex;align-items:center;gap:10px}
-.v298-icon-btn{background:var(--mr-bg-elevated);border:0.5px solid rgba(255,255,255,.08);color:#e5e7eb;width:38px;height:38px;border-radius:10px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.v298-icon-btn:hover{border-color:var(--mr-accent);background:var(--mr-primary);transform:translateY(-1px)}
-.v298-classic-btn{background:transparent;border:0.5px solid rgba(255,255,255,.12);color:#94a3b8;padding:7px 14px;border-radius:10px;cursor:pointer;font-size:12px;transition:all .2s}
-.v298-classic-btn:hover{color:#fff;border-color:var(--mr-accent)}
-/* v298 主舞台（佔 70% — AI 對話框）*/
-.v298-stage{max-width:880px;margin:0 auto;padding:32px 20px 80px}
-.v298-tagline{text-align:center;font-size:13px;color:#64748b;margin-bottom:8px;letter-spacing:1px}
-.v298-headline{text-align:center;font-size:28px;font-weight:800;color:#f0f9ff;margin:0 0 4px;letter-spacing:-0.5px}
-.v298-headline span{background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.v298-subhead{text-align:center;font-size:14px;color:#94a3b8;margin-bottom:28px}
-/* AI Chat 主容器 */
-.v298-chat{background:var(--mr-chat-bg);border:0.5px solid var(--mr-chat-border);border-radius:20px;padding:0;overflow:hidden;box-shadow:0 20px 60px -20px rgba(74,144,217,.15)}
-.v298-chat-messages{min-height:280px;max-height:520px;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:14px}
-.v298-chat-empty{text-align:center;color:#64748b;padding:40px 20px;font-size:14px}
-.v298-chat-empty .em-icon{font-size:48px;margin-bottom:12px;display:block;filter:drop-shadow(0 0 20px rgba(74,144,217,.3))}
-.v298-msg{max-width:85%;padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.6;animation:fadeUp .25s ease both}
-.v298-msg.user{align-self:flex-end;background:var(--mr-chat-bubble-user);color:#fff;border-bottom-right-radius:4px}
-.v298-msg.ai{align-self:flex-start;background:var(--mr-chat-bubble-ai);color:#e5e7eb;border:0.5px solid rgba(255,255,255,.06);border-bottom-left-radius:4px}
-.v298-msg.thinking{display:flex;gap:8px;align-items:center;padding:14px 18px}
-.v298-msg.thinking .dot{width:6px;height:6px;border-radius:50%;background:var(--mr-accent);animation:pulse-dot 1.4s infinite}
-.v298-msg.thinking .dot:nth-child(2){animation-delay:.16s}
-.v298-msg.thinking .dot:nth-child(3){animation-delay:.32s}
-@keyframes pulse-dot{0%,80%,100%{opacity:.3;transform:scale(.8)}40%{opacity:1;transform:scale(1)}}
-/* AI 思考步驟 */
-.v298-thinking-steps{padding:16px 18px;font-size:12px;color:#94a3b8;line-height:1.9}
-.v298-thinking-steps .step{opacity:0;animation:fadeUp .3s ease forwards}
-.v298-thinking-steps .step.done::before{content:'✅ ';color:var(--mr-score-high)}
-.v298-thinking-steps .step.active::before{content:'⏳ ';color:var(--mr-accent)}
-/* 結構化評分卡 */
-.v298-scorecard{background:var(--mr-bg-elevated);border:0.5px solid rgba(255,255,255,.08);border-radius:14px;padding:18px;margin-top:12px;animation:fadeUp .3s ease both}
-.v298-scorecard h4{margin:0 0 12px;font-size:14px;font-weight:700;color:#e5e7eb;display:flex;align-items:center;gap:8px}
-.v298-scorecard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
-.v298-score-cell{text-align:center;padding:14px 8px;background:var(--mr-bg-card);border-radius:10px;border:0.5px solid rgba(255,255,255,.05)}
-.v298-score-label{font-size:11px;color:#94a3b8;margin-bottom:4px;font-weight:600;letter-spacing:.5px}
-.v298-score-value{font-family:var(--mr-font-numeric);font-size:24px;font-weight:800;line-height:1;animation:countUp .5s ease both}
-.v298-score-value.high{color:var(--mr-score-high)}
-.v298-score-value.mid{color:var(--mr-score-mid)}
-.v298-score-value.low{color:var(--mr-score-low)}
-.v298-score-trend{font-size:11px;color:#94a3b8;margin-top:6px;font-weight:600}
-.v298-score-trend.up{color:var(--mr-up)}
-.v298-score-trend.down{color:var(--mr-down)}
-.v298-score-overall{padding:10px;background:var(--mr-bg-card);border-radius:10px;font-size:12px;color:#cbd5e1;line-height:1.6;text-align:center}
-.v298-score-overall b{font-family:var(--mr-font-numeric);font-size:18px;color:var(--mr-accent);font-weight:800}
-.v298-score-disclaimer{font-size:11px;color:#64748b;margin-top:10px;text-align:center;line-height:1.5}
-@keyframes countUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
-/* 輸入區 */
-.v298-input-wrap{border-top:0.5px solid var(--mr-chat-border);padding:12px 16px;background:rgba(255,255,255,.02)}
-.v298-quick-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
-.v298-quick-chip{background:var(--mr-bg-elevated);border:0.5px solid rgba(255,255,255,.08);color:#cbd5e1;padding:7px 12px;border-radius:999px;font-size:12px;cursor:pointer;white-space:nowrap;transition:all .2s}
-.v298-quick-chip:hover{background:var(--mr-primary);border-color:var(--mr-accent);color:#fff;transform:translateY(-1px)}
-.v298-input-row{display:flex;gap:10px;align-items:center}
-.v298-input{flex:1;background:var(--mr-bg-elevated);border:0.5px solid rgba(255,255,255,.08);color:#f0f9ff;padding:14px 16px;border-radius:12px;font-size:14px;outline:none;transition:border-color .2s}
-.v298-input:focus{border-color:var(--mr-accent);box-shadow:0 0 0 3px rgba(74,144,217,.12)}
-.v298-input::placeholder{color:#64748b}
-.v298-send{background:linear-gradient(135deg,#4a90d9,#2d5f8a);color:#fff;border:none;width:44px;height:44px;border-radius:12px;cursor:pointer;font-size:18px;transition:all .2s;flex-shrink:0}
-.v298-send:hover{transform:translateY(-1px) scale(1.04);box-shadow:0 6px 20px -6px rgba(74,144,217,.5)}
-.v298-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
-/* 用戶自選模組區（之後從 ☰ 選單拖入）*/
-.v298-modules-zone{margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
-.v298-empty-zone{text-align:center;padding:30px 20px;color:#475569;font-size:13px;border:1px dashed rgba(255,255,255,.06);border-radius:14px}
-/* ☰ 模組選單側滑面板 */
-.v298-drawer-mask{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:9998;animation:fadeUp .2s ease both}
-.v298-drawer-mask.open{display:block}
-.v298-drawer{position:fixed;top:0;right:-440px;width:420px;max-width:92vw;height:100vh;background:var(--mr-bg-card);border-left:0.5px solid rgba(74,144,217,.2);z-index:9999;transition:right .3s cubic-bezier(.4,0,.2,1);overflow-y:auto;box-shadow:-20px 0 60px -10px rgba(0,0,0,.6)}
-.v298-drawer.open{right:0}
-.v298-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:0.5px solid rgba(255,255,255,.06);position:sticky;top:0;background:var(--mr-bg-card);z-index:1}
-.v298-drawer-head h3{margin:0;font-size:16px;color:#f0f9ff;font-weight:700}
-.v298-drawer-head .close{background:none;border:none;color:#94a3b8;font-size:24px;cursor:pointer;padding:0;line-height:1}
-.v298-drawer-section{padding:18px 20px;border-bottom:0.5px solid rgba(255,255,255,.04)}
-.v298-drawer-section h4{margin:0 0 10px;font-size:11px;color:#64748b;font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
-.v298-drawer-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.v298-drawer-item{background:var(--mr-bg-elevated);border:0.5px solid rgba(255,255,255,.06);color:#cbd5e1;padding:10px 12px;border-radius:10px;font-size:12px;cursor:pointer;text-align:left;transition:all .2s;display:flex;align-items:center;gap:8px}
-.v298-drawer-item:hover{background:var(--mr-primary);border-color:var(--mr-accent);color:#fff;transform:translateX(2px)}
-.v298-drawer-item .ico{font-size:14px}
-/* v298 header 內 toggle（取代原浮動 launcher，避免跟 v297 chat bubble 在右下角打架）*/
-body.v298-mode #v298-header-toggle{display:none}
-@media (max-width:768px){
-  #v298-header-toggle{padding:5px 8px!important;font-size:11px!important}
-  .v298-headline{font-size:22px}
-  .v298-stage{padding:20px 14px 60px}
-  .v298-quick-chip{font-size:11px;padding:6px 10px}
-  .v298-drawer{width:88vw}
-  .v298-modules-zone{grid-template-columns:1fr}
-}
 </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gridstack@9.5.0/dist/gridstack.min.css">
   <script src="https://cdn.jsdelivr.net/npm/gridstack@9.5.0/dist/gridstack-all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<!-- ═══ JSON-LD 結構化資料 (SEO/GEO) ═══ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#organization",
+      "name": "Think BIG!",
+      "alternateName": ["思考遠大", "ThinkBIG TW"],
+      "url": "https://thinkbigtw.com/",
+      "founder": {"@type": "Person", "name": "吳御綸", "alternateName": "NEO Stanley Wu"},
+      "sameAs": ["https://lin.ee/n5KW430"]
+    },
+    {
+      "@type": "Product",
+      "@id": "https://thinkbigtw.com/#product-moneyradar",
+      "name": "MoneyRadar",
+      "brand": {"@id": "https://thinkbigtw.com/#organization"},
+      "category": "AI 金融分析工具",
+      "description": "全球頂尖 AI 看盤神器，14 分頁台股美股財經儀表板，整合 AI 新聞情緒判讀、即時報價與技術分析。支援 PWA 安裝到手機。",
+      "url": "https://thinkbigtw.com/lab/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web, PWA"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/lab/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "MoneyRadar 是什麼？", "acceptedAnswer": {"@type": "Answer", "text": "MoneyRadar 是 Think BIG! 推出的 AI 看盤神器，提供 14 分頁的台股與美股財經儀表板，整合 AI 新聞情緒判讀、即時報價與技術分析，可安裝為手機 PWA。"}},
+        {"@type": "Question", "name": "MoneyRadar 適合誰使用？", "acceptedAnswer": {"@type": "Answer", "text": "適合台股與美股投資人、金融專業人士，以及希望用 AI 輔助判讀市場情緒與盤勢的使用者。"}},
+        {"@type": "Question", "name": "MoneyRadar 支援哪些市場？", "acceptedAnswer": {"@type": "Answer", "text": "MoneyRadar 同時支援台股與美股，提供即時報價、新聞情緒分析與多分頁財經儀表板。"}}
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="lock-screen" id="lockScreen">
@@ -350,104 +264,10 @@ body.v298-mode #v298-header-toggle{display:none}
   <div class="error" id="errMsg"></div>
 </div>
   </div>
-<!-- ====== v298 AI 主畫面（landing-screen） ====== -->
-<div id="v298-landing">
-  <div class="v298-header">
-    <div class="v298-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">Money<span>Radar</span><sup>™</sup></div>
-    <div class="v298-header-actions">
-      <button class="v298-classic-btn" id="v298-classic-toggle" title="切回經典版（v297 16-tabs 完整 dashboard）">切回經典版</button>
-      <button class="v298-icon-btn" id="v298-bell" title="通知">🔔</button>
-      <button class="v298-icon-btn" id="v298-menu" title="模組選單（從這裡加入功能模組）">☰</button>
-    </div>
-  </div>
-  <div class="v298-stage">
-    <div class="v298-tagline">AI 為主力 · 圖表為輔的對話式投資分析師</div>
-    <h2 class="v298-headline">別的 APP 給你資訊<br>MoneyRadar™ <span>幫你做決定</span></h2>
-    <div class="v298-subhead">問任何投資問題 — 我會綜合技術面、籌碼面、基本面給你一張評分卡</div>
-    <div class="v298-chat">
-      <div class="v298-chat-messages" id="v298-msgs">
-        <div class="v298-chat-empty" id="v298-empty">
-          <span class="em-icon">🤖</span>
-          <div>嗨 NEO，我是 Hermes — MoneyRadar™ AI 分析師</div>
-          <div style="margin-top:6px;font-size:12px;color:#475569">問我「台積電今天能買嗎？」、「外資最近在買什麼？」或點下方快捷問題開始</div>
-        </div>
-      </div>
-      <div class="v298-input-wrap">
-        <div class="v298-quick-row" id="v298-quick">
-          <button class="v298-quick-chip" data-q="今天台股技術面訊號">📈 今日技術訊號</button>
-          <button class="v298-quick-chip" data-q="三大法人最近動向">🏦 法人動向</button>
-          <button class="v298-quick-chip" data-q="今天盤前快報">⚡ 盤前快報</button>
-          <button class="v298-quick-chip" data-q="幫我選股 ROE 高的">🔍 幫我選股</button>
-          <button class="v298-quick-chip" data-q="我的持股健診">💰 我的持股健診</button>
-          <button class="v298-quick-chip" data-q="總經環境概況">🌏 總經環境</button>
-        </div>
-        <div class="v298-input-row">
-          <input type="text" class="v298-input" id="v298-input" placeholder="例：台積電 2330 今天能買嗎？" autocomplete="off">
-          <button class="v298-send" id="v298-send" title="送出">→</button>
-        </div>
-      </div>
-    </div>
-    <!-- 用戶自選模組區（從 ☰ 加進來）-->
-    <div class="v298-modules-zone" id="v298-modules">
-      <div class="v298-empty-zone">點右上角 ☰ 從 60+ 個功能模組挑選想顯示的工具<br><span style="font-size:11px;color:#334155">手機最多 2 個 / 桌機最多 4 個</span></div>
-    </div>
-  </div>
-</div>
-
-<!-- ====== v298 ☰ 模組選單側滑面板 ====== -->
-<div class="v298-drawer-mask" id="v298-mask"></div>
-<aside class="v298-drawer" id="v298-drawer" aria-hidden="true">
-  <div class="v298-drawer-head">
-    <h3>☰ 模組選單</h3>
-    <button class="close" id="v298-drawer-close" aria-label="關閉">×</button>
-  </div>
-  <div class="v298-drawer-section">
-    <h4>📈 股票分析（台股 / 美股 / ETF）</h4>
-    <div class="v298-drawer-list">
-      <button class="v298-drawer-item" data-jump="tw"><span class="ico">🇹🇼</span>台股大盤</button>
-      <button class="v298-drawer-item" data-jump="us"><span class="ico">🇺🇸</span>美股</button>
-      <button class="v298-drawer-item" data-jump="etf"><span class="ico">📊</span>ETF</button>
-      <button class="v298-drawer-item" data-jump="watchlist"><span class="ico">⭐</span>我的清單</button>
-      <button class="v298-drawer-item" data-jump="asia"><span class="ico">🌏</span>亞洲市場</button>
-      <button class="v298-drawer-item" data-jump="sector"><span class="ico">🏭</span>產業</button>
-    </div>
-  </div>
-  <div class="v298-drawer-section">
-    <h4>💎 進階 / 機構級</h4>
-    <div class="v298-drawer-list">
-      <button class="v298-drawer-item" data-jump="screener"><span class="ico">🔍</span>選股器</button>
-      <button class="v298-drawer-item" data-jump="portfolio"><span class="ico">📋</span>投資組合</button>
-      <button class="v298-drawer-item" data-jump="options"><span class="ico">📜</span>選擇權</button>
-      <button class="v298-drawer-item" data-jump="futures"><span class="ico">⏱️</span>期貨</button>
-      <button class="v298-drawer-item" data-jump="bonds"><span class="ico">🏛️</span>債券</button>
-      <button class="v298-drawer-item" data-jump="tools"><span class="ico">🧰</span>理財工具</button>
-    </div>
-  </div>
-  <div class="v298-drawer-section">
-    <h4>🌏 加密 / 外匯 / 總經</h4>
-    <div class="v298-drawer-list">
-      <button class="v298-drawer-item" data-jump="crypto"><span class="ico">₿</span>加密貨幣</button>
-      <button class="v298-drawer-item" data-jump="fund"><span class="ico">💱</span>外匯/黃金</button>
-      <button class="v298-drawer-item" data-jump="macro"><span class="ico">🌐</span>總經指標</button>
-    </div>
-  </div>
-  <div class="v298-drawer-section">
-    <h4>💎 帳號 / Pro</h4>
-    <div class="v298-drawer-list">
-      <button class="v298-drawer-item" data-jump="pro"><span class="ico">💎</span>升級 Pro</button>
-    </div>
-  </div>
-  <div class="v298-drawer-section" style="border-bottom:none">
-    <h4>⚙️ 顯示設定</h4>
-    <button class="v298-drawer-item" id="v298-toclassic" style="width:100%;text-align:center;justify-content:center"><span class="ico">↩️</span>切回經典版（v297）</button>
-  </div>
-</aside>
-
 <div class="dashboard" id="dashboard" style="display:none">
   <div class="header">
     <h1 style="font-size:22px;font-weight:900;color:#f0f9ff;letter-spacing:-0.5px;margin:0;cursor:pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">Money<span style="color:#38bdf8">Radar</span><span style="font-size:13px;color:#64748b;font-weight:400">™</span></h1>
     <div style="display:flex;align-items:center;gap:10px">
-      <button id="v298-header-toggle" title="切換到 v298 AI 主畫面（對話式投資分析師）" style="background:linear-gradient(135deg,rgba(74,144,217,.18),rgba(99,102,241,.18));color:#bfdbfe;border:0.5px solid rgba(74,144,217,.4);padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:5px;transition:all .2s">✨ AI 主畫面</button>
       <span class="badge" id="userBadge">—</span>
       <button id="logoutBtn" onclick="logoutUser()" style="display:none;background:#1e293b;color:#94a3b8;border:1px solid #334155;padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer">登出</button>
     </div>
@@ -1088,7 +908,7 @@ body.v298-mode #v298-header-toggle{display:none}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:#475569;text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
 </div>
-<script src="app2.js?v=298"></script><script src="v277-bundle.js?v=298"></script><script src="v278-bundle.js?v=298"></script><script src="v279-bundle.js?v=298"></script><script src="v281-bundle.js?v=298"></script><script src="v282-bundle.js?v=298"></script><script src="v283-bundle.js?v=298"></script><script src="v284-bundle.js?v=298"></script><script src="v285-bundle.js?v=298"></script><script src="v286-bundle.js?v=298"></script><script src="v287-bundle.js?v=298"></script><script src="v288-bundle.js?v=298"></script><script src="v289-bundle.js?v=298"></script><script src="v290-bundle.js?v=298"></script><script src="v291-bundle.js?v=298"></script><script src="v292-bundle.js?v=298"></script><script src="v293-bundle.js?v=298"></script><script src="v294-bundle.js?v=298"></script><script src="v295-bundle.js?v=298"></script><script src="v296-bundle.js?v=298"></script><script src="v297a-bundle.js?v=298"></script>
+<script src="app2.js?v=297bb"></script><script src="v277-bundle.js?v=297bb"></script><script src="v278-bundle.js?v=297bb"></script><script src="v279-bundle.js?v=297bb"></script><script src="v281-bundle.js?v=297bb"></script><script src="v282-bundle.js?v=297bb"></script><script src="v283-bundle.js?v=297bb"></script><script src="v284-bundle.js?v=297bb"></script><script src="v285-bundle.js?v=297bb"></script><script src="v286-bundle.js?v=297bb"></script><script src="v287-bundle.js?v=297bb"></script><script src="v288-bundle.js?v=297bb"></script><script src="v289-bundle.js?v=297bb"></script><script src="v290-bundle.js?v=297bb"></script><script src="v291-bundle.js?v=297bb"></script><script src="v292-bundle.js?v=297bb"></script><script src="v293-bundle.js?v=297bb"></script><script src="v294-bundle.js?v=297bb"></script><script src="v295-bundle.js?v=297bb"></script><script src="v296-bundle.js?v=297bb"></script><script src="v297a-bundle.js?v=297bb"></script>
 
 <script>
 (function(){
@@ -1145,311 +965,7 @@ body.v298-mode #v298-header-toggle{display:none}
   </div>
   <div style="text-align:center;color:#475569;font-size:11px;margin-top:14px">目前 Beta 測試版功能全開免費 · 正式版預計 2026 Q3 上線</div>
 </div>
-<!-- ============================================================
-     v298 控制器：UI 切換、☰ 模組選單、AI 對話 demo（對接現有 worker /chat）
-     設計原則：1) 不改 12011 行 app2.js  2) 不破壞 v297 既有功能  3) 預設啟用，但可一鍵切回經典版
-     ============================================================ -->
-<script>
-(function(){
-  'use strict';
-  var KEY = 'mr-ui-version';
-  var DEFAULT_MODE = 'v298';      // 預設新 UI（你可以改成 'classic' 改成預設舊版）
-  var TELEMETRY_KEY = 'mr_v298_ab';
-  var W = (window.MR_WORKER_URL || 'https://moneyradar-ai-proxy.pages.dev'); // 若不存在會 fallback 到 demo
-
-  function getMode(){
-    try{ return localStorage.getItem(KEY) || DEFAULT_MODE; }catch(e){ return DEFAULT_MODE; }
-  }
-  function setMode(m){
-    try{ localStorage.setItem(KEY, m); }catch(e){}
-    applyMode(m);
-    // A/B 數據埋點
-    try{
-      var t = JSON.parse(localStorage.getItem(TELEMETRY_KEY)||'{}');
-      t[m+'_count'] = (t[m+'_count']||0) + 1;
-      t.last_switch = new Date().toISOString();
-      t.last_mode = m;
-      localStorage.setItem(TELEMETRY_KEY, JSON.stringify(t));
-    }catch(e){}
-  }
-  function applyMode(m){
-    if(m === 'v298'){
-      document.body.classList.add('v298-mode');
-    } else {
-      document.body.classList.remove('v298-mode');
-    }
-  }
-
-  // 等到登入後再決定要不要顯示 v298（v298 主畫面不該蓋住 lockScreen）
-  function maybeShow(){
-    var lock = document.getElementById('lockScreen');
-    var dash = document.getElementById('dashboard');
-    if(lock && lock.style.display !== 'none' && lock.offsetParent !== null){
-      // 還在登入畫面 — 不啟動 v298 mode
-      document.body.classList.remove('v298-mode');
-      return;
-    }
-    applyMode(getMode());
-  }
-
-  // ☰ Drawer 開關
-  function openDrawer(){
-    document.getElementById('v298-drawer').classList.add('open');
-    document.getElementById('v298-mask').classList.add('open');
-    document.getElementById('v298-drawer').setAttribute('aria-hidden','false');
-  }
-  function closeDrawer(){
-    document.getElementById('v298-drawer').classList.remove('open');
-    document.getElementById('v298-mask').classList.remove('open');
-    document.getElementById('v298-drawer').setAttribute('aria-hidden','true');
-  }
-
-  // 跳到指定 tab（切回經典版 + 觸發 switchTab）
-  function jumpToTab(tabId){
-    setMode('classic');
-    closeDrawer();
-    // 等一個 frame 讓 dashboard 顯示後再切 tab
-    setTimeout(function(){
-      try{
-        if(typeof window.switchTab === 'function'){
-          // 找對應的 tab 按鈕
-          var btn = document.querySelector('.tab-btn[onclick*="\''+tabId+'\'"]');
-          window.switchTab(tabId, btn);
-        }
-      }catch(e){ console.warn('[v298] switchTab error:', e); }
-      // 滾到頂
-      window.scrollTo({top:0, behavior:'smooth'});
-    }, 50);
-  }
-
-  // ===== AI 對話：預設使用 worker /chat 端點（與 v297 整合），fallback 為本地 demo =====
-  function el(tag, cls, html){
-    var n = document.createElement(tag);
-    if(cls) n.className = cls;
-    if(html != null) n.innerHTML = html;
-    return n;
-  }
-  function appendUserMsg(text){
-    var msgs = document.getElementById('v298-msgs');
-    var em = document.getElementById('v298-empty');
-    if(em) em.remove();
-    var b = el('div','v298-msg user', escapeHtml(text));
-    msgs.appendChild(b);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-  function appendThinking(){
-    var msgs = document.getElementById('v298-msgs');
-    var b = el('div','v298-msg ai thinking');
-    b.id = 'v298-thinking';
-    b.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>';
-    msgs.appendChild(b);
-    msgs.scrollTop = msgs.scrollHeight;
-
-    // 同時顯示思考步驟
-    var stepBox = el('div','v298-msg ai v298-thinking-steps');
-    stepBox.id = 'v298-steps';
-    stepBox.innerHTML =
-      '<div class="step active" data-i="1">抓取法人籌碼...</div>'+
-      '<div class="step" data-i="2" style="opacity:0">計算 RSI + KD 背離...</div>'+
-      '<div class="step" data-i="3" style="opacity:0">比對月營收趨勢...</div>'+
-      '<div class="step" data-i="4" style="opacity:0">生成綜合判斷中...</div>';
-    msgs.appendChild(stepBox);
-    msgs.scrollTop = msgs.scrollHeight;
-
-    // 步驟動畫
-    var steps = stepBox.querySelectorAll('.step');
-    var idx = 0;
-    var iv = setInterval(function(){
-      if(idx >= steps.length-1){ clearInterval(iv); return; }
-      steps[idx].classList.remove('active');
-      steps[idx].classList.add('done');
-      idx++;
-      steps[idx].style.animationDelay = '0s';
-      steps[idx].style.opacity = '1';
-      steps[idx].classList.add('active');
-    }, 700);
-    stepBox._cleanup = function(){
-      clearInterval(iv);
-      steps.forEach(function(s){ s.classList.remove('active'); s.classList.add('done'); });
-    };
-  }
-  function clearThinking(){
-    var t = document.getElementById('v298-thinking');
-    var s = document.getElementById('v298-steps');
-    if(s && s._cleanup) s._cleanup();
-    if(t) t.remove();
-    if(s) s.remove();
-  }
-  function appendAiMsg(html){
-    var msgs = document.getElementById('v298-msgs');
-    var b = el('div','v298-msg ai', html);
-    msgs.appendChild(b);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-  function appendScoreCard(data){
-    var msgs = document.getElementById('v298-msgs');
-    function lvl(v){ return v >= 80 ? 'high' : (v >= 50 ? 'mid' : 'low'); }
-    function trend(v){ return v >= 70 ? '<span class="v298-score-trend up">偏多 ▲</span>' : (v >= 50 ? '<span class="v298-score-trend">中性 →</span>' : '<span class="v298-score-trend down">偏空 ▼</span>'); }
-    var card = el('div','v298-scorecard');
-    card.innerHTML =
-      '<h4>📊 '+(data.symbol||'綜合')+' '+(data.name||'')+' 評分卡</h4>'+
-      '<div class="v298-scorecard-grid">'+
-        '<div class="v298-score-cell"><div class="v298-score-label">技術面</div><div class="v298-score-value '+lvl(data.tech)+'">'+data.tech+'</div>'+trend(data.tech)+'</div>'+
-        '<div class="v298-score-cell"><div class="v298-score-label">籌碼面</div><div class="v298-score-value '+lvl(data.chip)+'">'+data.chip+'</div>'+trend(data.chip)+'</div>'+
-        '<div class="v298-score-cell"><div class="v298-score-label">基本面</div><div class="v298-score-value '+lvl(data.fund)+'">'+data.fund+'</div>'+trend(data.fund)+'</div>'+
-      '</div>'+
-      '<div class="v298-score-overall">整體：<b>'+Math.round((data.tech+data.chip+data.fund)/3)+'/100</b> · '+(data.note||'')+'</div>'+
-      '<div class="v298-score-disclaimer">⚠️ 以上為 AI 分析，非投資建議。投資有風險，請依個人狀況審慎評估。</div>';
-    msgs.appendChild(card);
-    msgs.scrollTop = msgs.scrollHeight;
-  }
-  function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
-
-  // 解析訊息，找出股票代碼 → 觸發評分卡
-  function detectSymbol(text){
-    var m = text.match(/\b(\d{4})\b/) || text.match(/\b([A-Z]{1,5})\b/);
-    return m ? m[1] : null;
-  }
-  function looksLikeStockQuery(text){
-    return /(台積電|2330|2317|股票|代碼|分析|評分|能買|該買|買嗎|賣嗎|\d{4}|[A-Z]{2,5})/.test(text);
-  }
-
-  function callWorkerChat(question){
-    // 嘗試呼叫 v297 既有 worker /chat 端點
-    var endpoints = [
-      'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/chat',
-      'https://moneyradar-ai-proxy.workers.dev/chat'
-    ];
-    return Promise.race(endpoints.map(function(url){
-      return fetch(url, {
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ message: question })
-      }).then(function(r){ return r.ok ? r.json() : Promise.reject(); });
-    })).catch(function(){
-      // Fallback：本地 demo 回應（離線時也能 demo）
-      return null;
-    });
-  }
-
-  function sendQuery(text){
-    if(!text || !text.trim()) return;
-    text = text.trim();
-    appendUserMsg(text);
-    appendThinking();
-
-    // 同時做：1) 呼叫 worker /chat  2) demo 評分卡（若像股票查詢）
-    var symbol = detectSymbol(text);
-    var promise = callWorkerChat(text);
-
-    promise.then(function(data){
-      clearThinking();
-      if(data && (data.reply || data.message || data.answer)){
-        appendAiMsg(escapeHtml(data.reply || data.message || data.answer));
-      } else {
-        // 離線 demo 模式
-        appendAiMsg(buildDemoReply(text, symbol));
-      }
-      // 像股票查詢就附評分卡
-      if(symbol && looksLikeStockQuery(text)){
-        appendScoreCard({
-          symbol: symbol,
-          name: symbol === '2330' ? '台積電' : '',
-          tech: 76 + Math.floor(Math.random()*15),
-          chip: 60 + Math.floor(Math.random()*20),
-          fund: 82 + Math.floor(Math.random()*12),
-          note: 'Demo · 正式版將整合 Hermes + Vibe-Trading MCP 即時資料'
-        });
-      }
-    });
-  }
-
-  function buildDemoReply(text, symbol){
-    if(symbol){
-      return '收到 — 我注意到你問的是 <b>'+escapeHtml(symbol)+'</b>。<br>'+
-             '我已經抓取最近 30 日法人籌碼、計算 RSI + KD、比對月營收趨勢，下方評分卡是綜合判斷結果。<br>'+
-             '<span style="color:#94a3b8;font-size:12px">（v298 Demo 模式 — 正式版接 Hermes + Vibe-Trading MCP 後會給更深入分析）</span>';
-    }
-    return '我了解你的問題：「'+escapeHtml(text)+'」<br>'+
-           '正式版會整合 Hermes Agent 給你完整答案，現在 v298 是 Demo 模式。<br>'+
-           '<span style="color:#94a3b8;font-size:12px">點右上角 ☰ 可以打開 60+ 個功能模組（包含 v297 全部 16 個 tabs）</span>';
-  }
-
-  // ===== 綁定事件 =====
-  document.addEventListener('DOMContentLoaded', function(){
-    // 監聽登入後出現 dashboard，再決定 v298 顯示
-    var dash = document.getElementById('dashboard');
-    if(dash){
-      // 用 MutationObserver 偵測 dashboard 從 display:none 變為 display:block
-      var obs = new MutationObserver(function(){
-        if(dash.style.display !== 'none'){
-          maybeShow();
-        }
-      });
-      obs.observe(dash, { attributes:true, attributeFilter:['style'] });
-    }
-    setTimeout(maybeShow, 100);
-    setTimeout(maybeShow, 1500);
-
-    // ☰ 開關
-    var menuBtn = document.getElementById('v298-menu');
-    if(menuBtn) menuBtn.addEventListener('click', openDrawer);
-    var closeBtn = document.getElementById('v298-drawer-close');
-    if(closeBtn) closeBtn.addEventListener('click', closeDrawer);
-    var mask = document.getElementById('v298-mask');
-    if(mask) mask.addEventListener('click', closeDrawer);
-
-    // 切回經典版
-    var classicBtn = document.getElementById('v298-classic-toggle');
-    if(classicBtn) classicBtn.addEventListener('click', function(){ setMode('classic'); window.scrollTo({top:0}); });
-    var classicBtn2 = document.getElementById('v298-toclassic');
-    if(classicBtn2) classicBtn2.addEventListener('click', function(){ setMode('classic'); closeDrawer(); window.scrollTo({top:0}); });
-
-    // 模組跳轉
-    document.querySelectorAll('.v298-drawer-item[data-jump]').forEach(function(b){
-      b.addEventListener('click', function(){ jumpToTab(b.dataset.jump); });
-    });
-
-    // dashboard header 內的「✨ AI 主畫面」按鈕（取代右下浮動 launcher，避免跟 v297 chat bubble 打架）
-    var headerToggle = document.getElementById('v298-header-toggle');
-    if(headerToggle){
-      headerToggle.addEventListener('click', function(){ setMode('v298'); window.scrollTo({top:0}); });
-      headerToggle.addEventListener('mouseenter', function(){ headerToggle.style.background = 'linear-gradient(135deg,rgba(74,144,217,.32),rgba(99,102,241,.32))'; headerToggle.style.borderColor = 'rgba(74,144,217,.7)'; headerToggle.style.color = '#fff'; });
-      headerToggle.addEventListener('mouseleave', function(){ headerToggle.style.background = 'linear-gradient(135deg,rgba(74,144,217,.18),rgba(99,102,241,.18))'; headerToggle.style.borderColor = 'rgba(74,144,217,.4)'; headerToggle.style.color = '#bfdbfe'; });
-    }
-
-    // AI 對話
-    var input = document.getElementById('v298-input');
-    var send = document.getElementById('v298-send');
-    function doSend(){
-      var v = input.value;
-      input.value = '';
-      sendQuery(v);
-    }
-    if(send) send.addEventListener('click', doSend);
-    if(input) input.addEventListener('keydown', function(e){ if(e.key === 'Enter') doSend(); });
-
-    // 快捷問題
-    document.querySelectorAll('.v298-quick-chip').forEach(function(c){
-      c.addEventListener('click', function(){ sendQuery(c.dataset.q); });
-    });
-
-    // ESC 關閉 drawer
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeDrawer(); });
-  });
-
-  // 暴露給外部使用
-  window.MR_v298 = {
-    setMode: setMode,
-    getMode: getMode,
-    openDrawer: openDrawer,
-    closeDrawer: closeDrawer,
-    sendQuery: sendQuery,
-    reset: function(){ try{ localStorage.removeItem(KEY); localStorage.removeItem(TELEMETRY_KEY); }catch(e){} location.reload(); }
-  };
-})();
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script><script>(function(){var K='mr_v275_';var T=['tab-tw','tab-watchlist','tab-us','tab-asia','tab-etf','tab-fund','tab-futures','tab-tools','tab-options','tab-screener','tab-bonds','tab-sector','tab-macro','tab-portfolio','tab-pro','tab-crypto'];var ST=document.createElement('style');ST.textContent='.v275-h{position:absolute;top:8px;right:12px;cursor:grab;padding:4px 10px;color:rgba(255,255,255,.5);font:900 16px/1 sans-serif;background:rgba(255,255,255,.08);border-radius:4px;z-index:10;letter-spacing:-2px;user-select:none}.v275-h:hover{color:#fff;background:rgba(0,200,255,.2)}.v275-g{opacity:.4;background:rgba(0,200,255,.1)!important;border:2px dashed rgba(0,200,255,.5)!important}';document.head.appendChild(ST);function I(){if(!window.Sortable){return setTimeout(I,500);}T.forEach(function(id){var t=document.getElementById(id);if(!t||t.dataset.v275){return;}t.dataset.v275='1';Array.from(t.querySelectorAll(':scope > .section')).forEach(function(x,i){if(!x.dataset.v275k){var z=x.querySelector('[id]');x.dataset.v275k=z?z.id:'s-'+id+'-'+i;}if(getComputedStyle(x).position==='static'){x.style.position='relative';}if(!x.querySelector('.v275-h')){var h=document.createElement('span');h.className='v275-h';h.title='Drag';h.textContent='⋮⋮';x.appendChild(h);}});try{JSON.parse(localStorage.getItem(K+id)||'[]').forEach(function(k){var sel='[data-v275k='+JSON.stringify(k)+']';var e=t.querySelector(sel);if(e){t.appendChild(e);}});}catch(e){}new window.Sortable(t,{handle:'.v275-h',animation:200,ghostClass:'v275-g',filter:'.footer,#v272-controls,script,style',onEnd:function(){try{var arr=Array.from(t.querySelectorAll(':scope > .section')).map(function(x){return x.dataset.v275k;}).filter(Boolean);localStorage.setItem(K+id,JSON.stringify(arr));}catch(e){}}});});}I();document.addEventListener('click',function(e){if(e.target.closest('[data-tab],.tab-btn,[role=tab]')){setTimeout(I,400);}},true);window.v275Reset=function(){T.forEach(function(id){localStorage.removeItem(K+id);});location.reload();};})();</script></body>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script><script>(function(){var K='mr_v275_';var T=['tab-tw','tab-watchlist','tab-us','tab-asia','tab-etf','tab-fund','tab-futures','tab-tools','tab-options','tab-screener','tab-bonds','tab-sector','tab-macro','tab-portfolio','tab-pro','tab-crypto'];var ST=document.createElement('style');ST.textContent='.v275-h{position:absolute;top:8px;right:12px;cursor:grab;padding:4px 10px;color:rgba(255,255,255,.5);font:900 16px/1 sans-serif;background:rgba(255,255,255,.08);border-radius:4px;z-index:10;letter-spacing:-2px;user-select:none}.v275-h:hover{color:#fff;background:rgba(0,200,255,.2)}.v275-g{opacity:.4;background:rgba(0,200,255,.1)!important;border:2px dashed rgba(0,200,255,.5)!important}';document.head.appendChild(ST);function I(){if(!window.Sortable){return setTimeout(I,500);}T.forEach(function(id){var t=document.getElementById(id);if(!t||t.dataset.v275){return;}t.dataset.v275='1';Array.from(t.querySelectorAll(':scope > .section')).forEach(function(x,i){if(!x.dataset.v275k){var z=x.querySelector('[id]');x.dataset.v275k=z?z.id:'s-'+id+'-'+i;}if(getComputedStyle(x).position==='static'){x.style.position='relative';}if(!x.querySelector('.v275-h')){var h=document.createElement('span');h.className='v275-h';h.title='Drag';h.textContent='⋮⋮';x.appendChild(h);}});try{JSON.parse(localStorage.getItem(K+id)||'[]').forEach(function(k){var sel='[data-v275k='+JSON.stringify(k)+']';var e=t.querySelector(sel);if(e){t.appendChild(e);}});}catch(e){}new window.Sortable(t,{handle:'.v275-h',animation:200,ghostClass:'v275-g',filter:'.footer,#v272-controls,script,style',onEnd:function(){try{var arr=Array.from(t.querySelectorAll(':scope > .section')).map(function(x){return x.dataset.v275k;}).filter(Boolean);localStorage.setItem(K+id,JSON.stringify(arr));}catch(e){}}});});}I();document.addEventListener('click',function(e){if(e.target.closest('[data-tab],.tab-btn,[role=tab]')){setTimeout(I,400);}},true);window.v275Reset=function(){T.forEach(function(id){localStorage.removeItem(K+id);});location.reload();};})();</script><script src="/ask-ai.js" defer></script>
+</body>
 </html>
   

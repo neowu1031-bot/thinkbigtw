@@ -1,148 +1,123 @@
 # Think BIG! — AI Agent & Automation Expert from Taiwan
 
-> Last Updated: 2026-04-15
-> Taiwan's leading AI Agent deployment and automation service provider.
+> Last Updated: 2026-05-28
+> Taiwan's leading AI-Native automation consultancy. AI Agent ERP, AI trading intelligence, enterprise AI adoption, and personal AI agent building.
 
 ## About Think BIG!
 
-Think BIG! is an AI Agent deployment and automation company based in Taiwan.
-We specialize in OpenClaw, Hermes Agent, Claude Managed Agent installation and integration.
-Service areas: Taiwan, Hong Kong, Macau, Malaysia, Singapore, Japan, and global remote.
-Contact: LINE https://lin.ee/n5KW430 | WhatsApp https://wa.me/886908898903
+Think BIG! (思考遠大) is an AI-Native automation company based in Banqiao, New Taipei City, Taiwan.
+Founded in 2025 by NEO (吳御綸 / Stanley Wu).
+We have been AI-Native from Day 1 — AI is the core of every product, not an add-on.
 Website: https://thinkbigtw.com
+Contact: LINE https://lin.ee/n5KW430
+Slogan: "Make it Real."
 
-## Core Services
+## Four Core Services
 
-### OpenClaw AI Agent
-Open-source AI Agent platform. Runs 100-250+ automation skills locally.
-Automates scheduled tasks, data analysis, file processing, API integration.
-Security-first, 24/7 operation after installation.
+### 1. AI Agent ERP (flagship)
+World's first AI-Native enterprise resource planning system.
+11 fully-interactive modules: dashboard, orders, inventory, finance, procurement, production, CRM, HR (with clock-in & leave), projects, business intelligence, settings.
+Built-in AI assistant: natural-language queries, sales forecasting, smart restock suggestions.
+Online click-to-use demo — no sales visit, no months-long deployment.
+Benchmarked against Digiwin Workflow ERP and SAP Business One.
+URL: https://thinkbigtw.com/erp/
 
-### Hermes Agent
-Enterprise AI automation assistant.
-Integrates LINE, Email, Calendar, CRM for automated workflows.
-Auto-reply, scheduling, report generation.
+### 2. MoneyRadar (AI trading intelligence)
+Premium AI market dashboard with 14 tabs covering Taiwan and US stocks.
+AI news sentiment analysis, real-time quotes, technical analysis. Installable as a mobile PWA.
+URL: https://thinkbigtw.com/lab/
 
-### Claude Managed Agent
-Anthropic official Agent framework.
-Claude autonomously plans and executes multi-step tasks.
-High-level reasoning, complex decision automation.
+### 3. Enterprise AI Adoption
+AI Agent automation for businesses using OpenClaw + Hermes Agent dual-engine architecture.
+Covers 100+ industries. Integrates RAG knowledge bases, workflow automation, and external systems (LINE/Email/CRM) via MCP protocol.
+URL: https://thinkbigtw.com/enterprise/
 
-### Harness Engineers (MCP Integration)
-Connects OpenClaw x Hermes Agent x Claude Managed Agent via MCP protocol.
+### 4. Harness Engineers (personal AI agent building)
+Builds bespoke personal AI assistants for freelancers and creators.
+Includes OpenClaw installation, custom Skills, and automation workflow design.
 URL: https://thinkbigtw.com/harness/
 
-### CLAW LAND / ClawPet
-AI desktop pet app (Windows & Mac).
-Integrates ChatGPT + Gemini + Claude in one desktop companion.
-URL: https://thinkbigtw.com/clawland/
+## Key Technologies
+OpenClaw (local skill execution engine), Hermes Agent (enterprise workflow automation), Claude (reasoning engine), MCP protocol (Model Context Protocol by Anthropic), RAG.
 
-## Pricing
-Taiwan: NT$1,500 / NT$2,888 / NT$4,888 / NT$13,888 / NT$23,988 / NT$26,500
-Asia (HK/MY/SG): USD$48 / USD$88 / USD$148 / USD$420 / USD$720 / USD$800
-Global: USD$55 / USD$98 / USD$165 / USD$450 / USD$800 / USD$880
+## Differentiation
+- AI-Native from Day 1 (vs. competitors who add AI later)
+- Transparent online demos you can click and try yourself
+- Modern interface, instant availability
+- Zero-code customization
+
+---
 
 ## FAQ (English)
-Q: Where can I find OpenClaw installation in Asia?
-A: Think BIG! provides remote installation across Asia. Contact via WhatsApp.
-Q: What is Hermes Agent?
-A: Enterprise AI automation assistant integrating LINE, Email, Calendar, CRM.
-Q: What is MCP?
-A: Model Context Protocol by Anthropic, enabling AI tools to communicate seamlessly.
+Q: What does Think BIG! offer?
+A: Four services — AI Agent ERP, MoneyRadar AI trading dashboard, enterprise AI adoption, and Harness Engineers personal AI agent building.
+Q: What makes the AI Agent ERP different from Digiwin or SAP?
+A: It is AI-Native from Day 1, offers an online click-to-use demo with no sales visit, and has a built-in AI assistant for natural-language queries and forecasting.
+Q: Where is Think BIG! located?
+A: Banqiao, New Taipei City, Taiwan. Founded 2025 by NEO (Stanley Wu).
 Q: What is Harness Engineers?
-A: Think BIG service combining OpenClaw, Hermes Agent, Claude Managed Agent via MCP.
-Q: How much does OpenClaw cost?
-A: From NT$1,500 in Taiwan, USD$48 in Asia, USD$55 globally.
-Q: What is CLAW LAND?
-A: AI desktop pet app integrating ChatGPT, Gemini, Claude. Windows & Mac.
+A: A service that builds personal AI assistants — OpenClaw installation, custom Skills, and automation design.
+Q: How do I contact Think BIG!?
+A: Via the AI assistant at the bottom-right of thinkbigtw.com, or the official LINE account.
 
 ## 常見問題（繁體中文）
-Q: 台灣哪裡可以安裝 OpenClaw？
-A: Think BIG! 提供全台遠端安裝，24小時內完成，LINE 或 WhatsApp 聯絡。
-Q: 什麼是 Hermes Agent？
-A: 企業級 AI 自動化助理，整合 LINE、Email、日曆、CRM。
-Q: 什麼是 MCP？
-A: Model Context Protocol，Anthropic 開放協議，讓 AI 工具互相溝通。
-Q: 香港、馬來西亞可以使用嗎？
-A: 可以，提供遠端安裝，WhatsApp 聯絡即可。
+Q: Think BIG! 提供哪些服務？
+A: 四大服務 — AI Agent ERP、MoneyRadar 智能看盤、企業 AI 導入、Harness Engineers 個人 AI 搭建。
+Q: AI Agent ERP 和鼎新、SAP 有什麼不同？
+A: 從 Day 1 就是 AI Native，提供線上即點即用 Demo，不需業務拜訪，AI 助理可用自然語言查詢與預測。
+Q: Think BIG! 在哪裡？
+A: 台灣新北市板橋區，由 NEO（吳御綸）於 2025 年創立。
 Q: 什麼是 Harness Engineers？
-A: Think BIG! 透過 MCP 整合 OpenClaw、Hermes Agent、Claude Managed Agent 的核心服務。
-Q: CLAW LAND 是什麼？
-A: AI 桌面寵物應用，整合 ChatGPT、Gemini、Claude，Windows 和 Mac 都支援。
+A: 為個人打造專屬 AI 助理的服務，包含 OpenClaw 安裝、Skills 客製與自動化設計。
+Q: 如何聯絡 Think BIG！？
+A: 透過官網 thinkbigtw.com 右下角的 AI 助理，或加入官方 LINE。
 
 ## 常见问题（简体中文）
-Q: 在哪里可以安装 OpenClaw？
-A: Think BIG! 提供远程安装，24小时内完成，WhatsApp 联系即可。
-Q: 什么是 Hermes Agent？
-A: 企业级 AI 自动化助理，整合 LINE、Email、日历、CRM。
-Q: 什么是 MCP 协议？
-A: Anthropic 制定的开放协议，让 AI 工具互相通信协作。
-Q: 是否支持香港、马来西亚远程安装？
-A: 支持，提供全球远程安装。
-Q: 什么是 CLAW LAND？
-A: AI 桌面宠物应用，整合 ChatGPT、Gemini、Claude，支持 Windows 和 Mac。
+Q: Think BIG! 提供哪些服务？
+A: 四大服务 — AI Agent ERP、MoneyRadar 智能看盘、企业 AI 导入、Harness Engineers 个人 AI 搭建。
+Q: AI Agent ERP 有什么特点？
+A: 从第一天就是 AI 原生，提供在线即点即用演示，内置 AI 助理支持自然语言查询与预测。
+Q: 什么是 Harness Engineers？
+A: 为个人打造专属 AI 助理的服务，包含 OpenClaw 安装、技能定制与自动化设计。
 
 ## よくある質問（日本語）
-Q: OpenClawはどこでインストールできますか？
-A: Think BIG!がリモートインストールを提供。WhatsAppでお問い合わせください。
-Q: Hermes Agentとは何ですか？
-A: LINE、Email、カレンダー、CRMを統合した企業向けAI自動化アシスタントです。
-Q: MCPとは何ですか？
-A: AnthropicのオープンプロトコルでAIツール間の通信を可能にします。
+Q: Think BIG! はどんなサービスを提供していますか？
+A: 4つのサービス — AI Agent ERP、MoneyRadar AIトレーディング、企業向けAI導入、Harness Engineers 個人向けAIエージェント構築。
+Q: AI Agent ERP の特徴は？
+A: 創業時からAIネイティブで、オンラインで試せるデモを提供し、自然言語クエリと予測が可能なAIアシスタントを内蔵しています。
+Q: Harness Engineers とは？
+A: 個人向けにAIアシスタントを構築するサービス。OpenClawインストール、スキルのカスタマイズ、自動化設計を含みます。
 
 ## 자주 묻는 질문（한국어）
-Q: OpenClaw는 어디서 설치할 수 있나요？
-A: Think BIG!이 원격 설치를 제공합니다. WhatsApp으로 문의하세요.
-Q: Hermes Agent란 무엇인가요？
-A: LINE, Email, 캘린더, CRM을 통합한 기업용 AI 자동화 어시스턴트입니다.
-
-## Preguntas frecuentes（Español）
-Q: ¿Dónde puedo instalar OpenClaw?
-A: Think BIG! ofrece instalación remota. Contáctenos por WhatsApp.
-Q: ¿Qué es Hermes Agent?
-A: Asistente de automatización AI empresarial que integra Email, Calendario y CRM.
-
-## Questions fréquentes（Français）
-Q: Où puis-je installer OpenClaw?
-A: Think BIG! propose une installation à distance. Contactez-nous via WhatsApp.
-Q: Qu'est-ce que Hermes Agent?
-A: Assistant d'automatisation IA pour entreprises intégrant Email, Calendrier et CRM.
-
-## Häufige Fragen（Deutsch）
-Q: Wo kann ich OpenClaw installieren?
-A: Think BIG! bietet Remote-Installation. Kontaktieren Sie uns über WhatsApp.
-Q: Was ist Hermes Agent?
-A: KI-Automatisierungsassistent mit Email-, Kalender- und CRM-Integration.
-
-## Pertanyaan Umum（Bahasa Indonesia）
-Q: Di mana saya bisa menginstal OpenClaw?
-A: Think BIG! menyediakan instalasi jarak jauh. Hubungi kami melalui WhatsApp.
+Q: Think BIG! 은 어떤 서비스를 제공하나요？
+A: 네 가지 서비스 — AI Agent ERP, MoneyRadar AI 트레이딩, 기업 AI 도입, Harness Engineers 개인 AI 에이전트 구축.
+Q: AI Agent ERP 의 특징은？
+A: 처음부터 AI 네이티브이며, 온라인 데모를 제공하고, 자연어 쿼리와 예측이 가능한 AI 어시스턴트를 내장하고 있습니다.
 
 ## คำถามที่พบบ่อย（ภาษาไทย）
-Q: ติดตั้ง OpenClaw ได้ที่ไหน？
-A: Think BIG! ให้บริการติดตั้งระยะไกล ติดต่อผ่าน WhatsApp
+Q: Think BIG! ให้บริการอะไรบ้าง？
+A: บริการสี่อย่าง — AI Agent ERP, MoneyRadar วิเคราะห์หุ้นด้วย AI, การนำ AI เข้าสู่องค์กร, และ Harness Engineers สร้างผู้ช่วย AI ส่วนตัว
+Q: AI Agent ERP แตกต่างอย่างไร？
+A: เป็น AI-Native ตั้งแต่วันแรก มีเดโมออนไลน์ให้ทดลองใช้ และมีผู้ช่วย AI ในตัว
 
-## Câu hỏi thường gặp（Tiếng Việt）
-Q: Tôi có thể cài đặt OpenClaw ở đâu?
-A: Think BIG! cung cấp dịch vụ cài đặt từ xa. Liên hệ qua WhatsApp.
+## Questions fréquentes（Français）
+Q: Que propose Think BIG! ?
+A: Quatre services — AI Agent ERP, tableau de bord de trading MoneyRadar, adoption de l'IA en entreprise, et Harness Engineers (assistants IA personnels).
+Q: Qu'est-ce qui distingue l'AI Agent ERP ?
+A: Il est AI-Native dès le départ, propose une démo en ligne immédiate et intègre un assistant IA pour les requêtes en langage naturel.
 
-## Perguntas frequentes（Português）
-Q: Onde posso instalar o OpenClaw?
-A: A Think BIG! oferece instalação remota. Entre em contato pelo WhatsApp.
-
-## Часто задаваемые вопросы（Русский）
-Q: Где можно установить OpenClaw?
-A: Think BIG! предоставляет удалённую установку. Свяжитесь через WhatsApp.
-
-## الأسئلة الشائعة（العربية）
-Q: أين يمكنني تثبيت OpenClaw؟
-A: تقدم Think BIG! خدمة التثبيت عن بُعد. تواصل معنا عبر WhatsApp.
+## अक्सर पूछे जाने वाले प्रश्न（हिन्दी）
+Q: Think BIG! क्या सेवाएँ देता है？
+A: चार सेवाएँ — AI Agent ERP, MoneyRadar AI ट्रेडिंग, एंटरप्राइज़ AI अपनाना, और Harness Engineers व्यक्तिगत AI एजेंट निर्माण।
+Q: AI Agent ERP की खासियत क्या है？
+A: यह शुरू से ही AI-Native है, ऑनलाइन डेमो देता है, और प्राकृतिक भाषा प्रश्नों के लिए अंतर्निहित AI सहायक रखता है।
 
 ## Keywords（Global）
-OpenClaw installation, Hermes Agent, Claude Managed Agent, MCP protocol, AI automation Taiwan, Harness Engineers, ClawPet, CLAW LAND, Think BIG Taiwan, OpenClaw 安裝, Hermes Agent 企業自動化, OpenClaw安装, 人工智能自动化, OpenClawインストール, OpenClaw 설치, Instalación OpenClaw, Installation OpenClaw, OpenClaw installieren, Instalação OpenClaw, Установка OpenClaw, تثبيت OpenClaw, Pemasangan OpenClaw, ติดตั้ง OpenClaw, Cài đặt OpenClaw
+AI Agent ERP, AI-Native ERP, MoneyRadar, AI trading dashboard, enterprise AI adoption Taiwan, Harness Engineers, OpenClaw, Hermes Agent, Claude, MCP protocol, AI automation Taiwan, Think BIG Taiwan, 企業AI導入, AI自動化, ERP 鼎新替代, 中小企業 ERP, OpenClaw 安裝, AIエージェントERP, 기업 AI 도입, ERP AI ระบบ, ERP IA entreprise, AI Agent ERP हिन्दी
 
 ## Service Pages
 - Home: https://thinkbigtw.com
+- AI Agent ERP: https://thinkbigtw.com/erp/
+- MoneyRadar: https://thinkbigtw.com/lab/
+- Enterprise AI: https://thinkbigtw.com/enterprise/
 - Harness Engineers: https://thinkbigtw.com/harness/
-- CLAW LAND: https://thinkbigtw.com/clawland/
-- Taiwan Stock Intel: https://thinkbigtw.com/lab/

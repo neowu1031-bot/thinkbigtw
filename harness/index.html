@@ -216,7 +216,7 @@ footer a{color:#00ff41;text-decoration:none}
 <section class="hero">
   <div class="hero-badge"><span class="badge-dot"></span>HARNESS ENGINEERS</div>
   <h1 class="hero-h1">Harness <em>Engineers</em></h1>
-  <p class="hero-tagline">最強 AI 工具組合，透過 MCP 協議無縫串接，讓自動化真正發生。</p>
+  <p class="hero-tagline">為你打造專屬 AI 助理。不是公版 AI,是照你的工作與習慣,為你一個人量身搭建的貼身助理。</p>
   <div class="tool-cloud">
     <span class="tc-pill tc-core">OpenClaw</span>
     <span class="tc-pill tc-core">Hermes Agent</span>
@@ -241,7 +241,56 @@ footer a{color:#00ff41;text-decoration:none}
     <span class="tc-pill tc-sys">Cron</span>
     <span class="tc-pill tc-sys">MCP</span>
   </div>
-  <a href="https://lin.ee/n5KW430" class="btn-primary" target="_blank" rel="noopener">立即諮詢 →</a>
+  <button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat==='function'){toggleChat()}" class="btn-primary" style="border:none;cursor:pointer;font-family:inherit">ASK AI</button>
+</section>
+
+<!-- ====== 規格 6 ｜ Harness 五分級白話版 (零 emoji、零價格) ====== -->
+<section class="section" id="plans" style="padding:60px 24px">
+  <div class="sec-head">
+    <div class="sec-eye">FIVE TIERS — CHOOSE YOUR FIT</div>
+    <h2 class="sec-title reveal">五種方案,五種適合你的選擇</h2>
+    <p class="sec-sub reveal">為個人 / 自由工作者 / 創業者 / 企業主分別量身打造</p>
+  </div>
+
+  <div style="max-width:880px;margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:18px" class="reveal">
+
+    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 01 — STARTER</div>
+      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">入門安裝</h3>
+      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合第一次接觸、想先從自己電腦開始。我們幫你安裝 AI 助理、設定基礎功能、教你怎麼用,讓 AI 真的開始為你工作。</p>
+    </div>
+
+    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 02 — INTEGRATED</div>
+      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">進階整合</h3>
+      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合想讓 AI 接進日常工作流的人。串 LINE、串社群、串客戶管理工具,讓 AI 自動接訊息、回客人、整理資料,真的能省下時間。</p>
+    </div>
+
+    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.3);border-radius:16px;padding:32px 36px;position:relative">
+      <div style="position:absolute;top:-12px;right:24px;background:#e8422a;color:#fff;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:5px 12px;border-radius:4px">FLAGSHIP</div>
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 03 — FLAGSHIP</div>
+      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">旗艦客製</h3>
+      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合高度依賴 AI、需要長期穩定的人。大量專屬技能、企業級資安、一對一教學陪跑,把 AI 變成你不可取代的核心生產力。</p>
+    </div>
+
+    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 04 — CLOUD</div>
+      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">雲端方案</h3>
+      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合只有手機、不想佔電腦的人。AI 助理裝在雲端,手機就能用,24 小時不關機。出門在外也能隨時請 AI 處理事情。</p>
+    </div>
+
+    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
+      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 05 — MAINTENANCE</div>
+      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">長期維護</h3>
+      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合已有 AI 助理、想要它一直保持最佳狀態的人。定期健檢、修復、升級、新技能擴充,讓 AI 永遠跟得上你的需求。</p>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:48px">
+    <p style="font-size:16px;color:#e8f5e8;margin-bottom:20px">想知道哪一種適合你?</p>
+    <button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat==='function'){toggleChat()}" style="background:#e8422a;color:#fff;border:none;padding:14px 36px;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:4px">ASK AI</button>
+  </div>
 </section>
 
 <!-- OpenClaw -->
@@ -375,14 +424,10 @@ footer a{color:#00ff41;text-decoration:none}
 </section>
 
 <!-- CTA -->
-<section class="cta-sec" id="contact">
-  
-  <h2 class="cta-t reveal">準備好<br><em>駕馭 AI</em> 了嗎？</h2>
-  <p class="cta-s reveal">讓 Think BIG 幫你部署完整的 Harness 系統。</p>
-  <div class="cta-row reveal">
-    <a href="https://lin.ee/n5KW430" class="btn-primary" target="_blank" rel="noopener">立即諮詢 Think BIG →</a>
-    <a href="https://thinkbigtw.com" class="btn-ghost">返回首頁</a>
-  </div>
+<section class="cta-sec" id="contact" style="padding:80px 24px;text-align:center;border-top:1px solid #1a2e1a;position:relative;z-index:1">
+  <h2 class="cta-t reveal" style="font-size:clamp(28px,4vw,42px);color:#e8f5e8;margin-bottom:20px">準備好<br><em>駕馭 AI</em> 了嗎?</h2>
+  <p style="font-size:16px;color:#9acd9a;margin-bottom:32px">想知道怎麼開始?請點選右下角 ASK AI</p>
+  <button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat==='function'){toggleChat()}" style="background:#e8422a;color:#fff;border:none;padding:16px 42px;font-family:'Space Mono',monospace;font-size:14px;font-weight:700;letter-spacing:3px;cursor:pointer;border-radius:4px">ASK AI</button>
 </section>
 
 <footer>

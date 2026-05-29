@@ -1994,23 +1994,23 @@ function PgDash({
     title: "AI \u6D1E\u5BDF",
     en: "Powered by OpenClaw"
   }), [{
-    t: "🔴",
+    t: "緊急",
     m: "機械零件庫存嚴重不足 560/800",
     tm: "2分鐘前"
   }, {
-    t: "⚠️",
+    t: "預警",
     m: "封裝膠料預計5天內耗盡",
     tm: "15分鐘前"
   }, {
-    t: "✅",
+    t: "完成",
     m: "本月營收NT$91M 達成112%",
     tm: "1小時前"
   }, {
-    t: "📊",
+    t: "分析",
     m: "AI預測Q3需求+22%",
     tm: "2小時前"
   }, {
-    t: "✅",
+    t: "完成",
     m: "自動對帳1247筆全數通過",
     tm: "3小時前"
   }].map((a, i) => /*#__PURE__*/React.createElement("div", {
@@ -2421,13 +2421,13 @@ function PgOrders({
     })),
     options: [{
       v: "high",
-      l: "🔴 高"
+      l: "高"
     }, {
       v: "mid",
-      l: "🟡 中"
+      l: "中"
     }, {
       v: "low",
-      l: "🟢 低"
+      l: "低"
     }]
   }), /*#__PURE__*/React.createElement(Select, {
     label: "\u4ED8\u6B3E",
@@ -2593,7 +2593,7 @@ function PgInv({
       label: "全部"
     }, {
       id: "alert",
-      label: `⚠(${S.inv.filter(i => i.st !== "ok").length})`
+      label: `警報(${S.inv.filter(i => i.st !== "ok").length})`
     }, {
       id: "電子",
       label: "電子"
@@ -3561,19 +3561,19 @@ function PgHR() {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(Tabs, {
     tabs: [{
       id: "clock",
-      label: "🕐 打卡系統"
+      label: "打卡系統"
     }, {
       id: "team",
-      label: "👥 團隊出勤"
+      label: "團隊出勤"
     }, {
       id: "leave",
-      label: `🏖️ 請假申請 (${leaves.filter(l => l.st === "pending").length})`
+      label: `請假申請 (${leaves.filter(l => l.st === "pending").length})`
     }, {
       id: "emp",
-      label: "📋 員工名冊"
+      label: "員工名冊"
     }, {
       id: "stat",
-      label: "📊 統計"
+      label: "統計"
     }],
     active: tab,
     onChange: setTab
@@ -5496,7 +5496,7 @@ function Dash({
   const [aiOpen, setAi] = useState(false);
   const [aiMsgs, setMsgs] = useState([{
     r: "bot",
-    t: "您好！我是 Think BIG AI ERP 助理 🦞\n可查詢庫存、營收、供應商。\n試試：「本月營收」「庫存警告」「供應商排名」"
+    t: "您好,我是 Think BIG AI ERP 助理。\n現已接入全資料庫智慧查詢,任何模組任何問法都能答。\n例如:本月營收、誰加班最多、毛利率多少、低庫存有哪些。"
   }]);
   const [aiIn, setAIn] = useState("");
   const [time, setTime] = useState(new Date());
@@ -5593,22 +5593,72 @@ function Dash({
     analytics: /*#__PURE__*/React.createElement(PgAnalytics, null),
     settings: /*#__PURE__*/React.createElement(PgSettings, null)
   };
-  const sendAi = () => {
+  const sendAi = async () => {
     if (!aiIn.trim()) return;
     const q = aiIn.trim();
-    setMsgs(p => [...p, {
-      r: "user",
-      t: q
-    }]);
+    setMsgs(p => [...p, { r: "user", t: q }]);
     setAIn("");
-    setTimeout(() => {
-      let a = "收到！讓我查一下...";
-      if (q.includes("營收")) a = "📊 本月營收：" + fmt(S.orders.filter(o => o.st === "completed").reduce((s, o) => s + o.amt, 0)) + "\n✅ 完成訂單 " + S.orders.filter(o => o.st === "completed").length + " 筆\n📈 最大客戶：聯電 NT$4.5M";else if (q.includes("庫存") || q.includes("警告")) a = "⚠️ 庫存警報：\n" + S.inv.filter(i => i.st !== "ok").map(i => `${i.st === "critical" ? "🔴" : "🟡"} ${i.name} ${i.stock}/${i.reorder}`).join("\n") + "\n\n✅ 已產生補貨建議";else if (q.includes("供應商")) a = "🏆 供應商排名：\n" + suppliers.filter(s => s.grade === "S").map((s, i) => `${["🥇", "🥈", "🥉"][i] || "⭐"} ${s.name} 品質${s.quality}%`).join("\n");else a = "我可以幫您查詢：\n• 營收/訂單數據\n• 庫存警告\n• 供應商評級\n• 生產進度\n\n請問要查什麼？";
-      setMsgs(p => [...p, {
-        r: "bot",
-        t: a
-      }]);
-    }, 400);
+
+    // 規格 4 ｜ 三個快取規則秒回(為速度,非省 token)
+    let cached = null;
+    if (q.includes("營收")) {
+      cached = "本月營收 " + fmt(S.orders.filter(o => o.st === "completed").reduce((s, o) => s + o.amt, 0)) + "。完成訂單 " + S.orders.filter(o => o.st === "completed").length + " 筆,最大客戶聯電 NT$4.5M。整體營收結構穩健,建議持續鎖定大客戶並開發第二曲線。";
+    } else if (q.includes("庫存") || q.includes("警告")) {
+      const warn = S.inv.filter(i => i.st !== "ok");
+      cached = "目前庫存警報 " + warn.length + " 項:" + warn.map(i => i.name + " 剩 " + i.stock + "/安全線 " + i.reorder).join("、") + "。建議優先補貨周轉最快的品項,避免影響出貨時程。";
+    } else if (q.includes("供應商")) {
+      const top = suppliers.filter(s => s.grade === "S");
+      cached = "S 級供應商排名:" + top.map((s, i) => (i+1) + ". " + s.name + "(品質 " + s.quality + "%)").join("、") + "。建議將 S 級供應商列為策略夥伴,鎖定長期合約以穩定品質。";
+    }
+
+    if (cached) {
+      setTimeout(() => {
+        setMsgs(p => [...p, { r: "bot", t: cached }]);
+      }, 300);
+      return;
+    }
+
+    // 規格 4 ｜ 走 Worker /erp-chat,把整個 S 當 RAG 知識庫
+    setMsgs(p => [...p, { r: "bot", t: "讓我查一下..." }]);
+    try {
+      const erpState = {
+        orders: S.orders,
+        inv: S.inv,
+        suppliers: suppliers,
+        // 規格 4 ｜ employees 假資料(含加班/出勤),首次查詢時注入
+        employees: (typeof S.employees !== "undefined" && S.employees) || [
+          { name: "李明德", dept: "生產", overtime_hours: 32, attendance: 22 },
+          { name: "王雅婷", dept: "業務", overtime_hours: 21, attendance: 21 },
+          { name: "陳建華", dept: "採購", overtime_hours: 18, attendance: 22 },
+          { name: "林佳玲", dept: "財務", overtime_hours: 12, attendance: 22 },
+          { name: "張俊豪", dept: "生產", overtime_hours: 28, attendance: 21 },
+          { name: "黃秀英", dept: "客服", overtime_hours: 6, attendance: 22 },
+          { name: "周志強", dept: "倉儲", overtime_hours: 15, attendance: 20 },
+          { name: "吳美麗", dept: "業務", overtime_hours: 19, attendance: 22 }
+        ]
+      };
+      const res = await fetch("https://moneyradar-ai-proxy.thinkbigtw.workers.dev/erp-chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          messages: [{ role: "user", content: q }],
+          erpState: erpState
+        })
+      });
+      const data = await res.json();
+      const reply = (data && data.reply) || "助理暫時無法回應,請稍後再試。";
+      setMsgs(p => {
+        const copy = [...p];
+        copy[copy.length - 1] = { r: "bot", t: reply };
+        return copy;
+      });
+    } catch (err) {
+      setMsgs(p => {
+        const copy = [...p];
+        copy[copy.length - 1] = { r: "bot", t: "助理暫時無法連線,請稍後再試。" };
+        return copy;
+      });
+    }
   };
   const handleNavClick = id => {
     setTab(id);
