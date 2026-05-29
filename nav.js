@@ -14,6 +14,9 @@
   function init() {
     if (!document.body) { document.addEventListener('DOMContentLoaded', init); return; }
     if (document.getElementById('tb-nav')) return;
+    // 工具頁 / 管理頁不注入統一導覽列
+    var _p = location.pathname;
+    if (_p.indexOf('/lab/') === 0 || _p.indexOf('/erp/') === 0 || /\/clawland\/admin/.test(_p)) return;
 
     // ---- 0. 確保字型 (Azeret Mono + Noto Sans TC) ----
     if (!document.querySelector('link[href*="Azeret+Mono"]')) {

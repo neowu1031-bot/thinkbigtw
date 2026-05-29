@@ -329,6 +329,12 @@ html,body{
 #ai-chat .msg .typing-dots span:nth-child(3){animation-delay:0.4s}
 @keyframes typing{0%,60%,100%{opacity:0.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
 
+/* Quick bar (persistent) */
+#ai-chat .quick-bar{display:flex;flex-wrap:nowrap;gap:10px;max-width:1000px;margin:0 auto 12px}
+#ai-chat .quick-bar .qchip{flex:1 1 0;min-width:0;text-align:left;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;cursor:pointer;transition:all 0.2s;font-family:var(--tc)}
+#ai-chat .quick-bar .qchip:hover{background:rgba(232,66,42,0.1);border-color:rgba(232,66,42,0.45);transform:translateY(-2px)}
+#ai-chat .quick-bar .qchip .qt{display:block;font-size:0.8rem;color:#fff;font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ai-chat .quick-bar .qchip .qs2{display:block;font-family:var(--mono);font-size:0.5rem;color:rgba(232,66,42,0.85);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 /* Input area */
 #ai-chat .chat-input-wrap{
   padding:20px max(48px, 5vw) 28px;
@@ -393,6 +399,9 @@ html,body{
   #hero .hero-cta-zh{font-size:clamp(0.95rem,4.6vw,1.3rem);margin-top:10px}
   #ai-chat{width:calc(100vw - 24px);right:12px;bottom:88px;height:55vh}
   #ai-agent-btn{width:44px;height:44px;bottom:20px;right:20px}
+  #ai-chat .quick-bar{flex-wrap:wrap}
+  #ai-chat .quick-bar .qchip{flex:0 0 calc(50% - 5px);width:calc(50% - 5px)}
+  #ai-chat .quick-bar .qchip .qt{white-space:normal}
   #hold-indicator,#speed-display{display:none}
   .corner{display:none}
 }
@@ -545,27 +554,15 @@ html,body{
         <span style="color:rgba(232,66,42,0.9)">④</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>
         隨時問我任何問題，或點下方快速選項 👇
       </p>
-      <div class="quick-suggestions">
-        <div class="qs" onclick="askQuick('告訴我 AI Agent ERP 有什麼模組？定價是多少？')">
-          <div class="qs-icon">🏢</div>
-          <div class="qs-text">AI Agent ERP 有什麼？<small>11 大模組 · 三階方案</small></div>
-        </div>
-        <div class="qs" onclick="askQuick('MoneyRadar 是什麼？適合誰用？')">
-          <div class="qs-icon">📊</div>
-          <div class="qs-text">MoneyRadar™ 怎麼用？<small>全球頂尖看盤神器</small></div>
-        </div>
-        <div class="qs" onclick="askQuick('我是中小企業老闆，想導入 AI Agent，請問適合什麼方案？')">
-          <div class="qs-icon">⚡</div>
-          <div class="qs-text">我想導入 AI 自動化<small>企業方案推薦</small></div>
-        </div>
-        <div class="qs" onclick="askQuick('Think BIG 和鼎新數智、SAP 比起來，優勢在哪？')">
-          <div class="qs-icon">🚀</div>
-          <div class="qs-text">和鼎新、SAP 比？<small>差異化優勢</small></div>
-        </div>
-      </div>
     </div>
   </div>
   <div class="chat-input-wrap">
+    <div class="quick-bar" id="quick-bar">
+      <button class="qchip" onclick="askQuick('告訴我 AI Agent ERP 有什麼模組？定價是多少？')"><span class="qt">AI Agent ERP 有什麼？</span><span class="qs2">11 大模組 · 三階方案</span></button>
+      <button class="qchip" onclick="askQuick('MoneyRadar 是什麼？適合誰用？')"><span class="qt">MoneyRadar™ 怎麼用？</span><span class="qs2">全球頂尖看盤神器</span></button>
+      <button class="qchip" onclick="askQuick('我想導入 AI 自動化')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>
+      <button class="qchip" onclick="askQuick('關於 Think BIG')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 四大服務</span></button>
+    </div>
     <div class="chat-input">
       <input type="text" id="chat-msg" placeholder="問我任何問題，例如：ERP 月費多少？" onkeydown="if(event.key==='Enter')sendMsg()" autocomplete="off">
       <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">
@@ -1212,8 +1209,12 @@ function escapeHtml(s){
 // Convert URLs and markdown-style links to HTML links
 function linkify(text){
   let html = escapeHtml(text);
-  // URLs
-  html = html.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank">$1</a>');
+  // URL 偵測：遇到中文字、全形/半形標點、逗號即停止；支援無 scheme 的 lin.ee / www.
+  const urlRegex = /(https?:\/\/[^\s一-鿿，。、；：！？「」『』（）(),]+|(?:www\.|lin\.ee\/)[^\s一-鿿，。、；：！？「」『』（）(),]+)/g;
+  html = html.replace(urlRegex, (url) => {
+    const clean = url.startsWith('http') ? url : 'https://' + url;
+    return '<a href="' + clean + '" target="_blank" rel="noopener" style="color:#e8422a;text-decoration:underline;word-break:break-all">' + url + '</a>';
+  });
   // **bold**
   html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   return html;
@@ -1249,7 +1250,122 @@ function appendMsg(role, content, isLoading = false){
   return msg;
 }
 
+// ─── 罐頭回覆（任務 8 / 9：逐字內容，點按鈕即時顯示，不經 AI 確保一字不差）───
+const ABOUT_THINKBIG = `您好,謝謝您對 Think BIG 有興趣!
+
+Think BIG 是台灣 AI 自動化顧問公司,由 NEO.W 創辦,專注幫助中小企業與個人創業者把 AI 真正落地到日常工作中。
+
+我們相信 AI 不應該只是聊天工具,而是要能真的幫您工作、回客人、跑流程。所以我們提供「會做事的 AI」,不是「會講話的 AI」。
+
+【核心優勢】
+- 自家引擎 OpenClaw + Claude Code,不是套別人的殼
+- 從個人戶到中大型企業都有對應方案
+- 全程繁體中文支援,台灣團隊在地服務
+- 透明定價、明確交付、七天免費維護
+
+【四大服務】
+① AI Agent ERP — 全球首創 AI Native 企業系統
+② MoneyRadar™ — 全球頂尖 AI 看盤神器
+③ 企業 AI 導入 — RAG / Agent / 流程自動化
+④ Harness Engineers — 個人 AI 搭建
+
+想了解更多,可以隨時問我任何問題,或點上方快速選項 👇`;
+
+const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的引擎:
+
+━━━━━━━━━━━━━━━━━━━━
+
+🦞 OpenClaw — 會做事的 AI Agent 框架
+
+OpenClaw(又稱「龍蝦 AI」)是一款開源的 AI Agent 框架,能讓 AI 直接操作電腦、瀏覽器與應用程式來完成任務,而不只是對話。
+
+【它跟 ChatGPT 有什麼不同】
+ChatGPT 是「會說的 AI」,OpenClaw 是「會做的 AI」。ChatGPT 給你 PPT 大綱,OpenClaw 直接打開軟體做出 PPT、寄給客戶。
+
+【七大核心特色】
+① 多通路整合:賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord
+② 長期記憶:保留使用者互動歷史,個人化服務
+③ 主動執行:透過排程與 webhook,自動發起任務
+④ 高權限操作:可直接存取系統與檔案
+⑤ 簡單設置:支援快速連接帳號與服務
+⑥ 可擴展技能(Skills):任務封裝後重複使用
+⑦ 語音互動:支援語音喚醒與通話模式
+
+【生態系規模】
+ClawHub 已有超過 4 萬個社群貢獻的 Skills
+
+━━━━━━━━━━━━━━━━━━━━
+
+⚡ Hermes — 越用越聰明的自學習 AI
+
+Hermes Agent(愛馬仕 Agent)由 Nous Research 開發,採 MIT 授權。
+
+【核心概念:程序性記憶】
+每次完成任務後,系統自動將成功的推理模式萃取為「技能」,下次直接調用並持續優化。
+
+傳統 AI 助理像是每天換一個新實習生,Hermes 則像一位跟著您越做越熟練的長期助理。
+
+【五階段學習迴圈】
+① 執行任務 ② 評估結果 ③ 萃取技能 ④ 優化技能 ⑤ 檢索技能
+
+【跨對話追蹤四件事】
+① 格式偏好 ② 決策紀錄 ③ 任務模式 ④ 回饋訊號
+
+用一句話理解:一般 AI 記住「您說過什麼」,Hermes 記住「怎麼做最有效」。
+
+━━━━━━━━━━━━━━━━━━━━
+
+🧠 ClawMem — 雙 Agent 的共享大腦
+
+ClawMem 是本地的記憶層,讓 Claude Code、OpenClaw、Hermes 共用同一個 SQLite 倉庫。一個 agent 學到的決定,另一個 agent 立即知道。
+
+【關鍵價值】
+完全在本地運行,沒有 API Key,沒有雲端依賴,隱私 100% 留在您電腦。
+
+【自動做的事】
+① 自動浮現相關上下文
+② Session 啟動時注入您的個人檔案、最近決策
+③ 用本地觀察模型擷取決策、偏好、里程碑
+④ Session 結束時生成交接,讓下次接續工作
+⑤ 透過回饋迴圈學習什麼重要
+⑥ 防護 prompt injection 攻擊
+⑦ 偵測矛盾:新決策若與舊決策矛盾,自動降權舊決策
+
+━━━━━━━━━━━━━━━━━━━━
+
+🦞+⚡+🧠 雙 Agent 完整方案
+
+把 OpenClaw + Hermes + ClawMem 三者合在一起,就是我們最強大的「雙 Agent 方案」:
+
+- OpenClaw 負責「廣連接」 — 對外接通訊軟體、跑日常任務
+- Hermes 負責「深學習」 — 累積您的工作風格與技能
+- ClawMem 是兩者共享的大腦 — 記憶 100% 同步
+
+成果:一個跨平台、自學習、共享記憶、且資料完全留在您電腦的 AI 員工。
+
+━━━━━━━━━━━━━━━━━━━━
+
+🎯 推薦方案前,我需要先了解一件事:
+
+您是個人使用,還是公司/企業使用?
+
+⚠️ 重要提醒:個人方案僅可對接最多兩個通訊軟體帳號。如需對接三人以上(例如多個業務、多個客服),就需要企業方案。
+
+請告訴我您的情境,我幫您推薦最合適的組合!`;
+
+const CANNED = {
+  '關於 Think BIG': ABOUT_THINKBIG,
+  '我想導入 AI 自動化': ADOPT_AI
+};
+
 function askQuick(question){
+  if (CANNED[question]){
+    appendMsg('user', question);
+    chatHistory.push({role:'user', content: question});
+    appendMsg('bot', CANNED[question]);
+    chatHistory.push({role:'assistant', content: CANNED[question]});
+    return;
+  }
   document.getElementById('chat-msg').value = question;
   sendMsg();
 }

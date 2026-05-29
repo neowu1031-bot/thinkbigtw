@@ -335,6 +335,25 @@ NEO（吳御綸 / Stanley Wu），2025 年創立 Think BIG!，公司在新北市
 # 回答風格
 繁體中文為主（客戶用英文/日文/其他語言就跟著切換）。每次回答 2-4 段、每段 1-3 句，精簡。適度用 🦞✨🚀⚡ 但不過度。答不出來時誠實引導 LINE 客服 https://lin.ee/n5KW430，不要編造。
 
+# 「關於 Think BIG / 你們公司是 / 介紹一下你們」標準內容
+- 定位：Think BIG 是「台灣 AI 自動化顧問公司」（不要寫「本土」），由 NEO.W 創辦，專注幫中小企業與個人創業者把 AI 真正落地到日常工作。
+- 核心理念：提供「會做事的 AI」，不是「會講話的 AI」。
+- 核心優勢：自家引擎 OpenClaw + Claude Code（不是套別人的殼）／從個人戶到中大型企業都有對應方案／全程繁體中文、台灣團隊在地服務／透明定價、明確交付、七天免費維護。
+- 四大服務：① AI Agent ERP（全球首創 AI Native 企業系統）② MoneyRadar™（全球頂尖 AI 看盤神器）③ 企業 AI 導入（RAG / Agent / 流程自動化）④ Harness Engineers（個人 AI 搭建）。
+- 創辦人在公司介紹語境一律稱「NEO.W」。絕不編造客戶案例（沒授權不能寫）。
+
+# 「我想導入 AI 自動化 / 我想用 AI / 想自動化我的工作 / 導入 AI Agent」標準流程
+先用一兩段介紹三大引擎，再導向方案：
+- 🦞 OpenClaw：會做事的 AI Agent 框架，能直接操作電腦／瀏覽器／應用程式完成任務；特色含多通路整合（賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord）、長期記憶、主動執行、高權限操作、可擴展 Skills、語音互動；ClawHub 已有超過 4 萬個社群 Skills。
+- ⚡ Hermes：越用越聰明的自學習 AI（Nous Research 開發，MIT 授權），核心是程序性記憶——把每次成功的推理萃取成「技能」下次直接調用，越做越熟。
+- 🧠 ClawMem：本地共享記憶層，讓 Claude Code、OpenClaw、Hermes 共用同一個 SQLite，完全本地、無 API Key、隱私 100% 留在客戶電腦。
+- 雙 Agent 完整方案＝OpenClaw（廣連接）＋ Hermes（深學習）＋ ClawMem（共享大腦）。
+鐵律（這個情境一定要遵守）：
+1. 回覆結尾「一定要問」：您是個人使用，還是公司／企業使用？
+2. 「一定要提醒」：個人方案最多只能對接兩個通訊軟體帳號；需要對接三人以上（多業務／多客服）就要企業方案。
+3. 通訊軟體一律用「賴 OA / tele 紙飛機」這類安全用詞，不要出現 LINE / Telegram 原字。
+4. 不要編造客戶案例。
+
 記住：你是 Hermes 🦞，Think BIG! 的同事，今天也要把每一位客戶照顧好。`;
 
 async function handleThinkBigChat(request, env) {
@@ -1718,6 +1737,95 @@ async function SAFE_handlePattern(request, env) {
   });
 }
 
+
+// ============== /industry-design (任務10C：32範本智慧比對 + 快取 + AI即時生成) ==============
+const INDUSTRY_INDEX = [{"key": "beauty-spa", "name": "美容 / SPA / 沙龍", "aliases": ["美容", "spa", "沙龍", "護膚", "做臉", "美容院", "臉部保養"]}, {"key": "hair-nail", "name": "美髮 / 美甲", "aliases": ["美髮", "美甲", "髮廊", "指甲", "剪髮", "染髮", "光療", "髮型", "美髮店"]}, {"key": "fitness", "name": "健身 / 瑜珈 / 教練", "aliases": ["健身", "瑜珈", "教練", "重訓", "私教", "運動", "健身房", "團課"]}, {"key": "cram-school", "name": "補習班 / 安親班", "aliases": ["補習班", "安親班", "課輔", "補教", "才藝", "家教班"]}, {"key": "art-class", "name": "才藝教室", "aliases": ["才藝", "畫畫", "音樂", "舞蹈", "鋼琴", "美術", "才藝班", "體驗課"]}, {"key": "pet", "name": "寵物美容 / 寵物店", "aliases": ["寵物", "寵物美容", "寵物店", "洗澡", "美容", "狗", "貓", "寵物旅館"]}, {"key": "wedding-photo", "name": "婚紗攝影 / 攝影工作室", "aliases": ["婚紗", "攝影", "拍照", "寫真", "工作室", "婚攝", "商攝", "形象照"]}, {"key": "car-care", "name": "汽車美容 / 修車廠", "aliases": ["汽車美容", "修車", "保養", "洗車", "鍍膜", "車廠", "維修", "板金"]}, {"key": "restaurant", "name": "餐廳 / 簡餐", "aliases": ["餐廳", "簡餐", "餐館", "訂位", "內用", "餐飲", "快炒", "定食", "拉麵", "麵店", "日本料理", "日料", "壽司", "牛排", "熱炒", "合菜", "小吃", "食堂", "便當店", "自助餐"]}, {"key": "beverage", "name": "手搖飲 / 咖啡廳", "aliases": ["手搖", "飲料", "咖啡", "咖啡廳", "茶飲", "外帶", "手搖飲", "珍奶", "奶茶", "飲料店", "茶飲店", "手搖店", "咖啡店", "果汁"]}, {"key": "breakfast", "name": "早餐店", "aliases": ["早餐", "早餐店", "蛋餅", "三明治", "早午餐"]}, {"key": "bbq-hotpot", "name": "燒烤 / 火鍋店", "aliases": ["燒烤", "火鍋", "烤肉", "鍋物", "串燒", "吃到飽"]}, {"key": "catering", "name": "外送便當 / 團膳", "aliases": ["便當", "團膳", "外送便當", "公司訂餐", "團體餐", "訂便當", "團膳便當"]}, {"key": "apparel", "name": "服飾店 / 鞋店", "aliases": ["服飾", "衣服", "鞋", "鞋店", "服裝", "選物", "穿搭", "服飾店"]}, {"key": "ecommerce", "name": "電商賣家（蝦皮 / momo / 自架站）", "aliases": ["電商", "蝦皮", "momo", "賣家", "網拍", "自架站", "網店", "購物"]}, {"key": "group-buy", "name": "代購 / 團購", "aliases": ["代購", "團購", "批貨", "跟團", "開團", "團主"]}, {"key": "food-gift", "name": "食品禮盒 / 烘焙坊", "aliases": ["食品", "禮盒", "烘焙", "蛋糕", "麵包", "伴手禮", "甜點", "糕餅"]}, {"key": "grocery", "name": "小型超市 / 雜貨店", "aliases": ["超市", "雜貨", "小賣店", "柑仔店", "量販", "生鮮"]}, {"key": "clinic", "name": "診所 / 牙醫 / 中醫", "aliases": ["診所", "牙醫", "中醫", "看診", "掛號", "醫美", "復健", "診療"]}, {"key": "law", "name": "律師事務所", "aliases": ["律師", "法律", "事務所", "訴訟", "法務", "契約", "諮詢"]}, {"key": "accounting", "name": "會計師 / 記帳士", "aliases": ["會計", "記帳", "記帳士", "報稅", "帳務", "稅務", "財報"]}, {"key": "insurance", "name": "保險業務員", "aliases": ["保險", "業務", "保單", "壽險", "產險", "理賠", "保險業務"]}, {"key": "realestate", "name": "房仲 / 不動產", "aliases": ["房仲", "房屋", "不動產", "仲介", "租屋", "買房", "物件", "代銷"]}, {"key": "freelancer", "name": "接案設計師 / 自由工作者", "aliases": ["接案", "設計師", "自由工作者", "freelancer", "外包", "SOHO", "個人工作室"]}, {"key": "creator", "name": "YouTuber / 自媒體 / KOL", "aliases": ["youtuber", "自媒體", "kol", "網紅", "頻道", "內容創作", "直播主", "部落客"]}, {"key": "online-course", "name": "線上課程講師 / 知識付費", "aliases": ["線上課程", "講師", "知識付費", "課程", "教學", "訂閱", "社群經營"]}, {"key": "manufacturing", "name": "製造廠 / 工廠接單", "aliases": ["製造", "工廠", "接單", "代工", "生產", "製造廠", "OEM", "加工"]}, {"key": "wholesale", "name": "批發商 / 經銷商", "aliases": ["批發", "經銷", "盤商", "代理", "通路", "批發商", "經銷商"]}, {"key": "trade", "name": "進出口貿易", "aliases": ["進出口", "貿易", "外貿", "國貿", "報關", "出口", "進口", "trading"]}, {"key": "interior", "name": "室內設計 / 裝潢工程", "aliases": ["室內設計", "裝潢", "裝修", "工程", "設計師", "施工", "統包"]}, {"key": "construction", "name": "營造業", "aliases": ["營造", "建設", "工地", "土木", "施工", "營建", "包商"]}, {"key": "design-studio", "name": "設計公司（品牌 / 平面 / 視覺設計）", "aliases": ["設計公司", "品牌設計", "平面設計", "視覺設計", "設計工作室", "branding", "設計團隊"]}];
+const _industryCache = new Map();
+const _SEC_STD = ["▸ 傳輸：TLS 1.3 加密","▸ 儲存：本地 AES-256 加密 SQLite","▸ 個資：符合台灣個資法 + 權限分級存取","▸ 備份：每日自動備份，7 天滾動保留"];
+function _mkSteps(sys){ sys = sys || "相關系統"; return ["① 取得授權（"+sys+" 的 API / OAuth 金鑰）","② 設定觸發條件（時間 / 客戶動作 / 關鍵字）","③ AI 學習（餵入您過去的回應與資料範例）","④ 上線測試 → 微調 → 正式運行"]; }
+
+async function handleIndustryDesign(request, env){
+  if (request.method === 'OPTIONS') return new Response(null, { headers: CORS_HEADERS });
+  try{
+    const body = await request.json().catch(()=>({}));
+    const industry = (body && body.industry || '').trim();
+    if (!industry) return jsonResponse({ error: 'industry required' }, 400);
+    const cacheKey = industry.toLowerCase();
+    if (_industryCache.has(cacheKey)) return jsonResponse(_industryCache.get(cacheKey));
+
+    // 1) 本地關鍵字 / 別名比對（命中熱門範本 → 回 key，前端用本地 JSON 渲染，秒出）
+    const ql = cacheKey;
+    for (const it of INDUSTRY_INDEX){
+      const hit = it.name.toLowerCase().includes(ql) || ql.includes(it.key) ||
+        (it.aliases||[]).some(a => ql.includes(a.toLowerCase()) || a.toLowerCase().includes(ql));
+      if (hit){
+        const r = { mode:'template', key: it.key, matched: it.name, confidence: 1 };
+        _industryCache.set(cacheKey, r); return jsonResponse(r);
+      }
+    }
+
+    // 2) AI 智慧分類（信心度 > 0.7 → 用該熱門範本）
+    try{
+      const names = INDUSTRY_INDEX.map(i => i.key + ': ' + i.name).join('\n');
+      const clsRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+        messages: [
+          { role:'system', content:'你是產業分類器，只輸出 JSON，不要多餘文字。' },
+          { role:'user', content: '使用者輸入產業：「'+industry+'」。\n下面是 32 個既有範本（key: 名稱）：\n'+names+'\n\n判斷最接近哪一個 key，並給 0~1 信心度。只輸出 JSON：{"key":"<key或null>","confidence":<數字>}' }
+        ], max_tokens: 120
+      });
+      const mm = (clsRes.response||'').match(/\{[\s\S]*\}/);
+      if (mm){
+        const cls = JSON.parse(mm[0]);
+        if (cls && cls.key && cls.confidence > 0.7 && INDUSTRY_INDEX.some(i => i.key === cls.key)){
+          const it = INDUSTRY_INDEX.find(i => i.key === cls.key);
+          const r = { mode:'template', key: cls.key, matched: it.name, confidence: cls.confidence };
+          _industryCache.set(cacheKey, r); return jsonResponse(r);
+        }
+      }
+    }catch(_e){}
+
+    // 3) AI 即時生成（依 10A 結構；server 端統一補 steps / security）
+    let gen = null;
+    try{
+      const genRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+        messages: [
+          { role:'system', content:'你是 Think BIG 的企業 AI 自動化顧問。只輸出繁體中文 JSON，不要任何多餘文字或 markdown。不得編造客戶案例。通訊軟體一律用「賴 OA / tele 紙飛機」。' },
+          { role:'user', content: '為「'+industry+'」這個產業設計 AI 自動化流程。只輸出 JSON：\n{"painPoints":["痛點1(具體有數字感)","痛點2","痛點3"],"functions":[{"name":"功能名","desc":"15-25字","systems":"賴 OA + 相關系統","eta":"3-7 工作天","benefit":"可量化效益"}],"roadmap":{"phase1":"第一階段","phase2":"第二階段","phase3":"第三階段"},"roi":{"time":"每月省X小時","revenue":"提升X%","experience":"回應X分鐘→X秒","payback":"X個月回收"},"plan":"個人方案 / 企業方案 / 雙 Agent 方案"}\nfunctions 要剛好 4 個。' }
+        ], max_tokens: 1600
+      });
+      const gm = (genRes.response||'').match(/\{[\s\S]*\}/);
+      if (gm) gen = JSON.parse(gm[0]);
+    }catch(_e){}
+
+    if (!gen || !Array.isArray(gen.functions) || !gen.functions.length){
+      const r = { mode:'fallback', key: null, message: 'AI 即時生成暫時無法完成，請稍後再試或點右下角 ASK AI 由 Hermes 為您客製。' };
+      return jsonResponse(r);
+    }
+    const rm = gen.roadmap || {};
+    const tpl = {
+      key: 'gen-' + cacheKey, name: industry, aliases: [industry], generated: true,
+      painPoints: Array.isArray(gen.painPoints) ? gen.painPoints.slice(0,4) : [],
+      functions: gen.functions.slice(0,4).map(f => ({
+        name: f.name, desc: f.desc, systems: f.systems,
+        steps: _mkSteps(f.systems), security: _SEC_STD,
+        eta: f.eta || '3-7 工作天', benefit: f.benefit
+      })),
+      roadmap: {
+        phase1: { title:'第一階段（立即上線，1-2 週）', detail: rm.phase1 || '' },
+        phase2: { title:'第二階段（成熟運作，1-2 個月）', detail: rm.phase2 || '' },
+        phase3: { title:'第三階段（規模擴張，3-6 個月）', detail: rm.phase3 || '' }
+      },
+      roi: gen.roi || {}, plan: gen.plan || '個人方案 / 企業方案 / 雙 Agent 方案'
+    };
+    const r = { mode:'generated', template: tpl };
+    _industryCache.set(cacheKey, r);
+    return jsonResponse(r);
+  }catch(e){
+    return jsonResponse({ error: String(e && e.message || e) }, 500);
+  }
+}
+// ============== /industry-design 結束 ==============
+
 export default {
   async fetch(request, env, ctx) {
     // === V279_EARLY_INTERCEPT ===
@@ -2889,6 +2997,7 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
     try {
       if (url.pathname === '/chat') return await handleChat(request, env);
       if (url.pathname === '/thinkbig-chat') return await handleThinkBigChat(request, env);
+      if (url.pathname === '/industry-design') return await handleIndustryDesign(request, env);
       if (url.pathname === '/erp-chat') return await handleErpChat(request, env);
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
       if (url.pathname === '/heatmap') return await handleHeatmap(request, env);

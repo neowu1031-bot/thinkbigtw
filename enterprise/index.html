@@ -216,6 +216,44 @@ footer a:hover{color:var(--text)}
 .q-btn-wa:hover{background:#25D366;color:#0a0a0a}
 .q-btn-reset{background:transparent;color:#444;border:1px solid #1e3a1e;border-radius:4px;padding:11px 18px;font-family:"Space Mono",monospace;font-size:11px;cursor:pointer;transition:all .2s}
 .q-btn-reset:hover{border-color:#00ff41;color:#00ff41}
+/* ===== 任務10D：10A 完整流程卡 ===== */
+.q-card2{background:#0c0c0c;border:1px solid #1e3a1e;border-radius:12px;padding:28px 30px;box-shadow:0 0 40px rgba(0,255,65,.06)}
+.q-head2{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:18px}
+.q-gen{display:inline-block;margin-left:8px;font-size:9px;letter-spacing:1px;color:#0a0a0a;background:#fbbf24;border-radius:10px;padding:2px 8px;vertical-align:middle}
+.q-pains{margin:8px 0 22px}
+.q-pain-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px;font-size:13px;color:#bbb;line-height:1.6}
+.q-pain-dot{flex-shrink:0;width:7px;height:7px;border-radius:50%;background:#e8422a;margin-top:6px;box-shadow:0 0 8px rgba(232,66,42,.6)}
+.q-fn{background:#0d1a0d;border:1px solid #1e3a1e;border-left:3px solid #00ff41;border-radius:8px;margin-bottom:10px;overflow:hidden}
+.q-fn summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;font-family:"Space Mono",monospace}
+.q-fn summary::-webkit-details-marker{display:none}
+.q-fn summary::after{content:"▸";color:#00ff41;transition:transform .2s}
+.q-fn[open] summary::after{transform:rotate(90deg)}
+.q-fn-n{font-size:14px;font-weight:700;color:#e8f5e8;flex:1}
+.q-fn-eta{font-size:10px;color:#00ff41;border:1px solid #1e3a1e;border-radius:10px;padding:2px 10px;white-space:nowrap}
+.q-fn-body{padding:0 16px 16px;border-top:1px solid #14241405}
+.q-fn-desc{font-size:13px;color:#9acd9a;margin:10px 0 16px;line-height:1.7}
+.q-fn-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.q-fn-h{font-family:"Space Mono",monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#5a7a5a;margin:12px 0 6px}
+.q-fn-h:first-child{margin-top:0}
+.q-fn-grid p{font-size:12px;color:#bbb;line-height:1.6;margin:0}
+.q-steps,.q-sec{margin:0;padding-left:2px;list-style:none}
+.q-steps li,.q-sec li{font-size:12px;color:#aaa;line-height:1.7;margin-bottom:3px}
+.q-fn-benefit{color:#00ff41 !important;font-weight:600}
+.q-roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:8px 0 22px}
+.q-phase{background:#0d1a0d;border:1px solid #1e3a1e;border-top:2px solid #5aa9ff;border-radius:8px;padding:14px}
+.q-phase-t{font-size:11px;font-weight:700;color:#5aa9ff;margin-bottom:8px;line-height:1.4}
+.q-phase-d{font-size:12px;color:#aaa;line-height:1.6}
+.q-roi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 22px}
+.q-roi-cell{background:#0d1a0d;border:1px solid #1e3a1e;border-radius:8px;padding:16px 12px;text-align:center}
+.q-roi-v{font-size:14px;font-weight:700;color:#fbbf24;line-height:1.4;margin-bottom:6px}
+.q-roi-l{font-family:"Space Mono",monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#5a7a5a}
+.q-plan2{background:#0d1a0d;border:1px solid #1e3a1e;border-radius:8px;padding:16px;margin-bottom:8px}
+.q-plan2 p{font-size:13px;color:#e8f5e8;margin:0}
+.q-cta2{margin-top:22px;padding-top:20px;border-top:1px solid #1e3a1e;text-align:center}
+.q-cta2 p{font-size:14px;color:#e8f5e8;margin-bottom:14px}
+.q-spin{width:34px;height:34px;border:3px solid #1e3a1e;border-top-color:#00ff41;border-radius:50%;margin:0 auto;animation:qspin .8s linear infinite}
+@keyframes qspin{to{transform:rotate(360deg)}}
+@media(max-width:640px){.q-fn-grid{grid-template-columns:1fr;gap:8px}.q-roadmap{grid-template-columns:1fr}.q-roi-grid{grid-template-columns:1fr 1fr}.q-card2{padding:20px 16px}}
 </style>
 
 <div id="aia">
@@ -444,38 +482,74 @@ function aiaFind(q){
   return null;
 }
 
+// ===== 任務10D：32 產業範本 + Worker AI 即時生成（10A 完整結構）=====
+var TPL_CACHE=null;
+function loadTpl(){
+  if(TPL_CACHE)return Promise.resolve(TPL_CACHE);
+  return fetch('/enterprise/industry-templates.json').then(function(r){return r.json();}).then(function(j){TPL_CACHE=(j&&j.templates)||[];return TPL_CACHE;}).catch(function(){TPL_CACHE=[];return TPL_CACHE;});
+}
+function aiaEsc(s){return (s==null?'':String(s)).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c];});}
+function findLocal(q,list){
+  var ql=q.toLowerCase();
+  for(var i=0;i<list.length;i++){var t=list[i];
+    if((t.name||'').toLowerCase().indexOf(ql)>=0)return t;
+    var al=t.aliases||[];
+    for(var j=0;j<al.length;j++){var a=al[j].toLowerCase();if(ql.indexOf(a)>=0||a.indexOf(ql)>=0)return t;}
+  }
+  return null;
+}
+function renderCard(t,opts){
+  opts=opts||{};
+  var pains=(t.painPoints||[]).map(function(p){return '<div class="q-pain-item"><span class="q-pain-dot"></span><span>'+aiaEsc(p)+'</span></div>';}).join('');
+  var funcs=(t.functions||[]).map(function(f,i){
+    var steps=(f.steps||[]).map(function(s){return '<li>'+aiaEsc(s)+'</li>';}).join('');
+    var sec=(f.security||[]).map(function(s){return '<li>'+aiaEsc(s)+'</li>';}).join('');
+    return '<details class="q-fn"'+(i===0?' open':'')+'>'+
+      '<summary><span class="q-fn-n">'+(i+1)+'. '+aiaEsc(f.name)+'</span><span class="q-fn-eta">'+aiaEsc(f.eta)+'</span></summary>'+
+      '<div class="q-fn-body"><p class="q-fn-desc">'+aiaEsc(f.desc)+'</p><div class="q-fn-grid">'+
+      '<div><div class="q-fn-h">串接系統</div><p>'+aiaEsc(f.systems)+'</p><div class="q-fn-h">串接流程</div><ol class="q-steps">'+steps+'</ol></div>'+
+      '<div><div class="q-fn-h">資安規格</div><ul class="q-sec">'+sec+'</ul><div class="q-fn-h">預期效益</div><p class="q-fn-benefit">'+aiaEsc(f.benefit)+'</p></div>'+
+      '</div></div></details>';
+  }).join('');
+  var rm=t.roadmap||{};
+  function phase(p){return p?('<div class="q-phase"><div class="q-phase-t">'+aiaEsc(p.title)+'</div><div class="q-phase-d">'+aiaEsc(p.detail)+'</div></div>'):'';}
+  var roi=t.roi||{};
+  function cell(l,v){return v?('<div class="q-roi-cell"><div class="q-roi-v">'+aiaEsc(v)+'</div><div class="q-roi-l">'+l+'</div></div>'):'';}
+  var genTag=opts.generated?'<span class="q-gen">AI 即時生成</span>':'';
+  return '<div class="aiaIn q-card2">'+
+    '<div class="q-head2"><div><div class="q-label">AI 自動化流程設計 · INSTANT FLOW DESIGN '+genTag+'</div><div class="q-title">'+aiaEsc(t.name)+'</div></div>'+
+    '<button class="q-btn-reset" onclick="aiaReset()">換個產業</button></div>'+
+    '<div class="q-sec-label" style="color:#e8422a">目前痛點</div><div class="q-pains">'+pains+'</div>'+
+    '<div class="q-sec-label" style="color:#00ff41">AI 可以接手的流程（'+((t.functions||[]).length)+' 項 · 點開看串接/資安/工期）</div>'+funcs+
+    '<div class="q-sec-label" style="color:#5aa9ff">三階段路線圖</div><div class="q-roadmap">'+phase(rm.phase1)+phase(rm.phase2)+phase(rm.phase3)+'</div>'+
+    '<div class="q-sec-label" style="color:#fbbf24">預期效益（可量化）</div><div class="q-roi-grid">'+cell('時間節省',roi.time)+cell('營收 / 回購',roi.revenue)+cell('客戶體驗',roi.experience)+cell('回收期',roi.payback)+'</div>'+
+    '<div class="q-plan2"><div class="q-fn-h">適合搭配的方案</div><p>'+aiaEsc(t.plan)+'</p></div>'+
+    '<div class="q-cta2"><p>想知道怎麼開始導入？點右下角 ASK AI，Hermes 幫您客製</p><button class="q-btn-reset" onclick="aiaReset()">↺ 換個產業</button></div>'+
+    '</div>';
+}
+function aiaShow(html){var el=document.getElementById("aia-result");el.innerHTML=html;el.style.display="block";document.getElementById("aia").scrollIntoView({behavior:"smooth",block:"start"});}
+function aiaAskFallback(msg){
+  return '<div class="aiaIn q-card2"><div style="text-align:center;padding:44px 24px"><p style="font-size:14px;color:#e8f5e8;margin-bottom:20px">'+aiaEsc(msg)+'</p><button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat===\'function\'){toggleChat()}" style="background:#e8422a;color:#fff;border:none;padding:14px 36px;font-family:Space Mono,monospace;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:4px">ASK AI</button><br><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:14px">換個產業</button></div></div>';
+}
 function aiaRun(){
   var q=document.getElementById("aia-q").value.trim();
   if(!q)return;
-  if(!DB||!DB.length){setTimeout(aiaRun,300);return;}
-  var r=aiaFind(q);
   document.getElementById("aia-input").style.display="none";
-  if(!r){
-    document.getElementById("aia-result").innerHTML='<div class="aiaIn q-card"><div class="q-body" style="text-align:center;padding:40px"><p style="font-size:14px;color:#e8f5e8;margin-bottom:20px">這個產業需要更深入了解，讓 AI 助理為您客製設計。</p><button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat===\'function\'){toggleChat()}" style="background:#e8422a;color:#fff;border:none;padding:14px 36px;font-family:Space Mono,monospace;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:4px">ASK AI</button><br><button class="q-btn-reset" onclick="aiaReset()" style="margin-top:14px">換個產業</button></div></div>';
-    document.getElementById("aia-result").style.display="block";return;
-  }
-  var pH=r.p.map(function(p){return '<div class="q-pain-item"><span style="color:#e8422a;flex-shrink:0"></span><span style="font-size:12px;color:#888">'+p+'</span></div>';}).join("");
-  var aH=r.a.map(function(a,i){
-    var c=PC[a.pri]||"#00ff41",b=PB[a.pri]||"rgba(0,255,65,0.1)";
-    return '<div class="q-auto-item" style="background:#0d1a0d;border-left-color:'+c+'"><div style="flex:1"><div class="q-auto-title">'+(i+1)+". "+a.t+'</div><div class="q-auto-desc">'+a.d+'</div></div><div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;flex-shrink:0"><span class="q-badge" style="background:'+b+';color:'+c+'">'+a.pri+'</span><span class="q-badge" style="color:#333;border:1px solid #1e3a1e">'+a.tool+'</span></div></div>';
-  }).join("");
-  var waMsg=encodeURIComponent("【AI自動化報價單】\n產業："+r.n+"\n方案："+r.pl+"\n報價：NT$"+r.price.toLocaleString()+"\n\n自動化項目：\n"+r.a.map(function(a,i){return (i+1)+". "+a.t;}).join("\n")+"\n\nROI："+r.roi+"\n\n請問可以進一步說明嗎？");
-  document.getElementById("aia-result").innerHTML=
-    '<div class="aiaIn q-card">'+
-    '<div class="q-head"><div><div class="q-label">AI 自動化流程設計 · INSTANT FLOW DESIGN</div><div class="q-title">'+r.n+'</div></div>'+
-    '<button class="q-btn-reset" onclick="aiaReset()">換個產業</button></div>'+
-    '<div class="q-body">'+
-    '<div style="margin-bottom:20px"><div class="q-sec-label" style="color:#e8422a">目前痛點</div>'+pH+'</div>'+
-    '<div style="margin-bottom:20px"><div class="q-sec-label" style="color:#00ff41">AI 可以接手的流程（'+r.a.length+' 項）</div>'+aH+'</div>'+
-    '<div class="q-plan"><div><div class="q-plan-name">為你規劃的設計方向</div><div class="q-plan-reason">'+r.pr+'</div><div class="q-plan-meta">每家企業需求不同 · 客製規劃</div></div></div>'+
-    '<div class="q-roi">預期效益 — '+r.roi+'</div>'+
-    '<div style="margin-top:20px;padding:20px;border-top:1px solid #1e3a1e;text-align:center">'+
-    '<p style="font-size:14px;color:#e8f5e8;margin-bottom:14px">想知道怎麼開始導入？</p>'+
-    '<button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat===\'function\'){toggleChat()}" style="background:#e8422a;color:#fff;border:none;padding:14px 36px;font-family:Space Mono,monospace;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;border-radius:4px">ASK AI</button>'+
-    '</div></div></div>';
-  document.getElementById("aia-result").style.display="block";
-  document.getElementById("aia").scrollIntoView({behavior:"smooth",block:"start"});
+  loadTpl().then(function(list){
+    var t=findLocal(q,list);
+    if(t){aiaShow(renderCard(t));return;}
+    aiaShow('<div class="aiaIn q-card2"><div style="text-align:center;padding:48px 24px"><div class="q-spin"></div><p style="font-size:14px;color:#9acd9a;margin-top:18px">為您生成中… AI 正在依「'+aiaEsc(q)+'」客製專屬流程（約 5-10 秒）</p></div></div>');
+    fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/industry-design',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({industry:q})})
+      .then(function(r){return r.json();})
+      .then(function(res){
+        if(res.mode==='template'&&res.key){var hit=list.filter(function(x){return x.key===res.key;})[0];if(hit){aiaShow(renderCard(hit));return;}}
+        if(res.mode==='generated'&&res.template){aiaShow(renderCard(res.template,{generated:true}));return;}
+        aiaShow(aiaAskFallback(res.message||'這個產業我們想更深入了解，讓 Hermes 為您客製設計。'));
+      })
+      .catch(function(){aiaShow(aiaAskFallback('AI 生成暫時忙線，您可以點右下角 ASK AI 由 Hermes 直接為您客製。'));});
+  });
 }
+loadTpl();
 
 function aiaReset(){
   document.getElementById("aia-result").style.display="none";
