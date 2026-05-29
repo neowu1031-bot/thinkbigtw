@@ -1766,6 +1766,7 @@ async function handleIndustryDesign(request, env){
 
     function _extractJSON(txt){
       if(!txt) return null;
+      if(typeof txt === 'object') return txt;   // 部分 Workers AI 模型已回傳解析後物件
       let s = String(txt).replace(/```[a-zA-Z]*/g,'').trim();
       const a = s.indexOf('{'), b = s.lastIndexOf('}');
       if(a<0||b<0) return null;
@@ -1837,7 +1838,7 @@ async function handleIndustryDesign(request, env){
     }
     const _dbg = (new URL(request.url)).searchParams.get('debug');
     const r = { mode:'fallback', key: null, message: 'AI 即時生成暫時無法完成，請稍後再試或點右下角 ASK AI 由 Hermes 為您客製。' };
-    if (_dbg) r.raw = (rawGen||'').slice(0,1500);
+    if (_dbg) r.raw = (typeof rawGen === 'string' ? rawGen : JSON.stringify(rawGen||'')).slice(0,1500);
     return jsonResponse(r);
   }catch(e){
     return jsonResponse({ error: String(e && e.message || e) }, 500);
