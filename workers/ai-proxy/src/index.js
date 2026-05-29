@@ -1795,18 +1795,20 @@ async function handleIndustryDesign(request, env){
       }
     }catch(_e){}
 
-    // 3) AI 即時生成（依 10A 結構；server 端統一補 steps / security）
+    // 3) AI 即時生成（最多兩次嘗試；server 端統一補 steps / security）
     let gen = null, rawGen = '';
-    try{
-      const genRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
-        messages: [
-          { role:'system', content:'你是 Think BIG 的企業 AI 自動化顧問。只輸出合法 JSON（半形雙引號），不要任何解釋或 markdown。不得編造客戶案例。通訊軟體一律用「賴 OA / tele 紙飛機」。' },
-          { role:'user', content: '為「'+industry+'」設計 AI 自動化流程。嚴格只輸出此 JSON 結構：\n{"painPoints":["痛點1具體有數字感","痛點2","痛點3"],"functions":[{"name":"功能名","desc":"15-25字","systems":"賴 OA + 相關系統","eta":"3-7 工作天","benefit":"可量化效益"}],"roadmap":{"phase1":"第一階段內容","phase2":"第二階段內容","phase3":"第三階段內容"},"roi":{"time":"每月省X小時","revenue":"提升X%","experience":"回應X分鐘→X秒","payback":"X個月回收"},"plan":"個人方案 / 企業方案 / 雙 Agent 方案"}\nfunctions 必須剛好 4 個物件。直接輸出 JSON。' }
-        ], max_tokens: 3000
-      });
-      rawGen = genRes.response || '';
-      gen = _extractJSON(rawGen);
-    }catch(_e){}
+    const _genSys = '你是 Think BIG 的企業 AI 自動化顧問。只輸出合法 JSON（半形雙引號），不要任何解釋或 markdown。不得編造客戶案例。通訊軟體一律用「賴 OA / tele 紙飛機」。';
+    const _genUser = '為「'+industry+'」設計 AI 自動化流程。嚴格只輸出此 JSON 結構：\n{"painPoints":["痛點1具體有數字感","痛點2","痛點3"],"functions":[{"name":"功能名","desc":"15-25字","systems":"賴 OA + 相關系統","eta":"3-7 工作天","benefit":"可量化效益"}],"roadmap":{"phase1":"第一階段內容","phase2":"第二階段內容","phase3":"第三階段內容"},"roi":{"time":"每月省X小時","revenue":"提升X%","experience":"回應X分鐘→X秒","payback":"X個月回收"},"plan":"個人方案 / 企業方案 / 雙 Agent 方案"}\nfunctions 必須剛好 4 個物件。直接輸出 JSON。';
+    for (let attempt = 0; attempt < 2 && !(gen && Array.isArray(gen.functions) && gen.functions.length); attempt++){
+      try{
+        const genRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
+          messages: [ { role:'system', content:_genSys }, { role:'user', content:_genUser } ],
+          max_tokens: 4096
+        });
+        rawGen = genRes.response || '';
+        gen = _extractJSON(rawGen);
+      }catch(_e){}
+    }
 
     if (gen && Array.isArray(gen.functions) && gen.functions.length){
       const rm = gen.roadmap || {};
@@ -1830,15 +1832,38 @@ async function handleIndustryDesign(request, env){
       return jsonResponse(r);
     }
 
-    // 4) 生成失敗 → 退回最接近的熱門範本（比死路好），仍無則 fallback
+    // 4) 生成失敗 → 先退最接近的熱門範本；再不行 → 通用範本（永不死路）
     if (bestKey){
       const it = INDUSTRY_INDEX.find(i => i.key === bestKey);
       const r = { mode:'template', key: bestKey, matched: it.name, confidence: bestConf, approximate: true };
       _industryCache.set(cacheKey, r); return jsonResponse(r);
     }
-    const _dbg = (new URL(request.url)).searchParams.get('debug');
-    const r = { mode:'fallback', key: null, message: 'AI 即時生成暫時無法完成，請稍後再試或點右下角 ASK AI 由 Hermes 為您客製。' };
-    if (_dbg) r.raw = (typeof rawGen === 'string' ? rawGen : JSON.stringify(rawGen||'')).slice(0,1500);
+    function _genericTpl(name){
+      const S1='賴 OA + 您的預約/客戶系統 + Google Calendar', S2='賴 OA + 您的 CRM', S3='您的 POS / 業務系統';
+      return {
+        key:'gen-'+cacheKey, name:name, aliases:[name], generated:true, generic:true,
+        painPoints:[
+          '客戶詢問與預約多靠人工接，尖峰時段常漏接、回覆慢，約 2 成商機流失',
+          '老客缺乏系統性回訪，回購全憑記憶，回流率偏低',
+          '重複性通知與行政（提醒、對帳、彙整）佔用大量人力，老闆分身乏術'
+        ],
+        functions:[
+          { name:'24h 智慧客服與預約', desc:'AI 接詢問與預約、回常見問題，全天候不漏接', systems:S1, steps:_mkSteps(S1), security:_SEC_STD, eta:'3-5 工作天', benefit:'回應 5 分鐘→10 秒，漏接歸零' },
+          { name:'老客自動回訪', desc:'依消費/服務週期自動關懷與回訪邀約', systems:S2, steps:_mkSteps(S2), security:_SEC_STD, eta:'3-5 工作天', benefit:'回購率提升 15-25%' },
+          { name:'分眾再行銷', desc:'依客戶輪廓分群，活動檔期自動推對的優惠', systems:S2, steps:_mkSteps(S2), security:_SEC_STD, eta:'5-7 工作天', benefit:'檔期業績提升 20-30%' },
+          { name:'每日營運摘要', desc:'自動彙整業績、客流與待辦，每早一則摘要', systems:S3, steps:_mkSteps(S3), security:_SEC_STD, eta:'5-7 工作天', benefit:'老闆每天省 1 小時對帳與彙整' }
+        ],
+        roadmap:{
+          phase1:{ title:'第一階段（立即上線，1-2 週）', detail:'完成 24h 智慧客服與預約 + 老客回訪，立即減少漏接、拉高回購' },
+          phase2:{ title:'第二階段（成熟運作，1-2 個月）', detail:'完成分眾再行銷，累積客群資料後精準推播' },
+          phase3:{ title:'第三階段（規模擴張，3-6 個月）', detail:'完成每日營運摘要並串接多據點，跨點數據一致' }
+        },
+        roi:{ time:'每月省 30-50 小時客服與行政', revenue:'回購與客單提升 15-30%', experience:'回應 5 分鐘→10 秒，24 小時可服務', payback:'導入成本約 2-4 個月回收' },
+        plan:'個人方案 / 企業方案 / 雙 Agent 方案；月維護費可選'
+      };
+    }
+    const r = { mode:'generated', template:_genericTpl(industry) };
+    _industryCache.set(cacheKey, r);
     return jsonResponse(r);
   }catch(e){
     return jsonResponse({ error: String(e && e.message || e) }, 500);
