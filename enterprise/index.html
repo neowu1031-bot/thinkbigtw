@@ -163,17 +163,11 @@ footer a:hover{color:var(--text)}
 
 <div class="terminal-bg"><canvas id="matrix"></canvas></div>
 
-<nav>
-  <a class="nav-logo" href="/">Think <span>BIG!</span></a>
-  <a class="nav-cta" href="https://lin.ee/n5KW430" target="_blank">立即諮詢</a>
-</nav>
-
 <section class="hero">
   <p class="hero-label">Enterprise AI Automation</p>
   <h1 class="hero-title">你的產業，<em>我們幫你自動化</em></h1>
   <p class="hero-desc">不只是安裝 AI 工具，而是為你的產業設計專屬自動化流程。把重複的工作交給 AI，讓你專注在真正重要的事。</p>
   <div class="hero-btns">
-    <a class="btn-primary" href="https://lin.ee/n5KW430" target="_blank">立即諮詢</a>
     <a class="btn-secondary" href="https://thinkbigtw.com/harness/">了解技術架構</a>
   </div>
 </section>
@@ -492,16 +486,6 @@ function aiaReset(){
 document.getElementById("aia-q").addEventListener("keydown",function(e){if(e.key==="Enter")aiaRun();});
 </script>
 
-<!-- ====== 規格 7 ｜ ASK AI 收尾(規格鐵律:零 emoji、純文字、e8422a) ====== -->
-<section style="text-align:center;padding:64px 24px;border-top:1px solid #222;font-family:'Noto Sans TC',sans-serif;position:relative;z-index:1">
-  <p style="font-size:18px;color:#e8f5e8;margin:0 0 24px">想知道怎麼開始?請點選右下角 ASK AI</p>
-  <button onclick="if(window.toggleChat){window.toggleChat()}else if(typeof toggleChat==='function'){toggleChat()}" style="display:inline-block;padding:14px 36px;border:none;border-radius:4px;background:#e8422a;color:#fff;font-family:'Space Mono',monospace;font-size:15px;letter-spacing:2px;cursor:pointer">ASK AI</button>
-</section>
-
-<footer>
-  <p><a href="/">Think BIG!</a> &nbsp;|&nbsp; <a href="/harness/">Harness Engineers</a> &nbsp;|&nbsp; <a href="/clawland/">CLAW LAND</a> &nbsp;|&nbsp; thinkbigtw.com</p>
-</footer>
-
 <script>
 // Matrix background
 const canvas = document.getElementById('matrix');
@@ -550,5 +534,9 @@ document.querySelectorAll('.industry-card,.security-item').forEach(el=>{
   "provider": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com"}
 }
 </script>
+
+<!-- 全站統一導覽列 + ASK AI 共用元件 -->
+<script src="/nav.js" defer></script>
+<script src="/ask-ai.js" defer></script>
 </body>
 </html>

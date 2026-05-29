@@ -234,11 +234,6 @@ footer{border-top:3px solid;border-image:linear-gradient(90deg,var(--yellow),var
     <div class="platform-badge">Apple Silicon 原生支援</div>
   </div>
 </div>
-<footer>
-  <div class="footer-brand">THINK BIG!</div>
-  <p class="footer-tagline">MAKE IT REAL</p>
-  <a href="https://thinkbigtw.com" class="footer-link">thinkbigtw.com</a>
-</footer>
 <div class="toast" id="toast"></div>
 <script>
 function setLang(lang){
@@ -274,5 +269,9 @@ const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersec
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});});
 </script>
+
+<!-- 全站統一導覽列 + ASK AI 共用元件 -->
+<script src="/nav.js" defer></script>
+<script src="/ask-ai.js" defer></script>
 </body>
 </html>
