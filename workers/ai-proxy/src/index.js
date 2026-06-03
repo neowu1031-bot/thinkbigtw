@@ -1378,16 +1378,16 @@ async function SAFE_handleTranslate(request, env) {
         max_tokens: 4000,
         temperature: 0.1,
       });
-      const raw = (aiRes.response || '').trim().replace(/```json|```/g, '').trim();
-      translated = JSON.parse(raw);
+      const resp = aiRes.response;
+      translated = Array.isArray(resp) ? resp : JSON.parse(String(resp || '').trim().replace(/```json|```/g, '').trim());
     } catch(err) {
       try {
         const aiRes = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
           messages: [{ role: 'user', content: prompt }],
           max_tokens: 3000,
         });
-        const raw = (aiRes.response || '').trim().replace(/```json|```/g, '').trim();
-        translated = JSON.parse(raw);
+        const resp = aiRes.response;
+        translated = Array.isArray(resp) ? resp : JSON.parse(String(resp || '').trim().replace(/```json|```/g, '').trim());
         modelUsed = 'llama-3-8b-fallback';
       } catch(err2) {
         return SAFE_jsonResponse({ error: '翻譯失敗，請稍後再試' }, 500);

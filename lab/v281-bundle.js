@@ -681,11 +681,18 @@
           document.head.appendChild(st);
         }
         st.textContent = `
-          [data-v281-theme="light"] body { background: #f8fafc !important; color: #1e293b !important; }
-          [data-v281-theme="light"] .section, [data-v281-theme="light"] [class*="section"] { background: #ffffff !important; border-color: #e2e8f0 !important; color: #1e293b !important; }
-          [data-v281-theme="light"] input, [data-v281-theme="light"] select, [data-v281-theme="light"] textarea { background: #f1f5f9 !important; color: #1e293b !important; border-color: #cbd5e1 !important; }
-          [data-v281-theme="light"] table { color: #1e293b !important; }
+          [data-v281-theme="light"] body { background: var(--bg-base) !important; color: var(--text-primary) !important; }
+          [data-v281-theme="light"] .card, [data-v281-theme="light"] .stock-result, [data-v281-theme="light"] .chart-container, [data-v281-theme="light"] .rank-list, [data-v281-theme="light"] .ai-card { background: var(--bg-surface) !important; border-color: var(--border) !important; color: var(--text-primary) !important; }
+          [data-v281-theme="light"] .section, [data-v281-theme="light"] [class*="section"] { color: var(--text-primary) !important; }
+          [data-v281-theme="light"] input, [data-v281-theme="light"] select, [data-v281-theme="light"] textarea { background: var(--bg-elevated) !important; color: var(--text-primary) !important; border-color: var(--border-strong) !important; }
+          [data-v281-theme="light"] table { color: var(--text-primary) !important; }
+          [data-v281-theme="light"] .tab-nav-row2 { background: var(--bg-surface) !important; }
+          [data-v281-theme="light"] .stock-item { background: var(--bg-elevated) !important; border-color: var(--border) !important; }
+          [data-v281-theme="light"] .header { background: var(--bg-header) !important; border-color: var(--border) !important; }
+          [data-v281-theme="light"] .badge { background: var(--accent-soft) !important; color: var(--accent) !important; }
           [data-v281-theme="light"] .v275-h, [data-v281-theme="light"] [class*="drag-handle"] { color: rgba(0,0,0,0.4) !important; background: rgba(0,0,0,0.05) !important; }
+          [data-v281-theme="light"] [style*="background:var(--bg-surface)"], [data-v281-theme="light"] [style*="background:var(--bg-elevated)"] { color: var(--text-primary) !important; }
+          [data-v281-theme="light"] .stock-card, [data-v281-theme="light"] [style*="background:#131929"], [data-v281-theme="light"] [style*="background:#1A2035"] { background: #fff !important; color: #0D1B2A !important; border-color: rgba(0,0,0,0.07) !important; }
         `;
       } else {
         const st = document.getElementById('v281-theme-style');

@@ -243,7 +243,7 @@ OpenClaw(又稱「龍蝦 AI」)是一款開源的 AI Agent 框架,能讓 AI 直�
 ChatGPT 是「會說的 AI」,OpenClaw 是「會做的 AI」。ChatGPT 給你 PPT 大綱,OpenClaw 直接打開軟體做出 PPT、寄給客戶。
 
 【七大核心特色】
-① 多通路整合:賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord
+① 多通路整合:LINE OA / Telegram / WhatsApp / Discord / Slack(以及更多平台)
 ② 長期記憶:保留使用者互動歷史,個人化服務
 ③ 主動執行:透過排程與 webhook,自動發起任務
 ④ 高權限操作:可直接存取系統與檔案
@@ -315,7 +315,7 @@ ClawMem 是本地的記憶層,讓 Claude Code、OpenClaw、Hermes 共用同一�
 ````
 
 **重點**:
-- 用詞要用「**賴 OA / tele 紙飛機**」(蝦皮安全用詞,避免出現 LINE/Telegram 原字)
+- 用詞直接寫 LINE OA、Telegram(官網不需要蝦皮暗語)
 - 結尾**必須**問「個人 or 企業」,且**必須**提醒兩個帳號上限
 - 不要編造客戶案例
 
