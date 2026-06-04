@@ -207,9 +207,9 @@
       const reg = j.regularMarketPrice ?? j.close;
       const state = j.marketState || '-';
       let html = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:8px">';
-      html += '<div style="background:rgba(255,159,28,0.08);border:1px solid rgba(255,159,28,0.3);border-radius:6px;padding:10px"><div style="color:#94a3b8;font-size:11px">🌅 盤前</div><div style="font-size:18px;font-weight:700;color:' + ((preChg||0) >= 0 ? '#34d399' : '#f87171') + '">' + (pre ? fmt(pre, 2) : '-') + '</div><div style="color:#94a3b8;font-size:11px">' + (preChg != null ? (preChg >= 0 ? '+' : '') + preChg.toFixed(2) + '%' : '-') + '</div></div>';
-      html += '<div style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:10px"><div style="color:#94a3b8;font-size:11px">📈 盤中收盤</div><div style="font-size:18px;font-weight:700">' + (reg ? fmt(reg, 2) : '-') + '</div><div style="color:#94a3b8;font-size:11px">' + state + '</div></div>';
-      html += '<div style="background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.3);border-radius:6px;padding:10px"><div style="color:#94a3b8;font-size:11px">🌙 盤後</div><div style="font-size:18px;font-weight:700;color:' + ((postChg||0) >= 0 ? '#34d399' : '#f87171') + '">' + (post ? fmt(post, 2) : '-') + '</div><div style="color:#94a3b8;font-size:11px">' + (postChg != null ? (postChg >= 0 ? '+' : '') + postChg.toFixed(2) + '%' : '-') + '</div></div>';
+      html += '<div style="background:rgba(255,159,28,0.08);border:1px solid rgba(255,159,28,0.3);border-radius:6px;padding:10px"><div style="color:var(--text-secondary);font-size:11px">🌅 盤前</div><div style="font-size:18px;font-weight:700;color:' + ((preChg||0) >= 0 ? '#34d399' : '#f87171') + '">' + (pre ? fmt(pre, 2) : '-') + '</div><div style="color:var(--text-secondary);font-size:11px">' + (preChg != null ? (preChg >= 0 ? '+' : '') + preChg.toFixed(2) + '%' : '-') + '</div></div>';
+      html += '<div style="background:rgba(96,165,250,0.08);border:1px solid rgba(96,165,250,0.3);border-radius:6px;padding:10px"><div style="color:var(--text-secondary);font-size:11px">📈 盤中收盤</div><div style="font-size:18px;font-weight:700">' + (reg ? fmt(reg, 2) : '-') + '</div><div style="color:var(--text-secondary);font-size:11px">' + state + '</div></div>';
+      html += '<div style="background:rgba(168,85,247,0.08);border:1px solid rgba(168,85,247,0.3);border-radius:6px;padding:10px"><div style="color:var(--text-secondary);font-size:11px">🌙 盤後</div><div style="font-size:18px;font-weight:700;color:' + ((postChg||0) >= 0 ? '#34d399' : '#f87171') + '">' + (post ? fmt(post, 2) : '-') + '</div><div style="color:var(--text-secondary);font-size:11px">' + (postChg != null ? (postChg >= 0 ? '+' : '') + postChg.toFixed(2) + '%' : '-') + '</div></div>';
       html += '</div>';
       c.innerHTML = html;
     } catch (e) {
@@ -224,14 +224,14 @@
     const c = $(containerId);
     if (!c) return;
     c.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px">' +
-      '<label style="font-size:13px">FCF (M)<input type="number" id="dcf-fcf" value="100" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">成長率 (%, 5y)<input type="number" id="dcf-g" value="8" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">折現率 WACC (%)<input type="number" id="dcf-r" value="10" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">終值成長率 (%)<input type="number" id="dcf-tg" value="3" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">流通股數 (M)<input type="number" id="dcf-shares" value="100" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">淨負債 (M)<input type="number" id="dcf-debt" value="0" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '</div><button id="dcf-go" style="width:100%;padding:10px;background:#2563eb;border:0;color:#fff;border-radius:6px;font-weight:700;cursor:pointer;margin-top:8px">計算 DCF 公允價值</button>' +
-      '<div id="dcf-result" style="margin-top:10px;padding:10px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.3);border-radius:6px;color:#94a3b8;font-size:13px">填入參數後點計算</div>';
+      '<label style="font-size:13px">FCF (M)<input type="number" id="dcf-fcf" value="100" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">成長率 (%, 5y)<input type="number" id="dcf-g" value="8" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">折現率 WACC (%)<input type="number" id="dcf-r" value="10" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">終值成長率 (%)<input type="number" id="dcf-tg" value="3" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">流通股數 (M)<input type="number" id="dcf-shares" value="100" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">淨負債 (M)<input type="number" id="dcf-debt" value="0" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '</div><button id="dcf-go" style="width:100%;padding:10px;background:var(--accent);border:0;color:#fff;border-radius:6px;font-weight:700;cursor:pointer;margin-top:8px">計算 DCF 公允價值</button>' +
+      '<div id="dcf-result" style="margin-top:10px;padding:10px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.3);border-radius:6px;color:var(--text-secondary);font-size:13px">填入參數後點計算</div>';
     $('dcf-go').addEventListener('click', () => {
       const fcf = parseFloat($('dcf-fcf').value);
       const g = parseFloat($('dcf-g').value) / 100;
@@ -269,13 +269,13 @@
     const c = $(containerId);
     if (!c) return;
     c.innerHTML = '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px">' +
-      '<label style="font-size:13px">帳戶總額<input type="number" id="rk-acc" value="1000000" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">每筆風險 %<input type="number" id="rk-pct" value="1" step="0.1" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">進場價<input type="number" id="rk-entry" value="100" step="0.01" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">停損價<input type="number" id="rk-stop" value="95" step="0.01" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">停利價<input type="number" id="rk-target" value="110" step="0.01" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">帳戶總額<input type="number" id="rk-acc" value="1000000" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">每筆風險 %<input type="number" id="rk-pct" value="1" step="0.1" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">進場價<input type="number" id="rk-entry" value="100" step="0.01" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">停損價<input type="number" id="rk-stop" value="95" step="0.01" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">停利價<input type="number" id="rk-target" value="110" step="0.01" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
       '<div></div></div><button id="rk-go" style="width:100%;padding:10px;background:#16a34a;border:0;color:#fff;border-radius:6px;font-weight:700;cursor:pointer;margin-top:8px">計算部位大小</button>' +
-      '<div id="rk-result" style="margin-top:10px;padding:10px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.3);border-radius:6px;color:#94a3b8;font-size:13px">填入後點計算</div>';
+      '<div id="rk-result" style="margin-top:10px;padding:10px;background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.3);border-radius:6px;color:var(--text-secondary);font-size:13px">填入後點計算</div>';
     $('rk-go').addEventListener('click', () => {
       const acc = parseFloat($('rk-acc').value);
       const pct = parseFloat($('rk-pct').value) / 100;
@@ -323,18 +323,18 @@
       const prices = await r2.json();
       const priceMap = new Map();
       prices.forEach(p => { if (!priceMap.has(p.symbol)) priceMap.set(p.symbol, p); });
-      let html = '<table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="border-bottom:1px solid #334155;color:#94a3b8">' +
+      let html = '<table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="border-bottom:1px solid var(--border-strong);color:var(--text-secondary)">' +
         '<th style="padding:8px;text-align:left">代號</th><th style="text-align:left">名稱</th><th style="text-align:right">收盤</th>' +
         '<th style="text-align:right">漲跌%</th><th style="text-align:right">成交量</th></tr></thead><tbody>';
       peers.forEach(p => {
         const px = priceMap.get(p.symbol);
         const chg = px && px.open_price ? ((px.close_price - px.open_price) / px.open_price) * 100 : null;
         const isCurr = p.symbol === symbol;
-        html += '<tr style="border-bottom:1px solid #1e293b;' + (isCurr ? 'background:rgba(96,165,250,0.1)' : '') + '">' +
+        html += '<tr style="border-bottom:1px solid var(--bg-elevated);' + (isCurr ? 'background:rgba(96,165,250,0.1)' : '') + '">' +
           '<td style="padding:8px;font-weight:' + (isCurr ? '700' : '400') + '">' + p.symbol + (isCurr ? ' ★' : '') + '</td>' +
           '<td>' + (p.name || '-') + '</td>' +
           '<td style="text-align:right">' + (px ? fmt(px.close_price, 2) : '-') + '</td>' +
-          '<td style="text-align:right;color:' + (chg == null ? '#94a3b8' : chg >= 0 ? '#34d399' : '#f87171') + '">' + (chg == null ? '-' : (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%') + '</td>' +
+          '<td style="text-align:right;color:' + (chg == null ? 'var(--text-secondary)' : chg >= 0 ? '#34d399' : '#f87171') + '">' + (chg == null ? '-' : (chg >= 0 ? '+' : '') + chg.toFixed(2) + '%') + '</td>' +
           '<td style="text-align:right">' + (px ? fmt(px.volume) : '-') + '</td>' +
           '</tr>';
       });
@@ -353,12 +353,12 @@
     const c = $(containerId);
     if (!c) return;
     c.innerHTML = '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:8px">' +
-      '<label style="font-size:13px">股票<input id="bt-sym" value="2330" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">短均<input type="number" id="bt-short" value="20" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">長均<input type="number" id="bt-long" value="60" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label style="font-size:13px">期間(天)<input type="number" id="bt-days" value="365" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">股票<input id="bt-sym" value="2330" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">短均<input type="number" id="bt-short" value="20" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">長均<input type="number" id="bt-long" value="60" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label style="font-size:13px">期間(天)<input type="number" id="bt-days" value="365" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
       '</div><button id="bt-go" style="width:100%;padding:10px;background:#7c3aed;border:0;color:#fff;border-radius:6px;font-weight:700;cursor:pointer;margin-top:8px">執行回測 (SMA Cross)</button>' +
-      '<div id="bt-result" style="margin-top:10px;padding:10px;background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.3);border-radius:6px;color:#94a3b8;font-size:13px">填入參數後點執行</div>';
+      '<div id="bt-result" style="margin-top:10px;padding:10px;background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.3);border-radius:6px;color:var(--text-secondary);font-size:13px">填入參數後點執行</div>';
     $('bt-go').addEventListener('click', async () => {
       const sym = $('bt-sym').value.trim();
       const short = parseInt($('bt-short').value);
@@ -429,12 +429,12 @@
     const c = $(containerId);
     if (!c) return;
     c.innerHTML = '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px;font-size:12px">' +
-      '<label>最低收盤價<input type="number" id="sc-min-px" value="0" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>最高收盤價<input type="number" id="sc-max-px" value="10000" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>最低漲跌%<input type="number" id="sc-min-chg" value="-100" step="0.1" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>最高漲跌%<input type="number" id="sc-max-chg" value="100" step="0.1" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>最低成交量<input type="number" id="sc-min-vol" value="0" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>排序<select id="sc-sort" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"><option value="chg_desc">漲幅由高到低</option><option value="chg_asc">跌幅由高到低</option><option value="vol_desc">成交量大→小</option><option value="px_desc">價格大→小</option></select></label>' +
+      '<label>最低收盤價<input type="number" id="sc-min-px" value="0" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>最高收盤價<input type="number" id="sc-max-px" value="10000" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>最低漲跌%<input type="number" id="sc-min-chg" value="-100" step="0.1" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>最高漲跌%<input type="number" id="sc-max-chg" value="100" step="0.1" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>最低成交量<input type="number" id="sc-min-vol" value="0" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>排序<select id="sc-sort" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"><option value="chg_desc">漲幅由高到低</option><option value="chg_asc">跌幅由高到低</option><option value="vol_desc">成交量大→小</option><option value="px_desc">價格大→小</option></select></label>' +
       '</div><button id="sc-go" style="width:100%;padding:10px;background:#0891b2;border:0;color:#fff;border-radius:6px;font-weight:700;cursor:pointer;margin-top:8px">執行篩選</button>' +
       '<div id="sc-result" style="margin-top:10px"></div>';
     $('sc-go').addEventListener('click', async () => {
@@ -472,11 +472,11 @@
         };
         filtered.sort(sortFns[sort] || sortFns.chg_desc);
         filtered = filtered.slice(0, 50);
-        let html = '<div style="margin-bottom:8px;color:#94a3b8;font-size:12px">符合條件 ' + filtered.length + ' 檔（顯示前 50）</div>' +
-          '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid #334155;color:#94a3b8">' +
+        let html = '<div style="margin-bottom:8px;color:var(--text-secondary);font-size:12px">符合條件 ' + filtered.length + ' 檔（顯示前 50）</div>' +
+          '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid var(--border-strong);color:var(--text-secondary)">' +
           '<th style="padding:6px;text-align:left">代號</th><th style="text-align:right">收盤</th><th style="text-align:right">漲跌%</th><th style="text-align:right">成交量</th></tr></thead><tbody>';
         filtered.forEach(s => {
-          html += '<tr style="border-bottom:1px solid #1e293b;cursor:pointer" data-symbol="' + s.symbol + '">' +
+          html += '<tr style="border-bottom:1px solid var(--bg-elevated);cursor:pointer" data-symbol="' + s.symbol + '">' +
             '<td style="padding:6px">' + s.symbol + '</td>' +
             '<td style="text-align:right">' + fmt(s.close, 2) + '</td>' +
             '<td style="text-align:right;color:' + (s.chg >= 0 ? '#34d399' : '#f87171') + '">' + (s.chg >= 0 ? '+' : '') + s.chg.toFixed(2) + '%</td>' +
@@ -503,19 +503,19 @@
   function buildBarReplay(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:6px">🎬 K 線回放練習：模擬走勢，訓練判讀直覺</div>' +
-      '<div style="display:flex;gap:8px;flex-wrap:wrap"><input id="br-sym" value="2330" placeholder="股票代號" style="flex:1 1 100px;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
-      '<button id="br-load" style="padding:6px 14px;background:#2563eb;border:0;color:#fff;border-radius:4px;cursor:pointer">載入</button>' +
-      '<button id="br-back" style="padding:6px 10px;background:#475569;border:0;color:#fff;border-radius:4px;cursor:pointer">⬅️</button>' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:6px">🎬 K 線回放練習：模擬走勢，訓練判讀直覺</div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap"><input id="br-sym" value="2330" placeholder="股票代號" style="flex:1 1 100px;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
+      '<button id="br-load" style="padding:6px 14px;background:var(--accent);border:0;color:#fff;border-radius:4px;cursor:pointer">載入</button>' +
+      '<button id="br-back" style="padding:6px 10px;background:var(--text-muted);border:0;color:#fff;border-radius:4px;cursor:pointer">⬅️</button>' +
       '<button id="br-play" style="padding:6px 14px;background:#16a34a;border:0;color:#fff;border-radius:4px;cursor:pointer">▶️ 播放</button>' +
-      '<button id="br-fwd" style="padding:6px 10px;background:#475569;border:0;color:#fff;border-radius:4px;cursor:pointer">➡️</button></div>' +
-      '<canvas id="br-canvas" width="800" height="240" style="margin-top:10px;background:#0a0f1c;border-radius:6px;width:100%"></canvas>' +
-      '<div id="br-info" style="margin-top:6px;font-size:11px;color:#64748b"></div></div>';
+      '<button id="br-fwd" style="padding:6px 10px;background:var(--text-muted);border:0;color:#fff;border-radius:4px;cursor:pointer">➡️</button></div>' +
+      '<canvas id="br-canvas" width="800" height="240" style="margin-top:10px;background:var(--bg-base);border-radius:6px;width:100%"></canvas>' +
+      '<div id="br-info" style="margin-top:6px;font-size:11px;color:var(--text-muted)"></div></div>';
     let bars = [], idx = 0, playing = false, timer = null;
     const cv = $('br-canvas'), ctx = cv.getContext('2d');
     function draw() {
       const W = cv.width, H = cv.height;
-      ctx.fillStyle = '#0a0f1c';
+      ctx.fillStyle = 'var(--bg-base)';
       ctx.fillRect(0, 0, W, H);
       if (idx < 5) return;
       const slice = bars.slice(0, idx);
@@ -561,10 +561,10 @@
   async function build13F(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🐋 美股對沖基金 13F 追蹤（SEC 公開資料）</div>' +
-      '<div style="display:flex;gap:8px"><input id="f13-cik" placeholder="CIK 或基金名 (例: 1067983=Berkshire)" value="1067983" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🐋 美股對沖基金 13F 追蹤（SEC 公開資料）</div>' +
+      '<div style="display:flex;gap:8px"><input id="f13-cik" placeholder="CIK 或基金名 (例: 1067983=Berkshire)" value="1067983" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="f13-go" style="padding:6px 14px;background:#dc2626;border:0;color:#fff;border-radius:4px;cursor:pointer">查持倉</button></div>' +
-      '<div id="f13-result" style="margin-top:10px;color:#94a3b8;font-size:12px">輸入 CIK 點查詢（範例：Berkshire=1067983, BlackRock=1364742, Bridgewater=1350694）</div></div>';
+      '<div id="f13-result" style="margin-top:10px;color:var(--text-secondary);font-size:12px">輸入 CIK 點查詢（範例：Berkshire=1067983, BlackRock=1364742, Bridgewater=1350694）</div></div>';
     $('f13-go').addEventListener('click', async () => {
       const cik = $('f13-cik').value.trim();
       $('f13-result').innerHTML = '<div style="color:#888">⏳ 抓 SEC EDGAR 13F filings...</div>';
@@ -592,12 +592,12 @@
           return;
         }
         let html = '<div style="font-weight:700;color:#fff;margin-bottom:8px">' + (j.name || j.entityName || cik) + ' — 最近 ' + list.length + ' 份 13F</div>';
-        html += '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid #334155;color:#94a3b8"><th style="padding:6px;text-align:left">填報日</th><th style="text-align:left">報告期</th><th>連結</th></tr></thead><tbody>';
+        html += '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid var(--border-strong);color:var(--text-secondary)"><th style="padding:6px;text-align:left">填報日</th><th style="text-align:left">報告期</th><th>連結</th></tr></thead><tbody>';
         list.forEach(f => {
-          html += '<tr style="border-bottom:1px solid #1e293b"><td style="padding:6px">' + f.date + '</td><td>' + f.report + '</td><td><a href="' + f.link + '" target="_blank" rel="noopener" style="color:#60a5fa">SEC 詳情 →</a></td></tr>';
+          html += '<tr style="border-bottom:1px solid var(--bg-elevated)"><td style="padding:6px">' + f.date + '</td><td>' + f.report + '</td><td><a href="' + f.link + '" target="_blank" rel="noopener" style="color:#60a5fa">SEC 詳情 →</a></td></tr>';
         });
         html += '</tbody></table>';
-        html += '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:#94a3b8">💡 13F 由機構投資人每季向 SEC 申報持倉（45 天延遲）。點 SEC 詳情看完整持股明細。</div>';
+        html += '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:var(--text-secondary)">💡 13F 由機構投資人每季向 SEC 申報持倉（45 天延遲）。點 SEC 詳情看完整持股明細。</div>';
         $('f13-result').innerHTML = html;
       } catch (e) {
         $('f13-result').innerHTML = '❌ ' + (e.message || e);
@@ -617,7 +617,7 @@
     wrapper.innerHTML = '<div class="section-title" style="font-weight:700;font-size:16px;margin-bottom:10px">' + title + '</div><div id="' + id + '"></div>';
     tab.appendChild(wrapper);
     if (autorun) builder(id);
-    else $(id).innerHTML = '<button onclick="window.v277.run(\'' + id + '\')" style="padding:8px 16px;background:#2563eb;border:0;color:#fff;border-radius:6px;cursor:pointer">點此載入</button>';
+    else $(id).innerHTML = '<button onclick="window.v277.run(\'' + id + '\')" style="padding:8px 16px;background:var(--accent);border:0;color:#fff;border-radius:6px;cursor:pointer">點此載入</button>';
     window.v277._builders = window.v277._builders || {};
     window.v277._builders[id] = builder;
   }

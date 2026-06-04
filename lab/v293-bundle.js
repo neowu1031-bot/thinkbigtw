@@ -15,8 +15,8 @@
   function V293_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V293_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V293_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -54,10 +54,10 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🎬 載入歷史 K 線 → 一格一格往前撥 → 練習你的判斷力（每天 30 分鐘練 6 個月超越散戶 90%）</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="br293-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="br293-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="br293-load" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📥 載入</button>
-        <button id="br293-prev" disabled style="padding:8px 12px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">◀️ 上一格</button>
-        <button id="br293-next" disabled style="padding:8px 12px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">下一格 ▶️</button>
+        <button id="br293-prev" disabled style="padding:8px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">◀️ 上一格</button>
+        <button id="br293-next" disabled style="padding:8px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">下一格 ▶️</button>
         <button id="br293-buy" disabled style="padding:8px 12px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🟢 買 100</button>
         <button id="br293-sell" disabled style="padding:8px 12px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🔴 賣 100</button>
         <button id="br293-reset" style="padding:8px 12px;background:#6b7280;color:#fff;border:none;border-radius:6px;cursor:pointer">↺ 重置</button>
@@ -75,7 +75,7 @@
       const minP = Math.min(...lows), maxP = Math.max(...highs);
       const range = maxP - minP || 1;
       const cw = Math.max(2, W / Math.max(60, visible.length));
-      let svg = `<svg width="${W}" height="${H}" style="background:#0a0a1e;border-radius:6px;width:100%">`;
+      let svg = `<svg width="${W}" height="${H}" style="background:var(--bg-base);border-radius:6px;width:100%">`;
       visible.forEach((d, i) => {
         const x = i * cw + cw / 2;
         const yH = H - 30 - (d.high - minP) / range * (H - 60);
@@ -103,12 +103,12 @@
       const pnl = totalValue - 100000;
       V293_$('br293-stats').innerHTML = `
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px">
-          <div style="background:#0f0f1e;padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">日期</div><div style="color:#fff">${last.date}</div></div>
-          <div style="background:#0f0f1e;padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">價格</div><div style="color:#fff;font-weight:bold">${V293_fmt(last.close)}</div></div>
-          <div style="background:#0f0f1e;padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">現金</div><div style="color:#fff">${V293_fmt(cash, 0)}</div></div>
-          <div style="background:#0f0f1e;padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">持倉</div><div style="color:#fff">${position} 股</div></div>
-          <div style="background:#0f0f1e;padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">總資產</div><div style="color:#fff;font-weight:bold">${V293_fmt(totalValue, 0)}</div></div>
-          <div style="background:#0f0f1e;padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">損益</div><div style="color:${pnl >= 0 ? '#4ade80' : '#ef4444'};font-weight:bold">${pnl >= 0 ? '+' : ''}${V293_fmt(pnl, 0)}</div></div>
+          <div style="background:var(--bg-base);padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">日期</div><div style="color:#fff">${last.date}</div></div>
+          <div style="background:var(--bg-base);padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">價格</div><div style="color:#fff;font-weight:bold">${V293_fmt(last.close)}</div></div>
+          <div style="background:var(--bg-base);padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">現金</div><div style="color:#fff">${V293_fmt(cash, 0)}</div></div>
+          <div style="background:var(--bg-base);padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">持倉</div><div style="color:#fff">${position} 股</div></div>
+          <div style="background:var(--bg-base);padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">總資產</div><div style="color:#fff;font-weight:bold">${V293_fmt(totalValue, 0)}</div></div>
+          <div style="background:var(--bg-base);padding:8px;border-radius:6px"><div style="color:#aaa;font-size:11px">損益</div><div style="color:${pnl >= 0 ? '#4ade80' : '#ef4444'};font-weight:bold">${pnl >= 0 ? '+' : ''}${V293_fmt(pnl, 0)}</div></div>
         </div>
       `;
     }
@@ -203,10 +203,10 @@
         const pct = score / QUESTIONS.length * 100;
         if (pct >= 90) { level = '🏆 大師級'; color = '#fbbf24'; advice = '你的投資知識已達世界級水準！可以開始實戰運用。'; }
         else if (pct >= 70) { level = '⭐ 進階'; color = '#4ade80'; advice = '基礎扎實，繼續學習進階理論（量化、衍生性商品）'; }
-        else if (pct >= 50) { level = '📈 中級'; color = '#3b82f6'; advice = '有基本概念，建議多讀「智慧型股票投資人」「投資金律」'; }
+        else if (pct >= 50) { level = '📈 中級'; color = 'var(--accent)'; advice = '有基本概念，建議多讀「智慧型股票投資人」「投資金律」'; }
         else { level = '🌱 新手'; color = '#888'; advice = '從基礎開始：「漫步華爾街」「巴菲特的投資原則」推薦書籍'; }
         c.innerHTML = `
-          <div style="background:linear-gradient(135deg,#0f0f1e 0%,#1a1a4e 100%);padding:32px;border-radius:12px;text-align:center">
+          <div style="background:linear-gradient(135deg,var(--bg-base) 0%,#1a1a4e 100%);padding:32px;border-radius:12px;text-align:center">
             <div style="color:#aaa;font-size:13px">測驗結果</div>
             <div style="font-size:64px;color:${color};font-weight:bold;line-height:1">${score}/${QUESTIONS.length}</div>
             <div style="color:${color};font-size:24px;font-weight:bold;margin-top:8px">${level}</div>
@@ -224,17 +224,17 @@
       }
       const Q = QUESTIONS[curr];
       c.innerHTML = `
-        <div style="background:#0f0f1e;padding:20px;border-radius:8px">
+        <div style="background:var(--bg-base);padding:20px;border-radius:8px">
           <div style="display:flex;justify-content:space-between;color:#aaa;font-size:12px;margin-bottom:8px">
             <span>第 ${curr + 1} / ${QUESTIONS.length} 題</span>
             <span>已答對 ${score}</span>
           </div>
-          <div style="background:#2a2a4a;height:6px;border-radius:3px;overflow:hidden;margin-bottom:16px">
+          <div style="background:var(--bg-surface);height:6px;border-radius:3px;overflow:hidden;margin-bottom:16px">
             <div style="background:#4ade80;height:100%;width:${(curr / QUESTIONS.length) * 100}%"></div>
           </div>
           <h4 style="color:#fff;font-size:18px;margin:0 0 16px 0">${Q.q}</h4>
           <div style="display:grid;gap:8px">
-            ${Q.opts.map((opt, i) => `<button data-idx="${i}" class="qz-opt" style="padding:12px;background:#2a2a4a;color:#fff;border:1px solid #444;border-radius:6px;cursor:pointer;text-align:left;font-size:14px">${String.fromCharCode(65 + i)}. ${opt}</button>`).join('')}
+            ${Q.opts.map((opt, i) => `<button data-idx="${i}" class="qz-opt" style="padding:12px;background:var(--bg-surface);color:#fff;border:1px solid #444;border-radius:6px;cursor:pointer;text-align:left;font-size:14px">${String.fromCharCode(65 + i)}. ${opt}</button>`).join('')}
           </div>
         </div>
       `;
@@ -265,8 +265,8 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🔬 為每檔股票建立深度研究筆記，按 Buffett「能力圈」原則分類</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="rn293-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
-        <button id="rn293-load" style="padding:8px 16px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">📂 載入</button>
+        <input id="rn293-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <button id="rn293-load" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">📂 載入</button>
       </div>
       <div id="rn293-area"></div>
     `;
@@ -287,18 +287,18 @@
         { id: 'exit', label: '🚪 賣出條件（When would I sell?）' }
       ];
       a.innerHTML = `
-        <div style="background:#0f0f1e;padding:16px;border-radius:8px">
+        <div style="background:var(--bg-base);padding:16px;border-radius:8px">
           <h4 style="margin:0 0 12px 0;color:#fbbf24">🔬 ${sym} 研究筆記</h4>
           ${SECTIONS.map(s => `<div style="margin-bottom:12px">
             <label style="color:#fff;font-weight:bold;display:block;margin-bottom:4px">${s.label}</label>
-            <textarea id="rn293-${s.id}" rows="2" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;resize:vertical;font-family:inherit">${(note[s.id] || '').replace(/"/g, '&quot;')}</textarea>
+            <textarea id="rn293-${s.id}" rows="2" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;resize:vertical;font-family:inherit">${(note[s.id] || '').replace(/"/g, '&quot;')}</textarea>
           </div>`).join('')}
           <div style="margin-bottom:12px">
             <label style="color:#fff;font-weight:bold;display:block;margin-bottom:4px">⭐ 投資信心度（1-10）</label>
-            <input id="rn293-confidence" type="number" min="1" max="10" value="${note.confidence || 5}" style="width:100px;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+            <input id="rn293-confidence" type="number" min="1" max="10" value="${note.confidence || 5}" style="width:100px;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
           </div>
           <button id="rn293-save" style="padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">💾 儲存筆記</button>
-          <button id="rn293-export" style="padding:10px 20px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">📤 導出 Markdown</button>
+          <button id="rn293-export" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">📤 導出 Markdown</button>
         </div>
       `;
       V293_$('rn293-save').onclick = () => {
@@ -371,12 +371,12 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">📋 投資前必過的 Checklist — 用大師的思考框架幫你避免錯誤</p>
       <div style="margin-bottom:12px">
-        <select id="cl293-type" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+        <select id="cl293-type" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
           <option value="buffett">🏛️ Buffett 巴菲特</option>
           <option value="munger">🧠 Munger 蒙格</option>
           <option value="lynch">🎯 Lynch 林區</option>
         </select>
-        <input id="cl293-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:160px;margin-left:8px">
+        <input id="cl293-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:160px;margin-left:8px">
         <button id="cl293-load" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold;margin-left:8px">📋 開始</button>
       </div>
       <div id="cl293-area"></div>
@@ -388,7 +388,7 @@
       const key = `mr_v293_checklist_${sym}_${type}`;
       const saved = JSON.parse(localStorage.getItem(key) || '[]');
       V293_$('cl293-area').innerHTML = `
-        <div style="background:#0f0f1e;padding:16px;border-radius:8px">
+        <div style="background:var(--bg-base);padding:16px;border-radius:8px">
           <h4 style="margin:0 0 12px 0;color:#fbbf24">${list.name} — ${sym}</h4>
           ${list.items.map((item, i) => `<label style="display:block;padding:10px;border-bottom:1px solid #333;cursor:pointer">
             <input type="checkbox" data-idx="${i}" ${saved[i] ? 'checked' : ''} style="width:18px;height:18px;margin-right:8px;vertical-align:middle">

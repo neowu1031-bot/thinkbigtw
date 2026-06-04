@@ -36,8 +36,8 @@
   function buildTechIndicators(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">📐 完整技術指標：ADX / Stochastic / CCI / Bollinger / MACD divergence</div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="ti-sym" value="2330" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">📐 完整技術指標：ADX / Stochastic / CCI / Bollinger / MACD divergence</div>' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="ti-sym" value="2330" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="ti-go" style="padding:6px 14px;background:#7c3aed;border:0;color:#fff;border-radius:4px;cursor:pointer">計算</button></div>' +
       '<div id="ti-result"></div></div>';
 
@@ -139,7 +139,7 @@
     $('ti-go').addEventListener('click', async () => {
       const sym = $('ti-sym').value.trim();
       const since = new Date(Date.now() - 365 * 24 * 3600e3).toISOString().slice(0, 10);
-      $('ti-result').innerHTML = '<div style="color:#94a3b8;padding:10px">⏳ 計算中...</div>';
+      $('ti-result').innerHTML = '<div style="color:var(--text-secondary);padding:10px">⏳ 計算中...</div>';
       try {
         const r = await fetch(SB_URL + '/rest/v1/daily_prices?symbol=eq.' + sym + '&date=gte.' + since +
           '&select=date,close_price,high_price,low_price&order=date.asc&limit=300', { headers: SB_H });
@@ -163,30 +163,30 @@
 
         function judge(name, val, rules) {
           for (const r of rules) if (val != null && r.cond(val)) return { val, label: r.label, color: r.color };
-          return { val, label: '-', color: '#94a3b8' };
+          return { val, label: '-', color: 'var(--text-secondary)' };
         }
         const adxJ = judge('ADX', adxVal, [
           { cond: v => v > 50, label: '極強趨勢', color: '#0d8043' },
           { cond: v => v > 25, label: '強趨勢', color: '#16a34a' },
           { cond: v => v > 20, label: '溫和趨勢', color: '#84cc16' },
-          { cond: v => v >= 0, label: '無趨勢/盤整', color: '#94a3b8' }
+          { cond: v => v >= 0, label: '無趨勢/盤整', color: 'var(--text-secondary)' }
         ]);
         const stochJ = judge('Stoch', stochK, [
           { cond: v => v > 80, label: '超買', color: '#f87171' },
           { cond: v => v < 20, label: '超賣', color: '#34d399' },
-          { cond: v => true, label: '中性', color: '#94a3b8' }
+          { cond: v => true, label: '中性', color: 'var(--text-secondary)' }
         ]);
         const cciJ = judge('CCI', cciVal, [
           { cond: v => v > 100, label: '超買', color: '#f87171' },
           { cond: v => v < -100, label: '超賣', color: '#34d399' },
-          { cond: v => true, label: '中性', color: '#94a3b8' }
+          { cond: v => true, label: '中性', color: 'var(--text-secondary)' }
         ]);
         const bbJ = judge('BB', bbPos, [
           { cond: v => v > 95, label: '突破上軌（強勢）', color: '#f87171' },
           { cond: v => v < 5, label: '跌破下軌（弱勢）', color: '#34d399' },
           { cond: v => v > 80, label: '靠近上軌', color: '#fbbf24' },
           { cond: v => v < 20, label: '靠近下軌', color: '#fbbf24' },
-          { cond: v => true, label: '中段', color: '#94a3b8' }
+          { cond: v => true, label: '中段', color: 'var(--text-secondary)' }
         ]);
 
         $('ti-result').innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px">' +
@@ -195,14 +195,14 @@
           buildCard('📈 CCI(20)', cciVal, cciJ) +
           buildCard('📊 Bollinger Bands(20,2)', bbPos, bbJ, '上軌 ' + fmt(lastBB.upper, 2) + ' / 中軌 ' + fmt(lastBB.mid, 2) + ' / 下軌 ' + fmt(lastBB.lower, 2)) +
           '</div>' +
-          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:#94a3b8">💡 ADX > 25 表強趨勢；Stoch > 80 超買、< 20 超賣；CCI > 100 超買、< -100 超賣；BB% 顯示在區間位置（0-100%）。</div>';
+          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:var(--text-secondary)">💡 ADX > 25 表強趨勢；Stoch > 80 超買、< 20 超賣；CCI > 100 超買、< -100 超賣；BB% 顯示在區間位置（0-100%）。</div>';
 
         function buildCard(title, val, j, sub) {
           return '<div style="background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.3);border-radius:6px;padding:10px">' +
-            '<div style="font-size:11px;color:#94a3b8;margin-bottom:4px">' + title + '</div>' +
+            '<div style="font-size:11px;color:var(--text-secondary);margin-bottom:4px">' + title + '</div>' +
             '<div style="font-size:18px;font-weight:700;color:' + j.color + '">' + fmt(val, 2) + '</div>' +
             '<div style="font-size:11px;color:' + j.color + '">' + j.label + '</div>' +
-            (sub ? '<div style="font-size:10px;color:#64748b;margin-top:4px">' + sub + '</div>' : '') +
+            (sub ? '<div style="font-size:10px;color:var(--text-muted);margin-top:4px">' + sub + '</div>' : '') +
             '</div>';
         }
       } catch (e) {
@@ -217,14 +217,14 @@
   function buildBlackScholes(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">⚖️ Black-Scholes 期權定價 + Greeks（Delta/Gamma/Theta/Vega/Rho）</div>' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">⚖️ Black-Scholes 期權定價 + Greeks（Delta/Gamma/Theta/Vega/Rho）</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:10px;font-size:12px">' +
-      '<label>標的價 S<input type="number" id="bs-s" value="100" step="0.01" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>行權價 K<input type="number" id="bs-k" value="100" step="0.01" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>年化波動率 σ %<input type="number" id="bs-vol" value="25" step="0.1" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>無風險利率 r %<input type="number" id="bs-r" value="3" step="0.1" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>到期天數 T<input type="number" id="bs-t" value="30" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>類型<select id="bs-type" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"><option value="call">Call 買權</option><option value="put">Put 賣權</option></select></label>' +
+      '<label>標的價 S<input type="number" id="bs-s" value="100" step="0.01" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>行權價 K<input type="number" id="bs-k" value="100" step="0.01" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>年化波動率 σ %<input type="number" id="bs-vol" value="25" step="0.1" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>無風險利率 r %<input type="number" id="bs-r" value="3" step="0.1" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>到期天數 T<input type="number" id="bs-t" value="30" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>類型<select id="bs-type" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"><option value="call">Call 買權</option><option value="put">Put 賣權</option></select></label>' +
       '</div><button id="bs-go" style="width:100%;padding:10px;background:#7c3aed;border:0;color:#fff;border-radius:6px;font-weight:700;cursor:pointer">計算定價 + Greeks</button>' +
       '<div id="bs-result" style="margin-top:10px"></div></div>';
 
@@ -268,17 +268,17 @@
       const timeValue = price - intrinsic;
       const itm = type === 'call' ? S > K : S < K;
       $('bs-result').innerHTML = '<div style="background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.3);border-radius:6px;padding:12px">' +
-        '<div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-size:18px;font-weight:700;color:#fff">' + (type === 'call' ? '📈 Call' : '📉 Put') + ' 定價 = $' + fmt(price, 4) + '</span><span style="color:' + (itm ? '#34d399' : '#94a3b8') + '">' + (itm ? '✓ ITM 價內' : 'OTM 價外') + '</span></div>' +
+        '<div style="display:flex;justify-content:space-between;margin-bottom:10px"><span style="font-size:18px;font-weight:700;color:#fff">' + (type === 'call' ? '📈 Call' : '📉 Put') + ' 定價 = $' + fmt(price, 4) + '</span><span style="color:' + (itm ? '#34d399' : 'var(--text-secondary)') + '">' + (itm ? '✓ ITM 價內' : 'OTM 價外') + '</span></div>' +
         '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;font-size:12px">' +
-        '<div><div style="color:#94a3b8;font-size:10px">Δ Delta</div><div style="font-weight:700">' + fmt(delta, 4) + '</div></div>' +
-        '<div><div style="color:#94a3b8;font-size:10px">Γ Gamma</div><div style="font-weight:700">' + fmt(gamma, 6) + '</div></div>' +
-        '<div><div style="color:#94a3b8;font-size:10px">Θ Theta /day</div><div style="font-weight:700;color:#f87171">' + fmt(theta, 4) + '</div></div>' +
-        '<div><div style="color:#94a3b8;font-size:10px">ν Vega /1% vol</div><div style="font-weight:700">' + fmt(vega, 4) + '</div></div>' +
-        '<div><div style="color:#94a3b8;font-size:10px">ρ Rho /1% rate</div><div style="font-weight:700">' + fmt(rho, 4) + '</div></div>' +
-        '<div><div style="color:#94a3b8;font-size:10px">內在價值</div><div style="font-weight:700">' + fmt(intrinsic, 2) + '</div></div>' +
-        '<div><div style="color:#94a3b8;font-size:10px">時間價值</div><div style="font-weight:700;color:#fbbf24">' + fmt(timeValue, 2) + '</div></div>' +
+        '<div><div style="color:var(--text-secondary);font-size:10px">Δ Delta</div><div style="font-weight:700">' + fmt(delta, 4) + '</div></div>' +
+        '<div><div style="color:var(--text-secondary);font-size:10px">Γ Gamma</div><div style="font-weight:700">' + fmt(gamma, 6) + '</div></div>' +
+        '<div><div style="color:var(--text-secondary);font-size:10px">Θ Theta /day</div><div style="font-weight:700;color:#f87171">' + fmt(theta, 4) + '</div></div>' +
+        '<div><div style="color:var(--text-secondary);font-size:10px">ν Vega /1% vol</div><div style="font-weight:700">' + fmt(vega, 4) + '</div></div>' +
+        '<div><div style="color:var(--text-secondary);font-size:10px">ρ Rho /1% rate</div><div style="font-weight:700">' + fmt(rho, 4) + '</div></div>' +
+        '<div><div style="color:var(--text-secondary);font-size:10px">內在價值</div><div style="font-weight:700">' + fmt(intrinsic, 2) + '</div></div>' +
+        '<div><div style="color:var(--text-secondary);font-size:10px">時間價值</div><div style="font-weight:700;color:#fbbf24">' + fmt(timeValue, 2) + '</div></div>' +
         '</div>' +
-        '<div style="margin-top:10px;font-size:11px;color:#64748b;line-height:1.6">' +
+        '<div style="margin-top:10px;font-size:11px;color:var(--text-muted);line-height:1.6">' +
         'Δ Delta: 標的每漲 $1 期權變動<br>' +
         'Γ Gamma: Delta 對標的價的二階導<br>' +
         'Θ Theta: 每天時間衰減（通常負數）<br>' +
@@ -294,14 +294,14 @@
   function buildMonteCarlo(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🎲 Monte Carlo 投組模擬 — 10,000 次蒙地卡羅模擬未來 30 年</div>' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🎲 Monte Carlo 投組模擬 — 10,000 次蒙地卡羅模擬未來 30 年</div>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:10px;font-size:12px">' +
-      '<label>初始資金<input type="number" id="mc-init" value="1000000" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>每月加碼<input type="number" id="mc-monthly" value="20000" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>年化期望報酬 %<input type="number" id="mc-mu" value="8" step="0.1" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>年化波動率 %<input type="number" id="mc-vol" value="15" step="0.1" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>年數<input type="number" id="mc-years" value="30" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
-      '<label>模擬次數<input type="number" id="mc-runs" value="10000" style="width:100%;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>初始資金<input type="number" id="mc-init" value="1000000" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>每月加碼<input type="number" id="mc-monthly" value="20000" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>年化期望報酬 %<input type="number" id="mc-mu" value="8" step="0.1" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>年化波動率 %<input type="number" id="mc-vol" value="15" step="0.1" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>年數<input type="number" id="mc-years" value="30" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
+      '<label>模擬次數<input type="number" id="mc-runs" value="10000" style="width:100%;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px;margin-top:4px"></label>' +
       '</div><button id="mc-go" style="width:100%;padding:10px;background:#16a34a;border:0;color:#fff;border-radius:6px;font-weight:700;cursor:pointer">執行 Monte Carlo</button>' +
       '<div id="mc-result" style="margin-top:10px"></div></div>';
 
@@ -323,7 +323,7 @@
       const months = years * 12;
       const muM = mu / 12;
       const volM = vol / Math.sqrt(12);
-      $('mc-result').innerHTML = '<div style="color:#94a3b8;padding:10px">⏳ 模擬 ' + runs + ' 次...</div>';
+      $('mc-result').innerHTML = '<div style="color:var(--text-secondary);padding:10px">⏳ 模擬 ' + runs + ' 次...</div>';
       setTimeout(() => {
         const finals = [];
         const paths = []; // sample 50 paths for chart
@@ -349,7 +349,7 @@
         const W = 800, H = 200;
         const maxP = Math.max.apply(null, paths.flat());
         const minP = Math.min.apply(null, paths.flat());
-        let svg = '<svg width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" style="background:#0a0f1c;border-radius:6px">';
+        let svg = '<svg width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" style="background:var(--bg-base);border-radius:6px">';
         paths.forEach((path, idx) => {
           const d = path.map((v, i) => {
             const x = (i / (path.length - 1)) * W;
@@ -362,7 +362,7 @@
         svg += '</svg>';
 
         $('mc-result').innerHTML = '<div style="background:rgba(22,163,74,0.05);border:1px solid rgba(22,163,74,0.3);border-radius:6px;padding:12px">' +
-          '<div style="font-size:13px;color:#94a3b8;margin-bottom:8px">總投入: $' + fmtBig(totalIn) + '（初始 $' + fmtBig(init) + ' + 每月 $' + fmtBig(monthly) + ' × ' + months + ' 個月）</div>' +
+          '<div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">總投入: $' + fmtBig(totalIn) + '（初始 $' + fmtBig(init) + ' + 每月 $' + fmtBig(monthly) + ' × ' + months + ' 個月）</div>' +
           svg +
           '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;font-size:12px;margin-top:10px">' +
           '<div><div style="color:#f87171;font-size:10px">P5（悲觀）</div><div style="font-weight:700">$' + fmtBig(p5) + '</div></div>' +
@@ -371,7 +371,7 @@
           '<div><div style="color:#16a34a;font-size:10px">P75</div><div style="font-weight:700">$' + fmtBig(p75) + '</div></div>' +
           '<div><div style="color:#0d8043;font-size:10px">P95（樂觀）</div><div style="font-weight:700">$' + fmtBig(p95) + '</div></div>' +
           '</div>' +
-          '<div style="margin-top:10px;font-size:11px;color:#94a3b8;line-height:1.6">' +
+          '<div style="margin-top:10px;font-size:11px;color:var(--text-secondary);line-height:1.6">' +
           '💡 中位數報酬倍數 ' + (median / totalIn).toFixed(2) + 'x（vs 投入），' +
           'P5 仍 $' + fmtBig(p5) + (p5 < totalIn ? '（虧損機率約 5%）' : '（仍獲利）') +
           '</div></div>';
@@ -385,9 +385,9 @@
   function buildPortfolioStats(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">📈 投組統計（Sharpe / Sortino / Treynor / Beta vs 大盤）</div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="ps-syms" placeholder="代號 (1 檔即可，例: 2330)" value="2330" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
-      '<input id="ps-bench" placeholder="大盤代號 (預設 0050)" value="0050" style="width:120px;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">📈 投組統計（Sharpe / Sortino / Treynor / Beta vs 大盤）</div>' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="ps-syms" placeholder="代號 (1 檔即可，例: 2330)" value="2330" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
+      '<input id="ps-bench" placeholder="大盤代號 (預設 0050)" value="0050" style="width:120px;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="ps-go" style="padding:6px 14px;background:#7c3aed;border:0;color:#fff;border-radius:4px;cursor:pointer">計算</button></div>' +
       '<div id="ps-result"></div></div>';
 
@@ -442,7 +442,7 @@
 
         function card(title, val, unit, color) {
           return '<div style="background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.3);border-radius:6px;padding:10px">' +
-            '<div style="font-size:11px;color:#94a3b8">' + title + '</div>' +
+            '<div style="font-size:11px;color:var(--text-secondary)">' + title + '</div>' +
             '<div style="font-size:18px;font-weight:700;color:' + (color || '#fff') + '">' + (val == null ? '-' : val) + (unit || '') + '</div></div>';
         }
         $('ps-result').innerHTML = '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px">' +
@@ -453,11 +453,11 @@
           card('Sharpe', fmt(sharpe, 2), '', sharpe >= 1 ? '#34d399' : sharpe >= 0 ? '#fbbf24' : '#f87171') +
           card('Sortino', fmt(sortino, 2), '', sortino >= 1.5 ? '#34d399' : '#fbbf24') +
           card('Treynor', fmt(treynor * 100, 2), '%', '#fbbf24') +
-          card('年化波動', fmt(annStd * 100, 1), '%', '#94a3b8') +
+          card('年化波動', fmt(annStd * 100, 1), '%', 'var(--text-secondary)') +
           card('Max Drawdown', fmt(mdd * 100, 1), '%', '#f87171') +
           card('勝率', fmt(winRate, 1), '%', winRate >= 50 ? '#34d399' : '#fbbf24') +
           '</div>' +
-          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:#94a3b8;line-height:1.6">' +
+          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:var(--text-secondary);line-height:1.6">' +
           '💡 <strong>Sharpe</strong> &gt; 1 算優、&gt; 2 算極優；<strong>Sortino</strong> 只看下行波動更精確；<strong>Beta</strong> = 1 同步大盤、&lt; 1 較穩、&gt; 1 較激；<strong>Alpha</strong> &gt; 0 表跑贏 Beta 解釋的部分。<br>樣本: ' + n + ' 個交易日（含對齊大盤 ' + bench + '）。' +
           '</div>';
       } catch (e) {
@@ -472,8 +472,8 @@
   function buildCorrelation(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🔗 相關性熱力圖 — 多股 correlation matrix（投組分散性檢查）</div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="cor-syms" placeholder="多支股票，逗號分隔" value="2330,2454,2308,3711,1101" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🔗 相關性熱力圖 — 多股 correlation matrix（投組分散性檢查）</div>' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="cor-syms" placeholder="多支股票，逗號分隔" value="2330,2454,2308,3711,1101" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="cor-go" style="padding:6px 14px;background:#0891b2;border:0;color:#fff;border-radius:4px;cursor:pointer">計算</button></div>' +
       '<div id="cor-result"></div></div>';
 
@@ -519,10 +519,10 @@
           return '#7f1d1d';
         }
         let html = '<div style="overflow-x:auto"><table style="border-collapse:collapse;font-size:11px;margin:auto"><thead><tr><th></th>';
-        syms.forEach(s => { html += '<th style="padding:6px;color:#94a3b8;font-weight:600">' + s + '</th>'; });
+        syms.forEach(s => { html += '<th style="padding:6px;color:var(--text-secondary);font-weight:600">' + s + '</th>'; });
         html += '</tr></thead><tbody>';
         syms.forEach(a => {
-          html += '<tr><th style="padding:6px;color:#94a3b8;font-weight:600;text-align:right">' + a + '</th>';
+          html += '<tr><th style="padding:6px;color:var(--text-secondary);font-weight:600;text-align:right">' + a + '</th>';
           syms.forEach(b => {
             const r = a === b ? 1 : corr(rets[a], rets[b]);
             html += '<td style="background:' + colorOf(r) + ';color:#fff;padding:8px 10px;text-align:center;font-weight:600;min-width:50px">' + r.toFixed(2) + '</td>';
@@ -530,7 +530,7 @@
           html += '</tr>';
         });
         html += '</tbody></table></div>' +
-          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:#94a3b8;line-height:1.6">' +
+          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:4px;font-size:11px;color:var(--text-secondary);line-height:1.6">' +
           '💡 顏色：深綠 0.8+ 高度同步、綠 0.5+ 強相關、淺綠 0.2+ 弱相關、灰 中性、紅負相關。<strong>負相關股票配在一起風險分散最好</strong>。樣本 ' + (allDates.length - 1) + ' 個交易日。' +
           '</div>';
         $('cor-result').innerHTML = html;
@@ -546,8 +546,8 @@
   function buildSeasonality(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🌸 季節性分析 — 月份 / 星期幾的歷史報酬統計</div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="se-sym" value="2330" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🌸 季節性分析 — 月份 / 星期幾的歷史報酬統計</div>' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="se-sym" value="2330" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="se-go" style="padding:6px 14px;background:#ea580c;border:0;color:#fff;border-radius:4px;cursor:pointer">分析</button></div>' +
       '<div id="se-result"></div></div>';
 
@@ -587,11 +587,11 @@
             const w = (Math.abs(it.mean) / maxAbs) * 50;
             const isPos = it.mean >= 0;
             html += '<div style="display:grid;grid-template-columns:60px 100px 1fr;gap:8px;align-items:center">' +
-              '<span style="color:#94a3b8">' + it.label + '</span>' +
+              '<span style="color:var(--text-secondary)">' + it.label + '</span>' +
               '<span style="color:' + (isPos ? '#34d399' : '#f87171') + ';font-family:monospace">' + (isPos ? '+' : '') + it.mean.toFixed(3) + '%</span>' +
-              '<div style="position:relative;height:18px;background:#1e293b;border-radius:3px">' +
+              '<div style="position:relative;height:18px;background:var(--bg-elevated);border-radius:3px">' +
               '<div style="position:absolute;left:50%;top:0;bottom:0;background:' + (isPos ? '#34d399' : '#f87171') + ';width:' + w + '%;' + (isPos ? 'left:50%;' : 'right:50%;left:auto;') + '"></div>' +
-              '<span style="position:absolute;right:6px;top:1px;font-size:10px;color:#94a3b8">勝率 ' + it.winRate.toFixed(0) + '% / n=' + it.n + '</span>' +
+              '<span style="position:absolute;right:6px;top:1px;font-size:10px;color:var(--text-secondary)">勝率 ' + it.winRate.toFixed(0) + '% / n=' + it.n + '</span>' +
               '</div></div>';
           });
           html += '</div>';
@@ -601,7 +601,7 @@
           '<div><div style="font-weight:700;color:#fff;margin-bottom:6px">📅 按月份統計（過去 5 年）</div>' + compileBars(monthStats, MONTHS) + '</div>' +
           '<div><div style="font-weight:700;color:#fff;margin-bottom:6px">📆 按星期幾統計</div>' + compileBars(wdayStats, WDAYS) + '</div>' +
           '</div>' +
-          '<div style="margin-top:10px;padding:8px;background:rgba(234,88,12,0.05);border:1px solid rgba(234,88,12,0.2);border-radius:4px;font-size:11px;color:#94a3b8">💡 季節性效應在學術上稱為「日曆異常」(calendar anomaly)，過去報酬不代表未來。樣本 ' + (data.length - 1) + ' 個交易日。</div>';
+          '<div style="margin-top:10px;padding:8px;background:rgba(234,88,12,0.05);border:1px solid rgba(234,88,12,0.2);border-radius:4px;font-size:11px;color:var(--text-secondary)">💡 季節性效應在學術上稱為「日曆異常」(calendar anomaly)，過去報酬不代表未來。樣本 ' + (data.length - 1) + ' 個交易日。</div>';
       } catch (e) {
         $('se-result').innerHTML = '❌ ' + e.message;
       }
@@ -614,9 +614,9 @@
   function buildBlackSwan(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🦢 黑天鵝偵測 — 找出歷史上 ±3 sigma 的異常事件（罕見極端日）</div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="bs2-sym" value="2330" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
-      '<input id="bs2-sigma" type="number" value="3" step="0.5" style="width:80px;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px" title="sigma threshold">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🦢 黑天鵝偵測 — 找出歷史上 ±3 sigma 的異常事件（罕見極端日）</div>' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="bs2-sym" value="2330" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
+      '<input id="bs2-sigma" type="number" value="3" step="0.5" style="width:80px;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px" title="sigma threshold">' +
       '<button id="bs2-go" style="padding:6px 14px;background:#dc2626;border:0;color:#fff;border-radius:4px;cursor:pointer">尋找</button></div>' +
       '<div id="bs2-result"></div></div>';
 
@@ -644,19 +644,19 @@
         events.sort((a, b) => Math.abs(b.z) - Math.abs(a.z));
         let html = '<div style="background:rgba(220,38,38,0.05);border:1px solid rgba(220,38,38,0.3);border-radius:6px;padding:10px;margin-bottom:8px">' +
           '<div style="font-size:18px;color:#fff;font-weight:700;margin-bottom:6px">🦢 偵測到 ' + events.length + ' 個 ' + sigmaT + 'σ 黑天鵝事件</div>' +
-          '<div style="font-size:12px;color:#94a3b8">過去 ' + Math.floor(rets.length / 252) + ' 年 · 平均日報酬 ' + (mean * 100).toFixed(3) + '% · 標準差 ' + (std * 100).toFixed(2) + '%</div></div>';
+          '<div style="font-size:12px;color:var(--text-secondary)">過去 ' + Math.floor(rets.length / 252) + ' 年 · 平均日報酬 ' + (mean * 100).toFixed(3) + '% · 標準差 ' + (std * 100).toFixed(2) + '%</div></div>';
         if (events.length === 0) {
-          html += '<div style="color:#94a3b8;padding:10px">過去 5 年無 ' + sigmaT + 'σ 等級異常事件，標的相對穩定</div>';
+          html += '<div style="color:var(--text-secondary);padding:10px">過去 5 年無 ' + sigmaT + 'σ 等級異常事件，標的相對穩定</div>';
         } else {
-          html += '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid #334155;color:#94a3b8"><th style="padding:6px;text-align:left">日期</th><th style="text-align:right">報酬</th><th style="text-align:right">Z-score</th><th style="text-align:right">收盤</th></tr></thead><tbody>';
+          html += '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid var(--border-strong);color:var(--text-secondary)"><th style="padding:6px;text-align:left">日期</th><th style="text-align:right">報酬</th><th style="text-align:right">Z-score</th><th style="text-align:right">收盤</th></tr></thead><tbody>';
           events.slice(0, 30).forEach(e => {
-            html += '<tr style="border-bottom:1px solid #1e293b"><td style="padding:6px">' + e.date + '</td>' +
+            html += '<tr style="border-bottom:1px solid var(--bg-elevated)"><td style="padding:6px">' + e.date + '</td>' +
               '<td style="text-align:right;color:' + (e.ret >= 0 ? '#34d399' : '#f87171') + ';font-weight:700">' + (e.ret >= 0 ? '+' : '') + e.ret.toFixed(2) + '%</td>' +
               '<td style="text-align:right;color:#fbbf24;font-weight:700">' + (e.z >= 0 ? '+' : '') + e.z.toFixed(2) + 'σ</td>' +
               '<td style="text-align:right">' + fmt(e.price, 2) + '</td></tr>';
           });
           html += '</tbody></table>';
-          if (events.length > 30) html += '<div style="margin-top:6px;color:#64748b;font-size:11px">… 及另外 ' + (events.length - 30) + ' 個</div>';
+          if (events.length > 30) html += '<div style="margin-top:6px;color:var(--text-muted);font-size:11px">… 及另外 ' + (events.length - 30) + ' 個</div>';
         }
         $('bs2-result').innerHTML = html;
       } catch (e) {
@@ -692,7 +692,7 @@
           [data-v281-theme="light"] .badge { background: var(--accent-soft) !important; color: var(--accent) !important; }
           [data-v281-theme="light"] .v275-h, [data-v281-theme="light"] [class*="drag-handle"] { color: rgba(0,0,0,0.4) !important; background: rgba(0,0,0,0.05) !important; }
           [data-v281-theme="light"] [style*="background:var(--bg-surface)"], [data-v281-theme="light"] [style*="background:var(--bg-elevated)"] { color: var(--text-primary) !important; }
-          [data-v281-theme="light"] .stock-card, [data-v281-theme="light"] [style*="background:#131929"], [data-v281-theme="light"] [style*="background:#1A2035"] { background: #fff !important; color: #0D1B2A !important; border-color: rgba(0,0,0,0.07) !important; }
+          [data-v281-theme="light"] .stock-card, [data-v281-theme="light"] [style*="background:var(--bg-surface)"], [data-v281-theme="light"] [style*="background:var(--bg-elevated)"] { background: #fff !important; color: #0D1B2A !important; border-color: rgba(0,0,0,0.07) !important; }
         `;
       } else {
         const st = document.getElementById('v281-theme-style');
@@ -722,10 +722,10 @@
     const kbar = document.createElement('div');
     kbar.id = 'v281-kbar';
     kbar.style.cssText = 'display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:99999;align-items:flex-start;justify-content:center;padding-top:80px';
-    kbar.innerHTML = '<div style="background:#0f172a;border:1px solid #334155;border-radius:12px;padding:16px;width:90%;max-width:600px;box-shadow:0 24px 60px rgba(0,0,0,0.5)">' +
-      '<input id="kbar-input" placeholder="🔍 輸入股票代號或功能名稱（例: 2330, heatmap, dcf, paper）..." style="width:100%;padding:12px;background:#0a0f1c;border:1px solid #475569;color:#fff;border-radius:8px;font-size:15px;outline:none">' +
+    kbar.innerHTML = '<div style="background:var(--bg-base);border:1px solid var(--border-strong);border-radius:12px;padding:16px;width:90%;max-width:600px;box-shadow:0 24px 60px rgba(0,0,0,0.5)">' +
+      '<input id="kbar-input" placeholder="🔍 輸入股票代號或功能名稱（例: 2330, heatmap, dcf, paper）..." style="width:100%;padding:12px;background:var(--bg-base);border:1px solid var(--text-muted);color:#fff;border-radius:8px;font-size:15px;outline:none">' +
       '<div id="kbar-list" style="margin-top:12px;max-height:400px;overflow:auto"></div>' +
-      '<div style="margin-top:8px;color:#64748b;font-size:11px">↑↓ 移動 · Enter 跳轉 · Esc 關閉</div></div>';
+      '<div style="margin-top:8px;color:var(--text-muted);font-size:11px">↑↓ 移動 · Enter 跳轉 · Esc 關閉</div></div>';
     document.body.appendChild(kbar);
     const FUNCS = [
       { kw: 'heatmap 熱力圖', id: 'v277-heatmap', label: '🔥 台股熱力圖' },
@@ -752,7 +752,7 @@
       // Also: if q looks like stock symbol, add direct stock action
       if (/^[0-9A-Z]+$/i.test(q)) filtered.unshift({ kw: q, action: 'stock', label: '📈 查詢股票 ' + q.toUpperCase() });
       selected = Math.min(selected, filtered.length - 1);
-      $('kbar-list').innerHTML = filtered.length === 0 ? '<div style="padding:10px;color:#94a3b8">無符合</div>' :
+      $('kbar-list').innerHTML = filtered.length === 0 ? '<div style="padding:10px;color:var(--text-secondary)">無符合</div>' :
         filtered.map((f, i) => '<div class="kbar-item" data-i="' + i + '" style="padding:10px;border-radius:6px;cursor:pointer;color:' + (i === selected ? '#fff' : '#cbd5e1') + ';background:' + (i === selected ? 'rgba(96,165,250,0.15)' : 'transparent') + '">' + f.label + '</div>').join('');
       $('kbar-list').querySelectorAll('.kbar-item').forEach(el => {
         el.addEventListener('mouseenter', () => { selected = parseInt(el.dataset.i); render(); });

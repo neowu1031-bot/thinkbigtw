@@ -18,8 +18,8 @@
   function injectSection(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -90,16 +90,16 @@
     const alerts = loadAlerts();
     c.innerHTML = `
       <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px">
-        <input id="alert-symbol" placeholder="股票代碼 (例: 2330 / AAPL)" style="padding:8px;border-radius:6px;border:1px solid #444;background:#2a2a4a;color:#fff;width:180px">
-        <select id="alert-type" style="padding:8px;border-radius:6px;background:#2a2a4a;color:#fff;border:1px solid #444">
+        <input id="alert-symbol" placeholder="股票代碼 (例: 2330 / AAPL)" style="padding:8px;border-radius:6px;border:1px solid #444;background:var(--bg-surface);color:#fff;width:180px">
+        <select id="alert-type" style="padding:8px;border-radius:6px;background:var(--bg-surface);color:#fff;border:1px solid #444">
           <option value="price_above">價格 ≥</option>
           <option value="price_below">價格 ≤</option>
           <option value="rsi_above">當日漲幅 ≥ 5%</option>
           <option value="rsi_below">當日跌幅 ≥ 5%</option>
         </select>
-        <input id="alert-value" type="number" step="0.01" placeholder="數值" style="padding:8px;border-radius:6px;border:1px solid #444;background:#2a2a4a;color:#fff;width:120px">
+        <input id="alert-value" type="number" step="0.01" placeholder="數值" style="padding:8px;border-radius:6px;border:1px solid #444;background:var(--bg-surface);color:#fff;width:120px">
         <button id="alert-add" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">+ 新增警報</button>
-        <button id="alert-perm" style="padding:8px 16px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">啟用瀏覽器通知</button>
+        <button id="alert-perm" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">啟用瀏覽器通知</button>
       </div>
       <div id="alert-list"></div>
     `;
@@ -108,7 +108,7 @@
       const alerts = loadAlerts();
       list.innerHTML = alerts.length ? `
         <table style="width:100%;border-collapse:collapse;font-size:14px">
-          <tr style="background:#2a2a4a"><th style="padding:8px;text-align:left">代碼</th><th style="padding:8px">條件</th><th style="padding:8px">狀態</th><th style="padding:8px">操作</th></tr>
+          <tr style="background:var(--bg-surface)"><th style="padding:8px;text-align:left">代碼</th><th style="padding:8px">條件</th><th style="padding:8px">狀態</th><th style="padding:8px">操作</th></tr>
           ${alerts.map((a, i) => `<tr style="border-bottom:1px solid #333">
             <td style="padding:8px"><b>${a.symbol}</b></td>
             <td style="padding:8px">${a.label}</td>
@@ -152,27 +152,27 @@
   function buildAdvancedScreener(containerId) {
     const c = $(containerId); if (!c) return;
     c.innerHTML = `
-      <div style="background:#0f0f1e;padding:16px;border-radius:8px;margin-bottom:16px">
+      <div style="background:var(--bg-base);padding:16px;border-radius:8px;margin-bottom:16px">
         <p style="margin:0 0 12px 0;color:#aaa">🎯 從 770,000+ 筆台股紀錄中，依條件篩選最符合你策略的標的</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
           <div><label style="font-size:12px;color:#aaa">最小市值（億）</label>
-            <input id="scr-mcap" type="number" placeholder="例: 100" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px"></div>
+            <input id="scr-mcap" type="number" placeholder="例: 100" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px"></div>
           <div><label style="font-size:12px;color:#aaa">PE 上限</label>
-            <input id="scr-pe" type="number" placeholder="例: 20" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px"></div>
+            <input id="scr-pe" type="number" placeholder="例: 20" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px"></div>
           <div><label style="font-size:12px;color:#aaa">PB 上限</label>
-            <input id="scr-pb" type="number" placeholder="例: 3" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px"></div>
+            <input id="scr-pb" type="number" placeholder="例: 3" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px"></div>
           <div><label style="font-size:12px;color:#aaa">最低 ROE %</label>
-            <input id="scr-roe" type="number" placeholder="例: 15" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px"></div>
+            <input id="scr-roe" type="number" placeholder="例: 15" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px"></div>
           <div><label style="font-size:12px;color:#aaa">最低殖利率 %</label>
-            <input id="scr-yield" type="number" step="0.1" placeholder="例: 4" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px"></div>
+            <input id="scr-yield" type="number" step="0.1" placeholder="例: 4" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px"></div>
           <div><label style="font-size:12px;color:#aaa">市場</label>
-            <select id="scr-mkt" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+            <select id="scr-mkt" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
               <option value="">全部</option><option value="TWSE">上市</option><option value="TPEX">上櫃</option>
             </select></div>
         </div>
         <div style="margin-top:12px;display:flex;gap:8px">
           <button id="scr-run" style="padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🔍 執行篩選</button>
-          <button id="scr-csv" style="padding:10px 20px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">📄 下載 CSV</button>
+          <button id="scr-csv" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">📄 下載 CSV</button>
           <button id="scr-clear" style="padding:10px 20px;background:#6b7280;color:#fff;border:none;border-radius:6px;cursor:pointer">清空</button>
         </div>
       </div>
@@ -200,7 +200,7 @@
         $('scr-results').innerHTML = `
           <p style="color:#4ade80;margin:0 0 8px 0">✅ 篩出 ${lastResults.length} 檔標的</p>
           <table style="width:100%;border-collapse:collapse;font-size:13px">
-            <tr style="background:#2a2a4a;position:sticky;top:0">
+            <tr style="background:var(--bg-surface);position:sticky;top:0">
               <th style="padding:8px;text-align:left">代碼</th><th style="padding:8px;text-align:left">名稱</th>
               <th style="padding:8px">收盤</th><th style="padding:8px">PE</th><th style="padding:8px">PB</th>
               <th style="padding:8px">ROE%</th><th style="padding:8px">殖利率%</th><th style="padding:8px">市值</th>
@@ -248,14 +248,14 @@
     const c = $(containerId); if (!c) return;
     c.innerHTML = `
       <div style="margin-bottom:12px;display:flex;gap:8px">
-        <select id="hm-market" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+        <select id="hm-market" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
           <option value="sp500">🇺🇸 S&P 500</option>
           <option value="nasdaq100">🇺🇸 Nasdaq 100</option>
           <option value="taiex50">🇹🇼 台灣 50</option>
         </select>
         <button id="hm-load" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">載入熱力圖</button>
       </div>
-      <div id="hm-canvas" style="background:#0a0a1e;border-radius:8px;min-height:400px;padding:8px"></div>
+      <div id="hm-canvas" style="background:var(--bg-base);border-radius:8px;min-height:400px;padding:8px"></div>
       <p style="color:#888;font-size:12px;margin-top:8px">📊 區塊大小 = 市值 ｜ 顏色 = 漲跌幅（紅跌綠漲）</p>
     `;
 
@@ -336,12 +336,12 @@
     const c = $(containerId); if (!c) return;
     c.innerHTML = `
       <div style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
-        <select id="ec-mkt" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+        <select id="ec-mkt" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
           <option value="us">🇺🇸 美股</option>
           <option value="tw">🇹🇼 台股</option>
         </select>
-        <input id="ec-from" type="date" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
-        <input id="ec-to" type="date" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+        <input id="ec-from" type="date" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
+        <input id="ec-to" type="date" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
         <button id="ec-load" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">查詢</button>
       </div>
       <div id="ec-results"></div>
@@ -371,10 +371,10 @@
         events.forEach(e => { (byDate[e.date] = byDate[e.date] || []).push(e); });
         const dates = Object.keys(byDate).sort();
         r.innerHTML = dates.map(d => `
-          <div style="margin-bottom:16px;background:#0f0f1e;padding:12px;border-radius:8px">
+          <div style="margin-bottom:16px;background:var(--bg-base);padding:12px;border-radius:8px">
             <h4 style="margin:0 0 8px 0;color:#fbbf24">📆 ${d}（${new Date(d).toLocaleDateString('zh-TW', { weekday: 'short' })}）</h4>
             <table style="width:100%;font-size:13px;border-collapse:collapse">
-              <tr style="background:#2a2a4a"><th style="padding:6px;text-align:left">代碼</th><th style="padding:6px;text-align:left">公司</th><th style="padding:6px">時段</th><th style="padding:6px">EPS 預期</th><th style="padding:6px">EPS 實際</th></tr>
+              <tr style="background:var(--bg-surface)"><th style="padding:6px;text-align:left">代碼</th><th style="padding:6px;text-align:left">公司</th><th style="padding:6px">時段</th><th style="padding:6px">EPS 預期</th><th style="padding:6px">EPS 實際</th></tr>
               ${byDate[d].map(e => `<tr style="border-bottom:1px solid #333">
                 <td style="padding:6px"><b>${e.symbol}</b></td>
                 <td style="padding:6px">${e.name || ''}</td>
@@ -398,17 +398,17 @@
   function buildBacktest(containerId) {
     const c = $(containerId); if (!c) return;
     c.innerHTML = `
-      <div style="background:#0f0f1e;padding:16px;border-radius:8px;margin-bottom:12px">
+      <div style="background:var(--bg-base);padding:16px;border-radius:8px;margin-bottom:12px">
         <p style="margin:0 0 12px 0;color:#aaa">🤖 用自然語言描述你的交易策略，AI 自動翻譯成程式碼並回測 5 年歷史</p>
-        <textarea id="bt-strategy" rows="4" placeholder="例：當 RSI < 30 時買入 2330，RSI > 70 時賣出。停損 5%，停利 15%。" style="width:100%;padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;resize:vertical"></textarea>
+        <textarea id="bt-strategy" rows="4" placeholder="例：當 RSI < 30 時買入 2330，RSI > 70 時賣出。停損 5%，停利 15%。" style="width:100%;padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;resize:vertical"></textarea>
         <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
-          <input id="bt-symbol" placeholder="股票代碼 (例: 2330 / AAPL)" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
-          <select id="bt-period" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+          <input id="bt-symbol" placeholder="股票代碼 (例: 2330 / AAPL)" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+          <select id="bt-period" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
             <option value="1y">1 年</option>
             <option value="3y">3 年</option>
             <option value="5y" selected>5 年</option>
           </select>
-          <input id="bt-capital" type="number" value="100000" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:140px" placeholder="初始資金">
+          <input id="bt-capital" type="number" value="100000" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:140px" placeholder="初始資金">
           <button id="bt-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🚀 執行回測</button>
         </div>
         <p style="color:#666;font-size:11px;margin:8px 0 0 0">💡 範例：「黃金交叉買入，死亡交叉賣出」「布林通道下軌買入，上軌賣出」「ATR 突破時加碼」</p>
@@ -436,7 +436,7 @@
         const trades = j.trades || [];
         const equity = j.equity_curve || [];
         // 渲染指標
-        const metricCard = (label, val, color) => `<div style="background:#2a2a4a;padding:12px;border-radius:6px;text-align:center">
+        const metricCard = (label, val, color) => `<div style="background:var(--bg-surface);padding:12px;border-radius:6px;text-align:center">
           <div style="color:#aaa;font-size:11px">${label}</div>
           <div style="color:${color};font-size:20px;font-weight:bold">${val}</div>
         </div>`;
@@ -449,7 +449,7 @@
           const range = maxV - minV || 1;
           const points = equity.map((e, i) => `${i / (equity.length - 1) * W2},${H2 - (e.value - minV) / range * (H2 - 20) - 10}`).join(' ');
           const baseY = H2 - (capital - minV) / range * (H2 - 20) - 10;
-          svg = `<svg width="${W2}" height="${H2}" style="background:#0a0a1e;border-radius:6px;width:100%">
+          svg = `<svg width="${W2}" height="${H2}" style="background:var(--bg-base);border-radius:6px;width:100%">
             <line x1="0" y1="${baseY}" x2="${W2}" y2="${baseY}" stroke="#666" stroke-dasharray="4 4"/>
             <text x="6" y="${baseY - 4}" fill="#888" font-size="10">初始資金 ${fmt(capital, 0)}</text>
             <polyline points="${points}" fill="none" stroke="#4ade80" stroke-width="2"/>
@@ -457,7 +457,7 @@
         }
         r.innerHTML = `
           <h4 style="color:#4ade80;margin:0 0 12px 0">✅ 回測完成</h4>
-          <p style="color:#aaa;font-size:13px;background:#0f0f1e;padding:8px;border-radius:4px;margin-bottom:12px">
+          <p style="color:#aaa;font-size:13px;background:var(--bg-base);padding:8px;border-radius:4px;margin-bottom:12px">
             <b>AI 翻譯策略：</b><br>${j.parsed_strategy || '無'}
           </p>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:16px">
@@ -472,7 +472,7 @@
           ${trades.length ? `
             <h4 style="color:#fff;margin:16px 0 8px 0">📋 交易明細 (前 20 筆)</h4>
             <table style="width:100%;font-size:12px;border-collapse:collapse">
-              <tr style="background:#2a2a4a"><th style="padding:6px">日期</th><th style="padding:6px">動作</th><th style="padding:6px">價格</th><th style="padding:6px">數量</th><th style="padding:6px">損益</th></tr>
+              <tr style="background:var(--bg-surface)"><th style="padding:6px">日期</th><th style="padding:6px">動作</th><th style="padding:6px">價格</th><th style="padding:6px">數量</th><th style="padding:6px">損益</th></tr>
               ${trades.slice(0, 20).map(t => `<tr style="border-bottom:1px solid #333">
                 <td style="padding:4px">${t.date}</td>
                 <td style="padding:4px;color:${t.action === 'BUY' ? '#4ade80' : '#ef4444'}">${t.action}</td>

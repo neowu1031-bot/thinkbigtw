@@ -15,9 +15,9 @@
   function V295_showDisclaimer() {
     if (localStorage.getItem('mr_v295_disclaimer_accepted')) return;
     const modal = V295_el(`<div id="v295-disclaimer" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:999999;display:flex;align-items:center;justify-content:center">
-      <div style="background:#1a1a2e;padding:32px;border-radius:12px;width:600px;max-width:92vw;max-height:90vh;overflow-y:auto;border:2px solid #fbbf24">
+      <div style="background:var(--bg-surface);padding:32px;border-radius:12px;width:600px;max-width:92vw;max-height:90vh;overflow-y:auto;border:2px solid #fbbf24">
         <h2 style="color:#fbbf24;margin:0 0 16px 0;text-align:center">⚠️ 重要免責聲明</h2>
-        <div style="color:#e0e0ff;line-height:1.7;font-size:14px">
+        <div style="color:var(--text-primary);line-height:1.7;font-size:14px">
           <p><b>使用 MoneyRadar 前請仔細閱讀以下聲明：</b></p>
           <ol style="padding-left:20px">
             <li><b>本網站僅供教育與資訊參考</b>，所有資訊（股價、技術指標、AI 分析、投資建議）<b>不構成任何投資建議</b>。</li>
@@ -67,7 +67,7 @@
   // ============================================================
   function V295_addFooter() {
     if (V295_$('mr-v295-footer')) return;
-    const footer = V295_el(`<footer id="mr-v295-footer" style="margin-top:48px;padding:24px;background:#0a0a1e;border-top:1px solid #333;text-align:center;color:#888;font-size:12px">
+    const footer = V295_el(`<footer id="mr-v295-footer" style="margin-top:48px;padding:24px;background:var(--bg-base);border-top:1px solid #333;text-align:center;color:#888;font-size:12px">
       <div style="margin-bottom:12px">
         <a href="/terms.html" target="_blank" style="color:#888;margin:0 8px">服務條款</a> |
         <a href="/privacy.html" target="_blank" style="color:#888;margin:0 8px">隱私政策</a> |
@@ -89,7 +89,7 @@
   // ============================================================
   function V295_showCookieBanner() {
     if (localStorage.getItem('mr_v295_cookie_accepted')) return;
-    const banner = V295_el(`<div id="v295-cookie" style="position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;border-top:2px solid #4ade80;padding:16px;z-index:99998;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center">
+    const banner = V295_el(`<div id="v295-cookie" style="position:fixed;bottom:0;left:0;right:0;background:var(--bg-surface);border-top:2px solid #4ade80;padding:16px;z-index:99998;display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center">
       <span style="color:#fff;font-size:13px">本網站使用必要 Cookie 以維持服務正常運作。我們不追蹤您的個人資料。</span>
       <button id="v295-cookie-accept" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">同意</button>
       <a href="/privacy.html" target="_blank" style="color:#4ade80;font-size:13px">了解更多</a>

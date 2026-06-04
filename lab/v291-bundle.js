@@ -15,8 +15,8 @@
   function V291_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V291_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V291_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -58,7 +58,7 @@
         const maxY = Math.max(...data.map(d => d.yield)) + 0.2;
         const xScale = i => 60 + i * (W - 100) / (data.length - 1);
         const yScale = v => H - 50 - (v - minY) / (maxY - minY) * (H - 80);
-        let svg = `<svg width="${W}" height="${H}" style="background:#0a0a1e;border-radius:6px;width:100%">`;
+        let svg = `<svg width="${W}" height="${H}" style="background:var(--bg-base);border-radius:6px;width:100%">`;
         // Y axis
         for (let i = 0; i <= 5; i++) {
           const v = minY + (maxY - minY) * i / 5;
@@ -82,18 +82,18 @@
           <p style="color:#4ade80;margin:0 0 8px 0">✅ 美國國債殖利率曲線（${new Date().toISOString().slice(0, 10)}）</p>
           ${svg}
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px">
-            <div style="background:#0f0f1e;padding:12px;border-radius:6px">
+            <div style="background:var(--bg-base);padding:12px;border-radius:6px">
               <div style="color:#aaa;font-size:12px">2Y vs 10Y Spread</div>
               <div style="color:${spread2_10 >= 0 ? '#4ade80' : '#ef4444'};font-size:24px;font-weight:bold">${spread2_10 >= 0 ? '+' : ''}${V291_fmt(spread2_10 * 100, 0)} bp</div>
               <div style="color:#aaa;font-size:11px">${spread2_10 >= 0 ? '正常曲線（升息預期）' : '⚠️ 倒掛！經濟衰退預警'}</div>
             </div>
-            <div style="background:#0f0f1e;padding:12px;border-radius:6px">
+            <div style="background:var(--bg-base);padding:12px;border-radius:6px">
               <div style="color:#aaa;font-size:12px">3M vs 10Y Spread (NY Fed 偏好)</div>
               <div style="color:${spread3M_10 >= 0 ? '#4ade80' : '#ef4444'};font-size:24px;font-weight:bold">${spread3M_10 >= 0 ? '+' : ''}${V291_fmt(spread3M_10 * 100, 0)} bp</div>
               <div style="color:#aaa;font-size:11px">${spread3M_10 >= 0 ? '正常' : '⚠️ NY Fed 衰退指標觸發'}</div>
             </div>
           </div>
-          <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:12px;color:#aaa">
+          <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
             <b>💡 解讀：</b>
             正常 (Steep) = 經濟擴張 ｜ Flat = 經濟轉折 ｜ Inverted = 衰退預警（過去 8 次衰退前都出現）<br>
             <b>⚠️ 倒掛偵測：</b>${isInverted ? '<span style="color:#ef4444">10Y < 2Y，歷史平均 12-18 個月後衰退</span>' : '<span style="color:#4ade80">未倒掛，經濟健康</span>'}
@@ -113,16 +113,16 @@
     const c = V291_$(containerId); if (!c) return;
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">💰 CVaR = 「最壞情境平均損失」（比 VaR 更保守，巴塞爾協議要求）</p>
-      <div style="background:#0f0f1e;padding:16px;border-radius:8px;margin-bottom:12px">
+      <div style="background:var(--bg-base);padding:16px;border-radius:8px;margin-bottom:12px">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">
           <label style="color:#aaa">投組價值 (NTD)
-            <input id="cvar291-value" type="number" value="1000000" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px"></label>
+            <input id="cvar291-value" type="number" value="1000000" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px"></label>
           <label style="color:#aaa">日波動率 % (歷史)
-            <input id="cvar291-vol" type="number" step="0.1" value="1.5" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px"></label>
+            <input id="cvar291-vol" type="number" step="0.1" value="1.5" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px"></label>
           <label style="color:#aaa">時間範圍 (天)
-            <input id="cvar291-days" type="number" value="10" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px"></label>
+            <input id="cvar291-days" type="number" value="10" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px"></label>
           <label style="color:#aaa">信心水準 %
-            <select id="cvar291-conf" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px">
+            <select id="cvar291-conf" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;margin-top:4px">
               <option value="95">95%</option>
               <option value="99" selected>99%</option>
               <option value="99.9">99.9%</option>
@@ -168,12 +168,12 @@
       const bins = Array(NUM_BINS).fill(0);
       sims.forEach(s => bins[Math.min(NUM_BINS - 1, Math.floor((s - minS) / binSize))]++);
       const maxBin = Math.max(...bins);
-      let svg = `<svg width="${W}" height="${H}" style="background:#0a0a1e;border-radius:6px;width:100%">`;
+      let svg = `<svg width="${W}" height="${H}" style="background:var(--bg-base);border-radius:6px;width:100%">`;
       bins.forEach((b, i) => {
         const x = 30 + i * (W - 60) / NUM_BINS;
         const barH = (b / maxBin) * (H - 60);
         const binVal = minS + i * binSize;
-        const fill = binVal <= -VaR_MC ? '#ef4444' : '#3b82f6';
+        const fill = binVal <= -VaR_MC ? '#ef4444' : 'var(--accent)';
         svg += `<rect x="${x}" y="${H - 30 - barH}" width="${(W - 60) / NUM_BINS - 1}" height="${barH}" fill="${fill}"/>`;
       });
       // VaR / CVaR 線
@@ -202,7 +202,7 @@
         </div>
         <h4 style="color:#fff;margin:12px 0 8px 0">📊 5000 次 Monte Carlo 模擬分布</h4>
         ${svg}
-        <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:12px;color:#aaa">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
           <b>💡 巴塞爾協議 III 要求：</b>銀行內部風險模型必須用 CVaR（不是 VaR）<br>
           <b>說明：</b>CVaR 預估「真的爆發時，平均損失多少」，比 VaR 保守 30-50%
         </div>
@@ -240,7 +240,7 @@
       a.innerHTML = `
         <p style="color:#4ade80;margin:0 0 8px 0">✅ 壓力測試完成（投組價值 NT$${V291_fmt(baseValue, 0)}）</p>
         <table style="width:100%;border-collapse:collapse;font-size:13px">
-          <tr style="background:#2a2a4a">
+          <tr style="background:var(--bg-surface)">
             <th style="padding:8px;text-align:left">情境</th>
             <th style="padding:8px">時期</th>
             <th style="padding:8px">市場跌幅</th>
@@ -313,7 +313,7 @@
       a.innerHTML = `
         <p style="color:#4ade80;margin:0 0 8px 0">✅ 5 大經濟體即時指標</p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
-          ${indicators.map(reg => `<div style="background:#0f0f1e;padding:14px;border-radius:8px">
+          ${indicators.map(reg => `<div style="background:var(--bg-base);padding:14px;border-radius:8px">
             <h4 style="margin:0 0 8px 0;color:#fbbf24;border-bottom:1px solid #333;padding-bottom:6px">${reg.region}</h4>
             ${reg.items.map(it => `<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #1a1a3a">
               <div><span style="color:#fff;font-size:13px">${it.name}</span><br><span style="color:#666;font-size:10px">${it.desc}</span></div>
@@ -324,7 +324,7 @@
             </div>`).join('')}
           </div>`).join('')}
         </div>
-        <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:11px;color:#666">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:11px;color:#666">
           資料源：FRED / ECB / BoJ / PBoC / 中央銀行 ｜ 更新頻率：每月初
         </div>
       `;

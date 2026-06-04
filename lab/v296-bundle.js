@@ -14,8 +14,8 @@
   function V296_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V296_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V296_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -61,20 +61,20 @@
     const c = V296_$(containerId); if (!c) return;
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🧠 真正神經網路 LSTM（不是簡化線性版）— 前端用 TensorFlow.js 訓練，全程不離開你的瀏覽器</p>
-      <div style="background:#0f0f1e;padding:16px;border-radius:8px;margin-bottom:12px">
+      <div style="background:var(--bg-base);padding:16px;border-radius:8px;margin-bottom:12px">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
-          <input id="lstm296-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
-          <select id="lstm296-window" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+          <input id="lstm296-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
+          <select id="lstm296-window" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
             <option value="20">回看 20 日</option>
             <option value="30" selected>回看 30 日</option>
             <option value="60">回看 60 日</option>
           </select>
-          <select id="lstm296-units" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+          <select id="lstm296-units" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
             <option value="32">LSTM 32 units</option>
             <option value="64" selected>LSTM 64 units</option>
             <option value="128">LSTM 128 units</option>
           </select>
-          <select id="lstm296-epochs" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+          <select id="lstm296-epochs" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
             <option value="20">20 epochs</option>
             <option value="50" selected>50 epochs</option>
             <option value="100">100 epochs</option>
@@ -133,15 +133,15 @@
 
         // 訓練 + Loss 視覺化
         a.innerHTML = `
-          <div style="background:#0f0f1e;padding:16px;border-radius:8px">
+          <div style="background:var(--bg-base);padding:16px;border-radius:8px">
             <h4 style="color:#4ade80;margin:0 0 12px 0">🧠 訓練中...</h4>
             <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
-              <div style="background:#2a2a4a;padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">Symbol</div><div style="color:#fbbf24;font-weight:bold">${sym}</div></div>
-              <div style="background:#2a2a4a;padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">Lookback</div><div style="color:#fff;font-weight:bold">${lookback} 日</div></div>
-              <div style="background:#2a2a4a;padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">LSTM Units</div><div style="color:#fff;font-weight:bold">${units}</div></div>
-              <div style="background:#2a2a4a;padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">Epochs</div><div style="color:#fff;font-weight:bold">${epochs}</div></div>
+              <div style="background:var(--bg-surface);padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">Symbol</div><div style="color:#fbbf24;font-weight:bold">${sym}</div></div>
+              <div style="background:var(--bg-surface);padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">Lookback</div><div style="color:#fff;font-weight:bold">${lookback} 日</div></div>
+              <div style="background:var(--bg-surface);padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">LSTM Units</div><div style="color:#fff;font-weight:bold">${units}</div></div>
+              <div style="background:var(--bg-surface);padding:8px;border-radius:4px"><div style="color:#aaa;font-size:11px">Epochs</div><div style="color:#fff;font-weight:bold">${epochs}</div></div>
             </div>
-            <div id="lstm296-progress" style="background:#2a2a4a;height:8px;border-radius:4px;overflow:hidden;margin-bottom:8px">
+            <div id="lstm296-progress" style="background:var(--bg-surface);height:8px;border-radius:4px;overflow:hidden;margin-bottom:8px">
               <div id="lstm296-bar" style="background:#4ade80;height:100%;width:0%;transition:width 0.3s"></div>
             </div>
             <div id="lstm296-status" style="color:#aaa;font-size:13px;margin-bottom:12px">準備訓練...</div>
@@ -164,7 +164,7 @@
                 const W = 600, H = 100;
                 const minL = Math.min(...losses), maxL = Math.max(...losses);
                 const points = losses.map((l, i) => `${30 + i / (losses.length - 1) * (W - 60)},${H - 15 - (l - minL) / (maxL - minL || 1) * (H - 30)}`).join(' ');
-                V296_$('lstm296-loss-chart').innerHTML = `<svg width="${W}" height="${H}" style="width:100%;background:#0a0a1e;border-radius:4px"><polyline points="${points}" fill="none" stroke="#4ade80" stroke-width="2"/><text x="6" y="14" fill="#888" font-size="10">Loss</text></svg>`;
+                V296_$('lstm296-loss-chart').innerHTML = `<svg width="${W}" height="${H}" style="width:100%;background:var(--bg-base);border-radius:4px"><polyline points="${points}" fill="none" stroke="#4ade80" stroke-width="2"/><text x="6" y="14" fill="#888" font-size="10">Loss</text></svg>`;
               }
             }
           }
@@ -200,7 +200,7 @@
         const range = plotMax - plotMin;
         const xS = (i, total) => 30 + i / (total - 1) * (W2 - 60);
         const yS = v => H2 - 30 - (v - plotMin) / range * (H2 - 60);
-        let svg = `<svg width="${W2}" height="${H2}" style="background:#0a0a1e;border-radius:6px;width:100%">`;
+        let svg = `<svg width="${W2}" height="${H2}" style="background:var(--bg-base);border-radius:6px;width:100%">`;
         // 歷史 (last 100)
         const histPts = closes.slice(-100).map((c, i) => `${xS(i, 130)},${yS(c)}`).join(' ');
         svg += `<polyline points="${histPts}" fill="none" stroke="#4ade80" stroke-width="2"/>`;
@@ -218,10 +218,10 @@
           <h4 style="color:#4ade80;margin:16px 0 8px 0">🎯 LSTM 預測結果</h4>
           ${svg}
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:12px">
-            <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">當前</div><div style="color:#fff;font-size:18px;font-weight:bold">${V296_fmt(lastClose)}</div></div>
-            <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">明日預測</div><div style="color:${day1Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day1Pred)}</div></div>
-            <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">10 日後</div><div style="color:${day10Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day10Pred)}</div></div>
-            <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">30 日後</div><div style="color:${day30Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day30Pred)}</div></div>
+            <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">當前</div><div style="color:#fff;font-size:18px;font-weight:bold">${V296_fmt(lastClose)}</div></div>
+            <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">明日預測</div><div style="color:${day1Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day1Pred)}</div></div>
+            <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">10 日後</div><div style="color:${day10Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day10Pred)}</div></div>
+            <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">30 日後</div><div style="color:${day30Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day30Pred)}</div></div>
             <div style="background:#1a0f0f;padding:10px;border-radius:6px"><div style="color:#fbbf24;font-size:11px">RMSE</div><div style="color:#fbbf24;font-size:18px;font-weight:bold">${V296_fmt(rmsePrice, 3)}</div></div>
           </div>
           <div style="margin-top:12px;padding:12px;background:#1a0f0f;border-radius:6px;font-size:11px;color:#fbbf24;border:1px solid #f97316">

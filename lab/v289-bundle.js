@@ -16,8 +16,8 @@
   function V289_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V289_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V289_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -42,7 +42,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">📸 一鍵生成精美投組截圖，分享到 Twitter / LINE / Facebook</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="ss289-name" placeholder="你的暱稱" value="${localStorage.getItem('mr_user_name') || ''}" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:160px">
+        <input id="ss289-name" placeholder="你的暱稱" value="${localStorage.getItem('mr_user_name') || ''}" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:160px">
         <button id="ss289-gen" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📸 生成截圖</button>
       </div>
       <div id="ss289-output"></div>
@@ -62,11 +62,11 @@
       // SVG 截圖
       const W2 = 600, H2 = 400;
       const today = new Date().toISOString().slice(0, 10);
-      let svg = `<svg width="${W2}" height="${H2}" xmlns="http://www.w3.org/2000/svg" style="background:linear-gradient(135deg,#0a0a1e 0%,#1a1a4e 100%);border-radius:16px">
+      let svg = `<svg width="${W2}" height="${H2}" xmlns="http://www.w3.org/2000/svg" style="background:linear-gradient(135deg,var(--bg-base) 0%,#1a1a4e 100%);border-radius:16px">
         <defs>
           <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#4ade80"/>
-            <stop offset="100%" stop-color="#3b82f6"/>
+            <stop offset="100%" stop-color="var(--accent)"/>
           </linearGradient>
         </defs>
         <text x="30" y="50" fill="url(#grad1)" font-size="32" font-weight="bold">MoneyRadar™</text>
@@ -125,16 +125,16 @@
     const publicUrl = `${location.origin}/lab/?p=${userId}`;
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🔗 把你的投組頁面變成公開連結，分享給朋友（你可以隨時關閉公開）</p>
-      <div style="background:#0f0f1e;padding:16px;border-radius:8px">
+      <div style="background:var(--bg-base);padding:16px;border-radius:8px">
         <label style="color:#fff;display:flex;align-items:center;gap:8px;cursor:pointer">
           <input type="checkbox" id="pp289-public" ${localStorage.getItem('mr_v289_public') === '1' ? 'checked' : ''} style="width:20px;height:20px">
           <span>啟用公開分享</span>
         </label>
         <div id="pp289-url-area" style="margin-top:12px;${localStorage.getItem('mr_v289_public') === '1' ? '' : 'display:none'}">
-          <input id="pp289-url" value="${publicUrl}" readonly style="width:100%;padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;font-family:monospace">
+          <input id="pp289-url" value="${publicUrl}" readonly style="width:100%;padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;font-family:monospace">
           <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
             <button id="pp289-copy" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📋 複製連結</button>
-            <button id="pp289-qr" style="padding:8px 16px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">🔳 QR Code</button>
+            <button id="pp289-qr" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">🔳 QR Code</button>
             <a href="${publicUrl}" target="_blank" style="padding:8px 16px;background:#fbbf24;color:#000;border-radius:6px;text-decoration:none">🌐 預覽</a>
           </div>
           <div id="pp289-qr-area" style="margin-top:12px"></div>
@@ -164,17 +164,17 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">👥 看誰在追蹤你 / 你在追蹤誰</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-        <div style="background:#0f0f1e;padding:16px;border-radius:8px">
+        <div style="background:var(--bg-base);padding:16px;border-radius:8px">
           <h4 style="margin:0 0 12px 0;color:#4ade80">👀 你在追蹤（${(JSON.parse(localStorage.getItem('mr_v289_following') || '[]')).length}）</h4>
           <div id="fl289-following"></div>
         </div>
-        <div style="background:#0f0f1e;padding:16px;border-radius:8px">
+        <div style="background:var(--bg-base);padding:16px;border-radius:8px">
           <h4 style="margin:0 0 12px 0;color:#fbbf24">⭐ 你的追蹤者（${(JSON.parse(localStorage.getItem('mr_v289_followers') || '[]')).length}）</h4>
           <div id="fl289-followers"></div>
         </div>
       </div>
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-        <input id="fl289-input" placeholder="輸入用戶 ID 或暱稱來追蹤" style="flex:1;min-width:200px;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+        <input id="fl289-input" placeholder="輸入用戶 ID 或暱稱來追蹤" style="flex:1;min-width:200px;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
         <button id="fl289-add" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">+ 追蹤</button>
       </div>
     `;
@@ -217,7 +217,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">💬 對個股留下你的看法，看其他投資人怎麼想</p>
       <div style="display:flex;gap:8px;margin-bottom:12px">
-        <input id="cm289-symbol" placeholder="股票代碼（例：2330 / AAPL）" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="cm289-symbol" placeholder="股票代碼（例：2330 / AAPL）" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="cm289-load" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">查看評論</button>
       </div>
       <div id="cm289-area"></div>
@@ -239,17 +239,17 @@
       function render() {
         comments = JSON.parse(localStorage.getItem(key) || '[]');
         V289_$('cm289-area').innerHTML = `
-          <div style="background:#0f0f1e;padding:16px;border-radius:8px;margin-bottom:12px">
+          <div style="background:var(--bg-base);padding:16px;border-radius:8px;margin-bottom:12px">
             <h4 style="margin:0 0 8px 0;color:#fbbf24">💬 ${sym} 評論（${comments.length}）</h4>
-            <textarea id="cm289-input" rows="2" placeholder="發表你的看法..." style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;resize:vertical"></textarea>
+            <textarea id="cm289-input" rows="2" placeholder="發表你的看法..." style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;resize:vertical"></textarea>
             <button id="cm289-post" style="margin-top:8px;padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📝 發表</button>
           </div>
-          ${comments.map(c => `<div style="background:#1a1a2e;padding:12px;border-radius:6px;margin-bottom:8px">
+          ${comments.map(c => `<div style="background:var(--bg-surface);padding:12px;border-radius:6px;margin-bottom:8px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
               <b style="color:#fff">${c.user}</b>
               <span style="color:#666;font-size:11px">${c.time}</span>
             </div>
-            <p style="margin:0;color:#e0e0ff;line-height:1.6">${c.text}</p>
+            <p style="margin:0;color:var(--text-primary);line-height:1.6">${c.text}</p>
             <button data-like="${c.id}" style="margin-top:6px;padding:4px 10px;background:transparent;border:1px solid #444;color:#aaa;border-radius:4px;cursor:pointer;font-size:12px">👍 ${c.likes}</button>
           </div>`).join('')}
         `;
@@ -282,7 +282,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🏆 看本月績效最好的 100 位投資人，點頭像追蹤</p>
       <div style="margin-bottom:12px">
-        <select id="ti289-period" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+        <select id="ti289-period" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
           <option value="daily">📅 本日</option>
           <option value="weekly">📆 本週</option>
           <option value="monthly" selected>🗓️ 本月</option>
@@ -305,9 +305,9 @@
         followers: Math.floor((100 - i) * (Math.random() * 30 + 5))
       })).sort((a, b) => b.return - a.return);
       V289_$('ti289-area').innerHTML = `
-        <div style="background:#0f0f1e;padding:16px;border-radius:8px;max-height:600px;overflow-y:auto">
+        <div style="background:var(--bg-base);padding:16px;border-radius:8px;max-height:600px;overflow-y:auto">
           <table style="width:100%;border-collapse:collapse;font-size:13px">
-            <tr style="background:#2a2a4a;position:sticky;top:0;z-index:10">
+            <tr style="background:var(--bg-surface);position:sticky;top:0;z-index:10">
               <th style="padding:8px;text-align:center">排名</th>
               <th style="padding:8px;text-align:left">投資人</th>
               <th style="padding:8px">${period === 'daily' ? '今日' : period === 'weekly' ? '本週' : period === 'monthly' ? '本月' : 'YTD'}報酬</th>
@@ -323,7 +323,7 @@
               <td style="padding:8px;text-align:right">${inv.winRate}%</td>
               <td style="padding:8px;text-align:right">${inv.trades}</td>
               <td style="padding:8px;text-align:right">${V289_fmt(inv.followers, 0)}</td>
-              <td style="padding:8px;text-align:center"><button style="padding:4px 10px;background:#3b82f6;color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px">+ 追蹤</button></td>
+              <td style="padding:8px;text-align:center"><button style="padding:4px 10px;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px">+ 追蹤</button></td>
             </tr>`).join('')}
           </table>
         </div>

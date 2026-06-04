@@ -16,8 +16,8 @@
   function V292_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V292_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V292_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -50,9 +50,9 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">📊 模擬 Level 2 委託簿（用 spread 模型生成 10 檔買賣壓）</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="ob292-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="ob292-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="ob292-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📊 載入委託簿</button>
-        <button id="ob292-refresh" style="padding:8px 16px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer">🔄 即時刷新</button>
+        <button id="ob292-refresh" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">🔄 即時刷新</button>
       </div>
       <div id="ob292-area"></div>
     `;
@@ -82,7 +82,7 @@
         const imbalance = (totalBidVol - totalAskVol) / (totalBidVol + totalAskVol);
         const maxVol = Math.max(...bids.map(b => b.volume), ...asks.map(b => b.volume));
         a.innerHTML = `
-          <div style="background:#0f0f1e;padding:16px;border-radius:8px">
+          <div style="background:var(--bg-base);padding:16px;border-radius:8px">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
               <span style="color:#fbbf24;font-size:18px;font-weight:bold">${sym} @ ${V292_fmt(price)}</span>
               <span style="color:${imbalance > 0 ? '#4ade80' : '#ef4444'};font-weight:bold">買賣失衡 ${imbalance > 0 ? '+' : ''}${V292_fmt(imbalance * 100, 1)}%</span>
@@ -140,7 +140,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🤖 用最近 60 日資料訓練簡化版 LSTM-style 模型，預測未來 10 日</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="ml292-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="ml292-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="ml292-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🤖 ML 預測</button>
       </div>
       <div id="ml292-area"></div>
@@ -187,7 +187,7 @@
       const range = maxP - minP || 1;
       const xScale = (i, total) => 30 + i / (total - 1) * (W2 - 60);
       const yScale = v => H2 - 30 - (v - minP) / range * (H2 - 60);
-      let svg = `<svg width="${W2}" height="${H2}" style="background:#0a0a1e;border-radius:6px;width:100%">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="background:var(--bg-base);border-radius:6px;width:100%">`;
       // 歷史線
       const histPoints = recent.map((c, i) => `${xScale(i, recent.length + 10)},${yScale(c)}`).join(' ');
       svg += `<polyline points="${histPoints}" fill="none" stroke="#4ade80" stroke-width="2"/>`;
@@ -214,10 +214,10 @@
         <p style="color:#4ade80;margin:0 0 8px 0">✅ ${sym} ML 預測（綠線=歷史，黃線=預測 10 日）</p>
         ${svg}
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px">
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">當前</div><div style="color:#fff;font-size:18px;font-weight:bold">${V292_fmt(lastPrice)}</div></div>
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">10 日後預測</div><div style="color:#fbbf24;font-size:18px;font-weight:bold">${V292_fmt(lastPred.value)}</div></div>
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">預期變動</div><div style="color:${projChange >= 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${projChange >= 0 ? '+' : ''}${V292_fmt(projChange * 100, 2)}%</div></div>
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">趨勢</div><div style="color:${slope > 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${slope > 0 ? '上升' : '下降'}</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">當前</div><div style="color:#fff;font-size:18px;font-weight:bold">${V292_fmt(lastPrice)}</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">10 日後預測</div><div style="color:#fbbf24;font-size:18px;font-weight:bold">${V292_fmt(lastPred.value)}</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">預期變動</div><div style="color:${projChange >= 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${projChange >= 0 ? '+' : ''}${V292_fmt(projChange * 100, 2)}%</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">趨勢</div><div style="color:${slope > 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${slope > 0 ? '上升' : '下降'}</div></div>
         </div>
         <div style="margin-top:12px;padding:12px;background:#1a0f0f;border-radius:6px;font-size:11px;color:#fbbf24;border:1px solid #f97316">
           <b>⚠️ 重要免責：</b>本預測為簡化版線性 + EMA 模型，不構成投資建議。實際 LSTM 需 TensorFlow（避免前端跑大模型）。歷史報酬不代表未來表現。
@@ -235,7 +235,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🎯 自動找出近 6 個月的關鍵支撐 + 阻力（用 Local Min/Max + Cluster 演算法）</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="sr292-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="sr292-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="sr292-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🎯 偵測 S&R</button>
       </div>
       <div id="sr292-area"></div>
@@ -290,7 +290,7 @@
       const range = maxP - minP || 1;
       const xScale = i => 30 + i / (data.length - 1) * (W2 - 60);
       const yScale = v => H2 - 30 - (v - minP) / range * (H2 - 60);
-      let svg = `<svg width="${W2}" height="${H2}" style="background:#0a0a1e;border-radius:6px;width:100%">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="background:var(--bg-base);border-radius:6px;width:100%">`;
       // 收盤線
       const closeLine = data.map((d, i) => `${xScale(i)},${yScale(d.close)}`).join(' ');
       svg += `<polyline points="${closeLine}" fill="none" stroke="#4ade80" stroke-width="2"/>`;
@@ -340,7 +340,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🌊 偵測「價量背離」— 反轉訊號的關鍵</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="dv292-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="dv292-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="dv292-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🌊 偵測背離</button>
       </div>
       <div id="dv292-area"></div>
@@ -409,7 +409,7 @@
       // SVG (price + RSI 雙圖)
       const W2 = 700, H2 = 320;
       const minP = Math.min(...closes), maxP = Math.max(...closes);
-      let svg = `<svg width="${W2}" height="${H2}" style="background:#0a0a1e;border-radius:6px;width:100%">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="background:var(--bg-base);border-radius:6px;width:100%">`;
       const xScale = i => 30 + i / (closes.length - 1) * (W2 - 60);
       // Price (上半)
       const yPrice = v => 20 + 130 * (1 - (v - minP) / (maxP - minP));
@@ -429,7 +429,7 @@
         <p style="color:#4ade80;margin:0 0 8px 0">✅ ${sym} 量價背離偵測</p>
         ${svg}
         <div style="margin-top:12px">
-          ${divergences.length ? divergences.map(d => `<div style="background:#0f0f1e;padding:12px;border-radius:6px;margin-bottom:8px;border-left:4px solid ${d.type.includes('🟢') ? '#22c55e' : d.type.includes('🔴') ? '#ef4444' : '#fbbf24'}">
+          ${divergences.length ? divergences.map(d => `<div style="background:var(--bg-base);padding:12px;border-radius:6px;margin-bottom:8px;border-left:4px solid ${d.type.includes('🟢') ? '#22c55e' : d.type.includes('🔴') ? '#ef4444' : '#fbbf24'}">
             <h4 style="margin:0;color:#fff">${d.type}</h4>
             <p style="margin:4px 0 0 0;color:#aaa;font-size:13px">${d.desc} ｜ 強度 ${d.strength}%</p>
           </div>`).join('') : '<p style="color:#666;text-align:center;padding:16px">未偵測到明顯背離訊號</p>'}

@@ -63,7 +63,7 @@
   function V294_openAuthModal() {
     // 已登入：顯示 menu
     if (currentUser) {
-      const menu = V294_el(`<div style="position:fixed;top:46px;right:12px;background:#1a1a2e;border:1px solid #4ade80;border-radius:8px;padding:8px;z-index:9999;min-width:200px;box-shadow:0 4px 12px rgba(0,0,0,0.5)">
+      const menu = V294_el(`<div style="position:fixed;top:46px;right:12px;background:var(--bg-surface);border:1px solid #4ade80;border-radius:8px;padding:8px;z-index:9999;min-width:200px;box-shadow:0 4px 12px rgba(0,0,0,0.5)">
         <div style="padding:8px;color:#aaa;font-size:11px;border-bottom:1px solid #333">${currentUser.email}</div>
         <button id="v294-sync-now" style="width:100%;padding:8px;background:transparent;border:none;color:#fff;cursor:pointer;text-align:left">☁️ 立即同步</button>
         <button id="v294-logout" style="width:100%;padding:8px;background:transparent;border:none;color:#ef4444;cursor:pointer;text-align:left">🚪 登出</button>
@@ -91,7 +91,7 @@
     }
     // 未登入：彈出登入 modal
     const modal = V294_el(`<div id="v294-modal" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:99999;display:flex;align-items:center;justify-content:center">
-      <div style="background:#1a1a2e;padding:32px;border-radius:12px;width:400px;max-width:90vw;border:1px solid #4ade80">
+      <div style="background:var(--bg-surface);padding:32px;border-radius:12px;width:400px;max-width:90vw;border:1px solid #4ade80">
         <h2 style="color:#fff;margin:0 0 16px 0;text-align:center">登入 / 註冊 MoneyRadar</h2>
         <p style="color:#aaa;font-size:13px;text-align:center;margin:0 0 16px 0">登入後，watchlist / portfolio / 警報自動跨裝置同步</p>
         <button id="v294-google-login" style="width:100%;padding:12px;background:#fff;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px">
@@ -99,10 +99,10 @@
           使用 Google 登入
         </button>
         <div style="display:flex;align-items:center;gap:8px;margin:12px 0"><div style="flex:1;height:1px;background:#333"></div><span style="color:#666;font-size:11px">或</span><div style="flex:1;height:1px;background:#333"></div></div>
-        <input id="v294-email" type="email" placeholder="Email" style="width:100%;padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;margin-bottom:8px;box-sizing:border-box">
-        <input id="v294-pw" type="password" placeholder="密碼（6+ 字元）" style="width:100%;padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;margin-bottom:12px;box-sizing:border-box">
+        <input id="v294-email" type="email" placeholder="Email" style="width:100%;padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;margin-bottom:8px;box-sizing:border-box">
+        <input id="v294-pw" type="password" placeholder="密碼（6+ 字元）" style="width:100%;padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;margin-bottom:12px;box-sizing:border-box">
         <button id="v294-signup" style="width:100%;padding:10px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold;margin-bottom:6px">📝 註冊</button>
-        <button id="v294-login" style="width:100%;padding:10px;background:#3b82f6;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🔓 登入</button>
+        <button id="v294-login" style="width:100%;padding:10px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🔓 登入</button>
         <button id="v294-cancel" style="width:100%;padding:8px;background:transparent;color:#aaa;border:none;cursor:pointer;margin-top:8px">取消</button>
         <p id="v294-msg" style="color:#fbbf24;font-size:12px;margin:8px 0 0 0;min-height:18px"></p>
       </div>

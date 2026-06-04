@@ -30,15 +30,15 @@
   function buildMonthlyReport(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">📋 AI 月度投資報告 — Llama 70B 為你的投資組合生成個人化 PDF 月報（Bloomberg 機構級）</div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="mr-syms" placeholder="持股代號（逗號分隔，如 2330,2454,AAPL）" value="2330,2454,2308,3711,1101" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">📋 AI 月度投資報告 — Llama 70B 為你的投資組合生成個人化 PDF 月報（Bloomberg 機構級）</div>' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="mr-syms" placeholder="持股代號（逗號分隔，如 2330,2454,AAPL）" value="2330,2454,2308,3711,1101" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="mr-go" style="padding:6px 14px;background:#dc2626;border:0;color:#fff;border-radius:4px;cursor:pointer;font-weight:700">生成月報</button></div>' +
       '<div id="mr-result"></div></div>';
 
     $('mr-go').addEventListener('click', async () => {
       const syms = $('mr-syms').value.split(',').map(s => s.trim()).filter(Boolean);
       if (syms.length === 0) return;
-      $('mr-result').innerHTML = '<div style="color:#94a3b8;padding:14px">⏳ 抓取持股 30 天數據 + AI 撰寫月報（~30 秒）...</div>';
+      $('mr-result').innerHTML = '<div style="color:var(--text-secondary);padding:14px">⏳ 抓取持股 30 天數據 + AI 撰寫月報（~30 秒）...</div>';
       try {
         // Get 30-day data for each holding
         const since = new Date(Date.now() - 35 * 24 * 3600e3).toISOString().slice(0, 10);
@@ -134,11 +134,11 @@
     function getAccount() { try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch { return null; } }
     function getUsername() { try { return localStorage.getItem(NAME_KEY) || ''; } catch { return ''; } }
 
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🏆 全民股票競賽 — 用 Paper Trading 累積戰績，公開月度排行榜</div>' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🏆 全民股票競賽 — 用 Paper Trading 累積戰績，公開月度排行榜</div>' +
       '<div id="cl-info" style="margin-bottom:10px"></div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="cl-name" placeholder="你的暱稱（公開排行用）" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="cl-name" placeholder="你的暱稱（公開排行用）" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="cl-submit" style="padding:6px 14px;background:#16a34a;border:0;color:#fff;border-radius:4px;cursor:pointer">送戰績上榜</button>' +
-      '<button id="cl-refresh" style="padding:6px 14px;background:#475569;border:0;color:#fff;border-radius:4px;cursor:pointer">🔄 刷新</button></div>' +
+      '<button id="cl-refresh" style="padding:6px 14px;background:var(--text-muted);border:0;color:#fff;border-radius:4px;cursor:pointer">🔄 刷新</button></div>' +
       '<div id="cl-leaderboard"></div></div>';
 
     const acc = getAccount();
@@ -182,19 +182,19 @@
           }
         }
         let html = '<div style="background:rgba(251,191,36,0.05);border:1px solid rgba(251,191,36,0.3);border-radius:6px;padding:12px"><div style="font-size:14px;color:#fff;margin-bottom:8px;font-weight:700">🏆 ' + new Date().toISOString().slice(0, 7) + ' 月排行榜（前 ' + entries.length + ' 名）</div>' +
-          '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid #334155;color:#94a3b8"><th style="padding:6px;text-align:left">#</th><th style="text-align:left">玩家</th><th style="text-align:right">報酬率</th><th style="text-align:right">總市值</th><th style="text-align:right">交易數</th><th style="text-align:right">更新</th></tr></thead><tbody>';
+          '<table style="width:100%;border-collapse:collapse;font-size:12px"><thead><tr style="border-bottom:1px solid var(--border-strong);color:var(--text-secondary)"><th style="padding:6px;text-align:left">#</th><th style="text-align:left">玩家</th><th style="text-align:right">報酬率</th><th style="text-align:right">總市值</th><th style="text-align:right">交易數</th><th style="text-align:right">更新</th></tr></thead><tbody>';
         entries.forEach((e, i) => {
           const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '';
-          html += '<tr style="border-bottom:1px solid #1e293b;' + (e.is_self ? 'background:rgba(96,165,250,0.1);font-weight:700' : '') + '">' +
+          html += '<tr style="border-bottom:1px solid var(--bg-elevated);' + (e.is_self ? 'background:rgba(96,165,250,0.1);font-weight:700' : '') + '">' +
             '<td style="padding:6px">' + medal + ' ' + (i + 1) + '</td>' +
             '<td>' + (e.username || '-') + '</td>' +
             '<td style="text-align:right;color:' + (e.return_pct >= 0 ? '#34d399' : '#f87171') + ';font-weight:700">' + (e.return_pct >= 0 ? '+' : '') + Number(e.return_pct).toFixed(2) + '%</td>' +
             '<td style="text-align:right">$' + fmtBig(e.total_value) + '</td>' +
             '<td style="text-align:right">' + (e.trades || 0) + '</td>' +
-            '<td style="text-align:right;color:#64748b;font-size:11px">' + (e.updated_at || '-') + '</td></tr>';
+            '<td style="text-align:right;color:var(--text-muted);font-size:11px">' + (e.updated_at || '-') + '</td></tr>';
         });
         html += '</tbody></table>' +
-          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:#94a3b8">💡 排行榜目前展示示範資料。送戰績上榜後將寫入 Supabase contest_entries 表（公開）。月底結算冠軍。</div></div>';
+          '<div style="margin-top:10px;padding:8px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:var(--text-secondary)">💡 排行榜目前展示示範資料。送戰績上榜後將寫入 Supabase contest_entries 表（公開）。月底結算冠軍。</div></div>';
         $('cl-leaderboard').innerHTML = html;
       } catch (e) {
         $('cl-leaderboard').innerHTML = '❌ ' + e.message;
@@ -230,7 +230,7 @@
   function buildLearningPath(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🧭 AI 投資學習路徑 — 評估你的程度，個人化推薦下一步學什麼</div>' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🧭 AI 投資學習路徑 — 評估你的程度，個人化推薦下一步學什麼</div>' +
       '<div id="lp-quiz"></div></div>';
 
     const QUESTIONS = [
@@ -251,9 +251,9 @@
       if (curQ >= QUESTIONS.length) { showResult(); return; }
       const q = QUESTIONS[curQ];
       $('lp-quiz').innerHTML = '<div style="background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.3);border-radius:8px;padding:20px">' +
-        '<div style="font-size:11px;color:#94a3b8">問題 ' + (curQ + 1) + ' / ' + QUESTIONS.length + '</div>' +
+        '<div style="font-size:11px;color:var(--text-secondary)">問題 ' + (curQ + 1) + ' / ' + QUESTIONS.length + '</div>' +
         '<div style="font-size:18px;font-weight:700;color:#fff;margin:8px 0 14px">' + q.q + '</div>' +
-        q.opts.map((o, i) => '<button class="lp-opt" data-i="' + i + '" style="display:block;width:100%;padding:10px;margin:6px 0;background:#0a0f1c;border:1px solid #334155;color:#cbd5e1;border-radius:6px;cursor:pointer;text-align:left;font-size:14px">' + (i + 1) + '. ' + o + '</button>').join('') +
+        q.opts.map((o, i) => '<button class="lp-opt" data-i="' + i + '" style="display:block;width:100%;padding:10px;margin:6px 0;background:var(--bg-base);border:1px solid var(--border-strong);color:#cbd5e1;border-radius:6px;cursor:pointer;text-align:left;font-size:14px">' + (i + 1) + '. ' + o + '</button>').join('') +
         '</div>';
       $('lp-quiz').querySelectorAll('.lp-opt').forEach(b => {
         b.addEventListener('click', () => {
@@ -309,17 +309,17 @@
 
       let html = '<div style="background:rgba(' + (color === '#34d399' ? '52,211,153' : color === '#60a5fa' ? '96,165,250' : color === '#fbbf24' ? '251,191,36' : '220,38,38') + ',0.05);border:1px solid ' + color + ';border-radius:8px;padding:20px">' +
         '<div style="text-align:center;margin-bottom:14px"><div style="font-size:24px;font-weight:700;color:' + color + '">' + level + '</div>' +
-        '<div style="color:#94a3b8;font-size:13px">分數: ' + score + '/' + max + ' · ' + pct.toFixed(0) + '%</div></div>' +
+        '<div style="color:var(--text-secondary);font-size:13px">分數: ' + score + '/' + max + ' · ' + pct.toFixed(0) + '%</div></div>' +
         '<div style="font-weight:700;color:#fff;margin-bottom:10px">📚 你的個人化 3 個月學習路徑：</div>';
       plan.forEach(p => {
-        html += '<div style="background:#0a0f1c;border-left:3px solid ' + color + ';padding:10px 14px;margin:6px 0;border-radius:4px">' +
+        html += '<div style="background:var(--bg-base);border-left:3px solid ' + color + ';padding:10px 14px;margin:6px 0;border-radius:4px">' +
           '<div style="font-weight:700;color:' + color + ';font-size:13px">' + p.stage + ' · ' + p.topic + '</div>' +
           '<ul style="margin:6px 0 0 0;padding-left:20px;color:#cbd5e1;font-size:12px;line-height:1.7">' +
           p.items.map(it => '<li>' + it + '</li>').join('') +
           '</ul></div>';
       });
-      html += '<button id="lp-restart" style="margin-top:12px;padding:8px 16px;background:#475569;border:0;color:#fff;border-radius:4px;cursor:pointer">↺ 重新測驗</button>' +
-        '<div style="margin-top:8px;padding:8px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:#94a3b8">💡 完成這個路徑後再回來重測，看你有沒有進階。MoneyRadar 內所有相關工具會在描述中標記對應級別。</div>' +
+      html += '<button id="lp-restart" style="margin-top:12px;padding:8px 16px;background:var(--text-muted);border:0;color:#fff;border-radius:4px;cursor:pointer">↺ 重新測驗</button>' +
+        '<div style="margin-top:8px;padding:8px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:var(--text-secondary)">💡 完成這個路徑後再回來重測，看你有沒有進階。MoneyRadar 內所有相關工具會在描述中標記對應級別。</div>' +
         '</div>';
       $('lp-quiz').innerHTML = html;
       $('lp-restart').addEventListener('click', () => { answers = []; curQ = 0; showQ(); });
@@ -334,9 +334,9 @@
   function buildPairTrading(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">🔄 Pair Trading 配對交易訊號 — 找出 z-score 偏離的雙股價差（量化基金核心策略）</div>' +
-      '<div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:6px;margin-bottom:10px"><input id="pt2-a" placeholder="A 股" value="2330" style="padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
-      '<input id="pt2-b" placeholder="B 股" value="2454" style="padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">🔄 Pair Trading 配對交易訊號 — 找出 z-score 偏離的雙股價差（量化基金核心策略）</div>' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr 80px;gap:6px;margin-bottom:10px"><input id="pt2-a" placeholder="A 股" value="2330" style="padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
+      '<input id="pt2-b" placeholder="B 股" value="2454" style="padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="pt2-go" style="padding:6px;background:#7c3aed;border:0;color:#fff;border-radius:4px;cursor:pointer">分析</button></div>' +
       '<div id="pt2-result"></div></div>';
 
@@ -364,7 +364,7 @@
         // Build chart
         const W = 800, H = 240;
         const minR = Math.min.apply(null, ratios), maxR = Math.max.apply(null, ratios);
-        let svg = '<svg width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="background:#0a0f1c;border-radius:6px">';
+        let svg = '<svg width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="background:var(--bg-base);border-radius:6px">';
         // Mean line
         const meanY = H - ((mean - minR) / (maxR - minR)) * (H - 30) - 15;
         svg += '<line x1="0" y1="' + meanY + '" x2="' + W + '" y2="' + meanY + '" stroke="#fbbf24" stroke-dasharray="4,4" stroke-width="1"/>';
@@ -382,19 +382,19 @@
         svg += '<path d="' + path + '" stroke="#60a5fa" stroke-width="1.5" fill="none"/>';
         svg += '</svg>';
         // Signal
-        let signal = '中性 (no signal)', sigColor = '#94a3b8';
+        let signal = '中性 (no signal)', sigColor = 'var(--text-secondary)';
         if (z > 2) { signal = '🔻 做空 ' + a + ' / 做多 ' + b + '（價差過高，預期回歸）'; sigColor = '#f87171'; }
         else if (z < -2) { signal = '🔺 做多 ' + a + ' / 做空 ' + b + '（價差過低，預期回歸）'; sigColor = '#34d399'; }
         else if (Math.abs(z) > 1) { signal = '⚠️ 觀察中（z 接近 ±2）'; sigColor = '#fbbf24'; }
         $('pt2-result').innerHTML = '<div style="background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.3);border-radius:6px;padding:12px">' +
           '<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:14px;font-weight:700;color:#fff">' + a + ' / ' + b + ' 價格比</span><span style="font-size:18px;font-weight:700;color:' + sigColor + '">z = ' + z.toFixed(2) + 'σ</span></div>' +
           svg +
-          '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;font-size:12px"><div><span style="color:#94a3b8">當前比率</span><div style="font-weight:700">' + lastRatio.toFixed(4) + '</div></div>' +
-          '<div><span style="color:#94a3b8">平均</span><div style="font-weight:700">' + mean.toFixed(4) + '</div></div>' +
-          '<div><span style="color:#94a3b8">標準差</span><div style="font-weight:700">' + std.toFixed(4) + '</div></div>' +
-          '<div><span style="color:#94a3b8">樣本</span><div style="font-weight:700">' + aligned.length + ' 天</div></div></div>' +
+          '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;font-size:12px"><div><span style="color:var(--text-secondary)">當前比率</span><div style="font-weight:700">' + lastRatio.toFixed(4) + '</div></div>' +
+          '<div><span style="color:var(--text-secondary)">平均</span><div style="font-weight:700">' + mean.toFixed(4) + '</div></div>' +
+          '<div><span style="color:var(--text-secondary)">標準差</span><div style="font-weight:700">' + std.toFixed(4) + '</div></div>' +
+          '<div><span style="color:var(--text-secondary)">樣本</span><div style="font-weight:700">' + aligned.length + ' 天</div></div></div>' +
           '<div style="margin-top:10px;padding:10px;background:rgba(' + (sigColor === '#f87171' ? '248,113,113' : sigColor === '#34d399' ? '52,211,153' : '251,191,36') + ',0.1);border-radius:6px;color:' + sigColor + ';font-weight:700">' + signal + '</div>' +
-          '<div style="margin-top:8px;padding:8px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:#94a3b8">💡 Pair Trading: 找出長期高度相關的雙股，當價差 z-score 超過 ±2σ 時建立反向部位（買低賣高），等價差回歸時平倉獲利。市場中性策略，不依賴大盤方向。</div></div>';
+          '<div style="margin-top:8px;padding:8px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:var(--text-secondary)">💡 Pair Trading: 找出長期高度相關的雙股，當價差 z-score 超過 ±2σ 時建立反向部位（買低賣高），等價差回歸時平倉獲利。市場中性策略，不依賴大盤方向。</div></div>';
       } catch (e) {
         $('pt2-result').innerHTML = '❌ ' + e.message;
       }
@@ -407,8 +407,8 @@
   function buildIVSurface(containerId) {
     const c = $(containerId);
     if (!c) return;
-    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:#94a3b8;margin-bottom:8px">📊 隱含波動率曲面 IV Surface — 機構級期權分析（從 Yahoo options 計算）</div>' +
-      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="iv-sym" value="AAPL" placeholder="美股代號" style="flex:1;padding:6px;background:#0f172a;border:1px solid #334155;color:#fff;border-radius:4px">' +
+    c.innerHTML = '<div style="padding:8px"><div style="font-size:13px;color:var(--text-secondary);margin-bottom:8px">📊 隱含波動率曲面 IV Surface — 機構級期權分析（從 Yahoo options 計算）</div>' +
+      '<div style="display:flex;gap:6px;margin-bottom:10px"><input id="iv-sym" value="AAPL" placeholder="美股代號" style="flex:1;padding:6px;background:var(--bg-base);border:1px solid var(--border-strong);color:#fff;border-radius:4px">' +
       '<button id="iv-go" style="padding:6px 14px;background:#7c3aed;border:0;color:#fff;border-radius:4px;cursor:pointer">繪製 IV 曲面</button></div>' +
       '<div id="iv-result"></div></div>';
 
@@ -436,7 +436,7 @@
         const maxIV = Math.max.apply(null, ivs);
         // SVG 2D smile chart (since IV surface needs expiry too, but here only one expiry)
         const W = 800, H = 320;
-        let svg = '<svg width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="background:#0a0f1c;border-radius:6px">';
+        let svg = '<svg width="100%" height="' + H + '" viewBox="0 0 ' + W + ' ' + H + '" style="background:var(--bg-base);border-radius:6px">';
         // ATM line (moneyness = 1)
         const minM = Math.min.apply(null, points.map(p => p.moneyness));
         const maxM = Math.max.apply(null, points.map(p => p.moneyness));
@@ -470,9 +470,9 @@
           svg += '<path d="' + path + '" stroke="#60a5fa" stroke-width="2" fill="none" opacity="0.8"/>';
         }
         // Y-axis labels
-        svg += '<text x="10" y="' + (H - 10) + '" fill="#94a3b8" font-size="10">' + minIV.toFixed(0) + '%</text>';
-        svg += '<text x="10" y="20" fill="#94a3b8" font-size="10">' + maxIV.toFixed(0) + '%</text>';
-        svg += '<text x="' + (W - 100) + '" y="' + (H - 8) + '" fill="#94a3b8" font-size="11">moneyness (Strike/Spot)</text>';
+        svg += '<text x="10" y="' + (H - 10) + '" fill="var(--text-secondary)" font-size="10">' + minIV.toFixed(0) + '%</text>';
+        svg += '<text x="10" y="20" fill="var(--text-secondary)" font-size="10">' + maxIV.toFixed(0) + '%</text>';
+        svg += '<text x="' + (W - 100) + '" y="' + (H - 8) + '" fill="var(--text-secondary)" font-size="11">moneyness (Strike/Spot)</text>';
         svg += '</svg>';
         // ATM IV
         const atmPoints = points.filter(p => Math.abs(p.moneyness - 1) < 0.05);
@@ -484,11 +484,11 @@
           '<div style="font-size:14px;color:#fff;font-weight:700;margin-bottom:8px">' + sym + ' IV Smile（隱含波動率微笑曲線）</div>' +
           svg +
           '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px;font-size:12px">' +
-          '<div><span style="color:#94a3b8">標的價</span><div style="font-weight:700">$' + underlying.toFixed(2) + '</div></div>' +
-          '<div><span style="color:#94a3b8">ATM IV</span><div style="font-weight:700;color:#fbbf24">' + (atmIV ? atmIV.toFixed(1) + '%' : '-') + '</div></div>' +
-          '<div><span style="color:#94a3b8">Skew (OTM Put - ATM)</span><div style="font-weight:700;color:' + (skew > 5 ? '#f87171' : '#34d399') + '">' + (skew != null ? (skew >= 0 ? '+' : '') + skew.toFixed(1) + '%' : '-') + '</div></div>' +
-          '<div><span style="color:#94a3b8">合約數</span><div style="font-weight:700">' + points.length + '</div></div></div>' +
-          '<div style="margin-top:10px;padding:10px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:#94a3b8;line-height:1.6">' +
+          '<div><span style="color:var(--text-secondary)">標的價</span><div style="font-weight:700">$' + underlying.toFixed(2) + '</div></div>' +
+          '<div><span style="color:var(--text-secondary)">ATM IV</span><div style="font-weight:700;color:#fbbf24">' + (atmIV ? atmIV.toFixed(1) + '%' : '-') + '</div></div>' +
+          '<div><span style="color:var(--text-secondary)">Skew (OTM Put - ATM)</span><div style="font-weight:700;color:' + (skew > 5 ? '#f87171' : '#34d399') + '">' + (skew != null ? (skew >= 0 ? '+' : '') + skew.toFixed(1) + '%' : '-') + '</div></div>' +
+          '<div><span style="color:var(--text-secondary)">合約數</span><div style="font-weight:700">' + points.length + '</div></div></div>' +
+          '<div style="margin-top:10px;padding:10px;background:rgba(96,165,250,0.05);border-radius:4px;font-size:11px;color:var(--text-secondary);line-height:1.6">' +
           '💡 IV 微笑：行權價偏離 ATM 時 IV 通常較高（兩翼高、中間低）。<strong>Skew &gt; 5%</strong> 代表市場擔心下跌（買 OTM Put 避險需求高）→ 看空訊號。<br>🟢 綠點 = Call、🔴 紅點 = Put、🔵 藍線 = 平滑曲線。' +
           '</div></div>';
       } catch (e) {

@@ -15,8 +15,8 @@
   function V287_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V287_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V287_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -31,7 +31,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">📚 輸入美股代號，AI 自動抓 SEC 最新 10-K 年報，5 段重點摘要</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="k287-symbol" placeholder="美股代碼（例：AAPL / MSFT / NVDA）" style="padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:240px">
+        <input id="k287-symbol" placeholder="美股代碼（例：AAPL / MSFT / NVDA）" style="padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:240px">
         <button id="k287-run" style="padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📚 AI 摘要 10-K</button>
       </div>
       <div id="k287-results"></div>
@@ -47,8 +47,8 @@
         if (j.error) throw new Error(j.error);
         r.innerHTML = `
           <h4 style="color:#4ade80">✅ ${sym} 10-K 年報摘要</h4>
-          <p style="color:#aaa;font-size:12px;margin:0 0 8px 0">📅 ${j.filing_date || ''} ｜ <a href="${j.url || '#'}" target="_blank" style="color:#3b82f6">查看完整 SEC 文件 ↗</a></p>
-          <div style="background:#0f0f1e;padding:16px;border-radius:6px;color:#e0e0ff;line-height:1.7;white-space:pre-wrap">${j.summary || '(無摘要)'}</div>
+          <p style="color:#aaa;font-size:12px;margin:0 0 8px 0">📅 ${j.filing_date || ''} ｜ <a href="${j.url || '#'}" target="_blank" style="color:var(--accent)">查看完整 SEC 文件 ↗</a></p>
+          <div style="background:var(--bg-base);padding:16px;border-radius:6px;color:var(--text-primary);line-height:1.7;white-space:pre-wrap">${j.summary || '(無摘要)'}</div>
         `;
       } catch (e) { r.innerHTML = `<p style="color:#ef4444">錯誤：${e.message}</p>`; }
     };
@@ -63,7 +63,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🏰 5 維度評分（品牌/規模/網路/轉換/特許）— Buffett 所謂「護城河」</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="m287-symbol" placeholder="股票代碼（例：AAPL / 2330）" style="padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="m287-symbol" placeholder="股票代碼（例：AAPL / 2330）" style="padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="m287-run" style="padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🏰 AI 護城河分析</button>
       </div>
       <div id="m287-results"></div>
@@ -110,7 +110,7 @@
         r.innerHTML = `
           <h4 style="color:#4ade80">✅ ${sym} 護城河 5 維度</h4>
           <div style="display:flex;gap:16px;flex-wrap:wrap">
-            <svg width="${W2}" height="${H2}" style="background:#0a0a1e;border-radius:6px">
+            <svg width="${W2}" height="${H2}" style="background:var(--bg-base);border-radius:6px">
               ${grid}${labels}
               <polygon points="${polygon}" fill="rgba(74,222,128,0.3)" stroke="#4ade80" stroke-width="2"/>
               ${pts.map(p => `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="#4ade80"/>`).join('')}
@@ -121,13 +121,13 @@
               <div style="margin-top:12px">
                 ${dims.map(d => `<div style="margin-bottom:6px">
                   <div style="display:flex;justify-content:space-between"><span style="color:#fff">${d.name}</span><b style="color:#fbbf24">${(sc[d.key] || 0).toFixed(1)}</b></div>
-                  <div style="background:#2a2a4a;height:6px;border-radius:3px;overflow:hidden"><div style="background:#4ade80;height:100%;width:${(sc[d.key] || 0) * 10}%"></div></div>
+                  <div style="background:var(--bg-surface);height:6px;border-radius:3px;overflow:hidden"><div style="background:#4ade80;height:100%;width:${(sc[d.key] || 0) * 10}%"></div></div>
                   <div style="font-size:11px;color:#666">${d.desc}</div>
                 </div>`).join('')}
               </div>
             </div>
           </div>
-          <div style="margin-top:16px;padding:12px;background:#0f0f1e;border-radius:6px;color:#e0e0ff;line-height:1.6">${j.analysis || ''}</div>
+          <div style="margin-top:16px;padding:12px;background:var(--bg-base);border-radius:6px;color:var(--text-primary);line-height:1.6">${j.analysis || ''}</div>
         `;
       } catch (e) { r.innerHTML = `<p style="color:#ef4444">錯誤：${e.message}</p>`; }
     };
@@ -142,7 +142,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🥊 輸入主標的，AI 找出競爭對手 + 對比 PE/PB/ROE/毛利率/市值</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="cp287-symbol" placeholder="主標的（例：AAPL / 2330）" style="padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="cp287-symbol" placeholder="主標的（例：AAPL / 2330）" style="padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="cp287-run" style="padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🥊 競爭分析</button>
       </div>
       <div id="cp287-results"></div>
@@ -161,7 +161,7 @@
         r.innerHTML = `
           <h4 style="color:#4ade80">✅ ${sym} 競爭格局</h4>
           <table style="width:100%;border-collapse:collapse;font-size:13px">
-            <tr style="background:#2a2a4a">
+            <tr style="background:var(--bg-surface)">
               <th style="padding:8px">代碼</th><th style="padding:8px">公司</th>
               <th style="padding:8px">市值</th><th style="padding:8px">PE</th>
               <th style="padding:8px">PB</th><th style="padding:8px">ROE</th>
@@ -178,7 +178,7 @@
               <td style="padding:6px;text-align:right;color:${p.ytd > 0 ? '#4ade80' : '#ef4444'}">${p.ytd ? (p.ytd > 0 ? '+' : '') + p.ytd + '%' : '—'}</td>
             </tr>`).join('')}
           </table>
-          <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;color:#e0e0ff;line-height:1.6">${j.analysis || ''}</div>
+          <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;color:var(--text-primary);line-height:1.6">${j.analysis || ''}</div>
         `;
       } catch (e) { r.innerHTML = `<p style="color:#ef4444">錯誤：${e.message}</p>`; }
     };
@@ -205,13 +205,13 @@
         const events = j.events || [];
         r.innerHTML = `
           <h4 style="color:#4ade80">✅ AI 預測 ${events.length} 個高風險事件</h4>
-          ${events.map((e, i) => `<div style="background:#0f0f1e;padding:14px;border-radius:8px;margin-bottom:10px;border-left:4px solid ${e.probability > 30 ? '#ef4444' : e.probability > 15 ? '#fbbf24' : '#4ade80'}">
+          ${events.map((e, i) => `<div style="background:var(--bg-base);padding:14px;border-radius:8px;margin-bottom:10px;border-left:4px solid ${e.probability > 30 ? '#ef4444' : e.probability > 15 ? '#fbbf24' : '#4ade80'}">
             <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
               <h4 style="margin:0;color:#fff">#${i + 1} ${e.title || ''}</h4>
               <span style="color:${e.probability > 30 ? '#ef4444' : '#fbbf24'};font-weight:bold">機率 ${e.probability}%</span>
             </div>
             <div style="color:#aaa;font-size:12px;margin-bottom:6px">📂 ${e.category || ''} ｜ 🎯 影響：${e.impact || ''}</div>
-            <div style="color:#e0e0ff;font-size:13px;line-height:1.6">${e.description || ''}</div>
+            <div style="color:var(--text-primary);font-size:13px;line-height:1.6">${e.description || ''}</div>
             ${e.mitigation ? `<div style="margin-top:8px;padding:8px;background:#1a1a3e;border-radius:4px;font-size:12px;color:#a8d8ff"><b>💡 對沖建議：</b>${e.mitigation}</div>` : ''}
           </div>`).join('')}
         `;
@@ -228,7 +228,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🖼️ 抓 60 日 K 線資料，AI 識別經典型態（頭肩頂/雙底/三角收斂等 12 種）</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="pt287-symbol" placeholder="股票代碼（例：AAPL / 2330）" style="padding:10px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="pt287-symbol" placeholder="股票代碼（例：AAPL / 2330）" style="padding:10px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="pt287-run" style="padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🖼️ AI 型態識別</button>
       </div>
       <div id="pt287-results"></div>
@@ -251,7 +251,7 @@
           const maxV = Math.max(...closes), minV = Math.min(...closes);
           const range = maxV - minV || 1;
           const points = closes.map((p, i) => `${i / (closes.length - 1) * W2},${H2 - (p - minV) / range * (H2 - 20) - 10}`).join(' ');
-          svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:#0a0a1e;border-radius:6px">
+          svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:var(--bg-base);border-radius:6px">
             <polyline points="${points}" fill="none" stroke="#4ade80" stroke-width="2"/>
           </svg>`;
         }
@@ -259,7 +259,7 @@
           <h4 style="color:#4ade80">✅ ${sym} K 線型態識別</h4>
           ${svg}
           <div style="margin-top:12px">
-            ${patterns.length ? patterns.map(p => `<div style="background:#0f0f1e;padding:12px;border-radius:6px;margin-bottom:8px;border-left:4px solid ${p.bullish ? '#4ade80' : '#ef4444'}">
+            ${patterns.length ? patterns.map(p => `<div style="background:var(--bg-base);padding:12px;border-radius:6px;margin-bottom:8px;border-left:4px solid ${p.bullish ? '#4ade80' : '#ef4444'}">
               <div style="display:flex;justify-content:space-between"><b style="color:#fff">${p.name}</b><span style="color:${p.bullish ? '#4ade80' : '#ef4444'}">信心度 ${p.confidence}%</span></div>
               <div style="color:#aaa;font-size:12px;margin-top:4px">${p.description || ''}</div>
               ${p.target ? `<div style="margin-top:6px;color:#fbbf24">🎯 目標價：${p.target}</div>` : ''}

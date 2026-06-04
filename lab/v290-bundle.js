@@ -16,8 +16,8 @@
   function V290_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V290_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V290_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -31,7 +31,7 @@
     const c = V290_$(containerId); if (!c) return;
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🧠 偵測你的交易行為是否被情緒主導（FOMO 追高 / Panic 殺低）</p>
-      <div style="background:#0f0f1e;padding:16px;border-radius:8px;margin-bottom:12px">
+      <div style="background:var(--bg-base);padding:16px;border-radius:8px;margin-bottom:12px">
         <p style="color:#fbbf24;margin:0 0 8px 0">📋 5 道行為自評題（誠實作答）：</p>
         <div id="fomo290-questions"></div>
         <button id="fomo290-eval" style="margin-top:12px;padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🧠 評估我的心理狀態</button>
@@ -51,7 +51,7 @@
         <div style="display:flex;gap:8px">
           ${[0, 1, 2, 3, 4].map(v => `<label style="cursor:pointer">
             <input type="radio" name="q${i}" value="${v}" style="display:none">
-            <span class="q${i}-opt" data-v="${v}" style="display:inline-block;padding:4px 12px;background:#2a2a4a;border:1px solid #444;color:#aaa;border-radius:4px;font-size:12px">${['從不', '很少', '偶爾', '常常', '總是'][v]}</span>
+            <span class="q${i}-opt" data-v="${v}" style="display:inline-block;padding:4px 12px;background:var(--bg-surface);border:1px solid #444;color:#aaa;border-radius:4px;font-size:12px">${['從不', '很少', '偶爾', '常常', '總是'][v]}</span>
           </label>`).join('')}
         </div>
       </div>
@@ -59,7 +59,7 @@
     V290_$('fomo290-questions').querySelectorAll('span[class^="q"]').forEach(s => {
       s.onclick = () => {
         const cls = s.className;
-        document.querySelectorAll('.' + cls).forEach(o => { o.style.background = '#2a2a4a'; o.style.color = '#aaa'; });
+        document.querySelectorAll('.' + cls).forEach(o => { o.style.background = 'var(--bg-surface)'; o.style.color = '#aaa'; });
         s.style.background = '#4ade80'; s.style.color = '#000';
         s.previousElementSibling.checked = true;
       };
@@ -80,7 +80,7 @@
       else if (fomoIdx < 75) { level = '⚠️ 情緒主導'; color = '#f97316'; advice = '你的交易明顯被情緒影響。建議：1) 每天看盤不超過 2 小時 2) 建立交易日誌追蹤情緒 3) 避免槓桿 4) 找朋友或社群討論'; }
       else { level = '🚨 高風險警報'; color = '#ef4444'; advice = '你的心理狀態非常危險！建議：1) 立即停止追高/殺低 2) 暫停交易至少 1 週 3) 重新檢視風險承受能力 4) 考慮諮詢理財顧問。'; }
       V290_$('fomo290-result').innerHTML = `
-        <div style="background:#0f0f1e;padding:20px;border-radius:8px;border-left:6px solid ${color}">
+        <div style="background:var(--bg-base);padding:20px;border-radius:8px;border-left:6px solid ${color}">
           <div style="display:flex;align-items:center;gap:16px;margin-bottom:12px">
             <div style="font-size:48px">${fomoIdx < 25 ? '😎' : fomoIdx < 50 ? '😊' : fomoIdx < 75 ? '😰' : '😱'}</div>
             <div>
@@ -89,10 +89,10 @@
               <div style="color:${color};font-size:14px;font-weight:bold">${level}</div>
             </div>
           </div>
-          <div style="background:#2a2a4a;height:8px;border-radius:4px;overflow:hidden;margin-bottom:12px">
+          <div style="background:var(--bg-surface);height:8px;border-radius:4px;overflow:hidden;margin-bottom:12px">
             <div style="background:${color};height:100%;width:${fomoIdx}%"></div>
           </div>
-          <p style="color:#e0e0ff;line-height:1.6;margin:0">${advice}</p>
+          <p style="color:var(--text-primary);line-height:1.6;margin:0">${advice}</p>
         </div>
       `;
       // 儲存歷史
@@ -110,22 +110,22 @@
     const c = V290_$(containerId); if (!c) return;
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">📓 詳細記錄每筆交易：進場理由 + 情緒 + 結果（找出你的優勢與盲點）</p>
-      <div style="background:#0f0f1e;padding:16px;border-radius:8px;margin-bottom:12px">
+      <div style="background:var(--bg-base);padding:16px;border-radius:8px;margin-bottom:12px">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px">
-          <input id="j290-date" type="date" value="${new Date().toISOString().slice(0, 10)}" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
-          <input id="j290-symbol" placeholder="代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
-          <select id="j290-action" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+          <input id="j290-date" type="date" value="${new Date().toISOString().slice(0, 10)}" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
+          <input id="j290-symbol" placeholder="代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
+          <select id="j290-action" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
             <option>BUY</option><option>SELL</option>
           </select>
-          <input id="j290-price" type="number" step="0.01" placeholder="價格" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
-          <input id="j290-qty" type="number" placeholder="數量" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
-          <select id="j290-emotion" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px">
+          <input id="j290-price" type="number" step="0.01" placeholder="價格" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
+          <input id="j290-qty" type="number" placeholder="數量" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
+          <select id="j290-emotion" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px">
             <option value="confident">😎 自信</option><option value="hopeful">🤞 期待</option>
             <option value="anxious">😰 焦慮</option><option value="fomo">🤤 FOMO</option>
             <option value="panic">😱 恐慌</option><option value="calm">😌 冷靜</option>
           </select>
         </div>
-        <textarea id="j290-reason" rows="2" placeholder="進場理由（必填，越詳細越好）" style="width:100%;padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;margin-top:8px;resize:vertical"></textarea>
+        <textarea id="j290-reason" rows="2" placeholder="進場理由（必填，越詳細越好）" style="width:100%;padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;margin-top:8px;resize:vertical"></textarea>
         <button id="j290-save" style="margin-top:8px;padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📓 記錄</button>
       </div>
       <div id="j290-list"></div>
@@ -138,7 +138,7 @@
       V290_$('j290-list').innerHTML = total ? `
         <p style="color:#aaa;font-size:13px;margin-bottom:8px">📋 共 ${total} 筆（${buys} 買 / ${sells} 賣）</p>
         <table style="width:100%;border-collapse:collapse;font-size:13px">
-          <tr style="background:#2a2a4a">
+          <tr style="background:var(--bg-surface)">
             <th style="padding:6px">日期</th><th style="padding:6px">代碼</th><th style="padding:6px">動作</th>
             <th style="padding:6px">價格</th><th style="padding:6px">數量</th><th style="padding:6px">情緒</th>
             <th style="padding:6px;text-align:left">理由</th><th style="padding:6px">操作</th>
@@ -219,7 +219,7 @@
         (Math.min(100, Math.max(0, totalReturn + 50))) * 0.2 +
         (totalTrades > 5 ? 100 : totalTrades * 20) * 0.2
       );
-      const card = (label, val, color, sub) => `<div style="background:#0f0f1e;padding:16px;border-radius:8px">
+      const card = (label, val, color, sub) => `<div style="background:var(--bg-base);padding:16px;border-radius:8px">
         <div style="color:#aaa;font-size:12px">${label}</div>
         <div style="font-size:28px;color:${color};font-weight:bold">${val}</div>
         ${sub ? `<div style="color:#666;font-size:11px">${sub}</div>` : ''}
@@ -235,7 +235,7 @@
           ${card('勝率', V290_fmt(winRate, 1) + '%', winRate >= 50 ? '#4ade80' : '#fbbf24', `${wins} 勝 / ${losses} 敗`)}
           ${card('盈虧比', V290_fmt(profitFactor, 2), profitFactor >= 1.5 ? '#4ade80' : '#fbbf24', '> 1.5 為佳')}
           ${card('總報酬', (totalReturn >= 0 ? '+' : '') + V290_fmt(totalReturn, 2) + '%', totalReturn >= 0 ? '#4ade80' : '#ef4444', '相對初始')}
-          ${card('主導情緒', dominantEmotion ? emotionMap[dominantEmotion[0]] || dominantEmotion[0] : '—', '#3b82f6', dominantEmotion ? `${dominantEmotion[1]} 次` : '尚無資料')}
+          ${card('主導情緒', dominantEmotion ? emotionMap[dominantEmotion[0]] || dominantEmotion[0] : '—', 'var(--accent)', dominantEmotion ? `${dominantEmotion[1]} 次` : '尚無資料')}
           ${card('總資產', 'NT$' + V290_fmt(totalAsset, 0), '#fff', '紙上交易帳戶')}
         </div>
       `;
@@ -256,7 +256,7 @@
     V290_$('cc290-run').onclick = async () => {
       const trades = JSON.parse(localStorage.getItem('mr_v290_journal') || '[]');
       if (trades.length < 1) {
-        V290_$('cc290-area').innerHTML = '<p style="color:#fbbf24;padding:16px;background:#0f0f1e;border-radius:6px">⚠️ 請先在「交易日誌」記錄至少 3 筆交易再來覆盤</p>';
+        V290_$('cc290-area').innerHTML = '<p style="color:#fbbf24;padding:16px;background:var(--bg-base);border-radius:6px">⚠️ 請先在「交易日誌」記錄至少 3 筆交易再來覆盤</p>';
         return;
       }
       const a = V290_$('cc290-area');
@@ -270,9 +270,9 @@
         });
         const j = await r.json();
         a.innerHTML = `
-          <div style="background:#0f0f1e;padding:20px;border-radius:8px;border-left:6px solid #4ade80">
+          <div style="background:var(--bg-base);padding:20px;border-radius:8px;border-left:6px solid #4ade80">
             <h4 style="margin:0 0 12px 0;color:#4ade80">🧑‍🏫 AI 教練覆盤報告</h4>
-            <div style="color:#e0e0ff;line-height:1.8;white-space:pre-wrap">${j.response || j.message || '無回應'}</div>
+            <div style="color:var(--text-primary);line-height:1.8;white-space:pre-wrap">${j.response || j.message || '無回應'}</div>
           </div>
         `;
       } catch (e) { a.innerHTML = `<p style="color:#ef4444">錯誤：${e.message}</p>`; }
@@ -308,7 +308,7 @@
         // SVG 半圓 gauge
         const angle = -90 + v * 1.8; // -90 to 90
         const W2 = 300, H2 = 180, cx = 150, cy = 150, rr = 100;
-        let svg = `<svg width="${W2}" height="${H2}" style="background:#0a0a1e;border-radius:8px">`;
+        let svg = `<svg width="${W2}" height="${H2}" style="background:var(--bg-base);border-radius:8px">`;
         // 半圓背景
         for (let i = 0; i < 5; i++) {
           const a1 = -180 + i * 36;
@@ -329,12 +329,12 @@
         svg += `<text x="${cx}" y="${cy + 50}" fill="#aaa" font-size="12" text-anchor="middle">/100</text>`;
         svg += `</svg>`;
         a.innerHTML = `
-          <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;background:#0f0f1e;padding:16px;border-radius:8px">
+          <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;background:var(--bg-base);padding:16px;border-radius:8px">
             ${svg}
             <div style="flex:1;min-width:280px">
               <div style="color:${color};font-size:24px;font-weight:bold">${level}</div>
               <div style="color:#aaa;font-size:12px;margin-top:6px">資料來源：CNN Money / alternative.me ｜ ${d.timestamp ? new Date(parseInt(d.timestamp) * 1000).toLocaleDateString() : '今日'}</div>
-              <p style="color:#e0e0ff;line-height:1.6;margin-top:12px">${advice}</p>
+              <p style="color:var(--text-primary);line-height:1.6;margin-top:12px">${advice}</p>
             </div>
           </div>
         `;

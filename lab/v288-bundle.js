@@ -16,8 +16,8 @@
   function V288_inject(parentTabId, id, title, builder) {
     const tab = document.querySelector(`[data-tab-content="${parentTabId}"]`) || document.querySelector(`#tab-${parentTabId}`) || document.body;
     if (document.getElementById(id)) return;
-    const sec = V288_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,#1a1a2e);border-radius:12px;border:1px solid var(--border,#2a2a4a)">
-      <h3 style="margin:0 0 16px 0;color:var(--text,#e0e0ff)">${title}</h3>
+    const sec = V288_el(`<section id="${id}" style="margin:24px 0;padding:20px;background:var(--card-bg,var(--bg-surface));border-radius:12px;border:1px solid var(--border,var(--bg-surface))">
+      <h3 style="margin:0 0 16px 0;color:var(--text,var(--text-primary))">${title}</h3>
       <div id="${id}-body"></div>
     </section>`);
     tab.appendChild(sec);
@@ -55,8 +55,8 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🧱 Renko 磚型圖：忽略時間，只看價格固定變化（過濾雜訊，看清趨勢）</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="r288-symbol" placeholder="股票代碼（例：AAPL / 2330）" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
-        <input id="r288-brick" type="number" placeholder="磚塊大小（自動 = 留空）" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:160px">
+        <input id="r288-symbol" placeholder="股票代碼（例：AAPL / 2330）" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="r288-brick" type="number" placeholder="磚塊大小（自動 = 留空）" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:160px">
         <button id="r288-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🧱 繪製 Renko</button>
       </div>
       <div id="r288-chart"></div>
@@ -96,7 +96,7 @@
       const minP = Math.min(...allPrices), maxP = Math.max(...allPrices);
       const range = maxP - minP || 1;
       const bw = Math.max(4, W2 / Math.max(60, bricks.length));
-      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:#0a0a1e;border-radius:6px">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:var(--bg-base);border-radius:6px">`;
       // Y axis labels
       for (let i = 0; i <= 5; i++) {
         const p = minP + (range * i / 5);
@@ -122,7 +122,7 @@
           <span>🔴 下跌磚 ${dnBricks} 塊</span>
           <span>📈 趨勢比 ${V288_fmt(upBricks / Math.max(1, dnBricks), 2)}</span>
         </div>
-        <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:12px;color:#aaa">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
           <b>💡 Renko 用法：</b>連續 3 塊同色 = 強趨勢 ｜ 磚塊變色 = 趨勢反轉訊號 ｜ 過濾雜訊看清主趨勢
         </div>
       `;
@@ -138,7 +138,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">❌ Point & Figure 點數圖：百年歷史的純價格圖（華爾街老前輩用了 100 年）</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="pf288-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="pf288-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="pf288-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">❌ 繪製 P&F</button>
       </div>
       <div id="pf288-chart"></div>
@@ -194,7 +194,7 @@
       const range = maxP - minP || 1;
       const colW = Math.max(8, W2 / Math.max(40, cols.length));
       const rowH = Math.max(4, (H2 - 40) / (range / boxSize + 1));
-      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:#0a0a1e;border-radius:6px">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:var(--bg-base);border-radius:6px">`;
       cols.forEach((col, ci) => {
         col.boxes.forEach(price => {
           const y = H2 - 20 - (price - minP) / boxSize * rowH;
@@ -211,7 +211,7 @@
       ch.innerHTML = `
         <p style="color:#4ade80">✅ ${sym} P&F ｜ Box=$${V288_fmt(boxSize)} ｜ 反轉=3 box ｜ 共 ${cols.length} 列</p>
         ${svg}
-        <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:12px;color:#aaa">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
           <b>❌ X = 上漲列</b> ｜ <b>⭕ O = 下跌列</b><br>
           <b>💡 用法：</b>新高 X = 突破 ｜ 新低 O = 跌破 ｜ Triple Top/Bottom = 強訊號
         </div>
@@ -228,7 +228,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">🇯🇵 Heikin-Ashi（日文「平均棒」）：平滑化的 K 線，更清楚看趨勢</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="ha288-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="ha288-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="ha288-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🇯🇵 繪製 Heikin-Ashi</button>
       </div>
       <div id="ha288-chart"></div>
@@ -256,7 +256,7 @@
       const minP = Math.min(...allP), maxP = Math.max(...allP);
       const range = maxP - minP || 1;
       const cw = W2 / ha.length;
-      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:#0a0a1e;border-radius:6px">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:var(--bg-base);border-radius:6px">`;
       // Y grid
       for (let i = 0; i <= 5; i++) {
         const p = minP + range * i / 5;
@@ -282,7 +282,7 @@
       ch.innerHTML = `
         <p style="color:#4ade80">✅ ${sym} Heikin-Ashi ｜ 近 5 日：${trend}（${upBars}/5 紅 K）</p>
         ${svg}
-        <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:12px;color:#aaa">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
           <b>💡 Heikin-Ashi 訊號：</b>
           連續紅 K 無下影 = 強多頭 ｜ 連續黑 K 無上影 = 強空頭<br>
           十字星（Doji）= 趨勢可能反轉
@@ -300,7 +300,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">📊 Volume Profile：哪個價位成交最多 = 市場共識的「公允價值」</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="vp288-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="vp288-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="vp288-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">📊 繪製 Volume Profile</button>
       </div>
       <div id="vp288-chart"></div>
@@ -344,14 +344,14 @@
       const val = minP + vaIdxArr[0] * binSize;
       // SVG
       const W2 = 900, H2 = 400;
-      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:#0a0a1e;border-radius:6px">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:var(--bg-base);border-radius:6px">`;
       const barH = (H2 - 40) / NUM_BINS;
       bins.forEach((v, i) => {
         const y = H2 - 20 - (i + 1) * barH;
         const w = (v / maxV) * (W2 - 100);
         const inVA = vaIdxs.has(i);
         const isPOC = i === pocIdx;
-        const fill = isPOC ? '#fbbf24' : inVA ? '#4ade80' : '#3b82f6';
+        const fill = isPOC ? '#fbbf24' : inVA ? '#4ade80' : 'var(--accent)';
         svg += `<rect x="60" y="${y}" width="${w}" height="${barH - 1}" fill="${fill}" opacity="0.8"/>`;
         if (i % 3 === 0) {
           svg += `<text x="6" y="${y + barH / 2 + 3}" fill="#888" font-size="9">${V288_fmt(minP + (i + 0.5) * binSize, 2)}</text>`;
@@ -367,12 +367,12 @@
         <p style="color:#4ade80">✅ ${sym} Volume Profile（過去 6 個月）</p>
         ${svg}
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:12px">
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#fbbf24;font-size:12px">🎯 POC 點</div><div style="color:#fff;font-size:18px;font-weight:bold">$${V288_fmt(pocPrice, 2)}</div></div>
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#4ade80;font-size:12px">📈 VA High</div><div style="color:#fff;font-size:18px;font-weight:bold">$${V288_fmt(vah, 2)}</div></div>
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#4ade80;font-size:12px">📉 VA Low</div><div style="color:#fff;font-size:18px;font-weight:bold">$${V288_fmt(val, 2)}</div></div>
-          <div style="background:#0f0f1e;padding:10px;border-radius:6px"><div style="color:#aaa;font-size:12px">📍 當前 vs POC</div><div style="color:${dist > 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${dist > 0 ? '+' : ''}${dist}%</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#fbbf24;font-size:12px">🎯 POC 點</div><div style="color:#fff;font-size:18px;font-weight:bold">$${V288_fmt(pocPrice, 2)}</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#4ade80;font-size:12px">📈 VA High</div><div style="color:#fff;font-size:18px;font-weight:bold">$${V288_fmt(vah, 2)}</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#4ade80;font-size:12px">📉 VA Low</div><div style="color:#fff;font-size:18px;font-weight:bold">$${V288_fmt(val, 2)}</div></div>
+          <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:12px">📍 當前 vs POC</div><div style="color:${dist > 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${dist > 0 ? '+' : ''}${dist}%</div></div>
         </div>
-        <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:12px;color:#aaa">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
           <b>💡 用法：</b> POC = Point of Control，最重要支撐/壓力 ｜ VA (Value Area) = 70% 成交量區間，跌破 VAL 為熊訊，突破 VAH 為牛訊
         </div>
       `;
@@ -388,7 +388,7 @@
     c.innerHTML = `
       <p style="color:#aaa;margin:0 0 12px 0">👣 Footprint 訂單流：每根 K 線內的買賣壓力分布（誰在主導）</p>
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
-        <input id="fp288-symbol" placeholder="股票代碼" style="padding:8px;background:#2a2a4a;border:1px solid #444;color:#fff;border-radius:4px;width:200px">
+        <input id="fp288-symbol" placeholder="股票代碼" style="padding:8px;background:var(--bg-surface);border:1px solid #444;color:#fff;border-radius:4px;width:200px">
         <button id="fp288-run" style="padding:8px 16px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">👣 繪製 Footprint</button>
       </div>
       <div id="fp288-chart"></div>
@@ -407,7 +407,7 @@
       const minP = Math.min(...allP), maxP = Math.max(...allP);
       const range = maxP - minP || 1;
       const cw = W2 / recent.length;
-      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:#0a0a1e;border-radius:6px">`;
+      let svg = `<svg width="${W2}" height="${H2}" style="width:100%;background:var(--bg-base);border-radius:6px">`;
       for (let i = 0; i <= 5; i++) {
         const y = H2 - 20 - (H2 - 40) * i / 5;
         const p = minP + range * i / 5;
@@ -430,7 +430,7 @@
           const sellV = Math.round(sellVol / 5);
           const total = buyV + sellV;
           const bias = (buyV - sellV) / Math.max(1, total);
-          const fill = bias > 0.1 ? '#4ade80' : bias < -0.1 ? '#ef4444' : '#3b82f6';
+          const fill = bias > 0.1 ? '#4ade80' : bias < -0.1 ? '#ef4444' : 'var(--accent)';
           svg += `<rect x="${x}" y="${yc}" width="${cw / 2}" height="${cellH - 1}" fill="${fill}" opacity="${0.3 + Math.abs(bias) * 0.6}"/>`;
         }
         // delta 標籤
@@ -447,7 +447,7 @@
           <span style="color:#ef4444">🔴 紅 = 賣方主導</span>
           <span>累計 Delta：<b style="color:${totalDelta > 0 ? '#4ade80' : '#ef4444'}">${(totalDelta / 1e6).toFixed(1)}M</b></span>
         </div>
-        <div style="margin-top:12px;padding:12px;background:#0f0f1e;border-radius:6px;font-size:12px;color:#aaa">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
           <b>💡 Footprint 用法：</b> 連續綠主導 = 強買方 ｜ 連續紅主導 = 強賣方 ｜ Delta 背離 = 反轉訊號<br>
           <b>注意：</b>本版為簡化版（用日 K 推估），完整 Footprint 需 tick-level 資料（付費版）
         </div>
