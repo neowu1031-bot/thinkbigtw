@@ -95,7 +95,7 @@ textarea{height:80px;resize:vertical}
 .search-bar:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .search-bar svg{width:14px;height:14px;color:var(--text-muted);flex-shrink:0}
 .search-bar span{font-size:12px;color:var(--text-muted)}
-.header-right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0}
 .icon-btn{width:34px;height:34px;border-radius:var(--btn-radius);border:1px solid var(--border-strong);background:var(--bg-surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;position:relative;color:var(--text-secondary)}
 .icon-btn svg{width:16px;height:16px}
 .icon-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
@@ -245,10 +245,13 @@ textarea{height:80px;resize:vertical}
   #stockChartWrap,#etfChartWrap{height:220px!important;}
   h2{font-size:18px!important;}
   .dashboard{padding:60px 8px 60px!important;}
-  .header{padding:0 12px!important;}
+  .header{padding:0 10px!important;gap:8px!important}
+  .header-right{gap:4px!important}
+  .search-bar{display:none!important}
+  .badge{font-size:10px!important;padding:2px 6px!important;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .icon-btn{width:30px!important;height:30px!important}
   .tab-content{padding:14px 10px!important;}
   .section{padding:4px 0!important;margin-bottom:18px!important;}
-  .hermes-panel{margin:12px 8px 0!important}
   .grid-3{grid-template-columns:1fr!important}
   .mr-menu-panel{width:260px}
   .search-bar{max-width:180px}
@@ -260,8 +263,9 @@ textarea{height:80px;resize:vertical}
   .card h3{font-size:10px!important;}
   .tab-content{padding:10px 4px!important;}
   .dashboard{padding:56px 4px 40px!important;}
-  .header h1{font-size:17px!important;}
-  .badge{font-size:10px!important;padding:3px 8px!important;}
+  .logo span:first-of-type{display:none!important}
+  .logo{font-size:13px!important}
+  .badge{display:none!important}
   .stock-grid{grid-template-columns:1fr 1fr!important;gap:6px!important;}
   .stock-item{padding:8px!important;}
   .stock-item .val{font-size:14px!important;}
@@ -293,14 +297,11 @@ textarea{height:80px;resize:vertical}
   .btn{width:260px!important;padding:12px 20px!important;}
 }
 
-/* v282 language + v281 theme + logout mobile fix */
+/* v272: 隱藏舊的浮動按鈕 — 功能已整合到新 header */
+#v282-lang-btn{display:none!important}
+#v281-theme-btn{display:none!important}
 @media(max-width:768px){
-  #v282-lang-btn{position:fixed!important;top:16px!important;right:unset!important;left:12px!important;font-size:11px!important;padding:4px 8px!important;z-index:9998!important;}
-  #v281-theme-btn{display:none!important;}
   #logoutBtn{font-size:10px!important;padding:3px 8px!important;white-space:nowrap!important;}
-}
-@media(max-width:480px){
-  #v282-lang-btn{font-size:10px!important;padding:3px 6px!important;left:8px!important;top:17px!important;}
 }
 
 /* ===== Animations ===== */
@@ -1132,7 +1133,7 @@ textarea{height:80px;resize:vertical}
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
 </div>
-<script src="app2.js?v=272"></script><script src="v277-bundle.js?v=272"></script><script src="v278-bundle.js?v=272"></script><script src="v279-bundle.js?v=272"></script><script src="v281-bundle.js?v=272"></script><script src="v282-bundle.js?v=272"></script><script src="v283-bundle.js?v=272"></script><script src="v284-bundle.js?v=272"></script><script src="v285-bundle.js?v=272"></script><script src="v286-bundle.js?v=272"></script><script src="v287-bundle.js?v=272"></script><script src="v288-bundle.js?v=272"></script><script src="v289-bundle.js?v=272"></script><script src="v290-bundle.js?v=272"></script><script src="v291-bundle.js?v=272"></script><script src="v292-bundle.js?v=272"></script><script src="v293-bundle.js?v=272"></script><script src="v294-bundle.js?v=272"></script><script src="v295-bundle.js?v=272"></script><script src="v296-bundle.js?v=272"></script><script src="v297a-bundle.js?v=272"></script>
+<script src="app2.js?v=272b"></script><script src="v277-bundle.js?v=272b"></script><script src="v278-bundle.js?v=272b"></script><script src="v279-bundle.js?v=272b"></script><script src="v281-bundle.js?v=272b"></script><script src="v282-bundle.js?v=272b"></script><script src="v283-bundle.js?v=272b"></script><script src="v284-bundle.js?v=272b"></script><script src="v285-bundle.js?v=272b"></script><script src="v286-bundle.js?v=272b"></script><script src="v287-bundle.js?v=272b"></script><script src="v288-bundle.js?v=272b"></script><script src="v289-bundle.js?v=272b"></script><script src="v290-bundle.js?v=272b"></script><script src="v291-bundle.js?v=272b"></script><script src="v292-bundle.js?v=272b"></script><script src="v293-bundle.js?v=272b"></script><script src="v294-bundle.js?v=272b"></script><script src="v295-bundle.js?v=272b"></script><script src="v296-bundle.js?v=272b"></script><script src="v297a-bundle.js?v=272b"></script>
 
 <script>
 (function(){
