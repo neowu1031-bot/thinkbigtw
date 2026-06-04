@@ -187,13 +187,13 @@
 
       V291_$('cvar291-result').innerHTML = `
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
-          <div style="background:#1a0f0f;padding:16px;border-radius:8px;border:1px solid #fbbf24">
+          <div style="background:var(--bg-base);padding:16px;border-radius:8px;border:1px solid #fbbf24">
             <div style="color:#fbbf24;font-size:13px">VaR ${(conf * 100)}% — 「正常情境最大損失」</div>
             <div style="color:#fbbf24;font-size:30px;font-weight:bold">NT$${V291_fmt(VaR, 0)}</div>
             <div style="color:#aaa;font-size:11px">公式：${(conf * 100)}% 信心，未來 ${days} 日最壞 ≤ 此值</div>
             <div style="color:#aaa;font-size:11px;margin-top:4px">Monte Carlo: NT$${V291_fmt(VaR_MC, 0)}</div>
           </div>
-          <div style="background:#1a0f0f;padding:16px;border-radius:8px;border:1px solid #ef4444">
+          <div style="background:var(--bg-base);padding:16px;border-radius:8px;border:1px solid #ef4444">
             <div style="color:#ef4444;font-size:13px">CVaR ${(conf * 100)}% — 「壞情境平均損失」</div>
             <div style="color:#ef4444;font-size:30px;font-weight:bold">NT$${V291_fmt(CVaR, 0)}</div>
             <div style="color:#aaa;font-size:11px">已超過 VaR 的尾部損失之平均</div>
@@ -259,7 +259,7 @@
             </tr>`;
       }).join('')}
         </table>
-        <div style="margin-top:12px;padding:12px;background:#1a0f0f;border-radius:6px;font-size:12px;color:#fbbf24;border:1px solid #ef4444">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#fbbf24;border:1px solid #ef4444">
           <b>⚠️ 風險警示：</b>
           ${scenarios[1].impact * baseValue < -baseValue * 0.5 ? '在 2008 等級的崩盤中，你會損失過半資產。建議：1) 提高現金比例 2) 加入避險資產（黃金、美債）3) 考慮買 put options。' : '投組相對抗壓，但仍應留 20%+ 現金應對黑天鵝。'}
         </div>

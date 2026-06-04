@@ -60,7 +60,7 @@
         <button id="br293-next" disabled style="padding:8px 12px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">下一格 ▶️</button>
         <button id="br293-buy" disabled style="padding:8px 12px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🟢 買 100</button>
         <button id="br293-sell" disabled style="padding:8px 12px;background:#ef4444;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🔴 賣 100</button>
-        <button id="br293-reset" style="padding:8px 12px;background:#6b7280;color:#fff;border:none;border-radius:6px;cursor:pointer">↺ 重置</button>
+        <button id="br293-reset" style="padding:8px 12px;background:var(--text-muted);color:#fff;border:none;border-radius:6px;cursor:pointer">↺ 重置</button>
       </div>
       <div id="br293-chart"></div>
       <div id="br293-stats" style="margin-top:12px"></div>
@@ -394,7 +394,7 @@
             <input type="checkbox" data-idx="${i}" ${saved[i] ? 'checked' : ''} style="width:18px;height:18px;margin-right:8px;vertical-align:middle">
             <span style="color:#fff">${item}</span>
           </label>`).join('')}
-          <div id="cl293-result" style="margin-top:12px;padding:12px;background:#1a1a3e;border-radius:6px"></div>
+          <div id="cl293-result" style="margin-top:12px;padding:12px;background:var(--bg-surface);border-radius:6px"></div>
           <button id="cl293-save" style="margin-top:12px;padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">💾 儲存進度</button>
         </div>
       `;

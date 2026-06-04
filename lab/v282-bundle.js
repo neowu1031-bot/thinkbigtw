@@ -31,13 +31,13 @@
     if ($('v282-lang-btn')) return;
     const KEY = 'mr_v282_lang';
     const LANGS = [
-      { code: 'zh-TW', label: '🇹🇼 繁中' },
-      { code: 'zh-CN', label: '🇨🇳 简中' },
-      { code: 'en', label: '🇺🇸 English' },
-      { code: 'ja', label: '🇯🇵 日本語' },
-      { code: 'vi', label: '🇻🇳 Tiếng Việt' },
-      { code: 'id', label: '🇮🇩 Indonesia' },
-      { code: 'th', label: '🇹🇭 ภาษาไทย' }
+      { code: 'zh-TW', label: '繁體中文' },
+      { code: 'zh-CN', label: '简体中文' },
+      { code: 'en', label: 'English' },
+      { code: 'ja', label: '日本語' },
+      { code: 'vi', label: 'Tiếng Việt' },
+      { code: 'id', label: 'Bahasa Indonesia' },
+      { code: 'th', label: 'ภาษาไทย' }
     ];
     const cur = (() => { try { return localStorage.getItem(KEY) || 'zh-TW'; } catch { return 'zh-TW'; } })();
 
@@ -67,7 +67,7 @@
         // Show overlay
         const ov = document.createElement('div');
         ov.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:99999;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px';
-        ov.innerHTML = '<div style="background:var(--bg-base);padding:24px;border-radius:12px;text-align:center;max-width:400px"><div style="font-size:28px">🌐</div><div style="margin:8px 0">AI 翻譯中（' + l.label + '）...</div><div style="color:var(--text-secondary);font-size:12px">用 Llama 3.3 70B 翻譯整個介面 · ~10 秒</div></div>';
+        ov.innerHTML = '<div style="background:var(--bg-base);padding:24px;border-radius:12px;text-align:center;max-width:400px"><div style="font-size:28px"></div><div style="margin:8px 0">AI 翻譯中（' + l.label + '）...</div><div style="color:var(--text-secondary);font-size:12px">用 Llama 3.3 70B 翻譯整個介面 · ~10 秒</div></div>';
         document.body.appendChild(ov);
         try {
           // Collect visible text from sections

@@ -146,7 +146,7 @@
           ${svg}
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
             <div style="background:#0f3a1f;padding:12px;border-radius:6px"><div style="color:#4ade80;font-weight:bold;font-size:12px">🚀 強勢產業（資金流入）</div><div style="color:#fff;margin-top:4px">${top}</div></div>
-            <div style="background:#3a0f1f;padding:12px;border-radius:6px"><div style="color:#ef4444;font-weight:bold;font-size:12px">⛔ 弱勢產業（資金流出）</div><div style="color:#fff;margin-top:4px">${bot}</div></div>
+            <div style="background:var(--bg-surface);padding:12px;border-radius:6px"><div style="color:#ef4444;font-weight:bold;font-size:12px">⛔ 弱勢產業（資金流出）</div><div style="color:#fff;margin-top:4px">${bot}</div></div>
           </div>
           <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa">
             <b>💡 產業輪動策略：</b> 經濟週期 4 階段（復甦→擴張→成熟→衰退），各階段最強產業不同。
@@ -374,7 +374,7 @@
           <p style="margin:4px 0;color:#aaa">• 賠率 b：<b>${V286_fmt(b, 2)}</b> （勝賠 ÷ 敗賠）</p>
           <p style="margin:4px 0;color:#aaa">• 100 次交易預期累積：<b style="color:${ev > 0 ? '#4ade80' : '#ef4444'}">${V286_fmt((Math.pow(1 + recommend * b * winPct - recommend * (1 - winPct), 100) - 1) * 100, 1)}%</b></p>
         </div>
-        <div style="margin-top:8px;padding:12px;background:#1a0f0f;border-radius:6px;font-size:12px;color:#aaa;border:1px solid #ef4444">
+        <div style="margin-top:8px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:12px;color:#aaa;border:1px solid #ef4444">
           <b>⚠️ 警告：</b> Kelly 假設你的勝率估計準確。實際應用時請用「半凱利」或「四分之一凱利」降低破產風險。
           ${fullKelly < 0 ? '<br><b style="color:#ef4444">本次計算結果為負！表示這個策略期望值為負，不應該交易。</b>' : ''}
         </div>

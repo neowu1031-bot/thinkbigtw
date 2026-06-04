@@ -103,7 +103,7 @@
                 </div>`).join('')}
               </div>
             </div>
-            <div style="margin-top:12px;padding:8px;background:#1a1a3e;border-radius:4px;font-size:12px;color:#aaa">
+            <div style="margin-top:12px;padding:8px;background:var(--bg-surface);border-radius:4px;font-size:12px;color:#aaa">
               <b>💡 解讀：</b>${imbalance > 0.1 ? '🟢 買盤強勢，短線可能上攻' : imbalance < -0.1 ? '🔴 賣壓沉重，短線可能下挫' : '⚪ 買賣均衡'}
               ｜ Spread: ${V292_fmt(spread, 4)} (${V292_fmt(spread / price * 100, 3)}%)
             </div>
@@ -219,7 +219,7 @@
           <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">預期變動</div><div style="color:${projChange >= 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${projChange >= 0 ? '+' : ''}${V292_fmt(projChange * 100, 2)}%</div></div>
           <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">趨勢</div><div style="color:${slope > 0 ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${slope > 0 ? '上升' : '下降'}</div></div>
         </div>
-        <div style="margin-top:12px;padding:12px;background:#1a0f0f;border-radius:6px;font-size:11px;color:#fbbf24;border:1px solid #f97316">
+        <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:11px;color:#fbbf24;border:1px solid #f97316">
           <b>⚠️ 重要免責：</b>本預測為簡化版線性 + EMA 模型，不構成投資建議。實際 LSTM 需 TensorFlow（避免前端跑大模型）。歷史報酬不代表未來表現。
         </div>
       `;
@@ -319,7 +319,7 @@
               <span style="color:#aaa">${s.touches} 次測試 ｜ 距 ${V292_fmt((lastPrice - s.price) / s.price * 100, 1)}%</span>
             </div>`).join('') || '<p style="color:#666">無明顯支撐</p>'}
           </div>
-          <div style="background:#3a0f1f;padding:12px;border-radius:6px">
+          <div style="background:var(--bg-surface);padding:12px;border-radius:6px">
             <h4 style="margin:0 0 8px 0;color:#ef4444">🔴 主要阻力</h4>
             ${resistances.slice(0, 5).map(r => `<div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid #3a1a1f;font-size:13px">
               <span style="color:#fff">${V292_fmt(r.price)}</span>

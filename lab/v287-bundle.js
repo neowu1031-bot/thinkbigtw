@@ -212,7 +212,7 @@
             </div>
             <div style="color:#aaa;font-size:12px;margin-bottom:6px">📂 ${e.category || ''} ｜ 🎯 影響：${e.impact || ''}</div>
             <div style="color:var(--text-primary);font-size:13px;line-height:1.6">${e.description || ''}</div>
-            ${e.mitigation ? `<div style="margin-top:8px;padding:8px;background:#1a1a3e;border-radius:4px;font-size:12px;color:#a8d8ff"><b>💡 對沖建議：</b>${e.mitigation}</div>` : ''}
+            ${e.mitigation ? `<div style="margin-top:8px;padding:8px;background:var(--bg-surface);border-radius:4px;font-size:12px;color:#a8d8ff"><b>💡 對沖建議：</b>${e.mitigation}</div>` : ''}
           </div>`).join('')}
         `;
       } catch (e) { r.innerHTML = `<p style="color:#ef4444">錯誤：${e.message}</p>`; }

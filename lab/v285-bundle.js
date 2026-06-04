@@ -173,7 +173,7 @@
         <div style="margin-top:12px;display:flex;gap:8px">
           <button id="scr-run" style="padding:10px 20px;background:#4ade80;color:#000;border:none;border-radius:6px;cursor:pointer;font-weight:bold">🔍 執行篩選</button>
           <button id="scr-csv" style="padding:10px 20px;background:var(--accent);color:#fff;border:none;border-radius:6px;cursor:pointer">📄 下載 CSV</button>
-          <button id="scr-clear" style="padding:10px 20px;background:#6b7280;color:#fff;border:none;border-radius:6px;cursor:pointer">清空</button>
+          <button id="scr-clear" style="padding:10px 20px;background:var(--text-muted);color:#fff;border:none;border-radius:6px;cursor:pointer">清空</button>
         </div>
       </div>
       <div id="scr-results"></div>

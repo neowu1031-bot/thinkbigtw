@@ -113,7 +113,7 @@
           const aiContent = node.querySelector?.('[data-ai-output]') || (node.matches?.('[data-ai-output]') ? node : null);
           if (aiContent && !aiContent.dataset.disclaimerAdded) {
             aiContent.dataset.disclaimerAdded = '1';
-            const disc = V295_el(`<div style="margin-top:12px;padding:8px;background:#1a0f0f;border-left:3px solid #fbbf24;color:#888;font-size:11px;border-radius:4px">⚠️ AI 分析結果僅供參考，不構成投資建議。投資前請自行判斷並諮詢合格理財顧問。</div>`);
+            const disc = V295_el(`<div style="margin-top:12px;padding:8px;background:var(--bg-base);border-left:3px solid #fbbf24;color:#888;font-size:11px;border-radius:4px">⚠️ AI 分析結果僅供參考，不構成投資建議。投資前請自行判斷並諮詢合格理財顧問。</div>`);
             aiContent.appendChild(disc);
           }
         });

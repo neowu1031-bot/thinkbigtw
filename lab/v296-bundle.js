@@ -222,9 +222,9 @@
             <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">明日預測</div><div style="color:${day1Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day1Pred)}</div></div>
             <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">10 日後</div><div style="color:${day10Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day10Pred)}</div></div>
             <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#aaa;font-size:11px">30 日後</div><div style="color:${day30Pred > lastClose ? '#4ade80' : '#ef4444'};font-size:18px;font-weight:bold">${V296_fmt(day30Pred)}</div></div>
-            <div style="background:#1a0f0f;padding:10px;border-radius:6px"><div style="color:#fbbf24;font-size:11px">RMSE</div><div style="color:#fbbf24;font-size:18px;font-weight:bold">${V296_fmt(rmsePrice, 3)}</div></div>
+            <div style="background:var(--bg-base);padding:10px;border-radius:6px"><div style="color:#fbbf24;font-size:11px">RMSE</div><div style="color:#fbbf24;font-size:18px;font-weight:bold">${V296_fmt(rmsePrice, 3)}</div></div>
           </div>
-          <div style="margin-top:12px;padding:12px;background:#1a0f0f;border-radius:6px;font-size:11px;color:#fbbf24;border:1px solid #f97316">
+          <div style="margin-top:12px;padding:12px;background:var(--bg-base);border-radius:6px;font-size:11px;color:#fbbf24;border:1px solid #f97316">
             <b>⚠️ 重要免責：</b>LSTM 預測為演算法輸出，不構成投資建議。RMSE 越低越準，但市場有黑天鵝事件無法預測。
             模型結構：LSTM(${units}) → Dropout(0.2) → Dense(1, sigmoid) | Optimizer: Adam(lr=0.001) | Loss: MSE
           </div>
