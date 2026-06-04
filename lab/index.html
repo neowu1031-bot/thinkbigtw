@@ -36,39 +36,42 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
 
-/* ===== v272 Design Language — CSS Variables ===== */
+/* ===== MoneyRadar Design System v2 — CSS Variables ===== */
 :root{
-  --font-main:'DM Sans','Noto Sans TC',sans-serif;
+  --font-main:'DM Sans','Noto Sans TC',-apple-system,sans-serif;
   --font-mono:'JetBrains Mono','DM Sans',monospace;
   /* Dark theme (default) */
-  --bg-base:#0C0F1A;--bg-surface:#131929;--bg-elevated:#1A2035;
-  --bg-header:rgba(13,15,26,0.9);
-  --text-primary:#E8EDF5;--text-secondary:#8B95A8;--text-muted:#5A6478;
-  --border:rgba(255,255,255,0.07);--border-strong:rgba(255,255,255,0.12);
-  --accent:#4A90F6;--accent-soft:rgba(74,144,246,0.12);--accent-hover:#1A6CF6;
-  --up:#E53E3E;--up-bg:rgba(229,62,62,0.1);--down:#38A169;--down-bg:rgba(56,161,105,0.1);
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.18);--shadow-md:0 4px 16px rgba(0,0,0,0.25);
-  --card-radius:14px;--btn-radius:8px;--badge-radius:20px;
+  --bg-base:#0B0E19;--bg-surface:#121626;--bg-elevated:#1A2035;--bg-sidebar:#0F1322;
+  --bg-header:rgba(11,14,25,0.92);
+  --text-primary:#E6EBF4;--text-secondary:#8896AA;--text-muted:#4A5568;
+  --border:rgba(255,255,255,0.06);--border-strong:rgba(255,255,255,0.10);
+  --accent:#4A8CF6;--accent-soft:rgba(74,140,246,0.12);--accent-hover:#1A6CF6;--accent-glow:rgba(74,140,246,0.18);
+  --up:#F47068;--up-bg:rgba(244,112,104,0.10);--up-soft:rgba(244,112,104,0.10);
+  --down:#56C98A;--down-bg:rgba(86,201,138,0.10);--down-soft:rgba(86,201,138,0.10);
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.28);--shadow-md:0 4px 18px rgba(0,0,0,0.42);
+  --card-radius:12px;--radius-card:12px;--btn-radius:8px;--radius-btn:8px;--badge-radius:20px;--radius-pill:20px;
+  --header-h:52px;--sidebar-w:216px;
 }
-[data-v281-theme="light"]{
-  --bg-base:#F4F7FD;--bg-surface:#FFFFFF;--bg-elevated:#FFFFFF;
-  --bg-header:rgba(255,255,255,0.85);
-  --text-primary:#0D1B2A;--text-secondary:#4A5568;--text-muted:#A0AEC0;
-  --border:rgba(0,0,0,0.07);--border-strong:rgba(0,0,0,0.12);
-  --accent:#1A6CF6;--accent-soft:#EBF2FF;--accent-hover:#1557D0;
-  --up:#E53E3E;--up-bg:rgba(229,62,62,0.08);--down:#38A169;--down-bg:rgba(56,161,105,0.08);
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);--shadow-md:0 4px 16px rgba(0,0,0,0.08);
+[data-theme="light"],[data-v281-theme="light"]{
+  --bg-base:#F2F5FB;--bg-surface:#FFFFFF;--bg-elevated:#FFFFFF;--bg-sidebar:#FFFFFF;
+  --bg-header:rgba(255,255,255,0.88);
+  --text-primary:#0D1B2A;--text-secondary:#4A5568;--text-muted:#9AA5B4;
+  --border:rgba(0,0,0,0.07);--border-strong:rgba(0,0,0,0.11);
+  --accent:#1A5CF6;--accent-soft:#EBF2FF;--accent-hover:#1557D0;--accent-glow:rgba(26,92,246,0.12);
+  --up:#D93025;--up-bg:rgba(217,48,37,0.08);--up-soft:#FEF2F1;
+  --down:#1E8A4C;--down-bg:rgba(30,138,76,0.08);--down-soft:#EDFAF3;
+  --shadow-sm:0 1px 4px rgba(0,0,0,0.06);--shadow-md:0 4px 18px rgba(0,0,0,0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:var(--bg-base);color:var(--text-primary);font-family:var(--font-main);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .3s,color .3s}
+body{background:var(--bg-base);color:var(--text-primary);font-family:var(--font-main);min-height:100vh;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s;font-size:14px;line-height:1.5}
 .lock-screen{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:40px}
 h1{font-size:26px;color:var(--accent);margin-bottom:6px;font-weight:600}
 .subtitle{color:var(--text-secondary);margin-bottom:36px;font-size:14px;font-weight:300}
 input[type=password]{background:var(--bg-surface);border:1px solid var(--border-strong);color:var(--text-primary);padding:14px 20px;border-radius:var(--btn-radius);font-size:16px;width:300px;display:block;margin:0 auto 12px;text-align:center;letter-spacing:6px;font-family:var(--font-mono);transition:border-color .2s}
-input[type=password]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=password]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 input[type=text],textarea{background:var(--bg-surface);border:1px solid var(--border-strong);color:var(--text-primary);padding:10px 14px;border-radius:var(--btn-radius);font-size:14px;width:100%;margin-top:8px;font-family:var(--font-main);transition:border-color .2s}
-input[type=text]:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+input[type=text]:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 textarea{height:80px;resize:vertical}
 .btn{background:var(--accent);color:#fff;border:none;padding:14px 40px;border-radius:var(--btn-radius);font-size:16px;cursor:pointer;width:300px;font-weight:600;font-family:var(--font-main);transition:background .2s,transform .15s}
 .btn:hover{background:var(--accent-hover);transform:translateY(-1px)}
@@ -78,13 +81,28 @@ textarea{height:80px;resize:vertical}
 .success{color:var(--down);font-size:13px;margin-top:6px}
 
 /* ===== Dashboard Layout ===== */
-.dashboard{display:none;max-width:1100px;margin:0 auto;padding-top:60px;padding-bottom:60px}
-.header{position:fixed;top:0;left:0;right:0;height:52px;display:flex;justify-content:space-between;align-items:center;padding:0 24px;background:var(--bg-header);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:9990;transition:background .3s}
+.dashboard{display:none;max-width:1200px;margin:0 auto;padding-top:60px;padding-bottom:60px}
+.header{position:fixed;top:0;left:0;right:0;height:var(--header-h);display:flex;align-items:center;padding:0 18px;gap:14px;background:var(--bg-header);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);z-index:9990;transition:background .25s}
 .header h1{font-size:20px;color:var(--text-primary);font-weight:600}
 .badge{background:var(--accent-soft);padding:4px 14px;border-radius:var(--badge-radius);font-size:11px;color:var(--accent);font-weight:600;letter-spacing:0.5px;border:1px solid var(--border)}
 
-/* ===== Tab Navigation ===== */
-.tab-nav-wrap{margin:16px 24px 0}
+/* ===== Header Components (concept design) ===== */
+.logo{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--text-primary);letter-spacing:-0.4px;white-space:nowrap;text-decoration:none;cursor:pointer}
+.logo-mark{width:28px;height:28px;border-radius:7px;background:var(--accent);display:flex;align-items:center;justify-content:center}
+.logo-mark svg{width:16px;height:16px}
+.logo-tm{font-size:9px;vertical-align:super;color:var(--text-muted);font-weight:400}
+.search-bar{flex:1;max-width:300px;background:var(--bg-base);border:1px solid var(--border-strong);border-radius:var(--btn-radius);padding:7px 12px;display:flex;align-items:center;gap:8px;cursor:text;transition:box-shadow .2s,border-color .2s}
+.search-bar:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.search-bar svg{width:14px;height:14px;color:var(--text-muted);flex-shrink:0}
+.search-bar span{font-size:12px;color:var(--text-muted)}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:6px}
+.icon-btn{width:34px;height:34px;border-radius:var(--btn-radius);border:1px solid var(--border-strong);background:var(--bg-surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;position:relative;color:var(--text-secondary)}
+.icon-btn svg{width:16px;height:16px}
+.icon-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.notif-dot{position:absolute;top:7px;right:7px;width:6px;height:6px;border-radius:50%;background:var(--accent);border:1.5px solid var(--bg-surface)}
+
+/* ===== Tab Navigation (hidden — now uses hamburger menu) ===== */
+.tab-nav-wrap{display:none}
 .tab-nav{display:flex;gap:0;align-items:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tab-nav-row1{border-bottom:1px solid var(--border-strong)}
 .tab-nav-row2{border-bottom:2px solid var(--border-strong);background:var(--bg-surface)}
@@ -96,6 +114,53 @@ textarea{height:80px;resize:vertical}
 .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-content{display:none;padding:24px}
 .tab-content.active{display:block}
+
+/* ===== Hermes AI Panel ===== */
+.hermes-panel{background:var(--bg-surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow-md);margin:16px 24px 0}
+.hermes-header{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px}
+.hermes-avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,#7C3AED 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 10px var(--accent-glow)}
+.hermes-avatar svg{width:18px;height:18px}
+.hermes-name{font-size:14px;font-weight:600;color:var(--text-primary)}
+.hermes-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
+.live-badge{margin-left:auto;display:flex;align-items:center;gap:5px;font-size:11px;font-weight:500;color:var(--down)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--down);animation:livePulse 2s infinite}
+@keyframes livePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.8)}}
+.chat-area{padding:18px}
+.ai-message{display:flex;gap:10px;animation:fadeUp .35s ease}
+.ai-bubble{background:var(--bg-base);border:1px solid var(--border);border-radius:4px 12px 12px 12px;padding:12px 16px;font-size:13px;line-height:1.65;color:var(--text-primary);max-width:88%}
+.quick-row{padding:12px 18px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px}
+.quick-chip{padding:5px 13px;border-radius:var(--radius-pill);font-size:12px;font-weight:500;border:1px solid var(--border-strong);background:var(--bg-base);color:var(--text-secondary);cursor:pointer;transition:all .15s;white-space:nowrap;font-family:var(--font-main)}
+.quick-chip:hover{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.input-row{padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center}
+.chat-input{flex:1;background:var(--bg-base);border:1px solid var(--border-strong);border-radius:10px;padding:9px 14px;font-size:13px;color:var(--text-primary);font-family:var(--font-main);outline:none;transition:all .2s}
+.chat-input::placeholder{color:var(--text-muted)}
+.chat-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.send-btn{width:36px;height:36px;border-radius:9px;background:var(--accent);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:opacity .2s;flex-shrink:0}
+.send-btn:hover{opacity:.85}
+.send-btn svg{width:15px;height:15px}
+
+/* ===== Hamburger Menu ===== */
+.mr-menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:none;animation:fadeIn .2s ease}
+.mr-menu-panel{position:fixed;top:0;right:0;bottom:0;width:280px;background:var(--bg-surface);border-left:1px solid var(--border);overflow-y:auto;animation:slideInRight .25s ease}
+.mr-menu-item{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:var(--radius-btn);font-size:13px;color:var(--text-secondary);cursor:pointer;transition:all .15s}
+.mr-menu-item svg{width:15px;height:15px;flex-shrink:0}
+.mr-menu-item:hover{background:var(--accent-soft);color:var(--accent)}
+.mr-menu-item.active{background:var(--accent-soft);color:var(--accent);font-weight:500}
+.mr-menu-group-label{font-size:10px;font-weight:600;color:var(--text-muted);letter-spacing:.7px;text-transform:uppercase;padding:8px 12px 4px}
+@keyframes slideInRight{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* ===== Module Grid (concept) ===== */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.module{background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-sm);overflow:hidden;transition:box-shadow .2s,transform .2s;animation:fadeUp .4s ease both}
+.module:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.module:nth-child(2){animation-delay:.07s}
+.module:nth-child(3){animation-delay:.13s}
+.module-head{padding:11px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
+.module-head svg{width:14px;height:14px;color:var(--text-muted);flex-shrink:0}
+.module-head-title{font-size:12px;font-weight:600;color:var(--text-primary)}
+.module-tag{margin-left:auto;font-size:10px;font-weight:500;padding:2px 7px;border-radius:var(--radius-pill);background:var(--accent-soft);color:var(--accent)}
+.module-body{padding:12px 14px}
 
 /* ===== Sections & Cards ===== */
 .section{margin-bottom:28px}
@@ -120,7 +185,7 @@ textarea{height:80px;resize:vertical}
 /* ===== Stock Search ===== */
 .stock-search{display:flex;gap:10px;margin-bottom:14px}
 .stock-search input{flex:1;background:var(--bg-elevated);border:1px solid var(--border-strong);color:var(--text-primary);padding:12px 16px;border-radius:var(--btn-radius);font-size:15px;font-family:var(--font-main);transition:border-color .2s,box-shadow .2s}
-.stock-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.stock-search input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .stock-search button{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:var(--btn-radius);font-size:15px;cursor:pointer;white-space:nowrap;font-family:var(--font-main);font-weight:500;transition:background .2s}
 .stock-search button:hover{background:var(--accent-hover)}
 .stock-result{background:var(--bg-surface);border-radius:var(--card-radius);padding:20px;border:1px solid var(--border);margin-bottom:14px;display:none;box-shadow:var(--shadow-sm)}
@@ -156,16 +221,16 @@ textarea{height:80px;resize:vertical}
 .logo-text{font-size:22px;font-weight:800;color:var(--accent);letter-spacing:2px;margin-bottom:16px;border:2px solid var(--accent);padding:8px 18px;border-radius:var(--btn-radius);display:inline-block}
 .footer{text-align:center;padding:30px 0;color:var(--text-muted);font-size:12px}
 
-/* ===== RWD 手機版 ===== */
+/* ===== Inline SVG icon helper ===== */
+.inline-icon{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px}
+.inline-icon svg{width:14px;height:14px}
+
+/* ===== RWD responsive ===== */
 @media(max-width:768px){
   .grid{grid-template-columns:1fr 1fr!important;gap:8px!important;}
   .cards{grid-template-columns:1fr 1fr!important;}
   .stock-grid{grid-template-columns:1fr 1fr!important;}
   #taiexChart{height:220px!important;}
-  .tab-nav-wrap{margin:12px 8px 0!important;}
-  .tab-nav{overflow-x:auto;white-space:nowrap;-webkit-overflow-scrolling:touch;}
-  .tab-btn{padding:8px 12px!important;font-size:12px!important;flex-shrink:0;}
-  .tab-row-label{font-size:9px!important;padding:0 6px 0 2px!important;}
   .section-title{font-size:14px!important;}
   .card{padding:12px!important;}
   .card .value{font-size:20px!important;}
@@ -183,15 +248,16 @@ textarea{height:80px;resize:vertical}
   .header{padding:0 12px!important;}
   .tab-content{padding:14px 10px!important;}
   .section{padding:4px 0!important;margin-bottom:18px!important;}
+  .hermes-panel{margin:12px 8px 0!important}
+  .grid-3{grid-template-columns:1fr!important}
+  .mr-menu-panel{width:260px}
+  .search-bar{max-width:180px}
 }
 @media(max-width:480px){
   .grid{grid-template-columns:1fr!important;}
   .cards{grid-template-columns:1fr!important;}
   .card .value{font-size:18px!important;}
   .card h3{font-size:10px!important;}
-  .tab-btn{padding:6px 10px!important;font-size:11px!important;}
-  .tab-nav-wrap{margin:8px 4px 0!important;}
-  .tab-row-label{display:none;}
   .tab-content{padding:10px 4px!important;}
   .dashboard{padding:56px 4px 40px!important;}
   .header h1{font-size:17px!important;}
@@ -212,11 +278,12 @@ textarea{height:80px;resize:vertical}
   #stockRevenue > div:last-child{padding:12px 6px 4px!important;}
   .ai-card{padding:14px!important;}
   .ai-card .ai-text{font-size:13px!important;}
+  .hermes-panel{margin:8px 4px 0!important}
+  .search-bar{display:none}
 }
 @media(max-width:375px){
   .grid,.cards{grid-template-columns:1fr!important;gap:6px!important;}
   .stock-grid{grid-template-columns:1fr 1fr!important;}
-  .tab-btn{padding:5px 8px!important;font-size:11px!important;}
   .card .value{font-size:17px!important;}
   .header h1{font-size:16px!important;}
   #cryptoGrid,#etfHotGrid,#usHotGrid,#fxGrid,#globalIndicesGrid{grid-template-columns:1fr!important;}
@@ -226,19 +293,18 @@ textarea{height:80px;resize:vertical}
   .btn{width:260px!important;padding:12px 20px!important;}
 }
 
-/* v282 語言按鈕 + v281 日夜按鈕 + 登出按鈕 手機版防疊層 */
+/* v282 language + v281 theme + logout mobile fix */
 @media(max-width:768px){
   #v282-lang-btn{position:fixed!important;top:16px!important;right:unset!important;left:12px!important;font-size:11px!important;padding:4px 8px!important;z-index:9998!important;}
-  #v281-theme-btn{position:fixed!important;top:16px!important;right:unset!important;left:80px!important;font-size:13px!important;padding:4px 8px!important;z-index:9998!important;}
+  #v281-theme-btn{display:none!important;}
   #logoutBtn{font-size:10px!important;padding:3px 8px!important;white-space:nowrap!important;}
 }
 @media(max-width:480px){
   #v282-lang-btn{font-size:10px!important;padding:3px 6px!important;left:8px!important;top:17px!important;}
-  #v281-theme-btn{font-size:12px!important;padding:3px 6px!important;left:70px!important;top:17px!important;}
 }
 
-/* ===== v272 fadeUp Animation ===== */
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* ===== Animations ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .tab-content.active .card{animation:fadeUp 0.35s ease forwards}
 .tab-content.active .section{animation:fadeUp 0.4s ease forwards}
 .tab-content.active .card:nth-child(1){animation-delay:0s}
@@ -326,22 +392,41 @@ textarea{height:80px;resize:vertical}
 </div>
   </div>
 <div class="dashboard" id="dashboard" style="display:none">
-  <div class="header">
-    <h1 style="font-size:22px;font-weight:600;color:var(--text-primary);letter-spacing:-0.5px;margin:0;cursor:pointer" onclick="window.scrollTo({top:0,behavior:'smooth'})">Money<span style="color:var(--accent)">Radar</span><span style="font-size:13px;color:var(--text-muted);font-weight:400">™</span></h1>
-    <div style="display:flex;align-items:center;gap:10px">
-      <span class="badge" id="userBadge">—</span>
-      <button id="logoutBtn" onclick="logoutUser()" style="display:none;background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:5px 12px;border-radius:var(--btn-radius);font-size:12px;cursor:pointer;font-family:var(--font-main);transition:all .2s">登出</button>
+  <header class="header">
+    <a class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <div class="logo-mark">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="3.5"/><circle cx="8" cy="8" r="1"/><line x1="8" y1="1.5" x2="8" y2="4.5"/></svg>
+      </div>
+      MoneyRadar<span class="logo-tm">TM</span>
+    </a>
+    <div class="search-bar" onclick="document.getElementById('stockInput')&&document.getElementById('stockInput').focus()">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>
+      <span>搜尋股票、ETF、加密貨幣...</span>
     </div>
-  </div>
+    <div class="header-right">
+      <span class="badge" id="userBadge">--</span>
+      <button id="logoutBtn" onclick="logoutUser()" style="display:none;background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:5px 12px;border-radius:var(--btn-radius);font-size:12px;cursor:pointer;font-family:var(--font-main);transition:all .2s">登出</button>
+      <button class="icon-btn" title="通知">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5v2.5L2 10h12l-1.5-1.5V6A4.5 4.5 0 0 0 8 1.5Z"/><path d="M6.5 11.5a1.5 1.5 0 0 0 3 0"/></svg>
+        <div class="notif-dot"></div>
+      </button>
+      <button class="icon-btn" onclick="toggleThemeV272()" title="切換主題">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3.5"/><line x1="8" y1="1" x2="8" y2="2.5"/><line x1="8" y1="13.5" x2="8" y2="15"/><line x1="1" y1="8" x2="2.5" y2="8"/><line x1="13.5" y1="8" x2="15" y2="8"/><line x1="3" y1="3" x2="4.1" y2="4.1"/><line x1="11.9" y1="11.9" x2="13" y2="13"/><line x1="13" y1="3" x2="11.9" y2="4.1"/><line x1="4.1" y1="11.9" x2="3" y2="13"/></svg>
+      </button>
+      <button class="icon-btn" onclick="openMrMenu()" title="模組選單">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/></svg>
+      </button>
+    </div>
+  </header>
   <div class="tab-nav-wrap">
     <div class="tab-nav tab-nav-row1">
       <span class="tab-row-label">主要</span>
-      <button class="tab-btn" onclick="switchTab('watchlist',this)">⭐ 我的清單</button>
+      <button class="tab-btn" onclick="switchTab('watchlist',this)"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polygon points="8,1.5 10.3,6 15,6.8 11.5,10.2 12.4,14.8 8,12.5 3.6,14.8 4.5,10.2 1,6.8 5.7,6"/></svg>我的清單</button>
       <button class="tab-btn active" onclick="switchTab('tw',this)">台股</button>
       <button class="tab-btn" onclick="switchTab('etf',this)">ETF</button>
       <button class="tab-btn" onclick="switchTab('us',this)">美股</button>
-      <button class="tab-btn" onclick="switchTab('asia',this)">🌏 亞洲</button>
-      <button class="tab-btn" onclick="switchTab('pro',this)">💎 Pro</button>
+      <button class="tab-btn" onclick="switchTab('asia',this)"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13"/><ellipse cx="8" cy="8" rx="3" ry="6.5"/></svg>亞洲</button>
+      <button class="tab-btn" onclick="switchTab('pro',this)"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polygon points="3,6 8,14 13,6 11,2 5,2"/><line x1="3" y1="6" x2="13" y2="6"/><line x1="8" y1="14" x2="5.5" y2="6"/><line x1="8" y1="14" x2="10.5" y2="6"/></svg>Pro</button>
       
       <button class="tab-btn" onclick="switchTab('fund',this)">外匯/黃金</button>
       <button class="tab-btn" onclick="switchTab('crypto',this)">加密貨幣</button>
@@ -356,6 +441,114 @@ textarea{height:80px;resize:vertical}
       <button class="tab-btn" onclick="switchTab('screener',this)">選股</button>
       <button class="tab-btn" onclick="switchTab('tools',this)">理財工具</button>
       <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
+    </div>
+  </div>
+  <!-- Hermes AI Panel -->
+  <div class="hermes-panel" id="hermes-main-panel">
+    <div class="hermes-header">
+      <div class="hermes-avatar">
+        <svg viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.4"><circle cx="10" cy="10" r="8"/><path d="M7 10c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3"/><line x1="10" y1="13" x2="10" y2="15"/><line x1="7" y1="10" x2="5" y2="10"/></svg>
+      </div>
+      <div>
+        <div class="hermes-name">Hermes AI 分析師</div>
+        <div class="hermes-sub">Powered by Claude Sonnet &middot; 全市場覆蓋</div>
+      </div>
+      <div class="live-badge"><div class="live-dot"></div>即時運行中</div>
+    </div>
+    <div class="chat-area" id="hermes-chat-area">
+      <div class="ai-message">
+        <div class="ai-bubble">歡迎使用 Hermes AI 分析師，請輸入股票代號或問任何投資問題。</div>
+      </div>
+    </div>
+    <div class="quick-row">
+      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('今日技術訊號')">今日技術訊號</button>
+      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('法人動向')">法人動向</button>
+      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('盤前快報')">盤前快報</button>
+      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('幫我選股')">幫我選股</button>
+      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('持股健診')">持股健診</button>
+    </div>
+    <div class="input-row">
+      <input class="chat-input" id="hermes-input" placeholder="問 Hermes 任何投資問題..." onkeydown="if(event.key==='Enter'&&window.triggerHermesQuery)triggerHermesQuery(this.value)">
+      <button class="send-btn" onclick="if(window.triggerHermesQuery){triggerHermesQuery(document.getElementById('hermes-input').value)}">
+        <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Hamburger Menu Overlay -->
+  <div class="mr-menu-overlay" id="mrMenuOverlay" style="display:none" onclick="closeMrMenu()">
+    <div class="mr-menu-panel" onclick="event.stopPropagation()">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border)">
+        <span style="font-size:14px;font-weight:600;color:var(--text-primary)">模組選單</span>
+        <button onclick="closeMrMenu()" style="background:none;border:none;color:var(--text-secondary);font-size:18px;cursor:pointer;padding:4px">&times;</button>
+      </div>
+      <div style="padding:10px">
+        <div class="mr-menu-group-label">主要</div>
+        <div class="mr-menu-item active" onclick="switchTab('tw',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,11 5,7 8,9 11,5 15,3"/><polyline points="11,3 15,3 15,7"/></svg>
+          台股
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('watchlist',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="8,1.5 10.3,6 15,6.8 11.5,10.2 12.4,14.8 8,12.5 3.6,14.8 4.5,10.2 1,6.8 5.7,6"/></svg>
+          我的清單
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('etf',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="10" width="3" height="4.5" rx="1"/><rect x="6.5" y="6.5" width="3" height="8" rx="1"/><rect x="11.5" y="3" width="3" height="11.5" rx="1"/></svg>
+          ETF
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('us',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5"/></svg>
+          美股
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('asia',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13"/></svg>
+          亞洲
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('pro',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="8,1.5 10.3,6 15,6.8 11.5,10.2 12.4,14.8 8,12.5 3.6,14.8 4.5,10.2 1,6.8 5.7,6"/></svg>
+          Pro
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('fund',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M5.5 8.5c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5"/></svg>
+          外匯/黃金
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('crypto',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M6 5h3.5c1.1 0 2 .9 2 2s-.9 2-2 2H6m0-4v4m0-4V4m0 5h4c1.1 0 2 .9 2 2s-.9 2-2 2H6v-4m0 4v1"/></svg>
+          加密貨幣
+        </div>
+        <div class="mr-menu-group-label" style="margin-top:10px">進階</div>
+        <div class="mr-menu-item" onclick="switchTab('futures',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,11 5,7 8,9 11,5 15,3"/></svg>
+          期貨
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('options',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="8" y1="5" x2="8" y2="11"/></svg>
+          選擇權
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('bonds',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="10" rx="2"/><line x1="5" y1="6" x2="11" y2="6"/><line x1="5" y1="9" x2="9" y2="9"/></svg>
+          債券
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('sector',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>
+          產業
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('macro',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4.5v3.5l2.5 1.5"/></svg>
+          總經
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('screener',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>
+          選股
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('tools',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 5v3l2 2"/></svg>
+          理財工具
+        </div>
+        <div class="mr-menu-item" onclick="switchTab('portfolio',null);closeMrMenu()">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="1.5" width="13" height="13" rx="2.5"/><line x1="5" y1="5" x2="11" y2="5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="8" y2="11"/></svg>
+          投資組合
+        </div>
+      </div>
     </div>
   </div>
   <div class="tab-content active" id="tab-tw">
@@ -376,7 +569,7 @@ textarea{height:80px;resize:vertical}
         <div class="card"><h3>平盤家數</h3><div class="value" id="breadthFlat">—</div><div class="sub" id="breadthFlatPct">—</div></div>
         <div class="card"><h3>漲跌比</h3><div class="value" id="breadthRatio">—</div><div class="sub">上漲/下跌</div></div>
       </div>
-      <div class="section-title" style="margin-top:16px">📈 加權指數走勢</div>
+      <div class="section-title" style="margin-top:16px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polyline points="1,11 5,7 8,9 11,5 15,3"/><polyline points="11,3 15,3 15,7"/></svg>加權指數走勢</div>
       <div class="chart-range" style="margin-bottom:8px">
         <button class="range-btn active" onclick="loadTaiexChart(30,this)">1M</button>
         <button class="range-btn" onclick="loadTaiexChart(90,this)">3M</button>
@@ -384,11 +577,11 @@ textarea{height:80px;resize:vertical}
         <button class="range-btn" onclick="loadTaiexChart(365,this)">1Y</button>
       </div>
       <div id="taiexChart" style="width:100%;height:220px;background:var(--bg-surface);border-radius:12px;border:1px solid var(--border-strong)"></div>
-      <div class="section-title" style="margin-top:16px">🏭 產業別表現（今日）</div>
+      <div class="section-title" style="margin-top:16px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1" y="6" width="4" height="8" rx="1"/><rect x="6" y="3" width="4" height="11" rx="1"/><rect x="11" y="1" width="4" height="13" rx="1"/></svg>產業別表現（今日）</div>
       <div id="twSectorBars" style="background:var(--bg-surface);border-radius:12px;padding:14px;border:1px solid var(--border-strong)">
         <div style="color:var(--text-muted);font-size:12px">載入中...</div>
       </div>
-      <div class="section-title" style="margin-top:16px">🌍 國際指數</div>
+      <div class="section-title" style="margin-top:16px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5"/></svg>國際指數</div>
       <div class="grid" id="globalIndicesGrid">
         <div class="card"><h3>道瓊 DIA</h3><div class="value" id="idx_DJI">載入中...</div><div class="sub" id="idx_DJI_pct">—</div></div>
         <div class="card"><h3>那斯達克 QQQ</h3><div class="value" id="idx_IXIC">載入中...</div><div class="sub" id="idx_IXIC_pct">—</div></div>
@@ -408,7 +601,7 @@ textarea{height:80px;resize:vertical}
           <h2 id="stockName" style="margin:0">—</h2>
           <div id="disposeWrap"></div>
           <button id="watchlistBtn" onclick="toggleWatchlist()" style="background:var(--accent-hover);color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">＋ 加入自選</button>
-          <button id="shareStockBtn" onclick="shareStock()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">🔗 分享</button>
+          <button id="shareStockBtn" onclick="shareStock()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M6.5 9.5l3-3"/><path d="M9 4l1.5-1.5a2.1 2.1 0 0 1 3 3L12 7"/><path d="M7 9L5.5 10.5a2.1 2.1 0 0 1-3-3L4 6"/></svg>分享</button>
         </div>
         <div class="stock-meta" id="stockMeta">—</div>
         <div class="stock-grid">
@@ -459,11 +652,11 @@ textarea{height:80px;resize:vertical}
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
               <div style="background:var(--bg-elevated);border-radius:8px;padding:10px;border:1px solid var(--border)">
-                <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">📈 分時走勢</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polyline points="1,11 5,7 8,9 11,5 15,3"/><polyline points="11,3 15,3 15,7"/></svg>分時走勢</div>
                 <div id="intradayChartWrap"><div style="color:var(--text-muted);font-size:11px">查詢個股後顯示</div></div>
               </div>
               <div style="background:var(--bg-elevated);border-radius:8px;padding:10px;border:1px solid var(--border)">
-                <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px">📊 五檔委買委賣</div>
+                <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="10" width="3" height="4.5" rx="1"/><rect x="6.5" y="6.5" width="3" height="8" rx="1"/><rect x="11.5" y="3" width="3" height="11.5" rx="1"/></svg>五檔委買委賣</div>
                 <div id="realtimeQuote"><div style="color:var(--text-muted);font-size:11px">查詢個股後顯示</div></div>
               </div>
             </div>
@@ -491,7 +684,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">📣 價格警示</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M12 3L4 6H2v4h2l8 3V3z"/><path d="M14 6.5c.8.5 1.2 1.2 1.2 1.5s-.4 1-.8 1.5"/></svg>價格警示</div>
       <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center">
         <input type="text" id="alertSymbol" placeholder="股票代號" style="background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-strong);padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
         <select id="alertCondition" style="background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-strong);padding:6px 10px;border-radius:6px;font-size:13px">
@@ -500,7 +693,7 @@ textarea{height:80px;resize:vertical}
         </select>
         <input type="number" id="alertPrice" placeholder="目標價" style="background:var(--bg-surface);color:var(--text-primary);border:1px solid var(--border-strong);padding:6px 10px;border-radius:6px;font-size:13px;width:100px">
         <button onclick="addAlert()" style="background:var(--accent);color:#fff;border:none;padding:6px 16px;border-radius:6px;font-size:13px;cursor:pointer">新增警示</button>
-        <button onclick="requestNotifyPermission()" id="notifyBtn" style="background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer">🔔 開啟通知</button>
+        <button onclick="requestNotifyPermission()" id="notifyBtn" style="background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 12px;border-radius:6px;font-size:13px;cursor:pointer"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5v2.5L2 10h12l-1.5-1.5V6A4.5 4.5 0 0 0 8 1.5Z"/><path d="M6.5 11.5a1.5 1.5 0 0 0 3 0"/></svg>開啟通知</button>
       </div>
       <div id="alertList" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
       <div class="section-title">選股篩選器</div>
@@ -527,7 +720,7 @@ textarea{height:80px;resize:vertical}
       <div style="display:flex;gap:8px;margin-bottom:12px">
         <button onclick="loadRanking('up')" id="rankUpBtn" style="background:#166534;color:#fff;border:none;padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">▲ 漲幅</button>
         <button onclick="loadRanking('down')" id="rankDownBtn" style="background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">▼ 跌幅</button>
-        <button onclick="loadRanking('volume')" id="rankVolBtn" style="background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">📊 成交量</button>
+        <button onclick="loadRanking('volume')" id="rankVolBtn" style="background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="10" width="3" height="4.5" rx="1"/><rect x="6.5" y="6.5" width="3" height="8" rx="1"/><rect x="11.5" y="3" width="3" height="11.5" rx="1"/></svg>成交量</button>
       </div>
       <div id="rankingList" style="display:flex;flex-direction:column;gap:8px"></div>
     </div>
@@ -536,7 +729,7 @@ textarea{height:80px;resize:vertical}
       <div class="section-title">AI每日解讀</div>
       <div class="ai-card">
         <span class="ai-tag">AI 生成 · 僅供參考</span>
-        <button onclick="requirePro('AI 個股深度解讀')" style="float:right;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0a0f1e;border:none;padding:4px 12px;border-radius:14px;font-size:11px;cursor:pointer;font-weight:700">⭐ 升級 PRO 解鎖深度版</button>
+        <button onclick="requirePro('AI 個股深度解讀')" style="float:right;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0a0f1e;border:none;padding:4px 12px;border-radius:14px;font-size:11px;cursor:pointer;font-weight:700"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polygon points="8,1.5 10.3,6 15,6.8 11.5,10.2 12.4,14.8 8,12.5 3.6,14.8 4.5,10.2 1,6.8 5.7,6"/></svg>升級 PRO 解鎖深度版</button>
         <div class="ai-text" id="aiText">
           <span class="ai-stock">台積電 (2330)</span> 今日外資買超逾5,000張，站上月線，技術面轉強。<br><br>
           <span class="ai-stock">鴻海 (2317)</span> 籌碼面出現大戶承接訊號，PTT討論熱度為近30日最高。
@@ -557,7 +750,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">📅 近期除權息（未來30天）</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="2" y="3" width="12" height="11" rx="2"/><line x1="2" y1="7" x2="14" y2="7"/><line x1="5" y1="1.5" x2="5" y2="4.5"/><line x1="11" y1="1.5" x2="11" y2="4.5"/></svg>近期除權息（未來30天）</div>
       <div id="dividendCalendar" style="background:var(--bg-surface);border-radius:12px;border:1px solid var(--border-strong);padding:14px">
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
@@ -568,8 +761,8 @@ textarea{height:80px;resize:vertical}
       <div id="watchlist-grid-content" style="margin-top:16px"></div>
     <div class="section">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-        <div style="font-size:16px;font-weight:700;color:var(--text-primary)">⭐ 我的清單</div>
-        <div style="font-size:12px;color:var(--text-muted)">點任意股票的 ☆ 加入清單</div>
+        <div style="font-size:16px;font-weight:700;color:var(--text-primary)"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polygon points="8,1.5 10.3,6 15,6.8 11.5,10.2 12.4,14.8 8,12.5 3.6,14.8 4.5,10.2 1,6.8 5.7,6"/></svg>我的清單</div>
+        <div style="font-size:12px;color:var(--text-muted)">點任意股票的 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:12px;height:12px;vertical-align:-1px"><polygon points="8,1.5 10.3,6 15,6.8 11.5,10.2 12.4,14.8 8,12.5 3.6,14.8 4.5,10.2 1,6.8 5.7,6"/></svg> 加入清單</div>
       </div>
       <div id="watchlistContent">
         <div style="color:var(--text-muted);padding:20px;text-align:center">載入中...</div>
@@ -587,7 +780,7 @@ textarea{height:80px;resize:vertical}
       <div class="stock-result" id="etfResult">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
           <h2 id="etfName" style="margin:0">—</h2>
-          <button id="shareETFBtn" onclick="shareETF()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">🔗 分享</button>
+          <button id="shareETFBtn" onclick="shareETF()" style="background:var(--bg-elevated);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M6.5 9.5l3-3"/><path d="M9 4l1.5-1.5a2.1 2.1 0 0 1 3 3L12 7"/><path d="M7 9L5.5 10.5a2.1 2.1 0 0 1-3-3L4 6"/></svg>分享</button>
         </div>
         <div class="stock-meta" id="etfMeta">—</div>
         <div class="stock-grid">
@@ -669,7 +862,7 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-futures">
     <div class="section">
-      <div class="section-title">📈 台灣期貨主要商品</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polyline points="1,11 5,7 8,9 11,5 15,3"/><polyline points="11,3 15,3 15,7"/></svg>台灣期貨主要商品</div>
       <div class="grid" id="futuresIndexGrid">
         <div class="card"><h3>台指期 TX</h3><div class="value" id="fut_TX">載入中...</div><div class="sub" id="fut_TX_pct">—</div></div>
         <div class="card"><h3>電子期 TE</h3><div class="value" id="fut_TE">載入中...</div><div class="sub" id="fut_TE_pct">—</div></div>
@@ -678,7 +871,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">🌍 國際商品期貨</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5"/></svg>國際商品期貨</div>
       <div class="grid" id="futuresGlobalGrid">
         <div class="card"><h3>黃金 GC=F</h3><div class="value" id="fut_GC">載入中...</div><div class="sub" id="fut_GC_pct">—</div></div>
         <div class="card"><h3>WTI 原油 CL=F</h3><div class="value" id="fut_CL">載入中...</div><div class="sub" id="fut_CL_pct">—</div></div>
@@ -687,7 +880,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">🌾 農產品期貨</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M8 14V6"/><path d="M8 8c-2-2-4-1-5 0"/><path d="M8 8c2-2 4-1 5 0"/><path d="M8 5c-1.5-2-3.5-1.5-4.5 0"/><path d="M8 5c1.5-2 3.5-1.5 4.5 0"/></svg>農產品期貨</div>
       <div class="grid">
         <div class="card"><h3>小麥 ZW=F</h3><div class="value" id="fut_ZW">載入中...</div><div class="sub" id="fut_ZW_pct">—</div></div>
         <div class="card"><h3>黃豆 ZS=F</h3><div class="value" id="fut_ZS">載入中...</div><div class="sub" id="fut_ZS_pct">—</div></div>
@@ -696,28 +889,28 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">🔗 期交所官方連結</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M6.5 9.5l3-3"/><path d="M9 4l1.5-1.5a2.1 2.1 0 0 1 3 3L12 7"/><path d="M7 9L5.5 10.5a2.1 2.1 0 0 1-3-3L4 6"/></svg>期交所官方連結</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
         <a href="https://www.taifex.com.tw" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX 官網</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">📋 台灣期貨交易所首頁 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="3" y="2" width="10" height="12" rx="2"/><line x1="6" y1="6" x2="10" y2="6"/><line x1="6" y1="9" x2="10" y2="9"/></svg>台灣期貨交易所首頁 ↗</div>
         </a>
         <a href="https://www.taifex.com.tw/cht/3/largeTraderFutQry" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">📊 大額交易人未沖銷部位 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="10" width="3" height="4.5" rx="1"/><rect x="6.5" y="6.5" width="3" height="8" rx="1"/><rect x="11.5" y="3" width="3" height="11.5" rx="1"/></svg>大額交易人未沖銷部位 ↗</div>
         </a>
         <a href="https://www.taifex.com.tw/cht/3/futContractsDate" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">🏦 三大法人期貨未平倉 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M2 6l6-4 6 4"/><rect x="2" y="6" width="12" height="1"/><rect x="2" y="12" width="12" height="1.5" rx=".5"/><line x1="4" y1="7" x2="4" y2="12"/><line x1="8" y1="7" x2="8" y2="12"/><line x1="12" y1="7" x2="12" y2="12"/></svg>三大法人期貨未平倉 ↗</div>
         </a>
         <a href="https://www.taifex.com.tw/cht/3/futDailyMarketView" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">📈 期貨每日行情總覽 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polyline points="1,11 5,7 8,9 11,5 15,3"/><polyline points="11,3 15,3 15,7"/></svg>期貨每日行情總覽 ↗</div>
         </a>
       </div>
     </div>
     <div class="section">
-      <div class="section-title">📊 選擇權籌碼指標</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="10" width="3" height="4.5" rx="1"/><rect x="6.5" y="6.5" width="3" height="8" rx="1"/><rect x="11.5" y="3" width="3" height="11.5" rx="1"/></svg>選擇權籌碼指標</div>
       <div class="grid">
         <div class="card"><h3>Put/Call Ratio</h3><div class="value" id="pcRatio">載入中...</div><div class="sub" id="pcRatioInterp">—</div></div>
         <div class="card"><h3>外資期貨多空淨額</h3><div class="value" id="foreignFut">載入中...</div><div class="sub">口數</div></div>
@@ -726,13 +919,13 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">🔥 熱門股票期貨（單一商品）</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M8 1.5c0 3-3 4-3 7a4 4 0 0 0 6.5 3c-1.5-.5-2.5-2-2.5-3.5 0-1.5 2-3 2-5a3 3 0 0 0-3-1.5z"/></svg>熱門股票期貨（單一商品）</div>
       <div id="stockFuturesGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
     </div>
     <div class="section">
-      <div class="section-title">📅 期貨交易說明</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="2" y="3" width="12" height="11" rx="2"/><line x1="2" y1="7" x2="14" y2="7"/><line x1="5" y1="1.5" x2="5" y2="4.5"/><line x1="11" y1="1.5" x2="11" y2="4.5"/></svg>期貨交易說明</div>
       <div style="background:var(--bg-surface);border-radius:12px;padding:16px;color:var(--text-secondary);font-size:13px;line-height:1.7">
         台指期（TX）合約規格：契約價值 = 指數 × NT$200／點，逐筆撮合，最後交易日為當月第三個週三。<br>
         小台指期（MTX）：契約價值為大台 1/4，新手入門首選。<br>
@@ -746,7 +939,7 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-tools">
     <div class="section">
-      <div class="section-title">🛠 理財試算工具</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M9.5 6.5L14 2l-2-1-4.5 4.5"/><circle cx="6" cy="10" r="4"/></svg>理財試算工具</div>
       <div style="color:var(--text-muted);font-size:13px;padding:8px 0 16px">輸入即時運算，無需按鈕。所有資料只在你的瀏覽器計算，不會上傳。</div>
       <div id="toolsGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px">
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
@@ -756,7 +949,7 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-options">
     <div class="section">
-      <div class="section-title">📊 台指選擇權核心指標</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="10" width="3" height="4.5" rx="1"/><rect x="6.5" y="6.5" width="3" height="8" rx="1"/><rect x="11.5" y="3" width="3" height="11.5" rx="1"/></svg>台指選擇權核心指標</div>
       <div class="grid">
         <div class="card"><h3>Put/Call Ratio (口數)</h3><div class="value" id="opt_pcRatio">載入中...</div><div class="sub" id="opt_pcRatioInterp">—</div></div>
         <div class="card"><h3>Put/Call Ratio (未平倉)</h3><div class="value" id="opt_pcOI">載入中...</div><div class="sub">P/C OI</div></div>
@@ -765,7 +958,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">📚 指標解讀</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M2 2h4l2 1.5L10 2h4v11h-4l-2 1.5L6 13H2z"/><line x1="8" y1="3.5" x2="8" y2="13.5"/></svg>指標解讀</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px">
         <div style="background:var(--bg-surface);border-radius:12px;padding:16px;border:1px solid var(--border-strong)">
           <div style="font-size:14px;color:var(--accent);font-weight:700;margin-bottom:8px;border-left:3px solid var(--accent);padding-left:8px">Put/Call Ratio</div>
@@ -796,23 +989,23 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">🔗 期交所官方連結</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M6.5 9.5l3-3"/><path d="M9 4l1.5-1.5a2.1 2.1 0 0 1 3 3L12 7"/><path d="M7 9L5.5 10.5a2.1 2.1 0 0 1-3-3L4 6"/></svg>期交所官方連結</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
         <a href="https://www.taifex.com.tw/cht/3/optDailyMarketSummary" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">📋 選擇權每日成交行情 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="3" y="2" width="10" height="12" rx="2"/><line x1="6" y1="6" x2="10" y2="6"/><line x1="6" y1="9" x2="10" y2="9"/></svg>選擇權每日成交行情 ↗</div>
         </a>
         <a href="https://www.taifex.com.tw/cht/3/pcRatio" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">📊 Put/Call Ratio 歷史 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="10" width="3" height="4.5" rx="1"/><rect x="6.5" y="6.5" width="3" height="8" rx="1"/><rect x="11.5" y="3" width="3" height="11.5" rx="1"/></svg>Put/Call Ratio 歷史 ↗</div>
         </a>
         <a href="https://www.taifex.com.tw/cht/5/optCalculator" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">🧮 選擇權計算機 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="2" y="2" width="12" height="12" rx="2"/><line x1="5" y1="6" x2="11" y2="6"/><circle cx="5.5" cy="10" r=".8"/><circle cx="8" cy="10" r=".8"/><circle cx="10.5" cy="10" r=".8"/></svg>選擇權計算機 ↗</div>
         </a>
         <a href="https://www.taifex.com.tw/cht/3/optContractsDate" target="_blank" rel="noopener" style="background:var(--bg-surface);border-radius:10px;padding:14px;text-decoration:none;border:1px solid var(--border-strong);display:block">
           <div style="font-size:12px;color:var(--text-secondary)">TAIFEX</div>
-          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px">📅 選擇權契約規格 ↗</div>
+          <div style="font-size:14px;color:var(--accent);font-weight:700;margin-top:2px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="2" y="3" width="12" height="11" rx="2"/><line x1="2" y1="7" x2="14" y2="7"/><line x1="5" y1="1.5" x2="5" y2="4.5"/><line x1="11" y1="1.5" x2="11" y2="4.5"/></svg>選擇權契約規格 ↗</div>
         </a>
       </div>
     </div>
@@ -820,13 +1013,13 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-screener">
     <div class="section">
-      <div class="section-title">🎯 智慧選股</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="3.5"/><circle cx="8" cy="8" r="1"/></svg>智慧選股</div>
       <div style="color:var(--text-muted);font-size:13px;margin-bottom:10px">所有條件可組合（空白＝不限），點擊個股可跳到台股查詢</div>
       <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
-        <button onclick="applyScreenerTemplate('dividend')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">💎 存股族</button>
-        <button onclick="applyScreenerTemplate('growth')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">🚀 成長股</button>
-        <button onclick="applyScreenerTemplate('value')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">💰 價值股</button>
-        <button onclick="applyScreenerTemplate('momentum')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">⚡ 強勢股</button>
+        <button onclick="applyScreenerTemplate('dividend')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polygon points="3,6 8,14 13,6 11,2 5,2"/><line x1="3" y1="6" x2="13" y2="6"/><line x1="8" y1="14" x2="5.5" y2="6"/><line x1="8" y1="14" x2="10.5" y2="6"/></svg>存股族</button>
+        <button onclick="applyScreenerTemplate('growth')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M8 1.5c-1 2-2 5-2 8h4c0-3-1-6-2-8z"/><path d="M6 9.5c-1.5.5-2.5 1.5-3 3l3-1"/><path d="M10 9.5c1.5.5 2.5 1.5 3 3l-3-1"/><circle cx="8" cy="6" r="1"/></svg>成長股</button>
+        <button onclick="applyScreenerTemplate('value')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v8M6 5.5h3a1.5 1.5 0 0 1 0 3H6h3.5a1.5 1.5 0 0 1 0 3H6"/></svg>價值股</button>
+        <button onclick="applyScreenerTemplate('momentum')" style="background:var(--accent-soft);color:var(--accent);border:1px solid var(--accent);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polygon points="9,1 4,9 8,9 7,15 12,7 8,7"/></svg>強勢股</button>
         <button onclick="applyScreenerTemplate('reset')" style="background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:6px 14px;border-radius:6px;font-size:13px;cursor:pointer">重置</button>
       </div>
       <div style="background:var(--bg-surface);border-radius:12px;padding:14px;border:1px solid var(--border-strong);margin-bottom:14px">
@@ -840,7 +1033,7 @@ textarea{height:80px;resize:vertical}
           <input type="number" id="sc_roe" placeholder="ROE > %" style="background:var(--bg-elevated);color:var(--text-primary);border:1px solid var(--border-strong);padding:8px;border-radius:6px;font-size:13px">
           <input type="number" id="sc_eps" placeholder="EPS > 元" style="background:var(--bg-elevated);color:var(--text-primary);border:1px solid var(--border-strong);padding:8px;border-radius:6px;font-size:13px">
           <input type="number" id="sc_w52" placeholder="52週位階 < %" style="background:var(--bg-elevated);color:var(--text-primary);border:1px solid var(--border-strong);padding:8px;border-radius:6px;font-size:13px">
-          <button onclick="runScreener()" style="background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600">🔍 開始選股</button>
+          <button onclick="runScreener()" style="background:var(--accent);color:#fff;border:none;padding:8px 16px;border-radius:6px;font-size:13px;cursor:pointer;font-weight:600"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="6.5" cy="6.5" r="5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>開始選股</button>
         </div>
       </div>
       <div id="screenerResult"><div style="color:var(--text-muted);padding:8px">請設定篩選條件後按「開始選股」</div></div>
@@ -849,26 +1042,26 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-bonds">
     <div class="section">
-      <div class="section-title">💵 債券市場總覽</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1" y="3" width="14" height="10" rx="2"/><circle cx="8" cy="8" r="2.5"/><line x1="4" y1="6" x2="4" y2="10"/><line x1="12" y1="6" x2="12" y2="10"/></svg>債券市場總覽</div>
       <div id="bondsUS" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
     </div>
     <div class="section">
-      <div class="section-title">💼 公司債 / 高收益債</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="5" width="13" height="9" rx="2"/><path d="M5.5 5V3.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V5"/></svg>公司債 / 高收益債</div>
       <div id="bondsCorp" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
     </div>
     <div class="section">
-      <div class="section-title">🌏 新興市場債</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13"/><ellipse cx="8" cy="8" rx="3" ry="6.5"/></svg>新興市場債</div>
       <div id="bondsEM" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px"></div>
     </div>
     <div class="section">
-      <div class="section-title">🇹🇼 台灣債券 ETF</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><line x1="1.5" y1="8" x2="14.5" y2="8"/></svg>台灣債券 ETF</div>
       <div id="bondsTW" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px"></div>
     </div>
     <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-sector">
     <div class="section">
-      <div class="section-title">🏭 產業族群熱度</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1" y="6" width="4" height="8" rx="1"/><rect x="6" y="3" width="4" height="11" rx="1"/><rect x="11" y="1" width="4" height="13" rx="1"/></svg>產業族群熱度</div>
       <div style="color:var(--text-muted);font-size:13px;margin-bottom:12px">依台股個股當日漲跌幅平均，點擊展開看族群成分股</div>
       <div id="sectorList" style="display:flex;flex-direction:column;gap:10px">
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
@@ -878,7 +1071,7 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-macro">
     <div class="section">
-      <div class="section-title">🇹🇼 台灣總體經濟指標</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><line x1="1.5" y1="8" x2="14.5" y2="8"/></svg>台灣總體經濟指標</div>
       <div class="grid" id="macroTW">
         <div class="card"><h3>央行利率</h3><div class="value" id="m_tw_rate">2.000%</div><div class="sub">2026年最新</div></div>
         <div class="card"><h3>CPI 年增率</h3><div class="value" id="m_tw_cpi">2.1%</div><div class="sub">主計總處</div></div>
@@ -889,7 +1082,7 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">🇺🇸 美國總體經濟指標</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><line x1="1.5" y1="6" x2="14.5" y2="6"/><line x1="1.5" y1="10" x2="14.5" y2="10"/></svg>美國總體經濟指標</div>
       <div class="grid" id="macroUS">
         <div class="card"><h3>聯準會利率</h3><div class="value" id="m_us_rate">載入中...</div><div class="sub">FedFunds</div></div>
         <div class="card"><h3>10年公債殖利率</h3><div class="value" id="m_us_10y">載入中...</div><div class="sub">UST10Y</div></div>
@@ -900,23 +1093,23 @@ textarea{height:80px;resize:vertical}
       </div>
     </div>
     <div class="section">
-      <div class="section-title">🌐 全球央行利率比較</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5"/></svg>全球央行利率比較</div>
       <div style="background:var(--bg-surface);border-radius:12px;padding:14px;border:1px solid var(--border-strong)">
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border-strong);border-radius:8px;overflow:hidden">
           <div style="background:var(--bg-elevated);padding:10px;font-size:12px;color:var(--text-muted);text-align:center">國家/地區</div>
           <div style="background:var(--bg-elevated);padding:10px;font-size:12px;color:var(--text-muted);text-align:center">央行利率</div>
           <div style="background:var(--bg-elevated);padding:10px;font-size:12px;color:var(--text-muted);text-align:center">基準變動</div>
-          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center">🇺🇸 美國</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.25-5.50%</div><div style="background:var(--bg-surface);padding:10px;color:var(--text-secondary);text-align:center">持平</div>
-          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center">🇹🇼 台灣</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">2.000%</div><div style="background:var(--bg-surface);padding:10px;color:var(--text-secondary);text-align:center">持平</div>
-          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center">🇪🇺 歐盟</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.75%</div><div style="background:var(--bg-surface);padding:10px;color:var(--down);text-align:center">↓ 25bp</div>
-          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center">🇬🇧 英國</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.00%</div><div style="background:var(--bg-surface);padding:10px;color:var(--text-secondary);text-align:center">持平</div>
-          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center">🇯🇵 日本</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">0.25%</div><div style="background:var(--bg-surface);padding:10px;color:var(--up);text-align:center">↑ 15bp</div>
-          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center">🇨🇳 中國</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.10%</div><div style="background:var(--bg-surface);padding:10px;color:var(--down);text-align:center">↓ 10bp</div>
+          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><line x1="1.5" y1="6" x2="14.5" y2="6"/><line x1="1.5" y1="10" x2="14.5" y2="10"/></svg>美國</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.25-5.50%</div><div style="background:var(--bg-surface);padding:10px;color:var(--text-secondary);text-align:center">持平</div>
+          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><line x1="1.5" y1="8" x2="14.5" y2="8"/></svg>台灣</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">2.000%</div><div style="background:var(--bg-surface);padding:10px;color:var(--text-secondary);text-align:center">持平</div>
+          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><circle cx="8" cy="8" r="2.5"/></svg>歐盟</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.75%</div><div style="background:var(--bg-surface);padding:10px;color:var(--down);text-align:center">↓ 25bp</div>
+          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><line x1="8" y1="3" x2="8" y2="13"/><line x1="1.5" y1="8" x2="14.5" y2="8"/></svg>英國</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">5.00%</div><div style="background:var(--bg-surface);padding:10px;color:var(--text-secondary);text-align:center">持平</div>
+          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><circle cx="8" cy="8" r="2"/></svg>日本</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">0.25%</div><div style="background:var(--bg-surface);padding:10px;color:var(--up);text-align:center">↑ 15bp</div>
+          <div style="background:var(--bg-surface);padding:10px;color:var(--text-primary);text-align:center"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><polygon points="4,5.5 5,7 4,8.5 5.5,7.5 3,7.5"/></svg>中國</div><div style="background:var(--bg-surface);padding:10px;color:#fbbf24;text-align:center;font-weight:700">3.10%</div><div style="background:var(--bg-surface);padding:10px;color:var(--down);text-align:center">↓ 10bp</div>
         </div>
       </div>
     </div>
     <div class="section">
-      <div class="section-title">📈 美國公債殖利率曲線</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polyline points="1,11 5,7 8,9 11,5 15,3"/><polyline points="11,3 15,3 15,7"/></svg>美國公債殖利率曲線</div>
       <div style="background:var(--bg-surface);border-radius:12px;padding:18px;border:1px solid var(--border-strong)">
         <div id="yieldCurve" style="display:flex;align-items:flex-end;gap:14px;height:200px;padding:10px 0">
           <div style="color:var(--text-muted);padding:8px">載入中...</div>
@@ -928,10 +1121,10 @@ textarea{height:80px;resize:vertical}
   </div>
   <div class="tab-content" id="tab-portfolio">
     <div class="section">
-      <div class="section-title">💼 我的投資組合</div>
+      <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="5" width="13" height="9" rx="2"/><path d="M5.5 5V3.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1V5"/></svg>我的投資組合</div>
       <div id="portfolioSummary" style="margin-bottom:14px"></div>
       <div style="background:var(--bg-surface);border-radius:12px;padding:14px;border:1px solid var(--border-strong);margin-bottom:14px">
-        <div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px">➕ 新增持倉</div>
+        <div style="font-size:13px;color:var(--accent);font-weight:700;margin-bottom:8px"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="8" y1="5" x2="8" y2="11"/></svg>新增持倉</div>
         <div style="display:grid;grid-template-columns:80px 90px 1fr 90px 90px 130px auto;gap:6px">
           <select id="holdType" style="background:var(--bg-elevated);color:var(--text-primary);border:1px solid var(--border-strong);padding:8px;border-radius:6px;font-size:13px">
             <option value="tw">台股</option>
@@ -1000,16 +1193,16 @@ textarea{height:80px;resize:vertical}
   resize();gen();draw();
 })();
 </script>
-<div id="tab-asia" class="tab-content" style="display:none"><div class="section-title">🌏 亞洲市場</div><div id="asia-market-content"></div></div>
+<div id="tab-asia" class="tab-content" style="display:none"><div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13"/><ellipse cx="8" cy="8" rx="3" ry="6.5"/></svg>亞洲市場</div><div id="asia-market-content"></div></div>
 
 <div id="tab-pro" class="tab-content" style="display:none">
-  <div class="section-title">💎 升級 Pro · 解鎖完整功能</div>
+  <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><polygon points="3,6 8,14 13,6 11,2 5,2"/><line x1="3" y1="6" x2="13" y2="6"/><line x1="8" y1="14" x2="5.5" y2="6"/><line x1="8" y1="14" x2="10.5" y2="6"/></svg>升級 Pro · 解鎖完整功能</div>
   <div style="background:linear-gradient(135deg,#1e1b3a,#0f172a);border-radius:12px;padding:20px;border:1px solid #4c1d95;margin-bottom:16px">
     <div style="font-size:18px;font-weight:700;color:#a78bfa;margin-bottom:6px">MoneyRadar Pro · NT$299/月</div>
     <div style="font-size:13px;color:var(--text-secondary);line-height:1.6">解鎖無限 AI、即時數據（美/港/日）、無限自選股、進階警示、多股深度比較、Email 早報、無廣告</div>
-    <button id="pro-upgrade-btn" type="button" style="margin-top:14px;width:100%;background:linear-gradient(135deg,#7c3aed,#5b21b6);color:white;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer">🚀 我有興趣 · 通知我正式上線</button>
+    <button id="pro-upgrade-btn" type="button" style="margin-top:14px;width:100%;background:linear-gradient(135deg,#7c3aed,#5b21b6);color:white;border:none;border-radius:10px;padding:12px;font-size:14px;font-weight:700;cursor:pointer"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><path d="M8 1.5c-1 2-2 5-2 8h4c0-3-1-6-2-8z"/><path d="M6 9.5c-1.5.5-2.5 1.5-3 3l3-1"/><path d="M10 9.5c1.5.5 2.5 1.5 3 3l-3-1"/><circle cx="8" cy="6" r="1"/></svg>我有興趣 · 通知我正式上線</button>
   </div>
-  <div class="section-title">🎯 Free vs Pro 對比</div>
+  <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="3.5"/><circle cx="8" cy="8" r="1"/></svg>Free vs Pro 對比</div>
   <div style="background:var(--bg-elevated);border-radius:10px;padding:14px 18px;border:1px solid var(--border);font-size:13px;color:var(--text-secondary);line-height:1.8">
     <div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px;font-size:12px">
       <div style="font-weight:700;color:var(--text-secondary)">功能</div><div style="font-weight:700;color:var(--text-secondary);text-align:center">Free</div><div style="font-weight:700;color:#a78bfa;text-align:center">Pro</div>
@@ -1026,6 +1219,19 @@ textarea{height:80px;resize:vertical}
   </div>
   <div style="text-align:center;color:var(--text-muted);font-size:11px;margin-top:14px">目前 Beta 測試版功能全開免費 · 正式版預計 2026 Q3 上線</div>
 </div>
+<script>
+function openMrMenu(){document.getElementById('mrMenuOverlay').style.display='block';document.body.style.overflow='hidden';updateMenuActiveState()}
+function closeMrMenu(){document.getElementById('mrMenuOverlay').style.display='none';document.body.style.overflow=''}
+function updateMenuActiveState(){var items=document.querySelectorAll('.mr-menu-item');var active=document.querySelector('.tab-content.active');var activeId=active?active.id.replace('tab-',''):'tw';items.forEach(function(item){var oc=item.getAttribute('onclick')||'';var m=oc.match(/switchTab\('([^']+)'/);if(m){item.classList.toggle('active',m[1]===activeId)}})}
+function toggleThemeV272(){
+  var h=document.documentElement;
+  var isDark=h.getAttribute('data-theme')!=='light';
+  h.setAttribute('data-theme',isDark?'light':'dark');
+  localStorage.setItem('mr-theme',isDark?'light':'dark');
+  h.setAttribute('data-v281-theme',isDark?'light':'dark');
+}
+(function(){var t=localStorage.getItem('mr-theme');if(t){document.documentElement.setAttribute('data-theme',t);document.documentElement.setAttribute('data-v281-theme',t)}})();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script><script>(function(){var K='mr_v275_';var T=['tab-tw','tab-watchlist','tab-us','tab-asia','tab-etf','tab-fund','tab-futures','tab-tools','tab-options','tab-screener','tab-bonds','tab-sector','tab-macro','tab-portfolio','tab-pro','tab-crypto'];var ST=document.createElement('style');ST.textContent='.v275-h{position:absolute;top:8px;right:12px;cursor:grab;padding:4px 10px;color:rgba(255,255,255,.5);font:900 16px/1 sans-serif;background:rgba(255,255,255,.08);border-radius:4px;z-index:10;letter-spacing:-2px;user-select:none}.v275-h:hover{color:#fff;background:rgba(0,200,255,.2)}.v275-g{opacity:.4;background:rgba(0,200,255,.1)!important;border:2px dashed rgba(0,200,255,.5)!important}';document.head.appendChild(ST);function I(){if(!window.Sortable){return setTimeout(I,500);}T.forEach(function(id){var t=document.getElementById(id);if(!t||t.dataset.v275){return;}t.dataset.v275='1';Array.from(t.querySelectorAll(':scope > .section')).forEach(function(x,i){if(!x.dataset.v275k){var z=x.querySelector('[id]');x.dataset.v275k=z?z.id:'s-'+id+'-'+i;}if(getComputedStyle(x).position==='static'){x.style.position='relative';}if(!x.querySelector('.v275-h')){var h=document.createElement('span');h.className='v275-h';h.title='Drag';h.textContent='⋮⋮';x.appendChild(h);}});try{JSON.parse(localStorage.getItem(K+id)||'[]').forEach(function(k){var sel='[data-v275k='+JSON.stringify(k)+']';var e=t.querySelector(sel);if(e){t.appendChild(e);}});}catch(e){}new window.Sortable(t,{handle:'.v275-h',animation:200,ghostClass:'v275-g',filter:'.footer,#v272-controls,script,style',onEnd:function(){try{var arr=Array.from(t.querySelectorAll(':scope > .section')).map(function(x){return x.dataset.v275k;}).filter(Boolean);localStorage.setItem(K+id,JSON.stringify(arr));}catch(e){}}});});}I();document.addEventListener('click',function(e){if(e.target.closest('[data-tab],.tab-btn,[role=tab]')){setTimeout(I,400);}},true);window.v275Reset=function(){T.forEach(function(id){localStorage.removeItem(K+id);});location.reload();};})();</script>
 </body>
 </html>

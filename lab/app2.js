@@ -1,3 +1,99 @@
+/* ═══ MoneyRadar v272 SVG Icon Registry ═══ */
+const MR_ICONS = {
+  star: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="8,1.5 10.3,6 15,6.8 11.5,10.2 12.4,14.8 8,12.5 3.6,14.8 4.5,10.2 1,6.8 5.7,6"/></svg>',
+  fire: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1C6 4 4 6 4 9a4 4 0 0 0 8 0c0-3-2-5-4-8Z"/><path d="M8 7c-1 1.5-2 2.5-2 4a2 2 0 0 0 4 0c0-1.5-1-2.5-2-4Z"/></svg>',
+  chart: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="10" width="3" height="4.5" rx=".5"/><rect x="6.5" y="6" width="3" height="8.5" rx=".5"/><rect x="11.5" y="3" width="3" height="11.5" rx=".5"/></svg>',
+  chartUp: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,11 5,7 8,9 11,5 15,3"/><polyline points="11,3 15,3 15,7"/></svg>',
+  chartDown: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,5 5,9 8,7 11,11 15,13"/><polyline points="11,13 15,13 15,9"/></svg>',
+  warning: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1L1 14h14L8 1Z"/><line x1="8" y1="6" x2="8" y2="10"/><circle cx="8" cy="12" r=".5" fill="currentColor"/></svg>',
+  diamond: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="3,6 8,14 13,6 11,2 5,2"/><line x1="3" y1="6" x2="13" y2="6"/></svg>',
+  money: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v8M6 5.5h3a1.5 1.5 0 0 1 0 3H6m0 0h3.5a1.5 1.5 0 0 1 0 3H6"/></svg>',
+  globe: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5"/></svg>',
+  rocket: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1c-2 2-4 5-4 8 0 2 1 3 4 3s4-1 4-3c0-3-2-6-4-8Z"/><line x1="6" y1="12" x2="5" y2="15"/><line x1="10" y1="12" x2="11" y2="15"/></svg>',
+  calendar: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3" width="13" height="11" rx="2"/><line x1="1.5" y1="7" x2="14.5" y2="7"/><line x1="5" y1="1.5" x2="5" y2="4.5"/><line x1="11" y1="1.5" x2="11" y2="4.5"/></svg>',
+  bell: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5v2.5L2 10h12l-1.5-1.5V6A4.5 4.5 0 0 0 8 1.5Z"/><path d="M6.5 11.5a1.5 1.5 0 0 0 3 0"/></svg>',
+  link: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 9l2-2m-3-1L4.5 7.5a3 3 0 0 0 4.24 4.24L10 10.5m-1-5l1.5-1.5a3 3 0 0 1 4.24 4.24L13 9.5"/></svg>',
+  megaphone: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 3v10L5 10V6l8-3Z"/><rect x="2" y="6" width="3" height="4" rx="1"/><path d="M5 10l1 4"/></svg>',
+  building: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="11" rx="1"/><line x1="5" y1="6" x2="5" y2="6.5"/><line x1="8" y1="6" x2="8" y2="6.5"/><line x1="11" y1="6" x2="11" y2="6.5"/><line x1="5" y1="9" x2="5" y2="9.5"/><line x1="8" y1="9" x2="8" y2="9.5"/><line x1="11" y1="9" x2="11" y2="9.5"/><rect x="6" y="11" width="4" height="3"/></svg>',
+  eye: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 8s3-5 7-5 7 5 7 5-3 5-7 5-7-5-7-5Z"/><circle cx="8" cy="8" r="2"/></svg>',
+  check: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,8 6.5,11.5 13,4.5"/></svg>',
+  mic: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5"/><path d="M3 8a5 5 0 0 0 10 0"/><line x1="8" y1="13" x2="8" y2="15"/></svg>',
+  sun: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3"/><line x1="8" y1="1" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="15"/><line x1="1" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="15" y2="8"/></svg>',
+  snowflake: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="1" x2="8" y2="15"/><line x1="1.5" y1="4.5" x2="14.5" y2="11.5"/><line x1="1.5" y1="11.5" x2="14.5" y2="4.5"/></svg>',
+  scale: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="2" x2="8" y2="14"/><line x1="3" y1="4" x2="13" y2="4"/><path d="M3 4l-1 5h4L5 4"/><path d="M11 4l-1 5h4l-1-5"/></svg>',
+  theater: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="5.5" cy="6" r="4.5"/><circle cx="10.5" cy="6" r="4.5"/><path d="M3.5 8a2 2 0 0 0 4 0"/><path d="M8.5 8c0 1.1.9 2 2 2s2-.9 2-2"/></svg>',
+  leaf: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 14S2 5 8 2c6 3 6 12 6 12"/><path d="M2 14c3-3 6-4 12-2"/></svg>',
+  target: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><circle cx="8" cy="8" r="3.5"/><circle cx="8" cy="8" r=".5" fill="currentColor"/></svg>',
+  graduate: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 6l7 4 7-4-7-4Z"/><path d="M3.5 7.5v4L8 14l4.5-2.5v-4"/><line x1="14" y1="6" x2="14" y2="12"/></svg>',
+  briefcase: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="5" width="13" height="9" rx="2"/><path d="M5 5V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>',
+  refresh: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8a6 6 0 0 1 10.5-4"/><path d="M14 8a6 6 0 0 1-10.5 4"/><polyline points="12,2 13,4.5 10.5,5"/><polyline points="4,14 3,11.5 5.5,11"/></svg>',
+  tornado: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="2" y1="3" x2="14" y2="3"/><line x1="3" y1="6" x2="13" y2="6"/><line x1="4" y1="9" x2="12" y2="9"/><line x1="5" y1="12" x2="11" y2="12"/></svg>',
+  wave: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 8c2-3 4-3 6 0s4 3 6 0"/></svg>',
+  sunrise: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="1" y1="12" x2="15" y2="12"/><path d="M4 12a4 4 0 0 1 8 0"/><line x1="8" y1="2" x2="8" y2="5"/><line x1="3" y1="5" x2="4.5" y2="6.5"/><line x1="13" y1="5" x2="11.5" y2="6.5"/></svg>',
+  news: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="2" width="13" height="12" rx="2"/><line x1="4" y1="5" x2="12" y2="5"/><line x1="4" y1="8" x2="12" y2="8"/><line x1="4" y1="11" x2="9" y2="11"/></svg>',
+  globeAm: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5"/></svg>',
+  map: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 3l5 2v10l-5-2V3Zm5 2l4-2v10l-4 2V5Zm4-2l5 2v10l-5-2V3Z"/></svg>',
+  thermo: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 10V3a1.5 1.5 0 0 0-3 0v7a3 3 0 1 0 3 0Z"/></svg>',
+  lockOpen: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="2"/><path d="M5 7V5a3 3 0 0 1 6 0"/></svg>',
+  lockClosed: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="7" width="10" height="7" rx="2"/><path d="M5 7V5a3 3 0 0 1 6 0v2"/></svg>',
+  undo: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h7a3 3 0 0 1 0 6H8"/><polyline points="5,5 3,7 5,9"/></svg>',
+  thought: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 5-6 5H6l-3 2v-2.3C2 11.6 2 9.8 2 8Z"/></svg>',
+  sparkle: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l1.5 4.5L14 7l-4.5 1.5L8 13l-1.5-4.5L2 7l4.5-1.5Z"/></svg>',
+  circle: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="5" fill="#eab308" stroke="none"/></svg>',
+  antenna: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="6" x2="8" y2="14"/><circle cx="8" cy="4" r="2"/><path d="M4 2a5.6 5.6 0 0 0 0 4"/><path d="M12 2a5.6 5.6 0 0 1 0 4"/></svg>',
+  minus: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="8" x2="13" y2="8"/></svg>',
+  trash: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h10l-1 10H4L3 4Z"/><line x1="1" y1="4" x2="15" y2="4"/><path d="M6 4V2h4v2"/></svg>',
+  trophy: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2h8v5a4 4 0 0 1-8 0V2Z"/><path d="M4 4H2a2 2 0 0 0 2 4"/><path d="M12 4h2a2 2 0 0 1-2 4"/><line x1="8" y1="11" x2="8" y2="13"/><line x1="5" y1="14" x2="11" y2="14"/></svg>',
+  bulb: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 14h4M6 12a5 5 0 1 1 4 0"/></svg>',
+  search: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="4.5"/><line x1="10.5" y1="10.5" x2="14" y2="14"/></svg>',
+  flask: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2v5L2 13a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1l-4-6V2"/><line x1="5" y1="2" x2="11" y2="2"/></svg>',
+  wrench: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.5 1.5a4 4 0 0 0-4.2 6.3L2 12l2 2 4.2-4.3a4 4 0 0 0 6.3-4.2l-2.5 2.5-2-2 2.5-2.5Z"/></svg>',
+  flag: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="2" x2="3" y2="14"/><path d="M3 2h9l-2 4 2 4H3"/></svg>',
+  dollar: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1.5" y="3" width="13" height="10" rx="2"/><circle cx="8" cy="8" r="2"/></svg>',
+  pin: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1C5 1 3 3.5 3 6c0 4 5 9 5 9s5-5 5-9c0-2.5-2-5-5-5Z"/><circle cx="8" cy="6" r="1.5"/></svg>',
+  abacus: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><line x1="2" y1="6" x2="14" y2="6"/><line x1="2" y1="10" x2="14" y2="10"/><circle cx="5" cy="6" r="1" fill="currentColor"/><circle cx="9" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="10" r="1" fill="currentColor"/><circle cx="11" cy="10" r="1" fill="currentColor"/></svg>',
+  doc: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 1h6l4 4v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"/><path d="M10 1v4h4"/></svg>',
+  brain: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 14V8M8 8C8 5 5 2 3 4s0 5 2 6M8 8c0-3 3-6 5-4s0 5-2 6"/></svg>',
+  robot: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="10" height="8" rx="2"/><circle cx="6" cy="9" r="1"/><circle cx="10" cy="9" r="1"/><line x1="8" y1="2" x2="8" y2="5"/><circle cx="8" cy="1.5" r="1"/></svg>',
+  bellOff: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5v2.5L2 10h12l-1.5-1.5V6A4.5 4.5 0 0 0 8 1.5Z"/><line x1="2" y1="2" x2="14" y2="14"/></svg>',
+  chip: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="8" height="8" rx="1"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="6" y1="12" x2="6" y2="14"/><line x1="10" y1="12" x2="10" y2="14"/><line x1="2" y1="6" x2="4" y2="6"/><line x1="2" y1="10" x2="4" y2="10"/><line x1="12" y1="6" x2="14" y2="6"/><line x1="12" y1="10" x2="14" y2="10"/></svg>',
+  bank: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6l6-4 6 4"/><rect x="2" y="6" width="12" height="1"/><line x1="4" y1="7" x2="4" y2="12"/><line x1="8" y1="7" x2="8" y2="12"/><line x1="12" y1="7" x2="12" y2="12"/><rect x="2" y="12" width="12" height="1.5"/></svg>',
+  ship: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10l2 3h8l2-3"/><path d="M4 10V5h8v5"/><line x1="8" y1="2" x2="8" y2="5"/></svg>',
+  crane: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="6" y1="2" x2="6" y2="14"/><line x1="4" y1="14" x2="8" y2="14"/><line x1="6" y1="2" x2="13" y2="2"/><line x1="13" y1="2" x2="13" y2="5"/><line x1="6" y1="5" x2="10" y2="5"/></svg>',
+  laptop: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="12" height="8" rx="1"/><path d="M1 13h14"/></svg>',
+  chartLine: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="1,12 5,7 8,9 11,4 15,6"/></svg>',
+  beach: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="4" r="2"/><path d="M1 13c2-2 5-3 7-3s5 1 7 3"/><line x1="8" y1="6" x2="8" y2="13"/></svg>',
+  globeNet: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-2 2-3 4-3 6.5s1 4.5 3 6.5M8 1.5c2 2 3 4 3 6.5s-1 4.5-3 6.5"/></svg>',
+  gift: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="12" height="8" rx="1"/><rect x="1" y="4" width="14" height="3" rx="1"/><line x1="8" y1="4" x2="8" y2="14"/><path d="M8 4C6 2 4 2 4 4"/><path d="M8 4c2-2 4-2 4 0"/></svg>',
+  newspaper: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="10" height="12" rx="1"/><path d="M12 5h2v8a1 1 0 0 1-1 1h-1"/><line x1="5" y1="5" x2="9" y2="5"/><line x1="5" y1="8" x2="9" y2="8"/></svg>',
+  medal: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="10" r="4"/><line x1="5" y1="7" x2="4" y2="2"/><line x1="11" y1="7" x2="12" y2="2"/></svg>',
+  kangaroo: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 14l2-5 3 2 2-7c0-2-2-3-4-2S4 5 5 7"/><circle cx="9" cy="3" r="1.5"/></svg>',
+  oil: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2C6 5 4 7 4 10a4 4 0 0 0 8 0c0-3-2-5-4-8Z"/></svg>',
+  office: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="2" width="10" height="12" rx="1"/><line x1="6" y1="5" x2="6" y2="5.5"/><line x1="10" y1="5" x2="10" y2="5.5"/><line x1="6" y1="8" x2="6" y2="8.5"/><line x1="10" y1="8" x2="10" y2="8.5"/><rect x="6" y="11" width="4" height="3"/></svg>',
+  crown: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11l1-7 3 3 2-4 2 4 3-3 1 7H2Z"/></svg>',
+  save: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><path d="M4 2v4h8V2"/><rect x="5" y="9" width="6" height="3"/></svg>',
+  microphone: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5.5" y="1.5" width="5" height="8" rx="2.5"/><path d="M3 8a5 5 0 0 0 10 0"/><line x1="8" y1="13" x2="8" y2="15"/></svg>',
+  muscle: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12C2 10 2 6 4 4c2-2 4 0 4 2s2-4 4-2c2 2 2 6 0 8l-4 2-4-2Z"/></svg>',
+  sad: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><circle cx="6" cy="6.5" r=".5" fill="currentColor"/><circle cx="10" cy="6.5" r=".5" fill="currentColor"/><path d="M5.5 11c1-1.5 4-1.5 5 0"/></svg>',
+  ruler: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="5" width="14" height="6" rx="1"/><line x1="4" y1="5" x2="4" y2="8"/><line x1="7" y1="5" x2="7" y2="8"/><line x1="10" y1="5" x2="10" y2="8"/><line x1="13" y1="5" x2="13" y2="8"/></svg>',
+  crystal: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M3 8c2-3 4-3 5 0s3 3 5 0"/></svg>',
+  siren: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L1 14h14L8 2Z"/><line x1="8" y1="6" x2="8" y2="10"/><circle cx="8" cy="12" r=".5" fill="currentColor"/></svg>',
+  download: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 7l3 3 3-3"/><path d="M2 12v2h12v-2"/></svg>',
+  label: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h8l4 5-4 5H2V3Z"/><circle cx="5" cy="8" r="1" fill="currentColor"/></svg>',
+  printer: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="2" width="8" height="4"/><rect x="2" y="6" width="12" height="6" rx="1"/><rect x="4" y="10" width="8" height="4"/></svg>',
+  report: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="1" width="10" height="14" rx="1"/><line x1="6" y1="5" x2="10" y2="5"/><line x1="6" y1="8" x2="10" y2="8"/><line x1="6" y1="11" x2="9" y2="11"/></svg>',
+  diary: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="1" width="10" height="14" rx="1"/><line x1="3" y1="1" x2="3" y2="15"/><line x1="6" y1="5" x2="10" y2="5"/><line x1="6" y1="8" x2="10" y2="8"/></svg>',
+  pencil: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 2l3 3-9 9H2v-3l9-9Z"/></svg>',
+  share: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v8M5 4l3-2 3 2"/><path d="M2 10v4h12v-4"/></svg>',
+  microscope: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="5" r="3"/><line x1="9" y1="8" x2="9" y2="12"/><line x1="5" y1="14" x2="13" y2="14"/><line x1="9" y1="12" x2="9" y2="14"/></svg>',
+  shield: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1L2 4v4c0 4 3 6 6 7 3-1 6-3 6-7V4L8 1Z"/></svg>',
+  starBurst: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1l2 5h5l-4 3 1.5 5L8 11l-4.5 3L5 9 1 6h5Z"/></svg>',
+  ballot: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="2"/><polyline points="5,8 7,10 11,5"/></svg>',
+  users: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="5" r="2"/><circle cx="11" cy="5" r="2"/><path d="M2 14c0-3 2-4 4-4s4 1 4 4"/><path d="M10 10c2 0 4 1 4 4"/></svg>',
+  spiral: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 8a1 1 0 0 1 1 1 2 2 0 0 1-2 2 3 3 0 0 1-3-3 4 4 0 0 1 4-4 5 5 0 0 1 5 5 6 6 0 0 1-6 6"/></svg>',
+  coin: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v8M5.5 6h4M5.5 10h4"/></svg>',
+  stethoscope: '<svg style="display:inline-block;width:14px;height:14px;vertical-align:-2px" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 2v5a4 4 0 0 0 8 0V2"/><circle cx="13" cy="9" r="1.5"/><path d="M13 10.5v2a2 2 0 0 1-4 0v-1"/></svg>',
+};
 
 // MoneyRadar™ v272 — 修復 ETF 漲跌幅計算、產業族群 NaN、Remember Me、期貨百分比、加密貨幣並行載入
 const ADMIN_EMAIL='neowu1031@gmail.com';
@@ -198,7 +294,7 @@ async function toggleWatchlist(symbol, name, market, label='watching') {
       });
       if(!watchlistCache) watchlistCache = [];
       watchlistCache.push({symbol: cleanSym, name, market, label});
-      showToast((label==='holding'?'✅ 已加入持有中：':' 已加入觀察中：')+name, '#34d399');
+      showToast((label==='holding'?MR_ICONS.check+' 已加入持有中：':' 已加入觀察中：')+name, '#34d399');
     }
     // 更新按鈕狀態
     updateWatchlistStars(watchlistCache);
@@ -270,8 +366,8 @@ async function renderWatchlistTab() {
     </div>`;
   };
   el.innerHTML = `<div style="font-size:12px;color:#5A6478;margin-bottom:10px">共 ${list.length} 檔（持有 ${holding.length} · 觀察 ${watching.length}）</div>`
-    + renderSection(holding, '持有中', '✅', '#34d399')
-    + renderSection(watching, '觀察中', '👁', '#4A90F6');
+    + renderSection(holding, '持有中', MR_ICONS.check, '#34d399')
+    + renderSection(watching, '觀察中', MR_ICONS.eye, '#4A90F6');
   await Promise.all(list.map(w => renderWatchlistCard(w, myToken).catch(e=>console.log('wl card err',w.symbol,e))));
 }
 
@@ -362,8 +458,8 @@ function _buildWatchlistCardHTML(w, price, pct, prices, dateStr){
     onCardClick = `var i=document.getElementById('cryptoSearch');if(i){i.value='${w.symbol}';if(typeof searchCrypto==='function')searchCrypto();}var t=document.querySelector('[onclick*=&quot;switchTab(\\'crypto\\'&quot;]');if(t)switchTab('crypto',t);`;
   }
   const labelToggle = w.id
-    ? `<span onclick="event.stopPropagation();toggleWatchlistLabel('${w.id}','${w.symbol}','${w.market}','${newLabel}')" style="font-size:9px;padding:2px 6px;border-radius:8px;cursor:pointer;background:${isHolding?'#1e4a3a':'var(--bg-elevated, #131929)'};color:${isHolding?'#34d399':'#8B95A8'};border:1px solid ${isHolding?'#34d399':'rgba(255,255,255,0.09)'};font-weight:600">${isHolding?'✅ 持有中':'👁 觀察中'}</span>`
-    : `<span style="font-size:9px;padding:2px 6px;border-radius:8px;background:${isHolding?'#1e4a3a':'var(--bg-elevated, #131929)'};color:${isHolding?'#34d399':'#8B95A8'};border:1px solid ${isHolding?'#34d399':'rgba(255,255,255,0.09)'};font-weight:600">${isHolding?'✅ 持有中':'👁 觀察中'}</span>`;
+    ? `<span onclick="event.stopPropagation();toggleWatchlistLabel('${w.id}','${w.symbol}','${w.market}','${newLabel}')" style="font-size:9px;padding:2px 6px;border-radius:8px;cursor:pointer;background:${isHolding?'#1e4a3a':'var(--bg-elevated, #131929)'};color:${isHolding?'#34d399':'#8B95A8'};border:1px solid ${isHolding?'#34d399':'rgba(255,255,255,0.09)'};font-weight:600">${isHolding?MR_ICONS.check+' 持有中':MR_ICONS.eye+' 觀察中'}</span>`
+    : `<span style="font-size:9px;padding:2px 6px;border-radius:8px;background:${isHolding?'#1e4a3a':'var(--bg-elevated, #131929)'};color:${isHolding?'#34d399':'#8B95A8'};border:1px solid ${isHolding?'#34d399':'rgba(255,255,255,0.09)'};font-weight:600">${isHolding?MR_ICONS.check+' 持有中':MR_ICONS.eye+' 觀察中'}</span>`;
   return `<div id="${_wlCardKey(w)}" style="background:#1A2035;border-radius:14px;padding:14px;border:1px solid ${borderColor};position:relative;transition:border-color 0.2s;${onCardClick?'cursor:pointer':''}" ${onCardClick?`onclick="${onCardClick}"`:''}>
     <button onclick="event.stopPropagation();toggleWatchlist('${w.symbol}','${safeName}','${w.market}')" title="從清單移除"
       style="position:absolute;top:6px;right:6px;background:rgba(255,255,255,0.09);border:none;color:#8B95A8;width:20px;height:20px;border-radius:50%;font-size:13px;cursor:pointer;line-height:18px;padding:0;text-align:center;z-index:2">×</button>
@@ -398,7 +494,7 @@ async function toggleWatchlistLabel(id, symbol, market, newLabel) {
       if(item) item.label = newLabel;
     }
     renderWatchlistTab();
-    showToast(newLabel==='holding'?'✅ 標記為持有中':'👁 標記為觀察中', '#34d399');
+    showToast(newLabel==='holding'?MR_ICONS.check+' 標記為持有中':MR_ICONS.eye+' 標記為觀察中', '#34d399');
   } catch(e) {}
 }
 let taiexChart=null,stockChart=null,etfChart=null,usChart=null,indicatorChart=null,currentStock='',currentETF='',currentUS='',currentIndicator='none',lastKData=[];
@@ -518,7 +614,7 @@ async function onAuthSuccess(user){
     if(rows&&rows.length&&rows[0].plan)plan=rows[0].plan;
   }catch(e){}
   currentUserPlan=plan;
-  const planLabel=plan==='pro'?'<span style="color:#fbbf24;font-weight:700">⭐ PRO</span>':'<span style="color:#4A90F6">測試版</span>';
+  const planLabel=plan==='pro'?'<span style="color:#fbbf24;font-weight:700">' + MR_ICONS.star + ' PRO</span>':'<span style="color:#4A90F6">測試版</span>';
   if(badge)badge.innerHTML=`Hi, ${handle} · ${planLabel}`;
   if(logoutBtn)logoutBtn.style.display='inline-block';
   showDashboard();
@@ -690,7 +786,7 @@ function shareStock(){
     return;
   }
   copyToClipboard(url).then(()=>{
-    _flashShareBtn('shareStockBtn','🔗 分享');
+    _flashShareBtn('shareStockBtn',MR_ICONS.link+' 分享');
     showToast('✓ 已複製！','#34d399');
     trackEvent('share_stock',{stock_code:currentStock});
   }).catch(()=>{prompt('複製這段網址：',url);});
@@ -706,7 +802,7 @@ function shareETF(){
     return;
   }
   copyToClipboard(url).then(()=>{
-    _flashShareBtn('shareETFBtn','🔗 分享');
+    _flashShareBtn('shareETFBtn',MR_ICONS.link+' 分享');
     showToast('✓ 已複製！','#34d399');
     trackEvent('share_etf',{etf_code:currentETF});
   }).catch(()=>{prompt('複製這段網址：',url);});
@@ -741,8 +837,8 @@ function requestNotifyPermission(){
   Notification.requestPermission().then(p=>{
     const btn=document.getElementById('notifyBtn');
     if(!btn)return;
-    if(p==='granted'){btn.textContent='🔔 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';}
-    else{btn.textContent='🔕 通知已封鎖';btn.style.color='#f87171';}
+    if(p==='granted'){btn.innerHTML=MR_ICONS.bell+' 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';}
+    else{btn.innerHTML=MR_ICONS.bellOff+' 通知已封鎖';btn.style.color='#f87171';}
   });
 }
 
@@ -808,7 +904,7 @@ async function checkAlerts(){
           a.triggered=true;
           // 瀏覽器推播通知
           if(Notification.permission==='granted'){
-            new Notification('📣 MoneyRadar™ 價格警示',{
+            new Notification(MR_ICONS.megaphone+' MoneyRadar™ 價格警示',{
               body:`${sym} 現價 $${price.toLocaleString()} 已${a.condition==='above'?'達到':'跌破'} $${a.price.toLocaleString()}`,
               icon:'/favicon.ico'
             });
@@ -827,9 +923,9 @@ renderAlerts();
   const btn=document.getElementById('notifyBtn');
   if(!btn||!('Notification' in window))return;
   if(Notification.permission==='granted'){
-    btn.textContent='🔔 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';
+    btn.innerHTML=MR_ICONS.bell+' 通知已開啟';btn.style.color='#34d399';btn.style.borderColor='#34d399';
   }else if(Notification.permission==='denied'){
-    btn.textContent='🔕 通知已封鎖';btn.style.color='#f87171';btn.style.borderColor='#f87171';
+    btn.innerHTML=MR_ICONS.bellOff+' 通知已封鎖';btn.style.color='#f87171';btn.style.borderColor='#f87171';
   }
 })();
 // 每分鐘檢查一次警示
@@ -1279,15 +1375,15 @@ async function loadBonds(){
 
 // =============== 產業族群分頁 ===============
 const SECTORS=[
-  {name:'AI/伺服器',icon:'🤖',symbols:['2330','3711','6669','2382','4938','3231']},
-  {name:'半導體',icon:'💾',symbols:['2303','2454','2344','2379','3034','6415','2408','2327']},
-  {name:'金融股',icon:'🏦',symbols:['2881','2882','2883','2884','2885','2886','2887','2891','2892','2880']},
-  {name:'航運股',icon:'🚢',symbols:['2603','2609','2615','2610','2618']},
-  {name:'傳產',icon:'🏗',symbols:['1301','1303','1326','2002','1216']},
-  {name:'電信',icon:'📡',symbols:['2412','3045','4904']},
-  {name:'生技醫療',icon:'⚕',symbols:['4711','4552','1777','6547']},
-  {name:'電子消費',icon:'💻',symbols:['2357','2376','2353','2324','2352','2356']},
-  {name:'高息ETF',icon:'💎',symbols:['0056','00713','00878','00919','00929','00940','00923']}
+  {name:'AI/伺服器',icon:MR_ICONS.robot,symbols:['2330','3711','6669','2382','4938','3231']},
+  {name:'半導體',icon:MR_ICONS.chip,symbols:['2303','2454','2344','2379','3034','6415','2408','2327']},
+  {name:'金融股',icon:MR_ICONS.bank,symbols:['2881','2882','2883','2884','2885','2886','2887','2891','2892','2880']},
+  {name:'航運股',icon:MR_ICONS.ship,symbols:['2603','2609','2615','2610','2618']},
+  {name:'傳產',icon:MR_ICONS.crane,symbols:['1301','1303','1326','2002','1216']},
+  {name:'電信',icon:MR_ICONS.antenna,symbols:['2412','3045','4904']},
+  {name:'生技醫療',icon:MR_ICONS.target,symbols:['4711','4552','1777','6547']},
+  {name:'電子消費',icon:MR_ICONS.laptop,symbols:['2357','2376','2353','2324','2352','2356']},
+  {name:'高息ETF',icon:MR_ICONS.diamond,symbols:['0056','00713','00878','00919','00929','00940','00923']}
 ];
 
 async function loadSectors(){
@@ -1566,33 +1662,33 @@ function initTools(){
   const grid=document.getElementById('toolsGrid');
   if(!grid)return;
   grid.innerHTML=
-    toolCard('💰 複利計算機',
+    toolCard(MR_ICONS.money + ' 複利計算機',
       inputRow('本金','t1_p','1000000','元')+
       inputRow('年報酬率','t1_r','7','%')+
       inputRow('投資年數','t1_n','20','年')+
       '<div id="t1_out" style="margin-top:8px;padding:10px;background:var(--bg-elevated, #131929);border-radius:8px;font-size:12px;color:#8B95A8">輸入後即時計算</div>'
     )+
-    toolCard('📅 定期定額試算',
+    toolCard(MR_ICONS.calendar + ' 定期定額試算',
       inputRow('每月投入','t2_m','10000','元')+
       inputRow('年報酬率','t2_r','7','%')+
       inputRow('投資年數','t2_n','20','年')+
       '<div id="t2_out" style="margin-top:8px;padding:10px;background:var(--bg-elevated, #131929);border-radius:8px;font-size:12px;color:#8B95A8">輸入後即時計算</div>'
     )+
-    toolCard('💹 ETF配息再投入',
+    toolCard(MR_ICONS.chartLine + ' ETF配息再投入',
       inputRow('本金','t3_p','1000000','元')+
       inputRow('年殖利率','t3_y','5','%')+
       inputRow('股價','t3_px','30','元/股')+
       inputRow('投資年數','t3_n','20','年')+
       '<div id="t3_out" style="margin-top:8px;padding:10px;background:var(--bg-elevated, #131929);border-radius:8px;font-size:12px;color:#8B95A8">輸入後即時計算</div>'
     )+
-    toolCard('🏖 退休金試算（幾年達標）',
+    toolCard(MR_ICONS.beach + ' 退休金試算（幾年達標）',
       inputRow('目標退休金','t4_goal','20000000','元')+
       inputRow('現有積蓄','t4_save','500000','元')+
       inputRow('每月投入','t4_m','15000','元')+
       inputRow('預期年報酬率','t4_r','6','%')+
       '<div id="t4_out" style="margin-top:8px;padding:10px;background:var(--bg-elevated, #131929);border-radius:8px;font-size:12px;color:#8B95A8">輸入後即時計算</div>'
     )+
-    toolCard('📊 股票損益計算',
+    toolCard(MR_ICONS.chart + ' 股票損益計算',
       inputRow('買入價','t5_bp','100','元')+
       inputRow('賣出價','t5_sp','110','元')+
       inputRow('張數','t5_q','10','張')+
@@ -1600,7 +1696,7 @@ function initTools(){
       inputRow('證交稅','t5_tax','0.3','%')+
       '<div id="t5_out" style="margin-top:8px;padding:10px;background:var(--bg-elevated, #131929);border-radius:8px;font-size:12px;color:#8B95A8">輸入後即時計算</div>'
     )+
-    toolCard('🌐 外幣換算',
+    toolCard(MR_ICONS.globeNet + ' 外幣換算',
       `<div style="display:grid;grid-template-columns:110px 1fr 80px;gap:6px;align-items:center;margin-bottom:6px">
         <label style="font-size:12px;color:#8B95A8">金額</label>
         <input type="number" id="t6_amt" placeholder="1000" style="background:var(--bg-elevated, #131929);color:#E8EDF5;border:1px solid rgba(255,255,255,0.09);padding:6px 8px;border-radius:6px;font-size:13px">
@@ -1617,7 +1713,7 @@ function initTools(){
       </div>
       <div id="t6_out" style="margin-top:8px;padding:10px;background:var(--bg-elevated, #131929);border-radius:8px;font-size:12px;color:#8B95A8">輸入後即時計算（匯率資料即時抓取中...）</div>`
     )+
-    toolCard('📈 0050 定期定額回測',
+    toolCard(MR_ICONS.chartUp + ' 0050 定期定額回測',
       inputRow('每月投入','t7_m','10000','元')+
       inputRow('開始年份','t7_y','2010','年')+
       '<div id="t7_out" style="margin-top:8px;padding:10px;background:var(--bg-elevated, #131929);border-radius:8px;font-size:12px;color:#8B95A8">輸入後即時計算（從 Supabase 抓 0050 歷史價）</div>'
@@ -1861,7 +1957,7 @@ async function renderPortfolio(){
     // hk 已移除
     return v;
   }
-  listEl.innerHTML='<div style="background:#1A2035;border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.09)"><div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">📋 持倉明細</div><div id="holdRows"></div></div>';
+  listEl.innerHTML='<div style="background:#1A2035;border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.09)"><div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.news + ' 持倉明細</div><div id="holdRows"></div></div>';
   const rowsEl=document.getElementById('holdRows');
   rowsEl.innerHTML='<div style="color:#5A6478;padding:8px;font-size:12px">抓取最新價...</div>';
 
@@ -1931,7 +2027,7 @@ async function renderPortfolio(){
   });
 
   // 資產配置（純CSS橫向長條）
-  let alloc='<div style="background:#1A2035;border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.09)"><div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">📊 資產配置</div>';
+  let alloc='<div style="background:#1A2035;border-radius:14px;padding:14px;border:1px solid rgba(255,255,255,0.09)"><div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.chart + ' 資產配置</div>';
   alloc+='<div style="display:flex;height:24px;border-radius:6px;overflow:hidden;margin-bottom:10px">';
   Object.entries(byType).forEach(([t,v])=>{
     const pct=(v.value/totalTwd*100).toFixed(1);
@@ -2590,7 +2686,7 @@ async function loadSouvenir(code){
   el.innerHTML = `
     <div style="background:linear-gradient(135deg,var(--bg-elevated, #131929) 0%,#1e1b4b 100%);border-radius:14px;padding:20px;border:1px solid #312e81;text-align:center;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at top,rgba(99,102,241,0.15) 0%,transparent 70%);pointer-events:none"></div>
-      <div style="font-size:28px;margin-bottom:8px">🎁</div>
+      <div style="font-size:28px;margin-bottom:8px">${MR_ICONS.gift}</div>
       <div style="font-size:15px;font-weight:700;color:#E8EDF5;margin-bottom:4px">股東會紀念品</div>
       <div style="display:inline-flex;align-items:center;gap:6px;background:#312e81;border:1px solid #4f46e5;border-radius:20px;padding:4px 14px;margin:8px 0">
         <span style="width:6px;height:6px;background:#818cf8;border-radius:50%;animation:pulse 1.5s infinite"></span>
@@ -2842,14 +2938,14 @@ async function checkDisposeStatus(code){
     const isAttention = Array.isArray(attentionData) && attentionData.length > 0;
 
     if(!isDispose && !isAttention){
-      el.innerHTML = '<div style="display:inline-flex;align-items:center;gap:6px;background:#052e16;border:1px solid #166534;border-radius:20px;padding:4px 12px"><span style="font-size:11px;color:#34d399">✅ 正常交易</span></div>';
+      el.innerHTML = '<div style="display:inline-flex;align-items:center;gap:6px;background:#052e16;border:1px solid #166534;border-radius:20px;padding:4px 12px"><span style="font-size:11px;color:#34d399">' + MR_ICONS.check + ' 正常交易</span></div>';
       return;
     }
     let html = '<div style="display:flex;gap:8px;flex-wrap:wrap">';
     if(isDispose){
       const d = disposeData[0];
       html += `<div style="display:inline-flex;align-items:center;gap:6px;background:#450a0a;border:1px solid #ef4444;border-radius:20px;padding:5px 14px">
-        <span style="font-size:13px">⚠️</span>
+        <span style="font-size:13px">' + MR_ICONS.warning + '</span>
         <span style="font-size:12px;color:#f87171;font-weight:700">處置股</span>
         <span style="font-size:11px;color:#8B95A8">${d['處置期間']||d['period']||''}</span>
       </div>`;
@@ -2857,7 +2953,7 @@ async function checkDisposeStatus(code){
     if(isAttention){
       const d = attentionData[0];
       html += `<div style="display:inline-flex;align-items:center;gap=6px;background:#431407;border:1px solid #f97316;border-radius:20px;padding:5px 14px">
-        <span style="font-size:13px">🔔</span>
+        <span style="font-size:13px">' + MR_ICONS.bell + '</span>
         <span style="font-size:12px;color:#fb923c;font-weight:700">注意股</span>
         <span style="font-size:11px;color:#8B95A8">${d['注意原因']||d['reason']||''}</span>
       </div>`;
@@ -2904,7 +3000,7 @@ async function loadStockDividend(code){
 
     // 配息記錄
     if(divs && divs.length > 0){
-      html += '<div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:6px;border-left:3px solid #1A6CF6;padding-left:8px">📅 配息記錄</div>';
+      html += '<div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:6px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.calendar + ' 配息記錄</div>';
       html += '<div style="display:flex;flex-direction:column;gap:4px">';
       divs.forEach(d=>{
         const amt = d.dividend_amount!=null ? '$'+parseFloat(d.dividend_amount).toFixed(3) : '待公告';
@@ -2974,7 +3070,7 @@ async function loadChipAnalysis(code){
 
     let html = `<div style="margin-bottom:8px">
       <div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">
-        📊 三大法人 · ${latest.date||''}
+        ${MR_ICONS.chart} 三大法人 · ${latest.date||''}
         <span style="margin-left:8px;font-size:11px;background:${foreignStreak>0?'#052e16':'#450a0a'};color:${streakColor};padding:2px 8px;border-radius:10px">${streakText}</span>
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
@@ -3273,7 +3369,7 @@ function loadOddLot(code){
 
   let html = `
   <div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">
-    🪙 零股投資試算 · ${name}
+    ${MR_ICONS.coin} 零股投資試算 · ${name}
   </div>
   <div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:10px;border:1px solid rgba(255,255,255,0.07);margin-bottom:10px">
     <div style="display:flex;justify-content:space-between;margin-bottom:4px">
@@ -3289,7 +3385,7 @@ function loadOddLot(code){
       <span style="font-size:13px;color:#4A90F6">$${(price*1000).toLocaleString()}</span>
     </div>
   </div>
-  <div style="font-size:11px;color:#5A6478;margin-bottom:6px">💰 預算可買零股數</div>
+  <div style="font-size:11px;color:#5A6478;margin-bottom:6px">${MR_ICONS.money} 預算可買零股數</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">`;
 
   budgets.forEach(budget => {
@@ -3310,7 +3406,7 @@ function loadOddLot(code){
   html += `</div>
   <div style="margin-top:8px;padding:8px;background:var(--bg-elevated, #131929);border-radius:8px;border:1px solid rgba(255,255,255,0.07)">
     <div style="font-size:10px;color:#5A6478;line-height:1.6">
-      ⚠️ 零股交易時間：13:40-14:30（收盤後）<br>
+      ${MR_ICONS.warning} 零股交易時間：13:40-14:30（收盤後）<br>
       手續費最低$1，賣出含0.3%交易稅
     </div>
   </div>`;
@@ -3338,15 +3434,15 @@ function initDrawingTool(){
   toolbar.style.cssText = 'display:flex;align-items:center;gap:6px;padding:6px 0;flex-wrap:wrap';
   toolbar.innerHTML = `
     <span style="font-size:11px;color:#5A6478;margin-right:4px">畫線</span>
-    <button id="dt-trend" onclick="setDrawMode('trendline')" title="趨勢線" style="background:#1A2035;border:1px solid rgba(255,255,255,0.09);color:#8B95A8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">📈 趨勢</button>
-    <button id="dt-hline" onclick="setDrawMode('hline')" title="水平線" style="background:#1A2035;border:1px solid rgba(255,255,255,0.09);color:#8B95A8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">➖ 水平</button>
+    <button id="dt-trend" onclick="setDrawMode('trendline')" title="趨勢線" style="background:#1A2035;border:1px solid rgba(255,255,255,0.09);color:#8B95A8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">${MR_ICONS.chartUp} 趨勢</button>
+    <button id="dt-hline" onclick="setDrawMode('hline')" title="水平線" style="background:#1A2035;border:1px solid rgba(255,255,255,0.09);color:#8B95A8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">${MR_ICONS.minus} 水平</button>
     <button id="dt-rect" onclick="setDrawMode('rect')" title="矩形" style="background:#1A2035;border:1px solid rgba(255,255,255,0.09);color:#8B95A8;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">⬜ 矩形</button>
-    <button onclick="clearDrawings()" title="清除" style="background:#450a0a;border:1px solid #7f1d1d;color:#f87171;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">🗑️ 清除</button>
+    <button onclick="clearDrawings()" title="清除" style="background:#450a0a;border:1px solid #7f1d1d;color:#f87171;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">${MR_ICONS.trash} 清除</button>
     <div style="display:flex;align-items:center;gap:4px;margin-left:4px">
       <span style="font-size:11px;color:#5A6478">色</span>
       <input type="color" id="dt-color" value="#f59e0b" onchange="drawingColor=this.value;redrawAll()" style="width:24px;height:24px;border:none;border-radius:4px;cursor:pointer;padding:0;background:none">
     </div>
-    <button onclick="setDrawMode(null)" style="background:#1A2035;border:1px solid rgba(255,255,255,0.09);color:#5A6478;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">✋ 取消</button>
+    <button onclick="setDrawMode(null)" style="background:#1A2035;border:1px solid rgba(255,255,255,0.09);color:#5A6478;padding:4px 10px;border-radius:6px;cursor:pointer;font-size:12px">${MR_ICONS.wave} 取消</button>
   `;
 
   // canvas 疊在圖表上
@@ -3526,7 +3622,7 @@ async function loadMarginData(code){
 
     el.innerHTML = `
     <div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">
-      📊 融資融券
+      ${MR_ICONS.chart} 融資融券
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px">
       <div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:10px;border:1px solid rgba(255,255,255,0.07)">
@@ -3951,14 +4047,14 @@ async function loadMonthlyRevenue(code){
       const latestRevDisplay = latest ? (latest.revenue/1e5).toFixed(1) : '-';
       const latestLabel = latest ? latest.revenue_year+'年'+latest.revenue_month+'月' : '-';
       el.innerHTML=`<div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">
-        📊 月營收 · ${latestLabel}
+        ${MR_ICONS.chart} 月營收 · ${latestLabel}
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
         <div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:10px;text-align:center"><div style="font-size:11px;color:#5A6478;margin-bottom:4px">當月營收</div><div style="font-size:16px;font-weight:700;color:#E8EDF5">${latestRevDisplay}億</div></div>
         <div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:10px;text-align:center"><div style="font-size:11px;color:#5A6478;margin-bottom:4px">月增率</div><div style="font-size:16px;font-weight:700;color:${latest?.mom>=0?'#34d399':'#f87171'}">${latest?(latest.mom>=0?'+':'')+latest.mom.toFixed(1)+'%':'-'}</div></div>
         <div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:10px;text-align:center"><div style="font-size:11px;color:#5A6478;margin-bottom:4px">年增率</div><div style="font-size:16px;font-weight:700;color:${latest?.yoy>=0?'#34d399':'#f87171'}">${latest?(latest.yoy>=0?'+':'')+latest.yoy.toFixed(1)+'%':'-'}</div></div>
       </div>
-      <div style="font-size:11px;color:#5A6478;text-align:center;padding:8px">📈 走勢圖將於累積3個月資料後顯示</div>`;
+      <div style="font-size:11px;color:#5A6478;text-align:center;padding:8px">${MR_ICONS.chartUp} 走勢圖將於累積3個月資料後顯示</div>`;
       return;
     }
     const latest = recent[recent.length-1];
@@ -3976,7 +4072,7 @@ async function loadMonthlyRevenue(code){
 
     let html = `
     <div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">
-      📊 月營收 · ${latest.revenue_year}年${latest.revenue_month}月
+      ${MR_ICONS.chart} 月營收 · ${latest.revenue_year}年${latest.revenue_month}月
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px">
       <div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:10px;border:1px solid rgba(255,255,255,0.07);text-align:center">
@@ -4033,15 +4129,15 @@ async function loadStockNews(code){
   const el=document.getElementById('stockNews');
   if(!el)return;
   el.style.display='block';
-  el.innerHTML='<div style="font-size:13px;color:#5A6478;margin-bottom:8px">📰 相關新聞</div><div style="color:#5A6478;padding:8px">載入中...</div>';
+  el.innerHTML='<div style="font-size:13px;color:#5A6478;margin-bottom:8px">' + MR_ICONS.newspaper + ' 相關新聞</div><div style="color:#5A6478;padding:8px">載入中...</div>';
   try{
     const stockName=NAMES[code]||code;
     const news=await twseProxy('news', code, {name: stockName});
     if(!Array.isArray(news)||news.length===0){
-      el.innerHTML='<div style="font-size:13px;color:#5A6478;margin-bottom:8px">📰 相關新聞</div><div style="color:#5A6478;padding:8px;font-size:12px">尚無近期新聞</div>';
+      el.innerHTML='<div style="font-size:13px;color:#5A6478;margin-bottom:8px">' + MR_ICONS.newspaper + ' 相關新聞</div><div style="color:#5A6478;padding:8px;font-size:12px">尚無近期新聞</div>';
       return;
     }
-    let html='<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">📰 相關新聞</div>';
+    let html='<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.newspaper + ' 相關新聞</div>';
     html+='<div style="display:flex;flex-direction:column;gap:6px">';
     news.forEach(n=>{
       const d=n.pubDate?new Date(n.pubDate):null;
@@ -4459,7 +4555,7 @@ async function loadFX(){
     const twd=rates['TWD']||30;
 
     // 台幣區塊
-    grid.innerHTML+=secTitle('🇹🇼','台幣匯率');
+    grid.innerHTML+=secTitle(MR_ICONS.flag,'台幣匯率');
     grid.innerHTML+=fxCard('美元/台幣','TWD',twd,0,2);
     grid.innerHTML+=fxCard('日圓100/台幣','TWD',(twd/(rates['JPY']||1))*100,0,3);
     grid.innerHTML+=fxCard('歐元/台幣','TWD',twd/(rates['EUR']||1),0,2);
@@ -4469,25 +4565,25 @@ async function loadFX(){
     grid.innerHTML+=fxCard('澳幣/台幣','TWD',twd/(rates['AUD']||1),0,2);
     grid.innerHTML+=fxCard('新加坡幣/台幣','TWD',twd/(rates['SGD']||1),0,2);
     // 貴金屬區塊
-    grid.innerHTML+=secTitle('🥇','貴金屬 & 原物料');
+    grid.innerHTML+=secTitle(MR_ICONS.medal,'貴金屬 & 原物料');
     if(goldPrice)grid.innerHTML+=fxCard('黃金 (PAXG)','USD/oz',goldPrice,goldPct,2);
     if(silverPrice)grid.innerHTML+=fxCard('白銀','USD/oz',silverPrice,0,2);
     // 黃金台幣價格
     if(goldPrice&&rates['TWD'])grid.innerHTML+=fxCard('黃金/台幣','TWD/oz',goldPrice*rates['TWD'],0,0);
     // 亞洲外匯
-    grid.innerHTML+=secTitle('🌏','亞洲外匯');
+    grid.innerHTML+=secTitle(MR_ICONS.globe,'亞洲外匯');
     [['JPY','美元/日圓',2],['CNY','美元/人民幣',4],['HKD','美元/港幣',4],['SGD','美元/新幣',4],['KRW','美元/韓元',0],['THB','美元/泰銖',2],['MYR','美元/馬幣',4],['IDR','美元/印尼盾',0],['INR','美元/印度盧比',2],['PHP','美元/菲律賓披索',2],['VND','美元/越南盾',0],['PKR','美元/巴基斯坦盧比',2]].forEach(([c,n,d])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,rates[c],0,d);});
     // 歐洲外匯
-    grid.innerHTML+=secTitle('🌍','歐洲外匯');
+    grid.innerHTML+=secTitle(MR_ICONS.globe,'歐洲外匯');
     [['EUR','歐元/美元',4,true],['GBP','英鎊/美元',4,true],['CHF','美元/瑞郎',4],['SEK','美元/瑞典克朗',4],['NOK','美元/挪威克朗',4],['DKK','美元/丹麥克朗',4],['PLN','美元/波蘭茲羅提',4],['CZK','美元/捷克克朗',4],['HUF','美元/匈牙利福林',2],['TRY','美元/土耳其里拉',4],['RUB','美元/俄羅斯盧布',2],['UAH','美元/烏克蘭格里夫納',2]].forEach(([c,n,d,inv])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,inv?1/rates[c]:rates[c],0,d);});
     // 美洲外匯
-    grid.innerHTML+=secTitle('🌎','美洲外匯');
+    grid.innerHTML+=secTitle(MR_ICONS.globeAm,'美洲外匯');
     [['CAD','美元/加幣',4],['MXN','美元/墨西哥披索',4],['BRL','美元/巴西里拉',4],['ARS','美元/阿根廷披索',2],['CLP','美元/智利披索',0],['COP','美元/哥倫比亞披索',0],['PEN','美元/秘魯索爾',4]].forEach(([c,n,d])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,rates[c],0,d);});
     // 中東/非洲
-    grid.innerHTML+=secTitle('🌐','中東 & 非洲');
+    grid.innerHTML+=secTitle(MR_ICONS.globeNet,'中東 & 非洲');
     [['SAR','美元/沙烏地里亞爾',4],['AED','美元/阿聯迪拉姆',4],['ILS','美元/以色列新謝克爾',4],['EGP','美元/埃及鎊',4],['ZAR','美元/南非蘭特',4],['NGN','美元/奈及利亞奈拉',2],['KWD','美元/科威特第納爾',4],['QAR','美元/卡達里亞爾',4]].forEach(([c,n,d])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,rates[c],0,d);});
     // 大洋洲
-    grid.innerHTML+=secTitle('🦘','大洋洲');
+    grid.innerHTML+=secTitle(MR_ICONS.kangaroo,'大洋洲');
     [['AUD','澳幣/美元',4,true],['NZD','紐幣/美元',4,true]].forEach(([c,n,d,inv])=>{if(rates[c])grid.innerHTML+=fxCard(n,c,inv?1/rates[c]:rates[c],0,d);});
   }catch(e){grid.innerHTML='<div style="color:#f87171;padding:8px">載入失敗：'+e.message+'</div>';}
 }
@@ -4584,7 +4680,7 @@ async function loadETFDividend(code){
     }
     // 配息明細列表
     if(divs&&divs.length){
-      html+='<div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:6px;border-left:3px solid #1A6CF6;padding-left:8px">📅 配息記錄</div>';
+      html+='<div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:6px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.calendar + ' 配息記錄</div>';
       html+='<div style="display:flex;flex-direction:column;gap:4px">';
       divs.forEach(d=>{
         const amt=d.dividend_amount!=null?'$'+parseFloat(d.dividend_amount).toFixed(3):'待公告';
@@ -4643,7 +4739,7 @@ async function loadETFHoldings(code){
       return;
     }
     const maxPct = holdings[0].pct || 1;
-    let html = `<div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">🏆 成分股前10大</div>`;
+    let html = `<div style="font-size:12px;color:#4A90F6;font-weight:700;margin-bottom:10px;border-left:3px solid #1A6CF6;padding-left:8px">${MR_ICONS.trophy} 成分股前10大</div>`;
     holdings.forEach((h,i)=>{
       const barW = (h.pct/maxPct*100).toFixed(0);
       const isUp = h.chg.includes('+');
@@ -4943,12 +5039,12 @@ async function loadAISummary(code){
     box.style.marginTop = '12px';
     newsEl.parentNode.insertBefore(box, newsEl.nextSibling);
   }
-  box.innerHTML = '<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">🤖 AI 消息摘要</div><div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:12px;color:#5A6478;font-size:12px">分析中...</div>';
+  box.innerHTML = '<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.robot + ' AI 消息摘要</div><div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:12px;color:#5A6478;font-size:12px">分析中...</div>';
   try{
     const stockName = (typeof NAMES !== 'undefined' && NAMES[code]) || code;
     const news = await twseProxy('news', code, {name: stockName});
     if(!Array.isArray(news) || news.length === 0){
-      box.innerHTML = '<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">🤖 AI 消息摘要</div><div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:12px;color:#5A6478;font-size:12px">尚無相關新聞，無法產生摘要</div>';
+      box.innerHTML = '<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:8px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.robot + ' AI 消息摘要</div><div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:12px;color:#5A6478;font-size:12px">尚無相關新聞，無法產生摘要</div>';
       return;
     }
     const formatted = news.slice(0,5).map(function(n){
@@ -4983,15 +5079,15 @@ async function loadAISummary(code){
     const disclaimer = String(data.disclaimer||'本內容不構成投資建議').replace(/</g,'&lt;');
     box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
-      + '<span style="font-size:13px;color:#4A90F6;font-weight:700;border-left:3px solid #1A6CF6;padding-left:8px">🤖 AI 消息摘要</span>'
+      + '<span style="font-size:13px;color:#4A90F6;font-weight:700;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.robot + ' AI 消息摘要</span>'
       + '<span style="background:'+s.bg+';color:'+s.color+';border:1px solid '+s.color+';padding:2px 10px;border-radius:4px;font-size:11px;font-weight:700">'+s.label+'</span>'
       + '</div>'
       + '<p style="font-size:13px;color:#8B95A8;line-height:1.7;margin:0 0 10px">'+safe+'</p>'
-      + '<div style="font-size:11px;color:#5A6478;border-top:1px solid #131929;padding-top:8px">⚠️ '+disclaimer+'</div>'
+      + '<div style="font-size:11px;color:#5A6478;border-top:1px solid #131929;padding-top:8px">' + MR_ICONS.warning + ' '+disclaimer+'</div>'
       + '</div>';
   }catch(e){
     box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.07)">'
-      + '<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:6px;border-left:3px solid #1A6CF6;padding-left:8px">🤖 AI 消息摘要</div>'
+      + '<div style="font-size:13px;color:#4A90F6;font-weight:700;margin-bottom:6px;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.robot + ' AI 消息摘要</div>'
       + '<div style="font-size:12px;color:#5A6478">暫時無法載入 AI 摘要，請稍後再試</div>'
       + '</div>';
     console.warn('[AI Summary]', e);
@@ -5054,9 +5150,9 @@ async function loadAISummary(code){
   panel.id = 'mr-chat-panel';
   panel.innerHTML = `
     <div class="mr-chat-header">
-      <div class="mr-chat-title">🤖 AI 助理 <span class="mr-chat-engine" id="mr-chat-engine">Cloudflare AI</span></div>
+      <div class="mr-chat-title">${MR_ICONS.robot} AI 助理 <span class="mr-chat-engine" id="mr-chat-engine">Cloudflare AI</span></div>
       <div class="mr-chat-actions">
-        <button id="mr-chat-clear" title="清除對話">🗑</button>
+        <button id="mr-chat-clear" title="清除對話">${MR_ICONS.trash}</button>
         <button id="mr-chat-close" title="關閉">✕</button>
       </div>
     </div>
@@ -5066,7 +5162,7 @@ async function loadAISummary(code){
         <textarea id="mr-chat-input" rows="1" placeholder="問我關於財經知識、公開新聞..."></textarea>
         <button id="mr-chat-send">送出</button>
       </div>
-      <div class="mr-chat-disclaimer">⚠️ 本助理只整理公開資訊，不提供投資建議</div>
+      <div class="mr-chat-disclaimer">${MR_ICONS.warning} 本助理只整理公開資訊，不提供投資建議</div>
     </div>
   `;
   document.body.appendChild(panel);
@@ -5106,7 +5202,7 @@ async function loadAISummary(code){
   }
 
   function welcomeMessage(){
-    appendMessage('system', '🤖 哈囉！我可以幫你解釋財經名詞、整理當前個股的公開新聞、回答市場知識問題。\n\n依台灣《證券投資信託及顧問法》規定，我不能回答「該不該買」「會不會漲」這類個股建議問題。');
+    appendMessage('system', MR_ICONS.robot + ' 哈囉！我可以幫你解釋財經名詞、整理當前個股的公開新聞、回答市場知識問題。\n\n依台灣《證券投資信託及顧問法》規定，我不能回答「該不該買」「會不會漲」這類個股建議問題。');
   }
 
   // 取得當前個股 context（如果使用者正在看個股）
@@ -5212,7 +5308,7 @@ async function loadDailyBriefing(){
   const el = document.getElementById('daily-briefing');
   if (!el) return;
   const today = new Date().toLocaleDateString('zh-TW',{month:'long',day:'numeric',weekday:'short'});
-  el.innerHTML = '<div style="background:linear-gradient(135deg,var(--bg-elevated, #131929),#131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(74,144,246,0.2);margin-bottom:16px"><div style="font-size:11px;color:#5A6478">📋 今日快報 ' + today + ' · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:linear-gradient(135deg,var(--bg-elevated, #131929),#131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(74,144,246,0.2);margin-bottom:16px"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.news + ' 今日快報 ' + today + ' · 載入中...</div></div>';
   try{
     // 1) 加權指數（Supabase daily_prices）
     const tx = await fetch(BASE+'/daily_prices?symbol=eq.TAIEX&order=date.desc&limit=2',{headers:SB_H});
@@ -5266,11 +5362,11 @@ async function loadDailyBriefing(){
       ? '<div style="font-size:13px;font-weight:600;color:' + (foreignNet >= 0 ? '#22c55e' : '#ef4444') + '">' + (foreignNet >= 0 ? '+' : '') + foreignNet.toLocaleString() + (foreignNetIsYesterday ? ' <small style="opacity:0.7;font-weight:400">(昨)</small>' : '') + '</div><div style="font-size:11px;color:#5A6478">張買賣超</div>'
       : '<div style="font-size:13px;color:#5A6478">--</div><div style="font-size:11px;color:#5A6478">資料未到</div>';
 
-    const noteText = aiNote ? '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #1e3a5f;font-size:11px;color:#8B95A8">💡 ' + aiNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>' : '';
+    const noteText = aiNote ? '<div style="margin-top:8px;padding-top:8px;border-top:1px dashed #1e3a5f;font-size:11px;color:#8B95A8">' + MR_ICONS.bulb + ' ' + aiNote.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>' : '';
 
     el.innerHTML = '<div style="background:linear-gradient(135deg,var(--bg-elevated, #131929),#131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(74,144,246,0.2);margin-bottom:16px">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
-      + '<span style="font-size:11px;font-weight:700;color:#4A90F6;text-transform:uppercase;letter-spacing:1.5px">📋 今日快報</span>'
+      + '<span style="font-size:11px;font-weight:700;color:#4A90F6;text-transform:uppercase;letter-spacing:1.5px">' + MR_ICONS.news + ' 今日快報</span>'
       + '<span style="font-size:11px;color:#5A6478">' + today + '</span>'
       + '</div>'
       + '<div style="display:flex;gap:16px;flex-wrap:wrap">'
@@ -5279,7 +5375,7 @@ async function loadDailyBriefing(){
       + '<div style="font-size:12px;color:' + (isUp ? '#22c55e' : '#ef4444') + '">' + (isUp ? '▲' : '▼') + ' ' + Math.abs(change).toFixed(2) + ' (' + (isUp ? '+' : '') + pct.toFixed(2) + '%)</div></div>'
       + '<div style="border-left:1px solid #1e3a5f;padding-left:16px"><div style="font-size:11px;color:#5A6478;margin-bottom:2px">外資動向</div>' + fnText + '</div>'
       + '<div style="border-left:1px solid #1e3a5f;padding-left:16px"><div style="font-size:11px;color:#5A6478;margin-bottom:2px">市場情緒</div>'
-      + '<div style="font-size:13px;font-weight:600;color:' + sentimentColor + '">⚡ ' + sentimentLabel + '</div>'
+      + '<div style="font-size:13px;font-weight:600;color:' + sentimentColor + '">' + MR_ICONS.chartUp + ' ' + sentimentLabel + '</div>'
       + '<div style="font-size:11px;color:#5A6478">AI 判讀</div></div>'
       + '</div>'
       + noteText
@@ -5299,7 +5395,7 @@ async function loadHotStocks(){
     {sym:'2881',name:'富邦金'},{sym:'2412',name:'中華電'},{sym:'2891',name:'中信金'},
     {sym:'2303',name:'聯電'}
   ];
-  el.innerHTML = '<div style="margin-top:20px"><div style="font-size:11px;font-weight:700;color:#4A90F6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;padding-left:10px;border-left:2px solid #1A6CF6">🔥 熱門股排行</div>'
+  el.innerHTML = '<div style="margin-top:20px"><div style="font-size:11px;font-weight:700;color:#4A90F6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;padding-left:10px;border-left:2px solid #1A6CF6">' + MR_ICONS.fire + ' 熱門股排行</div>'
     + '<div id="hot-stocks-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px">'
     + hotList.map(s => '<div id="hot-' + s.sym + '" style="background:#0f1729;border-radius:8px;padding:10px 12px;border:1px solid rgba(255,255,255,0.07);cursor:pointer" data-sym="' + s.sym + '"><div style="font-size:11px;color:#5A6478">' + s.sym + '</div><div style="font-size:13px;font-weight:700;color:#E8EDF5">' + s.name + '</div><div class="hot-price" style="font-size:12px;color:#5A6478;margin-top:2px">載入中...</div></div>').join('')
     + '</div></div>';
@@ -5418,7 +5514,7 @@ if (document.readyState === 'loading') {
 async function loadMarketHeatmap(){
   const el = document.getElementById('market-heatmap');
   if (!el) return;
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);margin-bottom:16px"><div style="font-size:11px;color:#5A6478">🔥 市場熱度 · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);margin-bottom:16px"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.fire + ' 市場熱度 · 載入中...</div></div>';
   try{
     const rDates = await fetch(BASE+'/daily_prices?order=date.desc&limit=200&select=date',{headers:SB_H});
     const datesAll = await rDates.json();
@@ -5463,11 +5559,11 @@ async function loadMarketHeatmap(){
     }catch(e){}
 
     const heatColors = {
-      hot:    {bg:'#1c1917',accent:'#dc2626',badge:'#7f1d1d',icon:'🔥'},
-      warm:   {bg:'#1a1410',accent:'#f59e0b',badge:'#78350f',icon:'☀️'},
-      neutral:{bg:'var(--bg-elevated, #131929)',accent:'#8B95A8',badge:'rgba(255,255,255,0.09)',icon:'⚖️'},
-      cool:   {bg:'#0a1421',accent:'#3b82f6',badge:'#1e3a8a',icon:'🌥'},
-      cold:   {bg:'#0a0f1a',accent:'#1d4ed8',badge:'#172554',icon:'❄️'}
+      hot:    {bg:'#1c1917',accent:'#dc2626',badge:'#7f1d1d',icon:MR_ICONS.fire},
+      warm:   {bg:'#1a1410',accent:'#f59e0b',badge:'#78350f',icon:MR_ICONS.sun},
+      neutral:{bg:'var(--bg-elevated, #131929)',accent:'#8B95A8',badge:'rgba(255,255,255,0.09)',icon:MR_ICONS.scale},
+      cool:   {bg:'#0a1421',accent:'#3b82f6',badge:'#1e3a8a',icon:MR_ICONS.wave},
+      cold:   {bg:'#0a0f1a',accent:'#1d4ed8',badge:'#172554',icon:MR_ICONS.snowflake}
     };
     const c = heatColors[heat] || heatColors.neutral;
     const upRatio = (upCount / totalCount * 100);
@@ -5490,11 +5586,11 @@ async function loadMarketHeatmap(){
       + '<div style="border-left:1px solid #131929;padding-left:14px"><div style="font-size:11px;color:#5A6478">— 平盤</div><div style="font-size:15px;font-weight:700;color:#8B95A8">' + flatCount + '<small style="opacity:0.6;font-weight:400"> 支</small></div></div>'
       + '</div>'
       + '<div style="display:flex;gap:14px;font-size:12px;color:#8B95A8;border-top:1px dashed #131929;padding-top:8px">'
-      + '<div>🚀 強勢股 (>+3%) <span style="color:#22c55e;font-weight:700">' + strongUpCount + '</span></div>'
-      + '<div>📉 弱勢股 (<-3%) <span style="color:#ef4444;font-weight:700">' + strongDownCount + '</span></div>'
+      + '<div>' + MR_ICONS.rocket + ' 強勢股 (>+3%) <span style="color:#22c55e;font-weight:700">' + strongUpCount + '</span></div>'
+      + '<div>' + MR_ICONS.chartDown + ' 弱勢股 (<-3%) <span style="color:#ef4444;font-weight:700">' + strongDownCount + '</span></div>'
       + '<div style="margin-left:auto;color:#5A6478;font-size:11px">資料：' + date + '</div>'
       + '</div>'
-      + (note ? '<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #131929;font-size:12px;color:' + c.accent + '">💡 ' + note.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div>' : '')
+      + (note ? '<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #131929;font-size:12px;color:' + c.accent + '">' + MR_ICONS.bulb + ' ' + note.replace(/&/g,'&amp;').replace(/</g,'&lt;') + '</div>' : '')
       + '</div>';
   }catch(e){
     el.innerHTML = '';
@@ -5516,7 +5612,7 @@ async function loadStockAnalysis(code){
     const anchor = aiBox || newsEl;
     anchor.parentNode.insertBefore(box, anchor.nextSibling);
   }
-  box.innerHTML = '<div style="background:linear-gradient(135deg,var(--bg-elevated, #131929),#1a0f2e);border-radius:8px;padding:14px 16px;border:1px solid #4c1d95;margin-top:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;color:#a78bfa;font-weight:700;border-left:3px solid #7c3aed;padding-left:8px">✨ AI 全方位分析</span><span style="font-size:11px;color:#5A6478">收集資料中...</span></div></div>';
+  box.innerHTML = '<div style="background:linear-gradient(135deg,var(--bg-elevated, #131929),#1a0f2e);border-radius:8px;padding:14px 16px;border:1px solid #4c1d95;margin-top:12px"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:13px;color:#a78bfa;font-weight:700;border-left:3px solid #7c3aed;padding-left:8px">' + MR_ICONS.sparkle + ' AI 全方位分析</span><span style="font-size:11px;color:#5A6478">收集資料中...</span></div></div>';
 
   try{
     const stockName = (typeof NAMES !== 'undefined' && NAMES[code]) || code;
@@ -5580,15 +5676,15 @@ async function loadStockAnalysis(code){
 
     box.innerHTML = '<div style="background:linear-gradient(135deg,var(--bg-elevated, #131929),#1a0f2e);border-radius:8px;padding:14px 16px;border:1px solid #4c1d95;margin-top:12px">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
-      + '<span style="font-size:13px;color:#a78bfa;font-weight:700;border-left:3px solid #7c3aed;padding-left:8px">✨ AI 全方位分析</span>'
+      + '<span style="font-size:13px;color:#a78bfa;font-weight:700;border-left:3px solid #7c3aed;padding-left:8px">' + MR_ICONS.sparkle + ' AI 全方位分析</span>'
       + '<span style="font-size:10px;background:#4c1d95;color:#e9d5ff;padding:2px 8px;border-radius:4px;font-weight:600">Llama 70B</span>'
       + '</div>'
       + (highlights ? '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">' + highlights + '</div>' : '')
       + '<p style="font-size:13px;color:#8B95A8;line-height:1.8;margin:0 0 10px;letter-spacing:0.2px">' + analysis + '</p>'
-      + '<div style="font-size:11px;color:#5A6478;border-top:1px solid #1e1b3a;padding-top:8px">⚠️ ' + String(data.disclaimer || '本內容不構成投資建議').replace(/</g,'&lt;') + '</div>'
+      + '<div style="font-size:11px;color:#5A6478;border-top:1px solid #1e1b3a;padding-top:8px">' + MR_ICONS.warning + ' ' + String(data.disclaimer || '本內容不構成投資建議').replace(/</g,'&lt;') + '</div>'
       + '</div>';
   }catch(e){
-    box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.07);margin-top:12px"><div style="font-size:13px;color:#a78bfa;font-weight:700;margin-bottom:6px">✨ AI 全方位分析</div><div style="font-size:12px;color:#5A6478">暫時無法載入分析，請稍後再試</div></div>';
+    box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.07);margin-top:12px"><div style="font-size:13px;color:#a78bfa;font-weight:700;margin-bottom:6px">' + MR_ICONS.sparkle + ' AI 全方位分析</div><div style="font-size:12px;color:#5A6478">暫時無法載入分析，請稍後再試</div></div>';
     console.warn('[Stock Analysis]', e);
   }
 }
@@ -5604,7 +5700,7 @@ function ensureMyDigestButton(){
   const wrap = document.createElement('div');
   wrap.id = 'my-digest-trigger';
   wrap.style.cssText = 'margin-bottom:12px';
-  wrap.innerHTML = '<button id="my-digest-btn" type="button" style="width:100%;background:linear-gradient(135deg,#064e3b,#065f46);color:#a7f3d0;border:1px solid #047857;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-main, inherit)"><span>✨ 我的自選股 AI 早報</span><span style="font-size:11px;opacity:0.8">點擊產生 →</span></button><div id="my-digest-area" style="display:none;margin-top:12px"></div>';
+  wrap.innerHTML = '<button id="my-digest-btn" type="button" style="width:100%;background:linear-gradient(135deg,#064e3b,#065f46);color:#a7f3d0;border:1px solid #047857;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-main, inherit)"><span>' + MR_ICONS.sparkle + ' 我的自選股 AI 早報</span><span style="font-size:11px;opacity:0.8">點擊產生 →</span></button><div id="my-digest-area" style="display:none;margin-top:12px"></div>';
   dbEl.parentNode.insertBefore(wrap, dbEl);
   document.getElementById('my-digest-btn').addEventListener('click', loadMyDigest);
 }
@@ -5615,11 +5711,11 @@ async function loadMyDigest(){
   if (!area || !btn) return;
   area.style.display = 'block';
   btn.style.display = 'none';
-  area.innerHTML = '<div style="background:#064e3b;border-radius:10px;padding:14px 18px;border:1px solid #047857;display:flex;align-items:center;gap:10px"><span style="font-size:13px;color:#a7f3d0;font-weight:700;border-left:3px solid #10b981;padding-left:8px">✨ 我的自選股 AI 早報</span><span style="font-size:11px;color:#6ee7b7">收集中...</span></div>';
+  area.innerHTML = '<div style="background:#064e3b;border-radius:10px;padding:14px 18px;border:1px solid #047857;display:flex;align-items:center;gap:10px"><span style="font-size:13px;color:#a7f3d0;font-weight:700;border-left:3px solid #10b981;padding-left:8px">' + MR_ICONS.sparkle + ' 我的自選股 AI 早報</span><span style="font-size:11px;color:#6ee7b7">收集中...</span></div>';
 
   try{
     if (typeof watchlistCache === 'undefined' || !Array.isArray(watchlistCache) || watchlistCache.length === 0){
-      area.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);color:#5A6478;font-size:13px">📋 請先加入自選股後再使用 AI 早報功能。</div>';
+      area.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);color:#5A6478;font-size:13px">' + MR_ICONS.news + ' 請先加入自選股後再使用 AI 早報功能。</div>';
       const closeBtn1 = document.createElement('button');
       closeBtn1.type = 'button';
       closeBtn1.textContent = '✕ 收起';
@@ -5635,7 +5731,7 @@ async function loadMyDigest(){
     }).filter(x => x.symbol && /^\d+$/.test(x.symbol));
 
     if (symbols.length === 0){
-      area.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);color:#5A6478;font-size:13px">📋 自選股目前沒有可分析的台股代號。</div>';
+      area.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);color:#5A6478;font-size:13px">' + MR_ICONS.news + ' 自選股目前沒有可分析的台股代號。</div>';
       return;
     }
 
@@ -5695,7 +5791,7 @@ async function loadMyDigest(){
 
     area.innerHTML = '<div style="background:linear-gradient(135deg,#064e3b,#022c22);border-radius:10px;padding:14px 18px;border:1px solid #047857">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
-      + '<span style="font-size:13px;color:#a7f3d0;font-weight:700;border-left:3px solid #10b981;padding-left:8px">✨ 我的自選股 AI 早報</span>'
+      + '<span style="font-size:13px;color:#a7f3d0;font-weight:700;border-left:3px solid #10b981;padding-left:8px">' + MR_ICONS.sparkle + ' 我的自選股 AI 早報</span>'
       + '<span style="font-size:10px;background:#047857;color:#d1fae5;padding:2px 8px;border-radius:4px;font-weight:600">Llama 70B</span>'
       + '</div>'
       + '<div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px">'
@@ -5703,7 +5799,7 @@ async function loadMyDigest(){
       + (totalForText ? '<div style="border-left:1px solid #047857;padding-left:14px"><div style="font-size:11px;color:#6ee7b7">整體 7 日外資</div><div style="font-size:15px;font-weight:700;color:' + (totalFor >= 0 ? '#22c55e' : '#ef4444') + '">' + totalForText + '<small style="opacity:0.7;font-weight:400"> 張</small></div></div>' : '')
       + '</div>'
       + '<p style="font-size:13px;color:#d1fae5;line-height:1.8;margin:0 0 10px">' + digestSafe + '</p>'
-      + '<div style="font-size:11px;color:#5A6478;border-top:1px solid #047857;padding-top:8px">⚠️ ' + String(data.disclaimer || '本內容不構成投資建議').replace(/</g,'&lt;') + '</div>'
+      + '<div style="font-size:11px;color:#5A6478;border-top:1px solid #047857;padding-top:8px">' + MR_ICONS.warning + ' ' + String(data.disclaimer || '本內容不構成投資建議').replace(/</g,'&lt;') + '</div>'
       + '</div>';
     const closeBtn2 = document.createElement('button');
     closeBtn2.type = 'button';
@@ -5717,7 +5813,7 @@ async function loadMyDigest(){
     });
     area.appendChild(closeBtn2);
   }catch(e){
-    area.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#a7f3d0;font-weight:700;margin-bottom:6px">✨ 我的自選股 AI 早報</div><div style="font-size:12px;color:#5A6478">暫時無法載入早報：' + String(e.message || e).replace(/</g,'&lt;') + '</div></div>';
+    area.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#a7f3d0;font-weight:700;margin-bottom:6px">' + MR_ICONS.sparkle + ' 我的自選股 AI 早報</div><div style="font-size:12px;color:#5A6478">暫時無法載入早報：' + String(e.message || e).replace(/</g,'&lt;') + '</div></div>';
     console.warn('[My Digest]', e);
   }
 }
@@ -5727,16 +5823,16 @@ async function loadMyDigest(){
 async function loadIndustryHeatmap(){
   const el = document.getElementById('industry-heatmap');
   if (!el) return;
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);margin-bottom:16px"><div style="font-size:11px;color:#5A6478">🏭 產業熱度 · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);margin-bottom:16px"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.building + ' 產業熱度 · 載入中...</div></div>';
 
   const industries = [
-    { key:'semi',     name:'半導體',     icon:'🔬', symbols:['2330','2454','2303'] },
-    { key:'fin',      name:'金融保險',   icon:'🏦', symbols:['2881','2891','2882'] },
-    { key:'shipping', name:'航運',       icon:'🚢', symbols:['2603','2609','2615'] },
-    { key:'elec',     name:'電子代工',   icon:'🔧', symbols:['2317','2308','2382'] },
-    { key:'tele',     name:'通訊',       icon:'📡', symbols:['2412','4904','3045'] },
-    { key:'steel',    name:'鋼鐵',       icon:'⚙️', symbols:['2002','2014'] },
-    { key:'plastic',  name:'塑化',       icon:'🧪', symbols:['1303','1301'] }
+    { key:'semi',     name:'半導體',     icon:MR_ICONS.microscope, symbols:['2330','2454','2303'] },
+    { key:'fin',      name:'金融保險',   icon:MR_ICONS.bank, symbols:['2881','2891','2882'] },
+    { key:'shipping', name:'航運',       icon:MR_ICONS.ship, symbols:['2603','2609','2615'] },
+    { key:'elec',     name:'電子代工',   icon:MR_ICONS.wrench, symbols:['2317','2308','2382'] },
+    { key:'tele',     name:'通訊',       icon:MR_ICONS.antenna, symbols:['2412','4904','3045'] },
+    { key:'steel',    name:'鋼鐵',       icon:MR_ICONS.wrench, symbols:['2002','2014'] },
+    { key:'plastic',  name:'塑化',       icon:MR_ICONS.flask, symbols:['1303','1301'] }
   ];
 
   try{
@@ -5779,7 +5875,7 @@ async function loadIndustryHeatmap(){
 
     let html = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);margin-bottom:16px">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'
-      + '<span style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px">🏭 產業熱度排行</span>'
+      + '<span style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px">' + MR_ICONS.building + ' 產業熱度排行</span>'
       + '<span style="font-size:11px;color:#5A6478">' + uniqueDates[0] + '</span>'
       + '</div>'
       + '<div style="display:flex;flex-direction:column;gap:8px">';
@@ -5822,7 +5918,7 @@ async function loadIndustryHeatmap(){
 async function loadAsiaMarket(){
   const el = document.getElementById('asia-market-content');
   if (!el) return;
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">🌏 亞洲市場 · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.globe + ' 亞洲市場 · 載入中...</div></div>';
 
   const groups = [
     {
@@ -5886,10 +5982,10 @@ async function loadAsiaMarket(){
     const allBriefingItems = groups.flatMap(g => g.indexSym ? [{sym: g.indexSym, name: g.indexLabel}, ...g.stocks] : g.stocks);
     const briefingItems = allBriefingItems.map(s => { const d = byKey[s.sym]; return d && !d.error ? { symbol: s.sym, name: s.name, pct: d.pct } : null; }).filter(Boolean);
     const briefing = await v178FetchMarketBriefing('asia', briefingItems);
-    const briefingHtml = v178RenderBriefingCard('🌏 亞洲早報', briefing);
-    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#4A90F6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px">🌏 亞洲市場 · 即時行情</div>' + html + '<div style="font-size:10px;color:#5A6478;border-top:1px solid #131929;padding-top:8px;margin-top:8px">資料來源：Yahoo Finance / Alpha Vantage · 延遲約 5-15 分鐘 · 僅供參考</div></div>';
+    const briefingHtml = v178RenderBriefingCard(MR_ICONS.globe+' 亞洲早報', briefing);
+    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#4A90F6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px">' + MR_ICONS.globe + ' 亞洲市場 · 即時行情</div>' + html + '<div style="font-size:10px;color:#5A6478;border-top:1px solid #131929;padding-top:8px;margin-top:8px">資料來源：Yahoo Finance / Alpha Vantage · 延遲約 5-15 分鐘 · 僅供參考</div></div>';
   } catch (e) {
-    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);color:#5A6478;font-size:13px">🌏 亞洲市場暫時無法載入，請稍後再試</div>';
+    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);color:#5A6478;font-size:13px">' + MR_ICONS.globe + ' 亞洲市場暫時無法載入，請稍後再試</div>';
     console.warn('[Asia Market]', e);
   }
 }
@@ -6018,10 +6114,10 @@ async function loadGlobalCommodities(){
     { sym: 'ZW=F', name: '小麥期貨' },
     { sym: 'VNQ', name: '美 REIT ETF' }
   ];
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">🛢 全球商品 · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.oil + ' 全球商品 · 載入中...</div></div>';
   const map = await v170FetchQuotes(items.map(x => x.sym));
   const cards = items.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🛢 全球商品 / 貴金屬 / REIT</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div><div style="font-size:10px;color:#5A6478;margin-top:10px;border-top:1px solid #131929;padding-top:8px">資料：Yahoo Finance · 延遲 5-15 分鐘</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">' + MR_ICONS.oil + ' 全球商品 / 貴金屬 / REIT</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div><div style="font-size:10px;color:#5A6478;margin-top:10px;border-top:1px solid #131929;padding-top:8px">資料：Yahoo Finance · 延遲 5-15 分鐘</div></div>';
 }
 
 // ===== v171: Watchlist Grid =====
@@ -6029,10 +6125,10 @@ async function loadWatchlistGrid(){
   const el = document.getElementById('watchlist-grid-content');
   if (!el) return;
   if (typeof watchlistCache === 'undefined' || !Array.isArray(watchlistCache) || watchlistCache.length === 0){
-    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:20px;border:1px solid rgba(255,255,255,0.07);text-align:center;color:#5A6478;font-size:13px">⭐ 目前沒有自選股<br><br>請至 <strong>台股</strong> 分頁查詢個股後加入自選</div>';
+    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:20px;border:1px solid rgba(255,255,255,0.07);text-align:center;color:#5A6478;font-size:13px">' + MR_ICONS.star + ' 目前沒有自選股<br><br>請至 <strong>台股</strong> 分頁查詢個股後加入自選</div>';
     return;
   }
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">⭐ 我的自選 · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.star + ' 我的自選 · 載入中...</div></div>';
 
   const items = watchlistCache.slice(0, 20).map(w => {
     const sym = (typeof normalizeWlSymbol === 'function') ? normalizeWlSymbol(w.symbol) : w.symbol;
@@ -6070,7 +6166,7 @@ async function loadWatchlistGrid(){
     return v170RenderGridCard(x.sym, x.name, data);
   }));
 
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">⭐ 我的自選股（' + items.length + '）</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards.join('') + '</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">' + MR_ICONS.star + ' 我的自選股（' + items.length + '）</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards.join('') + '</div></div>';
 }
 
 // ===== v172: 加密貨幣 Top 8 廣度 =====
@@ -6087,14 +6183,14 @@ async function loadCryptoExtras(){
     { sym: 'DOGE-USD', name: 'Dogecoin' },
     { sym: 'AVAX-USD', name: 'Avalanche' }
   ];
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">🪙 加密貨幣 Top 8 · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.coin + ' 加密貨幣 Top 8 · 載入中...</div></div>';
   const map = await v170FetchQuotes(items.map(x => x.sym));
   const cards = items.map(x => v170RenderGridCard(x.sym, x.name, map[x.sym])).join('');
   // v179: 加 AI 早報
   const briefingItems = items.map(x => { const d = map[x.sym]; return d && !d.error ? { symbol: x.sym, name: x.name, pct: d.pct } : null; }).filter(Boolean);
   const briefing = await v178FetchMarketBriefing('crypto', briefingItems);
-  const briefingHtml = v178RenderBriefingCard('🪙 加密貨幣早報', briefing);
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">🪙 加密貨幣 Top 8 · 即時</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div></div>';
+  const briefingHtml = v178RenderBriefingCard(MR_ICONS.coin+' 加密貨幣早報', briefing);
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#f59e0b;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">' + MR_ICONS.coin + ' 加密貨幣 Top 8 · 即時</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + cards + '</div></div>';
 }
 
 // ===== v173: 美股廣度（大盤指數 + 產業 ETF）=====
@@ -6125,7 +6221,7 @@ async function loadUSExtras(){
   const briefing = await v178FetchMarketBriefing('us', briefingItems);
   const briefingHtml = v178RenderBriefingCard('🇺🇸 美股早報', briefing);
 
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🇺🇸 美股大盤指數</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:14px">' + idxCards + '</div><div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🏭 產業類股 ETF (SPDR)</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + sectorCards + '</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)">' + briefingHtml + '<div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">🇺🇸 美股大盤指數</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:14px">' + idxCards + '</div><div style="font-size:11px;font-weight:700;color:#3b82f6;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px">' + MR_ICONS.building + ' 產業類股 ETF (SPDR)</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">' + sectorCards + '</div></div>';
 }
 
 // ===== 統一綁定：tab 切換時自動載入 =====
@@ -6194,7 +6290,7 @@ function v174RelocateDigestButton(){
   btn.id = 'my-digest-btn';
   btn.type = 'button';
   btn.style.cssText = 'width:100%;background:linear-gradient(135deg,#064e3b,#065f46);color:#a7f3d0;border:1px solid #047857;border-radius:10px;padding:12px 16px;cursor:pointer;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:space-between;font-family:var(--font-main, inherit)';
-  btn.innerHTML = '<span>✨ 我的自選股 AI 早報</span><span style="font-size:11px;opacity:0.8">點擊產生 →</span>';
+  btn.innerHTML = '<span>' + MR_ICONS.sparkle + ' 我的自選股 AI 早報</span><span style="font-size:11px;opacity:0.8">點擊產生 →</span>';
   btn.addEventListener('click', () => {
     if (typeof loadMyDigest === 'function') loadMyDigest();
   });
@@ -6268,7 +6364,7 @@ function v178RenderBriefingCard(title, briefing){
     + '<span style="font-size:12px;font-weight:700;color:' + s.color + ';text-transform:uppercase;letter-spacing:1px">' + title + '</span>'
     + '<span style="background:' + s.badgeBg + ';color:' + s.color + ';border:1px solid ' + s.color + ';padding:2px 10px;border-radius:999px;font-size:11px;font-weight:700">' + (briefing.label || '中性') + '</span>'
     + '</div>'
-    + '<div style="font-size:13px;color:#8B95A8;line-height:1.6">💡 ' + safeNote + '</div>'
+    + '<div style="font-size:13px;color:#8B95A8;line-height:1.6">' + MR_ICONS.bulb + ' ' + safeNote + '</div>'
     + '</div>';
 }
 
@@ -6346,13 +6442,13 @@ async function loadTechnicalIndicators(code){
     const anchor = document.getElementById('stockAnalysisBox') || newsEl;
     anchor.parentNode.insertBefore(box, anchor.nextSibling);
   }
-  box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#fbbf24;font-weight:700">📊 技術指標 · 載入中...</div></div>';
+  box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#fbbf24;font-weight:700">' + MR_ICONS.chart + ' 技術指標 · 載入中...</div></div>';
 
   try{
     const r = await fetch(BASE+'/daily_prices?symbol=eq.'+code+'&order=date.desc&limit=30&select=date,close_price,high_price,low_price',{headers:SB_H});
     const data = await r.json();
     if(!Array.isArray(data) || data.length < 20){
-      box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#fbbf24;font-weight:700;margin-bottom:6px">📊 技術指標</div><div style="font-size:12px;color:#5A6478">資料不足，需至少 20 個交易日</div></div>';
+      box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#fbbf24;font-weight:700;margin-bottom:6px">' + MR_ICONS.chart + ' 技術指標</div><div style="font-size:12px;color:#5A6478">資料不足，需至少 20 個交易日</div></div>';
       return;
     }
     const t = v183ComputeTechnical(data);
@@ -6365,7 +6461,7 @@ async function loadTechnicalIndicators(code){
 
     box.innerHTML = '<div style="background:linear-gradient(135deg,#1a1410,var(--bg-elevated, #131929));border-radius:8px;padding:14px 16px;border:1px solid #f59e0b;margin-top:12px">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'
-      + '<span style="font-size:13px;color:#fbbf24;font-weight:700;border-left:3px solid #f59e0b;padding-left:8px">📊 技術指標</span>'
+      + '<span style="font-size:13px;color:#fbbf24;font-weight:700;border-left:3px solid #f59e0b;padding-left:8px">' + MR_ICONS.chart + ' 技術指標</span>'
       + '<span style="font-size:10px;color:#5A6478">最近 20 個交易日</span>'
       + '</div>'
       + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">'
@@ -6376,7 +6472,7 @@ async function loadTechnicalIndicators(code){
       // 布林
       + '<div style="background:#0a1421;border-radius:6px;padding:10px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#8B95A8">布林(20)</div><div style="font-size:11px;color:#E8EDF5">上 ' + t.bb.upper + '<br>中 ' + t.bb.middle + '<br>下 ' + t.bb.lower + '</div><div style="font-size:11px;color:' + lblColor(t.bbLabel) + ';margin-top:4px">' + t.bbLabel + ' (' + t.bbPosition + '%)</div></div>'
       + '</div>'
-      + '<div style="font-size:10px;color:#5A6478;border-top:1px dashed #1e2d45;padding-top:8px;margin-top:10px">⚠️ 技術指標僅為公開資料統計，不構成投資建議。指標數值為中性陳述。</div>'
+      + '<div style="font-size:10px;color:#5A6478;border-top:1px dashed #1e2d45;padding-top:8px;margin-top:10px">' + MR_ICONS.warning + ' 技術指標僅為公開資料統計，不構成投資建議。指標數值為中性陳述。</div>'
       + '</div>';
   }catch(e){
     if(box) box.innerHTML = '';
@@ -6393,7 +6489,7 @@ function v184OpenCompareModal(){
 
   const modal = document.createElement('div');
   modal.style.cssText = 'background:var(--bg-elevated, #131929);border:1px solid rgba(255,255,255,0.09);border-radius:12px;padding:20px;max-width:900px;width:100%;max-height:90vh;overflow-y:auto;font-family:var(--font-main, inherit)';
-  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><span style="font-size:15px;font-weight:700;color:#E8EDF5">📊 多股比較器</span><span id="v184-close" style="cursor:pointer;color:#5A6478;font-size:20px;padding:0 6px">✕</span></div><div style="font-size:12px;color:#8B95A8;margin-bottom:10px">輸入 2-5 個股票代號（逗號分隔，台股+美股+港股皆可）：</div><div style="display:flex;gap:8px;margin-bottom:14px"><input id="v184-input" type="text" placeholder="例：2330,2454,AAPL,0700.HK" style="flex:1;background:#1A2035;border:1px solid rgba(255,255,255,0.09);border-radius:6px;padding:8px 12px;color:#E8EDF5;font-size:13px"/><button id="v184-go" style="background:#1A6CF6;color:white;border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer">比較</button></div><div id="v184-result"></div>';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><span style="font-size:15px;font-weight:700;color:#E8EDF5">' + MR_ICONS.chart + ' 多股比較器</span><span id="v184-close" style="cursor:pointer;color:#5A6478;font-size:20px;padding:0 6px">✕</span></div><div style="font-size:12px;color:#8B95A8;margin-bottom:10px">輸入 2-5 個股票代號（逗號分隔，台股+美股+港股皆可）：</div><div style="display:flex;gap:8px;margin-bottom:14px"><input id="v184-input" type="text" placeholder="例：2330,2454,AAPL,0700.HK" style="flex:1;background:#1A2035;border:1px solid rgba(255,255,255,0.09);border-radius:6px;padding:8px 12px;color:#E8EDF5;font-size:13px"/><button id="v184-go" style="background:#1A6CF6;color:white;border:none;border-radius:6px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer">比較</button></div><div id="v184-result"></div>';
 
   overlay.appendChild(modal);
   document.body.appendChild(overlay);
@@ -6437,7 +6533,7 @@ function v184AddCompareButton(){
   const btn = document.createElement('button');
   btn.id = 'v184-compare-btn';
   btn.type = 'button';
-  btn.textContent = '📊 開啟多股比較器';
+  btn.innerHTML = MR_ICONS.chart + ' 開啟多股比較器';
   btn.style.cssText = 'width:100%;background:linear-gradient(135deg,#1e3a8a,#1e40af);color:#dbeafe;border:1px solid #1A6CF6;border-radius:10px;padding:14px;cursor:pointer;font-size:14px;font-weight:700;margin-bottom:14px;font-family:var(--font-main, inherit)';
   btn.addEventListener('click', v184OpenCompareModal);
   toolsTab.insertBefore(btn, toolsTab.firstChild);
@@ -6522,7 +6618,7 @@ function v189Sparkline(values, color){
 async function loadClosingSummary(){
   const el = document.getElementById('closing-summary');
   if (!el) return;
-  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">📊 盤後摘要 · 載入中...</div></div>';
+  el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">' + MR_ICONS.chart + ' 盤後摘要 · 載入中...</div></div>';
 
   try{
     // 抓最近 5 個交易日的 volume（按 date desc，limit 較小避免 PostgREST 限制）
@@ -6573,7 +6669,7 @@ async function loadClosingSummary(){
     const colorOf = (n) => n >= 0 ? '#22c55e' : '#ef4444';
 
     el.innerHTML = '<div style="background:linear-gradient(135deg,var(--bg-elevated, #131929),#131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(74,144,246,0.2)">'
-      + '<div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">📊 盤後摘要 · ' + (lastDate || '') + '</div>'
+      + '<div style="font-size:11px;font-weight:700;color:#fbbf24;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px">' + MR_ICONS.chart + ' 盤後摘要 · ' + (lastDate || '') + '</div>'
       + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">'
       // 成交量
       + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">大盤總成交量 (今日)</div><div style="font-size:14px;font-weight:700;color:#E8EDF5">' + (todayVol/1e8).toFixed(1) + ' 億</div><div style="font-size:11px;color:' + (volRatio >= 100 ? '#22c55e' : '#ef4444') + '">vs 5日均量 ' + volRatio + '%</div></div>'
@@ -6585,7 +6681,7 @@ async function loadClosingSummary(){
       + '<div style="background:#0a1421;border-radius:8px;padding:10px 12px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:11px;color:#5A6478">自營商</div><div style="font-size:13px;font-weight:700;color:' + colorOf(dlLot) + '">' + fmtLot(dlLot) + '</div></div>'
       + '</div></div>';
   }catch(e){
-    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);font-size:11px;color:#5A6478">📊 盤後摘要：' + (e.message || '載入失敗') + '</div>';
+    el.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:10px;padding:14px 18px;border:1px solid rgba(255,255,255,0.07);font-size:11px;color:#5A6478">' + MR_ICONS.chart + ' 盤後摘要：' + (e.message || '載入失敗') + '</div>';
     console.warn('[Closing]', e);
   }
 }
@@ -6602,13 +6698,13 @@ async function loadStockChips(code){
     const anchor = document.getElementById('stockTechBox') || document.getElementById('stockAnalysisBox') || newsEl;
     anchor.parentNode.insertBefore(box, anchor.nextSibling);
   }
-  box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#3b82f6;font-weight:700">🏛 法人籌碼深度 · 載入中...</div></div>';
+  box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#3b82f6;font-weight:700">' + MR_ICONS.office + ' 法人籌碼深度 · 載入中...</div></div>';
 
   try{
     const r = await fetch(BASE+'/institutional_investors?symbol=eq.'+code+'&order=date.desc&limit=30&select=date,foreign_buy,investment_trust_buy,dealer_buy,total_buy',{headers:SB_H});
     const raw = await r.json();
     if(!Array.isArray(raw) || raw.length === 0){
-      box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#3b82f6;font-weight:700;margin-bottom:6px">🏛 法人籌碼深度</div><div style="font-size:12px;color:#5A6478">尚無法人籌碼資料</div></div>';
+      box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#3b82f6;font-weight:700;margin-bottom:6px">' + MR_ICONS.office + ' 法人籌碼深度</div><div style="font-size:12px;color:#5A6478">尚無法人籌碼資料</div></div>';
       return;
     }
     // 按 date 排序（舊→新）
@@ -6630,7 +6726,7 @@ async function loadStockChips(code){
 
     box.innerHTML = '<div style="background:linear-gradient(135deg,#0a1421,var(--bg-elevated, #131929));border-radius:8px;padding:14px 16px;border:1px solid #1A6CF6;margin-top:12px">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">'
-      + '<span style="font-size:13px;color:#3b82f6;font-weight:700;border-left:3px solid #1A6CF6;padding-left:8px">🏛 法人籌碼深度</span>'
+      + '<span style="font-size:13px;color:#3b82f6;font-weight:700;border-left:3px solid #1A6CF6;padding-left:8px">' + MR_ICONS.office + ' 法人籌碼深度</span>'
       + '<span style="font-size:10px;color:#5A6478">最近 ' + data.length + ' 個交易日</span>'
       + '</div>'
       + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px">'
@@ -6671,14 +6767,14 @@ async function loadStockRevenueChart(code){
     const anchor = document.getElementById('stockChipsBox') || document.getElementById('stockTechBox') || newsEl;
     anchor.parentNode.insertBefore(box, anchor.nextSibling);
   }
-  box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#10b981;font-weight:700">💰 月營收趨勢 · 載入中...</div></div>';
+  box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#10b981;font-weight:700">' + MR_ICONS.money + ' 月營收趨勢 · 載入中...</div></div>';
 
   try{
     // v194: 正確 schema 是 year_month/revenue/yoy_pct/mom_pct
     const r = await fetch(BASE+'/monthly_revenue?symbol=eq.'+code+'&order=year_month.desc&limit=12&select=year_month,revenue,yoy_pct,mom_pct',{headers:SB_H});
     const raw = await r.json();
     if(!Array.isArray(raw) || raw.length === 0){
-      box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#10b981;font-weight:700;margin-bottom:6px">💰 月營收趨勢</div><div style="font-size:12px;color:#5A6478">尚無月營收資料</div></div>';
+      box.innerHTML = '<div style="background:var(--bg-elevated, #131929);border-radius:8px;padding:14px 16px;border:1px solid rgba(255,255,255,0.07)"><div style="font-size:13px;color:#10b981;font-weight:700;margin-bottom:6px">' + MR_ICONS.money + ' 月營收趨勢</div><div style="font-size:12px;color:#5A6478">尚無月營收資料</div></div>';
       return;
     }
 
@@ -6693,7 +6789,7 @@ async function loadStockRevenueChart(code){
 
     box.innerHTML = '<div style="background:linear-gradient(135deg,#022c22,var(--bg-elevated, #131929));border-radius:8px;padding:14px 16px;border:1px solid #047857;margin-top:12px">'
       + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">'
-      + '<span style="font-size:13px;color:#10b981;font-weight:700;border-left:3px solid #10b981;padding-left:8px">💰 月營收趨勢</span>'
+      + '<span style="font-size:13px;color:#10b981;font-weight:700;border-left:3px solid #10b981;padding-left:8px">' + MR_ICONS.money + ' 月營收趨勢</span>'
       + '<span style="font-size:10px;color:#5A6478">最近 ' + data.length + ' 個月</span>'
       + '</div>'
       + '<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">'
@@ -6774,7 +6870,7 @@ async function loadFullCandleChart(code){
       box = document.createElement('div');
       box.id = 'full-candle-chart-v195';
       box.style.cssText = 'margin:16px 0;padding:14px;border:2px solid #f59e0b;border-radius:12px;background:linear-gradient(180deg,#fffbeb,#fff);';
-      box.innerHTML = '<div style="font-weight:700;color:#b45309;margin-bottom:8px;">📈 完整 K 線（60 日，含 SMA20 + 布林通道）</div><div id="fcc-body-v195" style="color:#92400e;font-size:13px;">載入中…</div>';
+      box.innerHTML = '<div style="font-weight:700;color:#b45309;margin-bottom:8px;">' + MR_ICONS.chartUp + ' 完整 K 線（60 日，含 SMA20 + 布林通道）</div><div id="fcc-body-v195" style="color:#92400e;font-size:13px;">載入中…</div>';
       host.appendChild(box);
     }
     const body = document.getElementById('fcc-body-v195');
@@ -6896,7 +6992,7 @@ async function loadIndustryTreemap(){
       box = document.createElement('div');
       box.id = 'industry-treemap-v196';
       box.style.cssText = 'margin:16px 0;padding:14px;border:2px solid #6366f1;border-radius:12px;background:linear-gradient(180deg,#eef2ff,#fff);';
-      box.innerHTML = '<div style="font-weight:700;color:#4338ca;margin-bottom:8px;">🗺 產業 Treemap（依平均漲跌幅）</div><div id="itm-body-v196" style="color:#3730a3;font-size:13px;">載入中…</div>';
+      box.innerHTML = '<div style="font-weight:700;color:#4338ca;margin-bottom:8px;">' + MR_ICONS.map + ' 產業 Treemap（依平均漲跌幅）</div><div id="itm-body-v196" style="color:#3730a3;font-size:13px;">載入中…</div>';
       host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
     }
     const body = document.getElementById('itm-body-v196');
@@ -7023,7 +7119,7 @@ async function v199LoadGlobalMarkets(){
   const box = document.createElement('div');
   box.id = 'v199-global-box';
   box.style.cssText = 'margin-top:24px;padding:16px;border:2px solid #14b8a6;border-radius:12px;background:linear-gradient(180deg,#f0fdfa,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#0f766e;font-size:16px;margin-bottom:6px;">🌍 全球延伸（韓 / 澳 / 歐）</div><div style="font-size:11px;color:#0f766e;margin-bottom:12px;">資料：Yahoo Finance 公開報價（延遲 15 分鐘）</div><div id="v199-global-body">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#0f766e;font-size:16px;margin-bottom:6px;">' + MR_ICONS.globe + ' 全球延伸（韓 / 澳 / 歐）</div><div style="font-size:11px;color:#0f766e;margin-bottom:12px;">資料：Yahoo Finance 公開報價（延遲 15 分鐘）</div><div id="v199-global-body">載入中…</div>';
   host.appendChild(box);
   const body = document.getElementById('v199-global-body');
   body.innerHTML = '';
@@ -7092,7 +7188,7 @@ window.v202QuickAnalysis = async function(symbol, name, price, changePercent, cu
   panel = document.createElement('div');
   panel.id = tid;
   panel.style.cssText = 'margin-top:8px;padding:10px;background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;font-size:12px;color:#92400e;line-height:1.7;';
-  panel.innerHTML = '🤖 AI 分析中…';
+  panel.innerHTML = MR_ICONS.robot + ' AI 分析中…';
   if (btnEl && btnEl.parentNode) btnEl.parentNode.appendChild(panel);
   if (btnEl) { btnEl.disabled = true; btnEl.textContent = '分析中…'; }
   try {
@@ -7102,16 +7198,16 @@ window.v202QuickAnalysis = async function(symbol, name, price, changePercent, cu
     });
     const d = await res.json();
     if (d.error) {
-      panel.innerHTML = '<span style="color:#dc2626;">⚠️ ' + d.error + '</span>';
+      panel.innerHTML = '<span style="color:#dc2626;">' + MR_ICONS.warning + ' ' + d.error + '</span>';
     } else {
-      panel.innerHTML = '<div style="font-weight:600;margin-bottom:4px;">🤖 AI 公開資訊整理</div>' +
+      panel.innerHTML = '<div style="font-weight:600;margin-bottom:4px;">' + MR_ICONS.robot + ' AI 公開資訊整理</div>' +
                         '<div>' + (d.analysis || '').replace(/\n/g, '<br>') + '</div>' +
                         '<div style="margin-top:6px;font-size:10px;color:#6b7280;">' + (d.disclaimer || '') + '</div>';
     }
   } catch (e) {
     panel.innerHTML = '<span style="color:#dc2626;">分析失敗：' + (e.message || e) + '</span>';
   } finally {
-    if (btnEl) { btnEl.disabled = false; btnEl.textContent = '🤖 AI 解讀'; }
+    if (btnEl) { btnEl.disabled = false; btnEl.innerHTML = MR_ICONS.robot + ' AI 解讀'; }
   }
 };
 
@@ -7125,7 +7221,7 @@ window.v202QuickAnalysis = async function(symbol, name, price, changePercent, cu
       if (!card || card.querySelector('.v202-ai-btn')) return;
       const btn = document.createElement('button');
       btn.className = 'v202-ai-btn';
-      btn.textContent = '🤖 AI 解讀';
+      btn.innerHTML = MR_ICONS.robot + ' AI 解讀';
       btn.style.cssText = 'margin-top:6px;padding:4px 10px;font-size:11px;background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;cursor:pointer;color:#92400e;font-weight:600;width:100%;';
       btn.addEventListener('click', async () => {
         const divs = card.querySelectorAll(':scope > div');
@@ -7138,7 +7234,7 @@ window.v202QuickAnalysis = async function(symbol, name, price, changePercent, cu
           const q = await qr.json();
           window.v202QuickAnalysis(symbol, name, q.price || 0, q.changePercent || 0, q.currency || '', btn);
         } catch(e){
-          btn.disabled = false; btn.textContent = '🤖 AI 解讀';
+          btn.disabled = false; btn.innerHTML = MR_ICONS.robot + ' AI 解讀';
           alert('抓報價失敗：' + (e.message || e));
         }
       });
@@ -7178,7 +7274,7 @@ window.v203LoadAristocrats = async function(){
   const box = document.createElement('div');
   box.id = 'v203-aristo-box';
   box.style.cssText = 'margin-top:24px;padding:16px;border:2px solid #ca8a04;border-radius:12px;background:linear-gradient(180deg,#fefce8,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#854d0e;font-size:16px;margin-bottom:6px;">👑 美股股息貴族（Dividend Aristocrats）</div>' +
+  box.innerHTML = '<div style="font-weight:700;color:#854d0e;font-size:16px;margin-bottom:6px;">' + MR_ICONS.crown + ' 美股股息貴族（Dividend Aristocrats）</div>' +
     '<div style="font-size:11px;color:#854d0e;margin-bottom:12px;">連續 25+ 年加發股息的精選 30 檔。退休族 / 被動收入族最愛。資料：Yahoo Finance（殖利率 = 過去 12 個月配息 / 現價）</div>' +
     '<div id="v203-aristo-body">載入中…</div>';
   host.appendChild(box);
@@ -7271,7 +7367,7 @@ window.v204AddAIButton = function(card){
   if (!data || !data.symbol) return false;
   const btn = document.createElement('button');
   btn.className = 'v204-ai-btn';
-  btn.textContent = '🤖 AI 解讀';
+  btn.innerHTML = MR_ICONS.robot + ' AI 解讀';
   btn.style.cssText = 'margin-top:6px;padding:4px 10px;font-size:11px;background:#fef3c7;border:1px solid #f59e0b;border-radius:6px;cursor:pointer;color:#92400e;font-weight:600;width:100%;';
   btn.addEventListener('click', async () => {
     if (btn.disabled) return;
@@ -7282,11 +7378,11 @@ window.v204AddAIButton = function(card){
       if (window.v202QuickAnalysis) {
         window.v202QuickAnalysis(data.symbol, data.name, q.price || 0, q.changePercent || 0, q.currency || '', btn);
       } else {
-        btn.disabled = false; btn.textContent = '🤖 AI 解讀';
+        btn.disabled = false; btn.innerHTML = MR_ICONS.robot + ' AI 解讀';
         alert('AI 解讀模組未載入');
       }
     } catch (e) {
-      btn.disabled = false; btn.textContent = '🤖 AI 解讀';
+      btn.disabled = false; btn.innerHTML = MR_ICONS.robot + ' AI 解讀';
       alert('抓報價失敗：' + (e.message || e));
     }
   });
@@ -7357,7 +7453,7 @@ window.v205LoadCrypto = async function(){
   const box = document.createElement('div');
   box.id = 'v205-crypto-box';
   box.style.cssText = 'margin-top:24px;padding:16px;border:2px solid #f97316;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#9a3412;font-size:16px;margin-bottom:6px;">🪙 加密貨幣市值前 10</div><div style="font-size:11px;color:#9a3412;margin-bottom:12px;">資料：CoinGecko · TWD 計價 · 24h 漲跌</div><div id="v205-crypto-body">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#9a3412;font-size:16px;margin-bottom:6px;">' + MR_ICONS.coin + ' 加密貨幣市值前 10</div><div style="font-size:11px;color:#9a3412;margin-bottom:12px;">資料：CoinGecko · TWD 計價 · 24h 漲跌</div><div id="v205-crypto-body">載入中…</div>';
   host.appendChild(box);
   const body = document.getElementById('v205-crypto-body');
   try {
@@ -7444,7 +7540,7 @@ window.v207OpenCompare = function(){
   panel = document.createElement('div');
   panel.id = 'v207-panel';
   panel.style.cssText = 'position:fixed;bottom:20px;right:20px;width:90%;max-width:600px;max-height:80vh;overflow:auto;padding:16px;border:2px solid #1A6CF6;border-radius:12px;background:white;box-shadow:0 12px 32px rgba(26,108,246,0.25);z-index:9999;';
-  panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div style="font-weight:700;color:#1d4ed8;">📊 多股 K 線重疊（3個月）</div><button id="v207-close" style="background:none;border:none;cursor:pointer;font-size:18px;">✕</button></div><div style="font-size:11px;color:#6b7280;margin-bottom:8px;">2-5 檔逗號分隔，例：NVDA,MSFT,GOOGL</div><div style="display:flex;gap:6px;margin-bottom:10px;"><input id="v207-input" type="text" value="NVDA,MSFT,GOOGL" style="flex:1;padding:6px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;"><button id="v207-go" style="padding:6px 12px;background:#1A6CF6;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px;">比較</button></div><div id="v207-chart"></div>';
+  panel.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;"><div style="font-weight:700;color:#1d4ed8;">' + MR_ICONS.chart + ' 多股 K 線重疊（3個月）</div><button id="v207-close" style="background:none;border:none;cursor:pointer;font-size:18px;">✕</button></div><div style="font-size:11px;color:#6b7280;margin-bottom:8px;">2-5 檔逗號分隔，例：NVDA,MSFT,GOOGL</div><div style="display:flex;gap:6px;margin-bottom:10px;"><input id="v207-input" type="text" value="NVDA,MSFT,GOOGL" style="flex:1;padding:6px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;"><button id="v207-go" style="padding:6px 12px;background:#1A6CF6;color:white;border:none;border-radius:6px;cursor:pointer;font-size:13px;">比較</button></div><div id="v207-chart"></div>';
   document.body.appendChild(panel);
   document.getElementById('v207-close').addEventListener('click', () => panel.remove());
   document.getElementById('v207-go').addEventListener('click', window.v207RenderCompare);
@@ -7506,7 +7602,7 @@ window.v207RenderCompare = async function(){
     if (document.getElementById('v207-trigger')) return;
     const btn = document.createElement('button');
     btn.id = 'v207-trigger';
-    btn.textContent = '📊';
+    btn.innerHTML = MR_ICONS.chart;
     btn.title = '多股 K 線重疊比較';
     btn.style.cssText = 'position:fixed;bottom:80px;right:20px;width:48px;height:48px;border-radius:50%;background:#1A6CF6;color:white;border:none;cursor:pointer;font-size:20px;box-shadow:0 4px 12px rgba(26,108,246,0.4);z-index:9998;';
     btn.addEventListener('click', window.v207OpenCompare);
@@ -7528,7 +7624,7 @@ window.v207RenderCompare = async function(){
       if (!symbol) return;
       const btn = document.createElement('button');
       btn.className = 'v209-btn';
-      btn.textContent = '🤖';
+      btn.innerHTML = MR_ICONS.robot;
       btn.title = 'AI 解讀 ' + symbol;
       btn.style.cssText = 'margin-left:6px;padding:2px 5px;font-size:11px;background:#fef3c7;border:1px solid #f59e0b;border-radius:4px;cursor:pointer;';
       btn.addEventListener('click', async (e) => {
@@ -7539,7 +7635,7 @@ window.v207RenderCompare = async function(){
           const qr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/quote?symbol=' + encodeURIComponent(symbol));
           const q = await qr.json();
           let exp = tr.parentNode.querySelector('.v209-exp-' + symbol);
-          if (exp) { exp.style.display = exp.style.display === 'none' ? '' : 'none'; btn.disabled = false; btn.textContent = '🤖'; return; }
+          if (exp) { exp.style.display = exp.style.display === 'none' ? '' : 'none'; btn.disabled = false; btn.innerHTML = MR_ICONS.robot; return; }
           exp = document.createElement('tr');
           exp.className = 'v209-exp-' + symbol;
           const cell = document.createElement('td');
@@ -7551,9 +7647,9 @@ window.v207RenderCompare = async function(){
           exp.appendChild(cell);
           tr.parentNode.insertBefore(exp, tr.nextSibling);
           window.v202QuickAnalysis(symbol, name, q.price || 0, q.changePercent || 0, q.currency || 'USD', fakeBtn);
-          btn.disabled = false; btn.textContent = '🤖';
+          btn.disabled = false; btn.innerHTML = MR_ICONS.robot;
         } catch (err) {
-          btn.disabled = false; btn.textContent = '🤖';
+          btn.disabled = false; btn.innerHTML = MR_ICONS.robot;
           alert('失敗：' + (err.message || err));
         }
       });
@@ -7571,7 +7667,7 @@ window.v210OpenCFO = function(){
   overlay = document.createElement('div');
   overlay.id = 'v210-cfo-overlay';
   overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:linear-gradient(135deg,#1e3a8a,#312e81);color:white;z-index:99999;display:flex;flex-direction:column;font-family:var(--font-main, "DM Sans","Noto Sans TC",sans-serif);';
-  overlay.innerHTML = '<div style="padding:16px 20px;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:20px;font-weight:700;">💎 您的 AI 投資長</div></div><button id="v210-close" style="background:rgba(255,255,255,0.1);border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;">✕</button></div><div id="v210-messages" style="flex:1;overflow-y:auto;padding:20px;"><div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;max-width:80%;margin-bottom:12px;"><div style="font-weight:600;margin-bottom:6px;">💎 AI CFO</div><div>您好 NEO，我是您的 AI 投資長。我可以幫您：</div><ul style="margin-top:8px;margin-bottom:8px;padding-left:20px;line-height:1.8;"><li>解讀您的自選股今日漲跌原因</li><li>整理今日全球市場動態</li><li>查詢任何個股公開資料</li><li>解釋財經名詞</li></ul><div style="font-size:11px;color:rgba(255,255,255,0.6);">⚠️ 我不能提供個股投資建議（金管會合規）— 但我可以幫您整理公開資訊讓您自己判斷。</div></div></div><div style="padding:16px;background:rgba(0,0,0,0.2);"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;"><button class="v210-suggest" data-q="今日全球市場有什麼重要動態？">📊 今日全球市場</button><button class="v210-suggest" data-q="NVDA 為什麼漲？">💎 NVDA 為什麼漲</button><button class="v210-suggest" data-q="台積電最近的新聞重點是什麼？">🇹🇼 台積電新聞</button><button class="v210-suggest" data-q="什麼是布林通道？">📚 學財經名詞</button></div><div style="display:flex;gap:8px;"><input id="v210-input" type="text" placeholder="問我任何投資相關問題..." style="flex:1;padding:12px 16px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:white;border-radius:24px;font-size:14px;outline:none;"><button id="v210-send" style="padding:12px 24px;background:#fbbf24;color:#1557D0;border:none;border-radius:24px;cursor:pointer;font-weight:700;">送出</button></div></div>';
+  overlay.innerHTML = '<div style="padding:16px 20px;background:rgba(0,0,0,0.2);display:flex;align-items:center;justify-content:space-between;"><div><div style="font-size:20px;font-weight:700;">' + MR_ICONS.diamond + ' 您的 AI 投資長</div></div><button id="v210-close" style="background:rgba(255,255,255,0.1);border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;">✕</button></div><div id="v210-messages" style="flex:1;overflow-y:auto;padding:20px;"><div style="background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;max-width:80%;margin-bottom:12px;"><div style="font-weight:600;margin-bottom:6px;">' + MR_ICONS.diamond + ' AI CFO</div><div>您好 NEO，我是您的 AI 投資長。我可以幫您：</div><ul style="margin-top:8px;margin-bottom:8px;padding-left:20px;line-height:1.8;"><li>解讀您的自選股今日漲跌原因</li><li>整理今日全球市場動態</li><li>查詢任何個股公開資料</li><li>解釋財經名詞</li></ul><div style="font-size:11px;color:rgba(255,255,255,0.6);">' + MR_ICONS.warning + ' 我不能提供個股投資建議（金管會合規）— 但我可以幫您整理公開資訊讓您自己判斷。</div></div></div><div style="padding:16px;background:rgba(0,0,0,0.2);"><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;"><button class="v210-suggest" data-q="今日全球市場有什麼重要動態？">' + MR_ICONS.chart + ' 今日全球市場</button><button class="v210-suggest" data-q="NVDA 為什麼漲？"' + MR_ICONS.diamond + ' NVDA 為什麼漲</button><button class="v210-suggest" data-q="台積電最近的新聞重點是什麼？">' + MR_ICONS.flag + ' 台積電新聞</button><button class="v210-suggest" data-q="什麼是布林通道？">' + MR_ICONS.news + ' 學財經名詞</button></div><div style="display:flex;gap:8px;"><input id="v210-input" type="text" placeholder="問我任何投資相關問題..." style="flex:1;padding:12px 16px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:white;border-radius:24px;font-size:14px;outline:none;"><button id="v210-send" style="padding:12px 24px;background:#fbbf24;color:#1557D0;border:none;border-radius:24px;cursor:pointer;font-weight:700;">送出</button></div></div>';
   document.body.appendChild(overlay);
   document.querySelectorAll('.v210-suggest').forEach(btn => {
     btn.style.cssText = 'background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;';
@@ -7605,7 +7701,7 @@ window.v210Send = async function(){
   window.v210Messages.push({ role: 'user', content: text });
   const thinking = document.createElement('div');
   thinking.style.cssText = 'background:rgba(255,255,255,0.1);border-radius:12px;padding:14px;max-width:80%;margin-bottom:12px;';
-  thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;">💎 AI CFO</div>💭 思考中...';
+  thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;">' + MR_ICONS.diamond + ' AI CFO</div>' + MR_ICONS.thought + ' 思考中...';
   msgs.appendChild(thinking);
   msgs.scrollTop = msgs.scrollHeight;
   // 收集 context（情境感知）
@@ -7630,10 +7726,10 @@ window.v210Send = async function(){
     });
     const data = await res.json();
     if (data.error) {
-      thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;color:#fca5a5;">💎 AI CFO</div>⚠️ ' + data.error;
+      thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;color:#fca5a5;">' + MR_ICONS.diamond + ' AI CFO</div>' + MR_ICONS.warning + ' ' + data.error;
     } else {
       const reply = data.reply || '';
-      thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;">💎 AI CFO</div>' + reply.replace(/\n/g, '<br>');
+      thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;">' + MR_ICONS.diamond + ' AI CFO</div>' + reply.replace(/\n/g, '<br>');
       window.v210Messages.push({ role: 'assistant', content: reply });
       // 自動偵測 stock symbols 並 render mini quote cards
       const symPattern = /\b([A-Z]{1,5}(?:\.[A-Z]{2,3})?|\d{4})\b/g;
@@ -7662,18 +7758,18 @@ window.v210Send = async function(){
       }
     }
   } catch (e) {
-    thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;color:#fca5a5;">💎 AI CFO</div>連線失敗：' + (e.message || e);
+    thinking.innerHTML = '<div style="font-weight:600;margin-bottom:6px;color:#fca5a5;">' + MR_ICONS.diamond + ' AI CFO</div>連線失敗：' + (e.message || e);
   }
   msgs.scrollTop = msgs.scrollHeight;
 };
 
-// 全域觸發按鈕（左下角，跟 v207 右下 📊 對稱）
+// 全域觸發按鈕（左下角，跟 v207 右下對稱）
 (function(){
   setTimeout(() => {
     if (document.getElementById('v210-trigger')) return;
     const btn = document.createElement('button');
     btn.id = 'v210-trigger';
-    btn.innerHTML = '💎';
+    btn.innerHTML = MR_ICONS.diamond;
     btn.title = 'AI 投資長 — 您的 24/7 思考夥伴';
     btn.style.cssText = 'position:fixed;bottom:80px;left:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1e3a8a 0%,#fbbf24 100%);color:white;border:none;cursor:pointer;font-size:26px;box-shadow:0 6px 20px rgba(30,58,138,0.5);z-index:9998;animation:v210Pulse 2s infinite;';
     document.head.insertAdjacentHTML('beforeend', '<style>@keyframes v210Pulse { 0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(30,58,138,0.5); } 50% { transform: scale(1.05); box-shadow: 0 8px 28px rgba(251,191,36,0.6); } }</style>');
@@ -7694,7 +7790,7 @@ window.v210Send = async function(){
         el.style.display = 'none';
       }
     });
-    // 2. 隱藏 v207 📊 浮動按鈕（功能整合進 v210）
+    // 2. 隱藏 v207 浮動按鈕（功能整合進 v210）
     const v207 = document.getElementById('v207-trigger');
     if (v207) v207.style.display = 'none';
     // 3. 隱藏 v207 panel（如果開著也關掉）
@@ -7703,7 +7799,7 @@ window.v210Send = async function(){
   }, 1500);
 })();
 
-// 在 v210 對話介面內加「📊 多股比較」快速建議按鈕（讓 v207 功能可從 AI 介面觸發）
+// 在 v210 對話介面內加「多股比較」快速建議按鈕（讓 v207 功能可從 AI 介面觸發）
 (function(){
   const orig = window.v210OpenCFO;
   if (!orig || window.__v210ConsolidateWired) return;
@@ -7715,11 +7811,11 @@ window.v210Send = async function(){
       const suggestRow = document.querySelector('#v210-cfo-overlay [class*="v210-suggest"]');
       if (!suggestRow) return;
       const container = suggestRow.parentNode;
-      // 加 📊 多股比較按鈕（如果尚未存在）
+      // 加多股比較按鈕（如果尚未存在）
       if (!container.querySelector('.v210-tool-compare')) {
         const compareBtn = document.createElement('button');
         compareBtn.className = 'v210-suggest v210-tool-compare';
-        compareBtn.textContent = '📊 多股 K 線比較';
+        compareBtn.innerHTML = MR_ICONS.chart + ' 多股 K 線比較';
         compareBtn.style.cssText = 'background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;';
         compareBtn.addEventListener('click', () => {
           // 開 v207 panel + 隱藏 v210 overlay 暫時讓 v207 顯示
@@ -7784,7 +7880,7 @@ window.v211Memory = {
   };
 })();
 
-// 在 v210 對話介面右上角加「🧠 我的偏好」按鈕（用戶主動設定）
+// 在 v210 對話介面右上角加「我的偏好」按鈕（用戶主動設定）
 window.v211OpenPreferences = function(){
   let modal = document.getElementById('v211-pref-modal');
   if (modal) { modal.remove(); return; }
@@ -7794,12 +7890,12 @@ window.v211OpenPreferences = function(){
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100000;font-family:var(--font-main, "DM Sans","Noto Sans TC",sans-serif);';
   modal.innerHTML = ''
     + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">'
-    + '  <div style="font-size:18px;font-weight:700;">🧠 您的投資偏好</div>'
+    + '  <div style="font-size:18px;font-weight:700;">' + MR_ICONS.brain + ' 您的投資偏好</div>'
     + '  <button id="v211-pref-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button>'
     + '</div>'
     + '<div style="font-size:12px;color:#6b7280;margin-bottom:16px;">資料儲存在您的瀏覽器本地，AI 對話時會自動帶入做個人化建議（永不上傳伺服器）</div>'
     + '<div style="margin-bottom:16px;">'
-    + '  <label style="font-weight:600;font-size:14px;display:block;margin-bottom:6px;">⚖️ 風險偏好</label>'
+    + '  <label style="font-weight:600;font-size:14px;display:block;margin-bottom:6px;">' + MR_ICONS.scale + ' 風險偏好</label>'
     + '  <select id="v211-risk" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;">'
     + '    <option value="">未設定</option>'
     + '    <option value="保守">保守（重視穩定配息）</option>'
@@ -7808,14 +7904,14 @@ window.v211OpenPreferences = function(){
     + '  </select>'
     + '</div>'
     + '<div style="margin-bottom:16px;">'
-    + '  <label style="font-weight:600;font-size:14px;display:block;margin-bottom:6px;">⭐ 我的關注標的（逗號分隔）</label>'
+    + '  <label style="font-weight:600;font-size:14px;display:block;margin-bottom:6px;">' + MR_ICONS.star + ' 我的關注標的（逗號分隔）</label>'
     + '  <input id="v211-wl" type="text" placeholder="例：2330,NVDA,ASML.AS" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;">'
     + '</div>'
     + '<div style="margin-bottom:20px;font-size:12px;color:#6b7280;">'
-    + '  <div>📊 過去 5 個查詢：</div>'
+    + '  <div>' + MR_ICONS.chart + ' 過去 5 個查詢：</div>'
     + '  <div style="margin-top:4px;color:#374151;font-size:11px;" id="v211-history">' + ((m.queryHistory || []).slice(-5).map(x => '• ' + x.q).join('<br>') || '（尚無紀錄）') + '</div>'
     + '</div>'
-    + '<button id="v211-pref-save" style="width:100%;padding:10px;background:#1A6CF6;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">💾 儲存偏好</button>';
+    + '<button id="v211-pref-save" style="width:100%;padding:10px;background:#1A6CF6;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.save + ' 儲存偏好</button>';
   document.body.appendChild(modal);
   document.getElementById('v211-risk').value = m.riskPreference || '';
   document.getElementById('v211-wl').value = (m.watchlist || []).join(',');
@@ -7826,11 +7922,11 @@ window.v211OpenPreferences = function(){
     m2.watchlist = document.getElementById('v211-wl').value.split(',').map(x => x.trim()).filter(Boolean);
     window.v211Memory.save(m2);
     modal.remove();
-    alert('✅ 已儲存。下次與 AI 對話會自動參考。');
+    alert(MR_ICONS.check+' 已儲存。下次與 AI 對話會自動參考。');
   });
 };
 
-// 在 v210 對話介面 header 注入「🧠 偏好」按鈕
+// 在 v210 對話介面 header 注入「偏好」按鈕
 (function(){
   setInterval(() => {
     const overlay = document.getElementById('v210-cfo-overlay');
@@ -7839,7 +7935,7 @@ window.v211OpenPreferences = function(){
     if (!closeBtn || closeBtn.parentNode.querySelector('.v211-pref-btn')) return;
     const prefBtn = document.createElement('button');
     prefBtn.className = 'v211-pref-btn';
-    prefBtn.textContent = '🧠';
+    prefBtn.innerHTML = MR_ICONS.brain;
     prefBtn.title = '我的投資偏好';
     prefBtn.style.cssText = 'background:rgba(255,255,255,0.1);border:none;color:white;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;margin-right:8px;';
     prefBtn.addEventListener('click', window.v211OpenPreferences);
@@ -7862,12 +7958,12 @@ window.v212Roundtable = async function(symbol, name){
   // 加 system 訊息
   const intro = document.createElement('div');
   intro.style.cssText = 'background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#e9d5ff;">🎭 圓桌會議啟動</div><div style="font-size:13px;">召集 3 位 AI 分析師對 <strong>' + symbol + '</strong> 公開辯論，讓您看不同視角。</div><div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.6);">⚠️ 三個視角為 AI 模擬，並非實際分析師意見</div>';
+  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#e9d5ff;">' + MR_ICONS.theater + ' 圓桌會議啟動</div><div style="font-size:13px;">召集 3 位 AI 分析師對 <strong>' + symbol + '</strong> 公開辯論，讓您看不同視角。</div><div style="margin-top:6px;font-size:11px;color:rgba(255,255,255,0.6);">' + MR_ICONS.warning + ' 三個視角為 AI 模擬，並非實際分析師意見</div>';
   msgs.appendChild(intro);
   // Loading placeholder
   const loadingMsg = document.createElement('div');
   loadingMsg.style.cssText = 'background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;color:rgba(255,255,255,0.7);';
-  loadingMsg.innerHTML = '🎭 三位分析師思考中（約 10-15 秒）...';
+  loadingMsg.innerHTML = MR_ICONS.theater + ' 三位分析師思考中（約 10-15 秒）...';
   msgs.appendChild(loadingMsg);
   msgs.scrollTop = msgs.scrollHeight;
   try {
@@ -7888,7 +7984,7 @@ window.v212Roundtable = async function(symbol, name){
     if (data.error) {
       const errMsg = document.createElement('div');
       errMsg.style.cssText = 'background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-      errMsg.innerHTML = '⚠️ 圓桌會議失敗：' + data.error;
+      errMsg.innerHTML = MR_ICONS.warning + ' 圓桌會議失敗：' + data.error;
       msgs.appendChild(errMsg);
     } else {
       // 先 render 報價卡片
@@ -7910,16 +8006,16 @@ window.v212Roundtable = async function(symbol, name){
       // Render 結論提醒
       const concl = document.createElement('div');
       concl.style.cssText = 'background:rgba(251,191,36,0.15);border:1px solid rgba(251,191,36,0.3);border-radius:8px;padding:10px 14px;max-width:90%;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.7);';
-      concl.innerHTML = '💡 三個視角已呈現。<strong>由您自行判斷</strong>哪些風險與機會適合您的偏好。' + (data.disclaimer || '');
+      concl.innerHTML = MR_ICONS.bulb + ' 三個視角已呈現。<strong>由您自行判斷</strong>哪些風險與機會適合您的偏好。' + (data.disclaimer || '');
       msgs.appendChild(concl);
     }
   } catch (e) {
-    loadingMsg.innerHTML = '⚠️ 圓桌會議失敗：' + (e.message || e);
+    loadingMsg.innerHTML = MR_ICONS.warning + ' 圓桌會議失敗：' + (e.message || e);
   }
   msgs.scrollTop = msgs.scrollHeight;
 };
 
-// 在 v210 對話介面加「🎭 圓桌會議」快速建議按鈕
+// 在 v210 對話介面加「圓桌會議」快速建議按鈕
 (function(){
   setInterval(() => {
     const overlay = document.getElementById('v210-cfo-overlay');
@@ -7928,7 +8024,7 @@ window.v212Roundtable = async function(symbol, name){
     if (!suggests || suggests.querySelector('.v212-roundtable-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v212-roundtable-btn';
-    btn.textContent = '🎭 圓桌會議';
+    btn.innerHTML = MR_ICONS.theater + ' 圓桌會議';
     btn.title = '召集 3 位 AI 分析師多視角辯論';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(168,85,247,0.3),rgba(236,72,153,0.3));border:1px solid rgba(168,85,247,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v212Roundtable());
@@ -7937,7 +8033,7 @@ window.v212Roundtable = async function(symbol, name){
 })();
 
 
-// ===== v212.1 UX hotfix: 隱藏所有舊 chat 泡泡 + 💎 移到右邊 =====
+// ===== v212.1 UX hotfix =====
 
 (function(){
   if (window.__v212UxFixed) return;
@@ -8007,11 +8103,11 @@ window.v213RenderTransparency = function(meta){
   const color = colorMap[c] || '#fbbf24';
   const id = 'v213-meta-' + Math.random().toString(36).slice(2, 8);
   return '<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,0.15);padding-top:8px;">'
-    + '<button onclick="document.getElementById(\'' + id + '\').style.display=document.getElementById(\'' + id + '\').style.display===\'none\'?\'block\':\'none\'" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:11px;padding:0;">🔍 為什麼這樣回答？</button>'
+    + '<button onclick="document.getElementById(\'' + id + '\').style.display=document.getElementById(\'' + id + '\').style.display===\'none\'?\'block\':\'none\'" style="background:none;border:none;color:rgba(255,255,255,0.7);cursor:pointer;font-size:11px;padding:0;">' + MR_ICONS.search + ' 為什麼這樣回答？</button>'
     + '<div id="' + id + '" style="display:none;margin-top:8px;font-size:11px;line-height:1.7;color:rgba(255,255,255,0.85);">'
-    + '<div>📊 我的把握度：<span style="color:' + color + ';font-weight:600;">' + c + '</span></div>'
-    + (meta.sources ? '<div>📚 主要資料源：' + meta.sources + '</div>' : '')
-    + (meta.blindSpots ? '<div>⚠️ 我可能遺漏：' + meta.blindSpots + '</div>' : '')
+    + '<div>' + MR_ICONS.chart + ' 我的把握度：<span style="color:' + color + ';font-weight:600;">' + c + '</span></div>'
+    + (meta.sources ? '<div>' + MR_ICONS.news + ' 主要資料源：' + meta.sources + '</div>' : '')
+    + (meta.blindSpots ? '<div>' + MR_ICONS.warning + ' 我可能遺漏：' + meta.blindSpots + '</div>' : '')
     + '<div style="margin-top:6px;color:rgba(255,255,255,0.5);">AI 不是萬能。請結合其他資訊獨立判斷。</div>'
     + '</div></div>';
 };
@@ -8059,7 +8155,7 @@ window.v214LoadDailyBrief = async function(){
   const brief = document.createElement('div');
   brief.className = 'v214-brief';
   brief.style.cssText = 'background:linear-gradient(135deg,rgba(251,191,36,0.2),rgba(244,63,94,0.15));border:1px solid rgba(251,191,36,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-  brief.innerHTML = '<div style="font-weight:700;color:#fde68a;margin-bottom:6px;">🌅 ' + new Date().toLocaleDateString('zh-TW') + ' 您的早報</div><div style="font-size:13px;color:rgba(255,255,255,0.85);">📊 整理您 ' + wl.length + ' 檔關注標的中…</div>';
+  brief.innerHTML = '<div style="font-weight:700;color:#fde68a;margin-bottom:6px;">' + MR_ICONS.sunrise + ' ' + new Date().toLocaleDateString('zh-TW') + ' 您的早報</div><div style="font-size:13px;color:rgba(255,255,255,0.85);">' + MR_ICONS.chart + ' 整理您 ' + wl.length + ' 檔關注標的中…</div>';
   msgs.insertBefore(brief, msgs.firstChild);
   msgs.scrollTop = 0;
   try {
@@ -8069,10 +8165,10 @@ window.v214LoadDailyBrief = async function(){
     });
     const d = await res.json();
     if (d.error) {
-      brief.innerHTML = '<div style="font-weight:700;color:#fde68a;margin-bottom:6px;">🌅 早報</div><div style="font-size:12px;color:#fca5a5;">⚠️ ' + d.error + '</div>';
+      brief.innerHTML = '<div style="font-weight:700;color:#fde68a;margin-bottom:6px;">' + MR_ICONS.sunrise + ' 早報</div><div style="font-size:12px;color:#fca5a5;">' + MR_ICONS.warning + ' ' + d.error + '</div>';
       return;
     }
-    let html = '<div style="font-weight:700;color:#fde68a;margin-bottom:8px;">🌅 ' + new Date().toLocaleDateString('zh-TW') + ' 您的早報</div>';
+    let html = '<div style="font-weight:700;color:#fde68a;margin-bottom:8px;">' + MR_ICONS.sunrise + ' ' + new Date().toLocaleDateString('zh-TW') + ' 您的早報</div>';
     // mini quote cards
     if (d.quotes && d.quotes.length > 0) {
       html += '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">';
@@ -8087,7 +8183,7 @@ window.v214LoadDailyBrief = async function(){
     html += '<div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,0.5);">' + (d.disclaimer || '') + '</div>';
     brief.innerHTML = html;
   } catch (e) {
-    brief.innerHTML = '<div style="font-weight:700;color:#fde68a;">🌅 早報</div><div style="font-size:12px;color:#fca5a5;">載入失敗：' + (e.message || e) + '</div>';
+    brief.innerHTML = '<div style="font-weight:700;color:#fde68a;">' + MR_ICONS.sunrise + ' 早報</div><div style="font-size:12px;color:#fca5a5;">載入失敗：' + (e.message || e) + '</div>';
   }
 };
 
@@ -8147,7 +8243,7 @@ window.v215IsEnabled = function(){
       const wrap = document.createElement('div');
       wrap.className = 'v215-esg-toggle';
       wrap.style.cssText = 'margin-bottom:16px;padding:10px;background:#f0fdf4;border-radius:8px;';
-      wrap.innerHTML = '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#166534;font-weight:600;"><input type="checkbox" id="v215-esg-cb" ' + (m.esgEnabled ? 'checked' : '') + '> 🌿 啟用 ESG+ 責任投資篩選</label><div style="font-size:11px;color:#16a34a;margin-top:4px;margin-left:24px;">排除菸酒/賭博/武器/化石燃料/色情娛樂類股 — 卡片會顯示 ⚠️ 標記</div>';
+      wrap.innerHTML = '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#166534;font-weight:600;"><input type="checkbox" id="v215-esg-cb" ' + (m.esgEnabled ? 'checked' : '') + '> ' + MR_ICONS.leaf + ' 啟用 ESG+ 責任投資篩選</label><div style="font-size:11px;color:#16a34a;margin-top:4px;margin-left:24px;">排除菸酒/賭博/武器/化石燃料/色情娛樂類股 — 卡片會顯示 ' + MR_ICONS.warning + ' 標記</div>';
       saveBtn.parentNode.insertBefore(wrap, saveBtn);
       // 攔截 save
       const origClick = saveBtn.onclick;
@@ -8178,7 +8274,7 @@ window.v215IsEnabled = function(){
       const w = document.createElement('div');
       w.className = 'v215-warning';
       w.style.cssText = 'margin-top:6px;padding:4px 8px;background:#fef2f2;border:1px solid #fca5a5;border-radius:4px;font-size:10px;color:#991b1b;font-weight:600;';
-      w.textContent = '⚠️ ESG: ' + cat;
+      w.innerHTML = MR_ICONS.warning + ' ESG: ' + cat;
       card.appendChild(w);
     });
   }, 3000);
@@ -8194,11 +8290,11 @@ window.v216OpenHealth = function(){
   modal.id = 'v216-health-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:520px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100001;font-family:var(--font-main, "DM Sans","Noto Sans TC",sans-serif);max-height:90vh;overflow-y:auto;';
   modal.innerHTML = ''
-    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">💼 AI 投組健診</div><button id="v216-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.briefcase + ' AI 投組健診</div><button id="v216-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
     + '<div style="font-size:12px;color:#6b7280;margin-bottom:12px;">輸入您的持股（最多 8 檔），AI 會分析集中度 / 行業分散 / 風險匹配並給改善建議</div>'
     + '<div id="v216-rows"></div>'
     + '<button id="v216-add" style="width:100%;padding:8px;border:1px dashed #d1d5db;background:#f9fafb;border-radius:8px;cursor:pointer;font-size:13px;color:#6b7280;margin-bottom:12px;">+ 新增一檔</button>'
-    + '<button id="v216-go" style="width:100%;padding:12px;background:#1A6CF6;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🩺 開始健診</button>'
+    + '<button id="v216-go" style="width:100%;padding:12px;background:#1A6CF6;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.stethoscope + ' 開始健診</button>'
     + '<div id="v216-result" style="margin-top:16px;"></div>';
   document.body.appendChild(modal);
   document.getElementById('v216-close').addEventListener('click', () => modal.remove());
@@ -8227,16 +8323,16 @@ window.v216OpenHealth = function(){
     });
     if (holdings.length === 0) { alert('請至少輸入一檔有效持股'); return; }
     const result = document.getElementById('v216-result');
-    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🩺 AI 健診中（約 8-10 秒）...</div>';
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">' + MR_ICONS.stethoscope + ' AI 健診中（約 8-10 秒）...</div>';
     try {
       const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/portfolio-health', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ holdings, riskPreference: m.riskPreference || '' })
       });
       const d = await res.json();
-      if (d.error) { result.innerHTML = '<div style="color:#dc2626;padding:12px;background:#fef2f2;border-radius:8px;">⚠️ ' + d.error + '</div>'; return; }
+      if (d.error) { result.innerHTML = '<div style="color:#dc2626;padding:12px;background:#fef2f2;border-radius:8px;">' + MR_ICONS.warning + ' ' + d.error + '</div>'; return; }
       let html = '<div style="background:#f0f9ff;border:1px solid #93c5fd;border-radius:8px;padding:14px;margin-bottom:10px;">';
-      html += '<div style="font-weight:600;margin-bottom:6px;">📊 持股結構</div>';
+      html += '<div style="font-weight:600;margin-bottom:6px;">' + MR_ICONS.chart + ' 持股結構</div>';
       d.holdings.forEach(h => {
         html += '<div style="font-size:12px;margin-top:2px;">' + h.symbol + ' · ' + h.weight.toFixed(1) + '%</div>';
       });
@@ -8249,7 +8345,7 @@ window.v216OpenHealth = function(){
   });
 };
 
-// 在 v210 對話介面加「💼 投組健診」快速按鈕
+// 在 v210 對話介面加「投組健診」快速按鈕
 (function(){
   setInterval(() => {
     const overlay = document.getElementById('v210-cfo-overlay');
@@ -8258,7 +8354,7 @@ window.v216OpenHealth = function(){
     if (!suggests || suggests.querySelector('.v216-health-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v216-health-btn';
-    btn.textContent = '💼 投組健診';
+    btn.innerHTML = MR_ICONS.briefcase + ' 投組健診';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(26,108,246,0.3),rgba(96,165,250,0.3));border:1px solid rgba(26,108,246,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v216OpenHealth());
     suggests.appendChild(btn);
@@ -8276,7 +8372,7 @@ window.v217LoadMultiTF = async function(symbol, tf){
     box = document.createElement('div');
     box.id = 'v217-mtf-box';
     box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #1A6CF6;border-radius:12px;background:linear-gradient(180deg,#eff6ff,#fff);';
-    box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-weight:700;color:#1d4ed8;">📈 多時段 K 線（' + symbol + '）</div><div id="v217-tabs" style="display:flex;gap:4px;"></div></div><div id="v217-body">載入中…</div>';
+    box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-weight:700;color:#1d4ed8;">' + MR_ICONS.chartUp + ' 多時段 K 線（' + symbol + '）</div><div id="v217-tabs" style="display:flex;gap:4px;"></div></div><div id="v217-body">載入中…</div>';
     host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
     // 加 tabs
     const tabs = document.getElementById('v217-tabs');
@@ -8438,7 +8534,7 @@ window.v219LoadIndicatorPanel = async function(symbol){
   const box = document.createElement('div');
   box.id = 'v219-ind-panel';
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #7c3aed;border-radius:12px;background:linear-gradient(180deg,#faf5ff,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#5b21b6;margin-bottom:8px;">📊 技術指標儀表板（' + symbol + '）</div><div id="v219-ind-body">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#5b21b6;margin-bottom:8px;">' + MR_ICONS.chart + ' 技術指標儀表板（' + symbol + '）</div><div id="v219-ind-body">載入中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   try {
     const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=3mo');
@@ -8503,7 +8599,8 @@ window.v220OpenAlertModal = function(symbol){
   modal = document.createElement('div');
   modal.id = 'v220-alert-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:420px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;';
-  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">⏰ 設定提醒</div><button id="v220-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="margin-bottom:14px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">標的代號</label><input id="v220-sym" value="' + (symbol || '') + '" placeholder="NVDA / 2330" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"></div><div style="margin-bottom:14px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">提醒條件</label><select id="v220-cond" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"><option value="price_above">價格突破 ↑</option><option value="price_below">價格跌破 ↓</option><option value="pct_up">24h 漲幅 ≥</option><option value="pct_down">24h 跌幅 ≥</option><option value="rsi_overbought">RSI ≥ 70（超買）</option><option value="rsi_oversold">RSI ≤ 30（超賣）</option></select></div><div style="margin-bottom:16px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">閾值</label><input id="v220-val" type="number" step="0.01" placeholder="例：200 或 5" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"></div><button id="v220-save" style="width:100%;padding:10px;background:#dc2626;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">⏰ 啟用提醒</button>';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.bell + ' 設定提醒</div><button id="v220-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="margin-bottom:14px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">標的代號</label><input id="v220-sym" value="' + (symbol || '') + '" placeholder="NVDA / 2330" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"></div><div style="margin-bottom:14px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">提醒條件</label><select id="v220-cond" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"><option value="price_above">價格突破 ↑</option><option value="price_below">價格跌破 ↓</option><option value="pct_up">24h 漲幅 ≥</option><option value="pct_down">24h 跌幅 ≥</option><option value="rsi_overbought">RSI ≥ 70（超買）</option><option value="rsi_oversold">RSI ≤ 30（超賣）</option></select></div><div style="margin-bottom:16px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">閾值</label><input id="v220-val" type="number" step="0.01" placeholder="例：200 或 5" style="width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"></div><button id="v220-save" style="width:100%;padding:10px;background:#dc2626;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.bell + ' 啟用提醒</button>';
+
   document.body.appendChild(modal);
   document.getElementById('v220-close').addEventListener('click', () => modal.remove());
   document.getElementById('v220-save').addEventListener('click', async () => {
@@ -8516,7 +8613,7 @@ window.v220OpenAlertModal = function(symbol){
     }
     window.v220Alerts.add({ symbol: sym, condition: cond, threshold: val });
     modal.remove();
-    alert('✅ 提醒已設定');
+    alert(MR_ICONS.check+' 提醒已設定');
   });
 };
 (async function v220Loop(){
@@ -8551,7 +8648,7 @@ window.v220OpenAlertModal = function(symbol){
           }
           if (hit) {
             window.v220Alerts.markTriggered(a.id);
-            const msg = '🔔 ' + a.symbol + ' ' + label;
+            const msg = MR_ICONS.bell + ' ' + a.symbol + ' ' + label;
             if ('Notification' in window && Notification.permission === 'granted') {
               new Notification('MoneyRadar 提醒', { body: msg, icon: '/lab/icon-192.png' });
             }
@@ -8577,7 +8674,7 @@ window.v220OpenAlertModal = function(symbol){
     if (!suggests || suggests.querySelector('.v220-alert-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v220-alert-btn';
-    btn.textContent = '⏰ 設定提醒';
+    btn.innerHTML = MR_ICONS.bell + ' 設定提醒';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(220,38,38,0.3),rgba(251,113,133,0.3));border:1px solid rgba(220,38,38,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v220OpenAlertModal(''));
     suggests.appendChild(btn);
@@ -8610,7 +8707,7 @@ window.v220OpenAlertModal = function(symbol){
       box = document.createElement('div');
       box.id = 'v217-mtf-box';
       box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #1A6CF6;border-radius:12px;background:linear-gradient(180deg,#eff6ff,#fff);';
-      box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;"><div style="font-weight:700;color:#1d4ed8;">📈 多時段 K 線（' + symbol + '）</div><div id="v217-tabs" style="display:flex;gap:4px;flex-wrap:wrap;"></div></div><div id="v217-body">載入中…</div>';
+      box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px;"><div style="font-weight:700;color:#1d4ed8;">' + MR_ICONS.chartUp + ' 多時段 K 線（' + symbol + '）</div><div id="v217-tabs" style="display:flex;gap:4px;flex-wrap:wrap;"></div></div><div id="v217-body">載入中…</div>';
       host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
     }
     const tabs = document.getElementById('v217-tabs');
@@ -8667,7 +8764,7 @@ window.v222LoadNewsSentiment = async function(symbol){
   const box = document.createElement('div');
   box.id = 'v222-news-' + symbol;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #db2777;border-radius:12px;background:linear-gradient(180deg,#fdf2f8,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">📰 新聞情緒（' + symbol + '）</div><div id="v222-body-' + symbol + '">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">' + MR_ICONS.newspaper + ' 新聞情緒（' + symbol + '）</div><div id="v222-body-' + symbol + '">載入中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   try {
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/news-sentiment?symbol=' + encodeURIComponent(symbol));
@@ -8716,11 +8813,11 @@ window.v223OpenCoach = async function(){
   if (!msgs) { window.v210OpenCFO(); return setTimeout(() => window.v223OpenCoach(), 500); }
   const intro = document.createElement('div');
   intro.style.cssText = 'background:rgba(168,85,247,0.2);border:1px solid rgba(168,85,247,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#e9d5ff;">🎓 投資成長教練啟動</div><div style="font-size:13px;">分析您過去的查詢、自選、提醒模式，給出反思反饋。</div>';
+  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#e9d5ff;">' + MR_ICONS.graduate + ' 投資成長教練啟動</div><div style="font-size:13px;">分析您過去的查詢、自選、提醒模式，給出反思反饋。</div>';
   msgs.appendChild(intro);
   const loading = document.createElement('div');
   loading.style.cssText = 'background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;color:rgba(255,255,255,0.7);';
-  loading.innerHTML = '🎓 教練分析中（約 8 秒）...';
+  loading.innerHTML = MR_ICONS.graduate + ' 教練分析中（約 8 秒）...';
   msgs.appendChild(loading);
   msgs.scrollTop = msgs.scrollHeight;
   try {
@@ -8741,16 +8838,16 @@ window.v223OpenCoach = async function(){
     if (d.error) {
       const err = document.createElement('div');
       err.style.cssText = 'background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-      err.innerHTML = '⚠️ ' + d.error;
+      err.innerHTML = MR_ICONS.warning + ' ' + d.error;
       msgs.appendChild(err);
       return;
     }
     const card = document.createElement('div');
     card.style.cssText = 'background:linear-gradient(135deg,rgba(168,85,247,0.2),rgba(236,72,153,0.15));border:1px solid rgba(168,85,247,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-    card.innerHTML = '<div style="font-weight:700;color:#e9d5ff;margin-bottom:6px;">🎓 您的成長教練反饋</div><div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:8px;">分析 ' + d.dataPoints + ' 個資料點</div><div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.95);">' + (d.feedback || '').replace(/\n/g, '<br>') + '</div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,0.5);">' + (d.disclaimer || '') + '</div>';
+    card.innerHTML = '<div style="font-weight:700;color:#e9d5ff;margin-bottom:6px;">' + MR_ICONS.graduate + ' 您的成長教練反饋</div><div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:8px;">分析 ' + d.dataPoints + ' 個資料點</div><div style="font-size:13px;line-height:1.7;color:rgba(255,255,255,0.95);">' + (d.feedback || '').replace(/\n/g, '<br>') + '</div><div style="margin-top:8px;font-size:10px;color:rgba(255,255,255,0.5);">' + (d.disclaimer || '') + '</div>';
     msgs.appendChild(card);
   } catch (e) {
-    loading.innerHTML = '⚠️ 失敗：' + (e.message || e);
+    loading.innerHTML = MR_ICONS.warning + ' 失敗：' + (e.message || e);
   }
   msgs.scrollTop = msgs.scrollHeight;
 };
@@ -8763,7 +8860,7 @@ window.v223OpenCoach = async function(){
     if (!suggests || suggests.querySelector('.v223-coach-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v223-coach-btn';
-    btn.textContent = '🎓 成長教練';
+    btn.innerHTML = MR_ICONS.graduate + ' 成長教練';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(168,85,247,0.3),rgba(236,72,153,0.3));border:1px solid rgba(168,85,247,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v223OpenCoach());
     suggests.appendChild(btn);
@@ -8793,7 +8890,7 @@ window.v224SetLang = function(lang){
     const picker = document.createElement('select');
     picker.id = 'v224-lang-picker';
     picker.style.cssText = 'background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;padding:4px 8px;border-radius:6px;font-size:12px;cursor:pointer;margin-right:8px;';
-    [['zh-TW','🇹🇼 繁中'],['en','🇺🇸 EN'],['ja','🇯🇵 日本'],['ko','🇰🇷 한국']].forEach(([code, label]) => {
+    [['zh-TW','TW 繁中'],['en','US EN'],['ja','JP 日本'],['ko','KR 한국']].forEach(([code, label]) => {
       const o = document.createElement('option');
       o.value = code; o.textContent = label;
       o.style.background = '#1f2937';
@@ -8843,7 +8940,7 @@ window.v225StartVoice = function(){
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
   const btn = document.getElementById('v225-mic-btn');
-  if (btn) { btn.textContent = '🎙️ 聽中…'; btn.style.background = '#dc2626'; }
+  if (btn) { btn.innerHTML = MR_ICONS.mic+' 聽中…'; btn.style.background = '#dc2626'; }
   recognition.onresult = (event) => {
     const text = event.results[0][0].transcript;
     const input = document.getElementById('v210-input');
@@ -8851,11 +8948,11 @@ window.v225StartVoice = function(){
     setTimeout(() => { if (window.v210Send) window.v210Send(); }, 200);
   };
   recognition.onerror = (e) => {
-    if (btn) { btn.textContent = '🎤'; btn.style.background = ''; }
+    if (btn) { btn.innerHTML = MR_ICONS.microphone; btn.style.background = ''; }
     console.warn('[v225]', e.error);
   };
   recognition.onend = () => {
-    if (btn) { btn.textContent = '🎤'; btn.style.background = ''; }
+    if (btn) { btn.innerHTML = MR_ICONS.microphone; btn.style.background = ''; }
   };
   try { recognition.start(); } catch(e){ alert('啟動失敗：' + e.message); }
 };
@@ -8870,7 +8967,7 @@ window.v225StartVoice = function(){
     if (!send || document.getElementById('v225-mic-btn')) return;
     const mic = document.createElement('button');
     mic.id = 'v225-mic-btn';
-    mic.textContent = '🎤';
+    mic.innerHTML = MR_ICONS.microphone;
     mic.title = '語音輸入';
     mic.style.cssText = 'padding:12px 16px;background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2);border-radius:24px;cursor:pointer;font-size:18px;margin-right:6px;';
     mic.addEventListener('click', () => window.v225StartVoice());
@@ -8891,7 +8988,7 @@ window.v226OpenScenario = function(){
     'Fed 升息 50bp', 'Fed 降息 25bp', '美中關係惡化', '台海緊張', '美元走強', '美元走弱',
     '通膨意外攀升', '經濟陷入衰退', 'AI 泡沫破裂', '油價突破 $100', '半導體景氣反轉'
   ];
-  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">🌪 AI 情境模擬</div><button id="v226-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="font-size:12px;color:#6b7280;margin-bottom:12px;">選擇一個情境，AI 分析您關注標的可能受到的影響（不下買賣建議）</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">' + presets.map(p => '<button class="v226-preset" data-s="' + p + '" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">' + p + '</button>').join('') + '</div><textarea id="v226-input" placeholder="或自訂情境..." style="width:100%;min-height:60px;padding:8px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;margin-bottom:12px;"></textarea><button id="v226-go" style="width:100%;padding:10px;background:#7c2d12;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🌪 模擬</button><div id="v226-result" style="margin-top:14px;"></div>';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.tornado + ' AI 情境模擬</div><button id="v226-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="font-size:12px;color:#6b7280;margin-bottom:12px;">選擇一個情境，AI 分析您關注標的可能受到的影響（不下買賣建議）</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;">' + presets.map(p => '<button class="v226-preset" data-s="' + p + '" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">' + p + '</button>').join('') + '</div><textarea id="v226-input" placeholder="或自訂情境..." style="width:100%;min-height:60px;padding:8px 10px;border:1px solid #d1d5db;border-radius:8px;font-size:13px;margin-bottom:12px;"></textarea><button id="v226-go" style="width:100%;padding:10px;background:#7c2d12;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.tornado + ' 模擬</button><div id="v226-result" style="margin-top:14px;"></div>';
   document.body.appendChild(modal);
   document.getElementById('v226-close').addEventListener('click', () => modal.remove());
   modal.querySelectorAll('.v226-preset').forEach(b => b.addEventListener('click', e => { document.getElementById('v226-input').value = e.target.dataset.s; }));
@@ -8899,9 +8996,9 @@ window.v226OpenScenario = function(){
     const scenario = document.getElementById('v226-input').value.trim();
     if (!scenario) return;
     const m = window.v211Memory ? window.v211Memory.load() : { watchlist: [] };
-    if (!m.watchlist || m.watchlist.length === 0) { alert('請先設定關注標的（🧠 偏好）'); return; }
+    if (!m.watchlist || m.watchlist.length === 0) { alert('請先設定關注標的（' + MR_ICONS.brain + ' 偏好）'); return; }
     const result = document.getElementById('v226-result');
-    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🌪 模擬中（約 8 秒）...</div>';
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">' + MR_ICONS.tornado + ' 模擬中（約 8 秒）...</div>';
     try {
       const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/scenario-simulation', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -8922,7 +9019,7 @@ window.v226OpenScenario = function(){
     if (!suggests || suggests.querySelector('.v226-scenario-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v226-scenario-btn';
-    btn.textContent = '🌪 情境模擬';
+    btn.innerHTML = MR_ICONS.tornado + ' 情境模擬';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(234,88,12,0.3),rgba(251,191,36,0.3));border:1px solid rgba(234,88,12,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v226OpenScenario());
     suggests.appendChild(btn);
@@ -8938,7 +9035,7 @@ window.v227OpenRebalance = function(){
   modal = document.createElement('div');
   modal.id = 'v227-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
-  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">🔄 AI 投組再平衡建議</div><button id="v227-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="font-size:12px;color:#6b7280;margin-bottom:12px;">輸入您的持股，AI 評估行業/地理/風格分散，給「可考慮觀察的類別」（不指定個股）</div><div id="v227-rows"></div><button id="v227-add" style="width:100%;padding:8px;border:1px dashed #d1d5db;background:#f9fafb;border-radius:8px;cursor:pointer;font-size:13px;color:#6b7280;margin-bottom:12px;">+ 新增一檔</button><button id="v227-go" style="width:100%;padding:12px;background:#0891b2;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔄 開始分析</button><div id="v227-result" style="margin-top:14px;"></div>';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.refresh + ' AI 投組再平衡建議</div><button id="v227-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div style="font-size:12px;color:#6b7280;margin-bottom:12px;">輸入您的持股，AI 評估行業/地理/風格分散，給「可考慮觀察的類別」（不指定個股）</div><div id="v227-rows"></div><button id="v227-add" style="width:100%;padding:8px;border:1px dashed #d1d5db;background:#f9fafb;border-radius:8px;cursor:pointer;font-size:13px;color:#6b7280;margin-bottom:12px;">+ 新增一檔</button><button id="v227-go" style="width:100%;padding:12px;background:#0891b2;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.refresh + ' 開始分析</button><div id="v227-result" style="margin-top:14px;"></div>';
   document.body.appendChild(modal);
   document.getElementById('v227-close').addEventListener('click', () => modal.remove());
   const rowsBox = document.getElementById('v227-rows');
@@ -8965,7 +9062,7 @@ window.v227OpenRebalance = function(){
     });
     if (holdings.length === 0) { alert('請輸入有效持股'); return; }
     const result = document.getElementById('v227-result');
-    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🔄 AI 分析中...</div>';
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">' + MR_ICONS.refresh + ' AI 分析中...</div>';
     try {
       const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/rebalance-suggest', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -8991,7 +9088,7 @@ window.v227OpenRebalance = function(){
     if (!suggests || suggests.querySelector('.v227-rebalance-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v227-rebalance-btn';
-    btn.textContent = '🔄 投組再平衡';
+    btn.innerHTML = MR_ICONS.refresh + ' 投組再平衡';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(8,145,178,0.3),rgba(34,211,238,0.3));border:1px solid rgba(8,145,178,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v227OpenRebalance());
     suggests.appendChild(btn);
@@ -9125,7 +9222,7 @@ window.v230LoadFundamentals = async function(symbol){
   const box = document.createElement('div');
   box.id = 'v230-fund-' + symbol;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #059669;border-radius:12px;background:linear-gradient(180deg,#ecfdf5,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#065f46;margin-bottom:6px;">💎 基本面深度（' + symbol + '）</div><div id="v230-body-' + symbol + '">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#065f46;margin-bottom:6px;">' + MR_ICONS.diamond + ' 基本面深度（' + symbol + '）</div><div id="v230-body-' + symbol + '">載入中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   try {
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(symbol));
@@ -9151,12 +9248,12 @@ window.v230LoadFundamentals = async function(symbol){
       return html + '</div></div>';
     };
     let html = '';
-    if (d.profile) html += section('🏢 公司資訊', [
+    if (d.profile) html += section(MR_ICONS.building + ' 公司資訊', [
       ['產業', d.profile.sector + ' / ' + d.profile.industry],
       ['員工數', fmt(d.profile.employees, 'B')],
       ['註冊地', d.profile.country || '-']
     ]);
-    if (d.valuation) html += section('💰 估值', [
+    if (d.valuation) html += section(MR_ICONS.money + ' 估值', [
       ['市值', '$' + fmt(d.valuation.marketCap, 'B')],
       ['本益比 P/E', fmt(d.valuation.peRatio, 'x')],
       ['前瞻 P/E', fmt(d.valuation.forwardPE, 'x')],
@@ -9167,7 +9264,7 @@ window.v230LoadFundamentals = async function(symbol){
       ['EV/Revenue', fmt(d.valuation.evToRevenue, 'x')],
       ['EV/EBITDA', fmt(d.valuation.evToEBITDA, 'x')]
     ]);
-    if (d.profitability) html += section('📈 獲利能力', [
+    if (d.profitability) html += section(MR_ICONS.chartUp + ' 獲利能力', [
       ['ROE', fmt(d.profitability.roe, '%')],
       ['ROA', fmt(d.profitability.roa, '%')],
       ['毛利率', fmt(d.profitability.grossMargin, '%')],
@@ -9176,13 +9273,13 @@ window.v230LoadFundamentals = async function(symbol){
       ['EBITDA', '$' + fmt(d.profitability.ebitda, 'B')],
       ['EBITDA Margin', fmt(d.profitability.ebitdaMargin, '%')]
     ]);
-    if (d.growth) html += section('🚀 成長', [
+    if (d.growth) html += section(MR_ICONS.rocket + ' 成長', [
       ['營收成長 YoY', fmt(d.growth.revenueGrowth, '%')],
       ['EPS 成長 YoY', fmt(d.growth.earningsGrowth, '%')],
       ['EPS 季度成長', fmt(d.growth.earningsQuarterlyGrowth, '%')],
       ['總營收', '$' + fmt(d.growth.totalRevenue, 'B')]
     ]);
-    if (d.financialHealth) html += section('💪 財務健康', [
+    if (d.financialHealth) html += section(MR_ICONS.muscle + ' 財務健康', [
       ['負債/權益', fmt(d.financialHealth.debtToEquity)],
       ['流動比', fmt(d.financialHealth.currentRatio, 'x')],
       ['速動比', fmt(d.financialHealth.quickRatio, 'x')],
@@ -9191,20 +9288,20 @@ window.v230LoadFundamentals = async function(symbol){
       ['自由現金流', '$' + fmt(d.financialHealth.freeCashflow, 'B')],
       ['營業現金流', '$' + fmt(d.financialHealth.operatingCashflow, 'B')]
     ]);
-    if (d.dividend) html += section('💵 股息', [
+    if (d.dividend) html += section(MR_ICONS.dollar + ' 股息', [
       ['殖利率', fmt(d.dividend.dividendYield, '%')],
       ['配息率', fmt(d.dividend.payoutRatio, '%')],
       ['5 年平均殖利率', fmt(d.dividend.fiveYearAvgYield)],
       ['年配息', '$' + fmt(d.dividend.dividendRate)]
     ]);
-    if (d.analysts) html += section('🎯 分析師', [
+    if (d.analysts) html += section(MR_ICONS.target + ' 分析師', [
       ['平均目標價', '$' + fmt(d.analysts.targetMean)],
       ['最高目標價', '$' + fmt(d.analysts.targetHigh)],
       ['最低目標價', '$' + fmt(d.analysts.targetLow)],
       ['建議分數', fmt(d.analysts.recommendationMean) + '（1 強買-5 強賣）'],
       ['分析師人數', fmt(d.analysts.numberOfAnalysts, 'B')]
     ]);
-    if (d.risk) html += section('⚖️ 風險', [
+    if (d.risk) html += section(MR_ICONS.scale + ' 風險', [
       ['Beta', fmt(d.risk.beta)],
       ['52 週高', '$' + fmt(d.risk.fiftyTwoWeekHigh)],
       ['52 週低', '$' + fmt(d.risk.fiftyTwoWeekLow)],
@@ -9214,7 +9311,7 @@ window.v230LoadFundamentals = async function(symbol){
       ['內部人持股', fmt(d.risk.heldPercentInsiders, '%')],
       ['機構持股', fmt(d.risk.heldPercentInstitutions, '%')]
     ]);
-    if (d.eps) html += section('💎 每股指標', [
+    if (d.eps) html += section(MR_ICONS.diamond+' 每股指標', [
       ['過去 EPS', '$' + fmt(d.eps.trailingEps)],
       ['前瞻 EPS', '$' + fmt(d.eps.forwardEps)],
       ['每股淨值', '$' + fmt(d.eps.bookValue)],
@@ -9257,7 +9354,7 @@ window.v231ConnectBinance = function(){
       if (box && !box.querySelector('.v231-live-badge')) {
         const badge = document.createElement('span');
         badge.className = 'v231-live-badge';
-        badge.textContent = '⚡ LIVE 即時';
+        badge.innerHTML = MR_ICONS.chartUp + ' LIVE 即時';
         badge.style.cssText = 'display:inline-block;padding:2px 8px;background:#16a34a;color:white;font-size:10px;border-radius:10px;font-weight:700;margin-left:8px;animation:v231Pulse 1.5s infinite;';
         const title = box.querySelector('div[style*="font-weight:700"]');
         if (title) title.appendChild(badge);
@@ -9333,8 +9430,8 @@ window.v232CheckDailyBrief = async function(){
   const ok = await window.v232EnsureNotifPermission();
   if (!ok) return;
   // 顯示 notification 提醒打開 AI CFO 看早報
-  new Notification('🌅 MoneyRadar 早報已備妥', {
-    body: '您關注的 ' + m.watchlist.length + ' 檔標的今日動態已整理。點 💎 查看。',
+  new Notification(MR_ICONS.sunrise + ' MoneyRadar 早報已備妥', {
+    body: '您關注的 ' + m.watchlist.length + ' 檔標的今日動態已整理。點選查看。',
     icon: '/lab/icon-192.png',
     tag: 'daily-brief',
     requireInteraction: false
@@ -9342,7 +9439,7 @@ window.v232CheckDailyBrief = async function(){
   localStorage.setItem(key, '1');
 };
 
-// 在 🧠 偏好加 toggle
+// 在偏好加 toggle
 (function(){
   if (window.__v232Wired) return;
   window.__v232Wired = true;
@@ -9359,7 +9456,7 @@ window.v232CheckDailyBrief = async function(){
       const wrap = document.createElement('div');
       wrap.className = 'v232-notif-toggle';
       wrap.style.cssText = 'margin-bottom:16px;padding:10px;background:#eff6ff;border-radius:8px;';
-      wrap.innerHTML = '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#1A6CF6;font-weight:600;"><input type="checkbox" id="v232-notif-cb" ' + (m.dailyBriefEnabled ? 'checked' : '') + '> 🔔 啟用每日早報通知</label><div style="font-size:11px;color:#1A6CF6;margin-top:4px;margin-left:24px;">每天首次開啟頁面時推播「您的關注標的今日動態已備妥」</div>';
+      wrap.innerHTML = '<label style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#1A6CF6;font-weight:600;"><input type="checkbox" id="v232-notif-cb" ' + (m.dailyBriefEnabled ? 'checked' : '') + '> ' + MR_ICONS.bell + ' 啟用每日早報通知</label><div style="font-size:11px;color:#1A6CF6;margin-top:4px;margin-left:24px;">每天首次開啟頁面時推播「您的關注標的今日動態已備妥」</div>';
       saveBtn.parentNode.insertBefore(wrap, saveBtn);
       saveBtn.addEventListener('click', async () => {
         const m2 = window.v211Memory.load();
@@ -9397,7 +9494,7 @@ setTimeout(() => window.v232CheckDailyBrief(), 5000);
           btn.dataset.v233Started = Date.now();
         } else if (Date.now() - parseInt(btn.dataset.v233Started) > 8000) {
           btn.disabled = false;
-          btn.textContent = '🤖 AI 解讀';
+          btn.innerHTML = MR_ICONS.robot + ' AI 解讀';
           delete btn.dataset.v233Started;
         }
       } else {
@@ -9409,7 +9506,7 @@ setTimeout(() => window.v232CheckDailyBrief(), 5000);
 })();
 
 
-// ===== v234: Onboarding mini tour（第一次開 💎 自動引導）=====
+// ===== v234: Onboarding mini tour =====
 
 window.v234ShowTour = function(){
   if (localStorage.getItem('mr_v234_visited')) return;
@@ -9418,16 +9515,16 @@ window.v234ShowTour = function(){
   const tour = document.createElement('div');
   tour.style.cssText = 'background:linear-gradient(135deg,rgba(251,191,36,0.25),rgba(244,63,94,0.15));border:2px solid rgba(251,191,36,0.6);border-radius:12px;padding:16px;max-width:90%;margin-bottom:12px;color:white;';
   tour.innerHTML = ''
-    + '<div style="font-weight:700;font-size:16px;margin-bottom:10px;color:#fde68a;">👋 歡迎使用 MoneyRadar AI CFO</div>'
+    + '<div style="font-weight:700;font-size:16px;margin-bottom:10px;color:#fde68a;">' + MR_ICONS.wave + ' 歡迎使用 MoneyRadar AI CFO</div>'
     + '<div style="font-size:13px;line-height:1.8;color:rgba(255,255,255,0.95);">這 5 個 AI 功能最有用：</div>'
     + '<ol style="margin-top:8px;margin-bottom:8px;padding-left:20px;font-size:13px;line-height:1.8;color:rgba(255,255,255,0.9);">'
-    + '<li><strong>🎭 圓桌會議</strong> — 3 位 AI 分析師對某檔股辯論（多頭/技術面/反方視角）</li>'
-    + '<li><strong>🌪 情境模擬</strong> — 「Fed 升息會怎樣？」AI 分析您 watchlist</li>'
-    + '<li><strong>🎓 成長教練</strong> — AI 觀察您過去查詢，給反思反饋</li>'
-    + '<li><strong>💼 投組健診</strong> — 輸入持股，AI 分析集中度</li>'
-    + '<li><strong>🔄 投組再平衡</strong> — AI 給可考慮觀察的類別</li>'
+    + '<li><strong>' + MR_ICONS.theater + ' 圓桌會議</strong> — 3 位 AI 分析師對某檔股辯論（多頭/技術面/反方視角）</li>'
+    + '<li><strong>' + MR_ICONS.tornado + ' 情境模擬</strong> — 「Fed 升息會怎樣？」AI 分析您 watchlist</li>'
+    + '<li><strong>' + MR_ICONS.graduate + ' 成長教練</strong> — AI 觀察您過去查詢，給反思反饋</li>'
+    + '<li><strong>' + MR_ICONS.briefcase + ' 投組健診</strong> — 輸入持股，AI 分析集中度</li>'
+    + '<li><strong>' + MR_ICONS.refresh + ' 投組再平衡</strong> — AI 給可考慮觀察的類別</li>'
     + '</ol>'
-    + '<div style="font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:10px;">💡 提示：先點 <strong>🧠 偏好</strong> 設定您的關注標的，下次開啟會自動跑「今日早報」。</div>'
+    + '<div style="font-size:12px;color:rgba(255,255,255,0.8);margin-bottom:10px;">' + MR_ICONS.bulb + ' 提示：先點 <strong>' + MR_ICONS.brain + ' 偏好</strong> 設定您的關注標的，下次開啟會自動跑「今日早報」。</div>'
     + '<button id="v234-dismiss" style="padding:6px 14px;background:#fbbf24;color:#1557D0;border:none;border-radius:8px;cursor:pointer;font-weight:700;">知道了，開始體驗 →</button>';
   msgs.appendChild(tour);
   document.getElementById('v234-dismiss').addEventListener('click', () => {
@@ -9462,7 +9559,7 @@ window.v236OpenScreener = function(){
   modal.id = 'v236-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:560px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
   modal.innerHTML = ''
-    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">🔍 股票篩選器（對標 Koyfin/財報狗）</div><button id="v236-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.search + ' 股票篩選器（對標 Koyfin/財報狗）</div><button id="v236-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
     + '<div style="font-size:12px;color:#6b7280;margin-bottom:14px;">從 50 大美股篩選符合條件的標的（多條件 AND 邏輯）</div>'
     + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;font-size:13px;">'
     + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">P/E 最大</label><input id="v236-maxPE" type="number" placeholder="例：25" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
@@ -9474,8 +9571,8 @@ window.v236OpenScreener = function(){
     + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">負債/權益 最大</label><input id="v236-maxDE" type="number" placeholder="例：100" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
     + '  <div><label style="display:block;font-weight:600;margin-bottom:3px;">市值最小（B）</label><input id="v236-minMC" type="number" placeholder="例：10" style="width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
     + '</div>'
-    + '<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;"><button class="v236-preset" data-p="value" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">📚 巴菲特價值股</button><button class="v236-preset" data-p="growth" style="padding:5px 10px;font-size:11px;background:#fee2e2;border:1px solid #fca5a5;border-radius:14px;cursor:pointer;color:#991b1b;">🚀 成長股</button><button class="v236-preset" data-p="dividend" style="padding:5px 10px;font-size:11px;background:#dbeafe;border:1px solid #93c5fd;border-radius:14px;cursor:pointer;color:#1A6CF6;">💵 高股息</button><button class="v236-preset" data-p="quality" style="padding:5px 10px;font-size:11px;background:#dcfce7;border:1px solid #86efac;border-radius:14px;cursor:pointer;color:#166534;">⭐ 高品質股</button></div>'
-    + '<button id="v236-go" style="width:100%;padding:12px;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">🔍 開始篩選（掃 50 大美股）</button>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;"><button class="v236-preset" data-p="value" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">' + MR_ICONS.news + ' 巴菲特價值股</button><button class="v236-preset" data-p="growth" style="padding:5px 10px;font-size:11px;background:#fee2e2;border:1px solid #fca5a5;border-radius:14px;cursor:pointer;color:#991b1b;">' + MR_ICONS.rocket + ' 成長股</button><button class="v236-preset" data-p="dividend" style="padding:5px 10px;font-size:11px;background:#dbeafe;border:1px solid #93c5fd;border-radius:14px;cursor:pointer;color:#1A6CF6;">' + MR_ICONS.dollar + ' 高股息</button><button class="v236-preset" data-p="quality" style="padding:5px 10px;font-size:11px;background:#dcfce7;border:1px solid #86efac;border-radius:14px;cursor:pointer;color:#166534;">' + MR_ICONS.star + ' 高品質股</button></div>'
+    + '<button id="v236-go" style="width:100%;padding:12px;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.search + ' 開始篩選（掃 50 大美股）</button>'
     + '<div id="v236-result" style="margin-top:14px;"></div>';
   document.body.appendChild(modal);
   document.getElementById('v236-close').addEventListener('click', () => modal.remove());
@@ -9492,7 +9589,7 @@ window.v236OpenScreener = function(){
     const fields = [['maxPE','v236-maxPE'],['maxPB','v236-maxPB'],['minROE','v236-minROE'],['minGrossMargin','v236-minGM'],['minRevGrowth','v236-minRevG'],['minDivYield','v236-minDY'],['maxDebtToEquity','v236-maxDE'],['minMarketCapB','v236-minMC']];
     fields.forEach(([k, id]) => { const v = parseFloat(document.getElementById(id).value); if (!isNaN(v)) filters[k] = v; });
     const result = document.getElementById('v236-result');
-    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🔍 掃描中（並行抓 50 檔基本面，約 20-30 秒）...</div>';
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">' + MR_ICONS.search + ' 掃描中（並行抓 50 檔基本面，約 20-30 秒）...</div>';
     try {
       const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/screener', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -9500,9 +9597,9 @@ window.v236OpenScreener = function(){
       });
       const d = await res.json();
       if (d.error) { result.innerHTML = '<div style="color:#dc2626;">' + d.error + '</div>'; return; }
-      let html = '<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px;margin-bottom:10px;font-size:13px;font-weight:600;color:#166534;">✅ 掃描 ' + d.totalScanned + ' 檔，符合 ' + d.totalPasses + ' 檔</div>';
+      let html = '<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:10px;margin-bottom:10px;font-size:13px;font-weight:600;color:#166534;">' + MR_ICONS.check + ' 掃描 ' + d.totalScanned + ' 檔，符合 ' + d.totalPasses + ' 檔</div>';
       if (d.totalPasses === 0) {
-        html += '<div style="color:#6b7280;text-align:center;padding:20px;">😔 沒有符合條件，試試放寬篩選</div>';
+        html += '<div style="color:#6b7280;text-align:center;padding:20px;">' + MR_ICONS.sad + ' 沒有符合條件，試試放寬篩選</div>';
       } else {
         html += '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">';
         html += '<thead style="background:#f3f4f6;"><tr><th style="padding:6px;text-align:left;">代號</th><th style="padding:6px;text-align:right;">P/E</th><th style="padding:6px;text-align:right;">P/B</th><th style="padding:6px;text-align:right;">ROE</th><th style="padding:6px;text-align:right;">毛利率</th><th style="padding:6px;text-align:right;">營收 YoY</th><th style="padding:6px;text-align:right;">殖利率</th></tr></thead><tbody>';
@@ -9532,7 +9629,7 @@ window.v236OpenScreener = function(){
     if (!suggests || suggests.querySelector('.v236-screener-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v236-screener-btn';
-    btn.textContent = '🔍 股票篩選器';
+    btn.innerHTML = MR_ICONS.search + ' 股票篩選器';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(22,163,74,0.3),rgba(34,197,94,0.3));border:1px solid rgba(22,163,74,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v236OpenScreener());
     suggests.appendChild(btn);
@@ -9549,7 +9646,7 @@ window.v238LoadPEBand = async function(symbol){
   const box = document.createElement('div');
   box.id = 'v238-pe-' + symbol;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #be185d;border-radius:12px;background:linear-gradient(180deg,#fdf2f8,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">📊 本益比河流圖（' + symbol + '，5 年）</div><div id="v238-body-' + symbol + '">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">' + MR_ICONS.chart + ' 本益比河流圖（' + symbol + '，5 年）</div><div id="v238-body-' + symbol + '">載入中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   try {
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/pe-band?symbol=' + encodeURIComponent(symbol));
@@ -9581,7 +9678,7 @@ window.v238LoadPEBand = async function(symbol){
     svg += '<text x="6" y="' + (y(yMin) + 3) + '" fill="#6b7280" font-size="9">' + yMin.toFixed(1) + '</text>';
     svg += '<text x="6" y="' + (y(stats.p50) + 3) + '" fill="#6b7280" font-size="9">中 ' + stats.p50.toFixed(1) + '</text>';
     svg += '</svg>';
-    const curState = stats.current > stats.p75 ? '<span style="color:#dc2626;">⚠️ 偏高估</span>' : stats.current < stats.p25 ? '<span style="color:#16a34a;">✨ 偏低估</span>' : '<span style="color:#6b7280;">🟡 常態區間</span>';
+    const curState = stats.current > stats.p75 ? '<span style="color:#dc2626;">' + MR_ICONS.warning + ' 偏高估</span>' : stats.current < stats.p25 ? '<span style="color:#16a34a;">' + MR_ICONS.sparkle + ' 偏低估</span>' : '<span style="color:#6b7280;">' + MR_ICONS.circle + ' 常態區間</span>';
     body.innerHTML = svg + '<div style="font-size:12px;margin-top:8px;color:#1f2937;">當前 P/E：<strong>' + stats.current.toFixed(1) + '</strong> · 5 年中位數 ' + stats.p50.toFixed(1) + ' · ' + curState + '</div><div style="font-size:10px;color:#6b7280;margin-top:4px;">紅色高估區（>75%）/ 黃色常態（25-75%）/ 綠色低估區（<25%）</div>';
   } catch (e) {
     document.getElementById('v238-body-' + symbol).innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>';
@@ -9610,10 +9707,10 @@ window.v237OpenPeerCompare = function(){
   modal.id = 'v237-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:95%;max-width:720px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
   modal.innerHTML = ''
-    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⚖️ 同產業跨公司比較（對標 Koyfin/Goodinfo）</div><button id="v237-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.scale + ' 同產業跨公司比較（對標 Koyfin/Goodinfo）</div><button id="v237-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
     + '<div style="font-size:12px;color:#6b7280;margin-bottom:10px;">輸入 2-8 個股票代號，逗號分隔（同產業最有意義）</div>'
     + '<div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;"><button class="v237-preset" data-s="NVDA,AMD,INTC,QCOM,AVGO" style="padding:5px 10px;font-size:11px;background:#e0e7ff;border:1px solid #818cf8;border-radius:14px;cursor:pointer;color:#3730a3;">半導體</button><button class="v237-preset" data-s="MSFT,GOOGL,META,AAPL,AMZN" style="padding:5px 10px;font-size:11px;background:#fef3c7;border:1px solid #fbbf24;border-radius:14px;cursor:pointer;color:#92400e;">FAANG+</button><button class="v237-preset" data-s="JPM,BAC,WFC,GS,MS" style="padding:5px 10px;font-size:11px;background:#dbeafe;border:1px solid #93c5fd;border-radius:14px;cursor:pointer;color:#1A6CF6;">大型銀行</button><button class="v237-preset" data-s="JNJ,PFE,LLY,MRK,ABBV" style="padding:5px 10px;font-size:11px;background:#fce7f3;border:1px solid #f9a8d4;border-radius:14px;cursor:pointer;color:#9d174d;">大型藥廠</button></div>'
-    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v237-input" type="text" placeholder="NVDA,AMD,INTC" style="flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;"><button id="v237-go" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">⚖️ 比較</button></div>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v237-input" type="text" placeholder="NVDA,AMD,INTC" style="flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px;"><button id="v237-go" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">' + MR_ICONS.scale + ' 比較</button></div>'
     + '<div id="v237-result"></div>';
   document.body.appendChild(modal);
   document.getElementById('v237-close').addEventListener('click', () => modal.remove());
@@ -9622,7 +9719,7 @@ window.v237OpenPeerCompare = function(){
     const symbols = document.getElementById('v237-input').value.split(',').map(x => x.trim().toUpperCase()).filter(Boolean).slice(0, 8);
     if (symbols.length < 2) { alert('至少 2 檔'); return; }
     const result = document.getElementById('v237-result');
-    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">⚖️ 並列抓 ' + symbols.length + ' 檔基本面...</div>';
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">' + MR_ICONS.scale + ' 並列抓 ' + symbols.length + ' 檔基本面...</div>';
     try {
       const res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/peer-compare', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -9672,7 +9769,7 @@ window.v237OpenPeerCompare = function(){
     if (!suggests || suggests.querySelector('.v237-peer-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v237-peer-btn';
-    btn.textContent = '⚖️ 跨公司比較';
+    btn.innerHTML = MR_ICONS.scale + ' 跨公司比較';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(8,145,178,0.3),rgba(34,211,238,0.3));border:1px solid rgba(8,145,178,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v237OpenPeerCompare());
     suggests.appendChild(btn);
@@ -9690,7 +9787,7 @@ window.v239LoadInstitutional = async function(stockCode){
   const box = document.createElement('div');
   box.id = 'v239-inst-' + stockCode;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #ea580c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">📊 法人籌碼動向（' + stockCode + '，過去 30 日）</div><div id="v239-body-' + stockCode + '">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">' + MR_ICONS.chart + ' 法人籌碼動向（' + stockCode + '，過去 30 日）</div><div id="v239-body-' + stockCode + '">載入中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   const body = document.getElementById('v239-body-' + stockCode);
   try {
@@ -9763,7 +9860,7 @@ window.v240AIScreener = async function(){
     setTimeout(() => window.v240AIScreener(), 600);
     return;
   }
-  result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">🤖 AI 翻譯需求中...</div>';
+  result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">' + MR_ICONS.robot + ' AI 翻譯需求中...</div>';
   try {
     const tr = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/ai-screener-translate', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -9788,7 +9885,7 @@ window.v240AIScreener = async function(){
     if (!suggests || suggests.querySelector('.v240-ai-screener-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v240-ai-screener-btn';
-    btn.textContent = '🤖 AI 寫指標';
+    btn.innerHTML = MR_ICONS.robot + ' AI 寫指標';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(168,85,247,0.3));border:1px solid rgba(124,58,237,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v240AIScreener());
     suggests.appendChild(btn);
@@ -9914,7 +10011,7 @@ window.v241RenderExtended = async function(symbol){
   const box = document.createElement('div');
   box.id = 'v241-ext-' + symbol;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #4338ca;border-radius:12px;background:linear-gradient(180deg,#eef2ff,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#3730a3;margin-bottom:6px;">📊 進階技術指標（' + symbol + '）</div><div id="v241-body-' + symbol + '">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#3730a3;margin-bottom:6px;">' + MR_ICONS.chart + ' 進階技術指標（' + symbol + '）</div><div id="v241-body-' + symbol + '">載入中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   try {
     const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=3mo');
@@ -10020,7 +10117,7 @@ window.v242AddToolbar = function(){
   toolbar.style.cssText = 'position:fixed;top:80px;right:20px;background:white;border:1px solid #d1d5db;border-radius:8px;padding:6px;box-shadow:0 4px 12px rgba(0,0,0,0.1);z-index:9997;display:flex;flex-direction:column;gap:4px;';
   toolbar.innerHTML = ''
     + '<button class="v242-tool" data-mode="" style="padding:6px;border:none;background:none;cursor:pointer;font-size:14px;" title="關閉">✕</button>'
-    + '<button class="v242-tool" data-mode="line" style="padding:6px;border:none;background:none;cursor:pointer;font-size:14px;" title="趨勢線">📏</button>'
+    + '<button class="v242-tool" data-mode="line" style="padding:6px;border:none;background:none;cursor:pointer;font-size:14px;" title="趨勢線">' + MR_ICONS.ruler + '</button>'
     + '<button class="v242-tool" data-mode="rect" style="padding:6px;border:none;background:none;cursor:pointer;font-size:14px;" title="矩形">▭</button>';
   document.body.appendChild(toolbar);
   toolbar.querySelectorAll('.v242-tool').forEach(b => b.addEventListener('click', () => {
@@ -10045,7 +10142,7 @@ window.v242AddToolbar = function(){
     if (!suggests || suggests.querySelector('.v242-draw-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v242-draw-btn';
-    btn.textContent = '✏️ 繪圖工具';
+    btn.innerHTML = MR_ICONS.pencil + ' 繪圖工具';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(245,158,11,0.3),rgba(251,191,36,0.3));border:1px solid rgba(245,158,11,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => { window.v242AddToolbar(); document.getElementById('v242-toolbar').style.display = 'flex'; });
     suggests.appendChild(btn);
@@ -10062,7 +10159,7 @@ window.v243OpenBacktest = function(){
   modal.id = 'v243-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:520px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
   modal.innerHTML = ''
-    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⚗️ 回測引擎</div><button id="v243-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.flask + ' 回測引擎</div><button id="v243-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
     + '<div style="font-size:12px;color:#6b7280;margin-bottom:14px;">測試簡單策略過去 1 年表現</div>'
     + '<div style="margin-bottom:12px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">標的</label><input id="v243-sym" value="NVDA" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px;"></div>'
     + '<div style="margin-bottom:12px;"><label style="font-weight:600;font-size:13px;display:block;margin-bottom:4px;">策略</label><select id="v243-strategy" style="width:100%;padding:8px;border:1px solid #d1d5db;border-radius:6px;">'
@@ -10071,7 +10168,7 @@ window.v243OpenBacktest = function(){
     + '<option value="bb_bounce">布林下軌買進，上軌賣出</option>'
     + '<option value="buy_hold">買進持有對照組</option>'
     + '</select></div>'
-    + '<button id="v243-go" style="width:100%;padding:12px;background:#7c3aed;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">⚗️ 開始回測</button>'
+    + '<button id="v243-go" style="width:100%;padding:12px;background:#7c3aed;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.flask + ' 開始回測</button>'
     + '<div id="v243-result" style="margin-top:14px;"></div>';
   document.body.appendChild(modal);
   document.getElementById('v243-close').addEventListener('click', () => modal.remove());
@@ -10079,7 +10176,7 @@ window.v243OpenBacktest = function(){
     const sym = document.getElementById('v243-sym').value.trim().toUpperCase();
     const strat = document.getElementById('v243-strategy').value;
     const result = document.getElementById('v243-result');
-    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">⚗️ 跑回測（過去 1 年）...</div>';
+    result.innerHTML = '<div style="text-align:center;padding:20px;color:#6b7280;">' + MR_ICONS.flask + ' 跑回測（過去 1 年）...</div>';
     try {
       const r = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(sym) + '?interval=1d&range=1y');
       const j = await r.json();
@@ -10144,14 +10241,14 @@ window.v243OpenBacktest = function(){
       equity.forEach(e => { if (e > peak) peak = e; const dd = (peak - e) / peak * 100; if (dd > maxDD) maxDD = dd; });
       result.innerHTML = ''
         + '<div style="background:#f3e8ff;border:1px solid #c4b5fd;border-radius:8px;padding:14px;font-size:13px;">'
-        + '<div style="font-weight:700;margin-bottom:6px;">📊 回測結果（' + closes.length + ' 個交易日）</div>'
+        + '<div style="font-weight:700;margin-bottom:6px;">' + MR_ICONS.chart + ' 回測結果（' + closes.length + ' 個交易日）</div>'
         + '<div style="display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px;">'
         + '<div>策略總報酬：<strong style="color:' + (totalReturn >= 0 ? '#dc2626' : '#16a34a') + ';">' + totalReturn.toFixed(2) + '%</strong></div>'
         + '<div>買進持有：<strong>' + bhReturn.toFixed(2) + '%</strong></div>'
         + '<div>最大回撤：<strong style="color:#9333ea;">' + maxDD.toFixed(2) + '%</strong></div>'
         + '<div>交易次數：<strong>' + trades.length + '</strong></div>'
         + '</div></div>'
-        + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">⚠️ 過去績效不代表未來。本回測為教育用途，非投資建議。</div>';
+        + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">' + MR_ICONS.warning + ' 過去績效不代表未來。本回測為教育用途，非投資建議。</div>';
     } catch (e) { result.innerHTML = '<div style="color:#dc2626;">' + (e.message || e) + '</div>'; }
   });
 };
@@ -10164,7 +10261,7 @@ window.v243OpenBacktest = function(){
     if (!suggests || suggests.querySelector('.v243-bt-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v243-bt-btn';
-    btn.textContent = '⚗️ 回測引擎';
+    btn.innerHTML = MR_ICONS.flask + ' 回測引擎';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(167,139,250,0.3));border:1px solid rgba(124,58,237,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v243OpenBacktest());
     suggests.appendChild(btn);
@@ -10180,7 +10277,7 @@ window.v244LoadMacro = async function(){
   const box = document.createElement('div');
   box.id = 'v244-macro-box';
   box.style.cssText = 'margin-top:16px;padding:14px;border:2px solid #0e7490;border-radius:12px;background:linear-gradient(180deg,#ecfeff,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#155e75;margin-bottom:8px;">🌎 總體經濟即時儀表板</div><div id="v244-body">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#155e75;margin-bottom:8px;">' + MR_ICONS.globeAm + ' 總體經濟即時儀表板</div><div id="v244-body">載入中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   try {
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/macro');
@@ -10217,7 +10314,7 @@ window.v245LoadPattern = async function(symbol){
   const box = document.createElement('div');
   box.id = 'v245-pattern-' + symbol;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #db2777;border-radius:12px;background:linear-gradient(180deg,#fdf2f8,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">🔮 AI K 棒形態辨識（' + symbol + '）</div><div id="v245-body-' + symbol + '">分析中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#9d174d;margin-bottom:6px;">' + MR_ICONS.crystal + ' AI K 棒形態辨識（' + symbol + '）</div><div id="v245-body-' + symbol + '">分析中…</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
   try {
     const cr = await fetch('https://query1.finance.yahoo.com/v8/finance/chart/' + encodeURIComponent(symbol) + '?interval=1d&range=2mo');
@@ -10272,7 +10369,7 @@ window.v246LoadDupont = async function(symbol){
     box.id = 'v246-dupont-' + symbol;
     box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #b91c1c;border-radius:12px;background:linear-gradient(180deg,#fef2f2,#fff);';
     box.innerHTML = ''
-      + '<div style="font-weight:700;color:#7f1d1d;margin-bottom:8px;">🧮 ROE 杜邦拆解（' + symbol + '）</div>'
+      + '<div style="font-weight:700;color:#7f1d1d;margin-bottom:8px;">' + MR_ICONS.abacus + ' ROE 杜邦拆解（' + symbol + '）</div>'
       + '<div style="text-align:center;font-size:13px;line-height:2;background:white;padding:14px;border-radius:8px;">'
       + '<div style="font-weight:700;font-size:14px;color:#7f1d1d;">ROE = ' + reportedROE.toFixed(2) + '% (報表值)</div>'
       + '<div style="margin-top:8px;color:#6b7280;font-size:11px;">↓ 拆解 ↓</div>'
@@ -10338,14 +10435,14 @@ window.v247LoadAlerts = async function(symbol){
     const box = document.createElement('div');
     box.id = 'v247-alert-' + symbol;
     box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #ea580c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
-    let html = '<div style="font-weight:700;color:#9a3412;margin-bottom:8px;">⚠️ 體質警示（' + symbol + '）</div>';
+    let html = '<div style="font-weight:700;color:#9a3412;margin-bottom:8px;">' + MR_ICONS.warning + ' 體質警示（' + symbol + '）</div>';
     if (goods.length > 0) {
-      html += '<div style="margin-bottom:8px;"><div style="font-size:12px;color:#16a34a;font-weight:600;margin-bottom:4px;">✅ 亮點</div>';
+      html += '<div style="margin-bottom:8px;"><div style="font-size:12px;color:#16a34a;font-weight:600;margin-bottom:4px;">' + MR_ICONS.check + ' 亮點</div>';
       goods.forEach(g => { html += '<div style="font-size:12px;padding:4px 8px;background:#dcfce7;border-left:3px solid #16a34a;margin-bottom:2px;border-radius:4px;color:#166534;">' + g + '</div>'; });
       html += '</div>';
     }
     if (warnings.length > 0) {
-      html += '<div><div style="font-size:12px;color:#dc2626;font-weight:600;margin-bottom:4px;">🚨 風險點</div>';
+      html += '<div><div style="font-size:12px;color:#dc2626;font-weight:600;margin-bottom:4px;">' + MR_ICONS.siren + ' 風險點</div>';
       warnings.forEach(w => {
         const c = w.level === 'red' ? '#fee2e2' : '#fef3c7';
         const bc = w.level === 'red' ? '#dc2626' : '#f59e0b';
@@ -10381,8 +10478,8 @@ window.v249OpenMultiChart = function(){
   modal.id = 'v249-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:95%;max-width:840px;background:white;color:#1f2937;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
   modal.innerHTML = ''
-    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">📊 多股並列 K 線</div><button id="v249-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
-    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v249-input" type="text" value="NVDA,AAPL,MSFT,GOOGL" placeholder="4 個代號 逗號分隔" style="flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"><button id="v249-go" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">📊 顯示</button></div>'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.chart + ' 多股並列 K 線</div><button id="v249-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v249-input" type="text" value="NVDA,AAPL,MSFT,GOOGL" placeholder="4 個代號 逗號分隔" style="flex:1;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;"><button id="v249-go" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">' + MR_ICONS.chart + ' 顯示</button></div>'
     + '<div id="v249-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;"></div>';
   document.body.appendChild(modal);
   document.getElementById('v249-close').addEventListener('click', () => modal.remove());
@@ -10434,7 +10531,7 @@ window.v249OpenMultiChart = function(){
     if (!suggests || suggests.querySelector('.v249-mc-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v249-mc-btn';
-    btn.textContent = '📊 多股並列';
+    btn.innerHTML = MR_ICONS.chart + ' 多股並列';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(8,145,178,0.3),rgba(67,56,202,0.3));border:1px solid rgba(8,145,178,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v249OpenMultiChart());
     suggests.appendChild(btn);
@@ -10451,9 +10548,9 @@ window.v250OpenReplay = function(){
   modal.id = 'v250-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:560px;background:white;color:#1f2937;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;';
   modal.innerHTML = ''
-    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⏯ Bar Replay（K 棒回放練習）</div><button id="v250-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
+    + '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.chartUp + ' Bar Replay（K 棒回放練習）</div><button id="v250-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>'
     + '<div style="font-size:12px;color:#6b7280;margin-bottom:12px;">輸入個股，逐根 reveal K 棒（沒有未來資訊，練習判斷）</div>'
-    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v250-sym" value="NVDA" style="flex:1;padding:8px;border:1px solid #d1d5db;border-radius:6px;"><button id="v250-load" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">⏯ 載入</button></div>'
+    + '<div style="display:flex;gap:8px;margin-bottom:14px;"><input id="v250-sym" value="NVDA" style="flex:1;padding:8px;border:1px solid #d1d5db;border-radius:6px;"><button id="v250-load" style="padding:8px 16px;background:#0891b2;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;">' + MR_ICONS.chartUp + ' 載入</button></div>'
     + '<div id="v250-chart" style="margin-bottom:14px;"></div>'
     + '<div style="display:flex;gap:8px;justify-content:center;"><button id="v250-prev" style="padding:6px 14px;background:#fee2e2;border:none;border-radius:6px;cursor:pointer;color:#991b1b;font-weight:600;">⏮ 上一根</button><span id="v250-info" style="padding:6px 14px;font-weight:600;">請載入</span><button id="v250-next" style="padding:6px 14px;background:#dcfce7;border:none;border-radius:6px;cursor:pointer;color:#166534;font-weight:600;">下一根 ⏭</button></div>';
   document.body.appendChild(modal);
@@ -10511,7 +10608,7 @@ window.v250OpenReplay = function(){
     if (!suggests || suggests.querySelector('.v250-replay-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v250-replay-btn';
-    btn.textContent = '⏯ K 棒回放';
+    btn.innerHTML = MR_ICONS.chartUp + ' K 棒回放';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(67,56,202,0.3),rgba(99,102,241,0.3));border:1px solid rgba(67,56,202,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v250OpenReplay());
     suggests.appendChild(btn);
@@ -10562,7 +10659,7 @@ window.v251ExportPDF = function(){
     if (!suggests || suggests.querySelector('.v251-export-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v251-export-btn';
-    btn.textContent = '📥 匯出 CSV';
+    btn.innerHTML = MR_ICONS.download + ' 匯出 CSV';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(34,197,94,0.3),rgba(22,163,74,0.3));border:1px solid rgba(34,197,94,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v251ExportCSV());
     suggests.appendChild(btn);
@@ -10573,13 +10670,13 @@ window.v251ExportPDF = function(){
 // ===== v252: 自訂 Dashboard widgets =====
 
 window.v252Widgets = {
-  'v244-macro-box': '🌎 總體經濟儀表板',
-  'industry-treemap-v196': '🗺 產業 Treemap',
-  'industry-heatmap': '🌡 產業熱度',
-  'hot-stocks-section': '🔥 熱門股',
-  'market-heatmap': '📊 市場熱度',
-  'daily-briefing': '📋 今日快報',
-  'closing-summary': '📈 盤後摘要'
+  'v244-macro-box': MR_ICONS.globeAm + ' 總體經濟儀表板',
+  'industry-treemap-v196': MR_ICONS.map + ' 產業 Treemap',
+  'industry-heatmap': MR_ICONS.thermo + ' 產業熱度',
+  'hot-stocks-section': MR_ICONS.fire + ' 熱門股',
+  'market-heatmap': MR_ICONS.chart + ' 市場熱度',
+  'daily-briefing': MR_ICONS.news + ' 今日快報',
+  'closing-summary': MR_ICONS.chartUp + ' 盤後摘要'
 };
 
 window.v252OpenSettings = function(){
@@ -10588,14 +10685,14 @@ window.v252OpenSettings = function(){
   modal = document.createElement('div');
   modal.id = 'v252-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:420px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;';
-  let html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">⚙️ 自訂 Dashboard</div><button id="v252-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>';
+  let html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.wrench + ' 自訂 Dashboard</div><button id="v252-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div>';
   html += '<div style="font-size:12px;color:#6b7280;margin-bottom:14px;">勾選要顯示的 widgets（變更立即生效）</div>';
   const hidden = JSON.parse(localStorage.getItem('mr_v252_hidden') || '[]');
   Object.entries(window.v252Widgets).forEach(([id, name]) => {
     const isHidden = hidden.includes(id);
     html += '<label style="display:flex;align-items:center;gap:8px;padding:8px;cursor:pointer;border-radius:6px;background:#f9fafb;margin-bottom:4px;"><input type="checkbox" data-id="' + id + '" ' + (isHidden ? '' : 'checked') + '><span style="font-size:13px;">' + name + '</span></label>';
   });
-  modal.innerHTML = html + '<button id="v252-save" style="width:100%;margin-top:14px;padding:10px;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">💾 套用</button>';
+  modal.innerHTML = html + '<button id="v252-save" style="width:100%;margin-top:14px;padding:10px;background:#16a34a;color:white;border:none;border-radius:8px;cursor:pointer;font-weight:600;">' + MR_ICONS.save + ' 套用</button>';
   document.body.appendChild(modal);
   document.getElementById('v252-close').addEventListener('click', () => modal.remove());
   document.getElementById('v252-save').addEventListener('click', () => {
@@ -10624,7 +10721,7 @@ window.v252ApplyHidden = function(){
     if (!suggests || suggests.querySelector('.v252-cfg-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v252-cfg-btn';
-    btn.textContent = '⚙️ 自訂 Dashboard';
+    btn.innerHTML = MR_ICONS.wrench + ' 自訂 Dashboard';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(107,114,128,0.3),rgba(156,163,175,0.3));border:1px solid rgba(107,114,128,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v252OpenSettings());
     suggests.appendChild(btn);
@@ -10642,7 +10739,7 @@ window.v253LoadMargin = async function(stockCode){
   const box = document.createElement('div');
   box.id = 'v253-margin-' + stockCode;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #c2410c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
-  box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">💰 融資融券（' + stockCode + '）</div><div id="v253-body-' + stockCode + '">載入中…</div>';
+  box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">' + MR_ICONS.money + ' 融資融券（' + stockCode + '）</div><div id="v253-body-' + stockCode + '">載入中…</div>';
   host.parentNode.insertBefore(box, host.nextSibling);
   try {
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/margin?stock=' + stockCode);
@@ -10684,12 +10781,12 @@ window.v254OpenDividendCalendar = async function(){
   modal = document.createElement('div');
   modal.id = 'v254-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:520px;background:white;color:#1f2937;border-radius:16px;padding:24px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
-  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">📅 股利日曆（從您的關注標的）</div><button id="v254-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div id="v254-body">載入中…</div>';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.calendar + ' 股利日曆（從您的關注標的）</div><button id="v254-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div id="v254-body">載入中…</div>';
   document.body.appendChild(modal);
   document.getElementById('v254-close').addEventListener('click', () => modal.remove());
   const m = window.v211Memory ? window.v211Memory.load() : { watchlist: [] };
   const wl = (m.watchlist || []).slice(0, 10);
-  if (wl.length === 0) { document.getElementById('v254-body').innerHTML = '請先設定 🧠 偏好中的關注標的'; return; }
+  if (wl.length === 0) { document.getElementById('v254-body').innerHTML = '請先設定 ' + MR_ICONS.brain + ' 偏好中的關注標的'; return; }
   try {
     const results = await Promise.all(wl.map(async sym => {
       const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/fundamentals?symbol=' + encodeURIComponent(sym));
@@ -10721,7 +10818,7 @@ window.v254OpenDividendCalendar = async function(){
     if (!suggests || suggests.querySelector('.v254-div-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v254-div-btn';
-    btn.textContent = '📅 股利日曆';
+    btn.innerHTML = MR_ICONS.calendar + ' 股利日曆';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(202,138,4,0.3),rgba(234,179,8,0.3));border:1px solid rgba(202,138,4,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v254OpenDividendCalendar());
     suggests.appendChild(btn);
@@ -10740,12 +10837,12 @@ window.v254OpenDividendCalendar = async function(){
     const presetRow = modal.querySelector('.v236-preset')?.parentNode;
     if (!presetRow || presetRow.querySelector('.v255-preset')) return;
     const newPresets = [
-      ['🏛 葛拉漢防禦型', { maxPE: 15, maxPB: 1.5, minDivYield: 2, maxDebtToEquity: 50, minMarketCapB: 5 }],
-      ['🚀 彼得林區成長', { minRevGrowth: 25, minROE: 18, maxPE: 30 }],
-      ['💎 護城河寬廣', { minROE: 25, minGrossMargin: 50, maxDebtToEquity: 50 }],
-      ['🌟 高 EPS 成長', { minRevGrowth: 30, minROE: 20 }],
-      ['🛡 防禦+股息', { minDivYield: 4, maxDebtToEquity: 80, maxPE: 20 }],
-      ['💰 富國銀行式', { minROE: 15, maxPB: 2, maxPE: 18, minDivYield: 1.5 }]
+      [MR_ICONS.office + ' 葛拉漢防禦型', { maxPE: 15, maxPB: 1.5, minDivYield: 2, maxDebtToEquity: 50, minMarketCapB: 5 }],
+      [MR_ICONS.rocket + ' 彼得林區成長', { minRevGrowth: 25, minROE: 18, maxPE: 30 }],
+      [MR_ICONS.diamond+' 護城河寬廣', { minROE: 25, minGrossMargin: 50, maxDebtToEquity: 50 }],
+      [MR_ICONS.starBurst + ' 高 EPS 成長', { minRevGrowth: 30, minROE: 20 }],
+      [MR_ICONS.shield + ' 防禦+股息', { minDivYield: 4, maxDebtToEquity: 80, maxPE: 20 }],
+      [MR_ICONS.money + ' 富國銀行式', { minROE: 15, maxPB: 2, maxPE: 18, minDivYield: 1.5 }]
     ];
     newPresets.forEach(([label, filters]) => {
       const btn = document.createElement('button');
@@ -10801,7 +10898,7 @@ window.v256LoadMonthlyRevenue = async function(stockCode){
     svg += '<text x="6" y="' + (y(yMin)+3) + '" font-size="9" fill="#6b7280">' + yMin.toFixed(0) + '%</text>';
     svg += '<text x="6" y="' + (y(0)+3) + '" font-size="9" fill="#6b7280">0</text>';
     svg += '</svg>';
-    box.innerHTML = '<div style="font-weight:700;color:#166534;margin-bottom:6px;">📈 月營收 YoY 趨勢（' + stockCode + '，最近 ' + rows.length + ' 個月）</div>' + svg + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">最新月：' + (rows[rows.length-1].year_month || '-') + ' · YoY ' + (yoys[yoys.length-1] >= 0 ? '+' : '') + yoys[yoys.length-1].toFixed(2) + '%</div>';
+    box.innerHTML = '<div style="font-weight:700;color:#166534;margin-bottom:6px;">' + MR_ICONS.chartUp + ' 月營收 YoY 趨勢（' + stockCode + '，最近 ' + rows.length + ' 個月）</div>' + svg + '<div style="font-size:11px;color:#6b7280;margin-top:6px;">最新月：' + (rows[rows.length-1].year_month || '-') + ' · YoY ' + (yoys[yoys.length-1] >= 0 ? '+' : '') + yoys[yoys.length-1].toFixed(2) + '%</div>';
     host.parentNode.insertBefore(box, host.nextSibling);
   } catch (e) {}
 };
@@ -10832,7 +10929,7 @@ window.v257LoadNewsNER = async function(symbol){
     const box = document.createElement('div');
     box.id = 'v257-ner-' + symbol;
     box.style.cssText = 'margin-top:10px;padding:10px;background:#fef3c7;border:1px solid #f59e0b;border-radius:8px;';
-    let html = '<div style="font-weight:600;color:#92400e;font-size:12px;margin-bottom:6px;">🏷 AI 抽取重要實體</div>';
+    let html = '<div style="font-weight:600;color:#92400e;font-size:12px;margin-bottom:6px;">' + MR_ICONS.label + ' AI 抽取重要實體</div>';
     d.news.forEach((n, i) => {
       if (!n.entities || n.entities.length === 0) return;
       html += '<div style="font-size:11px;margin-bottom:4px;"><span style="color:#6b7280;">' + (i+1) + '.</span> ';
@@ -10868,8 +10965,8 @@ window.v258OpenStockReport = async function(){
   const win = window.open('', '_blank');
   if (!win) { alert('請允許彈出視窗'); return; }
   win.document.write('<html><head><title>MoneyRadar 個股報告 - ' + symbol + '</title><style>body{font-family:var(--font-main, "DM Sans","Noto Sans TC",sans-serif);max-width:800px;margin:30px auto;padding:20px;color:#1f2937;line-height:1.7;}h1{color:#1557D0;}h2{color:#1A6CF6;border-bottom:2px solid #93c5fd;padding-bottom:4px;margin-top:24px;}.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0;}.metric{padding:10px;background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;}.metric-label{font-size:11px;color:#6b7280;}.metric-value{font-size:14px;font-weight:600;color:#1f2937;}.report-text{background:#fef3c7;padding:14px;border-radius:8px;margin:12px 0;line-height:1.8;}.print-btn{position:fixed;top:20px;right:20px;padding:10px 20px;background:#1A6CF6;color:white;border:none;border-radius:6px;cursor:pointer;font-weight:600;}@media print{.print-btn{display:none;}}</style></head><body>');
-  win.document.write('<button class="print-btn" onclick="window.print()">🖨 列印 / 存 PDF</button>');
-  win.document.write('<h1>📊 MoneyRadar AI 個股深度報告</h1>');
+  win.document.write('<button class="print-btn" onclick="window.print()">' + MR_ICONS.printer + ' 列印 / 存 PDF</button>');
+  win.document.write('<h1>' + MR_ICONS.chart + ' MoneyRadar AI 個股深度報告</h1>');
   win.document.write('<div style="color:#6b7280;font-size:13px;">' + symbol + ' · 生成時間：' + new Date().toLocaleString('zh-TW') + '</div>');
   win.document.write('<div style="color:#9ca3af;text-align:center;padding:40px;" id="v258-loading">⏳ AI 撰寫中（約 15 秒）...</div>');
   win.document.write('<div id="v258-content"></div>');
@@ -10891,28 +10988,28 @@ window.v258OpenStockReport = async function(){
       if (type === 'B') return val >= 1e9 ? (val/1e9).toFixed(2) + 'B' : val >= 1e6 ? (val/1e6).toFixed(2) + 'M' : val.toFixed(0);
       return val.toFixed(2);
     };
-    let html = '<h2>📌 標的概要</h2>';
+    let html = '<h2>' + MR_ICONS.pin + ' 標的概要</h2>';
     html += '<div><strong>' + (d.name || symbol) + ' (' + symbol + ')</strong> · ' + ((f.profile || {}).sector || '?') + ' / ' + ((f.profile || {}).industry || '?') + '</div>';
     html += '<div style="font-size:18px;margin-top:6px;"><strong>$' + fmt(q.price) + ' ' + (q.currency || '') + '</strong> <span style="color:' + (q.changePercent >= 0 ? '#dc2626' : '#16a34a') + ';">(' + (q.changePercent >= 0 ? '+' : '') + fmt(q.changePercent) + '%)</span></div>';
-    html += '<h2>💰 估值</h2><div class="metric-grid">';
+    html += '<h2>' + MR_ICONS.money + ' 估值</h2><div class="metric-grid">';
     html += '<div class="metric"><div class="metric-label">市值</div><div class="metric-value">$' + fmt(v.marketCap, 'B') + '</div></div>';
     html += '<div class="metric"><div class="metric-label">P/E</div><div class="metric-value">' + fmt(v.peRatio) + '</div></div>';
     html += '<div class="metric"><div class="metric-label">P/B</div><div class="metric-value">' + fmt(v.priceToBook) + '</div></div>';
     html += '<div class="metric"><div class="metric-label">PEG</div><div class="metric-value">' + fmt(v.pegRatio) + '</div></div>';
     html += '</div>';
-    html += '<h2>📈 獲利能力</h2><div class="metric-grid">';
+    html += '<h2>' + MR_ICONS.chartUp + ' 獲利能力</h2><div class="metric-grid">';
     html += '<div class="metric"><div class="metric-label">ROE</div><div class="metric-value">' + fmt(p.roe, '%') + '</div></div>';
     html += '<div class="metric"><div class="metric-label">ROA</div><div class="metric-value">' + fmt(p.roa, '%') + '</div></div>';
     html += '<div class="metric"><div class="metric-label">毛利率</div><div class="metric-value">' + fmt(p.grossMargin, '%') + '</div></div>';
     html += '<div class="metric"><div class="metric-label">淨利率</div><div class="metric-value">' + fmt(p.profitMargin, '%') + '</div></div>';
     html += '</div>';
-    html += '<h2>🚀 成長</h2><div class="metric-grid">';
+    html += '<h2>' + MR_ICONS.rocket + ' 成長</h2><div class="metric-grid">';
     html += '<div class="metric"><div class="metric-label">營收 YoY</div><div class="metric-value">' + fmt(g.revenueGrowth, '%') + '</div></div>';
     html += '<div class="metric"><div class="metric-label">EPS YoY</div><div class="metric-value">' + fmt(g.earningsGrowth, '%') + '</div></div>';
     html += '</div>';
-    html += '<h2>🤖 AI 研究員報告</h2>';
+    html += '<h2>' + MR_ICONS.robot + ' AI 研究員報告</h2>';
     html += '<div class="report-text">' + (d.report || '').replace(/\n/g, '<br>') + '</div>';
-    html += '<div style="margin-top:20px;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:10px;">⚠️ 本內容為公開資訊整理，不構成投資建議。MoneyRadar™ · ' + new Date().toISOString() + '</div>';
+    html += '<div style="margin-top:20px;font-size:11px;color:#9ca3af;border-top:1px solid #e5e7eb;padding-top:10px;">' + MR_ICONS.warning + ' 本內容為公開資訊整理，不構成投資建議。MoneyRadar™ · ' + new Date().toISOString() + '</div>';
     win.document.getElementById('v258-content').innerHTML = html;
   } catch (e) {
     win.document.getElementById('v258-loading').textContent = '失敗：' + (e.message || e);
@@ -10927,7 +11024,7 @@ window.v258OpenStockReport = async function(){
     if (!suggests || suggests.querySelector('.v258-pdf-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v258-pdf-btn';
-    btn.textContent = '📑 AI 個股報告';
+    btn.innerHTML = MR_ICONS.report + ' AI 個股報告';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(30,58,138,0.3),rgba(96,165,250,0.3));border:1px solid rgba(30,58,138,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v258OpenStockReport());
     suggests.appendChild(btn);
@@ -10943,11 +11040,11 @@ window.v259OpenDiary = async function(){
   if (!msgs) { window.v210OpenCFO(); return setTimeout(() => window.v259OpenDiary(), 500); }
   const intro = document.createElement('div');
   intro.style.cssText = 'background:rgba(244,114,182,0.2);border:1px solid rgba(244,114,182,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#fbcfe8;">📔 AI 為您寫投資日記</div><div style="font-size:13px;color:rgba(255,255,255,0.85);">分析您的查詢、自選、提醒模式 → 寫成 ' + period + '日記</div>';
+  intro.innerHTML = '<div style="font-weight:700;margin-bottom:6px;color:#fbcfe8;">' + MR_ICONS.diary + ' AI 為您寫投資日記</div><div style="font-size:13px;color:rgba(255,255,255,0.85);">分析您的查詢、自選、提醒模式 → 寫成 ' + period + '日記</div>';
   msgs.appendChild(intro);
   const loading = document.createElement('div');
   loading.style.cssText = 'background:rgba(255,255,255,0.05);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;color:rgba(255,255,255,0.7);';
-  loading.innerHTML = '📔 AI 撰寫中...';
+  loading.innerHTML = MR_ICONS.diary + ' AI 撰寫中...';
   msgs.appendChild(loading);
   msgs.scrollTop = msgs.scrollHeight;
   try {
@@ -10967,16 +11064,16 @@ window.v259OpenDiary = async function(){
     if (d.error) {
       const err = document.createElement('div');
       err.style.cssText = 'background:rgba(220,38,38,0.2);border:1px solid rgba(220,38,38,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-      err.innerHTML = '⚠️ ' + d.error;
+      err.innerHTML = MR_ICONS.warning + ' ' + d.error;
       msgs.appendChild(err);
       return;
     }
     const card = document.createElement('div');
     card.style.cssText = 'background:linear-gradient(135deg,rgba(244,114,182,0.2),rgba(168,85,247,0.15));border:1px solid rgba(244,114,182,0.4);border-radius:12px;padding:14px;max-width:90%;margin-bottom:12px;';
-    card.innerHTML = '<div style="font-weight:700;color:#fbcfe8;margin-bottom:6px;">📔 ' + new Date().toLocaleDateString('zh-TW') + ' 投資日記</div><div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:8px;">基於 ' + d.dataPoints + ' 個資料點</div><div style="font-size:13px;line-height:1.8;color:rgba(255,255,255,0.95);">' + (d.diary || '').replace(/\n/g, '<br>') + '</div>';
+    card.innerHTML = '<div style="font-weight:700;color:#fbcfe8;margin-bottom:6px;">' + MR_ICONS.diary + ' ' + new Date().toLocaleDateString('zh-TW') + ' 投資日記</div><div style="font-size:11px;color:rgba(255,255,255,0.6);margin-bottom:8px;">基於 ' + d.dataPoints + ' 個資料點</div><div style="font-size:13px;line-height:1.8;color:rgba(255,255,255,0.95);">' + (d.diary || '').replace(/\n/g, '<br>') + '</div>';
     msgs.appendChild(card);
   } catch (e) {
-    loading.innerHTML = '⚠️ 失敗：' + (e.message || e);
+    loading.innerHTML = MR_ICONS.warning + ' 失敗：' + (e.message || e);
   }
   msgs.scrollTop = msgs.scrollHeight;
 };
@@ -10989,7 +11086,7 @@ window.v259OpenDiary = async function(){
     if (!suggests || suggests.querySelector('.v259-diary-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v259-diary-btn';
-    btn.textContent = '📔 投資日記';
+    btn.innerHTML = MR_ICONS.diary + ' 投資日記';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(244,114,182,0.3),rgba(236,72,153,0.3));border:1px solid rgba(244,114,182,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v259OpenDiary());
     suggests.appendChild(btn);
@@ -11010,11 +11107,11 @@ window.v260LoadNewsSummary = async function(symbol){
     const box = document.createElement('div');
     box.id = 'v260-sum-' + symbol;
     box.style.cssText = 'margin-top:10px;padding:10px;background:#f0f9ff;border:1px solid #93c5fd;border-radius:8px;';
-    let html = '<div style="font-weight:600;color:#1A6CF6;font-size:12px;margin-bottom:6px;">📝 AI 一句話摘要</div>';
+    let html = '<div style="font-weight:600;color:#1A6CF6;font-size:12px;margin-bottom:6px;">' + MR_ICONS.pencil + ' AI 一句話摘要</div>';
     d.news.forEach((n, i) => {
       html += '<div style="font-size:11px;margin-bottom:6px;padding:6px;background:white;border-left:3px solid #1A6CF6;border-radius:4px;">';
       html += '<div style="font-weight:600;color:#1A6CF6;font-size:11px;line-height:1.4;">' + n.title + '</div>';
-      html += '<div style="color:#1f2937;margin-top:2px;line-height:1.5;">📌 ' + (n.summary || '') + '</div>';
+      html += '<div style="color:#1f2937;margin-top:2px;line-height:1.5;">' + MR_ICONS.pin + ' ' + (n.summary || '') + '</div>';
       html += '</div>';
     });
     box.innerHTML = html;
@@ -11059,7 +11156,7 @@ window.v261LoadMarginHistory = async function(stockCode){
     const box = document.createElement('div');
     box.id = 'v261-mh-' + stockCode;
     box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #ea580c;border-radius:12px;background:linear-gradient(180deg,#fff7ed,#fff);';
-    box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">📈 融資餘額趨勢（' + stockCode + '，' + rows.length + ' 個交易日）</div>'
+    box.innerHTML = '<div style="font-weight:700;color:#9a3412;margin-bottom:6px;">' + MR_ICONS.chartUp + ' 融資餘額趨勢（' + stockCode + '，' + rows.length + ' 個交易日）</div>'
       + '<svg viewBox="0 0 ' + W + ' ' + H + '" style="width:100%;background:white;border:1px solid #fed7aa;border-radius:6px;">'
       + '<path d="' + path + '" fill="none" stroke="#dc2626" stroke-width="2"/>'
       + '<text x="6" y="' + (y(yMax)+3) + '" font-size="9" fill="#6b7280">' + yMax.toLocaleString() + '</text>'
@@ -11090,7 +11187,7 @@ window.v262OpenBrokerRank = async function(){
   modal = document.createElement('div');
   modal.id = 'v262-modal';
   modal.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:90%;max-width:480px;background:white;color:#1f2937;border-radius:16px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,0.4);z-index:100002;max-height:90vh;overflow-y:auto;';
-  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><div style="font-size:18px;font-weight:700;">🏛 當日券商買賣超</div><button id="v262-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div id="v262-body">載入中…</div>';
+  modal.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><div style="font-size:18px;font-weight:700;">' + MR_ICONS.office + ' 當日券商買賣超</div><button id="v262-close" style="background:none;border:none;font-size:18px;cursor:pointer;">✕</button></div><div id="v262-body">載入中…</div>';
   document.body.appendChild(modal);
   document.getElementById('v262-close').addEventListener('click', () => modal.remove());
   try {
@@ -11126,7 +11223,7 @@ window.v262OpenBrokerRank = async function(){
     if (!suggests || suggests.querySelector('.v262-broker-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v262-broker-btn';
-    btn.textContent = '🏛 券商分點';
+    btn.innerHTML = MR_ICONS.office + ' 券商分點';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(120,53,15,0.3),rgba(202,138,4,0.3));border:1px solid rgba(120,53,15,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => window.v262OpenBrokerRank());
     suggests.appendChild(btn);
@@ -11168,7 +11265,7 @@ window.v263LoadFinHistory = async function(symbol){
     const box = document.createElement('div');
     box.id = 'v263-fh-' + symbol;
     box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #15803d;border-radius:12px;background:linear-gradient(180deg,#f0fdf4,#fff);';
-    box.innerHTML = '<div style="font-weight:700;color:#166534;margin-bottom:8px;">📊 4 年財報歷史（' + symbol + '）</div>'
+    box.innerHTML = '<div style="font-weight:700;color:#166534;margin-bottom:8px;">' + MR_ICONS.chart + ' 4 年財報歷史（' + symbol + '）</div>'
       + '<div style="display:grid;grid-template-columns:1fr;gap:6px;">'
       + renderBar(revs, '營收（' + revs.length + ' 年）', '#1A6CF6')
       + renderBar(profs, '淨利（' + profs.length + ' 年）', '#16a34a')
@@ -11386,7 +11483,7 @@ window.v266RenderAdvanced = async function(symbol){
     const box = document.createElement('div');
     box.id = 'v266-adv-' + symbol;
     box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #6d28d9;border-radius:12px;background:linear-gradient(180deg,#f5f3ff,#fff);';
-    box.innerHTML = '<div style="font-weight:700;color:#5b21b6;margin-bottom:6px;">📊 進階技術指標 v2（' + symbol + '）</div>'
+    box.innerHTML = '<div style="font-weight:700;color:#5b21b6;margin-bottom:6px;">' + MR_ICONS.chart + ' 進階技術指標 v2（' + symbol + '）</div>'
       + '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:6px;">'
       + items.map(([l, v]) => '<div style="padding:8px;background:white;border:1px solid #ddd6fe;border-radius:6px;"><div style="font-size:10px;color:#6b7280;">' + l + '</div><div style="font-size:13px;font-weight:600;color:#5b21b6;">' + (v || '-') + '</div></div>').join('')
       + '</div><div style="font-size:10px;color:#6b7280;margin-top:6px;">DEMA/TEMA/ADX/Aroon/AO/Hull MA · 共 9 指標（與既有合計 27+）</div>';
@@ -11418,7 +11515,7 @@ window.v266RenderAdvanced = async function(symbol){
     const moreTools = [
       { mode: 'hline', icon: '─', title: '水平線' },
       { mode: 'vline', icon: '│', title: '垂直線' },
-      { mode: 'fib', icon: '🌀', title: '斐波那契' },
+      { mode: 'fib', icon: MR_ICONS.spiral, title: '斐波那契' },
       { mode: 'channel', icon: '⫽', title: '平行通道' },
       { mode: 'ellipse', icon: '⬭', title: '橢圓' },
       { mode: 'arrow', icon: '➤', title: '箭頭' },
@@ -11545,11 +11642,11 @@ window.v268AddSECLink = function(symbol){
   const box = document.createElement('div');
   box.id = 'v268-sec-' + symbol;
   box.style.cssText = 'margin-top:10px;padding:10px;background:#eff6ff;border:1px solid #93c5fd;border-radius:8px;display:flex;gap:8px;flex-wrap:wrap;';
-  box.innerHTML = '<div style="font-weight:600;color:#1A6CF6;font-size:12px;width:100%;">📄 SEC 官方申報文件</div>'
-    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=10-K" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">📋 10-K 年報</a>'
-    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=10-Q" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">📊 10-Q 季報</a>'
-    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=8-K" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">⚡ 8-K 重大事件</a>'
-    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=DEF+14A" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">🗳 委託書 DEF 14A</a>';
+  box.innerHTML = '<div style="font-weight:600;color:#1A6CF6;font-size:12px;width:100%;">' + MR_ICONS.doc + ' SEC 官方申報文件</div>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=10-K" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">' + MR_ICONS.news + ' 10-K 年報</a>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=10-Q" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">' + MR_ICONS.chart + ' 10-Q 季報</a>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=8-K" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">' + MR_ICONS.chartUp + ' 8-K 重大事件</a>'
+    + '<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=' + symbol + '&type=DEF+14A" target="_blank" rel="noopener" style="padding:4px 10px;background:white;border:1px solid #93c5fd;border-radius:4px;font-size:11px;color:#1A6CF6;text-decoration:none;font-weight:600;">' + MR_ICONS.ballot + ' 委託書 DEF 14A</a>';
   host.appendChild(box);
 };
 (function(){
@@ -11601,11 +11698,11 @@ window.v269StartRealtime = function(){
     if (!suggests || suggests.querySelector('.v269-rt-btn')) return;
     const btn = document.createElement('button');
     btn.className = 'v210-suggest v269-rt-btn';
-    btn.textContent = '⚡ 即時模式';
+    btn.innerHTML = MR_ICONS.chartUp + ' 即時模式';
     btn.style.cssText = 'background:linear-gradient(135deg,rgba(220,38,38,0.3),rgba(245,158,11,0.3));border:1px solid rgba(220,38,38,0.5);color:white;padding:6px 12px;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;';
     btn.addEventListener('click', () => {
       window.v269StartRealtime();
-      btn.textContent = '⚡ 即時 ON';
+      btn.innerHTML = MR_ICONS.chartUp + ' 即時 ON';
       btn.disabled = true;
     });
     suggests.appendChild(btn);
@@ -11623,7 +11720,7 @@ window.v270LoadEarnings = async function(symbol){
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/earnings-surprise?symbol=' + encodeURIComponent(symbol));
     const d = await r.json();
     if (d.error || !d.history || d.history.length === 0) return;
-    let html = '<div style="font-weight:700;color:#0c4a6e;margin-bottom:8px;">📊 過去 4 季 Earnings Surprise</div>';
+    let html = '<div style="font-weight:700;color:#0c4a6e;margin-bottom:8px;">' + MR_ICONS.chart + ' 過去 4 季 Earnings Surprise</div>';
     html += '<div style="overflow-x:auto;"><table style="width:100%;font-size:12px;border-collapse:collapse;">';
     html += '<thead style="background:#dbeafe;"><tr><th style="padding:6px;text-align:left;">季度</th><th style="padding:6px;text-align:right;">實際 EPS</th><th style="padding:6px;text-align:right;">預估 EPS</th><th style="padding:6px;text-align:right;">差異</th><th style="padding:6px;text-align:right;">超預期 %</th></tr></thead><tbody>';
     d.history.slice(0, 4).forEach(h => {
@@ -11639,7 +11736,7 @@ window.v270LoadEarnings = async function(symbol){
     });
     html += '</tbody></table></div>';
     if (d.nextEarnings && d.nextEarnings.date) {
-      html += '<div style="margin-top:8px;padding:8px;background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;font-size:12px;color:#92400e;">📅 下次財報日：<strong>' + d.nextEarnings.date + '</strong> · 預估 EPS：$' + d.nextEarnings.estimate.toFixed(2) + '</div>';
+      html += '<div style="margin-top:8px;padding:8px;background:#fef3c7;border:1px solid #fbbf24;border-radius:6px;font-size:12px;color:#92400e;">' + MR_ICONS.calendar + ' 下次財報日：<strong>' + d.nextEarnings.date + '</strong> · 預估 EPS：$' + d.nextEarnings.estimate.toFixed(2) + '</div>';
     }
     const box = document.createElement('div');
     box.id = 'v270-er-' + symbol;
@@ -11671,7 +11768,7 @@ window.v271LoadOwnership = async function(symbol){
     const r = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/insider-ownership?symbol=' + encodeURIComponent(symbol));
     const d = await r.json();
     if (d.error) return;
-    let html = '<div style="font-weight:700;color:#7c2d12;margin-bottom:8px;">👥 持股結構</div>';
+    let html = '<div style="font-weight:700;color:#7c2d12;margin-bottom:8px;">' + MR_ICONS.users + ' 持股結構</div>';
     if (d.summary) {
       html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px;">';
       html += '<div style="padding:8px;background:white;border:1px solid #fed7aa;border-radius:6px;text-align:center;"><div style="font-size:10px;color:#6b7280;">內部人持股</div><div style="font-size:14px;font-weight:700;color:#7c2d12;">' + d.summary.insiderPct.toFixed(2) + '%</div></div>';
@@ -11796,13 +11893,13 @@ window.v272ToggleLock = function(){
   if (isLocked) {
     window.v272.grid.enableMove(true);
     window.v272.grid.enableResize(true);
-    document.getElementById('v272-lock-btn').textContent = '🔓 編輯模式中（拖拉/縮放）';
+    document.getElementById('v272-lock-btn').innerHTML = MR_ICONS.lockOpen+' 編輯模式中（拖拉/縮放）';
     document.getElementById('v272-lock-btn').style.background = '#fef3c7';
     document.querySelectorAll('.grid-stack-item').forEach(it => { it.style.outline = '2px dashed #f59e0b'; });
   } else {
     window.v272.grid.enableMove(false);
     window.v272.grid.enableResize(false);
-    document.getElementById('v272-lock-btn').textContent = '🔒 自訂版面';
+    document.getElementById('v272-lock-btn').innerHTML = MR_ICONS.lockClosed+' 自訂版面';
     document.getElementById('v272-lock-btn').style.background = '';
     document.querySelectorAll('.grid-stack-item').forEach(it => { it.style.outline = ''; });
   }
@@ -11821,8 +11918,8 @@ window.v272Reset = function(){
     const ctrl = document.createElement('div');
     ctrl.id = 'v272-controls';
     ctrl.style.cssText = 'position:fixed;top:80px;left:20px;display:flex;gap:6px;z-index:9997;';
-    ctrl.innerHTML = '<button id="v272-lock-btn" onclick="window.v272ToggleLock()" style="padding:8px 14px;background:white;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:#1f2937;box-shadow:0 2px 6px rgba(0,0,0,0.1);">🔒 自訂版面</button>'
-      + '<button onclick="window.v272Reset()" style="padding:8px 14px;background:white;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;font-size:12px;color:#6b7280;box-shadow:0 2px 6px rgba(0,0,0,0.1);">↩️ 重設</button>';
+    ctrl.innerHTML = '<button id="v272-lock-btn" onclick="window.v272ToggleLock()" style="padding:8px 14px;background:white;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;color:#1f2937;box-shadow:0 2px 6px rgba(0,0,0,0.1);">' + MR_ICONS.lockClosed + ' 自訂版面</button>'
+      + '<button onclick="window.v272Reset()" style="padding:8px 14px;background:white;border:1px solid #d1d5db;border-radius:8px;cursor:pointer;font-size:12px;color:#6b7280;box-shadow:0 2px 6px rgba(0,0,0,0.1);">' + MR_ICONS.undo + ' 重設</button>';
     document.body.appendChild(ctrl);
   }, 3000);
   // 啟動
@@ -11838,7 +11935,7 @@ window.v273CaptureAndShare = async function(targetEl, title){
   // 加 watermark
   const watermark = document.createElement('div');
   watermark.style.cssText = 'position:absolute;bottom:8px;right:12px;font-size:10px;color:rgba(0,0,0,0.4);background:rgba(255,255,255,0.8);padding:2px 6px;border-radius:4px;font-family:sans-serif;';
-  watermark.textContent = '📊 MoneyRadar.thinkbigtw.com';
+  watermark.innerHTML = MR_ICONS.chart + ' MoneyRadar.thinkbigtw.com';
   targetEl.style.position = 'relative';
   targetEl.appendChild(watermark);
   try {
@@ -11868,7 +11965,7 @@ window.v273CaptureAndShare = async function(targetEl, title){
       a.href = url; a.download = 'moneyradar_' + Date.now() + '.png';
       document.body.appendChild(a); a.click(); document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      alert('✅ 已下載圖片，可分享到任何社群平台');
+      alert(MR_ICONS.check+' 已下載圖片，可分享到任何社群平台');
     }, 'image/png');
   } catch (e) {
     watermark.remove();
@@ -11876,7 +11973,7 @@ window.v273CaptureAndShare = async function(targetEl, title){
   }
 };
 
-// 為所有 AI 分析容器加 「📤 分享」按鈕
+// 為所有 AI 分析容器加「分享」按鈕
 window.v273InjectShareButtons = function(){
   const targets = [
     { selector: '#v210-messages > div', title: 'AI CFO 對話' },
@@ -11897,7 +11994,7 @@ window.v273InjectShareButtons = function(){
       if (el.offsetHeight < 80) return;
       const btn = document.createElement('button');
       btn.className = 'v273-share-btn';
-      btn.textContent = '📤 分享';
+      btn.innerHTML = MR_ICONS.share + ' 分享';
       btn.title = '截圖分享 ' + t.title;
       btn.style.cssText = 'position:absolute;top:8px;right:8px;padding:4px 10px;background:rgba(255,255,255,0.9);border:1px solid #d1d5db;border-radius:6px;cursor:pointer;font-size:11px;font-weight:600;color:#1f2937;z-index:5;box-shadow:0 1px 3px rgba(0,0,0,0.1);';
       btn.addEventListener('click', (e) => {
@@ -11950,7 +12047,7 @@ window.v274LoadTradingView = function(symbol){
   const box = document.createElement('div');
   box.id = 'v274-tv-' + symbol;
   box.style.cssText = 'margin-top:14px;padding:14px;border:2px solid #2962ff;border-radius:12px;background:linear-gradient(180deg,#e3f2fd,#fff);';
-  box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-weight:700;color:#0d47a1;">📊 TradingView 進階圖表（' + symbol + '）</div><div style="font-size:11px;color:#1976d2;">100+ 指標 + Pine Script + Drawing</div></div>'
+  box.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-weight:700;color:#0d47a1;">' + MR_ICONS.chart + ' TradingView 進階圖表（' + symbol + '）</div><div style="font-size:11px;color:#1976d2;">100+ 指標 + Pine Script + Drawing</div></div>'
     + '<div class="tradingview-widget-container" style="height:500px;"><div id="tv-widget-' + symbol + '" style="height:100%;"></div></div>'
     + '<div style="font-size:10px;color:#6b7280;margin-top:6px;">資料：TradingView (' + tvSymbol + ')</div>';
   host.parentNode ? host.parentNode.insertBefore(box, host.nextSibling) : host.appendChild(box);
@@ -12008,4 +12105,24 @@ window.v274LoadTradingView = function(symbol){
       window.v272.enabled = 'wait-for-login';
     }
   }, 1500);
+})();
+
+/* ═══ v272: Hamburger Menu Active State ═══ */
+(function(){
+  var origSwitch = window.switchTab;
+  if(origSwitch) {
+    window.switchTab = function(name, btn) {
+      origSwitch(name, btn);
+      // Update menu active states
+      var items = document.querySelectorAll('.mr-menu-item');
+      items.forEach(function(el) {
+        var onclick = el.getAttribute('onclick') || '';
+        if(onclick.indexOf("'" + name + "'") > -1) {
+          el.classList.add('active');
+        } else {
+          el.classList.remove('active');
+        }
+      });
+    };
+  }
 })();
