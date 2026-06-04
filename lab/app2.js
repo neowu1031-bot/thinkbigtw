@@ -5102,9 +5102,9 @@ async function loadAISummary(code){
   // CSS 注入
   const style = document.createElement('style');
   style.textContent = `
-    #mr-chat-bubble{position:fixed;right:20px;bottom:20px;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#1A6CF6,#1557D0);box-shadow:0 4px 16px rgba(26,108,246,0.4);cursor:pointer;z-index:9998;display:flex;align-items:center;justify-content:center;transition:transform 0.2s;border:none}
-    #mr-chat-bubble:hover{transform:scale(1.08)}
-    #mr-chat-bubble svg{width:28px;height:28px;fill:white}
+    #mr-chat-bubble{position:fixed;right:24px;bottom:24px;width:72px;height:72px;border-radius:50%;background:#000;box-shadow:0 0 12px rgba(232,66,42,0.6),0 0 24px rgba(232,66,42,0.3);cursor:pointer;z-index:9998;display:flex;align-items:center;justify-content:center;transition:transform 0.2s,box-shadow 0.2s;border:2px solid #e8422a;flex-direction:column;gap:0;line-height:1.1}
+    #mr-chat-bubble:hover{transform:scale(1.05);box-shadow:0 0 18px rgba(232,66,42,0.7),0 0 36px rgba(232,66,42,0.4)}
+    #mr-chat-bubble svg{display:none}
     #mr-chat-panel{position:fixed;right:20px;bottom:88px;width:360px;height:520px;background:var(--bg-elevated, #131929);border:1px solid rgba(255,255,255,0.07);border-radius:16px;box-shadow:0 20px 50px rgba(0,0,0,0.5);z-index:9999;display:none;flex-direction:column;overflow:hidden;font-family:var(--font-main, "DM Sans","Noto Sans TC",sans-serif)}
     #mr-chat-panel.open{display:flex}
     .mr-chat-header{padding:14px 16px;background:#1A2035;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.09)}
@@ -5134,6 +5134,7 @@ async function loadAISummary(code){
     .mr-chat-disclaimer{font-size:10px;color:#5A6478;text-align:center;margin-top:6px}
     @media (max-width:480px){
       #mr-chat-panel{right:8px;left:8px;bottom:78px;width:auto;height:75vh}
+      #mr-chat-bubble{width:60px!important;height:60px!important;right:16px!important;bottom:16px!important}
     }
   `;
   document.head.appendChild(style);
@@ -5141,7 +5142,7 @@ async function loadAISummary(code){
   // 泡泡按鈕
   const bubble = document.createElement('button');
   bubble.id = 'mr-chat-bubble';
-  bubble.innerHTML = '<svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10v2H7V9zm6 5H7v-2h6v2zm4-6H7V6h10v2z"/></svg>';
+  bubble.innerHTML = '<span style="font-size:11px;font-weight:700;color:#fff;font-family:\'Space Mono\',\'JetBrains Mono\',monospace;letter-spacing:0.5px;line-height:1.2;text-align:center">ASK<br>AI</span>';
   bubble.title = 'AI 助理';
   document.body.appendChild(bubble);
 
@@ -12106,6 +12107,63 @@ window.v274LoadTradingView = function(symbol){
     }
   }, 1500);
 })();
+
+/* ═══ v272: Hermes AI Panel — Bridge to AI CFO ═══ */
+window.triggerHermesQuery = async function(query) {
+  if (!query || typeof query !== 'string') return;
+  query = query.trim();
+  if (!query) return;
+  var input = document.getElementById('hermes-input');
+  var area = document.getElementById('hermes-chat-area');
+  if (!area) return;
+  if (input) input.value = '';
+
+  // Show user message
+  var userBub = document.createElement('div');
+  userBub.className = 'ai-message';
+  userBub.style.justifyContent = 'flex-end';
+  userBub.innerHTML = '<div class="ai-bubble" style="background:var(--accent-soft);border-color:var(--accent);margin-left:auto">' + query.replace(/</g,'&lt;') + '</div>';
+  area.appendChild(userBub);
+  area.scrollTop = area.scrollHeight;
+
+  // Show thinking
+  var thinkBub = document.createElement('div');
+  thinkBub.className = 'ai-message';
+  thinkBub.innerHTML = '<div class="ai-bubble">' + MR_ICONS.thought + ' Hermes 分析中...</div>';
+  area.appendChild(thinkBub);
+  area.scrollTop = area.scrollHeight;
+
+  // Build context
+  if (!window.v210Messages) window.v210Messages = [];
+  window.v210Messages.push({ role: 'user', content: query });
+  var ctx = { currentSymbol: '', currentNews: [], visibleSymbols: [] };
+  try {
+    var pxEls = document.querySelectorAll('[id^="px-"]');
+    ctx.visibleSymbols = Array.from(pxEls).map(function(el){ return el.id.replace('px-',''); }).slice(0,10);
+  } catch(e){}
+  if (window.v211Memory && window.v211Memory.buildContext) {
+    try { Object.assign(ctx, window.v211Memory.buildContext()); } catch(e){}
+  }
+
+  try {
+    var res = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: window.v210Messages, context: ctx })
+    });
+    var data = await res.json();
+    if (data.error) {
+      thinkBub.querySelector('.ai-bubble').innerHTML = MR_ICONS.warning + ' ' + data.error;
+    } else {
+      var reply = data.reply || '（無回應）';
+      thinkBub.querySelector('.ai-bubble').innerHTML = '<strong>Hermes AI</strong><br>' + reply.replace(/\n/g, '<br>');
+      window.v210Messages.push({ role: 'assistant', content: reply });
+    }
+  } catch (e) {
+    thinkBub.querySelector('.ai-bubble').innerHTML = MR_ICONS.warning + ' 連線失敗：' + (e.message || e);
+  }
+  area.scrollTop = area.scrollHeight;
+};
 
 /* ═══ v272: Hamburger Menu Active State ═══ */
 (function(){

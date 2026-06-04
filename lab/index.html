@@ -443,37 +443,7 @@ textarea{height:80px;resize:vertical}
       <button class="tab-btn" onclick="switchTab('portfolio',this)">投資組合</button>
     </div>
   </div>
-  <!-- Hermes AI Panel -->
-  <div class="hermes-panel" id="hermes-main-panel">
-    <div class="hermes-header">
-      <div class="hermes-avatar">
-        <svg viewBox="0 0 20 20" fill="none" stroke="#fff" stroke-width="1.4"><circle cx="10" cy="10" r="8"/><path d="M7 10c0-1.7 1.3-3 3-3s3 1.3 3 3-1.3 3-3 3"/><line x1="10" y1="13" x2="10" y2="15"/><line x1="7" y1="10" x2="5" y2="10"/></svg>
-      </div>
-      <div>
-        <div class="hermes-name">Hermes AI 分析師</div>
-        <div class="hermes-sub">Powered by Claude Sonnet &middot; 全市場覆蓋</div>
-      </div>
-      <div class="live-badge"><div class="live-dot"></div>即時運行中</div>
-    </div>
-    <div class="chat-area" id="hermes-chat-area">
-      <div class="ai-message">
-        <div class="ai-bubble">歡迎使用 Hermes AI 分析師，請輸入股票代號或問任何投資問題。</div>
-      </div>
-    </div>
-    <div class="quick-row">
-      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('今日技術訊號')">今日技術訊號</button>
-      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('法人動向')">法人動向</button>
-      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('盤前快報')">盤前快報</button>
-      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('幫我選股')">幫我選股</button>
-      <button class="quick-chip" onclick="if(window.triggerHermesQuery)triggerHermesQuery('持股健診')">持股健診</button>
-    </div>
-    <div class="input-row">
-      <input class="chat-input" id="hermes-input" placeholder="問 Hermes 任何投資問題..." onkeydown="if(event.key==='Enter'&&window.triggerHermesQuery)triggerHermesQuery(this.value)">
-      <button class="send-btn" onclick="if(window.triggerHermesQuery){triggerHermesQuery(document.getElementById('hermes-input').value)}">
-        <svg viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2"><line x1="2" y1="8" x2="14" y2="8"/><polyline points="9,3 14,8 9,13"/></svg>
-      </button>
-    </div>
-  </div>
+  <!-- Hermes AI Panel removed per user request — ASK AI button (bottom-right) is the primary AI entry point -->
   <!-- Hamburger Menu Overlay -->
   <div class="mr-menu-overlay" id="mrMenuOverlay" style="display:none" onclick="closeMrMenu()">
     <div class="mr-menu-panel" onclick="event.stopPropagation()">
