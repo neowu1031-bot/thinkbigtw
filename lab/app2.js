@@ -7785,11 +7785,10 @@ window.v210Send = async function(){
 (function(){
   // 每秒檢查並隱藏舊的浮動元素
   setInterval(() => {
-    // 1. 隱藏 v152 系列舊 AI chat 泡泡
+    // 1. 隱藏 v152 系列舊 AI chat 泡泡（保留 mr-chat-bubble = ASK AI 按鈕）
     document.querySelectorAll('#ai-chat-bubble, #chat-bubble, .ai-chat-bubble, [id*="chat-bubble"]').forEach(el => {
-      if (el.id !== 'v210-trigger' && el.id !== 'v210-cfo-overlay') {
-        el.style.display = 'none';
-      }
+      if (el.id === 'mr-chat-bubble' || el.id === 'mr-chat-panel' || el.id === 'v210-trigger' || el.id === 'v210-cfo-overlay') return;
+      el.style.display = 'none';
     });
     // 2. 隱藏 v207 浮動按鈕（功能整合進 v210）
     const v207 = document.getElementById('v207-trigger');
@@ -8048,6 +8047,7 @@ window.v212Roundtable = async function(symbol, name){
     selectors.forEach(sel => {
       try {
         document.querySelectorAll(sel).forEach(el => {
+          if (el.id === 'mr-chat-bubble' || el.id === 'mr-chat-panel') return;
           if (el.id === 'v210-trigger' || el.id === 'v210-cfo-overlay') return;
           if (el.closest && el.closest('#v210-cfo-overlay')) return;
           el.style.display = 'none';
@@ -8057,6 +8057,7 @@ window.v212Roundtable = async function(symbol, name){
     });
     document.querySelectorAll('button, div').forEach(el => {
       try {
+        if (el.id === 'mr-chat-bubble' || el.id === 'mr-chat-panel') return;
         if (el.id === 'v210-trigger' || el.id === 'v210-cfo-overlay') return;
         if (el.closest && el.closest('#v210-cfo-overlay')) return;
         const cs = getComputedStyle(el);
