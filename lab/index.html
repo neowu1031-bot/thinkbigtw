@@ -1369,29 +1369,40 @@ function mrSwitchLang(code){
   MAP['\u{1F4B3}']=I('<rect x="1.5" y="3.5" width="13" height="9" rx="2"/><line x1="1.5" y1="7" x2="14.5" y2="7"/>');
   MAP['\u{1F3A9}']=I('<rect x="4" y="7" width="8" height="5" rx="1"/><path d="M3 12h10"/><path d="M6 7V4a2 2 0 0 1 4 0v3"/>');
   // Fallback: catch-all for remaining misc emoji
+  _emojiRunning=false;
   function replaceEmoji(node){
     if(node.nodeType===3){
       var t=node.textContent;
       var changed=false;
       Object.keys(MAP).forEach(function(e){
-        if(t.indexOf(e)>-1){t=t.split(e).join(' EMJ'+e+' ');changed=true}
+        if(t.indexOf(e)>-1){t=t.split(e).join('\x01'+e+'\x02');changed=true}
       });
       if(changed){
         var span=document.createElement('span');
-        span.innerHTML=t.replace(/ EMJ([\s\S]) /g,function(_,e){return MAP[e]||e});
+        span.setAttribute('data-ej','1');
+        span.innerHTML=t.replace(/\x01([\s\S]+?)\x02/gu,function(_,e){return MAP[e]||e});
         node.parentNode.replaceChild(span,node);
       }
-    } else if(node.nodeType===1 && node.tagName!=='SCRIPT' && node.tagName!=='STYLE'){
+    } else if(node.nodeType===1 && node.tagName!=='SCRIPT' && node.tagName!=='STYLE' && !node.hasAttribute('data-ej')){
       Array.from(node.childNodes).forEach(replaceEmoji);
     }
   }
   // Initial sweep after content loads
-  setTimeout(function(){replaceEmoji(document.body)},3000);
+  setTimeout(function(){
+    _emojiRunning=true;
+    try{replaceEmoji(document.body)}catch(ex){}
+    _emojiRunning=false;
+  },3000);
   // Watch for new content
   var obs=new MutationObserver(function(muts){
-    muts.forEach(function(m){
-      m.addedNodes.forEach(function(n){if(n.nodeType===1)replaceEmoji(n)});
-    });
+    if(_emojiRunning)return;
+    _emojiRunning=true;
+    try{
+      muts.forEach(function(m){
+        m.addedNodes.forEach(function(n){if(n.nodeType===1&&!n.hasAttribute('data-ej'))replaceEmoji(n)});
+      });
+    }catch(ex){}
+    _emojiRunning=false;
   });
   obs.observe(document.body,{childList:true,subtree:true});
 })();
