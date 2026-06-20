@@ -609,6 +609,25 @@ document.querySelectorAll('.industry-card,.security-item').forEach(el=>{
 }
 </script>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"},
+    {
+      "@type": "Service",
+      "@id": "https://thinkbigtw.com/enterprise/#service",
+      "name": "企業 AI 導入",
+      "serviceType": "企業 AI 自動化導入顧問",
+      "provider": {"@id": "https://thinkbigtw.com/#organization"},
+      "areaServed": {"@type": "Country", "name": "Taiwan"},
+      "description": "為企業打造專屬 AI 工作流，從需求分析到上線維護全程陪跑。採 OpenClaw + Hermes Agent 雙引擎，整合 RAG 知識庫、流程自動化與 LINE/Email/CRM（透過 MCP 協議），涵蓋 100+ 產業。",
+      "url": "https://thinkbigtw.com/enterprise/"
+    }
+  ]
+}
+</script>
+
 <!-- 全站統一導覽列 + Hermes 對話框 共用元件 -->
 <script src="/nav.js" defer></script>
 <script src="/ask-ai.js" defer></script>

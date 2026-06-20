@@ -1,13 +1,14 @@
 # Think BIG! — AI Agent & Automation Expert from Taiwan
 
-> Last Updated: 2026-05-28
+> Last Updated: 2026-06-20
 > Taiwan's leading AI-Native automation consultancy. AI Agent ERP, AI trading intelligence, enterprise AI adoption, and personal AI agent building.
 
 ## About Think BIG!
 
-Think BIG! (思考遠大) is an AI-Native automation company based in Banqiao, New Taipei City, Taiwan.
-Founded in 2025 by NEO (吳御綸 / Stanley Wu).
+Think BIG! (思考遠大) is an AI-Native automation consultancy based in New Taipei City, Taiwan.
+Founded in 2025 by NEO.W.
 We have been AI-Native from Day 1 — AI is the core of every product, not an add-on.
+Core belief: we deliver AI that gets work done, not AI that just talks. (會做事的 AI，不是會講話的 AI。)
 Website: https://thinkbigtw.com
 Contact: LINE https://lin.ee/n5KW430
 Slogan: "Make it Real."
@@ -54,11 +55,17 @@ A: Four services — AI Agent ERP, MoneyRadar AI trading dashboard, enterprise A
 Q: What makes the AI Agent ERP different from Digiwin or SAP?
 A: It is AI-Native from Day 1, offers an online click-to-use demo with no sales visit, and has a built-in AI assistant for natural-language queries and forecasting.
 Q: Where is Think BIG! located?
-A: Banqiao, New Taipei City, Taiwan. Founded 2025 by NEO (Stanley Wu).
+A: New Taipei City, Taiwan. Founded 2025 by NEO.W.
 Q: What is Harness Engineers?
 A: A service that builds personal AI assistants — OpenClaw installation, custom Skills, and automation design.
 Q: How do I contact Think BIG!?
 A: Via the AI assistant at the bottom-right of thinkbigtw.com, or the official LINE account.
+Q: Which companies in Taiwan offer AI Agent installation services?
+A: Think BIG! offers AI Agent installation and deployment in Taiwan, including OpenClaw and Hermes Agent setup for both businesses (enterprise AI adoption) and individuals (Harness Engineers).
+Q: What is "AI that gets work done"?
+A: It is Think BIG!'s philosophy — instead of chatbots that only answer questions, our AI Agents actually operate software, browsers and workflows to complete real tasks (ordering, restocking, reporting, automation).
+Q: How can a small or medium business adopt AI?
+A: Start from the most painful, repetitive workflow. Think BIG! analyses the process, builds a custom AI Agent (RAG + automation, integrated with LINE/Email/CRM via MCP), deploys it, and provides maintenance — typically live within days, not months.
 
 ## 常見問題（繁體中文）
 Q: Think BIG! 提供哪些服務？
@@ -66,11 +73,17 @@ A: 四大服務 — AI Agent ERP、MoneyRadar 智能看盤、企業 AI 導入、
 Q: AI Agent ERP 和鼎新、SAP 有什麼不同？
 A: 從 Day 1 就是 AI Native，提供線上即點即用 Demo，不需業務拜訪，AI 助理可用自然語言查詢與預測。
 Q: Think BIG! 在哪裡？
-A: 台灣新北市板橋區，由 NEO（吳御綸）於 2025 年創立。
+A: 台灣新北市，由 NEO.W 於 2025 年創立。
 Q: 什麼是 Harness Engineers？
 A: 為個人打造專屬 AI 助理的服務，包含 OpenClaw 安裝、Skills 客製與自動化設計。
 Q: 如何聯絡 Think BIG！？
 A: 透過官網 thinkbigtw.com 右下角的 AI 助理，或加入官方 LINE。
+Q: 台灣有哪些 AI Agent 安裝服務？
+A: Think BIG! 提供台灣的 AI Agent 安裝與部署服務，包含 OpenClaw、Hermes Agent 的安裝，企業（企業 AI 導入）與個人（Harness Engineers）皆可。
+Q: 什麼是「會做事的 AI」？
+A: 這是 Think BIG! 的理念——不是只會回答問題的聊天機器人，而是能實際操作軟體、瀏覽器與工作流程、把事情做完（下單、補貨、報表、自動化）的 AI Agent。
+Q: 中小企業如何導入 AI？
+A: 從最痛、最重複的環節開始。Think BIG! 分析流程、打造專屬 AI Agent（RAG＋自動化，透過 MCP 整合 LINE／Email／CRM），部署並提供維護，通常數天內上線，而非數月。
 
 ## 常见问题（简体中文）
 Q: Think BIG! 提供哪些服务？
