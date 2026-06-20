@@ -43,6 +43,17 @@
 {
   "@context": "https://schema.org",
   "@graph": [
+    {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"},
+    {
+      "@type": "Service",
+      "@id": "https://thinkbigtw.com/harness/#service",
+      "name": "Harness Engineers — 個人專屬 AI 助理搭建",
+      "serviceType": "個人 AI 助理搭建",
+      "provider": {"@id": "https://thinkbigtw.com/#organization"},
+      "areaServed": {"@type": "Country", "name": "Taiwan"},
+      "description": "為你打造專屬 AI 助理，不是公版 AI，而是照你的工作與習慣量身搭建。支援 OpenClaw、Hermes Agent、Claude，整合 LINE、Gmail、行事曆。",
+      "url": "https://thinkbigtw.com/harness/"
+    },
     {
       "@type": "WebPage",
       "@id": "https://thinkbigtw.com/harness/",
