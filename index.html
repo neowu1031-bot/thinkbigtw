@@ -3,410 +3,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Think BIG! — Make it Real.</title>
-<meta name="description" content="Think BIG! AI 自動化顧問 — MoneyRadar™、企業方案、Harness Engineers、AI Agent ERP">
-<meta name="theme-color" content="#080808">
+<title>Think BIG ｜ 台灣 AI 自動化顧問 ｜ AI Agent 安裝與企業導入</title>
+<meta name="description" content="Think BIG 是台灣 AI 自動化顧問公司，由 NEO.W 創辦。提供 OpenClaw、Hermes AI Agent 安裝、企業 AI 導入、AI Agent ERP 與個人 AI 助理搭建。會做事的 AI，不是會講話的 AI。">
+<link rel="canonical" href="https://thinkbigtw.com/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Think BIG">
+<meta property="og:url" content="https://thinkbigtw.com/">
+<meta property="og:title" content="Think BIG ｜ 台灣 AI 自動化顧問 ｜ AI Agent 安裝與企業導入">
+<meta property="og:description" content="台灣 AI 自動化顧問公司。OpenClaw、Hermes AI Agent 安裝、企業 AI 導入、AI Agent ERP 與個人 AI 助理搭建。會做事的 AI，不是會講話的 AI。">
+<meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
+<meta property="og:locale" content="zh_TW">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Think BIG ｜ 台灣 AI 自動化顧問 ｜ AI Agent 安裝與企業導入">
+<meta name="twitter:description" content="台灣 AI 自動化顧問公司。AI Agent 安裝、企業 AI 導入、AI Agent ERP 與個人 AI 助理搭建。會做事的 AI，不是會講話的 AI。">
+<meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
+<meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --red:#e8422a;
-  --red-glow:rgba(232,66,42,0.6);
-  --bg:#080808;
-  --white:#f0f0f0;
-  --mono:'Azeret Mono',monospace;
+  --bg:#ffffff;
+  --ink:#1a1a1a;
+  --gray:#f0f0f0;
+  --pink:#f8c8d8;
+  --mono:'Space Mono',monospace;
   --tc:'Noto Sans TC',sans-serif;
 }
-html,body{
-  width:100%;height:100vh;overflow:hidden;
-  background:var(--bg);color:var(--white);
-  font-family:var(--mono);
-  cursor:crosshair;
-  -webkit-font-smoothing:antialiased;
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* ===== 主視覺 HERO ===== */
+.tb-hero{background:#ffffff;min-height:100vh;display:flex;flex-direction:column;padding:24px 40px;position:relative;overflow:hidden;font-family:var(--mono)}
+.tb-topbar{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:flex-start;width:100%;gap:20px}
+.tb-funcbar{display:flex;gap:28px;flex-wrap:wrap}
+.tb-func{display:flex;flex-direction:column;text-decoration:none;padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
+.tb-func .zh{font-family:var(--tc);font-weight:700;font-size:15px;color:#1a1a1a;line-height:1.3}
+.tb-func .en{font-family:var(--mono);font-size:11px;color:#999;letter-spacing:1px;margin-top:2px}
+.tb-func:hover{border-bottom-color:var(--red)}
+.tb-func:hover .zh{color:var(--red)}
+.tb-brand{text-align:right;flex-shrink:0}
+.tb-brand-main{font-family:var(--mono);font-weight:700;font-size:22px;color:#1a1a1a;line-height:1}
+.tb-brand-main .hl{color:var(--red)}
+.tb-brand-sub{font-family:var(--mono);font-size:13px;color:#666;margin-top:4px;letter-spacing:1px}
+.tb-brand-co{font-family:var(--tc);font-size:11px;color:#aaa;margin-top:4px}
+/* 上層：slogan 文字浮在影片之上 */
+.tb-hero-body{position:relative;z-index:3;flex:1;display:flex;align-items:center;justify-content:flex-start;width:100%;max-width:1280px;margin:0 auto;pointer-events:none}
+.tb-slogan{flex:0 0 auto;max-width:42%;min-width:0;text-align:left;padding-left:10px}
+.tb-slogan-zh{font-family:var(--tc);font-weight:900;font-size:clamp(30px,4.4vw,56px);color:#1a1a1a;line-height:1.22;letter-spacing:1px}
+.tb-slogan-en{font-family:var(--mono);font-weight:700;font-size:clamp(13px,1.6vw,20px);color:var(--red);margin-top:18px;line-height:1.4;letter-spacing:1px}
+/* 下層：影片全畫面背景，放大置中，四周羽化融入白底 */
+.tb-video-wrap{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.tb-video{
+  width:100%;height:100%;
+  object-fit:cover;
+  border:none;border-radius:0;box-shadow:none;background:transparent;
+  transform:scale(1.04);
+  -webkit-mask-image:radial-gradient(ellipse 82% 82% at center,#000 66%,transparent 100%);
+  mask-image:radial-gradient(ellipse 82% 82% at center,#000 66%,transparent 100%);
 }
 
-/* ── LOADING ── */
-#loader{
-  position:fixed;inset:0;z-index:9999;
-  background:var(--bg);
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  transition:opacity 1s ease, visibility 1s ease;
-}
-#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-#loader .logo-text{
-  font-family:var(--mono);font-size:clamp(2rem,5vw,3.5rem);
-  font-weight:800;letter-spacing:0.15em;text-transform:uppercase;
-}
-#loader .logo-text span{color:var(--red)}
-#loader .sub{
-  font-size:0.7rem;letter-spacing:0.35em;
-  margin-top:12px;opacity:0.4;text-transform:uppercase;
-}
-#loader .bar-wrap{
-  width:180px;height:1px;background:rgba(255,255,255,0.08);
-  margin-top:28px;overflow:hidden;
-}
-#loader .bar-fill{width:0%;height:100%;background:var(--red);transition:width 0.3s ease}
-
-/* ── CANVAS ── */
-#canvas3d{position:fixed;inset:0;z-index:1}
-
-/* ── NAV ── */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:28px 44px;
-  pointer-events:none;
-}
-#nav>*{pointer-events:auto}
-#nav .slogan{
-  font-size:clamp(0.55rem,1vw,0.72rem);
-  font-weight:700;letter-spacing:0.22em;text-transform:uppercase;
-}
-#nav .slogan span{color:var(--red)}
-#nav .links{display:flex;gap:28px}
-#nav .links a{
-  font-size:0.58rem;font-weight:500;
-  letter-spacing:0.18em;text-transform:uppercase;
-  color:rgba(240,240,240,0.6);text-decoration:none;
-  position:relative;transition:color 0.3s ease;
-  padding:4px 0;
-}
-#nav .links a::after{
-  content:'';position:absolute;bottom:0;left:0;
-  width:0;height:1px;background:var(--red);
-  transition:width 0.4s cubic-bezier(0.25,1,0.5,1);
-}
-#nav .links a:hover{color:var(--white)}
-#nav .links a:hover::after{width:100%}
-/* Tooltip */
-#nav .links a .tip{
-  position:absolute;top:calc(100% + 10px);left:50%;
-  transform:translateX(-50%) translateY(4px);
-  font-family:var(--tc);font-size:0.62rem;
-  font-weight:400;letter-spacing:0.02em;
-  text-transform:none;white-space:nowrap;
-  color:var(--white);background:rgba(20,20,20,0.92);
-  border:1px solid rgba(232,66,42,0.25);
-  padding:6px 12px;border-radius:4px;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.3s ease, transform 0.3s ease;
-  backdrop-filter:blur(8px);
-}
-#nav .links a:hover .tip{
-  opacity:1;transform:translateX(-50%) translateY(0);
+@media(max-width:768px){
+  .tb-hero{padding:16px 18px;min-height:100vh}
+  .tb-topbar{order:1;flex-direction:column;align-items:center;gap:16px}
+  .tb-funcbar{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;width:100%;justify-items:center}
+  .tb-func{align-items:center;text-align:center}
+  .tb-func .zh{font-size:14px}
+  .tb-brand{text-align:center}
+  .tb-hero-body{order:2;flex-direction:column;justify-content:center;gap:20px;pointer-events:auto}
+  .tb-slogan{flex:none;max-width:100%;text-align:center}
+  .tb-slogan-zh{font-size:30px}
+  .tb-slogan-en{font-size:15px}
+  .tb-video-wrap{order:3;position:static;inset:auto;width:100%;z-index:auto}
+  .tb-video{width:100%;max-width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transform:none;-webkit-mask-image:none;mask-image:none;-webkit-clip-path:inset(0.8%);clip-path:inset(0.8%)}
 }
 
-/* ── HERO ── */
-#hero{
-  position:fixed;z-index:10;
-  bottom:12%;left:50%;transform:translateX(-50%);
-  text-align:center;pointer-events:none;
-  opacity:0;animation:fadeInUp 1.2s ease 0.5s forwards;
-}
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateX(-50%) translateY(30px)}
-  to{opacity:1;transform:translateX(-50%) translateY(0)}
-}
-#hero h1{
-  font-family:var(--mono);
-  font-size:clamp(3rem,9vw,8rem);
-  font-weight:900;letter-spacing:0.06em;
-  text-transform:uppercase;line-height:0.9;
-  text-shadow:0 0 80px rgba(232,66,42,0.15);
-}
-#hero h1 .big{color:var(--red)}
-#hero .tagline{
-  font-size:clamp(0.55rem,1vw,0.72rem);
-  letter-spacing:0.4em;text-transform:uppercase;
-  margin-top:20px;opacity:0.35;font-weight:300;
-}
-#hero .hero-cta-zh{
-  font-family:var(--tc);
-  font-size:clamp(1rem,3.4vw,1.6rem);
-  font-weight:500;letter-spacing:0.05em;
-  margin-top:14px;opacity:0.92;
-  color:#fff;line-height:1.4;
-  text-shadow:0 0 30px rgba(232,66,42,0.4);
-  white-space:nowrap;
-}
-#hero .hero-cta-zh b{color:var(--red);font-weight:700}
-
-/* ── HOLD/SPEED ── */
-#hold-indicator{
-  position:fixed;bottom:32px;left:50%;
-  transform:translateX(-50%);z-index:10;
-  font-size:0.5rem;letter-spacing:0.3em;
-  text-transform:uppercase;opacity:0.2;
-  transition:all 0.4s ease;pointer-events:none;
-}
-#hold-indicator.active{opacity:0.8;color:var(--red);letter-spacing:0.5em}
-#speed-display{
-  position:fixed;bottom:32px;right:44px;z-index:10;
-  font-size:0.5rem;letter-spacing:0.15em;
-  font-variant-numeric:tabular-nums;opacity:0.2;
-}
-
-/* ── CORNER MARKS ── */
-.corner{position:fixed;z-index:10;width:20px;height:20px;opacity:0.1}
-.corner-tl{top:16px;left:16px;border-top:1px solid var(--white);border-left:1px solid var(--white)}
-.corner-tr{top:16px;right:16px;border-top:1px solid var(--white);border-right:1px solid var(--white)}
-.corner-bl{bottom:16px;left:16px;border-bottom:1px solid var(--white);border-left:1px solid var(--white)}
-.corner-br{bottom:16px;right:16px;border-bottom:1px solid var(--white);border-right:1px solid var(--white)}
-
-/* ── DITHER + SCANLINES ── */
-#dither-overlay{
-  position:fixed;inset:0;z-index:2;pointer-events:none;
-  mix-blend-mode:overlay;opacity:0.06;
-  background-image:url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1' height='1' fill='white'/%3E%3Crect x='2' y='2' width='1' height='1' fill='white'/%3E%3C/svg%3E");
-  background-size:4px 4px;
-}
-#scanlines{
-  position:fixed;inset:0;z-index:3;pointer-events:none;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.02) 2px,rgba(0,0,0,0.02) 4px);
-}
-
-/* ── AI AGENT BUTTON ── */
-#ai-agent-btn{
-  position:fixed;bottom:28px;right:28px;z-index:200;
-  padding:14px 22px;border-radius:30px;
-  background:linear-gradient(135deg,#0a0a0a 0%,#1a1a1a 100%);
-  border:1px solid rgba(232,66,42,0.6);
-  cursor:pointer;overflow:visible;
-  transition:transform 0.3s ease,box-shadow 0.3s ease;
-  display:flex;align-items:center;gap:10px;
-  box-shadow:0 0 20px rgba(232,66,42,0.3), inset 0 0 12px rgba(232,66,42,0.15);
-  font-family:var(--mono);
-}
-#ai-agent-btn:hover{transform:scale(1.06);box-shadow:0 0 40px rgba(232,66,42,0.6), inset 0 0 16px rgba(232,66,42,0.25)}
-#ai-agent-btn .pulse{
-  position:absolute;inset:0;border-radius:30px;
-  border:1px solid var(--red);animation:pulse-ring 2.5s ease-out infinite;
-}
+/* ===== AI AGENT 浮動鈕 (亮色) ===== */
+#ai-agent-btn{position:fixed;bottom:28px;right:28px;z-index:200;padding:14px 22px;border-radius:30px;background:linear-gradient(135deg,#e8422a 0%,#ff6b4a 100%);border:none;cursor:pointer;overflow:visible;transition:transform .3s ease,box-shadow .3s ease;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(232,66,42,0.3);font-family:var(--mono)}
+#ai-agent-btn:hover{transform:scale(1.06);box-shadow:0 12px 32px rgba(232,66,42,0.45)}
+#ai-agent-btn .pulse{position:absolute;inset:0;border-radius:30px;border:1px solid var(--red);animation:pulse-ring 2.5s ease-out infinite}
 #ai-agent-btn .pulse-2{animation-delay:1.25s}
-@keyframes pulse-ring{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.15);opacity:0}}
-#ai-agent-btn .btn-dot{
-  width:8px;height:8px;border-radius:50%;background:var(--red);
-  box-shadow:0 0 8px var(--red);
-  animation:dotPulse 1.5s ease-in-out infinite;
-}
+@keyframes pulse-ring{0%{transform:scale(1);opacity:0.5}100%{transform:scale(1.15);opacity:0}}
+#ai-agent-btn .btn-dot{width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 8px rgba(255,255,255,0.8);animation:dotPulse 1.5s ease-in-out infinite}
 @keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
-#ai-agent-btn .btn-text{
-  color:#fff;font-size:0.72rem;font-weight:700;
-  letter-spacing:0.2em;text-transform:uppercase;
-  white-space:nowrap;
-}
-#ai-agent-btn .btn-brand{
-  color:var(--red);font-size:0.55rem;font-weight:500;
-  letter-spacing:0.18em;text-transform:uppercase;
-  white-space:nowrap;
-  border-left:1px solid rgba(232,66,42,0.3);
-  padding-left:10px;
-}
+#ai-agent-btn .btn-text{color:#fff;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap}
+#ai-agent-btn .btn-brand{color:rgba(255,255,255,0.85);font-size:0.55rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.4);padding-left:10px}
 
-/* ── AI CHAT FULLSCREEN ── */
-#ai-chat{
-  position:fixed;inset:0;z-index:300;
-  background:radial-gradient(ellipse at center, rgba(15,8,5,0.75) 0%, rgba(0,0,0,0.92) 70%, rgba(0,0,0,0.98) 100%);
-  backdrop-filter:blur(28px) saturate(180%);
-  -webkit-backdrop-filter:blur(28px) saturate(180%);
-  display:none;flex-direction:column;
-  animation:chatFadeIn 0.4s cubic-bezier(0.16,1,0.3,1);
-}
-@keyframes chatFadeIn{from{opacity:0;backdrop-filter:blur(0px)}to{opacity:1;backdrop-filter:blur(28px) saturate(180%)}}
+/* ===== AI CHAT 全螢幕 (亮色) ===== */
+#ai-chat{position:fixed;inset:0;z-index:300;background:rgba(255,255,255,0.96);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);display:none;flex-direction:column;animation:chatFadeIn 0.4s cubic-bezier(0.16,1,0.3,1)}
+@keyframes chatFadeIn{from{opacity:0}to{opacity:1}}
 #ai-chat.open{display:flex}
-#ai-chat .chat-header{
-  padding:20px 32px;border-bottom:1px solid rgba(232,66,42,0.12);
-  display:flex;align-items:center;justify-content:space-between;
-  background:linear-gradient(180deg,rgba(232,66,42,0.04) 0%,transparent 100%);
-}
+#ai-chat .chat-header{padding:20px 32px;border-bottom:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(232,66,42,0.04) 0%,transparent 100%)}
 #ai-chat .chat-header .agent-info{display:flex;align-items:center;gap:14px}
-#ai-chat .chat-header .agent-avatar{
-  width:42px;height:42px;border-radius:50%;
-  background:linear-gradient(135deg,var(--red) 0%,#ff6b4a 50%,#ffaa80 100%);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:1rem;font-weight:800;color:#fff;
-  box-shadow:0 0 24px rgba(232,66,42,0.5), inset 0 0 8px rgba(255,255,255,0.2);
-  animation:avatarGlow 3s ease-in-out infinite;
-}
-@keyframes avatarGlow{0%,100%{box-shadow:0 0 24px rgba(232,66,42,0.5), inset 0 0 8px rgba(255,255,255,0.2)}50%{box-shadow:0 0 36px rgba(232,66,42,0.8), inset 0 0 12px rgba(255,255,255,0.3)}}
-#ai-chat .chat-header .agent-name{font-family:var(--mono);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#fff;line-height:1}
-#ai-chat .chat-header .agent-tagline{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;color:rgba(232,66,42,0.8);margin-top:4px;text-transform:uppercase}
-#ai-chat .chat-header .status{font-family:var(--mono);font-size:0.55rem;opacity:0.5;display:flex;align-items:center;gap:6px;margin-top:3px;letter-spacing:0.15em}
-#ai-chat .chat-header .status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:statusPulse 2s ease-in-out infinite}
+#ai-chat .chat-header .agent-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--red) 0%,#ff6b4a 50%,#ffaa80 100%);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1rem;font-weight:800;color:#fff;box-shadow:0 4px 16px rgba(232,66,42,0.35);animation:avatarGlow 3s ease-in-out infinite}
+@keyframes avatarGlow{0%,100%{box-shadow:0 4px 16px rgba(232,66,42,0.35)}50%{box-shadow:0 6px 24px rgba(232,66,42,0.55)}}
+#ai-chat .chat-header .agent-name{font-family:var(--mono);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#1a1a1a;line-height:1}
+#ai-chat .chat-header .agent-tagline{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;color:var(--red);margin-top:4px;text-transform:uppercase}
+#ai-chat .chat-header .status{font-family:var(--mono);font-size:0.55rem;color:#888;display:flex;align-items:center;gap:6px;margin-top:3px;letter-spacing:0.15em}
+#ai-chat .chat-header .status::before{content:'';width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:statusPulse 2s ease-in-out infinite}
 @keyframes statusPulse{0%,100%{opacity:1}50%{opacity:0.4}}
 #ai-chat .chat-header .header-right{display:flex;align-items:center;gap:14px}
-#ai-chat .chat-header .powered-by{
-  font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);
-  letter-spacing:0.15em;text-transform:uppercase;
-  padding:6px 12px;border:1px solid rgba(255,255,255,0.08);border-radius:30px;
-}
+#ai-chat .chat-header .powered-by{font-family:var(--mono);font-size:0.55rem;color:#999;letter-spacing:0.15em;text-transform:uppercase;padding:6px 12px;border:1px solid rgba(0,0,0,0.1);border-radius:30px}
 #ai-chat .chat-header .powered-by b{color:var(--red);font-weight:600}
-#ai-chat .chat-header .close-btn{
-  width:36px;height:36px;border-radius:50%;
-  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);
-  cursor:pointer;font-size:1.1rem;color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;
-}
-#ai-chat .chat-header .close-btn:hover{background:rgba(232,66,42,0.15);border-color:rgba(232,66,42,0.4)}
-
-#ai-chat .chat-body{
-  flex:1;overflow-y:auto;
-  padding:32px max(48px, 5vw);
-  display:flex;flex-direction:column;gap:16px;
-  max-width:1000px;width:100%;margin:0 auto;
-}
+#ai-chat .chat-header .close-btn{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.08);cursor:pointer;font-size:1.1rem;color:#1a1a1a;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+#ai-chat .chat-header .close-btn:hover{background:rgba(232,66,42,0.12);border-color:rgba(232,66,42,0.4)}
+#ai-chat .chat-body{flex:1;overflow-y:auto;padding:32px max(48px,5vw);display:flex;flex-direction:column;gap:16px;max-width:1000px;width:100%;margin:0 auto}
 #ai-chat .chat-body::-webkit-scrollbar{width:4px}
 #ai-chat .chat-body::-webkit-scrollbar-thumb{background:rgba(232,66,42,0.3);border-radius:2px}
 #ai-chat .chat-body::-webkit-scrollbar-track{background:transparent}
-
-/* Hero welcome */
-#ai-chat .hero-welcome{
-  text-align:center;padding:60px 20px 40px;animation:heroIn 0.6s ease 0.2s both;
-}
+#ai-chat .hero-welcome{text-align:center;padding:60px 20px 40px;animation:heroIn 0.6s ease 0.2s both}
 @keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-#ai-chat .hero-welcome .hero-icon{
-  width:80px;height:80px;border-radius:50%;margin:0 auto 24px;
-  background:radial-gradient(circle, var(--red) 0%, transparent 70%);
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.5rem;animation:heroIconFloat 3s ease-in-out infinite;
-}
+#ai-chat .hero-welcome .hero-icon{width:80px;height:80px;border-radius:50%;margin:0 auto 24px;background:radial-gradient(circle,rgba(232,66,42,0.18) 0%,transparent 70%);display:flex;align-items:center;justify-content:center;font-size:2.5rem;animation:heroIconFloat 3s ease-in-out infinite}
 @keyframes heroIconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-#ai-chat .hero-welcome h2{
-  font-family:var(--mono);font-size:1.6rem;font-weight:300;letter-spacing:0.05em;
-  background:linear-gradient(135deg,#fff 0%,var(--red) 50%,#ff6b4a 100%);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  margin-bottom:12px;
-}
-#ai-chat .hero-welcome p{
-  font-family:var(--tc);font-size:0.9rem;color:rgba(255,255,255,0.5);
-  line-height:1.7;max-width:520px;margin:0 auto;
-}
-#ai-chat .quick-suggestions{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;
-  margin-top:40px;max-width:780px;margin-left:auto;margin-right:auto;
-}
-#ai-chat .quick-suggestions .qs{
-  text-align:left;padding:18px 20px;
-  background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:12px;
-  cursor:pointer;transition:all 0.25s;
-  display:flex;align-items:flex-start;gap:12px;
-}
-#ai-chat .quick-suggestions .qs:hover{
-  background:rgba(232,66,42,0.08);border-color:rgba(232,66,42,0.4);
-  transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,66,42,0.15);
-}
+#ai-chat .hero-welcome h2{font-family:var(--mono);font-size:1.6rem;font-weight:700;letter-spacing:0.05em;color:#1a1a1a;margin-bottom:12px}
+#ai-chat .hero-welcome p{font-family:var(--tc);font-size:0.9rem;color:#555;line-height:1.7;max-width:520px;margin:0 auto}
+#ai-chat .hero-welcome p strong{color:#1a1a1a !important}
+#ai-chat .quick-suggestions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:40px;max-width:780px;margin-left:auto;margin-right:auto}
+#ai-chat .quick-suggestions .qs{text-align:left;padding:18px 20px;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;cursor:pointer;transition:all 0.25s;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+#ai-chat .quick-suggestions .qs:hover{background:rgba(232,66,42,0.05);border-color:rgba(232,66,42,0.4);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,66,42,0.12)}
 #ai-chat .quick-suggestions .qs .qs-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
-#ai-chat .quick-suggestions .qs .qs-text{font-family:var(--tc);font-size:0.85rem;color:rgba(255,255,255,0.85);line-height:1.6}
-#ai-chat .quick-suggestions .qs .qs-text small{display:block;font-family:var(--mono);font-size:0.55rem;color:rgba(232,66,42,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
-
-/* Messages */
+#ai-chat .quick-suggestions .qs .qs-text{font-family:var(--tc);font-size:0.85rem;color:#333;line-height:1.6}
+#ai-chat .quick-suggestions .qs .qs-text small{display:block;font-family:var(--mono);font-size:0.55rem;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
 #ai-chat .msg-row{display:flex;gap:14px;align-items:flex-start;animation:msgIn 0.35s cubic-bezier(0.16,1,0.3,1)}
 @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 #ai-chat .msg-row.user{flex-direction:row-reverse}
-#ai-chat .msg-avatar{
-  width:32px;height:32px;border-radius:50%;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:0.65rem;font-weight:700;
-}
-#ai-chat .msg-row.bot .msg-avatar{background:linear-gradient(135deg,var(--red),#ff6b4a);color:#fff;box-shadow:0 0 12px rgba(232,66,42,0.4)}
-#ai-chat .msg-row.user .msg-avatar{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.1)}
-#ai-chat .msg{
-  font-family:var(--tc);font-size:0.92rem;
-  line-height:1.8;padding:14px 18px;border-radius:14px;max-width:680px;
-  white-space:pre-wrap;word-wrap:break-word;
-}
-#ai-chat .msg.bot{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.92)}
-#ai-chat .msg.user{background:linear-gradient(135deg,rgba(232,66,42,0.18) 0%,rgba(232,66,42,0.1) 100%);border:1px solid rgba(232,66,42,0.25);color:#fff}
+#ai-chat .msg-avatar{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.65rem;font-weight:700}
+#ai-chat .msg-row.bot .msg-avatar{background:linear-gradient(135deg,var(--red),#ff6b4a);color:#fff;box-shadow:0 2px 8px rgba(232,66,42,0.3)}
+#ai-chat .msg-row.user .msg-avatar{background:#f0f0f0;color:#666;border:1px solid rgba(0,0,0,0.08)}
+#ai-chat .msg{font-family:var(--tc);font-size:0.92rem;line-height:1.8;padding:14px 18px;border-radius:14px;max-width:680px;white-space:pre-wrap;word-wrap:break-word}
+#ai-chat .msg.bot{background:#f6f6f6;border:1px solid rgba(0,0,0,0.06);color:#1a1a1a}
+#ai-chat .msg.user{background:linear-gradient(135deg,rgba(232,66,42,0.12) 0%,rgba(232,66,42,0.06) 100%);border:1px solid rgba(232,66,42,0.25);color:#1a1a1a}
 #ai-chat .msg a{color:var(--red);text-decoration:underline}
 #ai-chat .msg .typing-dots{display:inline-flex;gap:4px}
 #ai-chat .msg .typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--red);animation:typing 1.4s ease-in-out infinite}
 #ai-chat .msg .typing-dots span:nth-child(2){animation-delay:0.2s}
 #ai-chat .msg .typing-dots span:nth-child(3){animation-delay:0.4s}
 @keyframes typing{0%,60%,100%{opacity:0.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
-
-/* Quick bar (persistent) */
 #ai-chat .quick-bar{display:flex;flex-wrap:nowrap;gap:10px;max-width:1000px;margin:0 auto 12px}
-#ai-chat .quick-bar .qchip{flex:1 1 0;min-width:0;text-align:left;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;cursor:pointer;transition:all 0.2s;font-family:var(--tc)}
-#ai-chat .quick-bar .qchip:hover{background:rgba(232,66,42,0.1);border-color:rgba(232,66,42,0.45);transform:translateY(-2px)}
-#ai-chat .quick-bar .qchip .qt{display:block;font-size:0.8rem;color:#fff;font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#ai-chat .quick-bar .qchip .qs2{display:block;font-family:var(--mono);font-size:0.5rem;color:rgba(232,66,42,0.85);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-/* Input area */
-#ai-chat .chat-input-wrap{
-  padding:20px max(48px, 5vw) 28px;
-  background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.6) 100%);
-  border-top:1px solid rgba(232,66,42,0.1);
-}
-#ai-chat .chat-input{
-  max-width:1000px;margin:0 auto;
-  display:flex;gap:10px;align-items:center;
-  background:rgba(255,255,255,0.04);
-  border:1px solid rgba(255,255,255,0.08);
-  border-radius:16px;padding:8px 8px 8px 20px;
-  transition:all 0.25s;
-}
-#ai-chat .chat-input:focus-within{
-  border-color:rgba(232,66,42,0.5);
-  box-shadow:0 0 0 4px rgba(232,66,42,0.08), 0 0 24px rgba(232,66,42,0.15);
-}
-#ai-chat .chat-input input{
-  flex:1;background:none;border:none;
-  color:#fff;font-family:var(--tc);font-size:0.95rem;
-  outline:none;padding:12px 0;
-}
-#ai-chat .chat-input input::placeholder{color:rgba(255,255,255,0.3)}
-#ai-chat .chat-input .send-btn{
-  width:44px;height:44px;border-radius:12px;
-  background:linear-gradient(135deg,var(--red),#ff6b4a);
-  border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;color:#fff;
-}
-#ai-chat .chat-input .send-btn:hover{transform:scale(1.08);box-shadow:0 0 20px rgba(232,66,42,0.5)}
+#ai-chat .quick-bar .qchip{flex:1 1 0;min-width:0;text-align:left;padding:10px 12px;background:#fff;border:1px solid rgba(0,0,0,0.1);border-radius:12px;cursor:pointer;transition:all 0.2s;font-family:var(--tc)}
+#ai-chat .quick-bar .qchip:hover{background:rgba(232,66,42,0.06);border-color:rgba(232,66,42,0.45);transform:translateY(-2px)}
+#ai-chat .quick-bar .qchip .qt{display:block;font-size:0.8rem;color:#1a1a1a;font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ai-chat .quick-bar .qchip .qs2{display:block;font-family:var(--mono);font-size:0.5rem;color:var(--red);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#ai-chat .chat-input-wrap{padding:20px max(48px,5vw) 28px;background:#fff;border-top:1px solid rgba(0,0,0,0.08)}
+#ai-chat .chat-input{max-width:1000px;margin:0 auto;display:flex;gap:10px;align-items:center;background:#f6f6f6;border:1px solid rgba(0,0,0,0.1);border-radius:16px;padding:8px 8px 8px 20px;transition:all 0.25s}
+#ai-chat .chat-input:focus-within{border-color:rgba(232,66,42,0.5);box-shadow:0 0 0 4px rgba(232,66,42,0.08)}
+#ai-chat .chat-input input{flex:1;background:none;border:none;color:#1a1a1a;font-family:var(--tc);font-size:0.95rem;outline:none;padding:12px 0}
+#ai-chat .chat-input input::placeholder{color:#999}
+#ai-chat .chat-input .send-btn{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--red),#ff6b4a);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:#fff}
+#ai-chat .chat-input .send-btn:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(232,66,42,0.4)}
 #ai-chat .chat-input .send-btn:disabled{opacity:0.3;cursor:not-allowed;transform:none}
 #ai-chat .chat-input .send-btn svg{width:18px;height:18px;fill:#fff}
-#ai-chat .chat-footer{
-  text-align:center;margin-top:12px;
-  font-family:var(--mono);font-size:0.55rem;
-  color:rgba(255,255,255,0.25);letter-spacing:0.15em;
-}
+#ai-chat .chat-footer{text-align:center;margin-top:12px;font-family:var(--mono);font-size:0.55rem;color:#999;letter-spacing:0.15em}
 #ai-chat .chat-footer a{color:var(--red);text-decoration:none}
 #ai-chat .chat-footer a:hover{text-decoration:underline}
 
-/* ── RESPONSIVE ── */
 @media(max-width:768px){
-  #nav{
-    padding:14px 16px;flex-direction:column;gap:6px;
-    align-items:center;
-  }
-  #nav .slogan{font-size:0.6rem;margin-bottom:2px}
-  #nav .links{
-    gap:0;flex-wrap:wrap;justify-content:center;
-    width:100%;
-  }
-  #nav .links a{
-    font-size:0.5rem;letter-spacing:0.1em;
-    padding:5px 10px;
-  }
-  #nav .links a .tip{display:none}
-  #hero{bottom:8%}
-  #hero h1{font-size:clamp(2.5rem,16vw,5rem)}
-  #hero .tagline{font-size:0.5rem;letter-spacing:0.25em}
-  #hero .hero-cta-zh{font-size:clamp(0.95rem,4.6vw,1.3rem);margin-top:10px}
-  #ai-chat{width:calc(100vw - 24px);right:12px;bottom:88px;height:55vh}
-  #ai-agent-btn{width:44px;height:44px;bottom:20px;right:20px}
   #ai-chat .quick-bar{flex-wrap:wrap}
   #ai-chat .quick-bar .qchip{flex:0 0 calc(50% - 5px);width:calc(50% - 5px)}
   #ai-chat .quick-bar .qchip .qt{white-space:normal}
-  #hold-indicator,#speed-display{display:none}
-  .corner{display:none}
+  #ai-agent-btn{bottom:20px;right:20px;padding:12px 18px}
 }
 </style>
-
 <!-- ═══ JSON-LD 結構化資料 (SEO/GEO · 給 Google 與 AI 爬蟲讀取) ═══ -->
 <script type="application/ld+json">
 {
@@ -422,7 +185,7 @@ html,body{
       "description": "Think BIG! 是台灣領先的 AI 自動化顧問公司，從 Day 1 就是 AI Native。提供 AI Agent ERP、MoneyRadar 智能看盤、企業 AI 導入、Harness Engineers 個人 AI 搭建四大服務。",
       "slogan": "Make it Real.",
       "foundingDate": "2025",
-      "founder": {"@type": "Person", "name": "吳御綸", "alternateName": "NEO Stanley Wu"},
+      "founder": {"@type": "Person", "name": "NEO.W"},
       "address": {"@type": "PostalAddress", "addressRegion": "新北市", "addressLocality": "板橋區", "addressCountry": "TW"},
       "areaServed": {"@type": "Country", "name": "Taiwan"},
       "knowsAbout": ["AI Agent", "企業自動化", "ERP系統", "OpenClaw", "Claude", "RAG", "工作流程自動化"],
@@ -480,44 +243,36 @@ html,body{
 </head>
 <body>
 
-<!-- LOADING -->
-<div id="loader">
-  <div class="logo-text">Think <span>BIG!</span></div>
-  <div class="sub">Make it Real.</div>
-  <div class="bar-wrap"><div class="bar-fill" id="load-bar"></div></div>
-</div>
-
-<div id="dither-overlay"></div>
-<div id="scanlines"></div>
-<div class="corner corner-tl"></div>
-<div class="corner corner-tr"></div>
-<div class="corner corner-bl"></div>
-<div class="corner corner-br"></div>
-
-<!-- NAV — 四個業務 -->
-<nav id="nav">
-  <div class="slogan">Think <span>BIG!</span> Make it Real.</div>
-  <div class="links">
-    <a href="/lab/" target="_blank">MoneyRadar<span class="tip">全球頂尖 AI 看盤神器</span></a>
-    <a href="/enterprise/" target="_blank">Enterprise<span class="tip">企業化 AI Agent 系統導入</span></a>
-    <a href="/harness/" target="_blank">Harness Engineers<span class="tip">個人 AI Agent 搭建</span></a>
-    <a href="/erp/" target="_blank">AI ERP<span class="tip">AI Agent ＋ ERP 訂制</span></a>
+<!-- ===== 主視覺 HERO ===== -->
+<section class="tb-hero">
+  <div class="tb-video-wrap">
+    <video class="tb-video" autoplay loop muted playsinline preload="auto" poster="/assets/neo_hero_wide_poster.jpg">
+      <source src="/assets/neo_hero_wide.mp4" type="video/mp4">
+    </video>
   </div>
-</nav>
+  <header class="tb-topbar">
+    <nav class="tb-funcbar">
+      <a href="/lab/" class="tb-func"><span class="zh">股市神器</span><span class="en">MoneyRadar</span></a>
+      <a href="/enterprise/" class="tb-func"><span class="zh">企業 AI 導入</span><span class="en">Enterprise</span></a>
+      <a href="/harness/" class="tb-func"><span class="zh">個人 AI 助理</span><span class="en">Harness Engineers</span></a>
+      <a href="/erp/" class="tb-func"><span class="zh">AI 企業資源規劃系統</span><span class="en">AI ERP</span></a>
+    </nav>
+    <div class="tb-brand">
+      <div class="tb-brand-main">THINK <span class="hl">BIG!</span></div>
+      <div class="tb-brand-sub">Make it Real</div>
+      <div class="tb-brand-co">大想成業有限公司</div>
+    </div>
+  </header>
 
-<!-- CANVAS -->
-<canvas id="canvas3d"></canvas>
+  <div class="tb-hero-body">
+    <div class="tb-slogan">
+      <div class="tb-slogan-zh">現在就讓<br>AI 開始<br>為你工作</div>
+      <div class="tb-slogan-en">Put AI to Work<br>for You — Today</div>
+    </div>
+  </div>
+</section>
 
-<!-- HERO -->
-<div id="hero">
-  <h1>Think<br><span class="big">BIG!</span></h1>
-  <div class="tagline">AI Automation &mdash; Make it Real</div>
-  <div class="hero-cta-zh">現在，讓 <b>AI</b> 開始為你工作</div>
-</div>
-
-<div id="hold-indicator">[ Hold to accelerate ]</div>
-<div id="speed-display">1.00x</div>
-
+<!-- AI AGENT 浮動鈕 + 聊天視窗 (功能保留，亮色版) -->
 <!-- AI AGENT -->
 <div id="ai-agent-btn" onclick="toggleChat()">
   <div class="pulse"></div>
@@ -574,469 +329,6 @@ html,body{
     </div>
   </div>
 </div>
-
-<!-- THREE.JS -->
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdnjs.cloudflare.com/ajax/libs/three.js/0.170.0/three.module.min.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-  }
-}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { ShaderPass } from 'three/addons/postprocessing/ShaderPass.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
-import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
-
-const RED = new THREE.Color(0xe8422a);
-const RED_DIM = new THREE.Color(0x5a1a10);
-const BG = new THREE.Color(0x080808);
-const PARTICLE_COUNT = 4000;
-
-// ── RENDERER ──
-const canvas = document.getElementById('canvas3d');
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setClearColor(BG);
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 2.8;
-
-const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(BG, 0.018);
-
-const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
-camera.position.set(0, 1.2, 5.5);
-camera.lookAt(0, 0.6, 0);
-
-// ── LIGHTING ──
-scene.add(new THREE.AmbientLight(0x888888, 3));
-
-const keyLight = new THREE.DirectionalLight(0xffffff, 5);
-keyLight.position.set(3, 4, 4);
-scene.add(keyLight);
-
-const redPoint = new THREE.PointLight(RED, 6, 18);
-redPoint.position.set(-2, 2, 3);
-scene.add(redPoint);
-
-const redPoint2 = new THREE.PointLight(RED, 4, 14);
-redPoint2.position.set(2, -0.5, 2);
-scene.add(redPoint2);
-
-const rimLight = new THREE.DirectionalLight(0x661a1a, 2.5);
-rimLight.position.set(-3, 1, -3);
-scene.add(rimLight);
-
-const topLight = new THREE.PointLight(0xffffff, 2, 15);
-topLight.position.set(0, 5, 0);
-scene.add(topLight);
-
-// Front fill light
-const fillLight = new THREE.DirectionalLight(0xffffff, 3);
-fillLight.position.set(0, 2, 5);
-scene.add(fillLight);
-
-// ── ROBOT MODEL ──
-let robotGroup = null;
-let robotReady = false;
-
-const gltfLoader = new GLTFLoader();
-gltfLoader.setMeshoptDecoder(MeshoptDecoder);
-
-// Progress for loading bar
-const loadBar = document.getElementById('load-bar');
-const loader = document.getElementById('loader');
-let modelLoaded = false;
-
-gltfLoader.load(
-  './v2/robot.glb',
-  (gltf) => {
-    robotGroup = gltf.scene;
-    
-    // Calculate bounding box to center and scale
-    const box = new THREE.Box3().setFromObject(robotGroup);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
-    
-    // Scale to ~3 units tall
-    const targetHeight = 3;
-    const scale = targetHeight / size.y;
-    robotGroup.scale.setScalar(scale);
-    
-    // Center horizontally, stand on ground
-    robotGroup.position.x = -center.x * scale;
-    robotGroup.position.y = (-box.min.y * scale) - 1.1;
-    robotGroup.position.z = -center.z * scale;
-    
-    // Enhance materials for better look in dark scene
-    robotGroup.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        if (child.material) {
-          child.material.envMapIntensity = 1.5;
-        }
-      }
-    });
-
-    scene.add(robotGroup);
-    robotReady = true;
-    modelLoaded = true;
-    
-    // Hide loader
-    loadBar.style.width = '100%';
-    setTimeout(() => loader.classList.add('hidden'), 600);
-  },
-  (progress) => {
-    if (progress.total > 0) {
-      const pct = (progress.loaded / progress.total) * 90;
-      loadBar.style.width = pct + '%';
-    }
-  },
-  (error) => {
-    console.warn('GLB failed, using placeholder:', error);
-    createPlaceholder();
-    modelLoaded = true;
-    loadBar.style.width = '100%';
-    setTimeout(() => loader.classList.add('hidden'), 600);
-  }
-);
-
-// Fallback placeholder
-function createPlaceholder() {
-  robotGroup = new THREE.Group();
-  const bMat = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, metalness: 0.8, roughness: 0.3 });
-  const gMat = new THREE.MeshStandardMaterial({ color: RED, emissive: RED, emissiveIntensity: 2 });
-  
-  const head = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.5, 0.6), bMat);
-  head.position.y = 2.0;
-  const eyeL = new THREE.Mesh(new THREE.SphereGeometry(0.07, 8, 8), gMat);
-  eyeL.position.set(-0.16, 2.05, 0.31);
-  const eyeR = eyeL.clone(); eyeR.position.x = 0.16;
-  const body = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.7, 0.5), bMat);
-  body.position.y = 1.3;
-  const chestGlow = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.35), gMat);
-  chestGlow.position.set(0, 1.35, 0.26);
-  const armL = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.6, 8), bMat);
-  armL.position.set(-0.52, 1.3, 0); armL.rotation.z = 0.12;
-  const armR = armL.clone(); armR.position.x = 0.52; armR.rotation.z = -0.12;
-  const legL = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.08, 0.7, 8), bMat);
-  legL.position.set(-0.2, 0.5, 0);
-  const legR = legL.clone(); legR.position.x = 0.2;
-  const ant = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.25, 6), bMat);
-  ant.position.set(0, 2.38, 0);
-  const antBall = new THREE.Mesh(new THREE.SphereGeometry(0.04, 8, 8), gMat);
-  antBall.position.set(0, 2.52, 0);
-  
-  robotGroup.add(head, eyeL, eyeR, body, chestGlow, armL, armR, legL, legR, ant, antBall);
-  robotGroup.position.y = -1.1;
-  scene.add(robotGroup);
-  robotReady = true;
-}
-
-// Timeout fallback
-setTimeout(() => {
-  if (!modelLoaded) {
-    createPlaceholder();
-    modelLoaded = true;
-    loadBar.style.width = '100%';
-    setTimeout(() => loader.classList.add('hidden'), 400);
-  }
-}, 8000);
-
-// ── METEOR STREAKS (5000 shooting stars — single draw call for performance) ──
-const METEOR_COUNT = 5000;
-const meteorColors = [
-  [0.91, 0.26, 0.16], // red
-  [0.91, 0.26, 0.16], // red (more)
-  [0.91, 0.26, 0.16], // red (even more — brand dominant)
-  [0.0, 0.9, 1.0],    // cyan
-  [1.0, 0.0, 0.67],   // magenta
-  [1.0, 0.67, 0.0],   // gold
-  [0.27, 0.4, 1.0],   // blue
-  [1.0, 1.0, 1.0],    // white
-  [1.0, 0.4, 0.27],   // orange
-  [0.27, 1.0, 0.67],  // green
-];
-
-const meteorData = [];
-const mPositions = new Float32Array(METEOR_COUNT * 6); // 2 verts × 3 coords
-const mColors = new Float32Array(METEOR_COUNT * 6);
-
-for (let i = 0; i < METEOR_COUNT; i++) {
-  const col = meteorColors[Math.floor(Math.random() * meteorColors.length)];
-  const tailLen = THREE.MathUtils.randFloat(0.2, 1.8);
-  
-  // Direction: mostly Z-forward with slight spread
-  const dirX = THREE.MathUtils.randFloat(-0.2, 0.2);
-  const dirY = THREE.MathUtils.randFloat(-0.15, 0.15);
-  const dirZ = -1;
-  const len = Math.sqrt(dirX*dirX + dirY*dirY + dirZ*dirZ);
-  const dx = dirX/len, dy = dirY/len, dz = dirZ/len;
-  
-  const sx = THREE.MathUtils.randFloat(-16, 16);
-  const sy = THREE.MathUtils.randFloat(-10, 10);
-  const sz = THREE.MathUtils.randFloat(-25, 10);
-  
-  // Head vertex
-  const idx = i * 6;
-  mPositions[idx] = sx; mPositions[idx+1] = sy; mPositions[idx+2] = sz;
-  mColors[idx] = col[0]; mColors[idx+1] = col[1]; mColors[idx+2] = col[2];
-  // Tail vertex
-  mPositions[idx+3] = sx + dx*tailLen;
-  mPositions[idx+4] = sy + dy*tailLen;
-  mPositions[idx+5] = sz + dz*tailLen;
-  mColors[idx+3] = col[0]*0.05; mColors[idx+4] = col[1]*0.05; mColors[idx+5] = col[2]*0.05;
-  
-  meteorData.push({
-    sx, sy, sz, dx, dy, dz, tailLen,
-    speed: THREE.MathUtils.randFloat(2, 14),
-    twinkleSpd: THREE.MathUtils.randFloat(2, 15),
-    twinkleOff: Math.random() * Math.PI * 2,
-    baseAlpha: THREE.MathUtils.randFloat(0.3, 1.0),
-    col,
-  });
-}
-
-const meteorGeo = new THREE.BufferGeometry();
-meteorGeo.setAttribute('position', new THREE.BufferAttribute(mPositions, 3));
-meteorGeo.setAttribute('color', new THREE.BufferAttribute(mColors, 3));
-
-const meteorMat = new THREE.LineBasicMaterial({
-  vertexColors: true,
-  transparent: true,
-  opacity: 0.9,
-  blending: THREE.AdditiveBlending,
-  depthWrite: false,
-});
-const meteorMesh = new THREE.LineSegments(meteorGeo, meteorMat);
-scene.add(meteorMesh);
-
-// Background sparkle points (small, multicolor, twinkling)
-const bgCount = 1500;
-const bgGeo = new THREE.BufferGeometry();
-const bgPos = new Float32Array(bgCount * 3);
-const bgSizes = new Float32Array(bgCount);
-for (let i = 0; i < bgCount; i++) {
-  bgPos[i*3] = (Math.random()-0.5)*30;
-  bgPos[i*3+1] = (Math.random()-0.5)*20;
-  bgPos[i*3+2] = (Math.random()-0.5)*30;
-  bgSizes[i] = Math.random()*2+0.5;
-}
-bgGeo.setAttribute('position', new THREE.BufferAttribute(bgPos, 3));
-bgGeo.setAttribute('aSize', new THREE.BufferAttribute(bgSizes, 1));
-
-const bgMat = new THREE.ShaderMaterial({
-  transparent:true, depthWrite:false, blending:THREE.AdditiveBlending,
-  uniforms:{uTime:{value:0},uSpeed:{value:1}},
-  vertexShader:`
-    attribute float aSize;
-    uniform float uTime, uSpeed;
-    varying float vAlpha;
-    varying vec3 vColor;
-    void main(){
-      vec3 p=position;
-      float spd = uTime * 1.2 * uSpeed;
-      p.y+=sin(spd+p.x*0.3)*0.5;
-      p.x+=cos(spd*0.7+p.z*0.2)*0.3;
-      vec4 mv=modelViewMatrix*vec4(p,1.0);
-      gl_PointSize=aSize*(60.0/-mv.z);
-      vAlpha = smoothstep(25.0, 5.0, -mv.z) * 0.5;
-      float h = fract(sin(dot(position.xz, vec2(12.9898,78.233))) * 43758.5453);
-      float twinkle = sin(uTime * (3.0 + h * 5.0) + h * 6.28) * 0.5 + 0.5;
-      vAlpha *= 0.3 + twinkle * 0.7;
-      if(h < 0.25) vColor = vec3(0.91, 0.26, 0.16);
-      else if(h < 0.4) vColor = vec3(0.0, 0.9, 1.0);
-      else if(h < 0.55) vColor = vec3(1.0, 0.0, 0.67);
-      else if(h < 0.7) vColor = vec3(1.0, 0.67, 0.0);
-      else if(h < 0.85) vColor = vec3(0.27, 0.4, 1.0);
-      else vColor = vec3(1.0, 1.0, 1.0);
-      gl_Position=projectionMatrix*mv;
-    }`,
-  fragmentShader:`
-    varying float vAlpha; varying vec3 vColor;
-    void main(){
-      float d=length(gl_PointCoord-0.5);
-      if(d>0.5)discard;
-      float a=smoothstep(0.5,0.0,d)*vAlpha;
-      gl_FragColor=vec4(vColor,a);
-    }`,
-});
-scene.add(new THREE.Points(bgGeo, bgMat));
-
-// ── GROUND GRID ──
-const grid = new THREE.GridHelper(24, 48, RED_DIM, new THREE.Color(0x111111));
-grid.position.y = -0.3;
-grid.material.transparent = true;
-grid.material.opacity = 0.2;
-scene.add(grid);
-
-// ── POST-PROCESSING ──
-const composer = new EffectComposer(renderer);
-composer.addPass(new RenderPass(scene, camera));
-
-const bloom = new UnrealBloomPass(
-  new THREE.Vector2(window.innerWidth, window.innerHeight), 0.7, 0.3, 0.9
-);
-composer.addPass(bloom);
-
-const DitherShader = {
-  uniforms:{
-    tDiffuse:{value:null},
-    uRes:{value:new THREE.Vector2(window.innerWidth,window.innerHeight)},
-    uTime:{value:0},
-    uPixelSize:{value:1.5},
-    uDither:{value:0.15},
-    uAberr:{value:0.002}
-  },
-  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
-  fragmentShader:`
-    uniform sampler2D tDiffuse;uniform vec2 uRes;uniform float uTime,uPixelSize,uDither,uAberr;
-    varying vec2 vUv;
-    
-    // Bayer 8x8 ordered dither matrix for visible pixelation
-    float bayer8(vec2 p){
-      vec2 i=floor(mod(p,8.0));
-      int x=int(i.x); int y=int(i.y);
-      int m[64];
-      m[0]=0;m[1]=32;m[2]=8;m[3]=40;m[4]=2;m[5]=34;m[6]=10;m[7]=42;
-      m[8]=48;m[9]=16;m[10]=56;m[11]=24;m[12]=50;m[13]=18;m[14]=58;m[15]=26;
-      m[16]=12;m[17]=44;m[18]=4;m[19]=36;m[20]=14;m[21]=46;m[22]=6;m[23]=38;
-      m[24]=60;m[25]=28;m[26]=52;m[27]=20;m[28]=62;m[29]=30;m[30]=54;m[31]=22;
-      m[32]=3;m[33]=35;m[34]=11;m[35]=43;m[36]=1;m[37]=33;m[38]=9;m[39]=41;
-      m[40]=51;m[41]=19;m[42]=59;m[43]=27;m[44]=49;m[45]=17;m[46]=57;m[47]=25;
-      m[48]=15;m[49]=47;m[50]=7;m[51]=39;m[52]=13;m[53]=45;m[54]=5;m[55]=37;
-      m[56]=63;m[57]=31;m[58]=55;m[59]=23;m[60]=61;m[61]=29;m[62]=53;m[63]=21;
-      return float(m[x+y*8])/64.0;
-    }
-    
-    void main(){
-      // NO pixelation — sample directly
-      vec2 d=vUv-0.5; float dist=length(d); float ab=uAberr*dist;
-      float r=texture2D(tDiffuse, vUv+d*ab).r;
-      float g=texture2D(tDiffuse, vUv).g;
-      float b=texture2D(tDiffuse, vUv-d*ab).b;
-      vec3 c=vec3(r,g,b);
-      
-      // Brightness boost
-      c *= 1.3;
-      
-      // Ordered dither (8x8 Bayer for visible pattern)
-      vec2 px=vUv*uRes;
-      float th=bayer8(px);
-      float luma=dot(c,vec3(0.299,0.587,0.114));
-      c+=(th-0.5)*uDither*(1.0+luma*0.5);
-      
-      // Very subtle vignette (barely noticeable)
-      c*=1.0-dist*0.15;
-      
-      gl_FragColor=vec4(c,1.0);
-    }`
-};
-const ditherPass = new ShaderPass(DitherShader);
-composer.addPass(ditherPass);
-
-// ── INTERACTION ──
-const mouse = {x:0,y:0,tx:0,ty:0};
-let isHolding=false, speed=1, targetSpeed=1;
-const clock = new THREE.Clock();
-
-document.addEventListener('mousemove',(e)=>{
-  mouse.tx=(e.clientX/window.innerWidth-0.5)*2;
-  mouse.ty=(e.clientY/window.innerHeight-0.5)*2;
-});
-document.addEventListener('mousedown',()=>{isHolding=true;targetSpeed=5});
-document.addEventListener('mouseup',()=>{isHolding=false;targetSpeed=1});
-document.addEventListener('touchstart',()=>{isHolding=true;targetSpeed=5},{passive:true});
-document.addEventListener('touchend',()=>{isHolding=false;targetSpeed=1});
-
-window.addEventListener('resize',()=>{
-  camera.aspect=window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,window.innerHeight);
-  composer.setSize(window.innerWidth,window.innerHeight);
-  ditherPass.uniforms.uRes.value.set(window.innerWidth,window.innerHeight);
-});
-
-// ── ANIMATE ──
-function animate(){
-  requestAnimationFrame(animate);
-  const dt=clock.getDelta();
-  const t=clock.getElapsedTime();
-
-  mouse.x+=(mouse.tx-mouse.x)*0.04;
-  mouse.y+=(mouse.ty-mouse.y)*0.04;
-  speed+=(targetSpeed-speed)*0.025;
-
-  // Camera subtle orbit
-  camera.position.x=Math.sin(mouse.x*0.4)*5.5;
-  camera.position.y=1.2+mouse.y*-0.4;
-  camera.position.z=Math.cos(mouse.x*0.4)*5.5;
-  camera.lookAt(0,0.8,0);
-
-  // Robot idle
-  if(robotGroup && robotReady){
-    robotGroup.rotation.y+=((mouse.x*0.3)-robotGroup.rotation.y)*0.02;
-    const bob=Math.sin(t*0.7*speed)*0.04;
-    robotGroup.position.y=robotGroup.position.y<-10?robotGroup.position.y:
-      (robotGroup.userData.baseY||robotGroup.position.y)+bob;
-    if(!robotGroup.userData.baseY) robotGroup.userData.baseY=robotGroup.position.y;
-  }
-
-  // Uniforms
-  // Animate 5000 meteors (update buffer positions directly — single draw call)
-  const mPos = meteorGeo.attributes.position.array;
-  const mCol = meteorGeo.attributes.color.array;
-  for (let i = 0; i < METEOR_COUNT; i++) {
-    const m = meteorData[i];
-    const spd = m.speed * speed;
-    const travel = t * spd * 1.5;
-    
-    // Straight-line flight, loop in bounds
-    let hx = ((m.sx + m.dx * travel) % 32 + 32) % 32 - 16;
-    let hy = ((m.sy + m.dy * travel) % 20 + 20) % 20 - 10;
-    let hz = ((m.sz + m.dz * travel) % 35 + 35) % 35 - 25;
-    
-    const idx = i * 6;
-    // Head
-    mPos[idx] = hx; mPos[idx+1] = hy; mPos[idx+2] = hz;
-    // Tail
-    mPos[idx+3] = hx + m.dx*m.tailLen;
-    mPos[idx+4] = hy + m.dy*m.tailLen;
-    mPos[idx+5] = hz + m.dz*m.tailLen;
-    
-    // Twinkle: flash the head color brightness
-    const tw = Math.sin(t * m.twinkleSpd + m.twinkleOff);
-    const flash = tw > 0.6 ? 1.0 : (tw > 0.1 ? 0.35 : 0.08);
-    const bright = m.baseAlpha * flash;
-    mCol[idx] = m.col[0]*bright; mCol[idx+1] = m.col[1]*bright; mCol[idx+2] = m.col[2]*bright;
-    mCol[idx+3] = m.col[0]*bright*0.05; mCol[idx+4] = m.col[1]*bright*0.05; mCol[idx+5] = m.col[2]*bright*0.05;
-  }
-  meteorGeo.attributes.position.needsUpdate = true;
-  meteorGeo.attributes.color.needsUpdate = true;
-  
-  bgMat.uniforms.uTime.value = t;
-  bgMat.uniforms.uSpeed.value = speed;
-  redPoint.intensity=6+Math.sin(t*1.8*speed)*3;
-  ditherPass.uniforms.uTime.value=t;
-  ditherPass.uniforms.uAberr.value=0.002+(speed-1)*0.004;
-  ditherPass.uniforms.uDither.value=0.15+(speed-1)*0.1;
-  ditherPass.uniforms.uPixelSize.value=1.5+(speed-1)*0.5;
-  bloom.strength=1.0+(speed-1)*0.6;
-
-  document.getElementById('hold-indicator').classList.toggle('active',isHolding);
-  document.getElementById('speed-display').textContent=speed.toFixed(2)+'x';
-
-  composer.render();
-}
-animate();
-</script>
 
 <script>
 // ═══ AI CHAT - Real Cloudflare Worker Integration ═══
