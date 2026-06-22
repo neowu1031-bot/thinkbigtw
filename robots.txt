@@ -1,28 +1,59 @@
+# Think BIG! — robots.txt
+# AI crawlers are explicitly welcomed (GEO: be cited by AI search engines)
+
+# ── AI / LLM crawlers (explicitly allowed) ──
 User-agent: GPTBot
 Allow: /
-User-agent: Google-Extended
+
+User-agent: ChatGPT-User
 Allow: /
-User-agent: PerplexityBot
+
+User-agent: OAI-SearchBot
 Allow: /
-User-agent: anthropic-ai
-Allow: /
+
 User-agent: ClaudeBot
 Allow: /
-User-agent: Bytespider
+
+User-agent: anthropic-ai
 Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 User-agent: Applebot-Extended
 Allow: /
+
+User-agent: Bytespider
+Allow: /
+
 User-agent: YouBot
 Allow: /
+
 User-agent: CCBot
 Allow: /
+
 User-agent: FacebookBot
 Allow: /
+
 User-agent: Twitterbot
 Allow: /
+
 User-agent: LinkedInBot
 Allow: /
+
+# ── General crawlers ──
 User-agent: *
 Allow: /
+Disallow: /clawland/admin/
+Disallow: /clawland/admin-n7k3px/
+
 Sitemap: https://thinkbigtw.com/sitemap.xml
-# deploy trigger 1779795360
