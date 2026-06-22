@@ -22,9 +22,9 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -33,7 +33,7 @@
   --ink:#1a1a1a;
   --gray:#f0f0f0;
   --pink:#f8c8d8;
-  --mono:'Space Mono',monospace;
+  --mono:'Azeret Mono',monospace;
   --tc:'Noto Sans TC',sans-serif;
 }
 html{scroll-behavior:smooth}
@@ -56,7 +56,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
 /* 上層：slogan 文字浮在影片之上 */
 .tb-hero-body{position:relative;z-index:3;flex:1;display:flex;align-items:center;justify-content:flex-start;width:100%;max-width:1280px;margin:0 auto;pointer-events:none}
 .tb-slogan{flex:0 0 auto;max-width:42%;min-width:0;text-align:left;padding-left:10px}
-.tb-slogan-zh{font-family:var(--tc);font-weight:900;font-size:clamp(30px,4.4vw,56px);color:#1a1a1a;line-height:1.22;letter-spacing:1px}
+.tb-slogan-zh{margin:0;font-family:var(--tc);font-weight:900;font-size:clamp(30px,4.4vw,56px);color:#1a1a1a;line-height:1.22;letter-spacing:1px}
 .tb-slogan-en{font-family:var(--mono);font-weight:700;font-size:clamp(13px,1.6vw,20px);color:var(--red);margin-top:18px;line-height:1.4;letter-spacing:1px}
 /* 下層：影片全畫面背景，放大置中，四周羽化融入白底 */
 .tb-video-wrap{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none}
@@ -70,18 +70,18 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
 }
 
 @media(max-width:768px){
-  .tb-hero{padding:16px 18px;min-height:100vh}
-  .tb-topbar{order:1;flex-direction:column;align-items:center;gap:16px}
+  .tb-hero{padding:16px 0 0;min-height:100vh}
+  .tb-topbar{order:1;flex-direction:column;align-items:center;gap:16px;padding:0 18px}
   .tb-funcbar{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;width:100%;justify-items:center}
   .tb-func{align-items:center;text-align:center}
   .tb-func .zh{font-size:14px}
   .tb-brand{text-align:center}
-  .tb-hero-body{order:2;flex-direction:column;justify-content:center;gap:20px;pointer-events:auto}
+  .tb-hero-body{order:2;flex:none;flex-direction:column;justify-content:center;gap:20px;pointer-events:auto;padding:0 18px}
   .tb-slogan{flex:none;max-width:100%;text-align:center}
   .tb-slogan-zh{font-size:30px}
   .tb-slogan-en{font-size:15px}
-  .tb-video-wrap{order:3;position:static;inset:auto;width:100%;z-index:auto}
-  .tb-video{width:100%;max-width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;transform:none;-webkit-mask-image:none;mask-image:none;-webkit-clip-path:inset(0.8%);clip-path:inset(0.8%)}
+  .tb-video-wrap{order:3;position:static;inset:auto;width:100%;z-index:auto;margin-top:auto;overflow:visible}
+  .tb-video{width:140vw;max-width:none;flex:none;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center;transform:none;-webkit-mask-image:none;mask-image:none;-webkit-clip-path:inset(0.8%);clip-path:inset(0.8%)}
 }
 
 /* ===== AI AGENT 浮動鈕 (亮色) ===== */
@@ -266,7 +266,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
 
   <div class="tb-hero-body">
     <div class="tb-slogan">
-      <div class="tb-slogan-zh">現在就讓<br>AI 開始<br>為你工作</div>
+      <h1 class="tb-slogan-zh">現在就讓<br>AI 開始<br>為你工作</h1>
       <div class="tb-slogan-en">Put AI to Work<br>for You — Today</div>
     </div>
   </div>
@@ -302,13 +302,12 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       <div class="hero-icon">🦞</div>
       <h2 id="hero-title">您好！我是 Hermes</h2>
       <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎<br><br>
-        <strong style="color:#fff">🎯 我們目前提供四大服務：</strong><br>
+        <strong style="color:#fff">我們目前提供四大服務：</strong><br>
         <span style="color:rgba(232,66,42,0.9)">①</span> <strong>AI Agent ERP</strong> — 全球首創 AI Native 企業系統<br>
         <span style="color:rgba(232,66,42,0.9)">②</span> <strong>MoneyRadar™</strong> — 全球頂尖 AI 看盤神器<br>
         <span style="color:rgba(232,66,42,0.9)">③</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>
         <span style="color:rgba(232,66,42,0.9)">④</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>
-        隨時問我任何問題，或點下方快速選項 👇
-      </p>
+        隨時問我任何問題，或點下方快速選項      </p>
     </div>
   </div>
   <div class="chat-input-wrap">
@@ -344,12 +343,12 @@ const HERO_I18N = {
   'zh-TW': {
     title: '您好！我是 Hermes',
     intro: 'Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎',
-    servicesLabel: '🎯 我們目前提供四大服務：',
+    servicesLabel: '我們目前提供四大服務：',
     s1: 'AI Agent ERP — 全球首創 AI Native 企業系統',
     s2: 'MoneyRadar™ — 全球頂尖 AI 看盤神器',
     s3: '企業 AI 導入 — RAG / Agent / 流程自動化',
     s4: 'Harness Engineers — 個人 AI 搭建',
-    askPrompt: '隨時問我任何問題，或點下方快速選項 👇',
+    askPrompt: '隨時問我任何問題，或點下方快速選項',
     placeholder: '問我任何問題，例如：ERP 月費多少？',
     qs1: 'AI Agent ERP 有什麼？', qs1s: '11 大模組 · 三階方案',
     qs2: 'MoneyRadar™ 怎麼用？', qs2s: '全球頂尖看盤神器',
@@ -364,12 +363,12 @@ const HERO_I18N = {
   'en': {
     title: 'Hello! I\'m Hermes',
     intro: 'Think BIG!\'s AI Assistant · Powered by our OpenClaw + Claude Code engine',
-    servicesLabel: '🎯 We offer four core services:',
+    servicesLabel: 'We offer four core services:',
     s1: 'AI Agent ERP — World\'s first AI-Native enterprise system',
     s2: 'MoneyRadar™ — Premium AI trading dashboard',
     s3: 'Enterprise AI — RAG / Agent / Automation',
     s4: 'Harness Engineers — Personal AI Agent builder',
-    askPrompt: 'Ask me anything, or pick a quick option below 👇',
+    askPrompt: 'Ask me anything, or pick a quick option below',
     placeholder: 'Ask me anything, e.g.: How much is ERP monthly?',
     qs1: 'What\'s in AI Agent ERP?', qs1s: '11 modules · 3 tiers',
     qs2: 'How to use MoneyRadar™?', qs2s: 'Premium trading dashboard',
@@ -384,12 +383,12 @@ const HERO_I18N = {
   'ja': {
     title: 'こんにちは！Hermes です',
     intro: 'Think BIG! の AI アシスタント · OpenClaw + Claude Code エンジン搭載',
-    servicesLabel: '🎯 4 つのコアサービスを提供しています：',
+    servicesLabel: '4 つのコアサービスを提供しています：',
     s1: 'AI Agent ERP — 世界初の AI ネイティブ企業システム',
     s2: 'MoneyRadar™ — プレミアム AI トレーディングダッシュボード',
     s3: '企業向け AI 導入 — RAG / Agent / 自動化',
     s4: 'Harness Engineers — 個人向け AI エージェント構築',
-    askPrompt: 'お気軽にご質問ください、または下のオプションをタップ 👇',
+    askPrompt: 'お気軽にご質問ください、または下のオプションをタップ',
     placeholder: 'ご質問をどうぞ。例：ERP の月額は？',
     qs1: 'AI Agent ERP の内容は？', qs1s: '11 モジュール · 3 段階',
     qs2: 'MoneyRadar™ の使い方？', qs2s: '高機能トレーディング',
@@ -561,7 +560,7 @@ Think BIG 是台灣 AI 自動化顧問公司,由 NEO.W 創辦,專注幫助中小
 ③ 企業 AI 導入 — RAG / Agent / 流程自動化
 ④ Harness Engineers — 個人 AI 搭建
 
-想了解更多,可以隨時問我任何問題,或點上方快速選項 👇`;
+想了解更多,可以隨時問我任何問題,或點上方快速選項`;
 
 const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的引擎:
 
@@ -637,7 +636,7 @@ ClawMem 是本地的記憶層,讓 Claude Code、OpenClaw、Hermes 共用同一�
 
 ━━━━━━━━━━━━━━━━━━━━
 
-🎯 推薦方案前,我需要先了解一件事:
+推薦方案前,我需要先了解一件事:
 
 您是個人使用,還是公司/企業使用?
 
