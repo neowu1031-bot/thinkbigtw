@@ -98,7 +98,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
     justify-content:space-between;
     gap:12px;padding:0;
   }
-  .tb-brand{text-align:right;flex-shrink:0}
+  .tb-brand{text-align:right;flex-shrink:0;display:inline-block;border:2px solid #555;padding:8px 14px;border-radius:8px}
   .tb-brand-main{font-size:22px;color:#fff}
   .tb-brand-sub{color:rgba(255,255,255,0.8)}
   .tb-brand-co{color:rgba(255,255,255,0.55)}
@@ -134,13 +134,14 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
   .tb-func .en{font-size:12px;color:rgba(255,255,255,0.5)}
   .tb-func:hover .zh{color:var(--red)}
 
-  /* ── 主文字區 ── */
+  /* ── 主文字區（推到畫面下半部，不遮公仔上半身） ── */
   .tb-hero-body{
     position:relative;z-index:2;
-    flex:1;flex-direction:column;
-    justify-content:center;align-items:center;
-    gap:24px;pointer-events:auto;
-    padding:0 8px;
+    flex:none;flex-direction:column;
+    justify-content:flex-end;align-items:center;
+    gap:16px;pointer-events:auto;
+    padding:0 16px 32px;
+    margin-top:auto;
   }
 
   /* ── CTA 按鈕內嵌（order:1 → 排在標語上面） ── */
@@ -155,37 +156,37 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
     order:1;
   }
 
-  /* ── 標語區（order:2 → 排在按鈕下面，水平一字排開） ── */
+  /* ── 標語區（order:2 → 排在按鈕下面，垂直兩行） ── */
   .tb-slogan{
-    flex:none;max-width:100%;
+    flex:none;width:100%;max-width:100%;
     order:2;
-    display:flex;flex-direction:row;align-items:center;
-    gap:12px;
-    padding:16px 20px;
+    display:flex;flex-direction:column;align-items:center;
+    gap:6px;
+    padding:14px 18px;
     background:rgba(0,0,0,0.22);
     border-radius:14px;
     backdrop-filter:blur(6px);
     text-align:center;
   }
   .tb-slogan-zh{
-    font-size:22px;color:#fff;
-    text-shadow:0 2px 12px rgba(0,0,0,0.45);
-    white-space:nowrap;
-    line-height:1.15;
+    font-size:17px;color:#fff;
+    text-shadow:0 1px 8px rgba(0,0,0,0.4);
+    white-space:normal;word-break:keep-all;
+    line-height:1.3;
   }
-  /* 中文標語移除換行，改一行顯示 */
+  /* 中文標語一行顯示，移除換行 */
   .tb-slogan-zh br{display:none}
   .tb-slogan-en{
     font-size:13px;color:var(--red);
     font-family:'Noto Sans TC',Helvetica,Arial,sans-serif;
     text-shadow:0 1px 6px rgba(0,0,0,0.3);
     margin-top:0;
-    white-space:nowrap;
-    border-left:2px solid rgba(255,255,255,0.3);
-    padding-left:12px;
+    white-space:normal;word-break:keep-all;
+    border-left:none;
+    padding-left:0;
     line-height:1.3;
   }
-  /* 英文副標也移除換行 */
+  /* 英文副標也一行顯示 */
   .tb-slogan-en br{display:none}
   #ai-agent-btn .pulse,
   #ai-agent-btn .pulse-2{display:none}
