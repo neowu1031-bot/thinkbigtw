@@ -69,19 +69,109 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
   mask-image:radial-gradient(ellipse 82% 82% at center,#000 66%,transparent 100%);
 }
 
+/* 漢堡按鈕 & 關閉鈕：桌面版隱藏 */
+.tb-hamburger{display:none}
+.tb-nav-close{display:none}
+
 @media(max-width:768px){
-  .tb-hero{padding:16px 0 0;min-height:100vh}
-  .tb-topbar{order:1;flex-direction:column;align-items:center;gap:16px;padding:0 18px}
-  .tb-funcbar{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;width:100%;justify-items:center}
-  .tb-func{align-items:center;text-align:center}
-  .tb-func .zh{font-size:14px}
-  .tb-brand{text-align:center}
-  .tb-hero-body{order:2;flex:none;flex-direction:column;justify-content:center;gap:20px;pointer-events:auto;padding:0 18px}
-  .tb-slogan{flex:none;max-width:100%;text-align:center}
-  .tb-slogan-zh{font-size:30px}
-  .tb-slogan-en{font-size:15px}
-  .tb-video-wrap{order:3;position:static;inset:auto;width:100%;z-index:auto;margin-top:auto;overflow:visible}
-  .tb-video{width:140vw;max-width:none;flex:none;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center;transform:none;-webkit-mask-image:none;mask-image:none;-webkit-clip-path:inset(0.8%);clip-path:inset(0.8%)}
+  /* ── 3D 人物動畫全屏背景 ── */
+  .tb-video-wrap{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none}
+  .tb-video{width:100%;height:100%;object-fit:cover;transform:none;-webkit-mask-image:none;mask-image:none;-webkit-clip-path:none;clip-path:none;aspect-ratio:auto;max-width:none}
+
+  /* ── Hero 容器：相對定位浮在動畫上 ── */
+  .tb-hero{
+    position:relative;z-index:1;
+    padding:20px 18px 0;min-height:100vh;
+    background:transparent;
+  }
+  /* 深色半透明遮罩（偽元素） */
+  .tb-hero::before{
+    content:'';position:fixed;inset:0;
+    background:rgba(0,0,0,0.35);
+    z-index:0;pointer-events:none;
+  }
+
+  /* ── 頂部列 ── */
+  .tb-topbar{
+    position:relative;z-index:3;
+    flex-direction:row;align-items:center;
+    justify-content:space-between;
+    gap:12px;padding:0;
+  }
+  .tb-brand{text-align:right;flex-shrink:0}
+  .tb-brand-main{font-size:22px;color:#fff}
+  .tb-brand-sub{color:rgba(255,255,255,0.8)}
+  .tb-brand-co{color:rgba(255,255,255,0.55)}
+
+  /* ── 漢堡選單 ── */
+  .tb-hamburger{
+    display:flex;align-items:center;justify-content:center;
+    width:40px;height:40px;
+    background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
+    border:1px solid rgba(255,255,255,0.25);border-radius:10px;
+    color:#fff;font-size:22px;cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+    z-index:5;flex-shrink:0;
+  }
+  .tb-funcbar{
+    display:none;
+    position:fixed;top:0;left:0;width:100vw;height:100vh;
+    z-index:1000;
+    background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);
+    flex-direction:column;align-items:center;justify-content:center;
+    gap:28px;padding:40px 24px;
+  }
+  .tb-funcbar.open{display:flex}
+  .tb-funcbar .tb-nav-close{
+    position:absolute;top:20px;right:20px;
+    width:40px;height:40px;border-radius:50%;
+    background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
+    color:#fff;font-size:22px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tb-func{align-items:center;text-align:center;border-bottom:none}
+  .tb-func .zh{font-size:20px;color:#fff}
+  .tb-func .en{font-size:12px;color:rgba(255,255,255,0.5)}
+  .tb-func:hover .zh{color:var(--red)}
+
+  /* ── 主文字區 ── */
+  .tb-hero-body{
+    position:relative;z-index:2;
+    flex:1;flex-direction:column;
+    justify-content:center;align-items:center;
+    gap:32px;pointer-events:auto;
+    padding:0 8px;
+  }
+  .tb-slogan{
+    flex:none;max-width:100%;text-align:center;
+    padding:24px 18px;
+    background:rgba(0,0,0,0.22);
+    border-radius:18px;
+    backdrop-filter:blur(6px);
+  }
+  .tb-slogan-zh{
+    font-size:35px;color:#fff;
+    text-shadow:0 2px 16px rgba(0,0,0,0.45);
+  }
+  .tb-slogan-en{
+    font-size:16px;color:var(--red);
+    font-family:'Noto Sans TC',Helvetica,Arial,sans-serif;
+    text-shadow:0 1px 8px rgba(0,0,0,0.3);
+    margin-top:14px;
+  }
+
+  /* ── CTA 按鈕內嵌 ── */
+  #ai-agent-btn{
+    position:static !important;
+    width:100%;max-width:340px;
+    margin:0 auto;
+    justify-content:center;
+    border-radius:16px;
+    padding:18px 24px;
+    box-shadow:0 6px 20px rgba(232,66,42,0.35);
+  }
+  #ai-agent-btn .pulse,
+  #ai-agent-btn .pulse-2{display:none}
 }
 
 /* ===== AI AGENT 浮動鈕 (亮色) ===== */
@@ -167,7 +257,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
   #ai-chat .quick-bar{flex-wrap:wrap}
   #ai-chat .quick-bar .qchip{flex:0 0 calc(50% - 5px);width:calc(50% - 5px)}
   #ai-chat .quick-bar .qchip .qt{white-space:normal}
-  #ai-agent-btn{bottom:20px;right:20px;padding:12px 18px}
 }
 </style>
 <!-- ═══ JSON-LD 結構化資料 (SEO/GEO · 給 Google 與 AI 爬蟲讀取) ═══ -->
@@ -251,7 +340,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
     </video>
   </div>
   <header class="tb-topbar">
+    <button class="tb-hamburger" onclick="document.querySelector('.tb-funcbar').classList.add('open')" aria-label="選單">☰</button>
     <nav class="tb-funcbar">
+      <button class="tb-nav-close" onclick="document.querySelector('.tb-funcbar').classList.remove('open')" aria-label="關閉">✕</button>
       <a href="/lab/" class="tb-func"><span class="zh">股市神器</span><span class="en">MoneyRadar</span></a>
       <a href="/enterprise/" class="tb-func"><span class="zh">企業 AI 導入</span><span class="en">Enterprise</span></a>
       <a href="/harness/" class="tb-func"><span class="zh">個人 AI 助理</span><span class="en">Harness Engineers</span></a>
@@ -269,18 +360,16 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       <h1 class="tb-slogan-zh">現在就讓<br>AI 開始<br>為你工作</h1>
       <div class="tb-slogan-en">Put AI to Work<br>for You — Today</div>
     </div>
+    <!-- AI AGENT 按鈕（手機版 static 在此流程中；桌面版 fixed 浮動） -->
+    <div id="ai-agent-btn" onclick="toggleChat()">
+      <div class="pulse"></div>
+      <div class="pulse pulse-2"></div>
+      <div class="btn-dot"></div>
+      <div class="btn-text">AI AGENT</div>
+      <div class="btn-brand">Hermes</div>
+    </div>
   </div>
 </section>
-
-<!-- AI AGENT 浮動鈕 + 聊天視窗 (功能保留，亮色版) -->
-<!-- AI AGENT -->
-<div id="ai-agent-btn" onclick="toggleChat()">
-  <div class="pulse"></div>
-  <div class="pulse pulse-2"></div>
-  <div class="btn-dot"></div>
-  <div class="btn-text">AI AGENT</div>
-  <div class="btn-brand">Hermes</div>
-</div>
 
 <div id="ai-chat">
   <div class="chat-header">
