@@ -107,9 +107,9 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
   .tb-hamburger{
     display:flex;align-items:center;justify-content:center;
     width:40px;height:40px;
-    background:rgba(255,255,255,0.15);backdrop-filter:blur(8px);
-    border:1px solid rgba(255,255,255,0.25);border-radius:10px;
-    color:#fff;font-size:22px;cursor:pointer;
+    background:rgba(0,0,0,0.06);backdrop-filter:blur(8px);
+    border:1px solid rgba(0,0,0,0.15);border-radius:10px;
+    color:#1a1a1a;font-size:22px;cursor:pointer;
     -webkit-tap-highlight-color:transparent;
     z-index:5;flex-shrink:0;
   }
@@ -139,28 +139,11 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
     position:relative;z-index:2;
     flex:1;flex-direction:column;
     justify-content:center;align-items:center;
-    gap:32px;pointer-events:auto;
+    gap:24px;pointer-events:auto;
     padding:0 8px;
   }
-  .tb-slogan{
-    flex:none;max-width:100%;text-align:center;
-    padding:24px 18px;
-    background:rgba(0,0,0,0.22);
-    border-radius:18px;
-    backdrop-filter:blur(6px);
-  }
-  .tb-slogan-zh{
-    font-size:35px;color:#fff;
-    text-shadow:0 2px 16px rgba(0,0,0,0.45);
-  }
-  .tb-slogan-en{
-    font-size:16px;color:var(--red);
-    font-family:'Noto Sans TC',Helvetica,Arial,sans-serif;
-    text-shadow:0 1px 8px rgba(0,0,0,0.3);
-    margin-top:14px;
-  }
 
-  /* ── CTA 按鈕內嵌 ── */
+  /* ── CTA 按鈕內嵌（order:1 → 排在標語上面） ── */
   #ai-agent-btn{
     position:static !important;
     width:100%;max-width:340px;
@@ -169,7 +152,41 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
     border-radius:16px;
     padding:18px 24px;
     box-shadow:0 6px 20px rgba(232,66,42,0.35);
+    order:1;
   }
+
+  /* ── 標語區（order:2 → 排在按鈕下面，水平一字排開） ── */
+  .tb-slogan{
+    flex:none;max-width:100%;
+    order:2;
+    display:flex;flex-direction:row;align-items:center;
+    gap:12px;
+    padding:16px 20px;
+    background:rgba(0,0,0,0.22);
+    border-radius:14px;
+    backdrop-filter:blur(6px);
+    text-align:center;
+  }
+  .tb-slogan-zh{
+    font-size:22px;color:#fff;
+    text-shadow:0 2px 12px rgba(0,0,0,0.45);
+    white-space:nowrap;
+    line-height:1.15;
+  }
+  /* 中文標語移除換行，改一行顯示 */
+  .tb-slogan-zh br{display:none}
+  .tb-slogan-en{
+    font-size:13px;color:var(--red);
+    font-family:'Noto Sans TC',Helvetica,Arial,sans-serif;
+    text-shadow:0 1px 6px rgba(0,0,0,0.3);
+    margin-top:0;
+    white-space:nowrap;
+    border-left:2px solid rgba(255,255,255,0.3);
+    padding-left:12px;
+    line-height:1.3;
+  }
+  /* 英文副標也移除換行 */
+  .tb-slogan-en br{display:none}
   #ai-agent-btn .pulse,
   #ai-agent-btn .pulse-2{display:none}
 }
