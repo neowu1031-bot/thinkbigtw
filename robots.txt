@@ -53,7 +53,6 @@ Allow: /
 # ── General crawlers ──
 User-agent: *
 Allow: /
-Disallow: /clawland/admin/
-Disallow: /clawland/admin-n7k3px/
+Disallow: /clawland/
 
 Sitemap: https://thinkbigtw.com/sitemap.xml
