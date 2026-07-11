@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>裝機進度 — Think BIG</title>
+<meta name="description" content="TB OS 部署狀態頁雛形（C5）：客戶查自己的裝機進度、驗收結果、可否重試。">
+<style>
+:root{
+  --bg:#f5f4f5;--panel:#fff;--line:#e9e6e7;--line-s:#d9d4d6;
+  --txt:#1c191a;--dim:#767074;--faint:#a29b9e;--brand:#e4548a;
+  --ok:#219a63;--warn:#d98324;--r:8px;
+  --mono:"Azeret Mono",ui-monospace,Menlo,monospace;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding:32px 20px 64px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.logo{font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.13em}
+.logo span{color:var(--brand)}
+h1{font-size:24px;font-weight:800;margin:20px 0 4px}
+.job{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.06em;word-break:break-all}
+
+.statuscard{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin:20px 0}
+.pill{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:7px 14px;border-radius:999px;letter-spacing:.02em}
+.pill i{width:8px;height:8px;border-radius:50%}
+.pill.run{background:#fdeef5;color:var(--brand)} .pill.run i{background:var(--brand);animation:blink 1.2s infinite}
+.pill.done{background:#e6f4ec;color:var(--ok)} .pill.done i{background:var(--ok)}
+.pill.fail{background:#fdeceb;color:#c0392b} .pill.fail i{background:#c0392b}
+.pill.hold{background:#fdf3e6;color:var(--warn)} .pill.hold i{background:var(--warn)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.meta{font-size:12px;color:var(--dim);margin-top:12px;font-family:var(--mono)}
+
+.paused{background:#fdf3e6;border:1px solid #f2d9b0;color:#96601a;border-radius:var(--r);padding:12px 16px;font-size:13.5px;margin:16px 0}
+
+.steps{list-style:none;margin:8px 0}
+.step{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.step:last-child{border-bottom:none}
+.dot{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:13px;font-weight:700;border:2px solid var(--line-s);color:var(--faint)}
+.step.done .dot{background:var(--ok);border-color:var(--ok);color:#fff}
+.step.started .dot{border-color:var(--brand);color:var(--brand);animation:blink 1.2s infinite}
+.step.failed .dot{background:#c0392b;border-color:#c0392b;color:#fff}
+.step .lbl{font-weight:600;font-size:15px}
+.step .st{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--faint);letter-spacing:.06em}
+
+.accept{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px;margin:18px 0;font-size:14.5px}
+.accept .badge{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:4px;letter-spacing:.06em}
+.accept.pass .badge{background:#e6f4ec;color:var(--ok)}
+.accept.wait .badge{background:#f0eef0;color:var(--dim)}
+
+.btn{display:inline-block;border:none;border-radius:var(--r);background:var(--brand);color:#fff;padding:12px 22px;font-size:14.5px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:.03em}
+.btn[disabled]{background:#e4e0e2;color:var(--faint);cursor:not-allowed}
+.note{font-size:12px;color:var(--faint);margin-top:10px;font-family:var(--mono)}
+.demo{font-family:var(--mono);font-size:10.5px;color:var(--faint);text-align:center;margin-top:28px;letter-spacing:.08em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="logo">THINK<span>BIG</span></span></header>
+  <h1>裝機進度</h1>
+  <p class="job" id="jobline">—</p>
+
+  <div id="app"></div>
+
+  <p class="demo" id="demo"></p>
+</div>
+
+<script>
+// C5 部署狀態頁雛形。消費 deploy_status.get_status 的去敏視圖。
+// 上線時走 fetch(`/deploy/status/${jobId}`)(帶租戶 JWT);此處若取不到端點，
+// 退回內建 MOCK 讓頁面獨立可預覽（雛形）。
+const STATUS_PILL = {
+  created:["run","已排入裝機佇列"], provisioning:["run","裝機進行中"],
+  verifying:["run","品管驗收中"], verified:["done","已完成、驗收通過"],
+  failed:["fail","裝機失敗（可重試）"], held:["hold","已暫停"],
+};
+const STEP_ICON = {done:"✓", started:"…", failed:"✕", skipped:"–"};
+
+const MOCK = {
+  found:true, job_id:"demo-job-7f3a2c", status:"verifying",
+  status_label:"品管驗收中", created_at:"2026-07-11T04:00:00Z",
+  progress:[
+    {seq:1,name:"detect_env",label:"偵測您的電腦環境",status:"done",finished_at:"t"},
+    {seq:2,name:"install_runtime",label:"安裝 AI 助理",status:"done",finished_at:"t"},
+    {seq:3,name:"self_acceptance",label:"初步功能檢查",status:"started",finished_at:null},
+  ],
+  acceptance:{passed:false, by_qa:false},
+  killed:false, rerunnable:false,
+};
+
+function render(d){
+  const app = document.getElementById("app");
+  document.getElementById("jobline").textContent = "Job " + (d.job_id||"—");
+  if(!d.found){ app.innerHTML = '<div class="statuscard">找不到這筆裝機紀錄。</div>'; return; }
+
+  const [cls,txt] = STATUS_PILL[d.status] || ["run", d.status_label||d.status];
+  let html = '<div class="statuscard"><span class="pill '+cls+'"><i></i>'+(d.status_label||txt)+'</span>';
+  if(d.created_at) html += '<div class="meta">建立時間 '+d.created_at+'</div>';
+  html += '</div>';
+
+  if(d.killed) html += '<div class="paused">此裝機已暫停。若需繼續，請聯絡我們協助恢復。</div>';
+
+  html += '<ul class="steps">';
+  for(const s of (d.progress||[])){
+    html += '<li class="step '+s.status+'"><span class="dot">'+(STEP_ICON[s.status]||s.seq)+'</span>'+
+            '<span class="lbl">'+s.label+'</span><span class="st">'+s.status+'</span></li>';
+  }
+  html += '</ul>';
+
+  const a = d.acceptance||{};
+  const acls = a.passed ? "pass" : "wait";
+  const abadge = a.passed ? "通過" : "進行中";
+  const atext = a.passed ? "品管已獨立驗收通過，裝機完成。" :
+                (a.by_qa ? "品管驗收未通過，處理中。" : "等待品管獨立驗收。");
+  html += '<div class="accept '+acls+'"><span class="badge">'+abadge+'</span><span>'+atext+'</span></div>';
+
+  const canRerun = !!d.rerunnable;
+  html += '<button class="btn" id="rerun" '+(canRerun?"":"disabled")+'>重試裝機</button>';
+  if(!canRerun) html += '<p class="note">'+(d.status==="verified"?"已完成，無需重試。":
+    d.killed?"暫停中無法重試，需先恢復。":"目前狀態不可重試。")+'</p>';
+
+  app.innerHTML = html;
+  const btn = document.getElementById("rerun");
+  if(btn && canRerun) btn.onclick = ()=>rerun(d.job_id);
+}
+
+async function rerun(jobId){
+  const btn = document.getElementById("rerun");
+  btn.disabled = true; btn.textContent = "已送出重試…";
+  try{
+    const r = await fetch(`/deploy/status/${encodeURIComponent(jobId)}/rerun`,{method:"POST"});
+    const j = await r.json();
+    btn.textContent = j.ok ? "已排入重試" : "重試失敗："+(j.reason||"");
+  }catch(e){ btn.textContent = "（雛形）重試端點未接"; }
+}
+
+async function load(){
+  const jobId = new URLSearchParams(location.search).get("job");
+  const demo = document.getElementById("demo");
+  if(jobId){
+    try{
+      const r = await fetch(`/deploy/status/${encodeURIComponent(jobId)}`);
+      if(r.ok){ render(await r.json()); demo.textContent=""; return; }
+    }catch(e){/* 落到 mock */}
+  }
+  render(MOCK);
+  demo.textContent = "雛形預覽（示範資料）· 帶 ?job=<id> 並接上 /deploy/status 端點即顯示真實進度";
+}
+load();
+</script>
+</body>
+</html>

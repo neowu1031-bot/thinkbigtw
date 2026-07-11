@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>月報 — Think BIG</title>
+<meta name="description" content="TB OS 月報頁雛形（D2）：接真數據——收款、訂單、部署成果、用量、新客。">
+<style>
+:root{
+  --bg:#f5f4f5;--panel:#fff;--line:#e9e6e7;--line-s:#d9d4d6;
+  --txt:#1c191a;--dim:#767074;--faint:#a29b9e;--brand:#e4548a;
+  --ok:#219a63;--r:8px;
+  --mono:"Azeret Mono",ui-monospace,Menlo,monospace;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.page{max-width:820px;margin:0 auto;padding:32px 20px 64px}
+.brandbar{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.logo{font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.13em}
+.logo span{color:var(--brand)}
+.kicker{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.14em;margin-left:auto}
+h1{font-size:26px;font-weight:800;margin:18px 0 2px;letter-spacing:-.01em}
+.period{font-family:var(--mono);font-size:13px;color:var(--brand);letter-spacing:.08em}
+
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:24px 0}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.kpi .label{font-size:12px;color:var(--dim);font-family:var(--mono);letter-spacing:.06em}
+.kpi .val{font-size:26px;font-weight:800;margin-top:6px;font-variant-numeric:tabular-nums}
+.kpi .val small{font-size:13px;font-weight:600;color:var(--dim)}
+
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:14px}
+.panel h2{font-size:15px;font-weight:700;margin-bottom:14px;letter-spacing:.02em}
+.line{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.line:last-child{border-bottom:none}
+.line .k{color:var(--dim)}
+.line .v{font-weight:700;font-variant-numeric:tabular-nums}
+.line .v.ok{color:var(--ok)}
+.rev{font-family:var(--mono);font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.rev span{display:block;margin:4px 0}
+.foot{font-family:var(--mono);font-size:10.5px;color:var(--faint);text-align:center;margin-top:26px;letter-spacing:.06em;line-height:1.9}
+@media (max-width:680px){.kpis{grid-template-columns:repeat(2,1fr)}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="brandbar">
+    <span class="logo">THINK<span>BIG</span></span>
+    <span class="kicker">TB OS · 月報</span>
+  </div>
+  <h1>營運月報</h1>
+  <p class="period" id="period">—</p>
+
+  <div id="app"></div>
+
+  <p class="foot" id="foot"></p>
+</div>
+
+<script>
+// D2 月報頁雛形。消費 GET /reports/monthly 的 JSON。上線時帶租戶 JWT。
+// 取不到端點則退回內建 MOCK 讓頁面獨立可預覽。
+const MOCK = {
+  tenant_id:"demo", period:"2026-06",
+  revenue:{by_currency:{TWD:34200, USD:447}},
+  payments:{succeeded:11, failed:1},
+  orders:{count:11},
+  deployments:{created:11, verified:9, failed:2},
+  usage:{tokens_input:842000, tokens_output:511000, total_tokens:1353000},
+  acquisition:{new_leads:18, new_opportunities:12},
+};
+
+function fmt(n){ return (n||0).toLocaleString("en-US"); }
+
+function render(d){
+  document.getElementById("period").textContent = "結算期間 " + d.period;
+  const rev = d.revenue.by_currency || {};
+  const revHtml = Object.keys(rev).length
+    ? Object.entries(rev).map(([c,a])=>`<span>${c} ${fmt(a)}</span>`).join("")
+    : '<span style="color:var(--faint)">本期無收款</span>';
+  const dep = d.deployments, verifyRate = dep.created ? Math.round(dep.verified/dep.created*100) : 0;
+
+  document.getElementById("app").innerHTML = `
+    <div class="kpis">
+      <div class="kpi"><div class="label">成功收款</div><div class="val">${d.payments.succeeded}<small> 筆</small></div></div>
+      <div class="kpi"><div class="label">訂單</div><div class="val">${d.orders.count}<small> 筆</small></div></div>
+      <div class="kpi"><div class="label">驗收通過率</div><div class="val">${verifyRate}<small>%</small></div></div>
+      <div class="kpi"><div class="label">用量</div><div class="val">${fmt(Math.round(d.usage.total_tokens/1000))}<small>K tok</small></div></div>
+    </div>
+    <div class="row">
+      <div class="panel">
+        <h2>收款（依幣別）</h2>
+        <div class="rev">${revHtml}</div>
+        <div class="line"><span class="k">成功 / 失敗</span><span class="v">${d.payments.succeeded} / ${d.payments.failed}</span></div>
+      </div>
+      <div class="panel">
+        <h2>部署成果</h2>
+        <div class="line"><span class="k">本期建立</span><span class="v">${dep.created}</span></div>
+        <div class="line"><span class="k">驗收通過</span><span class="v ok">${dep.verified}</span></div>
+        <div class="line"><span class="k">失敗</span><span class="v">${dep.failed}</span></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="panel">
+        <h2>用量</h2>
+        <div class="line"><span class="k">輸入 tokens</span><span class="v">${fmt(d.usage.tokens_input)}</span></div>
+        <div class="line"><span class="k">輸出 tokens</span><span class="v">${fmt(d.usage.tokens_output)}</span></div>
+        <div class="line"><span class="k">合計</span><span class="v">${fmt(d.usage.total_tokens)}</span></div>
+      </div>
+      <div class="panel">
+        <h2>新客</h2>
+        <div class="line"><span class="k">新名單 lead</span><span class="v">${d.acquisition.new_leads}</span></div>
+        <div class="line"><span class="k">新商機</span><span class="v">${d.acquisition.new_opportunities}</span></div>
+      </div>
+    </div>`;
+}
+
+async function load(){
+  const foot = document.getElementById("foot");
+  const p = new URLSearchParams(location.search);
+  const qs = (p.get("year")&&p.get("month")) ? `?year=${p.get("year")}&month=${p.get("month")}` : "";
+  try{
+    const r = await fetch("/reports/monthly"+qs, {headers:{"Authorization":"Bearer "+(p.get("token")||"")}});
+    if(r.ok){ render(await r.json()); foot.textContent=""; return; }
+  }catch(e){/* 落到 mock */}
+  render(MOCK);
+  foot.textContent = "雛形預覽（示範資料）· 帶租戶 JWT 呼叫 /reports/monthly 即顯示真數據";
+}
+load();
+</script>
+</body>
+</html>
