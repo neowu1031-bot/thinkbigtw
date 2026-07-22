@@ -50,6 +50,12 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdro
 .mtime{font-family:var(--mono);font-size:10px;color:var(--dim)}
 .bubble{margin-top:4px;background:var(--gray);border-radius:4px 14px 14px 14px;padding:10px 14px;font-size:14.5px;word-break:break-word;white-space:pre-wrap;width:fit-content;max-width:100%}
 .msg.me .bubble{background:var(--pink)}
+.att{margin-top:6px;max-width:min(320px,80vw)}
+.att img{max-width:100%;border-radius:10px;display:block;cursor:pointer}
+.att video{max-width:100%;border-radius:10px;display:block}
+.att a.file{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--ink);font-size:13.5px}
+.att a.file .ic{font-size:22px}
+.att a.file .fn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .empty{color:var(--dim);text-align:center;padding:60px 0;font-size:13.5px}
 .empty .m{font-size:34px;display:block;margin-bottom:8px}
 
@@ -84,10 +90,13 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdro
 
 <div class="composer">
   <div class="cwrap">
+    <button class="send" id="attach" style="background:#fff;color:var(--ink);border:1.5px solid var(--line);padding:11px 14px" title="上傳檔案 / 影片 / 圖片">📎</button>
+    <input type="file" id="file" hidden accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip">
     <textarea id="input" rows="1" placeholder="以股東身分留言…"></textarea>
     <button class="send" id="send">送出</button>
   </div>
-  <div class="as">您的稱呼：<b id="who">—</b> · <a id="rename">更改</a> · 團隊通常幾分鐘內回覆</div>
+  <div class="as" id="upnote" style="display:none;color:var(--red)"></div>
+  <div class="as">您的稱呼：<b id="who">—</b> · <a id="rename">更改</a> · 可傳圖片/影片/檔案（單檔上限 50MB）· 團隊通常幾分鐘內回覆</div>
 </div>
 
 <script>
@@ -112,6 +121,25 @@ function who(sender){
 
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const STORAGE = "https://lfcmkpansxprugilyxvj.supabase.co/storage/v1/object";
+const BUCKET = "puig-files";
+
+// 附件用 [[file:kind|url|name]] 存在訊息內文;render 時抽出來變成圖片/影片/檔案卡
+function splitAttach(content){
+  const re = /\[\[file:(image|video|file)\|([^|]+)\|([^\]]*)\]\]/g;
+  let text = content, atts = [], m;
+  while((m = re.exec(content))){ atts.push({kind:m[1], url:m[2], name:m[3]}); }
+  text = content.replace(re, "").trim();
+  return {text, atts};
+}
+function attHtml(atts){
+  return atts.map(a => {
+    if(a.kind==="image") return '<div class="att"><img src="'+esc(a.url)+'" loading="lazy" onclick="window.open(this.src)"></div>';
+    if(a.kind==="video") return '<div class="att"><video src="'+esc(a.url)+'" controls playsinline></video></div>';
+    const ic = /\.pdf$/i.test(a.name)?"📄":/\.(xls|xlsx|csv)$/i.test(a.name)?"📊":/\.(zip|rar|7z)$/i.test(a.name)?"🗜️":"📎";
+    return '<div class="att"><a class="file" href="'+esc(a.url)+'" target="_blank" rel="noopener"><span class="ic">'+ic+'</span><span class="fn">'+esc(a.name||"檔案")+'</span></a></div>';
+  }).join("");
+}
 const fmtTime = iso => new Date(iso).toLocaleTimeString("zh-TW",{hour:"2-digit",minute:"2-digit"});
 function fmtDay(iso){const d=new Date(iso),t=new Date();const same=(a,b)=>a.toDateString()===b.toDateString();if(same(d,t))return"今天";const y=new Date(Date.now()-864e5);if(same(d,y))return"昨天";return d.toLocaleDateString("zh-TW",{month:"numeric",day:"numeric",weekday:"short"});}
 
@@ -146,12 +174,14 @@ function render(rows){
     const day = fmtDay(m.created_at);
     if(day!==lastDay){ html+='<div class="day">'+day+'</div>'; lastDay=day; }
     const w = who(m.sender), mine = m.sender === mySender();
+    const {text, atts} = splitAttach(m.content);
+    const bubble = (text ? '<div class="bubble">'+esc(text)+'</div>' : '') + attHtml(atts);
     html += '<div class="msg '+(mine?"me":"")+'">'+
       '<div class="ava" style="background:'+w.c+'">'+esc(w.tag)+'</div>'+
       '<div class="mbody"><div class="mhead"><span class="mname">'+esc(w.label)+'</span>'+
       (w.official?'<span class="official">團隊</span>':'')+
       '<span class="mtime">'+fmtTime(m.created_at)+'</span></div>'+
-      '<div class="bubble">'+esc(m.content)+'</div></div></div>';
+      bubble+'</div></div>';
   }
   feed.innerHTML = html;
   if(nearBottom || !feed.dataset.loaded) window.scrollTo({top:document.body.scrollHeight});
@@ -182,6 +212,31 @@ async function post(){
   $("send").disabled=false; $("input").focus();
 }
 
+async function uploadFile(f){
+  if(f.size > 52428800){ return alert("檔案超過 50MB 上限，請壓縮或用雲端連結分享。"); }
+  if(!myName){ askName(false); if(!myName) return; }
+  const kind = f.type.startsWith("image/") ? "image" : f.type.startsWith("video/") ? "video" : "file";
+  const safe = f.name.replace(/[^\w.\-]/g,"_");
+  const path = "u/" + Date.now() + "-" + Math.random().toString(36).slice(2,7) + "-" + safe;
+  const note = $("upnote"); note.style.display="block"; note.textContent = "上傳中… "+f.name;
+  $("attach").disabled = true; $("send").disabled = true;
+  try{
+    const r = await fetch(STORAGE + "/" + BUCKET + "/" + path, {
+      method:"POST", headers:{...H, "Content-Type": f.type || "application/octet-stream"}, body: f });
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    const url = "https://lfcmkpansxprugilyxvj.supabase.co/storage/v1/object/public/" + BUCKET + "/" + path;
+    const caption = $("input").value.trim();
+    const content = (caption ? caption + "\n" : "") + "[[file:"+kind+"|"+url+"|"+f.name+"]]";
+    await api("", {method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({sender: mySender(), content, thread_id:"main"})});
+    $("input").value=""; $("input").style.height="auto"; note.style.display="none";
+    await refresh();
+  }catch(e){ note.textContent = "上傳失敗："+e.message; }
+  $("attach").disabled = false; $("send").disabled = false;
+}
+
+$("attach").onclick = () => $("file").click();
+$("file").onchange = e => { if(e.target.files[0]) uploadFile(e.target.files[0]); e.target.value=""; };
 $("send").onclick = post;
 $("rename").onclick = () => askName(true);
 $("input").addEventListener("keydown", e => { if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){e.preventDefault();post();} });

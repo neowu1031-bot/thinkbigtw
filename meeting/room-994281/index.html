@@ -84,6 +84,11 @@ header{
   padding:10px 14px;font-size:14.5px;word-break:break-word;white-space:pre-wrap;width:fit-content;max-width:100%;
 }
 .msg.neo .bubble{background:var(--pink)}
+.att{margin-top:6px;max-width:min(320px,80vw)}
+.att img{max-width:100%;border-radius:10px;display:block;cursor:pointer}
+.att video{max-width:100%;border-radius:10px;display:block}
+.att a.file{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;text-decoration:none;color:var(--txt);font-size:13.5px}
+.att a.file .ic{font-size:22px}.att a.file .fn{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .empty{color:var(--dim);text-align:center;padding:60px 0;font-size:13.5px}
 .empty .m{font-size:34px;display:block;margin-bottom:8px}
 
@@ -145,10 +150,13 @@ header{
 
 <div class="composer">
   <div class="cwrap">
+    <button class="send" id="attach" style="background:#fff;color:var(--txt);border:1.5px solid var(--line);padding:11px 14px" title="上傳檔案/影片/圖片">📎</button>
+    <input type="file" id="file" hidden accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip">
     <textarea id="input" rows="1" placeholder="以 neo（董事長室）身分發言…"></textarea>
     <button class="send" id="send">送出</button>
   </div>
-  <div class="as">sender: neo · 每 5 秒自動更新</div>
+  <div class="as" id="upnote" style="display:none;color:var(--brand)"></div>
+  <div class="as">sender: neo · 可傳圖片/影片/檔案（≤50MB）· 每 5 秒自動更新</div>
 </div>
 
 <script>
@@ -170,6 +178,21 @@ const who = s => WHO[s] || {label:s, tag:(s||"?").slice(0,2).toUpperCase(), c:"#
 let thread = "main", lastKey = "", timer = null;
 const $ = id => document.getElementById(id);
 const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const STORAGE = "https://lfcmkpansxprugilyxvj.supabase.co/storage/v1/object";
+const BUCKET = "meeting-files";
+function splitAttach(content){
+  const re = /\[\[file:(image|video|file)\|([^|]+)\|([^\]]*)\]\]/g;
+  let atts = [], m; while((m = re.exec(content))){ atts.push({kind:m[1], url:m[2], name:m[3]}); }
+  return {text: content.replace(re,"").trim(), atts};
+}
+function attHtml(atts){
+  return atts.map(a => {
+    if(a.kind==="image") return '<div class="att"><img src="'+esc(a.url)+'" loading="lazy" onclick="window.open(this.src)"></div>';
+    if(a.kind==="video") return '<div class="att"><video src="'+esc(a.url)+'" controls playsinline></video></div>';
+    const ic = /\.pdf$/i.test(a.name)?"📄":/\.(xls|xlsx|csv)$/i.test(a.name)?"📊":/\.(zip|rar|7z)$/i.test(a.name)?"🗜️":"📎";
+    return '<div class="att"><a class="file" href="'+esc(a.url)+'" target="_blank" rel="noopener"><span class="ic">'+ic+'</span><span class="fn">'+esc(a.name||"檔案")+'</span></a></div>';
+  }).join("");
+}
 
 async function api(qs, opts={}){
   const r = await fetch(URL_ + qs, {...opts, headers: {...H, ...(opts.headers||{})}});
@@ -200,11 +223,13 @@ function render(rows){
     const day = fmtDay(m.created_at);
     if(day !== lastDay){ html += '<div class="day">'+day+'</div>'; lastDay = day; }
     const w = who(m.sender);
+    const {text, atts} = splitAttach(m.content);
+    const bubble = (text ? '<div class="bubble">'+esc(text)+'</div>' : '') + attHtml(atts);
     html += '<div class="msg '+esc(m.sender)+'">'+
       '<div class="ava" style="background:'+w.c+'">'+esc(w.tag)+'</div>'+
       '<div class="mbody"><div class="mhead"><span class="mname">'+esc(w.label)+'</span>'+
       '<span class="mtime">'+fmtTime(m.created_at)+'</span></div>'+
-      '<div class="bubble">'+esc(m.content)+'</div></div></div>';
+      bubble+'</div></div>';
   }
   const nearBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 220;
   feed.innerHTML = html;
@@ -256,6 +281,27 @@ async function post(){
   $("send").disabled = false; $("input").focus();
 }
 
+async function uploadFile(f){
+  if(f.size > 52428800){ return alert("檔案超過 50MB 上限。"); }
+  const kind = f.type.startsWith("image/") ? "image" : f.type.startsWith("video/") ? "video" : "file";
+  const path = "u/" + Date.now() + "-" + Math.random().toString(36).slice(2,7) + "-" + f.name.replace(/[^\w.\-]/g,"_");
+  const note = $("upnote"); note.style.display="block"; note.textContent = "上傳中… "+f.name;
+  $("attach").disabled = true; $("send").disabled = true;
+  try{
+    const r = await fetch(STORAGE + "/" + BUCKET + "/" + path, {
+      method:"POST", headers:{...H, "Content-Type": f.type || "application/octet-stream"}, body: f });
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    const url = "https://lfcmkpansxprugilyxvj.supabase.co/storage/v1/object/public/" + BUCKET + "/" + path;
+    const cap = $("input").value.trim();
+    await api("", {method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({sender:"neo", content:(cap?cap+"\n":"")+"[[file:"+kind+"|"+url+"|"+f.name+"]]", thread_id: thread})});
+    $("input").value=""; $("input").style.height="auto"; note.style.display="none";
+    await refresh(true);
+  }catch(e){ note.textContent = "上傳失敗："+e.message; }
+  $("attach").disabled=false; $("send").disabled=false;
+}
+$("attach").onclick = () => $("file").click();
+$("file").onchange = e => { if(e.target.files[0]) uploadFile(e.target.files[0]); e.target.value=""; };
 $("send").onclick = post;
 $("input").addEventListener("keydown", e => {
   if(e.key === "Enter" && !e.shiftKey && !e.isComposing){ e.preventDefault(); post(); }
