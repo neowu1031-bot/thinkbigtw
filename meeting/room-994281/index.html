@@ -215,11 +215,13 @@ function render(rows){
 
 async function refresh(scroll){
   try{
-    const rows = await api("?select=*&thread_id=eq."+encodeURIComponent(thread)+"&order=created_at&limit=200");
+    // 取「最新」150 則再反轉成正序 — 若用 order=asc+limit,串超過上限後新訊息永遠不會出現
+    const newest = await api("?select=*&thread_id=eq."+encodeURIComponent(thread)+"&order=created_at.desc&limit=150");
+    const rows = newest.reverse();
     $("live").classList.remove("err"); $("livetxt").textContent = "LIVE";
     const key = rows.length ? rows[rows.length-1].id + rows.length : "0";
     if(key !== lastKey){ lastKey = key; render(rows); }
-    $("s-msgs").textContent = rows.length;
+    $("s-msgs").textContent = rows.length >= 150 ? "150+" : rows.length;
     $("s-agents").textContent = new Set(rows.map(r=>r.sender)).size || "–";
   }catch(e){
     $("live").classList.add("err"); $("livetxt").textContent = "離線";
