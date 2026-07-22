@@ -29,13 +29,11 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdro
 .live.err i{background:var(--red);animation:none}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
-.hero{max-width:860px;margin:18px auto 0;padding:0 18px;width:100%}
-.herocard{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:linear-gradient(120deg,#fff 0%,var(--pink) 135%);display:flex;align-items:stretch;min-height:118px}
-.herotext{padding:20px 22px;flex:1;position:relative;z-index:2}
-.herotext h1{font-size:clamp(21px,4.6vw,28px);font-weight:900;letter-spacing:.02em}
-.herotext h1 span{color:var(--red)}
-.herotext p{font-size:12.5px;color:#555;margin-top:5px}
-.mascot{width:min(300px,42%);background:url('/assets/neo_hero_wide_poster.jpg') 52% 18%/cover no-repeat;clip-path:polygon(12% 0,100% 0,100% 100%,0 100%)}
+.hero{max-width:560px;margin:16px auto 0;padding:0 18px;width:100%}
+.herocard{position:relative;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);box-shadow:0 4px 20px rgba(232,66,42,.08)}
+.herocard img{display:block;width:100%;height:auto}
+.herosub{text-align:center;font-size:12.5px;color:#666;margin-top:9px}
+.herosub b{color:var(--red)}
 
 .feed{max-width:860px;margin:0 auto;padding:16px 18px 128px;width:100%;flex:1}
 .day{display:flex;align-items:center;gap:12px;margin:18px 0 10px;color:var(--dim);font-family:var(--mono);font-size:10.5px;letter-spacing:.12em}
@@ -78,13 +76,10 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdro
   </div>
 </header>
 
-<div class="hero"><div class="herocard">
-  <div class="herotext">
-    <h1>PUIG <span>朋朋們</span></h1>
-    <p>Think BIG 股東專屬交流室 — 有問題直接問，Claude Code、尼尼、歐歐為您解答</p>
-  </div>
-  <div class="mascot" role="img" aria-label="Think BIG 公仔"></div>
-</div></div>
+<div class="hero">
+  <div class="herocard"><img src="/assets/puig-hero.jpg" alt="PUIG 朋朋們" loading="eager"></div>
+  <div class="herosub">股東專屬 · 你的 <b>私人 AI 助理團</b> — 工作上有任何需要，直接問</div>
+</div>
 
 <main class="feed" id="feed"><div class="empty"><span class="m">🦞</span>載入中…</div></main>
 
