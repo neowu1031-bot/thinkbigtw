@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>確認付款 — Think BIG</title>
+<meta name="description" content="TB OS 結帳頁：確認報價、同意服務條款後前往付款。">
+<style>
+:root{
+  --bg:#f5f4f5;--panel:#fff;--line:#e9e6e7;--line-s:#d9d4d6;
+  --txt:#1c191a;--dim:#767074;--faint:#a29b9e;--brand:#e4548a;
+  --ok:#219a63;--warn:#d98324;--err:#c0392b;--r:8px;
+  --mono:"Azeret Mono",ui-monospace,Menlo,monospace;
+  --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:640px;margin:0 auto;padding:32px 20px 64px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.logo{font-family:var(--mono);font-weight:700;font-size:15px;letter-spacing:.13em}
+.logo span{color:var(--brand)}
+h1{font-size:24px;font-weight:800;margin:20px 0 4px}
+.sub{font-family:var(--mono);font-size:12px;color:var(--faint);letter-spacing:.06em;word-break:break-all}
+
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px;margin:20px 0}
+.amt{font-size:32px;font-weight:800;letter-spacing:.01em}
+.amt small{font-size:14px;font-weight:600;color:var(--dim);margin-left:6px}
+.meta{font-size:12px;color:var(--dim);margin-top:10px;font-family:var(--mono)}
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:4px;letter-spacing:.06em;background:#f0eef0;color:var(--dim);margin-bottom:10px}
+
+.acks{margin:6px 0 2px}
+.ack{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px;cursor:pointer}
+.ack:last-child{border-bottom:none}
+.ack input{margin-top:5px;accent-color:var(--brand);width:16px;height:16px;flex:none}
+.consented{display:flex;align-items:center;gap:10px;font-size:14.5px}
+.consented .tick{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:4px;background:#e6f4ec;color:var(--ok);letter-spacing:.06em}
+.terms{font-size:12px;color:var(--faint);margin-top:12px}
+.terms a{color:var(--dim)}
+
+.btn{display:block;width:100%;border:none;border-radius:var(--r);background:var(--brand);color:#fff;padding:14px 22px;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;letter-spacing:.03em;margin-top:18px}
+.btn[disabled]{background:#e4e0e2;color:var(--faint);cursor:not-allowed}
+.note{font-size:12px;color:var(--faint);margin-top:10px;font-family:var(--mono);text-align:center}
+.alert{border-radius:var(--r);padding:12px 16px;font-size:13.5px;margin:16px 0}
+.alert.err{background:#fdeceb;border:1px solid #f2c3be;color:var(--err)}
+.alert.warn{background:#fdf3e6;border:1px solid #f2d9b0;color:#96601a}
+.secure{display:flex;align-items:center;gap:8px;justify-content:center;font-size:12px;color:var(--faint);margin-top:22px;font-family:var(--mono)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><span class="logo">THINK<span>BIG</span></span></header>
+  <h1>確認付款</h1>
+  <p class="sub" id="qline">—</p>
+
+  <div id="app"><div class="card">載入中…</div></div>
+
+  <p class="secure" id="secure" hidden>🔒 付款在金流服務商頁面完成，卡號不經過本站</p>
+</div>
+
+<script>
+// H-1 訪客結帳頁:token 走 URL fragment(#token=,不進 server log/referer),
+// 以 Authorization: Bearer 打 api.thinkbigtw.com。token 綁單一 quote、效期 48h。
+const API = "https://api.thinkbigtw.com";
+const token = (location.hash.match(/[#&]token=([^&]+)/) || [])[1] || "";
+
+const $app = document.getElementById("app");
+const fmtAmt = (n, cur) => {
+  try { return new Intl.NumberFormat("zh-TW",{style:"currency",currency:cur||"TWD",minimumFractionDigits:0}).format(n); }
+  catch(e){ return (cur||"TWD")+" "+n; }
+};
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+async function api(path, opts={}){
+  const r = await fetch(API+path, {
+    ...opts,
+    headers: {"Authorization":"Bearer "+token, "Content-Type":"application/json", ...(opts.headers||{})},
+  });
+  let body = null;
+  try { body = await r.json(); } catch(e){}
+  return {ok:r.ok, status:r.status, body};
+}
+
+function fail(html){ $app.innerHTML = '<div class="alert err">'+html+'</div>'; }
+
+function render(q){
+  document.getElementById("qline").textContent = "Quote " + q.quote_id;
+  document.getElementById("secure").hidden = false;
+  let html = '<div class="card">';
+  html += '<span class="badge">'+esc(q.product_sku||"TB OS 個人 AI 助理裝機服務")+'</span>';
+  html += '<div class="amt">'+fmtAmt(q.amount, q.currency)+'<small>'+esc(q.currency||"TWD")+' · 一次性設定服務</small></div>';
+  html += '<div class="meta">付款方式:'+(q.default_provider==="ecpay"?"綠界 ECPay(信用卡/ATM 等)":"PayPal")+'</div>';
+  html += '</div>';
+
+  html += '<div class="card">';
+  if(q.has_consent){
+    html += '<div class="consented"><span class="tick">已同意</span><span>您已同意服務條款(版本 '+esc(q.terms_version)+')。</span></div>';
+  }else{
+    html += '<div class="acks">';
+    for(const [key,label] of Object.entries(q.required_acks||{})){
+      html += '<label class="ack"><input type="checkbox" data-ack="'+esc(key)+'"><span>'+esc(label)+'</span></label>';
+    }
+    html += '</div>';
+  }
+  html += '<p class="terms">條款全文:<a href="/terms.html" target="_blank" rel="noopener">服務條款(版本 '+esc(q.terms_version)+')</a></p>';
+  html += '</div>';
+
+  html += '<button class="btn" id="pay">前往付款</button>';
+  html += '<p class="note" id="paynote"></p>';
+  $app.innerHTML = html;
+  document.getElementById("pay").onclick = () => pay(q);
+}
+
+function collectAcks(){
+  const acks = {};
+  document.querySelectorAll("input[data-ack]").forEach(el => { acks[el.dataset.ack] = el.checked; });
+  return acks;
+}
+
+async function pay(q){
+  const btn = document.getElementById("pay");
+  const note = document.getElementById("paynote");
+  btn.disabled = true; note.textContent = "";
+
+  // A3 條款同意 gate:尚未同意者先勾齊並落 consent,缺勾選直接擋在前端+後端雙層
+  if(!q.has_consent){
+    const acks = collectAcks();
+    if(Object.values(acks).some(v => !v) || Object.keys(acks).length===0){
+      note.textContent = "請先勾選全部同意事項"; btn.disabled = false; return;
+    }
+    const c = await api("/checkout/consent", {method:"POST", body:JSON.stringify({acks})});
+    if(!c.ok){
+      note.textContent = c.status===400 ? "同意事項不完整,請重新勾選" : "同意送出失敗("+c.status+"),請重試";
+      btn.disabled = false; return;
+    }
+    q.has_consent = true;
+  }
+
+  btn.textContent = "建立付款中…";
+  const r = await api("/checkout", {method:"POST", body:JSON.stringify({})});
+  if(!r.ok){
+    const d = (r.body&&r.body.detail)||"";
+    note.textContent = d==="consent_required" ? "尚未完成條款同意,請重新整理頁面" :
+      r.status===401 ? "連結已過期,請向我們索取新的付款連結" : "建立付款失敗("+r.status+"),請重試";
+    btn.disabled = false; btn.textContent = "前往付款"; return;
+  }
+
+  const out = r.body || {};
+  const p = out.payload || {};
+  if(out.provider === "ecpay" && p.action_url && p.params){
+    // 綠界 AioCheckOut:以 form POST 導向收銀台(含 CheckMacValue),卡號不經本站
+    const f = document.createElement("form");
+    f.method = "POST"; f.action = p.action_url;
+    for(const [k,v] of Object.entries(p.params)){
+      const i = document.createElement("input");
+      i.type = "hidden"; i.name = k; i.value = v; f.appendChild(i);
+    }
+    document.body.appendChild(f); f.submit();
+  }else if(out.provider === "paypal" && p.approve_url){
+    location.href = p.approve_url;
+  }else{
+    note.textContent = "付款頁資料異常,請聯絡我們協助";
+    btn.disabled = false; btn.textContent = "前往付款";
+  }
+}
+
+async function load(){
+  if(!token){
+    fail("缺少付款連結資訊。請使用我們提供的完整結帳連結開啟本頁;若連結失效,請向我們索取新的。");
+    return;
+  }
+  let r;
+  try { r = await api("/checkout/quote"); }
+  catch(e){ fail("無法連線到服務,請稍後重試。"); return; }
+  if(r.status === 401){ fail("此付款連結已過期(有效 48 小時)。請向我們索取新的付款連結。"); return; }
+  if(r.status === 404){ fail("找不到這筆報價,請確認連結是否完整。"); return; }
+  if(!r.ok){ fail("載入失敗("+r.status+"),請稍後重試。"); return; }
+  render(r.body);
+}
+load();
+</script>
+</body>
+</html>
