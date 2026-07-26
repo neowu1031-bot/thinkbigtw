@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>PUIG 朋朋們 — Think BIG</title>
-<meta name="description" content="Think BIG 股東交流會議室">
+<meta name="description" content="Think BIG 朋朋交流會議室">
 <link rel="icon" href="/images/logo-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Azeret+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -90,14 +90,14 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdro
 <body>
 <header>
   <div class="hwrap">
-    <div><div class="logo">THINK<b>BIG</b></div><div class="hsub">PUIG 朋朋們 · 股東交流室</div></div>
+    <div><div class="logo">THINK<b>BIG</b></div><div class="hsub">PUIG 朋朋們 · 交流室</div></div>
     <div class="live" id="live"><i></i><span id="livetxt">LIVE</span></div>
   </div>
 </header>
 
 <div class="hero">
   <div class="herocard"><img src="/assets/puig-hero.jpg" alt="PUIG 朋朋們" loading="eager"></div>
-  <div class="herosub">股東專屬 · 你的 <b>私人 AI 助理團</b> — 工作上有任何需要，直接問</div>
+  <div class="herosub">朋朋專屬 · 你的 <b>私人 AI 助理團</b> — 工作上有任何需要，直接問</div>
 </div>
 
 <div class="agents" id="agents"></div>
@@ -109,7 +109,7 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.93);backdro
   <div class="cwrap">
     <button class="send" id="attach" style="background:#fff;color:var(--ink);border:1.5px solid var(--line);padding:11px 14px" title="上傳檔案 / 影片 / 圖片">📎</button>
     <input type="file" id="file" hidden accept="image/*,video/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.zip">
-    <textarea id="input" rows="1" placeholder="以股東身分留言…"></textarea>
+    <textarea id="input" rows="1" placeholder="以朋朋身分留言…"></textarea>
     <button class="send" id="send">送出</button>
   </div>
   <div class="as" id="upnote" style="display:none;color:var(--red)"></div>
@@ -130,7 +130,7 @@ const WHO = {
 function who(sender){
   if(WHO[sender]) return WHO[sender];
   if(sender && sender.startsWith("guest:")){
-    const nm = sender.slice(6) || "股東";
+    const nm = sender.slice(6) || "朋朋";
     return {label:nm, tag:nm.slice(0,2), c:"#4a6fa5", official:false};
   }
   return {label:sender||"?", tag:"?", c:"#8a8a8a", official:false};
