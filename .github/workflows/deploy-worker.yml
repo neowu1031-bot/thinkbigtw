@@ -23,15 +23,9 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler@4
 
-      - name: Push MiniMax API Key as Secret
-        working-directory: ./workers/ai-proxy
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
-        run: |
-          echo "$MINIMAX_API_KEY" | wrangler secret put MINIMAX_API_KEY || echo "Secret already set or push failed (non-fatal)"
-
+      # MINIMAX_API_KEY 已存在 Worker secret 中；輪替金鑰時手動執行
+      # `wrangler secret put MINIMAX_API_KEY`，不在 CI 內做——GitHub secret
+      # 未設時這步會把空值蓋掉線上金鑰
       - name: Deploy Worker
         working-directory: ./workers/ai-proxy
         env:
