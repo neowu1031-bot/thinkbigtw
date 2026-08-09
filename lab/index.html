@@ -96,7 +96,7 @@ textarea{height:80px;resize:vertical}
 .search-bar:hover{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .search-bar svg{width:14px;height:14px;color:var(--text-muted);flex-shrink:0}
 .search-bar span{font-size:12px;color:var(--text-muted)}
-.header-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:8px;flex-shrink:0;position:relative}
 .icon-btn{width:34px;height:34px;border-radius:var(--btn-radius);border:1px solid var(--border-strong);background:var(--bg-surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .18s;position:relative;color:var(--text-secondary)}
 .icon-btn svg{width:16px;height:16px}
 .icon-btn:hover{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
@@ -410,10 +410,22 @@ textarea{height:80px;resize:vertical}
     <div class="header-right">
       <span class="badge" id="userBadge">--</span>
       <button id="logoutBtn" onclick="logoutUser()" style="display:none;background:var(--bg-surface);color:var(--text-secondary);border:1px solid var(--border-strong);padding:5px 12px;border-radius:var(--btn-radius);font-size:12px;cursor:pointer;font-family:var(--font-main);transition:all .2s">登出</button>
-      <button class="icon-btn" title="通知">
+      <button class="icon-btn" title="通知" onclick="toggleNotifPanel()" id="headerBellBtn">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 1.5a4.5 4.5 0 0 0-4.5 4.5v2.5L2 10h12l-1.5-1.5V6A4.5 4.5 0 0 0 8 1.5Z"/><path d="M6.5 11.5a1.5 1.5 0 0 0 3 0"/></svg>
-        <div class="notif-dot"></div>
+        <div class="notif-dot" id="notifDot"></div>
       </button>
+      <div id="notifPanel" style="display:none;position:absolute;top:48px;right:60px;width:320px;background:var(--bg-surface);border:1px solid var(--border-strong);border-radius:12px;box-shadow:var(--shadow-md);z-index:999;max-height:400px;overflow-y:auto">
+        <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+          <span style="font-size:14px;font-weight:600;color:var(--text-primary)">通知中心</span>
+          <button onclick="requestNotifyPermission()" id="notifPermBtn" style="background:var(--accent-soft);color:var(--accent);border:none;padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer">開啟推播</button>
+        </div>
+        <div id="notifPanelContent" style="padding:12px 16px">
+          <div style="color:var(--text-muted);font-size:13px;text-align:center;padding:20px 0">暫無新通知</div>
+        </div>
+        <div style="padding:10px 16px;border-top:1px solid var(--border);text-align:center">
+          <a href="#" onclick="switchTab('tools',document.querySelector('[onclick*=tools]'));toggleNotifPanel();return false;" style="font-size:12px;color:var(--accent);text-decoration:none">管理價格警示 →</a>
+        </div>
+      </div>
       <button class="icon-btn" onclick="toggleThemeV272()" title="切換主題">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="3.5"/><line x1="8" y1="1" x2="8" y2="2.5"/><line x1="8" y1="13.5" x2="8" y2="15"/><line x1="1" y1="8" x2="2.5" y2="8"/><line x1="13.5" y1="8" x2="15" y2="8"/><line x1="3" y1="3" x2="4.1" y2="4.1"/><line x1="11.9" y1="11.9" x2="13" y2="13"/><line x1="13" y1="3" x2="11.9" y2="4.1"/><line x1="4.1" y1="11.9" x2="3" y2="13"/></svg>
       </button>
@@ -758,7 +770,6 @@ textarea{height:80px;resize:vertical}
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-watchlist">
       <div id="watchlist-grid-content" style="margin-top:16px"></div>
@@ -771,7 +782,6 @@ textarea{height:80px;resize:vertical}
         <div style="color:var(--text-muted);padding:20px;text-align:center">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-etf">
     <div class="section">
@@ -823,7 +833,6 @@ textarea{height:80px;resize:vertical}
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-us">
       <div id="us-extras-content" style="margin-top:16px"></div>
@@ -851,7 +860,6 @@ textarea{height:80px;resize:vertical}
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-fund">
       <div id="global-commodities-content" style="margin-top:16px"></div>
@@ -861,7 +869,6 @@ textarea{height:80px;resize:vertical}
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-futures">
     <div class="section">
@@ -938,7 +945,6 @@ textarea{height:80px;resize:vertical}
         資料來源：TAIFEX 期交所 + Finnhub 國際商品。
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-tools">
     <div class="section">
@@ -948,7 +954,6 @@ textarea{height:80px;resize:vertical}
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-options">
     <div class="section">
@@ -1012,7 +1017,6 @@ textarea{height:80px;resize:vertical}
         </a>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-screener">
     <div class="section">
@@ -1041,7 +1045,6 @@ textarea{height:80px;resize:vertical}
       </div>
       <div id="screenerResult"><div style="color:var(--text-muted);padding:8px">請設定篩選條件後按「開始選股」</div></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-bonds">
     <div class="section">
@@ -1060,7 +1063,6 @@ textarea{height:80px;resize:vertical}
       <div class="section-title"><svg class="inline-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" style="display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:2px"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><line x1="1.5" y1="8" x2="14.5" y2="8"/></svg>台灣債券 ETF</div>
       <div id="bondsTW" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px"></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-sector">
     <div class="section">
@@ -1070,7 +1072,6 @@ textarea{height:80px;resize:vertical}
         <div style="color:var(--text-muted);padding:8px">載入中...</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-macro">
     <div class="section">
@@ -1120,7 +1121,6 @@ textarea{height:80px;resize:vertical}
         <div style="font-size:11px;color:var(--text-muted);margin-top:8px;text-align:center">數值由 ETF 殖利率近似（TLT/IEF/SHY 等），實際殖利率以 Treasury.gov 為準</div>
       </div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-portfolio">
     <div class="section">
@@ -1147,7 +1147,6 @@ textarea{height:80px;resize:vertical}
       <div id="portfolioList"></div>
       <div id="portfolioAlloc" style="margin-top:14px"></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
   <div class="tab-content" id="tab-crypto">
       <div id="crypto-extras-content" style="margin-top:16px"></div>
@@ -1162,8 +1161,8 @@ textarea{height:80px;resize:vertical}
       <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px">熱門幣種</div>
       <div id="cryptoGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px"></div>
     </div>
-    <div class="footer">MoneyRadar™ · 由 Think BIG! 提供<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
   </div>
+  <div class="footer" style="text-align:center;padding:30px 0 20px;color:var(--text-muted);font-size:12px;border-top:1px solid var(--border);margin-top:40px">MoneyRadar™ · 由 Think BIG! 提供 · 所有內容僅供參考，不構成投資建議<br><a href="terms.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">服務條款</a>·<a href="privacy.html" target="_blank" style="color:var(--text-muted);text-decoration:none;margin:0 6px">隱私政策</a></div>
 </div>
 <script src="app2.js?v=272f"></script><script src="v277-bundle.js?v=272f"></script><script src="v278-bundle.js?v=272f"></script><script src="v279-bundle.js?v=272f"></script><script src="v281-bundle.js?v=272f"></script><script src="v282-bundle.js?v=272f"></script><script src="v283-bundle.js?v=272f"></script><script src="v284-bundle.js?v=272f"></script><script src="v285-bundle.js?v=272f"></script><script src="v286-bundle.js?v=272f"></script><script src="v287-bundle.js?v=272f"></script><script src="v288-bundle.js?v=272f"></script><script src="v289-bundle.js?v=272f"></script><script src="v290-bundle.js?v=272f"></script><script src="v291-bundle.js?v=272f"></script><script src="v292-bundle.js?v=272f"></script><script src="v293-bundle.js?v=272f"></script><script src="v294-bundle.js?v=272f"></script><script src="v295-bundle.js?v=272f"></script><script src="v296-bundle.js?v=272f"></script><script src="v297a-bundle.js?v=272f"></script>
 
@@ -1275,6 +1274,62 @@ function mrSwitchLang(code){
 }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script><script>(function(){var K='mr_v275_';var T=['tab-tw','tab-watchlist','tab-us','tab-asia','tab-etf','tab-fund','tab-futures','tab-tools','tab-options','tab-screener','tab-bonds','tab-sector','tab-macro','tab-portfolio','tab-pro','tab-crypto'];var ST=document.createElement('style');ST.textContent='.v275-h{position:absolute;top:8px;right:12px;cursor:grab;padding:4px 10px;color:rgba(255,255,255,.5);font:900 16px/1 sans-serif;background:rgba(255,255,255,.08);border-radius:4px;z-index:10;letter-spacing:-2px;user-select:none}.v275-h:hover{color:#fff;background:rgba(0,200,255,.2)}.v275-g{opacity:.4;background:rgba(0,200,255,.1)!important;border:2px dashed rgba(0,200,255,.5)!important}';document.head.appendChild(ST);function I(){if(!window.Sortable){return setTimeout(I,500);}T.forEach(function(id){var t=document.getElementById(id);if(!t||t.dataset.v275){return;}t.dataset.v275='1';Array.from(t.querySelectorAll(':scope > .section')).forEach(function(x,i){if(!x.dataset.v275k){var z=x.querySelector('[id]');x.dataset.v275k=z?z.id:'s-'+id+'-'+i;}if(getComputedStyle(x).position==='static'){x.style.position='relative';}if(!x.querySelector('.v275-h')){var h=document.createElement('span');h.className='v275-h';h.title='Drag';h.textContent='⋮⋮';x.appendChild(h);}});try{JSON.parse(localStorage.getItem(K+id)||'[]').forEach(function(k){var sel='[data-v275k='+JSON.stringify(k)+']';var e=t.querySelector(sel);if(e){t.appendChild(e);}});}catch(e){}new window.Sortable(t,{handle:'.v275-h',animation:200,ghostClass:'v275-g',filter:'.footer,#v272-controls,script,style',onEnd:function(){try{var arr=Array.from(t.querySelectorAll(':scope > .section')).map(function(x){return x.dataset.v275k;}).filter(Boolean);localStorage.setItem(K+id,JSON.stringify(arr));}catch(e){}}});});}I();document.addEventListener('click',function(e){if(e.target.closest('[data-tab],.tab-btn,[role=tab]')){setTimeout(I,400);}},true);window.v275Reset=function(){T.forEach(function(id){localStorage.removeItem(K+id);});location.reload();};})();</script>
+
+<script>
+/* v272: Notification Panel */
+function toggleNotifPanel(){
+  var p=document.getElementById('notifPanel');
+  if(!p)return;
+  p.style.display=p.style.display==='none'?'block':'none';
+  if(p.style.display==='block'){
+    updateNotifPanel();
+    setTimeout(function(){
+      document.addEventListener('click',_closeNotifOnOutside,{once:true,capture:true});
+    },0);
+  }
+}
+function _closeNotifOnOutside(e){
+  var p=document.getElementById('notifPanel');
+  var b=document.getElementById('headerBellBtn');
+  if(p&&!p.contains(e.target)&&b&&!b.contains(e.target)){
+    p.style.display='none';
+  } else if(p&&p.style.display==='block'){
+    setTimeout(function(){document.addEventListener('click',_closeNotifOnOutside,{once:true,capture:true});},0);
+  }
+}
+function updateNotifPanel(){
+  var content=document.getElementById('notifPanelContent');
+  var permBtn=document.getElementById('notifPermBtn');
+  var dot=document.getElementById('notifDot');
+  if(!content)return;
+  if(permBtn&&'Notification' in window){
+    if(Notification.permission==='granted'){permBtn.textContent='\u63a8\u64ad\u5df2\u958b\u555f';permBtn.style.color='#34d399';permBtn.style.background='rgba(52,211,153,0.1)';}
+    else if(Notification.permission==='denied'){permBtn.textContent='\u63a8\u64ad\u5df2\u5c01\u9396';permBtn.style.color='#f87171';permBtn.style.background='rgba(248,113,113,0.1)';}
+  }
+  var alerts=[];
+  try{alerts=JSON.parse(localStorage.getItem('mr_price_alerts')||'[]');}catch(e){}
+  var triggered=alerts.filter(function(a){return a.triggered;});
+  var active=alerts.filter(function(a){return !a.triggered;});
+  var h='';
+  if(triggered.length>0){
+    h+='<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;font-weight:600">\u5df2\u89f8\u767c</div>';
+    triggered.forEach(function(a){
+      h+='<div style="padding:8px 10px;background:var(--up-bg);border-radius:8px;margin-bottom:6px;font-size:13px;color:var(--text-primary)">'+a.symbol+' '+(a.condition==='above'?'\u6f32\u5230':'\u8dcc\u5230')+' $'+a.price+'</div>';
+    });
+    if(dot)dot.style.display='block';
+  } else {
+    if(dot)dot.style.display='none';
+  }
+  if(active.length>0){
+    h+='<div style="font-size:11px;color:var(--text-muted);margin-bottom:6px;margin-top:8px;font-weight:600">\u76e3\u63a7\u4e2d ('+active.length+')</div>';
+    active.forEach(function(a){
+      h+='<div style="padding:8px 10px;background:var(--bg-elevated);border-radius:8px;margin-bottom:6px;font-size:13px;color:var(--text-primary)">'+a.symbol+' '+(a.condition==='above'?'\u6f32\u5230':'\u8dcc\u5230')+' $'+a.price+'</div>';
+    });
+  }
+  if(!h)h='<div style="color:var(--text-muted);font-size:13px;text-align:center;padding:20px 0">\u66ab\u7121\u901a\u77e5<br><span style="font-size:11px">\u524d\u5f80\u300c\u5de5\u5177\u300d\u5206\u9801\u8a2d\u5b9a\u50f9\u683c\u8b66\u793a</span></div>';
+  content.innerHTML=h;
+}
+</script>
 <!-- v272: Global Emoji→SVG Runtime Replacer -->
 <script>
 (function(){
