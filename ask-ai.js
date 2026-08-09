@@ -10,7 +10,7 @@
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   // ---- 2. 注入 HTML ----
-  var html = '<div id="ai-agent-btn" onclick="toggleChat()">\n  <div class="pulse"></div>\n  <div class="pulse pulse-2"></div>\n  <div class="btn-text">ASK</div>\n  <div class="btn-brand">AI</div>\n</div>\n\n<div id="ai-chat">\n  <div class="chat-header">\n    <div class="agent-info">\n      <div class="agent-avatar">🦞</div>\n      <div>\n        <div class="agent-name">Hermes Agent</div>\n        <div class="agent-tagline">Think BIG! AI Assistant</div>\n        <div class="status">Online · Real AI · Powered by Claude</div>\n      </div>\n    </div>\n    <div class="header-right">\n      <div class="powered-by">Powered by <b>Cloudflare AI</b></div>\n      <button class="close-btn" onclick="toggleChat()" title="關閉 (ESC)">✕</button>\n    </div>\n  </div>\n  <div class="chat-body" id="chat-body">\n    <div class="hero-welcome" id="hero-welcome">\n      <div class="hero-icon">🦞</div>\n      <h2 id="hero-title">您好！我是 Hermes</h2>\n      <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎<br><br>\n        <strong style="color:#fff">🎯 我們目前提供四大服務：</strong><br>\n        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>AI Agent ERP</strong> — 全球首創 AI Native 企業系統<br>\n        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>MoneyRadar™</strong> — 全球頂尖 AI 看盤神器<br>\n        <span style="color:rgba(232,66,42,0.9)">③</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>\n        <span style="color:rgba(232,66,42,0.9)">④</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>\n        隨時問我任何問題，或點下方快速選項 👇\n      </p>\n    </div>\n  </div>\n  <div class="chat-input-wrap">\n    <div class="quick-bar" id="quick-bar">\n      <button class="qchip" onclick="askQuick(\'告訴我 AI Agent ERP 有什麼模組？定價是多少？\')"><span class="qt">AI Agent ERP 有什麼？</span><span class="qs2">11 大模組 · 三階方案</span></button>\n      <button class="qchip" onclick="askQuick(\'MoneyRadar 是什麼？適合誰用？\')"><span class="qt">MoneyRadar™ 怎麼用？</span><span class="qs2">全球頂尖看盤神器</span></button>\n      <button class="qchip" onclick="askQuick(\'我想導入 AI 自動化\')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>\n      <button class="qchip" onclick="askQuick(\'關於 Think BIG\')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 四大服務</span></button>\n    </div>\n    <div class="chat-input">\n      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：ERP 月費多少？" onkeydown="if(event.key===\'Enter\')sendMsg()" autocomplete="off">\n      <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">\n        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>\n      </button>\n    </div>\n    <div class="chat-footer">\n      由 Cloudflare AI 即時驅動 · 若需專人服務請洽 <a href="https://lin.ee/n5KW430" target="_blank">LINE 客服</a>\n    </div>\n  </div>\n</div>\n';
+  var html = '<div id="ai-agent-btn" onclick="toggleChat()">\n  <div class="pulse"></div>\n  <div class="pulse pulse-2"></div>\n  <div class="btn-text">ASK</div>\n  <div class="btn-brand">AI</div>\n</div>\n\n<div id="ai-chat">\n  <div class="chat-header">\n    <div class="agent-info">\n      <div class="agent-avatar">🦞</div>\n      <div>\n        <div class="agent-name">Hermes Agent</div>\n        <div class="agent-tagline">Think BIG! AI Assistant</div>\n        <div class="status">Online · Real AI · Powered by Claude</div>\n      </div>\n    </div>\n    <div class="header-right">\n      <div class="powered-by">Powered by <b>Cloudflare AI</b></div>\n      <button class="close-btn" onclick="toggleChat()" title="關閉 (ESC)">✕</button>\n    </div>\n  </div>\n  <div class="chat-body" id="chat-body">\n    <div class="hero-welcome" id="hero-welcome">\n      <div class="hero-icon">🦞</div>\n      <h2 id="hero-title">您好！我是 Hermes</h2>\n      <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎<br><br>\n        <strong style="color:#fff">🎯 我們目前提供三大服務：</strong><br>\n        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>AI Agent ERP</strong> — 全球首創 AI Native 企業系統<br>\n        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>\n        <span style="color:rgba(232,66,42,0.9)">③</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>\n        隨時問我任何問題，或點下方快速選項 👇\n      </p>\n    </div>\n  </div>\n  <div class="chat-input-wrap">\n    <div class="quick-bar" id="quick-bar">\n      <button class="qchip" onclick="askQuick(\'告訴我 AI Agent ERP 有什麼模組？定價是多少？\')"><span class="qt">AI Agent ERP 有什麼？</span><span class="qs2">11 大模組 · 三階方案</span></button>\n      <button class="qchip" onclick="askQuick(\'我想導入 AI 自動化\')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>\n      <button class="qchip" onclick="askQuick(\'關於 Think BIG\')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 三大服務</span></button>\n    </div>\n    <div class="chat-input">\n      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：ERP 月費多少？" onkeydown="if(event.key===\'Enter\')sendMsg()" autocomplete="off">\n      <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">\n        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>\n      </button>\n    </div>\n    <div class="chat-footer">\n      由 Cloudflare AI 即時驅動 · 若需專人服務請洽 <a href="https://lin.ee/n5KW430" target="_blank">LINE 客服</a>\n    </div>\n  </div>\n</div>\n';
   var wrap = document.createElement('div'); wrap.innerHTML = html;
   while (wrap.firstChild) document.body.appendChild(wrap.firstChild);
 
@@ -28,61 +28,52 @@ const HERO_I18N = {
   'zh-TW': {
     title: '您好！我是 Hermes',
     intro: 'Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎',
-    servicesLabel: '🎯 我們目前提供四大服務：',
+    servicesLabel: '🎯 我們目前提供三大服務：',
     s1: 'AI Agent ERP — 全球首創 AI Native 企業系統',
-    s2: 'MoneyRadar™ — 全球頂尖 AI 看盤神器',
-    s3: '企業 AI 導入 — RAG / Agent / 流程自動化',
-    s4: 'Harness Engineers — 個人 AI 搭建',
+    s2: '企業 AI 導入 — RAG / Agent / 流程自動化',
+    s3: 'Harness Engineers — 個人 AI 搭建',
     askPrompt: '隨時問我任何問題，或點下方快速選項 👇',
     placeholder: '問我任何問題，例如：ERP 月費多少？',
     qs1: 'AI Agent ERP 有什麼？', qs1s: '11 大模組 · 三階方案',
-    qs2: 'MoneyRadar™ 怎麼用？', qs2s: '全球頂尖看盤神器',
-    qs3: '我想導入 AI 自動化', qs3s: '企業方案推薦',
-    qs4: '和鼎新、SAP 比？', qs4s: '差異化優勢',
+    qs2: '我想導入 AI 自動化', qs2s: '企業方案推薦',
+    qs3: '和鼎新、SAP 比？', qs3s: '差異化優勢',
     qs1q: '告訴我 AI Agent ERP 有什麼模組？定價是多少？',
-    qs2q: 'MoneyRadar 是什麼？適合誰用？',
-    qs3q: '我是中小企業老闆，想導入 AI Agent，請問適合什麼方案？',
-    qs4q: 'Think BIG 和鼎新數智、SAP 比起來，優勢在哪？',
+    qs2q: '我是中小企業老闆，想導入 AI Agent，請問適合什麼方案？',
+    qs3q: 'Think BIG 和鼎新數智、SAP 比起來，優勢在哪？',
     footer: '由 AI 即時驅動 · 若需專人服務請洽',
   },
   'en': {
     title: 'Hello! I\'m Hermes',
     intro: 'Think BIG!\'s AI Assistant · Powered by our OpenClaw + Claude Code engine',
-    servicesLabel: '🎯 We offer four core services:',
+    servicesLabel: '🎯 We offer three core services:',
     s1: 'AI Agent ERP — World\'s first AI-Native enterprise system',
-    s2: 'MoneyRadar™ — Premium AI trading dashboard',
-    s3: 'Enterprise AI — RAG / Agent / Automation',
-    s4: 'Harness Engineers — Personal AI Agent builder',
+    s2: 'Enterprise AI — RAG / Agent / Automation',
+    s3: 'Harness Engineers — Personal AI Agent builder',
     askPrompt: 'Ask me anything, or pick a quick option below 👇',
     placeholder: 'Ask me anything, e.g.: How much is ERP monthly?',
     qs1: 'What\'s in AI Agent ERP?', qs1s: '11 modules · 3 tiers',
-    qs2: 'How to use MoneyRadar™?', qs2s: 'Premium trading dashboard',
-    qs3: 'I want AI automation', qs3s: 'Enterprise solutions',
-    qs4: 'vs SAP / Digiwin?', qs4s: 'Our advantages',
+    qs2: 'I want AI automation', qs2s: 'Enterprise solutions',
+    qs3: 'vs SAP / Digiwin?', qs3s: 'Our advantages',
     qs1q: 'Tell me about AI Agent ERP modules and pricing.',
-    qs2q: 'What is MoneyRadar and who is it for?',
-    qs3q: 'I run a SMB and want to adopt AI Agent. Which plan suits me?',
-    qs4q: 'How does Think BIG compare to SAP and Digiwin?',
+    qs2q: 'I run a SMB and want to adopt AI Agent. Which plan suits me?',
+    qs3q: 'How does Think BIG compare to SAP and Digiwin?',
     footer: 'Powered by AI · For human support contact',
   },
   'ja': {
     title: 'こんにちは！Hermes です',
     intro: 'Think BIG! の AI アシスタント · OpenClaw + Claude Code エンジン搭載',
-    servicesLabel: '🎯 4 つのコアサービスを提供しています：',
+    servicesLabel: '🎯 3 つのコアサービスを提供しています：',
     s1: 'AI Agent ERP — 世界初の AI ネイティブ企業システム',
-    s2: 'MoneyRadar™ — プレミアム AI トレーディングダッシュボード',
-    s3: '企業向け AI 導入 — RAG / Agent / 自動化',
-    s4: 'Harness Engineers — 個人向け AI エージェント構築',
+    s2: '企業向け AI 導入 — RAG / Agent / 自動化',
+    s3: 'Harness Engineers — 個人向け AI エージェント構築',
     askPrompt: 'お気軽にご質問ください、または下のオプションをタップ 👇',
     placeholder: 'ご質問をどうぞ。例：ERP の月額は？',
     qs1: 'AI Agent ERP の内容は？', qs1s: '11 モジュール · 3 段階',
-    qs2: 'MoneyRadar™ の使い方？', qs2s: '高機能トレーディング',
-    qs3: 'AI 自動化を導入したい', qs3s: '企業向けプラン',
-    qs4: 'SAP / 鼎新と比較？', qs4s: '優位性',
+    qs2: 'AI 自動化を導入したい', qs2s: '企業向けプラン',
+    qs3: 'SAP / 鼎新と比較？', qs3s: '優位性',
     qs1q: 'AI Agent ERP のモジュールと価格を教えてください。',
-    qs2q: 'MoneyRadar とは何ですか？対象ユーザーは？',
-    qs3q: '中小企業の経営者です。AI Agent 導入にどのプランが最適ですか？',
-    qs4q: 'Think BIG は SAP や鼎新と比べてどんな優位性がありますか？',
+    qs2q: '中小企業の経営者です。AI Agent 導入にどのプランが最適ですか？',
+    qs3q: 'Think BIG は SAP や鼎新と比べてどんな優位性がありますか？',
     footer: 'AI 駆動 · サポートは',
   }
 };
@@ -130,15 +121,14 @@ function applyLanguage(lang){
       <strong style="color:#fff">${t.servicesLabel}</strong><br>
       <span style="color:rgba(232,66,42,0.9)">①</span> <strong>${t.s1}</strong><br>
       <span style="color:rgba(232,66,42,0.9)">②</span> <strong>${t.s2}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">③</span> <strong>${t.s3}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">④</span> <strong>${t.s4}</strong><br><br>
+      <span style="color:rgba(232,66,42,0.9)">③</span> <strong>${t.s3}</strong><br><br>
       ${t.askPrompt}`;
   }
   
   // Update quick suggestions
   const qsItems = document.querySelectorAll('#hero-welcome .qs');
-  const qsKeys = ['qs1', 'qs2', 'qs3', 'qs4'];
-  const qsQs = ['qs1q', 'qs2q', 'qs3q', 'qs4q'];
+  const qsKeys = ['qs1', 'qs2', 'qs3'];
+  const qsQs = ['qs1q', 'qs2q', 'qs3q'];
   qsItems.forEach((item, i) => {
     const textEl = item.querySelector('.qs-text');
     const smallEl = textEl.querySelector('small');
@@ -239,11 +229,10 @@ Think BIG 是台灣 AI 自動化顧問公司,由 NEO.W 創辦,專注幫助中小
 - 全程繁體中文支援,台灣團隊在地服務
 - 透明定價、明確交付、七天免費維護
 
-【四大服務】
+【三大服務】
 ① AI Agent ERP — 全球首創 AI Native 企業系統
-② MoneyRadar™ — 全球頂尖 AI 看盤神器
-③ 企業 AI 導入 — RAG / Agent / 流程自動化
-④ Harness Engineers — 個人 AI 搭建
+② 企業 AI 導入 — RAG / Agent / 流程自動化
+③ Harness Engineers — 個人 AI 搭建
 
 想了解更多,可以隨時問我任何問題,或點上方快速選項 👇`;
 

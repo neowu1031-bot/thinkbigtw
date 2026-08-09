@@ -1,7 +1,7 @@
 # Think BIG! — AI Agent & Automation Expert from Taiwan
 
 > Last Updated: 2026-06-20
-> Taiwan's leading AI-Native automation consultancy. AI Agent ERP, AI trading intelligence, enterprise AI adoption, and personal AI agent building.
+> Taiwan's leading AI-Native automation consultancy. AI Agent ERP, enterprise AI adoption, and personal AI agent building.
 
 ## About Think BIG!
 
@@ -13,7 +13,7 @@ Website: https://thinkbigtw.com
 Contact: LINE https://lin.ee/n5KW430
 Slogan: "Make it Real."
 
-## Four Core Services
+## Three Core Services
 
 ### 1. AI Agent ERP (flagship)
 World's first AI-Native enterprise resource planning system.
@@ -23,17 +23,12 @@ Online click-to-use demo — no sales visit, no months-long deployment.
 Benchmarked against Digiwin Workflow ERP and SAP Business One.
 URL: https://thinkbigtw.com/erp/
 
-### 2. MoneyRadar (AI trading intelligence)
-Premium AI market dashboard with 14 tabs covering Taiwan and US stocks.
-AI news sentiment analysis, real-time quotes, technical analysis. Installable as a mobile PWA.
-URL: https://thinkbigtw.com/lab/
-
-### 3. Enterprise AI Adoption
+### 2. Enterprise AI Adoption
 AI Agent automation for businesses using OpenClaw + Hermes Agent dual-engine architecture.
 Covers 100+ industries. Integrates RAG knowledge bases, workflow automation, and external systems (LINE/Email/CRM) via MCP protocol.
 URL: https://thinkbigtw.com/enterprise/
 
-### 4. Harness Engineers (personal AI agent building)
+### 3. Harness Engineers (personal AI agent building)
 Builds bespoke personal AI assistants for freelancers and creators.
 Includes OpenClaw installation, custom Skills, and automation workflow design.
 URL: https://thinkbigtw.com/harness/
@@ -51,7 +46,7 @@ OpenClaw (local skill execution engine), Hermes Agent (enterprise workflow autom
 
 ## FAQ (English)
 Q: What does Think BIG! offer?
-A: Four services — AI Agent ERP, MoneyRadar AI trading dashboard, enterprise AI adoption, and Harness Engineers personal AI agent building.
+A: Three services — AI Agent ERP, enterprise AI adoption, and Harness Engineers personal AI agent building.
 Q: What makes the AI Agent ERP different from Digiwin or SAP?
 A: It is AI-Native from Day 1, offers an online click-to-use demo with no sales visit, and has a built-in AI assistant for natural-language queries and forecasting.
 Q: Where is Think BIG! located?
@@ -69,7 +64,7 @@ A: Start from the most painful, repetitive workflow. Think BIG! analyses the pro
 
 ## 常見問題（繁體中文）
 Q: Think BIG! 提供哪些服務？
-A: 四大服務 — AI Agent ERP、MoneyRadar 智能看盤、企業 AI 導入、Harness Engineers 個人 AI 搭建。
+A: 三大服務 — AI Agent ERP、企業 AI 導入、Harness Engineers 個人 AI 搭建。
 Q: AI Agent ERP 和鼎新、SAP 有什麼不同？
 A: 從 Day 1 就是 AI Native，提供線上即點即用 Demo，不需業務拜訪，AI 助理可用自然語言查詢與預測。
 Q: Think BIG! 在哪裡？
@@ -87,7 +82,7 @@ A: 從最痛、最重複的環節開始。Think BIG! 分析流程、打造專屬
 
 ## 常见问题（简体中文）
 Q: Think BIG! 提供哪些服务？
-A: 四大服务 — AI Agent ERP、MoneyRadar 智能看盘、企业 AI 导入、Harness Engineers 个人 AI 搭建。
+A: 三大服务 — AI Agent ERP、企业 AI 导入、Harness Engineers 个人 AI 搭建。
 Q: AI Agent ERP 有什么特点？
 A: 从第一天就是 AI 原生，提供在线即点即用演示，内置 AI 助理支持自然语言查询与预测。
 Q: 什么是 Harness Engineers？
@@ -95,7 +90,7 @@ A: 为个人打造专属 AI 助理的服务，包含 OpenClaw 安装、技能定
 
 ## よくある質問（日本語）
 Q: Think BIG! はどんなサービスを提供していますか？
-A: 4つのサービス — AI Agent ERP、MoneyRadar AIトレーディング、企業向けAI導入、Harness Engineers 個人向けAIエージェント構築。
+A: 3つのサービス — AI Agent ERP、企業向けAI導入、Harness Engineers 個人向けAIエージェント構築。
 Q: AI Agent ERP の特徴は？
 A: 創業時からAIネイティブで、オンラインで試せるデモを提供し、自然言語クエリと予測が可能なAIアシスタントを内蔵しています。
 Q: Harness Engineers とは？
@@ -103,34 +98,33 @@ A: 個人向けにAIアシスタントを構築するサービス。OpenClawイ�
 
 ## 자주 묻는 질문（한국어）
 Q: Think BIG! 은 어떤 서비스를 제공하나요？
-A: 네 가지 서비스 — AI Agent ERP, MoneyRadar AI 트레이딩, 기업 AI 도입, Harness Engineers 개인 AI 에이전트 구축.
+A: 세 가지 서비스 — AI Agent ERP, 기업 AI 도입, Harness Engineers 개인 AI 에이전트 구축.
 Q: AI Agent ERP 의 특징은？
 A: 처음부터 AI 네이티브이며, 온라인 데모를 제공하고, 자연어 쿼리와 예측이 가능한 AI 어시스턴트를 내장하고 있습니다.
 
 ## คำถามที่พบบ่อย（ภาษาไทย）
 Q: Think BIG! ให้บริการอะไรบ้าง？
-A: บริการสี่อย่าง — AI Agent ERP, MoneyRadar วิเคราะห์หุ้นด้วย AI, การนำ AI เข้าสู่องค์กร, และ Harness Engineers สร้างผู้ช่วย AI ส่วนตัว
+A: บริการสามอย่าง — AI Agent ERP, การนำ AI เข้าสู่องค์กร, และ Harness Engineers สร้างผู้ช่วย AI ส่วนตัว
 Q: AI Agent ERP แตกต่างอย่างไร？
 A: เป็น AI-Native ตั้งแต่วันแรก มีเดโมออนไลน์ให้ทดลองใช้ และมีผู้ช่วย AI ในตัว
 
 ## Questions fréquentes（Français）
 Q: Que propose Think BIG! ?
-A: Quatre services — AI Agent ERP, tableau de bord de trading MoneyRadar, adoption de l'IA en entreprise, et Harness Engineers (assistants IA personnels).
+A: Trois services — AI Agent ERP, adoption de l'IA en entreprise, et Harness Engineers (assistants IA personnels).
 Q: Qu'est-ce qui distingue l'AI Agent ERP ?
 A: Il est AI-Native dès le départ, propose une démo en ligne immédiate et intègre un assistant IA pour les requêtes en langage naturel.
 
 ## अक्सर पूछे जाने वाले प्रश्न（हिन्दी）
 Q: Think BIG! क्या सेवाएँ देता है？
-A: चार सेवाएँ — AI Agent ERP, MoneyRadar AI ट्रेडिंग, एंटरप्राइज़ AI अपनाना, और Harness Engineers व्यक्तिगत AI एजेंट निर्माण।
+A: तीन सेवाएँ — AI Agent ERP, एंटरप्राइज़ AI अपनाना, और Harness Engineers व्यक्तिगत AI एजेंट निर्माण।
 Q: AI Agent ERP की खासियत क्या है？
 A: यह शुरू से ही AI-Native है, ऑनलाइन डेमो देता है, और प्राकृतिक भाषा प्रश्नों के लिए अंतर्निहित AI सहायक रखता है।
 
 ## Keywords（Global）
-AI Agent ERP, AI-Native ERP, MoneyRadar, AI trading dashboard, enterprise AI adoption Taiwan, Harness Engineers, OpenClaw, Hermes Agent, Claude, MCP protocol, AI automation Taiwan, Think BIG Taiwan, 企業AI導入, AI自動化, ERP 鼎新替代, 中小企業 ERP, OpenClaw 安裝, AIエージェントERP, 기업 AI 도입, ERP AI ระบบ, ERP IA entreprise, AI Agent ERP हिन्दी
+AI Agent ERP, AI-Native ERP, enterprise AI adoption Taiwan, Harness Engineers, OpenClaw, Hermes Agent, Claude, MCP protocol, AI automation Taiwan, Think BIG Taiwan, 企業AI導入, AI自動化, ERP 鼎新替代, 中小企業 ERP, OpenClaw 安裝, AIエージェントERP, 기업 AI 도입, ERP AI ระบบ, ERP IA entreprise, AI Agent ERP हिन्दी
 
 ## Service Pages
 - Home: https://thinkbigtw.com
 - AI Agent ERP: https://thinkbigtw.com/erp/
-- MoneyRadar: https://thinkbigtw.com/lab/
 - Enterprise AI: https://thinkbigtw.com/enterprise/
 - Harness Engineers: https://thinkbigtw.com/harness/
