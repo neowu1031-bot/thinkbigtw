@@ -309,15 +309,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       "inLanguage": "zh-TW"
     },
     {
-      "@type": "Product",
-      "@id": "https://thinkbigtw.com/#product-erp",
-      "name": "AI Agent ERP",
-      "brand": {"@id": "https://thinkbigtw.com/#organization"},
-      "category": "企業資源規劃系統 (ERP)",
-      "description": "全球首創 AI Native 企業資源規劃系統，11 大模組完整互動：總覽、訂單、庫存、財務、採購、生產、CRM、人力資源、專案、商業智慧、系統設定。AI 助理內建查詢、預測、補貨建議。對標鼎新數智 Workflow ERP 與 SAP Business One。",
-      "url": "https://thinkbigtw.com/erp/"
-    },
-    {
       "@type": "Service",
       "@id": "https://thinkbigtw.com/#service-enterprise",
       "name": "企業 AI 系統導入",
@@ -330,8 +321,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       "@type": "FAQPage",
       "@id": "https://thinkbigtw.com/#faq",
       "mainEntity": [
-        {"@type": "Question", "name": "Think BIG! 提供哪些服務？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 提供三大服務：① AI Agent ERP — 全球首創 AI Native 企業系統；② 企業 AI 導入 — RAG、Agent 與流程自動化；③ Harness Engineers — 個人 AI Agent 搭建。"}},
-        {"@type": "Question", "name": "Think BIG! 的 AI Agent ERP 和鼎新、SAP 有什麼不同？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 的 AI Agent ERP 從 Day 1 就是 AI Native，AI 助理內建可用自然語言查詢、預測與補貨建議；提供線上即點即用 Demo，不需業務拜訪、不需數月導入期。傳統 ERP 的 AI 多為後期外加模組。"}},
+        {"@type": "Question", "name": "Think BIG! 提供哪些服務？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 提供兩大服務：① 企業 AI 導入 — RAG、Agent 與流程自動化；② Harness Engineers — 個人 AI Agent 搭建。預約需求訪談請透過官網 AI 助理或 LINE 聯繫。"}},
         {"@type": "Question", "name": "Think BIG! 在哪裡？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 位於台灣新北市板橋區，由吳御綸（NEO）於 2025 年創立，服務台灣各產業的 AI 自動化導入需求。"}},
         {"@type": "Question", "name": "什麼是 Harness Engineers？", "acceptedAnswer": {"@type": "Answer", "text": "Harness Engineers 是 Think BIG! 的個人 AI Agent 搭建服務，為自由工作者與創作者打造專屬 AI 助理，包含 OpenClaw 安裝、Skills 客製與自動化流程設計。"}},
         {"@type": "Question", "name": "如何聯絡 Think BIG！？", "acceptedAnswer": {"@type": "Answer", "text": "可透過官網 thinkbigtw.com 右下角的 AI 助理諮詢，或加入官方 LINE 取得專人服務。"}}
@@ -356,7 +346,6 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       <button class="tb-nav-close" onclick="document.querySelector('.tb-funcbar').classList.remove('open')" aria-label="關閉">✕</button>
       <a href="/enterprise/" class="tb-func"><span class="zh">企業 AI 導入</span><span class="en">Enterprise</span></a>
       <a href="/harness/" class="tb-func"><span class="zh">個人 AI 助理</span><span class="en">Harness Engineers</span></a>
-      <a href="/erp/" class="tb-func"><span class="zh">AI 企業資源規劃系統</span><span class="en">AI ERP</span></a>
       <a href="/tbos/en/" class="tb-func tb-lang" hreflang="en" lang="en" aria-label="Switch to English site"><span class="zh">🌐 中文</span><span class="en">English</span></a>
     </nav>
     <div class="tb-brand">
@@ -402,21 +391,19 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       <div class="hero-icon">🦞</div>
       <h2 id="hero-title">您好！我是 Hermes</h2>
       <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎<br><br>
-        <strong style="color:#fff">我們目前提供三大服務：</strong><br>
-        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>AI Agent ERP</strong> — 全球首創 AI Native 企業系統<br>
-        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>
-        <span style="color:rgba(232,66,42,0.9)">③</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>
+        <strong style="color:#fff">我們目前提供兩大服務：</strong><br>
+        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>
+        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>
         隨時問我任何問題，或點下方快速選項      </p>
     </div>
   </div>
   <div class="chat-input-wrap">
     <div class="quick-bar" id="quick-bar">
-      <button class="qchip" onclick="askQuick('告訴我 AI Agent ERP 有什麼模組？定價是多少？')"><span class="qt">AI Agent ERP 有什麼？</span><span class="qs2">11 大模組 · 三階方案</span></button>
       <button class="qchip" onclick="askQuick('我想導入 AI 自動化')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>
-      <button class="qchip" onclick="askQuick('關於 Think BIG')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 三大服務</span></button>
+      <button class="qchip" onclick="askQuick('關於 Think BIG')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 兩大服務</span></button>
     </div>
     <div class="chat-input">
-      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：ERP 月費多少？" onkeydown="if(event.key==='Enter')sendMsg()" autocomplete="off">
+      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：如何導入 AI 自動化？" onkeydown="if(event.key==='Enter')sendMsg()" autocomplete="off">
       <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">
         <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
@@ -441,52 +428,52 @@ const HERO_I18N = {
   'zh-TW': {
     title: '您好！我是 Hermes',
     intro: 'Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎',
-    servicesLabel: '我們目前提供三大服務：',
-    s1: 'AI Agent ERP — 全球首創 AI Native 企業系統',
-    s2: '企業 AI 導入 — RAG / Agent / 流程自動化',
-    s3: 'Harness Engineers — 個人 AI 搭建',
+    servicesLabel: '我們目前提供兩大服務：',
+    s1: '企業 AI 導入 — RAG / Agent / 流程自動化',
+    s2: 'Harness Engineers — 個人 AI Agent 搭建',
+    s3: '',
     askPrompt: '隨時問我任何問題，或點下方快速選項',
-    placeholder: '問我任何問題，例如：ERP 月費多少？',
-    qs1: 'AI Agent ERP 有什麼？', qs1s: '11 大模組 · 三階方案',
-    qs2: '我想導入 AI 自動化', qs2s: '企業方案推薦',
-    qs3: '和鼎新、SAP 比？', qs3s: '差異化優勢',
-    qs1q: '告訴我 AI Agent ERP 有什麼模組？定價是多少？',
-    qs2q: '我是中小企業老闆，想導入 AI Agent，請問適合什麼方案？',
-    qs3q: 'Think BIG 和鼎新數智、SAP 比起來，優勢在哪？',
+    placeholder: '問我任何問題，例如：如何導入 AI 自動化？',
+    qs1: '我想導入 AI 自動化', qs1s: '企業方案推薦',
+    qs2: '關於 Think BIG', qs2s: '公司介紹 · 兩大服務',
+    qs3: '',  qs3s: '',
+    qs1q: '我是中小企業老闆，想導入 AI Agent，請問適合什麼方案？',
+    qs2q: '關於 Think BIG',
+    qs3q: '',
     footer: '由 AI 即時驅動 · 若需專人服務請洽',
   },
   'en': {
     title: 'Hello! I\'m Hermes',
     intro: 'Think BIG!\'s AI Assistant · Powered by our OpenClaw + Claude Code engine',
-    servicesLabel: 'We offer three core services:',
-    s1: 'AI Agent ERP — World\'s first AI-Native enterprise system',
-    s2: 'Enterprise AI — RAG / Agent / Automation',
-    s3: 'Harness Engineers — Personal AI Agent builder',
+    servicesLabel: 'We offer two core services:',
+    s1: 'Enterprise AI — RAG / Agent / Automation',
+    s2: 'Harness Engineers — Personal AI Agent builder',
+    s3: '',
     askPrompt: 'Ask me anything, or pick a quick option below',
-    placeholder: 'Ask me anything, e.g.: How much is ERP monthly?',
-    qs1: 'What\'s in AI Agent ERP?', qs1s: '11 modules · 3 tiers',
-    qs2: 'I want AI automation', qs2s: 'Enterprise solutions',
-    qs3: 'vs SAP / Digiwin?', qs3s: 'Our advantages',
-    qs1q: 'Tell me about AI Agent ERP modules and pricing.',
-    qs2q: 'I run a SMB and want to adopt AI Agent. Which plan suits me?',
-    qs3q: 'How does Think BIG compare to SAP and Digiwin?',
+    placeholder: 'Ask me anything, e.g.: How to adopt AI automation?',
+    qs1: 'I want AI automation', qs1s: 'Enterprise solutions',
+    qs2: 'About Think BIG', qs2s: 'Company intro · two services',
+    qs3: '', qs3s: '',
+    qs1q: 'I run a SMB and want to adopt AI Agent. Which plan suits me?',
+    qs2q: 'About Think BIG',
+    qs3q: '',
     footer: 'Powered by AI · For human support contact',
   },
   'ja': {
     title: 'こんにちは！Hermes です',
     intro: 'Think BIG! の AI アシスタント · OpenClaw + Claude Code エンジン搭載',
-    servicesLabel: '3 つのコアサービスを提供しています：',
-    s1: 'AI Agent ERP — 世界初の AI ネイティブ企業システム',
-    s2: '企業向け AI 導入 — RAG / Agent / 自動化',
-    s3: 'Harness Engineers — 個人向け AI エージェント構築',
+    servicesLabel: '2 つのコアサービスを提供しています：',
+    s1: '企業向け AI 導入 — RAG / Agent / 自動化',
+    s2: 'Harness Engineers — 個人向け AI エージェント構築',
+    s3: '',
     askPrompt: 'お気軽にご質問ください、または下のオプションをタップ',
-    placeholder: 'ご質問をどうぞ。例：ERP の月額は？',
-    qs1: 'AI Agent ERP の内容は？', qs1s: '11 モジュール · 3 段階',
-    qs2: 'AI 自動化を導入したい', qs2s: '企業向けプラン',
-    qs3: 'SAP / 鼎新と比較？', qs3s: '優位性',
-    qs1q: 'AI Agent ERP のモジュールと価格を教えてください。',
-    qs2q: '中小企業の経営者です。AI Agent 導入にどのプランが最適ですか？',
-    qs3q: 'Think BIG は SAP や鼎新と比べてどんな優位性がありますか？',
+    placeholder: 'ご質問をどうぞ。例：AI 自動化の導入方法は？',
+    qs1: 'AI 自動化を導入したい', qs1s: '企業向けプラン',
+    qs2: 'Think BIG について', qs2s: '会社紹介',
+    qs3: '', qs3s: '',
+    qs1q: '中小企業の経営者です。AI Agent 導入にどのプランが最適ですか？',
+    qs2q: 'Think BIG について教えてください。',
+    qs3q: '',
     footer: 'AI 駆動 · サポートは',
   }
 };
@@ -642,10 +629,9 @@ Think BIG 是台灣 AI 自動化顧問公司,由 NEO.W 創辦,專注幫助中小
 - 全程繁體中文支援,台灣團隊在地服務
 - 透明定價、明確交付、七天免費維護
 
-【三大服務】
-① AI Agent ERP — 全球首創 AI Native 企業系統
-② 企業 AI 導入 — RAG / Agent / 流程自動化
-③ Harness Engineers — 個人 AI 搭建
+【兩大服務】
+① 企業 AI 導入 — RAG / Agent / 流程自動化
+② Harness Engineers — 個人 AI 搭建
 
 想了解更多,可以隨時問我任何問題,或點上方快速選項`;
 

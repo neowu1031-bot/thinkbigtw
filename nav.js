@@ -67,8 +67,7 @@
     // ---- 2. 連結資料 (對應規格 D) ----
     var LINKS = [
       { t: 'Enterprise', h: '/enterprise/' },
-      { t: 'Harness Engineers', h: '/harness/' },
-      { t: 'AI ERP', h: '/erp/' }
+      { t: 'Harness Engineers', h: '/harness/' }
     ];
     var path = location.pathname.replace(/\/index\.html?$/, '/');
     function activeClass(h) {
