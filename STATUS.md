@@ -1,6 +1,28 @@
 # MoneyRadar™ STATUS
 
-**最後更新**：2026 年 5 月 2 日 · 版本 v297
+**最後更新**：2026 年 8 月 25 日 · 版本 v297
+
+---
+
+## CHANGE-LOG
+
+### 2026-08-25 — 官網改版第一階段：拆除 (commit `94e32d3`)
+
+**授權**：NEO 2026-08-25 明示（ERP 全面下架 + 企業標價一律詢價）
+
+| 項目 | 做法 | 狀態 |
+|------|------|------|
+| /erp/ 下架 | meta-refresh + JS redirect → 首頁，noindex | 已部署 |
+| 首頁 ERP 導覽連結 | 移除 nav + JSON-LD product-erp | 已部署 |
+| enterprise 固定報價 | 移除 GEO_PRICING / ITEM_PRICE / calcPrice 系統；51 筆 DB price 欄位清除 | 已部署 |
+| enterprise CTA | 改為「預約需求訪談・詢價」+ LINE 連結 | 已部署 |
+| 全站「全球首創」 | index.html / ask-ai.js 全部清除（0 筆殘留） | 已部署 |
+| Hermes 聊天元件 | 三大服務→兩大服務，移除 ERP 快速鈕 | 已部署 |
+
+**驗證結果（部署後 curl 實測）**：
+- /erp/ HTTP 200 + noindex + meta-refresh=0 + JS redirect，舊內容 6197 行已消滅
+- 首頁 ERP href = 0，全球首創 = 0
+- /enterprise/ 價格數字(28880/48880/138880) = 0，全球首創 = 0，預約需求訪談 CTA = 1
 
 ---
 
