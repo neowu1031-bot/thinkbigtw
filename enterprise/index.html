@@ -171,6 +171,7 @@ footer a:hover{color:var(--text)}
     <a class="btn-secondary" href="https://thinkbigtw.com/harness/">了解技術架構</a>
   </div>
   <p style="font-size:12px;color:#555;margin-top:20px;font-family:'Space Mono',monospace;letter-spacing:1px">依企業需求客製化報價・預約需求訪談了解詳情</p>
+  <p style="font-size:11px;color:#666;margin-top:8px;font-family:'Noto Sans TC',sans-serif;line-height:1.7">服務費為一次付清／年約／合約制；AI 模型用量費另計，由客戶自付。</p>
 </section>
 
 
@@ -203,12 +204,6 @@ footer a:hover{color:var(--text)}
 .q-auto-title{font-size:13px;font-weight:700;color:#f0f0f0;margin-bottom:3px}
 .q-auto-desc{font-size:11px;color:#7aad7a;line-height:1.55}
 .q-badge{font-family:"Space Mono",monospace;font-size:8px;padding:2px 6px;border-radius:2px;display:inline-block}
-.q-plan{background:linear-gradient(135deg,rgba(0,255,65,.08),rgba(0,143,26,.03));border:1px solid rgba(0,255,65,.3);border-radius:6px;padding:20px 24px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.q-plan-name{font-size:17px;font-weight:700;color:#f0f0f0;margin-bottom:3px}
-.q-plan-reason{font-size:11px;color:#7aad7a;margin-bottom:4px}
-.q-plan-meta{font-family:"Space Mono",monospace;font-size:9px;color:#333}
-.q-price{font-family:"Space Mono",monospace;font-size:28px;font-weight:700;color:#00ff41;text-align:right}
-.q-price-sub{font-family:"Space Mono",monospace;font-size:8px;color:#333;letter-spacing:.05em;text-align:right}
 .q-roi{font-size:11px;color:#444;line-height:1.7;margin-bottom:20px;padding:10px 14px;border-left:2px solid #1e3a1e}
 .q-cta-row{display:flex;gap:8px;flex-wrap:wrap}
 .q-btn-line{display:inline-flex;align-items:center;gap:6px;background:#008f1a;color:white!important;border:1px solid #00ff41;border-radius:4px;padding:11px 20px;font-family:"Space Mono",monospace;font-size:11px;font-weight:700;text-decoration:none;cursor:pointer;transition:all .2s}
@@ -464,7 +459,7 @@ function renderCard(t,opts){
     '<div class="q-sec-label" style="color:#5aa9ff">三階段路線圖</div><div class="q-roadmap">'+phase(rm.phase1)+phase(rm.phase2)+phase(rm.phase3)+'</div>'+
     '<div class="q-sec-label" style="color:#fbbf24">預期效益（可量化）</div><div class="q-roi-grid">'+cell('時間節省',roi.time)+cell('營收 / 回購',roi.revenue)+cell('客戶體驗',roi.experience)+cell('回收期',roi.payback)+'</div>'+
     '<div class="q-plan2"><div class="q-fn-h">適合搭配的方案</div><p>'+aiaEsc(t.plan)+'</p></div>'+
-    '<div class="q-cta2"><p style="font-size:11px;color:#5a7a5a;letter-spacing:1px;font-family:Space Mono,monospace;margin-bottom:4px">依企業需求客製化報價</p><p>想進一步了解導入方案與費用？</p>'+
+    '<div class="q-cta2"><p style="font-size:11px;color:#5a7a5a;letter-spacing:1px;font-family:Space Mono,monospace;margin-bottom:4px">依企業需求客製化報價</p><p style="font-size:11px;color:#666;margin-bottom:8px;line-height:1.7">服務費為一次付清／年約／合約制；AI 模型用量費另計，由客戶自付。</p><p>想進一步了解導入方案與費用？</p>'+
     '<a href="https://lin.ee/n5KW430" target="_blank" class="q-btn-line" style="display:inline-flex;align-items:center;gap:6px;margin-bottom:12px">預約需求訪談・詢價</a>'+
     '<br><button class="q-btn-reset" onclick="aiaReset()">↺ 換個產業</button></div>'+
     '</div>';
