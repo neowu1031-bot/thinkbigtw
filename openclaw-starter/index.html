@@ -109,7 +109,9 @@ section{padding:80px 0}
 .cta-btn:hover{background:#c73821;transform:translateY(-1px);text-decoration:none}
 .cta-btn.contact-btn{background:var(--ink);color:#fff}
 .cta-btn.contact-btn:hover{background:#333}
-.disclaimer{font-size:12px;color:#999;margin-top:16px;line-height:1.65}
+
+/* ── 法遵洗標 ── */
+.wash-label{font-family:var(--mono);font-size:11px;color:#888;margin-top:16px;line-height:1.7;border:1px solid var(--gray2);padding:10px 14px;border-radius:4px;display:block}
 
 /* ── Mobile ── */
 @media(max-width:768px){
@@ -136,9 +138,8 @@ section{padding:80px 0}
       <div class="col-text">
         <span class="track-tag">個人 AI 助理</span>
         <h1>OpenClaw 入門</h1>
-        <p class="tagline">999 元，讓你擁有一個跑在自己電腦、24 小時待命的 AI 助理。</p>
-        <p class="hero-desc">OpenClaw（龍蝦）是開源的個人 AI 助理。我們的工程師遠端幫你把它安裝在你自己的電腦上，裝好之後，它就住進你的 LINE 或 Telegram 裡——你用平常傳訊息的方式跟它說話，它就能幫你查資料、讀寫檔案、操作瀏覽器。
-      <br><br>它不是又一個聊天網頁：它常駐在你的通訊軟體、記得你說過的話，而且跑在你自己的機器上。</p>
+        <p class="tagline">AI 助理，裝進你的通訊軟體。</p>
+        <p class="hero-desc">OpenClaw 是開源 AI 助理。工程師遠端安裝到你的電腦——裝完它住進 LINE 或 Telegram，用傳訊息的方式指揮它查資料、讀寫檔案、操作瀏覽器。常駐、有記憶、跑在你自己的機器上。</p>
       </div>
       <div class="col-img">
         <img class="prod-img" src="/images/t21/1-1.webp"
@@ -155,11 +156,11 @@ section{padding:80px 0}
   <div class="container">
     <div class="two-col reverse">
       <div class="col-text">
-        <h2>你是不是每天都在——</h2>
+        <h2>你每天重複的三件事</h2>
         <ul>
-          <li>同一件事跟 ChatGPT 講第三遍，因為它每次都忘光光？</li>
-          <li>想用 AI 卻卡在安裝、設定、API 這些名詞，看教學看到放棄？</li>
-          <li>覺得 AI 很厲害，但它只活在瀏覽器分頁裡，關掉就沒了？</li>
+          <li>跟 ChatGPT 解釋第三遍。因為它忘了。</li>
+          <li>安裝教學看到一半，放棄。</li>
+          <li>關掉分頁，一切重來。</li>
         </ul>
       </div>
       <div class="col-img">
@@ -181,22 +182,22 @@ section{padding:80px 0}
         <div class="flow-steps">
         <div class="flow-step">
           <div class="flow-num">1</div>
-          <div class="flow-text"><strong>收到</strong><span>你在 LINE／Telegram 傳一句話給它（例：「幫我查明天台北天氣，順便提醒我帶傘」）</span></div>
+          <div class="flow-text"><strong>傳訊息</strong><span>在 LINE 或 Telegram 說一句話</span></div>
         </div>
         <div class="flow-step">
           <div class="flow-num">2</div>
-          <div class="flow-text"><strong>判斷</strong><span>OpenClaw 在你的電腦上分析這句話需要哪些能力（搜尋？排程？讀檔？）</span></div>
+          <div class="flow-text"><strong>分析需求</strong><span>OpenClaw 判斷需要哪些能力——搜尋、排程還是讀檔</span></div>
         </div>
         <div class="flow-step">
           <div class="flow-num">3</div>
-          <div class="flow-text"><strong>執行</strong><span>呼叫對應技能完成任務——網路搜尋、檔案讀寫、瀏覽器自動化</span></div>
+          <div class="flow-text"><strong>執行任務</strong><span>網路搜尋、檔案讀寫、瀏覽器自動化</span></div>
         </div>
         <div class="flow-step">
           <div class="flow-num">4</div>
-          <div class="flow-text"><strong>回報</strong><span>結果直接回到你的聊天視窗，24 小時都在線</span></div>
+          <div class="flow-text"><strong>回報結果</strong><span>直接推回你的聊天視窗，24 小時都在</span></div>
         </div>
         </div>
-        <p class="flow-note">安裝全程透過 AnyDesk 或 DeskIn 遠端連線，你全程看得到操作，裝完立即斷線、不留後門。</p>
+        <p class="flow-note">安裝透過 AnyDesk 或 DeskIn 遠端進行，你全程可見，裝完即斷線。</p>
       </div>
       <div class="col-img">
         <img class="prod-img" src="/images/t21/1-3.webp"
@@ -215,18 +216,18 @@ section{padding:80px 0}
       <div class="col-text">
         <h2>你得到什麼</h2>
         <ul class="results-list">
-          <li>安裝完成<strong>當天可用</strong>，不需任何技術背景</li>
-          <li>OpenClaw 官方最新版＋官方原裝技能（搜尋／檔案／程式執行／瀏覽器）</li>
-          <li>AI 模型擇一串接、通訊軟體擇一串接（LINE 僅支援官方帳號，申請免費）</li>
-          <li>1 小時線上技術導覽＋安裝後 <strong>7 天</strong>技術諮詢</li>
-          <li>服務費 NT$999 一次付清，<strong>無月費</strong>（指我方服務費）；若因我方技術問題無法完成安裝，全額退費</li>
+          <li>安裝當天可用</li>
+          <li>4 項原裝技能：搜尋、檔案、程式執行、瀏覽器</li>
+          <li>AI 模型選一、通訊軟體選一（LINE 需官方帳號，免費申請）</li>
+          <li>7 天技術諮詢</li>
+          <li>NT$999 一次付清，無月費；技術問題無法完成安裝，全額退費</li>
         </ul>
-        <p class="upsell-note">想要自動回信、報價單這類客製功能？→ <a href='/skill-pack/'>加購「技能包」</a>，需要多少加多少。</p>
+        <p class="upsell-note">要自動回信、自動報價？→ <a href='/skill-pack/'>加購技能包。</a></p>
         <div class="price-block">
           <p class="price-label">方案價格</p>
           <p class="price-value">NT$999（單次）</p>
-          <a href="https://s.shopee.tw/3LQLP0cSAv" class="cta-btn" id="cta-shopee" data-action="shopee">前往蝦皮下單｜隔日到貨</a>
-          <p class="disclaimer">※ AI 模型（Claude／ChatGPT／Gemini 等）使用費依用量向原廠計費，API Key 需自行申請、費用自行負擔，非本方案服務費所含。</p>
+          <a href="https://s.shopee.tw/3LQLP0cSAv" class="cta-btn" id="cta-shopee" data-action="shopee">999，上車。</a>
+          <small class="wash-label">※ AI 模型（Claude／ChatGPT／Gemini 等）使用費依用量向原廠計費，API Key 需自行申請、費用自行負擔，非本方案服務費所含。</small>
         </div>
       </div>
       <div class="col-img">
@@ -239,10 +240,6 @@ section{padding:80px 0}
   </div>
 </section>
 
-<script>
-  // TODO: 填入實際蝦皮商品連結
-  // document.getElementById('cta-shopee').href = 'https://shopee.tw/...';
-</script>
 <script src="/ask-ai.js" defer></script>
 </body>
 </html>
