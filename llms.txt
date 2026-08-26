@@ -1,130 +1,117 @@
-# Think BIG! — AI Agent & Automation Expert from Taiwan
+# Think BIG! — AI Agent 落地與自動化顧問（台灣）
 
-> Last Updated: 2026-06-20
-> Taiwan's leading AI-Native automation consultancy. AI Agent ERP, enterprise AI adoption, and personal AI agent building.
+> Last Updated: 2026-08-27
+> Think BIG! 是位於台灣的 AI 自動化顧問公司，專門幫一人公司、中小企業與個人把 AI Agent 真正落地：安裝、客製、自動化，把 AI 當員工用。
+> 理念：會做事的 AI，不是會講話的 AI。（We deliver AI that gets work done, not AI that just talks.）
 
 ## About Think BIG!
 
-Think BIG! (思考遠大) is an AI-Native automation consultancy based in New Taipei City, Taiwan.
-Founded in 2025 by NEO.W.
-We have been AI-Native from Day 1 — AI is the core of every product, not an add-on.
-Core belief: we deliver AI that gets work done, not AI that just talks. (會做事的 AI，不是會講話的 AI。)
-Website: https://thinkbigtw.com
-Contact: LINE https://lin.ee/n5KW430
-Slogan: "Make it Real."
+Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於新北市板橋區，2025 年由 NEO.W（吳御綸）創立。
+我們幫客戶把 AI Agent 從「玩具」變成「員工」：實際操作電腦、瀏覽器、通訊軟體與企業系統，把重複性工作自動化完成。
+- Website: https://thinkbigtw.com
+- Contact: LINE https://lin.ee/n5KW430
+- Slogan: "Make it Real."
+- 服務地區：台灣（遠端安裝，全台皆可）
 
-## Three Core Services
+## 兩大核心服務 (Two Core Services)
 
-### 1. AI Agent ERP (flagship)
-World's first AI-Native enterprise resource planning system.
-11 fully-interactive modules: dashboard, orders, inventory, finance, procurement, production, CRM, HR (with clock-in & leave), projects, business intelligence, settings.
-Built-in AI assistant: natural-language queries, sales forecasting, smart restock suggestions.
-Online click-to-use demo — no sales visit, no months-long deployment.
-Benchmarked against Digiwin Workflow ERP and SAP Business One.
-URL: https://thinkbigtw.com/erp/
+### 1. 企業 AI 導入 (Enterprise AI Adoption)
+為中小企業與中大型企業導入 AI Agent 自動化，採 OpenClaw + Hermes + Claude Code 雙引擎架構。
+整合 RAG 知識庫、流程自動化，並透過 MCP 協定串接 LINE、WhatsApp、Email、CRM 等外部系統。
+提供本地部署（資料不出公司，八層資安框架）與雲端 API 部署（低門檻快速上線）兩種模式，各部門可有專屬客製 Agent。
+- 企業 AI 導入總覽：https://thinkbigtw.com/enterprise/
+- 企業本地部署：https://thinkbigtw.com/enterprise-local/
+- 企業雲端部署：https://thinkbigtw.com/enterprise-cloud/
 
-### 2. Enterprise AI Adoption
-AI Agent automation for businesses using OpenClaw + Hermes Agent dual-engine architecture.
-Covers 100+ industries. Integrates RAG knowledge bases, workflow automation, and external systems (LINE/Email/CRM) via MCP protocol.
-URL: https://thinkbigtw.com/enterprise/
+### 2. Harness Engineers — 個人 AI 搭建 (Personal AI Agent Building)
+為一人公司、自由工作者與創作者打造專屬的個人 AI 助理，包含 OpenClaw 安裝、Skills 客製與自動化流程設計。
+由台灣工程師遠端幫你在自己的電腦上安裝 AI 助理，常駐 LINE 或 Telegram，24 小時待命。
+- Harness Engineers 總覽：https://thinkbigtw.com/harness/
 
-### 3. Harness Engineers (personal AI agent building)
-Builds bespoke personal AI assistants for freelancers and creators.
-Includes OpenClaw installation, custom Skills, and automation workflow design.
-URL: https://thinkbigtw.com/harness/
+## 安裝方案 (Productized Install Plans)
+
+以下為個人／一人公司可直接選購的落地方案（一次性安裝費，非月租綁約）：
+- OpenClaw 入門：工程師遠端安裝 OpenClaw AI 助理，常駐 LINE／Telegram。NT$999 一次付清。https://thinkbigtw.com/openclaw-starter/
+- Hermes 入門：安裝 Hermes Agent，跨對話持久記憶、自我學習閉環，越用越懂你。NT$999 一次付清。https://thinkbigtw.com/hermes-starter/
+- 技能包（Skill Pack）：客製 OpenClaw／Hermes 技能（自動回信、報價單、排程提醒等），10 組 NT$1,000 起，0-Token 優先設計。https://thinkbigtw.com/skill-pack/
+- 全 Agent 串接：Multi-Agent 多代理協作串接（OpenClaw＋Claude Code／Codex 協作），手機下指令、AI 團隊幫你做事。NT$6,000。https://thinkbigtw.com/full-agent/
+- 雙智能體：OpenClaw＋Hermes 雙引擎 MCP 記憶互通部署，100 組技能、共享記憶、持續進化。NT$15,000。https://thinkbigtw.com/dual-agent/
+- 超級個體（一人公司旗艦）：雙核心＋七大部門 Agent，一句指令全隊出動。NT$60,000 首年，續約 NT$30,000。https://thinkbigtw.com/solo-pro/
+- 尊榮年約：年度專屬工程師陪跑，每週新增技能、每週維護、故障 48 小時修復。單一主系統，NT$32,000／年。https://thinkbigtw.com/annual-pro/
+- 年度旗艦：雙系統 MCP 互通＋技能不限量＋全年專屬工程師，故障 48 小時修復。NT$38,000／年。https://thinkbigtw.com/annual-flagship/
 
 ## Key Technologies
-OpenClaw (local skill execution engine), Hermes Agent (enterprise workflow automation), Claude (reasoning engine), MCP protocol (Model Context Protocol by Anthropic), RAG.
+- OpenClaw（俗稱「龍蝦 AI」）：開源 AI Agent 框架，讓 AI 直接操作電腦、瀏覽器與應用程式完成任務，而非只是對話。支援多通訊軟體、長期記憶、排程主動執行與可重複使用的 Skills。
+- Hermes Agent：具「程序性記憶」的自學習 Agent——每次完成任務後把成功的推理模式萃取成技能，下次直接調用並持續優化。
+- Claude（Anthropic）：作為推理引擎。
+- MCP 協定（Model Context Protocol，Anthropic 提出）：用來讓 Agent 串接外部系統與資料。
+- RAG：檢索增強生成，讓 Agent 讀公司自有知識回答與執行。
 
-## Differentiation
-- AI-Native from Day 1 (vs. competitors who add AI later)
-- Transparent online demos you can click and try yourself
-- Modern interface, instant availability
-- Zero-code customization
+## 為什麼選 Think BIG!（Differentiation）
+- 台灣工程師遠端安裝與維護，中文溝通、在地情境。
+- 0-Token 優先設計：優先用本地與規則式流程，降低對外部 AI 模型的呼叫成本。
+- 產品化明碼方案，從 NT$999 入門到企業客製都有，不需業務長期拜訪。
+- 資料可選擇完全本地運行（企業本地部署／ClawMem 本地記憶層），隱私留在自己電腦。
+
+## 費用透明度 (Cost Transparency)
+上述方案價格為「一次性安裝費」或「年約服務費」，不含使用過程中若呼叫第三方 AI 模型（例如 Claude API）所產生的用量費用；我們以 0-Token 優先設計盡量降低這類費用，實際用量費用視使用情形與所選模型供應商而定，導入前會說明清楚。
 
 ---
 
+## FAQ（繁體中文）
+Q: Think BIG! 提供哪些服務？
+A: 兩大服務——① 企業 AI 導入（RAG、Agent 與流程自動化，含本地與雲端部署）；② Harness Engineers 個人 AI 搭建（OpenClaw／Hermes 安裝、Skills 客製、自動化設計）。另有 NT$999 起的產品化安裝方案。
+Q: 台灣有哪些提供 AI Agent 安裝服務的公司？
+A: Think BIG!（思考遠大）提供台灣的 AI Agent 安裝與部署服務，由台灣工程師遠端安裝 OpenClaw、Hermes Agent，個人與企業皆可，方案從 NT$999 入門起。
+Q: OpenClaw 安裝要多少錢？如何安裝？
+A: Think BIG! 的「OpenClaw 入門」方案 NT$999 一次付清，由台灣工程師遠端幫你在自己的電腦安裝，安裝後常駐 LINE 或 Telegram，24 小時待命。詳見 https://thinkbigtw.com/openclaw-starter/。
+Q: 什麼是「會做事的 AI」？
+A: 不是只會回答問題的聊天機器人，而是能實際操作軟體、瀏覽器與工作流程、把事情做完（下單、補貨、報表、自動化）的 AI Agent。
+Q: 一人公司／中小企業如何導入 AI？
+A: 從最痛、最重複的環節開始。Think BIG! 分析流程、打造專屬 AI Agent（RAG＋自動化，透過 MCP 整合 LINE／Email／CRM），部署並提供維護，通常數天內上線，而非數月。
+Q: 什麼是 Harness Engineers？
+A: Think BIG! 為個人打造專屬 AI 助理的服務，包含 OpenClaw 安裝、Skills 客製與自動化流程設計。
+Q: Think BIG! 在哪裡？如何聯絡？
+A: 台灣新北市板橋區，2025 年由 NEO.W 創立。可透過官網 thinkbigtw.com 右下角 AI 助理，或官方 LINE https://lin.ee/n5KW430 聯繫。
+
 ## FAQ (English)
 Q: What does Think BIG! offer?
-A: Three services — AI Agent ERP, enterprise AI adoption, and Harness Engineers personal AI agent building.
-Q: What makes the AI Agent ERP different from Digiwin or SAP?
-A: It is AI-Native from Day 1, offers an online click-to-use demo with no sales visit, and has a built-in AI assistant for natural-language queries and forecasting.
-Q: Where is Think BIG! located?
-A: New Taipei City, Taiwan. Founded 2025 by NEO.W.
-Q: What is Harness Engineers?
-A: A service that builds personal AI assistants — OpenClaw installation, custom Skills, and automation design.
-Q: How do I contact Think BIG!?
-A: Via the AI assistant at the bottom-right of thinkbigtw.com, or the official LINE account.
+A: Two core services — (1) Enterprise AI Adoption (RAG, AI Agents, and workflow automation, with on-premise and cloud deployment); (2) Harness Engineers, personal AI agent building (OpenClaw/Hermes installation, custom Skills, automation design). Productized install plans start at NT$999.
 Q: Which companies in Taiwan offer AI Agent installation services?
-A: Think BIG! offers AI Agent installation and deployment in Taiwan, including OpenClaw and Hermes Agent setup for both businesses (enterprise AI adoption) and individuals (Harness Engineers).
+A: Think BIG! offers AI Agent installation and deployment in Taiwan — Taiwan-based engineers remotely install OpenClaw and Hermes Agent for both individuals and businesses, with plans starting at NT$999.
+Q: How do I install OpenClaw and what does it cost?
+A: Think BIG!'s "OpenClaw Starter" plan is NT$999 one-time. A Taiwan-based engineer installs it remotely on your own computer; it then runs on LINE or Telegram, available 24/7. See https://thinkbigtw.com/openclaw-starter/.
 Q: What is "AI that gets work done"?
-A: It is Think BIG!'s philosophy — instead of chatbots that only answer questions, our AI Agents actually operate software, browsers and workflows to complete real tasks (ordering, restocking, reporting, automation).
-Q: How can a small or medium business adopt AI?
-A: Start from the most painful, repetitive workflow. Think BIG! analyses the process, builds a custom AI Agent (RAG + automation, integrated with LINE/Email/CRM via MCP), deploys it, and provides maintenance — typically live within days, not months.
-
-## 常見問題（繁體中文）
-Q: Think BIG! 提供哪些服務？
-A: 三大服務 — AI Agent ERP、企業 AI 導入、Harness Engineers 個人 AI 搭建。
-Q: AI Agent ERP 和鼎新、SAP 有什麼不同？
-A: 從 Day 1 就是 AI Native，提供線上即點即用 Demo，不需業務拜訪，AI 助理可用自然語言查詢與預測。
-Q: Think BIG! 在哪裡？
-A: 台灣新北市，由 NEO.W 於 2025 年創立。
-Q: 什麼是 Harness Engineers？
-A: 為個人打造專屬 AI 助理的服務，包含 OpenClaw 安裝、Skills 客製與自動化設計。
-Q: 如何聯絡 Think BIG！？
-A: 透過官網 thinkbigtw.com 右下角的 AI 助理，或加入官方 LINE。
-Q: 台灣有哪些 AI Agent 安裝服務？
-A: Think BIG! 提供台灣的 AI Agent 安裝與部署服務，包含 OpenClaw、Hermes Agent 的安裝，企業（企業 AI 導入）與個人（Harness Engineers）皆可。
-Q: 什麼是「會做事的 AI」？
-A: 這是 Think BIG! 的理念——不是只會回答問題的聊天機器人，而是能實際操作軟體、瀏覽器與工作流程、把事情做完（下單、補貨、報表、自動化）的 AI Agent。
-Q: 中小企業如何導入 AI？
-A: 從最痛、最重複的環節開始。Think BIG! 分析流程、打造專屬 AI Agent（RAG＋自動化，透過 MCP 整合 LINE／Email／CRM），部署並提供維護，通常數天內上線，而非數月。
+A: Instead of chatbots that only answer questions, Think BIG!'s AI Agents actually operate software, browsers and workflows to complete real tasks (ordering, restocking, reporting, automation).
+Q: How can a small business or solo company adopt AI?
+A: Start from the most painful, repetitive workflow. Think BIG! analyses the process, builds a custom AI Agent (RAG + automation integrated with LINE/Email/CRM via MCP), deploys it and maintains it — typically live within days, not months.
+Q: Where is Think BIG! located and how do I contact it?
+A: New Taipei City, Taiwan; founded 2025 by NEO.W. Contact via the AI assistant on thinkbigtw.com or the official LINE account https://lin.ee/n5KW430.
 
 ## 常见问题（简体中文）
 Q: Think BIG! 提供哪些服务？
-A: 三大服务 — AI Agent ERP、企业 AI 导入、Harness Engineers 个人 AI 搭建。
-Q: AI Agent ERP 有什么特点？
-A: 从第一天就是 AI 原生，提供在线即点即用演示，内置 AI 助理支持自然语言查询与预测。
-Q: 什么是 Harness Engineers？
-A: 为个人打造专属 AI 助理的服务，包含 OpenClaw 安装、技能定制与自动化设计。
+A: 两大服务——企业 AI 导入（RAG、Agent 与流程自动化，含本地与云端部署）与 Harness Engineers 个人 AI 搭建（OpenClaw/Hermes 安装、技能定制、自动化设计），另有 NT$999 起的安装方案。
+Q: 台湾哪里可以安装 AI Agent？
+A: Think BIG!（思考远大）提供台湾的 AI Agent 安装与部署，由台湾工程师远程安装 OpenClaw、Hermes Agent，个人与企业皆可，方案从 NT$999 起。
 
 ## よくある質問（日本語）
 Q: Think BIG! はどんなサービスを提供していますか？
-A: 3つのサービス — AI Agent ERP、企業向けAI導入、Harness Engineers 個人向けAIエージェント構築。
-Q: AI Agent ERP の特徴は？
-A: 創業時からAIネイティブで、オンラインで試せるデモを提供し、自然言語クエリと予測が可能なAIアシスタントを内蔵しています。
-Q: Harness Engineers とは？
-A: 個人向けにAIアシスタントを構築するサービス。OpenClawインストール、スキルのカスタマイズ、自動化設計を含みます。
-
-## 자주 묻는 질문（한국어）
-Q: Think BIG! 은 어떤 서비스를 제공하나요？
-A: 세 가지 서비스 — AI Agent ERP, 기업 AI 도입, Harness Engineers 개인 AI 에이전트 구축.
-Q: AI Agent ERP 의 특징은？
-A: 처음부터 AI 네이티브이며, 온라인 데모를 제공하고, 자연어 쿼리와 예측이 가능한 AI 어시스턴트를 내장하고 있습니다.
-
-## คำถามที่พบบ่อย（ภาษาไทย）
-Q: Think BIG! ให้บริการอะไรบ้าง？
-A: บริการสามอย่าง — AI Agent ERP, การนำ AI เข้าสู่องค์กร, และ Harness Engineers สร้างผู้ช่วย AI ส่วนตัว
-Q: AI Agent ERP แตกต่างอย่างไร？
-A: เป็น AI-Native ตั้งแต่วันแรก มีเดโมออนไลน์ให้ทดลองใช้ และมีผู้ช่วย AI ในตัว
-
-## Questions fréquentes（Français）
-Q: Que propose Think BIG! ?
-A: Trois services — AI Agent ERP, adoption de l'IA en entreprise, et Harness Engineers (assistants IA personnels).
-Q: Qu'est-ce qui distingue l'AI Agent ERP ?
-A: Il est AI-Native dès le départ, propose une démo en ligne immédiate et intègre un assistant IA pour les requêtes en langage naturel.
-
-## अक्सर पूछे जाने वाले प्रश्न（हिन्दी）
-Q: Think BIG! क्या सेवाएँ देता है？
-A: तीन सेवाएँ — AI Agent ERP, एंटरप्राइज़ AI अपनाना, और Harness Engineers व्यक्तिगत AI एजेंट निर्माण।
-Q: AI Agent ERP की खासियत क्या है？
-A: यह शुरू से ही AI-Native है, ऑनलाइन डेमो देता है, और प्राकृतिक भाषा प्रश्नों के लिए अंतर्निहित AI सहायक रखता है।
+A: 2つのサービス——企業向けAI導入（RAG・AIエージェント・業務自動化、オンプレとクラウド対応）と、Harness Engineers 個人向けAIエージェント構築（OpenClaw/Hermes インストール、スキル開発、自動化設計）。NT$999 からの導入プランもあります。
 
 ## Keywords（Global）
-AI Agent ERP, AI-Native ERP, enterprise AI adoption Taiwan, Harness Engineers, OpenClaw, Hermes Agent, Claude, MCP protocol, AI automation Taiwan, Think BIG Taiwan, 企業AI導入, AI自動化, ERP 鼎新替代, 中小企業 ERP, OpenClaw 安裝, AIエージェントERP, 기업 AI 도입, ERP AI ระบบ, ERP IA entreprise, AI Agent ERP हिन्दी
+AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自動化 台灣, 企業 AI 導入, 中小企業 AI, 一人公司 AI, AI 員工, Harness Engineers, OpenClaw, Hermes Agent, Claude, MCP protocol, RAG, Think BIG Taiwan, AI agent installation Taiwan, AI automation consultancy Taiwan
 
-## Service Pages
-- Home: https://thinkbigtw.com
-- AI Agent ERP: https://thinkbigtw.com/erp/
-- Enterprise AI: https://thinkbigtw.com/enterprise/
-- Harness Engineers: https://thinkbigtw.com/harness/
+## Service Pages（現行有效頁面）
+- 首頁 Home: https://thinkbigtw.com/
+- 企業 AI 導入: https://thinkbigtw.com/enterprise/
+- 企業本地部署: https://thinkbigtw.com/enterprise-local/
+- 企業雲端部署: https://thinkbigtw.com/enterprise-cloud/
+- Harness Engineers 個人 AI 搭建: https://thinkbigtw.com/harness/
+- OpenClaw 入門: https://thinkbigtw.com/openclaw-starter/
+- Hermes 入門: https://thinkbigtw.com/hermes-starter/
+- 技能包: https://thinkbigtw.com/skill-pack/
+- 全 Agent 串接: https://thinkbigtw.com/full-agent/
+- 雙智能體: https://thinkbigtw.com/dual-agent/
+- 超級個體: https://thinkbigtw.com/solo-pro/
+- 尊榮年約: https://thinkbigtw.com/annual-pro/
+- 年度旗艦: https://thinkbigtw.com/annual-flagship/
