@@ -10,7 +10,7 @@
   var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
   // ---- 2. 注入 HTML ----
-  var html = '<div id="ai-agent-btn" onclick="toggleChat()">\n  <div class="pulse"></div>\n  <div class="pulse pulse-2"></div>\n  <div class="btn-text">ASK</div>\n  <div class="btn-brand">AI</div>\n</div>\n\n<div id="ai-chat">\n  <div class="chat-header">\n    <div class="agent-info">\n      <div class="agent-avatar">🦞</div>\n      <div>\n        <div class="agent-name">Hermes Agent</div>\n        <div class="agent-tagline">Think BIG! AI Assistant</div>\n        <div class="status">Online · Real AI · Powered by Claude</div>\n      </div>\n    </div>\n    <div class="header-right">\n      <div class="powered-by">Powered by <b>Cloudflare AI</b></div>\n      <button class="close-btn" onclick="toggleChat()" title="關閉 (ESC)">✕</button>\n    </div>\n  </div>\n  <div class="chat-body" id="chat-body">\n    <div class="hero-welcome" id="hero-welcome">\n      <div class="hero-icon">🦞</div>\n      <h2 id="hero-title">您好！我是 Hermes</h2>\n      <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎<br><br>\n        <strong style="color:#fff">我們目前提供兩大服務：</strong><br>\n        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>\n        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>\n        隨時問我任何問題，或點下方快速選項 👇\n      </p>\n    </div>\n  </div>\n  <div class="chat-input-wrap">\n    <div class="quick-bar" id="quick-bar">\n      <button class="qchip" onclick="askQuick(\'我想導入 AI 自動化\')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>\n      <button class="qchip" onclick="askQuick(\'關於 Think BIG\')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 兩大服務</span></button>\n    </div>\n    <div class="chat-input">\n      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：如何導入 AI 自動化？" onkeydown="if(event.key===\'Enter\')sendMsg()" autocomplete="off">\n      <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">\n        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>\n      </button>\n    </div>\n    <div class="chat-footer">\n      由 Cloudflare AI 即時驅動 · 若需專人服務請洽 <a href="https://lin.ee/n5KW430" target="_blank">LINE 客服</a>\n    </div>\n  </div>\n</div>\n';
+  var html = '<div id="ai-agent-btn" onclick="toggleChat()">\n  <div class="pulse"></div>\n  <div class="pulse pulse-2"></div>\n  <div class="btn-text">ASK</div>\n  <div class="btn-brand">AI</div>\n</div>\n\n<div id="ai-chat">\n  <div class="chat-header">\n    <div class="agent-info">\n      <div class="agent-avatar">🦞</div>\n      <div>\n        <div class="agent-name">Hermes Agent</div>\n        <div class="agent-tagline">Think BIG! AI Assistant</div>\n        <div class="status">Online · Real AI · Powered by Claude</div>\n      </div>\n    </div>\n    <div class="header-right">\n      <div class="powered-by">Powered by <b>Cloudflare AI</b></div>\n      <button class="close-btn" onclick="toggleChat()" title="關閉 (ESC)">✕</button>\n    </div>\n  </div>\n  <div class="chat-body" id="chat-body">\n    <div class="hero-welcome" id="hero-welcome">\n      <div class="hero-icon">🦞</div>\n      <h2 id="hero-title">您好！我是 Hermes</h2>\n      <p id="hero-desc">Think BIG! 的 AI 助理，隨時解答您的疑問<br><br>\n        <strong style="color:#fff">我們目前提供兩大服務：</strong><br>\n        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>企業 AI 導入</strong> — Agent / 流程自動化<br>\n        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>\n        隨時問我任何問題，或點下方快速選項 👇\n      </p>\n    </div>\n  </div>\n  <div class="chat-input-wrap">\n    <div class="quick-bar" id="quick-bar">\n      <button class="qchip" onclick="askQuick(\'我想導入 AI 自動化\')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>\n      <button class="qchip" onclick="askQuick(\'關於 Think BIG\')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 兩大服務</span></button>\n    </div>\n    <div class="chat-input">\n      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：如何導入 AI 自動化？" onkeydown="if(event.key===\'Enter\')sendMsg()" autocomplete="off">\n      <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">\n        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>\n      </button>\n    </div>\n    <div class="chat-footer">\n      由 Cloudflare AI 即時驅動 · 若需專人服務請洽 <a href="https://lin.ee/n5KW430" target="_blank">LINE 客服</a>\n    </div>\n  </div>\n</div>\n';
   var wrap = document.createElement('div'); wrap.innerHTML = html;
   while (wrap.firstChild) document.body.appendChild(wrap.firstChild);
 
@@ -27,7 +27,7 @@ let userLang = 'zh-TW'; // Default
 const HERO_I18N = {
   'zh-TW': {
     title: '您好！我是 Hermes',
-    intro: 'Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎',
+    intro: 'Think BIG! 的 AI 助理，隨時解答您的疑問',
     servicesLabel: '我們目前提供兩大服務：',
     s1: '企業 AI 導入 — RAG / Agent / 流程自動化',
     s2: 'Harness Engineers — 個人 AI Agent 搭建',
@@ -44,7 +44,7 @@ const HERO_I18N = {
   },
   'en': {
     title: 'Hello! I\'m Hermes',
-    intro: 'Think BIG!\'s AI Assistant · Powered by our OpenClaw + Claude Code engine',
+    intro: 'Think BIG!\'s AI Assistant — here to answer your questions',
     servicesLabel: 'We offer two core services:',
     s1: 'Enterprise AI — RAG / Agent / Automation',
     s2: 'Harness Engineers — Personal AI Agent builder',
@@ -61,7 +61,7 @@ const HERO_I18N = {
   },
   'ja': {
     title: 'こんにちは！Hermes です',
-    intro: 'Think BIG! の AI アシスタント · OpenClaw + Claude Code エンジン搭載',
+    intro: 'Think BIG! の AI アシスタント — ご質問にお答えします',
     servicesLabel: '2 つのコアサービスを提供しています：',
     s1: '企業向け AI 導入 — RAG / Agent / 自動化',
     s2: 'Harness Engineers — 個人向け AI エージェント構築',
@@ -235,77 +235,42 @@ Think BIG 是台灣 AI 自動化顧問公司,由 NEO.W 創辦,專注幫助中小
 
 想了解更多,可以隨時問我任何問題,或點上方快速選項 👇`;
 
-const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的引擎:
+const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的三大工具:
 
 ━━━━━━━━━━━━━━━━━━━━
 
-🦞 OpenClaw — 會做事的 AI Agent 框架
+🦞 OpenClaw — 真的幫您做事的 AI Agent
 
-OpenClaw(又稱「龍蝦 AI」)是一款開源的 AI Agent 框架,能讓 AI 直接操作電腦、瀏覽器與應用程式來完成任務,而不只是對話。
+它跟 ChatGPT 最大的差別:ChatGPT「說」,OpenClaw「做」。
 
-【它跟 ChatGPT 有什麼不同】
-ChatGPT 是「會說的 AI」,OpenClaw 是「會做的 AI」。ChatGPT 給你 PPT 大綱,OpenClaw 直接打開軟體做出 PPT、寄給客戶。
+您可以想像有一個 AI 員工,能接通訊軟體、代操電腦與瀏覽器、自動跑流程——不用盯著它,它自己完成任務。
 
-【七大核心特色】
-① 多通路整合:賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord
-② 長期記憶:保留使用者互動歷史,個人化服務
-③ 主動執行:透過排程與 webhook,自動發起任務
-④ 高權限操作:可直接存取系統與檔案
-⑤ 簡單設置:支援快速連接帳號與服務
-⑥ 可擴展技能(Skills):任務封裝後重複使用
-⑦ 語音互動:支援語音喚醒與通話模式
-
-【生態系規模】
-ClawHub 已有超過 4 萬個社群貢獻的 Skills
+【您可以用來做什麼】
+- 串接賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord,自動收發客戶訊息
+- 按排程主動出擊(例如:每早自動整理昨日數據、傳報表)
+- 語音喚醒,說一句話讓它去辦事
+- 現有豐富的現成技能庫,快速套用常見情境
 
 ━━━━━━━━━━━━━━━━━━━━
 
-⚡ Hermes — 越用越聰明的自學習 AI
+⚡ Hermes — 越用越懂您的 AI 助理
 
-Hermes Agent(愛馬仕 Agent)由 Nous Research 開發,採 MIT 授權。
+傳統 AI 助理:每次都要重新交代您的習慣和偏好。
+Hermes:自動把「上次怎麼做最有效」記起來,下次直接用。
 
-【核心概念:程序性記憶】
-每次完成任務後,系統自動將成功的推理模式萃取為「技能」,下次直接調用並持續優化。
-
-傳統 AI 助理像是每天換一個新實習生,Hermes 則像一位跟著您越做越熟練的長期助理。
-
-【五階段學習迴圈】
-① 執行任務 ② 評估結果 ③ 萃取技能 ④ 優化技能 ⑤ 檢索技能
-
-【跨對話追蹤四件事】
-① 格式偏好 ② 決策紀錄 ③ 任務模式 ④ 回饋訊號
-
-用一句話理解:一般 AI 記住「您說過什麼」,Hermes 記住「怎麼做最有效」。
+效果:用的時間越長,它越有「默契」,像一位真正了解您工作方式的長期助理,而不是每天換一個新實習生。
 
 ━━━━━━━━━━━━━━━━━━━━
 
-🧠 ClawMem — 雙 Agent 的共享大腦
+🧠 共享記憶 — 讓兩個 Agent 用同一個大腦
 
-ClawMem 是本地的記憶層,讓 Claude Code、OpenClaw、Hermes 共用同一個 SQLite 倉庫。一個 agent 學到的決定,另一個 agent 立即知道。
-
-【關鍵價值】
-完全在本地運行,沒有 API Key,沒有雲端依賴,隱私 100% 留在您電腦。
-
-【自動做的事】
-① 自動浮現相關上下文
-② Session 啟動時注入您的個人檔案、最近決策
-③ 用本地觀察模型擷取決策、偏好、里程碑
-④ Session 結束時生成交接,讓下次接續工作
-⑤ 透過回饋迴圈學習什麼重要
-⑥ 防護 prompt injection 攻擊
-⑦ 偵測矛盾:新決策若與舊決策矛盾,自動降權舊決策
+OpenClaw 和 Hermes 可以共用同一套記憶,一個學到的東西另一個立刻知道。全程在您本機運行,資料不出您的電腦,隱私完全自主。
 
 ━━━━━━━━━━━━━━━━━━━━
 
-🦞+⚡+🧠 雙 Agent 完整方案
+🦞+⚡+🧠 雙 Agent 完整方案(方案 #5,NT$15,000 單次)
 
-把 OpenClaw + Hermes + ClawMem 三者合在一起,就是我們最強大的「雙 Agent 方案」:
-
-- OpenClaw 負責「廣連接」 — 對外接通訊軟體、跑日常任務
-- Hermes 負責「深學習」 — 累積您的工作風格與技能
-- ClawMem 是兩者共享的大腦 — 記憶 100% 同步
-
-成果:一個跨平台、自學習、共享記憶、且資料完全留在您電腦的 AI 員工。
+三個工具打通,您得到的是:一位跨平台幫您幹活、越用越默契、記憶完全留在您電腦的 AI 員工。
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -313,7 +278,7 @@ ClawMem 是本地的記憶層,讓 Claude Code、OpenClaw、Hermes 共用同一�
 
 您是個人使用,還是公司/企業使用?
 
-⚠️ 重要提醒:個人方案僅可對接最多兩個通訊軟體帳號。如需對接三人以上(例如多個業務、多個客服),就需要企業方案。
+⚠️ 重要提醒:個人方案僅可對接兩個通訊軟體帳號。如需多人並行(多個業務、多個客服窗口),就需要企業方案。
 
 請告訴我您的情境,我幫您推薦最合適的組合!`;
 
