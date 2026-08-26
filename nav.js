@@ -64,8 +64,18 @@
     ].join('\n');
     var st = document.createElement('style'); st.id = 'tb-nav-style'; st.textContent = css; document.head.appendChild(st);
 
-    // ---- 2. 連結資料 (對應規格 D) ----
+    // ---- 2. 連結資料 ----
     var LINKS = [
+      { t: 'OpenClaw 入門', h: '/openclaw-starter/' },
+      { t: 'Hermes 入門', h: '/hermes-starter/' },
+      { t: '技能包', h: '/skill-pack/' },
+      { t: '全 Agent 串接', h: '/full-agent/' },
+      { t: '雙智能體', h: '/dual-agent/' },
+      { t: '尊榮年約', h: '/annual-pro/' },
+      { t: '年度旗艦', h: '/annual-flagship/' },
+      { t: '超級個體', h: '/solo-pro/' },
+      { t: '企業本地部署', h: '/enterprise-local/' },
+      { t: '企業雲端部署', h: '/enterprise-cloud/' },
       { t: 'Enterprise', h: '/enterprise/' },
       { t: 'Harness Engineers', h: '/harness/' }
     ];

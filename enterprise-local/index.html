@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企業本地部署 | Think BIG!</title>
+<meta name="description" content="企業 AI Agent 本地部署方案。資料不出公司，各部門專屬客製 Agent，八層資安框架，多部門客製化導入。">
+<link rel="canonical" href="https://thinkbigtw.com/enterprise-local/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thinkbigtw.com/enterprise-local/">
+<meta property="og:title" content="企業本地部署 | Think BIG!">
+<meta property="og:description" content="企業 AI Agent 本地部署方案。資料不出公司，各部門專屬客製 Agent，八層資安框架，多部門客製化導入。">
+<meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="企業本地部署 | Think BIG!">
+<meta name="twitter:description" content="企業 AI Agent 本地部署方案。資料不出公司，各部門專屬客製 Agent，八層資安框架，多部門客製化導入。">
+<meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "企業本地部署",
+  "serviceType": "企業 AI 本地部署服務",
+  "provider": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"},
+  "areaServed": {"@type": "Country", "name": "Taiwan"},
+  "description": "企業 AI Agent 本地部署方案。資料不出公司，各部門專屬客製 Agent，八層資安框架，多部門客製化導入。",
+  "url": "https://thinkbigtw.com/enterprise-local/"
+}
+</script>
+<style>
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#e8422a;
+  --bg:#ffffff;
+  --ink:#1a1a1a;
+  --gray:#f5f5f5;
+  --gray2:#ebebeb;
+  --muted:#666;
+  --mono:'Azeret Mono',ui-monospace,monospace;
+  --tc:'Noto Sans TC',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--tc);-webkit-font-smoothing:antialiased;min-height:100vh;padding-top:54px}
+
+/* ── Typography ── */
+h1{font-family:var(--tc);font-weight:900;font-size:clamp(28px,4vw,52px);line-height:1.18;letter-spacing:-0.5px;color:var(--ink)}
+h2{font-family:var(--tc);font-weight:700;font-size:clamp(22px,3vw,36px);line-height:1.25;color:var(--ink);margin-bottom:24px}
+h3{font-family:var(--tc);font-weight:700;font-size:18px;color:var(--ink);margin-bottom:8px}
+p{line-height:1.75;color:var(--muted)}
+a{color:var(--red);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── Layout ── */
+.container{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+section{padding:80px 0}
+
+/* ── Two-column ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
+.two-col.reverse{direction:rtl}
+.two-col.reverse>*{direction:ltr}
+
+/* ── Product image ── */
+.prod-img{width:100%;aspect-ratio:1/1;border-radius:20px;display:block;object-fit:cover;box-shadow:0 4px 32px rgba(0,0,0,0.10)}
+
+/* ── Section 1: Hero ── */
+.s-hero{background:var(--bg);padding:60px 0 80px}
+.s-hero .track-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);border-radius:4px;padding:4px 10px;margin-bottom:20px}
+.s-hero .tagline{font-family:var(--mono);font-size:clamp(14px,1.8vw,18px);color:var(--red);margin:16px 0 24px;font-style:italic;line-height:1.5}
+.s-hero .hero-desc{font-size:16px;line-height:1.8;color:#444}
+.s-hero h1{margin-bottom:4px}
+
+/* ── Section 2: Pain ── */
+.s-pain{background:var(--gray)}
+.s-pain ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:16px}
+.s-pain ul li{display:flex;align-items:flex-start;gap:14px;font-size:15px;line-height:1.7;color:var(--ink)}
+.s-pain ul li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0;margin-top:2px}
+
+/* ── Section 3: Flow ── */
+.s-flow{background:var(--bg)}
+.flow-steps{display:flex;flex-direction:column;gap:24px;margin-top:8px}
+.flow-step{display:flex;gap:16px;align-items:flex-start}
+.flow-num{width:32px;height:32px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--mono);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.flow-text strong{display:block;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:4px}
+.flow-text span{font-size:14px;color:var(--muted);line-height:1.65}
+.flow-note{margin-top:20px;font-size:13px;color:var(--muted);padding:12px 16px;background:var(--gray);border-left:3px solid var(--red);border-radius:0 6px 6px 0}
+
+/* ── Section 4: Results ── */
+.s-results{background:var(--gray)}
+.results-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
+.results-list li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.7;color:var(--ink)}
+.results-list li::before{content:'✓';color:var(--red);font-weight:700;flex-shrink:0;font-size:16px;margin-top:1px}
+.upsell-note{font-size:14px;color:var(--muted);margin-bottom:28px;padding:12px 16px;background:#fff;border-left:3px solid var(--gray2);border-radius:0 6px 6px 0}
+.upsell-note a{color:var(--red)}
+
+/* ── Price + CTA ── */
+.price-block{background:#fff;border:1.5px solid var(--gray2);border-radius:16px;padding:24px 28px;margin-bottom:20px}
+.price-label{font-family:var(--mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.price-value{font-family:var(--tc);font-weight:900;font-size:clamp(22px,3vw,32px);color:var(--ink);line-height:1.2;margin-bottom:18px}
+.cta-btn{display:inline-block;background:var(--red);color:#fff;font-family:var(--tc);font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;transition:background .2s,transform .15s;letter-spacing:0.3px}
+.cta-btn:hover{background:#c73821;transform:translateY(-1px);text-decoration:none}
+.cta-btn.contact-btn{background:var(--ink);color:#fff}
+.cta-btn.contact-btn:hover{background:#333}
+.disclaimer{font-size:12px;color:#999;margin-top:16px;line-height:1.65}
+
+/* ── Mobile ── */
+@media(max-width:768px){
+  section{padding:56px 0}
+  .two-col{grid-template-columns:1fr;gap:32px}
+  .two-col.reverse{direction:ltr}
+  .two-col .col-img{order:0}
+  .two-col.reverse .col-img{order:-1}
+  .prod-img{max-width:400px;margin:0 auto;display:block}
+}
+@media(max-width:480px){
+  .s-hero{padding:40px 0 60px}
+}
+
+</style>
+</head>
+<body>
+<script src="/nav.js" defer></script>
+
+<!-- ── Section 1: Hero / 這是什麼 ── -->
+<section class="s-hero">
+  <div class="container">
+    <div class="two-col">
+      <div class="col-text">
+        <span class="track-tag">企業 AI 導入</span>
+        <h1>企業本地部署</h1>
+        <p class="tagline">大模型跑在你自己的主機上，資料不出公司。</p>
+        <p class="hero-desc">為高敏產業（金融、醫療、法律、製造機密）設計的企業 AI 導入方案：大模型運算完全在貴公司自有主機上進行，不經任何第三方雲端。我們在你的本地環境部署大模型，並為各部門打造專屬客製 Agent——不是一套通用助理套全公司，而是業務、客服、財務各自擁有懂自己業務的 AI。</p>
+      </div>
+      <div class="col-img">
+        <img class="prod-img" src="/images/t21/9-1.webp"
+          alt="企業本地部署 — Think BIG! AI 助理服務示意圖"
+          width="1000" height="1000" loading="eager"
+          decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 2: Pain Points ── -->
+<section class="s-pain">
+  <div class="container">
+    <div class="two-col reverse">
+      <div class="col-text">
+        <h2>貴公司是不是——</h2>
+        <ul>
+          <li>想導入 AI，但法遵和資安部門第一句話就是「資料會不會外流」？</li>
+          <li>員工私下已經在把公司資料貼進公開 AI 工具，風險完全失控？</li>
+          <li>評估過雲端 AI 服務，卻因資料主權與法規遵循要求只能作罷？</li>
+        </ul>
+      </div>
+      <div class="col-img">
+        <img class="prod-img" src="/images/t21/9-2.webp"
+          alt="企業本地部署 痛點示意圖"
+          width="800" height="800" loading="lazy"
+          decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 3: How it Works ── -->
+<section class="s-flow">
+  <div class="container">
+    <div class="two-col">
+      <div class="col-text">
+        <h2>怎麼運行</h2>
+        <div class="flow-steps">
+        <div class="flow-step">
+          <div class="flow-num">1</div>
+          <div class="flow-text"><strong>收到</strong><span>員工（僅白名單帳號）從公司通訊工具對部門 Agent 下指令</span></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">2</div>
+          <div class="flow-text"><strong>判斷</strong><span>該部門專屬 Agent 依部門業務知識分析任務；部門間資料採 Zero-Trust 隔離、互不可見</span></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">3</div>
+          <div class="flow-text"><strong>執行</strong><span>本地大模型在貴公司主機上完成運算，資料全程不出公司</span></div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-num">4</div>
+          <div class="flow-text"><strong>回報</strong><span>結果回到指定通道；24 小時執行期監控與告警持續運作，全程留痕</span></div>
+        </div>
+        </div>
+        <p class="flow-note">導入流程：需求訪談與部門盤點 → 主機規格建議（主機由貴公司自行採購）→ 本地大模型部署 → 各部門客製 Agent 開發 → 八層資安框架導入 → 驗收測試 → 合約維護。</p>
+      </div>
+      <div class="col-img">
+        <img class="prod-img" src="/images/t21/9-3.webp"
+          alt="企業本地部署 運行流程示意圖"
+          width="800" height="800" loading="lazy"
+          decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Section 4: Results + CTA ── -->
+<section class="s-results">
+  <div class="container">
+    <div class="two-col reverse">
+      <div class="col-text">
+        <h2>你得到什麼</h2>
+        <ul class="results-list">
+          <li><strong>資料完全留在自有環境</strong>，符合高敏產業資安與法遵要求</li>
+          <li>各部門專屬客製 Agent＋ Zero-Trust 部門隔離</li>
+          <li>企業級<strong>八層資安框架</strong>：裝之前掃、跑起來鎖、出貨前審、上線後盯——每道關卡都有留痕與真實攔截紀錄</li>
+          <li>24 小時執行期監控、異動前必備份可回滾、依合約持續維護與技術支援</li>
+        </ul>
+        <p class="upsell-note">預算或時程有限？→ <a href='/enterprise-cloud/'>看「企業雲端部署」</a>，低門檻快速上線，日後可升級至本地部署。</p>
+        <div class="price-block">
+          <p class="price-label">方案價格</p>
+          <p class="price-value">詢價（企業客製服務，依組織規模、部門數量、主機規格與客製程度於需求訪談後報價）</p>
+          <a href="/enterprise/" class="cta-btn contact-btn">預約需求訪談</a>
+          <p class="disclaimer">※ 本方案採本地大模型部署，一般情況下不涉及雲端 AI 模型用量費；如導入配置含任何雲端 AI 模型 API，該費用依用量計費、由企業自行申請與負擔。</p>
+        </div>
+      </div>
+      <div class="col-img">
+        <img class="prod-img" src="/images/t21/9-4.webp"
+          alt="企業本地部署 成果示意圖"
+          width="800" height="800" loading="lazy"
+          decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script src="/ask-ai.js" defer></script>
+</body>
+</html>
