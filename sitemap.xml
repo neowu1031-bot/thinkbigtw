@@ -3,11 +3,11 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://thinkbigtw.com/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://thinkbigtw.com/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://thinkbigtw.com/"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://thinkbigtw.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://thinkbigtw.com/tbos/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/"/>
   </url>
   <!-- T21 個人 AI 助理方案頁 -->
@@ -25,13 +25,13 @@
   <!-- 既有頁面 -->
   <url>
     <loc>https://thinkbigtw.com/enterprise/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://thinkbigtw.com/harness/</loc>
-    <lastmod>2026-06-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
