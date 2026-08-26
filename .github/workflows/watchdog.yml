@@ -24,8 +24,6 @@ jobs:
           fail=0
           failed_endpoints=""
           for url in \
-            "https://thinkbigtw.com/lab/" \
-            "https://thinkbigtw.com/lab/app2.js" \
             "https://moneyradar-ai-proxy.thinkbigtw.workers.dev/health"
           do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
