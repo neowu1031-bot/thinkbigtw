@@ -8,3 +8,11 @@ node_modules/
 .env.local
 .dev.vars
 .bak_seo_geo_20260528/
+
+# Internal workspace files — never commit
+CLAUDE_*.md
+STATUS.md
+*_TASK.md
+.bak_worker_*.js
+.bak_safe_*.js
+.bak_v*/
