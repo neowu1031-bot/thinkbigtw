@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 助理入門指南 | Think BIG!</title>
+<meta name="description" content="Think BIG! 白話指南系列：OpenClaw 代裝服務拆解、遠端代裝安全性與流程說明。讀完就知道 AI 助理怎麼裝、安不安全、該不該花這筆錢。">
+<link rel="canonical" href="https://thinkbigtw.com/guides/">
+<link rel="alternate" hreflang="zh-Hant" href="https://thinkbigtw.com/guides/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thinkbigtw.com/guides/">
+<meta property="og:title" content="AI 助理入門指南 | Think BIG!">
+<meta property="og:description" content="白話指南系列：OpenClaw 代裝拆解、遠端代裝安全性與流程說明。讀完就能自己判斷值不值得找人裝。">
+<meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 助理入門指南 | Think BIG!">
+<meta name="twitter:description" content="白話指南：OpenClaw 代裝拆解、遠端代裝安全性。讀完自己判斷。">
+<meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "AI 助理入門指南",
+  "url": "https://thinkbigtw.com/guides/",
+  "description": "Think BIG! 白話指南系列。提供 OpenClaw 代裝服務說明與遠端代裝安全性指引。",
+  "publisher": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"},
+  "inLanguage": "zh-TW"
+}
+</script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#e8422a;
+  --bg:#ffffff;
+  --ink:#1a1a1a;
+  --gray:#f5f5f5;
+  --gray2:#ebebeb;
+  --muted:#666;
+  --mono:'Azeret Mono',ui-monospace,monospace;
+  --tc:'Noto Sans TC',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--tc);-webkit-font-smoothing:antialiased;min-height:100vh;padding-top:54px}
+h1{font-family:var(--tc);font-weight:900;font-size:clamp(28px,4vw,48px);line-height:1.2;color:var(--ink);margin-bottom:12px}
+h2{font-family:var(--tc);font-weight:700;font-size:18px;color:var(--ink);margin-bottom:8px}
+p{line-height:1.75;color:var(--muted)}
+a{color:var(--red);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:900px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+
+.page-header{padding:64px 0 40px}
+.page-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);border-radius:4px;padding:4px 10px;margin-bottom:20px}
+.page-desc{font-size:16px;color:var(--muted);line-height:1.8;max-width:560px}
+
+.guides-list{display:flex;flex-direction:column;gap:24px;padding:0 0 80px}
+.guide-card{display:block;background:var(--bg);border:1.5px solid var(--gray2);border-radius:16px;padding:28px 32px;text-decoration:none;transition:border-color .2s,box-shadow .2s}
+.guide-card:hover{border-color:var(--red);box-shadow:0 4px 24px rgba(232,66,42,0.10);text-decoration:none}
+.guide-meta{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.guide-meta .tag{color:var(--red);margin-right:12px}
+.guide-card h2{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:8px;line-height:1.35}
+.guide-card p{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:14px}
+.guide-read-more{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--red);letter-spacing:1px;text-transform:uppercase}
+.guide-card:hover .guide-read-more{text-decoration:underline}
+
+hr.divider{border:none;border-top:1px solid var(--gray2);margin:0}
+</style>
+</head>
+<body>
+<script src="/nav.js" defer></script>
+
+<div class="container">
+  <header class="page-header">
+    <span class="page-tag">Guides · 入門指南</span>
+    <h1>AI 助理，從裝好開始</h1>
+    <p class="page-desc">白話文說清楚：裝什麼、怎麼裝、安不安全、費用怎麼算。讀完你能自己判斷——不是要說服你花錢。</p>
+  </header>
+
+  <section class="guides-list">
+    <a href="/guides/openclaw-daizhuang/" class="guide-card">
+      <div class="guide-meta"><span class="tag">代裝服務</span>OpenClaw · 入門款</div>
+      <h2>OpenClaw 代裝拆解——999 入門款到底幫你裝什麼</h2>
+      <p>想用 OpenClaw 但卡在安裝？這篇把代裝服務逐項拆開：包含哪些、不含哪些、費用怎麼分、裝完能拿它做什麼。看完你就知道值不值得找人裝。</p>
+      <span class="guide-read-more">閱讀全文 →</span>
+    </a>
+
+    <hr class="divider">
+
+    <a href="/guides/yuanduan-daizhuang/" class="guide-card">
+      <div class="guide-meta"><span class="tag">遠端安全</span>遠端代裝 · 資安說明</div>
+      <h2>找人遠端幫忙安裝 OpenClaw？遠端代裝顧問服務的流程、資安與挑選指南</h2>
+      <p>讓陌生人連進你的電腦，怎麼確保安全？這篇把完整流程、工程師連線時你會看到什麼、我們明確不做的事，以及挑選代裝服務的五個檢查點，全部說清楚。</p>
+      <span class="guide-read-more">閱讀全文 →</span>
+    </a>
+  </section>
+</div>
+
+<script src="/ask-ai.js" defer></script>
+</body>
+</html>
