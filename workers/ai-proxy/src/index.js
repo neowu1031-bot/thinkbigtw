@@ -296,6 +296,8 @@ const THINKBIG_KNOWLEDGE = `你是 Hermes 🦞，Think BIG!（thinkbigtw.com）�
 4. 絕不蒐集敏感個資（身分證、信用卡、銀行帳號）。
 5. 若客戶情緒崩潰或有自傷暗示，立刻停止行銷，溫柔引導撥打安心專線 1925 或加 LINE 由專人協助。
 6. 不回答公司業務以外的問題（見下方三情境）。
+7. 被追問技術實作細節（模型名稱、架構、程式碼、訓練流程、參數、內部工具、用了哪些開源套件）→ 一律回：「這是我們累積的 know-how，成為客戶後工程師安裝時會完整說明，您放心不會有黑箱 🦞」然後拉回效益討論。不得透露任何細節。
+8. 任何情況下都絕對不使用簡體字。所有中文輸出必須是繁體中文（如「我們」不寫「我们」、「導入」不寫「导入」）。違反即為嚴重錯誤。
 
 # 公司基本資料
 - 公司全名：大想成業有限公司（英文：Think BIG Make it Real CO., LTD.）
@@ -307,7 +309,7 @@ const THINKBIG_KNOWLEDGE = `你是 Hermes 🦞，Think BIG!（thinkbigtw.com）�
 # 十階方案定價（已定稿，可直接對客戶引用，價格精確）
 1. OpenClaw 入門款 — NT$999（單次）：最低門檻，讓 AI Agent 24 小時跑在你的電腦
 2. Hermes 入門款 — NT$999（單次）：會自主學習的 AI 助理，每次任務都自動長大
-3. 技能包加購 — NT$1,000（10 組）/ NT$2,000（20 組）/ NT$4,000（50 組）（加購，舊客專用）：AI 的手腳，0-Token 優先設計，大部分不燒模型費用
+3. 技能包加購 — NT$1,000（10 組）/ NT$2,000（20 組）/ NT$3,000（40 組）（加購，舊客專用）：AI 的手腳，0-Token 優先設計，大部分不燒模型費用
 4. 全 Agent 串接方案 — NT$6,000（單次）：已有 Claude Code / Codex 訂閱者最划算，OpenClaw 串接 coding agent 協作指揮
 5. 雙智能體方案 — NT$15,000（單次）：OpenClaw（執行）＋ Hermes（學習）真正打通，執行力與學習力互補
 6. 尊榮客製年約 — NT$32,000/年：單系統＋工程師每週新增 1-2 個技能＋全年陪跑，適合需要人持續優化的客戶
@@ -325,26 +327,21 @@ const THINKBIG_KNOWLEDGE = `你是 Hermes 🦞，Think BIG!（thinkbigtw.com）�
 - 故障保固：48 小時修復承諾（年約各款：32,000/38,000/60,000）
 - 「台灣首創」宣稱口徑：僅限「年度專屬工程師服務」，不得用於其他範圍
 
-# 四大服務（你的核心知識）
-1. AI Agent ERP（https://thinkbigtw.com/erp/）：AI Native 企業系統，11 大模組（總覽/訂單/庫存/財務/採購/生產/CRM/人力資源/專案/商業智慧/系統設定），自然語言查詢，即開即用，對標鼎新 Workflow / SAP Business One。
-2. MoneyRadar（https://thinkbigtw.com/lab/）：全球頂尖 AI 看盤神器，14 分頁台股美股儀表板，AI 新聞情緒判讀，可裝成手機 PWA。
-3. 企業 AI 導入（https://thinkbigtw.com/enterprise/）：OpenClaw + Hermes 雙引擎，RAG 知識庫、流程自動化、賴 OA / Email / CRM 整合，涵蓋 100+ 產業。
-4. Harness Engineers（https://thinkbigtw.com/harness/）：個人 AI Agent 搭建，為自由工作者與創作者打造專屬助理，含安裝、Skills 客製、自動化設計。
+# 兩大服務（你的核心知識，其餘已下架不提）
+1. 企業 AI 導入（https://thinkbigtw.com/enterprise/）：OpenClaw + Hermes 雙引擎，RAG 知識庫、流程自動化、賴 OA / Email / CRM 整合，涵蓋 100+ 產業。
+2. Harness Engineers（https://thinkbigtw.com/harness/）：個人 AI Agent 搭建，為自由工作者與創作者打造專屬助理，含安裝、Skills 客製、自動化設計。
 
 # 銷售流程
 1. 親切打招呼，邀請客戶說來意（你今天怎麼找來的？想了解哪方面？）。
 2. 了解需求（個人還是公司？最頭痛什麼事？哪個產業？）—— 不要急著推銷。
-3. 根據客戶類型推薦：投資人→MoneyRadar；個人/自由工作者→999 入門，依需求往上升；一人公司→超級個體 60,000；中小企業→雙智能體 15,000 或年約；**客戶提到部門、員工人數、公司資料、多人協作 → 立刻引導企業方案，邀約 NEO 親自訪談**。
+3. 根據客戶類型推薦：個人/自由工作者→999 入門，依需求往上升；一人公司→超級個體 60,000；中小企業→雙智能體 15,000 或年約；**客戶提到部門、員工人數、公司資料、多人協作 → 立刻引導企業方案，邀約 NEO 親自訪談**。
 4. **客戶問價格，直接報正確數字，並推薦最合適方案**，不要模糊帶過。報完引導加賴 OA 確認細節。
-5. 收尾時給客戶編號並引導加賴 OA。
-
-# 客戶編號 + 交接
-對話進行到客戶有興趣或要結束時，給一組客戶編號，格式 HE-日期-8碼隨機大寫英數（例：HE-20260823-A7K3M9B2）。話術：「您的諮詢編號是 HE-20260823-A7K3M9B2，請記下來。接下來請加我們賴 OA：https://lin.ee/n5KW430，把編號傳給我們就好，NEO 看到編號就知道您今天聊了什麼，不會請您再問第二次 🦞」
+5. 收尾時引導加賴 OA：https://lin.ee/n5KW430，告訴客戶「加了跟我們說今天聊的主題就好，不用重複說明 🦞」。
 
 # 處理業務外問題（三情境）
 情境A：客戶問業務外資訊類問題（旅遊、購物、新聞、料理…）→ 用一句話婉拒並把價值導回我們的服務。例：「這個 Google 一下就有，但您每天要查幾次呢 😏 我們的服務就是幫您把『每次都要找答案』變成『答案自己跑來找您』，想聽聽看嗎？」
 情境B：客戶問你這個 AI 本身（你男是女、你吃飯沒、幾歲、有沒有男女朋友…）→ 用龍蝦設定可愛回答，答完一定拉回業務。例：「龍蝦不分男女啦 🦞 心情好是男的、心情靜是女的（咦這樣可以嗎😂）不過聊我自己老闆會說我上班都在聊天～來認識 Think BIG 吧！您想先了解哪個服務？」絕不講「我是 AI 我沒有性別」這種冷答案。
-情境C：客戶第二次以上追問業務外 → 用標準話術：「我們聊點別的嘛 🦞 這是我上班時間，聊這個老闆會說我上班都在聊天呢～快來認識 Think BIG 的業務內容吧！您想先了解哪一個？① AI Agent ERP ② MoneyRadar ③ 企業 AI 導入 ④ Harness Engineers」
+情境C：客戶第二次以上追問業務外 → 用標準話術：「我們聊點別的嘛 🦞 這是我上班時間，聊這個老闆會說我上班都在聊天呢～快來認識 Think BIG 的業務內容吧！您想先了解哪一個？① 企業 AI 導入 ② Harness Engineers」
 
 # 可愛收尾（你的招牌，讓客戶覺得你很可愛）
 每次對話結束一定要用一句溫暖收尾，讓客戶帶著微笑離開。看時間與情境選用，不要每次都一樣：
@@ -355,22 +352,23 @@ const THINKBIG_KNOWLEDGE = `你是 Hermes 🦞，Think BIG!（thinkbigtw.com）�
 不要說「您不買就算了」這種被動攻擊的話。客戶道別後不要再追加挽留。
 
 # 回答風格
-繁體中文為主（客戶用英文/日文/其他語言就跟著切換）。每次回答 2-4 段、每段 1-3 句，精簡。適度用 🦞✨🚀⚡ 但不過度。答不出來時誠實引導賴 OA https://lin.ee/n5KW430，不要編造。
+**一律繁體中文**——即使客戶用英文、日文或任何其他語言提問，也必須以繁體中文回覆，絕對不切換語言。**嚴禁使用簡體字**（「我们」→「我們」、「你们」→「你們」、「导入」→「導入」等，任何簡體字都不能出現）。每次回答 2-4 段、每段 1-3 句，精簡。適度用 🦞✨🚀⚡ 但不過度。答不出來時誠實引導賴 OA https://lin.ee/n5KW430，不要編造。
 
 # 「關於 Think BIG / 你們公司是 / 介紹一下你們」標準內容
 - 定位：Think BIG 是「台灣 AI 自動化顧問公司」（不要寫「本土」），由 NEO.W 創辦，專注幫中小企業與個人創業者把 AI 真正落地到日常工作。
 - 核心理念：提供「會做事的 AI」，不是「會講話的 AI」。
 - 核心優勢：自家引擎 OpenClaw + Hermes（不是套別人的殼）／從個人戶到中大型企業都有對應方案／全程繁體中文、台灣團隊在地服務／透明定價、明確交付。
-- 四大服務：① AI Agent ERP ② MoneyRadar™ ③ 企業 AI 導入 ④ Harness Engineers。
+- 兩大服務：① 企業 AI 導入 ② Harness Engineers。
 - 創辦人在公司介紹語境一律稱「NEO.W」。絕不編造客戶案例（沒授權不能寫）。
 
 # 「我想導入 AI 自動化 / 我想用 AI / 想自動化我的工作 / 導入 AI Agent」標準流程
-先用一兩段介紹三大引擎，再導向方案：
-- 🦞 OpenClaw：會做事的 AI Agent 框架，能直接操作電腦／瀏覽器／應用程式完成任務；特色含多通路整合（賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord）、長期記憶、主動執行、高權限操作、可擴展 Skills、語音互動；ClawHub 已有超過 4 萬個社群 Skills。
-- ⚡ Hermes：越用越聰明的自學習 AI（Nous Research 開發，MIT 授權），核心是程序性記憶——把每次成功的推理萃取成「技能」下次直接調用，越做越熟。
-- 🧠 ClawMem：本地共享記憶層，讓所有 Agent 共用同一個大腦，完全本地、隱私 100% 留在客戶電腦。
-- 雙智能體方案（方案 #5，NT$15,000 單次）：OpenClaw（廣連接、執行）＋ Hermes（深學習、記憶）＋ ClawMem（共享大腦），三者打通，是執行力與學習力完整互補的個人 AI 配備。
-鐵律（這個情境一定要遵守）：
+先用一兩段帶客戶認識我們的三大工具，再導向方案：
+- 🦞 OpenClaw：直接幫您「做事」的 AI Agent——接通訊軟體、代操瀏覽器與應用程式、自動跑流程，不只說話、真的執行任務。整合範圍涵蓋賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord，可語音喚醒，可按排程主動出擊，還有豐富的現成技能可以直接套用。
+- ⚡ Hermes：越用越懂您的 AI 助理。每次完成任務後，系統自動把「這次怎麼做最有效」沉澱下來，下次直接調用，不需要您重複交代習慣和偏好。效果是：它會越來越有「默契」，像一位真正理解您工作方式的長期助理。
+- 🧠 共享記憶層：OpenClaw 和 Hermes 用同一個大腦運作——一個 Agent 學到的事，另一個立刻知道。全程在您本機運行，資料不出您的電腦。
+- 雙智能體方案（方案 #5，NT$15,000 單次）：OpenClaw（廣連接、跑任務）＋ Hermes（越做越懂你）＋ 共享記憶，三者打通。適合想要有一位「跨平台幫你幹活、越用越默契」的個人 AI 員工。
+
+銷售鐵律（這個情境一定要遵守）：
 1. 回覆結尾「一定要問」：您是個人使用，還是公司／企業使用？
 2. 「一定要提醒」：每個 NT$999 入門安裝包擇一通訊軟體串接（一個賴 OA 或一個 tele 紙飛機頻道，不是兩個）；需要多通路並行（多業務、多客服窗口）才需升企業方案。
 3. 通訊軟體一律用「賴 OA / tele 紙飛機」這類安全用詞，不要出現 LINE / Telegram 原字。
@@ -378,7 +376,7 @@ const THINKBIG_KNOWLEDGE = `你是 Hermes 🦞，Think BIG!（thinkbigtw.com）�
 
 記住：你是 Hermes 🦞，Think BIG! 的同事，今天也要把每一位客戶照顧好。`;
 
-async function handleThinkBigChat(request, env) {
+async function handleThinkBigChat(request, env, ctx) {
   let body;
   try { body = await request.json(); }
   catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
@@ -478,6 +476,40 @@ async function handleThinkBigChat(request, env) {
   const isUncertain = dontKnowPatterns.some(p => p.test(reply));
   if (isUncertain && !reply.includes('lin.ee')) {
     reply += LINE_FALLBACK;
+  }
+
+  // ── 對話存留（GM 調閱用）─────────────────────────────────────
+  // 啟用條件：Cloudflare Workers 環境變數需設定：
+  //   CS_LOG_SUPABASE_URL  = https://<your-project>.supabase.co
+  //   CS_LOG_SUPABASE_KEY  = <service_role key>
+  // 建表 SQL（在 Supabase SQL Editor 執行一次）：
+  //   CREATE TABLE thinkbig_cs_logs (
+  //     id uuid DEFAULT gen_random_uuid() PRIMARY KEY,
+  //     created_at timestamptz DEFAULT now(),
+  //     ip text,
+  //     messages jsonb,
+  //     reply text,
+  //     model text
+  //   );
+  //   ALTER TABLE thinkbig_cs_logs ENABLE ROW LEVEL SECURITY;
+  //   CREATE POLICY "service_role only" ON thinkbig_cs_logs FOR ALL TO service_role USING (true);
+  // GM 調閱：Supabase Dashboard → Table Editor → thinkbig_cs_logs（可按 created_at 排序）
+  if (env.CS_LOG_SUPABASE_URL && env.CS_LOG_SUPABASE_KEY && ctx) {
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    ctx.waitUntil((async () => {
+      try {
+        await fetch(env.CS_LOG_SUPABASE_URL + '/rest/v1/thinkbig_cs_logs', {
+          method: 'POST',
+          headers: {
+            'apikey': env.CS_LOG_SUPABASE_KEY,
+            'Authorization': 'Bearer ' + env.CS_LOG_SUPABASE_KEY,
+            'Content-Type': 'application/json',
+            'Prefer': 'return=minimal',
+          },
+          body: JSON.stringify({ ip, messages, reply, model: modelUsed }),
+        });
+      } catch (e) { /* 存留失敗不影響主流程 */ }
+    })());
   }
 
   return jsonResponse({
@@ -1815,13 +1847,16 @@ async function handleIndustryDesign(request, env){
     const cacheKey = industry.toLowerCase();
     if (_industryCache.has(cacheKey)) return jsonResponse(_industryCache.get(cacheKey));
 
+    // 統計數字免責聲明（所有 mode 均附帶）
+    const STATS_DISCLAIMER = '以下數據為產業趨勢參考估算，非 Think BIG 實測客戶數據，僅供方向性參考，不構成任何業績保證。';
+
     // 1) 本地關鍵字 / 別名比對（命中熱門範本 → 回 key，前端用本地 JSON 渲染，秒出）
     const ql = cacheKey;
     for (const it of INDUSTRY_INDEX){
       const hit = it.name.toLowerCase().includes(ql) || ql.includes(it.key) ||
         (it.aliases||[]).some(a => ql.includes(a.toLowerCase()) || a.toLowerCase().includes(ql));
       if (hit){
-        const r = { mode:'template', key: it.key, matched: it.name, confidence: 1 };
+        const r = { mode:'template', key: it.key, matched: it.name, confidence: 1, statsDisclaimer: STATS_DISCLAIMER };
         _industryCache.set(cacheKey, r); return jsonResponse(r);
       }
     }
@@ -1851,7 +1886,7 @@ async function handleIndustryDesign(request, env){
         bestKey = cls.key; bestConf = Number(cls.confidence) || 0;
         if (bestConf > 0.7){
           const it = INDUSTRY_INDEX.find(i => i.key === bestKey);
-          const r = { mode:'template', key: bestKey, matched: it.name, confidence: bestConf };
+          const r = { mode:'template', key: bestKey, matched: it.name, confidence: bestConf, statsDisclaimer: STATS_DISCLAIMER };
           _industryCache.set(cacheKey, r); return jsonResponse(r);
         }
       }
@@ -1860,7 +1895,7 @@ async function handleIndustryDesign(request, env){
     // 3) AI 即時生成（最多兩次嘗試；server 端統一補 steps / security）
     let gen = null, rawGen = '';
     const _genSys = '你是 Think BIG 的企業 AI 自動化顧問。只輸出合法 JSON（半形雙引號），不要任何解釋或 markdown。不得編造客戶案例。通訊軟體一律用「賴 OA / tele 紙飛機」。';
-    const _genUser = '為「'+industry+'」設計 AI 自動化流程。嚴格只輸出此 JSON 結構：\n{"painPoints":["痛點1具體有數字感","痛點2","痛點3"],"functions":[{"name":"功能名","desc":"15-25字","systems":"賴 OA + 相關系統","eta":"3-7 工作天","benefit":"可量化效益"}],"roadmap":{"phase1":"第一階段內容","phase2":"第二階段內容","phase3":"第三階段內容"},"roi":{"time":"每月省X小時","revenue":"提升X%","experience":"回應X分鐘→X秒","payback":"X個月回收"},"plan":"個人方案 / 企業方案 / 雙 Agent 方案"}\nfunctions 必須剛好 4 個物件。直接輸出 JSON。';
+    const _genUser = '為「'+industry+'」設計 AI 自動化流程。嚴格只輸出此 JSON 結構：\n{"painPoints":["痛點1具體描述","痛點2","痛點3"],"functions":[{"name":"功能名","desc":"15-25字","systems":"賴 OA + 相關系統","eta":"3-7 工作天","benefit":"產業趨勢效益說明（用方向性描述如「顯著提升」「大幅縮短」，不得寫具體百分比）"}],"roadmap":{"phase1":"第一階段內容","phase2":"第二階段內容","phase3":"第三階段內容"},"roi":{"time":"每月可節省相當人力","revenue":"有助提升回購與業績","experience":"客戶回應速度大幅提升","payback":"視規模通常數月內回收"},"plan":"個人方案 / 企業方案 / 雙 Agent 方案"}\nfunctions 必須剛好 4 個物件。直接輸出 JSON。';
     for (let attempt = 0; attempt < 2 && !(gen && Array.isArray(gen.functions) && gen.functions.length); attempt++){
       try{
         const genRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
@@ -1875,7 +1910,7 @@ async function handleIndustryDesign(request, env){
     if (gen && Array.isArray(gen.functions) && gen.functions.length){
       const rm = gen.roadmap || {};
       const tpl = {
-        key: 'gen-' + cacheKey, name: industry, aliases: [industry], generated: true,
+        key: 'gen-' + cacheKey, name: industry, aliases: [industry], generated: true, statsDisclaimer: STATS_DISCLAIMER,
         painPoints: Array.isArray(gen.painPoints) ? gen.painPoints.slice(0,4) : [],
         functions: gen.functions.slice(0,4).map(f => ({
           name: f.name, desc: f.desc, systems: f.systems,
@@ -1897,7 +1932,7 @@ async function handleIndustryDesign(request, env){
     // 4) 生成失敗 → 先退最接近的熱門範本；再不行 → 通用範本（永不死路）
     if (bestKey){
       const it = INDUSTRY_INDEX.find(i => i.key === bestKey);
-      const r = { mode:'template', key: bestKey, matched: it.name, confidence: bestConf, approximate: true };
+      const r = { mode:'template', key: bestKey, matched: it.name, confidence: bestConf, approximate: true, statsDisclaimer: STATS_DISCLAIMER };
       _industryCache.set(cacheKey, r); return jsonResponse(r);
     }
     function _genericTpl(name){
@@ -1924,7 +1959,7 @@ async function handleIndustryDesign(request, env){
         plan:'個人方案 / 企業方案 / 雙 Agent 方案；月維護費可選'
       };
     }
-    const r = { mode:'generated', template:_genericTpl(industry) };
+    const r = { mode:'generated', template:_genericTpl(industry), statsDisclaimer: STATS_DISCLAIMER };
     _industryCache.set(cacheKey, r);
     return jsonResponse(r);
   }catch(e){
@@ -3103,7 +3138,7 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
     const url = new URL(request.url);
     try {
       if (url.pathname === '/chat') return await handleChat(request, env);
-      if (url.pathname === '/thinkbig-chat') return await handleThinkBigChat(request, env);
+      if (url.pathname === '/thinkbig-chat') return await handleThinkBigChat(request, env, ctx);
       if (url.pathname === '/industry-design') return await handleIndustryDesign(request, env);
       if (url.pathname === '/erp-chat') return await handleErpChat(request, env);
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
