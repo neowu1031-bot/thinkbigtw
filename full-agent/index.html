@@ -74,8 +74,7 @@ section{padding:80px 0}
 
 /* ── Two-column ── */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,80px);align-items:center}
-.two-col.reverse{direction:rtl}
-.two-col.reverse>*{direction:ltr}
+.two-col.reverse .col-img{order:-1}
 
 /* ── Product image ── */
 .prod-img{width:100%;aspect-ratio:1/1;border-radius:20px;display:block;object-fit:cover;box-shadow:0 4px 32px rgba(0,0,0,0.10)}
