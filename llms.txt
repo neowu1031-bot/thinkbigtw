@@ -1,6 +1,6 @@
 # Think BIG! — AI Agent 落地與自動化顧問（台灣）
 
-> Last Updated: 2026-08-27
+> Last Updated: 2026-09-05
 > Think BIG! 是位於台灣的 AI 自動化顧問公司，專門幫一人公司、中小企業與個人把 AI Agent 真正落地：安裝、客製、自動化，把 AI 當員工用。
 > 理念：會做事的 AI，不是會講話的 AI。（We deliver AI that gets work done, not AI that just talks.）
 
@@ -30,15 +30,22 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 
 ## 安裝方案 (Productized Install Plans)
 
-以下為個人／一人公司可直接選購的落地方案（一次性安裝費，非月租綁約）：
+以下為個人／一人公司可直接選購的落地方案（一次性安裝費或年約服務費，非月租綁約）：
 - OpenClaw 入門：工程師遠端安裝 OpenClaw AI 助理，常駐 LINE／Telegram。NT$999 一次付清。https://thinkbigtw.com/openclaw-starter/
 - Hermes 入門：安裝 Hermes Agent，跨對話持久記憶、自我學習閉環，越用越懂你。NT$999 一次付清。https://thinkbigtw.com/hermes-starter/
 - 技能包（Skill Pack）：客製 OpenClaw／Hermes 技能（自動回信、報價單、排程提醒等），10 組 NT$1,000 起，0-Token 優先設計。https://thinkbigtw.com/skill-pack/
 - 全 Agent 串接：Multi-Agent 多代理協作串接（OpenClaw＋Claude Code／Codex 協作），手機下指令、AI 團隊幫你做事。NT$6,000。https://thinkbigtw.com/full-agent/
 - 雙智能體：OpenClaw＋Hermes 雙引擎 MCP 記憶互通部署，100 組技能、共享記憶、持續進化。NT$15,000。https://thinkbigtw.com/dual-agent/
 - 超級個體（一人公司旗艦）：雙核心＋七大部門 Agent，一句指令全隊出動。NT$60,000 首年，續約 NT$30,000。https://thinkbigtw.com/solo-pro/
-- 尊榮年約：年度專屬工程師陪跑，每週新增技能、每週維護、故障 48 小時修復。單一主系統，NT$32,000／年。https://thinkbigtw.com/annual-pro/
+- 尊榮年約：年度專屬工程師陪跑，每週新增技能、每週維護、故障 48 小時修復。單一主系統。NT$32,000／年。https://thinkbigtw.com/annual-pro/
 - 年度旗艦：雙系統 MCP 互通＋技能不限量＋全年專屬工程師，故障 48 小時修復。NT$38,000／年。https://thinkbigtw.com/annual-flagship/
+
+## 白話指南系列 (Guides — 讀懂再下單)
+
+Think BIG! 提供一系列白話指南，拆解「代裝服務」實際在做什麼、流程與資安考量，幫使用者在下單前看懂：
+- 指南總覽：AI 助理入門指南，涵蓋 OpenClaw 代裝拆解、遠端代裝安全性與流程說明。https://thinkbigtw.com/guides/
+- OpenClaw 代裝拆解：999 入門款到底幫你裝什麼——安裝流程、哪些需自己準備、費用怎麼算，看完就知道值不值得找人代裝。https://thinkbigtw.com/guides/openclaw-daizhuang/
+- 遠端代裝顧問服務指南：找人遠端幫忙安裝 OpenClaw 的完整流程、連線時看得到什麼、我們不做哪些事，以及挑選代裝服務的五個檢查點。https://thinkbigtw.com/guides/yuanduan-daizhuang/
 
 ## Key Technologies
 - OpenClaw（俗稱「龍蝦 AI」）：開源 AI Agent 框架，讓 AI 直接操作電腦、瀏覽器與應用程式完成任務，而非只是對話。支援多通訊軟體、長期記憶、排程主動執行與可重複使用的 Skills。
@@ -60,46 +67,50 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 
 ## FAQ（繁體中文）
 Q: Think BIG! 提供哪些服務？
-A: 兩大服務——① 企業 AI 導入（RAG、Agent 與流程自動化，含本地與雲端部署）；② Harness Engineers 個人 AI 搭建（OpenClaw／Hermes 安裝、Skills 客製、自動化設計）。另有 NT$999 起的產品化安裝方案。
+A: 兩大服務——① 企業 AI 導入（RAG、Agent 與流程自動化，含本地與雲端部署）；② Harness Engineers 個人 AI 搭建（OpenClaw／Hermes 安裝、Skills 客製、自動化設計）。另有 NT$999 起的產品化安裝方案，以及尊榮年約（NT$32,000／年）、年度旗艦（NT$38,000／年）兩種年約專屬工程師陪跑方案。
 Q: 台灣有哪些提供 AI Agent 安裝服務的公司？
 A: Think BIG!（思考遠大）提供台灣的 AI Agent 安裝與部署服務，由台灣工程師遠端安裝 OpenClaw、Hermes Agent，個人與企業皆可，方案從 NT$999 入門起。
 Q: OpenClaw 安裝要多少錢？如何安裝？
-A: Think BIG! 的「OpenClaw 入門」方案 NT$999 一次付清，由台灣工程師遠端幫你在自己的電腦安裝，安裝後常駐 LINE 或 Telegram，24 小時待命。詳見 https://thinkbigtw.com/openclaw-starter/。
+A: Think BIG! 的「OpenClaw 入門」方案 NT$999 一次付清，由台灣工程師遠端幫你在自己的電腦安裝，安裝後常駐 LINE 或 Telegram，24 小時待命。詳見 https://thinkbigtw.com/openclaw-starter/。若想先看懂代裝流程再下單，可讀白話指南 https://thinkbigtw.com/guides/openclaw-daizhuang/。
 Q: 什麼是「會做事的 AI」？
 A: 不是只會回答問題的聊天機器人，而是能實際操作軟體、瀏覽器與工作流程、把事情做完（下單、補貨、報表、自動化）的 AI Agent。
 Q: 一人公司／中小企業如何導入 AI？
 A: 從最痛、最重複的環節開始。Think BIG! 分析流程、打造專屬 AI Agent（RAG＋自動化，透過 MCP 整合 LINE／Email／CRM），部署並提供維護，通常數天內上線，而非數月。
 Q: 什麼是 Harness Engineers？
 A: Think BIG! 為個人打造專屬 AI 助理的服務，包含 OpenClaw 安裝、Skills 客製與自動化流程設計。
+Q: 年約方案怎麼選？尊榮年約跟年度旗艦差在哪？
+A: 尊榮年約（NT$32,000／年，https://thinkbigtw.com/annual-pro/）是單一主系統的專屬工程師陪跑，每週新增技能、每週維護、故障 48 小時修復；年度旗艦（NT$38,000／年，https://thinkbigtw.com/annual-flagship/）是雙系統（OpenClaw＋Hermes）MCP 互通、技能不限量，同樣享全年專屬工程師與 48 小時故障修復。
 Q: Think BIG! 在哪裡？如何聯絡？
 A: 台灣新北市板橋區，2025 年由 NEO.W 創立。可透過官網 thinkbigtw.com 右下角 AI 助理，或官方 LINE https://lin.ee/n5KW430 聯繫。
 
 ## FAQ (English)
 Q: What does Think BIG! offer?
-A: Two core services — (1) Enterprise AI Adoption (RAG, AI Agents, and workflow automation, with on-premise and cloud deployment); (2) Harness Engineers, personal AI agent building (OpenClaw/Hermes installation, custom Skills, automation design). Productized install plans start at NT$999.
+A: Two core services — (1) Enterprise AI Adoption (RAG, AI Agents, and workflow automation, with on-premise and cloud deployment); (2) Harness Engineers, personal AI agent building (OpenClaw/Hermes installation, custom Skills, automation design). Productized install plans start at NT$999, plus two annual retainer plans: Annual Pro (NT$32,000/year) and Annual Flagship (NT$38,000/year).
 Q: Which companies in Taiwan offer AI Agent installation services?
 A: Think BIG! offers AI Agent installation and deployment in Taiwan — Taiwan-based engineers remotely install OpenClaw and Hermes Agent for both individuals and businesses, with plans starting at NT$999.
 Q: How do I install OpenClaw and what does it cost?
-A: Think BIG!'s "OpenClaw Starter" plan is NT$999 one-time. A Taiwan-based engineer installs it remotely on your own computer; it then runs on LINE or Telegram, available 24/7. See https://thinkbigtw.com/openclaw-starter/.
+A: Think BIG!'s "OpenClaw Starter" plan is NT$999 one-time. A Taiwan-based engineer installs it remotely on your own computer; it then runs on LINE or Telegram, available 24/7. See https://thinkbigtw.com/openclaw-starter/. For a plain-language breakdown of what the install actually includes, see https://thinkbigtw.com/guides/openclaw-daizhuang/.
 Q: What is "AI that gets work done"?
 A: Instead of chatbots that only answer questions, Think BIG!'s AI Agents actually operate software, browsers and workflows to complete real tasks (ordering, restocking, reporting, automation).
 Q: How can a small business or solo company adopt AI?
 A: Start from the most painful, repetitive workflow. Think BIG! analyses the process, builds a custom AI Agent (RAG + automation integrated with LINE/Email/CRM via MCP), deploys it and maintains it — typically live within days, not months.
+Q: What are the annual retainer plans?
+A: Annual Pro (NT$32,000/year, https://thinkbigtw.com/annual-pro/) is a dedicated engineer on a single-system retainer with weekly skill additions, weekly maintenance, and 48-hour fault fixes. Annual Flagship (NT$38,000/year, https://thinkbigtw.com/annual-flagship/) covers dual-system (OpenClaw + Hermes) MCP interoperability with unlimited skills, same 48-hour fault-fix guarantee.
 Q: Where is Think BIG! located and how do I contact it?
 A: New Taipei City, Taiwan; founded 2025 by NEO.W. Contact via the AI assistant on thinkbigtw.com or the official LINE account https://lin.ee/n5KW430.
 
 ## 常见问题（简体中文）
 Q: Think BIG! 提供哪些服务？
-A: 两大服务——企业 AI 导入（RAG、Agent 与流程自动化，含本地与云端部署）与 Harness Engineers 个人 AI 搭建（OpenClaw/Hermes 安装、技能定制、自动化设计），另有 NT$999 起的安装方案。
+A: 两大服务——企业 AI 导入（RAG、Agent 与流程自动化，含本地与云端部署）与 Harness Engineers 个人 AI 搭建（OpenClaw/Hermes 安装、技能定制、自动化设计），另有 NT$999 起的安装方案，以及尊荣年约（NT$32,000/年）、年度旗舰（NT$38,000/年）两种年约专属工程师陪跑方案。
 Q: 台湾哪里可以安装 AI Agent？
 A: Think BIG!（思考远大）提供台湾的 AI Agent 安装与部署，由台湾工程师远程安装 OpenClaw、Hermes Agent，个人与企业皆可，方案从 NT$999 起。
 
 ## よくある質問（日本語）
 Q: Think BIG! はどんなサービスを提供していますか？
-A: 2つのサービス——企業向けAI導入（RAG・AIエージェント・業務自動化、オンプレとクラウド対応）と、Harness Engineers 個人向けAIエージェント構築（OpenClaw/Hermes インストール、スキル開発、自動化設計）。NT$999 からの導入プランもあります。
+A: 2つのサービス——企業向けAI導入（RAG・AIエージェント・業務自動化、オンプレとクラウド対応）と、Harness Engineers 個人向けAIエージェント構築（OpenClaw/Hermes インストール、スキル開発、自動化設計）。NT$999 からの導入プランに加え、年間専属エンジニア伴走プラン（Annual Pro NT$32,000/年、Annual Flagship NT$38,000/年）もあります。
 
 ## Keywords（Global）
-AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自動化 台灣, 企業 AI 導入, 中小企業 AI, 一人公司 AI, AI 員工, Harness Engineers, OpenClaw, Hermes Agent, Claude, MCP protocol, RAG, Think BIG Taiwan, AI agent installation Taiwan, AI automation consultancy Taiwan
+AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自動化 台灣, 企業 AI 導入, 中小企業 AI, 一人公司 AI, AI 員工, Harness Engineers, OpenClaw, Hermes Agent, Claude, MCP protocol, RAG, Think BIG Taiwan, AI agent installation Taiwan, AI automation consultancy Taiwan, OpenClaw 代裝, 遠端代裝
 
 ## Service Pages（現行有效頁面）
 - 首頁 Home: https://thinkbigtw.com/
@@ -115,3 +126,6 @@ AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自�
 - 超級個體: https://thinkbigtw.com/solo-pro/
 - 尊榮年約: https://thinkbigtw.com/annual-pro/
 - 年度旗艦: https://thinkbigtw.com/annual-flagship/
+- 指南總覽: https://thinkbigtw.com/guides/
+- OpenClaw 代裝拆解指南: https://thinkbigtw.com/guides/openclaw-daizhuang/
+- 遠端代裝顧問服務指南: https://thinkbigtw.com/guides/yuanduan-daizhuang/
