@@ -66,11 +66,13 @@
 
     // ---- 2. 連結資料 ----
     var LINKS = [
+      { t: '指南', h: '/guides/' },
       { t: 'OpenClaw 入門', h: '/openclaw-starter/' },
       { t: 'Hermes 入門', h: '/hermes-starter/' },
       { t: '技能包', h: '/skill-pack/' },
       { t: '全 Agent 串接', h: '/full-agent/' },
       { t: '雙智能體', h: '/dual-agent/' },
+      { t: '方案', h: '/annual/' },
       { t: '尊榮年約', h: '/annual-pro/' },
       { t: '年度旗艦', h: '/annual-flagship/' },
       { t: '超級個體', h: '/solo-pro/' },
