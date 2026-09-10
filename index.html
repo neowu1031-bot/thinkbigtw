@@ -355,6 +355,8 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       <button class="tb-nav-close" onclick="document.querySelector('.tb-funcbar').classList.remove('open')" aria-label="關閉">✕</button>
       <a href="/enterprise/" class="tb-func"><span class="zh">企業 AI 導入</span><span class="en">Enterprise</span></a>
       <a href="/harness/" class="tb-func"><span class="zh">個人 AI 助理</span><span class="en">Harness Engineers</span></a>
+      <a href="/openclaw-starter/" class="tb-func"><span class="zh">方案與定價</span><span class="en">Pricing</span></a>
+      <a href="/guides/" class="tb-func"><span class="zh">使用指南</span><span class="en">Guides</span></a>
       <a href="/tbos/en/" class="tb-func tb-lang" hreflang="en" lang="en" aria-label="Switch to English site"><span class="zh">🌐 中文</span><span class="en">English</span></a>
     </nav>
     <div class="tb-brand">
@@ -377,6 +379,56 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       <div class="btn-text">AI AGENT</div>
       <div class="btn-brand">Hermes</div>
     </div>
+  </div>
+</section>
+
+<!-- ===== 選擇你的方案（Money Page CTA） ===== -->
+<section id="tb-plans" style="padding:56px 20px;background:#111;color:#fff;font-family:'Noto Sans TC',sans-serif;">
+  <h2 style="text-align:center;font-size:26px;margin-bottom:8px;">選擇你的方案</h2>
+  <p style="text-align:center;color:#aaa;font-size:14px;margin-bottom:36px;">從 NT$999 入門代裝，到一整年專屬工程師顧到底</p>
+
+  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;max-width:1100px;margin:0 auto;">
+
+    <!-- 卡片 1：入門代裝 -->
+    <div style="flex:1 1 280px;max-width:340px;background:#1c1c1c;border-radius:12px;padding:24px;">
+      <div style="font-size:13px;color:#e8422a;font-weight:bold;">最低門檻 · 今天就能用</div>
+      <h3 style="margin:8px 0;font-size:20px;">AI 助理代裝服務</h3>
+      <p style="color:#ccc;font-size:14px;line-height:1.7;">工程師遠端幫你在自己電腦裝好 OpenClaw 或 Hermes，常駐 LINE／Telegram，24 小時待命。NT$999 一次付清，無月費；技術問題無法完成安裝，全額退費。</p>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="/openclaw-starter/" style="color:#fff;background:#e8422a;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">OpenClaw 入門 →</a>
+        <a href="/hermes-starter/" style="color:#fff;background:#333;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">Hermes 入門 →</a>
+      </div>
+    </div>
+
+    <!-- 卡片 2：年約專屬工程師 -->
+    <div style="flex:1 1 280px;max-width:340px;background:#1c1c1c;border-radius:12px;padding:24px;">
+      <div style="font-size:13px;color:#e8422a;font-weight:bold;">年約方案 · 365 天有人顧</div>
+      <h3 style="margin:8px 0;font-size:20px;">專屬工程師年約</h3>
+      <p style="color:#ccc;font-size:14px;line-height:1.7;">一整年由專屬工程師持續維運、優化、排除問題，不用自己摸索。尊榮年約 NT$32,000／年，或雙 Agent 全系統的年度旗艦 NT$38,000／年。</p>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="/annual-pro/" style="color:#fff;background:#e8422a;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">尊榮年約 →</a>
+        <a href="/annual-flagship/" style="color:#fff;background:#333;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">年度旗艦 →</a>
+      </div>
+    </div>
+
+    <!-- 卡片 3：超級個體 -->
+    <div style="flex:1 1 280px;max-width:340px;background:#1c1c1c;border-radius:12px;padding:24px;">
+      <div style="font-size:13px;color:#e8422a;font-weight:bold;">最高規格 · 一人當七個部門用</div>
+      <h3 style="margin:8px 0;font-size:20px;">超級個體 SUPERSOLO</h3>
+      <p style="color:#ccc;font-size:14px;line-height:1.7;">為個人工作者打造的完整 AI 部門編制，一個人也能有行銷、客服、營運等多重分工。NT$60,000，適合想全面交給 AI 處理的個人事業。</p>
+      <div style="margin-top:14px;">
+        <a href="/solo-pro/" style="color:#fff;background:#e8422a;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">了解 SUPERSOLO →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 延伸閱讀：導向 guides，兼顧 SEO 內容縱深與信任建立 -->
+  <div style="text-align:center;margin-top:36px;font-size:14px;color:#aaa;">
+    還在猶豫怎麼選？先讀讀看：
+    <a href="/guides/" style="color:#e8422a;">使用指南</a> ·
+    <a href="/guides/openclaw-daizhuang/" style="color:#e8422a;">OpenClaw 代裝拆解</a> ·
+    <a href="/guides/yuanduan-daizhuang/" style="color:#e8422a;">遠端代裝顧問怎麼挑</a>
   </div>
 </section>
 
@@ -804,6 +856,7 @@ async function sendMsg(){
 <footer id="tb-footer" style="background:#f0f0f0;text-align:center;padding:28px 16px;font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#4a4a4a;line-height:2;">
 大想成業有限公司 Think BIG Co., Ltd.|統一編號 62136066<br>
 AI@thinkbigtw.com<br>
+<a href="/openclaw-starter/" style="color:#1a1a1a;">方案價格</a>|<a href="/guides/" style="color:#1a1a1a;">使用指南</a>|<a href="/enterprise/" style="color:#1a1a1a;">企業導入</a>|<a href="/harness/" style="color:#1a1a1a;">個人助理</a><br>
 <a href="/privacy.html" style="color:#1a1a1a;">隱私權政策</a>|<a href="/terms.html" style="color:#1a1a1a;">服務條款</a><br>
 &copy; 2026 Think BIG. All rights reserved.
 </footer>
