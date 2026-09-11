@@ -24,24 +24,28 @@ const WEBHOOK_PATHS = [
   '/hooks/',
 ];
 
-// ── 已知 AI 訓練爬蟲 / 惡意爬蟲 User-Agent 特徵（不區分大小寫比對）─────────
-// 注意：Googlebot / Bingbot 等 SEO 爬蟲不在此列，保留以維持搜尋排名。
-const AI_CRAWLER_SIGNATURES = [
-  'GPTBot',           // OpenAI 訓練爬蟲
+// ── AI 搜尋 / 引用爬蟲（一律放行完整 HTML，配合 robots.txt Allow 與 GEO 策略）─
+// 這些爬蟲會把內容納入 AI 搜尋引擎的引用庫；封鎖等同斷絕 GEO 流量。
+// 2026-09-11 NEO 裁示「開放吧」→ 移出封鎖名單。
+const AI_SEARCH_CRAWLERS = [
+  'GPTBot',           // OpenAI 搜尋（ChatGPT Search）
   'ChatGPT-User',     // ChatGPT 瀏覽功能
   'OAI-SearchBot',    // OpenAI 搜尋爬蟲
-  'ClaudeBot',        // Anthropic 訓練爬蟲
+  'ClaudeBot',        // Anthropic 引用爬蟲
   'anthropic-ai',     // Anthropic 通用識別
   'Claude-Web',
-  'CCBot',            // Common Crawl（多數 AI 訓練集來源）
-  'Google-Extended',  // Google 拒絕 AI 訓練選項
-  'PerplexityBot',
-  'Bytespider',       // TikTok/ByteDance 爬蟲
-  'PetalBot',         // 華為爬蟲
-  'Amazonbot',        // Amazon Alexa 訓練爬蟲
-  'FacebookBot',      // Meta AI 爬蟲
-  'Applebot-Extended',
-  'DataForSeoBot',
+  'PerplexityBot',    // Perplexity AI 搜尋
+  'Google-Extended',  // Google AI（Gemini/AI Overview）
+  'Applebot-Extended',// Apple Intelligence
+  'CCBot',            // Common Crawl（AI 搜尋引用基礎）
+  'Bytespider',       // TikTok 搜尋（robots.txt 已 Allow）
+  'Amazonbot',        // Amazon Alexa AI
+  'FacebookBot',      // Meta AI（robots.txt 已 Allow）
+];
+
+// ── SEO 工具爬蟲 / 漏洞掃描（繼續阻擋，與 AI 搜尋引擎無關）──────────────────
+// Googlebot / Bingbot 等真實 SEO 爬蟲不在此列，保留以維持搜尋排名。
+const BLOCKED_CRAWLER_SIGNATURES = [
   'SemrushBot',       // 競品分析爬蟲（高頻，污染流量）
   'AhrefsBot',        // 競品分析爬蟲（高頻，污染流量）
   'MJ12bot',
@@ -49,6 +53,8 @@ const AI_CRAWLER_SIGNATURES = [
   'BLEXBot',
   'linkdexbot',
   'rogerbot',
+  'DataForSeoBot',
+  'PetalBot',         // 華為爬蟲（非目標市場）
   'YandexBot',        // Yandex（非目標市場）
   'YandexImages',
 ];
@@ -62,12 +68,21 @@ function isWebhookPath(pathname) {
 }
 
 /**
- * 判斷請求是否來自已知 AI 爬蟲
+ * 判斷請求是否來自 AI 搜尋爬蟲（放行完整 HTML）
  */
-function isAiCrawler(userAgent) {
+function isAiSearchCrawler(userAgent) {
   if (!userAgent) return false;
   const ua = userAgent.toLowerCase();
-  return AI_CRAWLER_SIGNATURES.some(sig => ua.includes(sig.toLowerCase()));
+  return AI_SEARCH_CRAWLERS.some(sig => ua.includes(sig.toLowerCase()));
+}
+
+/**
+ * 判斷請求是否來自應封鎖的 SEO 工具 / 漏洞掃描爬蟲
+ */
+function isBlockedCrawler(userAgent) {
+  if (!userAgent) return false;
+  const ua = userAgent.toLowerCase();
+  return BLOCKED_CRAWLER_SIGNATURES.some(sig => ua.includes(sig.toLowerCase()));
 }
 
 export default {
@@ -89,26 +104,29 @@ export default {
       });
     }
 
-    // ── Early exit: 已知 AI 爬蟲 ─────────────────────────────────────────────
-    // 回 200 空回應（比 204 更通用），阻止索引與訓練資料蒐集。
-    // X-TB-Filtered: ai-crawler 供日後 log 分析識別。
-    if (isAiCrawler(userAgent)) {
+    // ── AI 搜尋爬蟲：放行完整 HTML（GEO 策略，配合 robots.txt Allow）────────
+    // 這些爬蟲不攔截，讓它們正常取得完整頁面後轉發到正常請求流程。
+    // X-TB-Filtered: ai-search 僅供 log 分析，不影響回應內容。
+    // 注意：放行後繼續走下方的正常請求 → 加安全 headers → 回傳。
+
+    // ── SEO 工具爬蟲：回 200 空回應（減少 analytics 污染）────────────────────
+    if (!isAiSearchCrawler(userAgent) && isBlockedCrawler(userAgent)) {
       return new Response('', {
         status: 200,
         headers: {
-          'X-TB-Filtered': 'ai-crawler',
+          'X-TB-Filtered': 'seo-tool',
           'Cache-Control': 'no-store, no-cache',
           'Content-Type': 'text/plain',
         },
       });
     }
 
-    // ── 正常請求：轉發至 GitHub Pages origin + 注入安全 headers ─────────────
+    // ── 正常請求（含 AI 搜尋爬蟲）：轉發至 GitHub Pages origin + 注入安全 headers
     const response = await fetch(request);
     const headers = new Headers(response.headers);
     Object.entries(SECURITY_HEADERS).forEach(([k, v]) => headers.set(k, v));
-    // 標記為真實訪客請求（供 Cloudflare analytics 肉眼辨識用）
-    headers.set('X-TB-Filtered', 'pass');
+    // 標記請求類型供 Cloudflare analytics 分析用
+    headers.set('X-TB-Filtered', isAiSearchCrawler(userAgent) ? 'ai-search' : 'pass');
     return new Response(response.body, {
       status: response.status,
       statusText: response.statusText,

@@ -219,7 +219,7 @@ function appendMsg(role, content, isLoading = false){
 // ─── 罐頭回覆（任務 8 / 9：逐字內容，點按鈕即時顯示，不經 AI 確保一字不差）───
 const ABOUT_THINKBIG = `您好,謝謝您對 Think BIG 有興趣!
 
-Think BIG 是台灣 AI 自動化顧問公司,由 NEO.W 創辦,專注幫助中小企業與個人創業者把 AI 真正落地到日常工作中。
+Think BIG 是台灣 AI 自動化顧問公司,專注幫助中小企業與個人創業者把 AI 真正落地到日常工作中。
 
 我們相信 AI 不應該只是聊天工具,而是要能真的幫您工作、回客人、跑流程。所以我們提供「會做事的 AI」,不是「會講話的 AI」。
 

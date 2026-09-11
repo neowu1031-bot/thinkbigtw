@@ -72,7 +72,7 @@
       { t: '技能包', h: '/skill-pack/' },
       { t: '全 Agent 串接', h: '/full-agent/' },
       { t: '雙智能體', h: '/dual-agent/' },
-      { t: '方案', h: '/annual/' },
+      { t: '方案', h: '/annual-pro/' },
       { t: '尊榮年約', h: '/annual-pro/' },
       { t: '年度旗艦', h: '/annual-flagship/' },
       { t: '超級個體', h: '/solo-pro/' },
