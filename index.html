@@ -322,7 +322,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       "name": "企業 AI 系統導入",
       "provider": {"@id": "https://thinkbigtw.com/#organization"},
       "serviceType": "AI 自動化導入顧問",
-      "description": "為中大型企業導入 AI Agent 自動化，採 OpenClaw + Claude Code 雙引擎架構，整合 RAG、LINE Bot、WhatsApp 與企業流程自動化。",
+      "description": "為中大型企業導入 AI Agent 自動化，採 OpenClaw + Claude Code 雙 AI Agent 架構，整合 RAG、LINE Bot、WhatsApp 與企業流程自動化。",
       "areaServed": {"@type": "Country", "name": "Taiwan"}
     },
     {
@@ -354,7 +354,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
       <button class="tb-nav-close" onclick="document.querySelector('.tb-funcbar').classList.remove('open')" aria-label="關閉">✕</button>
       <a href="/enterprise/" class="tb-func"><span class="zh">企業 AI 導入</span><span class="en">Enterprise</span></a>
       <a href="/harness/" class="tb-func"><span class="zh">個人 AI 助理</span><span class="en">Harness Engineers</span></a>
-      <a href="/openclaw-starter/" class="tb-func"><span class="zh">方案與定價</span><span class="en">Pricing</span></a>
+      <a href="/pricing/" class="tb-func"><span class="zh">方案與定價</span><span class="en">Pricing</span></a>
       <a href="/guides/" class="tb-func"><span class="zh">使用指南</span><span class="en">Guides</span></a>
       <a href="/tbos/en/" class="tb-func tb-lang" hreflang="en" lang="en" aria-label="Switch to English site"><span class="zh">🌐 中文</span><span class="en">English</span></a>
     </nav>
@@ -450,7 +450,7 @@ body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-
     <div class="hero-welcome" id="hero-welcome">
       <div class="hero-icon">🦞</div>
       <h2 id="hero-title">您好！我是 Hermes</h2>
-      <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎<br><br>
+      <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code AI Agent<br><br>
         <strong style="color:#fff">我們目前提供兩大服務：</strong><br>
         <span style="color:rgba(232,66,42,0.9)">①</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>
         <span style="color:rgba(232,66,42,0.9)">②</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>
@@ -487,7 +487,7 @@ let userLang = 'zh-TW'; // Default
 const HERO_I18N = {
   'zh-TW': {
     title: '您好！我是 Hermes',
-    intro: 'Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code 引擎',
+    intro: 'Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code AI Agent',
     servicesLabel: '我們目前提供兩大服務：',
     s1: '企業 AI 導入 — RAG / Agent / 流程自動化',
     s2: 'Harness Engineers — 個人 AI Agent 搭建',
@@ -684,7 +684,7 @@ Think BIG 是台灣 AI 自動化顧問公司,專注幫助中小企業與個人�
 我們相信 AI 不應該只是聊天工具,而是要能真的幫您工作、回客人、跑流程。所以我們提供「會做事的 AI」,不是「會講話的 AI」。
 
 【核心優勢】
-- 自家引擎 OpenClaw + Claude Code,不是套別人的殼
+- 自家 AI Agent OpenClaw + Claude Code,不是套別人的殼
 - 從個人戶到中大型企業都有對應方案
 - 全程繁體中文支援,台灣團隊在地服務
 - 透明定價、明確交付、七天免費維護
@@ -695,7 +695,7 @@ Think BIG 是台灣 AI 自動化顧問公司,專注幫助中小企業與個人�
 
 想了解更多,可以隨時問我任何問題,或點上方快速選項`;
 
-const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的引擎:
+const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的 AI Agent:
 
 ━━━━━━━━━━━━━━━━━━━━
 
@@ -855,7 +855,7 @@ async function sendMsg(){
 <footer id="tb-footer" style="background:#f0f0f0;text-align:center;padding:28px 16px;font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#4a4a4a;line-height:2;">
 大想成業有限公司 Think BIG Co., Ltd.|統一編號 62136066<br>
 AI@thinkbigtw.com<br>
-<a href="/openclaw-starter/" style="color:#1a1a1a;">方案價格</a>|<a href="/guides/" style="color:#1a1a1a;">使用指南</a>|<a href="/enterprise/" style="color:#1a1a1a;">企業導入</a>|<a href="/harness/" style="color:#1a1a1a;">個人助理</a><br>
+<a href="/pricing/" style="color:#1a1a1a;">方案價格</a>|<a href="/guides/" style="color:#1a1a1a;">使用指南</a>|<a href="/enterprise/" style="color:#1a1a1a;">企業導入</a>|<a href="/harness/" style="color:#1a1a1a;">個人助理</a><br>
 <a href="/privacy.html" style="color:#1a1a1a;">隱私權政策</a>|<a href="/terms.html" style="color:#1a1a1a;">服務條款</a><br>
 &copy; 2026 Think BIG. All rights reserved.
 </footer>

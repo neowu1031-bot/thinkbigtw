@@ -16,7 +16,7 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 ## 兩大核心服務 (Two Core Services)
 
 ### 1. 企業 AI 導入 (Enterprise AI Adoption)
-為中小企業與中大型企業導入 AI Agent 自動化，採 OpenClaw + Hermes + Claude Code 雙引擎架構。
+為中小企業與中大型企業導入 AI Agent 自動化，採 OpenClaw + Hermes + Claude Code 多 AI Agent 架構。
 整合 RAG 知識庫、流程自動化，並透過 MCP 協定串接 LINE、WhatsApp、Email、CRM 等外部系統。
 提供本地部署（資料不出公司，八層資安框架）與雲端 API 部署（低門檻快速上線）兩種模式，各部門可有專屬客製 Agent。
 - 企業 AI 導入總覽：[thinkbigtw.com/enterprise/](https://thinkbigtw.com/enterprise/)
@@ -28,6 +28,13 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 由台灣工程師遠端幫你在自己的電腦上安裝 AI 助理，常駐 LINE 或 Telegram，24 小時待命。
 - Harness Engineers 總覽：[thinkbigtw.com/harness/](https://thinkbigtw.com/harness/)
 
+## 方案總覽：個人使用／企業使用兩扇門 (Plan Navigator)
+
+方案以「個人使用」與「企業使用」為第一層，點進去才是方案；個人三階、企業兩階，判別軸是「我們顧你多久」（7 天／30 天／一整年）。
+- 全部方案比較（兩扇門入口、三題幫我選、加購區）：[thinkbigtw.com/pricing/](https://thinkbigtw.com/pricing/)
+- 個人使用方案與價格（個人方案 1 入門 NT$999／個人方案 2 AI 部門 NT$6,000／15,000／個人方案 3 年約 NT$32,000／38,000／60,000，含比較表）：[thinkbigtw.com/pricing/personal/](https://thinkbigtw.com/pricing/personal/)
+- 企業使用方案（企業方案 1 雲端上線／企業方案 2 本地主權，洽詢報價、合約制）：[thinkbigtw.com/pricing/enterprise/](https://thinkbigtw.com/pricing/enterprise/)
+
 ## 安裝方案 (Productized Install Plans)
 
 以下為個人／一人公司可直接選購的落地方案（一次性安裝費或年約服務費，非月租綁約）：
@@ -35,8 +42,8 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 - Hermes 入門：安裝 Hermes Agent，跨對話持久記憶、自我學習閉環，越用越懂你。NT$999 一次付清。[thinkbigtw.com/hermes-starter/](https://thinkbigtw.com/hermes-starter/)
 - 技能包（Skill Pack）：客製 OpenClaw／Hermes 技能（自動回信、報價單、排程提醒等），10 組 NT$1,000 起，0-Token 優先設計。[thinkbigtw.com/skill-pack/](https://thinkbigtw.com/skill-pack/)
 - 全 Agent 串接：Multi-Agent 多代理協作串接（OpenClaw＋Claude Code／Codex 協作），手機下指令、AI 團隊幫你做事。NT$6,000。[thinkbigtw.com/full-agent/](https://thinkbigtw.com/full-agent/)
-- 雙智能體：OpenClaw＋Hermes 雙引擎 MCP 記憶互通部署，100 組技能、共享記憶、持續進化。NT$15,000。[thinkbigtw.com/dual-agent/](https://thinkbigtw.com/dual-agent/)
-- 超級個體（一人公司旗艦）：雙核心＋七大部門 Agent，一句指令全隊出動。NT$60,000 首年，續約 NT$30,000。[thinkbigtw.com/solo-pro/](https://thinkbigtw.com/solo-pro/)
+- 雙智能體：OpenClaw＋Hermes 雙 AI Agent MCP 記憶互通部署，技能數依訪談配置、共享記憶、持續進化。NT$15,000。[thinkbigtw.com/dual-agent/](https://thinkbigtw.com/dual-agent/)
+- 超級個體（一人公司旗艦）：雙 AI Agent＋七大部門 Agent，一句指令全隊出動。NT$60,000 首年，續約 NT$30,000。[thinkbigtw.com/solo-pro/](https://thinkbigtw.com/solo-pro/)
 - 尊榮年約：年度專屬工程師陪跑，每週新增技能、每週維護、故障 48 小時修復。單一主系統。NT$32,000／年。[thinkbigtw.com/annual-pro/](https://thinkbigtw.com/annual-pro/)
 - 年度旗艦：雙系統 MCP 互通＋技能不限量＋全年專屬工程師，故障 48 小時修復。NT$38,000／年。[thinkbigtw.com/annual-flagship/](https://thinkbigtw.com/annual-flagship/)
 
@@ -50,7 +57,7 @@ Think BIG! 提供一系列白話指南，拆解「代裝服務」實際在做什
 ## Key Technologies
 - OpenClaw（俗稱「龍蝦 AI」）：開源 AI Agent 框架，讓 AI 直接操作電腦、瀏覽器與應用程式完成任務，而非只是對話。支援多通訊軟體、長期記憶、排程主動執行與可重複使用的 Skills。
 - Hermes Agent：具「程序性記憶」的自學習 Agent——每次完成任務後把成功的推理模式萃取成技能，下次直接調用並持續優化。
-- Claude（Anthropic）：作為推理引擎。
+- Claude（Anthropic）：作為推理模型。
 - MCP 協定（Model Context Protocol，Anthropic 提出）：用來讓 Agent 串接外部系統與資料。
 - RAG：檢索增強生成，讓 Agent 讀公司自有知識回答與執行。
 
@@ -114,6 +121,9 @@ AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自�
 
 ## Service Pages（現行有效頁面）
 - 首頁 Home: [thinkbigtw.com/](https://thinkbigtw.com/)
+- 方案總覽（兩扇門）: [thinkbigtw.com/pricing/](https://thinkbigtw.com/pricing/)
+- 個人使用方案與價格: [thinkbigtw.com/pricing/personal/](https://thinkbigtw.com/pricing/personal/)
+- 企業使用方案: [thinkbigtw.com/pricing/enterprise/](https://thinkbigtw.com/pricing/enterprise/)
 - 企業 AI 導入: [thinkbigtw.com/enterprise/](https://thinkbigtw.com/enterprise/)
 - 企業本地部署: [thinkbigtw.com/enterprise-local/](https://thinkbigtw.com/enterprise-local/)
 - 企業雲端部署: [thinkbigtw.com/enterprise-cloud/](https://thinkbigtw.com/enterprise-cloud/)

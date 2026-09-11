@@ -44,7 +44,40 @@
   "url": "https://thinkbigtw.com/full-agent/"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁",
+      "item": "https://thinkbigtw.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "方案與價格",
+      "item": "https://thinkbigtw.com/pricing/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "個人使用",
+      "item": "https://thinkbigtw.com/pricing/personal/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "個人方案 2｜AI 部門 · 單 AI Agent",
+      "item": "https://thinkbigtw.com/full-agent/"
+    }
+  ]
+}
+</script>
 <style>
+.tb-crumb{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:14px;line-height:1.6}.tb-crumb a{color:var(--muted)}.tb-crumb a:hover{color:var(--red)}.tb-crumb span{color:var(--ink)}
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -144,6 +177,7 @@ section{padding:80px 0}
   <div class="container">
     <div class="two-col">
       <div class="col-text">
+        <nav class="tb-crumb" aria-label="breadcrumb"><a href="/">首頁</a> › <a href="/pricing/">方案與價格</a> › <a href="/pricing/personal/">個人使用</a> › <span>個人方案 2｜AI 部門 · 單 AI Agent</span></nav>
         <span class="track-tag">個人 AI 助理</span>
         <h1>全 Agent 串接</h1>
         <p class="tagline">你已經在付 Claude Code／Codex 的訂閱費了——讓它們組成一個團隊。</p>

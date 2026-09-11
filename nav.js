@@ -65,30 +65,25 @@
     var st = document.createElement('style'); st.id = 'tb-nav-style'; st.textContent = css; document.head.appendChild(st);
 
     // ---- 2. 連結資料 ----
+    // 2026-09-11 兩扇門架構（NEO 裁示：個人使用／企業使用為第一層，點進去才是方案）
+    // 方案 SKU 不再平鋪；各 SKU 頁由 /pricing/personal/ 與 /pricing/enterprise/ 進入。
     var LINKS = [
+      { t: '個人使用', h: '/pricing/personal/' },
+      { t: '企業使用', h: '/pricing/enterprise/' },
+      { t: '全部方案比較', h: '/pricing/', exact: true },
       { t: '指南', h: '/guides/' },
-      { t: 'OpenClaw 入門', h: '/openclaw-starter/' },
-      { t: 'Hermes 入門', h: '/hermes-starter/' },
-      { t: '技能包', h: '/skill-pack/' },
-      { t: '全 Agent 串接', h: '/full-agent/' },
-      { t: '雙智能體', h: '/dual-agent/' },
-      { t: '方案', h: '/annual-pro/' },
-      { t: '尊榮年約', h: '/annual-pro/' },
-      { t: '年度旗艦', h: '/annual-flagship/' },
-      { t: '超級個體', h: '/solo-pro/' },
-      { t: '企業本地部署', h: '/enterprise-local/' },
-      { t: '企業雲端部署', h: '/enterprise-cloud/' },
-      { t: 'Enterprise', h: '/enterprise/' },
-      { t: 'Harness Engineers', h: '/harness/' }
+      { t: '聯絡', h: 'https://lin.ee/n5KW430' }
     ];
     var path = location.pathname.replace(/\/index\.html?$/, '/');
-    function activeClass(h) {
-      if (h === '/') return path === '/' ? ' class="tb-active"' : '';
+    function activeClass(l) {
+      var h = l.h;
+      if (h.indexOf('/') !== 0) return '';
+      if (h === '/' || l.exact) return path === h ? ' class="tb-active"' : '';
       return (path === h || path.indexOf(h) === 0) ? ' class="tb-active"' : '';
     }
     var logoHTML = 'Think <span>BIG!</span> Make it Real.';
     var linksHTML = LINKS.map(function (l) {
-      return '<a href="' + l.h + '"' + activeClass(l.h) + '>' + l.t + '</a>';
+      return '<a href="' + l.h + '"' + activeClass(l) + '>' + l.t + '</a>';
     }).join('');
 
     // ---- 3. 注入頂部 NAV ----
