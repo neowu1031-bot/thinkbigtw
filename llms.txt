@@ -1,6 +1,6 @@
 # Think BIG! — AI Agent 落地與自動化顧問（台灣）
 
-> Last Updated: 2026-09-11
+> Last Updated: 2026-09-12
 > Think BIG! 是位於台灣的 AI 自動化顧問公司，專門幫一人公司、中小企業與個人把 AI Agent 真正落地：安裝、客製、自動化，把 AI 當員工用。
 > 理念：會做事的 AI，不是會講話的 AI。（We deliver AI that gets work done, not AI that just talks.）
 
@@ -19,9 +19,7 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 為中小企業與中大型企業導入 AI Agent 自動化，採 OpenClaw + Hermes + Claude Code 多 AI Agent 架構。
 整合 RAG 知識庫、流程自動化，並透過 MCP 協定串接 LINE、WhatsApp、Email、CRM 等外部系統。
 提供本地部署（資料不出公司，八層資安框架）與雲端 API 部署（低門檻快速上線）兩種模式，各部門可有專屬客製 Agent。
-- 企業 AI 導入總覽：[thinkbigtw.com/enterprise/](https://thinkbigtw.com/enterprise/)
-- 企業本地部署：[thinkbigtw.com/enterprise-local/](https://thinkbigtw.com/enterprise-local/)
-- 企業雲端部署：[thinkbigtw.com/enterprise-cloud/](https://thinkbigtw.com/enterprise-cloud/)
+- 企業 AI 導入總覽（含企業方案 1 雲端上線 /enterprise-cloud/、企業方案 2 本地主權 /enterprise-local/ 詳細說明）：[thinkbigtw.com/enterprise/](https://thinkbigtw.com/enterprise/)
 
 ### 2. Harness Engineers — 個人 AI 搭建 (Personal AI Agent Building)
 為一人公司、自由工作者與創作者打造專屬的個人 AI 助理，包含 OpenClaw 安裝、Skills 客製與自動化流程設計。
@@ -124,9 +122,7 @@ AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自�
 - 方案總覽（兩扇門）: [thinkbigtw.com/pricing/](https://thinkbigtw.com/pricing/)
 - 個人使用方案與價格: [thinkbigtw.com/pricing/personal/](https://thinkbigtw.com/pricing/personal/)
 - 企業使用方案: [thinkbigtw.com/pricing/enterprise/](https://thinkbigtw.com/pricing/enterprise/)
-- 企業 AI 導入: [thinkbigtw.com/enterprise/](https://thinkbigtw.com/enterprise/)
-- 企業本地部署: [thinkbigtw.com/enterprise-local/](https://thinkbigtw.com/enterprise-local/)
-- 企業雲端部署: [thinkbigtw.com/enterprise-cloud/](https://thinkbigtw.com/enterprise-cloud/)
+- 企業 AI 導入（含雲端上線、本地主權兩模式）: [thinkbigtw.com/enterprise/](https://thinkbigtw.com/enterprise/)
 - Harness Engineers 個人 AI 搭建: [thinkbigtw.com/harness/](https://thinkbigtw.com/harness/)
 - OpenClaw 入門: [thinkbigtw.com/openclaw-starter/](https://thinkbigtw.com/openclaw-starter/)
 - Hermes 入門: [thinkbigtw.com/hermes-starter/](https://thinkbigtw.com/hermes-starter/)
