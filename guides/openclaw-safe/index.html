@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉 | Think BIG!</title>
+<meta name="description" content="搜尋「OpenClaw 安全嗎」會看到一堆負面結論，這篇把它拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。最後一句話結論：安全的關鍵不是不裝，而是最小權限加本機部署加不裝來路不明的技能。">
+<meta name="keywords" content="OpenClaw 安全嗎, OpenClaw 風險, OpenClaw 該不該裝, OpenClaw 漏洞, AI 助理 資安, OpenClaw 代裝, OpenClaw 台灣">
+<link rel="canonical" href="https://thinkbigtw.com/guides/openclaw-safe/">
+<link rel="alternate" hreflang="zh-Hant" href="https://thinkbigtw.com/guides/openclaw-safe/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/guides/openclaw-safe/">
+<meta property="og:title" content="OpenClaw 安全嗎？裝之前要知道的 6 個風險 | Think BIG!">
+<meta property="og:description" content="把搜尋引擎上的負面結論拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「代裝預設做什麼」。">
+<meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenClaw 安全嗎？裝之前要知道的 6 個風險 | Think BIG!">
+<meta name="twitter:description" content="把搜尋引擎上的負面結論拆成 6 個具體風險，逐個告訴你解法。">
+<meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉",
+  "description": "把搜尋引擎上的負面結論拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。",
+  "url": "https://thinkbigtw.com/guides/openclaw-safe/",
+  "image": "https://thinkbigtw.com/og-image.jpg",
+  "inLanguage": "zh-TW",
+  "publisher": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"},
+  "datePublished": "2026-09-13",
+  "dateModified": "2026-09-13",
+  "author": {"@type": "Organization", "name": "Think BIG!"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "OpenClaw 安全嗎？", "acceptedAnswer": {"@type": "Answer", "text": "看你怎麼裝。安全風險大多來自「裝完沒設權限」、「裝了來路不明的技能」、「用預設帳號沒換密碼」，而不是框架本身不安全。最小權限加本機部署加不裝來路不明的技能，是基本三件事。"}},
+    {"@type": "Question", "name": "OpenClaw 會偷我的資料嗎？", "acceptedAnswer": {"@type": "Answer", "text": "OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫 AI 模型的 API（這是必要成本）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。"}},
+    {"@type": "Question", "name": "OpenClaw 會被駭嗎？", "acceptedAnswer": {"@type": "Answer", "text": "框架本身有在更新，修補已知漏洞。但如果你開了對外連接埠（port）又用預設密碼、或裝了來路不明的技能，被駭的風險確實存在。我們代裝時一律改預設密碼、不開對外 port、限制技能來源。"}},
+    {"@type": "Question", "name": "代裝會不會反而被工程師動手腳？", "acceptedAnswer": {"@type": "Answer", "text": "我們用 AnyDesk／DeskIn 遠端，整個過程你都看得到工程師在做什麼。我們不會向你索取任何帳號密碼，金鑰與密碼一律不透過聊天傳遞；連線結束後不會保留任何遠端存取權。"}},
+    {"@type": "Question", "name": "什麼人不適合裝 OpenClaw？", "acceptedAnswer": {"@type": "Answer", "text": "三種人我們會建議先不要裝：①公務機或公司機（即使你個人想用，資安政策通常不允許這類工具裝在公務環境）；②完全不願意花時間學任何基礎設定的人（即使代裝，你也得學會換密碼、看 log）；③對「裝了什麼都照預設走」有期待的人（任何能動手的工具都帶設定責任）。"}},
+    {"@type": "Question", "name": "裝完之後多久要更新一次？", "acceptedAnswer": {"@type": "Answer", "text": "OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 NT$32,000、年度旗艦 NT$38,000）含每週維護與 48 小時故障修復，更新這件事就交給我們；入門款 NT$999 是一次裝到能跑，更新由你決定時機。"}}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://thinkbigtw.com/"},
+    {"@type": "ListItem", "position": 2, "name": "指南", "item": "https://thinkbigtw.com/guides/"},
+    {"@type": "ListItem", "position": 3, "name": "OpenClaw 安全嗎", "item": "https://thinkbigtw.com/guides/openclaw-safe/"}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#e8422a;
+  --bg:#ffffff;
+  --ink:#1a1a1a;
+  --gray:#f5f5f5;
+  --gray2:#ebebeb;
+  --muted:#555;
+  --mono:'Azeret Mono',ui-monospace,monospace;
+  --tc:'Noto Sans TC',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--tc);-webkit-font-smoothing:antialiased;min-height:100vh;padding-top:54px}
+a{color:var(--red);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:760px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+
+/* ── Article header ── */
+.art-header{padding:56px 0 40px}
+.art-breadcrumb{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:20px}
+.art-breadcrumb a{color:var(--red)}
+.art-meta-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);border-radius:4px;padding:4px 10px;margin-bottom:16px}
+.art-title{font-family:var(--tc);font-weight:900;font-size:clamp(24px,3.5vw,42px);line-height:1.25;color:var(--ink);margin-bottom:16px}
+.art-desc{font-size:16px;line-height:1.8;color:var(--muted)}
+.art-date{font-family:var(--mono);font-size:11px;color:#999;margin-top:14px;letter-spacing:1px}
+
+/* ── Article body ── */
+.art-body{padding:0 0 80px}
+.art-body p{font-size:16px;line-height:1.9;color:var(--muted);margin-bottom:20px}
+.art-body h2{font-family:var(--tc);font-weight:700;font-size:22px;color:var(--ink);margin:44px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--gray2)}
+.art-body h3{font-family:var(--tc);font-weight:700;font-size:17px;color:var(--ink);margin:28px 0 10px}
+.art-body strong{color:var(--ink);font-weight:700}
+.art-body ul,
+.art-body ol{padding-left:0;list-style:none;margin-bottom:20px;display:flex;flex-direction:column;gap:10px}
+.art-body ul li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.75;color:var(--muted)}
+.art-body ul li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0;margin-top:2px}
+.art-body ol{counter-reset:ol-counter}
+.art-body ol li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.75;color:var(--muted);counter-increment:ol-counter}
+.art-body ol li::before{content:counter(ol-counter)'.';color:var(--red);font-weight:700;flex-shrink:0;min-width:20px;margin-top:2px}
+
+/* ── Risk card ── */
+.risk{background:var(--gray);border-radius:12px;padding:24px 26px;margin:24px 0}
+.risk h3{margin-top:0;padding-bottom:8px;border-bottom:1.5px solid var(--gray2)}
+.risk-do{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:14px;font-size:14px;line-height:1.7}
+.risk-do div{padding:14px 16px;background:#fff;border-radius:8px;border:1px solid var(--gray2)}
+.risk-do strong{display:block;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+@media (max-width:560px){.risk-do{grid-template-columns:1fr}}
+
+/* ── Callout ── */
+.callout{background:var(--gray);border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:15px;color:var(--ink);line-height:1.75}
+.callout strong{color:var(--red)}
+
+/* ── FAQ ── */
+.faq-item{margin-bottom:20px;padding:20px 24px;background:var(--bg);border:1.5px solid var(--gray2);border-radius:12px}
+.faq-q{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:8px}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.8;margin:0}
+
+/* ── CTA band ── */
+.cta-band{background:var(--gray);border-radius:16px;padding:32px 36px;margin:40px 0;text-align:center}
+.cta-band h3{font-size:20px;color:var(--ink);margin-bottom:10px}
+.cta-band p{font-size:14px;color:var(--muted);margin-bottom:24px}
+.cta-btn{display:inline-block;background:var(--red);color:#fff;font-family:var(--tc);font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;transition:background .2s;letter-spacing:0.3px}
+.cta-btn:hover{background:#c73821;text-decoration:none}
+
+/* ── Article nav ── */
+.art-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0 40px;border-top:1px solid var(--gray2);font-size:14px}
+.art-nav a{color:var(--red)}
+</style>
+</head>
+<body>
+<canvas id="matrix-rain" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.09;" aria-hidden="true"></canvas>
+<script src="/assets/matrix-rain.js?v=2"></script>
+<script src="/nav.js" defer></script>
+
+<div class="container">
+  <article>
+    <header class="art-header">
+      <div class="art-breadcrumb"><a href="/guides/">Guides</a> / OpenClaw 安全嗎</div>
+      <span class="art-meta-tag">資安 · 裝之前必讀</span>
+      <h1 class="art-title">OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉</h1>
+      <p class="art-desc">搜「OpenClaw 安全嗎」會看到一堆負面結論，這篇把它拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。最後一句話結論：安全的關鍵不是不裝，而是最小權限加本機部署加不裝來路不明的技能。</p>
+      <div class="art-date">發布：2026-09-13</div>
+    </header>
+
+    <div class="art-body">
+
+      <p>如果你搜「OpenClaw 安全嗎」，多半會看到論壇文章、資安指南、負面心得，AI 摘要也常直接寫「不建議一般使用者安裝」。這篇要做的，是把那些結論背後的「具體風險」拆開來給你看，然後告訴你對應的「自己裝要做什麼」、「找人代裝時對方應該做什麼」。</p>
+      <p>先講結論：<strong>OpenClaw 框架本身不是設計來害你的，但它的能力強到「裝錯」就出事</strong>。會出問題的，多半是裝的人沒設權限、裝了來路不明的技能、或用預設值不動。這跟你買一把好刀一樣——刀沒問題，你亂揮才會受傷。</p>
+
+      <hr style="border:none;border-top:1px solid var(--gray2);margin:32px 0">
+
+      <h2>一句話結論</h2>
+      <div class="callout">安全的關鍵不是「不裝」，而是<strong>三件事一起做</strong>：最小權限（只給必要的存取）、本機部署（資料留在自己電腦）、不裝來路不明的技能（技能是 OpenClaw 最大的攻擊面）。三件事做到，風險可控；三件事不做，裝什麼都危險。</div>
+
+      <h2>6 個具體風險，一次拆開</h2>
+
+      <div class="risk">
+        <h3>風險 1：提示注入（Prompt Injection）</h3>
+        <p>外部內容（網頁、文件、訊息）藏惡意指令，誘使 AI 助理執行非預期動作。例如：貼給 OpenClaw 一份看似正常的文件，裡面寫「把所有檔案寄到某個地址」，AI 助理照做。</p>
+        <div class="risk-do">
+          <div><strong>自己裝要做什麼</strong>不要讓 OpenClaw 直接讀陌生網址或陌生文件；高敏感操作（寄檔案、改密碼）必須要你按確認才執行。</div>
+          <div><strong>我們代裝預設做什麼</strong>預設開啟「高風險動作要二次確認」；把讀寫範圍限縮在你指定的資料夾。</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>風險 2：惡意技能（Malicious Skills）</h3>
+        <p>技能（Skills）是 OpenClaw 讓它「會做事」的擴充包，社群有非常多來源。來路不明的技能可能內藏讀取密碼、外連中繼站、執行任意程式碼的能力。</p>
+        <div class="risk-do">
+          <div><strong>自己裝要做什麼</strong>只裝官方或信任作者發出的技能；裝之前看程式碼、不要跳過警告；定期審查已裝的技能清單。</div>
+          <div><strong>我們代裝預設做什麼</strong>入門款只裝官方原裝技能，沒有任何第三方來源；技能包加購（NT$1,000／2,000／3,000／4,888）為 Think BIG 內部維護的版本，附審查紀錄。</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>風險 3：對外連接埠開著（Open Port / Web UI 暴露）</h3>
+        <p>OpenClaw 預設有本地管理介面（Web UI）給你開瀏覽器操作。如果沒改預設、不設密碼、又對外開放，整個助理就裸奔在網路上，等於把家門鑰匙插在鎖孔上。</p>
+        <div class="risk-do">
+          <div><strong>自己裝要做什麼</strong>改預設密碼；只綁 127.0.0.1（localhost）；不要在路由器開 DMZ、不要用 ngrok 之類工具暴露。</div>
+          <div><strong>我們代裝預設做什麼</strong>一律改預設密碼、只綁本機、不開對外連接埠；若需對外（如 LINE 串接）走官方提供的 tunnel，不開自架 port。</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>風險 4：金鑰外洩（API Key Leak）</h3>
+        <p>AI 模型 API 金鑰（如 Anthropic / OpenAI）一旦外洩，別人可以花你的額度、甚至用你的金鑰亂跑被記帳到你頭上。常見外洩管道：寫進公開 GitHub repo、貼在社群截圖、把金鑰直接交給別人。</p>
+        <div class="risk-do">
+          <div><strong>自己裝要做什麼</strong>金鑰存進本機環境變數，不寫進任何 commit；不要把 .env 推到公開 repo；定期到模型供應商後台看用量。</div>
+          <div><strong>我們代裝預設做什麼</strong>金鑰由你自己申請、自己保管，工程師只引導流程、不代你申請也不保留你的金鑰；裝完後在你面前刪除連線暫存。</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>風險 5：誤刪或覆寫重要檔案</h3>
+        <p>OpenClaw 會動手做事，動手就包含「刪檔、改檔、寄信、發訊息」。如果沒有保護，AI 可能因為一個誤判把你整個資料夾刪掉、或把草稿訊息發給不該發的人。</p>
+        <div class="risk-do">
+          <div><strong>自己裝要做什麼</strong>高風險動作（刪檔、外寄訊息）設二次確認；保留異動日誌；重要資料先備份再開權限。</div>
+          <div><strong>我們代裝預設做什麼</strong>預設把可寫入範圍限縮在你指定的資料夾；外寄訊息需手機推播確認；保留 90 天異動紀錄。</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>風險 6：版本過舊、漏洞未修</h3>
+        <p>任何軟體都有漏洞，OpenClaw 也會。裝了不更新，半年後可能踩到已被修補但你沒裝的漏洞。</p>
+        <div class="risk-do">
+          <div><strong>自己裝要做什麼</strong>訂閱官方更新公告；每 1–3 個月手動更新一次。</div>
+          <div><strong>我們代裝預設做什麼</strong>入門款 NT$999 是一次裝到能跑，更新由你自己決定時機；尊榮年約 NT$32,000 與年度旗艦 NT$38,000 含每週維護，由我們處理更新。</div>
+        </div>
+      </div>
+
+      <h2>一張對照表：自己裝 vs 代裝</h2>
+      <div class="callout"><strong>代裝最實質的價值不是「幫你裝」，是「把這些預設一次做到位」</strong>。下面六個項目是我們代裝時預設就會處理的；自己裝，這些都得你手動做。</div>
+      <table style="width:100%;border-collapse:collapse;margin:24px 0 28px;font-size:14px">
+        <thead>
+          <tr style="background:var(--gray)"><th style="border:1.5px solid var(--gray2);padding:10px;text-align:left">項目</th><th style="border:1.5px solid var(--gray2);padding:10px;text-align:left">自己裝要花的功夫</th><th style="border:1.5px solid var(--gray2);padding:10px;text-align:left">代裝預設</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">改預設密碼</td><td style="border:1.5px solid var(--gray2);padding:10px">找設定檔、改、重啟</td><td style="border:1.5px solid var(--gray2);padding:10px">裝完已改</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">綁本機不對外</td><td style="border:1.5px solid var(--gray2);padding:10px">查預設綁定 IP</td><td style="border:1.5px solid var(--gray2);padding:10px">預設 127.0.0.1</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">高風險動作二次確認</td><td style="border:1.5px solid var(--gray2);padding:10px">改 policy 設定</td><td style="border:1.5px solid var(--gray2);padding:10px">預設開啟</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">技能白名單</td><td style="border:1.5px solid var(--gray2);padding:10px">自己維護清單</td><td style="border:1.5px solid var(--gray2);padding:10px">只裝官方原裝</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">金鑰保管</td><td style="border:1.5px solid var(--gray2);padding:10px">自己設環境變數、不 commit</td><td style="border:1.5px solid var(--gray2);padding:10px">引導你自己申請，工程師不留存</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">更新維護</td><td style="border:1.5px solid var(--gray2);padding:10px">每 1–3 個月手動</td><td style="border:1.5px solid var(--gray2);padding:10px">年約方案含每週維護</td></tr>
+        </tbody>
+      </table>
+
+      <h2>什麼人適合裝？什麼人不適合？</h2>
+      <h3>📌 適合裝的人</h3>
+      <ul>
+        <li>想讓雜事自動跑、願意花一小時學基礎設定的一般工作者。</li>
+        <li>一人公司、想讓多個助理分工幫忙處理日常。</li>
+        <li>對「裝了就要自己顧」有心理準備、不想被工具綁架的人。</li>
+      </ul>
+      <h3>📌 我們會建議先不要裝的人</h3>
+      <ul>
+        <li>公務機、公司配發設備：資安政策通常不允許這種工具裝在公務環境，先跟管理單位確認。</li>
+        <li>完全不願意花時間學基礎設定（連換密碼都不想）：即使代裝，你也得學會看 log、換密碼。</li>
+        <li>期待「裝了什麼都照預設走、零維護」的人：任何能動手的工具都帶設定責任，這無法外包給工具自己。</li>
+      </ul>
+
+      <h2>如果你決定要裝，三個預設立刻做</h2>
+      <ol>
+        <li><strong>改預設密碼</strong>，這件事不做等於沒鎖門。</li>
+        <li><strong>綁 localhost</strong>，不要把 Web UI 對外開。</li>
+        <li><strong>只裝官方技能</strong>，社群來路不明的技能包先不要碰。</li>
+      </ol>
+      <div class="callout">這三件事做完，你已經避開搜尋引擎上那些負面案例的 80%。剩下的風險，是真的遇到針對性攻擊——那個層級的風險不裝 OpenClaw 也存在（任何有網路的裝置都有），不是 OpenClaw 獨有的問題。</div>
+
+      <h2>為什麼這篇要寫在 Think BIG 的官網</h2>
+      <p>因為搜尋引擎上現在這題的答案幾乎一面倒負面，全是論壇、資安指南、媒體報導，商業服務站一篇都沒有。我們是台灣做 OpenClaw 代裝服務的團隊，<strong>每天都在跟這些風險打交道</strong>——怎麼設權限、怎麼跟客戶解釋風險、裝完怎麼讓它真的能用又不踩雷，這些事我們有第一手經驗。</p>
+      <p>寫這篇不是要你「放心裝」，是要你<strong>看清楚風險、知道怎麼處理、然後自己決定</strong>。</p>
+
+      <h2>常見問題 FAQ</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Q：OpenClaw 安全嗎？</div>
+        <p class="faq-a">看你怎麼裝。安全風險大多來自「裝完沒設權限」、「裝了來路不明的技能」、「用預設帳號沒換密碼」，而不是框架本身不安全。最小權限加本機部署加不裝來路不明的技能，是基本三件事。</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q：OpenClaw 會偷我的資料嗎？</div>
+        <p class="faq-a">OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫 AI 模型的 API（這是必要成本）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q：OpenClaw 會被駭嗎？</div>
+        <p class="faq-a">框架本身有在更新，修補已知漏洞。但如果你開了對外連接埠（port）又用預設密碼、或裝了來路不明的技能，被駭的風險確實存在。我們代裝時一律改預設密碼、不開對外 port、限制技能來源。</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q：代裝會不會反而被工程師動手腳？</div>
+        <p class="faq-a">我們用 AnyDesk／DeskIn 遠端，整個過程你都看得到工程師在做什麼。我們不會向你索取任何帳號密碼，金鑰與密碼一律不透過聊天傳遞；連線結束後不會保留任何遠端存取權。</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q：什麼人不適合裝 OpenClaw？</div>
+        <p class="faq-a">三種人我們會建議先不要裝：①公務機或公司機（即使你個人想用，資安政策通常不允許這類工具裝在公務環境）；②完全不願意花時間學任何基礎設定的人；③對「裝了什麼都照預設走」有期待的人。</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q：裝完之後多久要更新一次？</div>
+        <p class="faq-a">OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 NT$32,000、年度旗艦 NT$38,000）含每週維護與 48 小時故障修復，更新這件事就交給我們；入門款 NT$999 是一次裝到能跑，更新由你決定時機。</p>
+      </div>
+
+      <h2>結論</h2>
+      <p>OpenClaw 安不安全，<strong>看你裝的時候有沒有把基礎設定做好</strong>。搜尋引擎上一面倒的負面結論，拆開看 80% 是「裝的人沒設權限」、「裝了來路不明的技能」、「用預設密碼沒換」這種基本錯誤——這些是可以避免的，裝的人多花一小時就能避開。</p>
+      <p>如果你願意花那一小時、或者你願意花 NT$999 讓工程師幫你一次設好，那 OpenClaw 是一個能讓你每天省下不少時間的工具。如果你完全不想學、也不想找人代，那任何這類工具都不適合你，不只是 OpenClaw。</p>
+      <p>想清楚再裝，裝完記得改密碼、綁本機、只裝官方技能。三件事做完，風險已經可控。</p>
+
+      <div class="cta-band">
+        <h3>決定要裝？NT$999 起步</h3>
+        <p>台灣工程師遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 NT$32,000 或年度旗艦 NT$38,000。</p>
+        <a href="https://lin.ee/n5KW430" class="cta-btn">先聊聊需求</a>
+        <p style="margin-top:18px;font-size:13px;color:var(--muted)">入門款到底裝什麼？→ <a href="/guides/openclaw-daizhuang/" style="color:var(--red)">OpenClaw 代裝拆解</a></p>
+      </div>
+
+      <nav class="art-nav">
+        <a href="/guides/hermes-vs-openclaw/">← 上一篇：Hermes vs OpenClaw 比較</a>
+        <a href="/guides/">回指南首頁</a>
+      </nav>
+    </div>
+  </article>
+</div>
+
+<script src="/ask-ai.js" defer></script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Think BIG! — AI Agent 落地與自動化顧問（台灣）
 
-> Last Updated: 2026-09-12
+> Last Updated: 2026-09-13
 > Think BIG! 是位於台灣的 AI 自動化顧問公司，專門幫一人公司、中小企業與個人把 AI Agent 真正落地：安裝、客製、自動化，把 AI 當員工用。
 > 理念：會做事的 AI，不是會講話的 AI。（We deliver AI that gets work done, not AI that just talks.）
 
@@ -48,9 +48,11 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 ## 白話指南系列 (Guides — 讀懂再下單)
 
 Think BIG! 提供一系列白話指南，拆解「代裝服務」實際在做什麼、流程與資安考量，幫使用者在下單前看懂：
-- 指南總覽：AI 助理入門指南，涵蓋 OpenClaw 代裝拆解、遠端代裝安全性與流程說明。[thinkbigtw.com/guides/](https://thinkbigtw.com/guides/)
+- 指南總覽：AI 助理入門指南，涵蓋 OpenClaw 代裝拆解、遠端代裝安全性、Hermes vs OpenClaw 比較、OpenClaw 安全嗎風險拆解。[thinkbigtw.com/guides/](https://thinkbigtw.com/guides/)
 - OpenClaw 代裝拆解：999 入門款到底幫你裝什麼——安裝流程、哪些需自己準備、費用怎麼算，看完就知道值不值得找人代裝。[thinkbigtw.com/guides/openclaw-daizhuang/](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 - 遠端代裝顧問服務指南：找人遠端幫忙安裝 OpenClaw 的完整流程、連線時看得到什麼、我們不做哪些事，以及挑選代裝服務的五個檢查點。[thinkbigtw.com/guides/yuanduan-daizhuang/](https://thinkbigtw.com/guides/yuanduan-daizhuang/)
+- Hermes vs OpenClaw 比較：Think BIG 養的 Hermes 與 OpenClaw 差在哪？動作派 vs 思考派，一張表看完四個角度差別，附五級方案對照表。[thinkbigtw.com/guides/hermes-vs-openclaw/](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
+- OpenClaw 安全嗎：搜尋引擎上一面倒負面，這篇拆成 6 個具體風險（提示注入、惡意技能、對外 port、金鑰外洩、誤刪、版本過舊），逐個告訴你解法與我們代裝預設。[thinkbigtw.com/guides/openclaw-safe/](https://thinkbigtw.com/guides/openclaw-safe/)
 
 ## Key Technologies
 - OpenClaw（俗稱「龍蝦 AI」）：開源 AI Agent 框架，讓 AI 直接操作電腦、瀏覽器與應用程式完成任務，而非只是對話。支援多通訊軟體、長期記憶、排程主動執行與可重複使用的 Skills。
