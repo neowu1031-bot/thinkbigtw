@@ -137,3 +137,5 @@ AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自�
 - 指南總覽: [thinkbigtw.com/guides/](https://thinkbigtw.com/guides/)
 - OpenClaw 代裝拆解指南: [thinkbigtw.com/guides/openclaw-daizhuang/](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 - 遠端代裝顧問服務指南: [thinkbigtw.com/guides/yuanduan-daizhuang/](https://thinkbigtw.com/guides/yuanduan-daizhuang/)
+- Hermes vs OpenClaw 比較指南: [thinkbigtw.com/guides/hermes-vs-openclaw/](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
+- OpenClaw 安全嗎風險拆解指南: [thinkbigtw.com/guides/openclaw-safe/](https://thinkbigtw.com/guides/openclaw-safe/)
