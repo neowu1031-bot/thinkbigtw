@@ -1,6 +1,7 @@
-// MoneyRadar Security Headers Injector v2
+// MoneyRadar Security Headers Injector v3
 // 攔截 thinkbigtw.com/* → 過濾 webhook / AI 爬蟲 → fetch GitHub Pages origin → 加安全 headers → 回傳
 // v2 新增：webhook 路徑 early-exit + 已知 AI 爬蟲 early-exit（減少 origin 無謂 404 & analytics 污染）
+// v3 新增：enterprise-cloud / enterprise-local 301 redirect → /enterprise/
 
 const SECURITY_HEADERS = {
   'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload',
@@ -85,11 +86,28 @@ function isBlockedCrawler(userAgent) {
   return BLOCKED_CRAWLER_SIGNATURES.some(sig => ua.includes(sig.toLowerCase()));
 }
 
+// ── 301 永久重定向表 ──────────────────────────────────────────────────────────
+// NAVENTERPRISEMERGE 2026-09-25：enterprise-cloud / enterprise-local 已合併入
+// /enterprise/，舊網址 301 永久重定向，讓搜尋引擎 link equity 集中到主頁。
+// meta refresh 保留在 HTML 作為瀏覽器 fallback（Worker 不可用時仍能跳轉）。
+const PERMANENT_REDIRECTS = {
+  '/enterprise-cloud':   '/enterprise/',
+  '/enterprise-cloud/':  '/enterprise/',
+  '/enterprise-local':   '/enterprise/',
+  '/enterprise-local/':  '/enterprise/',
+};
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const pathname = url.pathname;
     const userAgent = request.headers.get('User-Agent') || '';
+
+    // ── 301 永久重定向（SEO link equity 集中）────────────────────────────────
+    if (pathname in PERMANENT_REDIRECTS) {
+      const dest = 'https://thinkbigtw.com' + PERMANENT_REDIRECTS[pathname];
+      return Response.redirect(dest, 301);
+    }
 
     // ── Early exit: webhook 路徑 ─────────────────────────────────────────────
     // 直接回 204，不轉 GitHub Pages，防止 origin 噪音。
