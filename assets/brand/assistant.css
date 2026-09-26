@@ -32,3 +32,5 @@
  body:has(#tb-ai-launcher) main{padding-bottom:76px}
  body:has(#tb-ai-launcher) #tb-footer{padding-bottom:84px}
 }
+
+.ai-avatar{object-fit:cover;background:#1d1d1f;border:0;padding:0}
