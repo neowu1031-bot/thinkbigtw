@@ -323,6 +323,8 @@ FUNCTIONAL AI AGENTS
 
 人工決策與授權 資料沒有依據時交回人員；涉及承諾、退款或爭議的內容，由負責人決定。
 
+企業知識問答如何準備依據？[了解 RAG、文件權限與回答驗收 ›](https://thinkbigtw.com/enterprise/rag/)
+
 業務與客戶聯繫 AI Agent 組合
 
 ## 整合需求紀錄與聯繫追蹤。
@@ -424,9 +426,13 @@ DECISION AUTHORITY
 
 GOVERNANCE FOUNDATION
 
+### 治理基礎
+
 資料主權 · 人工核准 · 可稽核紀錄
 
 導入設計的責任關係示意；實際配置依流程、資料政策與授權範圍確認。
+
+[什麼是 RAG？了解 AI 如何依公司文件回答 ›](https://thinkbigtw.com/enterprise/rag/)
 
 ADOPTION CRITERIA
 
@@ -556,7 +562,7 @@ DATA SOVEREIGNTY
 
 需要外部服務時，先列出傳送欄位、用途、帳號權限與費用，確認授權後再納入流程。
 
-支援技術：OpenClaw、Hermes、Claude、MCP、RAG。串接與更換模型需確認相容性，並重新驗證工作結果。
+支援技術：OpenClaw、Claude、MCP、RAG。串接與更換模型需確認相容性，並重新驗證工作結果。
 
 [查看完整流程與可列印工作表 ›](https://thinkbigtw.com/enterprise/process/)
 
@@ -821,6 +827,118 @@ Think BIG · thinkbigtw.com · 企業導入討論範本
 
 ---
 
+URL: https://thinkbigtw.com/enterprise/rag/
+
+# 什麼是 RAG？讓 AI 依公司文件回答｜Think BIG
+
+COMPANY KNOWLEDGE / RAG
+
+# 什麼是 RAG？
+讓 AI 依公司文件回答
+
+RAG（Retrieval-Augmented Generation，檢索增強生成）是一種讓 AI 回答前，先從指定的公司文件或知識庫找出相關段落，再依據這些內容生成回答的方法。系統可一併提供引用出處，讓人回查答案依據。回答品質仍取決於文件內容、檢索結果與驗證方式，不能只因使用 RAG 就視為正確。
+
+Think BIG 編輯部 · 2026 年 9 月 27 日
+
+- 01
+
+## 確認可讀範圍
+
+先核對提問者身分與文件權限。
+
+- 02
+
+## 找出相關段落
+
+從核准文件檢索可用的回答依據。
+
+- 03
+
+## 回答並附出處
+
+讓人回查；依據不足時轉人工。
+
+常見問題
+
+## RAG 和一般聊天 AI 差在哪？
+
+未接入指定文件的聊天 AI，主要依模型既有知識與當次對話內容回答。RAG 在生成答案前多了檢索步驟，讓回答能參考公司核准的制度、產品文件或操作說明。聊天介面本身也可能使用 RAG，差別在有沒有檢索指定資料，而不是介面長什麼樣。
+
+例如問「這項服務包含哪些支援？」時，RAG 可先找到目前有效的服務說明，再整理回答並附上段落來源。找不到適用版本，就應說明缺少依據，交由人員確認。
+
+## RAG 和微調（fine-tuning）差在哪？
+
+RAG 著重回答時要參考哪些資料，更新文件與索引通常不必重新訓練生成模型。微調則使用訓練範例調整模型參數，常用來改善特定任務、回覆格式或表達方式。兩者可以搭配；微調不會自動提供文件引用，也不能代替即時的權限檢查。
+
+若重點是經常更新的公司知識與可回查來源，可先評估 RAG；若重點是穩定的輸出格式或任務行為，再用測試結果判斷是否需要微調。
+
+## 企業導入 RAG 要準備什麼資料？
+
+先選一個要回答的業務範圍，整理經核准的常見問題、服務規範、產品說明與作業流程。資料要能讀取文字；掃描檔須先辨識並校對。每份文件應有負責人、有效日期、版本、可存取角色與來源位置。
+
+- 保留文件標題、段落關係與表格欄位，讓切段後的內容仍有足夠上下文。
+
+- 移除重複、過期及無授權的內容，訂出更新與撤回流程。
+
+- 準備代表性問題與預期依據，包含資料缺漏、權限不足及容易混淆的情境。
+
+## 使用 RAG，資料會不會外流？
+
+RAG 是回答方法，不是資料安全保證。資料會傳到哪裡，要看文件儲存、檢索、文字轉換、模型推論、日誌與備份各在哪裡處理，以及連接哪些外部服務。
+
+地端部署不等於所有連線都在本機。即使知識庫在公司內，使用雲端模型時，問題與檢索出的段落仍可能送往外部；雲端文字轉換或索引服務也要列入資料流向。若要求資料不出公司，須一併確認本機模型、檢索與資料處理配置、外連限制、日誌及備份。
+
+權限須在檢索與取回內容時落實，不能只在提示詞寫「不要透露」。採用外部服務前，應確認傳送欄位、用途、保留政策及授權，詳見 [Think BIG 資安承諾](https://thinkbigtw.com/trust/)與[地端 AI 與資料主權](https://thinkbigtw.com/guides/local-ai-data/)。
+
+## 怎麼驗收 RAG 回答是否正確？
+
+先由熟悉業務的人建立測試問題、正確依據與可接受的回答範圍，再逐題核對檢索段落與最終回答。引用出處要能打開，而且確實支持結論；有引用不等於回答一定正確。
+
+- 一般問題：是否找對文件版本，答案有沒有超出文件內容。
+
+- 無法回答：沒有相關內容或文件互相矛盾時，能否明確說明不足並轉人工。
+
+- 權限邊界：未授權的使用者能否被擋下，回答與引用是否都沒有洩漏受限內容。
+
+- 更新與例外：文件撤回、索引更新或服務中斷後，系統是否依約定停止或轉人工。
+
+留下測試結果、失敗原因與修正紀錄，文件或配置更動後重測。驗收門檻由雙方依流程確認，參考[AI Agent 驗收框架](https://thinkbigtw.com/guides/ai-acceptance/)。
+
+## RAG 常見的失敗原因有哪些？
+
+文件過期或互相矛盾 AI 可能依舊規則作答。指定文件負責人、有效版本與更新頻率，撤回舊內容時同步更新索引。
+
+權限沒有分清楚 共用知識庫可能把受限段落交給不該看到的人。依角色檢查可讀範圍，連引用來源也要套用權限。
+
+切段不當，找不到完整依據 段落太碎會遺失條件；太長會混入無關內容。依文件結構切段、保留標題與版本資訊，並用實際問題驗證檢索結果。
+
+掃描辨識錯誤、問題描述模糊、只測容易的題目，也會掩蓋缺陷。應分開檢查「有沒有找到對的段落」和「回答有沒有忠於段落」。
+
+## Think BIG 如何把 RAG 用在客服 AI Agent？
+
+Think BIG 的客服知識流程先以核准的服務與治理文件界定可回答範圍，再找出相關內容準備回覆草稿；沒有依據的問題整理成待確認清單，交由人員補充。RAG 用於企業知識問答時，也沿用這個原則：先確認來源與權限，再檢索、附上可回查依據並驗證回答。
+
+承諾、退款與爭議由人員決定；對外發送、花費及正式系統異動仍需指定負責人核准。實際是否採用向量檢索、其他檢索方式或混合配置，依文件規模、資料政策與情境測試確認，不把所有知識查詢都稱為同一種實作。
+
+同樣的方式可用於業務查詢核准的產品資料，或讓行銷核對品牌文件。先讓單一流程的回答與例外處理可驗證，再評估擴充。可查看[客服 AI Agent 的能力與人工責任](https://thinkbigtw.com/enterprise/departments/#service)。
+
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
+
+## 延伸閱讀與技術來源
+
+RAG 的技術概念可參考 [Lewis 等人的原始論文：Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks](https://arxiv.org/abs/2005.11401)。本站的資料與權限說明依 [Think BIG 資安承諾](https://thinkbigtw.com/trust/)整理；文件準備與驗收項目是本文的導入建議。
+
+START WITH YOUR DOCUMENTS
+
+## 從一個問題，
+確認需要哪些公司知識。
+
+帶著要改善的流程、文件類型與權限需求，討論適合的知識問答方式。
+
+[整理企業導入需求 ›](https://thinkbigtw.com/enterprise/#consult)
+
+---
+
 URL: https://thinkbigtw.com/faq/
 
 # 常見問題｜Think BIG
@@ -886,14 +1004,6 @@ NT$6,000 與 NT$15,000 方案均含 2 小時線上技術導覽＋安裝後 7 天
 不含第三方模型用量費。API Key 需自行申請，工程師提供引導；coding agent 訂閱與所需第三方帳號請自行準備。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
-
-產品名稱
-
-## Hermes Agent 和網站 AI 顧問相同嗎？
-
-Hermes Agent 是 Nous Research 開源的 AI 助理，是我們協助安裝的產品之一。網站上的「Think BIG AI 顧問」用來回答服務與方案問題。
-
-[查看完整說明 ›](https://thinkbigtw.com/hermes-starter/)
 
 退款
 
@@ -1205,7 +1315,7 @@ Model Context Protocol，讓 AI 工具連接資料與功能的開放協議；實
 
 檢索增強生成：先找出相關知識內容，再提供給模型作為回答依據。
 
-評估企業知識問答時，Think BIG 先確認資料來源、授權及回答的可回查性，實際架構依需求確認。
+評估企業知識問答時，Think BIG 先確認資料來源、授權及回答的可回查性，實際架構依需求確認。[深入了解 RAG 的資料準備與驗收](https://thinkbigtw.com/enterprise/rag/)。
 
 ### 技能（Skill）
 
@@ -2430,7 +2540,7 @@ PERSONAL AI / 個人方案
 
 ### 入門配置與安裝
 
-OpenClaw 與 Hermes 入門方案，提供既有設備上的安裝與配置協助。依設備、帳號及使用條件確認服務範圍，適合希望建立個人 AI 助理基礎、循序熟悉應用方式的使用者。
+入門安裝方案（含 OpenClaw 入門），提供既有設備上的安裝與配置協助。依設備、帳號及使用條件確認服務範圍，適合希望建立個人 AI 助理基礎、循序熟悉應用方式的使用者。
 
 ### 個人工作流程整合
 
@@ -2723,13 +2833,12 @@ URL: https://thinkbigtw.com/pricing/personal/
 
 個人使用
 
-# 個人 AI 助理方案：入門、工作組合與年約
+# 個人 AI 助理方案
+入門、工作組合與年約
 
 個人使用是給一個人在用的人：一人公司、自由工作者、個人副業，或想先給自己裝一套的主管。裝在你自己的電腦、用你自己申請的 API Key，由台灣工程師遠端安裝。依使用需求選擇：入門安裝含 7 天技術諮詢；AI 部門含2 小時線上技術導覽＋安裝後 7 天技術諮詢；年約含一年維運。
 
 查看個人方案完整目錄 ↓
-
-Think BIG 品牌公仔
 
 個人方案完整目錄
 
@@ -2749,7 +2858,7 @@ Think BIG 品牌公仔
 
 ### USB AGENT
 
-實體版資訊尚未公開。需要先開始使用，可查看上方入門安裝方案；產品內容與供應狀態以正式公告為準。
+實體版資訊尚未公開，敬請期待。
 
 ## 個人方案需求評估
 
@@ -2763,17 +2872,16 @@ Tier 1 · 支援 7 天
 
 給誰：第一次要一個常駐 LINE／Telegram 的 AI 助理、不想自己摸安裝的人。解決的是「教學看到一半放棄」。
 
-OpenClaw
+[OpenClaw
 變體 A · 官方原裝技能單一 Agent
 NT$999
 4 項原裝技能：搜尋、檔案、程式執行、瀏覽器；常駐 LINE 或 Telegram
-[看 OpenClaw 入門頁 →](https://thinkbigtw.com/openclaw-starter/)
-
-Hermes
+看 OpenClaw 入門頁 →](https://thinkbigtw.com/openclaw-starter/)
+[Hermes
 變體 B · 官方原裝基礎款，越用越聰明
 NT$999
 跨對話持久記憶、自我學習閉環；同價，擇一即可
-[看 Hermes 入門頁 →](https://thinkbigtw.com/hermes-starter/)
+看 Hermes 入門頁 →](https://thinkbigtw.com/hermes-starter/)
 
 無月費、無維運承諾；若因我方技術問題無法完成安裝，全額退費。
 
@@ -2785,17 +2893,16 @@ Tier 2 · 2 小時線上技術導覽＋安裝後 7 天技術諮詢
 
 給誰：已在付 Claude Code／Codex 等 coding agent 訂閱、想讓工具組隊跑固定流程、願意自己維護的人。解決的是「自己當人肉轉接頭」——不是聊天機器人，是會自己跑的部門。
 
-單 AI Agent
+[單 AI Agent
 變體 A · 全 Agent 串接
 NT$6,000
 60 組客製技能＋跨 Agent 協作會議室＋coding agent 串接
-[看全 Agent 串接頁 →](https://thinkbigtw.com/full-agent/)
-
-雙 AI Agent
+看全 Agent 串接頁 →](https://thinkbigtw.com/full-agent/)
+[雙 AI Agent
 變體 B · 雙 AI Agent
 NT$15,000
 OpenClaw＋Hermes 雙 AI Agent、全 Agent 串接、MCP 記憶互通；技能數依訪談
-[看雙 AI Agent頁 →](https://thinkbigtw.com/dual-agent/)
+看雙 AI Agent頁 →](https://thinkbigtw.com/dual-agent/)
 
 AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧，看個人方案 3 或加購「系統健檢故障修復」。
 
@@ -2807,23 +2914,21 @@ Tier 3 · 顧一整年 · 主打
 
 給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
 
-單 AI Agent
+[單 AI Agent
 副標：尊榮年約
 NT$32,000／年
 Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能
-[看尊榮年約頁 →](https://thinkbigtw.com/annual-pro/)
-
-雙 AI Agent
+看尊榮年約頁 →](https://thinkbigtw.com/annual-pro/)
+[雙 AI Agent
 副標：年度旗艦
 NT$38,000／年
 Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合
-[看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
-
-SUPERSOLO 七部門
+看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
+[SUPERSOLO 七部門
 副標：超級個體
 NT$60,000／年
 一個人＝七個部門（內容自媒體、行銷、業務、客服、財務、行政、研發），一年每週維護
-[看 SUPERSOLO 頁 →](https://thinkbigtw.com/solo-pro/)
+看 SUPERSOLO 頁 →](https://thinkbigtw.com/solo-pro/)
 
 三檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年續約 NT$30,000／年（約 2,500／月），含每週維護＋48 小時故障修復。
 
@@ -2853,7 +2958,7 @@ CTA [OpenClaw](https://thinkbigtw.com/openclaw-starter/)／[Hermes](https://thin
 
 個人服務・買家回饋
 
-## 蝦皮賣場 AI 服務評價全數 5 星（21 則，截至 2026/09/27）
+## 蝦皮賣場 AI 服務評價全數 5 星
 
 擷取自蝦皮賣場，買家資訊已遮蔽，擷取日 2026/09/27
 

@@ -47,6 +47,11 @@ for p,_,soup in pages():
  baseline=subprocess.run(['git','show','HEAD:'+rel],cwd=ROOT,text=True,capture_output=True)
  if baseline.returncode==0 and rel not in ['harness/index.html','guides/hermes-vs-openclaw/index.html','trust/index.html']:
   old=BeautifulSoup(baseline.stdout,'html.parser')
+  # NEO's v8 edits are exact approved replacements, not a page-wide exemption.
+  if rel=='pricing/personal/index.html':
+   if old.h1.get_text()=='個人 AI 助理方案：入門、工作組合與年約':old.h1.string='個人 AI 助理方案入門、工作組合與年約'
+   review=old.select_one('#personal-reviews-title')
+   if review and review.get_text()=='蝦皮賣場 AI 服務評價全數 5 星（21 則，截至 2026/09/27）':review.string='蝦皮賣場 AI 服務評價全數 5 星'
   def headings(doc):
    doc=BeautifulSoup(str(doc),'html.parser')
    for note in doc.select('.term-explanation'):note.decompose()
