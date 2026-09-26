@@ -52,5 +52,11 @@
     "/assets/brand/personal.css",
     "/assets/brand/personal-reviews.css",
     "/assets/homesplit/apple.css"
+  ],
+  "/assets/generated/site-a59412a11745.css": [
+    "/assets/homesplit/site.css",
+    "/assets/homesplit/editorial.css",
+    "/assets/brand/chrome.css",
+    "/assets/homesplit/apple.css"
   ]
 }

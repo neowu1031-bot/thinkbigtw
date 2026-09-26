@@ -35,8 +35,35 @@
 .harness-page .plan-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .harness-page .plan-paths article{background:#f5f5f7;border-radius:24px;padding:28px}
 .harness-page details{padding-block:20px;border-bottom:1px solid #dedee3}.harness-page summary{cursor:pointer;font-weight:600}
+/* MCP collaboration: match the existing markup and the shared content width. */
+.harness-page{margin:0}
+.harness-page main>.mcp-section{width:min(1120px,calc(100% - 48px));margin-inline:auto;border-top:1px solid #dedee3;text-align:center}
+.harness-page .mcp-bg{display:inline-block;padding:6px 14px;margin-bottom:20px;border-radius:99px;background:#f5f5f7;color:var(--red);font-size:12px;font-weight:600;letter-spacing:.1em}
+.harness-page .mcp-section .sec-title{margin:0}
+.harness-page .mcp-section>p,.harness-page .mcp-section .sec-sub{max-width:65ch;margin:20px auto 0}
+.harness-page .flow-diagram{display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr) 72px minmax(0,1fr);align-items:center;margin-block:48px}
+.harness-page .flow-node{display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0;min-height:164px;padding:28px 24px;border:1px solid #dedee3;border-radius:24px;background:#f5f5f7}
+.harness-page .flow-node-title{font-size:20px;font-weight:600;line-height:1.4;letter-spacing:-.025em}
+.harness-page .flow-node-sub{font-size:14px;color:var(--muted)}
+.harness-page .flow-arrow{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;color:var(--red);padding-inline:4px}
+.harness-page .flow-arrow-line{flex:1;height:1px;background:#b8a5ad}
+.harness-page .flow-arrow-label{font-size:11px;font-weight:600}
+.harness-page .flow-arrow svg{flex-shrink:0;transform:rotate(-90deg)}
+.harness-page .flow-arrow path{fill:currentColor}
+.harness-page .mcp-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px;text-align:left}
+.harness-page .mcp-feat{min-width:0;padding-block:24px;border-top:1px solid #dedee3}
+.harness-page .mcp-feat-arrow{margin-bottom:12px;font-size:17px;font-weight:600}
+.harness-page .mcp-feat-text{color:var(--muted);font-size:15px;line-height:1.8}
+.harness-page .mcp-section .conclusion{margin-top:32px;padding:28px;border-radius:24px;background:#f5f5f7;font-size:17px;line-height:1.8}
 @media(max-width:760px){
- .personal-product :is(.container,.wrap){width:calc(100% - 40px)}
+ .personal-product :is(.container,.wrap),.harness-page main>.mcp-section{width:calc(100% - 40px)}
+ .harness-page .flow-diagram{grid-template-columns:minmax(0,1fr);margin-block:32px}
+ .harness-page .flow-node{min-height:132px}
+ .harness-page .flow-arrow{flex-direction:column;padding:8px 0;gap:4px}
+ .harness-page .flow-arrow-line{flex:none;width:1px;height:12px}
+ .harness-page .flow-arrow svg{transform:none}
+ .harness-page .mcp-features{grid-template-columns:minmax(0,1fr);gap:0}
+ .harness-page .mcp-section .conclusion{padding:24px 20px}
  .personal-product main :is(section,.redirect-notice){padding-block:48px}
  .personal-product .two-col,.personal-product .personal-hero-grid{grid-template-columns:minmax(0,1fr);gap:28px}
  .personal-product .prod-img{max-width:440px;margin:auto}
