@@ -6,7 +6,7 @@
   const endpoint = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev';
   const line = 'https://lin.ee/n5KW430';
   const css = document.createElement('link');
-  css.rel = 'stylesheet'; css.href = '/assets/brand/assistant.css'; document.head.appendChild(css);
+  css.rel = 'stylesheet'; css.href = '/assets/brand/assistant.css?v=a49c047'; document.head.appendChild(css);
   const arrow = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const launcher = document.createElement('button');
   launcher.id = 'tb-ai-launcher'; launcher.type = 'button';
