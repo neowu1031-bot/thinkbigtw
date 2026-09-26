@@ -104,6 +104,8 @@ async function chat(body, env) {
   if (!reply) return json({ error: 'ai_unavailable', fallback: LINE }, 503);
   // Models sometimes answer in Simplified Chinese; normalise to Taiwan Traditional (OpenCC cn→twp).
   reply = toTraditionalTW(reply).replace(/臺/g, '台').replace(/客制/g, '客製').replace(/匯入/g, '導入');
+  // The widget renders plain text (textContent), so strip Markdown the model may emit.
+  reply = reply.replace(/\*\*(.+?)\*\*/g, '$1').replace(/^#{1,6}\s*/gm, '').replace(/^\s*-{3,}\s*$/gm, '').replace(/^\s*[-*]\s+/gm, '・').replace(/\n{3,}/g, '\n\n').trim();
   // NEO 9/27: the advisor never surfaces the Hermes name.
   reply = reply.replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理');
   // Receipt claims must come exclusively from the confirmed database write, never a model.
