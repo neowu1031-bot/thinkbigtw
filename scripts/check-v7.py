@@ -45,7 +45,7 @@ products=['openclaw-starter','hermes-starter','full-agent','dual-agent','annual'
 manifest=json.loads((ROOT/'data/css-bundles.json').read_text())
 for product in products:
  soup=doc(product+'/index.html');raw=str(soup)
- styles=[src for link in soup.select('link[rel=stylesheet]') for src in manifest.get(link['href'],[link['href']])]
+ styles=[src for link in soup.select('link[rel=stylesheet]') for src in manifest.get(link['href'].split('?')[0],[link['href'].split('?')[0]])]
  check(product+': static shared white layout and retained URL',len(soup.select('h1'))==1 and len(soup.select('main'))==1 and '/assets/homesplit/apple.css' in styles and ('/assets/brand/product.css' in styles or 'editorial' in soup.body.get('class',[])) and not re.search('matrix-rain|matrix-canvas|gear-canvas|http-equiv="refresh"|location.replace',raw))
 for rel in ['terms.html','privacy.html']:
  check(rel+': no ERP offer and correct email link',not re.search(r'ERP', (ROOT/rel).read_text()) and bool(doc(rel).select_one('a[href="mailto:AI@thinkbigtw.com"]')))
