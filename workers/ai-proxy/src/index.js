@@ -1991,12 +1991,12 @@ async function handleIndustryDesign(request, env){
         functions: gen.functions.slice(0,4).map(f => ({
           name: f.name, desc: f.desc, systems: f.systems,
           steps: _mkSteps(f.systems), security: _SEC_STD,
-          eta: f.eta || '3-7 工作天', benefit: f.benefit
+          eta: f.eta || '依需求盤點後確認', benefit: f.benefit
         })),
         roadmap: {
-          phase1: { title:'第一階段（立即上線，1-2 週）', detail: rm.phase1 || '' },
-          phase2: { title:'第二階段（成熟運作，1-2 個月）', detail: rm.phase2 || '' },
-          phase3: { title:'第三階段（規模擴張，3-6 個月）', detail: rm.phase3 || '' }
+          phase1: { title:'第一階段（優先建置）', detail: rm.phase1 || '' },
+          phase2: { title:'第二階段（深化運作）', detail: rm.phase2 || '' },
+          phase3: { title:'第三階段（規模擴張）', detail: rm.phase3 || '' }
         },
         roi: gen.roi || {}, plan: gen.plan || '個人方案 / 企業方案 / 雙 Agent 方案'
       };
@@ -2021,15 +2021,15 @@ async function handleIndustryDesign(request, env){
           '重複性通知與行政（提醒、對帳、彙整）佔用大量人力，老闆分身乏術'
         ],
         functions:[
-          { name:'24h 智慧客服與預約', desc:'AI 接詢問與預約、回常見問題，全天候不漏接', systems:S1, steps:_mkSteps(S1), security:_SEC_STD, eta:'3-5 工作天', benefit:'回應 5 分鐘→10 秒，漏接歸零' },
-          { name:'老客自動回訪', desc:'依消費/服務週期自動關懷與回訪邀約', systems:S2, steps:_mkSteps(S2), security:_SEC_STD, eta:'3-5 工作天', benefit:'回購率提升 15-25%' },
-          { name:'分眾再行銷', desc:'依客戶輪廓分群，活動檔期自動推對的優惠', systems:S2, steps:_mkSteps(S2), security:_SEC_STD, eta:'5-7 工作天', benefit:'檔期業績提升 20-30%' },
-          { name:'每日營運摘要', desc:'自動彙整業績、客流與待辦，每早一則摘要', systems:S3, steps:_mkSteps(S3), security:_SEC_STD, eta:'5-7 工作天', benefit:'老闆每天省 1 小時對帳與彙整' }
+          { name:'24h 智慧客服與預約', desc:'AI 接詢問與預約、回常見問題，全天候不漏接', systems:S1, steps:_mkSteps(S1), security:_SEC_STD, eta:'依需求盤點後確認', benefit:'回應 5 分鐘→10 秒，漏接歸零' },
+          { name:'老客自動回訪', desc:'依消費/服務週期自動關懷與回訪邀約', systems:S2, steps:_mkSteps(S2), security:_SEC_STD, eta:'依需求盤點後確認', benefit:'回購率提升 15-25%' },
+          { name:'分眾再行銷', desc:'依客戶輪廓分群，活動檔期自動推對的優惠', systems:S2, steps:_mkSteps(S2), security:_SEC_STD, eta:'依需求盤點後確認', benefit:'檔期業績提升 20-30%' },
+          { name:'每日營運摘要', desc:'自動彙整業績、客流與待辦，每早一則摘要', systems:S3, steps:_mkSteps(S3), security:_SEC_STD, eta:'依需求盤點後確認', benefit:'老闆每天省 1 小時對帳與彙整' }
         ],
         roadmap:{
-          phase1:{ title:'第一階段（立即上線，1-2 週）', detail:'完成 24h 智慧客服與預約 + 老客回訪，立即減少漏接、拉高回購' },
-          phase2:{ title:'第二階段（成熟運作，1-2 個月）', detail:'完成分眾再行銷，累積客群資料後精準推播' },
-          phase3:{ title:'第三階段（規模擴張，3-6 個月）', detail:'完成每日營運摘要並串接多據點，跨點數據一致' }
+          phase1:{ title:'第一階段（優先建置）', detail:'完成 24h 智慧客服與預約 + 老客回訪，立即減少漏接、拉高回購' },
+          phase2:{ title:'第二階段（深化運作）', detail:'完成分眾再行銷，累積客群資料後精準推播' },
+          phase3:{ title:'第三階段（規模擴張）', detail:'完成每日營運摘要並串接多據點，跨點數據一致' }
         },
         roi:{ time:'每月省 30-50 小時客服與行政', revenue:'回購與客單提升 15-30%', experience:'回應 5 分鐘→10 秒，24 小時可服務', payback:'導入成本約 2-4 個月回收' },
         plan:'個人方案 / 企業方案 / 雙 Agent 方案；月維護費可選'
