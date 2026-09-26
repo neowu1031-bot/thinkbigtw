@@ -34,7 +34,13 @@
   function pause() { video.pause(); poster(); }
   function play() {
     if (!mediaReady || preference.matches || userPaused || !visible || document.hidden) return;
-    if (!source.hasAttribute('src')) { source.src = source.dataset.src; video.load(); }
+    if (!source.hasAttribute('src')) {
+      // Choose once before the first load; rotating/resizing never downloads a
+      // second movie. Removing data-mobile-src restores the desktop-only path.
+      source.src = source.dataset.mobileSrc && window.matchMedia('(max-width: 767px)').matches
+        ? source.dataset.mobileSrc : source.dataset.src;
+      video.load();
+    }
     video.muted = true;
     const promise = video.play();
     if (promise) promise.catch(() => { poster(); if (!preference.matches) { button.hidden = false; button.textContent = '播放主視覺'; } });

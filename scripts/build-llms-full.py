@@ -7,7 +7,7 @@ def markdown(node):
  if isinstance(node,Comment):return ''
  if isinstance(node,NavigableString):return str(node)
  name=node.name
- if name in ('script','style','nav','footer','button','noscript','svg','form'):return ''
+ if name in ('script','style','nav','footer','button','noscript','svg','form','dialog'):return ''
  text=''.join(markdown(c) for c in node.children).strip()
  if name in ('h1','h2','h3','h4','h5','h6'):return '\n\n'+'#'*int(name[1])+' '+text+'\n\n'
  if name=='li':return '\n- '+text+'\n'

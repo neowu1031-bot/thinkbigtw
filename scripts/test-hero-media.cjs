@@ -4,11 +4,12 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const code = fs.readFileSync('assets/homesplit/hero-media.js','utf8');
-function setup(reduced=false, rejectPlay=false, {defer=false, complete=false, idle=true}={}) {
+function setup(reduced=false, rejectPlay=false, {defer=false, complete=false, idle=true, mobile=false, responsive=false}={}) {
   function target(extra={}) { return Object.assign({events:{},addEventListener(name,fn){this.events[name]=fn;},fire(name){this.events[name]?.();}},extra); }
   const classes=new Set();
   const frame={classList:{add:x=>classes.add(x),remove:x=>classes.delete(x)}};
   const source=target({dataset:{src:'/assets/neo_hero_wide.mp4'},hasAttribute(name){return name==='src' && Boolean(this.src);},removeAttribute(name){delete this[name];}});
+  if(responsive)source.dataset.mobileSrc='/assets/neo_hero_nof_720.mp4';
   const button=target({hidden:true,textContent:''});
   const video=target({parentElement:frame,paused:true,loads:0,plays:0,querySelector(){return source;},load(){this.loads++;},pause(){this.paused=true;},play(){this.plays++;if(rejectPlay)return Promise.reject(new Error('autoplay denied'));this.paused=false;this.fire('playing');return Promise.resolve();}});
   const preference=target({matches:reduced});
@@ -16,7 +17,7 @@ function setup(reduced=false, rejectPlay=false, {defer=false, complete=false, id
   let visibility;
   class Observer {constructor(fn){visibility=fn;}observe(){} }
   const timers=[],idleTasks=[];
-  const window=target({matchMedia:()=>preference,IntersectionObserver:Observer,setTimeout(fn,ms){timers.push({fn,ms});}});
+  const window=target({matchMedia:query=>query.includes('max-width')?{matches:mobile}:preference,IntersectionObserver:Observer,setTimeout(fn,ms){timers.push({fn,ms});}});
   if(idle)window.requestIdleCallback=fn=>idleTasks.push(fn);
   vm.runInNewContext(code,{window,document,IntersectionObserver:Observer});
   const finishLoading=()=>{if(!complete)window.fire('load');timers.shift()?.fn();if(idle)idleTasks.shift()?.();else timers.shift()?.fn();};
@@ -70,6 +71,19 @@ test('autoplay rejection retains poster; late rejection cannot expose reduced-mo
 });
 test('failed media source falls back to poster',()=>{
   const x=setup();x.source.fire('error');assert.equal(x.classes.size,0);assert.ok(x.video.paused);assert.ok(x.button.hidden);
+});
+test('mobile loads only the small source; desktop and reversible fallback retain the original',()=>{
+  const mobile=setup(false,false,{mobile:true,responsive:true});
+  assert.equal(mobile.source.src,'/assets/neo_hero_nof_720.mp4');
+  assert.equal(mobile.video.loads,1);
+  mobile.setVisible(false);mobile.setVisible(true);
+  assert.equal(mobile.video.loads,1);
+  const desktop=setup(false,false,{responsive:true});
+  assert.equal(desktop.source.src,'/assets/neo_hero_wide.mp4');
+  const fallback=setup(false,false,{mobile:true});
+  assert.equal(fallback.source.src,'/assets/neo_hero_wide.mp4');
+  const reduced=setup(true,false,{mobile:true,responsive:true});
+  assert.equal(reduced.source.src,undefined);
 });
 function personalSetup(reduced) {
   function target(extra={}) { return Object.assign({events:{},addEventListener(n,fn){this.events[n]=fn;},fire(n){this.events[n]?.();}},extra); }

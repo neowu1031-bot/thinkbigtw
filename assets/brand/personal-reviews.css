@@ -1,0 +1,22 @@
+/* Personal review wall base, bundled before the shared v6 refinements. */
+#personal-reviews{background:#f5f5f7;padding:88px 0;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei",sans-serif}
+#personal-reviews .container{min-width:0;max-width:1160px;width:100%;box-sizing:border-box}
+#personal-reviews .personal-reviews-heading{max-width:820px;margin-bottom:36px}
+#personal-reviews .personal-reviews-eyebrow{font-size:13px;font-weight:600;letter-spacing:.06em;color:#6e6e73;margin-bottom:14px}
+#personal-reviews h2{font-family:inherit;font-size:clamp(25px,3.2vw,38px);line-height:1.4;letter-spacing:-.035em;font-weight:600;margin:0 0 20px;text-wrap:pretty;overflow-wrap:anywhere}
+#personal-reviews .personal-reviews-source{font-size:13px;line-height:1.8;color:#6e6e73}
+#personal-reviews .personal-reviews-context{font-size:13px;line-height:1.8;color:#6e6e73;margin-top:8px;max-width:70ch}
+#personal-reviews .personal-reviews-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;min-width:0}
+#personal-reviews .personal-review-card{display:flex;flex-direction:column;min-width:0;margin:0;padding:28px;border:1px solid #e8e8ed;border-radius:24px;background:#fff;box-shadow:0 4px 20px #1d1d1f04}
+#personal-reviews figcaption{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:#6e6e73;line-height:1.6;margin-bottom:20px}
+#personal-reviews figcaption span{font-weight:600;color:#424245}
+#personal-reviews time{font-variant-numeric:tabular-nums}
+#personal-reviews blockquote{margin:0 0 24px;padding:0;border:0;background:none}
+#personal-reviews blockquote p{font-size:18px;font-weight:500;line-height:1.8;letter-spacing:-.015em;color:#1d1d1f;white-space:pre-line;overflow-wrap:anywhere}
+#personal-reviews .personal-review-plan{font-size:12px;line-height:1.8;color:#6e6e73;margin:auto 0 20px;overflow-wrap:anywhere}
+#personal-reviews .personal-review-plan a{color:#75495a;text-decoration:underline;text-underline-offset:3px}
+#personal-reviews .personal-review-image{display:block;width:100%;min-width:0;border:1px solid #e8e8ed;border-radius:8px;background:#fff}
+#personal-reviews img{display:block;width:100%;max-width:100%;height:auto;border-radius:7px}
+#personal-reviews .personal-review-image-note{font-size:11px;color:#6e6e73;margin-top:8px;line-height:1.6}
+#personal-reviews a:focus-visible{outline:2px solid #75495a;outline-offset:4px}
+@media(max-width:700px){#personal-reviews{padding:56px 0}#personal-reviews .personal-reviews-grid{grid-template-columns:minmax(0,1fr);gap:16px}#personal-reviews .personal-review-card{padding:22px;border-radius:20px}#personal-reviews blockquote p{font-size:17px}#personal-reviews .personal-reviews-heading{margin-bottom:28px}}

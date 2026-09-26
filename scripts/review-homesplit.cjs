@@ -6,22 +6,38 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const origin = process.env.REVIEW_ORIGIN || 'http://127.0.0.1:8787';
-const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v4';
+const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v6';
 (async function () {
   fs.mkdirSync(out, {recursive:true});
   const browser = await chromium.launch({executablePath:process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
   const results = [];
   try {
-    for (const width of [375,768,1440]) {
+    for (const width of [375,768,1440,1920]) {
       const context = await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
       await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
       const page = await context.newPage();
-      for (const route of ['/','/enterprise/','/enterprise/departments/','/enterprise/process/','/enterprise/process/worksheet/','/trust/','/guides/','/guides/choose-ai-partner/','/guides/local-ai-data/','/guides/ai-acceptance/','/pricing/enterprise/','/pricing/personal/']) {
+      for (const route of ['/','/enterprise/','/enterprise/departments/','/enterprise/process/','/enterprise/process/worksheet/','/trust/','/about/','/guides/glossary/','/guides/','/guides/choose-ai-partner/','/guides/local-ai-data/','/guides/ai-acceptance/','/guides/openclaw-safe/','/guides/openclaw-daizhuang/','/guides/yuanduan-daizhuang/','/guides/hermes-vs-openclaw/','/pricing/','/pricing/enterprise/','/pricing/personal/','/openclaw-starter/','/hermes-starter/','/full-agent/','/dual-agent/','/skill-pack/','/annual-pro/','/annual-flagship/','/solo-pro/','/harness/']) {
         const errors = [];
         const capture = e => errors.push(e.message);
         page.on('pageerror',capture);
         await page.goto(origin+route,{waitUntil:'networkidle'});
         const size = await page.evaluate(() => ({width:innerWidth,scroll:document.documentElement.scrollWidth}));
+        const hero = await page.locator('.tb-hero-copy').boundingBox();
+        if (!hero || Math.abs(hero.x + hero.width/2 - width/2)>3) throw new Error(route+' hero is not centered');
+        if (hero.width>741) throw new Error(route+' hero copy exceeds 740px');
+        if (route==='/pricing/personal/') {
+          const cards=page.locator('.comparison-cards');
+          if ((await cards.isVisible()) !== (width<768)) throw new Error('responsive comparison mismatch');
+          const screenshot=page.locator('.personal-review-image').first();
+          await screenshot.click();
+          if (!(await page.locator('#review-dialog').isVisible())) throw new Error('review dialog missing');
+          await page.locator('[data-review-zoom]').click();
+          if (await page.locator('[data-review-zoom]').getAttribute('aria-pressed')!=='true') throw new Error('review zoom failed');
+          await page.screenshot({path:path.join(out,`${width}-review-dialog.png`)});
+          await page.keyboard.press('Escape');
+          if (await page.locator('#review-dialog').isVisible()) throw new Error('Escape did not close review');
+          if (!(await screenshot.evaluate(el=>el===document.activeElement))) throw new Error('review focus not restored');
+        }
         if (width===375) {
           const menu = page.locator('#tb-nav details');
           await menu.locator('summary').click();
@@ -93,6 +109,18 @@ const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v4';
     await moving.waitForFunction(() => !document.querySelector('#brand-hero-video source').hasAttribute('src'));
     if (!(await moving.locator('.hero-poster').isVisible())) throw new Error('live motion change lost poster');
     await motionContext.close();
+    const mobileMotion=await browser.newContext({viewport:{width:375,height:900},reducedMotion:'no-preference'});
+    const movies=[];
+    await mobileMotion.route('**/*',route=>{
+      if(route.request().url().endsWith('.mp4'))movies.push(route.request().url());
+      return new URL(route.request().url()).origin===origin?route.continue():route.abort();
+    });
+    const phone=await mobileMotion.newPage();
+    await phone.goto(origin+'/');
+    await phone.waitForFunction(()=>!document.getElementById('brand-hero-video').paused);
+    if(await phone.locator('#brand-hero-video source').getAttribute('src')!=='/assets/neo_hero_nof_720.mp4')throw new Error('mobile source selection failed');
+    if(movies.some(url=>!url.endsWith('/neo_hero_nof_720.mp4')))throw new Error('mobile downloaded desktop movie');
+    await mobileMotion.close();
     const noJS = await browser.newContext({javaScriptEnabled:false,viewport:{width:375,height:900}});
     await noJS.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
     const readable = await noJS.newPage();await readable.goto(origin+'/');

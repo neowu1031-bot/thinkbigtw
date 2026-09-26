@@ -51,7 +51,7 @@ for p,url,soup in pages():
   nodes.append({'@type':'CollectionPage','@id':BASE+'guides/#collection','url':url,'name':title,'hasPart':[{'@id':u+'#article'} for u in article_urls]+[{'@id':BASE+'guides/glossary/#terms'}]})
  if '/glossary/' in url:
   nodes=[n for n in nodes if n.get('@type')!='DefinedTermSet']
-  nodes.append({'@type':'DefinedTermSet','@id':url+'#terms','name':h1,'hasDefinedTerm':[{'@type':'DefinedTerm','name':d.h2.get_text(),'description':d.select_one('.term-definition').get_text(),'inDefinedTermSet':{'@id':url+'#terms'}} for d in soup.select('section[id^="term-"]')]})
+  nodes.append({'@type':'DefinedTermSet','@id':url+'#terms','name':h1,'hasDefinedTerm':[{'@type':'DefinedTerm','name':d.find(['h2','h3']).get_text(),'description':d.select_one('.term-definition').get_text(),'inDefinedTermSet':{'@id':url+'#terms'}} for d in soup.select('section[id^="term-"]')]})
  org=ORG if url in (BASE,BASE+'about/') else {k:ORG[k] for k in ('@type','@id','name','url','logo')}
  graph=[org,WEBSITE,web,breadcrumb]+([EDITOR] if any(n.get('@type')=='Article' for n in nodes) else [])+nodes
  data=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False,indent=2)

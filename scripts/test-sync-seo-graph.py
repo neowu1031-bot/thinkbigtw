@@ -1,6 +1,7 @@
 """Isolated regression fixtures: --check never writes, including legacy pages."""
 import contextlib
 import io
+import json
 from pathlib import Path
 import runpy
 import sys
@@ -74,6 +75,20 @@ class GraphTests(unittest.TestCase):
   self.assertIn('legacy.html', output)
   self.assertNotIn('about/index.html', output)
   self.assertEqual(before, self.snapshot())
+
+ def test_topic_cards_keep_all_visible_term_definitions_in_schema(self):
+  p = self.root / 'guides/glossary/index.html'
+  p.write_text(p.read_text().replace('</body>', '<div><h2>主題</h2>'
+    '<section id="term-1"><h3>AI Agent</h3><p class="term-definition">可覆核的工作。</p></section>'
+    '<section id="term-2"><h2>既有術語</h2><p class="term-definition">既有定義。</p></section>'
+    '</div></body>'))
+  self.assertEqual(self.run_graph()[0], 0)
+  soup = seo_common.BeautifulSoup(p.read_text(), 'html.parser')
+  graph = json.loads(soup.select_one('script[type="application/ld+json"]').string)['@graph']
+  terms = next(n for n in graph if n.get('@type') == 'DefinedTermSet')['hasDefinedTerm']
+  self.assertEqual([(n['name'], n['description']) for n in terms],
+    [('AI Agent', '可覆核的工作。'), ('既有術語', '既有定義。')])
+  self.assertEqual(self.run_graph(check=True)[0], 0)
 
 
 if __name__ == '__main__':
