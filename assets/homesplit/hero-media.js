@@ -2,14 +2,19 @@
    Rejected autoplay, disabled JavaScript and load errors all retain the poster. */
 (function () {
   'use strict';
-  // Personal hub retains GM-approved autoplay and the original video attributes.
-  // Reduced motion pauses it and exposes an explicit static poster instead.
+  // Assign media URLs only after checking the user's motion preference.
   const personal = document.querySelector('.personal-mascot video');
   if (personal) {
+    const source = personal.querySelector('source');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const sync = () => {
-      if (reduced.matches) personal.pause();
-      else if (!document.hidden) { const play = personal.play(); if (play) play.catch(() => {}); }
+      if (reduced.matches) {
+        personal.pause();
+        if (source.hasAttribute('src')) { source.removeAttribute('src'); personal.load(); }
+      } else if (!document.hidden) {
+        if (!source.hasAttribute('src')) { source.src = source.dataset.src; personal.load(); }
+        const play = personal.play(); if (play) play.catch(() => {});
+      }
     };
     personal.addEventListener('playing', () => { if (reduced.matches) personal.pause(); });
     reduced.addEventListener('change', sync);
@@ -24,17 +29,18 @@
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
   let userPaused = false;
   let visible = true;
+  let mediaReady = false;
   function poster() { frame.classList.remove('is-playing'); }
   function pause() { video.pause(); poster(); }
   function play() {
-    if (preference.matches || userPaused || !visible || document.hidden) return;
+    if (!mediaReady || preference.matches || userPaused || !visible || document.hidden) return;
     if (!source.hasAttribute('src')) { source.src = source.dataset.src; video.load(); }
     video.muted = true;
     const promise = video.play();
     if (promise) promise.catch(() => { poster(); if (!preference.matches) { button.hidden = false; button.textContent = '播放主視覺'; } });
   }
   function update() {
-    button.hidden = preference.matches;
+    button.hidden = !mediaReady || preference.matches;
     if (preference.matches) {
       pause(); source.removeAttribute('src'); video.load();
     } else {
@@ -63,4 +69,15 @@
     observer.observe(frame);
   }
   update();
+  // Keep the poster on the critical rendering path. Every playback entry point
+  // shares this gate, including visibility and motion-preference changes.
+  function scheduleMedia() {
+    window.setTimeout(() => {
+      const ready = () => { mediaReady = true; update(); };
+      if ('requestIdleCallback' in window) window.requestIdleCallback(ready);
+      else window.setTimeout(ready, 0);
+    }, 2000);
+  }
+  if (document.readyState === 'complete') scheduleMedia();
+  else window.addEventListener('load', scheduleMedia, { once: true });
 })();

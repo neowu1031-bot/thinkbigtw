@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const code = fs.readFileSync('assets/homesplit/hero-media.js','utf8');
-function setup(reduced=false, rejectPlay=false) {
+function setup(reduced=false, rejectPlay=false, {defer=false, complete=false, idle=true}={}) {
   function target(extra={}) { return Object.assign({events:{},addEventListener(name,fn){this.events[name]=fn;},fire(name){this.events[name]?.();}},extra); }
   const classes=new Set();
   const frame={classList:{add:x=>classes.add(x),remove:x=>classes.delete(x)}};
@@ -12,13 +12,40 @@ function setup(reduced=false, rejectPlay=false) {
   const button=target({hidden:true,textContent:''});
   const video=target({parentElement:frame,paused:true,loads:0,plays:0,querySelector(){return source;},load(){this.loads++;},pause(){this.paused=true;},play(){this.plays++;if(rejectPlay)return Promise.reject(new Error('autoplay denied'));this.paused=false;this.fire('playing');return Promise.resolve();}});
   const preference=target({matches:reduced});
-  const document=target({hidden:false,querySelector(){return null;},getElementById(id){return id==='brand-hero-video'?video:button;}});
+  const document=target({hidden:false,readyState:complete?'complete':'loading',querySelector(){return null;},getElementById(id){return id==='brand-hero-video'?video:button;}});
   let visibility;
   class Observer {constructor(fn){visibility=fn;}observe(){} }
-  const window={matchMedia:()=>preference,IntersectionObserver:Observer};
+  const timers=[],idleTasks=[];
+  const window=target({matchMedia:()=>preference,IntersectionObserver:Observer,setTimeout(fn,ms){timers.push({fn,ms});}});
+  if(idle)window.requestIdleCallback=fn=>idleTasks.push(fn);
   vm.runInNewContext(code,{window,document,IntersectionObserver:Observer});
-  return {source,button,video,preference,document,classes,setReduced(value){preference.matches=value;preference.fire('change');},setVisible(value){visibility([{isIntersecting:value}]);}};
+  const finishLoading=()=>{if(!complete)window.fire('load');timers.shift()?.fn();if(idle)idleTasks.shift()?.();else timers.shift()?.fn();};
+  if(!defer)finishLoading();
+  return {source,button,video,preference,document,classes,window,timers,idleTasks,finishLoading,setReduced(value){preference.matches=value;preference.fire('change');},setVisible(value){visibility([{isIntersecting:value}]);}};
 }
+test('home source waits for load, two seconds and idle; observers cannot bypass the gate',()=>{
+ const x=setup(false,false,{defer:true});
+ x.setVisible(true);x.document.fire('visibilitychange');x.setReduced(true);x.setReduced(false);
+ assert.equal(x.source.src,undefined);assert.ok(x.button.hidden);assert.equal(x.timers.length,0);
+ x.window.fire('load');assert.equal(x.source.src,undefined);assert.equal(x.timers[0].ms,2000);
+ x.timers.shift().fn();assert.equal(x.source.src,undefined);assert.equal(x.idleTasks.length,1);
+ x.idleTasks.shift()();assert.equal(x.source.src,'/assets/neo_hero_wide.mp4');
+});
+test('late initialization and browsers without requestIdleCallback still defer playback',()=>{
+ const x=setup(false,false,{defer:true,complete:true,idle:false});
+ assert.equal(x.source.src,undefined);assert.equal(x.timers.length,1);
+ x.timers.shift().fn();assert.equal(x.source.src,undefined);x.timers.shift().fn();
+ assert.equal(x.video.plays,1);
+});
+test('idle readiness cannot load hidden, offscreen or reduced-motion media',()=>{
+ for(const state of ['hidden','offscreen','reduced']){
+  const x=setup(false,false,{defer:true});
+  if(state==='hidden')x.document.hidden=true;
+  if(state==='offscreen')x.setVisible(false);
+  if(state==='reduced')x.setReduced(true);
+  x.finishLoading();assert.equal(x.source.src,undefined,state);assert.equal(x.video.plays,0,state);
+ }
+});
 test('reduced motion never assigns the MP4 source and keeps the poster',()=>{
   const x=setup(true);assert.equal(x.source.src,undefined);assert.equal(x.video.plays,0);assert.equal(x.button.hidden,true);assert.equal(x.classes.size,0);
 });
@@ -43,4 +70,22 @@ test('autoplay rejection retains poster; late rejection cannot expose reduced-mo
 });
 test('failed media source falls back to poster',()=>{
   const x=setup();x.source.fire('error');assert.equal(x.classes.size,0);assert.ok(x.video.paused);assert.ok(x.button.hidden);
+});
+function personalSetup(reduced) {
+  function target(extra={}) { return Object.assign({events:{},addEventListener(n,fn){this.events[n]=fn;},fire(n){this.events[n]?.();}},extra); }
+  const source={dataset:{src:'/assets/neo_hero_wide.mp4'},hasAttribute(){return Boolean(this.src);},removeAttribute(){delete this.src;}};
+  const video=target({loads:0,plays:0,paused:true,querySelector(){return source;},load(){this.loads++;},pause(){this.paused=true;},play(){this.paused=false;this.plays++;return Promise.resolve();}});
+  const preference=target({matches:reduced});
+  const document=target({hidden:false,querySelector(){return video;},getElementById(){return null;}});
+  vm.runInNewContext(code,{window:{matchMedia:()=>preference},document});
+  return {source,video,preference,document};
+}
+test('personal hub reduced motion never loads MP4; enabling motion attaches media only then',()=>{
+ const x=personalSetup(true);assert.equal(x.source.src,undefined);assert.equal(x.video.loads,0);assert.equal(x.video.plays,0);
+ x.preference.matches=false;x.preference.fire('change');assert.equal(x.source.src,'/assets/neo_hero_wide.mp4');assert.equal(x.video.loads,1);assert.equal(x.video.plays,1);
+ x.preference.matches=true;x.preference.fire('change');assert.equal(x.source.src,undefined);assert.equal(x.video.paused,true);
+});
+test('personal hub pauses when hidden and respects reduced motion when shown again',()=>{
+ const x=personalSetup(false);x.document.hidden=true;x.document.fire('visibilitychange');assert.ok(x.video.paused);
+ x.preference.matches=true;x.preference.fire('change');x.document.hidden=false;x.document.fire('visibilitychange');assert.equal(x.video.plays,1);assert.equal(x.source.src,undefined);
 });

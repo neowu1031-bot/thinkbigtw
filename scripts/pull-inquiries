@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+"""Read new inquiry summaries as JSONL, without secrets in arguments/logs.
+Use a secure output sink. No server mutation, no transcript, no automatic sending.
+Caller advances its watermark ONLY after processing all output successfully.
+"""
+import argparse, json, os, sys, urllib.request, urllib.parse, urllib.error
+from datetime import datetime, timezone, timedelta
+parser=argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--since',required=True,help='Inclusive ISO timestamp; use previous successful until watermark')
+parser.add_argument('--until',help='Exclusive ISO timestamp; default now minus 60 seconds to avoid in-flight writes')
+parser.add_argument('--limit',type=int,default=100,help='Page size (1..500); all pages are read')
+args=parser.parse_args()
+def instant(s):
+ value=datetime.fromisoformat(s.replace('Z','+00:00'))
+ if value.tzinfo is None:raise ValueError('timezone required')
+ return value.astimezone(timezone.utc)
+try:
+ since=instant(args.since);until=instant(args.until) if args.until else datetime.now(timezone.utc)-timedelta(seconds=60)
+ if since>=until or not 1<=args.limit<=500:raise ValueError()
+ base=os.environ['INQUIRY_SUPABASE_URL'].rstrip('/');key=os.environ['INQUIRY_SUPABASE_SERVICE_ROLE_KEY']
+ if urllib.parse.urlparse(base).scheme!='https':raise ValueError()
+except (ValueError,KeyError):sys.exit('Invalid time window, page size, or missing HTTPS Supabase environment variables.')
+cursor=None;count=0
+try:
+ while True:
+  query=[('select','id,name,organization,need,scale,contact_method,contact,consent_at'),('consent_at','gte.'+since.isoformat()),('consent_at','lt.'+until.isoformat()),('order','consent_at.asc,id.asc'),('limit',str(args.limit))]
+  if cursor:query.append(('or',f'(consent_at.gt.{cursor[0]},and(consent_at.eq.{cursor[0]},id.gt.{cursor[1]}))'))
+  request=urllib.request.Request(base+'/rest/v1/thinkbig_inquiries?'+urllib.parse.urlencode(query),headers={'apikey':key,'Authorization':'Bearer '+key})
+  with urllib.request.urlopen(request,timeout=20) as response:
+   rows=json.load(response)
+  if not isinstance(rows,list):raise ValueError()
+  for row in rows:
+   print(json.dumps(row,ensure_ascii=False));count+=1
+  if len(rows)<args.limit:break
+  cursor=(rows[-1]['consent_at'],rows[-1]['id'])
+ sys.stdout.flush()
+ print(json.dumps({'status':'complete','count':count,'until':until.isoformat(),'note':'Advance watermark after downstream acknowledgement; deduplicate by id.'}),file=sys.stderr)
+except (urllib.error.URLError,ValueError,KeyError,TypeError,BrokenPipeError):
+ sys.exit('Inquiry pull failed; do not advance watermark. Retry the same window and deduplicate by id.')

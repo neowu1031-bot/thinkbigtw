@@ -10,7 +10,13 @@
         observer.unobserve(entry.target);
       }
     }), { threshold: 0.12 });
-    document.querySelectorAll('.section-head').forEach(el => observer.observe(el));
+    // Initial viewport content must paint immediately, including restored scroll
+    // positions. Explicit exclusions also protect heroes on very short screens.
+    const belowFold = Array.from(document.querySelectorAll('.section-head')).filter(el =>
+      !el.closest('[data-no-reveal], .page-hero, .brand-hero, .brand-definition') &&
+      el.getBoundingClientRect().top >= window.innerHeight
+    );
+    belowFold.forEach(el => observer.observe(el));
   }
   const diagram = document.querySelector('.governance-model');
   if (diagram) {
