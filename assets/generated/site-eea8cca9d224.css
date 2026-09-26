@@ -125,6 +125,12 @@ body:has(>#tb-nav) :focus-visible{outline:3px solid #a14a68;outline-offset:4px}
 /* Readable definitions on dark tiles; first-screen copy never fades in. */
 .readiness-section .tb-definition,.dark-section .tb-definition{color:#d6d6da}
 .readiness-section .tb-definition-note,.dark-section .tb-definition-note{color:#bfbfc5}
+/* HOMESPLIT v6 fix (SITE, RANK 01:50 MTG-b18f0903): enterprise-overview #process is a dark tile that previously inherited .editorial --muted (#68686d) on .intro and #45454b on .tb-definition against #1d1d1f background → contrast 3.03 / 1.84 (FAIL WCAG AA 4.5). Lift foreground tones to AA-safe values; verify against #1d1d1f. */
+.enterprise-overview #process .intro{color:#d6d6da}
+.enterprise-overview #process .tb-definition{color:#d6d6da}
+.enterprise-overview #process .tb-definition-note{color:#bfbfc5}
+.enterprise-overview #process .method-deliverable{color:#bfbfc5}
+.enterprise-overview #process .method-en{color:#eea4bb}
 [data-no-reveal],[data-no-reveal] .arriving{animation:none!important}
 
 /* Round 6: one axis and one copy measure across marketing hero templates. */
@@ -208,7 +214,7 @@ body:has(>#tb-nav) :is(.brand-hero .home-statement,.s-hero>.container.tb-hero-co
 .personal-hub #compare .container{max-width:1280px}
 .personal-hub #compare h2{text-align:center;margin-bottom:40px}
 .personal-hub #compare .cmp{width:100%;min-width:0;table-layout:fixed;border-collapse:collapse;font-size:16px}
-.personal-hub #compare .cmp :is(th,td){padding:22px 20px;line-height:1.85;font-size:15px;vertical-align:top;overflow-wrap:anywhere}
+.personal-hub #compare .cmp :is(th,td){padding:22px 20px;line-height:1.85;font-size:15px;vertical-align:top;overflow-wrap:normal}
 .personal-hub #compare .cmp tr>:first-child{width:15%}
 .personal-hub #compare .cmp thead th{font-size:16px}
 .comparison-cards{display:none}
@@ -246,7 +252,7 @@ body:has(>#tb-nav) :is(.brand-hero .home-statement,.s-hero>.container.tb-hero-co
   .comparison-cards h3{font-size:23px;line-height:1.4;margin-bottom:24px}
   .comparison-cards dl>div{padding:16px 0;border-top:1px solid #e3e3e8}
   .comparison-cards dt{font-size:13px;color:#65656b;margin-bottom:6px}
-  .comparison-cards dd{margin:0;font-size:16px;line-height:1.8;overflow-wrap:anywhere}
+  .comparison-cards dd{margin:0;font-size:16px;line-height:1.8;overflow-wrap:normal}
   .personal-hub #compare .cmp,.personal-hub #compare .cmp :is(tbody,tr,td){display:block;width:100%}
   .personal-hub #compare .cmp thead{display:none}
   .personal-hub #compare .cmp tbody th{display:block;width:100%;padding-bottom:8px}
@@ -261,3 +267,29 @@ body:has(>#tb-nav) :is(.brand-hero .home-statement,.s-hero>.container.tb-hero-co
   .department-index a:last-child .department-art{margin-top:12px}
 }
 @media print{.comparison-cards,.review-dialog{display:none!important}.personal-hub #compare .comparison-enhanced{display:block}}
+
+/* Round 6b: CJK wrapping and optical centering. Keep prose intact; only
+   explicitly marked long Latin tokens may break at arbitrary characters. */
+body:has(>#tb-nav) :is(h1,h2,h3,h4,p,li,dt,dd,th,td,summary,label){
+  line-break:strict;word-break:normal;overflow-wrap:normal;
+}
+body:has(>#tb-nav) :is(h1,h2,h3,h4){text-wrap:balance}
+body:has(>#tb-nav) :is(p,li,dt,dd,th,td,.intro){text-wrap:pretty}
+body:has(>#tb-nav) :is(.tb-hero-copy,.section-head,.closing) :is(h1,h2){text-spacing-trim:trim-both}
+/* The last ideograph and punctuation travel together. The half-em optical
+   adjustment is a fallback only: native trimming must not be applied twice. */
+.title-tail,.keep-phrase{white-space:nowrap}
+body:has(>#tb-nav) .punct{display:inline-block;margin-inline-end:-.5em;text-spacing-trim:space-all}
+@supports(text-spacing-trim:trim-both){
+  body:has(>#tb-nav) .punct{display:inline;margin-inline-end:0;text-spacing-trim:trim-both}
+}
+body:has(>#tb-nav) :is(.break-token,a[href^="mailto:"]){overflow-wrap:anywhere;word-break:normal}
+body:has(>#tb-nav) .tb-hero-copy>:is(.intro,.tb-definition,.tb-definition-note,.lead,.hero-desc,.art-desc,.hero-tagline),
+body:has(>#tb-nav) .section-head :is(.intro,.tb-definition,p:not(.eyebrow)),
+body:has(>#tb-nav) .brand-definition p{
+  width:100%;max-width:36em;margin-inline:auto;
+}
+/* Descriptions are always siblings after the eyebrow/title group. */
+body:has(>#tb-nav) .section-head>.tb-definition{margin-block:0}
+/* Legacy narrow columns and cards may shrink without forcing word breaks. */
+body:has(>#tb-nav) :is(.section-head,.tb-hero-copy,.about-sections>section,.glossary-grid>section){min-width:0}

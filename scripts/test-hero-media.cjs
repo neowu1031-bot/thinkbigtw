@@ -4,20 +4,20 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const code = fs.readFileSync('assets/homesplit/hero-media.js','utf8');
-function setup(reduced=false, rejectPlay=false, {defer=false, complete=false, idle=true, mobile=false, responsive=false}={}) {
+function setup(reduced=false, rejectPlay=false, {defer=false, complete=false, idle=true, mobile=false, responsive=false, autoplay="desktop"}={}) {
   function target(extra={}) { return Object.assign({events:{},addEventListener(name,fn){this.events[name]=fn;},fire(name){this.events[name]?.();}},extra); }
   const classes=new Set();
   const frame={classList:{add:x=>classes.add(x),remove:x=>classes.delete(x)}};
   const source=target({dataset:{src:'/assets/neo_hero_wide.mp4'},hasAttribute(name){return name==='src' && Boolean(this.src);},removeAttribute(name){delete this[name];}});
   if(responsive)source.dataset.mobileSrc='/assets/neo_hero_nof_720.mp4';
   const button=target({hidden:true,textContent:''});
-  const video=target({parentElement:frame,paused:true,loads:0,plays:0,querySelector(){return source;},load(){this.loads++;},pause(){this.paused=true;},play(){this.plays++;if(rejectPlay)return Promise.reject(new Error('autoplay denied'));this.paused=false;this.fire('playing');return Promise.resolve();}});
+  const video=target({dataset:{autoplay},parentElement:frame,paused:true,loads:0,plays:0,querySelector(){return source;},load(){this.loads++;},pause(){this.paused=true;},play(){this.plays++;if(rejectPlay)return Promise.reject(new Error('autoplay denied'));this.paused=false;this.fire('playing');return Promise.resolve();}});
   const preference=target({matches:reduced});
   const document=target({hidden:false,readyState:complete?'complete':'loading',querySelector(){return null;},getElementById(id){return id==='brand-hero-video'?video:button;}});
   let visibility;
   class Observer {constructor(fn){visibility=fn;}observe(){} }
   const timers=[],idleTasks=[];
-  const window=target({matchMedia:query=>query.includes('max-width')?{matches:mobile}:preference,IntersectionObserver:Observer,setTimeout(fn,ms){timers.push({fn,ms});}});
+  const window=target({matchMedia:query=>query.includes('max-width')?target({matches:mobile}):preference,IntersectionObserver:Observer,setTimeout(fn,ms){timers.push({fn,ms});}});
   if(idle)window.requestIdleCallback=fn=>idleTasks.push(fn);
   vm.runInNewContext(code,{window,document,IntersectionObserver:Observer});
   const finishLoading=()=>{if(!complete)window.fire('load');timers.shift()?.fn();if(idle)idleTasks.shift()?.();else timers.shift()?.fn();};
@@ -73,16 +73,16 @@ test('failed media source falls back to poster',()=>{
   const x=setup();x.source.fire('error');assert.equal(x.classes.size,0);assert.ok(x.video.paused);assert.ok(x.button.hidden);
 });
 test('mobile loads only the small source; desktop and reversible fallback retain the original',()=>{
-  const mobile=setup(false,false,{mobile:true,responsive:true});
+  const mobile=setup(false,false,{mobile:true,responsive:true,autoplay:"all"});
   assert.equal(mobile.source.src,'/assets/neo_hero_nof_720.mp4');
   assert.equal(mobile.video.loads,1);
   mobile.setVisible(false);mobile.setVisible(true);
   assert.equal(mobile.video.loads,1);
   const desktop=setup(false,false,{responsive:true});
   assert.equal(desktop.source.src,'/assets/neo_hero_wide.mp4');
-  const fallback=setup(false,false,{mobile:true});
+  const fallback=setup(false,false,{mobile:true,autoplay:"all"});
   assert.equal(fallback.source.src,'/assets/neo_hero_wide.mp4');
-  const reduced=setup(true,false,{mobile:true,responsive:true});
+  const reduced=setup(true,false,{mobile:true,responsive:true,autoplay:"all"});
   assert.equal(reduced.source.src,undefined);
 });
 function personalSetup(reduced) {
@@ -102,4 +102,11 @@ test('personal hub reduced motion never loads MP4; enabling motion attaches medi
 test('personal hub pauses when hidden and respects reduced motion when shown again',()=>{
  const x=personalSetup(false);x.document.hidden=true;x.document.fire('visibilitychange');assert.ok(x.video.paused);
  x.preference.matches=true;x.preference.fire('change');x.document.hidden=false;x.document.fire('visibilitychange');assert.equal(x.video.plays,1);assert.equal(x.source.src,undefined);
+});
+
+test('retained SITE desktop mode keeps phones on the poster without scheduling video',()=>{
+ const x=setup(false,false,{mobile:true,responsive:true,autoplay:'desktop'});
+ x.setVisible(true);x.document.fire('visibilitychange');x.setReduced(true);x.setReduced(false);
+ assert.equal(x.source.src,undefined);assert.equal(x.video.plays,0);assert.equal(x.video.loads,1);
+ assert.ok(x.button.hidden);assert.equal(x.timers.length,0);
 });

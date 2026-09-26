@@ -12,7 +12,7 @@ const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v6';
   const browser = await chromium.launch({executablePath:process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
   const results = [];
   try {
-    for (const width of [375,768,1440,1920]) {
+    for (const width of [375,390,1024,1440,1920]) {
       const context = await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'});
       await context.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
       const page = await context.newPage();
@@ -117,9 +117,16 @@ const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v6';
     });
     const phone=await mobileMotion.newPage();
     await phone.goto(origin+'/');
-    await phone.waitForFunction(()=>!document.getElementById('brand-hero-video').paused);
-    if(await phone.locator('#brand-hero-video source').getAttribute('src')!=='/assets/neo_hero_nof_720.mp4')throw new Error('mobile source selection failed');
-    if(movies.some(url=>!url.endsWith('/neo_hero_nof_720.mp4')))throw new Error('mobile downloaded desktop movie');
+    const mode=await phone.locator('#brand-hero-video').getAttribute('data-autoplay');
+    if(mode==='desktop'){
+      await phone.waitForTimeout(3500);
+      if(movies.length || await phone.locator('#brand-hero-video source').getAttribute('src'))throw new Error('desktop mode loaded movie on phone');
+      if(!(await phone.locator('.hero-poster').isVisible()))throw new Error('mobile poster missing');
+    }else{
+      await phone.waitForFunction(()=>!document.getElementById('brand-hero-video').paused);
+      if(await phone.locator('#brand-hero-video source').getAttribute('src')!=='/assets/neo_hero_nof_720.mp4')throw new Error('mobile source selection failed');
+      if(movies.some(url=>!url.endsWith('/neo_hero_nof_720.mp4')))throw new Error('mobile downloaded desktop movie');
+    }
     await mobileMotion.close();
     const noJS = await browser.newContext({javaScriptEnabled:false,viewport:{width:375,height:900}});
     await noJS.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());

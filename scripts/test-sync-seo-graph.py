@@ -90,6 +90,20 @@ class GraphTests(unittest.TestCase):
     [('AI Agent', '可覆核的工作。'), ('既有術語', '既有定義。')])
   self.assertEqual(self.run_graph(check=True)[0], 0)
 
+ def test_global_scope_country_only_address_and_typographic_heading(self):
+  p = self.root / 'about/index.html'
+  p.write_text(p.read_text().replace('<h1>測試</h1>',
+    '<h1>測<span class="title-tail">試<span class="punct">，</span></span><br>全球。</h1>'))
+  self.assertEqual(self.run_graph()[0], 0)
+  soup = seo_common.BeautifulSoup(p.read_text(), 'html.parser')
+  graph = json.loads(soup.select_one('script[type="application/ld+json"]').string)['@graph']
+  org = next(n for n in graph if n.get('@type') == 'Organization')
+  self.assertEqual(org['areaServed'], 'Worldwide')
+  self.assertEqual(org['address'], {'@type':'PostalAddress','addressCountry':'TW'})
+  crumbs = next(n for n in graph if n.get('@type') == 'BreadcrumbList')
+  self.assertEqual(crumbs['itemListElement'][-1]['name'], '測試， 全球。')
+  self.assertEqual(self.run_graph(check=True)[0], 0)
+
 
 if __name__ == '__main__':
  unittest.main()

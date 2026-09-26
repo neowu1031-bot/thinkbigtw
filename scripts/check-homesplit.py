@@ -82,7 +82,7 @@ record('OG dimensions',Image.open(ROOT/'assets/brand/thinkbig-og.jpg').size==(12
 tracked=subprocess.check_output(['git','ls-files'],cwd=ROOT,text=True).splitlines()
 record('no existing tracked URLs/files deleted',all((ROOT/p).exists() for p in tracked))
 changes=subprocess.check_output(['git','diff','--name-only'],cwd=ROOT,text=True).splitlines()
-record('no infrastructure edits',not any(p.startswith(('workers/','supabase/','.github/')) or 'wrangler' in p for p in changes))
+record('no infrastructure edits (authorized generated knowledge module excepted)',not any((p.startswith(('workers/','supabase/','.github/')) and p!='workers/ai-proxy/src/agent-kb.generated.js') or 'wrangler' in p for p in changes))
 # Round 2: diagnosis privacy contract and original personal maintenance promises.
 home=BeautifulSoup((ROOT/'index.html').read_text(),'html.parser')
 record('homepage has one personal section',len(home.select('.home-section[data-audience="personal"]'))==1)
@@ -97,7 +97,7 @@ for rel in CORE+['pricing/enterprise/index.html','enterprise-local/index.html','
   hero=soup.select_one('main>.brand-hero')
   record('homepage mascot confined to first screen',hero is not None and len(soup.select('video'))==1 and len(hero.select('video'))==1 and all(i.get('src','').startswith(('/assets/brand/','/assets/illustrations/')) or i in hero.select('img') for i in soup.select('img')))
   v=hero.select_one('video')
-  record('homepage accessible poster and opt-in media load',all(k in v.attrs for k in ['autoplay','muted','loop','playsinline']) and v.get('poster')=='/assets/neo_hero_nof_poster.jpg' and v.select_one('source').get('data-src')=='/assets/neo_hero_nof.mp4' and not v.select_one('source').has_attr('src') and hero.select_one('img[fetchpriority="high"]') is not None)
+  record('homepage accessible poster and opt-in media load',all(k in v.attrs for k in ['muted','loop','playsinline']) and ('autoplay' in v.attrs or v.get('data-autoplay') in ['desktop','all','mobile']) and v.get('poster')=='/assets/neo_hero_nof_poster.jpg' and v.select_one('source').get('data-src')=='/assets/neo_hero_nof.mp4' and not v.select_one('source').has_attr('src') and hero.select_one('img[fetchpriority="high"]') is not None)
  else:
   record(rel+': enterprise images limited to brand and approved object illustrations',not soup.select('video') and all(i.get('src','').startswith(('/assets/brand/','/assets/illustrations/')) for i in soup.select('img')))
  record(rel+': no delivery duration promise',not re.search(r'\d+\s*(?:天|個月|小時).{0,12}(?:交付|上線|修復)',soup.get_text()))
