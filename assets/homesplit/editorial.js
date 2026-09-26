@@ -12,7 +12,23 @@
     }), { threshold: 0.12 });
     document.querySelectorAll('.section-head').forEach(el => observer.observe(el));
   }
-  const chapterLinks = Array.from(document.querySelectorAll('.chapter-nav a[href^="#"]'));
+  const diagram = document.querySelector('.governance-model');
+  if (diagram) {
+    let queued = false;
+    const render = () => {
+      queued = false;
+      if (motion.matches) { diagram.style.transform = ''; return; }
+      const rect = diagram.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      const offset = Math.max(-6, Math.min(6, (rect.top - window.innerHeight / 2) * 0.015));
+      diagram.style.transform = 'translateY(' + offset.toFixed(2) + 'px)';
+    };
+    window.addEventListener('scroll', () => {
+      if (!motion.matches && !queued) { queued = true; window.requestAnimationFrame(render); }
+    }, { passive: true });
+    motion.addEventListener('change', render);
+  }
+  const chapterLinks = Array.from(document.querySelectorAll('.chapter-nav a[href^="#"], .method-story-rail a[href^="#"]'));
   if (chapterLinks.length && 'IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => { if (entry.isIntersecting) chapterLinks.forEach(link => {

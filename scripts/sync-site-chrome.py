@@ -36,6 +36,7 @@ for p in ROOT.rglob('*.html'):
   s=s.replace('<!-- TB:NAV:END -->','<!-- TB:NAV:END --><!-- TB:PERSONAL:START -->'+personal+'<!-- TB:PERSONAL:END -->')
   if '/assets/brand/personal.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/assets/brand/personal.css"></head>')
  if '/assets/brand/chrome.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/assets/brand/chrome.css">\n</head>')
+ if '/assets/homesplit/apple.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/assets/homesplit/apple.css">\n</head>')
  if '/nav.js' not in s:s=s.replace('</body>','<script src="/nav.js" defer></script>\n</body>')
  p.write_text(s)
 print('Static website navigation and footers synchronized.')

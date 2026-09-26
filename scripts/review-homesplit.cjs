@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const origin = process.env.REVIEW_ORIGIN || 'http://127.0.0.1:8787';
-const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v3';
+const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v4';
 (async function () {
   fs.mkdirSync(out, {recursive:true});
   const browser = await chromium.launch({executablePath:process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
@@ -34,10 +34,13 @@ const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v3';
           if (width===1440) {
             const copy=await page.locator('.enterprise-hero-copy').boundingBox();
             const diagram=await page.locator('.governance-model').boundingBox();
-            if(diagram.x < copy.x+copy.width || Math.abs(diagram.y-copy.y)>350) throw new Error('enterprise hero is not split');
+            if(diagram.y < copy.y+copy.height || Math.abs(diagram.x+diagram.width/2-width/2)>5) throw new Error('enterprise diagram is not centered below statement');
           }
         }
         if (route==='/') {
+          if (await page.locator('#brand-hero-video source').getAttribute('src')) throw new Error('reduced motion loaded movie');
+          if (!(await page.locator('.hero-poster').isVisible())) throw new Error('reduced motion poster absent');
+          if (await page.locator('#hero-motion-toggle').isVisible()) throw new Error('reduced motion controls exposed');
           const requests = [];
           const captureRequest = r => requests.push(r.url());
           const before = await page.evaluate(() => ({local:{...localStorage},session:{...sessionStorage}}));
@@ -77,6 +80,19 @@ const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v3';
       }
       await context.close();
     }
+    const motionContext = await browser.newContext({viewport:{width:1440,height:1000},reducedMotion:'no-preference'});
+    await motionContext.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    const moving = await motionContext.newPage();
+    await moving.goto(origin+'/',{waitUntil:'domcontentloaded'});
+    await moving.waitForFunction(() => !document.getElementById('brand-hero-video').paused);
+    await moving.locator('#hero-motion-toggle').click();
+    if (!(await moving.locator('#brand-hero-video').evaluate(v=>v.paused))) throw new Error('manual pause failed');
+    await moving.locator('#hero-motion-toggle').click();
+    await moving.waitForFunction(() => !document.getElementById('brand-hero-video').paused);
+    await moving.emulateMedia({reducedMotion:'reduce'});
+    await moving.waitForFunction(() => !document.querySelector('#brand-hero-video source').hasAttribute('src'));
+    if (!(await moving.locator('.hero-poster').isVisible())) throw new Error('live motion change lost poster');
+    await motionContext.close();
     const noJS = await browser.newContext({javaScriptEnabled:false,viewport:{width:375,height:900}});
     await noJS.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
     const readable = await noJS.newPage();await readable.goto(origin+'/');

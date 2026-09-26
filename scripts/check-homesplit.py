@@ -93,7 +93,13 @@ quiz=(ROOT/'assets/homesplit/readiness.js').read_text()
 record('diagnosis has no network/storage/analytics APIs',not re.search(r'fetch\s*\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|document\.cookie|gtag\s*\(|dataLayer',quiz))
 for rel in CORE+['pricing/enterprise/index.html','enterprise-local/index.html','enterprise-cloud/index.html']:
  soup=BeautifulSoup((ROOT/rel).read_text(),'html.parser')
- record(rel+': enterprise has no mascot or photo',not soup.select('video') and all('assets/brand/' in i.get('src','') for i in soup.select('img')))
+ if rel=='index.html':
+  hero=soup.select_one('main>.brand-hero')
+  record('homepage mascot confined to first screen',hero is not None and len(soup.select('video'))==1 and len(hero.select('video'))==1 and all('assets/brand/' in i.get('src','') or i in hero.select('img') for i in soup.select('img')))
+  v=hero.select_one('video')
+  record('homepage accessible poster and opt-in media load',all(k in v.attrs for k in ['autoplay','muted','loop','playsinline']) and v.get('poster')=='/assets/neo_hero_wide_poster.jpg' and v.select_one('source').get('data-src')=='/assets/neo_hero_wide.mp4' and not v.select_one('source').has_attr('src') and hero.select_one('img[fetchpriority="high"]') is not None)
+ else:
+  record(rel+': enterprise has no mascot or photo',not soup.select('video') and all('assets/brand/' in i.get('src','') for i in soup.select('img')))
  record(rel+': no delivery duration promise',not re.search(r'\d+\s*(?:天|個月|小時).{0,12}(?:交付|上線|修復)',soup.get_text()))
 pattern=r'48(?: 小時(?:故障修復保證|故障修復|故障保固|內修復|修復)?|hr (?:修復保證|故障修復)|-hour (?:fault fixes|fault-fix guarantee))'
 for rel in ['annual/index.html','annual-pro/index.html','annual-flagship/index.html','solo-pro/index.html','pricing/index.html','pricing/personal/index.html','guides/openclaw-safe/index.html','guides/hermes-vs-openclaw/index.html','llms.txt']:
@@ -118,7 +124,10 @@ for rel in CORE:
  record(rel+': title and social title match',soup.title.get_text(strip=True)==soup.select_one('meta[property="og:title"]')['content']==soup.select_one('meta[name="twitter:title"]')['content'])
  record(rel+': descriptions synchronized',soup.select_one('meta[name="description"]')['content']==soup.select_one('meta[property="og:description"]')['content']==soup.select_one('meta[name="twitter:description"]')['content'])
 old_home=BeautifulSoup(original(Path('index.html')),'html.parser')
-record('homepage audience section order retained',[s['data-audience'] for s in home.select('.home-section')]==[s['data-audience'] for s in old_home.select('.home-section')])
+record('homepage separates hero and diagnosis, remaining audience order retained',[s['data-audience'] for s in home.select('.home-section')]==['enterprise']+[s['data-audience'] for s in old_home.select('.home-section')])
+record('homepage diagnosis is second screen',home.select('.home-section')[1].select_one('#readiness') is not None)
+record('system visual layer on marketing pages',all('/assets/homesplit/apple.css' in (ROOT/p).read_text() for p in CORE+['pricing/personal/index.html','pricing/enterprise/index.html']))
+record('enterprise local navigation present',all(BeautifulSoup((ROOT/p).read_text(),'html.parser').select_one('.enterprise-local-nav') is not None for p in CORE if p not in ['index.html','guides/index.html']))
 record('diagnosis answer values unchanged',[(i.get('name'),i.get('value')) for i in home.select('#readiness input')]==[(i.get('name'),i.get('value')) for i in old_home.select('#readiness input')])
 print(json.dumps({'passed':sum(r['pass'] for r in results),'total':len(results),'failed':[r for r in results if not r['pass']],'checks':results},ensure_ascii=False,indent=2))
 raise SystemExit(1 if any(not r['pass'] for r in results) else 0)
