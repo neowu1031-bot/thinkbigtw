@@ -20,3 +20,7 @@ STATUS.md
 # Python build helpers
 __pycache__/
 *.pyc
+
+# never publish/track local CLI state
+supabase/.temp/
+_site/
