@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { chromium } = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
 const origin = process.env.REVIEW_ORIGIN || 'http://127.0.0.1:8787';
-const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v2';
+const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v3';
 (async function () {
   fs.mkdirSync(out, {recursive:true});
   const browser = await chromium.launch({executablePath:process.env.CHROME_PATH || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
@@ -28,6 +28,14 @@ const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v2';
           if (!(await menu.locator('a[href="/trust/"]').isVisible())) throw new Error('mobile trust link not visible');
           await page.keyboard.press('Escape');
           if (await menu.evaluate(e=>e.open)) throw new Error('mobile menu did not close');
+        }
+        if (route==='/enterprise/') {
+          if (!(await page.locator('.governance-model').isVisible())) throw new Error('enterprise architecture missing');
+          if (width===1440) {
+            const copy=await page.locator('.enterprise-hero-copy').boundingBox();
+            const diagram=await page.locator('.governance-model').boundingBox();
+            if(diagram.x < copy.x+copy.width || Math.abs(diagram.y-copy.y)>350) throw new Error('enterprise hero is not split');
+          }
         }
         if (route==='/') {
           const requests = [];

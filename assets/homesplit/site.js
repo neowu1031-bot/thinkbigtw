@@ -21,7 +21,7 @@
       output.hidden = true;
       return;
     }
-    preview.textContent = ['我想討論企業 AI Agent 導入', '部門／職位：' + data.get('role').trim(), '想用在哪些流程：' + flows.join('、'), '導入規劃：' + data.get('timing'), '想改善的一件事：' + (data.get('need').trim() || '想在諮詢時一起討論')].join('\n');
+    preview.textContent = ['企業 AI Agent 導入諮詢', '部門／職位：' + data.get('role').trim(), '想用在哪些流程：' + flows.join('、'), '導入規劃：' + data.get('timing'), '優先改善目標：' + (data.get('need').trim() || '於諮詢時進一步確認')].join('\n');
     output.hidden = false;
     status.textContent = '摘要已產生，尚未送出。請複製後到 LINE 貼上，確認內容再傳送。';
   });

@@ -13,7 +13,7 @@ def chrome():
 <nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><div class="tb-links">{links}</div><details class="tb-menu"><summary>選單</summary><div class="tb-links">{links}</div></details></nav>
 <!-- TB:NAV:END -->'''
  footer=f'''<!-- TB:FOOTER:START -->
-<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><p>把一個 AI 團隊裝進你公司。<br>地端部署・流程導入・一年陪跑維護</p></div><div class="tb-f-links">{links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links">{links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
 <!-- TB:FOOTER:END -->'''
  return nav,footer
 nav,footer=chrome()
@@ -32,7 +32,7 @@ for p in ROOT.rglob('*.html'):
  s=s.replace('</body>',footer+'\n</body>')
  s=re.sub(r'<!-- TB:PERSONAL:START -->.*?<!-- TB:PERSONAL:END -->','',s,flags=re.S)
  if rel.startswith(PERSONAL):
-  personal='<div class="tb-personal-context"><a href="/pricing/personal/">個人方案專區</a><span>你的 AI 助理，從這裡開始。</span></div>'
+  personal='<div class="tb-personal-context"><a href="/pricing/personal/">個人方案專區</a><span>個人 AI 助理與工作流程服務。</span></div>'
   s=s.replace('<!-- TB:NAV:END -->','<!-- TB:NAV:END --><!-- TB:PERSONAL:START -->'+personal+'<!-- TB:PERSONAL:END -->')
   if '/assets/brand/personal.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/assets/brand/personal.css"></head>')
  if '/assets/brand/chrome.css' not in s:s=s.replace('</head>','<link rel="stylesheet" href="/assets/brand/chrome.css">\n</head>')

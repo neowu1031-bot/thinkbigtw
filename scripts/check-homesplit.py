@@ -71,7 +71,7 @@ for p in ROOT.rglob('*.html'):
 ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
 old_urls={e.text for e in ET.fromstring(original(Path('sitemap.xml'))).findall('.//s:loc',ns)}
 new_urls={e.text for e in ET.parse(ROOT/'sitemap.xml').findall('.//s:loc',ns)}
-record('sitemap preserves all URLs and adds trust',old_urls<new_urls and 'https://thinkbigtw.com/trust/' in new_urls)
+record('sitemap preserves all URLs including trust',old_urls<=new_urls and 'https://thinkbigtw.com/trust/' in new_urls)
 old_urls=set(re.findall(r'https://thinkbigtw.com[^\s)]+',original(Path('llms.txt'))));new_urls=set(re.findall(r'https://thinkbigtw.com[^\s)]+',(ROOT/'llms.txt').read_text()))
 record('llms preserves existing links',old_urls<=new_urls)
 record('llms preserves all price tokens',prices(original(Path('llms.txt')))==prices((ROOT/'llms.txt').read_text()))
@@ -103,8 +103,22 @@ for rel in ['annual/index.html','annual-pro/index.html','annual-flagship/index.h
  record(rel+': original immediate repair wording restored',main.count('發現即修復')==current.count('發現即修復'))
 personal=BeautifulSoup((ROOT/'pricing/personal/index.html').read_text(),'html.parser')
 video=personal.select_one('video')
-record('original mascot hero is personal and opt-in',video and video.get('poster')=='/assets/neo_hero_wide_poster.jpg' and video.get('preload')=='none' and 'autoplay' not in video.attrs and video.select_one('source')['src']=='/assets/neo_hero_wide.mp4')
+baseline_video=BeautifulSoup(original(Path('pricing/personal/index.html')),'html.parser').select_one('video')
+record('personal mascot and approved playback configuration preserved',video and video.attrs==baseline_video.attrs and video.select_one('source')['src']==baseline_video.select_one('source')['src']=='/assets/neo_hero_wide.mp4')
 for a in personal.select('#directory a'):
  record('personal directory '+a['href'],(ROOT/a['href'].strip('/')/'index.html').exists())
+# Round 3 contract: presentation changed; section architecture and diagnosis remain.
+enterprise=BeautifulSoup((ROOT/'enterprise/index.html').read_text(),'html.parser')
+record('enterprise hero contains accessible static architecture',enterprise.select_one('.enterprise-hero .governance-model[aria-labelledby]') is not None and '架構示意' in enterprise.select_one('.governance-model').get_text())
+for rel in ['index.html','enterprise/index.html','enterprise/process/index.html']:
+ soup=BeautifulSoup((ROOT/rel).read_text(),'html.parser')
+ record(rel+': four named method stages',len(soup.select('.method-map>li'))==4 and [e.get_text(strip=True) for e in soup.select('.method-map .method-en')]==['ASSESS','BUILD','VALIDATE','OPERATE'])
+for rel in CORE:
+ soup=BeautifulSoup((ROOT/rel).read_text(),'html.parser')
+ record(rel+': title and social title match',soup.title.get_text(strip=True)==soup.select_one('meta[property="og:title"]')['content']==soup.select_one('meta[name="twitter:title"]')['content'])
+ record(rel+': descriptions synchronized',soup.select_one('meta[name="description"]')['content']==soup.select_one('meta[property="og:description"]')['content']==soup.select_one('meta[name="twitter:description"]')['content'])
+old_home=BeautifulSoup(original(Path('index.html')),'html.parser')
+record('homepage audience section order retained',[s['data-audience'] for s in home.select('.home-section')]==[s['data-audience'] for s in old_home.select('.home-section')])
+record('diagnosis answer values unchanged',[(i.get('name'),i.get('value')) for i in home.select('#readiness input')]==[(i.get('name'),i.get('value')) for i in old_home.select('#readiness input')])
 print(json.dumps({'passed':sum(r['pass'] for r in results),'total':len(results),'failed':[r for r in results if not r['pass']],'checks':results},ensure_ascii=False,indent=2))
 raise SystemExit(1 if any(not r['pass'] for r in results) else 0)

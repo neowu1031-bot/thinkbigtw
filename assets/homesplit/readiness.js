@@ -42,7 +42,7 @@
     panels.forEach((panel, i) => { panel.hidden = i !== current; });
     progress.textContent = '第 ' + (current + 1) + ' 題，共 6 題';
     back.disabled = current === 0;
-    next.textContent = current === 5 ? '看我的起手建議 →' : '下一題 →';
+    next.textContent = current === 5 ? '檢視評估建議 →' : '下一題 →';
     error.textContent = '';
     if (focus) { panels[current].querySelector('legend').tabIndex = -1; panels[current].querySelector('legend').focus(); }
   }
@@ -55,14 +55,14 @@
   back.addEventListener('click', () => { if (current > 0) { current--; render(true); } });
   next.addEventListener('click', () => {
     if (!answers[current]) {
-      error.textContent = '請先選一個最接近你的選項。';
+      error.textContent = '請先選擇符合目前狀況的選項。';
       panels[current].querySelector('input').focus(); return;
     }
     if (current < 5) { current++; render(true); return; }
     const recommendation = assess(answers);
     const stageCopy = document.querySelector('[data-result-stage="' + recommendation.stage + '"]');
     document.getElementById('result-title').textContent = stageCopy.querySelector('h4').textContent;
-    document.getElementById('result-department').textContent = '建議起手部門：' + recommendation.department + '。依你最想改善的工作安排。';
+    document.getElementById('result-department').textContent = '建議優先職能：' + recommendation.department + '。依業務優先需求選定。';
     document.getElementById('result-stage').textContent = stageCopy.querySelector('p').textContent;
     box.querySelectorAll('[data-result-action]').forEach(li => {
       li.hidden = !recommendation.actions.includes(li.dataset.resultAction);
