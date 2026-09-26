@@ -332,6 +332,9 @@ body:has(>#tb-nav) :is(.section-head,.tb-hero-copy,.about-sections>section,.glos
 .recovery-code{font-size:clamp(72px,18vw,180px);line-height:1;letter-spacing:-.06em;color:#80394f;margin-bottom:24px}
 @media(max-width:760px){.hero-links{gap:8px 22px}.recovery-links{grid-template-columns:1fr}}
 
+/* NEO 9/27: no visible pause controls on hero/diagram animations */
+.model-motion-control{display:none!important}
+
 /* Shared personal product presentation, aligned with the personal pricing hub. */
 .personal-product{--bg:#fff;--ink:#1d1d1f;--text:#1d1d1f;--muted:#626269;--gray:#f5f5f7;--gray2:#dedee3;--red:#80394f;--accent:#80394f;--surface:#f5f5f7;--border:#dedee3;--green:#80394f;--green-dark:#80394f;--orange:#80394f;background:#fff;color:var(--ink);padding-top:0;font-family:var(--tb-system,-apple-system,BlinkMacSystemFont,'PingFang TC',sans-serif);line-height:1.7}
 .personal-product *, .personal-product *::before,.personal-product *::after{box-sizing:border-box}

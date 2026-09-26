@@ -608,3 +608,6 @@ body:has(>#tb-nav) :is(.section-head,.tb-hero-copy,.about-sections>section,.glos
 .recovery-links strong,.recovery-links span{display:block}.recovery-links span{margin-top:12px;color:#626269;font-size:15px}
 .recovery-code{font-size:clamp(72px,18vw,180px);line-height:1;letter-spacing:-.06em;color:#80394f;margin-bottom:24px}
 @media(max-width:760px){.hero-links{gap:8px 22px}.recovery-links{grid-template-columns:1fr}}
+
+/* NEO 9/27: no visible pause controls on hero/diagram animations */
+.model-motion-control{display:none!important}
