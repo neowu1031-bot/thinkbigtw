@@ -16,7 +16,10 @@ def normalize(node):
  if not isinstance(node,dict):return node
  if node.get('@type')=='Organization':return {'@id':ORG['@id']}
  if node.get('@type')=='WebSite':return {'@id':WEBSITE['@id']}
- return {k:normalize(v) for k,v in node.items()}
+ if node.get('@type')=='PostalAddress':return {'@type':'PostalAddress','addressCountry':'TW'}
+ result={k:normalize(v) for k,v in node.items()}
+ if 'areaServed' in result or result.get('@type')=='Service':result['areaServed']='Worldwide'
+ return result
 changed=[]
 def save(p,raw,result):
  if result!=raw:
@@ -27,7 +30,11 @@ for p,url,soup in pages():
  for m in LD.finditer(raw):
   parsed=json.loads(m[1]);nodes.extend(parsed.get('@graph',[parsed]) if isinstance(parsed,dict) else parsed)
  nodes=[normalize(n) for n in nodes if n.get('@type') not in ('Organization','WebSite','WebPage','BreadcrumbList')]
- title=soup.title.get_text(strip=True);h1=soup.h1.get_text(' ',strip=True) if soup.h1 else title
+ title=soup.title.get_text(strip=True)
+ heading=BeautifulSoup(str(soup.h1),'html.parser') if soup.h1 else None
+ if heading:
+  for br in heading.select('br'):br.replace_with(' ')
+ h1=re.sub(r'\s+',' ',heading.get_text()).strip() if heading else title
  desc=soup.find('meta',attrs={'name':'description'});desc=desc.get('content','') if desc else h1
  web={'@type':'WebPage','@id':url+'#webpage','url':url,'name':title,'description':desc,'inLanguage':'zh-Hant','isPartOf':{'@id':WEBSITE['@id']},'publisher':{'@id':ORG['@id']},'dateModified':git_date(p)}
  crumbs=[{'@type':'ListItem','position':1,'name':'首頁','item':BASE}]
@@ -51,8 +58,8 @@ for p,url,soup in pages():
   nodes.append({'@type':'CollectionPage','@id':BASE+'guides/#collection','url':url,'name':title,'hasPart':[{'@id':u+'#article'} for u in article_urls]+[{'@id':BASE+'guides/glossary/#terms'}]})
  if '/glossary/' in url:
   nodes=[n for n in nodes if n.get('@type')!='DefinedTermSet']
-  nodes.append({'@type':'DefinedTermSet','@id':url+'#terms','name':h1,'hasDefinedTerm':[{'@type':'DefinedTerm','name':d.h2.get_text(),'description':d.select_one('.term-definition').get_text(),'inDefinedTermSet':{'@id':url+'#terms'}} for d in soup.select('section[id^="term-"]')]})
- org=ORG if url in (BASE,BASE+'about/') else {k:ORG[k] for k in ('@type','@id','name','url','logo')}
+  nodes.append({'@type':'DefinedTermSet','@id':url+'#terms','name':h1,'hasDefinedTerm':[{'@type':'DefinedTerm','name':d.find(['h2','h3']).get_text(),'description':d.select_one('.term-definition').get_text(),'inDefinedTermSet':{'@id':url+'#terms'}} for d in soup.select('section[id^="term-"]')]})
+ org=ORG if url in (BASE,BASE+'about/') else {k:ORG[k] for k in ('@type','@id','name','url','logo','address','areaServed')}
  graph=[org,WEBSITE,web,breadcrumb]+([EDITOR] if any(n.get('@type')=='Article' for n in nodes) else [])+nodes
  data=json.dumps({'@context':'https://schema.org','@graph':graph},ensure_ascii=False,indent=2)
  script='<script type="application/ld+json">'+data+'</script>'
@@ -76,8 +83,11 @@ for p in ROOT.rglob('*.html'):
   def fix(n):
    if isinstance(n,list):return [fix(x) for x in n]
    if not isinstance(n,dict):return n
-   if n.get('@type')=='Organization' and ('Think BIG' in n.get('name','') or n.get('@id')==ORG['@id']):return {k:ORG[k] for k in ('@type','@id','name','url','logo')}
-   return {k:fix(v) for k,v in n.items()}
+   if n.get('@type')=='Organization' and ('Think BIG' in n.get('name','') or n.get('@id')==ORG['@id']):return {k:ORG[k] for k in ('@type','@id','name','url','logo','address','areaServed')}
+   if n.get('@type')=='PostalAddress':return {'@type':'PostalAddress','addressCountry':'TW'}
+   result={k:fix(v) for k,v in n.items()}
+   if 'areaServed' in result or result.get('@type')=='Service':result['areaServed']='Worldwide'
+   return result
   return '<script type="application/ld+json">'+json.dumps(fix(data),ensure_ascii=False,indent=2)+'</script>'
  result=LD.sub(replace,raw)
  save(p,raw,result)

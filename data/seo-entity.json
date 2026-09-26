@@ -17,19 +17,14 @@
     "height": 1254
   },
   "image": "https://thinkbigtw.com/assets/brand/thinkbig-og.jpg",
-  "description": "Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，以 TB FRAME 方法論協助中小企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。",
+  "description": "Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。",
   "vatID": "62136066",
   "email": "AI@thinkbigtw.com",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "板橋區",
-    "addressRegion": "新北市",
     "addressCountry": "TW"
   },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Taiwan"
-  },
+  "areaServed": "Worldwide",
   "contactPoint": [
     {
       "@type": "ContactPoint",

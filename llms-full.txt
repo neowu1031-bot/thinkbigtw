@@ -6,15 +6,13 @@ THINK BIG
 
 # 關於 Think BIG
 
-以流程、交付與治理責任，協助企業規劃 AI Agent 導入。
-
-Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，以 TB FRAME 方法論協助中小企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
 
 ## 公司與服務範圍
 
-Think BIG 的公司全名為大想成業有限公司，統一編號 62136066，位於台灣新北市板橋區。服務包含企業 AI Agent 導入、流程整合、資料與權限設計、情境驗收及年度治理與維運；另提供個人 AI 助理安裝與維護方案。
+Think BIG 的公司全名為大想成業有限公司，統一編號 62136066，總部位於台灣，服務範圍涵蓋全球。服務包含企業 AI Agent 導入、流程整合、資料與權限設計、情境驗收及年度治理與維運；另提供個人 AI 助理安裝與維護方案。
 
 ## 以 TB FRAME 管理交付
 
@@ -42,13 +40,13 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 # 年度旗艦 NT$38,000 — 雙 Agent 全系統，年度旗艦級 AI 部署 | Think BIG!
 
-個人 AI 助理 · 年度旗艦 
+個人 AI 助理 · 年度旗艦
 
 # 年度旗艦
 
 雙 Agent，全系統上線，顧一整年。
 
-旗艦維運保證：發現即修復＋48 小時故障修復保證 
+旗艦維運保證：發現即修復＋48 小時故障修復保證
 雙系統互通＋多部門覆蓋＋季度 AI 戰略規劃
 
 當一個 Agent 不夠用的時候，年度旗艦給你的是一套完整的 AI 作業系統：OpenClaw 主理助理功能、Hermes 負責跨平台通訊與排程，兩套系統互通協作，再由專屬工程師整年度維護升級。不只是「有一個 AI 助理」，而是讓 AI 真的跑起你的日常運作。
@@ -143,13 +141,13 @@ URL: https://thinkbigtw.com/annual-pro/
 
 # 尊榮年約 NT$32,000 — 你的專屬工程師，顧一整年 | Think BIG!
 
-個人 AI 助理 · 尊榮年約 
+個人 AI 助理 · 尊榮年約
 
 # 尊榮年約
 
 你的專屬工程師，顧一整年。
 
-年約含維運：發現即修復＋48 小時故障修復保證 
+年約含維運：發現即修復＋48 小時故障修復保證
 次年續約 NT$2,500／月，CAC≈0 的複利服務
 
 從架設到長期陪跑，一個方案全包。全客製 AI Agent 架構（OpenClaw 或 Hermes，或雙系統互通）＋專屬工程師整年度維護。你不用學怎麼維護，也不用每次出問題再付一次救火費——年費裡已經包含。
@@ -216,7 +214,7 @@ URL: https://thinkbigtw.com/dual-agent/
 
 # 雙 AI Agent | Think BIG!
 
-個人 AI 助理 
+個人 AI 助理
 
 # 雙 AI Agent
 
@@ -363,13 +361,9 @@ ENTERPRISE AI / 企業導入
 # 從流程整合，
 到可治理的 AI 營運。
 
-Think BIG 的企業服務依流程範圍、部署設備、串接需求與維護責任個別報價，不公開價目，也不預設交付天數。
-
-Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，以 TB FRAME 方法論協助中小企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
-
-Think BIG 協助企業將 Agentic AI 納入既有營運流程。以資料主權、角色權限與情境驗收為基礎，整合部署建置、操作交接及一年治理維運。
 
 啟動企業導入諮詢›
 
@@ -381,28 +375,28 @@ DECISION AUTHORITY
 
 目標定義 · 權限核准 · 成果覆核
 
-01 / KNOWLEDGE 
+01 / KNOWLEDGE
 
 ### 知識與資料
 
 授權來源
 存取範圍
 
-02 / EXECUTION 
+02 / EXECUTION
 
 ### AI Agent 協作
 
 任務分工
 產物交接
 
-03 / CONTROL 
+03 / CONTROL
 
 ### 治理與驗證
 
 變更登記
 例外處理
 
-GOVERNANCE FOUNDATION 
+GOVERNANCE FOUNDATION
 
 資料主權 · 人工核准 · 可稽核紀錄
 
@@ -442,56 +436,58 @@ FUNCTIONAL CAPABILITIES
 
 將工作需求拆解為可描述的輸入、執行步驟與產物，並將人工核准納入流程設計。
 
-MARKETING / 行銷 
+MARKETING / 行銷
 
 ### 內容製作缺乏一致的知識基礎。
 
-AI AGENT / 能力範圍 
+AI AGENT / 能力範圍
 
 ### 整合核准素材，產出可編修的內容草稿。
 
 交付與驗收：內容草稿與待確認項目。對外行動須經指定負責人核准。
 
-CUSTOMER SERVICE / 客服 
+CUSTOMER SERVICE / 客服
 
 ### 重複查詢增加客服處理負擔。
 
-AI AGENT / 能力範圍 
+AI AGENT / 能力範圍
 
 ### 依知識依據準備回覆，例外情境交由人工處理。
 
 交付與驗收：回覆草稿與待人工處理清單。對外行動須經指定負責人核准。
 
-SALES OPERATIONS / 業務 
+SALES OPERATIONS / 業務
 
 ### 詢問紀錄與後續追蹤缺乏整合。
 
-AI AGENT / 能力範圍 
+AI AGENT / 能力範圍
 
 ### 彙整需求脈絡，建立可追蹤的業務待辦。
 
 交付與驗收：詢問摘要與追蹤清單。對外行動須經指定負責人核准。
 
-FINANCE OPERATIONS / 財務 
+FINANCE OPERATIONS / 財務
 
 ### 報表彙整與差異核對依賴人工。
 
-AI AGENT / 能力範圍 
+AI AGENT / 能力範圍
 
 ### 依授權彙整資料，提供來源與差異核對清單。
 
 交付與驗收：彙整報表與差異清單。對外行動須經指定負責人核准。
-
-TB CONTINUITY 是 Think BIG 的年度治理與維運服務，內容為一年陪跑、問題追蹤、維護檢查與變更紀錄。
 
 SERVICE PORTFOLIO
 
 ## 整合導入交付，
 延續營運責任。
 
+TB CONTINUITY 是 Think BIG 的年度治理與維運服務，內容為一年陪跑、問題追蹤、維護檢查與變更紀錄。
+
 服務分為導入建置與年度治理維運，依流程、部署及維護範圍個別報價。設備、第三方軟體與模型用量費獨立列示，供企業評估總持有成本。
 
-TB DELIVERY 
+Think BIG 的企業服務依流程範圍、部署設備、串接需求與維護責任個別報價，不公開價目，也不預設交付天數。
+
+TB DELIVERY
 
 ### AI Agent 導入建置
 
@@ -503,7 +499,7 @@ TB DELIVERY
 
 - 先備：可授權的資料、設備與驗收負責人。
 
-TB CONTINUITY 
+TB CONTINUITY
 
 ### AI Agent 年度治理與維運
 
@@ -588,32 +584,32 @@ OPERATING MODEL
 
 營運模型（Operating Model）定義工具由誰配置、變更由誰核准、產物如何驗收，以及問題由誰追蹤。
 
-「一般 AI 工具」指自行訂閱、由企業自行設定與維護的常見使用方式；各產品能力依實際方案而異。 
-比較項目 
-自行使用 AI 工具 
-TB 企業導入 
-工作流程 
-由企業自行配置提示與串接。 
+「一般 AI 工具」指自行訂閱、由企業自行設定與維護的常見使用方式；各產品能力依實際方案而異。
+比較項目
+自行使用 AI 工具
+TB 企業導入
+工作流程
+由企業自行配置提示與串接。
 共同定義流程範圍、產物及驗收條件。
 
-資料位置 
-依工具部署與使用條款。 
+資料位置
+依工具部署與使用條款。
 地端優先，逐項確認外部服務與資料流向。
 
-權限與變更 
-由企業自行建立權限與變更管理。 
+權限與變更
+由企業自行建立權限與變更管理。
 規劃最小權限、人工核准與變更紀錄。
 
-持續營運 
-自行處理設定與問題。 
+持續營運
+自行處理設定與問題。
 一年陪跑維護，依合約範圍追蹤與調整。
 
-換工具或模型 
-自行評估相容性。 
+換工具或模型
+自行評估相容性。
 協助盤點與重新測試，確認可沿用的流程。
 
-驗收責任 
-由使用單位自行核對產物。 
+驗收責任
+由使用單位自行核對產物。
 依約定情境驗收，保留測試與交接紀錄。
 
 PROCUREMENT FAQ
@@ -623,35 +619,35 @@ PROCUREMENT FAQ
 
 從資料處理、服務邊界到維運責任，提供導入評估與採購討論所需的基本依據。
 
-如何評選 AI 導入服務商？ 
+如何評選 AI 導入服務商？
 
 評選應涵蓋流程適配、資料治理、交付驗收及持續維運。要求服務商明列工作範圍、存取權限、驗收條件與問題處理責任。Think BIG 以自家 AI 團隊的治理實務說明能力，不展示客戶身分或資料。
 
-地端部署如何落實資料主權？ 
+地端部署如何落實資料主權？
 
 地端配置將工作資料與執行環境部署於企業指定設備。使用雲端模型或外部服務時，須另行確認傳送欄位、用途與授權。要求資料不出公司，仍需核對本機模型、外連限制、日誌及備份配置。
 
-導入適用性是否取決於企業規模？ 
+導入適用性是否取決於企業規模？
 
 適用性主要取決於流程可定義程度、資料可用性與驗收責任。可先界定單一工作流程進行評估，再依驗證結果規劃擴充；僅需個人助理的需求另有個人方案。
 
-導入進度如何規劃與管理？ 
+導入進度如何規劃與管理？
 
 TB FRAME 以評估定義、架構建置、驗證交付與治理維運四階段管理導入。進度依工作範圍、資料整備、系統權限及驗收條件共同確認，以階段交付物追蹤，不預設交付天數。
 
-企業服務如何界定報價範圍？ 
+企業服務如何界定報價範圍？
 
 依流程範圍、部署設備、串接需求與維護責任個別報價。導入服務、設備、第三方軟體及模型用量費分項列示，供企業確認採購範圍與後續成本。
 
-TB CONTINUITY 包含哪些維運責任？ 
+TB CONTINUITY 包含哪些維運責任？
 
 TB CONTINUITY｜AI Agent 年度治理與維運，提供一年陪跑，涵蓋約定範圍內的問題追蹤、維護檢查、變更紀錄與使用調整。服務窗口、責任邊界及新增需求處理方式於合約中確認。
 
-AI Agent 的自主操作權限如何控管？ 
+AI Agent 的自主操作權限如何控管？
 
 依最小權限原則配置資料與操作範圍。對外發送、花費及正式系統異動須經指定負責人核准；AI Agent 提供工作產物與執行證據，人員保留關鍵決策權。
 
-既有工具與模型能否持續沿用？ 
+既有工具與模型能否持續沿用？
 
 先盤點既有系統介面、帳號權限與相容性，再評估整合範圍。更換模型時須重新驗證流程與輸出品質，既有配置能否沿用依實際測試結果確認。
 
@@ -678,8 +674,6 @@ TB FRAME / DELIVERY METHODOLOGY
 建立可治理的 AI 流程。
 
 TB FRAME 是 Think BIG 的 AI Agent 導入方法論，分為 Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治理維運四個階段，每階段列明交付物與覆核責任。
-
-TB FRAME｜AI Agent 導入方法論，以 Assess、Build、Validate、Operate 四階段管理導入。每階段均有交付物與覆核責任，將需求評估、部署建置、驗收交接及持續維運接成完整流程。
 
 - 01
 
@@ -727,7 +721,7 @@ TB FRAME
 
 - 03 Validate
 
-- 04 Operate 
+- 04 Operate
 
 01 / ASSESS
 
@@ -799,7 +793,7 @@ TB FRAME / PLANNING WORKSHEET
 
 驗收方式 正常與例外情境、正確結果、覆核負責人。
 
-維運與交接責任 誰回報問題？誰核准變更？設定與紀錄怎麼交接？ 
+維運與交接責任 誰回報問題？誰核准變更？設定與紀錄怎麼交接？
 
 Think BIG · thinkbigtw.com · 企業導入討論範本
 
@@ -809,7 +803,7 @@ URL: https://thinkbigtw.com/full-agent/
 
 # 全 Agent 串接 | Think BIG!
 
-個人 AI 助理 
+個人 AI 助理
 
 # 全 Agent 串接
 
@@ -881,7 +875,7 @@ ENTERPRISE INSIGHTS
 
 以輸入條件、產物規格、例外處理與核准機制建立驗收框架，並將驗證紀錄納入後續變更管理。
 
-IN THIS ARTICLE 
+IN THIS ARTICLE
 
 ## 將業務目標轉為驗收條件
 
@@ -924,7 +918,7 @@ ENTERPRISE INSIGHTS
 
 以流程適配、資料治理、交付驗收與持續維運四個面向，評估 AI 導入服務是否具備明確的執行與責任範圍。
 
-IN THIS ARTICLE 
+IN THIS ARTICLE
 
 ## 以業務流程界定技術需求
 
@@ -971,137 +965,145 @@ THINK BIG
 
 從地端部署、資料主權到情境驗收，以一致的定義討論 AI Agent 導入範圍。
 
-Think BIG 編輯部
-
 本表依本站的導入流程、治理說明與個人方案整理，供評估服務時核對用語。
 
-## AI Agent
+延伸閱讀：[TB FRAME 導入流程](https://thinkbigtw.com/enterprise/process/)、[資料治理](https://thinkbigtw.com/trust/)、[驗收框架](https://thinkbigtw.com/guides/ai-acceptance/)、[個人方案](https://thinkbigtw.com/pricing/personal/)。
+
+## AI 與工作協作
+
+### AI Agent
 
 依核准的資料、工具與操作範圍執行工作流程的 AI 助理；產物與重要操作仍需指定人員覆核。
 
 在 Think BIG 導入中，以核准知識、預期產物與禁止操作界定工作。
 
-## 地端部署
-
-把工作資料與執行環境部署於企業指定設備；若使用外部模型或服務，仍須確認傳送欄位與授權。
-
-在 Think BIG 導入中，設備、模型及外部連線範圍會一併確認。
-
-## 資料主權
-
-由企業確認資料來源、處理位置、存取角色與外部傳送範圍，並保留授權與決策責任。
-
-在 Think BIG 導入中，資料與權限清單須能回查並明列核准責任。
-
-## TB FRAME
-
-Think BIG 的 AI Agent 導入方法論，分為 Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治理維運。
-
-在 Think BIG 導入中，每個階段都列明交付物與覆核責任。
-
-## TB READINESS
-
-六題導入成熟度自評，作答只在瀏覽器計算、不傳送、不儲存；結果不代表認證或正式顧問評估。
-
-在 Think BIG 官網，可先用自評整理導入前提，再與顧問確認。
-
-## TB DELIVERY
-
-AI Agent 導入建置服務，涵蓋流程盤點、資料與權限設計、AI Agent 配置、驗收及操作交接。
-
-在 Think BIG 導入中，建置範圍與驗收責任會在開始前確認。
-
-## TB CONTINUITY
-
-AI Agent 年度治理與維運服務，依約定範圍提供一年陪跑、問題追蹤、維護檢查與變更紀錄。
-
-在 Think BIG 導入中，服務窗口、維護範圍及擴充需求的處理方式寫入約定。
-
-## 最小權限
-
-依工作所需開放資料與操作範圍，並由指定負責人確認授權。
-
-在 Think BIG 導入中，不因工具可以操作就預設已獲授權。
-
-## 情境驗收
-
-以正常、資料缺漏、服務中斷與未授權等情境，核對產物規格、例外處理與人工核准機制。
-
-在 Think BIG 導入中，由指定負責人核對測試紀錄與成果。
-
-## 人工核准
-
-對外發送、花費及正式系統異動等關鍵操作，在執行前交由指定負責人決定。
-
-在 Think BIG 導入中，驗收也包含未核准時是否停止操作。
-
-## MCP
-
-Model Context Protocol，讓 AI 工具連接資料與功能的開放協議；實際可存取範圍仍由帳號權限及配置決定。
-
-在 Think BIG 服務中，MCP 串接仍須核對工具、帳號及實際權限。
-
-## 模型用量費
-
-依 AI 模型使用量向供應方支付的費用，不包含在 Think BIG 的個人方案服務費中。
-
-在 Think BIG 個人服務中，模型用量費由使用者依用量另付。
-
-## Agentic AI
+### Agentic AI
 
 以 AI Agent 執行流程、使用工具並產出可覆核成果的應用方式。
 
 在 Think BIG 導入中，先確認資料、工具與人工決策邊界，再評估適合的工作流程。
 
-## 人機協作（Human-in-the-loop）
+### 人機協作（Human-in-the-loop）
 
 在人員核准與覆核的控制點下，讓 AI 支援工作產物與流程執行。
 
 在 Think BIG 導入中，對外發送、花費與正式系統異動保留指定負責人核准。
 
-## 可稽核性
+## 導入與交付
+
+### TB FRAME
+
+Think BIG 的 AI Agent 導入方法論，分為 Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治理維運。
+
+在 Think BIG 導入中，每個階段都列明交付物與覆核責任。
+
+### TB READINESS
+
+六題導入成熟度自評，作答只在瀏覽器計算、不傳送、不儲存；結果不代表認證或正式顧問評估。
+
+在 Think BIG 官網，可先用自評整理導入前提，再與顧問確認。
+
+### TB DELIVERY
+
+AI Agent 導入建置服務，涵蓋流程盤點、資料與權限設計、AI Agent 配置、驗收及操作交接。
+
+在 Think BIG 導入中，建置範圍與驗收責任會在開始前確認。
+
+### TB CONTINUITY
+
+AI Agent 年度治理與維運服務，依約定範圍提供一年陪跑、問題追蹤、維護檢查與變更紀錄。
+
+在 Think BIG 導入中，服務窗口、維護範圍及擴充需求的處理方式寫入約定。
+
+### 情境驗收
+
+以正常、資料缺漏、服務中斷與未授權等情境，核對產物規格、例外處理與人工核准機制。
+
+在 Think BIG 導入中，由指定負責人核對測試紀錄與成果。
+
+## 資料與治理
+
+### 地端部署
+
+把工作資料與執行環境部署於企業指定設備；若使用外部模型或服務，仍須確認傳送欄位與授權。
+
+在 Think BIG 導入中，設備、模型及外部連線範圍會一併確認。
+
+### 資料主權
+
+由企業確認資料來源、處理位置、存取角色與外部傳送範圍，並保留授權與決策責任。
+
+在 Think BIG 導入中，資料與權限清單須能回查並明列核准責任。
+
+### 最小權限
+
+依工作所需開放資料與操作範圍，並由指定負責人確認授權。
+
+在 Think BIG 導入中，不因工具可以操作就預設已獲授權。
+
+### 人工核准
+
+對外發送、花費及正式系統異動等關鍵操作，在執行前交由指定負責人決定。
+
+在 Think BIG 導入中，驗收也包含未核准時是否停止操作。
+
+### 可稽核性
 
 保留來源、操作與驗證紀錄，使處理過程及結論能夠回查。
 
 在 Think BIG 導入中，以資料與權限清單、變更及驗收紀錄確認責任。
 
-## 變更登記
+### 變更登記
 
 在調整配置或流程前，記錄原因、範圍、負責人與復原方式。
 
 在 Think BIG 導入中，變更先核准，再以相關情境驗證影響。
 
-## 0-Token 優先
+## 工具與使用成本
+
+### MCP
+
+Model Context Protocol，讓 AI 工具連接資料與功能的開放協議；實際可存取範圍仍由帳號權限及配置決定。
+
+在 Think BIG 服務中，MCP 串接仍須核對工具、帳號及實際權限。
+
+### 模型用量費
+
+依 AI 模型使用量向供應方支付的費用，不包含在 Think BIG 的個人方案服務費中。
+
+在 Think BIG 個人服務中，模型用量費由使用者依用量另付。
+
+### 0-Token 優先
 
 優先以不需要模型推論的固定規則或程式處理適合的工作。
 
 在 Think BIG 個人技能包中採此設計原則；不代表整體 AI 使用不會產生模型用量費。
 
-## RAG
+### RAG
 
 檢索增強生成：先找出相關知識內容，再提供給模型作為回答依據。
 
 評估企業知識問答時，Think BIG 先確認資料來源、授權及回答的可回查性，實際架構依需求確認。
 
-## 技能（Skill）
+### 技能（Skill）
 
 供 AI Agent 執行特定工作的指引與可用工具配置。
 
 在 Think BIG 個人服務中，技能項目與範圍依所選方案及訪談確認。
 
-## OpenClaw
+### OpenClaw
 
 可在指定環境配置技能與工具的 AI Agent 平台。
 
 Think BIG 個人入門服務提供 OpenClaw 安裝選項，設備與帳號條件需先確認。
 
-## Hermes Agent
+### Hermes Agent
 
 用於配置 AI 助理與工作流程的 AI Agent 工具。
 
 Think BIG 個人方案提供 Hermes 安裝與配置選項，功能範圍依對應方案頁確認。
 
-延伸閱讀：[TB FRAME 導入流程](https://thinkbigtw.com/enterprise/process/)、[資料治理](https://thinkbigtw.com/trust/)、[驗收框架](https://thinkbigtw.com/guides/ai-acceptance/)、[個人方案](https://thinkbigtw.com/pricing/personal/)。
+Think BIG 編輯部
 
 ---
 
@@ -1111,7 +1113,7 @@ URL: https://thinkbigtw.com/guides/hermes-vs-openclaw/
 
 [Guides](https://thinkbigtw.com/guides/) / Hermes vs OpenClaw
 
-工具比較 · 入門選讀 
+工具比較 · 入門選讀
 
 # Think BIG 的 Hermes 與 OpenClaw 比較：差別、怎麼選、誰適合哪一個
 
@@ -1161,7 +1163,7 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 ## 一張表看完差別
 
-面向 OpenClaw Think BIG 養的 Hermes 
+面向 OpenClaw Think BIG 養的 Hermes
 強項 把事做掉（回訊息、跑流程、整理檔案） 把事想清楚寫出來（彙整、改寫、研究）
 
 互動方式 下指令做事 對話、累積
@@ -1198,7 +1200,7 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 ## Think BIG 五級方案帶哪一個？一張對照表
 
-方案 費用 帶的工具 適合誰 
+方案 費用 帶的工具 適合誰
 入門 NT$999 一次付清 OpenClaw 或 Hermes 擇一 第一次裝、不確定先試哪個
 
 AI 部門（單系統） NT$6,000 把 OpenClaw 串成從手機下指令的小助理群（含 30 天陪跑） 已經會裝、想把助理串進日常工作流
@@ -1270,11 +1272,9 @@ INSIGHTS & ADVISORY
 # AI 導入決策，
 始於明確的評估框架。
 
-Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，以 TB FRAME 方法論協助中小企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
-
-涵蓋導入商評選、資料主權、驗收治理與個人應用。以責任範圍、交付標準及可核對的依據，支持不同階段的 AI 導入決策。
 
 企業導入
 
@@ -1322,7 +1322,7 @@ ENTERPRISE INSIGHTS
 
 從部署位置延伸至外部服務、存取權限、日誌與退出交接，釐清資料主權的實際控制範圍。
 
-IN THIS ARTICLE 
+IN THIS ARTICLE
 
 ## 部署位置與外部串接須分別評估
 
@@ -1361,7 +1361,7 @@ URL: https://thinkbigtw.com/guides/openclaw-daizhuang/
 
 [Guides](https://thinkbigtw.com/guides/) / OpenClaw 代裝
 
-代裝服務 · 入門款 
+代裝服務 · 入門款
 
 # OpenClaw 代裝拆解——999 入門款到底幫你裝什麼
 
@@ -1521,7 +1521,7 @@ URL: https://thinkbigtw.com/guides/openclaw-safe/
 
 [Guides](https://thinkbigtw.com/guides/) / OpenClaw 安全嗎
 
-資安 · 裝之前必讀 
+資安 · 裝之前必讀
 
 # OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉
 
@@ -1593,7 +1593,7 @@ OpenClaw 會動手做事，動手就包含「刪檔、改檔、寄信、發訊�
 
 代裝最實質的價值不是「幫你裝」，是「把這些預設一次做到位」 。下面六個項目是我們代裝時預設就會處理的；自己裝，這些都得你手動做。
 
-項目 自己裝要花的功夫 代裝預設 
+項目 自己裝要花的功夫 代裝預設
 改預設密碼 找設定檔、改、重啟 裝完已改
 
 綁本機不對外 查預設綁定 IP 預設 127.0.0.1
@@ -1692,7 +1692,7 @@ URL: https://thinkbigtw.com/guides/yuanduan-daizhuang/
 
 [Guides](https://thinkbigtw.com/guides/) / 遠端代裝
 
-遠端安全 · 代裝顧問 
+遠端安全 · 代裝顧問
 
 # 找人遠端幫忙安裝 OpenClaw？遠端代裝顧問服務的流程、資安與挑選指南
 
@@ -1856,27 +1856,27 @@ HARNESS ENGINEERS
 
 為你打造專屬 AI 助理。不是公版 AI,是照你的工作與習慣,為你一個人量身搭建的貼身助理。
 
-OpenClaw 
-Hermes Agent 
-Claude Managed Agent 
-n8n 
-DIFY 
-Make 
-LINE 
-WhatsApp 
-Telegram 
-Discord 
-Slack 
-Teams 
-iMessage 
-Google Calendar 
-Gmail 
-Google Drive 
-Notion 
-GitHub 
-Zapier 
-Browser 
-Cron 
+OpenClaw
+Hermes Agent
+Claude Managed Agent
+n8n
+DIFY
+Make
+LINE
+WhatsApp
+Telegram
+Discord
+Slack
+Teams
+iMessage
+Google Calendar
+Gmail
+Google Drive
+Notion
+GitHub
+Zapier
+Browser
+Cron
 MCP
 
 FIVE TIERS — CHOOSE YOUR FIT
@@ -1929,10 +1929,10 @@ OPENCLAW — AI AGENT OS
 
 OpenClaw 是一個開源的 AI Agent 平台，讓你在本機運行 客製化自動化技能（Skills）。不需要每次都開瀏覽器、不需要手動操作，OpenClaw 能自動執行排程任務、資料分析、檔案處理、API 串接等工作。安裝後透過終端機呼叫，24小時不停機。
 
-客製化 Skills 
-本機執行 
-24h 不停機 
-MCP 支援 
+客製化 Skills
+本機執行
+24h 不停機
+MCP 支援
 20+ 通訊平台
 
 適合： 想要本機 AI 自動化、重視資安的個人與企業。
@@ -1949,10 +1949,10 @@ HERMES AGENT — ENTERPRISE AI
 
 Hermes Agent 是專為企業設計的 AI 自動化助理，能夠處理複雜的多步驟工作流程。支援 LINE、WhatsApp、Telegram、Discord、Slack、Teams 等 20+ 通訊平台，自動回覆客戶、排程安裝、產生報告。Hermes 像一個永不休息的員工，24小時處理重複性工作，讓你專注在真正重要的事。
 
-20+ 通訊平台 
-Email / Discord 
-多步驟工作流 
-CRM 整合 
+20+ 通訊平台
+Email / Discord
+多步驟工作流
+CRM 整合
 Slack / Teams
 
 適合： 有大量重複性流程、需要多系統整合的中小企業。
@@ -1969,9 +1969,9 @@ CLAUDE MANAGED AGENT — ANTHROPIC
 
 Claude Managed Agent 是 Anthropic 官方推出的 Agent 框架，讓 Claude 能夠自主規劃、執行多步驟任務。不只是問答，而是真正的「給任務、自動完成」。透過 Claude 的推理能力，Agent 能分析複雜情境、決定下一步行動、呼叫外部工具。
 
-Anthropic 官方 
-多步驟推理 
-外部工具呼叫 
+Anthropic 官方
+多步驟推理
+外部工具呼叫
 MCP 原生支援
 
 適合： 需要高度推理能力、複雜決策自動化的進階用戶。
@@ -2022,15 +2022,15 @@ OpenClaw
 
 ## 個人 AI 助理常見問題
 
-個人 AI 助理如何開始？ 
+個人 AI 助理如何開始？
 
 先確認設備、帳號與工作需求，再依支援範圍選擇個人方案；價格與服務條件請見個人方案專區。
 
-地端部署代表資料不會離開電腦嗎？ 
+地端部署代表資料不會離開電腦嗎？
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
 
-如何確認 AI Agent 的操作權限？ 
+如何確認 AI Agent 的操作權限？
 
 依工作所需配置資料與工具權限；對外發送、花費與正式系統變更，由指定負責人核准。
 
@@ -2042,7 +2042,7 @@ URL: https://thinkbigtw.com/hermes-starter/
 
 # Hermes 入門 | Think BIG!
 
-個人 AI 助理 
+個人 AI 助理
 
 # Hermes 入門
 
@@ -2113,22 +2113,18 @@ ENTERPRISE AI AGENTS
 # 讓 AI 成為
 可持續的營運能力。
 
-地端部署、流程整合、持續治理。
-
-地端部署 · 資料主權 · 持續治理
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 [了解企業導入 ›](https://thinkbigtw.com/enterprise/)[預約諮詢 ›](https://thinkbigtw.com/enterprise/#consult)
-
-Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，以 TB FRAME 方法論協助中小企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
 
 TB READINESS
 
-TB READINESS 是 Think BIG 提供的六題導入成熟度自評，作答只在瀏覽器計算、不傳送、不儲存。
-
 ## 掌握導入條件。
 確立下一步。
+
+TB READINESS 是 Think BIG 提供的六題導入成熟度自評，作答只在瀏覽器計算、不傳送、不儲存。
 
 以地端部署、流程整合與持續治理，建立可控、可驗收的 AI Agent 團隊。從導入評估到年度維運，明確界定資料、權限與交付責任。
 
@@ -2140,23 +2136,23 @@ TB READINESS
 
 作答只在此頁計算，不傳送、不儲存，不需要留下個資。
 
-01 優先評估的業務職能為何？ 
+01 優先評估的業務職能為何？
 
-客服｜重複回答與查資料 業務｜詢問整理與聯繫追蹤 行銷｜內容草稿與發布準備 財務｜資料彙整與待核對項目 維運｜例行檢查與異常追蹤 02 目標流程的標準化程度為何？ 
+客服｜重複回答與查資料 業務｜詢問整理與聯繫追蹤 行銷｜內容草稿與發布準備 財務｜資料彙整與待核對項目 維運｜例行檢查與異常追蹤 02 目標流程的標準化程度為何？
 
-已有標準化作業步驟 流程大致一致，尚待文件化 流程差異較大，尚待定義 03 資料整備與授權狀況為何？ 
+已有標準化作業步驟 流程大致一致，尚待文件化 流程差異較大，尚待定義 03 資料整備與授權狀況為何？
 
-已有可授權使用的文件或資料 資料分散，需要整理 可用資料與授權尚待確認 04 是否已建立驗收責任歸屬？ 
+已有可授權使用的文件或資料 資料分散，需要整理 可用資料與授權尚待確認 04 是否已建立驗收責任歸屬？
 
-已有指定負責人 有使用部門，尚未定驗收人 尚未指定驗收負責人 05 資料處理的政策限制為何？ 
+已有指定負責人 有使用部門，尚未定驗收人 尚未指定驗收負責人 05 資料處理的政策限制為何？
 
-限定公司設備，不能傳到外部 可以評估經核准的外部服務 資料處理政策尚待確認 06 是否已定義成果與操作邊界？ 
+限定公司設備，不能傳到外部 可以評估經核准的外部服務 資料處理政策尚待確認 06 是否已定義成果與操作邊界？
 
 已定義預期產物與禁止操作 已有目標，驗收標準尚待確認 尚在評估應用情境
 
 ASSESSMENT / 導入建議
 
-### 
+###
 
 - 完成流程步驟與例外情境盤點。
 
@@ -2178,7 +2174,7 @@ ASSESSMENT / 導入建議
 
 [就此職能啟動諮詢 ›](https://thinkbigtw.com/enterprise/#consult)
 
-評估方法與適用範圍 
+評估方法與適用範圍
 
 依優先職能與五項導入條件提供初步建議。此自評不使用評分、產業排名或效益推估，亦不構成成熟度認證。
 
@@ -2212,31 +2208,31 @@ FUNCTIONAL AI AGENTS
 
 依部門職能配置 AI Agent 組合，定義輸入資料、工作產物與覆核責任。透過人機協作（Human-in-the-loop），保留關鍵決策與對外行動的核准權。
 
-[01 
+[01
 
 ### 客服
 
 知識查找、回覆草稿
 
-↗](https://thinkbigtw.com/enterprise/departments/#service)[02 
+↗](https://thinkbigtw.com/enterprise/departments/#service)[02
 
 ### 業務
 
 詢問摘要、聯繫待辦
 
-↗](https://thinkbigtw.com/enterprise/departments/#sales)[03 
+↗](https://thinkbigtw.com/enterprise/departments/#sales)[03
 
 ### 行銷
 
 內容草稿、發布檢查
 
-↗](https://thinkbigtw.com/enterprise/departments/#marketing)[04 
+↗](https://thinkbigtw.com/enterprise/departments/#marketing)[04
 
 ### 財務
 
 資料彙整、待核對清單
 
-↗](https://thinkbigtw.com/enterprise/departments/#finance)[05 
+↗](https://thinkbigtw.com/enterprise/departments/#finance)[05
 
 ### 維運與資安
 
@@ -2253,15 +2249,15 @@ Think BIG 自家 AI 團隊涵蓋行銷、客服、業務與維運。透過變更
 
 [檢視 AI 治理承諾 ›](https://thinkbigtw.com/trust/)
 
-- 交付 
+- 交付
 
 交付物可核對：記錄產物、資料依據與覆核責任。
 
-- 登記 
+- 登記
 
 變更可追溯：登記範圍、影響、授權與復原方式。
 
-- 查核 
+- 查核
 
 驗收有依據：依測試結果與異常紀錄確認完成條件。
 
@@ -2313,15 +2309,15 @@ ENTERPRISE ADVISORY
 
 準備選導入團隊？先看[選商指南](https://thinkbigtw.com/guides/choose-ai-partner/)。
 
-導入前需要具備哪些條件？ 
+導入前需要具備哪些條件？
 
 不要求企業預先具備 AI 開發能力。評估以工作流程、可授權資料、驗收責任人與預期產物為基礎，再確認 AI Agent 的適用範圍與必要準備。
 
-地端部署如何界定資料處理範圍？ 
+地端部署如何界定資料處理範圍？
 
 採全地端配置時，模型與指定資料在公司設備內處理。若流程需要外部模型或服務，會先確認傳送欄位、用途與授權；地端部署不等於所有串接都不出網。
 
-導入後如何維持營運與治理？ 
+導入後如何維持營運與治理？
 
 TB CONTINUITY 年度治理與維運涵蓋一年陪跑，依約定範圍執行問題追蹤、維護檢查與變更驗證。設備、模型用量、第三方服務及新增需求分項界定。
 
@@ -2356,7 +2352,7 @@ URL: https://thinkbigtw.com/openclaw-starter/
 
 # OpenClaw 入門 | Think BIG!
 
-個人 AI 助理 
+個人 AI 助理
 
 # OpenClaw 入門
 
@@ -2419,7 +2415,7 @@ URL: https://thinkbigtw.com/pricing/enterprise/
 
 # 企業 AI 部署架構｜雲端整合與地端主權｜Think BIG
 
-企業使用 
+企業使用
 
 # 企業部署架構：雲端整合與地端主權
 
@@ -2471,9 +2467,9 @@ Enterprise 2 · 本地
 
 ## 架構與服務範圍比較
 
-欄位 
-企業方案 1｜雲端上線 
-企業方案 2｜本地主權 
+欄位
+企業方案 1｜雲端上線
+企業方案 2｜本地主權
 給誰 允許經核准雲端服務的企業 資料不能出公司的企業
 
 交付 雲端 API 部署，訪談 → 報價 → 合約 本地大模型部署，訪談 → 報價 → 合約
@@ -2504,7 +2500,7 @@ CTA [預約訪談](https://lin.ee/n5KW430) [預約訪談](https://lin.ee/n5KW430
 
 部署與驗收 各部門客製 Agent 開發、資安框架導入、驗收測試，之後依合約維護
 
-僅需個人 AI 助理與維護支援？ 
+僅需個人 AI 助理與維護支援？
 個人方案另列安裝、AI Agent 組合與年度維護內容。涉及公司共用資料、角色權限或正式系統整合，應依企業導入條件評估。
 
 [看個人方案 3 →](https://thinkbigtw.com/pricing/personal/#tier3)
@@ -2517,15 +2513,13 @@ URL: https://thinkbigtw.com/pricing/
 
 # 方案與價格總覽｜個人使用／企業使用兩扇門｜Think BIG! 台灣
 
-方案與價格 
+方案與價格
 
 # 先從公司的工作，選導入方式。
 
-Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，以 TB FRAME 方法論協助中小企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
-
-公司共用資料、跨部門工作與權限管理，從企業導入開始：先確認流程、資料與驗收，再討論配置及一年陪跑。只替自己安裝 AI 助理，請進個人方案專區。
 
 ## 企業導入優先，個人方案另有專區。
 
@@ -2569,7 +2563,7 @@ Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，�
 
 [看年約三檔 →](https://thinkbigtw.com/pricing/personal/#tier3)
 
-個人年約維護 
+個人年約維護
 
         依你的工作需要選擇
 
@@ -2602,7 +2596,7 @@ NT$60,000
 
 ## 加購區（掛在個人門下，不算方案階梯）
 
-品項 價格 給誰／規則 去哪買 
+品項 價格 給誰／規則 去哪買
 技能包 10／20／40 組 NT$1,000／2,000／3,000 已裝 OpenClaw 或 Hermes 的人，加裝技能不加月費；先談需求再下單 [技能包頁](https://thinkbigtw.com/skill-pack/)
 
 技能包 120 組 NT$4,888 技能包頂規檔，OpenClaw 或 Hermes 擇一；不含協作會議室與 coding agent 串接 [技能包頁](https://thinkbigtw.com/skill-pack/)
@@ -2631,7 +2625,7 @@ URL: https://thinkbigtw.com/pricing/personal/
 
 # 個人方案與價格｜NT$999 起，入門／AI 部門／年約｜Think BIG! 台灣
 
-個人使用 
+個人使用
 
 # 個人 AI 助理方案：入門、工作組合與年約
 
@@ -2641,7 +2635,7 @@ URL: https://thinkbigtw.com/pricing/personal/
 
 Think BIG 品牌公仔
 
-個人方案完整目錄 
+個人方案完整目錄
 
 ## 依工作需求與支援範圍，選擇個人方案。
 
@@ -2673,16 +2667,16 @@ Tier 1 · 支援 7 天
 
 給誰：第一次要一個常駐 LINE／Telegram 的 AI 助理、不想自己摸安裝的人。解決的是「教學看到一半放棄」。
 
-OpenClaw 
-變體 A · 官方原裝技能單一 Agent 
-NT$999 
-4 項原裝技能：搜尋、檔案、程式執行、瀏覽器；常駐 LINE 或 Telegram 
+OpenClaw
+變體 A · 官方原裝技能單一 Agent
+NT$999
+4 項原裝技能：搜尋、檔案、程式執行、瀏覽器；常駐 LINE 或 Telegram
 [看 OpenClaw 入門頁 →](https://thinkbigtw.com/openclaw-starter/)
 
-Hermes 
-變體 B · 官方原裝基礎款，越用越聰明 
-NT$999 
-跨對話持久記憶、自我學習閉環；同價，擇一即可 
+Hermes
+變體 B · 官方原裝基礎款，越用越聰明
+NT$999
+跨對話持久記憶、自我學習閉環；同價，擇一即可
 [看 Hermes 入門頁 →](https://thinkbigtw.com/hermes-starter/)
 
 無月費、無維運承諾；若因我方技術問題無法完成安裝，全額退費。
@@ -2695,16 +2689,16 @@ Tier 2 · 陪跑 30 天
 
 給誰：已在付 Claude Code／Codex 等 coding agent 訂閱、想讓工具組隊跑固定流程、願意自己維護的人。解決的是「自己當人肉轉接頭」——不是聊天機器人，是會自己跑的部門。
 
-單 AI Agent 
-變體 A · 全 Agent 串接 
-NT$6,000 
-60 組客製技能＋跨 Agent 協作會議室＋coding agent 串接 
+單 AI Agent
+變體 A · 全 Agent 串接
+NT$6,000
+60 組客製技能＋跨 Agent 協作會議室＋coding agent 串接
 [看全 Agent 串接頁 →](https://thinkbigtw.com/full-agent/)
 
-雙 AI Agent 
-變體 B · 雙 AI Agent 
-NT$15,000 
-OpenClaw＋Hermes 雙 AI Agent、全 Agent 串接、MCP 記憶互通；技能數依訪談 
+雙 AI Agent
+變體 B · 雙 AI Agent
+NT$15,000
+OpenClaw＋Hermes 雙 AI Agent、全 Agent 串接、MCP 記憶互通；技能數依訪談
 [看雙 AI Agent頁 →](https://thinkbigtw.com/dual-agent/)
 
 AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧，看個人方案 3 或加購「系統健檢故障修復」。
@@ -2717,32 +2711,32 @@ Tier 3 · 顧一整年 · 主打
 
 給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
 
-單 AI Agent 
-副標：尊榮年約 
-NT$32,000／年 
-Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能 
+單 AI Agent
+副標：尊榮年約
+NT$32,000／年
+Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能
 [看尊榮年約頁 →](https://thinkbigtw.com/annual-pro/)
 
-雙 AI Agent 
-副標：年度旗艦 
-NT$38,000／年 
-Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合 
+雙 AI Agent
+副標：年度旗艦
+NT$38,000／年
+Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合
 [看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
 
-SUPERSOLO 七部門 
-副標：超級個體 
-NT$60,000／年 
-一個人＝七個部門（內容自媒體、行銷、業務、客服、財務、行政、研發），一年每週維護 
+SUPERSOLO 七部門
+副標：超級個體
+NT$60,000／年
+一個人＝七個部門（內容自媒體、行銷、業務、客服、財務、行政、研發），一年每週維護
 [看 SUPERSOLO 頁 →](https://thinkbigtw.com/solo-pro/)
 
 三檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年續約 NT$30,000／年（約 2,500／月），含每週維護＋48 小時故障修復。
 
 ## 三階比較表
 
-欄位 
-個人方案 1｜入門 
-個人方案 2｜AI 部門 
-個人方案 3｜年約 
+欄位
+個人方案 1｜入門
+個人方案 2｜AI 部門
+個人方案 3｜年約
 給誰 第一次要 AI 助理的人 已付 coding agent 訂閱、要工具組隊的人 要有人顧一整年的個人／一人公司
 
 交付 AnyDesk／DeskIn 遠端安裝 AnyDesk／DeskIn 遠端安裝 訪談 → 建置 → 啟動年約
@@ -2856,7 +2850,7 @@ CP值:優質賣家,值得推薦
 
 ## 加購區（不算階梯，任一階都可加）
 
-品項 價格 給誰／規則 去哪買 
+品項 價格 給誰／規則 去哪買
 技能包 10／20／40 組 NT$1,000／2,000／3,000 已裝 OpenClaw 或 Hermes 的人，加裝技能不加月費；先談需求再下單；0-Token 優先設計 [技能包頁](https://thinkbigtw.com/skill-pack/)
 
 技能包 120 組 NT$4,888 技能包頂規檔，OpenClaw 或 Hermes 擇一；不含協作會議室與 coding agent 串接（那是個人方案 2 的功能） [技能包頁](https://thinkbigtw.com/skill-pack/)
@@ -2969,7 +2963,7 @@ URL: https://thinkbigtw.com/skill-pack/
 
 # 技能包 | Think BIG!
 
-個人 AI 助理 
+個人 AI 助理
 
 # 技能包
 
@@ -3033,7 +3027,7 @@ URL: https://thinkbigtw.com/solo-pro/
 
 # 超級個體 SUPERSOLO NT$60,000 — 一個人，七個部門 | Think BIG!
 
-個人旗艦方案 
+個人旗艦方案
 
 # 超級個體 SUPERSOLO
 
@@ -3199,13 +3193,9 @@ AI GOVERNANCE & DATA SOVEREIGNTY
 # 以資料主權與治理，
 確立 AI 的運作邊界。
 
-Think BIG 不公開任何客戶名稱、標誌、截圖或可推知身分的描述，信任以自家 AI 團隊的變更登記、每日巡檢與證據查核說明。
-
-Think BIG（大想成業有限公司）是台灣的企業 AI Agent 導入商，以 TB FRAME 方法論協助中小企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
-
-將資料位置、角色權限、變更核准與驗證紀錄納入導入設計。Think BIG 以自家團隊的治理實務，說明企業可以核對的責任與作業承諾。
 
 [討論你的資料與權限需求
       ›](https://thinkbigtw.com/enterprise/#consult)
@@ -3216,12 +3206,14 @@ GOVERNANCE PRINCIPLES
 
 地端配置將工作資料與執行環境部署於企業指定設備。依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。
 
-地端部署不等於所有連線都在本機。 
+地端部署不等於所有連線都在本機。
         若使用雲端模型、通訊軟體或其他外部服務，相關請求仍會送到該服務。需要資料不出公司時，須一起確認本機模型、外連限制與可用功能。
 
 - ## 客戶身分與資訊保密
 
 不公開客戶名稱、標誌、截圖或可推知身分的描述。對外能力說明以 Think BIG 自家團隊的運作與治理方式為依據，客戶資料不作為展示素材。
+
+Think BIG 不公開任何客戶名稱、標誌、截圖或可推知身分的描述，信任以自家 AI 團隊的變更登記、每日巡檢與證據查核說明。
 
 - ## 變更登記與授權管理
 
@@ -3246,7 +3238,7 @@ DATA BOUNDARIES
 
 工作資料、地端 AI Agent、本機模型。依授權範圍存取。
 
-↔ 
+↔
 
 ### 經確認的外部服務
 

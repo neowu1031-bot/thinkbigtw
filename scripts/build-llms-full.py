@@ -7,7 +7,9 @@ def markdown(node):
  if isinstance(node,Comment):return ''
  if isinstance(node,NavigableString):return str(node)
  name=node.name
- if name in ('script','style','nav','footer','button','noscript','svg','form'):return ''
+ if name in ('script','style','nav','footer','button','noscript','svg','form','dialog'):return ''
+ # Typography-only wrappers must not insert spaces before Chinese punctuation.
+ if name=='wbr' or (name=='span' and set(node.get('class',[])) & {'punct','title-tail','keep-phrase','break-token'}):return ''.join(markdown(c) for c in node.children)
  text=''.join(markdown(c) for c in node.children).strip()
  if name in ('h1','h2','h3','h4','h5','h6'):return '\n\n'+'#'*int(name[1])+' '+text+'\n\n'
  if name=='li':return '\n- '+text+'\n'
@@ -25,7 +27,7 @@ for url in urls:
  text=re.sub(r'\n[ \t]*\n(?:[ \t]*\n)+','\n\n',markdown(body)).strip()
  if not text.startswith('# '):text='# '+soup.title.get_text()+'\n\n'+text
  parts.append('URL: '+url+'\n\n'+text)
-output='\n\n---\n\n'.join(parts)+'\n';p=ROOT/'llms-full.txt'
+output='\n'.join(line.rstrip() for line in '\n\n---\n\n'.join(parts).splitlines())+'\n';p=ROOT/'llms-full.txt'
 if '--check' in sys.argv:
  if p.read_text()!=output:sys.exit('FAIL llms-full differs')
  print(f'PASS llms-full: {len(parts)} URL sections')
