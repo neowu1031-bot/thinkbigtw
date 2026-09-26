@@ -1,0 +1,10 @@
+/* Secondary personal track: shared black/white/pink brand, warmer surface. */
+.tb-personal-context{display:flex;justify-content:space-between;gap:16px;padding:12px max(20px,calc((100vw - 1200px)/2));background:#f4e7ec;color:#49333d;font:13px/1.6 'Noto Sans TC','PingFang TC',sans-serif;border-bottom:1px solid #dfcfd5}
+.tb-personal-context a{color:inherit;font-weight:600;text-underline-offset:4px}
+body{--red:#80394f;--accent:#80394f;--pink:#eea4bb}
+.personal-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.personal-mascot{margin:0;min-width:0}.personal-mascot video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#f7f3f5;border:1px solid #e2d5da}.personal-mascot figcaption{font-size:12px;color:#62575c;margin-top:10px}
+.personal-hub-link{display:inline-block;margin-top:20px;color:#80394f;font-size:14px;min-height:44px;padding-block:10px}
+.personal-directory{background:#f7eff2!important}.personal-directory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:30px;margin-top:36px}.personal-directory-grid h3{font-size:17px;margin-bottom:16px}.personal-directory-grid a{display:block;min-height:44px;padding:10px 0;color:#49333d;font-size:14px;text-underline-offset:5px;border-bottom:1px solid #dfd3d8}.personal-usb{border-top:1px solid #dfd3d8;margin-top:32px;padding-top:24px}.personal-usb h3{font-size:18px}.personal-usb p{font-size:14px;color:#62575c;margin-top:12px}
+@media(max-width:760px){.personal-hero-grid{grid-template-columns:1fr;gap:28px}.personal-directory-grid{grid-template-columns:1fr 1fr;gap:28px 20px}.tb-personal-context{flex-wrap:wrap;gap:4px 16px}.tb-personal-context span{font-size:12px}.personal-hero-grid h1{font-size:32px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}

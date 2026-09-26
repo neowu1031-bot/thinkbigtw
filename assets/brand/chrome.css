@@ -28,3 +28,11 @@
 #tb-nav .tb-logo img{width:144px}
 }
 
+/* Enterprise navigation takes precedence; personal is a separated secondary link. */
+#tb-nav .tb-links{gap:24px}
+#tb-nav .tb-personal-link{margin-left:12px;padding-left:24px;border-left:1px solid #626264;color:#c8c4c6}
+#tb-footer .tb-personal-link{flex-basis:100%;margin-top:12px;color:#c8c4c6}
+#tb-nav,#tb-footer{font-family:'Noto Sans TC','PingFang TC','Microsoft JhengHei',sans-serif}
+@media(max-width:1050px){#tb-nav>.tb-links{display:none}#tb-nav .tb-menu{display:block}#tb-nav .tb-menu .tb-links{position:absolute;top:100%;left:0;right:0;display:grid;background:#191a1d;padding:16px 24px 24px;gap:6px;border-bottom:1px solid #77747a}#tb-nav .tb-menu .tb-links a{padding:8px 0}#tb-nav .tb-personal-link{margin:12px 0 0;padding-top:14px!important;border-left:0;border-top:1px solid #626264}}
+#tb-nav a[aria-current=location]{color:#eea4bb;text-decoration:underline;text-underline-offset:7px}
+body:has(> #tb-nav){padding-top:0!important}

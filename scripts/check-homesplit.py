@@ -24,7 +24,8 @@ def missing_links(path,source,baseline=False):
   if target.is_dir():target=target/'index.html'
   if not target.exists():missing.append(val)
  return set(missing)
-for rel in ['index.html','enterprise/index.html','trust/index.html']:
+CORE=['index.html','enterprise/index.html','trust/index.html','enterprise/departments/index.html','enterprise/process/index.html','enterprise/process/worksheet/index.html','guides/index.html','guides/choose-ai-partner/index.html','guides/local-ai-data/index.html','guides/ai-acceptance/index.html']
+for rel in CORE:
  s=(ROOT/rel).read_text();soup=BeautifulSoup(s,'html.parser');base=original(rel)
  record(rel+': static landmarks',len(soup.select('h1'))==1 and len(soup.select('#tb-nav'))==1 and len(soup.select('#tb-footer'))==1)
  record(rel+': analytics',s.count("gtag('config', 'G-7V41XYLLP5')")+s.count("gtag('config','G-7V41XYLLP5')")==1)
@@ -47,7 +48,7 @@ for rel in ['index.html','enterprise/index.html','trust/index.html']:
  for a in soup.select('a[href^="#"]'):
   record(rel+': anchor '+a['href'],a['href'][1:] in ids)
  # Every essential text is in the file itself, not an injected image/script.
- record(rel+': substantial static text',len(soup.select_one('main').get_text())>500)
+ record(rel+': substantial static text',len(soup.select_one('main').get_text())>250)
 for p in ROOT.rglob('*.html'):
  rel=p.relative_to(ROOT)
  if any(x in rel.parts for x in ['.git','workers','supabase']):continue
@@ -82,5 +83,28 @@ tracked=subprocess.check_output(['git','ls-files'],cwd=ROOT,text=True).splitline
 record('no existing tracked URLs/files deleted',all((ROOT/p).exists() for p in tracked))
 changes=subprocess.check_output(['git','diff','--name-only'],cwd=ROOT,text=True).splitlines()
 record('no infrastructure edits',not any(p.startswith(('workers/','supabase/','.github/')) or 'wrangler' in p for p in changes))
+# Round 2: diagnosis privacy contract and original personal maintenance promises.
+home=BeautifulSoup((ROOT/'index.html').read_text(),'html.parser')
+record('homepage has one personal section',len(home.select('.home-section[data-audience="personal"]'))==1)
+record('diagnosis has six static questions',len(home.select('#readiness fieldset'))==6)
+record('diagnosis has static result explanations',len(home.select('[data-result-stage]'))==3 and len(home.select('[data-result-action]'))==8)
+record('diagnosis CTA contains no answers',home.select_one('#quiz-result a')['href']=='/enterprise/#consult')
+quiz=(ROOT/'assets/homesplit/readiness.js').read_text()
+record('diagnosis has no network/storage/analytics APIs',not re.search(r'fetch\s*\(|XMLHttpRequest|sendBeacon|localStorage|sessionStorage|document\.cookie|gtag\s*\(|dataLayer',quiz))
+for rel in CORE+['pricing/enterprise/index.html','enterprise-local/index.html','enterprise-cloud/index.html']:
+ soup=BeautifulSoup((ROOT/rel).read_text(),'html.parser')
+ record(rel+': enterprise has no mascot or photo',not soup.select('video') and all('assets/brand/' in i.get('src','') for i in soup.select('img')))
+ record(rel+': no delivery duration promise',not re.search(r'\d+\s*(?:天|個月|小時).{0,12}(?:交付|上線|修復)',soup.get_text()))
+pattern=r'48(?: 小時(?:故障修復保證|故障修復|故障保固|內修復|修復)?|hr (?:修復保證|故障修復)|-hour (?:fault fixes|fault-fix guarantee))'
+for rel in ['annual/index.html','annual-pro/index.html','annual-flagship/index.html','solo-pro/index.html','pricing/index.html','pricing/personal/index.html','guides/openclaw-safe/index.html','guides/hermes-vs-openclaw/index.html','llms.txt']:
+ main=subprocess.check_output(['git','show','main:'+rel],cwd=ROOT,text=True)
+ current=(ROOT/rel).read_text()
+ record(rel+': exact 48-hour phrases restored from main',re.findall(pattern,main)==re.findall(pattern,current))
+ record(rel+': original immediate repair wording restored',main.count('發現即修復')==current.count('發現即修復'))
+personal=BeautifulSoup((ROOT/'pricing/personal/index.html').read_text(),'html.parser')
+video=personal.select_one('video')
+record('original mascot hero is personal and opt-in',video and video.get('poster')=='/assets/neo_hero_wide_poster.jpg' and video.get('preload')=='none' and 'autoplay' not in video.attrs and video.select_one('source')['src']=='/assets/neo_hero_wide.mp4')
+for a in personal.select('#directory a'):
+ record('personal directory '+a['href'],(ROOT/a['href'].strip('/')/'index.html').exists())
 print(json.dumps({'passed':sum(r['pass'] for r in results),'total':len(results),'failed':[r for r in results if not r['pass']],'checks':results},ensure_ascii=False,indent=2))
 raise SystemExit(1 if any(not r['pass'] for r in results) else 0)

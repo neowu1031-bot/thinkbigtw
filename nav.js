@@ -9,7 +9,11 @@
     if (!nav) return;
     const path = location.pathname.replace(/index\.html?$/, '');
     nav.querySelectorAll('a').forEach(function (link) {
-      if (link.getAttribute('href') === path) link.setAttribute('aria-current', 'page');
+      const href = link.getAttribute('href');
+      if (href === path) link.setAttribute('aria-current', 'page');
+      else if (href === '/pricing/personal/' && document.querySelector('.tb-personal-context')) link.setAttribute('aria-current', 'location');
+      else if (href === '/guides/' && path.startsWith('/guides/')) link.setAttribute('aria-current', 'location');
+      else if (href === '/enterprise/process/' && path.startsWith('/enterprise/process/')) link.setAttribute('aria-current', 'location');
     });
     const menu = nav.querySelector('details');
     if (!menu) return;
