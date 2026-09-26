@@ -13,7 +13,7 @@ html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--txt);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.65}
 ::selection{background:var(--brand);color:#fff}
 a{color:var(--brand);text-decoration:none}
-a:hover{text-decoration:underline}
+@media (hover:hover) and (pointer:fine){a:hover{text-decoration:underline}}
 :focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 img{max-width:100%}
 
@@ -26,14 +26,14 @@ header .wrap{display:flex;align-items:center;gap:24px;padding:16px 24px}
 .logo span{color:var(--brand)}
 header nav{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:14px;flex-wrap:wrap}
 header nav a{color:var(--dim);font-weight:500}
-header nav a:hover{color:var(--txt);text-decoration:none}
+@media (hover:hover) and (pointer:fine){header nav a:hover{color:var(--txt);text-decoration:none}}
 .lang{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--faint)}
 
 /* buttons */
 .btn{display:inline-block;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--panel);color:var(--txt);padding:11px 22px;font-size:14px;font-weight:700;letter-spacing:.03em;transition:all .12s}
-.btn:hover{border-color:var(--txt);text-decoration:none}
+@media (hover:hover) and (pointer:fine){.btn:hover{border-color:var(--txt);text-decoration:none}}
 .btn.primary{background:var(--brand);border-color:var(--brand);color:#fff}
-.btn.primary:hover{filter:brightness(.92)}
+@media (hover:hover) and (pointer:fine){.btn.primary:hover{filter:brightness(.92)}}
 
 /* hero + sections */
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.28em;color:var(--brand);font-weight:600;text-transform:uppercase}

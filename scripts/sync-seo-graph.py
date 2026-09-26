@@ -40,13 +40,14 @@ for p,url,soup in pages():
  crumbs=[{'@type':'ListItem','position':1,'name':'首頁','item':BASE}]
  if url!=BASE:
   if '/guides/' in url and url!=BASE+'guides/':crumbs.append({'@type':'ListItem','position':2,'name':'指南','item':BASE+'guides/'})
+  if '/enterprise/' in url and url!=BASE+'enterprise/':crumbs.append({'@type':'ListItem','position':2,'name':'企業導入','item':BASE+'enterprise/'})
   crumbs.append({'@type':'ListItem','position':len(crumbs)+1,'name':h1,'item':url})
  web['breadcrumb']={'@id':url+'#breadcrumb'}
  breadcrumb={'@type':'BreadcrumbList','@id':url+'#breadcrumb','itemListElement':crumbs}
  for n in nodes:
   n.pop('@context',None)
   if n.get('@type')=='Article':
-   n.update({'@id':url+'#article','headline':h1,'description':desc,'author':{'@id':EDITOR['@id']},'publisher':{'@id':ORG['@id']},'image':[BASE+'assets/brand/thinkbig-og.jpg'],'datePublished':git_date(p,True),'dateModified':git_date(p),'inLanguage':'zh-Hant','mainEntityOfPage':{'@id':web['@id']},'isPartOf':{'@id':BASE+'guides/#collection'}})
+   n.update({'@id':url+'#article','headline':h1,'description':desc,'author':{'@id':EDITOR['@id']},'publisher':{'@id':ORG['@id']},'image':[BASE+'assets/brand/thinkbig-og.jpg'],'datePublished':git_date(p,True),'dateModified':git_date(p),'inLanguage':'zh-Hant','mainEntityOfPage':{'@id':web['@id']},'isPartOf':{'@id':BASE+('guides/#collection' if '/guides/' in url else 'enterprise/#webpage')}})
   if n.get('@type')=='FAQPage' and '/harness/' in url:
    n['mainEntity']=[{'@type':'Question','name':d.summary.get_text(' ',strip=True),'acceptedAnswer':{'@type':'Answer','text':d.p.get_text(' ',strip=True)}} for d in soup.select('#faq details')]
   if n.get('@type')=='FAQPage' and soup.select('.faq details'):

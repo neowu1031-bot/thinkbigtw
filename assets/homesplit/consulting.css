@@ -13,7 +13,7 @@
 .home-surface .home-statement h1{font-size:clamp(38px,4.3vw,62px);font-weight:500;line-height:1.3}
 .home-surface .home-statement .intro{color:#c5c5c9;max-width:32em;line-height:2;margin-top:30px}
 .home-surface .home-statement .button{background:#eea4bb;border-color:#eea4bb;color:#202024;margin-top:34px}
-.home-surface .home-statement .button:hover{background:#f4bfd0;border-color:#f4bfd0}
+@media (hover:hover) and (pointer:fine){.home-surface .home-statement .button:hover{background:#f4bfd0;border-color:#f4bfd0}}
 .home-surface .hero-note{color:#aeadb3;font-size:12px;letter-spacing:.07em;margin-top:28px}
 .home-surface .diagnosis{background:#fbfbfa;color:#1c1c1e;border-top:3px solid #eea4bb;padding:28px 30px;min-width:0}
 .home-surface .quiz-heading{align-items:baseline;gap:8px}

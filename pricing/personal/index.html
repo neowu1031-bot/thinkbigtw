@@ -54,7 +54,7 @@ h2{font-family:var(--tc);font-weight:700;font-size:clamp(22px,3vw,36px);line-hei
 h3{font-family:var(--tc);font-weight:700;font-size:18px;color:var(--ink);margin-bottom:8px}
 p{line-height:1.75;color:var(--muted)}
 a{color:var(--red);text-decoration:none}
-a:hover{text-decoration:underline}
+@media (hover:hover) and (pointer:fine){a:hover{text-decoration:underline}}
 .container{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
 section{padding:72px 0}
 .crumb{font-family:var(--mono);font-size:11px;letter-spacing:1px;color:var(--muted);margin-bottom:18px}
@@ -99,7 +99,7 @@ table.cmp thead th.hot{background:var(--red)}
 table.cmp tbody th{background:var(--gray);font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);white-space:nowrap;width:110px}
 table.cmp td strong{color:var(--ink)}
 .cta-btn{display:inline-block;background:var(--red);color:#fff;font-family:var(--tc);font-weight:700;font-size:15px;padding:13px 26px;border-radius:10px;text-decoration:none;transition:background .2s,transform .15s;letter-spacing:0.3px}
-.cta-btn:hover{background:#c73821;transform:translateY(-1px);text-decoration:none}
+@media (hover:hover) and (pointer:fine){.cta-btn:hover{background:#c73821;transform:translateY(-1px);text-decoration:none}}
 /* addons */
 table.addons{width:100%;border-collapse:collapse;font-size:14px;min-width:560px;background:#fff}
 table.addons th,table.addons td{border:1px solid var(--gray2);padding:11px 14px;text-align:left;vertical-align:top;line-height:1.6}
@@ -179,7 +179,7 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "個人 AI 助理方案：入門、工作組合與年約",
+          "name": "個人 AI 助理方案 入門、工作組合與年約",
           "item": "https://thinkbigtw.com/pricing/personal/"
         }
       ]
@@ -340,7 +340,8 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 
 
 
-<link rel="stylesheet" href="/assets/generated/site-bb9ed2aae19b.css?v=202609270609">
+
+<link rel="stylesheet" href="/assets/generated/site-a50335f13fa5.css">
 </head>
 <body class="personal-hub">
 <!-- TB:NAV:START -->
@@ -350,11 +351,11 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 <div class="container personal-hero-grid"><div class="tb-hero-copy" data-no-reveal="">
 <nav aria-label="breadcrumb" class="crumb"><a href="/">首頁</a> › <a href="/pricing/">方案與價格</a> › <span>個人使用</span></nav>
 <span class="track-tag">個人使用</span>
-<h1>個人 AI 助理方案：入門、工作組合與年約</h1>
-<p class="lead">個人使用是給一個人在用的人：一人公司、自由工作者、個人副業，或想先給自己裝一套的主管。裝在你自己的電腦、用你自己申請的 API Key，由台灣工程師遠端安裝。依使用需求選擇：入門安裝含 7 天技術諮詢；AI 部門含2 小時線上技術導覽＋安裝後 7 天技術諮詢；年約含一年維運。</p><a class="personal-hub-link" href="#directory">查看個人方案完整目錄 ↓</a></div><figure class="personal-mascot"><img alt="Think BIG 品牌公仔" class="personal-reduced-poster" height="1080" src="/assets/neo_hero_nof_poster.jpg" width="1920"/><video aria-label="Think BIG 品牌公仔主視覺" autoplay="" loop="" muted="" playsinline="" poster="/assets/neo_hero_nof_poster.jpg" preload="metadata"><source data-src="/assets/neo_hero_nof.mp4" type="video/mp4"/></video><figcaption>Think BIG 品牌公仔</figcaption></figure>
+<h1>個人 AI 助理方案<br><span class="personal-hero-subtitle">入門、工作組合與年約</span></h1>
+<p class="lead">個人使用是給一個人在用的人：一人公司、自由工作者、個人副業，或想先給自己裝一套的主管。裝在你自己的電腦、用你自己申請的 API Key，由台灣工程師遠端安裝。依使用需求選擇：入門安裝含 7 天技術諮詢；AI 部門含2 小時線上技術導覽＋安裝後 7 天技術諮詢；年約含一年維運。</p><a class="personal-hub-link" href="#directory">查看個人方案完整目錄 ↓</a></div><figure class="personal-mascot"><img alt="Think BIG 品牌公仔" class="personal-reduced-poster" height="1080" src="/assets/neo_hero_nof_poster.jpg" width="1920"/><video aria-label="Think BIG 品牌公仔主視覺" autoplay="" loop="" muted="" playsinline="" poster="/assets/neo_hero_nof_poster.jpg" preload="metadata"><source data-src="/assets/neo_hero_nof.mp4" type="video/mp4"/></video></figure>
 </div>
 </section>
-<section class="personal-directory" id="directory"><div class="container"><span class="track-tag">個人方案完整目錄</span><h2>依工作需求與支援範圍，選擇個人方案。</h2><div class="personal-directory-grid"><div><h3>入門安裝</h3><a href="/openclaw-starter/">OpenClaw 入門 ↗</a><a href="/hermes-starter/">Hermes 入門 ↗</a><a href="/harness/">個人 AI 搭建 ↗</a></div><div><h3>工作組合</h3><a href="/full-agent/">全 Agent 串接 ↗</a><a href="/dual-agent/">雙 Agent 組合 ↗</a><a href="/skill-pack/">技能包 ↗</a></div><div><h3>一年陪跑</h3><a href="#tier3">年約總覽 ↗</a><a href="/annual-pro/">尊榮年約 ↗</a><a href="/annual-flagship/">年度旗艦 ↗</a><a href="/solo-pro/">超級個體 ↗</a></div></div><div class="personal-usb" id="usb"><h3>USB AGENT</h3><p>實體版資訊尚未公開。需要先開始使用，可查看上方入門安裝方案；產品內容與供應狀態以正式公告為準。</p></div></div></section><section class="s-gray" id="pick">
+<section class="personal-directory" id="directory"><div class="container"><span class="track-tag">個人方案完整目錄</span><h2>依工作需求與支援範圍，選擇個人方案。</h2><div class="personal-directory-grid"><div><h3>入門安裝</h3><a href="/openclaw-starter/">OpenClaw 入門 ↗</a><a href="/hermes-starter/">Hermes 入門 ↗</a><a href="/harness/">個人 AI 搭建 ↗</a></div><div><h3>工作組合</h3><a href="/full-agent/">全 Agent 串接 ↗</a><a href="/dual-agent/">雙 Agent 組合 ↗</a><a href="/skill-pack/">技能包 ↗</a></div><div><h3>一年陪跑</h3><a href="#tier3">年約總覽 ↗</a><a href="/annual-pro/">尊榮年約 ↗</a><a href="/annual-flagship/">年度旗艦 ↗</a><a href="/solo-pro/">超級個體 ↗</a></div></div><div class="personal-usb" id="usb"><h3>USB AGENT</h3><p>實體版資訊尚未公開，敬請期待。</p></div></div></section><section class="s-gray" id="pick">
 <div class="container">
 <h2>個人方案需求評估</h2>
 <form class="picker" id="tier-picker" onsubmit="return false">
@@ -393,20 +394,20 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 <p class="define">個人方案 1 是官方原裝 AI 助理的遠端安裝服務，NT$999 單次付清，含 OpenClaw 或 Hermes 擇一、AnyDesk／DeskIn 遠端安裝、7 天技術諮詢。</p>
 <p class="who">給誰：第一次要一個常駐 LINE／Telegram 的 AI 助理、不想自己摸安裝的人。解決的是「教學看到一半放棄」。</p>
 <div class="variants">
-<div class="variant">
+<a class="variant variant-illustrated" href="/openclaw-starter/"><img class="personal-card-art" src="/assets/illustrations/personal-openclaw.webp" srcset="/assets/illustrations/personal-openclaw-240.webp 240w, /assets/illustrations/personal-openclaw.webp 480w" sizes="(max-width:600px) 88px, 136px" width="480" height="480" loading="lazy" decoding="async" alt="TB 公仔與紅色機械龍蝦">
 <span class="v-name">OpenClaw</span>
 <span class="v-sub">變體 A · 官方原裝技能單一 Agent</span>
 <span class="v-price">NT$999</span>
 <span class="v-inc">4 項原裝技能：搜尋、檔案、程式執行、瀏覽器；常駐 LINE 或 Telegram</span>
-<a class="v-cta" href="/openclaw-starter/">看 OpenClaw 入門頁 →</a>
-</div>
-<div class="variant">
+<span class="v-cta">看 OpenClaw 入門頁 →</span>
+</a>
+<a class="variant variant-illustrated" href="/hermes-starter/"><img class="personal-card-art" src="/assets/illustrations/personal-hermes.webp" srcset="/assets/illustrations/personal-hermes-240.webp 240w, /assets/illustrations/personal-hermes.webp 480w" sizes="(max-width:600px) 88px, 136px" width="480" height="480" loading="lazy" decoding="async" alt="TB 公仔捧著發光記憶書本與成長小樹">
 <span class="v-name">Hermes</span>
 <span class="v-sub">變體 B · 官方原裝基礎款，越用越聰明</span>
 <span class="v-price">NT$999</span>
 <span class="v-inc">跨對話持久記憶、自我學習閉環；同價，擇一即可</span>
-<a class="v-cta" href="/hermes-starter/">看 Hermes 入門頁 →</a>
-</div>
+<span class="v-cta">看 Hermes 入門頁 →</span>
+</a>
 </div>
 <p class="fine">無月費、無維運承諾；若因我方技術問題無法完成安裝，全額退費。</p>
 </article>
@@ -416,20 +417,20 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 <p class="define">個人方案 2 是讓 AI 工具組隊跑固定流程的部署服務，一個 AI Agent NT$6,000 或兩個 AI Agent NT$15,000 單次付清，含客製技能、跨 Agent 協作會議室、coding agent 串接與 2 小時線上技術導覽＋安裝後 7 天技術諮詢。</p>
 <p class="who">給誰：已在付 Claude Code／Codex 等 coding agent 訂閱、想讓工具組隊跑固定流程、願意自己維護的人。解決的是「自己當人肉轉接頭」——不是聊天機器人，是會自己跑的部門。</p>
 <div class="variants">
-<div class="variant">
+<a class="variant" href="/full-agent/">
 <span class="v-name">單 AI Agent</span>
 <span class="v-sub">變體 A · 全 Agent 串接</span>
 <span class="v-price">NT$6,000</span>
 <span class="v-inc">60 組客製技能＋跨 Agent 協作會議室＋coding agent 串接</span>
-<a class="v-cta" href="/full-agent/">看全 Agent 串接頁 →</a>
-</div>
-<div class="variant">
+<span class="v-cta">看全 Agent 串接頁 →</span>
+</a>
+<a class="variant" href="/dual-agent/">
 <span class="v-name">雙 AI Agent</span>
 <span class="v-sub">變體 B · 雙 AI Agent</span>
 <span class="v-price">NT$15,000</span>
 <span class="v-inc">OpenClaw＋Hermes 雙 AI Agent、全 Agent 串接、MCP 記憶互通；技能數依訪談</span>
-<a class="v-cta" href="/dual-agent/">看雙 AI Agent頁 →</a>
-</div>
+<span class="v-cta">看雙 AI Agent頁 →</span>
+</a>
 </div>
 <p class="fine">AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧，看個人方案 3 或加購「系統健檢故障修復」。</p>
 </article>
@@ -439,27 +440,27 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 <p class="define">個人方案 3 是有專屬工程師顧一整年的年約服務，一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000、SUPERSOLO 七部門 NT$60,000，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年續約 NT$30,000。</p>
 <p class="who">給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。</p>
 <div class="variants">
-<div class="variant">
+<a class="variant" href="/annual-pro/">
 <span class="v-name">單 AI Agent</span>
 <span class="v-sub">副標：尊榮年約</span>
 <span class="v-price">NT$32,000／年</span>
 <span class="v-inc">Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能</span>
-<a class="v-cta" href="/annual-pro/">看尊榮年約頁 →</a>
-</div>
-<div class="variant">
+<span class="v-cta">看尊榮年約頁 →</span>
+</a>
+<a class="variant" href="/annual-flagship/">
 <span class="v-name">雙 AI Agent</span>
 <span class="v-sub">副標：年度旗艦</span>
 <span class="v-price">NT$38,000／年</span>
 <span class="v-inc">Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合</span>
-<a class="v-cta" href="/annual-flagship/">看年度旗艦頁 →</a>
-</div>
-<div class="variant">
+<span class="v-cta">看年度旗艦頁 →</span>
+</a>
+<a class="variant" href="/solo-pro/">
 <span class="v-name">SUPERSOLO 七部門</span>
 <span class="v-sub">副標：超級個體</span>
 <span class="v-price">NT$60,000／年</span>
 <span class="v-inc">一個人＝七個部門（內容自媒體、行銷、業務、客服、財務、行政、研發），一年每週維護</span>
-<a class="v-cta" href="/solo-pro/">看 SUPERSOLO 頁 →</a>
-</div>
+<span class="v-cta">看 SUPERSOLO 頁 →</span>
+</a>
 </div>
 <p class="fine">三檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年續約 NT$30,000／年（約 2,500／月），含每週維護＋48 小時故障修復。</p>
 </article>
@@ -498,7 +499,7 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 <div class="container">
 <header class="personal-reviews-heading">
 <p class="personal-reviews-eyebrow">個人服務・買家回饋</p>
-<h2 id="personal-reviews-title">蝦皮賣場 AI 服務評價全數 5 星（21 則，截至 2026/09/27）</h2>
+<h2 id="personal-reviews-title">蝦皮賣場 AI 服務評價全數 5 星</h2>
 <p class="personal-reviews-source">擷取自蝦皮賣場，買家資訊已遮蔽，擷取日 2026/09/27</p>
 <p class="personal-reviews-context">截圖中的商品名為購買當時的版本，內容與現行方案不同，請以方案頁為準。以下選錄 8 則不同買家的評價。</p>
 </header>
@@ -640,5 +641,6 @@ CP值:頂級
 <dialog aria-labelledby="review-dialog-title" class="review-dialog" id="review-dialog"><div class="review-dialog-bar"><h2 id="review-dialog-title">評價截圖</h2><div><button aria-pressed="false" data-review-zoom="" type="button">原尺寸檢視</button><button autofocus="" data-review-close="" type="button">關閉</button></div></div><div aria-label="評價圖片，可捲動查看" class="review-dialog-viewport" tabindex="0"><img alt=""/></div><p class="review-dialog-caption"></p></dialog><script defer="" src="/assets/homesplit/personal-view.js"></script><!-- TB:FOOTER:START -->
 <footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
 <!-- TB:FOOTER:END -->
+<script defer src="/assets/homesplit/interactions.js?v=20260927v8"></script>
 </body>
 </html>

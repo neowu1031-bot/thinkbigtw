@@ -9,7 +9,7 @@
 .editorial .eyebrow{font-weight:500;font-size:12px;letter-spacing:.13em}
 .editorial .intro{line-height:1.95;font-size:17px}
 .editorial .button{border-radius:0;font-weight:500;font-size:14px;gap:24px;transition:background .18s,color .18s,transform .18s}
-.editorial .button:hover{background:#343434}.editorial .button.outline:hover{background:#f2e4e9}
+@media (hover:hover) and (pointer:fine){.editorial .button:hover{background:#343434}}@media (hover:hover) and (pointer:fine){.editorial .button.outline:hover{background:#f2e4e9}}
 .editorial .button:active,.quiet-button:active{transform:translateY(1px)}
 .editorial .page-hero{padding-block:96px 80px;max-width:950px}
 .editorial .section-head{grid-template-columns:1fr 1fr;gap:80px}
@@ -35,15 +35,15 @@
 .question-number{font-family:ui-monospace,monospace;font-size:12px;display:block;color:var(--rose);margin-bottom:10px}
 .quiz-options{display:grid;gap:8px}
 .quiz-options label{display:flex;align-items:center;gap:12px;min-height:49px;border:1px solid var(--line);padding:10px 14px;cursor:pointer;font-size:14px;background:#fff;transition:border-color .18s,background .18s}
-.quiz-options label:hover{border-color:#8e8e8c}.quiz-options label:has(input:checked){border-color:var(--rose);background:#f8edf1}
+@media (hover:hover) and (pointer:fine){.quiz-options label:hover{border-color:#8e8e8c}}.quiz-options label:has(input:checked){border-color:var(--rose);background:#f8edf1}
 .quiz-options input,.pain-checks input{width:17px;height:17px;accent-color:var(--rose);flex:0 0 auto}
 .quiz-controls{display:flex;justify-content:space-between;gap:16px;margin-top:20px}
 .quiet-button{background:none;border:0;border-bottom:1px solid currentColor;border-radius:0;padding:10px 0;font:inherit;font-size:14px;color:inherit;cursor:pointer;min-height:44px;transition:color .18s,transform .18s}
-.quiet-button:hover{color:var(--rose)}.quiet-button:disabled{opacity:.4;cursor:default}
+@media (hover:hover) and (pointer:fine){.quiet-button:hover{color:var(--rose)}}.quiet-button:disabled{opacity:.4;cursor:default}
 #quiz-result h3{font-size:28px;margin-bottom:20px}#quiz-result p{margin-top:14px;font-size:14px}#quiz-result ul{padding-left:20px;font-size:14px}#quiz-result .button{margin-top:20px}#quiz-reset{display:block;margin-top:18px}
 .pain-checks{display:grid;gap:0}.pain-checks label{display:flex;align-items:center;gap:16px;padding:17px 0;border-bottom:1px solid var(--line);font-size:16px;cursor:pointer}
 .department-index{border-top:1px solid var(--ink)}.department-index a{display:grid;grid-template-columns:50px 1fr 1.4fr 24px;gap:24px;align-items:center;border-bottom:1px solid var(--line);padding:25px 0;text-decoration:none;transition:background .18s}
-.department-index a:hover{background:#f5eff1}.department-index a>span{font-family:ui-monospace,monospace;font-size:12px;color:var(--rose)}.department-index p{font-size:15px;color:var(--muted)}.department-index b{font-weight:400}
+@media (hover:hover) and (pointer:fine){.department-index a:hover{background:#f5eff1}}.department-index a>span{font-family:ui-monospace,monospace;font-size:12px;color:var(--rose)}.department-index p{font-size:15px;color:var(--muted)}.department-index b{font-weight:400}
 .personal-entry{background:#f4ecef;border-top:1px solid #e3d9dd}.personal-entry .button{margin-top:26px}.personal-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;border-top:1px solid #d4c9cd;padding-top:36px}.personal-paths h3{font-size:18px;margin-bottom:16px}.personal-paths p{font-size:14px;line-height:1.9;color:#5d5559}
 .department-detail{display:grid;grid-template-columns:1fr 1fr;gap:100px}.department-detail h2{font-size:34px}.delivery-list{margin:0}.delivery-list div{border-top:1px solid var(--line);padding:20px 0}.delivery-list dt{font-size:13px;color:var(--rose);margin-bottom:12px}.delivery-list dd{margin:0;font-size:16px;color:var(--muted)}
 .article-layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:80px;padding-bottom:80px}.article-layout aside{position:sticky;top:110px;align-self:start}.article-layout aside nav{display:grid;gap:18px;font-size:13px}.article-layout aside a{text-decoration:none}.article-layout article section{padding-block:38px;border-top:1px solid var(--line)}.article-layout article h2{font-size:27px;margin-bottom:24px}.article-layout article p{color:var(--muted);line-height:2}

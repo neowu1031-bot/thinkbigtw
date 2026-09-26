@@ -7,7 +7,7 @@
 #tb-nav .tb-logo img,#tb-footer .tb-f-logo img{display:block;width:154px;height:auto;max-width:100%;object-fit:contain}
 #tb-nav .tb-links{display:flex;align-items:center;gap:28px;flex-wrap:wrap}
 #tb-nav .tb-links a{font-size:14px;min-height:40px;display:flex;align-items:center;font-weight:500;white-space:nowrap}
-#tb-nav a:hover,#tb-footer a:hover{color:#eea4bb}
+@media (hover:hover) and (pointer:fine){#tb-nav a:hover,#tb-footer a:hover{color:#eea4bb}}
 #tb-nav a[aria-current=page]{color:#eea4bb;text-decoration:underline;text-underline-offset:7px}
 #tb-nav .tb-menu{display:none}
 #tb-nav .tb-menu summary{cursor:pointer;list-style:none;padding:7px 12px;border:1px solid #77747a;border-radius:5px;font-size:14px}
