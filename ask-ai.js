@@ -1,366 +1,75 @@
-// ═══════════════════════════════════════════════════
-// Think BIG! ASK AI — 共用元件 (CSS+HTML+JS 自動注入)
-// 每頁只需: <script src="/ask-ai.js" defer></script>
-// ═══════════════════════════════════════════════════
-(function(){
-  if (document.getElementById('ai-agent-btn')) return; // 防重複注入
-
-  // ---- 1. 注入 CSS ----
-  var css = "#ai-agent-btn,#ai-chat{--mono:'Space Mono',ui-monospace,monospace;--tc:'Noto Sans TC',sans-serif;--red:#e8422a;--white:#fff;}\n/* ── AI AGENT BUTTON ── */\n#ai-agent-btn{\n  position:fixed;bottom:24px;right:24px;z-index:9999;\n  width:72px;height:72px;padding:0;border-radius:50%;\n  background:#0a0a0a;\n  border:2px solid #e8422a;\n  cursor:pointer;overflow:visible;\n  transition:transform 0.3s ease,box-shadow 0.3s ease;\n  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;\n  box-shadow:0 0 12px rgba(232,66,42,0.6),0 0 24px rgba(232,66,42,0.3);\n  font-family:var(--mono);\n}\n#ai-agent-btn:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(232,66,42,0.8),0 0 36px rgba(232,66,42,0.5)}\n#ai-agent-btn .pulse{\n  position:absolute;inset:0;border-radius:50%;\n  border:1px solid var(--red);animation:pulse-ring 2.5s ease-out infinite;\n}\n#ai-agent-btn .pulse-2{animation-delay:1.25s}\n@keyframes pulse-ring{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.15);opacity:0}}\n#ai-agent-btn .btn-dot{\n  width:8px;height:8px;border-radius:50%;background:var(--red);\n  box-shadow:0 0 8px var(--red);\n  animation:dotPulse 1.5s ease-in-out infinite;\n}\n@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}\n#ai-agent-btn .btn-text{\n  color:#fff;font-size:11px;font-weight:700;\n  letter-spacing:0.1em;text-transform:uppercase;\n  white-space:nowrap;line-height:1;\n}\n#ai-agent-btn .btn-brand{\n  color:#fff;font-size:11px;font-weight:700;\n  letter-spacing:0.1em;text-transform:uppercase;\n  white-space:nowrap;\n  border-left:none;\n  padding-left:0;line-height:1;\n}\n\n/* ── AI CHAT FULLSCREEN ── */\n#ai-chat{\n  position:fixed;inset:0;z-index:2147483600;\n  background:radial-gradient(ellipse at center, rgba(15,8,5,0.75) 0%, rgba(0,0,0,0.92) 70%, rgba(0,0,0,0.98) 100%);\n  backdrop-filter:blur(28px) saturate(180%);\n  -webkit-backdrop-filter:blur(28px) saturate(180%);\n  display:none;flex-direction:column;\n  animation:chatFadeIn 0.4s cubic-bezier(0.16,1,0.3,1);\n}\n@keyframes chatFadeIn{from{opacity:0;backdrop-filter:blur(0px)}to{opacity:1;backdrop-filter:blur(28px) saturate(180%)}}\n#ai-chat.open{display:flex}\n#ai-chat .chat-header{\n  padding:20px 32px;border-bottom:1px solid rgba(232,66,42,0.12);\n  display:flex;align-items:center;justify-content:space-between;\n  background:linear-gradient(180deg,rgba(232,66,42,0.04) 0%,transparent 100%);\n}\n#ai-chat .chat-header .agent-info{display:flex;align-items:center;gap:14px}\n#ai-chat .chat-header .agent-avatar{\n  width:42px;height:42px;border-radius:50%;\n  background:linear-gradient(135deg,var(--red) 0%,#ff6b4a 50%,#ffaa80 100%);\n  display:flex;align-items:center;justify-content:center;\n  font-family:var(--mono);font-size:1rem;font-weight:800;color:#fff;\n  box-shadow:0 0 24px rgba(232,66,42,0.5), inset 0 0 8px rgba(255,255,255,0.2);\n  animation:avatarGlow 3s ease-in-out infinite;\n}\n@keyframes avatarGlow{0%,100%{box-shadow:0 0 24px rgba(232,66,42,0.5), inset 0 0 8px rgba(255,255,255,0.2)}50%{box-shadow:0 0 36px rgba(232,66,42,0.8), inset 0 0 12px rgba(255,255,255,0.3)}}\n#ai-chat .chat-header .agent-name{font-family:var(--mono);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#fff;line-height:1}\n#ai-chat .chat-header .agent-tagline{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;color:rgba(232,66,42,0.8);margin-top:4px;text-transform:uppercase}\n#ai-chat .chat-header .status{font-family:var(--mono);font-size:0.55rem;opacity:0.5;display:flex;align-items:center;gap:6px;margin-top:3px;letter-spacing:0.15em}\n#ai-chat .chat-header .status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:statusPulse 2s ease-in-out infinite}\n@keyframes statusPulse{0%,100%{opacity:1}50%{opacity:0.4}}\n#ai-chat .chat-header .header-right{display:flex;align-items:center;gap:14px}\n#ai-chat .chat-header .powered-by{\n  font-family:var(--mono);font-size:0.55rem;color:rgba(255,255,255,0.3);\n  letter-spacing:0.15em;text-transform:uppercase;\n  padding:6px 12px;border:1px solid rgba(255,255,255,0.08);border-radius:30px;\n}\n#ai-chat .chat-header .powered-by b{color:var(--red);font-weight:600}\n#ai-chat .chat-header .close-btn{\n  width:36px;height:36px;border-radius:50%;\n  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);\n  cursor:pointer;font-size:1.1rem;color:var(--white);\n  display:flex;align-items:center;justify-content:center;\n  transition:all 0.2s;\n}\n#ai-chat .chat-header .close-btn:hover{background:rgba(232,66,42,0.15);border-color:rgba(232,66,42,0.4)}\n\n#ai-chat .chat-body{\n  flex:1;overflow-y:auto;\n  padding:32px max(48px, 5vw);\n  display:flex;flex-direction:column;gap:16px;\n  max-width:1000px;width:100%;margin:0 auto;\n}\n#ai-chat .chat-body::-webkit-scrollbar{width:4px}\n#ai-chat .chat-body::-webkit-scrollbar-thumb{background:rgba(232,66,42,0.3);border-radius:2px}\n#ai-chat .chat-body::-webkit-scrollbar-track{background:transparent}\n\n/* Hero welcome */\n#ai-chat .hero-welcome{\n  text-align:center;padding:60px 20px 40px;animation:heroIn 0.6s ease 0.2s both;\n}\n@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}\n#ai-chat .hero-welcome .hero-icon{\n  width:80px;height:80px;border-radius:50%;margin:0 auto 24px;\n  background:radial-gradient(circle, var(--red) 0%, transparent 70%);\n  display:flex;align-items:center;justify-content:center;\n  font-size:2.5rem;animation:heroIconFloat 3s ease-in-out infinite;\n}\n@keyframes heroIconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}\n#ai-chat .hero-welcome h2{\n  font-family:var(--mono);font-size:1.6rem;font-weight:300;letter-spacing:0.05em;\n  background:linear-gradient(135deg,#fff 0%,var(--red) 50%,#ff6b4a 100%);\n  -webkit-background-clip:text;background-clip:text;color:transparent;\n  margin-bottom:12px;\n}\n#ai-chat .hero-welcome p{\n  font-family:var(--tc);font-size:0.9rem;color:rgba(255,255,255,0.5);\n  line-height:1.7;max-width:520px;margin:0 auto;\n}\n#ai-chat .quick-suggestions{\n  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;\n  margin-top:40px;max-width:780px;margin-left:auto;margin-right:auto;\n}\n#ai-chat .quick-suggestions .qs{\n  text-align:left;padding:18px 20px;\n  background:rgba(255,255,255,0.025);border:1px solid rgba(255,255,255,0.06);border-radius:12px;\n  cursor:pointer;transition:all 0.25s;\n  display:flex;align-items:flex-start;gap:12px;\n}\n#ai-chat .quick-suggestions .qs:hover{\n  background:rgba(232,66,42,0.08);border-color:rgba(232,66,42,0.4);\n  transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,66,42,0.15);\n}\n#ai-chat .quick-suggestions .qs .qs-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}\n#ai-chat .quick-suggestions .qs .qs-text{font-family:var(--tc);font-size:0.85rem;color:rgba(255,255,255,0.85);line-height:1.6}\n#ai-chat .quick-suggestions .qs .qs-text small{display:block;font-family:var(--mono);font-size:0.55rem;color:rgba(232,66,42,0.7);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}\n\n/* Messages */\n#ai-chat .msg-row{display:flex;gap:14px;align-items:flex-start;animation:msgIn 0.35s cubic-bezier(0.16,1,0.3,1)}\n@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}\n#ai-chat .msg-row.user{flex-direction:row-reverse}\n#ai-chat .msg-avatar{\n  width:32px;height:32px;border-radius:50%;flex-shrink:0;\n  display:flex;align-items:center;justify-content:center;\n  font-family:var(--mono);font-size:0.65rem;font-weight:700;\n}\n#ai-chat .msg-row.bot .msg-avatar{background:linear-gradient(135deg,var(--red),#ff6b4a);color:#fff;box-shadow:0 0 12px rgba(232,66,42,0.4)}\n#ai-chat .msg-row.user .msg-avatar{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.1)}\n#ai-chat .msg{\n  font-family:var(--tc);font-size:0.92rem;\n  line-height:1.8;padding:14px 18px;border-radius:14px;max-width:680px;\n  white-space:pre-wrap;word-wrap:break-word;\n}\n#ai-chat .msg.bot{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.05);color:rgba(255,255,255,0.92)}\n#ai-chat .msg.user{background:linear-gradient(135deg,rgba(232,66,42,0.18) 0%,rgba(232,66,42,0.1) 100%);border:1px solid rgba(232,66,42,0.25);color:#fff}\n#ai-chat .msg a{color:var(--red);text-decoration:underline}\n#ai-chat .msg .typing-dots{display:inline-flex;gap:4px}\n#ai-chat .msg .typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--red);animation:typing 1.4s ease-in-out infinite}\n#ai-chat .msg .typing-dots span:nth-child(2){animation-delay:0.2s}\n#ai-chat .msg .typing-dots span:nth-child(3){animation-delay:0.4s}\n@keyframes typing{0%,60%,100%{opacity:0.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}\n\n/* Quick bar (persistent) */\n#ai-chat .quick-bar{display:flex;flex-wrap:nowrap;gap:10px;max-width:1000px;margin:0 auto 12px}\n#ai-chat .quick-bar .qchip{flex:1 1 0;min-width:0;text-align:left;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;cursor:pointer;transition:all 0.2s;font-family:var(--tc)}\n#ai-chat .quick-bar .qchip:hover{background:rgba(232,66,42,0.1);border-color:rgba(232,66,42,0.45);transform:translateY(-2px)}\n#ai-chat .quick-bar .qchip .qt{display:block;font-size:0.8rem;color:#fff;font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n#ai-chat .quick-bar .qchip .qs2{display:block;font-family:var(--mono);font-size:0.5rem;color:rgba(232,66,42,0.85);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n/* Input area */\n#ai-chat .chat-input-wrap{\n  padding:20px max(48px, 5vw) 28px;\n  background:linear-gradient(180deg,transparent 0%,rgba(0,0,0,0.6) 100%);\n  border-top:1px solid rgba(232,66,42,0.1);\n}\n#ai-chat .chat-input{\n  max-width:1000px;margin:0 auto;\n  display:flex;gap:10px;align-items:center;\n  background:rgba(255,255,255,0.04);\n  border:1px solid rgba(255,255,255,0.08);\n  border-radius:16px;padding:8px 8px 8px 20px;\n  transition:all 0.25s;\n}\n#ai-chat .chat-input:focus-within{\n  border-color:rgba(232,66,42,0.5);\n  box-shadow:0 0 0 4px rgba(232,66,42,0.08), 0 0 24px rgba(232,66,42,0.15);\n}\n#ai-chat .chat-input input{\n  flex:1;background:none;border:none;\n  color:#fff;font-family:var(--tc);font-size:0.95rem;\n  outline:none;padding:12px 0;\n}\n#ai-chat .chat-input input::placeholder{color:rgba(255,255,255,0.3)}\n#ai-chat .chat-input .send-btn{\n  width:44px;height:44px;border-radius:12px;\n  background:linear-gradient(135deg,var(--red),#ff6b4a);\n  border:none;cursor:pointer;\n  display:flex;align-items:center;justify-content:center;\n  transition:all 0.2s;color:#fff;\n}\n#ai-chat .chat-input .send-btn:hover{transform:scale(1.08);box-shadow:0 0 20px rgba(232,66,42,0.5)}\n#ai-chat .chat-input .send-btn:disabled{opacity:0.3;cursor:not-allowed;transform:none}\n#ai-chat .chat-input .send-btn svg{width:18px;height:18px;fill:#fff}\n#ai-chat .chat-footer{\n  text-align:center;margin-top:12px;\n  font-family:var(--mono);font-size:0.55rem;\n  color:rgba(255,255,255,0.25);letter-spacing:0.15em;\n}\n#ai-chat .chat-footer a{color:var(--red);text-decoration:none}\n#ai-chat .chat-footer a:hover{text-decoration:underline}\n\n\n@media(max-width:768px){\n  #ai-chat{position:fixed;top:0;left:0;width:100vw;height:100vh;right:auto;bottom:auto;border-radius:0;z-index:10000}\n  /* 手機版: 正圓鈕, ASK/AI 直排置中, 文字不溢出 */\n  #ai-agent-btn{width:60px;height:60px;min-width:60px;padding:0;border-radius:50%;bottom:16px;right:16px;gap:1px;flex-direction:column;align-items:center;justify-content:center;z-index:9999}\n  #ai-agent-btn .pulse{border-radius:50%}\n  #ai-agent-btn .btn-text{font-size:10px;letter-spacing:0.05em;line-height:1}\n  #ai-agent-btn .btn-brand{font-size:10px;letter-spacing:0.05em;line-height:1;padding-left:0;border-left:none;color:#fff}\n  /* 手機版快速鈕: 2x2 */\n  #ai-chat .quick-bar{flex-wrap:wrap}\n  #ai-chat .quick-bar .qchip{flex:0 0 calc(50% - 5px);width:calc(50% - 5px)}\n  #ai-chat .quick-bar .qchip .qt{white-space:normal}\n}\n";
-  var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
-
-  // ---- 2. 注入 HTML ----
-  var html = '<div id="ai-agent-btn" onclick="toggleChat()">\n  <div class="pulse"></div>\n  <div class="pulse pulse-2"></div>\n  <div class="btn-text">ASK</div>\n  <div class="btn-brand">AI</div>\n</div>\n\n<div id="ai-chat">\n  <div class="chat-header">\n    <div class="agent-info">\n      <div class="agent-avatar">🦞</div>\n      <div>\n        <div class="agent-name">Hermes Agent</div>\n        <div class="agent-tagline">Think BIG! AI Assistant</div>\n        <div class="status">Online · Real AI · Powered by Claude</div>\n      </div>\n    </div>\n    <div class="header-right">\n      <div class="powered-by">Powered by <b>Cloudflare AI</b></div>\n      <button class="close-btn" onclick="toggleChat()" title="關閉 (ESC)">✕</button>\n    </div>\n  </div>\n  <div class="chat-body" id="chat-body">\n    <div class="hero-welcome" id="hero-welcome">\n      <div class="hero-icon">🦞</div>\n      <h2 id="hero-title">您好！我是 Hermes</h2>\n      <p id="hero-desc">Think BIG! 的 AI 助理，隨時解答您的疑問<br><br>\n        <strong style="color:#fff">我們目前提供兩大服務：</strong><br>\n        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>企業 AI 導入</strong> — Agent / 流程自動化<br>\n        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>\n        隨時問我任何問題，或點下方快速選項 👇\n      </p>\n    </div>\n  </div>\n  <div class="chat-input-wrap">\n    <div class="quick-bar" id="quick-bar">\n      <button class="qchip" onclick="askQuick(\'我想導入 AI 自動化\')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>\n      <button class="qchip" onclick="askQuick(\'關於 Think BIG\')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 兩大服務</span></button>\n    </div>\n    <div class="chat-input">\n      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：如何導入 AI 自動化？" onkeydown="if(event.key===\'Enter\')sendMsg()" autocomplete="off">\n      <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">\n        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>\n      </button>\n    </div>\n    <div class="chat-footer">\n      由 Cloudflare AI 即時驅動 · 若需專人服務請洽 <a href="https://lin.ee/n5KW430" target="_blank">LINE 客服</a>\n    </div>\n  </div>\n</div>\n';
-  var wrap = document.createElement('div'); wrap.innerHTML = html;
-  while (wrap.firstChild) document.body.appendChild(wrap.firstChild);
-
-  // ---- 3. 邏輯 ----
-// ═══ AI CHAT - Real Cloudflare Worker Integration ═══
-const AI_ENDPOINT = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-chat';
-const LINE_CS = 'https://lin.ee/n5KW430';
-let chatHistory = []; // {role, content}
-let isLoading = false;
-let userLang = 'zh-TW'; // Default
-
-// ═══ IP-based Language Detection ═══
-// Translations for hero section
-const HERO_I18N = {
-  'zh-TW': {
-    title: '您好！我是 Hermes',
-    intro: 'Think BIG! 的 AI 助理，隨時解答您的疑問',
-    servicesLabel: '我們目前提供兩大服務：',
-    s1: '企業 AI 導入 — RAG / Agent / 流程自動化',
-    s2: 'Harness Engineers — 個人 AI Agent 搭建',
-    s3: '',
-    askPrompt: '隨時問我任何問題，或點下方快速選項 👇',
-    placeholder: '問我任何問題，例如：如何導入 AI 自動化？',
-    qs1: '我想導入 AI 自動化', qs1s: '企業方案推薦',
-    qs2: '關於 Think BIG', qs2s: '公司介紹 · 兩大服務',
-    qs3: '', qs3s: '',
-    qs1q: '我是中小企業老闆，想導入 AI Agent，請問適合什麼方案？',
-    qs2q: '關於 Think BIG',
-    qs3q: '',
-    footer: '由 AI 即時驅動 · 若需專人服務請洽',
-  },
-  'en': {
-    title: 'Hello! I\'m Hermes',
-    intro: 'Think BIG!\'s AI Assistant — here to answer your questions',
-    servicesLabel: 'We offer two core services:',
-    s1: 'Enterprise AI — RAG / Agent / Automation',
-    s2: 'Harness Engineers — Personal AI Agent builder',
-    s3: '',
-    askPrompt: 'Ask me anything, or pick a quick option below 👇',
-    placeholder: 'Ask me anything, e.g.: How to adopt AI automation?',
-    qs1: 'I want AI automation', qs1s: 'Enterprise solutions',
-    qs2: 'About Think BIG', qs2s: 'Company intro',
-    qs3: '', qs3s: '',
-    qs1q: 'I run a SMB and want to adopt AI Agent. Which plan suits me?',
-    qs2q: 'About Think BIG',
-    qs3q: '',
-    footer: 'Powered by AI · For human support contact',
-  },
-  'ja': {
-    title: 'こんにちは！Hermes です',
-    intro: 'Think BIG! の AI アシスタント — ご質問にお答えします',
-    servicesLabel: '2 つのコアサービスを提供しています：',
-    s1: '企業向け AI 導入 — RAG / Agent / 自動化',
-    s2: 'Harness Engineers — 個人向け AI エージェント構築',
-    s3: '',
-    askPrompt: 'お気軽にご質問ください、または下のオプションをタップ 👇',
-    placeholder: 'ご質問をどうぞ。例：AI 自動化の導入方法は？',
-    qs1: 'AI 自動化を導入したい', qs1s: '企業向けプラン',
-    qs2: 'Think BIG について', qs2s: '会社紹介',
-    qs3: '', qs3s: '',
-    qs1q: '中小企業の経営者です。AI Agent 導入にどのプランが最適ですか？',
-    qs2q: 'Think BIG について教えてください。',
-    qs3q: '',
-    footer: 'AI 駆動 · サポートは',
+/* Reuses the existing endpoint. Loading/opening this UI never sends a request.
+   Quick questions are explicitly local FAQ answers; only free text calls AI. */
+(function () {
+  'use strict';
+  if (document.getElementById('tb-ai-launcher')) return;
+  const endpoint = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-chat';
+  const localAnswers = {
+    start: ['我該從哪個部門開始？', '先選一件重複頻率高、規則清楚，而且有人可以確認結果的工作。像是整理行銷草稿、客服回覆或業務追蹤。可到企業頁的需求整理，把流程、部門／職位與導入規劃帶給我們。'],
+    privacy: ['資料會離開公司嗎？', '地端方案把工作資料與執行環境放在你的公司設備。若選用雲端模型或 LINE 等外部服務，相關請求仍會送出。需要資料不出公司時，要一起確認本機模型與外連限制。詳見資安承諾頁。'],
+    support: ['導入之後，誰來維護？', '企業導入包含一年陪跑維護，依合約範圍進行問題追蹤、維護檢查與使用調整。服務窗口、範圍與新增需求的處理方式會在開始前確認。']
+  };
+  const css = document.createElement('link');
+  css.rel = 'stylesheet'; css.href = '/assets/brand/assistant.css'; document.head.appendChild(css);
+  const launcher = document.createElement('button');
+  launcher.id = 'tb-ai-launcher'; launcher.type = 'button'; launcher.textContent = '問問 AI 助理';
+  launcher.setAttribute('aria-haspopup', 'dialog'); launcher.setAttribute('aria-controls', 'tb-ai-dialog');
+  const dialog = document.createElement('dialog'); dialog.id = 'tb-ai-dialog';
+  dialog.setAttribute('aria-labelledby', 'tb-ai-title');
+  dialog.innerHTML = '<div class="ai-header"><h2 id="tb-ai-title">Hermes｜TB 的 AI 助理</h2><button class="ai-close" type="button" aria-label="關閉 AI 助理">關閉</button></div><p class="ai-intro">常見問題可直接查看；自由提問會送至外部 AI 服務。請勿提供機密或個資，回答供初步參考。</p><div class="ai-log" role="log" aria-live="polite" aria-label="對話紀錄"></div><form class="ai-form"><label for="tb-ai-input">想了解什麼？</label><textarea id="tb-ai-input" rows="2" maxlength="1200" placeholder="例如：想讓 AI 整理內部工作清單" required></textarea><button type="submit">送出提問</button><p id="tb-ai-status" role="status"></p><div class="ai-help"><a href="/enterprise/#faq">閱讀常見問題</a><a href="/trust/">資安承諾</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">找 LINE 專人 ↗</a></div></form>';
+  document.body.append(launcher, dialog);
+  const log = dialog.querySelector('.ai-log');
+  const form = dialog.querySelector('form');
+  const input = dialog.querySelector('textarea');
+  const send = form.querySelector('button');
+  const status = document.getElementById('tb-ai-status');
+  let history = [], loading = false, opener = launcher, controller;
+  function message(role, text, label) {
+    const item = document.createElement('div'); item.className = 'ai-message'; item.dataset.role = role;
+    const name = document.createElement('strong'); name.textContent = label || (role === 'user' ? '你' : 'AI 助理');
+    const body = document.createElement('span'); body.textContent = text;
+    item.append(name, body); log.appendChild(item); log.scrollTop = log.scrollHeight;
   }
-};
-
-// Detect user language from IP / browser
-async function detectLanguage(){
-  try {
-    // First check browser language
-    const browserLang = (navigator.language || 'zh-TW').toLowerCase();
-    if(browserLang.startsWith('ja')) return 'ja';
-    if(browserLang.startsWith('zh')) return 'zh-TW';
-    
-    // Then try IP-based detection (Cloudflare provides cf-ipcountry header but we need another way)
-    // Use a free geo IP service with timeout
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), 2000);
-    
-    const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
-    if(res.ok){
-      const data = await res.json();
-      const country = (data.country_code || '').toUpperCase();
-      if(country === 'TW' || country === 'HK' || country === 'CN' || country === 'MO' || country === 'SG') return 'zh-TW';
-      if(country === 'JP') return 'ja';
-      return 'en';
-    }
-  } catch(e){
-    // Fall back to browser default
-    const lang = (navigator.language || 'zh-TW').toLowerCase();
-    if(lang.startsWith('ja')) return 'ja';
-    if(lang.startsWith('zh')) return 'zh-TW';
-    return 'en';
-  }
-  return 'zh-TW';
-}
-
-// Apply language to UI
-function applyLanguage(lang){
-  userLang = lang;
-  const t = HERO_I18N[lang] || HERO_I18N['zh-TW'];
-  
-  const hero = document.getElementById('hero-welcome');
-  if(hero){
-    document.getElementById('hero-title').textContent = t.title;
-    document.getElementById('hero-desc').innerHTML = `${t.intro}<br><br>
-      <strong style="color:#fff">${t.servicesLabel}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">①</span> <strong>${t.s1}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">②</span> <strong>${t.s2}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">③</span> <strong>${t.s3}</strong><br><br>
-      ${t.askPrompt}`;
-  }
-  
-  // Update quick suggestions
-  const qsItems = document.querySelectorAll('#hero-welcome .qs');
-  const qsKeys = ['qs1', 'qs2', 'qs3'];
-  const qsQs = ['qs1q', 'qs2q', 'qs3q'];
-  qsItems.forEach((item, i) => {
-    const textEl = item.querySelector('.qs-text');
-    const smallEl = textEl.querySelector('small');
-    const smallText = t[qsKeys[i] + 's'];
-    textEl.innerHTML = `${t[qsKeys[i]]}<small>${smallText}</small>`;
-    item.setAttribute('onclick', `askQuick('${t[qsQs[i]].replace(/'/g, "\\'")}')`);
-  });
-  
-  // Update input placeholder
-  const input = document.getElementById('chat-msg');
-  if(input) input.placeholder = t.placeholder;
-  
-  // Update footer
-  const footer = document.querySelector('#ai-chat .chat-footer');
-  if(footer) footer.innerHTML = `${t.footer} <a href="${LINE_CS}" target="_blank">LINE</a>`;
-  
-  // Set HTML lang attribute
-  document.documentElement.lang = lang === 'zh-TW' ? 'zh-Hant' : lang;
-}
-
-// Run language detection on page load
-detectLanguage().then(applyLanguage);
-
-
-function toggleChat(){
-  const chat = document.getElementById('ai-chat');
-  chat.classList.toggle('open');
-  if(chat.classList.contains('open')){
-    setTimeout(() => document.getElementById('chat-msg').focus(), 300);
-  }
-}
-
-// ESC to close
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape' && document.getElementById('ai-chat').classList.contains('open')){
-    toggleChat();
-  }
-});
-
-function escapeHtml(s){
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-// Convert URLs and markdown-style links to HTML links
-function linkify(text){
-  let html = escapeHtml(text);
-  // URL 偵測：遇到中文字、全形/半形標點、逗號即停止；支援無 scheme 的 lin.ee / www.
-  const urlRegex = /(https?:\/\/[^\s一-鿿，。、；：！？「」『』（）(),]+|(?:www\.|lin\.ee\/)[^\s一-鿿，。、；：！？「」『』（）(),]+)/g;
-  html = html.replace(urlRegex, (url) => {
-    const clean = url.startsWith('http') ? url : 'https://' + url;
-    return '<a href="' + clean + '" target="_blank" rel="noopener" style="color:#e8422a;text-decoration:underline;word-break:break-all">' + url + '</a>';
-  });
-  // **bold**
-  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  return html;
-}
-
-function appendMsg(role, content, isLoading = false){
-  const body = document.getElementById('chat-body');
-  // Remove hero on first message
-  const hero = document.getElementById('hero-welcome');
-  if(hero) hero.remove();
-  
-  const row = document.createElement('div');
-  row.className = `msg-row ${role}`;
-  
-  const avatar = document.createElement('div');
-  avatar.className = 'msg-avatar';
-  avatar.textContent = role === 'bot' ? '🦞' : 'You';
-  
-  const msg = document.createElement('div');
-  msg.className = `msg ${role}`;
-  
-  if(isLoading){
-    msg.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-    msg.id = 'loading-msg';
-  } else {
-    msg.innerHTML = linkify(content);
-  }
-  
-  row.appendChild(avatar);
-  row.appendChild(msg);
-  body.appendChild(row);
-  body.scrollTop = body.scrollHeight;
-  return msg;
-}
-
-// ─── 罐頭回覆（任務 8 / 9：逐字內容，點按鈕即時顯示，不經 AI 確保一字不差）───
-const ABOUT_THINKBIG = `您好,謝謝您對 Think BIG 有興趣!
-
-Think BIG 是台灣 AI 自動化顧問公司,專注幫助中小企業與個人創業者把 AI 真正落地到日常工作中。
-
-我們相信 AI 不應該只是聊天工具,而是要能真的幫您工作、回客人、跑流程。所以我們提供「會做事的 AI」,不是「會講話的 AI」。
-
-【核心優勢】
-- 自家 AI Agent OpenClaw + Claude Code,不是套別人的殼
-- 從個人戶到中大型企業都有對應方案
-- 全程繁體中文支援,台灣團隊在地服務
-- 透明定價、明確交付、七天免費維護
-
-【兩大服務】
-① 企業 AI 導入 — RAG / Agent / 流程自動化
-② Harness Engineers — 個人 AI 搭建
-
-想了解更多,可以隨時問我任何問題,或點上方快速選項 👇`;
-
-const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的三大工具:
-
-━━━━━━━━━━━━━━━━━━━━
-
-🦞 OpenClaw — 真的幫您做事的 AI Agent
-
-它跟 ChatGPT 最大的差別:ChatGPT「說」,OpenClaw「做」。
-
-您可以想像有一個 AI 員工,能接通訊軟體、代操電腦與瀏覽器、自動跑流程——不用盯著它,它自己完成任務。
-
-【您可以用來做什麼】
-- 串接賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord,自動收發客戶訊息
-- 按排程主動出擊(例如:每早自動整理昨日數據、傳報表)
-- 語音喚醒,說一句話讓它去辦事
-- 現有豐富的現成技能庫,快速套用常見情境
-
-━━━━━━━━━━━━━━━━━━━━
-
-⚡ Hermes — 越用越懂您的 AI 助理
-
-傳統 AI 助理:每次都要重新交代您的習慣和偏好。
-Hermes:自動把「上次怎麼做最有效」記起來,下次直接用。
-
-效果:用的時間越長,它越有「默契」,像一位真正了解您工作方式的長期助理,而不是每天換一個新實習生。
-
-━━━━━━━━━━━━━━━━━━━━
-
-🧠 共享記憶 — 讓兩個 Agent 用同一個大腦
-
-OpenClaw 和 Hermes 可以共用同一套記憶,一個學到的東西另一個立刻知道。全程在您本機運行,資料不出您的電腦,隱私完全自主。
-
-━━━━━━━━━━━━━━━━━━━━
-
-🦞+⚡+🧠 雙 Agent 完整方案(方案 #5,NT$15,000 單次)
-
-三個工具打通,您得到的是:一位跨平台幫您幹活、越用越默契、記憶完全留在您電腦的 AI 員工。
-
-━━━━━━━━━━━━━━━━━━━━
-
-🎯 推薦方案前,我需要先了解一件事:
-
-您是個人使用,還是公司/企業使用?
-
-⚠️ 重要提醒:個人方案僅可對接兩個通訊軟體帳號。如需多人並行(多個業務、多個客服窗口),就需要企業方案。
-
-請告訴我您的情境,我幫您推薦最合適的組合!`;
-
-const CANNED = {
-  '關於 Think BIG': ABOUT_THINKBIG,
-  '我想導入 AI 自動化': ADOPT_AI
-};
-
-function askQuick(question){
-  // 命中罐頭內容 → 即時顯示(不打 AI),並寫入對話歷史供後續追問
-  if (CANNED[question]){
-    appendMsg('user', question);
-    chatHistory.push({role:'user', content: question});
-    appendMsg('bot', CANNED[question]);
-    chatHistory.push({role:'assistant', content: CANNED[question]});
-    return;
-  }
-  document.getElementById('chat-msg').value = question;
-  sendMsg();
-}
-
-async function sendMsg(){
-  if(isLoading) return;
-  
-  const input = document.getElementById('chat-msg');
-  const sendBtn = document.getElementById('send-btn');
-  const text = input.value.trim();
-  if(!text) return;
-  
-  // Show user message
-  appendMsg('user', text);
-  input.value = '';
-  isLoading = true;
-  sendBtn.disabled = true;
-  
-  // Add to history
-  chatHistory.push({role: 'user', content: text});
-  
-  // Show typing indicator
-  const loadingMsg = appendMsg('bot', '', true);
-  
-  try {
-    const response = await fetch(AI_ENDPOINT, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({messages: chatHistory})
-    });
-    
-    if(!response.ok){
-      throw new Error(`HTTP ${response.status}`);
-    }
-    
-    const data = await response.json();
-    const reply = data.reply || '抱歉，我這邊發生了一些問題，請直接聯絡客服：' + LINE_CS;
-    
-    // Replace loading with real response
-    loadingMsg.innerHTML = linkify(reply);
-    loadingMsg.removeAttribute('id');
-    
-    // Add to history
-    chatHistory.push({role: 'assistant', content: reply});
-    
-    // Keep history under 20 messages
-    if(chatHistory.length > 18){
-      chatHistory = chatHistory.slice(-18);
-    }
-    
-  } catch(err){
-    console.error('AI error:', err);
-    loadingMsg.innerHTML = linkify(`抱歉，AI 助理暫時無法回應 😔\n\n請直接聯絡我們的客服中心：${LINE_CS}\n\n錯誤代碼：${err.message}`);
-    loadingMsg.removeAttribute('id');
-  } finally {
-    isLoading = false;
-    sendBtn.disabled = false;
-    document.getElementById('chat-body').scrollTop = document.getElementById('chat-body').scrollHeight;
+  function open(source) {
+    if (!dialog.open) { opener = source || launcher; dialog.showModal(); }
+    if (!log.childElementCount) message('assistant', '你好，我是 Hermes。你可以問企業導入、地端資料處理或一年陪跑維護。', '歡迎訊息');
     input.focus();
   }
-}
-
-
-  // ---- 4. 將 onclick handlers 掛到全域 ----
-  window.toggleChat = toggleChat;
-  window.sendMsg = sendMsg;
-  window.askQuick = askQuick;
+  launcher.addEventListener('click', function () { open(launcher); });
+  dialog.querySelector('.ai-close').addEventListener('click', function () { dialog.close(); });
+  dialog.addEventListener('close', function () { if (controller) controller.abort(); opener.focus(); });
+  document.addEventListener('click', function (event) {
+    const button = event.target.closest('[data-ai-question]');
+    if (!button) return;
+    const answer = localAnswers[button.dataset.aiQuestion];
+    if (!answer) return;
+    open(button); message('user', answer[0]); message('assistant', answer[1], '網站常見問題・非即時生成');
+  });
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const text = input.value.trim();
+    if (loading || !text) return;
+    loading = true; send.disabled = true; input.value = '';
+    message('user', text); status.textContent = 'AI 正在整理回覆…';
+    controller = new AbortController();
+    const timeout = setTimeout(function () { controller.abort(); }, 25000);
+    const pending = history.concat({role: 'user', content: text});
+    try {
+      const response = await fetch(endpoint, { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({messages: pending}), signal: controller.signal });
+      if (!response.ok) throw new Error('request failed');
+      const data = await response.json();
+      if (typeof data.reply !== 'string' || !data.reply.trim()) throw new Error('empty reply');
+      message('assistant', data.reply); history = pending.concat({role: 'assistant', content: data.reply}).slice(-18);
+      status.textContent = '企業費用、範圍與進度，以專人確認內容為準。';
+    } catch (_) {
+      status.textContent = '目前無法取得回覆，請稍後重試，或改看常見問題／聯絡 LINE 專人。';
+      input.value = text;
+    } finally {
+      clearTimeout(timeout); controller = null; loading = false; send.disabled = false;
+      if (dialog.open) input.focus();
+    }
+  });
+  // Compatibility for retained public pages with old triggers.
+  window.toggleChat = function () { if (dialog.open) dialog.close(); else open(document.activeElement); };
+  window.askQuick = function (text) { open(document.activeElement); input.value = text; };
 })();

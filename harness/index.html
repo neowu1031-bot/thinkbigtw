@@ -36,7 +36,7 @@
 <meta property="og:url" content="https://thinkbigtw.com/harness/">
 <meta property="og:title" content="Harness Engineers — OpenClaw × Hermes Agent × Claude Managed Agent | Think BIG">
 <meta property="og:description" content="三個工具，透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。Think BIG 台灣專業部署。">
-<meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Think BIG!">
@@ -44,7 +44,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Harness Engineers — OpenClaw × Hermes Agent × Claude Managed Agent">
 <meta name="twitter:description" content="三工具透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。Think BIG 台灣。">
-<meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;600;700;800&family=Noto+Sans+TC:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -214,9 +214,12 @@ footer a{color:#00ff41;text-decoration:none}
 .tc-msg{color:#9acd9a;border-color:rgba(154,205,154,0.4);background:rgba(154,205,154,0.05);}
 .tc-sys{color:#5a8d5a;border-color:rgba(90,141,90,0.35);background:transparent;}
 </style>
+<link rel="stylesheet" href="/assets/brand/chrome.css">
 </head>
 <body>
-<canvas id="matrix-rain" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.09;" aria-hidden="true"></canvas>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/pricing/personal/">個人方案</a><a href="/pricing/">方案比較</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/pricing/personal/">個人方案</a><a href="/pricing/">方案比較</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a></div></details></nav>
+<!-- TB:NAV:END --><canvas id="matrix-rain" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.09;" aria-hidden="true"></canvas>
 <script src="/assets/matrix-rain.js?v=2"></script>
 <div id="gear-bg"><canvas id="gear-canvas"></canvas></div>
 
@@ -565,12 +568,8 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 <!-- 全站統一導覽列 + Hermes 對話框 共用元件 -->
 <script src="/nav.js" defer></script>
-<script src="/ask-ai.js" defer></script>
-<footer id="tb-footer" style="background:#f0f0f0;text-align:center;padding:28px 16px;font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#4a4a4a;line-height:2;">
-大想成業有限公司 Think BIG Co., Ltd.|統一編號 62136066<br>
-AI@thinkbigtw.com<br>
-<a href="/privacy.html" style="color:#1a1a1a;">隱私權政策</a>|<a href="/terms.html" style="color:#1a1a1a;">服務條款</a><br>
-&copy; 2026 Think BIG. All rights reserved.
-</footer>
+<script src="/ask-ai.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>把一個 AI 團隊裝進你公司。<br>地端部署・流程導入・一年陪跑維護</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/pricing/personal/">個人方案</a><a href="/pricing/">方案比較</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
+<!-- TB:FOOTER:END -->
 </body>
 </html>
