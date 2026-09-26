@@ -16,3 +16,7 @@ STATUS.md
 .bak_worker_*.js
 .bak_safe_*.js
 .bak_v*/
+
+# Python build helpers
+__pycache__/
+*.pyc

@@ -71,7 +71,7 @@ const out = process.env.REVIEW_OUTPUT || '/tmp/homesplit-review-v4';
 
           await page.locator('[data-ai-question="privacy"]').click();
           if (!(await page.locator('#tb-ai-dialog').isVisible())) throw new Error('AI dialog did not open');
-          if (!(await page.locator('.ai-log').innerText()).includes('網站常見問題')) throw new Error('local FAQ label missing');
+          if (!(await page.locator('.ai-log').innerText()).includes('官網常見問題')) throw new Error('local FAQ label missing');
           await page.keyboard.press('Escape');
         }
         await page.screenshot({path:path.join(out,`${width}-${route.replaceAll('/','_')||'home'}.png`),fullPage:true});

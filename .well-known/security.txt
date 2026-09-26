@@ -1,0 +1,4 @@
+Contact: mailto:AI@thinkbigtw.com
+Expires: 2027-09-27T00:00:00Z
+Preferred-Languages: zh-Hant, en
+Canonical: https://thinkbigtw.com/.well-known/security.txt

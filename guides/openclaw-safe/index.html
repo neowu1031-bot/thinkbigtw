@@ -15,7 +15,7 @@
 <meta name="description" content="搜尋「OpenClaw 安全嗎」會看到一堆負面結論，這篇把它拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。最後一句話結論：安全的關鍵不是不裝，而是最小權限加本機部署加不裝來路不明的技能。">
 <meta name="keywords" content="OpenClaw 安全嗎, OpenClaw 風險, OpenClaw 該不該裝, OpenClaw 漏洞, AI 助理 資安, OpenClaw 代裝, OpenClaw 台灣">
 <link rel="canonical" href="https://thinkbigtw.com/guides/openclaw-safe/">
-<link rel="alternate" hreflang="zh-Hant" href="https://thinkbigtw.com/guides/openclaw-safe/">
+
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://thinkbigtw.com/guides/openclaw-safe/">
 <meta property="og:title" content="OpenClaw 安全嗎？裝之前要知道的 6 個風險 | Think BIG!">
@@ -27,50 +27,13 @@
 <meta name="twitter:title" content="OpenClaw 安全嗎？裝之前要知道的 6 個風險 | Think BIG!">
 <meta name="twitter:description" content="把網路搜尋上的負面結論拆成 6 個具體風險，逐個告訴你解法。">
 <meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉",
-  "description": "把網路搜尋上的負面結論拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。",
-  "url": "https://thinkbigtw.com/guides/openclaw-safe/",
-  "image": "https://thinkbigtw.com/og-image.jpg",
-  "inLanguage": "zh-TW",
-  "publisher": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"},
-  "datePublished": "2026-09-13",
-  "dateModified": "2026-09-13",
-  "author": {"@type": "Organization", "name": "Think BIG!"}
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {"@type": "Question", "name": "OpenClaw 安全嗎？", "acceptedAnswer": {"@type": "Answer", "text": "看你怎麼裝。安全風險大多來自「裝完沒設權限」、「裝了來路不明的技能」、「用預設帳號沒換密碼」，而不是框架本身不安全。最小權限加本機部署加不裝來路不明的技能，是基本三件事。"}},
-    {"@type": "Question", "name": "OpenClaw 會偷我的資料嗎？", "acceptedAnswer": {"@type": "Answer", "text": "OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫 AI 模型的 API（這是必要成本）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。"}},
-    {"@type": "Question", "name": "OpenClaw 會被駭嗎？", "acceptedAnswer": {"@type": "Answer", "text": "框架本身有在更新，修補已知漏洞。但如果你開了對外連接埠（port）又用預設密碼、或裝了來路不明的技能，被駭的風險確實存在。我們代裝時一律改預設密碼、不開對外 port、限制技能來源。"}},
-    {"@type": "Question", "name": "代裝會不會反而被工程師動手腳？", "acceptedAnswer": {"@type": "Answer", "text": "我們用 AnyDesk／DeskIn 遠端，整個過程你都看得到工程師在做什麼。我們不會向你索取任何帳號密碼，金鑰與密碼一律不透過聊天傳遞；連線結束後不會保留任何遠端存取權。"}},
-    {"@type": "Question", "name": "什麼人不適合裝 OpenClaw？", "acceptedAnswer": {"@type": "Answer", "text": "三種人我們會建議先不要裝：①公務機或公司機（即使你個人想用，資安政策通常不允許這類工具裝在公務環境）；②完全不願意花時間學任何基礎設定的人（即使代裝，你也得學會換密碼、看 log）；③對「裝了什麼都照預設走」有期待的人（任何能動手的工具都帶設定責任）。"}},
-    {"@type": "Question", "name": "裝完之後多久要更新一次？", "acceptedAnswer": {"@type": "Answer", "text": "OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 NT$32,000、年度旗艦 NT$38,000）含每週維護與 48 小時故障修復，更新這件事就交給我們；入門款 NT$999 是一次裝到能跑，更新由你決定時機。"}}
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {"@type": "ListItem", "position": 1, "name": "首頁", "item": "https://thinkbigtw.com/"},
-    {"@type": "ListItem", "position": 2, "name": "指南", "item": "https://thinkbigtw.com/guides/"},
-    {"@type": "ListItem", "position": 3, "name": "OpenClaw 安全嗎", "item": "https://thinkbigtw.com/guides/openclaw-safe/"}
-  ]
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;700&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
+
+
+
+
+
+
+<noscript></noscript>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -140,8 +103,163 @@ a:hover{text-decoration:underline}
 .art-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0 40px;border-top:1px solid var(--gray2);font-size:14px}
 .art-nav a{color:var(--red)}
 </style>
-<link rel="stylesheet" href="/assets/brand/chrome.css">
-<link rel="stylesheet" href="/assets/brand/personal.css"><link rel="stylesheet" href="/assets/homesplit/apple.css"/>
+
+<link rel="stylesheet" href="/assets/generated/site-80bb6d8b59f0.css"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#organization",
+      "name": "Think BIG",
+      "url": "https://thinkbigtw.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://thinkbigtw.com/#logo",
+        "url": "https://thinkbigtw.com/images/logo-nobg.png",
+        "width": 1254,
+        "height": 1254
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://thinkbigtw.com/#website",
+      "url": "https://thinkbigtw.com/",
+      "name": "Think BIG",
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://thinkbigtw.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://thinkbigtw.com/guides/openclaw-safe/#webpage",
+      "url": "https://thinkbigtw.com/guides/openclaw-safe/",
+      "name": "OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉 | Think BIG!",
+      "description": "搜尋「OpenClaw 安全嗎」會看到一堆負面結論，這篇把它拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。最後一句話結論：安全的關鍵不是不裝，而是最小權限加本機部署加不裝來路不明的技能。",
+      "inLanguage": "zh-Hant",
+      "isPartOf": {
+        "@id": "https://thinkbigtw.com/#website"
+      },
+      "publisher": {
+        "@id": "https://thinkbigtw.com/#organization"
+      },
+      "dateModified": "2026-09-27",
+      "breadcrumb": {
+        "@id": "https://thinkbigtw.com/guides/openclaw-safe/#breadcrumb"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://thinkbigtw.com/guides/openclaw-safe/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "指南",
+          "item": "https://thinkbigtw.com/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉",
+          "item": "https://thinkbigtw.com/guides/openclaw-safe/"
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#editorial",
+      "name": "Think BIG 編輯部",
+      "parentOrganization": {
+        "@id": "https://thinkbigtw.com/#organization"
+      }
+    },
+    {
+      "@type": "Article",
+      "headline": "OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉",
+      "description": "搜尋「OpenClaw 安全嗎」會看到一堆負面結論，這篇把它拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。最後一句話結論：安全的關鍵不是不裝，而是最小權限加本機部署加不裝來路不明的技能。",
+      "url": "https://thinkbigtw.com/guides/openclaw-safe/",
+      "image": [
+        "https://thinkbigtw.com/assets/brand/thinkbig-og.jpg"
+      ],
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://thinkbigtw.com/#organization"
+      },
+      "datePublished": "2026-09-13",
+      "dateModified": "2026-09-27",
+      "author": {
+        "@id": "https://thinkbigtw.com/#editorial"
+      },
+      "@id": "https://thinkbigtw.com/guides/openclaw-safe/#article",
+      "mainEntityOfPage": {
+        "@id": "https://thinkbigtw.com/guides/openclaw-safe/#webpage"
+      },
+      "isPartOf": {
+        "@id": "https://thinkbigtw.com/guides/#collection"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "OpenClaw 安全嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "看你怎麼裝。安全風險大多來自「裝完沒設權限」、「裝了來路不明的技能」、「用預設帳號沒換密碼」，而不是框架本身不安全。最小權限加本機部署加不裝來路不明的技能，是基本三件事。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClaw 會偷我的資料嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫 AI 模型的 API（這是必要成本）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "OpenClaw 會被駭嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "框架本身有在更新，修補已知漏洞。但如果你開了對外連接埠（port）又用預設密碼、或裝了來路不明的技能，被駭的風險確實存在。我們代裝時一律改預設密碼、不開對外 port、限制技能來源。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "代裝會不會反而被工程師動手腳？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們用 AnyDesk／DeskIn 遠端，整個過程你都看得到工程師在做什麼。我們不會向你索取任何帳號密碼，金鑰與密碼一律不透過聊天傳遞；連線結束後不會保留任何遠端存取權。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "什麼人不適合裝 OpenClaw？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "三種人我們會建議先不要裝：①公務機或公司機（即使你個人想用，資安政策通常不允許這類工具裝在公務環境）；②完全不願意花時間學任何基礎設定的人（即使代裝，你也得學會換密碼、看 log）；③對「裝了什麼都照預設走」有期待的人（任何能動手的工具都帶設定責任）。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "裝完之後多久要更新一次？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 NT$32,000、年度旗艦 NT$38,000）含每週維護與 48 小時故障修復，更新這件事就交給我們；入門款 NT$999 是一次裝到能跑，更新由你決定時機。"
+          }
+        }
+      ]
+    }
+  ]
+}</script>
 </head>
 <body>
 <!-- TB:NAV:START -->
@@ -155,7 +273,7 @@ a:hover{text-decoration:underline}
     <header class="art-header">
       <div class="art-breadcrumb"><a href="/guides/">Guides</a> / OpenClaw 安全嗎</div>
       <span class="art-meta-tag">資安 · 裝之前必讀</span>
-      <h1 class="art-title">OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉</h1>
+      <h1 class="art-title">OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉</h1><p class="note">Think BIG 編輯部</p>
       <p class="art-desc">搜「OpenClaw 安全嗎」會看到一堆負面結論，這篇把它拆成 6 個具體風險，逐個告訴你「自己裝要做什麼」、「我們代裝預設做什麼」。最後一句話結論：安全的關鍵不是不裝，而是最小權限加本機部署加不裝來路不明的技能。</p>
       <div class="art-date">發布：2026-09-13</div>
     </header>
@@ -322,7 +440,7 @@ a:hover{text-decoration:underline}
 </div>
 
 <script src="/ask-ai.js" defer></script><!-- TB:FOOTER:START -->
-<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
 <!-- TB:FOOTER:END -->
 </body>
 </html>

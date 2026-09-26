@@ -2,14 +2,19 @@
    Rejected autoplay, disabled JavaScript and load errors all retain the poster. */
 (function () {
   'use strict';
-  // Personal hub retains GM-approved autoplay and the original video attributes.
-  // Reduced motion pauses it and exposes an explicit static poster instead.
+  // Assign media URLs only after checking the user's motion preference.
   const personal = document.querySelector('.personal-mascot video');
   if (personal) {
+    const source = personal.querySelector('source');
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
     const sync = () => {
-      if (reduced.matches) personal.pause();
-      else if (!document.hidden) { const play = personal.play(); if (play) play.catch(() => {}); }
+      if (reduced.matches) {
+        personal.pause();
+        if (source.hasAttribute('src')) { source.removeAttribute('src'); personal.load(); }
+      } else if (!document.hidden) {
+        if (!source.hasAttribute('src')) { source.src = source.dataset.src; personal.load(); }
+        const play = personal.play(); if (play) play.catch(() => {});
+      }
     };
     personal.addEventListener('playing', () => { if (reduced.matches) personal.pause(); });
     reduced.addEventListener('change', sync);

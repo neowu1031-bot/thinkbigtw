@@ -44,3 +44,21 @@ test('autoplay rejection retains poster; late rejection cannot expose reduced-mo
 test('failed media source falls back to poster',()=>{
   const x=setup();x.source.fire('error');assert.equal(x.classes.size,0);assert.ok(x.video.paused);assert.ok(x.button.hidden);
 });
+function personalSetup(reduced) {
+  function target(extra={}) { return Object.assign({events:{},addEventListener(n,fn){this.events[n]=fn;},fire(n){this.events[n]?.();}},extra); }
+  const source={dataset:{src:'/assets/neo_hero_wide.mp4'},hasAttribute(){return Boolean(this.src);},removeAttribute(){delete this.src;}};
+  const video=target({loads:0,plays:0,paused:true,querySelector(){return source;},load(){this.loads++;},pause(){this.paused=true;},play(){this.paused=false;this.plays++;return Promise.resolve();}});
+  const preference=target({matches:reduced});
+  const document=target({hidden:false,querySelector(){return video;},getElementById(){return null;}});
+  vm.runInNewContext(code,{window:{matchMedia:()=>preference},document});
+  return {source,video,preference,document};
+}
+test('personal hub reduced motion never loads MP4; enabling motion attaches media only then',()=>{
+ const x=personalSetup(true);assert.equal(x.source.src,undefined);assert.equal(x.video.loads,0);assert.equal(x.video.plays,0);
+ x.preference.matches=false;x.preference.fire('change');assert.equal(x.source.src,'/assets/neo_hero_wide.mp4');assert.equal(x.video.loads,1);assert.equal(x.video.plays,1);
+ x.preference.matches=true;x.preference.fire('change');assert.equal(x.source.src,undefined);assert.equal(x.video.paused,true);
+});
+test('personal hub pauses when hidden and respects reduced motion when shown again',()=>{
+ const x=personalSetup(false);x.document.hidden=true;x.document.fire('visibilitychange');assert.ok(x.video.paused);
+ x.preference.matches=true;x.preference.fire('change');x.document.hidden=false;x.document.fire('visibilitychange');assert.equal(x.video.plays,1);assert.equal(x.source.src,undefined);
+});

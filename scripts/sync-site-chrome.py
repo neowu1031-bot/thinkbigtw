@@ -13,7 +13,7 @@ def chrome():
 <nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><div class="tb-links">{links}</div><details class="tb-menu"><summary>選單</summary><div class="tb-links">{links}</div></details></nav>
 <!-- TB:NAV:END -->'''
  footer=f'''<!-- TB:FOOTER:START -->
-<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links">{links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links">{links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
 <!-- TB:FOOTER:END -->'''
  return nav,footer
 nav,footer=chrome()
