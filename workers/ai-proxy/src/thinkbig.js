@@ -1,3 +1,5 @@
+import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
+const toTraditionalTW = OpenCCConverter({ from: 'cn', to: 'tw' });
 import { chapters } from './agent-kb.generated.js';
 
 const ORIGIN = 'https://thinkbigtw.com';
@@ -100,6 +102,8 @@ async function chat(body, env) {
     } catch { /* Try the next configured model; no transcript persistence. */ }
   }
   if (!reply) return json({ error: 'ai_unavailable', fallback: LINE }, 503);
+  // Models sometimes answer in Simplified Chinese; normalise to Taiwan Traditional (OpenCC cn→twp).
+  reply = toTraditionalTW(reply).replace(/臺/g, '台').replace(/客制/g, '客製').replace(/匯入/g, '導入');
   // Receipt claims must come exclusively from the confirmed database write, never a model.
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
     reply = '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
