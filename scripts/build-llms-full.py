@@ -1,9 +1,10 @@
 """Export sitemap page bodies to readable Markdown; never include scripts or chrome."""
 import sys,xml.etree.ElementTree as ET
-from bs4 import NavigableString
+from bs4 import Comment,NavigableString
 from seo_common import ROOT,BASE,BeautifulSoup
-BLOCKS={'p','div','section','article','header','main','figure','details','ul','ol','table','tr','blockquote'}
+BLOCKS={'p','div','section','article','header','main','figure','figcaption','details','ul','ol','table','tr','blockquote'}
 def markdown(node):
+ if isinstance(node,Comment):return ''
  if isinstance(node,NavigableString):return str(node)
  name=node.name
  if name in ('script','style','nav','footer','button','noscript','svg','form'):return ''

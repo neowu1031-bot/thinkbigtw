@@ -56,7 +56,7 @@ body #tb-nav{position:sticky;top:0;z-index:100;min-height:48px;padding:0 max(20p
 .editorial .wrap{width:min(1120px,calc(100% - 64px))}
 .editorial h1,.editorial .enterprise-hero-copy h1,.editorial .home-statement h1{font-size:clamp(40px,5.4vw,76px);line-height:1.16;letter-spacing:-.045em;font-weight:600;max-width:none}
 .editorial h2{font-size:clamp(32px,4.2vw,60px);font-weight:600;line-height:1.2;letter-spacing:-.04em}
-.editorial h3{font-weight:600;letter-spacing:-.025em}.editorial .eyebrow{font-family:var(--tb-system);font-size:12px;font-weight:600;letter-spacing:.13em;margin-bottom:20px;color:#77777c}
+.editorial h3{font-weight:600;letter-spacing:-.025em}.editorial .eyebrow{font-family:var(--tb-system);font-size:12px;font-weight:600;letter-spacing:.13em;margin-bottom:20px;color:#65656b}
 .editorial .intro{font-size:19px;line-height:1.7;max-width:38em;color:var(--muted)}
 .editorial .button,.enterprise-catalog .btn,.tb-personal-context~main .btn{border-radius:99px;padding:12px 24px;min-height:44px;font-size:15px;font-weight:400;gap:12px;background:#1d1d1f;color:#fff;border:1px solid #1d1d1f;text-decoration:none}
 .editorial .button.outline{background:transparent;color:var(--ink);border-color:#a4a4aa}.editorial .button:hover{background:#3a3a3d;color:#fff}.editorial .button.outline:hover{background:#e8e8ed;color:var(--ink)}
@@ -115,3 +115,8 @@ body:has(>#tb-nav) :focus-visible{outline:3px solid #a14a68;outline-offset:4px}
 .tb-definition{font-size:16px;line-height:1.85;max-width:68ch;color:#45454b;margin:20px 0}.tb-definition-note{font-size:13px;line-height:1.75;max-width:74ch;color:#65656b}.tb-reference{max-width:760px;padding-bottom:96px}.tb-reference section{padding:28px 0;border-top:1px solid #dedee2}.tb-reference p{line-height:1.9}.tb-reference h2{font-size:25px}#faq.wrap{max-width:960px;margin:48px auto;padding:24px}#faq details{padding:16px 0}#faq summary{cursor:pointer}
 
 .brand-definition{padding-block:24px}.brand-definition .tb-definition,.brand-definition .tb-definition-note{max-width:900px;margin:12px auto}.enterprise-hero-copy>.tb-definition,.enterprise-hero-copy>.tb-definition-note{margin-inline:auto}
+
+/* Readable definitions on dark tiles; first-screen copy never fades in. */
+.readiness-section .tb-definition,.dark-section .tb-definition{color:#d6d6da}
+.readiness-section .tb-definition-note,.dark-section .tb-definition-note{color:#bfbfc5}
+[data-no-reveal],[data-no-reveal] .arriving{animation:none!important}

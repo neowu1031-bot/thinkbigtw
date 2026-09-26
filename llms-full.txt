@@ -42,12 +42,6 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 # 年度旗艦 NT$38,000 — 雙 Agent 全系統，年度旗艦級 AI 部署 | Think BIG!
 
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero ── 
-
 個人 AI 助理 · 年度旗艦 
 
 # 年度旗艦
@@ -58,8 +52,6 @@ TB:NAV:START
 雙系統互通＋多部門覆蓋＋季度 AI 戰略規劃
 
 當一個 Agent 不夠用的時候，年度旗艦給你的是一套完整的 AI 作業系統：OpenClaw 主理助理功能、Hermes 負責跨平台通訊與排程，兩套系統互通協作，再由專屬工程師整年度維護升級。不只是「有一個 AI 助理」，而是讓 AI 真的跑起你的日常運作。
-
- ── Section 2: 旗艦 vs 尊榮 ── 
 
 ## 尊榮年約 vs 年度旗艦
 
@@ -93,8 +85,6 @@ TB:NAV:START
 
 已有尊榮年約、想升級？聯絡我們，差額可折抵。
 
- ── Section 3: 怎麼運行 ── 
-
 ## 怎麼運行
 
 1
@@ -118,8 +108,6 @@ TB:NAV:START
 季度 AI 戰略規劃 每季一次深度規劃會議，盤點 AI 覆蓋率、提出下季擴充計畫，讓系統持續跟上你的業務成長
 
 含 Coding Agent 串接、跨 Agent 協作會議室、企業整合（CRM / 試算表 / 雲端硬碟）、Google Workspace 串接。
-
- ── Section 4: 你得到什麼 + CTA ── 
 
 ## 你得到什麼
 
@@ -149,21 +137,11 @@ NT$38,000／年（年約制，下單前請先聊聊確認需求）
 
 ※ 下單前需完成業務盤點訪談並確認雙系統架構。AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。次年續約 NT$30,000。
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/annual-pro/
 
 # 尊榮年約 NT$32,000 — 你的專屬工程師，顧一整年 | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero ── 
 
 個人 AI 助理 · 尊榮年約 
 
@@ -176,8 +154,6 @@ TB:NAV:START
 
 從架設到長期陪跑，一個方案全包。全客製 AI Agent 架構（OpenClaw 或 Hermes，或雙系統互通）＋專屬工程師整年度維護。你不用學怎麼維護，也不用每次出問題再付一次救火費——年費裡已經包含。
 
- ── Section 2: 你是哪種情況 ── 
-
 ## 這些情況你中了幾個？
 
 - AI 工具裝好後用一個月就晾著，沒人繼續加功能
@@ -189,8 +165,6 @@ TB:NAV:START
 - 不想每季都重新研究工具，希望有人持續幫你跟上
 
 尊榮年約的設計邏輯就是：把「用不起來」和「用壞了沒人理」這兩個最常見的問題，都包在年費裡。
-
- ── Section 3: 怎麼運行 ── 
 
 ## 怎麼運行
 
@@ -211,8 +185,6 @@ TB:NAV:START
 故障即修 發現問題主動通知；故障 48 小時內修復，不等你發現才動
 
 支援 Coding Agent 串接、跨 Agent 協作會議室（串 2 個以上 Agent 時啟用）、通訊平台多通路串接。
-
- ── Section 4: 你得到什麼 + CTA ── 
 
 ## 你得到什麼
 
@@ -238,21 +210,11 @@ NT$32,000／年（年約制，下單前請先聊聊確認需求）
 
 ※ 下單前需完成需求訪談並選定主系統。AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。次年續約 NT$30,000／年（NT$2,500／月）。
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/dual-agent/
 
 # 雙 AI Agent | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero / 這是什麼 ── 
 
 個人 AI 助理 
 
@@ -262,8 +224,6 @@ TB:NAV:START
 
 OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透過 MCP（Model Context Protocol）把兩者的記憶層與技能庫實際打通 ：一邊學到的東西，另一邊也知道。OpenClaw 第一天即戰力，Hermes 持續把成功經驗變成新技能——一套會越用越強的雙 AI 助理系統。
 
- ── Section 2: Pain Points ── 
-
 ## 你是不是每天都在——
 
 - 想要 AI「馬上能用」，又想要它「越用越聰明」，卻只能二選一？
@@ -271,8 +231,6 @@ OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透�
 - 裝了好幾個 AI 工具，各記各的、各做各的，彼此完全不通？
 
 - 教會了 A 工具的事，換到 B 工具又要全部重教一次？
-
- ── Section 3: How it Works ── 
 
 ## 怎麼運行
 
@@ -293,8 +251,6 @@ OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透�
 回報 結果推播到你的通訊軟體；下次同類任務，兩邊都變快
 
 支援再串接你的 coding agent（Claude Code／Codex 等），啟用跨 Agent 協作會議室。
-
- ── Section 4: Results + CTA ── 
 
 ## 你得到什麼
 
@@ -319,10 +275,6 @@ NT$15,000（單次）
 [前往蝦皮下單｜隔日到貨](https://s.shopee.tw/19tR2HgG4)
 
 ※ AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案服務費所含。
-
- TB:FOOTER:START 
-
- TB:FOOTER:END
 
 ---
 
@@ -421,7 +373,7 @@ Think BIG 協助企業將 Agentic AI 納入既有營運流程。以資料主權�
 
 啟動企業導入諮詢›
 
-OPERATING MODEL AI Agent 治理架構示意 
+OPERATING MODEL AI Agent 治理架構示意
 
 DECISION AUTHORITY
 
@@ -857,12 +809,6 @@ URL: https://thinkbigtw.com/full-agent/
 
 # 全 Agent 串接 | Think BIG!
 
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero / 這是什麼 ── 
-
 個人 AI 助理 
 
 # 全 Agent 串接
@@ -871,8 +817,6 @@ TB:NAV:START
 
 Multi-Agent Orchestration（多代理協作）：讓 OpenClaw 和你既有的 coding agent（Claude Code／Codex／Antigravity 等）進駐同一個「協作會議室」分工做事。OpenClaw 負責接指令與日常任務，coding agent 負責寫程式、改檔案、跑測試——這是 2026 年 Anthropic、Google、Microsoft 都在推的架構方向。
 
- ── Section 2: Pain Points ── 
-
 ## 你是不是每天都在——
 
 - 開著 Claude Code、又開著 ChatGPT、又開著別的工具，自己當人肉轉接頭？
@@ -880,8 +824,6 @@ Multi-Agent Orchestration（多代理協作）：讓 OpenClaw 和你既有的 co
 - 付了 coding agent 訂閱費，卻只有坐在電腦前打指令的時候用得到？
 
 - 出門在外想派工給 AI，只能等回到電腦前？
-
- ── Section 3: How it Works ── 
 
 ## 怎麼運行
 
@@ -902,8 +844,6 @@ Multi-Agent Orchestration（多代理協作）：讓 OpenClaw 和你既有的 co
 回報 最終結果報告自動推播到你指定的通訊軟體
 
 會議室建在你自己免費註冊的 Supabase 專案上，資料與其他客戶天然隔離。
-
- ── Section 4: Results + CTA ── 
 
 ## 你得到什麼
 
@@ -928,10 +868,6 @@ NT$6,000（單次）
 [前往蝦皮下單｜隔日到貨](https://s.shopee.tw/2gAebp9KEB)
 
 ※ AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔；coding agent 訂閱費亦由你自行負擔（Claude Code 需 Pro 以上，門檻以各官網公告為準），皆非本方案服務費所含。
-
- TB:FOOTER:START 
-
- TB:FOOTER:END
 
 ---
 
@@ -1173,10 +1109,6 @@ URL: https://thinkbigtw.com/guides/hermes-vs-openclaw/
 
 # Think BIG 的 Hermes 與 OpenClaw 比較：差別、怎麼選、誰適合哪一個 | Think BIG!
 
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
 [Guides](https://thinkbigtw.com/guides/) / Hermes vs OpenClaw
 
 工具比較 · 入門選讀 
@@ -1327,10 +1259,6 @@ Q：可以用年約方式同時養兩個嗎？
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/guides/
@@ -1430,10 +1358,6 @@ Think BIG 編輯部 · 2026 年 9 月 26 日
 URL: https://thinkbigtw.com/guides/openclaw-daizhuang/
 
 # OpenClaw 代裝拆解——999 入門款到底幫你裝什麼 | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
 
 [Guides](https://thinkbigtw.com/guides/) / OpenClaw 代裝
 
@@ -1589,19 +1513,11 @@ OpenClaw 入門款在蝦皮直接下單，工程師依訂單聯繫約安裝時�
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/guides/openclaw-safe/
 
 # OpenClaw 安全嗎？裝之前要知道的 6 個風險，以及我們代裝時怎麼把它們關掉 | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
 
 [Guides](https://thinkbigtw.com/guides/) / OpenClaw 安全嗎
 
@@ -1768,19 +1684,11 @@ OpenClaw 安不安全，看你裝的時候有沒有把基礎設定做好 。常�
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/guides/yuanduan-daizhuang/
 
 # 找人遠端幫忙安裝 OpenClaw？遠端代裝顧問服務的流程、資安與挑選指南 | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
 
 [Guides](https://thinkbigtw.com/guides/) / 遠端代裝
 
@@ -1936,21 +1844,11 @@ OpenClaw 入門款在蝦皮下單，或先跟我們聊你的需求再決定規�
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/harness/
 
 # 個人 AI 助理搭建與整合｜Think BIG
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- Hero 
 
 HARNESS ENGINEERS
 
@@ -1980,8 +1878,6 @@ Zapier
 Browser 
 Cron 
 MCP
-
- ====== 規格 6 ｜ Harness 五分級白話版 (零 emoji、零價格) ====== 
 
 FIVE TIERS — CHOOSE YOUR FIT
 
@@ -2021,8 +1917,6 @@ TIER 05 — MAINTENANCE
 
 適合已有 AI 助理、想要它一直保持最佳狀態的人。定期健檢、修復、升級、新技能擴充,讓 AI 永遠跟得上你的需求。
 
- OpenClaw 
-
 01 — LOCAL AI EXECUTION
 
 ## OpenClaw
@@ -2042,8 +1936,6 @@ MCP 支援
 20+ 通訊平台
 
 適合： 想要本機 AI 自動化、重視資安的個人與企業。
-
- Hermes Agent 
 
 02 — ENTERPRISE AUTOMATION
 
@@ -2065,8 +1957,6 @@ Slack / Teams
 
 適合： 有大量重複性流程、需要多系統整合的中小企業。
 
- Claude Managed Agent 
-
 03 — ADVANCED REASONING
 
 ## Claude Managed Agent
@@ -2086,8 +1976,6 @@ MCP 原生支援
 
 適合： 需要高度推理能力、複雜決策自動化的進階用戶。
 
- MCP 
-
 MCP
 
 04 — THE PROTOCOL
@@ -2097,8 +1985,6 @@ MCP
 Model Context Protocol — AI 工具的共同語言
 
 MCP（Model Context Protocol）是 Anthropic 制定的開放協議，讓不同的 AI 工具能夠互相溝通、共享資源。
-
- Flow diagram 
 
 Claude Managed Agent
 
@@ -2115,8 +2001,6 @@ MCP
 OpenClaw
 
 本機技能執行 · 客製化 Skills
-
- MCP features 
 
 → OpenClaw
 
@@ -2136,8 +2020,6 @@ OpenClaw
 
 這不只是安裝三個工具，而是建立一套完整的 AI 自動化基礎設施 。
 
- 全站統一導覽列 + Hermes 對話框 共用元件 
-
 ## 個人 AI 助理常見問題
 
 個人 AI 助理如何開始？ 
@@ -2154,21 +2036,11 @@ OpenClaw
 
 [查看個人方案與價格](https://thinkbigtw.com/pricing/personal/)
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/hermes-starter/
 
 # Hermes 入門 | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero / 這是什麼 ── 
 
 個人 AI 助理 
 
@@ -2178,8 +2050,6 @@ TB:NAV:START
 
 Hermes Agent（Nous Research 開源）是自主學習型 AI 助理。我們幫你安裝在自己的電腦上，它常駐通訊軟體、跨對話記憶，最特別的是：每次完成任務，它會自動把成功經驗轉化成新技能——用越久，越懂你。
 
- ── Section 2: Pain Points ── 
-
 ## 你是不是每天都在——
 
 - 跟 AI 對話永遠「從零開始」，說過的偏好下次全忘？
@@ -2187,8 +2057,6 @@ Hermes Agent（Nous Research 開源）是自主學習型 AI 助理。我們幫�
 - 好不容易教會 AI 一套做法，任務結束什麼都沒留下？
 
 - 想要一個「越用越順手」的助理，而不是每次都重新磨合？
-
- ── Section 3: How it Works ── 
 
 ## 怎麼運行
 
@@ -2209,8 +2077,6 @@ Hermes Agent（Nous Research 開源）是自主學習型 AI 助理。我們幫�
 回報 結果回到聊天視窗，下次同類任務直接套用學到的技能，更快更準
 
 安裝僅透過 AnyDesk 或 DeskIn 遠端連線，全程可視，裝完立即斷線。
-
- ── Section 4: Results + CTA ── 
 
 ## 你得到什麼
 
@@ -2235,10 +2101,6 @@ NT$999（單次）
 [前往蝦皮下單｜隔日到貨](https://s.shopee.tw/1gI7PxiKFc)
 
 ※ AI 模型（Claude／ChatGPT／Gemini 等）使用費依用量向原廠計費，API Key 需自行申請、費用自行負擔，非本方案服務費所含。
-
- TB:FOOTER:START 
-
- TB:FOOTER:END
 
 ---
 
@@ -2494,12 +2356,6 @@ URL: https://thinkbigtw.com/openclaw-starter/
 
 # OpenClaw 入門 | Think BIG!
 
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero / 這是什麼 ── 
-
 個人 AI 助理 
 
 # OpenClaw 入門
@@ -2508,8 +2364,6 @@ AI 助理，裝進你的通訊軟體。
 
 OpenClaw 是開源 AI 助理。工程師遠端安裝到你的電腦——裝完它住進 LINE 或 Telegram，用傳訊息的方式指揮它查資料、讀寫檔案、操作瀏覽器。常駐、有記憶、跑在你自己的機器上。
 
- ── Section 2: Pain Points ── 
-
 ## 你每天重複的三件事
 
 - 跟 ChatGPT 解釋第三遍。因為它忘了。
@@ -2517,8 +2371,6 @@ OpenClaw 是開源 AI 助理。工程師遠端安裝到你的電腦——裝完�
 - 安裝教學看到一半，放棄。
 
 - 關掉分頁，一切重來。
-
- ── Section 3: How it Works ── 
 
 ## 怎麼運行
 
@@ -2539,8 +2391,6 @@ OpenClaw 是開源 AI 助理。工程師遠端安裝到你的電腦——裝完�
 回報結果 直接推回你的聊天視窗，24 小時都在
 
 安裝透過 AnyDesk 或 DeskIn 遠端進行，你全程可見，裝完即斷線。
-
- ── Section 4: Results + CTA ── 
 
 ## 你得到什麼
 
@@ -2563,19 +2413,11 @@ NT$999（單次）
 [999，上車。](https://s.shopee.tw/3LQLP0cSAv)
 ※ AI 模型（Claude／ChatGPT／Gemini 等）使用費依用量向原廠計費，API Key 需自行申請、費用自行負擔，非本方案服務費所含。
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/pricing/enterprise/
 
 # 企業 AI 部署架構｜雲端整合與地端主權｜Think BIG
-
-TB:NAV:START 
-
- TB:NAV:END 
 
 企業使用 
 
@@ -2668,10 +2510,6 @@ CTA [預約訪談](https://lin.ee/n5KW430) [預約訪談](https://lin.ee/n5KW430
 [看個人方案 3 →](https://thinkbigtw.com/pricing/personal/#tier3)
 
 ← [返回方案索引](https://thinkbigtw.com/pricing/)　·　[企業 AI 導入總覽](https://thinkbigtw.com/enterprise/)
-
- TB:FOOTER:START 
-
- TB:FOOTER:END
 
 ---
 
@@ -2793,10 +2631,6 @@ URL: https://thinkbigtw.com/pricing/personal/
 
 # 個人方案與價格｜NT$999 起，入門／AI 部門／年約｜Think BIG! 台灣
 
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END 
-
 個人使用 
 
 # 個人 AI 助理方案：入門、工作組合與年約
@@ -2822,10 +2656,6 @@ Think BIG 品牌公仔
 ### 一年陪跑
 
 年約總覽 ↗ [尊榮年約 ↗](https://thinkbigtw.com/annual-pro/)[年度旗艦 ↗](https://thinkbigtw.com/annual-flagship/)[超級個體 ↗](https://thinkbigtw.com/solo-pro/)
-
-### 禮物與相關服務
-
-[AI 禮物 ↗](https://thinkbigtw.com/gift/)[龍蝦 AI ↗](https://thinkbigtw.com/lobster/)
 
 ### USB AGENT
 
@@ -2931,6 +2761,99 @@ SLA — — 48 小時故障修復 ；60,000 另含每週維護
 
 CTA [OpenClaw](https://thinkbigtw.com/openclaw-starter/)／[Hermes](https://thinkbigtw.com/hermes-starter/) [單 AI Agent](https://thinkbigtw.com/full-agent/)／[雙 AI Agent](https://thinkbigtw.com/dual-agent/) [32,000](https://thinkbigtw.com/annual-pro/)／[38,000](https://thinkbigtw.com/annual-flagship/)／[60,000](https://thinkbigtw.com/solo-pro/)
 
+個人服務・買家回饋
+
+## 蝦皮賣場 AI 服務評價全數 5 星（21 則，截至 2026/09/27）
+
+擷取自蝦皮賣場，買家資訊已遮蔽，擷取日 2026/09/27
+
+以下選錄 8 則不同買家的評價。截圖保留當時商品名稱；現行方案連結供參考，服務內容與範圍以各方案頁為準。
+
+蝦皮買家 2026/04/27
+
+服務非常好，像我這樣的電腦小白能無腦獲得AI agent，非常推薦
+
+現行方案參考：[年度旗艦](https://thinkbigtw.com/annual-flagship/)
+
+[](https://thinkbigtw.com/assets/reviews/review_08.webp)
+
+點選截圖可放大查看
+
+蝦皮買家 2026/05/28
+
+效能:頂級
+CP值:頂級
+
+專業的事還得請專業的來，非常快速的解決了我的問題，我不會的馬上問賣家馬上回答，很好的安裝體驗，超棒的
+
+現行方案參考：[Hermes 入門](https://thinkbigtw.com/hermes-starter/)
+
+[](https://thinkbigtw.com/assets/reviews/review_02.webp)
+
+點選截圖可放大查看
+
+蝦皮買家 2026/04/17
+
+工程師服務很好，大力推薦，售後服務也是一流
+
+現行方案參考：[全 Agent 串接](https://thinkbigtw.com/full-agent/)
+
+[](https://thinkbigtw.com/assets/reviews/review_10.webp)
+
+點選截圖可放大查看
+
+蝦皮買家 2026/06/15
+
+CP值:有訊息馬上回，服務六星級!!
+
+現行方案參考：[年度旗艦](https://thinkbigtw.com/annual-flagship/)
+
+[](https://thinkbigtw.com/assets/reviews/review_01.webp)
+
+點選截圖可放大查看
+
+蝦皮買家 2026/05/21
+
+優質的服務，優秀的工程師，衷心推薦
+
+現行方案參考：[Hermes 入門](https://thinkbigtw.com/hermes-starter/)
+
+[](https://thinkbigtw.com/assets/reviews/review_04.webp)
+
+點選截圖可放大查看
+
+蝦皮買家 2026/04/15
+
+CP值:很用心在幫忙安裝！大推！
+
+現行方案參考：[OpenClaw 入門](https://thinkbigtw.com/openclaw-starter/)
+
+[](https://thinkbigtw.com/assets/reviews/review_11.webp)
+
+點選截圖可放大查看
+
+蝦皮買家 2026/05/25
+
+CP值:專業 服務滿分
+
+現行方案參考：[雙 Agent 組合](https://thinkbigtw.com/dual-agent/)
+
+[](https://thinkbigtw.com/assets/reviews/review_03.webp)
+
+點選截圖可放大查看
+
+蝦皮買家 2026/04/25
+
+CP值:優質賣家,值得推薦
+
+優質賣家,值得推薦
+
+現行方案參考：[個人 AI 搭建](https://thinkbigtw.com/harness/)
+
+[](https://thinkbigtw.com/assets/reviews/review_09.webp)
+
+點選截圖可放大查看
+
 ## 加購區（不算階梯，任一階都可加）
 
 品項 價格 給誰／規則 去哪買 
@@ -2960,19 +2883,11 @@ OpenClaw 卸載服務 NT$500 售後 [蝦皮](https://shopee.tw/product/105010395
 
 ← [回方案總覽（兩扇門）](https://thinkbigtw.com/pricing/)　·　[有同事要一起用？看企業使用 →](https://thinkbigtw.com/pricing/enterprise/)　·　[個人 AI 搭建服務總覽](https://thinkbigtw.com/harness/)
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策｜Think BIG 大想成業有限公司
-
-TB:NAV:START 
-
- TB:NAV:END 
 
 [回 Think BIG 首頁](https://thinkbigtw.com/)
 
@@ -3048,21 +2963,11 @@ AI@thinkbigtw.com
 
 © 2026 Think BIG. All rights reserved.
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/skill-pack/
 
 # 技能包 | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero / 這是什麼 ── 
 
 個人 AI 助理 
 
@@ -3074,8 +2979,6 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 
 多數技能採 0-Token 優先設計 ——能不呼叫 AI 模型就不呼叫，大部分技能日常執行不燒模型費。
 
- ── Section 2: Pain Points ── 
-
 ## 你是不是每天都在——
 
 - 每天早上手動整理同一批資料、寄同一種信，明明步驟都固定？
@@ -3083,8 +2986,6 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 - 裝了 AI 助理，卻覺得它「什麼都會一點、你的工作都不會」？
 
 - 想自動化又怕買到用不上的大禮包，多花冤枉錢？
-
- ── Section 3: How it Works ── 
 
 ## 怎麼運行
 
@@ -3103,8 +3004,6 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 4
 
 回報 每次執行結果推回你的通訊軟體，成功失敗都有交代
-
- ── Section 4: Results + CTA ── 
 
 ## 你得到什麼
 
@@ -3128,21 +3027,11 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 
 ※ AI 模型使用費（如技能有呼叫模型）依用量向原廠計費，API Key 自行申請、費用自行負擔，非本服務費所含。
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/solo-pro/
 
 # 超級個體 SUPERSOLO NT$60,000 — 一個人，七個部門 | Think BIG!
-
-TB:NAV:START 
-
- TB:NAV:END  TB:PERSONAL:START  TB:PERSONAL:END  
-
- ── Section 1: Hero ── 
 
 個人旗艦方案 
 
@@ -3150,11 +3039,7 @@ TB:NAV:START
 
 一個人＝七個部門。
 
- 維運升到主標下第一行 
-
 一年 KEEPER 週維護＋48hr 故障修復 ｜次年續約 NT$30,000（NT$2,500/月）
-
- 雙面錨 
 
 上錨 — 和真人比
 
@@ -3166,8 +3051,6 @@ TB:NAV:START
 
 雙 AI Agent（OpenClaw＋Hermes）部署 7 個部門 Agent——內容、行銷、業務、客服、財務、行政、研發。你下一句指令，全隊出動。系統搭好之後，有工程師一整年幫你週維護、發現問題主動修，你只負責下指令。
 
- ── Section 2: Pain Points ── 
-
 ## 一個人扛三個職位
 
 - 早上報價、中午客服、晚上對帳。本業沒時間。
@@ -3177,8 +3060,6 @@ TB:NAV:START
 - 請不起人，但你也一個人撐不了多久。
 
 - 頂規 AI 訂閱花了快 8 萬，還是要自己想怎麼用、自己維護。
-
- ── Section 3: How it Works ── 
 
 ## 怎麼運行
 
@@ -3197,8 +3078,6 @@ TB:NAV:START
 4
 
 KEEPER 週維護 每週例行維護升級；發現問題主動修、48 小時故障修復保證
-
- ── Section 4: Results + CTA ── 
 
 ## 你得到什麼
 
@@ -3221,19 +3100,11 @@ NT$60,000／年（首年）｜續約 NT$30,000／年（下單前請先聊聊盤�
 [前往蝦皮下單｜確認業務需求再付款](https://shopee.tw/product/105010395/45116788166)
 ※ AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。與原廠 AI 訂閱費用之比較以 2026 年 8 月官網公開價格換算為準，實際費率以原廠公告為主。
 
- TB:FOOTER:START 
-
- TB:FOOTER:END
-
 ---
 
 URL: https://thinkbigtw.com/terms.html
 
 # 服務條款｜Think BIG 大想成業有限公司
-
-TB:NAV:START 
-
- TB:NAV:END 
 
 [回 Think BIG 首頁](https://thinkbigtw.com/)
 
@@ -3316,10 +3187,6 @@ AI@thinkbigtw.com
 [關於 Think BIG](https://thinkbigtw.com/about/)[術語表](https://thinkbigtw.com/guides/glossary/)[隱私權政策](https://thinkbigtw.com/privacy.html)|[服務條款](https://thinkbigtw.com/terms.html)
 
 © 2026 Think BIG. All rights reserved.
-
- TB:FOOTER:START 
-
- TB:FOOTER:END
 
 ---
 

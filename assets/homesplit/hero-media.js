@@ -29,17 +29,18 @@
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
   let userPaused = false;
   let visible = true;
+  let mediaReady = false;
   function poster() { frame.classList.remove('is-playing'); }
   function pause() { video.pause(); poster(); }
   function play() {
-    if (preference.matches || userPaused || !visible || document.hidden) return;
+    if (!mediaReady || preference.matches || userPaused || !visible || document.hidden) return;
     if (!source.hasAttribute('src')) { source.src = source.dataset.src; video.load(); }
     video.muted = true;
     const promise = video.play();
     if (promise) promise.catch(() => { poster(); if (!preference.matches) { button.hidden = false; button.textContent = '播放主視覺'; } });
   }
   function update() {
-    button.hidden = preference.matches;
+    button.hidden = !mediaReady || preference.matches;
     if (preference.matches) {
       pause(); source.removeAttribute('src'); video.load();
     } else {
@@ -68,4 +69,15 @@
     observer.observe(frame);
   }
   update();
+  // Keep the poster on the critical rendering path. Every playback entry point
+  // shares this gate, including visibility and motion-preference changes.
+  function scheduleMedia() {
+    window.setTimeout(() => {
+      const ready = () => { mediaReady = true; update(); };
+      if ('requestIdleCallback' in window) window.requestIdleCallback(ready);
+      else window.setTimeout(ready, 0);
+    }, 2000);
+  }
+  if (document.readyState === 'complete') scheduleMedia();
+  else window.addEventListener('load', scheduleMedia, { once: true });
 })();

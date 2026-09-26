@@ -22,10 +22,6 @@ for p,url,soup in pages():
   if n.get('@type')=='Article':
    article_count+=1
    if not all(k in n for k in ('author','publisher','image','dateModified','datePublished')) or not any(x.get('@type')=='BreadcrumbList' for x in graph):errors.append(rel+' article')
-  if n.get('@type')=='FAQPage' and rel=='harness/index.html':
-   visible=[(x.summary.get_text(' ',strip=True),x.p.get_text(' ',strip=True)) for x in soup.select('#faq details')]
-   marked=[(q['name'],q['acceptedAnswer']['text']) for q in n['mainEntity']]
-   if visible!=marked:faq_errors.append(rel)
  for tag in soup.select('a[href],img[src],script[src],link[href]'):
   href=tag.get('href',tag.get('src',''));u=urlsplit(href)
   if u.scheme or u.netloc or not u.path:continue
@@ -54,7 +50,24 @@ for p,url,soup in pages():
   if offers(old)!=offers(p.read_text()):price_errors.append(rel+': Offer prices')
   for phrase in ['48 小時','48小時','發現即修復']:
    if visible(old).count(phrase)!=visible(p.read_text()).count(phrase):price_errors.append(rel+': '+phrase)
+# Cover every FAQPage, including retained pages outside the sitemap. Ignore only
+# whitespace, never punctuation or wording; scripts cannot validate themselves.
+def norm(text):return re.sub(r'\s+','',text)
+faq_count=0;faq_pages=0
+for p in allhtml:
+ soup=BeautifulSoup(p.read_text(),'html.parser');graph=list(nodes(soup))
+ for tag in soup.select('script,style,template,[hidden],[aria-hidden="true"]'):tag.decompose()
+ visible=norm(soup.get_text(' ',strip=True))
+ for n in graph:
+  if n.get('@type')!='FAQPage':continue
+  faq_pages+=1
+  for q in n.get('mainEntity',[]):
+   faq_count+=1
+   answer=q.get('acceptedAnswer',{}).get('text','');question=q.get('name','')
+   if not question or not answer or norm(question) not in visible or norm(answer) not in visible:faq_errors.append(str(p.relative_to(ROOT))+': '+question)
+check('P0-9 faq_match across all HTML',not faq_errors and faq_count>0, '; '.join(faq_errors) or f'{faq_count} questions / {faq_pages} FAQPage graphs')
 check('P0-3 all 30 entity graphs',not errors, '; '.join(errors))
+check('P0-3 generated graphs current (read-only)',subprocess.run([sys.executable,str(ROOT/'scripts/sync-seo-graph.py'),'--check'],capture_output=True).returncode==0)
 check('P0-3 full organization decisions',entity['vatID']=='62136066' and entity['email']=='AI@thinkbigtw.com' and 'foundingDate' not in entity and len(entity['sameAs'])==4)
 harness=BeautifulSoup((ROOT/'harness/index.html').read_text(),'html.parser');check('P0-4 Chinese FAQ matches visible content',not faq_errors and harness.html['lang']=='zh-Hant' and len(harness.title.get_text())<=40 and next(n for n in nodes(harness) if n.get('@type')=='WebPage')['inLanguage']=='zh-Hant')
 check('P0-5 sitemap git dates',subprocess.run([sys.executable,str(ROOT/'scripts/build-sitemap.py'),'--check'],capture_output=True).returncode==0)
@@ -63,7 +76,8 @@ check('P0-6 llms format / disclosures / full body count',llms.startswith('# ') a
 check('P0-7 static definitions',all(any(p.get_text()==definition for p in BeautifulSoup((ROOT/f).read_text(),'html.parser').select('main p')) for f in ['index.html','enterprise/index.html','trust/index.html','guides/index.html','pricing/index.html']) and definition in llms)
 check('P0-8 seven Articles / CollectionPage',article_count==7 and len(BeautifulSoup((ROOT/'guides/index.html').read_text(),'html.parser').select('script[type="application/ld+json"]'))==1 and (ROOT/'guides/index.html').read_text().count('"hasPart"')==1,str(article_count)+' articles')
 scanned=[ROOT/'index.html',ROOT/'llms.txt']+[p for folder in ['enterprise','pricing','guides'] for p in (ROOT/folder).rglob('*.html')]
-check('P0-9 naming / links',not any(re.search('智能體|引擎',p.read_text()) for p in scanned) and not re.search('enterprise-cloud|enterprise-local',(ROOT/'enterprise/index.html').read_text()) and 'href="/annual/"' not in (ROOT/'pricing/personal/index.html').read_text())
+check('P0-9 naming / links',not any(re.search('智能體|引擎',p.read_text()) for p in scanned) and not re.search('enterprise-cloud|enterprise-local',(ROOT/'enterprise/index.html').read_text()) and not re.search(r'href="/(?:annual|gift|lobster)/"',(ROOT/'pricing/personal/index.html').read_text()))
+check('P0-10 explicit favicon on audited pages',all(BeautifulSoup((ROOT/f).read_text(),'html.parser').find('link',rel='icon') for f in ['index.html','enterprise/index.html','pricing/personal/index.html']))
 check('P0-10 CSS <= 1 static + 1 assistant',not css_errors, '; '.join(css_errors))
 check('P0-10 video deferred / posters sized',all((lambda soup: all(v.get('preload') in ['none','metadata'] and v.source.get('data-src') and not v.source.get('src') for v in soup.select('video')) and all(i.has_attr('width') and i.has_attr('height') for i in soup.select('.hero-poster,.personal-reduced-poster')))(BeautifulSoup((ROOT/f).read_text(),'html.parser')) for f in ['index.html','pricing/personal/index.html']))
 check('Hard rule: exact personal prices and 48-hour promises',not price_errors, '; '.join(price_errors))
