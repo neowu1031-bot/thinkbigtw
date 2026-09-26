@@ -25,3 +25,10 @@
 @keyframes ai-sheet-in{from{transform:translateY(32px);opacity:0}to{transform:translateY(0);opacity:1}}
 @media(prefers-reduced-motion:reduce){#tb-ai-dialog[open],#tb-ai-dialog .ai-typing i{animation:none}#tb-ai-launcher,#tb-ai-dialog .ai-send{transition:none}#tb-ai-dialog{scroll-behavior:auto}}
 @supports not (backdrop-filter:blur(1px)){#tb-ai-dialog{background:#fdfdff}}
+/* Keep a small, labelled launcher clear of the mobile reading column. */
+@media(max-width:600px){
+ #tb-ai-launcher{width:44px;height:44px;min-height:44px;border-radius:50%;padding:10px;right:8px;bottom:max(12px,env(safe-area-inset-bottom));gap:0}
+ #tb-ai-launcher>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+ body:has(#tb-ai-launcher) main{padding-bottom:76px}
+ body:has(#tb-ai-launcher) #tb-footer{padding-bottom:84px}
+}

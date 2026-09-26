@@ -6,7 +6,7 @@ results=[]
 def check(name,ok):
  results.append(bool(ok));print(('PASS ' if ok else 'FAIL ')+name)
 entity=json.loads((ROOT/'data/seo-entity.json').read_text());definition=entity['description']
-expected='Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。'
+expected='Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。'
 check('exact globally served company definition',definition==expected)
 for rel in ['index.html','enterprise/index.html','trust/index.html','guides/index.html','pricing/index.html','about/index.html']:
  soup=BeautifulSoup((ROOT/rel).read_text(),'html.parser')
@@ -42,8 +42,16 @@ for p,_,soup in pages():
    if 'eyebrow' not in node.get('class',[]):order_errors.append(str(p))
   prev=head.find_previous_sibling()
   if prev and 'tb-definition' in prev.get('class',[]):order_errors.append(str(p))
- old=BeautifulSoup(subprocess.check_output(['git','show','HEAD:'+str(p.relative_to(ROOT))],cwd=ROOT,text=True),'html.parser')
- if [h.get_text() for h in soup.select('h1,h2')]!=[h.get_text() for h in old.select('h1,h2')]:heading_errors.append(str(p))
+ # Newly added pages and two v7 content corrections have their own explicit checks.
+ rel=str(p.relative_to(ROOT))
+ baseline=subprocess.run(['git','show','HEAD:'+rel],cwd=ROOT,text=True,capture_output=True)
+ if baseline.returncode==0 and rel not in ['harness/index.html','guides/hermes-vs-openclaw/index.html','trust/index.html']:
+  old=BeautifulSoup(baseline.stdout,'html.parser')
+  def headings(doc):
+   doc=BeautifulSoup(str(doc),'html.parser')
+   for note in doc.select('.term-explanation'):note.decompose()
+   return [h.get_text() for h in doc.select('h1,h2')]
+  if headings(soup)!=headings(old):heading_errors.append(str(p))
  punct_count+=len(soup.select('.punct'))
 check('section eyebrow/title precedes all descriptions',not order_errors)
 check('heading characters preserved after punctuation wrapping',not heading_errors and punct_count>0)

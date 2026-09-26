@@ -293,3 +293,13 @@ body:has(>#tb-nav) .brand-definition p{
 body:has(>#tb-nav) .section-head>.tb-definition{margin-block:0}
 /* Legacy narrow columns and cards may shrink without forcing word breaks. */
 body:has(>#tb-nav) :is(.section-head,.tb-hero-copy,.about-sections>section,.glossary-grid>section){min-width:0}
+/* v7: low-emphasis personal entry and plain-language terminology. */
+.hero-links .personal-hero-entry{font-size:14px;color:#626269}
+.term-explanation{font-family:var(--tb-system);font-size:14px;font-weight:400;letter-spacing:0;text-transform:none;line-height:1.7}
+.eyebrow .term-explanation{display:block;margin-top:8px}
+.brief-form [aria-invalid=true]{border-color:#a12d44;outline:1px solid #a12d44}
+.recovery-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-block:36px}
+.recovery-links a{display:block;padding:28px;border:1px solid #d2d2d7;border-radius:24px;text-decoration:none;color:#1d1d1f;background:#f5f5f7}
+.recovery-links strong,.recovery-links span{display:block}.recovery-links span{margin-top:12px;color:#626269;font-size:15px}
+.recovery-code{font-size:clamp(72px,18vw,180px);line-height:1;letter-spacing:-.06em;color:#80394f;margin-bottom:24px}
+@media(max-width:760px){.hero-links{gap:8px 22px}.recovery-links{grid-template-columns:1fr}}

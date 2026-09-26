@@ -1,165 +1,38 @@
 <!DOCTYPE html>
+
 <html lang="zh-Hant">
 <head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-7V41XYLLP5');
 </script>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>個人 AI 助理搭建與整合｜Think BIG</title>
-<meta name="description" content="三工具透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。OpenClaw 本機技能執行、Hermes Agent 企業流程自動化、Claude Managed Agent 高層次推理，Think BIG 台灣專業部署。">
-<meta name="keywords" content="Harness Engineers,OpenClaw,Hermes Agent,Claude Managed Agent,MCP,Model Context Protocol,AI Agent,AI自動化,台灣AI,Think BIG,MCP協議,AI工具串接">
-<meta name="author" content="Think BIG">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://thinkbigtw.com/harness/">
+<meta content="個人 AI 助理安裝與工作流程整合。OpenClaw、Nous Research 開源 Hermes Agent 與協作工具；現行價格與支援範圍請見個人方案頁。" name="description"/>
+<meta content="Harness Engineers,OpenClaw,Hermes Agent,Claude Managed Agent,MCP,Model Context Protocol,AI Agent,AI自動化,台灣AI,Think BIG,MCP協議,AI工具串接" name="keywords"/>
+<meta content="Think BIG" name="author"/>
+<meta content="index, follow" name="robots"/>
+<link href="https://thinkbigtw.com/harness/" rel="canonical"/>
+<meta content="website" property="og:type"/>
+<meta content="https://thinkbigtw.com/harness/" property="og:url"/>
+<meta content="個人 AI 助理搭建與整合｜Think BIG" property="og:title"/>
+<meta content="個人 AI 助理安裝與工作流程整合。OpenClaw、Nous Research 開源 Hermes Agent 與協作工具；現行價格與支援範圍請見個人方案頁。" property="og:description"/>
+<meta content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg" property="og:image"/>
+<meta content="1200" property="og:image:width"/>
+<meta content="630" property="og:image:height"/>
+<meta content="Think BIG!" property="og:site_name"/>
+<meta content="zh_TW" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="個人 AI 助理搭建與整合｜Think BIG" name="twitter:title"/>
+<meta content="個人 AI 助理安裝與工作流程整合。OpenClaw、Nous Research 開源 Hermes Agent 與協作工具；現行價格與支援範圍請見個人方案頁。" name="twitter:description"/>
+<meta content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg" name="twitter:image"/>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://thinkbigtw.com/harness/">
-<meta property="og:title" content="個人 AI 助理搭建與整合｜Think BIG">
-<meta property="og:description" content="三工具透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。OpenClaw 本機技能執行、Hermes Agent 企業流程自動化、Claude Managed Agent 高層次推理，Think BIG 台灣專業部署。">
-<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:site_name" content="Think BIG!">
-<meta property="og:locale" content="zh_TW">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="個人 AI 助理搭建與整合｜Think BIG">
-<meta name="twitter:description" content="三工具透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。OpenClaw 本機技能執行、Hermes Agent 企業流程自動化、Claude Managed Agent 高層次推理，Think BIG 台灣專業部署。">
-<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
-
-
-
-
-<style>
-:root{--bg:#060a06;--surface:#0d1a0d;--border:#1a2e1a;--text:#e8f5e8;--muted:#7aad7a;--green:#00ff41;--green-dim:#00c832;--green-dark:#008f1a;--ink:#060a06;--gray-200:#1a2e1a;--gray-400:#4a7a4a;--gray-600:#7aad7a;--orange:#e8422a;--warm-white:#060a06;--cream:#0d1a0d;--orange-pale:rgba(0,255,65,0.08);--orange-light:rgba(0,255,65,0.2)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:#e8f5e8;font-family:'Noto Sans TC',sans-serif;font-weight:300;overflow-x:hidden}
-
-/* Matrix background */
-.matrix-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.18}
-.matrix-bg canvas{width:100%;height:100%}
-
-/* Remove old blobs */
-.watermark{display:none}
-.blob{display:none}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,10,6,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-wordmark{font-family:'Space Mono',monospace;font-size:16px;font-weight:700;color:#e8f5e8;letter-spacing:-.02em}
-.nav-wordmark span{color:#00ff41}
-.nav-links{display:flex;gap:32px;list-style:none}
-.nav-links a{font-size:12px;color:#9acd9a;text-decoration:none;transition:color .2s;font-family:'Space Mono',monospace}
-.nav-links a:hover{color:#00ff41}
-.nav-cta{display:flex;align-items:center;gap:8px;background:var(--green-dark);color:white;padding:8px 18px;border-radius:4px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;text-decoration:none;letter-spacing:.06em;border:1px solid var(--green);transition:all .2s}
-.nav-cta:hover{background:var(--green);color:var(--bg)}
-
-.hero{padding:140px 48px 80px;text-align:center;position:relative;z-index:1}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,65,0.1);border:1px solid rgba(0,255,65,0.3);border-radius:100px;padding:8px 16px;margin-bottom:24px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.12em;color:#00ff41;text-transform:uppercase}
-.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.hero-h1{font-family:'Space Mono',monospace;font-size:clamp(52px,8vw,100px);font-weight:400;line-height:.95;letter-spacing:4px;color:#e8f5e8;margin-bottom:20px;text-shadow:0 0 40px rgba(0,255,65,0.3)}
-.hero-h1 em{font-style:normal;color:#00ff41;-webkit-text-stroke:1px var(--green)}
-.hero-sub{font-size:16px;line-height:1.7;color:#9acd9a;max-width:560px;margin:0 auto 16px}
-.hero-tagline{font-size:15px;line-height:1.7;color:#7aad7a;max-width:520px;margin:0 auto 40px}
-.hero-combo{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:32px}
-.combo-pill{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;padding:5px 14px;border-radius:100px;background:rgba(0,255,65,0.1);border:1px solid rgba(0,255,65,0.4);color:#00ff41}
-.combo-x{font-family:'Space Mono',monospace;font-size:11px;color:#7aad7a}
-.btn-primary{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 28px;background:var(--green-dark);color:white;border-radius:4px;text-decoration:none;border:1px solid var(--green);transition:all .25s}
-.btn-primary:hover{background:var(--green);color:var(--bg)}
-.btn-ghost{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 28px;background:transparent;color:#e8f5e8;border-radius:4px;text-decoration:none;border:1px solid var(--border);transition:all .25s}
-.btn-ghost:hover{border-color:#00ff41;color:#00ff41}
-
-.section{padding:80px 48px;position:relative;z-index:1}
-.section-alt{background:rgba(0,255,65,0.03);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.sec-head{text-align:center;margin-bottom:56px}
-.sec-eye{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#00ff41;margin-bottom:12px}
-.sec-title{font-family:'Space Mono',monospace;font-size:clamp(36px,5vw,60px);font-weight:400;line-height:1.05;letter-spacing:3px;color:#e8f5e8;margin-bottom:16px}
-.sec-sub{font-size:15px;color:#9acd9a;max-width:560px;margin:0 auto}
-
-.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);max-width:1100px;margin:0 auto}
-.tool-card{background:#0d1a0d;padding:40px 36px;position:relative;overflow:hidden;transition:background .25s,transform .25s,box-shadow .25s}
-.tool-card:hover{background:rgba(0,255,65,0.08);transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,255,65,0.18)}
-.tool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transition:transform .3s;transform-origin:left}
-.tool-card:hover::before{transform:scaleX(1)}
-.tool-icon{width:52px;height:52px;border-radius:4px;background:rgba(0,255,65,0.1);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;transition:transform .35s cubic-bezier(.175,.885,.32,1.275)}
-.tool-card:hover .tool-icon{transform:scale(1.15) rotate(12deg)}
-.tool-name{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#00ff41;margin-bottom:8px}
-.tool-title{color:#e8f5e8;font-family:'Space Mono',monospace;font-size:28px;font-weight:400;letter-spacing:2px;;margin-bottom:12px;line-height:1}
-.tool-desc{font-size:13px;line-height:1.85;color:#9acd9a;margin-bottom:20px}
-.tool-fit{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.05em;color:#9acd9a;background:rgba(0,255,65,0.06);border:1px solid rgba(0,255,65,0.2);border-radius:4px;padding:10px 14px;line-height:1.6}
-.tool-fit strong{color:#00ff41}
-
-.mcp-section{padding:80px 48px;background:#0d1a0d;border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1;overflow:hidden}
-.mcp-section .sec-eye{color:#00ff41}
-.mcp-section .sec-title{color:#e8f5e8}
-.mcp-section .sec-sub{color:#9acd9a}
-.mcp-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Space Mono',monospace;font-size:clamp(120px,20vw,260px);font-weight:400;color:rgba(0,255,65,0.04);pointer-events:none;white-space:nowrap;letter-spacing:10px}
-.flow-diagram{max-width:500px;margin:48px auto 0;position:relative;z-index:1}
-.flow-node{background:rgba(0,255,65,0.05);border:1px solid rgba(0,255,65,0.2);border-radius:8px;padding:24px 28px;text-align:center}
-.flow-node-title{font-family:'Space Mono',monospace;font-size:22px;font-weight:400;letter-spacing:2px;color:#e8f5e8;margin-bottom:4px}
-.flow-node-sub{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.1em;color:#9acd9a}
-.flow-node-featured{background:rgba(0,255,65,0.12);border-color:rgba(0,255,65,0.5)}
-.flow-node-featured .flow-node-title{color:#00ff41}
-.flow-arrow{display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:4px}
-.flow-arrow-line{width:1px;height:20px;background:rgba(0,255,65,0.3)}
-.flow-arrow-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.15em;color:#00ff41;text-transform:uppercase}
-.mcp-features{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border);max-width:800px;margin:48px auto 0;position:relative;z-index:1}
-.mcp-feat{background:#0d1a0d;border-radius:0;padding:24px 28px}
-.mcp-feat-arrow{color:#00ff41;font-family:'Space Mono',monospace;font-size:11px;margin-bottom:8px}
-.mcp-feat-text{font-size:13px;line-height:1.7;color:#9acd9a}
-
-.conclusion{background:rgba(0,255,65,0.06);border:1px solid rgba(0,255,65,0.25);border-radius:4px;padding:28px 32px;max-width:800px;margin:48px auto 0;position:relative;z-index:1;font-size:15px;line-height:1.75;color:#9acd9a}
-.conclusion strong{color:#00ff41}
-
-.cta-sec{padding:100px 48px;text-align:center;position:relative;overflow:hidden;z-index:1;background:rgba(0,255,65,0.03);border-top:1px solid var(--border)}
-.cta-t{font-family:'Space Mono',monospace;font-size:clamp(40px,5.5vw,80px);font-weight:400;letter-spacing:4px;color:#e8f5e8;margin-bottom:16px}
-.cta-t em{font-style:normal;color:#00ff41}
-.cta-s{font-size:16px;color:#9acd9a;margin-bottom:40px}
-.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-
-footer{background:rgba(0,0,0,0.8);color:#9acd9a;padding:48px 48px 32px;border-top:1px solid var(--border);position:relative;z-index:1}
-.ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;font-family:'Space Mono',monospace;font-size:11px}
-footer a{color:#00ff41;text-decoration:none}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@media(max-width:900px){.tool-grid{grid-template-columns:1fr}.mcp-features{grid-template-columns:1fr}}
-@media(max-width:600px){nav{padding:0 20px}.hero{padding:100px 20px 60px}.section{padding:60px 20px}.mcp-section{padding:60px 20px}.cta-sec{padding:60px 20px}}
-
-/* Gear background */
-#gear-bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.06;}
-#gear-bg canvas{width:100%;height:100%;}
-
-.tool-cloud{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:680px;margin:24px auto 32px;}
-.tc-pill{font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.06em;padding:5px 13px;border-radius:100px;border:1px solid;}
-.tc-core{color:#00ff41;border-color:rgba(0,255,65,0.6);background:rgba(0,255,65,0.08);}
-.tc-wf{color:#FFE500;border-color:rgba(255,229,0,0.5);background:rgba(255,229,0,0.06);}
-.tc-msg{color:#9acd9a;border-color:rgba(154,205,154,0.4);background:rgba(154,205,154,0.05);}
-.tc-sys{color:#5a8d5a;border-color:rgba(90,141,90,0.35);background:transparent;}
-</style>
-
-<link rel="stylesheet" href="/assets/generated/site-80bb6d8b59f0.css"><script type="application/ld+json">{
+<script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -195,7 +68,7 @@ footer a{color:#00ff41;text-decoration:none}
       "@id": "https://thinkbigtw.com/harness/#webpage",
       "url": "https://thinkbigtw.com/harness/",
       "name": "個人 AI 助理搭建與整合｜Think BIG",
-      "description": "三工具透過 MCP 協議串接，打造真正能自動化工作的 AI 系統。OpenClaw 本機技能執行、Hermes Agent 企業流程自動化、Claude Managed Agent 高層次推理，Think BIG 台灣專業部署。",
+      "description": "個人 AI 助理安裝與工作流程整合。OpenClaw、Nous Research 開源 Hermes Agent 與協作工具；現行價格與支援範圍請見個人方案頁。",
       "inLanguage": "zh-Hant",
       "isPartOf": {
         "@id": "https://thinkbigtw.com/#website"
@@ -269,361 +142,159 @@ footer a{color:#00ff41;text-decoration:none}
     }
   ]
 }</script>
+<link rel="icon" href="/favicon.ico" sizes="32x32 48x48"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/generated/site-bb9ed2aae19b.css">
 </head>
-<body>
+<body class="personal-product harness-page">
 <!-- TB:NAV:START -->
 <nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a></div></details></nav>
-<!-- TB:NAV:END --><!-- TB:PERSONAL:START --><div class="tb-personal-context"><a href="/pricing/personal/">個人方案專區</a><span>個人 AI 助理與工作流程服務。</span></div><!-- TB:PERSONAL:END --><canvas id="matrix-rain" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:0.09;" aria-hidden="true"></canvas>
-<script src="/assets/matrix-rain.js?v=2"></script>
-<div id="gear-bg"><canvas id="gear-canvas"></canvas></div>
+<!-- TB:NAV:END --><!-- TB:PERSONAL:START --><div class="tb-personal-context"><a href="/pricing/personal/">個人方案專區</a><span>個人 AI 助理與工作流程服務。</span></div><!-- TB:PERSONAL:END -->
 
-<div class="matrix-bg"><canvas id="matrix-canvas"></canvas></div>
+
 
 <!-- Hero -->
-<section class="hero tb-hero-copy tb-hero-dark" data-no-reveal="">
-  <div class="hero-badge"><span class="badge-dot"></span>HARNESS ENGINEERS</div>
-  <h1 class="hero-h1">Harness <em>Engineers</em></h1>
-  <p class="hero-tagline">為你打造專屬 AI 助理。不是公版 AI,是照你的工作與習慣,為你一個人量身搭建的貼身助理。</p>
-  <div class="tool-cloud">
-    <span class="tc-pill tc-core">OpenClaw</span>
-    <span class="tc-pill tc-core">Hermes Agent</span>
-    <span class="tc-pill tc-core">Claude Managed Agent</span>
-    <span class="tc-pill tc-wf">n8n</span>
-    <span class="tc-pill tc-wf">DIFY</span>
-    <span class="tc-pill tc-wf">Make</span>
-    <span class="tc-pill tc-msg">LINE</span>
-    <span class="tc-pill tc-msg">WhatsApp</span>
-    <span class="tc-pill tc-msg">Telegram</span>
-    <span class="tc-pill tc-msg">Discord</span>
-    <span class="tc-pill tc-msg">Slack</span>
-    <span class="tc-pill tc-msg">Teams</span>
-    <span class="tc-pill tc-msg">iMessage</span>
-    <span class="tc-pill tc-sys">Google Calendar</span>
-    <span class="tc-pill tc-sys">Gmail</span>
-    <span class="tc-pill tc-sys">Google Drive</span>
-    <span class="tc-pill tc-sys">Notion</span>
-    <span class="tc-pill tc-sys">GitHub</span>
-    <span class="tc-pill tc-sys">Zapier</span>
-    <span class="tc-pill tc-sys">Browser</span>
-    <span class="tc-pill tc-sys">Cron</span>
-    <span class="tc-pill tc-sys">MCP</span>
-  </div>
-</section>
 
 <!-- ====== 規格 6 ｜ Harness 五分級白話版 (零 emoji、零價格) ====== -->
-<section class="section" id="plans" style="padding:60px 24px">
-  <div class="sec-head">
-    <div class="sec-eye">FIVE TIERS — CHOOSE YOUR FIT</div>
-    <h2 class="sec-title reveal">五種方案,五種適合你的選擇</h2>
-    <p class="sec-sub reveal">為個人 / 自由工作者 / 創業者 / 企業主分別量身打造</p>
-  </div>
-
-  <div style="max-width:880px;margin:40px auto 0;display:grid;grid-template-columns:1fr;gap:18px" class="reveal">
-
-    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 01 — STARTER</div>
-      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">入門安裝</h3>
-      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合第一次接觸、想先從自己電腦開始。我們幫你安裝 AI 助理、設定基礎功能、教你怎麼用,讓 AI 真的開始為你工作。</p>
-    </div>
-
-    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 02 — INTEGRATED</div>
-      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">進階整合</h3>
-      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合想讓 AI 接進日常工作流的人。串 LINE、串社群、串客戶管理工具,讓 AI 自動接訊息、回客人、整理資料,真的能省下時間。</p>
-    </div>
-
-    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.3);border-radius:16px;padding:32px 36px;position:relative">
-      <div style="position:absolute;top:-12px;right:24px;background:#e8422a;color:#fff;font-family:'Space Mono',monospace;font-size:10px;letter-spacing:2px;padding:5px 12px;border-radius:4px">FLAGSHIP</div>
-      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 03 — FLAGSHIP</div>
-      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">旗艦客製</h3>
-      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合高度依賴 AI、需要長期穩定的人。大量專屬技能、企業級資安、一對一教學陪跑,把 AI 變成你不可取代的核心生產力。</p>
-    </div>
-
-    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 04 — CLOUD</div>
-      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">雲端方案</h3>
-      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合只有手機、不想佔電腦的人。AI 助理裝在雲端,手機就能用,24 小時不關機。出門在外也能隨時請 AI 處理事情。</p>
-    </div>
-
-    <div style="background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:16px;padding:32px 36px">
-      <div style="font-family:'Space Mono',monospace;font-size:10px;letter-spacing:3px;color:#00ff41;text-transform:uppercase;margin-bottom:10px">TIER 05 — MAINTENANCE</div>
-      <h3 style="font-size:22px;color:#e8f5e8;margin-bottom:10px;font-weight:600">長期維護</h3>
-      <p style="font-size:15px;line-height:1.85;color:#9acd9a">適合已有 AI 助理、想要它一直保持最佳狀態的人。定期健檢、修復、升級、新技能擴充,讓 AI 永遠跟得上你的需求。</p>
-    </div>
-
-  </div>
-
-</section>
 
 <!-- OpenClaw -->
-<section class="section section-alt" id="openclaw">
-  <div class="sec-head">
-    <div class="sec-eye">01 — LOCAL AI EXECUTION</div>
-    <h2 class="sec-title reveal">OpenClaw</h2>
-    <p class="sec-sub reveal">AI Agent 的作業系統</p>
-  </div>
-  <div style="max-width:720px;margin:0 auto;background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:20px;padding:48px 44px;" class="reveal">
-    <p class="tool-name">OPENCLAW — AI AGENT OS</p>
-    <h3 class="tool-title">OpenClaw — AI Agent 的作業系統</h3>
-    <p style="font-size:15px;line-height:1.9;color:#9acd9a;margin-bottom:24px">OpenClaw 是一個開源的 AI Agent 平台，讓你在本機運行 客製化自動化技能（Skills）。不需要每次都開瀏覽器、不需要手動操作，OpenClaw 能自動執行排程任務、資料分析、檔案處理、API 串接等工作。安裝後透過終端機呼叫，24小時不停機。</p>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:rgba(0,255,65,0.06);color:var(--orange);border:1px solid var(--orange-light)">客製化 Skills</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">本機執行</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">24h 不停機</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">MCP 支援</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">20+ 通訊平台</span>
-    </div>
-    <div class="tool-fit"><strong>適合：</strong>想要本機 AI 自動化、重視資安的個人與企業。</div>
-  </div>
-</section>
 
 <!-- Hermes Agent -->
-<section class="section" id="hermes">
-  <div class="sec-head">
-    <div class="sec-eye">02 — ENTERPRISE AUTOMATION</div>
-    <h2 class="sec-title reveal">Hermes Agent</h2>
-    <p class="sec-sub reveal">企業級 AI 自動化助理</p>
-  </div>
-  <div style="max-width:720px;margin:0 auto;background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.3);background:rgba(0,20,0,0.6);/*linear-gradient(135deg,#fff 80%,var(--orange-pale));border-radius:20px;padding:48px 44px;" class="reveal">
-    <p class="tool-name">HERMES AGENT — ENTERPRISE AI</p>
-    <h3 class="tool-title">Hermes Agent — 企業級 AI 自動化助理</h3>
-    <p style="font-size:15px;line-height:1.9;color:#9acd9a;margin-bottom:24px">Hermes Agent 是專為企業設計的 AI 自動化助理，能夠處理複雜的多步驟工作流程。支援 LINE、WhatsApp、Telegram、Discord、Slack、Teams 等 20+ 通訊平台，自動回覆客戶、排程安裝、產生報告。Hermes 像一個永不休息的員工，24小時處理重複性工作，讓你專注在真正重要的事。</p>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:rgba(0,255,65,0.06);color:var(--orange);border:1px solid var(--orange-light)">20+ 通訊平台</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:rgba(0,255,65,0.06);color:var(--orange);border:1px solid var(--orange-light)">Email / Discord</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">多步驟工作流</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">CRM 整合</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">Slack / Teams</span>
-    </div>
-    <div class="tool-fit"><strong>適合：</strong>有大量重複性流程、需要多系統整合的中小企業。</div>
-  </div>
-</section>
 
 <!-- Claude Managed Agent -->
-<section class="section section-alt" id="claude-agent">
-  <div class="sec-head">
-    <div class="sec-eye">03 — ADVANCED REASONING</div>
-    <h2 class="sec-title reveal">Claude Managed Agent</h2>
-    <p class="sec-sub reveal">Anthropic 官方 AI Agent 框架</p>
-  </div>
-  <div style="max-width:720px;margin:0 auto;background:rgba(0,20,0,0.6);border:1px solid rgba(0,255,65,0.15);border-radius:20px;padding:48px 44px;" class="reveal">
-    <p class="tool-name">CLAUDE MANAGED AGENT — ANTHROPIC</p>
-    <h3 class="tool-title">Claude Managed Agent — Anthropic 官方 AI Agent 框架</h3>
-    <p style="font-size:15px;line-height:1.9;color:#9acd9a;margin-bottom:24px">Claude Managed Agent 是 Anthropic 官方推出的 Agent 框架，讓 Claude 能夠自主規劃、執行多步驟任務。不只是問答，而是真正的「給任務、自動完成」。透過 Claude 的推理能力，Agent 能分析複雜情境、決定下一步行動、呼叫外部工具。</p>
-    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:rgba(0,255,65,0.06);color:var(--orange);border:1px solid var(--orange-light)">Anthropic 官方</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">多步驟推理</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">外部工具呼叫</span>
-      <span style="font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;background:var(--gray-100);color:#9acd9a">MCP 原生支援</span>
-    </div>
-    <div class="tool-fit"><strong>適合：</strong>需要高度推理能力、複雜決策自動化的進階用戶。</div>
-  </div>
-</section>
 
 <!-- MCP -->
-<section class="mcp-section" id="mcp">
-  <div class="mcp-bg">MCP</div>
-  <div class="sec-head">
-    <div class="sec-eye">04 — THE PROTOCOL</div>
-    <h2 class="sec-title reveal">三工具如何透過 MCP 協同運作</h2>
-    <p class="sec-sub reveal">Model Context Protocol — AI 工具的共同語言</p>
-  </div>
-  <p style="text-align:center;font-size:15px;line-height:1.85;color:rgba(255,255,255,.6);max-width:600px;margin:0 auto 32px;position:relative;z-index:1" class="reveal">
+
+
+
+
+<!-- 全站統一導覽列與 Think BIG AI 顧問共用元件 -->
+<script defer="" src="/nav.js"></script>
+<script defer="" src="/ask-ai.js"></script><main id="main"><section class="hero tb-hero-copy" data-no-reveal="">
+<div class="hero-badge"><span class="badge-dot"></span>HARNESS ENGINEERS</div>
+<h1 class="hero-h1">Harness <em>Engineers</em></h1>
+<p class="hero-tagline">從個人安裝、工作流程整合到年度維運，依設備與使用需求搭建自己的 AI 助理。</p>
+<div class="tool-cloud">
+<span class="tc-pill tc-core">OpenClaw</span>
+<span class="tc-pill tc-core">Hermes Agent</span>
+<span class="tc-pill tc-core">Claude Managed Agent</span>
+<span class="tc-pill tc-wf">n8n</span>
+<span class="tc-pill tc-wf">DIFY</span>
+<span class="tc-pill tc-wf">Make</span>
+<span class="tc-pill tc-msg">LINE</span>
+<span class="tc-pill tc-msg">WhatsApp</span>
+<span class="tc-pill tc-msg">Telegram</span>
+<span class="tc-pill tc-msg">Discord</span>
+<span class="tc-pill tc-msg">Slack</span>
+<span class="tc-pill tc-msg">Teams</span>
+<span class="tc-pill tc-msg">iMessage</span>
+<span class="tc-pill tc-sys">Google Calendar</span>
+<span class="tc-pill tc-sys">Gmail</span>
+<span class="tc-pill tc-sys">Google Drive</span>
+<span class="tc-pill tc-sys">Notion</span>
+<span class="tc-pill tc-sys">GitHub</span>
+<span class="tc-pill tc-sys">Zapier</span>
+<span class="tc-pill tc-sys">Browser</span>
+<span class="tc-pill tc-sys">Cron</span>
+<span class="tc-pill tc-sys">MCP</span>
+</div>
+</section><section class="section" id="plans"><div class="sec-head"><p class="sec-eye">PERSONAL AI PLANS</p><h2>依需求選擇個人方案</h2><p>完整價格、內容與支援期，請以現行個人方案頁為準。</p></div><div class="plan-paths"><article><h3>入門安裝</h3><p>OpenClaw 或 Hermes Agent 擇一，建立自己的 AI 助理。</p><a href="/pricing/personal/#tier1">查看入門方案 ›</a></article><article><h3>AI 部門</h3><p>單或雙 AI Agent，串接技能與協作會議室。</p><a href="/pricing/personal/#tier2">查看工作流程方案 ›</a></article><article><h3>年約維運</h3><p>一年維運陪跑，依需求選擇 Agent 組合。</p><a href="/pricing/personal/#tier3">查看年約方案 ›</a></article></div></section><section class="section section-alt" id="openclaw">
+<div class="sec-head">
+<div class="sec-eye">01 — LOCAL AI EXECUTION</div>
+<h2 class="sec-title reveal">OpenClaw</h2>
+<p class="sec-sub reveal">AI Agent 的作業系統</p>
+</div>
+<div class="reveal">
+<p class="tool-name">OPENCLAW — AI AGENT OS</p>
+<h3 class="tool-title">OpenClaw — AI Agent 的作業系統</h3>
+<p>OpenClaw 是一個開源的 AI Agent 平台，讓你在本機運行 客製化自動化技能（Skills）。不需要每次都開瀏覽器、不需要手動操作，OpenClaw 能自動執行排程任務、資料分析、檔案處理、API 串接等工作。安裝後透過終端機呼叫，24小時不停機。</p>
+<div>
+<span>客製化 Skills</span>
+<span>本機執行</span>
+<span>24h 不停機</span>
+<span>MCP 支援</span>
+<span>20+ 通訊平台</span>
+</div>
+<div class="tool-fit"><strong>適合：</strong>想要本機 AI 自動化、重視資安的個人與企業。</div>
+</div>
+</section><section class="section" id="hermes"><div class="sec-head"><p class="sec-eye">HERMES AGENT</p><h2>Hermes Agent</h2><p class="sec-sub">Nous Research 開源的自主學習型 AI 助理</p></div><p>我們協助安裝在你的電腦上。Hermes Agent 支援跨對話持久記憶、自我學習與技能累積，可透過 Telegram／Discord 等平台使用。實際功能與串接範圍依方案確認。</p><p>它是 Think BIG 提供安裝的產品之一；本站的「Think BIG AI 顧問」則負責回答服務與方案問題。</p><a href="/hermes-starter/">了解 Hermes 入門方案 ›</a></section><section class="section section-alt" id="claude-agent">
+<div class="sec-head">
+<div class="sec-eye">03 — ADVANCED REASONING</div>
+<h2 class="sec-title reveal">Claude Managed Agent</h2>
+<p class="sec-sub reveal">Anthropic 官方 AI Agent 框架</p>
+</div>
+<div class="reveal">
+<p class="tool-name">CLAUDE MANAGED AGENT — ANTHROPIC</p>
+<h3 class="tool-title">Claude Managed Agent — Anthropic 官方 AI Agent 框架</h3>
+<p>Claude Managed Agent 是 Anthropic 官方推出的 Agent 框架，讓 Claude 能夠自主規劃、執行多步驟任務。不只是問答，而是真正的「給任務、自動完成」。透過 Claude 的推理能力，Agent 能分析複雜情境、決定下一步行動、呼叫外部工具。</p>
+<div>
+<span>Anthropic 官方</span>
+<span>多步驟推理</span>
+<span>外部工具呼叫</span>
+<span>MCP 原生支援</span>
+</div>
+<div class="tool-fit"><strong>適合：</strong>需要高度推理能力、複雜決策自動化的進階用戶。</div>
+</div>
+</section><section class="mcp-section" id="mcp">
+<div class="mcp-bg">MCP</div>
+<div class="sec-head">
+<div class="sec-eye">04 — THE PROTOCOL</div>
+<h2 class="sec-title reveal">三工具如何透過 MCP 協同運作</h2>
+<p class="sec-sub reveal">Model Context Protocol — AI 工具的共同語言</p>
+</div>
+<p class="reveal">
     MCP（Model Context Protocol）是 Anthropic 制定的開放協議，讓不同的 AI 工具能夠互相溝通、共享資源。
   </p>
-
-  <!-- Flow diagram -->
-  <div class="flow-diagram reveal">
-    <div class="flow-node flow-node-featured">
-      <div class="flow-node-title">Claude Managed Agent</div>
-      <div class="flow-node-sub">規劃任務 · 高層次推理</div>
-    </div>
-    <div class="flow-arrow">
-      <div class="flow-arrow-line"></div>
-      <div class="flow-arrow-label">MCP</div>
-      <div class="flow-arrow-line"></div>
-      <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M6 8L0 0h12L6 8z" fill="rgba(232,67,26,.6)"/></svg>
-    </div>
-    <div class="flow-node">
-      <div class="flow-node-title">Hermes Agent</div>
-      <div class="flow-node-sub">執行業務流程 · 多系統串接</div>
-    </div>
-    <div class="flow-arrow">
-      <div class="flow-arrow-line"></div>
-      <div class="flow-arrow-label">MCP</div>
-      <div class="flow-arrow-line"></div>
-      <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M6 8L0 0h12L6 8z" fill="rgba(232,67,26,.6)"/></svg>
-    </div>
-    <div class="flow-node">
-      <div class="flow-node-title">OpenClaw</div>
-      <div class="flow-node-sub">本機技能執行 · 客製化 Skills</div>
-    </div>
-  </div>
-
-  <!-- MCP features -->
-  <div class="mcp-features reveal">
-    <div class="mcp-feat">
-      <div class="mcp-feat-arrow">→ OpenClaw</div>
-      <div class="mcp-feat-text">提供本機技能執行層（客製化 Skills），包含排程任務、檔案處理、資料分析</div>
-    </div>
-    <div class="mcp-feat">
-      <div class="mcp-feat-arrow">→ Hermes Agent</div>
-      <div class="mcp-feat-text">負責業務流程自動化與外部系統串接，處理 LINE、Email、CRM 工作流</div>
-    </div>
-    <div class="mcp-feat">
-      <div class="mcp-feat-arrow">→ Claude Managed Agent</div>
-      <div class="mcp-feat-text">負責高層次推理與任務規劃，決策整體執行策略</div>
-    </div>
-    <div class="mcp-feat">
-      <div class="mcp-feat-arrow">→ MCP 協議</div>
-      <div class="mcp-feat-text">作為三者之間的通訊橋樑，統一協議，無縫協作</div>
-    </div>
-  </div>
-
-  <div class="conclusion reveal">
+<!-- Flow diagram -->
+<div class="flow-diagram reveal">
+<div class="flow-node flow-node-featured">
+<div class="flow-node-title">Claude Managed Agent</div>
+<div class="flow-node-sub">規劃任務 · 高層次推理</div>
+</div>
+<div class="flow-arrow">
+<div class="flow-arrow-line"></div>
+<div class="flow-arrow-label">MCP</div>
+<div class="flow-arrow-line"></div>
+<svg fill="none" height="8" viewbox="0 0 12 8" width="12"><path d="M6 8L0 0h12L6 8z" fill="rgba(232,67,26,.6)"></path></svg>
+</div>
+<div class="flow-node">
+<div class="flow-node-title">Hermes Agent</div>
+<div class="flow-node-sub">執行業務流程 · 多系統串接</div>
+</div>
+<div class="flow-arrow">
+<div class="flow-arrow-line"></div>
+<div class="flow-arrow-label">MCP</div>
+<div class="flow-arrow-line"></div>
+<svg fill="none" height="8" viewbox="0 0 12 8" width="12"><path d="M6 8L0 0h12L6 8z" fill="rgba(232,67,26,.6)"></path></svg>
+</div>
+<div class="flow-node">
+<div class="flow-node-title">OpenClaw</div>
+<div class="flow-node-sub">本機技能執行 · 客製化 Skills</div>
+</div>
+</div>
+<!-- MCP features -->
+<div class="mcp-features reveal">
+<div class="mcp-feat">
+<div class="mcp-feat-arrow">→ OpenClaw</div>
+<div class="mcp-feat-text">提供本機技能執行層（客製化 Skills），包含排程任務、檔案處理、資料分析</div>
+</div>
+<div class="mcp-feat">
+<div class="mcp-feat-arrow">→ Hermes Agent</div>
+<div class="mcp-feat-text">負責業務流程自動化與外部系統串接，處理 LINE、Email、CRM 工作流</div>
+</div>
+<div class="mcp-feat">
+<div class="mcp-feat-arrow">→ Claude Managed Agent</div>
+<div class="mcp-feat-text">負責高層次推理與任務規劃，決策整體執行策略</div>
+</div>
+<div class="mcp-feat">
+<div class="mcp-feat-arrow">→ MCP 協議</div>
+<div class="mcp-feat-text">作為三者之間的通訊橋樑，統一協議，無縫協作</div>
+</div>
+</div>
+<div class="conclusion reveal">
     這不只是安裝三個工具，而是建立一套<strong>完整的 AI 自動化基礎設施</strong>。
   </div>
-</section>
-
-<script>
-const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-
-<script>
-// Matrix Animation
-(function(){
-  const canvas = document.getElementById('matrix-canvas');
-  const ctx = canvas.getContext('2d');
-  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-  resize();
-  window.addEventListener('resize',resize);
-  const cols=()=>Math.floor(canvas.width/16);
-  let drops=Array(cols()).fill(1);
-  const chars='01アイウエオカキクケコサシスセソタチツテトハネノ';
-  function draw(){
-    ctx.fillStyle='rgba(6,10,6,0.05)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='#00ff41';
-    ctx.font='14px monospace';
-    drops.forEach((y,i)=>{
-      const c=chars[Math.floor(Math.random()*chars.length)];
-      ctx.fillText(c,i*16,y*16);
-      if(y*16>canvas.height&&Math.random()>0.975)drops[i]=0;
-      drops[i]++;
-    });
-    // Reset drops array if cols changed
-    if(drops.length!==cols())drops=Array(cols()).fill(1);
-  }
-  setInterval(draw,50);
-})();
-
-// Reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:0.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-</script>
-
-<script>
-(function(){
-  var canvas = document.getElementById('gear-canvas');
-  var ctx = canvas.getContext('2d');
-
-  function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  // Define interlocking gears
-  // Each gear: {x, y, r (radius), teeth, speed (rad/frame), angle}
-  var gears = [];
-
-  function makeGrid(){
-    gears = [];
-    var W = canvas.width, H = canvas.height;
-    // Tile the screen with interlocking gears of 2 sizes
-    var R1 = 72, R2 = 48;
-    var spacing = R1 + R2 + 4; // gap between centers so teeth mesh
-    var cols = Math.ceil(W / spacing) + 2;
-    var rows = Math.ceil(H / (spacing * 0.866)) + 2;
-    var baseSpeed = 0.004;
-
-    for(var row = -1; row < rows; row++){
-      for(var col = -1; col < cols; col++){
-        var x = col * spacing + (row % 2 === 0 ? 0 : spacing / 2);
-        var y = row * spacing * 0.866;
-        var isLarge = (row + col) % 2 === 0;
-        var r = isLarge ? R1 : R2;
-        var teeth = isLarge ? 18 : 12;
-        // Alternate rotation direction based on position
-        var dir = ((row + col) % 2 === 0) ? 1 : -1;
-        gears.push({
-          x: x, y: y, r: r, teeth: teeth,
-          speed: baseSpeed * dir * (isLarge ? 1 : R1/R2),
-          angle: (col * 0.7 + row * 0.5) // stagger start angles
-        });
-      }
-    }
-  }
-  makeGrid();
-  window.addEventListener('resize', makeGrid);
-
-  function drawGear(g){
-    var teeth = g.teeth;
-    var r = g.r;
-    var innerR = r * 0.75;
-    var toothH = r * 0.22;
-    var toothW = (2 * Math.PI / teeth) * 0.4;
-
-    ctx.save();
-    ctx.translate(g.x, g.y);
-    ctx.rotate(g.angle);
-
-    ctx.beginPath();
-    for(var i = 0; i < teeth; i++){
-      var a = (i / teeth) * Math.PI * 2;
-      var a1 = a - toothW;
-      var a2 = a - toothW * 0.3;
-      var a3 = a + toothW * 0.3;
-      var a4 = a + toothW;
-
-      ctx.lineTo(Math.cos(a1) * innerR, Math.sin(a1) * innerR);
-      ctx.lineTo(Math.cos(a2) * (r + toothH), Math.sin(a2) * (r + toothH));
-      ctx.lineTo(Math.cos(a3) * (r + toothH), Math.sin(a3) * (r + toothH));
-      ctx.lineTo(Math.cos(a4) * innerR, Math.sin(a4) * innerR);
-    }
-    ctx.closePath();
-    ctx.strokeStyle = '#00ff41';
-    ctx.lineWidth = 1.2;
-    ctx.stroke();
-
-    // Center hole
-    ctx.beginPath();
-    ctx.arc(0, 0, r * 0.22, 0, Math.PI * 2);
-    ctx.stroke();
-
-    ctx.restore();
-  }
-
-  function animate(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    gears.forEach(function(g){
-      g.angle += g.speed;
-      drawGear(g);
-    });
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-</script>
-
-<!-- 全站統一導覽列 + Hermes 對話框 共用元件 -->
-<script src="/nav.js" defer></script>
-<script src="/ask-ai.js" defer></script><section class="section wrap" id="faq"><h2>個人 AI 助理常見問題</h2><details><summary>個人 AI 助理如何開始？</summary><p>先確認設備、帳號與工作需求，再依支援範圍選擇個人方案；價格與服務條件請見個人方案專區。</p></details><details><summary>地端部署代表資料不會離開電腦嗎？</summary><p>地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。</p></details><details><summary>如何確認 AI Agent 的操作權限？</summary><p>依工作所需配置資料與工具權限；對外發送、花費與正式系統變更，由指定負責人核准。</p></details><p><a href="/pricing/personal/">查看個人方案與價格</a></p></section><!-- TB:FOOTER:START -->
-<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
+</section><section class="section wrap" id="faq"><h2>個人 AI 助理常見問題</h2><details><summary>個人 AI 助理如何開始？</summary><p>先確認設備、帳號與工作需求，再依支援範圍選擇個人方案；價格與服務條件請見個人方案專區。</p></details><details><summary>地端部署代表資料不會離開電腦嗎？</summary><p>地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。</p></details><details><summary>如何確認 AI Agent 的操作權限？</summary><p>依工作所需配置資料與工具權限；對外發送、花費與正式系統變更，由指定負責人核准。</p></details><p><a href="/pricing/personal/">查看個人方案與價格</a></p></section></main><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
 <!-- TB:FOOTER:END -->
 </body>
 </html>

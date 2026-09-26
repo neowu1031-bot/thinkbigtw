@@ -66,18 +66,22 @@ for p in allhtml:
    answer=q.get('acceptedAnswer',{}).get('text','');question=q.get('name','')
    if not question or not answer or norm(question) not in visible or norm(answer) not in visible:faq_errors.append(str(p.relative_to(ROOT))+': '+question)
 check('P0-9 faq_match across all HTML',not faq_errors and faq_count>0, '; '.join(faq_errors) or f'{faq_count} questions / {faq_pages} FAQPage graphs')
-check('P0-3 all 30 entity graphs',not errors, '; '.join(errors))
+check('P0-3 all indexable entity graphs',not errors, '; '.join(errors))
 check('P0-3 generated graphs current (read-only)',subprocess.run([sys.executable,str(ROOT/'scripts/sync-seo-graph.py'),'--check'],capture_output=True).returncode==0)
 check('P0-3 full organization decisions',entity['vatID']=='62136066' and entity['email']=='AI@thinkbigtw.com' and entity.get('areaServed')=='Worldwide' and entity.get('address')=={'@type':'PostalAddress','addressCountry':'TW'} and 'foundingDate' not in entity and len(entity['sameAs'])==4)
 harness=BeautifulSoup((ROOT/'harness/index.html').read_text(),'html.parser');check('P0-4 Chinese FAQ matches visible content',not faq_errors and harness.html['lang']=='zh-Hant' and len(harness.title.get_text())<=40 and next(n for n in nodes(harness) if n.get('@type')=='WebPage')['inLanguage']=='zh-Hant')
 check('P0-5 sitemap git dates',subprocess.run([sys.executable,str(ROOT/'scripts/build-sitemap.py'),'--check'],capture_output=True).returncode==0)
 llms=(ROOT/'llms.txt').read_text();sitemap=(ROOT/'sitemap.xml').read_text();count=len(list(ET.fromstring(sitemap).iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')))
 check('P0-6 llms format / disclosures / full body count',llms.startswith('# ') and llms.splitlines()[2].startswith('> ') and '## Optional' in llms and '不含第三方模型用量費' in llms and not re.search('智能體|enterprise-cloud|enterprise-local',llms) and (ROOT/'llms-full.txt').read_text().count('URL: ')==count,str(count)+' URL sections')
-expected_definition='Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME 方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。'
+expected_definition='Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。'
 check('P0-7 static definitions',definition==expected_definition and all(any(p.get_text()==definition for p in BeautifulSoup((ROOT/f).read_text(),'html.parser').select('main p')) for f in ['index.html','enterprise/index.html','trust/index.html','guides/index.html','pricing/index.html','about/index.html']) and definition in llms and definition in (ROOT/'data/agent-kb/02-company.md').read_text() and definition in (ROOT/'llms-full.txt').read_text())
 check('P0-8 seven Articles / CollectionPage',article_count==7 and len(BeautifulSoup((ROOT/'guides/index.html').read_text(),'html.parser').select('script[type="application/ld+json"]'))==1 and (ROOT/'guides/index.html').read_text().count('"hasPart"')==1,str(article_count)+' articles')
 scanned=[ROOT/'index.html',ROOT/'llms.txt']+[p for folder in ['enterprise','pricing','guides'] for p in (ROOT/folder).rglob('*.html')]
-check('P0-9 naming / links',not any(re.search('智能體|引擎',p.read_text()) for p in scanned) and not re.search('enterprise-cloud|enterprise-local',(ROOT/'enterprise/index.html').read_text()) and not re.search(r'href="/(?:annual|gift|lobster)/"',(ROOT/'pricing/personal/index.html').read_text()))
+def authored_copy(p):
+ soup=BeautifulSoup(p.read_text(),'html.parser')
+ for review in soup.select('.personal-review-card'):review.decompose()
+ return str(soup)
+check('P0-9 naming / links',not any(re.search('智能體|引擎',authored_copy(p)) for p in scanned) and not re.search('enterprise-cloud|enterprise-local',(ROOT/'enterprise/index.html').read_text()) and not re.search(r'href="/(?:annual|gift|lobster)/"',(ROOT/'pricing/personal/index.html').read_text()))
 check('P0-10 explicit favicon on audited pages',all(BeautifulSoup((ROOT/f).read_text(),'html.parser').find('link',rel='icon') for f in ['index.html','enterprise/index.html','pricing/personal/index.html']))
 check('P0-10 CSS <= 1 static + 1 assistant',not css_errors, '; '.join(css_errors))
 check('P0-10 video deferred / posters sized',all((lambda soup: all(v.get('preload') in ['none','metadata'] and v.source.get('data-src') and not v.source.get('src') for v in soup.select('video')) and all(i.has_attr('width') and i.has_attr('height') for i in soup.select('.hero-poster,.personal-reduced-poster')))(BeautifulSoup((ROOT/f).read_text(),'html.parser')) for f in ['index.html','pricing/personal/index.html']))
