@@ -5,20 +5,31 @@
   const status = document.getElementById('brief-status');
   const output = document.getElementById('brief-output');
   const preview = document.getElementById('brief-text');
+  // Use the same inline feedback for native-required and whitespace-only values.
+  form.noValidate = true;
+  const fields = ['role', 'workflow', 'timing'];
+  fields.forEach(name => form.querySelectorAll('[name="' + name + '"]').forEach(field => field.setAttribute('aria-describedby', 'brief-status')));
+  function invalid(name, message) {
+    status.textContent = message;
+    output.hidden = true;
+    form.querySelectorAll('[name="' + name + '"]').forEach(field => field.setAttribute('aria-invalid', 'true'));
+    form.querySelector('[name="' + name + '"]').focus();
+  }
   form.addEventListener('submit', function (event) {
     event.preventDefault();
+    form.querySelectorAll('[aria-invalid]').forEach(field => field.removeAttribute('aria-invalid'));
     const data = new FormData(form);
     const flows = data.getAll('workflow');
     if (!data.get('role').trim()) {
-      status.textContent = '請填寫部門或職位。';
-      form.querySelector('[name="role"]').focus();
-      output.hidden = true;
+      invalid('role', '請填寫部門或職位。');
       return;
     }
     if (!flows.length) {
-      status.textContent = '請至少選一個想改善的流程，也可以選「其他流程」。';
-      form.querySelector('[name="workflow"]').focus();
-      output.hidden = true;
+      invalid('workflow', '請至少選一個想改善的流程，也可以選「其他流程」。');
+      return;
+    }
+    if (!data.get('timing').trim()) {
+      invalid('timing', '請選擇導入時程或目前規劃。');
       return;
     }
     preview.textContent = ['企業 AI Agent 導入諮詢', '部門／職位：' + data.get('role').trim(), '想用在哪些流程：' + flows.join('、'), '導入規劃：' + data.get('timing'), '優先改善目標：' + (data.get('need').trim() || '於諮詢時進一步確認')].join('\n');

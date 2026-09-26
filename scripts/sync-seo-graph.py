@@ -49,6 +49,8 @@ for p,url,soup in pages():
    n.update({'@id':url+'#article','headline':h1,'description':desc,'author':{'@id':EDITOR['@id']},'publisher':{'@id':ORG['@id']},'image':[BASE+'assets/brand/thinkbig-og.jpg'],'datePublished':git_date(p,True),'dateModified':git_date(p),'inLanguage':'zh-Hant','mainEntityOfPage':{'@id':web['@id']},'isPartOf':{'@id':BASE+'guides/#collection'}})
   if n.get('@type')=='FAQPage' and '/harness/' in url:
    n['mainEntity']=[{'@type':'Question','name':d.summary.get_text(' ',strip=True),'acceptedAnswer':{'@type':'Answer','text':d.p.get_text(' ',strip=True)}} for d in soup.select('#faq details')]
+  if n.get('@type')=='FAQPage' and soup.select('.faq details'):
+   n['mainEntity']=[{'@type':'Question','name':d.summary.get_text(' ',strip=True),'acceptedAnswer':{'@type':'Answer','text':d.p.get_text(' ',strip=True)}} for d in soup.select('.faq details')]
   if n.get('@type')=='FAQPage' and soup.select('.faq-item'):
    # Visible copy is the source of truth; avoid a second, drifting answer text.
    n['mainEntity']=[{'@type':'Question','name':re.sub(r'^Q[：:]\s*','',d.select_one('.faq-q').get_text(' ',strip=True)),'acceptedAnswer':{'@type':'Answer','text':d.select_one('.faq-a').get_text(' ',strip=True)}} for d in soup.select('.faq-item')]

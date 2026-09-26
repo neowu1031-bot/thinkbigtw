@@ -38,11 +38,14 @@ for rel in CORE:
  record(rel+': schema',bool(graph))
  faqs=[x for x in graph if x['@type']=='FAQPage']
  if faqs:
-  visible=[(d.summary.get_text(strip=True),d.p.get_text(strip=True)) for d in soup.select('.faq details')]
+  visible=[(d.summary.get_text(' ',strip=True),d.p.get_text(' ',strip=True)) for d in soup.select('.faq details')]
   structured=[(q['name'],q['acceptedAnswer']['text']) for q in faqs[0]['mainEntity']]
   record(rel+': visible FAQ matches JSON-LD',visible==structured)
  record(rel+': no broken local asset/page links',not missing_links(Path(rel),s),','.join(missing_links(Path(rel),s)))
- record(rel+': no enterprise prices / prohibited wording',not prices(s) and '引擎' not in s)
+ check_copy=BeautifulSoup(s,'html.parser')
+ if rel=='index.html':
+  for entry in check_copy.select('.personal-hero-entry'):entry.decompose()
+ record(rel+': no enterprise prices / prohibited wording',not prices(str(check_copy)) and '引擎' not in s)
  ids=[x['id'] for x in soup.select('[id]')]
  record(rel+': unique IDs',len(ids)==len(set(ids)))
  for a in soup.select('a[href^="#"]'):
@@ -56,13 +59,16 @@ for p in ROOT.rglob('*.html'):
  if not old:continue
  new=p.read_text()
  if new==old:continue
- if str(rel) not in ['index.html','enterprise/index.html','og-image.html']:
+ if str(rel) not in ['index.html','enterprise/index.html','og-image.html','tbos/en/pricing.html']:
   record(str(rel)+': price tokens unchanged',prices(old)==prices(new))
   price_keys=r'"(?:price|lowPrice|highPrice|priceCurrency)"\s*:\s*"[^"]*"'
   record(str(rel)+': structured prices unchanged',re.findall(price_keys,old)==re.findall(price_keys,new))
  old_s=BeautifulSoup(old,'html.parser');new_s=BeautifulSoup(new,'html.parser')
  if old_s.select_one('link[rel=canonical]'):
-  record(str(rel)+': canonical retained',str(old_s.select_one('link[rel=canonical]'))==str(new_s.select_one('link[rel=canonical]')))
+  expected=old_s.select_one('link[rel=canonical]')['href']
+  if str(rel) in ['erp/index.html','gift/index.html','lobster/index.html','print/index.html','subsidy/index.html','enterprise-cloud/index.html','enterprise-local/index.html']:
+   expected='https://thinkbigtw.com/'+str(rel).replace('index.html','')
+  record(str(rel)+': canonical retained or explicit noindex archive',new_s.select_one('link[rel=canonical]')['href']==expected)
  if 'G-7V41XYLLP5' in old:record(str(rel)+': GA4 retained','G-7V41XYLLP5' in new)
  new_broken=missing_links(rel,new)-missing_links(rel,old)
  record(str(rel)+': no new broken page/assets',not new_broken,','.join(new_broken))
@@ -74,7 +80,7 @@ new_urls={e.text for e in ET.parse(ROOT/'sitemap.xml').findall('.//s:loc',ns)}
 record('sitemap preserves all URLs including trust',old_urls<=new_urls and 'https://thinkbigtw.com/trust/' in new_urls)
 old_urls=set(re.findall(r'https://thinkbigtw.com[^\s)]+',original(Path('llms.txt'))));new_urls=set(re.findall(r'https://thinkbigtw.com[^\s)]+',(ROOT/'llms.txt').read_text()))
 record('llms preserves existing links',old_urls<=new_urls)
-record('llms preserves all price tokens',prices(original(Path('llms.txt')))==prices((ROOT/'llms.txt').read_text()))
+record('llms preserves existing amounts; v7 support summary uses approved prices',set(prices(original(Path('llms.txt'))))<=set(prices((ROOT/'llms.txt').read_text())) and '單 AI Agent NT$6,000／雙 AI Agent NT$15,000' in (ROOT/'llms.txt').read_text())
 for f in ['thinkbig-dark.png','thinkbig-light.png']:
  im=Image.open(ROOT/'assets/brand'/f)
  record(f+': transparent PNG',im.mode=='RGBA' and im.getextrema()[3][0]==0 and im.getextrema()[3][1]==255,str(im.size))

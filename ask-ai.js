@@ -11,9 +11,10 @@
   const launcher = document.createElement('button');
   launcher.id = 'tb-ai-launcher'; launcher.type = 'button';
   launcher.innerHTML = '<svg class="ai-mark" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5.5h14v10H12l-4 3v-3H5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 10.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>AI 顧問</span>';
+  launcher.setAttribute('aria-label', '開啟 Think BIG AI 顧問');
   launcher.setAttribute('aria-haspopup', 'dialog'); launcher.setAttribute('aria-controls', 'tb-ai-dialog'); launcher.setAttribute('aria-expanded', 'false');
   const dialog = document.createElement('dialog'); dialog.id = 'tb-ai-dialog'; dialog.setAttribute('aria-labelledby', 'tb-ai-title');
-  dialog.innerHTML = '<div class="ai-sheet-handle" aria-hidden="true"></div><header class="ai-header"><div class="ai-identity"><span class="ai-avatar" aria-hidden="true">TB</span><div><h2 id="tb-ai-title">AI 顧問</h2><p>Hermes · Think BIG</p></div></div><button class="ai-close" type="button" aria-label="關閉 AI 顧問"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></header><div class="ai-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="對話紀錄" tabindex="0"></div><div class="ai-tools"><button type="button" class="ai-inquiry-open">整理諮詢摘要 <span aria-hidden="true">↗</span></button><a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">隱私說明</a></div><form class="ai-composer"><label class="ai-sr-only" for="tb-ai-input">輸入問題</label><div class="ai-input-row"><textarea id="tb-ai-input" rows="1" maxlength="1200" placeholder="想了解什麼？" enterkeyhint="send" required></textarea><button class="ai-send" type="submit" aria-label="送出問題">'+arrow+'</button></div><p class="ai-disclaimer">回覆由 AI 產生，請勿輸入密碼或機密</p><p class="ai-processing">自由提問使用外部 AI 服務</p><p id="tb-ai-status" role="status"></p></form>';
+  dialog.innerHTML = '<div class="ai-sheet-handle" aria-hidden="true"></div><header class="ai-header"><div class="ai-identity"><span class="ai-avatar" aria-hidden="true">TB</span><div><h2 id="tb-ai-title">AI 顧問</h2><p>Think BIG AI 顧問</p></div></div><button class="ai-close" type="button" aria-label="關閉 AI 顧問"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></header><div class="ai-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="對話紀錄" tabindex="0"></div><div class="ai-tools"><button type="button" class="ai-inquiry-open">整理諮詢摘要 <span aria-hidden="true">↗</span></button><a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">隱私說明</a></div><form class="ai-composer"><label class="ai-sr-only" for="tb-ai-input">輸入問題</label><div class="ai-input-row"><textarea id="tb-ai-input" rows="1" maxlength="1200" placeholder="想了解什麼？" enterkeyhint="send" required></textarea><button class="ai-send" type="submit" aria-label="送出問題">'+arrow+'</button></div><p class="ai-disclaimer">回覆由 AI 產生，請勿輸入密碼或機密</p><p class="ai-processing">自由提問使用外部 AI 服務</p><p id="tb-ai-status" role="status"></p></form>';
   document.body.append(launcher, dialog);
   const log = dialog.querySelector('.ai-log');
   const composer = dialog.querySelector('.ai-composer');
@@ -50,7 +51,7 @@
       opener = source || launcher; dialog.showModal(); launcher.setAttribute('aria-expanded', 'true'); launcher.hidden = true;
     }
     if (!log.childElementCount) {
-      message('assistant', '你好，我是 Hermes，Think BIG 的 AI 顧問。想先了解企業導入，還是個人方案？');
+      message('assistant', '你好，我是 Think BIG AI 顧問。想先了解企業導入，還是個人方案？');
       const note = document.createElement('p'); note.className = 'ai-start-note'; note.textContent = '從一個問題開始'; log.append(note, chips);
     }
     input.focus({ preventScroll: true }); scroll();

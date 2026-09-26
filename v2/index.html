@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Think BIG! — Make it Real.</title>
-<meta name="description" content="Think BIG! AI 自動化顧問 — 企業方案、Harness Engineers、AI Agent ERP">
+<meta name="description" content="Think BIG! AI 自動化顧問 — 企業方案、Harness Engineers、AI Agent 流程整合">
 <meta name="theme-color" content="#080808">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -286,7 +286,7 @@ html,body{
     <a href="/trust/">資安承諾</a>
     <a href="/enterprise/" target="_blank">Enterprise<span class="tip">企業化 AI Agent 系統導入</span></a>
     <a href="/harness/" target="_blank">Harness Engineers<span class="tip">個人 AI Agent 搭建</span></a>
-    <a href="/erp/" target="_blank">AI ERP<span class="tip">AI Agent ＋ ERP 訂制</span></a>
+    <a href="/enterprise/" target="_blank">企業導入<span class="tip">AI Agent 流程整合與治理</span></a>
   </div>
 </nav>
 
@@ -322,7 +322,7 @@ html,body{
     <button class="close-btn" onclick="toggleChat()">&times;</button>
   </div>
   <div class="chat-body" id="chat-body">
-    <div class="msg bot">嗨！我是 Think BIG 的 AI 助理 🦞<br>關於 AI 自動化、OpenClaw、企業 ERP 整合，都可以問我！</div>
+    <div class="msg bot">嗨！我是 Think BIG 的 AI 助理 🦞<br>關於 AI 自動化、OpenClaw、企業流程整合，都可以問我！</div>
   </div>
   <div class="chat-input">
     <input type="text" id="chat-msg" placeholder="輸入訊息..." onkeydown="if(event.key==='Enter')sendMsg()">
@@ -799,7 +799,7 @@ function sendMsg(){
     const b=document.createElement('div');b.className='msg bot';
     const r=['感謝您的詢問！我們的 AI 自動化顧問正在處理中 🦞',
       '這個問題很好！讓我為您找到最佳解決方案。',
-      '我們提供 OpenClaw 安裝、Hermes Agent 整合、以及企業 AI ERP 系統。想了解哪一項呢？',
+      '我們提供 OpenClaw 安裝、Hermes Agent 整合、以及企業 AI Agent 導入。想了解哪一項呢？',
       '如需更詳細的諮詢，歡迎加入我們的 LINE@ 官方帳號！'];
     b.innerHTML=r[Math.floor(Math.random()*r.length)];
     body.appendChild(b);body.scrollTop=body.scrollHeight;

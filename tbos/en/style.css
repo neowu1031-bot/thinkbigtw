@@ -89,3 +89,10 @@ footer .copy{font-family:var(--mono);font-size:11px;color:var(--faint);letter-sp
   header nav{gap:14px;font-size:13px}
   section{padding:48px 0}
 }
+/* v7: consistent white product surface and readable mobile navigation. */
+:root{--bg:#fff;--panel:#f5f5f7;--brand:#80394f;--dim:#626269;--faint:#626269;--sans:-apple-system,BlinkMacSystemFont,'SF Pro Text',Arial,sans-serif}
+.plan,.card{border-radius:24px}.btn{border-radius:99px}h1{font-weight:600}
+.price-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.price-grid .plan:last-child{grid-column:1/-1}
+.plan h2{font-size:clamp(24px,3vw,34px);overflow-wrap:anywhere}.prose{margin-top:32px}
+header .wrap,header nav{flex-wrap:wrap}header nav{gap:12px}header nav a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:700px){.price-grid{grid-template-columns:minmax(0,1fr)}.price-grid .plan:last-child{grid-column:auto}header .wrap{gap:12px;padding-block:12px}.wrap{max-width:100%}.hero h1{font-size:38px}}

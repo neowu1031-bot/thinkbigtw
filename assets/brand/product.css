@@ -1,0 +1,74 @@
+/* Shared personal product presentation, aligned with the personal pricing hub. */
+.personal-product{--bg:#fff;--ink:#1d1d1f;--text:#1d1d1f;--muted:#626269;--gray:#f5f5f7;--gray2:#dedee3;--red:#80394f;--accent:#80394f;--surface:#f5f5f7;--border:#dedee3;--green:#80394f;--green-dark:#80394f;--orange:#80394f;background:#fff;color:var(--ink);padding-top:0;font-family:var(--tb-system,-apple-system,BlinkMacSystemFont,'PingFang TC',sans-serif);line-height:1.7}
+.personal-product *, .personal-product *::before,.personal-product *::after{box-sizing:border-box}
+.personal-product main{min-width:0;overflow-wrap:break-word}
+.personal-product :is(.container,.wrap){width:min(1120px,calc(100% - 48px));margin-inline:auto;padding-inline:0}
+.personal-product :is(h1,h2,h3){color:var(--ink);font-family:inherit;letter-spacing:-.035em;font-weight:600;text-shadow:none}
+.personal-product h1{font-size:clamp(34px,5vw,60px);line-height:1.2}
+.personal-product h2{font-size:clamp(28px,3.5vw,42px);line-height:1.3}
+.personal-product h3{font-size:22px;line-height:1.4}
+.personal-product :is(p,.hero-desc,.tagline,.notice-body,.plan-desc,.sec-sub){color:var(--muted);line-height:1.8}
+.personal-product a{color:var(--red);text-underline-offset:4px}
+.personal-product main :is(section,.redirect-notice){padding-block:72px}
+.personal-product main :is(.s-hero,.hero){padding-block:64px;background:#fff}
+.personal-product .two-col{grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}
+.personal-product :is(.col-text,.col-img,.personal-hero-grid>*,.variant){min-width:0}
+.personal-product .prod-img{border-radius:24px;box-shadow:none;background:#f5f5f7}
+.personal-product :is(.price-block,.tier,.plan-card,.picker){border:1px solid #dedee3;border-radius:24px;box-shadow:none}
+.personal-product :is(.cta-btn,.btn){border-radius:99px;background:#1d1d1f;color:#fff;max-width:100%;white-space:normal;min-height:44px}
+.personal-product :is(.cta-btn,.btn):hover{background:#3a3a3d;color:#fff}
+.personal-product .track-tag,.personal-product .tag{border:0;padding:0;letter-spacing:.1em;font-family:inherit;color:var(--red)}
+.personal-product .support-period{font-size:15px;margin-bottom:16px}
+.personal-product .disclaimer{color:#626269}
+.personal-product :is(img,video){max-width:100%;height:auto}
+.personal-product :is(.tbl-wrap,.table-wrap){max-width:100%;overflow-x:auto}
+/* Harness retains its explanatory content, with static, readable sections. */
+.harness-page main>.section,.harness-page main>.hero{width:min(1120px,calc(100% - 48px));margin:auto}
+.harness-page .hero{max-width:860px;text-align:left}
+.harness-page .hero-tagline{font-size:19px;margin-block:24px}
+.harness-page .hero-badge,.harness-page .sec-eye,.harness-page .tool-name{font-size:12px;letter-spacing:.1em;color:var(--red);margin-bottom:16px}
+.harness-page .sec-head{margin-bottom:32px}.harness-page .sec-sub{margin-top:12px}
+.harness-page .section{border-top:1px solid #dedee3}.harness-page .section p{margin-block:16px;max-width:65ch}
+.harness-page :is(.tool-cloud,.mcp-flow){display:flex;flex-wrap:wrap;gap:12px;margin-block:28px}
+.harness-page .tc-pill{border:1px solid #dedee3;border-radius:99px;padding:6px 12px;font-size:13px}
+.harness-page .mcp-node{padding:24px;background:#f5f5f7;border-radius:18px;flex:1;min-width:0}
+.harness-page .plan-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.harness-page .plan-paths article{background:#f5f5f7;border-radius:24px;padding:28px}
+.harness-page details{padding-block:20px;border-bottom:1px solid #dedee3}.harness-page summary{cursor:pointer;font-weight:600}
+/* MCP collaboration: match the existing markup and the shared content width. */
+.harness-page{margin:0}
+.harness-page main>.mcp-section{width:min(1120px,calc(100% - 48px));margin-inline:auto;border-top:1px solid #dedee3;text-align:center}
+.harness-page .mcp-bg{display:inline-block;padding:6px 14px;margin-bottom:20px;border-radius:99px;background:#f5f5f7;color:var(--red);font-size:12px;font-weight:600;letter-spacing:.1em}
+.harness-page .mcp-section .sec-title{margin:0}
+.harness-page .mcp-section>p,.harness-page .mcp-section .sec-sub{max-width:65ch;margin:20px auto 0}
+.harness-page .flow-diagram{display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr) 72px minmax(0,1fr);align-items:center;margin-block:48px}
+.harness-page .flow-node{display:flex;flex-direction:column;justify-content:center;gap:12px;min-width:0;min-height:164px;padding:28px 24px;border:1px solid #dedee3;border-radius:24px;background:#f5f5f7}
+.harness-page .flow-node-title{font-size:20px;font-weight:600;line-height:1.4;letter-spacing:-.025em}
+.harness-page .flow-node-sub{font-size:14px;color:var(--muted)}
+.harness-page .flow-arrow{display:flex;align-items:center;justify-content:center;gap:4px;min-width:0;color:var(--red);padding-inline:4px}
+.harness-page .flow-arrow-line{flex:1;height:1px;background:#b8a5ad}
+.harness-page .flow-arrow-label{font-size:11px;font-weight:600}
+.harness-page .flow-arrow svg{flex-shrink:0;transform:rotate(-90deg)}
+.harness-page .flow-arrow path{fill:currentColor}
+.harness-page .mcp-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px;text-align:left}
+.harness-page .mcp-feat{min-width:0;padding-block:24px;border-top:1px solid #dedee3}
+.harness-page .mcp-feat-arrow{margin-bottom:12px;font-size:17px;font-weight:600}
+.harness-page .mcp-feat-text{color:var(--muted);font-size:15px;line-height:1.8}
+.harness-page .mcp-section .conclusion{margin-top:32px;padding:28px;border-radius:24px;background:#f5f5f7;font-size:17px;line-height:1.8}
+@media(max-width:760px){
+ .personal-product :is(.container,.wrap),.harness-page main>.mcp-section{width:calc(100% - 40px)}
+ .harness-page .flow-diagram{grid-template-columns:minmax(0,1fr);margin-block:32px}
+ .harness-page .flow-node{min-height:132px}
+ .harness-page .flow-arrow{flex-direction:column;padding:8px 0;gap:4px}
+ .harness-page .flow-arrow-line{flex:none;width:1px;height:12px}
+ .harness-page .flow-arrow svg{transform:none}
+ .harness-page .mcp-features{grid-template-columns:minmax(0,1fr);gap:0}
+ .harness-page .mcp-section .conclusion{padding:24px 20px}
+ .personal-product main :is(section,.redirect-notice){padding-block:48px}
+ .personal-product .two-col,.personal-product .personal-hero-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+ .personal-product .prod-img{max-width:440px;margin:auto}
+ .personal-product .plans-grid,.harness-page .plan-paths{grid-template-columns:minmax(0,1fr)}
+ .personal-product .variants{grid-template-columns:minmax(0,1fr)}
+ .harness-page .mcp-flow{flex-direction:column}.harness-page .mcp-node{width:100%}
+ .personal-product .cta-btn{padding-inline:20px;font-size:14px}
+}
