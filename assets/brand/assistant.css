@@ -1,0 +1,29 @@
+#tb-ai-launcher{position:fixed;right:20px;bottom:20px;z-index:40;background:#191a1d;color:#fff;border:1px solid #eea4bb;border-radius:30px;padding:12px 20px;font:600 14px/1.5 -apple-system,'PingFang TC',sans-serif;cursor:pointer;box-shadow:0 4px 16px #191a1d22}
+#tb-ai-launcher:focus-visible,#tb-ai-dialog :focus-visible{outline:3px solid #91344f;outline-offset:3px}
+#tb-ai-dialog{padding:0;border:1px solid #ccc;border-radius:20px;width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 32px);background:#f7f6f2;color:#191a1d;font:15px/1.7 -apple-system,'PingFang TC','Microsoft JhengHei',sans-serif;box-shadow:0 24px 80px #191a1d33}
+#tb-ai-dialog::backdrop{background:#191a1d88}
+#tb-ai-dialog *{box-sizing:border-box}
+#tb-ai-dialog .ai-header{padding:22px;display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid #d9d8d3;align-items:center}
+#tb-ai-dialog h2{font-size:20px;line-height:1.4;margin:0}
+#tb-ai-dialog .ai-close{border:1px solid #aaa;background:transparent;color:#191a1d;min-height:40px;padding:6px 12px;border-radius:5px;cursor:pointer;font:inherit}
+#tb-ai-dialog .ai-intro{padding:16px 22px;margin:0;font-size:13px;color:#55535a}
+#tb-ai-dialog .ai-log{padding:0 22px;overflow:auto;max-height:34dvh;min-height:90px;overscroll-behavior:contain}
+#tb-ai-dialog .ai-message{padding:14px 16px;margin:10px 0;background:#fff;border:1px solid #d9d8d3;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere}
+#tb-ai-dialog .ai-message[data-role=user]{background:#f2dce4}
+#tb-ai-dialog .ai-message strong{font-size:12px;display:block;color:#91344f;margin-bottom:5px}
+#tb-ai-dialog .ai-form{padding:20px 22px;display:grid;gap:10px;border-top:1px solid #d9d8d3;margin-top:14px}
+#tb-ai-dialog label{font-size:13px;font-weight:650}
+#tb-ai-dialog textarea{width:100%;max-height:140px;min-height:60px;resize:vertical;font:inherit;padding:10px;border:1px solid #aaa;border-radius:6px;background:white;color:#191a1d}
+#tb-ai-dialog .ai-form button{background:#191a1d;color:white;border:0;border-radius:5px;min-height:44px;font:inherit;font-weight:650;cursor:pointer}
+#tb-ai-dialog .ai-form button:disabled{opacity:.55;cursor:wait}
+#tb-ai-dialog .ai-help{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:12px}
+#tb-ai-dialog a{color:#713149;text-underline-offset:3px}
+#tb-ai-status{margin:0;color:#713149;font-size:13px}
+@media(max-width:500px){#tb-ai-launcher{right:12px;bottom:12px;padding:10px 16px}
+#tb-ai-dialog{max-height:calc(100dvh - 20px)}
+#tb-ai-dialog .ai-header{padding:16px}
+#tb-ai-dialog .ai-intro{padding:12px 16px}
+#tb-ai-dialog .ai-form{padding:16px}
+#tb-ai-dialog .ai-log{padding:0 16px;max-height:30dvh}
+}
+

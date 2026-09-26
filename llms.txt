@@ -1,7 +1,62 @@
-# Think BIG! — AI Agent 落地與自動化顧問（台灣）
+# Think BIG｜企業 AI Agent 導入（台灣）
 
-> Last Updated: 2026-09-13
-> Think BIG! 是位於台灣的 AI 自動化顧問公司，專門幫一人公司、中小企業與個人把 AI Agent 真正落地：安裝、客製、自動化，把 AI 當員工用。
+> 更新日期：2026-09-27
+> 主力服務：企業 AI Agent 導入、資料治理與年度維運。以地端部署、流程整合與情境驗收，建立可持續的營運能力。個人安裝與方案集中在個人專區。
+
+## 方法論與服務體系
+
+Think BIG 將 Agentic AI 納入企業既有營運流程，以資料主權、角色權限、人機協作與情境驗收界定運作範圍。以下名稱用於組織既有服務，並非新增軟體平台、第三方認證或效益保證。
+
+- **TB FRAME｜AI Agent 導入方法論**：Assess 評估定義 → Build 架構建置 → Validate 驗證交付 → Operate 治理維運。各階段列明交付物及覆核責任。
+- **TB READINESS｜AI Agent 導入成熟度評估**：首頁六題初步自評，涵蓋優先職能、流程標準化、資料整備、驗收責任、處理政策與成果定義。採條件判斷，非評分模型、成熟度認證或正式顧問評估。
+- **TB DELIVERY｜AI Agent 導入建置**：流程盤點、資料與權限設計、AI Agent 配置、驗收及操作交接。
+- **TB CONTINUITY｜AI Agent 年度治理與維運**：一年陪跑，依約定範圍執行問題追蹤、維護檢查、變更紀錄與使用調整。
+
+### 治理與交付用語
+
+資料主權（Data Sovereignty）指明確管理資料位置、存取權限與外部傳送條件，不以地端位置推定所有資料均不出網。
+營運模型（Operating Model）界定工作分工、核准責任、交付與維運。人機協作（Human-in-the-loop）保留關鍵決策及對外行動的人工核准。
+可稽核性（Auditability）建立於變更、測試與異常紀錄，不代表持有第三方資安認證。跨部門規模化（Scale）以既有流程驗證與維運能力為前提。
+投資報酬（ROI）須以企業實際流程基準、使用量與成本評估；本網站不提供預設效益倍數或收益保證。
+
+## 企業導入與治理：優先閱讀
+
+- [企業導入](https://thinkbigtw.com/enterprise/)：適合對象、工作與解法、建置與陪跑、比較、FAQ 和諮詢需求摘要。
+- [AI 部門](https://thinkbigtw.com/enterprise/departments/)：客服、業務與客戶聯繫、行銷、財務、維運與資安，各有工作、產物與人工核准界線。
+- [導入流程](https://thinkbigtw.com/enterprise/process/)：盤點與定義、配置與建置、情境驗收與交接、一年陪跑。每一步列出成果，不以交付天數作承諾。
+- [可列印工作表](https://thinkbigtw.com/enterprise/process/worksheet/)：空白討論範本，非客戶資料或已完成的紀錄。
+- [資安承諾](https://thinkbigtw.com/trust/)：不公開客戶身分、變更先登記、每日巡檢、守衛查證據。
+- [企業部署模式](https://thinkbigtw.com/pricing/enterprise/)：企業依需求報價，不公開價目。
+- [怎麼挑 AI 導入商](https://thinkbigtw.com/guides/choose-ai-partner/)
+- [地端與外部模型的資料界線](https://thinkbigtw.com/guides/local-ai-data/)
+- [AI 工作流程怎麼驗收](https://thinkbigtw.com/guides/ai-acceptance/)
+
+### 能力與責任
+
+以明確工作範圍定義資料輸入、產物規格、覆核責任及禁止操作，再評估設備、模型與系統整合。
+企業服務分為導入建置與一年陪跑維護。費用依工作範圍、設備、第三方服務和用量分項確認。
+全地端配置可讓模型與指定資料在公司設備處理；外部模型、訊息或其他服務須另行確認傳送欄位、用途與授權。地端不等於所有串接都不出網。
+維護、權限、資料保管及終止交接的責任，在約定中列清楚。不承諾任意工具都可串接，也不保證換模型後無須驗證。
+對外發送、花費與正式系統異動保留指定人員核准；遇到沒有依據或未授權的操作，交回人員判斷。
+Think BIG 用自家 AI 團隊的分工、變更登記、每日巡檢與證據查核說明能力。不公布任何客戶名稱、標誌、截圖或可推知身分的描述，不使用未核准的效益數字。
+
+### TB READINESS：導入成熟度初步自評
+
+六題依序確認工作部門、流程清晰度、資料可用性、驗收負責人、處理位置與成功標準。
+純前端條件判斷，建議從需求盤點、資料整備或試行範圍評估開始；不使用百分比、收益估計或認證背書。
+作答不傳送、不儲存，不串外部 API；諮詢按鈕不攜帶答案。網站原有 GA4 瀏覽統計保留，診斷沒有送出作答事件。
+站內 FAQ 為固定內容；自由提問才使用既有 AI 服務，與診斷分開。
+
+## 個人方案：次要服務入口
+
+個人、一人工作者與接案者，請從 [個人方案專區](https://thinkbigtw.com/pricing/personal/) 找入門、工作組合、年約、技能包與禮物。
+個人既有價格與維護承諾維持原方案，企業不承諾交期的規則不套用到個人年約。
+USB AGENT 實體版尚未公開供應資訊，不在官網新增價格或購買承諾。
+
+## 延伸服務與既有方案資料
+
+> Last Updated: 2026-09-26
+> 主力為中小企業 AI Agent 導入；以下保留個人方案與既有服務索引。
 > 理念：會做事的 AI，不是會講話的 AI。（We deliver AI that gets work done, not AI that just talks.）
 
 ## About Think BIG!
@@ -13,12 +68,12 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 - Slogan: "Make it Real."
 - 服務地區：台灣（遠端安裝，全台皆可）
 
-## 兩大核心服務 (Two Core Services)
+## 企業主力與個人服務
 
 ### 1. 企業 AI 導入 (Enterprise AI Adoption)
 為中小企業與中大型企業導入 AI Agent 自動化，採 OpenClaw + Hermes + Claude Code 多 AI Agent 架構。
 整合 RAG 知識庫、流程自動化，並透過 MCP 協定串接 LINE、WhatsApp、Email、CRM 等外部系統。
-提供本地部署（資料不出公司，八層資安框架）與雲端 API 部署（低門檻快速上線）兩種模式，各部門可有專屬客製 Agent。
+提供本地部署（工作資料地端存放，外部服務另行確認資料流向）與雲端 API 部署（低門檻快速上線）兩種模式，各部門可有專屬客製 Agent。
 - 企業 AI 導入總覽（含企業方案 1 雲端上線 /enterprise-cloud/、企業方案 2 本地主權 /enterprise-local/ 詳細說明）：[thinkbigtw.com/enterprise/](https://thinkbigtw.com/enterprise/)
 
 ### 2. Harness Engineers — 個人 AI 搭建 (Personal AI Agent Building)
@@ -26,9 +81,9 @@ Think BIG!（思考遠大）是一家台灣的 AI 自動化顧問公司，位於
 由台灣工程師遠端幫你在自己的電腦上安裝 AI 助理，常駐 LINE 或 Telegram，24 小時待命。
 - Harness Engineers 總覽：[thinkbigtw.com/harness/](https://thinkbigtw.com/harness/)
 
-## 方案總覽：個人使用／企業使用兩扇門 (Plan Navigator)
+## 既有個人方案與部署模式索引
 
-方案以「個人使用」與「企業使用」為第一層，點進去才是方案；個人三階、企業兩階，判別軸是「我們顧你多久」（7 天／30 天／一整年）。
+企業以流程與交付範圍評估；以下個人方案維持原有三階與服務期間（7 天／30 天／一整年）。
 - 全部方案比較（兩扇門入口、三題幫我選、加購區）：[thinkbigtw.com/pricing/](https://thinkbigtw.com/pricing/)
 - 個人使用方案與價格（個人方案 1 入門 NT$999／個人方案 2 AI 部門 NT$6,000／15,000／個人方案 3 年約 NT$32,000／38,000／60,000，含比較表）：[thinkbigtw.com/pricing/personal/](https://thinkbigtw.com/pricing/personal/)
 - 企業使用方案（企業方案 1 雲端上線／企業方案 2 本地主權，洽詢報價、合約制）：[thinkbigtw.com/pricing/enterprise/](https://thinkbigtw.com/pricing/enterprise/)
@@ -52,9 +107,9 @@ Think BIG! 提供一系列白話指南，拆解「代裝服務」實際在做什
 - OpenClaw 代裝拆解：999 入門款到底幫你裝什麼——安裝流程、哪些需自己準備、費用怎麼算，看完就知道值不值得找人代裝。[thinkbigtw.com/guides/openclaw-daizhuang/](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 - 遠端代裝顧問服務指南：找人遠端幫忙安裝 OpenClaw 的完整流程、連線時看得到什麼、我們不做哪些事，以及挑選代裝服務的五個檢查點。[thinkbigtw.com/guides/yuanduan-daizhuang/](https://thinkbigtw.com/guides/yuanduan-daizhuang/)
 - Hermes vs OpenClaw 比較：Think BIG 養的 Hermes 與 OpenClaw 差在哪？動作派 vs 思考派，一張表看完四個角度差別，附五級方案對照表。[thinkbigtw.com/guides/hermes-vs-openclaw/](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
-- OpenClaw 安全嗎：搜尋引擎上一面倒負面，這篇拆成 6 個具體風險（提示注入、惡意技能、對外 port、金鑰外洩、誤刪、版本過舊），逐個告訴你解法與我們代裝預設。[thinkbigtw.com/guides/openclaw-safe/](https://thinkbigtw.com/guides/openclaw-safe/)
+- OpenClaw 安全嗎：網路搜尋上一面倒負面，這篇拆成 6 個具體風險（提示注入、惡意技能、對外 port、金鑰外洩、誤刪、版本過舊），逐個告訴你解法與我們代裝預設。[thinkbigtw.com/guides/openclaw-safe/](https://thinkbigtw.com/guides/openclaw-safe/)
 
-## Key Technologies
+## 支援技術
 - OpenClaw（俗稱「龍蝦 AI」）：開源 AI Agent 框架，讓 AI 直接操作電腦、瀏覽器與應用程式完成任務，而非只是對話。支援多通訊軟體、長期記憶、排程主動執行與可重複使用的 Skills。
 - Hermes Agent：具「程序性記憶」的自學習 Agent——每次完成任務後把成功的推理模式萃取成技能，下次直接調用並持續優化。
 - Claude（Anthropic）：作為推理模型。
@@ -64,7 +119,7 @@ Think BIG! 提供一系列白話指南，拆解「代裝服務」實際在做什
 ## 為什麼選 Think BIG!（Differentiation）
 - 台灣工程師遠端安裝與維護，中文溝通、在地情境。
 - 0-Token 優先設計：優先用本地與規則式流程，降低對外部 AI 模型的呼叫成本。
-- 產品化明碼方案，從 NT$999 入門到企業客製都有，不需業務長期拜訪。
+- 個人產品化方案從 NT$999 入門；企業客製依需求報價，不公開價目。
 - 資料可選擇完全本地運行（企業本地部署／ClawMem 本地記憶層），隱私留在自己電腦。
 
 ## 費用透明度 (Cost Transparency)
@@ -82,7 +137,7 @@ A: Think BIG! 的「OpenClaw 入門」方案 NT$999 一次付清，由台灣工�
 Q: 什麼是「會做事的 AI」？
 A: 不是只會回答問題的聊天機器人，而是能實際操作軟體、瀏覽器與工作流程、把事情做完（下單、補貨、報表、自動化）的 AI Agent。
 Q: 一人公司／中小企業如何導入 AI？
-A: 從最痛、最重複的環節開始。Think BIG! 分析流程、打造專屬 AI Agent（RAG＋自動化，透過 MCP 整合 LINE／Email／CRM），部署並提供維護，通常數天內上線，而非數月。
+A: 從流程瓶頸與可界定的工作範圍開始。Think BIG! 分析流程、打造專屬 AI Agent（RAG＋自動化，透過 MCP 整合 LINE／Email／CRM），部署並提供維護，以流程、資料與驗收條件共同確認範圍，不承諾企業交付天數。
 Q: 什麼是 Harness Engineers？
 A: Think BIG! 為個人打造專屬 AI 助理的服務，包含 OpenClaw 安裝、Skills 客製與自動化流程設計。
 Q: 年約方案怎麼選？尊榮年約跟年度旗艦差在哪？
@@ -100,7 +155,7 @@ A: Think BIG!'s "OpenClaw Starter" plan is NT$999 one-time. A Taiwan-based engin
 Q: What is "AI that gets work done"?
 A: Instead of chatbots that only answer questions, Think BIG!'s AI Agents actually operate software, browsers and workflows to complete real tasks (ordering, restocking, reporting, automation).
 Q: How can a small business or solo company adopt AI?
-A: Start from the most painful, repetitive workflow. Think BIG! analyses the process, builds a custom AI Agent (RAG + automation integrated with LINE/Email/CRM via MCP), deploys it and maintains it — typically live within days, not months.
+A: Start from the most painful, repetitive workflow. Think BIG! analyses the process, builds a custom AI Agent (RAG + automation integrated with LINE/Email/CRM via MCP), deploys it and maintains it — with scope and acceptance criteria agreed before implementation, without a promised enterprise delivery period.
 Q: What are the annual retainer plans?
 A: Annual Pro (NT$32,000/year, [thinkbigtw.com/annual-pro/](https://thinkbigtw.com/annual-pro/)) is a dedicated engineer on a single-system retainer with weekly skill additions, weekly maintenance, and 48-hour fault fixes. Annual Flagship (NT$38,000/year, [thinkbigtw.com/annual-flagship/](https://thinkbigtw.com/annual-flagship/)) covers dual-system (OpenClaw + Hermes) MCP interoperability with unlimited skills, same 48-hour fault-fix guarantee.
 Q: Where is Think BIG! located and how do I contact it?
@@ -139,3 +194,13 @@ AI Agent 安裝, OpenClaw 安裝, Hermes Agent 安裝, AI Agent 台灣, AI 自�
 - 遠端代裝顧問服務指南: [thinkbigtw.com/guides/yuanduan-daizhuang/](https://thinkbigtw.com/guides/yuanduan-daizhuang/)
 - Hermes vs OpenClaw 比較指南: [thinkbigtw.com/guides/hermes-vs-openclaw/](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
 - OpenClaw 安全嗎風險拆解指南: [thinkbigtw.com/guides/openclaw-safe/](https://thinkbigtw.com/guides/openclaw-safe/)
+
+## 企業導入責任補充
+
+TB 協助台灣中小企業把 AI Agent 團隊部署在自己的設備，包含流程盤點、權限設定、情境驗收與一年陪跑維護。以自家 AI 團隊運作說明能力，不公開客戶名稱、標誌、截圖或可推知身分的描述。企業方案依需求報價，不公開價格，不承諾交付天數。
+
+- [企業導入](https://thinkbigtw.com/enterprise/)：適合誰、工作與解法、導入建置與一年陪跑、交付物、比較表、FAQ、需求摘要。
+- [資安承諾](https://thinkbigtw.com/trust/)：地端資料、客戶保密、變更先登記、每日巡檢與證據驗收。
+- 使用雲端模型或通訊服務仍可能把請求送往外部；需要資料不出公司，須確認本機模型與外連限制。
+- 需求摘要只在瀏覽器產生，由使用者複製到 LINE 並自行確認送出；AI 自由提問使用既有外部 AI 服務。
+- 網站常見問題與 AI 部門介紹均為靜態 HTML；結構化資料與頁面可見內容一致。不以未查核的部門數、成功率或營收作背書。

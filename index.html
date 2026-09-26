@@ -1,889 +1,142 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
+
+<html lang="zh-Hant"><head>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5">
+</script>
 <script>
-  window.dataLayer = window.dataLayer || [];
+   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-7V41XYLLP5');
-</script>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Think BIG ｜ 台灣 AI 自動化顧問 ｜ AI Agent 安裝與企業導入</title>
-<meta name="description" content="Think BIG 是台灣 AI 自動化顧問公司。提供 OpenClaw、Hermes AI Agent 安裝、企業 AI 導入與個人 AI 助理搭建。會做事的 AI，不是會講話的 AI。">
-<link rel="canonical" href="https://thinkbigtw.com/">
-<link rel="alternate" hreflang="zh-Hant" href="https://thinkbigtw.com/">
-<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/tbos/en/">
+  </script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>企業 AI Agent 導入與治理｜Think BIG</title>
+<meta content="Think BIG 以地端部署、流程整合與持續治理，協助台灣企業建立可控、可驗收的 AI Agent 團隊。TB FRAME 導入方法論整合成熟度評估、架構建置、驗證交付與年度維運。" name="description"/>
+<link href="https://thinkbigtw.com/" rel="canonical"/>
+<link href="https://thinkbigtw.com/" hreflang="zh-Hant" rel="alternate"/>
+<link href="https://thinkbigtw.com/tbos/en/" hreflang="en" rel="alternate"/>
 <!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Think BIG">
-<meta property="og:url" content="https://thinkbigtw.com/">
-<meta property="og:title" content="Think BIG ｜ 台灣 AI 自動化顧問 ｜ AI Agent 安裝與企業導入">
-<meta property="og:description" content="台灣 AI 自動化顧問公司。OpenClaw、Hermes AI Agent 安裝、企業 AI 導入與個人 AI 助理搭建。會做事的 AI，不是會講話的 AI。">
-<meta property="og:image" content="https://thinkbigtw.com/og-image.jpg">
-<meta property="og:locale" content="zh_TW">
+<meta content="website" property="og:type"/>
+<meta content="Think BIG" property="og:site_name"/>
+<meta content="https://thinkbigtw.com/" property="og:url"/>
+<meta content="企業 AI Agent 導入與治理｜Think BIG" property="og:title"/>
+<meta content="Think BIG 以地端部署、流程整合與持續治理，協助台灣企業建立可控、可驗收的 AI Agent 團隊。TB FRAME 導入方法論整合成熟度評估、架構建置、驗證交付與年度維運。" property="og:description"/>
+<meta content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg" property="og:image"/>
+<meta content="zh_TW" property="og:locale"/>
 <!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Think BIG ｜ 台灣 AI 自動化顧問 ｜ AI Agent 安裝與企業導入">
-<meta name="twitter:description" content="台灣 AI 自動化顧問公司。AI Agent 安裝、企業 AI 導入與個人 AI 助理搭建。會做事的 AI，不是會講話的 AI。">
-<meta name="twitter:image" content="https://thinkbigtw.com/og-image.jpg">
-<meta name="theme-color" content="#ffffff">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-<noscript><link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet"></noscript>
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --red:#e8422a;
-  --bg:#ffffff;
-  --ink:#1a1a1a;
-  --gray:#f0f0f0;
-  --pink:#f8c8d8;
-  --mono:'Azeret Mono',monospace;
-  --tc:'Noto Sans TC',sans-serif;
-}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font-family:var(--mono);-webkit-font-smoothing:antialiased;min-height:100vh}
-
-/* ===== 主視覺 HERO ===== */
-.tb-hero{background:#ffffff;min-height:100vh;display:flex;flex-direction:column;padding:24px 40px;position:relative;overflow:hidden;font-family:var(--mono)}
-.tb-topbar{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:flex-start;width:100%;gap:20px}
-.tb-funcbar{display:flex;gap:28px;flex-wrap:wrap}
-.tb-func{display:flex;flex-direction:column;text-decoration:none;padding:6px 0;border-bottom:2px solid transparent;transition:.2s}
-.tb-func .zh{font-family:var(--tc);font-weight:700;font-size:15px;color:#1a1a1a;line-height:1.3}
-.tb-func .en{font-family:var(--mono);font-size:11px;color:#999;letter-spacing:1px;margin-top:2px}
-.tb-func:hover{border-bottom-color:var(--red)}
-.tb-func:hover .zh{color:var(--red)}
-.tb-brand{text-align:right;flex-shrink:0}
-.tb-brand-main{font-family:var(--mono);font-weight:700;font-size:22px;color:#1a1a1a;line-height:1}
-.tb-brand-main .hl{color:var(--red)}
-.tb-brand-sub{font-family:var(--mono);font-size:13px;color:#666;margin-top:4px;letter-spacing:1px}
-.tb-brand-co{font-family:var(--tc);font-size:11px;color:#aaa;margin-top:4px}
-/* 上層：slogan 文字浮在影片之上 */
-.tb-hero-body{position:relative;z-index:3;flex:1;display:flex;align-items:center;justify-content:flex-start;width:100%;max-width:1280px;margin:0 auto;pointer-events:none}
-.tb-slogan{flex:0 0 auto;max-width:42%;min-width:0;text-align:left;padding-left:10px}
-.tb-slogan-zh{margin:0;font-family:var(--tc);font-weight:900;font-size:clamp(30px,4.4vw,56px);color:#1a1a1a;line-height:1.22;letter-spacing:1px}
-.tb-slogan-en{font-family:var(--mono);font-weight:700;font-size:clamp(13px,1.6vw,20px);color:var(--red);margin-top:18px;line-height:1.4;letter-spacing:1px}
-/* 下層：影片全畫面背景，放大置中，四周羽化融入白底 */
-.tb-video-wrap{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;pointer-events:none}
-.tb-video{
-  width:100%;height:100%;
-  object-fit:cover;
-  object-position:center top;
-  border:none;border-radius:0;box-shadow:none;background:transparent;
-  -webkit-mask-image:radial-gradient(ellipse 82% 90% at center,#000 60%,transparent 100%);
-  mask-image:radial-gradient(ellipse 82% 90% at center,#000 60%,transparent 100%);
-}
-
-/* 漢堡按鈕 & 關閉鈕：桌面版隱藏 */
-.tb-hamburger{display:none}
-.tb-nav-close{display:none}
-
-@media(max-width:768px){
-  /* ── 3D 人物動畫全屏背景 ── */
-  .tb-video-wrap{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none}
-  .tb-video{width:100%;height:100%;object-fit:cover;object-position:center top;transform:none;-webkit-mask-image:none;mask-image:none;-webkit-clip-path:none;clip-path:none;aspect-ratio:auto;max-width:none}
-
-  /* ── Hero 容器：相對定位浮在動畫上 ── */
-  .tb-hero{
-    position:relative;z-index:1;
-    padding:20px 18px 0;min-height:100vh;
-    background:transparent;
-  }
-  /* 深色半透明遮罩（偽元素） */
-  .tb-hero::before{
-    content:'';position:fixed;inset:0;
-    background:rgba(0,0,0,0.35);
-    z-index:0;pointer-events:none;
-  }
-
-  /* ── 頂部列 ── */
-  .tb-topbar{
-    position:relative;z-index:3;
-    flex-direction:row;align-items:center;
-    justify-content:space-between;
-    gap:12px;padding:0;
-  }
-  .tb-brand{text-align:right;flex-shrink:0}
-  .tb-brand-main{font-size:22px;color:#fff}
-  .tb-brand-sub{color:rgba(255,255,255,0.8)}
-  .tb-brand-co{color:rgba(255,255,255,0.55)}
-
-  /* ── 漢堡選單 ── */
-  .tb-hamburger{
-    display:flex;align-items:center;justify-content:center;
-    width:40px;height:40px;
-    background:rgba(0,0,0,0.06);backdrop-filter:blur(8px);
-    border:1px solid rgba(0,0,0,0.15);border-radius:10px;
-    color:#1a1a1a;font-size:22px;cursor:pointer;
-    -webkit-tap-highlight-color:transparent;
-    z-index:5;flex-shrink:0;
-  }
-  .tb-funcbar{
-    display:none;
-    position:fixed;top:0;left:0;width:100vw;height:100vh;
-    z-index:1000;
-    background:rgba(0,0,0,0.88);backdrop-filter:blur(16px);
-    flex-direction:column;align-items:center;justify-content:center;
-    gap:28px;padding:40px 24px;
-  }
-  .tb-funcbar.open{display:flex}
-  .tb-funcbar .tb-nav-close{
-    position:absolute;top:20px;right:20px;
-    width:40px;height:40px;border-radius:50%;
-    background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);
-    color:#fff;font-size:22px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .tb-func{align-items:center;text-align:center;border-bottom:none}
-  .tb-func .zh{font-size:20px;color:#fff}
-  .tb-func .en{font-size:12px;color:rgba(255,255,255,0.5)}
-  .tb-func:hover .zh{color:var(--red)}
-
-  /* ── 主文字區（推到畫面下半部，不遮公仔上半身） ── */
-  .tb-hero-body{
-    position:relative;z-index:2;
-    flex:none;flex-direction:column;
-    justify-content:flex-end;align-items:center;
-    gap:16px;pointer-events:auto;
-    padding:0 16px 32px;
-    margin-top:auto;
-  }
-
-  /* ── CTA 按鈕內嵌（order:1 → 排在標語上面） ── */
-  #ai-agent-btn{
-    position:static !important;
-    width:100%;max-width:340px;
-    margin:0 auto;
-    justify-content:center;
-    border-radius:16px;
-    padding:18px 24px;
-    box-shadow:0 6px 20px rgba(232,66,42,0.35);
-    order:1;
-  }
-
-  /* ── 標語區（order:2 → 排在按鈕下面，垂直兩行） ── */
-  .tb-slogan{
-    flex:none;width:100%;max-width:100%;
-    order:2;
-    display:flex;flex-direction:column;align-items:center;
-    gap:6px;
-    padding:14px 18px;
-    background:rgba(0,0,0,0.22);
-    border-radius:14px;
-    backdrop-filter:blur(6px);
-    text-align:center;
-  }
-  .tb-slogan-zh{
-    font-size:17px;color:#fff;
-    text-shadow:0 1px 8px rgba(0,0,0,0.4);
-    white-space:normal;word-break:keep-all;
-    line-height:1.3;
-  }
-  /* 中文標語一行顯示，移除換行 */
-  .tb-slogan-zh br{display:none}
-  .tb-slogan-en{
-    font-size:13px;color:var(--red);
-    font-family:'Noto Sans TC',Helvetica,Arial,sans-serif;
-    text-shadow:0 1px 6px rgba(0,0,0,0.3);
-    margin-top:0;
-    white-space:normal;word-break:keep-all;
-    border-left:none;
-    padding-left:0;
-    line-height:1.3;
-  }
-  /* 英文副標也一行顯示 */
-  .tb-slogan-en br{display:none}
-  #ai-agent-btn .pulse,
-  #ai-agent-btn .pulse-2{display:none}
-}
-
-/* ===== AI AGENT 浮動鈕 (亮色) ===== */
-#ai-agent-btn{position:fixed;bottom:28px;right:28px;z-index:200;pointer-events:auto;padding:14px 22px;border-radius:30px;background:linear-gradient(135deg,#e8422a 0%,#ff6b4a 100%);border:none;cursor:pointer;overflow:visible;transition:transform .3s ease,box-shadow .3s ease;display:flex;align-items:center;gap:10px;box-shadow:0 8px 24px rgba(232,66,42,0.3);font-family:var(--mono)}
-#ai-agent-btn:hover{transform:scale(1.06);box-shadow:0 12px 32px rgba(232,66,42,0.45)}
-#ai-agent-btn .pulse{position:absolute;inset:0;border-radius:30px;border:1px solid var(--red);animation:pulse-ring 2.5s ease-out infinite}
-#ai-agent-btn .pulse-2{animation-delay:1.25s}
-@keyframes pulse-ring{0%{transform:scale(1);opacity:0.5}100%{transform:scale(1.15);opacity:0}}
-#ai-agent-btn .btn-dot{width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 8px rgba(255,255,255,0.8);animation:dotPulse 1.5s ease-in-out infinite}
-@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
-#ai-agent-btn .btn-text{color:#fff;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;white-space:nowrap}
-#ai-agent-btn .btn-brand{color:rgba(255,255,255,0.85);font-size:0.55rem;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;white-space:nowrap;border-left:1px solid rgba(255,255,255,0.4);padding-left:10px}
-
-/* ===== AI CHAT 全螢幕 (亮色) ===== */
-#ai-chat{position:fixed;inset:0;z-index:300;background:rgba(255,255,255,0.96);backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);display:none;flex-direction:column;animation:chatFadeIn 0.4s cubic-bezier(0.16,1,0.3,1)}
-@keyframes chatFadeIn{from{opacity:0}to{opacity:1}}
-#ai-chat.open{display:flex}
-#ai-chat .chat-header{padding:20px 32px;border-bottom:1px solid rgba(0,0,0,0.08);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(232,66,42,0.04) 0%,transparent 100%)}
-#ai-chat .chat-header .agent-info{display:flex;align-items:center;gap:14px}
-#ai-chat .chat-header .agent-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--red) 0%,#ff6b4a 50%,#ffaa80 100%);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:1rem;font-weight:800;color:#fff;box-shadow:0 4px 16px rgba(232,66,42,0.35);animation:avatarGlow 3s ease-in-out infinite}
-@keyframes avatarGlow{0%,100%{box-shadow:0 4px 16px rgba(232,66,42,0.35)}50%{box-shadow:0 6px 24px rgba(232,66,42,0.55)}}
-#ai-chat .chat-header .agent-name{font-family:var(--mono);font-size:0.85rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#1a1a1a;line-height:1}
-#ai-chat .chat-header .agent-tagline{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.2em;color:var(--red);margin-top:4px;text-transform:uppercase}
-#ai-chat .chat-header .status{font-family:var(--mono);font-size:0.55rem;color:#888;display:flex;align-items:center;gap:6px;margin-top:3px;letter-spacing:0.15em}
-#ai-chat .chat-header .status::before{content:'';width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:statusPulse 2s ease-in-out infinite}
-@keyframes statusPulse{0%,100%{opacity:1}50%{opacity:0.4}}
-#ai-chat .chat-header .header-right{display:flex;align-items:center;gap:14px}
-#ai-chat .chat-header .powered-by{font-family:var(--mono);font-size:0.55rem;color:#999;letter-spacing:0.15em;text-transform:uppercase;padding:6px 12px;border:1px solid rgba(0,0,0,0.1);border-radius:30px}
-#ai-chat .chat-header .powered-by b{color:var(--red);font-weight:600}
-#ai-chat .chat-header .close-btn{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,0.04);border:1px solid rgba(0,0,0,0.08);cursor:pointer;font-size:1.1rem;color:#1a1a1a;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
-#ai-chat .chat-header .close-btn:hover{background:rgba(232,66,42,0.12);border-color:rgba(232,66,42,0.4)}
-#ai-chat .chat-body{flex:1;overflow-y:auto;padding:32px max(48px,5vw);display:flex;flex-direction:column;gap:16px;max-width:1000px;width:100%;margin:0 auto}
-#ai-chat .chat-body::-webkit-scrollbar{width:4px}
-#ai-chat .chat-body::-webkit-scrollbar-thumb{background:rgba(232,66,42,0.3);border-radius:2px}
-#ai-chat .chat-body::-webkit-scrollbar-track{background:transparent}
-#ai-chat .hero-welcome{text-align:center;padding:60px 20px 40px;animation:heroIn 0.6s ease 0.2s both}
-@keyframes heroIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-#ai-chat .hero-welcome .hero-icon{width:80px;height:80px;border-radius:50%;margin:0 auto 24px;background:radial-gradient(circle,rgba(232,66,42,0.18) 0%,transparent 70%);display:flex;align-items:center;justify-content:center;font-size:2.5rem;animation:heroIconFloat 3s ease-in-out infinite}
-@keyframes heroIconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-#ai-chat .hero-welcome h2{font-family:var(--mono);font-size:1.6rem;font-weight:700;letter-spacing:0.05em;color:#1a1a1a;margin-bottom:12px}
-#ai-chat .hero-welcome p{font-family:var(--tc);font-size:0.9rem;color:#555;line-height:1.7;max-width:520px;margin:0 auto}
-#ai-chat .hero-welcome p strong{color:#1a1a1a !important}
-#ai-chat .quick-suggestions{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:40px;max-width:780px;margin-left:auto;margin-right:auto}
-#ai-chat .quick-suggestions .qs{text-align:left;padding:18px 20px;background:#fff;border:1px solid rgba(0,0,0,0.08);border-radius:12px;cursor:pointer;transition:all 0.25s;display:flex;align-items:flex-start;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-#ai-chat .quick-suggestions .qs:hover{background:rgba(232,66,42,0.05);border-color:rgba(232,66,42,0.4);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,66,42,0.12)}
-#ai-chat .quick-suggestions .qs .qs-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
-#ai-chat .quick-suggestions .qs .qs-text{font-family:var(--tc);font-size:0.85rem;color:#333;line-height:1.6}
-#ai-chat .quick-suggestions .qs .qs-text small{display:block;font-family:var(--mono);font-size:0.55rem;color:var(--red);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px}
-#ai-chat .msg-row{display:flex;gap:14px;align-items:flex-start;animation:msgIn 0.35s cubic-bezier(0.16,1,0.3,1)}
-@keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-#ai-chat .msg-row.user{flex-direction:row-reverse}
-#ai-chat .msg-avatar{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.65rem;font-weight:700}
-#ai-chat .msg-row.bot .msg-avatar{background:linear-gradient(135deg,var(--red),#ff6b4a);color:#fff;box-shadow:0 2px 8px rgba(232,66,42,0.3)}
-#ai-chat .msg-row.user .msg-avatar{background:#f0f0f0;color:#666;border:1px solid rgba(0,0,0,0.08)}
-#ai-chat .msg{font-family:var(--tc);font-size:0.92rem;line-height:1.8;padding:14px 18px;border-radius:14px;max-width:680px;white-space:pre-wrap;word-wrap:break-word}
-#ai-chat .msg.bot{background:#f6f6f6;border:1px solid rgba(0,0,0,0.06);color:#1a1a1a}
-#ai-chat .msg.user{background:linear-gradient(135deg,rgba(232,66,42,0.12) 0%,rgba(232,66,42,0.06) 100%);border:1px solid rgba(232,66,42,0.25);color:#1a1a1a}
-#ai-chat .msg a{color:var(--red);text-decoration:underline}
-#ai-chat .msg .typing-dots{display:inline-flex;gap:4px}
-#ai-chat .msg .typing-dots span{width:6px;height:6px;border-radius:50%;background:var(--red);animation:typing 1.4s ease-in-out infinite}
-#ai-chat .msg .typing-dots span:nth-child(2){animation-delay:0.2s}
-#ai-chat .msg .typing-dots span:nth-child(3){animation-delay:0.4s}
-@keyframes typing{0%,60%,100%{opacity:0.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
-#ai-chat .quick-bar{display:flex;flex-wrap:nowrap;gap:10px;max-width:1000px;margin:0 auto 12px}
-#ai-chat .quick-bar .qchip{flex:1 1 0;min-width:0;text-align:left;padding:10px 12px;background:#fff;border:1px solid rgba(0,0,0,0.1);border-radius:12px;cursor:pointer;transition:all 0.2s;font-family:var(--tc)}
-#ai-chat .quick-bar .qchip:hover{background:rgba(232,66,42,0.06);border-color:rgba(232,66,42,0.45);transform:translateY(-2px)}
-#ai-chat .quick-bar .qchip .qt{display:block;font-size:0.8rem;color:#1a1a1a;font-weight:500;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#ai-chat .quick-bar .qchip .qs2{display:block;font-family:var(--mono);font-size:0.5rem;color:var(--red);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#ai-chat .chat-input-wrap{padding:20px max(48px,5vw) 28px;background:#fff;border-top:1px solid rgba(0,0,0,0.08)}
-#ai-chat .chat-input{max-width:1000px;margin:0 auto;display:flex;gap:10px;align-items:center;background:#f6f6f6;border:1px solid rgba(0,0,0,0.1);border-radius:16px;padding:8px 8px 8px 20px;transition:all 0.25s}
-#ai-chat .chat-input:focus-within{border-color:rgba(232,66,42,0.5);box-shadow:0 0 0 4px rgba(232,66,42,0.08)}
-#ai-chat .chat-input input{flex:1;background:none;border:none;color:#1a1a1a;font-family:var(--tc);font-size:0.95rem;outline:none;padding:12px 0}
-#ai-chat .chat-input input::placeholder{color:#999}
-#ai-chat .chat-input .send-btn{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--red),#ff6b4a);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:#fff}
-#ai-chat .chat-input .send-btn:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(232,66,42,0.4)}
-#ai-chat .chat-input .send-btn:disabled{opacity:0.3;cursor:not-allowed;transform:none}
-#ai-chat .chat-input .send-btn svg{width:18px;height:18px;fill:#fff}
-#ai-chat .chat-footer{text-align:center;margin-top:12px;font-family:var(--mono);font-size:0.55rem;color:#999;letter-spacing:0.15em}
-#ai-chat .chat-footer a{color:var(--red);text-decoration:none}
-#ai-chat .chat-footer a:hover{text-decoration:underline}
-
-@media(max-width:768px){
-  #ai-chat .quick-bar{flex-wrap:wrap}
-  #ai-chat .quick-bar .qchip{flex:0 0 calc(50% - 5px);width:calc(50% - 5px)}
-  #ai-chat .quick-bar .qchip .qt{white-space:normal}
-}
-</style>
-<!-- ═══ JSON-LD 結構化資料 (SEO/GEO · 給 Google 與 AI 爬蟲讀取) ═══ -->
-<script type="application/ld+json">
-{
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="企業 AI Agent 導入與治理｜Think BIG" name="twitter:title"/>
+<meta content="Think BIG 以地端部署、流程整合與持續治理，協助台灣企業建立可控、可驗收的 AI Agent 團隊。TB FRAME 導入方法論整合成熟度評估、架構建置、驗證交付與年度維運。" name="twitter:description"/>
+<meta content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg" name="twitter:image"/>
+<meta content="#f7f6f2" name="theme-color"/>
+<link href="/assets/homesplit/site.css" rel="stylesheet"/>
+<link href="/assets/brand/chrome.css" rel="stylesheet"/>
+<link href="/assets/homesplit/editorial.css" rel="stylesheet"/><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
       "@id": "https://thinkbigtw.com/#organization",
-      "name": "Think BIG!",
-      "alternateName": ["思考遠大", "ThinkBIG TW"],
+      "name": "Think BIG",
       "url": "https://thinkbigtw.com/",
-      "logo": "https://thinkbigtw.com/images/logo-nobg.png",
-      "description": "Think BIG! 是台灣的 AI 自動化顧問公司。提供企業 AI 導入、Harness Engineers 個人 AI 搭建服務。",
-      "slogan": "Make it Real.",
-      "foundingDate": "2025",
-      "address": {"@type": "PostalAddress", "addressRegion": "新北市", "addressLocality": "板橋區", "addressCountry": "TW"},
-      "areaServed": {"@type": "Country", "name": "Taiwan"},
-      "knowsAbout": ["AI Agent", "企業自動化", "OpenClaw", "Claude", "RAG", "工作流程自動化"],
-      "sameAs": ["https://lin.ee/n5KW430"]
+      "logo": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
     },
     {
-      "@type": "WebSite",
-      "@id": "https://thinkbigtw.com/#website",
+      "@type": "WebPage",
+      "@id": "https://thinkbigtw.com/#webpage",
       "url": "https://thinkbigtw.com/",
-      "name": "Think BIG!",
-      "publisher": {"@id": "https://thinkbigtw.com/#organization"},
-      "inLanguage": "zh-TW"
+      "name": "企業 AI Agent 導入與治理｜Think BIG",
+      "inLanguage": "zh-Hant",
+      "publisher": {
+        "@id": "https://thinkbigtw.com/#organization"
+      },
+      "description": "Think BIG 以地端部署、流程整合與持續治理，協助台灣企業建立可控、可驗收的 AI Agent 團隊。TB FRAME 導入方法論整合成熟度評估、架構建置、驗證交付與年度維運。"
     },
     {
-      "@type": "Service",
-      "@id": "https://thinkbigtw.com/#service-enterprise",
-      "name": "企業 AI 系統導入",
-      "provider": {"@id": "https://thinkbigtw.com/#organization"},
-      "serviceType": "AI 自動化導入顧問",
-      "description": "為中大型企業導入 AI Agent 自動化，採 OpenClaw + Claude Code 雙 AI Agent 架構，整合 RAG、LINE Bot、WhatsApp 與企業流程自動化。",
-      "areaServed": {"@type": "Country", "name": "Taiwan"}
-    },
-    {
-      "@type": "Product",
-      "@id": "https://thinkbigtw.com/#product-personal",
-      "name": "Think BIG! 個人 AI Agent 安裝與維運方案",
-      "brand": {"@type": "Brand", "name": "Think BIG!"},
-      "image": "https://thinkbigtw.com/og-image.jpg",
-      "url": "https://thinkbigtw.com/pricing/personal/",
-      "category": "AI Agent 安裝與維運服務",
-      "description": "由台灣工程師遠端安裝與維運 OpenClaw、Hermes 等 AI Agent 的個人方案，分入門（支援 7 天）、AI 部門（陪跑 30 天）、年約（專屬工程師顧一整年）三階。AI 模型 API Key 由使用者自行申請，模型使用費依用量向原廠計費，不含在服務費內。",
-      "offers": {
-        "@type": "AggregateOffer",
-        "priceCurrency": "TWD",
-        "lowPrice": "999",
-        "highPrice": "60000",
-        "offerCount": "7",
-        "offers": [
-            {"@type": "Offer", "name": "個人方案 1｜入門 · OpenClaw", "price": "999", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@id": "https://thinkbigtw.com/#organization"}, "url": "https://thinkbigtw.com/openclaw-starter/"},
-            {"@type": "Offer", "name": "個人方案 1｜入門 · Hermes", "price": "999", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@id": "https://thinkbigtw.com/#organization"}, "url": "https://thinkbigtw.com/hermes-starter/"},
-            {"@type": "Offer", "name": "個人方案 2｜AI 部門 · 單 AI Agent", "price": "6000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@id": "https://thinkbigtw.com/#organization"}, "url": "https://thinkbigtw.com/full-agent/"},
-            {"@type": "Offer", "name": "個人方案 2｜AI 部門 · 雙 AI Agent", "price": "15000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@id": "https://thinkbigtw.com/#organization"}, "url": "https://thinkbigtw.com/dual-agent/"},
-            {"@type": "Offer", "name": "個人方案 3｜年約 · 單 AI Agent（尊榮年約）", "price": "32000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@id": "https://thinkbigtw.com/#organization"}, "url": "https://thinkbigtw.com/annual-pro/"},
-            {"@type": "Offer", "name": "個人方案 3｜年約 · 雙 AI Agent（年度旗艦）", "price": "38000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@id": "https://thinkbigtw.com/#organization"}, "url": "https://thinkbigtw.com/annual-flagship/"},
-            {"@type": "Offer", "name": "個人方案 3｜年約 · SUPERSOLO 七部門", "price": "60000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@id": "https://thinkbigtw.com/#organization"}, "url": "https://thinkbigtw.com/solo-pro/"}
-        ]
-      }
+      "@type": "ItemList",
+      "name": "Think BIG 服務導覽",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "企業導入",
+          "url": "https://thinkbigtw.com/enterprise/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "AI 部門",
+          "url": "https://thinkbigtw.com/enterprise/departments/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "導入流程",
+          "url": "https://thinkbigtw.com/enterprise/process/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "資安承諾",
+          "url": "https://thinkbigtw.com/trust/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "企業指南",
+          "url": "https://thinkbigtw.com/guides/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "個人方案",
+          "url": "https://thinkbigtw.com/pricing/personal/"
+        }
+      ]
     },
     {
       "@type": "FAQPage",
-      "@id": "https://thinkbigtw.com/#faq",
       "mainEntity": [
-        {"@type": "Question", "name": "Think BIG! 提供哪些服務？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 提供兩大服務：① 企業 AI 導入 — RAG、Agent 與流程自動化；② Harness Engineers — 個人 AI Agent 搭建。預約需求訪談請透過官網 AI 助理或 LINE 聯繫。"}},
-        {"@type": "Question", "name": "Think BIG! 在哪裡？", "acceptedAnswer": {"@type": "Answer", "text": "Think BIG! 位於台灣新北市板橋區，2025 年成立，服務台灣各產業的 AI 自動化導入需求。"}},
-        {"@type": "Question", "name": "什麼是 Harness Engineers？", "acceptedAnswer": {"@type": "Answer", "text": "Harness Engineers 是 Think BIG! 的個人 AI Agent 搭建服務，為自由工作者與創作者打造專屬 AI 助理，包含 OpenClaw 安裝、Skills 客製與自動化流程設計。"}},
-        {"@type": "Question", "name": "如何聯絡 Think BIG！？", "acceptedAnswer": {"@type": "Answer", "text": "可透過官網 thinkbigtw.com 右下角的 AI 助理諮詢，或加入官方 LINE 取得專人服務。"}}
+        {
+          "@type": "Question",
+          "name": "導入前需要具備哪些條件？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不要求企業預先具備 AI 開發能力。評估以工作流程、可授權資料、驗收責任人與預期產物為基礎，再確認 AI Agent 的適用範圍與必要準備。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "地端部署如何界定資料處理範圍？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "採全地端配置時，模型與指定資料在公司設備內處理。若流程需要外部模型或服務，會先確認傳送欄位、用途與授權；地端部署不等於所有串接都不出網。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "導入後如何維持營運與治理？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TB CONTINUITY 年度治理與維運涵蓋一年陪跑，依約定範圍執行問題追蹤、維護檢查與變更驗證。設備、模型用量、第三方服務及新增需求分項界定。"
+          }
+        }
       ]
     }
   ]
-}
-</script>
-</head>
-<body>
-
-<!-- ===== 主視覺 HERO ===== -->
-<section class="tb-hero">
-  <div class="tb-video-wrap">
-    <video class="tb-video" autoplay loop muted playsinline preload="auto" poster="/assets/neo_hero_wide_poster.jpg">
-      <source src="/assets/neo_hero_wide.mp4" type="video/mp4">
-    </video>
-  </div>
-  <header class="tb-topbar">
-    <button class="tb-hamburger" onclick="document.querySelector('.tb-funcbar').classList.add('open')" aria-label="選單">☰</button>
-    <nav class="tb-funcbar">
-      <button class="tb-nav-close" onclick="document.querySelector('.tb-funcbar').classList.remove('open')" aria-label="關閉">✕</button>
-      <a href="/enterprise/" class="tb-func"><span class="zh">企業 AI 導入</span><span class="en">Enterprise</span></a>
-      <a href="/harness/" class="tb-func"><span class="zh">個人 AI 助理</span><span class="en">Harness Engineers</span></a>
-      <a href="/pricing/" class="tb-func"><span class="zh">方案與定價</span><span class="en">Pricing</span></a>
-      <a href="/guides/" class="tb-func"><span class="zh">使用指南</span><span class="en">Guides</span></a>
-      <a href="/tbos/en/" class="tb-func tb-lang" hreflang="en" lang="en" aria-label="Switch to English site"><span class="zh">🌐 中文</span><span class="en">English</span></a>
-    </nav>
-    <div class="tb-brand">
-      <div class="tb-brand-main">THINK <span class="hl">BIG!</span></div>
-      <div class="tb-brand-sub">Make it Real</div>
-      <div class="tb-brand-co">大想成業有限公司</div>
-    </div>
-  </header>
-
-  <div class="tb-hero-body">
-    <div class="tb-slogan">
-      <h1 class="tb-slogan-zh">現在就讓<br>AI 開始<br>為你工作</h1>
-      <div class="tb-slogan-en">Put AI to Work<br>for You — Today</div>
-    </div>
-    <!-- AI AGENT 按鈕（手機版 static 在此流程中；桌面版 fixed 浮動） -->
-    <div id="ai-agent-btn" onclick="toggleChat()">
-      <div class="pulse"></div>
-      <div class="pulse pulse-2"></div>
-      <div class="btn-dot"></div>
-      <div class="btn-text">AI AGENT</div>
-      <div class="btn-brand">Hermes</div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 選擇你的方案（Money Page CTA） ===== -->
-<section id="tb-plans" style="padding:56px 20px;background:#111;color:#fff;font-family:'Noto Sans TC',sans-serif;">
-  <h2 style="text-align:center;font-size:26px;margin-bottom:8px;">選擇你的方案</h2>
-  <p style="text-align:center;color:#aaa;font-size:14px;margin-bottom:36px;">從 NT$999 入門代裝，到一整年專屬工程師顧到底</p>
-
-  <div style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;max-width:1100px;margin:0 auto;">
-
-    <!-- 卡片 1：入門代裝 -->
-    <div style="flex:1 1 280px;max-width:340px;background:#1c1c1c;border-radius:12px;padding:24px;">
-      <div style="font-size:13px;color:#e8422a;font-weight:bold;">最低門檻 · 今天就能用</div>
-      <h3 style="margin:8px 0;font-size:20px;">AI 助理代裝服務</h3>
-      <p style="color:#ccc;font-size:14px;line-height:1.7;">工程師遠端幫你在自己電腦裝好 OpenClaw 或 Hermes，常駐 LINE／Telegram，24 小時待命。NT$999 一次付清，無月費；技術問題無法完成安裝，全額退費。</p>
-      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-        <a href="/openclaw-starter/" style="color:#fff;background:#e8422a;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">OpenClaw 入門 →</a>
-        <a href="/hermes-starter/" style="color:#fff;background:#333;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">Hermes 入門 →</a>
-      </div>
-    </div>
-
-    <!-- 卡片 2：年約專屬工程師 -->
-    <div style="flex:1 1 280px;max-width:340px;background:#1c1c1c;border-radius:12px;padding:24px;">
-      <div style="font-size:13px;color:#e8422a;font-weight:bold;">年約方案 · 365 天有人顧</div>
-      <h3 style="margin:8px 0;font-size:20px;">專屬工程師年約</h3>
-      <p style="color:#ccc;font-size:14px;line-height:1.7;">一整年由專屬工程師持續維運、優化、排除問題，不用自己摸索。尊榮年約 NT$32,000／年，或雙 Agent 全系統的年度旗艦 NT$38,000／年。</p>
-      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;">
-        <a href="/annual-pro/" style="color:#fff;background:#e8422a;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">尊榮年約 →</a>
-        <a href="/annual-flagship/" style="color:#fff;background:#333;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">年度旗艦 →</a>
-      </div>
-    </div>
-
-    <!-- 卡片 3：超級個體 -->
-    <div style="flex:1 1 280px;max-width:340px;background:#1c1c1c;border-radius:12px;padding:24px;">
-      <div style="font-size:13px;color:#e8422a;font-weight:bold;">最高規格 · 一人當七個部門用</div>
-      <h3 style="margin:8px 0;font-size:20px;">超級個體 SUPERSOLO</h3>
-      <p style="color:#ccc;font-size:14px;line-height:1.7;">為個人工作者打造的完整 AI 部門編制，一個人也能有行銷、客服、營運等多重分工。NT$60,000，適合想全面交給 AI 處理的個人事業。</p>
-      <div style="margin-top:14px;">
-        <a href="/solo-pro/" style="color:#fff;background:#e8422a;padding:8px 14px;border-radius:6px;text-decoration:none;font-size:14px;">了解 SUPERSOLO →</a>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- 延伸閱讀：導向 guides，兼顧 SEO 內容縱深與信任建立 -->
-  <div style="text-align:center;margin-top:36px;font-size:14px;color:#aaa;">
-    還在猶豫怎麼選？先讀讀看：
-    <a href="/guides/" style="color:#e8422a;">使用指南</a> ·
-    <a href="/guides/openclaw-daizhuang/" style="color:#e8422a;">OpenClaw 代裝拆解</a> ·
-    <a href="/guides/yuanduan-daizhuang/" style="color:#e8422a;">遠端代裝顧問怎麼挑</a>
-  </div>
-</section>
-
-<div id="ai-chat">
-  <div class="chat-header">
-    <div class="agent-info">
-      <div class="agent-avatar">🦞</div>
-      <div>
-        <div class="agent-name">Hermes Agent</div>
-        <div class="agent-tagline">Think BIG! AI Assistant</div>
-        <div class="status">Online · Real AI · Powered by Claude</div>
-      </div>
-    </div>
-    <div class="header-right">
-      <div class="powered-by">Powered by <b>Cloudflare AI</b></div>
-      <button class="close-btn" onclick="toggleChat()" title="關閉 (ESC)">✕</button>
-    </div>
-  </div>
-  <div class="chat-body" id="chat-body">
-    <div class="hero-welcome" id="hero-welcome">
-      <div class="hero-icon">🦞</div>
-      <h2 id="hero-title">您好！我是 Hermes</h2>
-      <p id="hero-desc">Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code AI Agent<br><br>
-        <strong style="color:#fff">我們目前提供兩大服務：</strong><br>
-        <span style="color:rgba(232,66,42,0.9)">①</span> <strong>企業 AI 導入</strong> — RAG / Agent / 流程自動化<br>
-        <span style="color:rgba(232,66,42,0.9)">②</span> <strong>Harness Engineers</strong> — 個人 AI Agent 搭建<br><br>
-        隨時問我任何問題，或點下方快速選項      </p>
-    </div>
-  </div>
-  <div class="chat-input-wrap">
-    <div class="quick-bar" id="quick-bar">
-      <button class="qchip" onclick="askQuick('我想導入 AI 自動化')"><span class="qt">我想導入 AI 自動化</span><span class="qs2">企業方案推薦</span></button>
-      <button class="qchip" onclick="askQuick('關於 Think BIG')"><span class="qt">關於 Think BIG</span><span class="qs2">公司介紹 · 兩大服務</span></button>
-    </div>
-    <div class="chat-input">
-      <input type="text" id="chat-msg" placeholder="問我任何問題，例如：如何導入 AI 自動化？" onkeydown="if(event.key==='Enter')sendMsg()" autocomplete="off">
-      <button class="send-btn" id="send-btn" onclick="sendMsg()" title="送出 (Enter)">
-        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-      </button>
-    </div>
-    <div class="chat-footer">
-      由 Cloudflare AI 即時驅動 · 若需專人服務請洽 <a href="https://lin.ee/n5KW430" target="_blank">LINE 客服</a>
-    </div>
-  </div>
-</div>
-
-<script>
-// ═══ AI CHAT - Real Cloudflare Worker Integration ═══
-const AI_ENDPOINT = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-chat';
-const LINE_CS = 'https://lin.ee/n5KW430';
-let chatHistory = []; // {role, content}
-let isLoading = false;
-let userLang = 'zh-TW'; // Default
-
-// ═══ IP-based Language Detection ═══
-// Translations for hero section
-const HERO_I18N = {
-  'zh-TW': {
-    title: '您好！我是 Hermes',
-    intro: 'Think BIG! 的 AI 助理 · Powered by 我們自家的 OpenClaw + Claude Code AI Agent',
-    servicesLabel: '我們目前提供兩大服務：',
-    s1: '企業 AI 導入 — RAG / Agent / 流程自動化',
-    s2: 'Harness Engineers — 個人 AI Agent 搭建',
-    s3: '',
-    askPrompt: '隨時問我任何問題，或點下方快速選項',
-    placeholder: '問我任何問題，例如：如何導入 AI 自動化？',
-    qs1: '我想導入 AI 自動化', qs1s: '企業方案推薦',
-    qs2: '關於 Think BIG', qs2s: '公司介紹 · 兩大服務',
-    qs3: '',  qs3s: '',
-    qs1q: '我是中小企業老闆，想導入 AI Agent，請問適合什麼方案？',
-    qs2q: '關於 Think BIG',
-    qs3q: '',
-    footer: '由 AI 即時驅動 · 若需專人服務請洽',
-  },
-  'en': {
-    title: 'Hello! I\'m Hermes',
-    intro: 'Think BIG!\'s AI Assistant · Powered by our OpenClaw + Claude Code engine',
-    servicesLabel: 'We offer two core services:',
-    s1: 'Enterprise AI — RAG / Agent / Automation',
-    s2: 'Harness Engineers — Personal AI Agent builder',
-    s3: '',
-    askPrompt: 'Ask me anything, or pick a quick option below',
-    placeholder: 'Ask me anything, e.g.: How to adopt AI automation?',
-    qs1: 'I want AI automation', qs1s: 'Enterprise solutions',
-    qs2: 'About Think BIG', qs2s: 'Company intro · two services',
-    qs3: '', qs3s: '',
-    qs1q: 'I run a SMB and want to adopt AI Agent. Which plan suits me?',
-    qs2q: 'About Think BIG',
-    qs3q: '',
-    footer: 'Powered by AI · For human support contact',
-  },
-  'ja': {
-    title: 'こんにちは！Hermes です',
-    intro: 'Think BIG! の AI アシスタント · OpenClaw + Claude Code エンジン搭載',
-    servicesLabel: '2 つのコアサービスを提供しています：',
-    s1: '企業向け AI 導入 — RAG / Agent / 自動化',
-    s2: 'Harness Engineers — 個人向け AI エージェント構築',
-    s3: '',
-    askPrompt: 'お気軽にご質問ください、または下のオプションをタップ',
-    placeholder: 'ご質問をどうぞ。例：AI 自動化の導入方法は？',
-    qs1: 'AI 自動化を導入したい', qs1s: '企業向けプラン',
-    qs2: 'Think BIG について', qs2s: '会社紹介',
-    qs3: '', qs3s: '',
-    qs1q: '中小企業の経営者です。AI Agent 導入にどのプランが最適ですか？',
-    qs2q: 'Think BIG について教えてください。',
-    qs3q: '',
-    footer: 'AI 駆動 · サポートは',
-  }
-};
-
-// Detect user language from IP / browser
-async function detectLanguage(){
-  try {
-    // First check browser language
-    const browserLang = (navigator.language || 'zh-TW').toLowerCase();
-    if(browserLang.startsWith('ja')) return 'ja';
-    if(browserLang.startsWith('zh')) return 'zh-TW';
-    
-    // Then try IP-based detection (Cloudflare provides cf-ipcountry header but we need another way)
-    // Use a free geo IP service with timeout
-    const controller = new AbortController();
-    setTimeout(() => controller.abort(), 2000);
-    
-    const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
-    if(res.ok){
-      const data = await res.json();
-      const country = (data.country_code || '').toUpperCase();
-      if(country === 'TW' || country === 'HK' || country === 'CN' || country === 'MO' || country === 'SG') return 'zh-TW';
-      if(country === 'JP') return 'ja';
-      return 'en';
-    }
-  } catch(e){
-    // Fall back to browser default
-    const lang = (navigator.language || 'zh-TW').toLowerCase();
-    if(lang.startsWith('ja')) return 'ja';
-    if(lang.startsWith('zh')) return 'zh-TW';
-    return 'en';
-  }
-  return 'zh-TW';
-}
-
-// Apply language to UI
-function applyLanguage(lang){
-  userLang = lang;
-  const t = HERO_I18N[lang] || HERO_I18N['zh-TW'];
-  
-  const hero = document.getElementById('hero-welcome');
-  if(hero){
-    document.getElementById('hero-title').textContent = t.title;
-    document.getElementById('hero-desc').innerHTML = `${t.intro}<br><br>
-      <strong style="color:#fff">${t.servicesLabel}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">①</span> <strong>${t.s1}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">②</span> <strong>${t.s2}</strong><br>
-      <span style="color:rgba(232,66,42,0.9)">③</span> <strong>${t.s3}</strong><br><br>
-      ${t.askPrompt}`;
-  }
-  
-  // Update quick suggestions
-  const qsItems = document.querySelectorAll('#hero-welcome .qs');
-  const qsKeys = ['qs1', 'qs2', 'qs3'];
-  const qsQs = ['qs1q', 'qs2q', 'qs3q'];
-  qsItems.forEach((item, i) => {
-    const textEl = item.querySelector('.qs-text');
-    const smallEl = textEl.querySelector('small');
-    const smallText = t[qsKeys[i] + 's'];
-    textEl.innerHTML = `${t[qsKeys[i]]}<small>${smallText}</small>`;
-    item.setAttribute('onclick', `askQuick('${t[qsQs[i]].replace(/'/g, "\\'")}')`);
-  });
-  
-  // Update input placeholder
-  const input = document.getElementById('chat-msg');
-  if(input) input.placeholder = t.placeholder;
-  
-  // Update footer
-  const footer = document.querySelector('#ai-chat .chat-footer');
-  if(footer) footer.innerHTML = `${t.footer} <a href="${LINE_CS}" target="_blank">LINE</a>`;
-  
-  // Set HTML lang attribute
-  document.documentElement.lang = lang === 'zh-TW' ? 'zh-Hant' : lang;
-}
-
-// Run language detection on page load
-detectLanguage().then(applyLanguage);
-
-
-function toggleChat(){
-  const chat = document.getElementById('ai-chat');
-  chat.classList.toggle('open');
-  if(chat.classList.contains('open')){
-    setTimeout(() => document.getElementById('chat-msg').focus(), 300);
-  }
-}
-
-// ESC to close
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape' && document.getElementById('ai-chat').classList.contains('open')){
-    toggleChat();
-  }
-});
-
-function escapeHtml(s){
-  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-
-// Convert URLs and markdown-style links to HTML links
-function linkify(text){
-  let html = escapeHtml(text);
-  // URL 偵測：遇到中文字、全形/半形標點、逗號即停止；支援無 scheme 的 lin.ee / www.
-  const urlRegex = /(https?:\/\/[^\s一-鿿，。、；：！？「」『』（）(),]+|(?:www\.|lin\.ee\/)[^\s一-鿿，。、；：！？「」『』（）(),]+)/g;
-  html = html.replace(urlRegex, (url) => {
-    const clean = url.startsWith('http') ? url : 'https://' + url;
-    return '<a href="' + clean + '" target="_blank" rel="noopener" style="color:#e8422a;text-decoration:underline;word-break:break-all">' + url + '</a>';
-  });
-  // **bold**
-  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  return html;
-}
-
-function appendMsg(role, content, isLoading = false){
-  const body = document.getElementById('chat-body');
-  // Remove hero on first message
-  const hero = document.getElementById('hero-welcome');
-  if(hero) hero.remove();
-  
-  const row = document.createElement('div');
-  row.className = `msg-row ${role}`;
-  
-  const avatar = document.createElement('div');
-  avatar.className = 'msg-avatar';
-  avatar.textContent = role === 'bot' ? '🦞' : 'You';
-  
-  const msg = document.createElement('div');
-  msg.className = `msg ${role}`;
-  
-  if(isLoading){
-    msg.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
-    msg.id = 'loading-msg';
-  } else {
-    msg.innerHTML = linkify(content);
-  }
-  
-  row.appendChild(avatar);
-  row.appendChild(msg);
-  body.appendChild(row);
-  body.scrollTop = body.scrollHeight;
-  return msg;
-}
-
-// ─── 罐頭回覆（任務 8 / 9：逐字內容，點按鈕即時顯示，不經 AI 確保一字不差）───
-const ABOUT_THINKBIG = `您好,謝謝您對 Think BIG 有興趣!
-
-Think BIG 是台灣 AI 自動化顧問公司,專注幫助中小企業與個人創業者把 AI 真正落地到日常工作中。
-
-我們相信 AI 不應該只是聊天工具,而是要能真的幫您工作、回客人、跑流程。所以我們提供「會做事的 AI」,不是「會講話的 AI」。
-
-【核心優勢】
-- 自家 AI Agent OpenClaw + Claude Code,不是套別人的殼
-- 從個人戶到中大型企業都有對應方案
-- 全程繁體中文支援,台灣團隊在地服務
-- 透明定價、明確交付、七天免費維護
-
-【兩大服務】
-① 企業 AI 導入 — RAG / Agent / 流程自動化
-② Harness Engineers — 個人 AI 搭建
-
-想了解更多,可以隨時問我任何問題,或點上方快速選項`;
-
-const ADOPT_AI = `您好!很高興您想導入 AI Agent。在推薦方案前,我先讓您快速認識一下我們的 AI Agent:
-
-━━━━━━━━━━━━━━━━━━━━
-
-🦞 OpenClaw — 會做事的 AI Agent 框架
-
-OpenClaw(又稱「龍蝦 AI」)是一款開源的 AI Agent 框架,能讓 AI 直接操作電腦、瀏覽器與應用程式來完成任務,而不只是對話。
-
-【它跟 ChatGPT 有什麼不同】
-ChatGPT 是「會說的 AI」,OpenClaw 是「會做的 AI」。ChatGPT 給你 PPT 大綱,OpenClaw 直接打開軟體做出 PPT、寄給客戶。
-
-【七大核心特色】
-① 多通路整合:賴 OA / tele 紙飛機 / WhatsApp / Slack / Discord
-② 長期記憶:保留使用者互動歷史,個人化服務
-③ 主動執行:透過排程與 webhook,自動發起任務
-④ 高權限操作:可直接存取系統與檔案
-⑤ 簡單設置:支援快速連接帳號與服務
-⑥ 可擴展技能(Skills):任務封裝後重複使用
-⑦ 語音互動:支援語音喚醒與通話模式
-
-【生態系規模】
-ClawHub 已有超過 4 萬個社群貢獻的 Skills
-
-━━━━━━━━━━━━━━━━━━━━
-
-⚡ Hermes — 越用越聰明的自學習 AI
-
-Hermes Agent(愛馬仕 Agent)由 Nous Research 開發,採 MIT 授權。
-
-【核心概念:程序性記憶】
-每次完成任務後,系統自動將成功的推理模式萃取為「技能」,下次直接調用並持續優化。
-
-傳統 AI 助理像是每天換一個新實習生,Hermes 則像一位跟著您越做越熟練的長期助理。
-
-【五階段學習迴圈】
-① 執行任務 ② 評估結果 ③ 萃取技能 ④ 優化技能 ⑤ 檢索技能
-
-【跨對話追蹤四件事】
-① 格式偏好 ② 決策紀錄 ③ 任務模式 ④ 回饋訊號
-
-用一句話理解:一般 AI 記住「您說過什麼」,Hermes 記住「怎麼做最有效」。
-
-━━━━━━━━━━━━━━━━━━━━
-
-🧠 ClawMem — 雙 Agent 的共享大腦
-
-ClawMem 是本地的記憶層,讓 Claude Code、OpenClaw、Hermes 共用同一個 SQLite 倉庫。一個 agent 學到的決定,另一個 agent 立即知道。
-
-【關鍵價值】
-完全在本地運行,沒有 API Key,沒有雲端依賴,隱私 100% 留在您電腦。
-
-【自動做的事】
-① 自動浮現相關上下文
-② Session 啟動時注入您的個人檔案、最近決策
-③ 用本地觀察模型擷取決策、偏好、里程碑
-④ Session 結束時生成交接,讓下次接續工作
-⑤ 透過回饋迴圈學習什麼重要
-⑥ 防護 prompt injection 攻擊
-⑦ 偵測矛盾:新決策若與舊決策矛盾,自動降權舊決策
-
-━━━━━━━━━━━━━━━━━━━━
-
-🦞+⚡+🧠 雙 Agent 完整方案
-
-把 OpenClaw + Hermes + ClawMem 三者合在一起,就是我們最強大的「雙 Agent 方案」:
-
-- OpenClaw 負責「廣連接」 — 對外接通訊軟體、跑日常任務
-- Hermes 負責「深學習」 — 累積您的工作風格與技能
-- ClawMem 是兩者共享的大腦 — 記憶 100% 同步
-
-成果:一個跨平台、自學習、共享記憶、且資料完全留在您電腦的 AI 員工。
-
-━━━━━━━━━━━━━━━━━━━━
-
-推薦方案前,我需要先了解一件事:
-
-您是個人使用,還是公司/企業使用?
-
-⚠️ 重要提醒:個人方案僅可對接最多兩個通訊軟體帳號。如需對接三人以上(例如多個業務、多個客服),就需要企業方案。
-
-請告訴我您的情境,我幫您推薦最合適的組合!`;
-
-const CANNED = {
-  '關於 Think BIG': ABOUT_THINKBIG,
-  '我想導入 AI 自動化': ADOPT_AI
-};
-
-function askQuick(question){
-  if (CANNED[question]){
-    appendMsg('user', question);
-    chatHistory.push({role:'user', content: question});
-    appendMsg('bot', CANNED[question]);
-    chatHistory.push({role:'assistant', content: CANNED[question]});
-    return;
-  }
-  document.getElementById('chat-msg').value = question;
-  sendMsg();
-}
-
-async function sendMsg(){
-  if(isLoading) return;
-  
-  const input = document.getElementById('chat-msg');
-  const sendBtn = document.getElementById('send-btn');
-  const text = input.value.trim();
-  if(!text) return;
-  
-  // Show user message
-  appendMsg('user', text);
-  input.value = '';
-  isLoading = true;
-  sendBtn.disabled = true;
-  
-  // Add to history
-  chatHistory.push({role: 'user', content: text});
-  
-  // Show typing indicator
-  const loadingMsg = appendMsg('bot', '', true);
-  
-  try {
-    const response = await fetch(AI_ENDPOINT, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({messages: chatHistory})
-    });
-    
-    if(!response.ok){
-      throw new Error(`HTTP ${response.status}`);
-    }
-    
-    const data = await response.json();
-    const reply = data.reply || '抱歉，我這邊發生了一些問題，請直接聯絡客服：' + LINE_CS;
-    
-    // Replace loading with real response
-    loadingMsg.innerHTML = linkify(reply);
-    loadingMsg.removeAttribute('id');
-    
-    // Add to history
-    chatHistory.push({role: 'assistant', content: reply});
-    
-    // Keep history under 20 messages
-    if(chatHistory.length > 18){
-      chatHistory = chatHistory.slice(-18);
-    }
-    
-  } catch(err){
-    console.error('AI error:', err);
-    loadingMsg.innerHTML = linkify(`抱歉，AI 助理暫時無法回應 😔\n\n請直接聯絡我們的客服中心：${LINE_CS}\n\n錯誤代碼：${err.message}`);
-    loadingMsg.removeAttribute('id');
-  } finally {
-    isLoading = false;
-    sendBtn.disabled = false;
-    document.getElementById('chat-body').scrollTop = document.getElementById('chat-body').scrollHeight;
-    input.focus();
-  }
-}
-</script>
-<footer id="tb-footer" style="background:#f0f0f0;text-align:center;padding:28px 16px;font-family:'Noto Sans TC',sans-serif;font-size:13px;color:#4a4a4a;line-height:2;">
-大想成業有限公司 Think BIG Co., Ltd.|統一編號 62136066<br>
-AI@thinkbigtw.com<br>
-<a href="/pricing/" style="color:#1a1a1a;">方案價格</a>|<a href="/guides/" style="color:#1a1a1a;">使用指南</a>|<a href="/enterprise/" style="color:#1a1a1a;">企業導入</a>|<a href="/harness/" style="color:#1a1a1a;">個人助理</a><br>
-<a href="/privacy.html" style="color:#1a1a1a;">隱私權政策</a>|<a href="/terms.html" style="color:#1a1a1a;">服務條款</a><br>
-&copy; 2026 Think BIG. All rights reserved.
-</footer>
-</body>
-</html>
+}</script><link href="/assets/homesplit/consulting.css" rel="stylesheet"/><link href="/assets/homesplit/apple.css" rel="stylesheet"/>
+</head><body class="homesplit editorial home">
+<!-- TB:NAV:START -->
+<nav aria-label="主要導覽" id="tb-nav"><a aria-label="Think BIG 首頁" class="tb-logo" href="/"><img alt="Think BIG" height="297" src="/assets/brand/thinkbig-dark.png" width="1509"/></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a class="tb-personal-link" href="/pricing/personal/">個人方案</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a class="tb-personal-link" href="/pricing/personal/">個人方案</a></div></details></nav>
+<!-- TB:NAV:END --><a class="skip-link" href="#main">跳到主要內容</a><main id="main"><section aria-labelledby="hero-title" class="home-section brand-hero" data-audience="enterprise" data-section="品牌第一屏"><div class="home-statement"><p class="eyebrow">ENTERPRISE AI AGENTS</p><h1 id="hero-title">讓 AI 成為<br/>可持續的營運能力。</h1><p class="intro">地端部署、流程整合、持續治理。</p><p class="hero-note">地端部署 · 資料主權 · 持續治理</p><div class="hero-links"><a class="text-link" href="/enterprise/">了解企業導入 <span aria-hidden="true">›</span></a><a class="text-link" href="/enterprise/#consult">預約諮詢 <span aria-hidden="true">›</span></a></div></div><div class="brand-hero-media"><img alt="Think BIG 品牌公仔主視覺" class="hero-poster" fetchpriority="high" height="1080" src="/assets/neo_hero_wide_poster.jpg" width="1920"><video aria-hidden="true" autoplay="" id="brand-hero-video" loop="" muted="" playsinline="" poster="/assets/neo_hero_wide_poster.jpg" preload="none" tabindex="-1"><source data-src="/assets/neo_hero_wide.mp4" type="video/mp4"/></video><button aria-controls="brand-hero-video" class="motion-toggle" hidden="" id="hero-motion-toggle" type="button">暫停主視覺</button></img></div></section><section class="home-section section readiness-section" data-audience="enterprise" data-section="導入成熟度評估"><div class="section-head"><div><p class="eyebrow">TB READINESS</p><h2>掌握導入條件。<br/>確立下一步。</h2></div><p class="intro">以地端部署、流程整合與持續治理，建立可控、可驗收的 AI Agent 團隊。從導入評估到年度維運，明確界定資料、權限與交付責任。</p></div><div class="diagnosis" id="readiness"><div class="quiz-heading"><p class="eyebrow">TB READINESS</p><p aria-live="polite" id="quiz-progress">六項導入條件自評</p></div><h2 class="readiness-title">AI Agent 導入成熟度評估</h2><p class="quiz-disclaimer">作答只在此頁計算，不傳送、不儲存，不需要留下個資。</p><div id="quiz-questions"><fieldset data-question="0"><legend><span class="question-number">01</span>優先評估的業務職能為何？</legend><div class="quiz-options"><label><input name="q0" type="radio" value="service"/><span>客服｜重複回答與查資料</span></label><label><input name="q0" type="radio" value="sales"/><span>業務｜詢問整理與聯繫追蹤</span></label><label><input name="q0" type="radio" value="marketing"/><span>行銷｜內容草稿與發布準備</span></label><label><input name="q0" type="radio" value="finance"/><span>財務｜資料彙整與待核對項目</span></label><label><input name="q0" type="radio" value="operations"/><span>維運｜例行檢查與異常追蹤</span></label></div></fieldset><fieldset data-question="1"><legend><span class="question-number">02</span>目標流程的標準化程度為何？</legend><div class="quiz-options"><label><input name="q1" type="radio" value="clear"/><span>已有標準化作業步驟</span></label><label><input name="q1" type="radio" value="partial"/><span>流程大致一致，尚待文件化</span></label><label><input name="q1" type="radio" value="unclear"/><span>流程差異較大，尚待定義</span></label></div></fieldset><fieldset data-question="2"><legend><span class="question-number">03</span>資料整備與授權狀況為何？</legend><div class="quiz-options"><label><input name="q2" type="radio" value="ready"/><span>已有可授權使用的文件或資料</span></label><label><input name="q2" type="radio" value="scattered"/><span>資料分散，需要整理</span></label><label><input name="q2" type="radio" value="unknown"/><span>可用資料與授權尚待確認</span></label></div></fieldset><fieldset data-question="3"><legend><span class="question-number">04</span>是否已建立驗收責任歸屬？</legend><div class="quiz-options"><label><input name="q3" type="radio" value="owner"/><span>已有指定負責人</span></label><label><input name="q3" type="radio" value="team"/><span>有使用部門，尚未定驗收人</span></label><label><input name="q3" type="radio" value="none"/><span>尚未指定驗收負責人</span></label></div></fieldset><fieldset data-question="4"><legend><span class="question-number">05</span>資料處理的政策限制為何？</legend><div class="quiz-options"><label><input name="q4" type="radio" value="local"/><span>限定公司設備，不能傳到外部</span></label><label><input name="q4" type="radio" value="approved"/><span>可以評估經核准的外部服務</span></label><label><input name="q4" type="radio" value="undecided"/><span>資料處理政策尚待確認</span></label></div></fieldset><fieldset data-question="5"><legend><span class="question-number">06</span>是否已定義成果與操作邊界？</legend><div class="quiz-options"><label><input name="q5" type="radio" value="defined"/><span>已定義預期產物與禁止操作</span></label><label><input name="q5" type="radio" value="rough"/><span>已有目標，驗收標準尚待確認</span></label><label><input name="q5" type="radio" value="explore"/><span>尚在評估應用情境</span></label></div></fieldset></div><div class="quiz-controls" hidden="" id="quiz-controls"><button class="quiet-button" id="quiz-back" type="button">上一題</button><button class="button" id="quiz-next" type="button">下一題 <span aria-hidden="true">→</span></button></div><p class="status-message" id="quiz-error" role="status"></p><noscript><p class="note">開啟 JavaScript 可逐題作答並取得建議；也可以帶著這六個問題，直接與我們討論。</p></noscript><section aria-labelledby="result-title" hidden="" id="quiz-result"><p class="eyebrow">ASSESSMENT / 導入建議</p><h3 id="result-title" tabindex="-1"></h3><p id="result-department"></p><p id="result-stage"></p><ul id="result-actions"><li data-result-action="flow">完成流程步驟與例外情境盤點。</li><li data-result-action="data">建立可用資料、來源與授權責任清單。</li><li data-result-action="owner">指定驗收負責人與變更核准人。</li><li data-result-action="boundary">定義資料處理位置與外部傳送限制。</li><li data-result-action="acceptance">訂定產物規格、禁止操作與驗收情境。</li><li data-result-action="sample">準備可授權的工作範例，以正常及例外情境確認試行範圍。</li><li data-result-action="local">以全地端為評估前提，核對設備與流程是否能符合資料不外傳的要求。</li><li data-result-action="approved">逐項確認外部服務的傳送欄位與用途，核准後才納入流程。</li></ul><p class="note">本結果為條件式初步自評，不代表效益預測、認證或正式顧問評估。</p><a class="button" href="/enterprise/#consult">就此職能啟動諮詢 ›</a><button class="quiet-button" id="quiz-reset" type="button">重新作答</button></section><details class="diagnosis-method"><summary>評估方法與適用範圍</summary><p>依優先職能與五項導入條件提供初步建議。此自評不使用評分、產業排名或效益推估，亦不構成成熟度認證。</p><div data-result-stage="discovery"><h4>建議階段：需求盤點與治理定義</h4><p>流程、資料、驗收責任或處理政策尚待確認，建議先完成導入前提盤點。</p></div><div data-result-stage="prepare"><h4>建議階段：資料整備與驗收規劃</h4><p>已有應用方向，建議補齊資料文件、責任配置及驗收條件，再確認試行範圍。</p></div><div data-result-stage="pilot"><h4>建議階段：試行範圍與架構評估</h4><p>依作答條件，流程、資料及驗收責任已有基礎；正式導入仍須核對實際設備、權限與需求。</p></div><p>診斷作答不傳送；網站仍保留既有瀏覽統計。結果不會自動帶入諮詢。</p></details></div></section><section class="home-section section wrap" data-audience="enterprise" data-section="痛點清單"><div class="section-head"><div><p class="eyebrow">OPERATIONAL PRIORITIES</p><h2>辨識流程瓶頸，<br/>確立導入優先序。</h2></div><div class="pain-checks"><label><input type="checkbox"/>重複性查詢占用團隊處理量能。</label><label><input type="checkbox"/>資料分散，彙整與交接依賴人工。</label><label><input type="checkbox"/>AI 工具尚未整合至核心工作流程。</label><label><input type="checkbox"/>導入缺乏權限控管與持續維護機制。</label></div></div><p class="note">勾選只供自己整理想法，不會傳送或儲存。</p></section>
+<section class="home-section section wrap" data-audience="enterprise" data-section="AI部門" id="departments"><div class="section-head"><div><p class="eyebrow">FUNCTIONAL AI AGENTS</p><h2>以職能為單位，<br/>建立 AI 協作體系。</h2></div><p class="intro">依部門職能配置 AI Agent 組合，定義輸入資料、工作產物與覆核責任。透過人機協作（Human-in-the-loop），保留關鍵決策與對外行動的核准權。</p></div><div class="department-index"><a href="/enterprise/departments/#service"><span>01</span><h3>客服</h3><p>知識查找、回覆草稿</p><b>↗</b></a><a href="/enterprise/departments/#sales"><span>02</span><h3>業務</h3><p>詢問摘要、聯繫待辦</p><b>↗</b></a><a href="/enterprise/departments/#marketing"><span>03</span><h3>行銷</h3><p>內容草稿、發布檢查</p><b>↗</b></a><a href="/enterprise/departments/#finance"><span>04</span><h3>財務</h3><p>資料彙整、待核對清單</p><b>↗</b></a><a href="/enterprise/departments/#operations"><span>05</span><h3>維運與資安</h3><p>巡檢紀錄、異常追蹤</p><b>↗</b></a></div></section>
+<section class="home-section section dark-section" data-audience="enterprise" data-section="自家運作證據" id="proof"><div class="wrap evidence-grid"><div><p class="eyebrow">GOVERNANCE IN PRACTICE</p><h2>以可稽核的紀錄，<br/>建立營運信任。</h2><p class="intro">Think BIG 自家 AI 團隊涵蓋行銷、客服、業務與維運。透過變更登記、每日巡檢與守衛查核，將工作產物、執行責任及驗證紀錄納入同一套管理方式。</p><a class="text-link" href="/trust/">檢視 AI 治理承諾 ›</a></div><ol class="evidence-list"><li><b>交付</b><p>交付物可核對：記錄產物、資料依據與覆核責任。</p></li><li><b>登記</b><p>變更可追溯：登記範圍、影響、授權與復原方式。</p></li><li><b>查核</b><p>驗收有依據：依測試結果與異常紀錄確認完成條件。</p></li></ol></div></section>
+<section class="home-section section wrap" data-audience="enterprise" data-section="交付流程" id="process"><div class="section-head"><div><p class="eyebrow">TB FRAME / DELIVERY METHODOLOGY</p><h2>從評估到維運，<br/>以交付物推進導入。</h2></div><a class="text-link" href="/enterprise/process/">檢視 TB FRAME 導入方法論 ›</a></div><p class="method-intro"><strong>TB FRAME｜AI Agent 導入方法論</strong><span>Assess → Build → Validate → Operate</span></p><ol aria-label="TB FRAME 四階段導入方法論" class="method-map"><li><div class="method-marker"><span>01</span><span aria-hidden="true" class="method-rule"></span></div><p class="method-en">ASSESS</p><h3>評估定義</h3><p class="method-deliverable"><span>交付物</span>流程盤點、資料清單、優先序與驗收基準。</p></li><li><div class="method-marker"><span>02</span><span aria-hidden="true" class="method-rule"></span></div><p class="method-en">BUILD</p><h3>架構建置</h3><p class="method-deliverable"><span>交付物</span>部署配置、角色權限與可操作的 AI Agent 流程。</p></li><li><div class="method-marker"><span>03</span><span aria-hidden="true" class="method-rule"></span></div><p class="method-en">VALIDATE</p><h3>驗證交付</h3><p class="method-deliverable"><span>交付物</span>情境測試、例外處理紀錄與操作交接文件。</p></li><li><div class="method-marker"><span>04</span><span aria-hidden="true" class="method-rule"></span></div><p class="method-en">OPERATE</p><h3>治理維運</h3><p class="method-deliverable"><span>交付物</span>一年陪跑、維護紀錄、變更驗證與改善待辦。</p></li></ol></section>
+<section class="home-section section wrap" data-audience="enterprise" data-section="FAQ與諮詢"><div class="section-head"><div><p class="eyebrow">ENTERPRISE ADVISORY</p><h2>釐清採購條件，<br/>建立決策依據。</h2></div><div><p>準備選導入團隊？先看<a href="/guides/choose-ai-partner/">選商指南</a>。</p><button class="quiet-button" data-ai-question="privacy" id="assistant" type="button">問站內 AI：資料怎麼處理？ ↗</button></div></div><div class="faq"><details><summary>導入前需要具備哪些條件？</summary><p>不要求企業預先具備 AI 開發能力。評估以工作流程、可授權資料、驗收責任人與預期產物為基礎，再確認 AI Agent 的適用範圍與必要準備。</p></details><details><summary>地端部署如何界定資料處理範圍？</summary><p>採全地端配置時，模型與指定資料在公司設備內處理。若流程需要外部模型或服務，會先確認傳送欄位、用途與授權；地端部署不等於所有串接都不出網。</p></details><details><summary>導入後如何維持營運與治理？</summary><p>TB CONTINUITY 年度治理與維運涵蓋一年陪跑，依約定範圍執行問題追蹤、維護檢查與變更驗證。設備、模型用量、第三方服務及新增需求分項界定。</p></details></div><a class="text-link" href="/enterprise/#consult">啟動企業導入諮詢 ›</a></section>
+<section class="home-section section personal-entry" data-audience="personal" data-section="個人方案唯一入口"><div class="wrap"><div class="section-head"><div><p class="eyebrow">PERSONAL AI / 個人方案</p><h2>為個人工作，<br/>配置合適的 AI 助理。</h2></div><div><p class="intro">個人方案適用於一人工作者、接案者及個人 AI 助理使用需求。專區整合入門安裝、AI Agent 工作組合、技能擴充與年約維護，依設備條件、流程需求及支援範圍提供選擇。</p><a class="button outline" href="/pricing/personal/">找到適合你的個人方案 <span aria-hidden="true">›</span></a></div></div><div class="personal-paths"><div><h3>入門配置與安裝</h3><p>OpenClaw 與 Hermes 入門方案，提供既有設備上的安裝與配置協助。依設備、帳號及使用條件確認服務範圍，適合希望建立個人 AI 助理基礎、循序熟悉應用方式的使用者。</p></div><div><h3>個人工作流程整合</h3><p>雙 Agent、全能方案與技能包，支援資料整理、內容準備及工作提醒等個人流程需求。專區完整列示既有方案的服務項目與價格，可依工作複雜度及所需支援範圍比較選擇。</p></div><div><h3>年度維護與支援</h3><p>年度方案與超級個體服務，延續安裝後的維護與使用支援。各方案原有服務承諾、續約條件及適用範圍均保留於個別頁面，協助使用者評估持續使用、維護與後續擴充的需求。</p></div></div><p class="note">個人專區另提供工具比較、安全指南、禮物與相關服務資訊。若需求涉及企業共用資料、跨部門協作、角色權限或正式系統整合，應依企業導入條件評估；個人與企業服務的責任範圍分別確認。</p></div></section></main><script defer="" src="/assets/homesplit/editorial.js"></script><script defer="" src="/nav.js"></script><script defer="" src="/ask-ai.js"></script><script defer="" src="/assets/homesplit/readiness.js"></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a aria-label="Think BIG 首頁" class="tb-f-logo" href="/"><img alt="Think BIG" height="297" src="/assets/brand/thinkbig-dark.png" width="1509"/></a><p>企業 AI Agent 導入與治理。<br/>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a class="tb-personal-link" href="/pricing/personal/">個人方案</a><a href="https://lin.ee/n5KW430" rel="noopener noreferrer" target="_blank">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+<script defer="" src="/assets/homesplit/hero-media.js"></script>
+</body></html>
