@@ -54,10 +54,17 @@
       "areaServed": {"@type": "Country", "name": "Taiwan"},
       "description": "個人方案 1 是官方原裝 AI 助理的遠端安裝服務，NT$999 單次付清，含 OpenClaw 或 Hermes 擇一、AnyDesk／DeskIn 遠端安裝、7 天技術諮詢。",
       "url": "https://thinkbigtw.com/pricing/personal/#tier1",
-      "offers": [
-        {"@type": "Offer", "name": "個人方案 1｜入門 · OpenClaw", "price": "999", "priceCurrency": "TWD", "availability": "https://schema.org/InStock", "url": "https://thinkbigtw.com/openclaw-starter/"},
-        {"@type": "Offer", "name": "個人方案 1｜入門 · Hermes", "price": "999", "priceCurrency": "TWD", "availability": "https://schema.org/InStock", "url": "https://thinkbigtw.com/hermes-starter/"}
-      ]
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "TWD",
+        "lowPrice": "999",
+        "highPrice": "999",
+        "offerCount": "2",
+        "offers": [
+          {"@type": "Offer", "name": "個人方案 1｜入門 · OpenClaw", "price": "999", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"}, "url": "https://thinkbigtw.com/openclaw-starter/"},
+          {"@type": "Offer", "name": "個人方案 1｜入門 · Hermes", "price": "999", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"}, "url": "https://thinkbigtw.com/hermes-starter/"}
+        ]
+      }
     },
     {
       "@type": "Service",
@@ -67,10 +74,17 @@
       "areaServed": {"@type": "Country", "name": "Taiwan"},
       "description": "個人方案 2 是讓 AI 工具組隊跑固定流程的部署服務，一個 AI Agent NT$6,000（60 組客製技能＋跨 Agent 協作會議室＋coding agent 串接）或兩個 AI Agent NT$15,000（OpenClaw＋Hermes MCP 互通），含 30 天陪跑。",
       "url": "https://thinkbigtw.com/pricing/personal/#tier2",
-      "offers": [
-        {"@type": "Offer", "name": "個人方案 2｜AI 部門 · 單 AI Agent", "price": "6000", "priceCurrency": "TWD", "availability": "https://schema.org/InStock", "url": "https://thinkbigtw.com/full-agent/"},
-        {"@type": "Offer", "name": "個人方案 2｜AI 部門 · 雙 AI Agent", "price": "15000", "priceCurrency": "TWD", "availability": "https://schema.org/InStock", "url": "https://thinkbigtw.com/dual-agent/"}
-      ]
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "TWD",
+        "lowPrice": "6000",
+        "highPrice": "15000",
+        "offerCount": "2",
+        "offers": [
+          {"@type": "Offer", "name": "個人方案 2｜AI 部門 · 單 AI Agent", "price": "6000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"}, "url": "https://thinkbigtw.com/full-agent/"},
+          {"@type": "Offer", "name": "個人方案 2｜AI 部門 · 雙 AI Agent", "price": "15000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"}, "url": "https://thinkbigtw.com/dual-agent/"}
+        ]
+      }
     },
     {
       "@type": "Service",
@@ -80,11 +94,18 @@
       "areaServed": {"@type": "Country", "name": "Taiwan"},
       "description": "個人方案 3 是有專屬工程師顧一整年的年約服務，一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000、SUPERSOLO 七部門 NT$60,000，含一年維運陪跑與 48 小時故障修復，次年續約 NT$30,000。",
       "url": "https://thinkbigtw.com/pricing/personal/#tier3",
-      "offers": [
-        {"@type": "Offer", "name": "個人方案 3｜年約 · 單 AI Agent（尊榮年約）", "price": "32000", "priceCurrency": "TWD", "availability": "https://schema.org/InStock", "url": "https://thinkbigtw.com/annual-pro/"},
-        {"@type": "Offer", "name": "個人方案 3｜年約 · 雙 AI Agent（年度旗艦）", "price": "38000", "priceCurrency": "TWD", "availability": "https://schema.org/InStock", "url": "https://thinkbigtw.com/annual-flagship/"},
-        {"@type": "Offer", "name": "個人方案 3｜年約 · SUPERSOLO 七部門", "price": "60000", "priceCurrency": "TWD", "availability": "https://schema.org/InStock", "url": "https://thinkbigtw.com/solo-pro/"}
-      ]
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "TWD",
+        "lowPrice": "32000",
+        "highPrice": "60000",
+        "offerCount": "3",
+        "offers": [
+          {"@type": "Offer", "name": "個人方案 3｜年約 · 單 AI Agent（尊榮年約）", "price": "32000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"}, "url": "https://thinkbigtw.com/annual-pro/"},
+          {"@type": "Offer", "name": "個人方案 3｜年約 · 雙 AI Agent（年度旗艦）", "price": "38000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"}, "url": "https://thinkbigtw.com/annual-flagship/"},
+          {"@type": "Offer", "name": "個人方案 3｜年約 · SUPERSOLO 七部門", "price": "60000", "priceCurrency": "TWD", "priceValidUntil": "2026-12-31", "availability": "https://schema.org/InStock", "seller": {"@type": "Organization", "name": "Think BIG!", "url": "https://thinkbigtw.com/"}, "url": "https://thinkbigtw.com/solo-pro/"}
+        ]
+      }
     }
   ]
 }
