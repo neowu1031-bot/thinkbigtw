@@ -88,6 +88,9 @@
 .roi-bar-val{font-size:13px;font-weight:800;color:var(--ink);text-align:center;white-space:nowrap}
 .roi-ratio{font-size:14px;color:var(--rose);font-weight:700;margin:10px 0 4px}
 .roi-note{font-size:11px;color:var(--muted);line-height:1.6;padding:10px 0 0;border-top:1px solid var(--line)}
+.roi-intro{font-size:14px;color:var(--muted);margin:0 0 16px;line-height:1.5}
+.roi-bar-note{font-size:10px;color:var(--muted);text-align:center;margin-top:4px;line-height:1.3}
+.roi-users-note{font-size:11px;color:var(--muted);font-weight:400;display:block;margin-top:2px}
 /* supplementary work-hours */
 .roi-supp{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
 .roi-supp summary{font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;list-style:none;display:flex;justify-content:space-between;user-select:none}
@@ -337,11 +340,12 @@
 <!-- ROI Calculator (shown after grade) -->
 <div class="roi-section" id="roi-section" aria-live="polite">
 <h3>算算看你能省多少</h3>
+<p class="roi-intro">把重複查詢交給 AI，減少同事查找資料的時間。</p>
 
-<!-- Main: 多請一位助理 vs AI Agent -->
+<!-- Main: 人力成本 vs AI Agent 年費比較 -->
 <div class="roi-inputs">
 <div class="roi-field">
-<label for="roi-salary">助理月薪（元）</label>
+<label for="roi-salary">試算參考月薪（元）</label>
 <input type="number" id="roi-salary" min="20000" max="200000" value="32000"/>
 </div>
 <div class="roi-field">
@@ -353,8 +357,9 @@
 <div class="roi-chart" id="roi-chart" aria-label="年度費用比較長條圖">
 <div class="roi-bar-col">
 <div class="roi-bar-wrap"><div class="roi-bar assistant" id="bar-assistant" style="height:100%"></div></div>
-<div class="roi-bar-label">多請一位助理<br/>（年成本）</div>
+<div class="roi-bar-label">人力成本參考<br/>（年估算）</div>
 <div class="roi-bar-val" id="val-assistant">—</div>
+<div class="roi-bar-note">工作範圍不同，僅供比較</div>
 </div>
 <div class="roi-bar-col">
 <div class="roi-bar-wrap"><div class="roi-bar ai-yr1" id="bar-ai-yr1" style="height:10%"></div></div>
@@ -373,11 +378,11 @@
 
 <!-- Supplementary: work-hours calculator -->
 <details class="roi-supp">
-<summary>工時試算（補充說明）</summary>
+<summary>工時省下的人力成本試算（補充說明）</summary>
 <div class="roi-supp-inner">
 <div class="roi-inputs">
 <div class="roi-field">
-<label for="roi-users">使用人數</label>
+<label for="roi-users">情境人數<small class="roi-users-note">（僅為情境舉例，使用人數與裝置數不限）</small></label>
 <input type="number" id="roi-users" min="1" max="500" value="10"/>
 </div>
 <div class="roi-field">
@@ -392,13 +397,11 @@
 <div class="roi-result">
 <div class="roi-result-item"><div class="roi-val" id="roi-hours">0</div><div class="roi-lbl">每年省下工時（小時）</div></div>
 <div class="roi-result-item"><div class="roi-val" id="roi-savings">0</div><div class="roi-lbl">保守省下金額（元／年）</div></div>
-<div class="roi-result-item"><div class="roi-val" id="roi-months">—</div><div class="roi-lbl">回本月數（估）</div></div>
 </div>
 <p class="roi-formula">
 公式：工時 ＝ 人數（<span id="roi-f-users">10</span>）× 分鐘（<span id="roi-f-mins">20</span>）÷ 60 × 250 天 ＝ <span id="roi-f-hours">0</span> 小時。
 保守省下 ＝ 工時 × 時薪（<span id="roi-f-wage">270</span>）× 50% ＝ <span id="roi-f-savings">0</span> 元。
-回本月數 ＝ 導入費（<span id="roi-f-price">33,000</span>）÷ 保守省下金額 × 12。
-試算，依你輸入的數字，不保證。不得視為保證回本。
+僅供試算，實際依使用情況而異。AI 仍可能答錯，重要內容由人確認。
 </p>
 </div>
 </details>
@@ -674,10 +677,8 @@ function computeWorkHours(){
   const wage  = Math.max(1, parseInt(document.getElementById('roi-wage').value) || 270);
   const hours = Math.round(users * mins / 60 * 250);
   const savings = Math.round(hours * wage * 0.5);
-  const months = savings > 0 ? (roiTierPrice / savings * 12).toFixed(1) : '—';
   document.getElementById('roi-hours').textContent = fmt(hours);
   document.getElementById('roi-savings').textContent = fmt(savings);
-  document.getElementById('roi-months').textContent = months;
   document.getElementById('roi-f-users').textContent = users;
   document.getElementById('roi-f-mins').textContent = mins;
   document.getElementById('roi-f-hours').textContent = fmt(hours);
