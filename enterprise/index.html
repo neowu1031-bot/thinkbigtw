@@ -73,7 +73,7 @@
       "publisher": {
         "@id": "https://thinkbigtw.com/#organization"
       },
-      "dateModified": "2026-09-27",
+      "dateModified": "2026-09-28",
       "breadcrumb": {
         "@id": "https://thinkbigtw.com/enterprise/#breadcrumb"
       }
@@ -206,45 +206,76 @@
 
 
 <link rel="stylesheet" href="/assets/generated/site-d1d2ff47cc97.css">
+<style>
+/* 企業三級定價 2026-09-28 */
+.pricing-headline em{font-style:normal;color:var(--rose)}
+.price-pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 10px}
+.price-pill{background:#fff;border:1px solid var(--line);border-radius:20px;padding:6px 16px;font-size:14px;font-weight:700;color:var(--ink);white-space:nowrap}
+.price-pill span{color:var(--muted);font-weight:400}
+.hero-tagline{font-size:15px;color:var(--muted);margin-bottom:4px}
+.hero-sub-desc{font-size:14px;color:var(--muted);margin:0 0 6px}
+.hero-frame-note{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.hero-frame-note strong{display:block;font-size:12px;font-weight:700;letter-spacing:.1em;color:var(--rose);margin-bottom:6px}
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.tier-card{border:1px solid var(--line);border-radius:20px;background:#fff;padding:28px 24px;display:flex;flex-direction:column;gap:14px;position:relative}
+.tier-card.tier-featured{border-color:var(--rose);background:#fff9fb}
+.tier-featured-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--rose);color:#fff;font-size:11px;font-weight:800;letter-spacing:.1em;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.tier-price{font-size:28px;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.tier-price span{font-size:14px;font-weight:400;color:var(--muted)}
+.tier-price-note{font-size:12px;color:var(--muted);margin-top:-8px}
+.tier-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.1em;background:var(--paper);border:1px solid var(--line);border-radius:4px;padding:2px 8px;color:var(--rose)}
+.tier-desc{font-size:14px;color:var(--muted);line-height:1.65;flex-grow:1}
+.tier-who{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.tier-who strong{display:block;font-size:11px;color:var(--rose);font-weight:700;letter-spacing:.08em;margin-bottom:4px}
+.tier-features{font-size:13px;color:var(--muted);padding-left:18px;margin:4px 0 0;display:flex;flex-direction:column;gap:4px}
+.tier-features li{list-style:none;display:flex;gap:8px;align-items:flex-start}
+.tier-features li::before{content:'✓';color:var(--rose);font-weight:700;flex-shrink:0}
+.tier-renew{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:10px}
+.tier-renew strong{color:var(--ink)}
+.tier-cta-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.tier-cta-row .button.outline{flex:1;min-width:120px;justify-content:center;gap:8px}
+.common-conditions{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-top:28px}
+.common-conditions h3{font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--rose);margin-bottom:10px}
+.common-conditions ul{padding-left:18px;margin:0;color:var(--muted);font-size:14px;display:flex;flex-direction:column;gap:4px}
+.offer-tag{display:inline-block;background:var(--rose);color:#fff;font-size:12px;font-weight:700;padding:6px 16px;border-radius:20px;margin-top:24px}
+.upgrade-note{font-size:13px;color:var(--muted);margin-top:16px}
+.upgrade-note strong{color:var(--ink)}
+@media(max-width:860px){.tier-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body class="homesplit editorial enterprise-overview">
 <!-- TB:NAV:START -->
 <nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a></div></details></nav>
-<!-- TB:NAV:END --><nav aria-label="企業服務導覽" class="enterprise-subnav"><a class="local-title" href="/enterprise/">企業 AI Agent</a><div><a href="/enterprise/">概覽</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">方法論</a><a href="/trust/">治理</a><a class="local-consult" href="/enterprise/#consult">諮詢 <span aria-hidden="true">›</span></a></div></nav><a class="skip-link" href="#main">
+<!-- TB:NAV:END --><nav aria-label="企業服務導覽" class="enterprise-subnav"><a class="local-title" href="/enterprise/">企業 AI Agent</a><div><a href="/enterprise/">概覽</a><a href="/enterprise/#packages">方案與報價</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">方法論</a><a href="/trust/">治理</a><a class="local-consult" href="/enterprise/start/">自助評估 <span aria-hidden="true">›</span></a></div></nav><a class="skip-link" href="#main">
    跳到主要內容
   </a>
 <main id="main">
 <div class="wrap">
 <section class="page-hero enterprise-hero" data-no-reveal=""><div class="enterprise-hero-copy tb-hero-copy" data-no-reveal="">
 <p class="eyebrow">ENTERPRISE AI / 企業導入</p>
-<h1>從流程整<span class="title-tail">合<span class="punct">，</span></span><br/>到可治理的 AI 營<span class="title-tail">運<span class="punct">。</span></span></h1><p class="tb-definition">Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。</p><p class="tb-definition-note">地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。</p>
-<a class="button" href="#consult">啟動企業導入諮詢<span aria-hidden="true">
-       ›
-      </span>
-</a>
+<h1>公司導入 AI，<br/>不再是天<span class="title-tail">價<span class="punct">！</span></span><br/>10 萬有<span class="title-tail">找<span class="punct">！</span></span></h1>
+<div class="price-pills" aria-label="三級定價">
+<span class="price-pill">入門 NT$33,000 <span>（含稅）</span></span>
+<span class="price-pill">標準 NT$66,000 <span>（含稅）</span></span>
+<span class="price-pill">完整 NT$99,000 <span>（含稅）</span></span>
+</div>
+<p class="hero-sub-desc">照公司文件回答、附出處，不限使用人數。三級都含第一年維護服務。</p>
+<a class="button" href="/enterprise/start/">自助評估，看看哪一級適合<span aria-hidden="true"> ›</span></a>
+<a class="button outline" href="#packages" style="margin-top:10px">查看三級方案與價格<span aria-hidden="true"> ›</span></a>
+<div class="hero-frame-note">
+<strong>ABOUT THINK BIG</strong>
+Think BIG（大想成業有限公司）以 TB FRAME 四階段方法論（評估、建置、驗證、維運）協助企業把 AI Agent 部署在公司自己的設備上，資料留在公司內，並提供一年陪跑維運。另有個人 AI 助理安裝方案。
+<br/><small style="display:block;margin-top:6px">地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。</small>
+</div>
 </div><figure aria-labelledby="governance-model-caption" class="governance-model"><figcaption id="governance-model-caption"><span>OPERATING MODEL</span><span>AI Agent 治理架構示意</span></figcaption><div class="model-authority"><p class="model-label">DECISION AUTHORITY</p><h2>企業決策與授權</h2><p>目標定義 · 權限核准 · 成果覆核</p></div><svg class="model-wires" aria-hidden="true" focusable="false" viewBox="0 0 600 60" preserveAspectRatio="none"><path pathLength="1" d="M300 0 V24 Q300 30 294 30 H106 Q100 30 100 36 V60"/><path pathLength="1" d="M300 0 V60"/><path pathLength="1" d="M300 0 V24 Q300 30 306 30 H494 Q500 30 500 36 V60"/><circle class="model-flow-dot" cx="300" cy="0" r="3"/></svg><div class="model-agents"><div><span>01 / KNOWLEDGE</span><h3>知識與資料</h3><p>授權來源<br/>存取範圍</p></div><div><span>02 / EXECUTION</span><h3>AI Agent 協作</h3><p>任務分工<br/>產物交接</p></div><div><span>03 / CONTROL</span><h3>治理與驗證</h3><p>變更登記<br/>例外處理</p></div></div><svg class="model-wires model-wires-lower" aria-hidden="true" focusable="false" viewBox="0 0 600 60" preserveAspectRatio="none"><path pathLength="1" d="M100 0 V24 Q100 30 106 30 H294 Q300 30 300 36 V60"/><path pathLength="1" d="M300 0 V60"/><path pathLength="1" d="M500 0 V24 Q500 30 494 30 H306 Q300 30 300 36 V60"/><circle class="model-flow-dot" cx="300" cy="0" r="3"/></svg><div class="model-foundation"><span>GOVERNANCE FOUNDATION</span><h3>治理基礎</h3><p>資料主權 · 人工核准 · 可稽核紀錄</p></div><button class="model-motion-control" type="button" aria-pressed="false" hidden>暫停資料流動</button><p class="model-caption">導入設計的責任關係示意；實際配置依流程、資料政策與授權範圍確認。</p></figure><p class="rag-entry"><a class="text-link" href="/enterprise/rag/">什麼是 RAG？了解 AI 如何依公司文件回答 ›</a></p></section>
 <nav aria-label="企業導入章節" class="chapter-nav">
-<a href="#fit">
-      適合誰
-     </a>
-<a href="#solutions">
-      工作與解法
-     </a>
-<a href="#packages">
-      服務內容
-     </a>
-<a href="#process">
-      導入步驟
-     </a>
-<a href="#compare">
-      方案差異
-     </a>
-<a href="#faq">
-      常見問題
-     </a>
-<a href="#consult">
-      需求整理
-     </a>
+<a href="#fit">適合誰</a>
+<a href="#solutions">工作與解法</a>
+<a href="#packages">方案與報價</a>
+<a href="#process">導入步驟</a>
+<a href="#compare">方案差異</a>
+<a href="#faq">常見問題</a>
+<a href="#consult">需求整理</a>
 </nav>
 </div>
 <section class="section wrap" id="fit">
@@ -333,58 +364,101 @@
 <section class="section wrap" id="packages">
 <div class="section-head">
 <div>
-<p class="eyebrow">SERVICE PORTFOLIO</p>
-<h2>整合導入交<span class="title-tail">付<span class="punct">，</span></span><br/>延續營運責<span class="title-tail">任<span class="punct">。</span></span></h2>
-</div><p class="intro">服務分為導入建置（TB DELIVERY<span class="term-explanation">（依確認的範圍建置、測試並交付 AI 工作流程）</span>）與年度治理維運（TB CONTINUITY<span class="term-explanation">（導入後一年的維護、問題追蹤與使用調整）</span>），依流程範圍、部署設備、串接需求與維護責任個別報價，不公開價目、不預設交付天數；設備、第三方軟體與模型用量費獨立列示，供企業評估總持有成本。</p></div>
-<div class="package-grid">
-<article class="package">
-<span class="label">TB DELIVERY</span>
-<h3>AI Agent 導入建置</h3>
-<ul>
-<li>適用：已有明確工作流程，需評估並建立 AI Agent 應用。</li>
-<li>
-        包含：流程盤點、資料與權限設計、AI Agent 配置。
-       </li>
-<li>
-        交付：可操作流程、驗收紀錄與操作說明。
-       </li>
-<li>
-        先備：可授權的資料、設備與驗收負責人。
-       </li>
+<p class="eyebrow">PRICING / 方案定價</p>
+<h2 class="pricing-headline">公司導入 AI，<br/>不再是天價！<br/><em>10 萬有找！</em></h2>
+</div>
+<p class="intro">三個標準級距，含稅、清楚定義範圍與交付天數。三級都含第一年維護服務；AI 模型費用由客戶自備。<strong style="color:var(--ink)">特別方案適用 2026/12/31 前簽約。</strong></p>
+</div>
+
+<div class="tier-grid">
+<article class="tier-card">
+<span class="label">STARTER / 入門級</span>
+<div class="tier-price">NT$33,000 <span>（含稅）</span></div>
+<p class="tier-price-note">付款分兩次：簽約 50%、驗收通過 50%</p>
+<p class="tier-desc">員工直接問公司的 SOP 和規章。知識庫最多 30 份文件，AI 依文件回答、附出處；沒有依據就交回人確認。</p>
+<div class="tier-who">
+<strong>BEST FOR</strong>
+5–20 人的店家、診所、工作室，文件幾十份，讓員工或客人查 SOP、價目、常見問題。
+</div>
+<ul class="tier-features">
+<li>知識庫：1 個，≤30 份、≤300 頁、≤50 MB</li>
+<li>通路：LINE 官方帳號或網頁嵌入，二選一</li>
+<li>使用人數：不限</li>
+<li>教學影片 1–2 支 + 快速手冊</li>
+<li>首年維護：異常排查、缺陷修正、安全修補、監控</li>
+<li>回覆時效：工作日 1 個工作日內真人回覆</li>
+<li>首年文件更新：1 次（≤20 份）</li>
+<li>交付天數：範圍凍結與資料到位後約 14 天</li>
 </ul>
+<div class="tier-renew">第二年選配續約：<strong>NT$5,000／月</strong>（含稅）。由客戶決定是否續約，不自動扣款。</div>
 </article>
-<article class="package">
-<span class="label">TB CONTINUITY</span>
-<h3>AI Agent 年度治理與維運</h3>
-<ul>
-<li>
-        適合：導入後需要維護、追蹤問題與調整用法。
-       </li>
-<li>
-        包含：約定範圍內的維護檢查、變更登記與使用調整。
-       </li>
-<li>
-        交付：維護紀錄、改善項目與交接資訊。
-       </li>
-<li>責任邊界：服務窗口、維護範圍及新增需求處理方式。</li>
+
+<article class="tier-card tier-featured">
+<span class="tier-featured-badge">STANDARD</span>
+<span class="label">STANDARD / 標準級</span>
+<div class="tier-price">NT$66,000 <span>（含稅）</span></div>
+<p class="tier-price-note">付款分兩次：簽約 50%、驗收通過 50%</p>
+<p class="tier-desc">回答問題，也幫忙打草稿。文件最多 100 份，還能處理試算表，並新增一項工作草稿任務（詢問摘要、回覆草稿或表單摘要三選一）。</p>
+<div class="tier-who">
+<strong>BEST FOR</strong>
+10–50 人的中小公司，文件上百份，每天有重複的文書工作要整理或擬稿。
+</div>
+<ul class="tier-features">
+<li>知識庫：1 個，≤100 份、≤1,000 頁、≤200 MB + 試算表</li>
+<li>工作草稿任務：1 項（三選一）</li>
+<li>通路：LINE、網頁或內部通訊工具，三選一</li>
+<li>使用人數：不限</li>
+<li>教學影片 2–3 支 + 操作手冊</li>
+<li>首年維護：全含（同入門級）</li>
+<li>回覆時效：工作日 1 個工作日內真人回覆</li>
+<li>首年文件更新：每半年 1 次，共 2 次（每次 ≤50 份）</li>
+<li>交付天數：約 21 天</li>
 </ul>
+<div class="tier-renew">第二年選配續約：<strong>NT$10,000／月</strong>（含稅）。由客戶決定是否續約，不自動扣款。</div>
+</article>
+
+<article class="tier-card">
+<span class="label">COMPLETE / 完整級</span>
+<div class="tier-price">NT$99,000 <span>（含稅）</span></div>
+<p class="tier-price-note">付款分兩次：簽約 50%、驗收通過 50%</p>
+<p class="tier-desc">回答、打草稿，文件還會自動同步。額外包含一個唯讀串接（例如雲端硬碟資料夾自動同步），以及可加購擴充包。</p>
+<div class="tier-who">
+<strong>BEST FOR</strong>
+20–100 人，文件常更新且放在雲端硬碟，希望 AI 自動同步、不用人工上傳，之後可能加購大量知識庫或表格查詢。
+</div>
+<ul class="tier-features">
+<li>知識庫：1 個，≤100 份、≤1,000 頁、≤200 MB + 試算表</li>
+<li>工作草稿任務：1 項（三選一）</li>
+<li>唯讀串接：1 個（例如雲端硬碟自動同步）</li>
+<li>通路：LINE、網頁或內部通訊工具，三選一</li>
+<li>使用人數：不限</li>
+<li>教學影片 3–5 支 + 完整操作手冊</li>
+<li>首年維護：全含，每月 1 小時操作諮詢</li>
+<li>首年文件更新：每季 1 次，共 4 次（每次 ≤50 份）</li>
+<li>交付天數：約 30 天</li>
+<li>可加購擴充包</li>
+</ul>
+<div class="tier-renew">第二年選配續約：<strong>NT$15,000／月</strong>（含稅）。由客戶決定是否續約，不自動扣款。</div>
 </article>
 </div>
-<p class="note">
-     既有企業方案入口持續保留：
-     <a href="/pricing/enterprise/">
-      企業方案總覽
-     </a>
-     、
-     <a href="/pricing/enterprise/#tier2">
-      地端方案
-     </a>
-     、
-     <a href="/pricing/enterprise/#tier1">
-      雲端方案
-     </a>
-     。實際部署方式依資料政策評估。
-    </p>
+
+<div class="common-conditions">
+<h3>三級共同條件</h3>
+<ul>
+<li>使用人數不限（效能取決於客戶設備規格）</li>
+<li>AI 模型費用由客戶自備，TB 不代墊、不轉售；本地或雲端路線各有說明</li>
+<li>客戶自備一台 24 小時開機的電腦；或選擇雲端主機路線</li>
+<li>簽約前先做遠端設備預檢，裝不起來就不簽，客戶不會付到錢</li>
+<li>三級首年內均可補差價升級：升一級補 NT$33,000，直升完整級補 NT$66,000</li>
+</ul>
+</div>
+
+<p class="upgrade-note">首年內補差價升級，前面付過的錢不會浪費。<strong>擴充包（進階功能）僅限完整級加購。</strong></p>
+
+<div class="tier-cta-row">
+<a class="button" href="/enterprise/start/">填問卷，看看哪一級適合我 <span aria-hidden="true">›</span></a>
+<a class="button outline" href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">預約 20 分鐘評估 <span aria-hidden="true">›</span></a>
+</div>
 </section>
 <section class="section wrap" id="deployment"><div class="section-head"><div><p class="eyebrow">DATA SOVEREIGNTY</p><h2>以資料政<span class="title-tail">策<span class="punct">，</span></span><br/>決定部署架<span class="title-tail">構<span class="punct">。</span></span></h2></div><p class="intro">資料主權（Data Sovereignty）落實於處理位置、存取權限與外部傳送規則。依企業政策與設備條件選擇配置，並逐項驗證串接相容性。</p></div><div class="fit-grid"><div id="local"><h3>地端配置</h3><p class="intro">模型與指定資料在公司設備內處理。若要求資料不外傳，也要一起核對日誌、備份及外部串接。</p></div><div id="cloud"><h3>外部模型與服務</h3><p class="intro">需要外部服務時，先列出傳送欄位、用途、帳號權限與費用，確認授權後再納入流程。</p></div></div><p class="note">支援技術：OpenClaw、Claude、MCP、RAG。串接與更換模型需確認相容性，並重新驗證工作結果。</p></section>
 <section class="section wrap" id="process"><a class="text-link" href="/enterprise/process/">查看完整流程與可列印工作表 ›</a>
@@ -504,8 +578,12 @@
 <p>TB FRAME 以評估定義、架構建置、驗證交付與治理維運四階段管理導入。進度依工作範圍、資料整備、系統權限及驗收條件共同確認，以階段交付物追蹤，不預設交付天數。</p>
 </details>
 <details>
+<summary>企業方案有哪些級距？</summary>
+<p>三個標準級距，含稅定價：入門級 NT$33,000、標準級 NT$66,000、完整級 NT$99,000。三級都含建置、教學影片與第一年維護服務。首年內補差價 NT$33,000 即可升一級。第二年選配續約：入門每月 NT$5,000、標準 NT$10,000、完整 NT$15,000（含稅），由客戶自己決定是否續約，不自動扣款。</p>
+</details>
+<details>
 <summary>企業服務如何界定報價範圍？</summary>
-<p>依流程範圍、部署設備、串接需求與維護責任個別報價。導入服務、設備、第三方軟體及模型用量費分項列示，供企業確認採購範圍與後續成本。</p>
+<p>標準三級都是清楚定義的範圍，不另外個別報價。超出三級範圍的需求（例如自動對客人回覆、寫回 ERP、大量串接）另案洽詢。導入服務、AI 模型費用由客戶自備分項說明，供企業確認採購範圍與後續成本。</p>
 </details>
 <details>
 <summary>TB CONTINUITY 包含哪些維運責任？</summary>
@@ -526,8 +604,9 @@
 <div>
 <p class="eyebrow">START A CONSULTATION</p>
 <h2>定義業務需求，<br/>啟動導入評估。</h2>
-<p class="intro">提供應用流程、部門職責及導入規劃，形成初步需求摘要。後續諮詢將進一步確認資料條件、驗收標準與服務範圍。</p>
-<p class="note">需求摘要僅於瀏覽器產生，不自動傳送或儲存。請勿輸入客戶資料、帳號密碼或機密資訊。</p>
+<p class="intro">填寫自助問卷，12 題自動判斷適合哪一級；或直接透過 LINE 聯繫顧問，20 分鐘評估適配性。</p>
+<a class="button" href="/enterprise/start/" style="margin-bottom:16px">填問卷，自動判級 + 看報價 <span aria-hidden="true">›</span></a>
+<p class="note">問卷不收費、不自動扣款。填完後如需正式報價，由專人寄出正式合約。</p>
 <a class="text-link" href="https://lin.ee/n5KW430" rel="noopener noreferrer" target="_blank">透過 LINE 聯繫導入顧問 ›</a>
 </div>
 <form class="brief-form" id="consult-form">
