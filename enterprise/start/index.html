@@ -73,19 +73,35 @@
 .roi-section{margin-top:28px;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:22px 24px;display:none}
 .roi-section.visible{display:block}
 .roi-section h3{font-size:16px;font-weight:800;margin-bottom:4px}
-.roi-section .roi-disclaimer{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6}
-.roi-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.roi-inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
 .roi-field{display:flex;flex-direction:column;gap:4px}
-.roi-field label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.roi-field label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em}
 .roi-field input[type="number"]{min-height:40px;background:#fff;border:1px solid #aaa8a3;border-radius:5px;padding:8px 10px;font:inherit;font-size:15px;color:var(--ink);width:100%}
-.roi-slider-wrap{margin-bottom:16px}
-.roi-slider-wrap label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em;display:flex;justify-content:space-between;margin-bottom:6px}
+.roi-chart{display:flex;align-items:flex-end;gap:20px;height:200px;background:#fff;border-radius:10px;padding:16px 16px 0;margin-bottom:10px}
+.roi-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%}
+.roi-bar-wrap{flex:1;display:flex;align-items:flex-end;width:100%}
+.roi-bar{width:100%;border-radius:6px 6px 0 0;min-height:4px;transition:height .4s}
+.roi-bar.assistant{background:var(--muted)}
+.roi-bar.ai-yr1{background:var(--rose)}
+.roi-bar.ai-yr2{background:var(--brand)}
+.roi-bar-label{font-size:11px;font-weight:700;color:var(--muted);text-align:center;line-height:1.4}
+.roi-bar-val{font-size:13px;font-weight:800;color:var(--ink);text-align:center;white-space:nowrap}
+.roi-ratio{font-size:14px;color:var(--rose);font-weight:700;margin:10px 0 4px}
+.roi-note{font-size:11px;color:var(--muted);line-height:1.6;padding:10px 0 0;border-top:1px solid var(--line)}
+/* supplementary work-hours */
+.roi-supp{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.roi-supp summary{font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;list-style:none;display:flex;justify-content:space-between;user-select:none}
+.roi-supp summary::after{content:'▸';font-size:10px}
+.roi-supp[open] summary::after{content:'▾'}
+.roi-supp-inner{margin-top:14px;display:flex;flex-direction:column;gap:12px}
+.roi-slider-wrap{display:flex;flex-direction:column;gap:4px}
+.roi-slider-wrap label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;display:flex;justify-content:space-between}
 .roi-slider-wrap input[type="range"]{width:100%;accent-color:var(--rose)}
-.roi-result{background:#fff;border-radius:10px;padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center}
-.roi-result-item .roi-val{font-size:22px;font-weight:800;color:var(--rose)}
-.roi-result-item .roi-lbl{font-size:11px;color:var(--muted);margin-top:2px}
-.roi-formula{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;border-top:1px solid var(--line);padding-top:10px}
-@media(max-width:560px){.roi-fields{grid-template-columns:1fr}.roi-result{grid-template-columns:1fr}}
+.roi-result{background:#fff;border-radius:10px;padding:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.roi-result-item .roi-val{font-size:20px;font-weight:800;color:var(--rose)}
+.roi-result-item .roi-lbl{font-size:10px;color:var(--muted);margin-top:2px}
+.roi-formula{font-size:11px;color:var(--muted);line-height:1.7}
+@media(max-width:560px){.roi-inputs{grid-template-columns:1fr}.roi-result{grid-template-columns:1fr}.roi-chart{gap:10px}}
 /* consult form */
 .consult-form-section{padding:48px 0;border-bottom:1px solid var(--line);display:none}
 .consult-form-section.visible{display:block}
@@ -321,11 +337,45 @@
 <!-- ROI Calculator (shown after grade) -->
 <div class="roi-section" id="roi-section" aria-live="polite">
 <h3>算算看你能省多少</h3>
-<p class="roi-disclaimer">
-試算結果依你輸入的數字估算，不保證。只計算一半的實現率（保守估計）。
-公式：每年省下工時 ＝ 人數 × 每人每天分鐘 ÷ 60 × 250 工作天；保守省下金額 ＝ 工時 × 時薪 × 50%；回本月數 ＝ 導入費用 ÷ 保守省下金額 × 12。
-</p>
-<div class="roi-fields">
+
+<!-- Main: 多請一位助理 vs AI Agent -->
+<div class="roi-inputs">
+<div class="roi-field">
+<label for="roi-salary">助理月薪（元）</label>
+<input type="number" id="roi-salary" min="20000" max="200000" value="32000"/>
+</div>
+<div class="roi-field">
+<label for="roi-model">模型費（元／月）</label>
+<input type="number" id="roi-model" min="0" max="20000" value="1000"/>
+</div>
+</div>
+
+<div class="roi-chart" id="roi-chart" aria-label="年度費用比較長條圖">
+<div class="roi-bar-col">
+<div class="roi-bar-wrap"><div class="roi-bar assistant" id="bar-assistant" style="height:100%"></div></div>
+<div class="roi-bar-label">多請一位助理<br/>（年成本）</div>
+<div class="roi-bar-val" id="val-assistant">—</div>
+</div>
+<div class="roi-bar-col">
+<div class="roi-bar-wrap"><div class="roi-bar ai-yr1" id="bar-ai-yr1" style="height:10%"></div></div>
+<div class="roi-bar-label">AI Agent<br/>（第一年）</div>
+<div class="roi-bar-val" id="val-ai-yr1">—</div>
+</div>
+<div class="roi-bar-col">
+<div class="roi-bar-wrap"><div class="roi-bar ai-yr2" id="bar-ai-yr2" style="height:15%"></div></div>
+<div class="roi-bar-label">AI Agent<br/>（第二年起）</div>
+<div class="roi-bar-val" id="val-ai-yr2">—</div>
+</div>
+</div>
+
+<p class="roi-ratio" id="roi-ratio"></p>
+<p class="roi-note">概估；AI 負責重複查詢、找文件、起草，判斷和對外承諾仍由人確認；薪資與模型費依實際狀況而定。</p>
+
+<!-- Supplementary: work-hours calculator -->
+<details class="roi-supp">
+<summary>工時試算（補充說明）</summary>
+<div class="roi-supp-inner">
+<div class="roi-inputs">
 <div class="roi-field">
 <label for="roi-users">使用人數</label>
 <input type="number" id="roi-users" min="1" max="500" value="10"/>
@@ -336,20 +386,22 @@
 </div>
 </div>
 <div class="roi-slider-wrap">
-<label for="roi-mins">每人每天花在找資料或回答重複問題的分鐘數 <span id="roi-mins-val">20</span> 分</label>
+<label for="roi-mins">每人每天找資料或回答重複問題的分鐘數 <span id="roi-mins-val">20</span> 分</label>
 <input type="range" id="roi-mins" min="5" max="120" step="5" value="20"/>
 </div>
-<div class="roi-result" id="roi-result">
+<div class="roi-result">
 <div class="roi-result-item"><div class="roi-val" id="roi-hours">0</div><div class="roi-lbl">每年省下工時（小時）</div></div>
 <div class="roi-result-item"><div class="roi-val" id="roi-savings">0</div><div class="roi-lbl">保守省下金額（元／年）</div></div>
 <div class="roi-result-item"><div class="roi-val" id="roi-months">—</div><div class="roi-lbl">回本月數（估）</div></div>
 </div>
 <p class="roi-formula">
-公式說明：工時 ＝ 人數（<span id="roi-f-users">10</span>）× 分鐘（<span id="roi-f-mins">20</span>）÷ 60 × 250 天 ＝ <span id="roi-f-hours">0</span> 小時。
-保守省下 ＝ 工時 × 時薪（<span id="roi-f-wage">270</span> 元）× 50% ＝ <span id="roi-f-savings">0</span> 元。
-回本 ＝ 導入費 <span id="roi-f-price">33,000</span> 元 ÷ 保守省下金額 × 12 個月。
-<br>試算，依你輸入的數字，不保證。不得視為保證回本。
+公式：工時 ＝ 人數（<span id="roi-f-users">10</span>）× 分鐘（<span id="roi-f-mins">20</span>）÷ 60 × 250 天 ＝ <span id="roi-f-hours">0</span> 小時。
+保守省下 ＝ 工時 × 時薪（<span id="roi-f-wage">270</span>）× 50% ＝ <span id="roi-f-savings">0</span> 元。
+回本月數 ＝ 導入費（<span id="roi-f-price">33,000</span>）÷ 保守省下金額 × 12。
+試算，依你輸入的數字，不保證。不得視為保證回本。
 </p>
+</div>
+</details>
 </div>
 
 </div><!-- .quiz-wrap -->
@@ -577,15 +629,52 @@ const TIERS = {
 // ── ROI Calculator ────────────────────────────────────────────────────
 const USER_COUNT_MAP = {'1-10':5,'11-30':20,'31-100':65,'100+':100};
 let roiTierPrice = 33000;
+let roiRenewalPrice = 5000; // per month
 
-function computeROI(){
+const RENEWAL_MAP = {starter:5000, standard:10000, complete:15000};
+
+function fmt(n){ return Math.round(n).toLocaleString('zh-TW'); }
+
+// --- Main bar chart ---
+function computeBarChart(){
+  const salary = Math.max(1, parseInt(document.getElementById('roi-salary').value) || 32000);
+  const model  = Math.max(0, parseInt(document.getElementById('roi-model').value) || 1000);
+  // Assistant annual cost: salary × 12 × 1.18 (benefits) + salary (year-end bonus)
+  const assistantAnnual = Math.round(salary * 12 * 1.18 + salary);
+  // AI yr1: grade price + model × 12
+  const aiYr1 = roiTierPrice + model * 12;
+  // AI yr2+: renewal × 12 + model × 12
+  const aiYr2 = roiRenewalPrice * 12 + model * 12;
+
+  document.getElementById('val-assistant').textContent = 'NT$' + fmt(assistantAnnual);
+  document.getElementById('val-ai-yr1').textContent = 'NT$' + fmt(aiYr1);
+  document.getElementById('val-ai-yr2').textContent = 'NT$' + fmt(aiYr2);
+
+  const maxVal = Math.max(assistantAnnual, aiYr1, aiYr2, 1);
+  const BAR_H = 140; // px available
+  document.getElementById('bar-assistant').style.height = Math.round(assistantAnnual / maxVal * BAR_H) + 'px';
+  document.getElementById('bar-ai-yr1').style.height   = Math.max(4, Math.round(aiYr1 / maxVal * BAR_H)) + 'px';
+  document.getElementById('bar-ai-yr2').style.height   = Math.max(4, Math.round(aiYr2 / maxVal * BAR_H)) + 'px';
+
+  // Ratio text
+  const ratioYr1 = assistantAnnual / Math.max(1, aiYr1);
+  const ratioText = ratioYr1 >= 2
+    ? 'AI 第一年費用約為請一位助理的 1/' + Math.round(ratioYr1)
+    : 'AI 第一年費用：' + fmt(aiYr1) + ' 元';
+  document.getElementById('roi-ratio').textContent = ratioText;
+}
+
+document.getElementById('roi-salary').addEventListener('input', computeBarChart);
+document.getElementById('roi-model').addEventListener('input', computeBarChart);
+
+// --- Supplementary work-hours ---
+function computeWorkHours(){
   const users = Math.max(1, parseInt(document.getElementById('roi-users').value) || 1);
   const mins  = parseInt(document.getElementById('roi-mins').value) || 20;
   const wage  = Math.max(1, parseInt(document.getElementById('roi-wage').value) || 270);
   const hours = Math.round(users * mins / 60 * 250);
   const savings = Math.round(hours * wage * 0.5);
   const months = savings > 0 ? (roiTierPrice / savings * 12).toFixed(1) : '—';
-  const fmt = n => n.toLocaleString('zh-TW');
   document.getElementById('roi-hours').textContent = fmt(hours);
   document.getElementById('roi-savings').textContent = fmt(savings);
   document.getElementById('roi-months').textContent = months;
@@ -599,10 +688,10 @@ function computeROI(){
 
 document.getElementById('roi-mins').addEventListener('input', function(){
   document.getElementById('roi-mins-val').textContent = this.value;
-  computeROI();
+  computeWorkHours();
 });
-document.getElementById('roi-users').addEventListener('input', computeROI);
-document.getElementById('roi-wage').addEventListener('input', computeROI);
+document.getElementById('roi-users').addEventListener('input', computeWorkHours);
+document.getElementById('roi-wage').addEventListener('input', computeWorkHours);
 
 // ── Show grade result ─────────────────────────────────────────────────
 function showGrade(grade){
@@ -634,9 +723,10 @@ function showGrade(grade){
   gradeBox.classList.add('visible');
   redirectSection.classList.remove('visible');
 
-  // ROI calculator: set tier price and pre-fill user count from Q4
+  // ROI calculator: set tier price, renewal, and pre-fill user count from Q4
   const TIER_PRICES = {starter:33000, standard:66000, complete:99000};
   roiTierPrice = TIER_PRICES[grade] || 33000;
+  roiRenewalPrice = RENEWAL_MAP[grade] || 5000;
   const roiSection = document.getElementById('roi-section');
   roiSection.classList.add('visible');
   const f = document.getElementById('quiz-form');
@@ -644,7 +734,8 @@ function showGrade(grade){
   if(userBand && USER_COUNT_MAP[userBand]){
     document.getElementById('roi-users').value = USER_COUNT_MAP[userBand];
   }
-  computeROI();
+  computeBarChart();
+  computeWorkHours();
 
   // pre-fill org and name in contact form
   const compName = f.querySelector('#q2-name').value.trim();
