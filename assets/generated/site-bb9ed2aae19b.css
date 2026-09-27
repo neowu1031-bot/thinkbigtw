@@ -366,8 +366,24 @@ body:has(>#tb-nav) :is(.section-head,.tb-hero-copy,.about-sections>section,.glos
 .harness-page .hero-badge,.harness-page .sec-eye,.harness-page .tool-name{font-size:12px;letter-spacing:.1em;color:var(--red);margin-bottom:16px}
 .harness-page .sec-head{margin-bottom:32px}.harness-page .sec-sub{margin-top:12px}
 .harness-page .section{border-top:1px solid #dedee3}.harness-page .section p{margin-block:16px;max-width:65ch}
-.harness-page :is(.tool-cloud,.mcp-flow){display:flex;flex-wrap:wrap;gap:12px;margin-block:28px}
-.harness-page .tc-pill{border:1px solid #dedee3;border-radius:99px;padding:6px 12px;font-size:13px}
+.harness-page .mcp-flow{display:flex;flex-wrap:wrap;gap:12px;margin-block:28px}
+/* Platform marks: source artwork stays local; only desktop hover and keyboard focus reveal color. */
+.harness-page .tool-cloud-heading{font-size:12px;letter-spacing:.08em;margin:32px 0 12px}
+.harness-page .tool-cloud{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));list-style:none;padding:0;margin:0;border-top:1px solid #e8e8ec}
+.harness-page .tool-logo{display:flex;align-items:center;justify-content:center;min-width:0;height:76px;padding:16px 12px;border-bottom:1px solid #e8e8ec}
+.harness-page .tool-logo-art{display:flex;align-items:center;justify-content:center;gap:6px;max-width:100%;filter:grayscale(1);opacity:.6;transition:opacity 180ms ease}
+.harness-page .tool-logo img{display:block;height:30px;width:auto;max-width:100%;object-fit:contain;flex-shrink:0}
+.harness-page .tool-logo-art>span{font-size:11px;line-height:1;white-space:nowrap}
+.harness-page .tool-logo:focus-visible{outline:2px solid var(--red);outline-offset:-3px}
+.harness-page .tool-logo:focus-visible .tool-logo-art{filter:grayscale(0);opacity:1}
+.harness-page .tool-cloud-note{font-size:11px;line-height:1.7;margin:14px 0 0}
+@media (hover:hover) and (pointer:fine){.harness-page .tool-logo:hover .tool-logo-art{filter:grayscale(0);opacity:1}}
+@media(max-width:760px){
+ .harness-page .tool-cloud{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .harness-page .tool-logo{height:60px;padding:14px 8px}
+ .harness-page .tool-logo img{height:24px}
+}
+@media(prefers-reduced-motion:reduce){.harness-page .tool-logo-art{transition:none}}
 .harness-page .mcp-node{padding:24px;background:#f5f5f7;border-radius:18px;flex:1;min-width:0}
 .harness-page .plan-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .harness-page .plan-paths article{background:#f5f5f7;border-radius:24px;padding:28px}
@@ -409,3 +425,76 @@ body:has(>#tb-nav) :is(.section-head,.tb-hero-copy,.about-sections>section,.glos
  .harness-page .mcp-flow{flex-direction:column}.harness-page .mcp-node{width:100%}
  .personal-product .cta-btn{padding-inline:20px;font-size:14px}
 }
+/* V9d: an open MCP network. Existing v9c logo-wall rules stay unchanged. */
+.harness-page #mcp .sec-title{max-width:24ch;margin-inline:auto;text-wrap:balance}
+.harness-page #mcp .mcp-source-links{display:flex;justify-content:center;flex-wrap:wrap;gap:12px 24px;font-size:12px}
+.harness-page .mcp-network{margin:44px 0 36px}
+.harness-page .mcp-network figcaption{font-size:13px;letter-spacing:.04em;color:var(--muted);margin-bottom:12px}
+.harness-page .mcp-network-map{position:relative;isolation:isolate}
+.harness-page .mcp-connections{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:-1}
+.harness-page .mcp-wire{fill:none;stroke:#d0ccd0;stroke-width:1.25;stroke-linecap:round}
+.harness-page .mcp-pulse{fill:none;stroke:var(--red);stroke-width:3;stroke-linecap:round;stroke-dasharray:.009 .991;opacity:0}
+.harness-page .mcp-orbit{position:relative;height:570px}
+.harness-page .mcp-agents{list-style:none;margin:0;padding:0}
+.harness-page .mcp-agent{position:absolute;left:var(--x);top:var(--y);width:168px;transform:translate(-50%,-50%)}
+.harness-page .mcp-agent-card{display:flex;align-items:center;justify-content:flex-start;gap:12px;min-height:88px;padding:14px;background:#fff;border:1px solid #dedee3;border-radius:18px;text-align:left;color:var(--ink);text-decoration:none;box-shadow:0 4px 16px #1d1d1f04}
+.harness-page .mcp-agent-card img{width:30px;height:30px;object-fit:contain;flex-shrink:0}
+.harness-page .mcp-agent-card strong{display:block;font-size:14px;line-height:1.4;letter-spacing:-.02em}
+.harness-page .mcp-agent-card small{display:block;margin-top:5px;font-size:10px;line-height:1.4;color:var(--muted)}
+.harness-page .mcp-agent-open .mcp-agent-card{border-style:dashed;border-color:#b4adb1;background:#faf9f8}
+.harness-page .mcp-plus{width:30px;font-size:25px;text-align:center;color:var(--red);flex-shrink:0}
+.harness-page .mcp-agent-card:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+.harness-page .mcp-hub{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;width:156px;height:156px;border:1px solid #c9b5ad;border-radius:50%;background:#fff;box-shadow:0 0 0 12px #f9f6f2,0 0 0 13px #eee7e2}
+.harness-page .mcp-hub img{width:42px;height:42px;object-fit:contain}
+.harness-page .mcp-hub strong{font-size:24px;line-height:1.1;letter-spacing:.04em}
+.harness-page .mcp-hub span{font-size:11px;color:var(--muted)}
+.harness-page .mcp-tool-layer{padding-top:64px}
+.harness-page .mcp-tool-layer h3{display:inline-block;position:relative;margin:0 0 28px;padding:4px 16px;background:#fff;font-size:13px;letter-spacing:.08em}
+.harness-page .mcp-tools{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.harness-page .mcp-tool{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-width:0;padding:20px 8px;border:1px solid #e4e1e2;border-radius:14px;background:#fafafa;font-size:12px;line-height:1.4}
+.harness-page .mcp-tool img{width:26px;height:26px;object-fit:contain}
+.harness-page #mcp-diagram-note{max-width:76ch;margin:24px auto 0;font-size:12px;line-height:1.9;color:var(--muted);text-wrap:pretty}
+.harness-page #mcp .mcp-features{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+@media(hover:hover) and (pointer:fine){.harness-page .mcp-agent-card:hover{border-color:#b7a39c;background:#fdfbf8}}
+/* No-JS and reduced-motion readers always get the fully visible diagram. */
+@media(prefers-reduced-motion:no-preference){
+ .mcp-network.mcp-ready:not(.mcp-entered) :is(.mcp-agent-card,.mcp-hub,.mcp-tool){opacity:0}
+ .mcp-network.mcp-ready:not(.mcp-entered) .mcp-wire{stroke-dasharray:1;stroke-dashoffset:1}
+ .mcp-network.mcp-ready.mcp-entered .mcp-agent-card,.mcp-network.mcp-ready.mcp-entered .mcp-tool{animation:mcp-appear .55s both;animation-delay:calc(var(--order)*.085s)}
+ .mcp-network.mcp-ready.mcp-entered .mcp-hub{animation:mcp-appear .55s both}
+ .mcp-network.mcp-ready.mcp-entered .mcp-wire{stroke-dasharray:1;animation:mcp-draw 1.3s .15s both}
+ .mcp-network.mcp-ready.mcp-entered .mcp-pulse{animation:mcp-travel 4.6s linear infinite;animation-delay:calc(1.5s + var(--edge)*.19s)}
+ .mcp-network.mcp-ready:not(.mcp-running) .mcp-pulse{animation-play-state:paused}
+}
+@keyframes mcp-appear{from{opacity:0}to{opacity:1}}
+@keyframes mcp-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes mcp-travel{0%{stroke-dashoffset:1;opacity:0}8%,85%{opacity:.85}100%{stroke-dashoffset:0;opacity:0}}
+@media(max-width:1000px) and (min-width:761px){
+ .harness-page .mcp-agent{width:146px}
+ .harness-page .mcp-agent-card{gap:8px;padding:12px}
+ .harness-page .mcp-agent-card strong{font-size:12px}
+ .harness-page .mcp-agent-card img{width:25px;height:25px}
+}
+@media(max-width:760px){
+ .harness-page .mcp-network{margin-block:32px}
+ .harness-page .mcp-orbit{height:auto;padding:0 0 0 32px}
+ .harness-page .mcp-agents{display:grid;gap:10px}
+ .harness-page .mcp-agent{position:relative;left:auto;top:auto;width:auto;transform:none}
+ .harness-page .mcp-agent-card{min-height:72px;padding:14px 18px}
+ .harness-page .mcp-agent-card strong{font-size:15px}
+ .harness-page .mcp-agent-card small{font-size:11px}
+ .harness-page .mcp-hub{position:relative;left:auto;top:auto;transform:none;width:144px;height:144px;margin:48px auto 0}
+ .harness-page .mcp-tool-layer{padding-top:48px;padding-left:32px}
+ .harness-page .mcp-tool-layer h3{margin-bottom:18px}
+ .harness-page .mcp-tools{grid-template-columns:minmax(0,1fr);gap:10px}
+ .harness-page .mcp-tool{flex-direction:row;justify-content:flex-start;gap:16px;min-height:64px;padding:16px 18px;font-size:14px}
+ .harness-page #mcp .mcp-features{grid-template-columns:minmax(0,1fr);gap:0}
+}
+@media(prefers-reduced-motion:reduce){
+ .harness-page .mcp-network :is(.mcp-agent-card,.mcp-hub,.mcp-tool,.mcp-wire,.mcp-pulse){animation:none!important;transition:none!important}
+ .harness-page .mcp-network :is(.mcp-agent-card,.mcp-hub,.mcp-tool){opacity:1!important}
+ .harness-page .mcp-wire{stroke-dasharray:none;stroke-dashoffset:0}
+ .harness-page .mcp-pulse{display:none}
+}
+/* Keep official black marks legible on this light diagram in dark OS themes. */
+.harness-page .mcp-network img{color-scheme:light}

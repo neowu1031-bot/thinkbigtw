@@ -12,6 +12,9 @@ def markdown(node):
  if name=='wbr' or (name=='span' and set(node.get('class',[])) & {'punct','title-tail','keep-phrase','break-token'}):return ''.join(markdown(c) for c in node.children)
  text=''.join(markdown(c) for c in node.children).strip()
  if name in ('h1','h2','h3','h4','h5','h6'):return '\n\n'+'#'*int(name[1])+' '+text+'\n\n'
+ # Logo-wall names live in image alt text; preserve them in the AI-readable export.
+ if name=='li' and 'tool-logo' in node.get('class',[]):
+  return '\n- '+node.img.get('alt','')+'\n'
  if name=='li':return '\n- '+text+'\n'
  if name=='a' and node.get('href','').startswith(('/', 'https://')):return '['+text+']('+ (BASE.rstrip('/')+node['href'] if node['href'].startswith('/') else node['href'])+')'
  if name=='br':return '\n'
