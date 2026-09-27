@@ -69,6 +69,23 @@
 .grade-note{font-size:13px;color:var(--muted);margin-top:12px;padding:12px 14px;background:var(--paper);border-radius:8px}
 .grade-note a{color:var(--rose)}
 
+/* ROI calculator */
+.roi-section{margin-top:28px;border:1px solid var(--line);border-radius:16px;background:var(--paper);padding:22px 24px;display:none}
+.roi-section.visible{display:block}
+.roi-section h3{font-size:16px;font-weight:800;margin-bottom:4px}
+.roi-section .roi-disclaimer{font-size:12px;color:var(--muted);margin-bottom:18px;line-height:1.6}
+.roi-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.roi-field{display:flex;flex-direction:column;gap:4px}
+.roi-field label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em}
+.roi-field input[type="number"]{min-height:40px;background:#fff;border:1px solid #aaa8a3;border-radius:5px;padding:8px 10px;font:inherit;font-size:15px;color:var(--ink);width:100%}
+.roi-slider-wrap{margin-bottom:16px}
+.roi-slider-wrap label{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.06em;display:flex;justify-content:space-between;margin-bottom:6px}
+.roi-slider-wrap input[type="range"]{width:100%;accent-color:var(--rose)}
+.roi-result{background:#fff;border-radius:10px;padding:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center}
+.roi-result-item .roi-val{font-size:22px;font-weight:800;color:var(--rose)}
+.roi-result-item .roi-lbl{font-size:11px;color:var(--muted);margin-top:2px}
+.roi-formula{font-size:11px;color:var(--muted);margin-top:12px;line-height:1.7;border-top:1px solid var(--line);padding-top:10px}
+@media(max-width:560px){.roi-fields{grid-template-columns:1fr}.roi-result{grid-template-columns:1fr}}
 /* consult form */
 .consult-form-section{padding:48px 0;border-bottom:1px solid var(--line);display:none}
 .consult-form-section.visible{display:block}
@@ -301,6 +318,40 @@
 <p class="grade-note" id="grade-note"></p>
 </div>
 
+<!-- ROI Calculator (shown after grade) -->
+<div class="roi-section" id="roi-section" aria-live="polite">
+<h3>算算看你能省多少</h3>
+<p class="roi-disclaimer">
+試算結果依你輸入的數字估算，不保證。只計算一半的實現率（保守估計）。
+公式：每年省下工時 ＝ 人數 × 每人每天分鐘 ÷ 60 × 250 工作天；保守省下金額 ＝ 工時 × 時薪 × 50%；回本月數 ＝ 導入費用 ÷ 保守省下金額 × 12。
+</p>
+<div class="roi-fields">
+<div class="roi-field">
+<label for="roi-users">使用人數</label>
+<input type="number" id="roi-users" min="1" max="500" value="10"/>
+</div>
+<div class="roi-field">
+<label for="roi-wage">平均時薪（元）</label>
+<input type="number" id="roi-wage" min="100" max="3000" value="270"/>
+</div>
+</div>
+<div class="roi-slider-wrap">
+<label for="roi-mins">每人每天花在找資料或回答重複問題的分鐘數 <span id="roi-mins-val">20</span> 分</label>
+<input type="range" id="roi-mins" min="5" max="120" step="5" value="20"/>
+</div>
+<div class="roi-result" id="roi-result">
+<div class="roi-result-item"><div class="roi-val" id="roi-hours">0</div><div class="roi-lbl">每年省下工時（小時）</div></div>
+<div class="roi-result-item"><div class="roi-val" id="roi-savings">0</div><div class="roi-lbl">保守省下金額（元／年）</div></div>
+<div class="roi-result-item"><div class="roi-val" id="roi-months">—</div><div class="roi-lbl">回本月數（估）</div></div>
+</div>
+<p class="roi-formula">
+公式說明：工時 ＝ 人數（<span id="roi-f-users">10</span>）× 分鐘（<span id="roi-f-mins">20</span>）÷ 60 × 250 天 ＝ <span id="roi-f-hours">0</span> 小時。
+保守省下 ＝ 工時 × 時薪（<span id="roi-f-wage">270</span> 元）× 50% ＝ <span id="roi-f-savings">0</span> 元。
+回本 ＝ 導入費 <span id="roi-f-price">33,000</span> 元 ÷ 保守省下金額 × 12 個月。
+<br>試算，依你輸入的數字，不保證。不得視為保證回本。
+</p>
+</div>
+
 </div><!-- .quiz-wrap -->
 </section>
 
@@ -523,6 +574,36 @@ const TIERS = {
   }
 };
 
+// ── ROI Calculator ────────────────────────────────────────────────────
+const USER_COUNT_MAP = {'1-10':5,'11-30':20,'31-100':65,'100+':100};
+let roiTierPrice = 33000;
+
+function computeROI(){
+  const users = Math.max(1, parseInt(document.getElementById('roi-users').value) || 1);
+  const mins  = parseInt(document.getElementById('roi-mins').value) || 20;
+  const wage  = Math.max(1, parseInt(document.getElementById('roi-wage').value) || 270);
+  const hours = Math.round(users * mins / 60 * 250);
+  const savings = Math.round(hours * wage * 0.5);
+  const months = savings > 0 ? (roiTierPrice / savings * 12).toFixed(1) : '—';
+  const fmt = n => n.toLocaleString('zh-TW');
+  document.getElementById('roi-hours').textContent = fmt(hours);
+  document.getElementById('roi-savings').textContent = fmt(savings);
+  document.getElementById('roi-months').textContent = months;
+  document.getElementById('roi-f-users').textContent = users;
+  document.getElementById('roi-f-mins').textContent = mins;
+  document.getElementById('roi-f-hours').textContent = fmt(hours);
+  document.getElementById('roi-f-wage').textContent = wage;
+  document.getElementById('roi-f-savings').textContent = fmt(savings);
+  document.getElementById('roi-f-price').textContent = fmt(roiTierPrice);
+}
+
+document.getElementById('roi-mins').addEventListener('input', function(){
+  document.getElementById('roi-mins-val').textContent = this.value;
+  computeROI();
+});
+document.getElementById('roi-users').addEventListener('input', computeROI);
+document.getElementById('roi-wage').addEventListener('input', computeROI);
+
 // ── Show grade result ─────────────────────────────────────────────────
 function showGrade(grade){
   const gradeBox = document.getElementById('grade-box');
@@ -553,8 +634,19 @@ function showGrade(grade){
   gradeBox.classList.add('visible');
   redirectSection.classList.remove('visible');
 
-  // pre-fill org and name in contact form
+  // ROI calculator: set tier price and pre-fill user count from Q4
+  const TIER_PRICES = {starter:33000, standard:66000, complete:99000};
+  roiTierPrice = TIER_PRICES[grade] || 33000;
+  const roiSection = document.getElementById('roi-section');
+  roiSection.classList.add('visible');
   const f = document.getElementById('quiz-form');
+  const userBand = f.querySelector('input[name="user_count"]:checked')?.value || '';
+  if(userBand && USER_COUNT_MAP[userBand]){
+    document.getElementById('roi-users').value = USER_COUNT_MAP[userBand];
+  }
+  computeROI();
+
+  // pre-fill org and name in contact form
   const compName = f.querySelector('#q2-name').value.trim();
   const fillerName = f.querySelector('#q3-name').value.trim();
   if(compName) document.getElementById('cf-org').value = compName;
