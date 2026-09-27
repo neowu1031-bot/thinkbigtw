@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>企業 AI 導入自助評估｜填問卷、看哪一級適合｜Think BIG</title>
+<meta name="description" content="12 題自助評估問卷，自動判斷入門（33,000）、標準（66,000）或完整（99,000）哪一級適合你的公司。填完即顯示報價，由專人寄出正式合約。"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://thinkbigtw.com/enterprise/start/"/>
+<meta property="og:title" content="企業 AI 導入自助評估｜Think BIG"/>
+<meta property="og:description" content="12 題自助問卷，自動判斷哪一級適合你的公司。三個標準定價：NT$33,000／66,000／99,000（含稅）。"/>
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg"/>
+<meta property="og:site_name" content="Think BIG!"/>
+<meta property="og:locale" content="zh_TW"/>
+<link rel="canonical" href="https://thinkbigtw.com/enterprise/start/"/>
+<link rel="icon" href="/favicon.ico" sizes="32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/generated/site-d1d2ff47cc97.css">
+<style>
+/* enterprise/start page styles */
+.start-hero{padding:60px 0 48px;border-bottom:1px solid var(--line)}
+.start-hero .eyebrow{font-size:12px;font-weight:750;letter-spacing:.16em;color:var(--rose);margin-bottom:16px}
+.start-hero h1{font-size:clamp(28px,4vw,44px);line-height:1.2;margin-bottom:18px}
+.start-hero h1 em{font-style:normal;color:var(--rose)}
+.start-hero .intro{color:var(--muted);font-size:17px;max-width:600px}
+
+/* video placeholder */
+.demo-section{padding:48px 0;border-bottom:1px solid var(--line)}
+.demo-placeholder{background:var(--ink);border-radius:16px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#fff;max-width:680px}
+.demo-placeholder .play-btn{width:64px;height:64px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.3)}
+.demo-placeholder .play-btn svg{width:24px;height:24px;fill:#fff;margin-left:4px}
+.demo-placeholder p{font-size:15px;opacity:.7;text-align:center;padding:0 24px}
+
+/* questionnaire */
+.quiz-section{padding:56px 0;border-bottom:1px solid var(--line)}
+.quiz-wrap{max-width:720px}
+.quiz-progress{display:flex;gap:6px;margin-bottom:32px}
+.quiz-progress-bar{height:4px;background:var(--line);border-radius:2px;flex:1;transition:background .3s}
+.quiz-progress-bar.done{background:var(--rose)}
+.quiz-group{display:flex;flex-direction:column;gap:28px}
+.quiz-q{display:flex;flex-direction:column;gap:10px}
+.quiz-q label{font-size:15px;font-weight:700;color:var(--ink);line-height:1.5}
+.quiz-q .q-note{font-size:13px;color:var(--muted);margin-top:-6px}
+.quiz-q input[type="text"],.quiz-q input[type="email"],.quiz-q input[type="tel"],.quiz-q select,.quiz-q textarea{width:100%;min-height:44px;background:#f9f8f5;border:1px solid #aaa8a3;border-radius:5px;padding:10px 12px;font:inherit;color:var(--ink);font-size:15px}
+.quiz-q .radio-group,.quiz-q .check-group{display:flex;flex-direction:column;gap:8px}
+.quiz-q .radio-group label,.quiz-q .check-group label{display:flex;align-items:flex-start;gap:10px;font-size:15px;font-weight:400;cursor:pointer;padding:12px 14px;border:1px solid var(--line);border-radius:8px;transition:border-color .15s,background .15s}
+.quiz-q .radio-group label:has(input:checked),.quiz-q .check-group label:has(input:checked){border-color:var(--rose);background:#fff9fb}
+.quiz-q .radio-group input,.quiz-q .check-group input{flex-shrink:0;margin-top:2px;accent-color:var(--rose)}
+.quiz-divider{border:0;border-top:1px solid var(--line);margin:12px 0}
+
+/* grade result */
+.grade-box{background:#fff;border:2px solid var(--rose);border-radius:20px;padding:28px 28px 24px;margin-top:40px;display:none}
+.grade-box.visible{display:block}
+.grade-box .grade-eyebrow{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--rose);margin-bottom:8px}
+.grade-box h2{font-size:24px;font-weight:800;margin-bottom:6px}
+.grade-box .grade-price{font-size:36px;font-weight:800;color:var(--rose);margin-bottom:4px}
+.grade-box .grade-price span{font-size:16px;font-weight:400;color:var(--muted)}
+.grade-box .grade-desc{font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.grade-box .grade-scope{font-size:13px;color:var(--muted);background:var(--paper);border-radius:10px;padding:14px 16px;margin-bottom:20px}
+.grade-box .grade-scope ul{padding-left:16px;margin:6px 0 0;display:flex;flex-direction:column;gap:3px}
+.grade-note{font-size:13px;color:var(--muted);margin-top:12px;padding:12px 14px;background:var(--paper);border-radius:8px}
+.grade-note a{color:var(--rose)}
+
+/* consult form */
+.consult-form-section{padding:48px 0;border-bottom:1px solid var(--line);display:none}
+.consult-form-section.visible{display:block}
+.consult-form{max-width:560px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px 28px}
+.consult-form h2{font-size:20px;margin-bottom:6px}
+.consult-form p.intro{font-size:14px;color:var(--muted);margin-bottom:20px}
+.consult-form .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.consult-form .field label{font-size:14px;font-weight:700;color:var(--ink)}
+.consult-form .field input,.consult-form .field select,.consult-form .field textarea{min-height:44px;background:#f9f8f5;border:1px solid #aaa8a3;border-radius:5px;padding:10px 12px;font:inherit;color:var(--ink);font-size:15px;width:100%}
+.consult-form .field small{font-size:12px;color:var(--muted)}
+.consult-form .field .contact-method-row{display:flex;gap:10px}
+.consult-form .field .contact-method-row select{min-width:100px;flex-shrink:0}
+.consent-label{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--muted);cursor:pointer;line-height:1.6}
+.consent-label input{margin-top:2px;accent-color:var(--rose);flex-shrink:0}
+.consent-label a{color:var(--rose)}
+.form-submit-btn{width:100%;margin-top:16px}
+.form-status{font-size:14px;color:var(--muted);margin-top:12px;min-height:20px}
+.form-status.success{color:#2d7a4a;font-weight:700}
+.form-status.error{color:#c0392b}
+.sign-note{background:var(--paper);border-radius:12px;padding:16px 18px;margin-top:20px;font-size:14px;color:var(--muted)}
+.sign-note strong{color:var(--ink)}
+
+/* consult redirect */
+.consult-redirect{padding:40px 0;display:none}
+.consult-redirect.visible{display:block}
+.consult-redirect .consult-card{background:var(--ink);color:#fff;border-radius:20px;padding:32px;max-width:560px}
+.consult-redirect h2{color:#fff;margin-bottom:10px}
+.consult-redirect p{color:rgba(255,255,255,.75);font-size:15px;margin-bottom:20px}
+.consult-redirect .button.pink{background:var(--brand);color:var(--ink);border-color:var(--brand)}
+
+@media(max-width:640px){
+  .start-hero{padding:40px 0 32px}
+  .demo-placeholder{aspect-ratio:4/3}
+  .quiz-section,.demo-section,.consult-form-section{padding:36px 0}
+  .grade-box,.consult-form{padding:20px 16px}
+  .grade-box .grade-price{font-size:28px}
+}
+</style>
+</head>
+<body class="homesplit editorial enterprise-start">
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a></div></details></nav>
+<!-- TB:NAV:END -->
+<nav aria-label="企業服務導覽" class="enterprise-subnav"><a class="local-title" href="/enterprise/">企業 AI Agent</a><div><a href="/enterprise/">概覽</a><a href="/enterprise/#packages">方案與報價</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">方法論</a><a href="/trust/">治理</a><a class="local-consult" href="/enterprise/start/" aria-current="page">自助評估 <span aria-hidden="true">›</span></a></div></nav>
+<a class="skip-link" href="#main">跳到主要內容</a>
+
+<main id="main">
+<div class="wrap">
+
+<!-- Hero -->
+<section class="start-hero" data-no-reveal>
+<p class="eyebrow">SELF-SERVICE ASSESSMENT / 自助評估</p>
+<h1>公司導入 AI，<br/>不再是天價。<em>10 萬有找。</em></h1>
+<p class="intro">12 題問卷，自動判斷入門（NT$33,000）、標準（NT$66,000）或完整（NT$99,000）哪一級適合你的公司。填完即顯示報價，由專人寄出正式合約。</p>
+</section>
+
+<!-- Demo Video Placeholder -->
+<section class="demo-section" id="demo">
+<div class="section-head" style="margin-bottom:24px">
+<p class="eyebrow">DEMO / 示範影片</p>
+<h2 style="font-size:clamp(20px,2.5vw,28px)">看看 AI 知識庫怎麼運作</h2>
+<p class="intro">員工在 LINE 上問公司文件，AI 附出處回答；文件沒寫的，交回人確認。</p>
+</div>
+<div class="demo-placeholder" role="img" aria-label="示範影片佔位，影片製作中">
+<div class="play-btn" aria-hidden="true">
+<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+</div>
+<p>示範影片製作中<br/>敬請期待</p>
+</div>
+</section>
+
+<!-- Questionnaire -->
+<section class="quiz-section" id="quiz">
+<div class="quiz-wrap">
+<div class="section-head" style="margin-bottom:28px">
+<p class="eyebrow">QUESTIONNAIRE / 自助問卷</p>
+<h2 style="font-size:clamp(22px,3vw,32px)">填問卷，AI 自動判斷哪一級適合</h2>
+<p class="intro">12 題，約 3 分鐘。任何一項超出入門級上限，自動報上一級。</p>
+</div>
+
+<div class="quiz-progress" aria-label="問卷進度" role="progressbar" aria-valuenow="0" aria-valuemax="12" id="quiz-progress">
+<!-- bars injected by JS -->
+</div>
+
+<form id="quiz-form" novalidate>
+<div class="quiz-group">
+
+<!-- Q1 用途 -->
+<div class="quiz-q" id="q1-wrap">
+<label for="q1">1. 這套 AI 是做什麼用的？<span style="color:var(--rose)">*</span></label>
+<div class="radio-group">
+<label><input type="radio" name="purpose" value="business" required> 公司營業使用或替客戶服務（企業方案）</label>
+<label><input type="radio" name="purpose" value="personal"> 個人自己使用（非營業）</label>
+</div>
+</div>
+
+<hr class="quiz-divider"/>
+
+<!-- Q2 公司資訊 -->
+<div class="quiz-q" id="q2-wrap">
+<label for="q2-name">2. 公司名稱</label>
+<input type="text" id="q2-name" name="company_name" maxlength="120" placeholder="例如：大想成業有限公司"/>
+<label for="q2-tin" style="margin-top:10px">統一編號（選填）</label>
+<input type="text" id="q2-tin" name="company_tin" maxlength="20" placeholder="例如：12345678"/>
+</div>
+
+<!-- Q3 填寫人 -->
+<div class="quiz-q" id="q3-wrap">
+<label for="q3-name">3. 填寫人姓名與職稱</label>
+<input type="text" id="q3-name" name="filler_name" maxlength="80" placeholder="例如：王大明／行政主管"/>
+</div>
+
+<hr class="quiz-divider"/>
+
+<!-- Q4 使用人數 -->
+<div class="quiz-q" id="q4-wrap">
+<label>4. 大概有多少人會使用這套 AI？</label>
+<div class="radio-group">
+<label><input type="radio" name="user_count" value="1-10"> 1–10 人</label>
+<label><input type="radio" name="user_count" value="11-30"> 11–30 人</label>
+<label><input type="radio" name="user_count" value="31-100"> 31–100 人</label>
+<label><input type="radio" name="user_count" value="100+"> 100 人以上</label>
+</div>
+</div>
+
+<!-- Q5 AI 回答類型 -->
+<div class="quiz-q" id="q5-wrap">
+<label>5. 最想讓 AI 回答哪一類問題？（可複選）</label>
+<div class="check-group">
+<label><input type="checkbox" name="qa_type" value="product_spec"> 產品規格、價目與報價規則</label>
+<label><input type="checkbox" name="qa_type" value="sop"> SOP 與作業程序</label>
+<label><input type="checkbox" name="qa_type" value="forms"> 表單填寫說明</label>
+<label><input type="checkbox" name="qa_type" value="regulations"> 法規與公司規章</label>
+<label><input type="checkbox" name="qa_type" value="other_qa"> 其他</label>
+</div>
+</div>
+
+<!-- Q6 文件數量 -->
+<div class="quiz-q" id="q6-wrap">
+<label for="q6">6. 這些文件大約有幾份？</label>
+<p class="q-note">一份 = 一個 PDF、Word 或純文字檔</p>
+<div class="radio-group">
+<label><input type="radio" name="doc_count" value="le30"> 30 份以下</label>
+<label><input type="radio" name="doc_count" value="31to100"> 31–100 份</label>
+<label><input type="radio" name="doc_count" value="gt100"> 超過 100 份</label>
+</div>
+</div>
+
+<!-- Q7 文件格式 -->
+<div class="quiz-q" id="q7-wrap">
+<label>7. 文件格式是哪些？（可複選）</label>
+<div class="check-group">
+<label><input type="checkbox" name="doc_format" value="pdf_docx"> 可選取文字的 PDF 或 Word</label>
+<label><input type="checkbox" name="doc_format" value="plain_text"> 純文字（TXT、Markdown 等）</label>
+<label><input type="checkbox" name="doc_format" value="spreadsheet"> 試算表（Excel、CSV、Google Sheets）</label>
+<label><input type="checkbox" name="doc_format" value="scan"> 掃描圖檔（無法選取文字）</label>
+</div>
+</div>
+
+<!-- Q8 草稿需求 -->
+<div class="quiz-q" id="q8-wrap">
+<label>8. 除了回答問題，需要 AI 幫忙打草稿嗎？</label>
+<div class="radio-group">
+<label><input type="radio" name="needs_draft" value="none"> 不需要，只要能回答問題就夠了</label>
+<label><input type="radio" name="needs_draft" value="inquiry_summary"> 詢問摘要（整理收到的詢問或留言）</label>
+<label><input type="radio" name="needs_draft" value="reply_draft"> 回覆草稿（擬好草稿由人確認後回）</label>
+<label><input type="radio" name="needs_draft" value="form_summary"> 表單摘要（整理填寫資料）</label>
+</div>
+</div>
+
+<!-- Q9 文件位置 -->
+<div class="quiz-q" id="q9-wrap">
+<label>9. 文件現在放在哪裡？</label>
+<div class="radio-group">
+<label><input type="radio" name="doc_location" value="local_static"> 固定的資料夾，不會常更新</label>
+<label><input type="radio" name="doc_location" value="local_frequent"> 固定的資料夾，文件偶爾會更新</label>
+<label><input type="radio" name="doc_location" value="cloud_frequent"> 雲端硬碟（Google Drive、OneDrive 等），而且常常更新</label>
+</div>
+</div>
+
+<!-- Q10 使用通路 -->
+<div class="quiz-q" id="q10-wrap">
+<label>10. 想在哪裡使用這套 AI？</label>
+<div class="radio-group">
+<label><input type="radio" name="channel" value="line"> LINE 官方帳號</label>
+<label><input type="radio" name="channel" value="web"> 嵌入公司網站或內部頁面</label>
+<label><input type="radio" name="channel" value="internal_comms"> 公司內部通訊工具（Teams、Slack 等）</label>
+</div>
+</div>
+
+<!-- Q11 設備 -->
+<div class="quiz-q" id="q11-wrap">
+<label>11. 公司有沒有一台可以 24 小時開機的電腦？</label>
+<div class="radio-group">
+<label><input type="radio" name="device" value="has_device"> 有，可以讓它 24 小時開著</label>
+<label><input type="radio" name="device" value="cloud_ok"> 目前沒有，但可以使用雲端主機</label>
+<label><input type="radio" name="device" value="no_device"> 沒有，也沒有雲端主機的打算</label>
+</div>
+</div>
+
+<hr class="quiz-divider"/>
+
+<!-- Q12 個資同意 -->
+<div class="quiz-q" id="q12-wrap">
+<label class="consent-label">
+<input type="checkbox" id="q12-consent" name="consent" value="yes" required>
+<span>12. 我已閱讀 <a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">隱私權政策與個資告知</a>，同意 Think BIG（大想成業有限公司）於問卷評估目的範圍內蒐集與使用上述填寫資料。資料保存 30 天，可寄信至 AI@thinkbigtw.com 請求提前刪除。</span>
+</label>
+</div>
+
+</div><!-- .quiz-group -->
+
+<button type="submit" class="button" id="quiz-submit" style="margin-top:28px;width:100%" disabled>
+  計算適合的級距 <span aria-hidden="true">›</span>
+</button>
+<p id="quiz-submit-hint" style="font-size:13px;color:var(--muted);margin-top:8px">請回答第 1 題（用途）和第 12 題（個資同意）後啟用</p>
+</form>
+
+<!-- Grade Result (shown after submit) -->
+<div class="grade-box" id="grade-box" aria-live="polite">
+<p class="grade-eyebrow" id="grade-eyebrow">建議級距</p>
+<h2 id="grade-name"></h2>
+<div class="grade-price" id="grade-price"></div>
+<p style="font-size:13px;color:var(--muted);margin-top:4px">含稅｜付款分兩次：簽約 50%、驗收通過 50%</p>
+<p class="grade-desc" id="grade-desc"></p>
+<div class="grade-scope" id="grade-scope-wrap">
+<strong style="font-size:13px;color:var(--ink);display:block;margin-bottom:6px">這一級包含：</strong>
+<ul id="grade-scope"></ul>
+</div>
+<p class="grade-note" id="grade-note"></p>
+</div>
+
+</div><!-- .quiz-wrap -->
+</section>
+
+<!-- Contact Form (shown after grade) -->
+<section class="consult-form-section" id="consult-section">
+<div class="wrap">
+<div class="section-head" style="margin-bottom:28px">
+<p class="eyebrow">NEXT STEP / 下一步</p>
+<h2 style="font-size:clamp(20px,2.5vw,28px)">預約遠端預檢 / 送出需求</h2>
+<p class="intro">填寫聯絡資料，TB 將在 1 個工作日內主動聯繫，安排 20 分鐘的遠端設備預檢與需求確認。</p>
+</div>
+
+<div class="consult-form" id="consult-form-wrap">
+<h2>填寫聯絡資料</h2>
+<p class="intro">資料不送入 AI，由真人處理。</p>
+
+<div class="field">
+<label for="cf-name">姓名 <span style="color:var(--rose)">*</span></label>
+<input type="text" id="cf-name" name="name" maxlength="80" placeholder="例如：王大明" autocomplete="name" required/>
+</div>
+
+<div class="field">
+<label for="cf-org">公司名稱 <span style="color:var(--rose)">*</span></label>
+<input type="text" id="cf-org" name="organization" maxlength="120" placeholder="例如：大想成業有限公司" autocomplete="organization" required/>
+</div>
+
+<div class="field">
+<label>聯絡方式 <span style="color:var(--rose)">*</span></label>
+<div class="contact-method-row">
+<select id="cf-method" name="contactMethod" aria-label="聯絡方式">
+<option value="email">Email</option>
+<option value="phone">電話</option>
+<option value="line">LINE ID</option>
+</select>
+<input type="email" id="cf-contact" name="contact" maxlength="254" placeholder="your@email.com" autocomplete="email" required/>
+</div>
+<small id="cf-contact-hint">填寫 Email，TB 將回寄確認信與資料</small>
+</div>
+
+<div class="field">
+<label for="cf-scale">公司規模 / 使用部門 <span style="color:var(--rose)">*</span></label>
+<input type="text" id="cf-scale" name="scale" maxlength="120" placeholder="例如：15 人、業務部門" required/>
+</div>
+
+<label class="consent-label" style="margin-top:4px">
+<input type="checkbox" id="cf-consent" required/>
+<span>我已閱讀 <a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">隱私權政策與個資告知</a>，同意 Think BIG（大想成業有限公司）於聯絡與業務洽詢目的範圍內蒐集與使用上述聯絡資料。</span>
+</label>
+
+<button class="button form-submit-btn" id="cf-submit" type="button">送出需求，預約遠端預檢 <span aria-hidden="true">›</span></button>
+<p class="form-status" id="cf-status" role="status"></p>
+
+<div class="sign-note">
+<strong>線上簽約與付款：</strong>由專人寄出正式合約，不在此頁面辦理。合約包含範圍凍結清單、驗收測試集、首年服務內容與第二年續約選項；首期 50% 於簽約時付款。
+</div>
+</div>
+</div>
+</section>
+
+<!-- Out-of-scope redirect -->
+<section class="consult-redirect section wrap" id="consult-redirect-section">
+<div class="consult-card">
+<h2>需求超出標準三級範圍</h2>
+<p>你的需求（例如自動對外回覆、串接 ERP、大量文件超過 100 份以上或主要是掃描圖檔）超出標準三級的定義範圍。請預約 20 分鐘評估，由顧問說明適合的做法。</p>
+<a class="button pink" href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">預約 20 分鐘評估 <span aria-hidden="true">›</span></a>
+</div>
+</section>
+
+</div><!-- .wrap -->
+</main>
+
+<script>
+(function(){
+'use strict';
+
+// ── URL source parameter ──────────────────────────────────────────────
+const urlSrc = new URLSearchParams(location.search).get('src') || '';
+
+// ── Progress bar ──────────────────────────────────────────────────────
+const TOTAL_Q = 12;
+const progWrap = document.getElementById('quiz-progress');
+for(let i=0;i<TOTAL_Q;i++){
+  const b = document.createElement('div');
+  b.className = 'quiz-progress-bar';
+  b.id = 'prog-'+i;
+  progWrap.appendChild(b);
+}
+function updateProgress(){
+  const answered = getAnsweredCount();
+  for(let i=0;i<TOTAL_Q;i++){
+    document.getElementById('prog-'+i).classList.toggle('done', i < answered);
+  }
+  progWrap.setAttribute('aria-valuenow', answered);
+}
+function getAnsweredCount(){
+  const f = document.getElementById('quiz-form');
+  let count = 0;
+  if(f.querySelector('input[name="purpose"]:checked')) count++;
+  if(f.querySelector('#q2-name').value.trim()) count++;
+  if(f.querySelector('#q3-name').value.trim()) count++;
+  if(f.querySelector('input[name="user_count"]:checked')) count++;
+  if(f.querySelector('input[name="qa_type"]:checked')) count++;
+  if(f.querySelector('input[name="doc_count"]:checked')) count++;
+  if(f.querySelector('input[name="doc_format"]:checked')) count++;
+  if(f.querySelector('input[name="needs_draft"]:checked')) count++;
+  if(f.querySelector('input[name="doc_location"]:checked')) count++;
+  if(f.querySelector('input[name="channel"]:checked')) count++;
+  if(f.querySelector('input[name="device"]:checked')) count++;
+  if(f.querySelector('#q12-consent').checked) count++;
+  return count;
+}
+
+// ── Enable submit button ──────────────────────────────────────────────
+const submitBtn = document.getElementById('quiz-submit');
+const submitHint = document.getElementById('quiz-submit-hint');
+function checkSubmitEligible(){
+  const f = document.getElementById('quiz-form');
+  const hasPurpose = !!f.querySelector('input[name="purpose"]:checked');
+  const hasConsent = f.querySelector('#q12-consent').checked;
+  submitBtn.disabled = !(hasPurpose && hasConsent);
+  submitHint.style.display = (hasPurpose && hasConsent) ? 'none' : '';
+}
+
+document.getElementById('quiz-form').addEventListener('change', function(){
+  updateProgress();
+  checkSubmitEligible();
+});
+document.getElementById('quiz-form').addEventListener('input', function(){
+  updateProgress();
+});
+
+// ── Grade logic ───────────────────────────────────────────────────────
+function computeGrade(f){
+  const get = name => f.querySelector('input[name="'+name+'"]:checked')?.value || '';
+  const getChecked = name => [...f.querySelectorAll('input[name="'+name+'"]:checked')].map(e=>e.value);
+
+  const purpose = get('purpose');
+  const docCount = get('doc_count');
+  const docFormats = getChecked('doc_format');
+  const needsDraft = get('needs_draft');
+  const docLocation = get('doc_location');
+  const channel = get('channel');
+  const device = get('device');
+
+  // Personal use → redirect
+  if(purpose === 'personal') return 'personal';
+
+  // Out-of-scope check
+  const mostlyScans = docFormats.length > 0 && docFormats.every(f=>f==='scan') && docFormats.includes('scan');
+  const onlyScans = docFormats.length === 1 && docFormats[0] === 'scan';
+  if(onlyScans) return 'consult';
+  if(device === 'no_device') return 'consult';
+  if(docCount === 'gt100') return 'consult';
+
+  // Default: starter
+  let grade = 'starter';
+
+  // Bump to standard
+  if(docCount === '31to100') grade = 'standard';
+  if(docFormats.includes('spreadsheet')) grade = 'standard';
+  if(needsDraft && needsDraft !== 'none') grade = 'standard';
+  if(channel === 'internal_comms') grade = 'standard';
+
+  // Bump to complete
+  if(docLocation === 'cloud_frequent') grade = 'complete';
+
+  return grade;
+}
+
+// ── Tier data ─────────────────────────────────────────────────────────
+const TIERS = {
+  starter: {
+    eyebrow: '建議級距：入門級',
+    name: '入門級 AI 知識助理',
+    price: 'NT$33,000',
+    desc: '員工直接問公司的 SOP 和規章。AI 依文件回答、附出處；沒有依據就交回人確認。',
+    scope: [
+      '知識庫 1 個，≤30 份、≤300 頁、≤50 MB',
+      '使用通路：LINE 官方帳號或網頁嵌入，二選一',
+      '教學影片 1–2 支 + 快速手冊',
+      '首年維護：異常排查、缺陷修正、安全修補、監控',
+      '工作日 1 個工作日內真人回覆',
+      '交付天數：約 14 天',
+    ],
+    note: '第二年選配續約：NT$5,000／月（含稅）。不自動扣款，由客戶決定。首年內補差價 NT$33,000 可升標準級。',
+  },
+  standard: {
+    eyebrow: '建議級距：標準級',
+    name: '標準級 AI 助理 + 工作草稿',
+    price: 'NT$66,000',
+    desc: '回答問題，也幫忙打草稿。文件最多 100 份，支援試算表，並包含一項工作草稿任務（詢問摘要、回覆草稿或表單摘要三選一）。',
+    scope: [
+      '知識庫 1 個，≤100 份、≤1,000 頁、≤200 MB + 試算表',
+      '工作草稿任務 1 項（三選一）',
+      '使用通路：LINE、網頁或內部通訊工具，三選一',
+      '教學影片 2–3 支 + 操作手冊',
+      '首年維護：全含；每季 1 小時操作諮詢',
+      '工作日 1 個工作日內真人回覆',
+      '交付天數：約 21 天',
+    ],
+    note: '第二年選配續約：NT$10,000／月（含稅）。不自動扣款，由客戶決定。首年內補差價 NT$33,000 可升完整級。',
+  },
+  complete: {
+    eyebrow: '建議級距：完整級',
+    name: '完整級 AI 助理 + 自動同步',
+    price: 'NT$99,000',
+    desc: '回答、打草稿，文件還會自動同步。包含一個唯讀串接（例如雲端硬碟資料夾自動同步），並可加購擴充包。',
+    scope: [
+      '知識庫 1 個，≤100 份、≤1,000 頁、≤200 MB + 試算表',
+      '工作草稿任務 1 項（三選一）',
+      '唯讀串接 1 個（例如雲端硬碟自動同步）',
+      '使用通路：LINE、網頁或內部通訊工具，三選一',
+      '教學影片 3–5 支 + 完整操作手冊',
+      '首年維護：全含；每月 1 小時操作諮詢',
+      '工作日 1 個工作日內真人回覆',
+      '交付天數：約 30 天',
+      '可加購擴充包',
+    ],
+    note: '第二年選配續約：NT$15,000／月（含稅）。不自動扣款，由客戶決定。',
+  }
+};
+
+// ── Show grade result ─────────────────────────────────────────────────
+function showGrade(grade){
+  const gradeBox = document.getElementById('grade-box');
+  const consultSection = document.getElementById('consult-section');
+  const redirectSection = document.getElementById('consult-redirect-section');
+
+  if(grade === 'personal'){
+    location.href = '/pricing/personal/';
+    return;
+  }
+  if(grade === 'consult'){
+    redirectSection.classList.add('visible');
+    gradeBox.classList.remove('visible');
+    consultSection.classList.remove('visible');
+    redirectSection.scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
+
+  const t = TIERS[grade];
+  document.getElementById('grade-eyebrow').textContent = t.eyebrow;
+  document.getElementById('grade-name').textContent = t.name;
+  document.getElementById('grade-price').innerHTML = t.price + ' <span>（含稅）</span>';
+  document.getElementById('grade-desc').textContent = t.desc;
+  const scopeUl = document.getElementById('grade-scope');
+  scopeUl.innerHTML = t.scope.map(s=>'<li>'+s+'</li>').join('');
+  document.getElementById('grade-note').textContent = t.note;
+
+  gradeBox.classList.add('visible');
+  redirectSection.classList.remove('visible');
+
+  // pre-fill org and name in contact form
+  const f = document.getElementById('quiz-form');
+  const compName = f.querySelector('#q2-name').value.trim();
+  const fillerName = f.querySelector('#q3-name').value.trim();
+  if(compName) document.getElementById('cf-org').value = compName;
+  if(fillerName) document.getElementById('cf-name').value = fillerName.split(/[\/／]/)[0].trim();
+
+  consultSection.classList.add('visible');
+
+  // store grade for form submission
+  window._quizGrade = grade;
+  window._quizAnswers = collectAnswers(f, grade);
+
+  gradeBox.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function collectAnswers(f, grade){
+  const get = name => f.querySelector('input[name="'+name+'"]:checked')?.value || '（未填）';
+  const getChecked = name => [...f.querySelectorAll('input[name="'+name+'"]:checked')].map(e=>e.value).join('、') || '（未選）';
+  return [
+    '【企業 AI 自助評估問卷】',
+    '判斷級距：' + grade,
+    urlSrc ? '來源：' + urlSrc : '',
+    '用途：' + get('purpose'),
+    '公司：' + (f.querySelector('#q2-name').value.trim() || '（未填）'),
+    '統編：' + (f.querySelector('#q2-tin').value.trim() || '（未填）'),
+    '填寫人：' + (f.querySelector('#q3-name').value.trim() || '（未填）'),
+    '使用人數：' + get('user_count'),
+    'AI 回答類型：' + getChecked('qa_type'),
+    '文件份數：' + get('doc_count'),
+    '文件格式：' + getChecked('doc_format'),
+    '草稿需求：' + get('needs_draft'),
+    '文件位置：' + get('doc_location'),
+    '使用通路：' + get('channel'),
+    '設備狀況：' + get('device'),
+  ].filter(Boolean).join('\n');
+}
+
+// ── Form submit ───────────────────────────────────────────────────────
+document.getElementById('quiz-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const grade = computeGrade(this);
+  showGrade(grade);
+});
+
+// ── Contact method switch ─────────────────────────────────────────────
+document.getElementById('cf-method').addEventListener('change', function(){
+  const contact = document.getElementById('cf-contact');
+  const hint = document.getElementById('cf-contact-hint');
+  if(this.value === 'email'){
+    contact.type = 'email';
+    contact.placeholder = 'your@email.com';
+    contact.autocomplete = 'email';
+    hint.textContent = '填寫 Email，TB 將回寄確認信與資料';
+  } else if(this.value === 'phone'){
+    contact.type = 'tel';
+    contact.placeholder = '0912-345-678';
+    contact.autocomplete = 'tel';
+    hint.textContent = '填寫台灣手機或市話';
+  } else {
+    contact.type = 'text';
+    contact.placeholder = 'your_line_id';
+    contact.autocomplete = 'off';
+    hint.textContent = '請確認已開啟「允許使用 LINE ID 加入好友」';
+  }
+});
+
+// ── Inquiry submission ────────────────────────────────────────────────
+document.getElementById('cf-submit').addEventListener('click', async function(){
+  const nameEl = document.getElementById('cf-name');
+  const orgEl = document.getElementById('cf-org');
+  const methodEl = document.getElementById('cf-method');
+  const contactEl = document.getElementById('cf-contact');
+  const scaleEl = document.getElementById('cf-scale');
+  const consentEl = document.getElementById('cf-consent');
+  const statusEl = document.getElementById('cf-status');
+
+  if(!nameEl.value.trim() || !orgEl.value.trim() || !contactEl.value.trim() || !scaleEl.value.trim()){
+    statusEl.textContent = '請填寫所有必填欄位（姓名、公司、聯絡方式、規模）。';
+    statusEl.className = 'form-status error';
+    return;
+  }
+  if(!consentEl.checked){
+    statusEl.textContent = '請勾選個資同意後再送出。';
+    statusEl.className = 'form-status error';
+    return;
+  }
+
+  this.disabled = true;
+  statusEl.textContent = '送出中…';
+  statusEl.className = 'form-status';
+
+  // Build need string: questionnaire answers + any notes
+  const needText = (window._quizAnswers || '（問卷未完成）') + (urlSrc ? '\n來源標記：' + urlSrc : '');
+
+  const payload = {
+    id: crypto.randomUUID(),
+    consent: true,
+    name: nameEl.value.trim(),
+    organization: orgEl.value.trim(),
+    need: needText.slice(0, 1200),
+    scale: scaleEl.value.trim(),
+    contactMethod: methodEl.value,
+    contact: contactEl.value.trim(),
+  };
+
+  try {
+    const resp = await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-inquiry', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload),
+    });
+    const data = await resp.json().catch(()=>({}));
+    if(data.accepted){
+      statusEl.textContent = '已收到！TB 將在 1 個工作日內主動聯繫，安排遠端預檢。';
+      statusEl.className = 'form-status success';
+      this.disabled = true;
+      document.getElementById('consult-form-wrap').querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);
+    } else if(data.error === 'rate_limited'){
+      statusEl.textContent = '已達每日送出上限，請明日再試，或透過 LINE 聯繫。';
+      statusEl.className = 'form-status error';
+      this.disabled = false;
+    } else {
+      throw new Error(data.error || 'unknown');
+    }
+  } catch(err){
+    statusEl.innerHTML = '送出失敗，請改用 <a href="https://lin.ee/n5KW430" target="_blank" rel="noopener" style="color:var(--rose)">LINE 聯繫</a>。';
+    statusEl.className = 'form-status error';
+    this.disabled = false;
+  }
+});
+
+// init
+updateProgress();
+checkSubmitEligible();
+
+})();
+</script>
+
+<script defer src="/nav.js"></script>
+<script defer src="/ask-ai.js?v=202609270609"></script>
+<!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+<script defer src="/assets/homesplit/interactions.js?v=20260927v8"></script>
+</body>
+</html>
