@@ -34,3 +34,14 @@
 }
 
 .ai-avatar{object-fit:cover;background:#1d1d1f;border:0;padding:0}
+/* ─── 一鍵三連社群卡片 ─── */
+#tb-ai-dialog .ai-social-card{border:1px solid #e8e5ec;border-radius:18px;background:#faf9fb;padding:14px 15px 15px;margin:8px 0 4px;overflow-wrap:anywhere}
+#tb-ai-dialog .ai-social-title{margin:0 0 11px;font-size:12px;font-weight:600;color:#514a55;letter-spacing:.01em}
+#tb-ai-dialog .ai-social-btns{display:flex;gap:8px;flex-wrap:wrap}
+#tb-ai-dialog .ai-social-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border:1px solid #dcdae0;border-radius:24px;background:#fff;color:#29292d;font-size:13px;font-weight:500;text-decoration:none;min-height:40px;flex-shrink:0;transition:background .15s,border-color .15s}
+@media(hover:hover) and (pointer:fine){#tb-ai-dialog .ai-social-btn:hover{background:#f3f1f6;border-color:#b5b0bb;text-decoration:none}}
+#tb-ai-dialog .ai-social-btn svg{width:18px;height:18px;flex-shrink:0;color:#875165}
+/* ─── 隱私小字 ─── */
+#tb-ai-dialog .ai-privacy-note{font-size:10px;color:#87838a;text-align:center;margin:3px 0 0;line-height:1.5}
+#tb-ai-dialog .ai-privacy-note a{color:#78737e;font-size:10px}
+@media(max-width:390px){#tb-ai-dialog .ai-social-btns{flex-direction:column}#tb-ai-dialog .ai-social-btn{width:100%;justify-content:center}}
