@@ -1731,7 +1731,7 @@ async function handleIndustryDesign(request, env){
 export default {
   async fetch(request, env, ctx) {
     const thinkBigPath = new URL(request.url).pathname;
-    if (['/thinkbig-chat', '/thinkbig-inquiry'].includes(thinkBigPath)) return handleThinkBig(request, env);
+    if (['/thinkbig-chat', '/thinkbig-inquiry', '/thinkbig-end-chat'].includes(thinkBigPath)) return handleThinkBig(request, env);
     // === V279_EARLY_INTERCEPT ===
     try {
       const _u = new URL(request.url);

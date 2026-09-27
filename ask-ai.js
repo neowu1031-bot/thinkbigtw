@@ -5,8 +5,14 @@
   if (document.getElementById('tb-ai-launcher')) return;
   const endpoint = 'https://moneyradar-ai-proxy.thinkbigtw.workers.dev';
   const line = 'https://lin.ee/n5KW430';
+  // 一鍵三連（SSOT 同開發信）
+  const SOCIAL_LINKS = [
+    { label: 'IG 追蹤', icon: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>', href: 'https://www.instagram.com/think_big_ai/?utm_source=site-chat' },
+    { label: '蝦皮賣場', icon: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4C5.4 4 4 5.4 4 7s1.4 3 3 3 3-1.4 3-3-1.4-3-3-3zm10 0c-1.6 0-3 1.4-3 3s1.4 3 3 3 3-1.4 3-3-1.4-3-3-3zM4 17c0-1.6 1.4-3 3-3h10c1.6 0 3 1.4 3 3v.5a.5.5 0 0 1-.5.5H4.5a.5.5 0 0 1-.5-.5V17z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>', href: 'https://shopee.tw/shop/105010395?utm_source=site-chat' },
+    { label: 'LINE 聯繫', icon: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.4 1.3 4.6 3.4 6.1-.2.8-.7 2.9-.8 3.3 0 0 0 .1.1.1.1 0 .1 0 .2-.1l3.9-2.4C9.8 18.3 10.9 18.4 12 18.4c5.5 0 10-3.6 10-8s-4.5-7.4-10-7.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>', href: line },
+  ];
   const css = document.createElement('link');
-  css.rel = 'stylesheet'; css.href = '/assets/brand/assistant.css?v=a49c047'; document.head.appendChild(css);
+  css.rel = 'stylesheet'; css.href = '/assets/brand/assistant.css?v=0928social'; document.head.appendChild(css);
   const arrow = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const launcher = document.createElement('button');
   launcher.id = 'tb-ai-launcher'; launcher.type = 'button';
@@ -14,7 +20,7 @@
   launcher.setAttribute('aria-label', '開啟 Think BIG AI 顧問');
   launcher.setAttribute('aria-haspopup', 'dialog'); launcher.setAttribute('aria-controls', 'tb-ai-dialog'); launcher.setAttribute('aria-expanded', 'false');
   const dialog = document.createElement('dialog'); dialog.id = 'tb-ai-dialog'; dialog.setAttribute('aria-labelledby', 'tb-ai-title');
-  dialog.innerHTML = '<div class="ai-sheet-handle" aria-hidden="true"></div><header class="ai-header"><div class="ai-identity"><img class="ai-avatar" src="/assets/brand/ai-avatar.png" width="40" height="40" alt="" aria-hidden="true"><div><h2 id="tb-ai-title">AI 顧問</h2><p>Think BIG AI 顧問</p></div></div><button class="ai-close" type="button" aria-label="關閉 AI 顧問"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></header><div class="ai-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="對話紀錄" tabindex="0"></div><div class="ai-tools"><button type="button" class="ai-inquiry-open">整理諮詢摘要 <span aria-hidden="true">↗</span></button><a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">隱私說明</a></div><form class="ai-composer"><label class="ai-sr-only" for="tb-ai-input">輸入問題</label><div class="ai-input-row"><textarea id="tb-ai-input" rows="1" maxlength="1200" placeholder="想了解什麼？" enterkeyhint="send" required></textarea><button class="ai-send" type="submit" aria-label="送出問題">'+arrow+'</button></div><p class="ai-disclaimer">回覆由 AI 產生，請勿輸入密碼或機密</p><p class="ai-processing">自由提問使用外部 AI 服務</p><p id="tb-ai-status" role="status"></p></form>';
+  dialog.innerHTML = '<div class="ai-sheet-handle" aria-hidden="true"></div><header class="ai-header"><div class="ai-identity"><img class="ai-avatar" src="/assets/brand/ai-avatar.png" width="40" height="40" alt="" aria-hidden="true"><div><h2 id="tb-ai-title">AI 顧問</h2><p>Think BIG AI 顧問</p></div></div><button class="ai-close" type="button" aria-label="關閉 AI 顧問"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></button></header><div class="ai-log" role="log" aria-live="polite" aria-relevant="additions" aria-label="對話紀錄" tabindex="0"></div><div class="ai-tools"><button type="button" class="ai-inquiry-open">整理諮詢摘要 <span aria-hidden="true">↗</span></button><a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">隱私說明</a></div><form class="ai-composer"><label class="ai-sr-only" for="tb-ai-input">輸入問題</label><div class="ai-input-row"><textarea id="tb-ai-input" rows="1" maxlength="1200" placeholder="想了解什麼？" enterkeyhint="send" required></textarea><button class="ai-send" type="submit" aria-label="送出問題">'+arrow+'</button></div><p class="ai-disclaimer">回覆由 AI 產生，請勿輸入密碼或機密</p><p class="ai-processing">自由提問使用外部 AI 服務</p><p class="ai-privacy-note">對話內容會用於改善服務與後續聯繫 · <a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">隱私說明</a></p><p id="tb-ai-status" role="status"></p></form>';
   document.body.append(launcher, dialog);
   const log = dialog.querySelector('.ai-log');
   const composer = dialog.querySelector('.ai-composer');
@@ -23,6 +29,10 @@
   const status = dialog.querySelector('#tb-ai-status');
   const inquiryButton = dialog.querySelector('.ai-inquiry-open');
   let history = [], latestNeed = '', loading = false, opener = launcher, chatController, inquiryCard, inquirySent = false;
+  // Session tracking for end-of-chat report
+  const sessionId = crypto.randomUUID();
+  let reportSent = false, idleTimer = null;
+  const IDLE_MS = 2 * 60 * 1000; // 2 minutes
   const scroll = () => { log.scrollTop = log.scrollHeight; };
   function message(role, text, label) {
     const item = document.createElement('div'); item.className = 'ai-message'; item.dataset.role = role;
@@ -59,9 +69,12 @@
   launcher.addEventListener('click', () => open(launcher));
   dialog.querySelector('.ai-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('close', () => {
+    clearTimeout(idleTimer);
     if (chatController) chatController.abort();
     launcher.hidden = false; launcher.setAttribute('aria-expanded', 'false');
     if (opener?.isConnected) opener.focus({ preventScroll: true });
+    // Send report on close if >=2 user turns
+    sendEndChatReport();
   });
   dialog.addEventListener('keydown', event => {
     if (event.key !== 'Tab') return;
@@ -76,8 +89,59 @@
     const item = (window.TB_AGENT_FAQ || []).find(x => x.id === id);
     open(button); if (item) localAnswer(item);
   });
+  // ─── 一鍵三連社群卡片 ───
+  let socialCard = null;
+  function ensureSocialCard() {
+    if (socialCard) return;
+    socialCard = document.createElement('div');
+    socialCard.className = 'ai-social-card';
+    socialCard.setAttribute('aria-label', '聯繫我們的其他管道');
+    const title = document.createElement('p');
+    title.className = 'ai-social-title';
+    title.textContent = '聊完了？三個地方找得到我們';
+    const btns = document.createElement('div');
+    btns.className = 'ai-social-btns';
+    for (const s of SOCIAL_LINKS) {
+      const a = document.createElement('a');
+      a.href = s.href; a.target = '_blank'; a.rel = 'noopener noreferrer';
+      a.className = 'ai-social-btn'; a.innerHTML = s.icon + '<span>' + s.label + '</span>';
+      btns.append(a);
+    }
+    socialCard.append(title, btns);
+    log.append(socialCard);
+    scroll();
+  }
+
+  // ─── 對話結束：送摘要報告到 Worker ───
+  function sendEndChatReport() {
+    if (reportSent) return;
+    const userTurns = history.filter(m => m.role === 'user').length;
+    if (userTurns < 2) return;
+    reportSent = true;
+    // Fire-and-forget; failure is silent (non-critical path)
+    try {
+      fetch(endpoint + '/thinkbig-end-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ session_id: sessionId, messages: history }),
+        keepalive: true,  // survive page close
+      }).catch(() => {});
+    } catch (_) {}
+  }
+
+  // ─── 閒置計時器 ───
+  function resetIdleTimer() {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+      if (dialog.open && history.filter(m => m.role === 'user').length >= 1) {
+        ensureSocialCard();
+        sendEndChatReport();
+      }
+    }, IDLE_MS);
+  }
+
   function resize() { input.style.height = 'auto'; input.style.height = Math.min(input.scrollHeight, 112) + 'px'; }
-  input.addEventListener('input', resize);
+  input.addEventListener('input', () => { resize(); resetIdleTimer(); });
   input.addEventListener('keydown', event => {
     if (event.key === 'Enter' && !event.shiftKey && !event.isComposing && event.keyCode !== 229) { event.preventDefault(); composer.requestSubmit(); }
   });
@@ -97,6 +161,9 @@
       typing.remove(); message('assistant', data.reply);
       history = pending.concat({ role: 'assistant', content: data.reply.slice(0, 1200) }).slice(-12);
       if (data.inquirySuggested && !inquirySent && !inquiryCard) offerInquiry();
+      // Show social card after first full exchange (1 user + 1 AI)
+      if (history.filter(m => m.role === 'user').length >= 1) ensureSocialCard();
+      resetIdleTimer();
     } catch (_) {
       status.replaceChildren(document.createTextNode('暫時無法取得回覆。請稍後再試，或 '), fallbackLink());
       if (!input.value) input.value = text; resize();
