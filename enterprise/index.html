@@ -241,6 +241,13 @@
 .upgrade-note{font-size:13px;color:var(--muted);margin-top:16px}
 .upgrade-note strong{color:var(--ink)}
 @media(max-width:860px){.tier-grid{grid-template-columns:1fr}}
+/* 為什麼敢開這個價格 2026-09-28 */
+.why-price{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:32px 28px;margin-top:48px}
+.why-price-heading{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--rose);margin-bottom:20px}
+.why-price-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
+.why-price-list li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--ink);line-height:1.7}
+.why-price-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--rose);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
+@media(max-width:390px){.why-price{padding:24px 16px}.why-price-list li{font-size:14px;gap:10px}}
 </style>
 </head>
 <body class="homesplit editorial enterprise-overview">
@@ -459,6 +466,17 @@ Think BIG（大想成業有限公司）以 TB FRAME 四階段方法論（評估�
 <a class="button" href="/enterprise/start/">填問卷，看看哪一級適合我 <span aria-hidden="true">›</span></a>
 <a class="button outline" href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">預約 20 分鐘評估 <span aria-hidden="true">›</span></a>
 </div>
+
+<div class="section wrap why-price" id="why-price">
+<p class="why-price-heading">WHY THIS PRICE</p>
+<h2 style="font-size:clamp(22px,4vw,30px);margin-bottom:20px">為什麼敢開這個價格</h2>
+<ol class="why-price-list">
+<li><span class="why-price-num">①</span><span>AI 把技術門檻打下來了。以前要一整個工程團隊做好幾個月的系統，現在用 AI 幾週就能建好，成本自然降下來。</span></li>
+<li><span class="why-price-num">②</span><span>我們是小規模的新創公司。不用養大辦公室和層層管理，營運成本低，省下來的直接反映在價格上。</span></li>
+<li><span class="why-price-num">③</span><span>便宜，但不隨便。每一套交付前，都經過工程師與多個 AI 交叉審查、先過資安檢查。Think BIG 自己就是 20 多個 AI Agent 每天協作營運的公司，交付給你的，是我們每天在用的架構。</span></li>
+</ol>
+</div>
+
 </section>
 <section class="section wrap" id="deployment"><div class="section-head"><div><p class="eyebrow">DATA SOVEREIGNTY</p><h2>以資料政<span class="title-tail">策<span class="punct">，</span></span><br/>決定部署架<span class="title-tail">構<span class="punct">。</span></span></h2></div><p class="intro">資料主權（Data Sovereignty）落實於處理位置、存取權限與外部傳送規則。依企業政策與設備條件選擇配置，並逐項驗證串接相容性。</p></div><div class="fit-grid"><div id="local"><h3>地端配置</h3><p class="intro">模型與指定資料在公司設備內處理。若要求資料不外傳，也要一起核對日誌、備份及外部串接。</p></div><div id="cloud"><h3>外部模型與服務</h3><p class="intro">需要外部服務時，先列出傳送欄位、用途、帳號權限與費用，確認授權後再納入流程。</p></div></div><p class="note">支援技術：OpenClaw、Claude、MCP、RAG。串接與更換模型需確認相容性，並重新驗證工作結果。</p></section>
 <section class="section wrap" id="process"><a class="text-link" href="/enterprise/process/">查看完整流程與可列印工作表 ›</a>
