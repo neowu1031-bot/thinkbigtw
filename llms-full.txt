@@ -2084,28 +2084,57 @@ HARNESS ENGINEERS
 
 從個人安裝、工作流程整合到年度維運，依設備與使用需求搭建自己的 AI 助理。
 
-OpenClaw
-Hermes Agent
-Claude Managed Agent
-n8n
-DIFY
-Make
-LINE
-WhatsApp
-Telegram
-Discord
-Slack
-Teams
-iMessage
-Google Calendar
-Gmail
-Google Drive
-Notion
-GitHub
-Zapier
-Browser
-Cron
-MCP
+搭建與串接的平台
+
+- OpenClaw
+
+- Hermes Agent
+
+- Claude Managed Agent
+
+- OpenAI Codex
+
+- n8n
+
+- Dify
+
+- Make
+
+- LINE
+
+- WhatsApp
+
+- Telegram
+
+- Discord
+
+- Slack
+
+- Microsoft Teams
+
+- iMessage
+
+- Google Calendar
+
+- Gmail
+
+- Google Drive
+
+- Notion
+
+- Obsidian
+
+- GitHub
+
+- Zapier
+
+- Browser
+
+- Cron
+
+- Model Context Protocol (MCP)
+
+各商標屬其所有者，僅標示可串接之平台，不代表合作或背書。
 
 PERSONAL AI PLANS
 
@@ -2186,45 +2215,67 @@ MCP
 
 04 — THE PROTOCOL
 
-## 三工具如何透過 MCP 協同運作
+## 任何 AI Agent，都能透過 MCP 串進同一套工作流程
 
 Model Context Protocol — AI 工具的共同語言
 
-MCP（Model Context Protocol）是 Anthropic 制定的開放協議，讓不同的 AI 工具能夠互相溝通、共享資源。
+MCP 是連接 AI Agent 與工具、資料的開放協議。Anthropic 於 2024 年提出並開源，2025 年 12 月將其捐贈給 Linux Foundation 旗下的 Agentic AI Foundation（AAIF）；協議的技術方向與日常運作仍由 MCP 維護者自主決定。
 
-Claude Managed Agent
+[2024 開源公告 ↗](https://www.anthropic.com/news/model-context-protocol)[AAIF 官方公告 ↗](https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/)
 
-規劃任務 · 高層次推理
+支援 MCP 的 AI Agent，共用工具與資料
 
-MCP
+- [OpenClaw MCP 工具串接](https://docs.openclaw.ai/tools/mcp)
 
-Hermes Agent
+- [Hermes Agent MCP 工具串接](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
 
-執行業務流程 · 多系統串接
+- [Claude Claude Code](https://code.claude.com/docs/en/mcp)
 
-MCP
+- [OpenAI Codex CLI／IDE](https://developers.openai.com/codex/mcp/)
 
-OpenClaw
+- [ChatGPT 開發者模式](https://developers.openai.com/api/docs/guides/developer-mode)
 
-本機技能執行 · 客製化 Skills
+- [Gemini CLI MCP 工具串接](https://geminicli.com/docs/tools/mcp-server/)
 
-→ OpenClaw
+- [Cursor MCP 工具串接](https://cursor.com/docs/context/mcp)
 
-提供本機技能執行層（客製化 Skills），包含排程任務、檔案處理、資料分析
+- [GitHub Copilot Copilot Chat](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp)
 
-→ Hermes Agent
+- ＋ 你的 Agent ＋ 支援 MCP 即可加入
 
-負責業務流程自動化與外部系統串接，處理 LINE、Email、CRM 工作流
+MCP 共同串接層
 
-→ Claude Managed Agent
+### 工具與資料
 
-負責高層次推理與任務規劃，決策整體執行策略
+- LINE
 
-→ MCP 協議
+- Gmail
 
-作為三者之間的通訊橋樑，統一協議，無縫協作
+- Google Drive
 
-這不只是安裝三個工具，而是建立一套完整的 AI 自動化基礎設施 。
+- Notion
+
+- GitHub
+
+- Slack
+
+- 資料庫／CRM
+
+AI Agent 經 MCP 伺服器取用已授權的工具與資料。各產品須完成相容設定與個別授權；LINE 使用官方帳號 Messaging API。點選 AI Agent 可查看官方 MCP 文件。
+
+Agent 可替換
+
+用哪個 AI Agent 依需求選；支援 MCP，就能接入既有工作流程。
+
+工具串一次，所有 Agent 共用
+
+把工具接成 MCP 服務，完成相容設定與授權的 AI Agent 就能共用，減少重複串接。
+
+權限與稽核集中在 MCP 這層管
+
+在 MCP 串接層配置存取權限、操作紀錄與人工核准；這些治理能力需另外建置與設定。
+
+這不只是裝幾個工具，而是一套能持續加入新 Agent 的 AI 自動化基礎設施 。
 
 ## 個人 AI 助理常見問題
 

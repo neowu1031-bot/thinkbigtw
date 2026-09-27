@@ -82,7 +82,7 @@ section{padding:72px 0}
 .tier h3{font-size:24px;margin-bottom:6px}
 .tier .define{font-size:16px;color:var(--ink);line-height:1.75;padding:12px 16px;background:var(--gray);border-left:4px solid var(--red);border-radius:0 8px 8px 0;margin:12px 0 18px}
 .tier .who{font-size:14px;color:var(--muted);margin-bottom:14px}
-.variants{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:16px}
+.variants{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px;margin-bottom:16px}
 .variant{border:1.5px solid var(--gray2);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:6px}
 .variant .v-name{font-weight:700;color:var(--ink);font-size:15px}
 .variant .v-sub{font-size:12px;color:var(--muted);font-family:var(--mono)}
@@ -417,14 +417,14 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 <p class="define">個人方案 2 是讓 AI 工具組隊跑固定流程的部署服務，一個 AI Agent NT$6,000 或兩個 AI Agent NT$15,000 單次付清，含客製技能、跨 Agent 協作會議室、coding agent 串接與 2 小時線上技術導覽＋安裝後 7 天技術諮詢。</p>
 <p class="who">給誰：已在付 Claude Code／Codex 等 coding agent 訂閱、想讓工具組隊跑固定流程、願意自己維護的人。解決的是「自己當人肉轉接頭」——不是聊天機器人，是會自己跑的部門。</p>
 <div class="variants">
-<a class="variant" href="/full-agent/">
+<a class="variant variant-illustrated" href="/full-agent/"><img class="personal-card-art" src="/assets/illustrations/personal-single-agent.webp" srcset="/assets/illustrations/personal-single-agent-240.webp 240w, /assets/illustrations/personal-single-agent.webp 480w" sizes="(max-width:600px) 88px, 136px" width="480" height="480" loading="lazy" decoding="async" alt="TB 公仔與一位小機器人助手並肩站立">
 <span class="v-name">單 AI Agent</span>
 <span class="v-sub">變體 A · 全 Agent 串接</span>
 <span class="v-price">NT$6,000</span>
 <span class="v-inc">60 組客製技能＋跨 Agent 協作會議室＋coding agent 串接</span>
 <span class="v-cta">看全 Agent 串接頁 →</span>
 </a>
-<a class="variant" href="/dual-agent/">
+<a class="variant variant-illustrated" href="/dual-agent/"><img class="personal-card-art" src="/assets/illustrations/personal-dual-agent.webp" srcset="/assets/illustrations/personal-dual-agent-240.webp 240w, /assets/illustrations/personal-dual-agent.webp 480w" sizes="(max-width:600px) 88px, 136px" width="480" height="480" loading="lazy" decoding="async" alt="TB 公仔與紅色機械龍蝦、小機器人兩位助手">
 <span class="v-name">雙 AI Agent</span>
 <span class="v-sub">變體 B · 雙 AI Agent</span>
 <span class="v-price">NT$15,000</span>
@@ -440,21 +440,21 @@ table.addons td:first-child{font-weight:700;color:var(--ink)}
 <p class="define">個人方案 3 是有專屬工程師顧一整年的年約服務，一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000、SUPERSOLO 七部門 NT$60,000，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年續約 NT$30,000。</p>
 <p class="who">給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。</p>
 <div class="variants">
-<a class="variant" href="/annual-pro/">
+<a class="variant variant-illustrated" href="/annual-pro/"><img class="personal-card-art" src="/assets/illustrations/personal-annual-pro.webp" srcset="/assets/illustrations/personal-annual-pro-240.webp 240w, /assets/illustrations/personal-annual-pro.webp 480w" sizes="(max-width:600px) 88px, 136px" width="480" height="480" loading="lazy" decoding="async" alt="TB 公仔與小機器人、日曆和扳手，象徵全年維護">
 <span class="v-name">單 AI Agent</span>
 <span class="v-sub">副標：尊榮年約</span>
 <span class="v-price">NT$32,000／年</span>
 <span class="v-inc">Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能</span>
 <span class="v-cta">看尊榮年約頁 →</span>
 </a>
-<a class="variant" href="/annual-flagship/">
+<a class="variant variant-illustrated" href="/annual-flagship/"><img class="personal-card-art" src="/assets/illustrations/personal-annual-flagship.webp" srcset="/assets/illustrations/personal-annual-flagship-240.webp 240w, /assets/illustrations/personal-annual-flagship.webp 480w" sizes="(max-width:600px) 88px, 136px" width="480" height="480" loading="lazy" decoding="async" alt="TB 公仔與兩位 AI 助手及金色年度徽章">
 <span class="v-name">雙 AI Agent</span>
 <span class="v-sub">副標：年度旗艦</span>
 <span class="v-price">NT$38,000／年</span>
 <span class="v-inc">Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合</span>
 <span class="v-cta">看年度旗艦頁 →</span>
 </a>
-<a class="variant" href="/solo-pro/">
+<a class="variant variant-illustrated" href="/solo-pro/"><img class="personal-card-art" src="/assets/illustrations/personal-supersolo.webp" srcset="/assets/illustrations/personal-supersolo-240.webp 240w, /assets/illustrations/personal-supersolo.webp 480w" sizes="(max-width:600px) 88px, 136px" width="480" height="480" loading="lazy" decoding="async" alt="TB 公仔站在中央，身後七位迷你機器人助手排列成隊">
 <span class="v-name">SUPERSOLO 七部門</span>
 <span class="v-sub">副標：超級個體</span>
 <span class="v-price">NT$60,000／年</span>
