@@ -161,7 +161,7 @@
 <p class="intro">12 題問卷，自動判斷入門（NT$33,000）、標準（NT$66,000）或完整（NT$99,000）哪一級適合你的公司。填完即顯示報價，由專人寄出正式合約。</p>
 </section>
 
-<!-- Demo Video Placeholder — HIDDEN 2026-09-28，影片製作完成後移除外層注解恢復
+<!-- Demo Video Placeholder -->
 <section class="demo-section" id="demo">
 <div class="section-head" style="margin-bottom:24px">
 <p class="eyebrow">DEMO / 示範影片</p>
@@ -175,7 +175,6 @@
 <p>示範影片製作中<br/>敬請期待</p>
 </div>
 </section>
--->
 
 <!-- Questionnaire -->
 <section class="quiz-section" id="quiz">
