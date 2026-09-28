@@ -16,7 +16,7 @@
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://thinkbigtw.com/enterprise/start/"/>
 <meta property="og:title" content="企業 AI 導入自助評估｜Think BIG"/>
-<meta property="og:description" content="12 題自助問卷，自動判斷哪一級適合你的公司。三個標準定價：NT$33,000／66,000／99,000（含稅）。"/>
+<meta property="og:description" content="12 題自助問卷，自動判斷哪一級適合你的公司。三個標準定價：NT$33,000／66,000／99,000（未稅，另加 5% 營業稅）。"/>
 <meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg"/>
 <meta property="og:site_name" content="Think BIG!"/>
 <meta property="og:locale" content="zh_TW"/>
@@ -324,7 +324,7 @@
 <p class="grade-eyebrow" id="grade-eyebrow">建議級距</p>
 <h2 id="grade-name"></h2>
 <div class="grade-price" id="grade-price"></div>
-<p style="font-size:13px;color:var(--muted);margin-top:4px">含稅｜付款分兩次：簽約 50%、驗收通過 50%</p>
+<p style="font-size:13px;color:var(--muted);margin-top:4px">未稅（另加 5% 營業稅）｜付款分兩次：簽約 50%、驗收通過 50%</p>
 <p class="grade-desc" id="grade-desc"></p>
 <div class="grade-scope" id="grade-scope-wrap">
 <strong style="font-size:13px;color:var(--ink);display:block;margin-bottom:6px">這一級包含：</strong>
@@ -361,6 +361,7 @@
 <div class="roi-bar-wrap"><div class="roi-bar ai-yr1" id="bar-ai-yr1" style="height:10%"></div></div>
 <div class="roi-bar-label">AI Agent<br/>（第一年）</div>
 <div class="roi-bar-val" id="val-ai-yr1">—</div>
+<div class="roi-bar-note">建置費含 5% 營業稅</div>
 </div>
 <div class="roi-bar-col">
 <div class="roi-bar-wrap"><div class="roi-bar ai-yr2" id="bar-ai-yr2" style="height:15%"></div></div>
@@ -640,8 +641,8 @@ function computeBarChart(){
   const model  = Math.max(0, parseInt(document.getElementById('roi-model').value) || 1000);
   // Assistant annual cost: salary × 12 × 1.18 (benefits) + salary (year-end bonus)
   const assistantAnnual = Math.round(salary * 12 * 1.18 + salary);
-  // AI yr1: grade price + model × 12
-  const aiYr1 = roiTierPrice + model * 12;
+  // AI yr1: grade price (×1.05 含稅) + model × 12
+  const aiYr1 = Math.round(roiTierPrice * 1.05) + model * 12;
   // AI yr2+: renewal × 12 + model × 12
   const aiYr2 = roiRenewalPrice * 12 + model * 12;
 
@@ -711,7 +712,7 @@ function showGrade(grade){
   const t = TIERS[grade];
   document.getElementById('grade-eyebrow').textContent = t.eyebrow;
   document.getElementById('grade-name').textContent = t.name;
-  document.getElementById('grade-price').innerHTML = t.price + ' <span>（含稅）</span>';
+  document.getElementById('grade-price').innerHTML = t.price + ' <span>（未稅，另加 5% 營業稅）</span>';
   document.getElementById('grade-desc').textContent = t.desc;
   const scopeUl = document.getElementById('grade-scope');
   scopeUl.innerHTML = t.scope.map(s=>'<li>'+s+'</li>').join('');
