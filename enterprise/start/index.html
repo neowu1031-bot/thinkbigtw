@@ -34,6 +34,7 @@
 
 /* video placeholder */
 .demo-section{padding:48px 0;border-bottom:1px solid var(--line)}
+.demo-video{width:100%;max-width:680px;height:auto;border-radius:16px;background:var(--ink);display:block}
 .demo-placeholder{background:var(--ink);border-radius:16px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:#fff;max-width:680px}
 .demo-placeholder .play-btn{width:64px;height:64px;background:rgba(255,255,255,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(255,255,255,0.3)}
 .demo-placeholder .play-btn svg{width:24px;height:24px;fill:#fff;margin-left:4px}
@@ -161,21 +162,15 @@
 <p class="intro">12 題問卷，自動判斷入門（NT$33,000）、標準（NT$66,000）或完整（NT$99,000）哪一級適合你的公司。填完即顯示報價，由專人寄出正式合約。</p>
 </section>
 
-<!-- Demo Video Placeholder — HIDDEN 2026-09-28，影片製作完成後移除外層注解恢復
+<!-- Demo Video -->
 <section class="demo-section" id="demo">
 <div class="section-head" style="margin-bottom:24px">
 <p class="eyebrow">DEMO / 示範影片</p>
 <h2 style="font-size:clamp(20px,2.5vw,28px)">看看 AI 知識庫怎麼運作</h2>
 <p class="intro">員工在 LINE 上問公司文件，AI 附出處回答；文件沒寫的，交回人確認。</p>
 </div>
-<div class="demo-placeholder" role="img" aria-label="示範影片佔位，影片製作中">
-<div class="play-btn" aria-hidden="true">
-<svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
-</div>
-<p>示範影片製作中<br/>敬請期待</p>
-</div>
+<video class="demo-video" src="/assets/video/ai-kb-demo-16x9.mp4" poster="/assets/video/ai-kb-demo-poster.jpg" controls muted playsinline preload="metadata" width="1080" height="608" aria-label="示範影片：員工在 LINE 問公司文件，AI 附出處回答，文件沒寫的轉人確認（示範資料）"></video>
 </section>
--->
 
 <!-- Questionnaire -->
 <section class="quiz-section" id="quiz">
