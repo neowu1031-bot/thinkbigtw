@@ -2,11 +2,24 @@ name = "moneyradar-ai-proxy"
 main = "src/index.js"
 compatibility_date = "2024-09-23"
 
+# P6: Cron Trigger — 每 10 分鐘清理閒置 LINE 對話並產生報告
+[triggers]
+crons = ["*/10 * * * *"]
+
 [ai]
 binding = "AI"
 
+# C3: 6 次/分鐘（per-user atomic CF rate limit）
 [[unsafe.bindings]]
 name = "RATE_LIMITER"
 type = "ratelimit"
 namespace_id = "1001"
-simple = { limit = 30, period = 60 }
+simple = { limit = 6, period = 60 }
+
+# LINE 對話脈絡 KV（限速計數 + 聊天記錄）
+# ⚠️  DEPLOY GUARD (#9): 部署前必須替換 REPLACE_WITH_KV_NAMESPACE_ID。
+#    執行: wrangler kv namespace create LINE_CONTEXT
+#    將輸出的 id 填入下方，否則 Worker 啟動時會回 503 並記錄錯誤。
+[[kv_namespaces]]
+binding = "LINE_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"

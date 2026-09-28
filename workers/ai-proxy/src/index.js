@@ -1,4 +1,5 @@
 import { handleThinkBig } from './thinkbig.js';
+import { handleLineWebhook, handleLinePushAnswer, handleLineScheduled } from './line-webhook.js';
 
 /**
  * MoneyRadar™ AI Proxy v3
@@ -1731,6 +1732,8 @@ async function handleIndustryDesign(request, env){
 export default {
   async fetch(request, env, ctx) {
     const thinkBigPath = new URL(request.url).pathname;
+    if (thinkBigPath === '/line-webhook') return handleLineWebhook(request, env, ctx);
+    if (thinkBigPath === '/line-push-answer') return handleLinePushAnswer(request, env);
     if (['/thinkbig-chat', '/thinkbig-inquiry', '/thinkbig-end-chat'].includes(thinkBigPath)) return handleThinkBig(request, env);
     // === V279_EARLY_INTERCEPT ===
     try {
@@ -2914,5 +2917,9 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
     } catch (err) {
       return jsonResponse({ error: err.message || 'Internal error' }, 500);
     }
+  },
+  // P6: Cron Trigger — 每 10 分鐘掃描並清理閒置 LINE 對話
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(handleLineScheduled(env));
   },
 };

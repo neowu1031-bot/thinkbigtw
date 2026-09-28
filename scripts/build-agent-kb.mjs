@@ -6,7 +6,7 @@ const dir=path.join(root,'data/agent-kb');
 const chapters=fs.readdirSync(dir).filter(x=>x.endsWith('.md')).sort().map(file=>({
   id:file.slice(0,2), file, text:fs.readFileSync(path.join(dir,file),'utf8').replace(/^(版本|來源)：.*\n/gm,'').trim()
 }));
-if(chapters.length!==10) throw new Error('Expected ten knowledge chapters');
+if(chapters.length!==11) throw new Error('Expected eleven knowledge chapters');
 const faq=[];
 for(const chapter of chapters){
   const parts=chapter.text.split('## 常見問題\n');
@@ -21,4 +21,4 @@ for(const [file,text] of Object.entries(outputs)){
  if(process.argv.includes('--check')){if(!fs.existsSync(target)||fs.readFileSync(target,'utf8')!==text)throw new Error(file+' is stale');}
  else fs.writeFileSync(target,text);
 }
-console.log('PASS knowledge build: 10 chapters, '+faq.length+' shared local FAQs');
+console.log('PASS knowledge build: 11 chapters, '+faq.length+' shared local FAQs');

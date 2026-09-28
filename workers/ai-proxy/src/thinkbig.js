@@ -1,5 +1,5 @@
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
-const toTraditionalTW = OpenCCConverter({ from: 'cn', to: 'tw' });
+export const toTraditionalTW = OpenCCConverter({ from: 'cn', to: 'tw' });
 import { chapters } from './agent-kb.generated.js';
 
 const ORIGIN = 'https://thinkbigtw.com';
@@ -16,20 +16,21 @@ const json = (data, status = 200, extra = {}) => new Response(JSON.stringify(dat
 export const estimateTokens = text => Math.ceil(Array.from(text).reduce((n, c) => n + (c.codePointAt(0) > 127 ? 2 : 1 / 3), 0));
 const TOPICS = {
   '02': /公司|Think\s*BIG|地址|聯絡窗口|統編|介紹|你們是/i,
-  '03': /開始|適合|個人|企業|自評|規模|分流|一人公司/,
+  '03': /開始|適合|個人|自評|規模|分流|一人公司/,
   '04': /交付|驗收|階段|流程|維護|維運|陪跑|TB|FRAME|READINESS|DELIVERY|CONTINUITY/i,
   '05': /部門|客服|業務|行銷|財務|能力|能做|自動|付款|發送/,
   '06': /資料|地端|雲端|安全|機密|資安|權限|部署|外傳|本機/,
   '07': /個人|價格|多少|費用|年約|續約|方案|技能|999|6000|支援|修復|48/,
   '08': /未知|不懂|不知|訂購|USB|設備|能否|可以|支援/,
   '09': /諮詢|聯絡|摘要|刪除|保存|同意|顧問|預約|收件|送出/,
+  '11': /10萬|十萬|33000|66000|99000|入門|標準|完整|特別方案|試用|企業.*費用|企業.*報價|企業.*多少|方案.*多少|多少.*方案|續約/,
 };
 export function selectKnowledge(messages) {
   const latest = messages.at(-1).content;
   const earlier = messages.filter(x => x.role === 'user').slice(-3, -1).map(x => x.content).join('\n');
   const required = chapters.filter(c => ['01', '10'].includes(c.id));
   const ranked = chapters.filter(c => TOPICS[c.id]).map(c => ({ c, score: (TOPICS[c.id].test(latest) ? 10 : 0) + (TOPICS[c.id].test(earlier) ? 1 : 0) }))
-    .sort((a, b) => b.score - a.score || a.c.id.localeCompare(b.c.id));
+    .sort((a, b) => b.score - a.score || b.c.id.localeCompare(a.c.id)); // higher id wins on tie → ch11 > ch07
   let text = required.map(c => c.text).join('\n\n');
   const selected = required.map(c => c.id);
   for (const { c, score } of ranked) {
@@ -115,7 +116,7 @@ async function chat(body, env) {
   const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
   return json({ reply, model, inquirySuggested });
 }
-function cleanReply(value) {
+export function cleanReply(value) {
   return typeof value === 'string' ? value.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '').trim().slice(0, 3000) : '';
 }
 const FIELD_LIMITS = { name: 80, organization: 120, need: 1200, scale: 120, contact: 254 };
@@ -201,7 +202,7 @@ const SUMMARY_SYSTEM = `你是 Think BIG 內部對話品質審查助理。
 - 摘要欄位不得包含：真實姓名、電話號碼、電子郵件、LINE ID、身分證字號，或任何可單獨辨識個人的資料。
 - 若對話提到上述資料，請以「（已略）」替代，不得照抄原文。`;
 
-async function generateChatSummary(messages, env) {
+export async function generateChatSummary(messages, env) {
   // Wrap raw conversation as opaque data block to prevent prompt injection.
   const convoText = messages.map(m => `[${m.role === 'user' ? '客人' : 'AI'}] ${m.content}`).join('\n');
   const userPrompt = `以下是一段客服 AI 對話，請依格式產出摘要：\n\n<CONVERSATION_DATA>\n${convoText}\n</CONVERSATION_DATA>`;
