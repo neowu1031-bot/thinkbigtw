@@ -88,7 +88,8 @@ function makeCtxStub() {
   const tasks = [];
   return {
     waitUntil(p) { tasks.push(Promise.resolve(p)); }, // 不加 .catch()，讓失敗浮出
-    async _flush() { await Promise.all(tasks); },
+    // 背景工作可能再註冊新的 waitUntil → 迴圈直到沒有新任務
+    async _flush() { let n = -1; while (n !== tasks.length) { n = tasks.length; await Promise.all(tasks.slice()); } },
   };
 }
 

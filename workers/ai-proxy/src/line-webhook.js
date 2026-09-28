@@ -726,12 +726,14 @@ export async function handleLineWebhook(request, env, ctx) {
     byUser.get(uid).push(event);
   }
 
-  await Promise.all([...byUser.values()].map(async (userEvents) => {
+  // LINE 會在 AI 回覆完成前斷線（Canceled）→ 先回 200，實際處理放背景
+  const work = Promise.all([...byUser.values()].map(async (userEvents) => {
     for (const event of userEvents) {
       await processEventWithDedup(event, token, kv, env, ctx);
     }
   }));
-
+  if (ctx && typeof ctx.waitUntil === 'function') ctx.waitUntil(work.catch(() => {}));
+  else await work;
   return new Response('OK', { status: 200 });
 }
 
