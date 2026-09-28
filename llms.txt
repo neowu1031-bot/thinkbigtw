@@ -55,7 +55,6 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [技能包](https://thinkbigtw.com/skill-pack/)
 - [尊榮年約](https://thinkbigtw.com/annual-pro/)
 - [年度旗艦](https://thinkbigtw.com/annual-flagship/)
-- [超級個體](https://thinkbigtw.com/solo-pro/)
 - [個人 AI 助理搭建](https://thinkbigtw.com/harness/)
 - [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 - [遠端代裝指南](https://thinkbigtw.com/guides/yuanduan-daizhuang/)

@@ -125,7 +125,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 季度規劃等進階服務的內容與範圍，請於購買前與顧問確認。
 
-要一個人跑出七個部門的產能？→ [看「超級個體 SUPERSOLO」](https://thinkbigtw.com/solo-pro/)。預算有限、先試單系統？→ [看「尊榮年約」](https://thinkbigtw.com/annual-pro/)。
+預算有限、先試單系統？→ [看「尊榮年約」](https://thinkbigtw.com/annual-pro/)。
 
 方案價格
 
@@ -198,7 +198,7 @@ URL: https://thinkbigtw.com/annual-pro/
 
 - 年費 NT$32,000，平均每月約 NT$2,667
 
-需要雙 Agent 系統＋多部門覆蓋＋季度 AI 戰略規劃？→ [看「年度旗艦」](https://thinkbigtw.com/annual-flagship/)，或 [看「超級個體 SUPERSOLO」](https://thinkbigtw.com/solo-pro/)。
+需要雙 AI Agent 系統＋季度 AI 戰略規劃？→ [看「年度旗艦」](https://thinkbigtw.com/annual-flagship/)。
 
 方案價格
 
@@ -1078,7 +1078,7 @@ THINK BIG
 
 ## 個人安裝有哪些選擇？
 
-入門安裝 NT$999；單 AI Agent NT$6,000、雙 AI Agent NT$15,000；年約 NT$32,000／38,000／60,000。各方案範圍與加購項目請見個人方案頁。
+入門安裝 NT$999；單 AI Agent NT$6,000、雙 AI Agent NT$15,000；年約 NT$32,000／38,000。各方案範圍與加購項目請見個人方案頁。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
 
@@ -1555,8 +1555,6 @@ AI 部門（單系統） NT$6,000 把 OpenClaw 串成從手機下指令的小助
 尊榮年約 NT$32,000／年 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
 
 年度旗艦 NT$38,000／年 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
-
-超級個體 SUPERSOLO NT$60,000 首年（續約 NT$30,000） 雙助理系統加多個部門分工，含一年週維護與 48 小時修復 一人公司、想一個助理團隊顧一整年
 
 企業部署 洽詢 本地或雲端，依需求評估 公司、團隊、資料需在企業內部
 
@@ -2919,7 +2917,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 一個人在用：一人公司、自由工作者、個人副業，或公司主管想先給自己裝一套。裝在自己的電腦，用自己申請的 API Key。
 
-價格帶：NT$999 → 6,000／15,000 → 32,000／38,000／60,000
+價格帶：NT$999 → 6,000／15,000 → 32,000／38,000
 
 - 個人方案 1｜入門：官方原裝，遠端裝好，支援 7 天
 
@@ -2933,7 +2931,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ## 個人方案 3｜年約與維護
 
-裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。三檔：一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000、SUPERSOLO 七部門 NT$60,000；次年續約 NT$30,000。
+裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。兩檔：一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000；次年續約 NT$30,000。
 
 [看年約三檔 →](https://thinkbigtw.com/pricing/personal/#tier3)
 
@@ -2964,9 +2962,8 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 - 個人方案 2｜AI 部門[單 AI Agent](https://thinkbigtw.com/full-agent/)／[雙 AI Agent](https://thinkbigtw.com/dual-agent/) · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 NT$6,000
 NT$15,000
 
-- 個人方案 3｜年約單 AI Agent／雙 AI Agent／SUPERSOLO 七部門 · 顧一整年 NT$32,000
+- 個人方案 3｜年約單 AI Agent／雙 AI Agent · 顧一整年 NT$32,000
 NT$38,000
-NT$60,000
 
 ## 加購區（掛在個人門下，不算方案階梯）
 
@@ -3022,7 +3019,7 @@ URL: https://thinkbigtw.com/pricing/personal/
 
 ### 一年陪跑
 
-年約總覽 ↗ [尊榮年約 ↗](https://thinkbigtw.com/annual-pro/)[年度旗艦 ↗](https://thinkbigtw.com/annual-flagship/)[超級個體 ↗](https://thinkbigtw.com/solo-pro/)
+年約總覽 ↗ [尊榮年約 ↗](https://thinkbigtw.com/annual-pro/)[年度旗艦 ↗](https://thinkbigtw.com/annual-flagship/)
 
 ### USB AGENT
 
@@ -3078,9 +3075,9 @@ Tier 3 · 顧一整年 · 主打
 
 ### 個人方案 3｜年約
 
-個人方案 3 是有專屬工程師顧一整年的年約服務，一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000、SUPERSOLO 七部門 NT$60,000，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年續約 NT$30,000。
+個人方案 3 是有專屬工程師顧一整年的年約服務，一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年續約 NT$30,000。
 
-給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
+給誰：不想自己維護、要有人顧一整年的個人。解決的是「裝好一個月就晾著、壞了沒人理」。
 
 [單 AI Agent
 副標：尊榮年約
@@ -3092,13 +3089,7 @@ Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護�
 NT$38,000／年
 Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合
 看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
-[SUPERSOLO 七部門
-副標：超級個體
-NT$60,000／年
-一個人＝七個部門（內容自媒體、行銷、業務、客服、財務、行政、研發），一年每週維護
-看 SUPERSOLO 頁 →](https://thinkbigtw.com/solo-pro/)
-
-三檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年續約 NT$30,000／年（約 2,500／月），含每週維護＋48 小時故障修復。
+兩檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年續約 NT$30,000／年（約 2,500／月），含每週維護＋48 小時故障修復。
 
 ## 三階比較表
 
@@ -3110,19 +3101,19 @@ NT$60,000／年
 
 交付 AnyDesk／DeskIn 遠端安裝 AnyDesk／DeskIn 遠端安裝 訪談 → 建置 → 啟動年約
 
-AI Agent 組合 OpenClaw 或 Hermes 擇一 單 AI Agent／OpenClaw＋Hermes 雙 AI Agent 單 AI Agent／OpenClaw＋Hermes 雙 AI Agent／SUPERSOLO 七部門
+AI Agent 組合 OpenClaw 或 Hermes 擇一 單 AI Agent／OpenClaw＋Hermes 雙 AI Agent 單 AI Agent／OpenClaw＋Hermes 雙 AI Agent
 
 技能數 官方原裝 60 組（6,000）／依訪談（15,000） 全客製／依訪談
 
 支援期 7 天技術諮詢 2 小時線上技術導覽＋安裝後 7 天技術諮詢 一整年維運陪跑
 
-SLA — — 48 小時故障修復 ；60,000 另含每週維護
+SLA — — 48 小時故障修復
 
 續約 — — 次年 NT$30,000／年
 
-價格 NT$999 NT$6,000／15,000 NT$32,000／38,000／60,000
+價格 NT$999 NT$6,000／15,000 NT$32,000／38,000
 
-CTA [OpenClaw](https://thinkbigtw.com/openclaw-starter/)／[Hermes](https://thinkbigtw.com/hermes-starter/) [單 AI Agent](https://thinkbigtw.com/full-agent/)／[雙 AI Agent](https://thinkbigtw.com/dual-agent/) [32,000](https://thinkbigtw.com/annual-pro/)／[38,000](https://thinkbigtw.com/annual-flagship/)／[60,000](https://thinkbigtw.com/solo-pro/)
+CTA [OpenClaw](https://thinkbigtw.com/openclaw-starter/)／[Hermes](https://thinkbigtw.com/hermes-starter/) [單 AI Agent](https://thinkbigtw.com/full-agent/)／[雙 AI Agent](https://thinkbigtw.com/dual-agent/) [32,000](https://thinkbigtw.com/annual-pro/)／[38,000](https://thinkbigtw.com/annual-flagship/)
 
 個人服務・買家回饋
 
@@ -3398,74 +3389,9 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 
 URL: https://thinkbigtw.com/solo-pro/
 
-# 超級個體 SUPERSOLO NT$60,000 — 一個人，七個部門 | Think BIG!
+# 超級個體 SUPERSOLO — 方案已停售 | Think BIG!
 
-個人旗艦方案
-
-# 超級個體 SUPERSOLO
-
-一個人＝七個部門。
-
-一年 KEEPER 週維護＋48hr 故障修復 ｜次年續約 NT$30,000（NT$2,500/月）
-
-上錨 — 和真人比
-
-雇一位行政助理，雇主年成本約 45–64 萬 。SUPERSOLO 是真人的 1/7 到 1/10 ——而且 協助日常工作、不請假、不離職。
-
-下錨 — 和訂閱比
-
-原廠頂規 AI 訂閱年費約 NT$76,800 （以 2026 年 8 月官網價換算）。那個只是工具，還不會自己上班、沒人保養。SUPERSOLO 比它便宜，還內含一整年維運。
-
-雙 AI Agent（OpenClaw＋Hermes）部署 7 個部門 Agent——內容、行銷、業務、客服、財務、行政、研發。你下一句指令，全隊出動。系統搭好之後，有工程師一整年幫你週維護、發現問題主動修，你只負責下指令。
-
-## 一個人扛三個職位
-
-- 早上報價、中午客服、晚上對帳。本業沒時間。
-
-- 自媒體永遠排不進行程。拓客靠緣分。
-
-- 請不起人，但你也一個人撐不了多久。
-
-- 頂規 AI 訂閱花了快 8 萬，還是要自己想怎麼用、自己維護。
-
-## 怎麼運行
-
-1
-
-業務盤點 工程師與你逐一確認七個部門的工作內容，量身設計架構
-
-2
-
-部署交付 雙 AI Agent＋七部門 Agent 完整架設，確認能用才正式啟動
-
-3
-
-你下指令，全隊出動 業務出報價、行政排程、財務記帳、客服回訊息，共享記憶互通
-
-4
-
-KEEPER 週維護 每週例行維護升級；發現問題主動修、48 小時故障修復保證
-
-## 你得到什麼
-
-- 7 個部門 Agent＋雙 AI Agent，技能無上限
-
-- 一年 KEEPER 週維護 ＋48 小時故障修復保證
-
-- 全年專屬工程師，發現問題主動通知並修復
-
-- 首年 NT$60,000；次年起 NT$30,000（每月 NT$2,500）
-
-- 超過 7 部門或需 RAG 知識庫？另行報價
-
-有真的部門和員工？→ [看企業 AI 導入。](https://thinkbigtw.com/enterprise/)
-
-方案價格
-
-NT$60,000／年（首年）｜續約 NT$30,000／年（下單前請先聊聊盤點你的業務）
-
-[前往蝦皮下單｜確認業務需求再付款](https://shopee.tw/product/105010395/45116788166)
-※ AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。與原廠 AI 訂閱費用之比較以 2026 年 8 月官網公開價格換算為準，實際費率以原廠公告為主。
+此方案已停售。現行個人年約方案：尊榮年約 NT$32,000（單 AI Agent）或年度旗艦 NT$38,000（雙 AI Agent）。詳見 [個人方案頁](https://thinkbigtw.com/pricing/personal/)。
 
 ---
 
