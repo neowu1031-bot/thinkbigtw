@@ -205,7 +205,7 @@
     if (!data.name || !data.need || !data.scale || !data.contact) { form.reportValidity(); return; }
     data.id = crypto.randomUUID(); data.consent = true;
     form.hidden = true; preview.hidden = false;
-    preview.innerHTML = '<h4 tabindex="-1">確認需求摘要</h4><dl></dl><p class="ai-retention">僅保存本卡摘要與單一聯絡方式，用於回覆本次諮詢，30 天後刪除。可寄信至 AI@thinkbigtw.com 請求提前刪除。聊天逐字稿不隨摘要保存。</p><label class="ai-consent"><input type="checkbox">我同意將以上摘要與聯絡資料交給 Think BIG 顧問聯繫。</label><div class="ai-card-actions"><button type="button" class="ai-edit">返回編輯</button><button type="button" class="ai-primary ai-confirm" disabled>確認送出</button></div><p class="ai-receipt" role="status"></p>';
+    preview.innerHTML = '<h4 tabindex="-1">確認需求摘要</h4><dl></dl><p class="ai-retention">保存本卡摘要與聯絡方式，用於回覆本次諮詢及後續服務，保存至您請求刪除為止。可寄信至 AI@thinkbigtw.com 或透過 LINE 官方帳號請求刪除，14 天內回覆。聊天逐字稿不隨摘要保存。</p><label class="ai-consent"><input type="checkbox">我同意將以上摘要與聯絡資料交給 Think BIG 顧問聯繫。</label><div class="ai-card-actions"><button type="button" class="ai-edit">返回編輯</button><button type="button" class="ai-primary ai-confirm" disabled>確認送出</button></div><p class="ai-receipt" role="status"></p>';
     const labels = { name: '稱呼', organization: '公司／產業', need: '想解決的問題', scale: '規模', contactMethod: '聯絡方式', contact: '聯絡資料' };
     for (const [key, label] of Object.entries(labels)) {
       const term = document.createElement('dt'), value = document.createElement('dd'); term.textContent = label;
