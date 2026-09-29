@@ -46,16 +46,13 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [English personal plans](https://thinkbigtw.com/tbos/en/pricing.html)
 
 ## Optional
-個人方案 NT$999 起；不含第三方模型用量費。服務費、支援期與續約條件以對應頁面為準；企業服務另行評估。
+個人方案 NT$6,000 起（人格版 AI 助理，討好型或討伐型人格任選，OpenClaw 或 Hermes 擇一）；不含第三方模型用量費。服務費、支援期與續約條件以對應頁面為準；企業服務另行評估。
 - [個人方案專區](https://thinkbigtw.com/pricing/personal/)
-- [OpenClaw 入門](https://thinkbigtw.com/openclaw-starter/)
-- [Hermes 入門](https://thinkbigtw.com/hermes-starter/)
-- [全 Agent 串接](https://thinkbigtw.com/full-agent/)
-- [雙 AI Agent](https://thinkbigtw.com/dual-agent/)
+- [人格版 AI 助理 NT$6,000](https://thinkbigtw.com/full-agent/)
+- [雙 AI Agent NT$15,000](https://thinkbigtw.com/dual-agent/)
 - [技能包](https://thinkbigtw.com/skill-pack/)
 - [尊榮年約](https://thinkbigtw.com/annual-pro/)
 - [年度旗艦](https://thinkbigtw.com/annual-flagship/)
-- [超級個體](https://thinkbigtw.com/solo-pro/)
 - [個人 AI 助理搭建](https://thinkbigtw.com/harness/)
 - [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 - [遠端代裝指南](https://thinkbigtw.com/guides/yuanduan-daizhuang/)
