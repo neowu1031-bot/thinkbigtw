@@ -91,6 +91,13 @@ export default {
     const pathname = url.pathname;
     const userAgent = request.headers.get('User-Agent') || '';
 
+    // ── http → https 301 ──────────────────────────────────────────────────────
+    // Cloudflare Worker 在 http 請求進來時先執行；確保全站強制 HTTPS。
+    if (url.protocol === 'http:') {
+      const httpsUrl = request.url.replace(/^http:/, 'https:');
+      return Response.redirect(httpsUrl, 301);
+    }
+
     // ── Early exit: webhook 路徑 ─────────────────────────────────────────────
     // 直接回 204，不轉 GitHub Pages，防止 origin 噪音。
     // X-TB-Filtered: webhook 供日後 log 分析識別。

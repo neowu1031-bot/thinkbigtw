@@ -288,13 +288,13 @@ OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透�
 
 - 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
 
-- 服務費 NT$15,000 一次付清，無月費 （指我方服務費）
+- 服務費 NT$12,000 一次付清，無月費 （指我方服務費）
 
 不想自己維護？→ [看「尊榮年約」](https://thinkbigtw.com/annual-pro/)或[「年度旗艦」](https://thinkbigtw.com/annual-flagship/)，全年有工程師陪跑。
 
 方案價格
 
-NT$15,000（單次）
+NT$12,000（單次）
 
 [前往蝦皮下單｜下單後預約遠端安裝時間](https://s.shopee.tw/19tR2HgG4)
 
@@ -400,7 +400,8 @@ ENTERPRISE AI / 企業導入
 查看方案與價格›
 
 ABOUT THINK BIG
-Think BIG（大想成業有限公司）以 TB FRAME 四階段方法論（評估、建置、驗證、維運）協助企業把 AI Agent 部署在公司自己的設備上，資料留在公司內，並提供一年陪跑維運。另有個人 AI 助理安裝方案。
+
+Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；另有個人 AI 助理安裝方案。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
 
@@ -1044,6 +1045,122 @@ START WITH YOUR DOCUMENTS
 
 ---
 
+URL: https://thinkbigtw.com/enterprise/start/
+
+# 企業 AI 導入自助評估｜填問卷、看哪一級適合｜Think BIG
+
+SELF-SERVICE ASSESSMENT / 自助評估
+
+# 公司導入 AI，
+不再是天價。10 萬有找。
+
+12 題問卷，自動判斷入門（NT$33,000）、標準（NT$66,000）或完整（NT$99,000）哪一級適合你的公司。填完即顯示報價，由專人寄出正式合約。
+
+DEMO / 示範影片
+
+## 看看 AI 知識庫怎麼運作
+
+員工在 LINE 上問公司文件，AI 附出處回答；文件沒寫的，交回人確認。
+
+QUESTIONNAIRE / 自助問卷
+
+## 填問卷，AI 自動判斷哪一級適合
+
+12 題，約 3 分鐘。任何一項超出入門級上限，自動報上一級。
+
+建議級距
+
+##
+
+未稅（另加 5% 營業稅）｜付款分兩次：簽約 50%、驗收通過 50%
+
+這一級包含：
+
+### 算算看你能省多少
+
+把重複查詢交給 AI，減少同事查找資料的時間。
+
+試算參考月薪（元）
+
+模型費（元／月）
+
+人力成本參考
+（年估算）
+
+—
+
+工作範圍不同，僅供比較
+
+AI Agent
+（第一年）
+
+—
+
+建置費含 5% 營業稅
+
+AI Agent
+（第二年起）
+
+—
+
+概估；AI 負責重複查詢、找文件、起草，判斷和對外承諾仍由人確認；薪資與模型費依實際狀況而定。
+
+工時省下的人力成本試算（補充說明）
+
+情境人數（僅為情境舉例，使用人數與裝置數不限）
+
+平均時薪（元）
+
+每人每天找資料或回答重複問題的分鐘數 20  分
+
+0
+
+每年省下工時（小時）
+
+0
+
+保守省下金額（元／年）
+
+公式：工時 ＝ 人數（10 ）× 分鐘（20 ）÷ 60 × 250 天 ＝ 0  小時。
+保守省下 ＝ 工時 × 時薪（270 ）× 50% ＝ 0  元。
+僅供試算，實際依使用情況而異。AI 仍可能答錯，重要內容由人確認。
+
+NEXT STEP / 下一步
+
+## 預約遠端預檢 / 送出需求
+
+填寫聯絡資料，TB 將在 1 個工作日內主動聯繫，安排 20 分鐘的遠端設備預檢與需求確認。
+
+## 填寫聯絡資料
+
+資料不送入 AI，由真人處理。
+
+姓名 *
+
+公司名稱 *
+
+聯絡方式 *
+
+Email
+電話
+LINE ID
+
+填寫 Email，TB 將回寄確認信與資料
+
+公司規模 / 使用部門 *
+
+我已閱讀 [隱私權政策與個資告知](https://thinkbigtw.com/privacy.html#ai-inquiry)，同意 Think BIG（大想成業有限公司）於聯絡與業務洽詢目的範圍內蒐集與使用上述聯絡資料。
+
+線上簽約與付款： 由專人寄出正式合約，不在此頁面辦理。合約包含範圍凍結清單、驗收測試集、首年服務內容與第二年續約選項；首期 50% 於簽約時付款。
+
+## 需求超出標準方案範圍
+
+你的需求（例如自動對外回覆、串接 ERP、大量文件超過 100 份以上或主要是掃描圖檔）超出標準方案的定義範圍。請預約 20 分鐘評估，由顧問說明適合的做法。
+
+[預約 20 分鐘評估 ›](https://lin.ee/n5KW430)
+
+---
+
 URL: https://thinkbigtw.com/faq/
 
 # 常見問題｜Think BIG
@@ -1078,15 +1195,15 @@ THINK BIG
 
 ## 個人安裝有哪些選擇？
 
-人格版 AI 助理 NT$6,000（單 AI Agent，討好型或討伐型人格任選）；雙 AI Agent NT$15,000；年約 NT$32,000／38,000。NT$999 入門方案已於 2026-09-29 停售。各方案範圍與加購項目請見個人方案頁。
+人格版 AI 助理 NT$6,000（討好型或討伐型人格任選，含完整個人技能包＋1 個客製小幫手＋Coding Agent 串接）；雙 AI Agent NT$12,000（協作會議室此方案專屬）；年約 NT$32,000／38,000。各方案範圍與加購項目請見個人方案頁。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
 
 支援期
 
-## 單、雙 AI Agent 方案包含多久支援？
+## 人格版與雙 AI Agent 方案包含多久支援？
 
-人格版 AI 助理 NT$6,000 含 7 天技術諮詢；雙 AI Agent NT$15,000 含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。兩者均無年度維運承諾，需要長期顧請看年約。
+人格版 AI 助理 NT$6,000 含 7 天技術諮詢；雙 AI Agent NT$12,000 含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。兩者均無年度維運承諾，需要長期顧請看年約。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/#tier2)
 
@@ -1124,7 +1241,7 @@ THINK BIG
 
 退款
 
-## 入門安裝失敗怎麼辦？
+## 安裝失敗怎麼辦？
 
 人格版 AI 助理若因我方技術問題無法完成安裝，全額退費；其他服務的退款、驗收與變更依服務條款及雙方確認內容辦理。
 
@@ -1523,7 +1640,7 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 安裝費（人格版，一次付清） NT$6,000 NT$6,000
 
-兩個都要（含協作會議室） 雙 AI Agent 方案 NT$15,000（含跨 Agent 協作會議室、2 小時線上技術導覽＋安裝後 7 天技術諮詢）
+兩個都要（含協作會議室） 雙 AI Agent 方案 NT$12,000（含跨 Agent 協作會議室、2 小時線上技術導覽＋安裝後 7 天技術諮詢）
 
 裝在哪 你電腦本機 你電腦本機
 
@@ -1535,7 +1652,7 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 - 你的工作比較雜事多，還是寫東西多？ 雜事多 OpenClaw；寫東西多 Hermes。
 
-- 你想要一個還是要兩個分工？ 一個就從人格版 NT$6,000 開始；要兩個可以直接選雙 AI Agent NT$15,000，含協作會議室。
+- 你想要一個還是要兩個分工？ 一個就從人格版 NT$6,000 開始；要兩個且想協作，直接選雙 AI Agent NT$12,000（含協作會議室）。
 
 不確定的話：先裝 OpenClaw 跑一兩週，知道自己「還少什麼」，再決定要不要加 Hermes。多數人會從 OpenClaw 開始。
 
@@ -1548,7 +1665,7 @@ Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理。Think BIG �
 方案 費用 帶的工具 適合誰
 人格版 AI 助理 NT$6,000 一次付清 OpenClaw 或 Hermes 擇一，討好型或討伐型人格任選，完整個人技能包＋1 個客製小幫手 第一次裝、想要有個性 AI、個人使用
 
-雙 AI Agent NT$15,000 OpenClaw + Hermes 互通，跨 Agent 協作會議室（此方案專屬）（含 2 小時線上技術導覽＋安裝後 7 天技術諮詢） 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 協作
+雙 AI Agent NT$12,000 OpenClaw + Hermes 互通，跨 Agent 協作會議室（此方案專屬）（含 2 小時線上技術導覽＋安裝後 7 天技術諮詢） 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 協作
 
 尊榮年約 NT$32,000／年 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
 
@@ -1556,7 +1673,7 @@ Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理。Think BIG �
 
 企業部署 洽詢 本地或雲端，依需求評估 公司、團隊、資料需在企業內部
 
-這張表依 Think BIG 三階個人方案（人格版 NT$6,000、雙 AI Agent NT$15,000、年約 NT$32,000／38,000）整理，金額對齊官方頁。所有方案都不含第三方 AI 模型的 API 用量費，實際用量依你選的供應商與用量計費。
+這張表依 Think BIG 三階個人方案（人格版 NT$6,000、雙 AI Agent NT$12,000、年約 NT$32,000／38,000）整理，金額對齊官方頁。所有方案都不含第三方 AI 模型的 API 用量費，實際用量依你選的供應商與用量計費。
 
 ## 常見問題 FAQ
 
@@ -1570,7 +1687,7 @@ Q：一個就夠還是兩個都要裝？
 
 Q：裝兩個會不會很貴？
 
-想把兩個助理串起來一起合作，直接選雙 AI Agent 方案 NT$15,000（含跨 Agent 協作會議室、2 小時線上技術導覽＋安裝後 7 天技術諮詢）。若分開下單兩個人格版各 NT$6,000 共 NT$12,000，但不含協作會議室。
+想把兩個助理串起來一起合作，直接選雙 AI Agent 方案 NT$12,000（含跨 Agent 協作會議室、2 小時線上技術導覽＋安裝後 7 天技術諮詢）。若分開下單兩個人格版各 NT$6,000，共 NT$12,000，但不含協作會議室。
 
 Q：Think BIG 的 Hermes 跟網路上的 Hermes Agent 是同一個嗎？
 
@@ -1586,7 +1703,7 @@ Q：可以用年約方式同時養兩個嗎？
 
 如果你的工作常常要寫、要研究、要彙整——Hermes 先裝，從寫東西這件事開始加速。
 
-如果你兩種都要、不想自己串——直接看雙助理 NT$15,000 或年度旗艦 NT$38,000。
+如果你兩種都要、不想自己串——直接看雙助理 NT$12,000 或年度旗艦 NT$38,000。
 
 如果還是不確定，先裝人格版 NT$6,000 就好。OpenClaw 或 Hermes 擇一，有個性能跑，之後想要兩個協作再升級雙 AI Agent。
 
@@ -1594,7 +1711,7 @@ Q：可以用年約方式同時養兩個嗎？
 
 從人格版 NT$6,000 開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好，可選討好型或討伐型人格。預算更高的，直接約時間聊雙 AI Agent 或年約。
 
-[前往蝦皮下單人格版 NT$6,000](https://shopee.tw/product/105010395/45107951008)
+[前往蝦皮下單人格版 NT$6,000 →](https://shopee.tw/product/105010395/45107951008)
 
 人格版裝什麼？→ [OpenClaw 代裝拆解](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 
@@ -1637,7 +1754,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 [## OpenClaw 代裝服務
 
-了解人格版安裝包含什麼。](https://thinkbigtw.com/guides/openclaw-daizhuang/)[## 遠端安裝服務評選
+了解入門安裝包含什麼。](https://thinkbigtw.com/guides/openclaw-daizhuang/)[## 遠端安裝服務評選
 
 評估安裝流程、資安與準備條件。](https://thinkbigtw.com/guides/yuanduan-daizhuang/)[## Hermes 與 OpenClaw 比較
 
@@ -1710,7 +1827,7 @@ Think BIG 編輯部
 
 想用 OpenClaw 但卡在安裝？這篇把「OpenClaw 代裝」一次講清楚：人格版 NT$6,000 幫你裝什麼、討好型或討伐型人格怎麼選、安裝流程長怎樣、費用怎麼算。看完你就知道值不值得找人代裝。
 
-更新：2026-09-30
+更新：2026-08-31
 
 你大概是這樣進來的：滑到有人用 OpenClaw 這類 AI 助理，把重複的雜事丟給它做，看起來很爽。然後你打開教學，第一步就卡住——終端機、環境變數、一堆看不懂的指令。三分鐘後你關掉分頁，心想「算了，我又不是工程師」。
 
@@ -1744,9 +1861,9 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 ### 4. 完整個人技能包＋人格選擇＋Coding Agent
 
-人格版帶的是完整個人技能包＋1 個客製小幫手，比官方原裝更貼你的工作場景。另外可選討好型（溫暖支持，不盲目附和）或討伐型（直接犀利，不人身攻擊）人格，還有 Coding Agent 串接 1–2 個。
+人格版帶的是完整個人技能包＋1 個客製小幫手，比官方原裝更貼你的工作場景。另外可選討好型 （溫暖支持，不盲目附和）或討伐型 （直接犀利，不人身攻擊）人格，還有 Coding Agent 串接 1–2 個。
 
-一句話總結：NT$6,000 買的是一個裝好、能跑、有你選的人格、在你自己電腦上的 OpenClaw AI 助理，加上台灣工程師遠端幫你裝到好的服務。它不是一份要你自己照著做的教學文件。
+一句話總結： NT$6,000 買的是一個裝好、能跑、有你選的人格、在你自己電腦上的 OpenClaw AI 助理，加上台灣工程師遠端幫你裝到好的服務。它不是一份要你自己照著做的教學文件。
 
 ## 代裝流程長怎樣？你要做的其實很少
 
@@ -1776,11 +1893,11 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 - 部分外部服務要自己免費註冊 ：某些進階串接會用到第三方服務（例如免費的資料庫服務），需要你自己註冊一個免費帳號。
 
-我們寧可先講白，也不要你事後覺得被埋伏。服務費一次付清，模型用量費另計 。這就是人格版的費用結構，記住這兩句就對了。
+我們寧可先講白，也不要你事後覺得被埋伏。服務費一次付清，模型用量費另計 。這就是入門款的費用結構，記住這兩句就對了。
 
 ## 裝好之後，你能拿它做什麼？
 
-裝好只是起點。人格版 AI 助理讓你有一個能動手的有個性 AI 助理，實際用途看你的工作長怎樣，常見的像是：
+裝好只是起點。OpenClaw 入門款讓你有一個能動手的 AI 助理，實際用途看你的工作長怎樣，常見的像是：
 
 - 把每天重複、無腦但花時間的雜事交給它。
 
@@ -1816,7 +1933,7 @@ Q：OpenClaw 代裝要多少錢？
 
 Q：人格版和更高階的方案差在哪？
 
-人格版是完整個人技能包＋人格選擇＋Coding Agent 串接，單一 AI Agent 本機部署，無維運。更高階的方案（雙 AI Agent NT$15,000 或年約 NT$32,000／38,000）有兩個 AI Agent 協作或一整年有工程師顧。簡單說：人格版是「先裝起來有個性能跑」，高階是「跑得更複雜、有人長期維護」。
+人格版是完整個人技能包＋人格選擇＋Coding Agent 串接，單一 AI Agent 本機部署，無維運。更高階的方案（雙 AI Agent NT$12,000 或年約 NT$32,000／38,000）有兩個 AI Agent 協作或一整年有工程師顧。簡單說：人格版是「先裝起來有個性能跑」，高階是「跑得更複雜、有人長期維護」。
 
 Q：資料會不會被上傳到雲端？
 
@@ -1848,7 +1965,7 @@ AnyDesk／DeskIn 是遠端桌面工具，連線由你這端允許才建立、你
 
 人格版 AI 助理在蝦皮直接下單，工程師依訂單聯繫約安裝時間。從「想用但不會裝」到「今天就有自己有個性的 AI 助理」。
 
-[前往蝦皮下單 NT$6,000](https://shopee.tw/product/105010395/45107951008)
+[前往蝦皮下單 NT$6,000 →](https://shopee.tw/product/105010395/45107951008)
 
 想要工程師長期陪跑、持續加功能？→ [了解尊榮年約方案](https://thinkbigtw.com/annual-pro/)
 
@@ -2011,11 +2128,11 @@ OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們�
 
 OpenClaw 安不安全，看你裝的時候有沒有把基礎設定做好 。常見的風險包括「裝的人沒設權限」、「裝了來路不明的技能」、「用預設密碼沒換」這種基本錯誤——這些是可以避免的，裝的人多花一小時就能避開。
 
-如果你願意花那一小時、或者你願意花 NT$6,000 讓工程師幫你一次設好（人格版 AI 助理），那 OpenClaw 是一個能讓你每天省下不少時間的工具。如果你完全不想學、也不想找人代，那任何這類工具都不適合你，不只是 OpenClaw。
+如果你願意花那一小時、或者你願意花 NT$6,000 讓工程師幫你一次設好（含人格選擇），那 OpenClaw 是一個能讓你每天省下不少時間的工具。如果你完全不想學、也不想找人代，那任何這類工具都不適合你，不只是 OpenClaw。
 
 想清楚再裝，裝完記得改密碼、綁本機、只裝官方技能。三件事做完，風險已經可控。
 
-### 決定要裝？人格版 NT$6,000 起步
+### 決定要裝？人格版 NT$6,000
 
 台灣工程師遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 NT$32,000 或年度旗艦 NT$38,000。
 
@@ -2111,7 +2228,7 @@ Think BIG 編輯部
 
 - 服務費 ：付給我們的錢，一次付清，不收月租或訂閱費。人格版 AI 助理 NT$6,000，含環境建置、討好型或討伐型人格選擇、完整個人技能包＋1 個客製小幫手、Coding Agent 串接 1–2 個、7 天技術諮詢。
 
-- AI 模型用量費 ：付給模型原廠的錢（例如 Claude、ChatGPT、Gemini 的 API 費用），依你的實際用量計費、由你自行負擔，跟我們無關，也不含在服務費裡。
+- AI 模型用量費 ：付給模型原廠的錢（例如 Claude、ChatGPT、Gemini 的 API 費用），依你的實際用量計費、由你自行負擔，跟我們無關，也不含在 NT$6,000 裡。
 
 之後想加功能，是加購制：客製技能包分 10 組（NT$1,000）、20 組（NT$2,000）、40 組（NT$3,000）三種規格，下單前由工程師依你的目標評估需要幾個技能，再對應規格購買，避免買了不夠用或超買浪費。
 
@@ -2255,17 +2372,17 @@ PERSONAL AI PLANS
 
 完整價格、內容與支援期，請以現行個人方案頁為準。
 
-### 人格版 AI 助理
+### 入門安裝
 
-OpenClaw 或 Hermes Agent 擇一，討好型或討伐型人格任選，含完整個人技能包＋1 個客製小幫手＋Coding Agent 串接。NT$6,000，個人使用。
+OpenClaw 或 Hermes Agent 擇一，建立自己的 AI 助理。
 
-[查看人格版方案 ›](https://thinkbigtw.com/pricing/personal/#tier1)
+[查看入門方案 ›](https://thinkbigtw.com/pricing/personal/#tier1)
 
-### 雙 AI Agent
+### AI 部門
 
-OpenClaw＋Hermes 雙 AI Agent，跨 Agent 協作會議室（此方案專屬），NT$15,000。
+單或雙 AI Agent，串接技能與協作會議室。
 
-[查看雙 AI Agent 方案 ›](https://thinkbigtw.com/pricing/personal/#tier2)
+[查看工作流程方案 ›](https://thinkbigtw.com/pricing/personal/#tier2)
 
 ### 年約維運
 
@@ -2303,7 +2420,7 @@ Nous Research 開源的自主學習型 AI 助理
 
 它是 Think BIG 提供安裝的產品之一；本站的「Think BIG AI 顧問」則負責回答服務與方案問題。
 
-[了解人格版 Hermes 方案 ›](https://thinkbigtw.com/pricing/personal/#tier1)
+[了解 Hermes 入門方案 ›](https://thinkbigtw.com/hermes-starter/)
 
 03 — ADVANCED REASONING
 
@@ -2405,72 +2522,6 @@ Agent 可替換
 依工作所需配置資料與工具權限；對外發送、花費與正式系統變更，由指定負責人核准。
 
 [查看個人方案與價格](https://thinkbigtw.com/pricing/personal/)
-
----
-
-URL: https://thinkbigtw.com/hermes-starter/
-
-# Hermes 入門 | Think BIG!
-
-個人 AI 助理
-
-# Hermes 入門
-
-一個會把「做過的事」變成「新技能」的 AI 助理。
-
-Hermes Agent（Nous Research 開源）是自主學習型 AI 助理。我們幫你安裝在自己的電腦上，它常駐通訊軟體、跨對話記憶，最特別的是：每次完成任務，它會自動把成功經驗轉化成新技能——用越久，越懂你。
-
-## 你是不是每天都在——
-
-- 跟 AI 對話永遠「從零開始」，說過的偏好下次全忘？
-
-- 好不容易教會 AI 一套做法，任務結束什麼都沒留下？
-
-- 想要一個「越用越順手」的助理，而不是每次都重新磨合？
-
-## 怎麼運行
-
-1
-
-收到 你在 Telegram／Discord 等平台傳訊息給它
-
-2
-
-判斷 Hermes 對照持久記憶（你的習慣、偏好、過往任務）決定做法
-
-3
-
-執行 用內建技能完成任務；做完自動把成功方法存成新技能
-
-4
-
-回報 結果回到聊天視窗，下次同類任務直接套用學到的技能，更快更準
-
-安裝僅透過 AnyDesk 或 DeskIn 遠端連線，全程可視，裝完立即斷線。
-
-## 你得到什麼
-
-- 安裝完成當天可用 ，官方最新版環境＋官方內建技能庫（實際數量以官方當下版本為準）
-
-- 跨 session 持久記憶 ：記得你的工作習慣與偏好
-
-- 自我學習閉環 ：任務完成自動生成新技能，不依賴外部下載、供應鏈風險較低
-
-- AI 模型擇一串接、通訊軟體擇一串接
-
-- 1 小時線上技術導覽＋安裝後 7 天 技術諮詢
-
-- 此方案已停售（原 NT$999）。現行方案為人格版 AI 助理 NT$6,000，若因我方技術問題無法完成安裝，全額退費
-
-想要即戰力＋學習力雙系統？→ [看「雙 AI Agent」方案](https://thinkbigtw.com/dual-agent/)。
-
-方案價格
-
-已停售（原 NT$999）→ 現行方案人格版 NT$6,000
-
-[前往人格版 NT$6,000 →](https://shopee.tw/product/105010395/45107951008)
-
-※ AI 模型（Claude／ChatGPT／Gemini 等）使用費依用量向原廠計費，API Key 需自行申請、費用自行負擔，非本方案服務費所含。
 
 ---
 
@@ -2698,13 +2749,13 @@ PERSONAL AI / 個人方案
 ## 為個人工作，
 配置合適的 AI 助理。
 
-個人方案適用於一人工作者、接案者及個人 AI 助理使用需求。專區整合人格版 AI 助理（NT$6,000 起）、雙 AI Agent、技能擴充與年約維護，依設備條件、流程需求及支援範圍提供選擇。NT$999 入門方案已於 2026-09-29 停售。
+個人方案適用於一人工作者、接案者及個人 AI 助理使用需求。專區整合入門安裝、AI Agent 工作組合、技能擴充與年約維護，依設備條件、流程需求及支援範圍提供選擇。
 
 [找到適合你的個人方案 ›](https://thinkbigtw.com/pricing/personal/)
 
 ### 入門配置與安裝
 
-人格版 AI 助理（OpenClaw 或 Hermes 擇一，討好型或討伐型人格任選，NT$6,000），提供既有設備上的安裝與配置協助。依設備、帳號及使用條件確認服務範圍，適合希望建立有個性個人 AI 助理的使用者。
+入門安裝方案（含 OpenClaw 入門），提供既有設備上的安裝與配置協助。依設備、帳號及使用條件確認服務範圍，適合希望建立個人 AI 助理基礎、循序熟悉應用方式的使用者。
 
 ### 個人工作流程整合
 
@@ -2715,69 +2766,6 @@ PERSONAL AI / 個人方案
 年度方案與超級個體服務，延續安裝後的維護與使用支援。各方案原有服務承諾、續約條件及適用範圍均保留於個別頁面，協助使用者評估持續使用、維護與後續擴充的需求。
 
 個人專區另提供工具比較、安全指南、禮物與相關服務資訊。若需求涉及企業共用資料、跨部門協作、角色權限或正式系統整合，應依企業導入條件評估；個人與企業服務的責任範圍分別確認。
-
----
-
-URL: https://thinkbigtw.com/openclaw-starter/
-
-# OpenClaw 入門 | Think BIG!
-
-個人 AI 助理
-
-# OpenClaw 入門
-
-AI 助理，裝進你的通訊軟體。
-
-OpenClaw 是開源 AI 助理。工程師遠端安裝到你的電腦——裝完它住進 LINE 或 Telegram，用傳訊息的方式指揮它查資料、讀寫檔案、操作瀏覽器。常駐、有記憶、跑在你自己的機器上。
-
-## 你每天重複的三件事
-
-- 跟 ChatGPT 解釋第三遍。因為它忘了。
-
-- 安裝教學看到一半，放棄。
-
-- 關掉分頁，一切重來。
-
-## 怎麼運行
-
-1
-
-傳訊息 在 LINE 或 Telegram 說一句話
-
-2
-
-分析需求 OpenClaw 判斷需要哪些能力——搜尋、排程還是讀檔
-
-3
-
-執行任務 網路搜尋、檔案讀寫、瀏覽器自動化
-
-4
-
-回報結果 直接推回你的聊天視窗，24 小時都在
-
-安裝透過 AnyDesk 或 DeskIn 遠端進行，你全程可見，裝完即斷線。
-
-## 你得到什麼
-
-- 安裝當天可用
-
-- 4 項原裝技能：搜尋、檔案、程式執行、瀏覽器
-
-- AI 模型選一、通訊軟體選一（LINE 需官方帳號，免費申請）
-
-- 7 天技術諮詢
-
-- 此方案已停售（原 NT$999）。現行方案為人格版 AI 助理 NT$6,000，技術問題無法完成安裝，全額退費
-
-要自動回信、自動報價？→ [加購技能包。](https://thinkbigtw.com/skill-pack/)
-
-方案價格
-
-已停售（原 NT$999）→ 現行方案人格版 NT$6,000
-
-[前往人格版 NT$6,000 →](https://shopee.tw/product/105010395/45107951008)
-※ AI 模型（Claude／ChatGPT／Gemini 等）使用費依用量向原廠計費，API Key 需自行申請、費用自行負擔，非本方案服務費所含。
 
 ---
 
@@ -2915,11 +2903,11 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 一個人在用：一人公司、自由工作者、個人副業，或公司主管想先給自己裝一套。裝在自己的電腦，用自己申請的 API Key。
 
-價格帶：NT$6,000 → 15,000 → 32,000／38,000
+價格帶：NT$6,000 → 12,000 → 32,000／38,000
 
-- 個人方案 1｜入門：官方原裝，遠端裝好，支援 7 天
+- 個人方案 1｜人格版 AI 助理：討好型或討伐型人格，完整技能包，支援 7 天
 
-- 個人方案 2｜AI 部門：工具組隊跑流程，2 小時線上技術導覽＋安裝後 7 天技術諮詢
+- 個人方案 2｜雙 AI Agent：OpenClaw＋Hermes 協作，2 小時線上技術導覽＋安裝後 7 天技術諮詢
 
 - 個人方案 3｜年約：專屬工程師顧一整年，48 小時故障修復
 
@@ -2955,9 +2943,9 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ### 個人使用 → [看比較表](https://thinkbigtw.com/pricing/personal/)
 
-- 個人方案 1｜人格版 AI 助理OpenClaw 或 Hermes 擇一，討好型或討伐型人格任選 · 完整個人技能包＋Coding Agent＋7 天技術諮詢 NT$6,000
+- 個人方案 1｜人格版 AI 助理OpenClaw 或 Hermes 擇一，討好型或討伐型人格 · 支援 7 天 NT$6,000
 
-- 個人方案 2｜雙 AI Agent[雙 AI Agent](https://thinkbigtw.com/dual-agent/)（含協作會議室） · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 NT$15,000
+- 個人方案 2｜雙 AI Agent[OpenClaw＋Hermes](https://thinkbigtw.com/dual-agent/) · 協作會議室 · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 NT$12,000
 
 - 個人方案 3｜年約單 AI Agent／雙 AI Agent · 顧一整年 NT$32,000
 NT$38,000
@@ -2998,7 +2986,7 @@ URL: https://thinkbigtw.com/pricing/personal/
 # 個人 AI 助理方案
 人格版、雙 AI Agent 與年約
 
-個人使用是給一個人在用的人：一人公司、自由工作者、個人副業，或想先給自己裝一套的主管。裝在你自己的電腦、用你自己申請的 API Key，由台灣工程師遠端安裝。依使用需求選擇：人格版 AI 助理含完整技能包＋7 天技術諮詢；雙 AI Agent 含協作會議室＋2 小時線上技術導覽；年約含一年維運。NT$999 入門方案已於 2026-09-29 停售。
+個人使用是給一個人在用的人：一人公司、自由工作者、個人副業，或想先給自己裝一套的主管。裝在你自己的電腦、用你自己申請的 API Key，由台灣工程師遠端安裝。依使用需求選擇：人格版 AI 助理含完整技能包＋7 天技術諮詢；雙 AI Agent 含協作會議室＋2 小時線上技術導覽；年約含一年維運。
 
 查看個人方案完整目錄 ↓
 
@@ -3051,13 +3039,13 @@ Tier 2 · 雙 AI Agent · 2 小時線上技術導覽＋安裝後 7 天技術諮�
 
 ### 個人方案 2｜雙 AI Agent
 
-個人方案 2 是 OpenClaw＋Hermes 雙 AI Agent 的部署服務，NT$15,000 單次付清，含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談，以及 2 小時線上技術導覽＋安裝後 7 天技術諮詢。
+個人方案 2 是 OpenClaw＋Hermes 雙 AI Agent 的部署服務，NT$12,000 單次付清，含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談，以及 2 小時線上技術導覽＋安裝後 7 天技術諮詢。
 
 給誰：已在付 Claude Code／Codex 等 coding agent 訂閱、想讓兩個 AI 工具協作跑固定流程、願意自己維護的人。解決的是「自己當人肉轉接頭」——協作會議室讓兩個 AI Agent 直接溝通。
 
 [雙 AI Agent
 OpenClaw＋Hermes 雙 AI Agent 部署
-NT$15,000
+NT$12,000
 跨 Agent 協作會議室（此方案專屬）、OpenClaw＋Hermes MCP 記憶互通；技能數依訪談
 看雙 AI Agent 頁 →](https://thinkbigtw.com/dual-agent/)
 
@@ -3069,7 +3057,7 @@ Tier 3 · 顧一整年 · 主打
 
 個人方案 3 是有專屬工程師顧一整年的年約服務，一個 AI Agent NT$32,000、兩個 AI Agent NT$38,000，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年續約 NT$30,000。
 
-給誰：不想自己維護、要有人顧一整年的個人。解決的是「裝好一個月就晾著、壞了沒人理」。
+給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
 
 [單 AI Agent
 副標：尊榮年約
@@ -3081,6 +3069,7 @@ Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護�
 NT$38,000／年
 Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合
 看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
+
 兩檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年續約 NT$30,000／年（約 2,500／月），含每週維護＋48 小時故障修復。
 
 ## 三階比較表
@@ -3103,9 +3092,9 @@ SLA — — 48 小時故障修復
 
 續約 — — 次年 NT$30,000／年
 
-價格 NT$6,000 NT$15,000 NT$32,000／38,000
+價格 NT$6,000 NT$12,000 NT$32,000／38,000
 
-CTA [人格版 NT$6,000](https://shopee.tw/product/105010395/45107951008) [雙 AI Agent](https://thinkbigtw.com/dual-agent/) [32,000](https://thinkbigtw.com/annual-pro/)／[38,000](https://thinkbigtw.com/annual-flagship/)
+CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 AI Agent](https://thinkbigtw.com/dual-agent/) [32,000](https://thinkbigtw.com/annual-pro/)／[38,000](https://thinkbigtw.com/annual-flagship/)
 
 個人服務・買家回饋
 
@@ -3119,7 +3108,7 @@ CTA [人格版 NT$6,000](https://shopee.tw/product/105010395/45107951008) [雙 A
 
 服務非常好，像我這樣的電腦小白能無腦獲得AI agent，非常推薦
 
-購買時商品名（依截圖）：Hermes × OpenClaw 雙AI｜年度尊榮服務｜自主學習 台灣首創 Docker資安
+購買時商品名（依截圖）：Hermes × OpenClaw 雙AI｜年度尊榮服務｜自主學習 Docker資安
 
 [](https://thinkbigtw.com/assets/reviews/review_08.webp)
 
@@ -3152,7 +3141,7 @@ CP值:頂級
 
 CP值:有訊息馬上回，服務六星級!!
 
-購買時商品名（依截圖）：Hermes × OpenClaw 雙AI｜年度尊榮服務｜自主學習 台灣首創 Docker資安
+購買時商品名（依截圖）：Hermes × OpenClaw 雙AI｜年度尊榮服務｜自主學習 Docker資安
 
 [](https://thinkbigtw.com/assets/reviews/review_01.webp)
 
@@ -3182,7 +3171,7 @@ CP值:很用心在幫忙安裝！大推！
 
 CP值:專業 服務滿分
 
-購買時商品名（依截圖）：Hermes × OpenClaw 雙AI智能體｜自主學習 台灣首創｜Docker資安 250+Skills
+購買時商品名（依截圖）：Hermes × OpenClaw 雙AI｜自主學習 Docker資安 250+Skills
 
 [](https://thinkbigtw.com/assets/reviews/review_03.webp)
 
@@ -3239,7 +3228,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-09-27
+更新日期：2026-09-29
 
 大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
 
@@ -3299,13 +3288,53 @@ URL: https://thinkbigtw.com/privacy.html
 
 LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 客服回覆。對話內容會整理成摘要，供內部服務品質分析與後續聯繫使用；聯絡資料與摘要保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止。如需查詢、更正或刪除，來信 AI@thinkbigtw.com 或於 LINE 官方帳號中提出，我們會在 14 天內處理完成並回覆。
 
+## 十一、Threads／Instagram 社群互動工具（Meta 平台資料）
+
+本公司使用自行開發的內部工具「ThinkBIG Threads Reply Console」（Meta App：ThinkBIG Social Monitor），管理本公司官方帳號 @think_big_ai 在 Threads 上的互動。
+
+- 用途 ：以關鍵字搜尋 Threads 上與「工作中使用 AI」相關的公開貼文，由本公司人員撰寫回覆，經人工逐則審核後，以本公司帳號發佈。每 24 小時最多發佈 10 則。不自動按讚、追蹤、轉發或私訊。
+
+- 處理的資料 ：
+
+- 搜尋結果（公開貼文內容、作者公開帳號名稱、貼文連結與時間）只顯示於本公司人員的操作畫面，不儲存。
+
+- 若決定回覆，只保存該貼文的識別碼、連結、作者公開帳號名稱，以及本公司的回覆文字，作為審核紀錄。
+
+- 本公司帳號自己貼文下的留言與提及我們的貼文：讀取留言內容與留言者公開帳號名稱，用於通知本公司人員回覆；留存於內部工作紀錄，您可依下方刪除請求要求刪除。
+
+- 保存期間 ：審核紀錄自建立起保存 30 天，期滿自動刪除。本公司不就被搜尋的使用者建立個人檔案。回覆清單會以通知訊息傳送到本公司人員使用的通訊軟體，該通知由人員裝置保存，不在上述自動刪除範圍內；如有刪除請求，我們會一併處理可刪除的部分。為了解市場討論趨勢，本公司內部研究報告可能引用公開貼文的連結，此類引用僅供內部參考。
+
+- 不提供第三人 ：上述資料不出售、不提供第三人，也不用於廣告投放。資料依 Meta 平台條款與開發者政策處理。
+
+- 刪除請求 ：若您希望本公司刪除與您的 Threads 帳號或貼文相關的紀錄，請來信 AI@thinkbigtw.com ，註明您的 Threads 帳號名稱。本公司將於 14 天內刪除並回覆確認。您也可以在 Threads 帳號設定的「網站權限」中移除本 App 的授權。
+
+### 11. Threads / Instagram social engagement tool (Meta Platform data)
+
+Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: ThinkBIG Social Monitor), to manage how our official account @think_big_ai takes part in conversations on Threads.
+
+- Purpose : We search public Threads posts about using AI at work by keyword. Our staff draft replies, and a human reviewer approves each reply before it is published from our account. We publish at most 10 replies per 24 hours. We do not automatically like, follow, repost or send direct messages.
+
+- Data we process :
+
+- Search results (public post text, the author's public username, the post link and the time) are shown only on our staff's screen. We do not store them.
+
+- If we decide to reply, we keep only the post ID, the post link, the author's public username and our reply text, as a review record.
+
+- Comments on our own posts and posts that mention our account: we read the comment text and the commenter's public username to notify our staff for follow-up replies. These are retained in our internal work records; you may request deletion under the Deletion requests section below.
+
+- Retention : Review records are deleted automatically 30 days after they are created. We do not build profiles of the people whose posts appear in searches. Reply notifications are sent to the messaging apps used by our staff and remain on their devices; these are outside the automatic deletion described above. If you submit a deletion request, we will handle the portions we are able to delete. Links to public posts may be cited in internal research reports to understand market discussion trends; such citations are for internal reference only.
+
+- No sharing : We do not sell this data, share it with third parties or use it for advertising. We handle it in line with Meta's Platform Terms and Developer Policies.
+
+- Deletion requests : To ask us to delete records related to your Threads account or posts, email AI@thinkbigtw.com  with your Threads username. We will delete the records and confirm within 14 days. You can also remove this app's access in your Threads account settings, under Website permissions.
+
 ## 十、聯絡我們
 
 大想成業有限公司(統一編號 62136066)
 
 電子郵件:AI@thinkbigtw.com
 
-大想成業有限公司 Think BIG Co., Ltd.|統一編號 62136066
+大想成業有限公司 Think BIG Make it Real CO., LTD.|統一編號 62136066
 
 AI@thinkbigtw.com
 
@@ -3376,14 +3405,6 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 [先聊需求，再前往蝦皮下單](https://s.shopee.tw/5ArzaR8LCN)
 
 ※ AI 模型使用費（如技能有呼叫模型）依用量向原廠計費，API Key 自行申請、費用自行負擔，非本服務費所含。
-
----
-
-URL: https://thinkbigtw.com/solo-pro/
-
-# 超級個體 SUPERSOLO — 方案已停售 | Think BIG!
-
-此方案已停售。現行個人年約方案：尊榮年約 NT$32,000（單 AI Agent）或年度旗艦 NT$38,000（雙 AI Agent）。詳見 [個人方案頁](https://thinkbigtw.com/pricing/personal/)。
 
 ---
 

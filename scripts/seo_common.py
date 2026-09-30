@@ -6,7 +6,7 @@ import subprocess
 from bs4 import BeautifulSoup
 ROOT=Path(__file__).resolve().parents[1]
 BASE='https://thinkbigtw.com/'
-EXCLUDE=('clawland/','meeting/','erp/','puig/','tbos/','v2/')
+EXCLUDE=('.claude/','clawland/','meeting/','erp/','puig/','tbos/','v2/')
 def git_date(path, first=False):
  args=['git','log','--format=%cs']+(['--reverse'] if first else ['-1'])+['--',str(path.relative_to(ROOT))]
  dates=subprocess.check_output(args,cwd=ROOT,text=True).strip().splitlines()

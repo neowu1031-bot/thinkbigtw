@@ -12,7 +12,7 @@ def nodes(soup):
   yield from data.get('@graph',[data]) if isinstance(data,dict) else data
 robots=(ROOT/'robots.txt').read_text();check('P0-1 robots groups',robots.count('Disallow: /clawland/')==2 and all(s in robots for s in ['Claude-SearchBot','Perplexity-User','Applebot','Sitemap:']) and 'admin' not in robots)
 rp=RobotFileParser();rp.parse(robots.splitlines());check('P0-1 all crawlers blocked only under clawland',all(not rp.can_fetch(b,'https://thinkbigtw.com/clawland/example') and rp.can_fetch(b,BASE+'enterprise/') for b in ['*','GPTBot','Claude-SearchBot','Perplexity-User','Applebot','Bingbot']))
-allhtml=list(ROOT.rglob('*.html'));check('P0-2 no hreflang',not any('hreflang=' in p.read_text() for p in allhtml) and 'hreflang' not in (ROOT/'sitemap.xml').read_text())
+allhtml=[p for p in ROOT.rglob('*.html') if not p.relative_to(ROOT).as_posix().startswith('.claude/')];check('P0-2 no hreflang',not any('hreflang=' in p.read_text() for p in allhtml) and 'hreflang' not in (ROOT/'sitemap.xml').read_text())
 entity=json.loads((ROOT/'data/seo-entity.json').read_text());definition=entity['description'];errors=[];article_count=0;faq_errors=[];link_errors=[];css_errors=[];price_errors=[]
 for p,url,soup in pages():
  rel=str(p.relative_to(ROOT));graph=list(nodes(soup));org=next((x for x in graph if x.get('@id')==BASE+'#organization'),None)
