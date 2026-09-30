@@ -33,14 +33,14 @@ const TOPICS = {
   '05': /部門|客服|業務|行銷|財務|能力|能做|自動|付款|發送/,
   '06': /資料|地端|雲端|安全|機密|資安|權限|部署|外傳|本機/,
   '07': /個人|人格版|共存版|雙.{0,8}Agent|Agent.{0,8}雙|協作.{0,5}會議室|記憶互通|討好型|討伐型|12[,，]?000|15[,，]?000|價格|多少|費用|收費|價錢|年約|續約|方案|技能|999|6000|支援|修復|48/,
-  '08': /未知|不懂|不知|訂購|USB|設備|能否|可以|支援/,
+  '08': /未知|不懂|不知|訂購|USB|設備|能否|可以|支援|取代|淘汰|Muse|dots|Grok|ChatGPT|Gemini|Claude|Copilot|Manus|新.*AI.{0,5}Agent|AI.{0,5}Agent.*選/i,
   '09': /諮詢|聯絡|摘要|刪除|保存|同意|顧問|預約|收件|送出/,
   '11': /10萬|十萬|33000|66000|99000|入門|標準|完整|特別方案|試用|企業|公司導入|收費|價格|價錢|價位|報價|費用|多少錢|方案.*多少|多少.*方案|續約/,
 };
 // 個人方案明確意圖偵測：出現這些關鍵字時 ch07 優先於 ch11
 const PERSONAL_INTENT = /人格版|共存版|雙.{0,8}Agent|Agent.{0,8}雙|協作.{0,5}會議室|記憶互通|討好型|討伐型|12[,，]?000|15[,，]?000/i;
 // 企業意圖守衛：出現下列關鍵字時不觸發個人優先（即使 PERSONAL_INTENT 也命中）
-const ENTERPRISE_OVERRIDE = /企業|續約|級|部門/;
+const ENTERPRISE_OVERRIDE = /企業|部門|入門級|標準級|完整級/;
 export function selectKnowledge(messages) {
   const latest = messages.at(-1).content;
   const earlier = messages.filter(x => x.role === 'user').slice(-3, -1).map(x => x.content).join('\n');

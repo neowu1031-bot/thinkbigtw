@@ -101,3 +101,30 @@ test('Q9 企業續約完整級每月多少 → 選到 ch11', () => {
   assert.ok(selected.includes('11'), `expected ch11, got ${selected}`);
   assert.ok(text.includes('15,000') || text.includes('15000'), '文字應含完整級續約 NT$15,000/月');
 });
+
+// ── Q10：Muse 取代龍蝦？→ 選到 ch08，核心句存在，不貶低品牌 ────────
+test('Q10 Muse 取代龍蝦？ → 選到 ch08，含核心句，不貶低品牌', () => {
+  const { selected, text } = selectKnowledge(msg('Muse 會不會取代龍蝦？'));
+  assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
+  // 核心句：兩者可以一起用，費用可控是差異點
+  assert.ok(text.includes('每一個都很好'), '文字應含「每一個都很好」（核心句）');
+  assert.ok(text.includes('費用可控'), '文字應含「費用可控」（核心句）');
+  // 不貶低任何品牌
+  assert.ok(!text.includes('比較差') && !text.includes('不如') && !text.includes('劣'), '不應出現貶低品牌的詞彙');
+});
+
+// ── Q11：Grok Agent → 還需要龍蝦？→ 選到 ch08，核心句存在 ─────────
+test('Q11 Grok 出了 agent 還需要龍蝦嗎？ → 選到 ch08，含核心句', () => {
+  const { selected, text } = selectKnowledge(msg('Grok 出了 agent 那我還需要龍蝦嗎？'));
+  assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
+  assert.ok(text.includes('每一個都很好'), '文字應含「每一個都很好」（核心句）');
+  assert.ok(text.includes('長時間運作'), '文字應含「長時間運作」（核心句）');
+});
+
+// ── Q12：新 AI Agent 那麼多怎麼選？→ 選到 ch08，核心句存在 ──────────
+test('Q12 新的 AI Agent 那麼多要怎麼選？ → 選到 ch08，含核心句', () => {
+  const { selected, text } = selectKnowledge(msg('新的 AI Agent 那麼多要怎麼選？'));
+  assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
+  assert.ok(text.includes('每一個都很好'), '文字應含「每一個都很好」（核心句）');
+  assert.ok(text.includes('協作'), '文字應含「協作」（核心句結尾）');
+});
