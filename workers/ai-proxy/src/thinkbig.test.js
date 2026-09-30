@@ -129,12 +129,13 @@ test('Q12 新的 AI Agent 那麼多要怎麼選？ → 選到 ch08，含核心�
   assert.ok(text.includes('協作'), '文字應含「協作」（核心句結尾）');
 });
 
-// ── Q13：你們跟大品牌的 AI Agent 差在哪？資安呢？→ isSecurity 時 ch06 置頂 ─
-// ch08（大品牌=10）與 ch06（資安=10）同分；新全序規則 isSecurity→ch06 置頂，ch06 先入 budget
-test('Q13 你們跟大品牌的 AI Agent 差在哪？資安呢？ → isSecurity 時 ch06 置頂（備援路徑）', () => {
+// ── Q13：你們跟大品牌的 AI Agent 差在哪？資安呢？→ isSecurity 時 ch08 優先（定調答案）
+// ch08（大品牌=10）與 ch06（資安=10）同分；全序規則 isSecurity→ch08>ch06，ch08 先入 budget
+test('Q13 你們跟大品牌的 AI Agent 差在哪？資安呢？ → isSecurity 時 ch08 優先（定調答案）', () => {
   const { selected, text } = selectKnowledge(msg('你們跟大品牌的 AI Agent 差在哪？資安呢？'));
-  assert.ok(selected.includes('06'), `expected ch06 (security anchor置頂), got ${selected}`);
-  assert.ok(text.includes('八層') || text.includes('供應鏈'), '文字應含八層框架關鍵字（ch06）');
+  assert.ok(selected.includes('08'), `expected ch08 (market FAQ security anchor), got ${selected}`);
+  assert.ok(text.includes('打包票'), '文字應含「打包票」（資安審查核心句）');
+  assert.ok(text.includes('一道一道的審查'), '文字應含「一道一道的審查」（資安核心句）');
 });
 
 // ── Q14：多輪對話——先問個人方案，接著追問「差在哪？」→ 應選 ch07 ────

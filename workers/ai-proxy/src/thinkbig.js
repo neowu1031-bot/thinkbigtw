@@ -59,9 +59,12 @@ export function selectKnowledge(messages) {
     .sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
       // Explicit full ordering on tie:
-      // 1. isPersonal → ch07 置頂；2. isSecurity → ch06 置頂；3. 其餘照 id 降序
+      // 1. isPersonal → ch07 置頂；2. isSecurity → ch08（定調答案）> ch06 > others；3. 其餘照 id 降序
       if (isPersonal) { if (a.c.id === '07') return -1; if (b.c.id === '07') return 1; }
-      if (isSecurity) { if (a.c.id === '06') return -1; if (b.c.id === '06') return 1; }
+      if (isSecurity) {
+        if (a.c.id === '08') return -1; if (b.c.id === '08') return 1;
+        if (a.c.id === '06') return -1; if (b.c.id === '06') return 1;
+      }
       return b.c.id.localeCompare(a.c.id);
     });
   let text = required.map(c => c.text).join('\n\n');
