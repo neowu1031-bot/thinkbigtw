@@ -50,6 +50,8 @@ for product in products:
 for rel in ['terms.html','privacy.html']:
  check(rel+': no ERP offer and correct email link',not re.search(r'ERP', (ROOT/rel).read_text()) and bool(doc(rel).select_one('a[href="mailto:AI@thinkbigtw.com"]')))
 erp=doc('erp/index.html');check('ERP noindex with visible retirement and enterprise destination','noindex' in erp.select_one('meta[name=robots]')['content'] and '此服務已停止提供' in visible(erp) and bool(erp.select_one('a[href="/enterprise/"]')))
+for retired,text,dest in [('openclaw-starter','此方案已更新','/pricing/personal/'),('hermes-starter','此方案已更新','/pricing/personal/'),('solo-pro','此方案已停售','/pricing/personal/')]:
+ r=doc(retired+'/index.html');check(retired+': noindex and retirement notice with personal destination','noindex' in r.select_one('meta[name=robots]')['content'] and text in visible(r) and bool(r.select_one('a[href="'+dest+'"]')))
 for p in (ROOT/'tbos/en').glob('*.html'):
  soup=BeautifulSoup(p.read_text(),'html.parser');check(p.name+': Chinese switch returns home and no SSH',all(a['href']=='/' for a in soup.select('a[href]') if a.get_text(strip=True)=='中文') and 'SSH' not in str(soup))
 english=visible(doc('tbos/en/pricing.html'));check('English prices aligned to approved Chinese plans',all(x in english for x in ['NT$6,000','NT$12,000','NT$32,000','NT$38,000','NT$30,000','NT$4,888','2-hour online technical walkthrough','7 days of technical consultation after installation']) and '40 skill combinations' not in english)

@@ -24,3 +24,7 @@ __pycache__/
 # never publish/track local CLI state
 supabase/.temp/
 _site/
+
+# Backup files
+*.bak
+*.bak-*
