@@ -31,4 +31,9 @@ for(const [file,text] of Object.entries(outputs)){
  if(process.argv.includes('--check')){if(!fs.existsSync(target)||fs.readFileSync(target,'utf8')!==text)throw new Error(file+' is stale');}
  else fs.writeFileSync(target,text);
 }
-console.log('PASS knowledge build: 11 chapters, '+faq.length+' shared local FAQs');
+// Primary path budget warning: warn if full KB exceeds 80% of KB_FULL_LIMIT (16000)
+const KB_FULL_LIMIT=16000;
+const KB_WARN_THRESHOLD=Math.floor(KB_FULL_LIMIT*0.8); // 12800
+const fullKBTokens=estimateTokens(chapters.map(c=>c.text).join('\n\n'));
+if(fullKBTokens>KB_WARN_THRESHOLD) console.warn(`⚠ WARN: 全本 KB ${fullKBTokens} token 已超過主力路徑上限的 80%（${KB_WARN_THRESHOLD}），接近退回章節選取模式`);
+console.log(`PASS knowledge build: 11 chapters, ${faq.length} shared local FAQs | full KB ${fullKBTokens} tokens (limit ${KB_FULL_LIMIT}, warn at ${KB_WARN_THRESHOLD})`);

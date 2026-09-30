@@ -45,7 +45,8 @@ const ENTERPRISE_OVERRIDE = /企業|部門|入門級|標準級|完整級/;
 // 資安意圖：最新一句含資安/安全時，ch06 在備援路由中優先於 ch11
 const SECURITY_ANCHOR = /資安|安全/;
 // 主力路徑預算：全本 KB token 數在此限內，MiniMax 主力路徑直接讀全本 KB
-export const KB_FULL_LIMIT = 10000;
+// 設 16000 以確保全本 KB（~10k）＋ SCOPE_RULE（~1.2k）＋最大對話（2.5k）仍遠低於 MiniMax 上下文長度
+export const KB_FULL_LIMIT = 16000;
 export const fullKBText = chapters.map(c => c.text).join('\n\n');
 export function selectKnowledge(messages) {
   const latest = messages.at(-1).content;
