@@ -54,7 +54,10 @@ for retired,text,dest in [('openclaw-starter','此方案已更新','/pricing/per
  r=doc(retired+'/index.html');check(retired+': noindex and retirement notice with personal destination','noindex' in r.select_one('meta[name=robots]')['content'] and text in visible(r) and bool(r.select_one('a[href="'+dest+'"]')))
 for p in (ROOT/'tbos/en').glob('*.html'):
  soup=BeautifulSoup(p.read_text(),'html.parser');check(p.name+': Chinese switch returns home and no SSH',all(a['href']=='/' for a in soup.select('a[href]') if a.get_text(strip=True)=='中文') and 'SSH' not in str(soup))
-english=visible(doc('tbos/en/pricing.html'));check('English prices aligned to approved Chinese plans',all(x in english for x in ['NT$6,000','NT$12,000','NT$32,000','NT$38,000','NT$30,000','NT$4,888','2-hour online technical walkthrough','7 days of technical consultation after installation']) and '40 skill combinations' not in english)
+english=visible(doc('tbos/en/pricing.html'));check('English prices aligned to approved Chinese plans',all(x in english for x in ['NT$6,000','NT$12,000','NT$15,000','NT$32,000','NT$38,000','NT$30,000','NT$4,888','2-hour online technical walkthrough','7 days of technical consultation after installation']) and '40 skill combinations' not in english)
+p_personal=doc('pricing/personal/index.html');p_personal_text=visible(p_personal)
+check('personal page has both dual-agent variants: 共存版 NT$12,000 and NT$15,000','共存版' in p_personal_text and 'NT$12,000' in p_personal_text and 'NT$15,000' in p_personal_text)
+check('協作會議室 clearly excluded from NT$12,000 on personal page','不含協作會議室' in p_personal_text and not re.search(r'NT\$12,000[^。\n]*[^不]含協作會議室',p_personal_text))
 check('English link on every indexable Chinese footer',all(bool(s.select_one('#tb-footer a[href="/tbos/en/"]')) for _,_,s in pages()))
 check('About email is mailto',bool(doc('about/index.html').select_one('a[href="mailto:AI@thinkbigtw.com"]')))
 check('32/48 favicon and 180px touch icon',Image.open(ROOT/'favicon.ico').ico.sizes()=={(32,32),(48,48)} and Image.open(ROOT/'apple-touch-icon.png').size==(180,180))
