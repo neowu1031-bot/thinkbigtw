@@ -7,6 +7,15 @@ const chapters=fs.readdirSync(dir).filter(x=>x.endsWith('.md')).sort().map(file=
   id:file.slice(0,2), file, text:fs.readFileSync(path.join(dir,file),'utf8').replace(/^(版本|來源)：.*\n/gm,'').trim()
 }));
 if(chapters.length!==11) throw new Error('Expected eleven knowledge chapters');
+// Token budget guard: base (ch01+ch10) + any optional chapter must not exceed 2850
+const estimateTokens=text=>Math.ceil(Array.from(text).reduce((n,c)=>n+(c.codePointAt(0)>127?2:1/3),0));
+const baseText=chapters.filter(c=>c.id==='01'||c.id==='10').map(c=>c.text).join('\n\n');
+const BASE_TOKENS=estimateTokens(baseText);
+for(const ch of chapters){
+  if(ch.id==='01'||ch.id==='10') continue;
+  const total=estimateTokens(baseText+'\n\n'+ch.text);
+  if(total>2850) throw new Error(`Budget exceeded: base(${BASE_TOKENS}) + ch${ch.id} = ${total} > 2850`);
+}
 const faq=[];
 for(const chapter of chapters){
   const parts=chapter.text.split('## 常見問題\n');

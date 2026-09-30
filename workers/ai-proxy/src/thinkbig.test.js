@@ -136,3 +136,14 @@ test('Q13 你們跟大品牌的 AI Agent 差在哪？資安呢？ → 選到 ch0
   assert.ok(text.includes('打包票'), '文字應含「打包票」（資安審查核心句）');
   assert.ok(text.includes('一道一道的審查'), '文字應含「一道一道的審查」（資安核心句）');
 });
+
+// ── Q14：多輪對話——先問個人方案，接著追問「差在哪？」→ 應選 ch07 ────
+test('Q14 多輪：「個人方案有哪些？」→「差在哪？」第二問應選到 ch07', () => {
+  const messages = [
+    { role: 'user', content: '個人方案有哪些？' },
+    { role: 'user', content: '差在哪？' },
+  ];
+  const { selected, text } = selectKnowledge(messages);
+  assert.ok(selected.includes('07'), `expected ch07 from context carry-over, got ${selected}`);
+  assert.ok(text.includes('12,000') || text.includes('15,000'), '文字應含個人方案價格（ch07 內容）');
+});

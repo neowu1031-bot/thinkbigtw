@@ -13,7 +13,7 @@
 
 ## AI Agent 市場問答（供客服問答）
 ### 現在有哪些 AI Agent？龍蝦（OpenClaw）會被取代嗎？
-兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。常見的大模型品牌 AI Agent 有 Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Grok Bot（xAI）、Muse（Meta，目前官方只在美國上線）。開源 AI Agent（OpenClaw、Hermes）可自選模型、依用量付費、24 小時常駐，適合長時間例行運作。詳細介紹見 https://thinkbigtw.com/guides/ai-agents/
+兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。常見的大模型品牌 AI Agent：Claude、ChatGPT Agent 與 dots、Gemini Spark、Grok Bot、Muse（美國限定）。開源 AI Agent（OpenClaw、Hermes）可自選模型、依用量付費、24 小時常駐。詳細介紹見 https://thinkbigtw.com/guides/ai-agents/
 
 ## 方案異動紀錄（供客服問答）
 - NT$999 入門方案（OpenClaw 或 Hermes 官方原裝遠端安裝）已於 2026-09-29 停售。現行個人方案從人格版 AI 助理 NT$6,000 起。
