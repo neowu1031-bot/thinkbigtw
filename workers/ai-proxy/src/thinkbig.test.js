@@ -129,12 +129,12 @@ test('Q12 新的 AI Agent 那麼多要怎麼選？ → 選到 ch08，含核心�
   assert.ok(text.includes('協作'), '文字應含「協作」（核心句結尾）');
 });
 
-// ── Q13：你們跟大品牌的 AI Agent 差在哪？資安呢？→ 選到 ch08，含資安審查 ──
-test('Q13 你們跟大品牌的 AI Agent 差在哪？資安呢？ → 選到 ch08，含資安審查句', () => {
+// ── Q13：你們跟大品牌的 AI Agent 差在哪？資安呢？→ isSecurity 時 ch06 置頂 ─
+// ch08（大品牌=10）與 ch06（資安=10）同分；新全序規則 isSecurity→ch06 置頂，ch06 先入 budget
+test('Q13 你們跟大品牌的 AI Agent 差在哪？資安呢？ → isSecurity 時 ch06 置頂（備援路徑）', () => {
   const { selected, text } = selectKnowledge(msg('你們跟大品牌的 AI Agent 差在哪？資安呢？'));
-  assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
-  assert.ok(text.includes('打包票'), '文字應含「打包票」（資安審查核心句）');
-  assert.ok(text.includes('一道一道的審查'), '文字應含「一道一道的審查」（資安核心句）');
+  assert.ok(selected.includes('06'), `expected ch06 (security anchor置頂), got ${selected}`);
+  assert.ok(text.includes('八層') || text.includes('供應鏈'), '文字應含八層框架關鍵字（ch06）');
 });
 
 // ── Q14：多輪對話——先問個人方案，接著追問「差在哪？」→ 應選 ch07 ────
@@ -174,4 +174,16 @@ test('Q17 備援路徑 selectKnowledge 行為不變：企業方案多少錢 → 
   const { selected, text } = selectKnowledge(msg('企業方案多少錢？'));
   assert.ok(selected.includes('11'), `fallback expected ch11, got ${selected}`);
   assert.ok(text.includes('33,000'), '備援路徑文字應含企業入門 NT$33,000');
+});
+
+// ── Q18：三方 tie——企業資安費用多少 → ch06 置頂（ch06＋ch11＋ch07 各得 10 分）──
+test('Q18 三方 tie：企業資安費用多少 → isSecurity 時 ch06 置頂', () => {
+  // ch06（資安=10）、ch11（企業+費用=10）、ch07（費用+多少=10） 三方同分
+  const { selected } = selectKnowledge(msg('企業資安費用多少？'));
+  assert.ok(selected.includes('06'), `expected ch06 first, got ${selected}`);
+  const i06 = selected.indexOf('06');
+  const i11 = selected.indexOf('11');
+  const i07 = selected.indexOf('07');
+  if (i11 !== -1) assert.ok(i06 < i11, `ch06 should precede ch11 in three-way tie, got ${selected}`);
+  if (i07 !== -1) assert.ok(i06 < i07, `ch06 should precede ch07 in three-way tie, got ${selected}`);
 });
