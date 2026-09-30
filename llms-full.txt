@@ -546,7 +546,7 @@ STARTER / 入門級
 
 NT$33,000 （未稅，另加 5% 營業稅）
 
-付款分兩次：簽約 50%、驗收通過 50%
+活動價至 2026/12/31｜付款分兩次：簽約 50%、驗收通過 50%
 
 員工直接問公司的 SOP 和規章。知識庫最多 30 份文件，AI 依文件回答、附出處；沒有依據就交回人確認。
 
@@ -576,7 +576,7 @@ STANDARD / 標準級
 
 NT$66,000 （未稅，另加 5% 營業稅）
 
-付款分兩次：簽約 50%、驗收通過 50%
+活動價至 2026/12/31｜付款分兩次：簽約 50%、驗收通過 50%
 
 回答問題，也幫忙打草稿。文件最多 100 份，還能處理試算表，並新增一項工作草稿任務（詢問摘要、回覆草稿或表單摘要三選一）。
 
@@ -607,7 +607,7 @@ COMPLETE / 完整級
 
 NT$99,000 （未稅，另加 5% 營業稅）
 
-付款分兩次：簽約 50%、驗收通過 50%
+活動價至 2026/12/31｜付款分兩次：簽約 50%、驗收通過 50%
 
 回答、打草稿，文件還會自動同步。額外包含一個唯讀串接（例如雲端硬碟資料夾自動同步），以及可加購擴充包。
 
@@ -1070,7 +1070,7 @@ SELF-SERVICE ASSESSMENT / 自助評估
 # 公司導入 AI，
 不再是天價。10 萬有找。
 
-12 題問卷，自動判斷入門（NT$33,000）、標準（NT$66,000）或完整（NT$99,000）哪一級適合你的公司。填完即顯示報價，由專人寄出正式合約。
+12 題問卷，自動判斷入門（NT$33,000）、標準（NT$66,000）或完整（NT$99,000）哪一級適合你的公司。填完即顯示報價，由專人寄出正式合約。活動價至 2026/12/31，2027/1/1 起改為洽詢報價。
 
 DEMO / 示範影片
 
@@ -1279,6 +1279,14 @@ THINK BIG
 
 [查看完整說明 ›](https://thinkbigtw.com/privacy.html#ai-inquiry)
 
+AI Agent 市場
+
+## 現在有哪些 AI Agent？龍蝦（OpenClaw）會被取代嗎？
+
+兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。大模型品牌推出的 AI Agent 費用綁訂閱額度，適合需要品牌生態協作的任務；OpenClaw（龍蝦）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作。
+
+[各家 AI Agent 一次看懂 ›](https://thinkbigtw.com/guides/ai-agents/)
+
 ---
 
 URL: https://thinkbigtw.com/full-agent/
@@ -1387,6 +1395,293 @@ Think BIG 編輯部 · 2026 年 9 月 26 日
 展開 AI 導入規劃。
 
 [啟動企業導入諮詢 ›](https://thinkbigtw.com/enterprise/#consult)
+
+---
+
+URL: https://thinkbigtw.com/guides/ai-agents/
+
+# AI Agent 有哪些？新 AI Agent 會取代龍蝦嗎｜2026 各家一次看懂｜Think BIG
+
+[Guides](https://thinkbigtw.com/guides/) / AI Agents
+
+AI Agent 總覽 · 2026
+
+# 新 AI Agent 會不會取代龍蝦？各家 AI Agent 一次看懂
+
+Think BIG 編輯部
+
+最近各大品牌密集推出常駐型 AI Agent。這篇整理 2026 年常見的 AI Agent 有哪些、各家怎麼計費、額度用完怎麼辦，以及龍蝦（OpenClaw）在長時間運作情境的定位。
+
+最後更新：2026-10-01｜資料查證：2026-09-30
+
+新的 AI Agent 不會讓龍蝦（OpenClaw）失去用處，兩者適合的工作不同。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+
+- 大模型品牌推出的 AI Agent，費用綁訂閱方案的額度，適合有品牌生態綁定需求的協作任務。
+
+- 開源 AI Agent（如 OpenClaw、Hermes）可以自己選模型，按實際用量付費給模型商，適合長時間常駐與費用可控的情境。
+
+- 兩類可以一起用：讓龍蝦（OpenClaw）負責常駐例行工作，品牌 AI Agent 負責需要協作的任務。
+
+## 一句話結論
+
+每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+
+- 費用結構不同 ：訂閱型 AI Agent 費用固定含額度，額度用完就停；開源 AI Agent 依實際用量付費，可以預算導向地控制。
+
+- 適合的工作不同 ：訂閱型適合短時間協作、需要品牌生態（Gmail、Teams、WhatsApp）串接的任務；開源型適合 24 小時常駐、例行流程、費用可控的工作。
+
+- 可以一起用 ：常見做法是讓龍蝦（OpenClaw）或 Hermes 跑長時間例行任務，品牌 AI Agent 用來協作或做需要特定生態的任務。
+
+## 先說清楚：AI Agent 是什麼
+
+AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI 助理；產物與重要操作仍需指定人員覆核。（[完整術語表](https://thinkbigtw.com/guides/glossary/)）
+
+換句話說，AI Agent 不只是聊天機器人——它可以自己開瀏覽器、操作 App、在背景持續工作、依照排程執行任務。但「能不能幫你做事」，取決於它被賦予的工具範圍、模型能力，以及你的設定。
+
+## 2026 年常見的 AI Agent 有哪些
+
+資料查證日期：2026-09-30，價格以各家官網為準。原幣價格不自行換算台幣；需換算時已附換算基準。標記說明：【官方】來自品牌官網或官方部落格；【第三方】只有媒體資料；【待實測】官方未揭露。
+
+### 兩大類型
+
+目前市面上的 AI Agent 可分成兩類：
+
+- 大模型品牌推出的 AI Agent ：以訂閱方案使用，費用固定，額度用完需等重置或加購。例如 Claude、ChatGPT Agent、Gemini Spark、Grok Bot、Muse。
+
+- 開源 AI Agent（可自選模型） ：軟體開源免費，模型費用依實際用量付給自選的模型商，或接本地大模型零模型費。例如 OpenClaw（龍蝦）、Hermes。
+
+以下依推出者英文字母排序，各家各一段條列介紹：
+
+### Claude（Anthropic）
+
+- 是什麼 ：Claude 是 Anthropic 於 2025 年推出的 AI 助理，2026 年 9 月起整合原 Cowork 功能，可在關閉電腦後繼續背景完成報告、簡報、研究任務。【官方】
+
+- 怎麼用 ：網頁版、桌面版、App、Claude Code（程式碼助理）；網頁、App、Claude Code 共用同一個用量上限。【官方】
+
+- 怎麼計費 ：Free（有限制）；Pro US$20／月（年繳每月 US$17）；Max US$100 起（約 Pro 5 倍用量）。【官方】額度分 5 小時區段上限與每週上限；用完可購買 usage credits。
+
+- 台灣可用 ：可以（台灣在支援國家名單內）。【官方】
+
+- 出處 ：[claude.com/pricing](https://claude.com/pricing)、[用量上限說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)，查證於 2026-09-30。
+
+### ChatGPT Agent 與 dots（OpenAI）
+
+- 是什麼 ：ChatGPT Agent 是 OpenAI 整合進 ChatGPT 的 agent 模式，用虛擬瀏覽器與連接的 App 完成多步驟任務；dots（2026 年 9 月 29 日推出）是 24 小時常駐的 AI Agent，有自己的雲端電腦，可串接超過 4,000 個 App。【官方】
+
+- 怎麼用 ：ChatGPT 工具選單選「agent」或輸入 /agent 啟用；dots 可在 ChatGPT、Slack、Teams 裡傳訊息使用。【官方】
+
+- 怎麼計費 ：ChatGPT Agent 模式：Plus US$20（約 640 TWD，1 USD=31.9，2026-09-30 台銀牌告）每月 40 則；Pro US$100 起每月 400 則。【官方】ChatGPT Agent 與 Codex、Work 共用 agentic 額度，額度用完可加購 credits。dots 第一個內含在 Pro 與 Business Premium 方案裡，不另收費；和 dots 對話不算 ChatGPT 額度。【官方】
+
+- 台灣可用 ：ChatGPT Agent 可以（台灣在支援名單內）；dots 官方未列排除名單，台灣可否開通【待實測】。【官方】
+
+- 出處 ：[ChatGPT agent 說明](https://help.openai.com/en/articles/11752874-chatgpt-agent)、[dots 發表](https://openai.com/index/introducing-dots/)，查證於 2026-09-30。
+
+### Gemini Spark（Google）
+
+- 是什麼 ：Gemini Spark 是 Google 推出的 24 小時個人 AI Agent，手機和電腦關機時也會在背景工作，重大動作前會先問你，連接 Gmail、日曆、雲端硬碟等 Google 服務。【官方】
+
+- 怎麼用 ：需訂閱 Google AI Pro 或 Ultra，年滿 18 歲、用個人 Google 帳號。【官方】
+
+- 怎麼計費 ：AI Pro US$19.99；AI Ultra US$99.99（約 3,190 TWD）或 US$199.99。用量依運算量計算，每 5 小時恢復一次，直到每週上限。Pro 與 Ultra 可加購 AI credits。【官方】
+
+- 台灣可用 ：官方排除名單不含台灣；台灣帳號是否可啟用【待實測】。
+
+- 出處 ：[gemini.google/subscriptions](https://gemini.google/subscriptions/)、[Gemini Spark 產品頁](https://gemini.google/overview/agent/)，查證於 2026-09-30。
+
+### Grok Bot（xAI）
+
+- 是什麼 ：Grok Bot 是 xAI 於 2026 年 8 月推出的常駐 AI 隊友，有自己的雲端電腦、瀏覽器、終端機，可以多個同時工作，需要你判斷的事才回頭問你。【官方】
+
+- 怎麼用 ：支援 macOS、Windows、Linux 桌面版及 iOS、Android。帳號驗證沿用 Cursor 帳號。【官方】
+
+- 怎麼計費 ：SuperGrok US$30（約 960 TWD）、SuperGrok Plus US$100 含 Grok Bot。【官方】2026 年 6 月起所有功能共用每週額度池；影片與長任務特別耗額度，用完等每週重置，或購買 Extra Usage Credits（US$5 起，網頁購買，效期一年）。【官方】
+
+- 台灣可用 ：官方未列國家清單【待實測】。
+
+- 出處 ：[x.ai/pricing](https://x.ai/pricing)、[Grok Bot 發表](https://x.ai/news/introducing-grok-bot)，查證於 2026-09-30。
+
+### Muse（Meta）
+
+- 是什麼 ：Muse 是 Meta 於 2026 年 9 月 8 日推出的個人 AI Agent，跑在專屬的虛擬機上，可開瀏覽器、填表、寄信、訂位，寄信或付款前會先問你，可在 Muse App 或 WhatsApp 使用。【官方】
+
+- 怎麼用 ：iOS、Android App 及 muse.ai 網頁。【官方】
+
+- 怎麼計費 ：免費版有額度上限；Power US$20／月（每週 5 億 Muse tokens）；Maximum US$100／月（每週 30 億 Muse tokens）。官方說明訂閱在有限測試中，不是每個地區都能用。【官方】
+
+- 台灣可用 ：目前官方只在美國上線；加拿大 2026 年 9 月開放【第三方】；台灣尚未開放。【官方：not available in all locations】
+
+- 出處 ：[Meta Newsroom 發表](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)、[Muse 訂閱說明](https://www.meta.com/help/subscriptions/1021145227643680/)，查證於 2026-09-30。
+
+### Microsoft Copilot（個人版）
+
+- 是什麼 ：Microsoft 365 內的 agentic AI，可在 Word、Excel、PowerPoint、Outlook 裡代辦任務；Copilot Autopilot 是 2026 年 9 月 25 日推出的常駐企業版，目前為私人預覽。【官方】
+
+- 怎麼用 ：Microsoft 365 訂閱方案；個人版透過網頁或 M365 應用程式使用。【官方】
+
+- 怎麼計費 ：M365 Personal US$9.99；Premium US$19.99（含有限 agentic AI）；Pro US$99.99（含最高用量 agentic AI）。官方只寫「usage limits apply」，確切數字【待實測】。【官方】
+
+- 台灣可用 ：台灣有販售 Microsoft 365；agentic 功能台灣可用性【待實測】。
+
+- 出處 ：[Copilot 個人定價](https://www.microsoft.com/en-us/copilot/pricing/individuals)，查證於 2026-09-30。
+
+### 龍蝦 OpenClaw（開源）
+
+- 是什麼 ：OpenClaw 是開源個人 AI 助理，台灣使用者常稱「龍蝦」。裝在自己的電腦上，透過 WhatsApp、Telegram 等聊天 App 使用，支援本機與雲端模型。【官方】
+
+- 怎麼用 ：安裝在 Windows、macOS 上，需要你的電腦保持開機。
+
+- 怎麼計費 ：軟體開源免費；費用看你接哪個模型商，依實際用量計費，由你直接付給模型商。你可以選 MiniMax、Claude API、OpenAI API 等，或接本地模型零用量費。【官方】
+
+- 台灣可用 ：可以（自行安裝）。【官方】
+
+- 出處 ：OpenClaw 官方文件，查證於 2026-09-30。→ [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+
+### Hermes Agent（開源）
+
+- 是什麼 ：Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理，支援跨對話記憶與自我學習，可將任務經驗轉化為技能，可排程執行。Think BIG 提供的服務是協助安裝在你的電腦上、配置與教學；與 OpenClaw 可串接分工。【官方】
+
+- 怎麼用 ：安裝在 Windows、macOS 上；可單獨使用，也可與 OpenClaw 串接建立雙 AI Agent 協作。
+
+- 怎麼計費 ：軟體開源免費（MIT 授權）；模型費用自選，和 OpenClaw 一樣依實際用量付給模型商。【官方】
+
+- 台灣可用 ：可以（自行安裝）。【官方】
+
+- 出處 ：Nous Research 官方，查證於 2026-09-30。→ [OpenClaw 和 Hermes 差在哪](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
+
+其他也有官方資料的 AI Agent（簡述）：Perplexity Computer（通用代辦，點數制，Pro US$20 起）；Manus（通用 Agent，點數制，Pro US$20 起，全球可用）；Siri AI（隨 iOS 27 提供，目前 beta 只支援英文）；Alexa+（僅限美國）。中國大陸平台（豆包、扣子、Kimi、MiniMax Agent 等）台灣能否使用各有差異，一律標【待實測】。
+
+## 兩種做法怎麼分工
+
+以下只比較「做法類型」，不比較優劣，不打分數。
+
+面向
+大模型品牌推出的 AI Agent
+開源 AI Agent（如 OpenClaw、Hermes）
+計費方式 固定月費，含方案額度 依實際用量付費給自選的模型商；軟體本身免費
+
+額度用完時 等重置、升級方案或加購 credits 模型用量費直接計費，沒有額度上限概念；預算導向自行控制
+
+能不能 24 小時常駐 依方案而定；部分可在你的電腦關機後繼續跑 需要你的電腦保持開機（本機部署）；或用雲端模型 API 遠端跑
+
+模型能不能換 通常綁定品牌自家模型 可以自選：訂閱制模型方案、API，或本地大模型
+
+資料和設定放哪裡 依各家隱私政策；通常在品牌雲端 本機部署，資料在你的電腦上；使用雲端模型時訊息仍傳至模型商
+
+適合的工作 品牌生態協作（Gmail、Teams、WhatsApp）、短時間高強度任務 長時間常駐、例行排程、費用可控、需要自選模型
+
+每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+
+## 訂閱額度用完怎麼辦
+
+各家品牌 AI Agent 的額度重置機制：
+
+- Claude（Anthropic） ：5 小時區段上限加每週上限；付費方案可購買 usage credits。（查證於 2026-09-30，來源：[官方說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)）
+
+- ChatGPT Agent / dots（OpenAI） ：ChatGPT Agent 每月額度（Plus 40 則、Pro 400 則）；額度用完可加購 credits，或等月重置。（查證於 2026-09-30，來源：[官方說明](https://help.openai.com/en/articles/12642688)）
+
+- Grok Bot（xAI） ：每週額度池重置；可購買 Extra Usage Credits（US$5 起，效期一年）。（查證於 2026-09-30，來源：[官方 FAQ](https://docs.x.ai/grok/faq)）
+
+- Gemini Spark（Google） ：用量依運算量計算，每 5 小時恢復一次，直到每週上限；Pro 與 Ultra 可加購 AI credits。（查證於 2026-09-30，來源：[官方說明](https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/)）
+
+- Muse（Meta） ：免費額度用完可升級，或等免費額度恢復；Power 每週 5 億 tokens，Maximum 每週 30 億 tokens。（查證於 2026-09-30，來源：[官方說明](https://www.meta.com/help/subscriptions/1021145227643680/)）
+
+通用做法：把長時間常駐的工作交給可自選模型的 AI Agent（如 OpenClaw、Hermes），品牌 AI Agent 留給需要協作的時段。這就是核心句說的「很適合拿來協作」。→ [OpenClaw＋coding agent 協作方案](https://thinkbigtw.com/full-agent/)
+
+## 想長時間運作又控制費用，怎麼搭
+
+三種常見情境，按你的工作性質選擇：
+
+- 一個常駐 AI Agent 搭配你原本的訂閱 ：用 OpenClaw 或 Hermes 跑每天的例行工作（回訊息、整理、排程），你原本的品牌訂閱（Claude Pro、ChatGPT Plus 等）用來做需要協作或需要品牌生態的任務，不佔 24 小時額度。
+
+- 兩個 AI Agent 分工 ：OpenClaw 和 Hermes 裝在同一台電腦，一個跑行動派工作（回訊息、流程），一個跑思考派工作（彙整、研究、寫稿）。→ [雙 AI Agent 方案](https://thinkbigtw.com/dual-agent/)
+
+- 常駐 AI Agent 加上 coding agent 協作 ：龍蝦（OpenClaw）常駐跑例行任務，Claude Code 或 Codex 用來做程式、自動化腳本，透過協作會議室溝通。
+
+Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模型用量費；模型用量費依實際使用量計算，由你直接付給模型商。詳見 [常見問題](https://thinkbigtw.com/faq/)。
+
+## 龍蝦會被取代嗎
+
+不必二選一。品牌 AI Agent 和龍蝦（OpenClaw）擅長的工作不同：品牌 AI Agent 有品牌生態綁定，額度用完就停，適合需要協作或短時間高強度的任務；龍蝦可以自選模型、24 小時常駐、費用可控，適合長時間例行運作。
+
+每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+
+## Think BIG 可以怎麼幫你
+
+Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服務商。
+
+- 單 AI Agent（人格版）NT$6,000 ：OpenClaw 或 Hermes 擇一，討好型（溫暖支持）或討伐型（直接犀利）人格任選，含完整個人技能包＋1 個客製小幫手、Coding Agent 串接 1–2 個、7 天技術諮詢。
+
+- 雙 AI Agent 共存版 NT$12,000 ：OpenClaw＋Hermes 各自運作、各自記憶，不含記憶互通與協作會議室，7 天技術諮詢。
+
+- 雙 AI Agent NT$15,000 ：含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談、2 小時線上技術導覽＋安裝後 7 天技術諮詢。
+
+- 年約方案 ：NT$32,000（單 AI Agent）或 NT$38,000（雙 AI Agent）年維護陪跑，48 小時故障修復，次年續約 NT$30,000／年。
+
+以上方案價格不含第三方 AI 模型用量費；API Key 自行申請，我方引導不代辦。詳見 [個人方案頁](https://thinkbigtw.com/pricing/personal/)。
+
+### 想裝一個 AI Agent，告訴我們就出貨
+
+從人格版 NT$6,000 開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好，可選討好型或討伐型人格。
+
+[前往蝦皮下單人格版 NT$6,000 →](https://shopee.tw/product/105010395/45107951008)
+
+想讓兩個 AI Agent 分工？→ [雙 AI Agent（共存版 NT$12,000 或含協作室 NT$15,000）](https://thinkbigtw.com/dual-agent/)
+
+所有方案→ [個人方案與定價](https://thinkbigtw.com/pricing/personal/)
+
+## 常見問題
+
+Q：2026 年常見的 AI Agent 有哪些？
+
+分成兩類：大模型品牌推出、以訂閱方案使用的 AI Agent（如 Claude、ChatGPT Agent、Gemini Spark、Grok Bot、Muse）；以及開源、可自選模型的 AI Agent（如 OpenClaw（龍蝦）、Hermes）。各家介紹見本頁「2026 年常見的 AI Agent 有哪些」。
+
+Q：新推出的 AI Agent 會取代龍蝦（OpenClaw）嗎？
+
+兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+
+Q：龍蝦 AI 是什麼？要錢嗎？
+
+龍蝦是台灣使用者對開源 AI Agent OpenClaw 的暱稱。軟體本身開源免費；使用時要付 AI 模型用量費，依用量計算，由使用者直接付給模型商；找人安裝另外收服務費。→ [OpenClaw 代裝服務說明](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+
+Q：訂閱制 AI 的額度用完怎麼辦？
+
+等官方額度重置、升級方案、改用依用量計費的 API，或把常駐工作交給自選模型的 AI Agent（如 OpenClaw），品牌 AI Agent 留給需要協作的時段。
+
+Q：想讓 AI Agent 長時間運作，費用怎麼控制？
+
+選能自己換模型、依用量付費的做法，並設定用量上限；需要協作的時段再搭配訂閱型 AI Agent。OpenClaw 和 Hermes 都支援自選模型。
+
+Q：品牌 AI Agent 和龍蝦可以一起用嗎？
+
+可以。常見做法是龍蝦（OpenClaw）負責常駐和例行工作，品牌 AI Agent 負責需要協作的任務。→ [OpenClaw＋coding agent 協作](https://thinkbigtw.com/full-agent/) / [雙 AI Agent 方案](https://thinkbigtw.com/dual-agent/)
+
+Q：自己安裝 AI Agent 安全嗎？
+
+關鍵在最小權限、本機部署，以及不裝來路不明的技能。詳細說明→ [OpenClaw 安全指南](https://thinkbigtw.com/guides/openclaw-safe/)
+
+Q：Think BIG 的方案包含 AI 模型費用嗎？
+
+不含。方案價格是安裝與設定的服務費；第三方 AI 模型用量費依實際用量計算，由你自行負擔。詳見 [常見問題](https://thinkbigtw.com/faq/)。
+
+## 資料來源與更新紀錄
+
+本頁各家 AI Agent 資料依 2026-09-30 各品牌官方網站整理，未附官方出處的數字不列入。
+
+- Claude：[claude.com/pricing](https://claude.com/pricing)
+
+- ChatGPT Agent：[OpenAI Help Center](https://help.openai.com/en/articles/11752874-chatgpt-agent)
+
+- dots：[openai.com/index/introducing-dots](https://openai.com/index/introducing-dots/)
+
+- Gemini Spark：[gemini.google/overview/agent](https://gemini.google/overview/agent/)
+
+- Grok Bot：[x.ai/news/introducing-grok-bot](https://x.ai/news/introducing-grok-bot)
+
+- Muse：[Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)
+
+- Microsoft Copilot：[microsoft.com/copilot/pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals)
+
+資料查證日期：2026-09-30，價格以各家官網為準。更新紀錄：2026-10-01 初版上線。
 
 ---
 
@@ -1717,6 +2012,8 @@ Q：可以用年約方式同時養兩個嗎？
 
 可以。年度旗艦 NT$38,000／年 就是兩個助理互通加全年維護的方案；尊榮年約 NT$32,000／年 是單系統年約。想清楚「要幾個助理」再看年約會比較不繞路。
 
+想看其他 AI Agent 的整理，包括各大品牌的計費與龍蝦（OpenClaw）的定位？→ [AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)
+
 ## 結論：怎麼決定
 
 如果你只是想把每天重複的雜事交給電腦跑——OpenClaw 先裝，跑一兩週，知道自己還少什麼。
@@ -1772,7 +2069,9 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 個人使用與安裝
 
-[## OpenClaw 代裝服務
+[## AI Agent 有哪些？各家一次看懂
+
+2026 年各家 AI Agent 用途與計費方式整理，龍蝦（OpenClaw）適合的長時間運作情境。](https://thinkbigtw.com/guides/ai-agents/)[## OpenClaw 代裝服務
 
 了解入門安裝包含什麼。](https://thinkbigtw.com/guides/openclaw-daizhuang/)[## 遠端安裝服務評選
 
