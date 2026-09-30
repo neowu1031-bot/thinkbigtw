@@ -39,10 +39,12 @@ const TOPICS = {
 };
 // 個人方案明確意圖偵測：出現這些關鍵字時 ch07 優先於 ch11
 const PERSONAL_INTENT = /人格版|共存版|雙.{0,8}Agent|Agent.{0,8}雙|協作.{0,5}會議室|記憶互通|討好型|討伐型|12[,，]?000|15[,，]?000/i;
+// 企業意圖守衛：出現下列關鍵字時不觸發個人優先（即使 PERSONAL_INTENT 也命中）
+const ENTERPRISE_OVERRIDE = /企業|續約|級|部門/;
 export function selectKnowledge(messages) {
   const latest = messages.at(-1).content;
   const earlier = messages.filter(x => x.role === 'user').slice(-3, -1).map(x => x.content).join('\n');
-  const isPersonal = PERSONAL_INTENT.test(latest) || PERSONAL_INTENT.test(earlier);
+  const isPersonal = (PERSONAL_INTENT.test(latest) || PERSONAL_INTENT.test(earlier)) && !ENTERPRISE_OVERRIDE.test(latest);
   const required = chapters.filter(c => ['01', '10'].includes(c.id));
   const ranked = chapters.filter(c => TOPICS[c.id]).map(c => ({ c, score: (TOPICS[c.id].test(latest) ? 10 : 0) + (TOPICS[c.id].test(earlier) ? 1 : 0) }))
     .sort((a, b) => {

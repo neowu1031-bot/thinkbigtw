@@ -77,6 +77,7 @@ for p in public:
   if not target.exists():errors.append(str(p.relative_to(ROOT))+': '+value);continue
   if u.fragment and target.suffix=='.html' and not BeautifulSoup(target.read_text(),'html.parser').find(id=unquote(u.fragment)):errors.append(str(p.relative_to(ROOT))+': missing # '+value)
 check('public local links, images and fragment destinations exist',not errors,'; '.join(errors))
+import json as _json
 ai_agents=ROOT/'guides/ai-agents/index.html'
 check('guides/ai-agents page exists',ai_agents.exists())
 ai_agents_soup=BeautifulSoup(ai_agents.read_text(),'html.parser') if ai_agents.exists() else BeautifulSoup('','html.parser')
@@ -85,5 +86,13 @@ check('guides/ai-agents core sentence present (3 occurrences)',ai_agents.read_te
 ai_agents_title=ai_agents_soup.title.get_text() if ai_agents_soup.title else ''
 brand_names_in_title=[b for b in ['Claude','ChatGPT','Gemini','Grok','Muse','Copilot','OpenClaw','Hermes'] if b in ai_agents_title]
 check('guides/ai-agents title contains no brand names',not brand_names_in_title,'; '.join(brand_names_in_title) if brand_names_in_title else ai_agents_title)
+_brand_names=['Claude','ChatGPT','Gemini','Grok','Muse','Copilot','OpenClaw','Hermes']
+_jsonld_brand_errors=[]
+if ai_agents.exists():
+ for _tag in ai_agents_soup.select('script[type="application/ld+json"]'):
+  _jsonld_text=_tag.string or ''
+  for _b in _brand_names:
+   if _b in _jsonld_text:_jsonld_brand_errors.append(_b)
+check('guides/ai-agents JSON-LD 不得含品牌名',not _jsonld_brand_errors,'; '.join(_jsonld_brand_errors))
 print(json.dumps({'passed':sum(results),'total':len(results)},ensure_ascii=False))
 raise SystemExit(0 if all(results) else 1)

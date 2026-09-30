@@ -94,3 +94,10 @@ test('ch07 文字同時有 12,000 和 15,000 兩個方案', () => {
   assert.ok(text.includes('12,000'), '共存版 NT$12,000 應在 ch07');
   assert.ok(text.includes('15,000'), '雙 AI Agent NT$15,000 應在 ch07');
 });
+
+// ── Q9：企業續約完整級每月多少 → 選到 ch11 ────────────────────────
+test('Q9 企業續約完整級每月多少 → 選到 ch11', () => {
+  const { selected, text } = selectKnowledge(msg('企業方案完整級續約每個月多少錢？'));
+  assert.ok(selected.includes('11'), `expected ch11, got ${selected}`);
+  assert.ok(text.includes('15,000') || text.includes('15000'), '文字應含完整級續約 NT$15,000/月');
+});
