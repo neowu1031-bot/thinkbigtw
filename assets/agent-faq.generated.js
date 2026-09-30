@@ -18,7 +18,7 @@ window.TB_AGENT_FAQ = [
   {
     "id": "07",
     "question": "個人方案有哪些？",
-    "answer": "人格版 AI 助理 NT$6,000（討好型或討伐型人格任選，含完整個人技能包＋Coding Agent）；雙 AI Agent NT$15,000（含協作會議室）；年約 NT$32,000／38,000，次年 NT$30,000／年。NT$999 入門方案已於 2026-09-29 停售。不含第三方模型用量費，完整範圍請見個人方案專區。"
+    "answer": "人格版 AI 助理 NT$6,000（討好型或討伐型人格任選，含完整個人技能包＋Coding Agent）；雙 AI Agent NT$12,000（含協作會議室）；年約 NT$32,000／38,000，次年 NT$30,000／年。NT$999 入門方案已於 2026-09-29 停售。不含第三方模型用量費，完整範圍請見個人方案專區。"
   },
   {
     "id": "07",
@@ -38,7 +38,7 @@ window.TB_AGENT_FAQ = [
   {
     "id": "07",
     "question": "人格版和雙 AI Agent 的協作會議室差在哪？",
-    "answer": "協作會議室是個人方案 2（雙 AI Agent NT$15,000）專屬功能，讓 OpenClaw 與 Hermes 可以互相溝通協作。人格版 NT$6,000 是單一 AI Agent（OpenClaw 或 Hermes 擇一），不含協作會議室。"
+    "answer": "協作會議室是個人方案 2（雙 AI Agent NT$12,000）專屬功能，讓 OpenClaw 與 Hermes 可以互相溝通協作。人格版 NT$6,000 是單一 AI Agent（OpenClaw 或 Hermes 擇一），不含協作會議室。"
   },
   {
     "id": "11",

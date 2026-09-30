@@ -15,7 +15,7 @@ def visible(soup):
  return soup.get_text(' ',strip=True)
 def compact(s):return re.sub(r'\s+','',s)
 period='2 小時線上技術導覽＋安裝後 7 天技術諮詢'
-public=[p for p in ROOT.rglob('*.html') if not p.relative_to(ROOT).as_posix().startswith(('clawland/','meeting/','puig/','v2/','workers/'))]
+public=[p for p in ROOT.rglob('*.html') if not p.relative_to(ROOT).as_posix().startswith(('.claude/','clawland/','meeting/','puig/','v2/','workers/'))]
 copy_files=public+[ROOT/'llms.txt',ROOT/'llms-full.txt',*(ROOT/'data/agent-kb').glob('*.md'),ROOT/'assets/agent-faq.generated.js',ROOT/'workers/ai-proxy/src/agent-kb.generated.js']
 check('no retired service period, delivery promise or internal sales jargon',all(not re.search(r'30\s*天陪跑|陪跑\s*30\s*天|隔日到貨|CAC|方案規劃草案|複利',p.read_text()) for p in copy_files))
 for rel in ['pricing/personal/index.html','pricing/index.html','full-agent/index.html','dual-agent/index.html','guides/hermes-vs-openclaw/index.html','llms.txt','llms-full.txt','data/agent-kb/07-personal.md']:
@@ -27,7 +27,7 @@ check('eight historical review names without current-plan links',len(reviews)==8
 check('review disclaimer and discontinued VPS label', '截圖中的商品名為購買當時的版本，內容與現行方案不同，請以方案頁為準' in visible(personal) and '已停售方案' in next(r for r in reviews if 'review_09.webp' in str(r)).get_text())
 check('no unrequested company-founding review disclaimer',not re.search('公司設立前|成立前|設立日期',str(personal)))
 hero=doc('index.html').select_one('.hero-links')
-check('personal hero CTA retained alongside two enterprise CTAs',len(hero.select('a'))==3 and hero.select_one('a[href="/pricing/personal/"]').get_text()=='個人使用，NT$999 起 ›')
+check('personal hero CTA retained alongside two enterprise CTAs',len(hero.select('a'))==3 and hero.select_one('a[href="/pricing/personal/"]').get_text()=='個人使用，NT$6,000 起 ›')
 terms={'TB FRAME','TB READINESS','TB DELIVERY','TB CONTINUITY'};missing=[]
 for p,_,soup in pages():
  for term in terms:
@@ -41,7 +41,7 @@ trust=visible(doc('trust/index.html').select_one('#remote-install'))
 check('trust discloses screen access, customer presence and permission removal',all(x in trust for x in ['工程師','操作客戶電腦','敏感資訊','最小權限','客戶在場','移除遠端存取權限']))
 for rel in ['06-governance','10-safety']:
  text=(ROOT/('data/agent-kb/'+rel+'.md')).read_text();check(rel+': no absolute data-access promise',all(x in text for x in ['/trust/#remote-install','可能看到','最小權限','客戶在場','不得宣稱「不會接觸工作資料或敏感資訊」']))
-products=['openclaw-starter','hermes-starter','full-agent','dual-agent','annual','annual-pro','annual-flagship','solo-pro','skill-pack','lobster','gift','print','subsidy','erp','enterprise-cloud','enterprise-local','harness']
+products=['full-agent','dual-agent','annual','annual-pro','annual-flagship','skill-pack','lobster','gift','print','subsidy','erp','enterprise-cloud','enterprise-local','harness']
 manifest=json.loads((ROOT/'data/css-bundles.json').read_text())
 for product in products:
  soup=doc(product+'/index.html');raw=str(soup)
@@ -52,7 +52,7 @@ for rel in ['terms.html','privacy.html']:
 erp=doc('erp/index.html');check('ERP noindex with visible retirement and enterprise destination','noindex' in erp.select_one('meta[name=robots]')['content'] and '此服務已停止提供' in visible(erp) and bool(erp.select_one('a[href="/enterprise/"]')))
 for p in (ROOT/'tbos/en').glob('*.html'):
  soup=BeautifulSoup(p.read_text(),'html.parser');check(p.name+': Chinese switch returns home and no SSH',all(a['href']=='/' for a in soup.select('a[href]') if a.get_text(strip=True)=='中文') and 'SSH' not in str(soup))
-english=visible(doc('tbos/en/pricing.html'));check('English prices aligned to approved Chinese plans',all(x in english for x in ['NT$999','NT$6,000','NT$15,000','NT$32,000','NT$38,000','NT$60,000','NT$30,000','NT$4,888','2-hour online technical walkthrough','7 days of technical consultation after installation']) and '40 skill combinations' not in english)
+english=visible(doc('tbos/en/pricing.html'));check('English prices aligned to approved Chinese plans',all(x in english for x in ['NT$6,000','NT$12,000','NT$32,000','NT$38,000','NT$30,000','NT$4,888','2-hour online technical walkthrough','7 days of technical consultation after installation']) and '40 skill combinations' not in english)
 check('English link on every indexable Chinese footer',all(bool(s.select_one('#tb-footer a[href="/tbos/en/"]')) for _,_,s in pages()))
 check('About email is mailto',bool(doc('about/index.html').select_one('a[href="mailto:AI@thinkbigtw.com"]')))
 check('32/48 favicon and 180px touch icon',Image.open(ROOT/'favicon.ico').ico.sizes()=={(32,32),(48,48)} and Image.open(ROOT/'apple-touch-icon.png').size==(180,180))
