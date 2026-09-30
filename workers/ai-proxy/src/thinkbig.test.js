@@ -20,7 +20,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { selectKnowledge } from './thinkbig.js';
+import { selectKnowledge, selectKnowledgePrimary, fullKBText, KB_FULL_LIMIT, estimateTokens } from './thinkbig.js';
 
 function msg(content) {
   return [{ role: 'user', content }];
@@ -146,4 +146,32 @@ test('Q14 多輪：「個人方案有哪些？」→「差在哪？」第二問�
   const { selected, text } = selectKnowledge(messages);
   assert.ok(selected.includes('07'), `expected ch07 from context carry-over, got ${selected}`);
   assert.ok(text.includes('12,000') || text.includes('15,000'), '文字應含個人方案價格（ch07 內容）');
+});
+
+// ── Q15：企業版資安怎麼做 → 備援路徑 ch06 優先（資安觸發詞），含八層框架 ──
+test('Q15 你們企業版資安怎麼做 → 備援路徑選到 ch06，含八層框架關鍵字', () => {
+  const { selected, text } = selectKnowledge(msg('你們企業版資安怎麼做？'));
+  assert.ok(selected.includes('06'), `expected ch06, got ${selected}`);
+  // ch06 應在 ch11 之前（資安優先規則）
+  const i06 = selected.indexOf('06'), i11 = selected.indexOf('11');
+  if (i06 !== -1 && i11 !== -1) assert.ok(i06 < i11, `ch06 should precede ch11 in security queries`);
+  // 八層框架關鍵字
+  assert.ok(text.includes('八層') || text.includes('八道'), '文字應含八層資安框架關鍵字');
+});
+
+// ── Q16：主力路徑應讀取全本 KB（所有章節都在 context 中）────────────────
+test('Q16 主力路徑 selectKnowledgePrimary → 全本 KB 在預算內，返回所有章節', () => {
+  const r = selectKnowledgePrimary(msg('請問你們的服務是什麼？'));
+  assert.strictEqual(r.tier, 'full', `expected tier=full, got ${r.tier}`);
+  assert.ok(r.estimatedTokens <= KB_FULL_LIMIT, `full KB ${r.estimatedTokens} should be ≤ ${KB_FULL_LIMIT}`);
+  // 所有章節都在 text 中（以 ch06 的八層框架為代表）
+  assert.ok(r.text.includes('八層') || r.text.includes('八道'), '全本 KB 應含八層資安框架');
+  assert.ok(r.text.includes('12,000') && r.text.includes('15,000'), '全本 KB 應含個人方案價格');
+});
+
+// ── Q17：備援路徑行為不變——企業方案問題選到 ch11 ──────────────────────
+test('Q17 備援路徑 selectKnowledge 行為不變：企業方案多少錢 → ch11', () => {
+  const { selected, text } = selectKnowledge(msg('企業方案多少錢？'));
+  assert.ok(selected.includes('11'), `fallback expected ch11, got ${selected}`);
+  assert.ok(text.includes('33,000'), '備援路徑文字應含企業入門 NT$33,000');
 });
