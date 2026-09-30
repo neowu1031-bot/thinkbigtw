@@ -128,3 +128,11 @@ test('Q12 新的 AI Agent 那麼多要怎麼選？ → 選到 ch08，含核心�
   assert.ok(text.includes('每一個都很好'), '文字應含「每一個都很好」（核心句）');
   assert.ok(text.includes('協作'), '文字應含「協作」（核心句結尾）');
 });
+
+// ── Q13：你們跟大品牌的 AI Agent 差在哪？資安呢？→ 選到 ch08，含資安審查 ──
+test('Q13 你們跟大品牌的 AI Agent 差在哪？資安呢？ → 選到 ch08，含資安審查句', () => {
+  const { selected, text } = selectKnowledge(msg('你們跟大品牌的 AI Agent 差在哪？資安呢？'));
+  assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
+  assert.ok(text.includes('打包票'), '文字應含「打包票」（資安審查核心句）');
+  assert.ok(text.includes('一道一道的審查'), '文字應含「一道一道的審查」（資安核心句）');
+});
