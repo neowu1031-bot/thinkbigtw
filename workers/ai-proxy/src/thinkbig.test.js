@@ -190,3 +190,10 @@ test('Q18 三方 tie：企業資安費用多少 → isSecurity 時 ch06 置頂',
   if (i11 !== -1) assert.ok(i06 < i11, `ch06 should precede ch11 in three-way tie, got ${selected}`);
   if (i07 !== -1) assert.ok(i06 < i07, `ch06 should precede ch07 in three-way tie, got ${selected}`);
 });
+
+// ── 負向斷言：全本 KB 與 generated 檔不得含任何 NT$ 金額或三方案定價 ─────────
+test('負向斷言 KB_PRICE_FREE：fullKBText 不含 NT$ 金額、33000/66000/99000 等企業定價', () => {
+  const PRICE_RE = /NT\$\s*\d|33,?000|66,?000|99,?000|12,?000|15,?000|6,?000/;
+  assert.ok(!PRICE_RE.test(fullKBText),
+    'KB 全文不應含任何 NT$ 金額或企業三方案定價，違反 NEO 2026-10-01 鐵則');
+});

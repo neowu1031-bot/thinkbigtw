@@ -703,10 +703,12 @@ const TIERS = {
 
 // ── ROI Calculator ────────────────────────────────────────────────────
 const USER_COUNT_MAP = {'1-10':5,'11-30':20,'31-100':65,'100+':100};
-let roiTierPrice = 33000;
-let roiRenewalPrice = 5000; // per month
+// 圖表使用示意比例（不帶真實金額）：AI yr1 約人事成本 35%，yr2+ 約 20%
+let roiAiYr1Ratio = 0.35;
+let roiAiYr2Ratio = 0.20;
 
-const RENEWAL_MAP = {starter:5000, standard:10000, complete:15000};
+// tier 對應示意比例（不反推價格）
+const TIER_RATIO = {starter:{yr1:0.30,yr2:0.18}, standard:{yr1:0.40,yr2:0.22}, complete:{yr1:0.55,yr2:0.30}};
 
 function fmt(n){ return Math.round(n).toLocaleString('zh-TW'); }
 
@@ -716,10 +718,9 @@ function computeBarChart(){
   const model  = Math.max(0, parseInt(document.getElementById('roi-model').value) || 1000);
   // Assistant annual cost: salary × 12 × 1.18 (benefits) + salary (year-end bonus)
   const assistantAnnual = Math.round(salary * 12 * 1.18 + salary);
-  // AI yr1: grade price (×1.05 含稅) + model × 12
-  const aiYr1 = Math.round(roiTierPrice * 1.05) + model * 12;
-  // AI yr2+: renewal × 12 + model × 12
-  const aiYr2 = roiRenewalPrice * 12 + model * 12;
+  // AI bars: illustrative ratios of assistant cost (不帶真實報價，僅示意相對大小)
+  const aiYr1 = Math.round(assistantAnnual * roiAiYr1Ratio) + model * 12;
+  const aiYr2 = Math.round(assistantAnnual * roiAiYr2Ratio) + model * 12;
 
   document.getElementById('val-assistant').textContent = '依需求報價';
   document.getElementById('val-ai-yr1').textContent = '依需求報價';
@@ -731,11 +732,11 @@ function computeBarChart(){
   document.getElementById('bar-ai-yr1').style.height   = Math.max(4, Math.round(aiYr1 / maxVal * BAR_H)) + 'px';
   document.getElementById('bar-ai-yr2').style.height   = Math.max(4, Math.round(aiYr2 / maxVal * BAR_H)) + 'px';
 
-  // Ratio text
+  // Ratio text（示意）
   const ratioYr1 = assistantAnnual / Math.max(1, aiYr1);
   const ratioText = ratioYr1 >= 2
     ? 'AI 第一年費用約為請一位助理的 1/' + Math.round(ratioYr1)
-    : 'AI 第一年費用：' + fmt(aiYr1) + ' 元';
+    : 'AI 費用：依需求報價';
   document.getElementById('roi-ratio').textContent = ratioText;
 }
 
@@ -756,7 +757,7 @@ function computeWorkHours(){
   document.getElementById('roi-f-hours').textContent = fmt(hours);
   document.getElementById('roi-f-wage').textContent = wage;
   document.getElementById('roi-f-savings').textContent = fmt(savings);
-  document.getElementById('roi-f-price').textContent = fmt(roiTierPrice);
+  document.getElementById('roi-f-price').textContent = '依需求報價';
 }
 
 document.getElementById('roi-mins').addEventListener('input', function(){
@@ -796,10 +797,10 @@ function showGrade(grade){
   gradeBox.classList.add('visible');
   redirectSection.classList.remove('visible');
 
-  // ROI calculator: set tier price, renewal, and pre-fill user count from Q4
-  const TIER_PRICES = {starter:33000, standard:66000, complete:99000};
-  roiTierPrice = TIER_PRICES[grade] || 33000;
-  roiRenewalPrice = RENEWAL_MAP[grade] || 5000;
+  // ROI calculator: set illustrative ratio by grade, no actual prices
+  const gradeRatio = TIER_RATIO[grade] || TIER_RATIO.starter;
+  roiAiYr1Ratio = gradeRatio.yr1;
+  roiAiYr2Ratio = gradeRatio.yr2;
   const roiSection = document.getElementById('roi-section');
   roiSection.classList.add('visible');
   const f = document.getElementById('quiz-form');
