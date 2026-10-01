@@ -1125,3 +1125,212 @@ test('handleLineWebhook — 錯誤簽章回傳 401', async () => {
   const res = await handleLineWebhook(makeRequest('POST', body, 'wrong_base64_sig=='), env, makeCtxStub());
   assert.equal(res.status, 401);
 });
+
+// ──────────────────────────────────────────────
+// 測試 20：markAsRead
+// ──────────────────────────────────────────────
+
+test('handleLineWebhook — 有 markAsReadToken 的訊息呼叫 markAsRead API', async () => {
+  const secret = 'mysecret';
+  const bodyObj = {
+    events: [{
+      type: 'message',
+      message: { type: 'text', text: '請問方案怎麼選', markAsReadToken: 'mar-token-test-001' },
+      source: { type: 'user', userId: 'U_mar' },
+      replyToken: 'reply_mar',
+      webhookEventId: 'evt_mar001',
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let markAsReadCalled = false, markAsReadBody = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/chat/markAsRead')) {
+      markAsReadCalled = true;
+      markAsReadBody = JSON.parse(opts.body);
+      return { ok: true, body: { cancel: async () => {} } };
+    }
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: '一般用戶' }) };
+    }
+    if (url.includes('api.line.me')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({}) };
+    }
+    return { ok: false, body: { cancel: async () => {} } };
+  };
+
+  const env = {
+    LINE_CHANNEL_SECRET: secret,
+    LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(),
+    LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: '個人方案適合個人使用' }) },
+    MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: null,
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: null,
+  };
+
+  const ctx = makeCtxStub();
+  const res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+
+  assert.equal(res.status, 200);
+  assert.equal(markAsReadCalled, true, 'markAsRead API 應被呼叫');
+  assert.equal(markAsReadBody?.markAsReadToken, 'mar-token-test-001', 'markAsReadToken 應正確傳遞');
+});
+
+test('handleLineWebhook — GIFT 用戶訊息不呼叫 markAsRead', async () => {
+  const secret = 'mysecret';
+  const bodyObj = {
+    events: [{
+      type: 'message',
+      message: { type: 'text', text: '你好', markAsReadToken: 'mar-token-gift-001' },
+      source: { type: 'user', userId: 'U_gift_mar' },
+      replyToken: 'reply_gift_mar',
+      webhookEventId: 'evt_gift_mar',
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let markAsReadCalled = false;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/chat/markAsRead')) {
+      markAsReadCalled = true;
+      return { ok: true, body: { cancel: async () => {} } };
+    }
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: FAKE_GIFT_NAME_1 }) };
+    }
+    if (url.includes('api.line.me')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({}) };
+    }
+    return { ok: false, body: { cancel: async () => {} } };
+  };
+
+  const env = {
+    LINE_CHANNEL_SECRET: secret,
+    LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(),
+    LINE_HASH_PEPPER: TEST_PEPPER,
+    LINE_HUMAN_ONLY_NAMES: FAKE_GIFT_NAMES_ENV,
+    AI: { run: async () => ({ response: 'test' }) },
+    MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: 'https://supabase.example.com',
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'service_key',
+  };
+
+  const ctx = makeCtxStub();
+  const res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+
+  assert.equal(res.status, 200);
+  assert.equal(markAsReadCalled, false, 'GIFT 用戶不應呼叫 markAsRead，以免 NEO 漏看');
+});
+
+test('handleLineWebhook — markAsRead API 失敗不影響正常 AI 回覆', async () => {
+  const secret = 'mysecret';
+  const bodyObj = {
+    events: [{
+      type: 'message',
+      message: { type: 'text', text: '方案怎麼選', markAsReadToken: 'mar-token-fail-001' },
+      source: { type: 'user', userId: 'U_mar_fail' },
+      replyToken: 'reply_mar_fail',
+      webhookEventId: 'evt_mar_fail',
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let repliedText = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/chat/markAsRead')) {
+      // markAsRead API 失敗
+      return { ok: false, status: 500, body: { cancel: async () => {} } };
+    }
+    if (url.includes('/v2/bot/message/reply')) {
+      repliedText = JSON.parse(opts.body).messages?.[0]?.text;
+      return { ok: true, body: { cancel: async () => {} } };
+    }
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: '一般用戶' }) };
+    }
+    if (url.includes('api.line.me')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({}) };
+    }
+    return { ok: false, body: { cancel: async () => {} } };
+  };
+
+  const env = {
+    LINE_CHANNEL_SECRET: secret,
+    LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(),
+    LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: '請參考我們的方案頁' }) },
+    MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: null,
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: null,
+  };
+
+  const ctx = makeCtxStub();
+  const res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+
+  assert.equal(res.status, 200, 'markAsRead 失敗不應讓 webhook 回傳非 200');
+  assert.ok(repliedText !== null, 'AI 回覆應仍送出');
+});
+
+test('handleLineWebhook — sticker 訊息有 markAsReadToken 時呼叫 markAsRead', async () => {
+  const secret = 'mysecret';
+  const bodyObj = {
+    events: [{
+      type: 'message',
+      message: { type: 'sticker', stickerId: '1', packageId: '1', markAsReadToken: 'mar-sticker-001' },
+      source: { type: 'user', userId: 'U_sticker' },
+      replyToken: 'reply_sticker',
+      webhookEventId: 'evt_sticker',
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let markAsReadCalled = false, aiCalled = false;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/chat/markAsRead')) {
+      markAsReadCalled = true;
+      return { ok: true, body: { cancel: async () => {} } };
+    }
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: '一般用戶' }) };
+    }
+    return { ok: true, body: { cancel: async () => {} } };
+  };
+
+  const env = {
+    LINE_CHANNEL_SECRET: secret,
+    LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(),
+    LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => { aiCalled = true; return { response: 'test' }; } },
+    MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: null,
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: null,
+  };
+
+  const ctx = makeCtxStub();
+  const res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+
+  assert.equal(res.status, 200);
+  assert.equal(markAsReadCalled, true, 'sticker 訊息有 markAsReadToken 時應呼叫 markAsRead');
+  assert.equal(aiCalled, false, 'sticker 訊息不應呼叫 AI');
+});
