@@ -8,11 +8,13 @@
  * 需要 Node.js 18+
  *
  * 回歸測試：確保個人方案路由不被企業方案路由覆蓋（2026-10-01 修復）
+ * 2026-10-01（remove-prices-1001）：KB 改依需求報價，移除具體金額；
+ * 測試改驗路由正確性與「依需求報價」關鍵字，不再驗具體金額。
  * 覆蓋六題：
  *   Q1：雙 AI Agent 多少錢？ → ch07（個人方案）
  *   Q2：共存版多少錢？       → ch07
- *   Q3：12,000 有協作會議室嗎？ → ch07，答案應含「不含」
- *   Q4：15,000 包含什麼？    → ch07
+ *   Q3：共存版有協作會議室嗎？ → ch07，答案應含「不含」
+ *   Q4：雙 AI Agent 包含什麼？ → ch07
  *   Q5：人格版多少錢？       → ch07
  *   Q6：企業方案多少錢？     → ch11（企業方案）
  */
@@ -30,48 +32,48 @@ function msg(content) {
 test('Q1 雙 AI Agent 多少錢 → 選到 ch07（個人方案）', () => {
   const { selected, text } = selectKnowledge(msg('雙 AI Agent 多少錢？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
-  // ch07 text should mention NT$12,000 and NT$15,000
-  assert.ok(text.includes('12,000'), '文字應含 NT$12,000（共存版）');
-  assert.ok(text.includes('15,000'), '文字應含 NT$15,000（雙 AI Agent）');
+  // ch07 說依需求報價（remove-prices-1001 後不含具體金額）
+  assert.ok(text.includes('依需求報價') || text.includes('蝦皮'), '文字應含「依需求報價」或「蝦皮」');
+  assert.ok(text.includes('共存版'), '文字應含「共存版」');
 });
 
 // ── Q2：共存版多少錢 ───────────────────────────────────────────────
 test('Q2 共存版多少錢 → 選到 ch07', () => {
   const { selected, text } = selectKnowledge(msg('共存版多少錢？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
-  assert.ok(text.includes('12,000'), '文字應含 NT$12,000');
+  assert.ok(text.includes('共存版'), '文字應含「共存版」');
+  assert.ok(text.includes('依需求報價') || text.includes('蝦皮'), '文字應含依需求報價說明');
 });
 
-// ── Q3：12,000 有沒有協作會議室 ─────────────────────────────────────
-test('Q3 12,000 有沒有協作會議室 → 選到 ch07，文字含「不含」', () => {
-  const { selected, text } = selectKnowledge(msg('12,000 的方案有協作會議室嗎？'));
+// ── Q3：共存版有沒有協作會議室 ──────────────────────────────────────
+test('Q3 共存版有沒有協作會議室 → 選到 ch07，文字含「不含」', () => {
+  const { selected, text } = selectKnowledge(msg('共存版方案有協作會議室嗎？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
-  // ch07 says 共存版 NT$12,000 不含協作會議室
+  // ch07 說共存版不含協作會議室
   assert.ok(text.includes('不含'), '文字應明確說明不含協作會議室');
   assert.ok(text.includes('協作'), '文字應提到協作會議室');
 });
 
-// ── Q4：15,000 包含什麼 ───────────────────────────────────────────
-test('Q4 15,000 包含什麼 → 選到 ch07，文字含協作會議室說明', () => {
-  const { selected, text } = selectKnowledge(msg('15,000 的雙 AI Agent 方案包含什麼？'));
+// ── Q4：雙 AI Agent 包含什麼 ──────────────────────────────────────
+test('Q4 雙 AI Agent 包含什麼 → 選到 ch07，文字含協作會議室說明', () => {
+  const { selected, text } = selectKnowledge(msg('雙 AI Agent 方案包含什麼？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
-  assert.ok(text.includes('15,000'), '文字應含 NT$15,000');
   assert.ok(text.includes('協作'), '文字應提到協作會議室');
   assert.ok(text.includes('記憶互通'), '文字應提到記憶互通');
 });
 
 // ── Q5：人格版多少錢 ───────────────────────────────────────────────
-test('Q5 人格版多少錢 → 選到 ch07，文字含 NT$6,000', () => {
+test('Q5 人格版多少錢 → 選到 ch07，文字含依需求報價說明', () => {
   const { selected, text } = selectKnowledge(msg('人格版 AI 助理多少錢？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
-  assert.ok(text.includes('6,000'), '文字應含 NT$6,000');
+  assert.ok(text.includes('依需求報價') || text.includes('蝦皮'), '文字應含依需求報價或蝦皮說明');
 });
 
 // ── Q6：企業方案多少錢 ─────────────────────────────────────────────
 test('Q6 企業方案多少錢 → 選到 ch11（企業方案）', () => {
   const { selected, text } = selectKnowledge(msg('請問企業方案多少錢？'));
   assert.ok(selected.includes('11'), `expected ch11, got ${selected}`);
-  assert.ok(text.includes('33,000') || text.includes('33000'), '文字應含企業入門 NT$33,000');
+  assert.ok(text.includes('依需求報價') || text.includes('contact'), '文字應含依需求報價說明');
 });
 
 // ── 防退化：ch07 和 ch11 同分時，個人關鍵字讓 ch07 優先 ─────────────
@@ -87,19 +89,19 @@ test('防退化：雙 AI Agent + 多少錢 同時出現時 ch07 排在 ch11 前'
   }
 });
 
-// ── ch07 含 12k 和 15k 描述 ────────────────────────────────────────
-test('ch07 文字同時有 12,000 和 15,000 兩個方案', () => {
+// ── ch07 含共存版和雙 AI Agent 描述 ──────────────────────────────────
+test('ch07 文字同時有共存版和雙 AI Agent 兩個方案', () => {
   const { selected, text } = selectKnowledge(msg('個人方案有哪些？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
-  assert.ok(text.includes('12,000'), '共存版 NT$12,000 應在 ch07');
-  assert.ok(text.includes('15,000'), '雙 AI Agent NT$15,000 應在 ch07');
+  assert.ok(text.includes('共存版'), '共存版說明應在 ch07');
+  assert.ok(text.includes('雙 AI Agent'), '雙 AI Agent 說明應在 ch07');
 });
 
 // ── Q9：企業續約完整級每月多少 → 選到 ch11 ────────────────────────
 test('Q9 企業續約完整級每月多少 → 選到 ch11', () => {
   const { selected, text } = selectKnowledge(msg('企業方案完整級續約每個月多少錢？'));
   assert.ok(selected.includes('11'), `expected ch11, got ${selected}`);
-  assert.ok(text.includes('15,000') || text.includes('15000'), '文字應含完整級續約 NT$15,000/月');
+  assert.ok(text.includes('依需求報價') || text.includes('contact'), '文字應含依需求報價說明');
 });
 
 // ── Q10：Muse 取代龍蝦？→ 選到 ch08，核心句存在，不貶低品牌 ────────
@@ -146,7 +148,7 @@ test('Q14 多輪：「個人方案有哪些？」→「差在哪？」第二問�
   ];
   const { selected, text } = selectKnowledge(messages);
   assert.ok(selected.includes('07'), `expected ch07 from context carry-over, got ${selected}`);
-  assert.ok(text.includes('12,000') || text.includes('15,000'), '文字應含個人方案價格（ch07 內容）');
+  assert.ok(text.includes('共存版') || text.includes('雙 AI Agent'), '文字應含個人方案說明（ch07 內容）');
 });
 
 // ── Q15：企業版資安怎麼做 → 備援路徑 ch06 優先（資安觸發詞），含八層框架 ──
@@ -167,14 +169,14 @@ test('Q16 主力路徑 selectKnowledgePrimary → 全本 KB 在預算內，返�
   assert.ok(r.estimatedTokens <= KB_FULL_LIMIT, `full KB ${r.estimatedTokens} should be ≤ ${KB_FULL_LIMIT}`);
   // 所有章節都在 text 中（以 ch06 的八層框架為代表）
   assert.ok(r.text.includes('八層') || r.text.includes('八道'), '全本 KB 應含八層資安框架');
-  assert.ok(r.text.includes('12,000') && r.text.includes('15,000'), '全本 KB 應含個人方案價格');
+  assert.ok(r.text.includes('共存版') && r.text.includes('雙 AI Agent'), '全本 KB 應含個人方案說明');
 });
 
 // ── Q17：備援路徑行為不變——企業方案問題選到 ch11 ──────────────────────
 test('Q17 備援路徑 selectKnowledge 行為不變：企業方案多少錢 → ch11', () => {
   const { selected, text } = selectKnowledge(msg('企業方案多少錢？'));
   assert.ok(selected.includes('11'), `fallback expected ch11, got ${selected}`);
-  assert.ok(text.includes('33,000'), '備援路徑文字應含企業入門 NT$33,000');
+  assert.ok(text.includes('依需求報價') || text.includes('contact'), '備援路徑文字應含依需求報價說明');
 });
 
 // ── Q18：三方 tie——企業資安費用多少 → ch06 置頂（ch06＋ch11＋ch07 各得 10 分）──
