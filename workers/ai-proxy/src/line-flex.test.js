@@ -19,6 +19,9 @@ import {
   buildFlexMessage,
   checkFlexSize,
   sendFlexReply,
+  sendFlexPush,
+  buildWelcomeFlex,
+  WELCOME_FLEX_BODY,
 } from './line-flex.js';
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -53,6 +56,13 @@ function getBubbles(flexMsg) {
   return [flexMsg.contents];
 }
 
+// 輔助：取 Flex 或純文字訊息的可讀文字
+function getReplyText(msg) {
+  if (!msg) return null;
+  if (msg.type === 'flex') return msg.altText;
+  return msg.text ?? null;
+}
+
 // ────────────────────────────────────────────────────────────────────────────
 // T1–T4：意圖偵測
 // ────────────────────────────────────────────────────────────────────────────
@@ -82,7 +92,7 @@ test('T4: 作品集關鍵字 → portfolio', () => {
 });
 
 // ────────────────────────────────────────────────────────────────────────────
-// T5–T8：按鈕選擇邏輯
+// T5–T8：按鈕選擇邏輯（「導入案例」取代舊「看作品集」）
 // ────────────────────────────────────────────────────────────────────────────
 
 test('T5: enterprise intent → 預約需求訪談 URI /contact/', () => {
@@ -99,27 +109,25 @@ test('T6: personal intent → 蝦皮賣場 URI + 真人協助 message', () => {
   const labels = buttons.map(b => b.action.label);
   assert.ok(labels.includes('蝦皮賣場'));
   assert.ok(labels.includes('真人協助'));
-  // 蝦皮按鈕必須是 URI action
   const shopeeBtn = buttons.find(b => b.action.label === '蝦皮賣場');
   assert.equal(shopeeBtn.action.type, 'uri');
   assert.ok(shopeeBtn.action.uri.startsWith('https://'));
-  // 真人協助必須是 message action（傳「預約」觸發真人流程）
   const humanBtn = buttons.find(b => b.action.label === '真人協助');
   assert.equal(humanBtn.action.type, 'message');
   assert.equal(humanBtn.action.text, '預約');
 });
 
-test('T7: default intent → 看作品集 + 真人協助', () => {
+test('T7: default intent → 導入案例 + 真人協助', () => {
   const buttons = buildButtons('default');
   const labels = buttons.map(b => b.action.label);
-  assert.ok(labels.includes('看作品集'));
+  assert.ok(labels.includes('導入案例'), `labels: ${labels}`);
   assert.ok(labels.includes('真人協助'));
 });
 
-test('T8: portfolio intent → 看作品集 URI to /portfolio/', () => {
+test('T8: portfolio intent → 導入案例 URI to /portfolio/', () => {
   const buttons = buildButtons('portfolio');
   assert.equal(buttons.length, 1);
-  assert.equal(buttons[0].action.label, '看作品集');
+  assert.equal(buttons[0].action.label, '導入案例');
   assert.ok(buttons[0].action.uri.includes('/portfolio/'));
 });
 
@@ -140,7 +148,7 @@ test('T10: 長文字 (>400) 有段落邊界 → 2 段', () => {
   const long = para1 + '\n\n' + para2;
   const parts = splitText(long);
   assert.equal(parts.length, 2);
-  assert.ok(parts[0].length <= 400 + 10); // 允許少量空白修整
+  assert.ok(parts[0].length <= 400 + 10);
   assert.ok(parts[1].length > 0);
 });
 
@@ -163,7 +171,7 @@ test('T11: 一般回覆 bubble JSON ≤ 30 KB', () => {
 });
 
 test('T12: 長回覆 carousel JSON ≤ 50 KB', () => {
-  const long = 'Think BIG 的企業 AI Agent 解決方案，'.repeat(30); // ~500+ chars
+  const long = 'Think BIG 的企業 AI Agent 解決方案，'.repeat(30);
   const msg = buildFlexMessage(long);
   const { bytes, limit, ok } = checkFlexSize(msg);
   assert.ok(ok, `carousel JSON ${bytes} bytes > ${limit} bytes`);
@@ -231,7 +239,7 @@ test('T18: 短回覆 → 單一 bubble（不是 carousel）', () => {
 });
 
 test('T19: 長回覆 → carousel，含 2 個 bubble', () => {
-  const long = '這是說明企業 AI Agent 的第一段，詳細描述了導入流程。'.repeat(20); // >400 chars
+  const long = '這是說明企業 AI Agent 的第一段，詳細描述了導入流程。'.repeat(20);
   const msg = buildFlexMessage(long);
   assert.equal(msg.contents.type, 'carousel');
   assert.equal(msg.contents.contents.length, 2);
@@ -242,9 +250,9 @@ test('T20: bubble 有 header 和 body，type === "bubble"', () => {
   assert.equal(bubble.type, 'bubble');
   assert.ok(bubble.header, 'bubble should have header');
   assert.ok(bubble.body, 'bubble should have body');
-  // header 應含 "THINK BIG!" 文字
-  const headerTexts = collectTexts(bubble.header);
-  assert.ok(headerTexts.some(t => t === 'THINK BIG!'), 'header should contain THINK BIG!');
+  // header span 含 BIG!（粉紅）
+  const headerSpans = bubble.header.contents?.[0]?.contents ?? [];
+  assert.ok(headerSpans.some(s => s.text?.includes('BIG!')), 'header span should contain BIG!');
 });
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -266,31 +274,22 @@ test('T21: 所有按鈕 label ≤ 20 字元', () => {
 // T22–T24：失敗備援（sendFlexReply）
 // ────────────────────────────────────────────────────────────────────────────
 
-// 模擬 fetch：第一次（Flex）回 400，第二次（text）回 200
 async function mockFetch_FlexFail(url, opts) {
   const body = JSON.parse(opts.body);
   if (body.messages?.[0]?.type === 'flex') {
-    return {
-      ok: false,
-      status: 400,
-      text: async () => '{"message":"Invalid flex message"}',
-      body: { cancel: async () => {} },
-    };
+    return { ok: false, status: 400, text: async () => '{"message":"Invalid"}', body: { cancel: async () => {} } };
   }
   return { ok: true, status: 200, body: { cancel: async () => {} } };
 }
 
-// 模擬 fetch：Flex 成功
 async function mockFetch_FlexOk(url, opts) {
   return { ok: true, status: 200, body: { cancel: async () => {} } };
 }
 
-// 暫時替換 global fetch
 function withFetch(mockFn, fn) {
   const original = globalThis.fetch;
   globalThis.fetch = mockFn;
   const result = fn();
-  // restore after promise
   if (result && typeof result.then === 'function') {
     return result.finally(() => { globalThis.fetch = original; });
   }
@@ -315,9 +314,7 @@ test('T23: sendFlexReply — Flex 400 → 降回純文字 {sent: "text"}', async
 });
 
 test('T24: sendFlexReply — fetch 拋例外 → 降回純文字 {sent: "text"}', async () => {
-  async function mockFetch_Throw() {
-    throw new Error('Network error');
-  }
+  async function mockFetch_Throw() { throw new Error('Network error'); }
   const result = await withFetch(mockFetch_Throw, () =>
     sendFlexReply('tok', 'rt', '測試例外處理。')
   );
@@ -354,5 +351,109 @@ test('T26: buildFlexMessage 空輸入不崩潰', () => {
   assert.doesNotThrow(() => buildFlexMessage(undefined));
   const msg = buildFlexMessage('');
   assert.equal(msg.type, 'flex');
-  assert.ok(msg.altText.length > 0); // fallback altText
+  assert.ok(msg.altText.length > 0);
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// T27：options.maxButtons
+// ────────────────────────────────────────────────────────────────────────────
+
+test('T27: maxButtons:0 → bubble 無 footer', () => {
+  const msg = buildFlexMessage('這是一般 AI 回覆', { maxButtons: 0 });
+  const bubble = msg.contents;
+  assert.equal(bubble.type, 'bubble');
+  assert.equal(bubble.footer, undefined, 'footer 應為 undefined（無按鈕）');
+});
+
+test('T27b: maxButtons:1 → 最多 1 顆按鈕', () => {
+  // personal intent 本來有 2 顆按鈕
+  const msg = buildFlexMessage('個人方案怎麼選', { maxButtons: 1 });
+  const labels = collectButtonLabels(msg.contents);
+  assert.ok(labels.length <= 1, `按鈕數應 ≤ 1，實際：${labels.length}`);
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// T28：buildWelcomeFlex
+// ────────────────────────────────────────────────────────────────────────────
+
+test('T28: buildWelcomeFlex 結構正確', () => {
+  const msg = buildWelcomeFlex();
+  assert.equal(msg.type, 'flex');
+  // altText = NEO 定稿第一行
+  assert.ok(msg.altText.includes('Think BIG'), `altText: ${msg.altText}`);
+  // contents 是 bubble
+  assert.equal(msg.contents.type, 'bubble');
+  // footer 有 3 顆按鈕
+  const labels = collectButtonLabels(msg.contents);
+  assert.equal(labels.length, 3, `按鈕數應為 3，實際：${labels.join(',')}`);
+  assert.ok(labels.includes('導入案例'));
+  assert.ok(labels.includes('企業導入'));
+  assert.ok(labels.includes('官網'));
+  // 所有按鈕 URI 以 https://
+  const uriButtons = (msg.contents.footer?.contents ?? []).filter(b => b.action?.type === 'uri');
+  for (const btn of uriButtons) {
+    assert.ok(btn.action.uri.startsWith('https://'), `${btn.action.label} URI: ${btn.action.uri}`);
+  }
+});
+
+test('T28b: WELCOME_FLEX_BODY 含 NEO 定稿文字', () => {
+  assert.ok(WELCOME_FLEX_BODY.includes('Make it Real'), 'Welcome body 應含 Make it Real');
+  assert.ok(WELCOME_FLEX_BODY.includes('Think BIG'), 'Welcome body 應含 Think BIG');
+  assert.ok(!WELCOME_FLEX_BODY.includes('月費'), 'Welcome body 不應含費用描述');
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// T29–T30：sendFlexPush
+// ────────────────────────────────────────────────────────────────────────────
+
+async function mockPush_Ok(url, opts) {
+  return { ok: true, status: 200, body: { cancel: async () => {} } };
+}
+
+async function mockPush_FlexFail400(url, opts) {
+  const body = JSON.parse(opts.body);
+  if (body.messages?.[0]?.type === 'flex') {
+    return { ok: false, status: 400, text: async () => '{"message":"Bad"}', body: { cancel: async () => {} } };
+  }
+  return { ok: true, status: 200, body: { cancel: async () => {} } };
+}
+
+test('T29: sendFlexPush 成功 → {sent: "flex", ok: true}', async () => {
+  const result = await withFetch(mockPush_Ok, () =>
+    sendFlexPush('tok', 'U123', '您好，查到答案了：測試答案')
+  );
+  assert.equal(result.sent, 'flex');
+  assert.equal(result.ok, true);
+});
+
+test('T30: sendFlexPush Flex 400 → fallback 純文字 {sent: "text", ok: true}', async () => {
+  const result = await withFetch(mockPush_FlexFail400, () =>
+    sendFlexPush('tok', 'U123', '測試備援推播')
+  );
+  assert.equal(result.sent, 'text');
+  assert.equal(result.ok, true);
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// T31：header span 顏色正確（THINK 白 / BIG! 粉紅）
+// ────────────────────────────────────────────────────────────────────────────
+
+test('T31: header THINK 白色，BIG! 粉紅', () => {
+  const bubble = buildBubble('test', []);
+  const spans = bubble.header.contents?.[0]?.contents ?? [];
+  assert.ok(spans.length >= 2, '應有至少 2 個 span');
+  const thinkSpan = spans.find(s => s.text?.includes('THINK'));
+  const bigSpan   = spans.find(s => s.text?.includes('BIG!'));
+  assert.ok(thinkSpan?.color === '#ffffff', `THINK 應為白色，實際: ${thinkSpan?.color}`);
+  assert.ok(bigSpan?.color  === '#eea4bb', `BIG! 應為粉紅，實際: ${bigSpan?.color}`);
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// T32：options.intent 強制覆蓋
+// ────────────────────────────────────────────────────────────────────────────
+
+test('T32: intent 強制 enterprise → 顯示預約按鈕，即使文字無企業關鍵字', () => {
+  const msg = buildFlexMessage('謝謝你的訊息！', { intent: 'enterprise' });
+  const labels = collectButtonLabels(msg.contents);
+  assert.ok(labels.includes('預約需求訪談'), `labels: ${labels}`);
 });

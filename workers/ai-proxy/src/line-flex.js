@@ -9,6 +9,8 @@
  *   - 失敗備援：Flex 送出失敗（400/403）自動改送純文字
  *   - 按鈕標籤、header 不含任何金額
  *   - altText = 回覆前 40 字（去除換行）
+ *   - options.maxButtons: 0–3（0 = 純資訊卡，不塞按鈕）
+ *   - options.intent: 強制覆蓋意圖偵測
  *
  * LINE Flex Message 限制：
  *   - 單一 bubble JSON：≤ 30 KB
@@ -22,25 +24,38 @@
  *   Flex 文字不可長按複製，客人要抄電話/網址不方便。
  *   因應措施：所有可點擊的網址一律做成按鈕（URI action），
  *   避免在 body 文字中放裸網址。本模組已遵循此原則。
- *   若後續評估仍需保留純文字備份，可在 sendFlexReply 中
- *   額外發送一則 text message（需兩則 reply messages 配額）。
  */
 
-const LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
+const LINE_REPLY_URL_CONST = 'https://api.line.me/v2/bot/message/reply';
+const LINE_PUSH_URL_CONST  = 'https://api.line.me/v2/bot/message/push';
 
 // ── 品牌配色（對應 assets/homesplit/site.css :root） ──────────────────────
 const BRAND_DARK  = '#191a1d';  // --ink（header 背景）
 const BRAND_PINK  = '#eea4bb';  // --brand（點綴色）
 const BRAND_PAPER = '#f7f6f2';  // --paper（body / footer 背景）
-const BRAND_MUTED = '#5c5d63';  // --muted（副文字）
 
 // ── 外部連結（固定） ──────────────────────────────────────────────────────
-const SHOPEE_URL    = 'https://shopee.tw/shop/105010395';
-const PORTFOLIO_URL = 'https://thinkbigtw.com/portfolio/';
-const CONTACT_URL   = 'https://thinkbigtw.com/contact/';
+const SHOPEE_URL      = 'https://shopee.tw/shop/105010395';
+const PORTFOLIO_URL   = 'https://thinkbigtw.com/portfolio/';
+const CONTACT_URL     = 'https://thinkbigtw.com/contact/';
+const ENTERPRISE_URL  = 'https://thinkbigtw.com/enterprise/';
+const SITE_URL        = 'https://thinkbigtw.com';
 
 // 每個 bubble body 文字上限（超出則拆 carousel）
 const MAX_BODY_CHARS = 400;
+
+// ──────────────────────────────────────────────
+// 歡迎訊息 body（NEO 2026-10-02 定案）
+// ──────────────────────────────────────────────
+
+/** 歡迎 bubble body 文字（NEO 2026-10-02 定稿）。 */
+export const WELCOME_FLEX_BODY =
+  '嗨，歡迎來到Think BIG ✨\n' +
+  '我是 Think BIG AI小助理\n' +
+  '有任何 AI 導入的問題直接問我就好呢！\n\n' +
+  '期待我們為你打開更深一層的AI領域\n' +
+  '幫助你走在科技的最前線\n' +
+  '讓我們一起Make it Real!';
 
 // ──────────────────────────────────────────────
 // 意圖偵測
@@ -78,7 +93,6 @@ function makeUriButton(label, uri, isPrimary = true) {
     height: 'sm',
     margin: 'sm',
   };
-  // primary 按鈕套品牌深色
   if (isPrimary) btn.color = BRAND_DARK;
   return btn;
 }
@@ -95,7 +109,7 @@ function makeMessageButton(label, messageText) {
 }
 
 /**
- * 根據意圖返回 1–3 顆按鈕。
+ * 根據意圖返回 1–3 顆按鈕（按鈕指向 /portfolio/ 一律用「導入案例」）。
  * @param {'enterprise'|'personal'|'portfolio'|'default'} intent
  * @returns {object[]} LINE Flex button 物件陣列
  */
@@ -109,10 +123,10 @@ export function buildButtons(intent) {
         makeMessageButton('真人協助', '預約'),
       ];
     case 'portfolio':
-      return [makeUriButton('看作品集', PORTFOLIO_URL, true)];
+      return [makeUriButton('導入案例', PORTFOLIO_URL, true)];
     default:
       return [
-        makeUriButton('看作品集', PORTFOLIO_URL, false),
+        makeUriButton('導入案例', PORTFOLIO_URL, false),
         makeMessageButton('真人協助', '預約'),
       ];
   }
@@ -131,25 +145,15 @@ function buildHeader() {
     backgroundColor: BRAND_DARK,
     contents: [
       {
+        // span 支援同一行不同顏色：THINK 白 / BIG! 粉紅
         type: 'text',
-        text: 'THINK BIG!',
-        weight: 'bold',
-        color: '#ffffff',
+        contents: [
+          { type: 'span', text: 'THINK ', color: '#ffffff', weight: 'bold' },
+          { type: 'span', text: 'BIG!',   color: BRAND_PINK, weight: 'bold' },
+        ],
         size: 'sm',
         flex: 1,
         gravity: 'center',
-      },
-      // 粉紅點綴
-      {
-        type: 'box',
-        layout: 'vertical',
-        width: '8px',
-        height: '8px',
-        backgroundColor: BRAND_PINK,
-        cornerRadius: '4px',
-        contents: [],
-        justifyContent: 'center',
-        alignItems: 'center',
       },
     ],
   };
@@ -231,7 +235,7 @@ export function splitText(text) {
     return [t.slice(0, singleBreak).trim(), t.slice(singleBreak).trim()];
   }
 
-  // 強制截斷（不切半個 CJK 字元）
+  // 強制截斷
   return [t.slice(0, MAX_BODY_CHARS).trim(), t.slice(MAX_BODY_CHARS).trim()];
 }
 
@@ -245,20 +249,30 @@ export function splitText(text) {
  * 按鈕依意圖自動帶入。
  *
  * @param {string} replyText AI 回覆原文（純文字，已去除 Markdown）
+ * @param {object} [options]
+ * @param {string} [options.intent]      強制指定意圖（'enterprise'|'personal'|'portfolio'|'default'）
+ * @param {number} [options.maxButtons]  按鈕上限（0 = 不帶按鈕，預設 3）
  * @returns {{ type: 'flex', altText: string, contents: object }}
  */
-export function buildFlexMessage(replyText) {
+export function buildFlexMessage(replyText, options = {}) {
+  const { intent: intentOverride = null, maxButtons = 3 } = options;
+
   const text = typeof replyText === 'string' ? replyText.trim() : '';
 
   // altText：前 40 字（通知列），去除換行
-  const altText = (text.replace(/\n/g, ' ').slice(0, 40)) || 'Think BIG AI 顧問';
+  const altText = text.replace(/\n/g, ' ').slice(0, 40) || 'Think BIG AI 顧問';
 
-  const intent  = detectIntent(text);
-  const buttons = buildButtons(intent);
-  const parts   = splitText(text);
+  const intent = intentOverride !== null ? intentOverride : detectIntent(text);
+  let buttons = buildButtons(intent);
+
+  // 套用 maxButtons 限制
+  if (maxButtons < buttons.length) {
+    buttons = buttons.slice(0, maxButtons);
+  }
+
+  const parts = splitText(text);
 
   if (parts.length <= 1) {
-    // 單一 bubble
     return {
       type: 'flex',
       altText,
@@ -276,6 +290,69 @@ export function buildFlexMessage(replyText) {
         buildBubble(parts[0], []),
         buildBubble(parts[1], buttons),
       ],
+    },
+  };
+}
+
+// ──────────────────────────────────────────────
+// 歡迎訊息 Flex（固定 3 顆按鈕）
+// ──────────────────────────────────────────────
+
+/**
+ * 建構歡迎 Flex Message（follow 事件用）。
+ * Body：NEO 定稿文字 + 可點擊的隱私說明小字；
+ * Footer：導入案例 / 企業導入 / 官網。
+ * @returns {{ type: 'flex', altText: string, contents: object }}
+ */
+export function buildWelcomeFlex() {
+  // 客製 body：主文 + 隱私說明小字（帶 URI action）
+  const body = {
+    type: 'box',
+    layout: 'vertical',
+    paddingAll: '16px',
+    backgroundColor: BRAND_PAPER,
+    contents: [
+      {
+        type: 'text',
+        text: WELCOME_FLEX_BODY,
+        wrap: true,
+        color: BRAND_DARK,
+        size: 'sm',
+        lineSpacing: '6px',
+      },
+      {
+        type: 'text',
+        text: '對話由 AI 回覆・隱私說明 →',
+        size: 'xxs',
+        color: '#aaaaaa',
+        margin: 'lg',
+        action: { type: 'uri', uri: 'https://thinkbigtw.com/privacy/' },
+      },
+    ],
+  };
+
+  const footer = {
+    type: 'box',
+    layout: 'vertical',
+    paddingAll: '12px',
+    paddingTop: '4px',
+    backgroundColor: BRAND_PAPER,
+    contents: [
+      makeUriButton('導入案例', PORTFOLIO_URL, false),
+      makeUriButton('企業導入', ENTERPRISE_URL, false),
+      makeUriButton('官網',    SITE_URL,        false),
+    ],
+  };
+
+  return {
+    type: 'flex',
+    altText: '嗨，歡迎來到Think BIG ✨',
+    contents: {
+      type: 'bubble',
+      size: 'mega',
+      header: buildHeader(),
+      body,
+      footer,
     },
   };
 }
@@ -302,27 +379,28 @@ export function checkFlexSize(flexMsg) {
 // ──────────────────────────────────────────────
 
 /**
- * 送出 Flex Message。
+ * 送出 Flex Message（reply）。
  * 若 LINE API 回 400/403，或 JSON 超出大小限制，自動降回純文字，
  * 確保客人一定收到回覆。
  *
  * @param {string} token        LINE channel access token
  * @param {string} replyToken   LINE reply token
  * @param {string} replyText    AI 回覆文字（純文字）
+ * @param {object} [options]    buildFlexMessage 選項（intent / maxButtons）
  * @returns {Promise<{sent: 'flex'|'text', reason?: string}>}
  */
-export async function sendFlexReply(token, replyToken, replyText) {
+export async function sendFlexReply(token, replyToken, replyText, options = {}) {
   const safeText = String(replyText ?? '').slice(0, 1000);
-  const flex = buildFlexMessage(safeText);
+  const flex = buildFlexMessage(safeText, options);
 
   // 先做大小檢查，超出就直接降回純文字
   const sizeCheck = checkFlexSize(flex);
   if (!sizeCheck.ok) {
-    return _sendPlainText(token, replyToken, safeText, `flex_too_large:${sizeCheck.bytes}>${sizeCheck.limit}`);
+    return _sendPlainReply(token, replyToken, safeText, `flex_too_large:${sizeCheck.bytes}>${sizeCheck.limit}`);
   }
 
   try {
-    const res = await fetch(LINE_REPLY_URL, {
+    const res = await fetch(LINE_REPLY_URL_CONST, {
       method: 'POST',
       signal: AbortSignal.timeout(8000),
       headers: {
@@ -337,26 +415,84 @@ export async function sendFlexReply(token, replyToken, replyText) {
       return { sent: 'flex' };
     }
 
-    // 400/403 = JSON 結構問題或 replyToken 失效 → 降回純文字
     const errText = await res.text().catch(() => '');
     const reason = `flex_${res.status}:${errText.slice(0, 80)}`;
-    return _sendPlainText(token, replyToken, safeText, reason);
+    return _sendPlainReply(token, replyToken, safeText, reason);
 
   } catch (e) {
-    return _sendPlainText(token, replyToken, safeText, String(e).slice(0, 80));
+    return _sendPlainReply(token, replyToken, safeText, String(e).slice(0, 80));
   }
 }
 
-/** 內部：送出純文字備援（不拋例外）。 */
-async function _sendPlainText(token, replyToken, text, reason) {
+/** 送出歡迎 Flex（follow 事件專用）；失敗降回 WELCOME_FLEX_BODY 純文字。 */
+export async function sendWelcomeFlex(token, replyToken) {
+  const flex = buildWelcomeFlex();
+
   try {
-    const res = await fetch(LINE_REPLY_URL, {
+    const res = await fetch(LINE_REPLY_URL_CONST, {
       method: 'POST',
       signal: AbortSignal.timeout(8000),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ replyToken, messages: [flex] }),
+    });
+    if (res.ok) {
+      await res.body?.cancel();
+      return { sent: 'flex' };
+    }
+    const errText = await res.text().catch(() => '');
+    return _sendPlainReply(token, replyToken, WELCOME_FLEX_BODY, `flex_${res.status}:${errText.slice(0, 80)}`);
+  } catch (e) {
+    return _sendPlainReply(token, replyToken, WELCOME_FLEX_BODY, String(e).slice(0, 80));
+  }
+}
+
+/**
+ * 送出 Flex Push Message（/line-push-answer 端點用）。
+ * 失敗時降回純文字推播。
+ * @returns {Promise<{sent: 'flex'|'text', ok: boolean, reason?: string}>}
+ */
+export async function sendFlexPush(token, userId, replyText, options = {}) {
+  const safeText = String(replyText ?? '').slice(0, 800);
+  const flex = buildFlexMessage(safeText, options);
+
+  const sizeCheck = checkFlexSize(flex);
+
+  if (sizeCheck.ok) {
+    try {
+      const res = await fetch(LINE_PUSH_URL_CONST, {
+        method: 'POST',
+        signal: AbortSignal.timeout(8000),
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+        body: JSON.stringify({ to: userId, messages: [flex] }),
+      });
+      if (res.ok) {
+        await res.body?.cancel();
+        return { sent: 'flex', ok: true };
+      }
+      const errText = await res.text().catch(() => '');
+      const reason = `flex_${res.status}:${errText.slice(0, 80)}`;
+      // 400/403 → 結構問題，嘗試純文字備援
+      // 其他 → 直接回報失敗（不在 fallback 上繞圈）
+      if (res.status !== 400 && res.status !== 403) {
+        return { sent: 'flex', ok: false, reason };
+      }
+    } catch { /* fall through to plain text */ }
+  }
+
+  // 純文字備援
+  return _sendPlainPush(token, userId, safeText, 'flex_fallback');
+}
+
+// ──────────────────────────────────────────────
+// 內部備援函式（不拋例外）
+// ──────────────────────────────────────────────
+
+async function _sendPlainReply(token, replyToken, text, reason) {
+  try {
+    const res = await fetch(LINE_REPLY_URL_CONST, {
+      method: 'POST',
+      signal: AbortSignal.timeout(8000),
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
       body: JSON.stringify({
         replyToken,
         messages: [{ type: 'text', text: String(text).slice(0, 1000) }],
@@ -365,4 +501,26 @@ async function _sendPlainText(token, replyToken, text, reason) {
     await res.body?.cancel();
   } catch { /* P3: never throw */ }
   return { sent: 'text', reason };
+}
+
+async function _sendPlainPush(token, userId, text, reason) {
+  try {
+    const res = await fetch(LINE_PUSH_URL_CONST, {
+      method: 'POST',
+      signal: AbortSignal.timeout(8000),
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({
+        to: userId,
+        messages: [{ type: 'text', text: String(text).slice(0, 800) }],
+      }),
+    });
+    if (res.ok) {
+      await res.body?.cancel();
+      return { sent: 'text', ok: true, reason };
+    }
+    const errText = await res.text().catch(() => '');
+    return { sent: 'text', ok: false, reason: `text_${res.status}:${errText.slice(0, 80)}` };
+  } catch (e) {
+    return { sent: 'text', ok: false, reason: String(e).slice(0, 80) };
+  }
 }

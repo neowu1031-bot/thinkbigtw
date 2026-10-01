@@ -303,7 +303,7 @@ test('handleLineWebhook — 傳「預約」回固定文字並標記 needs_human'
   const origFetch = globalThis.fetch;
   globalThis.fetch = async (url, opts) => {
     if (url.includes('/v2/bot/message/reply')) {
-      repliedText = JSON.parse(opts.body).messages?.[0]?.text;
+      const _m0 = JSON.parse(opts.body).messages?.[0]; repliedText = _m0?.type === 'flex' ? _m0?.altText : _m0?.text;
       return { ok: true, body: { cancel: async () => {} } };
     }
     if (url.includes('/v2/bot/profile')) {
@@ -372,7 +372,7 @@ test('handleLineWebhook — 已轉真人後新訊息儲存 context 並更新報�
   const origFetch = globalThis.fetch;
   globalThis.fetch = async (url, opts) => {
     if (url.includes('/v2/bot/message/reply')) {
-      repliedText = JSON.parse(opts.body).messages?.[0]?.text;
+      const _m0 = JSON.parse(opts.body).messages?.[0]; repliedText = _m0?.type === 'flex' ? _m0?.altText : _m0?.text;
       return { ok: true, body: { cancel: async () => {} } };
     }
     if (url.includes('/v2/bot/profile')) {
@@ -673,7 +673,7 @@ test('handleLineWebhook — Profile API 失敗時 fail-closed：不呼叫 AI，�
   globalThis.fetch = async (url, opts) => {
     if (url.includes('/v2/bot/profile')) { throw new Error('network error'); }
     if (url.includes('/v2/bot/message/reply')) {
-      repliedText = JSON.parse(opts.body).messages?.[0]?.text;
+      const _m0 = JSON.parse(opts.body).messages?.[0]; repliedText = _m0?.type === 'flex' ? _m0?.altText : _m0?.text;
       return { ok: true, body: { cancel: async () => {} } };
     }
     if (url.includes('submit_thinkbig_chat_report')) {
@@ -880,7 +880,7 @@ test('handleLineWebhook — Supabase 500 不崩潰，仍回覆用戶', async () 
   const origFetch = globalThis.fetch;
   globalThis.fetch = async (url, opts) => {
     if (url.includes('/v2/bot/message/reply')) {
-      repliedText = JSON.parse(opts.body).messages?.[0]?.text;
+      const _m0 = JSON.parse(opts.body).messages?.[0]; repliedText = _m0?.type === 'flex' ? _m0?.altText : _m0?.text;
       return { ok: true, body: { cancel: async () => {} } };
     }
     if (url.includes('/v2/bot/profile')) {
@@ -1012,7 +1012,7 @@ test('handleLinePushAnswer — 正確簽章推送成功', async () => {
     if (url.includes('/v2/bot/message/push')) {
       const body = JSON.parse(opts.body);
       pushedTo = body.to;
-      pushedText = body.messages?.[0]?.text;
+      const _pm = body.messages?.[0]; pushedText = _pm?.type === 'flex' ? _pm?.altText : _pm?.text;
       return { ok: true, body: { cancel: async () => {} } };
     }
     return { ok: false, body: { cancel: async () => {} } };
@@ -1124,4 +1124,242 @@ test('handleLineWebhook — 錯誤簽章回傳 401', async () => {
   };
   const res = await handleLineWebhook(makeRequest('POST', body, 'wrong_base64_sig=='), env, makeCtxStub());
   assert.equal(res.status, 401);
+});
+
+// ──────────────────────────────────────────────
+// 測試 20–25：Flex 輸出路徑驗證（每條回覆路徑必須送出 Flex 圖卡）
+// ──────────────────────────────────────────────
+
+/** 輔助：從 reply 或 push body 的 messages[0] 取 type */
+function getMsgType(optsBody) {
+  try { return JSON.parse(optsBody).messages?.[0]?.type ?? 'unknown'; }
+  catch { return 'unknown'; }
+}
+
+test('F1: follow 事件 → sendWelcomeFlex → messages[0].type === "flex"', async () => {
+  const secret = 'mysecret';
+  const bodyObj = {
+    events: [{
+      type: 'follow',
+      source: { type: 'user', userId: 'UF001' },
+      replyToken: 'rtFlex001',
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let msgType = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: 'FlexUser' }) };
+    }
+    if (url.includes('/v2/bot/message/reply')) {
+      msgType = getMsgType(opts.body);
+    }
+    return { ok: true, body: { cancel: async () => {} } };
+  };
+  const env = {
+    LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(), LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: '' }) }, MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: null, INQUIRY_SUPABASE_SERVICE_ROLE_KEY: null,
+  };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.equal(msgType, 'flex', `follow 回覆應為 Flex，實際: ${msgType}`);
+});
+
+test('F2: 限速觸發 → messages[0].type === "flex"', async () => {
+  const secret = 'mysecret';
+  const kv = makeKvStub();
+  // 預置已超速（5 次/分鐘上限）
+  const keyHash = await hashUserId('URateUser', TEST_PEPPER);
+  const epochMin = Math.floor(Date.now() / 60000);
+  await kv.put(`rl:min:${keyHash}:${epochMin}`, '5', { expirationTtl: 120 });
+
+  const bodyObj = {
+    events: [{
+      type: 'message', message: { type: 'text', text: '快快快' },
+      source: { type: 'user', userId: 'URateUser' },
+      replyToken: 'rtRate', webhookEventId: 'evtRate',
+      timestamp: Date.now(),
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let msgType = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: 'RateUser' }) };
+    }
+    if (url.includes('/v2/bot/message/reply')) { msgType = getMsgType(opts.body); }
+    return { ok: true, body: { cancel: async () => {} } };
+  };
+  const env = {
+    LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: kv, LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: '' }) }, MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: null, INQUIRY_SUPABASE_SERVICE_ROLE_KEY: null,
+  };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.equal(msgType, 'flex', `限速回覆應為 Flex，實際: ${msgType}`);
+});
+
+test('F3: 轉真人 → messages[0].type === "flex"（無按鈕）', async () => {
+  const secret = 'mysecret';
+  const bodyObj = {
+    events: [{
+      type: 'message', message: { type: 'text', text: '我想找真人' },
+      source: { type: 'user', userId: 'UHuman01' },
+      replyToken: 'rtHuman', webhookEventId: 'evtHuman',
+      timestamp: Date.now(),
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let msgType = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: 'HumanUser' }) };
+    }
+    if (url.includes('/v2/bot/message/reply')) { msgType = getMsgType(opts.body); }
+    if (url.includes('submit_thinkbig_chat_report')) { return { ok: true, body: { cancel: async () => {} } }; }
+    return { ok: true, body: { cancel: async () => {} } };
+  };
+  const env = {
+    LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(), LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: 'AI 回覆' }) }, MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: 'https://supabase.example.com',
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'key',
+  };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.equal(msgType, 'flex', `轉真人回覆應為 Flex，實際: ${msgType}`);
+});
+
+test('F4: 一般 AI 回覆 → messages[0].type === "flex"（帶意圖按鈕）', async () => {
+  const secret = 'mysecret';
+  const bodyObj = {
+    events: [{
+      type: 'message', message: { type: 'text', text: '請問企業導入費用怎麼算' },
+      source: { type: 'user', userId: 'UAI001' },
+      replyToken: 'rtAI001', webhookEventId: 'evtAI001',
+      timestamp: Date.now(),
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let msgType = null, sentFlex = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: 'AIUser' }) };
+    }
+    if (url.includes('/v2/bot/message/reply')) {
+      msgType = getMsgType(opts.body);
+      sentFlex = JSON.parse(opts.body).messages?.[0];
+    }
+    if (url.includes('submit_thinkbig_chat_report')) { return { ok: true, body: { cancel: async () => {} } }; }
+    return { ok: true, body: { cancel: async () => {} } };
+  };
+  const env = {
+    LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(), LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: '企業導入方案需依規模與需求評估，建議預約需求訪談。' }) },
+    MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: 'https://supabase.example.com',
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'key',
+  };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.equal(msgType, 'flex', `AI 回覆應為 Flex，實際: ${msgType}`);
+  assert.ok(sentFlex?.altText, 'Flex 應有 altText');
+});
+
+test('F5: /line-push-answer 推播 → messages[0].type === "flex"', async () => {
+  const kv = makeKvStub();
+  await kv.put('uidmap:flexhash001', 'U_flex_push', { expirationTtl: 604800 });
+
+  const payload = { keyHash: 'flexhash001', text: '您好，查到答案了：Flex 測試' };
+  const bodyStr = JSON.stringify(payload);
+  const sig = await makeGmSignature(TEST_GM_KEY, bodyStr);
+
+  let msgType = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/message/push')) {
+      msgType = getMsgType(opts.body);
+      return { ok: true, body: { cancel: async () => {} } };
+    }
+    return { ok: false, body: { cancel: async () => {} } };
+  };
+  const env = { LINE_KV: kv, GM_PUSH_KEY: TEST_GM_KEY, LINE_CHANNEL_ACCESS_TOKEN: 'token' };
+  const req = new Request('https://worker.example.com/line-push-answer', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-Push-Signature': sig },
+    body: bodyStr,
+  });
+  const res = await handleLinePushAnswer(req, env);
+  globalThis.fetch = origFetch;
+  assert.equal(res.status, 200);
+  assert.equal(msgType, 'flex', `push-answer 應為 Flex，實際: ${msgType}`);
+});
+
+test('F6: GIFT 用戶不收任何回覆（Flex 或純文字）', async () => {
+  const secret = 'mysecret';
+  const kv = makeKvStub();
+  // 預置 GIFT flag
+  const keyHash = await hashUserId('UGiftFlex', TEST_PEPPER);
+  await kv.put('gift:' + keyHash, '1', { expirationTtl: 604800 });
+
+  const bodyObj = {
+    events: [{
+      type: 'message', message: { type: 'text', text: 'GIFT 用戶訊息' },
+      source: { type: 'user', userId: 'UGiftFlex' },
+      replyToken: 'rtGift', webhookEventId: 'evtGift',
+      timestamp: Date.now(),
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let replySent = false;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: 'GiftUser' }) };
+    }
+    if (url.includes('/v2/bot/message/reply')) { replySent = true; }
+    if (url.includes('submit_thinkbig_chat_report')) { return { ok: true, body: { cancel: async () => {} } }; }
+    return { ok: true, body: { cancel: async () => {} } };
+  };
+  const env = {
+    LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: kv, LINE_HASH_PEPPER: TEST_PEPPER,
+    LINE_HUMAN_ONLY_NAMES: 'GiftUser',
+    AI: { run: async () => ({ response: '' }) }, MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: 'https://supabase.example.com',
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'key',
+  };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.equal(replySent, false, 'GIFT 用戶不應收到任何回覆');
 });

@@ -18,6 +18,7 @@
  */
 
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
+import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 
 // ──────────────────────────────────────────────
 // 常數
@@ -511,7 +512,7 @@ async function processEventInner(event, token, kv, env, ctx) {
       const { isGift } = await checkGiftStatus(token, userId, keyHash, env, ctx, kv);
       if (isGift) return; // GIFT 用戶不發歡迎文
     }
-    if (replyToken) await replyToLine(token, replyToken, WELCOME_TEXT);
+    if (replyToken) await sendWelcomeFlex(token, replyToken);
     return;
   }
 
@@ -549,7 +550,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   if (profileFailed) {
     const sessionId = generateUUID();
     ctx.waitUntil(submitNeedsAnswerReport(env, keyHash, userText));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -558,7 +559,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     try {
       const { success } = await env.RATE_LIMITER.limit({ key: keyHash });
       if (!success) {
-        await replyToLine(token, replyToken, RATE_LIMIT_TEXT);
+        await sendFlexReply(token, replyToken, RATE_LIMIT_TEXT, { maxButtons: 0 });
         return;
       }
     } catch { /* fail-open */ }
@@ -567,7 +568,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   // F3: KV rate limit（per-user；全域改用 CF RATE_LIMITER）
   const rl = await checkRateLimit(kv, keyHash, nowMs);
   if (!rl.allowed) {
-    await replyToLine(token, replyToken, RATE_LIMIT_TEXT);
+    await sendFlexReply(token, replyToken, RATE_LIMIT_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -589,7 +590,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     }
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_REPEAT_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_REPEAT_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -600,7 +601,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -611,7 +612,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   if (!result) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
-    await replyToLine(token, replyToken, AI_UNAVAILABLE_TEXT);
+    await sendFlexReply(token, replyToken, AI_UNAVAILABLE_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -626,7 +627,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     }
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -640,18 +641,18 @@ async function processEventInner(event, token, kv, env, ctx) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitNeedsAnswerReport(env, keyHash, userText));
-    await replyToLine(token, replyToken, fullReply);
+    await sendFlexReply(token, replyToken, fullReply, { maxButtons: 0 });
     return;
   }
 
-  // 一般回覆
+  // 一般回覆（intent 自動偵測，帶 1–2 顆對應按鈕）
   sessionCtx.messages.push({ role: 'assistant', content: reply });
   if (sessionCtx.messages.length > MAX_ROUNDS * 2) {
     sessionCtx.messages = sessionCtx.messages.slice(-MAX_ROUNDS * 2);
   }
   sessionCtx.lastAt = nowMs;
   await saveContext(kv, keyHash, sessionCtx);
-  await replyToLine(token, replyToken, reply);
+  await sendFlexReply(token, replyToken, reply);
 }
 
 // ──────────────────────────────────────────────
@@ -867,22 +868,10 @@ export async function handleLinePushAnswer(request, env) {
   const token = env.LINE_CHANNEL_ACCESS_TOKEN;
   if (!token) return new Response('Service Unavailable', { status: 503 });
 
-  try {
-    const res = await fetch(LINE_PUSH_URL, {
-      method: 'POST',
-      signal: AbortSignal.timeout(8000),
-      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-      body: JSON.stringify({ to: userId, messages: [{ type: 'text', text: text.slice(0, 800) }] }),
-    });
-    if (!res.ok) {
-      const errText = await res.text().catch(() => '');
-      console.error(JSON.stringify({ event: 'line_push_failed', status: res.status, error: errText.slice(0, 200) }));
-      return new Response('Bad Gateway', { status: 502 });
-    }
-    await res.body?.cancel();
-    return new Response('OK', { status: 200 });
-  } catch (e) {
-    console.error(JSON.stringify({ event: 'line_push_error', error: String(e).slice(0, 200) }));
-    return new Response('Internal Server Error', { status: 500 });
+  const pushResult = await sendFlexPush(token, userId, text);
+  if (!pushResult.ok) {
+    console.error(JSON.stringify({ event: 'line_push_failed', sent: pushResult.sent, reason: pushResult.reason }));
+    return new Response('Bad Gateway', { status: 502 });
   }
+  return new Response('OK', { status: 200 });
 }
