@@ -58,6 +58,148 @@ export const WELCOME_FLEX_BODY =
   '讓我們一起Make it Real!';
 
 // ──────────────────────────────────────────────
+// URL 偵測與移除（確定性程式處理，不靠 prompt）
+// ──────────────────────────────────────────────
+
+/**
+ * 將 AI 回覆中的網址對應到按鈕標籤。
+ * 未知網域回傳 null（由呼叫端記 log、不建立按鈕）。
+ *
+ * 優先序：/enterprise/start > /enterprise/ > /pricing/personal > /pricing/ >
+ *          /portfolio/ > /contact/ > 其他 thinkbigtw.com > shopee.tw
+ *
+ * @param {string} url
+ * @returns {string|null} 按鈕標籤
+ */
+export function urlToLabel(url) {
+  try {
+    const u   = new URL(url);
+    const host = u.hostname.toLowerCase().replace(/^www\./, '');
+    const path = u.pathname;
+
+    if (host === 'shopee.tw') return '蝦皮賣場';
+
+    if (host === 'thinkbigtw.com') {
+      if (path.startsWith('/enterprise/start')) return '自助評估';
+      if (path.startsWith('/enterprise/'))      return '企業導入';
+      if (path.startsWith('/pricing/personal')) return '個人方案';
+      if (path.startsWith('/pricing/'))         return '個人方案';
+      if (path.startsWith('/portfolio/'))       return '導入案例';
+      if (path.startsWith('/contact/'))         return '預約需求訪談';
+      return '官網'; // 其他 thinkbigtw.com 路徑
+    }
+
+    // lin.ee 及其他未知網域：不轉按鈕，記 log
+    console.log(`[urlToLabel] unknown domain discarded: ${url}`);
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * 從 AI 回覆文字中移除網址，收集已知域名的 URL。
+ *
+ * 處理規則：
+ *  1. markdown 連結 [label](url) → 整組移除，URL 收集
+ *  2. 整行只是「標籤：URL」→ 整行移除（收集 URL）
+ *  3. 句中裸網址 → 移除（含前置冒號），收集 URL
+ *  4. 移除後行尾留有冒號的殘句（如「・企業 AI 導入：」）→ 整行清掉
+ *  5. 連續空行壓成一行；去除首尾空行
+ *
+ * 已知掃描域名：thinkbigtw.com、shopee.tw、lin.ee
+ * 其他域名：URL 從內文移除，但不加入 foundUrls（記 log）
+ *
+ * @param {string} text
+ * @returns {{ cleanText: string, foundUrls: string[] }}
+ */
+export function stripUrls(text) {
+  if (typeof text !== 'string') return { cleanText: String(text ?? ''), foundUrls: [] };
+
+  const foundUrls = [];
+  const KNOWN_HOSTS = new Set(['thinkbigtw.com', 'shopee.tw', 'lin.ee']);
+
+  /** 收集 URL：已知域名加入 foundUrls；其他記 log 不加入。 */
+  function collectUrl(url) {
+    try {
+      const host = new URL(url).hostname.toLowerCase().replace(/^www\./, '');
+      if (KNOWN_HOSTS.has(host)) {
+        foundUrls.push(url);
+      } else {
+        console.log(`[stripUrls] unknown domain discarded: ${url}`);
+      }
+    } catch { /* 無效 URL，丟棄 */ }
+  }
+
+  // Step 1：移除 markdown 連結 [label](url)
+  let processed = text.replace(
+    /\[([^\]]*)\]\((https?:\/\/[^\)\s]+)\)/g,
+    (_m, _label, url) => { collectUrl(url); return ''; },
+  );
+
+  // Step 2：逐行處理
+  const lines = processed.split('\n');
+  const resultLines = [];
+
+  for (const line of lines) {
+    // 2a. 整行為「標籤：URL」（冒號前段無其他 URL）→ 整行移除
+    const wholeLineRe = /^([^：:\n]*)[：:]\s*(https?:\/\/\S+)\s*$/;
+    const wholeMatch  = wholeLineRe.exec(line);
+    if (wholeMatch && !/https?:\/\//.test(wholeMatch[1])) {
+      collectUrl(wholeMatch[2]);
+      resultLines.push('');
+      continue;
+    }
+
+    let cleanLine = line;
+    let modified  = false;
+
+    // 2b. 移除句中「冒號 + URL」（如「更多資訊：https://...」）
+    cleanLine = cleanLine.replace(/[：:]\s*https?:\/\/\S+/g, (m) => {
+      const mu = /https?:\/\/\S+/.exec(m);
+      if (mu) collectUrl(mu[0]);
+      modified = true;
+      return '';
+    });
+
+    // 2c. 移除剩餘裸 URL
+    cleanLine = cleanLine.replace(/https?:\/\/\S+/g, (url) => {
+      collectUrl(url);
+      modified = true;
+      return '';
+    });
+
+    if (modified) {
+      cleanLine = cleanLine.replace(/\s{2,}/g, ' ').trim();
+      // 殘句：移除 URL 後行尾剩冒號（如「・企業 AI 導入：」）→ 清除
+      if (!cleanLine || /[：:]\s*$/.test(cleanLine)) {
+        resultLines.push('');
+        continue;
+      }
+    }
+
+    resultLines.push(cleanLine);
+  }
+
+  // Step 3：壓縮連續空行；去除首尾空行
+  const finalLines = [];
+  let prevBlank = false;
+  for (const line of resultLines) {
+    if (line === '') {
+      if (!prevBlank) finalLines.push('');
+      prevBlank = true;
+    } else {
+      prevBlank = false;
+      finalLines.push(line);
+    }
+  }
+  while (finalLines.length > 0 && finalLines[0] === '')               finalLines.shift();
+  while (finalLines.length > 0 && finalLines[finalLines.length - 1] === '') finalLines.pop();
+
+  return { cleanText: finalLines.join('\n'), foundUrls };
+}
+
+// ──────────────────────────────────────────────
 // 意圖偵測
 // ──────────────────────────────────────────────
 
@@ -246,7 +388,8 @@ export function splitText(text) {
 /**
  * 根據 AI 回覆文字建構完整 LINE Flex Message 物件。
  * 長回覆自動分成 carousel（最多 2 bubble）。
- * 按鈕依意圖自動帶入。
+ * 按鈕優先順序：AI 回覆中的連結（確定性移除）> 意圖按鈕；總數 ≤ 3。
+ * 第一顆按鈕用 primary（實心），其餘 secondary（外框）。
  *
  * @param {string} replyText AI 回覆原文（純文字，已去除 Markdown）
  * @param {object} [options]
@@ -257,20 +400,55 @@ export function splitText(text) {
 export function buildFlexMessage(replyText, options = {}) {
   const { intent: intentOverride = null, maxButtons = 3 } = options;
 
-  const text = typeof replyText === 'string' ? replyText.trim() : '';
+  const rawText = typeof replyText === 'string' ? replyText.trim() : '';
 
-  // altText：前 40 字（通知列），去除換行
-  const altText = text.replace(/\n/g, ' ').slice(0, 40) || 'Think BIG AI 顧問';
+  // altText：用原文前 40 字（通知列），去除換行
+  const altText = rawText.replace(/\n/g, ' ').slice(0, 40) || 'Think BIG AI 顧問';
 
-  const intent = intentOverride !== null ? intentOverride : detectIntent(text);
-  let buttons = buildButtons(intent);
+  // 確定性移除網址，收集已知 URL
+  const { cleanText, foundUrls } = stripUrls(rawText);
 
-  // 套用 maxButtons 限制
-  if (maxButtons < buttons.length) {
-    buttons = buttons.slice(0, maxButtons);
+  const intent = intentOverride !== null ? intentOverride : detectIntent(cleanText);
+
+  // 建立 URL 驅動的按鈕（從 AI 回覆擷取，優先）
+  const seenLabels = new Set();
+  const urlDrivenDefs = [];
+  for (const url of foundUrls) {
+    const label = urlToLabel(url);
+    if (!label || seenLabels.has(label)) continue;
+    seenLabels.add(label);
+    urlDrivenDefs.push({ type: 'uri', label, uri: url });
   }
 
-  const parts = splitText(text);
+  // 建立意圖按鈕（補位用）
+  const intentButtons = buildButtons(intent);
+
+  // 合併：URL 優先，去重，最多 cappedCount 顆
+  const cappedCount = Math.min(maxButtons, 3);
+  const merged = [...urlDrivenDefs];
+
+  for (const btn of intentButtons) {
+    if (merged.length >= cappedCount) break;
+    const label = btn.action.label;
+    if (seenLabels.has(label)) continue;
+    seenLabels.add(label);
+    merged.push(
+      btn.action.type === 'uri'
+        ? { type: 'uri',     label, uri:  btn.action.uri  }
+        : { type: 'message', label, text: btn.action.text },
+    );
+  }
+
+  const finalDefs = merged.slice(0, cappedCount);
+
+  // 第一顆 primary；其餘 secondary
+  const buttons = finalDefs.map((def, i) =>
+    def.type === 'uri'
+      ? makeUriButton(def.label, def.uri, i === 0)
+      : makeMessageButton(def.label, def.text),
+  );
+
+  const parts = splitText(cleanText);
 
   if (parts.length <= 1) {
     return {
