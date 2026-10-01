@@ -77,7 +77,7 @@
 .pf-hero-text p { font-size: 17px; color: var(--muted); margin: 0; }
 .pf-hero-text .pf-lang-link { display: inline-block; margin-top: 24px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 2px; text-decoration: none; }
 .pf-hero-text .pf-lang-link:hover { color: var(--ink); border-color: var(--ink); }
-.pf-cover { width: 100%; max-width: 100%; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 2px; }
+.pf-cover { width: 100%; max-width: 100%; aspect-ratio: 1; display: block; border-radius: 2px; }
 
 /* Overview */
 .pf-overview-img { width: 100%; display: block; border-radius: 2px; }
@@ -106,7 +106,7 @@
 
 /* Scenes */
 .pf-scenes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
-.pf-scene-img { width: 100%; display: block; border-radius: 2px; aspect-ratio: 1; object-fit: cover; }
+.pf-scene-img { width: 100%; display: block; border-radius: 2px; aspect-ratio: 1; }
 .pf-scenes-list { margin: 32px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 32px; }
 .pf-scenes-list li { font-size: 14px; color: var(--muted); padding-left: 18px; position: relative; }
 .pf-scenes-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--rose); border-radius: 50%; }
@@ -136,7 +136,7 @@
 .pf-btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); margin-left: 14px; }
 
 /* Image protection */
-.pf-img-protected { user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.pf-img-protected { user-select: none; -webkit-user-drag: none; pointer-events: none; height: auto; }
 .pf-img-wrap { position: relative; overflow: hidden; }
 .pf-img-overlay { position: absolute; inset: 0; z-index: 2; user-select: none; }
 
