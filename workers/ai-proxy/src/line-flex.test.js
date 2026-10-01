@@ -22,6 +22,8 @@ import {
   sendFlexPush,
   buildWelcomeFlex,
   WELCOME_FLEX_BODY,
+  stripUrls,
+  urlToLabel,
 } from './line-flex.js';
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -456,4 +458,113 @@ test('T32: intent 強制 enterprise → 顯示預約按鈕，即使文字無企�
   const msg = buildFlexMessage('謝謝你的訊息！', { intent: 'enterprise' });
   const labels = collectButtonLabels(msg.contents);
   assert.ok(labels.includes('預約需求訪談'), `labels: ${labels}`);
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// T33–T40：URL 確定性移除 + 按鈕轉換（NEO 截圖案例 + 邊界條件）
+// ────────────────────────────────────────────────────────────────────────────
+
+test('T33: NEO截圖案例 — 兩條bullet網址移除、內文無http、按鈕含企業導入＋個人方案、≤3顆', () => {
+  const neoInput =
+    'Think BIG 目前有以下兩個方向可以參考：\n\n' +
+    '・企業 AI 導入：https://thinkbigtw.com/enterprise/\n' +
+    '・個人 AI 助理：https://thinkbigtw.com/pricing/personal/';
+
+  const msg = buildFlexMessage(neoInput);
+
+  // 內文（body text）不含 http
+  const allTexts = collectTexts(msg.contents);
+  for (const t of allTexts) {
+    assert.ok(!t.includes('http'), `內文含網址：${t}`);
+  }
+
+  // 按鈕含企業導入 & 個人方案
+  const labels = collectButtonLabels(msg.contents);
+  assert.ok(labels.includes('企業導入'), `缺少企業導入，實際：${labels}`);
+  assert.ok(labels.includes('個人方案'), `缺少個人方案，實際：${labels}`);
+
+  // 總按鈕數 ≤ 3
+  assert.ok(labels.length <= 3, `按鈕數超過3：${labels.length}`);
+});
+
+test('T34: stripUrls 整行 label：URL → 整行移除，URL 收集', () => {
+  const text =
+    '以下是相關連結：\n' +
+    '・企業 AI 導入：https://thinkbigtw.com/enterprise/\n' +
+    '・官網：https://thinkbigtw.com/';
+  const { cleanText, foundUrls } = stripUrls(text);
+  assert.ok(!cleanText.includes('http'), `cleanText 含http: ${cleanText}`);
+  assert.equal(foundUrls.length, 2, `應收集2個URL，實際：${foundUrls.length}`);
+  assert.ok(!cleanText.includes('企業 AI 導入：'), `殘句應被清除，cleanText: ${cleanText}`);
+});
+
+test('T35: markdown 連結 → 整組移除、URL 收集', () => {
+  const text = '詳情請見 [企業方案](https://thinkbigtw.com/enterprise/)，歡迎詢問。';
+  const { cleanText, foundUrls } = stripUrls(text);
+  assert.ok(!cleanText.includes('http'), `cleanText 含http: ${cleanText}`);
+  assert.ok(
+    foundUrls.some(u => u.includes('/enterprise/')),
+    `foundUrls 應含 /enterprise/，實際：${foundUrls}`,
+  );
+});
+
+test('T36: 未知網域 → 從內文移除，不轉按鈕', () => {
+  const text = '更多資訊：https://google.com/search?q=ai 請自行查閱。';
+  const msg = buildFlexMessage(text);
+
+  // 內文無 http
+  for (const t of collectTexts(msg.contents)) {
+    assert.ok(!t.includes('http'), `內文含網址：${t}`);
+  }
+
+  // 不應有「官網」按鈕（未知網域不轉按鈕）
+  const labels = collectButtonLabels(msg.contents);
+  assert.ok(!labels.includes('官網'), `未知網域不應轉官網按鈕，labels: ${labels}`);
+});
+
+test('T37: URL 按鈕優先於意圖按鈕、第一顆 primary style', () => {
+  // 文字含 /enterprise/ URL → 企業導入按鈕（URL 驅動）
+  // intent 也是 enterprise → 預約需求訪談（意圖按鈕）
+  // 企業導入 應排在第一顆且是 primary
+  const text = '企業導入相關資訊：https://thinkbigtw.com/enterprise/ 歡迎詢問。';
+  const msg  = buildFlexMessage(text);
+  const labels = collectButtonLabels(msg.contents);
+  assert.equal(labels[0], '企業導入', `第一顆應為企業導入，實際：${labels[0]}`);
+
+  // 找第一顆按鈕確認 style=primary（getBubbles 接 msg，非 msg.contents）
+  const bubbles = getBubbles(msg);
+  const firstBtn = bubbles
+    .flatMap(b => b.footer?.contents ?? [])
+    .find(c => c.type === 'button');
+  assert.equal(firstBtn?.style, 'primary', `第一顆按鈕 style 應為 primary`);
+});
+
+test('T38: 同路徑出現兩次 → 只產生一顆按鈕（去重）', () => {
+  const text =
+    '企業方案：https://thinkbigtw.com/enterprise/\n' +
+    '企業導入：https://thinkbigtw.com/enterprise/';
+  const msg = buildFlexMessage(text);
+  const labels = collectButtonLabels(msg.contents);
+  const count = labels.filter(l => l === '企業導入').length;
+  assert.equal(count, 1, `企業導入按鈕應只有1顆，實際：${count}`);
+});
+
+test('T39: urlToLabel 路徑對應表', () => {
+  assert.equal(urlToLabel('https://thinkbigtw.com/enterprise/'),         '企業導入');
+  assert.equal(urlToLabel('https://thinkbigtw.com/enterprise/start/'),   '自助評估');
+  assert.equal(urlToLabel('https://thinkbigtw.com/pricing/personal/'),   '個人方案');
+  assert.equal(urlToLabel('https://thinkbigtw.com/pricing/'),            '個人方案');
+  assert.equal(urlToLabel('https://thinkbigtw.com/portfolio/'),          '導入案例');
+  assert.equal(urlToLabel('https://thinkbigtw.com/contact/'),            '預約需求訪談');
+  assert.equal(urlToLabel('https://thinkbigtw.com/'),                    '官網');
+  assert.equal(urlToLabel('https://shopee.tw/shop/105010395'),           '蝦皮賣場');
+  assert.equal(urlToLabel('https://lin.ee/abc123'),                       null);
+  assert.equal(urlToLabel('https://google.com/'),                         null);
+});
+
+test('T40: maxButtons:0 時 URL 按鈕也不帶（現有 T27 補充）', () => {
+  const text = '請見：https://thinkbigtw.com/enterprise/';
+  const msg  = buildFlexMessage(text, { maxButtons: 0 });
+  assert.equal(msg.contents.type, 'bubble');
+  assert.equal(msg.contents.footer, undefined, 'maxButtons:0 不應有 footer');
 });
