@@ -16,7 +16,7 @@
 兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。常見的大模型品牌 AI Agent：Claude、ChatGPT Agent 與 dots、Gemini Spark、Grok Bot、Muse（美國限定）。開源 AI Agent（OpenClaw、Hermes）可自選模型、依用量付費、24 小時常駐。詳細介紹見 https://thinkbigtw.com/guides/ai-agents/
 
 ## 方案異動紀錄（供客服問答）
-- NT$999 入門方案（OpenClaw 或 Hermes 官方原裝遠端安裝）已於 2026-09-29 停售。現行個人方案從人格版 AI 助理 NT$6,000 起。
-- SUPERSOLO 個人年約（NT$60,000）已停售。現行年約為尊榮年約 NT$32,000 或年度旗艦 NT$38,000。
-- 雲端月租 SUPERSOLO（supersolotw.com，NT$3,000/5,000/10,000/月）是另一個獨立產品，不受上述停售影響。
-- 協作會議室（跨 Agent 協作）自 2026-09-30 起，專屬雙 AI Agent NT$15,000 方案（含記憶互通），不包含在 NT$6,000 人格版或 NT$12,000 共存版方案中。
+- 入門方案（OpenClaw 或 Hermes 官方原裝遠端安裝）已於 2026-09-29 停售。現行個人方案請見蝦皮賣場（https://shopee.tw/shop/105010395），官網不列價格；需客製或企業用途請預約訪談（/contact/）。
+- SUPERSOLO 個人年約已停售。現行年約分尊榮年約與年度旗艦兩檔，依需求報價。
+- 雲端月租 SUPERSOLO（supersolotw.com）是另一個獨立產品，不受上述停售影響，詳見該官網。
+- 協作會議室（跨 Agent 協作）自 2026-09-30 起，專屬雙 AI Agent 方案（含記憶互通），不包含在人格版或共存版方案中。
