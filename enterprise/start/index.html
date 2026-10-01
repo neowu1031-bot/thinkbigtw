@@ -11,12 +11,12 @@
 </script>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>企業 AI 導入自助評估｜填問卷、看哪一級適合｜Think BIG</title>
-<meta name="description" content="12 題自助評估問卷，自動判斷入門、標準或完整哪一級適合你的公司。填完即可預約訪談，由顧問確認需求後報價。"/>
+<title>企業 AI 導入自助評估｜填問卷、看哪種方案適合｜Think BIG</title>
+<meta name="description" content="12 題自助評估問卷，自動判斷入門、標準或完整哪種方案適合你的公司。填完即可預約訪談，由顧問確認需求後報價。"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://thinkbigtw.com/enterprise/start/"/>
 <meta property="og:title" content="企業 AI 導入自助評估｜Think BIG"/>
-<meta property="og:description" content="12 題自助問卷，自動判斷哪一級適合你的公司。企業方案依需求報價，填完即可預約訪談取得正式報價。"/>
+<meta property="og:description" content="12 題自助問卷，自動判斷哪種方案適合你的公司。企業方案依需求報價，填完即可預約訪談取得正式報價。"/>
 <meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg"/>
 <meta property="og:site_name" content="Think BIG!"/>
 <meta property="og:locale" content="zh_TW"/>
@@ -179,8 +179,8 @@
       "@type": "WebPage",
       "@id": "https://thinkbigtw.com/enterprise/start/#webpage",
       "url": "https://thinkbigtw.com/enterprise/start/",
-      "name": "企業 AI 導入自助評估｜填問卷、看哪一級適合｜Think BIG",
-      "description": "12 題自助評估問卷，自動判斷入門、標準或完整哪一級適合你的公司。填完即可預約訪談，由顧問確認需求後報價。",
+      "name": "企業 AI 導入自助評估｜填問卷、看哪種方案適合｜Think BIG",
+      "description": "12 題自助評估問卷，自動判斷入門、標準或完整哪種方案適合你的公司。填完即可預約訪談，由顧問確認需求後報價。",
       "inLanguage": "zh-Hant",
       "isPartOf": {
         "@id": "https://thinkbigtw.com/#website"
@@ -234,7 +234,7 @@
 <section class="start-hero" data-no-reveal>
 <p class="eyebrow">SELF-SERVICE ASSESSMENT / 自助評估</p>
 <h1>公司導入 AI，<br/>依需求報價。</h1>
-<p class="intro">12 題問卷，自動判斷入門、標準或完整哪一級適合你的公司。填完即可預約訪談，由顧問確認需求後報價。</p>
+<p class="intro">12 題問卷，自動判斷入門、標準或完整哪種方案適合你的公司。填完即可預約訪談，由顧問確認需求後報價。</p>
 </section>
 
 <!-- Demo Video -->
@@ -252,7 +252,7 @@
 <div class="quiz-wrap">
 <div class="section-head" style="margin-bottom:28px">
 <p class="eyebrow">QUESTIONNAIRE / 自助問卷</p>
-<h2 style="font-size:clamp(22px,3vw,32px)">填問卷，AI 自動判斷哪一級適合</h2>
+<h2 style="font-size:clamp(22px,3vw,32px)">填問卷，AI 自動判斷哪種方案適合</h2>
 <p class="intro">12 題，約 3 分鐘。任何一項超出入門級上限，自動報上一級。</p>
 </div>
 
@@ -399,7 +399,7 @@
 <p class="grade-eyebrow" id="grade-eyebrow">建議級距</p>
 <h2 id="grade-name"></h2>
 <div class="grade-price" id="grade-price"></div>
-<p style="font-size:13px;color:var(--muted);margin-top:4px">未稅（另加 5% 營業稅）｜付款分兩次：簽約 50%、驗收通過 50%</p>
+<p style="font-size:13px;color:var(--muted);margin-top:4px">付款分兩次：簽約 50%、驗收通過 50%</p>
 <p class="grade-desc" id="grade-desc"></p>
 <div class="grade-scope" id="grade-scope-wrap">
 <strong style="font-size:13px;color:var(--ink);display:block;margin-bottom:6px">這一級包含：</strong>
@@ -436,7 +436,7 @@
 <div class="roi-bar-wrap"><div class="roi-bar ai-yr1" id="bar-ai-yr1" style="height:10%"></div></div>
 <div class="roi-bar-label">AI Agent<br/>（第一年）</div>
 <div class="roi-bar-val" id="val-ai-yr1">—</div>
-<div class="roi-bar-note">建置費含 5% 營業稅</div>
+
 </div>
 <div class="roi-bar-col">
 <div class="roi-bar-wrap"><div class="roi-bar ai-yr2" id="bar-ai-yr2" style="height:15%"></div></div>
@@ -788,7 +788,7 @@ function showGrade(grade){
   const t = TIERS[grade];
   document.getElementById('grade-eyebrow').textContent = t.eyebrow;
   document.getElementById('grade-name').textContent = t.name;
-  document.getElementById('grade-price').innerHTML = t.price + ' <span>（未稅，另加 5% 營業稅）</span>';
+  document.getElementById('grade-price').innerHTML = t.price;
   document.getElementById('grade-desc').textContent = t.desc;
   const scopeUl = document.getElementById('grade-scope');
   scopeUl.innerHTML = t.scope.map(s=>'<li>'+s+'</li>').join('');

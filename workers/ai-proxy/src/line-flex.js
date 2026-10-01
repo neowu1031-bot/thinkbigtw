@@ -504,7 +504,7 @@ export function buildWelcomeFlex() {
         size: 'xxs',
         color: '#aaaaaa',
         margin: 'lg',
-        action: { type: 'uri', uri: 'https://thinkbigtw.com/privacy/' },
+        action: { type: 'uri', uri: 'https://thinkbigtw.com/privacy.html' },
       },
     ],
   };
