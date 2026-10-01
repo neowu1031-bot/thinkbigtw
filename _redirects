@@ -1,1 +1,6 @@
 /privacy/ /privacy.html 301
+
+# i18n: /en/ sub-path aliases for existing English pages
+/en/portfolio/    /portfolio/en/    301
+/en/portfolio/en/ /portfolio/en/    301
+/en/tbos/         /tbos/en/         301
