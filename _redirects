@@ -4,3 +4,5 @@
 /en/portfolio/    /portfolio/en/    301
 /en/portfolio/en/ /portfolio/en/    301
 /en/tbos/         /tbos/en/         301
+
+# i18n: Phase 2 — real /en/ pages now exist, no redirect needed for /en/, /en/contact/, /en/pricing/
