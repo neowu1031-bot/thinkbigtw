@@ -15,6 +15,7 @@
  *   - GIFT 客戶名單（LINE_HUMAN_ONLY_NAMES env var only，無預設）：完全不回，只送報告
  *   - P1: event dedup（processing → completed）+ timestamp ±5 min 驗證
  *   - 同一 userId 的事件序列化處理（不用 Promise.all），避免 context 競態
+ *   - markAsRead：收到 message 事件即在 waitUntil 內標已讀（非 GIFT 用戶）；失敗只 log 不影響回覆
  */
 
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
@@ -22,8 +23,9 @@ import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTradit
 // ──────────────────────────────────────────────
 // 常數
 // ──────────────────────────────────────────────
-const LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
-const LINE_PUSH_URL  = 'https://api.line.me/v2/bot/message/push';
+const LINE_REPLY_URL        = 'https://api.line.me/v2/bot/message/reply';
+const LINE_PUSH_URL         = 'https://api.line.me/v2/bot/message/push';
+const LINE_MARK_AS_READ_URL = 'https://api.line.me/v2/bot/chat/markAsRead';
 
 const WELCOME_TEXT =
   '嗨，歡迎私訊 Think BIG 喔 😊\n\n' +
@@ -227,6 +229,36 @@ async function replyToLine(token, replyToken, text) {
     });
     await res.body?.cancel();
   } catch { /* P3: never throw */ }
+}
+
+/**
+ * LINE Mark as Read API（2025-11-05 起支援）。
+ * - token 不寫入 log（安全規定）
+ * - 失敗只記 status/error，不拋出例外，不影響回覆流程
+ */
+async function callMarkAsRead(token, markAsReadToken) {
+  try {
+    const res = await fetch(LINE_MARK_AS_READ_URL, {
+      method: 'POST',
+      signal: AbortSignal.timeout(5000),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ markAsReadToken }),
+    });
+    if (!res.ok) {
+      const status = res.status;
+      await res.body?.cancel();
+      // token 不可入 log
+      console.error(JSON.stringify({ event: 'mark_as_read_failed', status }));
+    } else {
+      await res.body?.cancel();
+    }
+  } catch (e) {
+    // token 不可入 log
+    console.error(JSON.stringify({ event: 'mark_as_read_error', error: String(e).slice(0, 100) }));
+  }
 }
 
 // ──────────────────────────────────────────────
@@ -515,9 +547,27 @@ async function processEventInner(event, token, kv, env, ctx) {
     return;
   }
 
-  // 只處理 message/text
-  if (type !== 'message' || event.message?.type !== 'text') return;
-  if (!userId || !replyToken) return;
+  // message 事件（text/sticker/image 等）
+  if (type !== 'message') return;
+  if (!userId) return;
+
+  // P2: HMAC-SHA256 hash（pepper 必須設定，否則應在 handleLineWebhook 層已 503）
+  const keyHash = await hashUserId(userId, env.LINE_HASH_PEPPER);
+
+  // #5: GIFT 判斷在任何自動回覆之前（含非文字 message）
+  const nowMs = Date.now();
+  const { isGift, profileFailed } = await checkGiftStatus(token, userId, keyHash, env, ctx, kv);
+
+  // markAsRead：非 GIFT 用戶（且 profile 驗證成功）即在 waitUntil 內標已讀
+  // GIFT 用戶不標已讀，以免 NEO 漏看；token 不寫 log
+  const markAsReadToken = event.message?.markAsReadToken;
+  if (markAsReadToken && !isGift && !profileFailed) {
+    ctx.waitUntil(callMarkAsRead(token, markAsReadToken));
+  }
+
+  // 非文字 message（sticker/image）：標已讀後不進一步處理
+  if (event.message?.type !== 'text') return;
+  if (!replyToken) return;
 
   const rawText = event.message.text;
   if (typeof rawText !== 'string' || !rawText.trim()) return;
@@ -526,13 +576,6 @@ async function processEventInner(event, token, kv, env, ctx) {
 
   // P1: Timestamp check（拒絕 ±5 分鐘以外的 event）
   if (typeof event.timestamp === 'number' && Math.abs(event.timestamp - Date.now()) > 300000) return;
-
-  // P2: HMAC-SHA256 hash（pepper 必須設定，否則應在 handleLineWebhook 層已 503）
-  const keyHash = await hashUserId(userId, env.LINE_HASH_PEPPER);
-
-  // #5: GIFT 判斷在任何自動回覆之前
-  const nowMs = Date.now();
-  const { isGift, profileFailed } = await checkGiftStatus(token, userId, keyHash, env, ctx, kv);
 
   if (isGift) {
     const giftReportKey = 'giftreport:' + keyHash;
