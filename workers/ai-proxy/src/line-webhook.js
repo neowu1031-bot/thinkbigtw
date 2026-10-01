@@ -15,6 +15,7 @@
  *   - GIFT 客戶名單（LINE_HUMAN_ONLY_NAMES env var only，無預設）：完全不回，只送報告
  *   - P1: event dedup（processing → completed）+ timestamp ±5 min 驗證
  *   - 同一 userId 的事件序列化處理（不用 Promise.all），避免 context 競態
+ *   - markAsRead：收到 message 事件即在 waitUntil 內標已讀（非 GIFT 用戶）；失敗只 log 不影響回覆
  */
 
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
@@ -23,8 +24,9 @@ import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 // ──────────────────────────────────────────────
 // 常數
 // ──────────────────────────────────────────────
-const LINE_REPLY_URL = 'https://api.line.me/v2/bot/message/reply';
-const LINE_PUSH_URL  = 'https://api.line.me/v2/bot/message/push';
+const LINE_REPLY_URL        = 'https://api.line.me/v2/bot/message/reply';
+const LINE_PUSH_URL         = 'https://api.line.me/v2/bot/message/push';
+const LINE_MARK_AS_READ_URL = 'https://api.line.me/v2/bot/chat/markAsRead';
 
 const WELCOME_TEXT =
   '嗨，歡迎私訊 Think BIG 喔 😊\n\n' +
@@ -35,13 +37,21 @@ const WELCOME_TEXT =
   '・方案介紹：https://thinkbigtw.com/pricing/\n' +
   '・企業合作：https://thinkbigtw.com/enterprise/';
 
-/** 美東時差提示（一次性，接在轉真人或答不出來的回覆後面）。 */
-const EAST_US_NOTE =
-  '我們的工程師們目前都在美東進修中，如果需要專人回覆，可能要稍等一下下喔🙏 我們會盡快回覆您～';
+/** 美東時差提示到期時間（2026-11-27 00:00 台灣時間 UTC+8，NEO 返台後自動停用）。 */
+const US_EAST_NOTE_UNTIL = '2026-11-27T00:00:00+08:00';
 
-/** 第一次轉真人時用（含美東提示）。 */
-const HUMAN_TRANSFER_TEXT =
-  '好的～已經幫您通知 Think BIG 的同仁了，上班時間會盡快回覆您喔 🙏\n\n' + EAST_US_NOTE;
+/** 美東時差提示（到期後回傳空字串）。 */
+function getEastUsNote() {
+  return Date.now() < new Date(US_EAST_NOTE_UNTIL).getTime()
+    ? '我們的工程師們目前都在美東進修中，如果需要專人回覆，可能要稍等一下下喔🙏 我們會盡快回覆您～'
+    : '';
+}
+
+/** 第一次轉真人時用（美東提示到期後自動省略）。 */
+function getHumanTransferText() {
+  const note = getEastUsNote();
+  return '好的～已經幫您通知 Think BIG 的同仁了，上班時間會盡快回覆您喔 🙏' + (note ? '\n\n' + note : '');
+}
 
 /** 已轉真人後再傳訊時用（較短，不重複美東提示）。 */
 const HUMAN_TRANSFER_REPEAT_TEXT =
@@ -228,6 +238,36 @@ async function replyToLine(token, replyToken, text) {
     });
     await res.body?.cancel();
   } catch { /* P3: never throw */ }
+}
+
+/**
+ * LINE Mark as Read API（2025-11-05 起支援）。
+ * - token 不寫入 log（安全規定）
+ * - 失敗只記 status/error，不拋出例外，不影響回覆流程
+ */
+async function callMarkAsRead(token, markAsReadToken) {
+  try {
+    const res = await fetch(LINE_MARK_AS_READ_URL, {
+      method: 'POST',
+      signal: AbortSignal.timeout(5000),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ markAsReadToken }),
+    });
+    if (!res.ok) {
+      const status = res.status;
+      await res.body?.cancel();
+      // token 不可入 log
+      console.error(JSON.stringify({ event: 'mark_as_read_failed', status }));
+    } else {
+      await res.body?.cancel();
+    }
+  } catch (e) {
+    // token 不可入 log
+    console.error(JSON.stringify({ event: 'mark_as_read_error', error: String(e).slice(0, 100) }));
+  }
 }
 
 // ──────────────────────────────────────────────
@@ -516,9 +556,27 @@ async function processEventInner(event, token, kv, env, ctx) {
     return;
   }
 
-  // 只處理 message/text
-  if (type !== 'message' || event.message?.type !== 'text') return;
-  if (!userId || !replyToken) return;
+  // message 事件（text/sticker/image 等）
+  if (type !== 'message') return;
+  if (!userId) return;
+
+  // P2: HMAC-SHA256 hash（pepper 必須設定，否則應在 handleLineWebhook 層已 503）
+  const keyHash = await hashUserId(userId, env.LINE_HASH_PEPPER);
+
+  // #5: GIFT 判斷在任何自動回覆之前（含非文字 message）
+  const nowMs = Date.now();
+  const { isGift, profileFailed } = await checkGiftStatus(token, userId, keyHash, env, ctx, kv);
+
+  // markAsRead：非 GIFT 用戶（且 profile 驗證成功）即在 waitUntil 內標已讀
+  // GIFT 用戶不標已讀，以免 NEO 漏看；token 不寫 log
+  const markAsReadToken = event.message?.markAsReadToken;
+  if (markAsReadToken && !isGift && !profileFailed) {
+    ctx.waitUntil(callMarkAsRead(token, markAsReadToken));
+  }
+
+  // 非文字 message（sticker/image）：標已讀後不進一步處理
+  if (event.message?.type !== 'text') return;
+  if (!replyToken) return;
 
   const rawText = event.message.text;
   if (typeof rawText !== 'string' || !rawText.trim()) return;
@@ -527,13 +585,6 @@ async function processEventInner(event, token, kv, env, ctx) {
 
   // P1: Timestamp check（拒絕 ±5 分鐘以外的 event）
   if (typeof event.timestamp === 'number' && Math.abs(event.timestamp - Date.now()) > 300000) return;
-
-  // P2: HMAC-SHA256 hash（pepper 必須設定，否則應在 handleLineWebhook 層已 503）
-  const keyHash = await hashUserId(userId, env.LINE_HASH_PEPPER);
-
-  // #5: GIFT 判斷在任何自動回覆之前
-  const nowMs = Date.now();
-  const { isGift, profileFailed } = await checkGiftStatus(token, userId, keyHash, env, ctx, kv);
 
   if (isGift) {
     const giftReportKey = 'giftreport:' + keyHash;
@@ -550,7 +601,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   if (profileFailed) {
     const sessionId = generateUUID();
     ctx.waitUntil(submitNeedsAnswerReport(env, keyHash, userText));
-    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
+    await sendFlexReply(token, replyToken, getHumanTransferText(), { maxButtons: 0 });
     return;
   }
 
@@ -601,7 +652,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
+    await sendFlexReply(token, replyToken, getHumanTransferText(), { maxButtons: 0 });
     return;
   }
 
@@ -619,7 +670,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   const { reply, aiWantsHuman, aiNeedsAnswer } = result;
 
   if (aiWantsHuman) {
-    sessionCtx.messages.push({ role: 'assistant', content: HUMAN_TRANSFER_TEXT });
+    sessionCtx.messages.push({ role: 'assistant', content: getHumanTransferText() });
     sessionCtx.humanTransferred = true;
     sessionCtx.lastAt = nowMs;
     if (sessionCtx.messages.length > MAX_ROUNDS * 2) {
@@ -627,13 +678,14 @@ async function processEventInner(event, token, kv, env, ctx) {
     }
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
+    await sendFlexReply(token, replyToken, getHumanTransferText(), { maxButtons: 0 });
     return;
   }
 
   if (aiNeedsAnswer) {
-    // 6B: 答不出來 → 附美東提示 + needs_answer 報告
-    const fullReply = reply + '\n\n' + EAST_US_NOTE;
+    // 6B: 答不出來 → 附美東提示（到期後省略） + needs_answer 報告
+    const _note = getEastUsNote();
+    const fullReply = _note ? reply + '\n\n' + _note : reply;
     sessionCtx.messages.push({ role: 'assistant', content: reply });
     if (sessionCtx.messages.length > MAX_ROUNDS * 2) {
       sessionCtx.messages = sessionCtx.messages.slice(-MAX_ROUNDS * 2);
