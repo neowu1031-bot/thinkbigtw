@@ -3916,3 +3916,70 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
+
+---
+
+URL: https://thinkbigtw.com/portfolio/
+
+# AI Agent 實戰作品集｜Think BIG
+
+Think BIG 以自家運作為佐證，呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。
+
+## 精選建置（九件）
+
+### 02 維運監控中心
+全天候自動值守。多個系統各自有告警，異常要等人通報才會知道，處理常常慢半拍。建立統一監控看板，整合各系統狀態，異常自動推播指定通道。異常即時可見，維運反應時間大幅縮短，不再依賴人員主動輪詢。技術標籤：Cloudflare Workers、Telegram Bot、自動告警、狀態看板。
+
+### 03 企業知識問答
+私有知識庫查詢。公司資料分散在不同平台，員工每次都要重新搜尋，找到了還不確定是否最新版。建置私有 RAG 知識庫，AI 依照公司文件直接回答，並標示原始來源。常見問題 AI 先答，人員只需處理真正需要判斷的事，且答案有文件可查。技術標籤：RAG、向量資料庫、文件索引、私有部署。
+
+### 04 文件自動化處理
+重複作業自動完成。收文、分類、初擬回覆每天重複，消耗大量人工時間。AI 讀入來文後自動分類，按對應格式產出初稿，人員審核後發出。文件處理量提升，人員只需審核最終稿，錯發與漏發情形明顯減少。技術標籤：文件解析、自動分類、草稿生成、人工審核閘門。
+
+### 05 官網 AI 客服
+24h 即時回覆。官網諮詢在下班後無人值守，詢問容易流失。部署 AI 客服，依知識庫回答常見問題，並自動將複雜需求轉交人員處理。全天候即時回覆，線上諮詢轉化率提升。技術標籤：Cloudflare Worker、Supabase、知識庫、轉接機制。
+
+### 06 緊急語音通報
+通報確認到人為止。現場異常需要立即通知負責人，文字訊息容易被忽略。觸發條件成立後，系統自動撥打語音電話，直到確認收到為止。事故通報無遺漏，應變啟動時間縮短，責任鏈有記錄可查。技術標籤：Twilio、語音通話、觸發自動化、責任鏈記錄。
+
+### 07 地端知識庫
+資料不離公司設備。將公司文件上傳雲端服務有資料外洩疑慮，但又需要 AI 輔助查詢。在公司指定設備建置本地向量資料庫，向量化與查詢都在設備上完成。資料全程不離公司設備，知識查詢有準確來源標示，可驗收。技術標籤：Ollama、本地向量庫、資料主權、私有部署。
+
+### 08 個人 AI 助理平台
+費用依實際用量計。個人用戶想要長期運作的 AI 助理，但不想被綁在單一廠商，也難以控管費用。建置雲端 AI 助理平台，自備 API 金鑰即可使用，可切換不同模型。訂閱者依實際用量付費，模型可依任務切換，費用透明可追蹤。技術標籤：OpenClaw、Hermes、多模型支援、自備 API Key。
+
+### 09 出貨前資安把關
+每次部署都有文字記錄。AI 系統上線前難以系統化確認資安風險，審查標準因人而異。建立資安審查閘門（D4），每次部署逐項核對 OWASP 紅線，產出審查記錄。審查流程標準化，每個決策有文字依據，可追溯。技術標籤：OWASP、部署閘門、審查記錄、自動化檢核。
+
+### 10 LINE 自動化工作流
+重複訊息自動處理。內部協作與客戶溝通都在 LINE，訊息量大、分類靠人工，容易遺漏。串接 LINE Messaging API，依訊息類型自動路由，常見問題自動回覆。重複性訊息自動處理，人員聚焦在真正需要判斷的對話，漏接率降低。技術標籤：LINE Messaging API、Webhook、訊息路由、自動回覆。
+
+## 八種應用場景切入點
+銷售跟進與提案、財務對帳與費用核實、會議記錄與代辦追蹤、業務數據分析與摘要、報價草稿生成、庫存異常監控、行銷文案與排程、新進人員到職引導。
+
+## TB FRAME 導入流程
+Assess 評估定義（確認範圍輸出報告）→ Build 架構建置（依評估建置並完成初測）→ Validate 驗證交付（逐項測試產出驗收記錄）→ Operate 治理維運（一年陪跑，問題追蹤與變更記錄）。
+
+---
+
+URL: https://thinkbigtw.com/portfolio/en/
+
+# AI Agent Portfolio｜Think BIG
+
+Think BIG builds AI Agents for operations monitoring, document automation, customer service, local knowledge retrieval, and security gates. Every case shown here runs on our own systems.
+
+## Nine selected builds
+
+02 Operations Monitoring Hub — unified dashboard, auto-push anomaly alerts, 24/7 automated watch. Stack: Cloudflare Workers, Telegram Bot.
+03 Enterprise Knowledge Q&A — private RAG knowledge base, AI answers from company documents with source citation. Stack: RAG, vector database, private deployment.
+04 Document Automation — AI classifies incoming documents and generates reply drafts for human review. Stack: document parsing, auto classification, human review gate.
+05 Website AI Customer Service — 24h instant replies, escalation to staff for complex cases. Stack: Cloudflare Worker, Supabase.
+06 Emergency Voice Alert — auto voice call until person confirms receipt, full accountability log. Stack: Twilio.
+07 Local Knowledge Base — vectorisation and retrieval on company hardware, data never leaves. Stack: Ollama, local vector store.
+08 Personal AI Platform — bring your own API key, switch models, pay per usage. Stack: OpenClaw, Hermes.
+09 Pre-Deployment Security Gate — OWASP checklist gate, written audit record per deployment. Stack: OWASP, automated checks.
+10 LINE Automation Workflow — message routing, auto-reply, human handoff for complex messages. Stack: LINE Messaging API, webhook.
+
+Eight use-case scenarios: sales follow-up, finance reconciliation, meeting notes, business analysis, quote drafts, inventory monitoring, marketing copy, employee onboarding.
+
+TB FRAME: Assess → Build → Validate → Operate (1-year operations support included).
