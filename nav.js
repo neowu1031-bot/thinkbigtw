@@ -8,13 +8,16 @@
   /* ── Language toggle ─────────────────────────────────────────────────── */
   var LANG_KEY = 'tb_lang';
 
-  /* Pages with a real English equivalent; all others fall back to /portfolio/en/ */
+  /* Pages with a real English equivalent; all others fall back to /en/ */
   var EN_MAP = {
+    '/': '/en/',
+    '/contact/': '/en/contact/',
+    '/pricing/': '/en/pricing/',
     '/portfolio/': '/portfolio/en/'
   };
 
   function getEnDest(path) {
-    return EN_MAP[path] || '/portfolio/en/';
+    return EN_MAP[path] || '/en/';
   }
 
   function rememberLang(lang) {
