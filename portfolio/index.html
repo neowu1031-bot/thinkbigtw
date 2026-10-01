@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 實戰作品集｜Think BIG</title>
+<meta name="description" content="Think BIG 以自家運作為佐證，呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。">
+<link rel="canonical" href="https://thinkbigtw.com/portfolio/">
+<link rel="alternate" hreflang="zh-Hant" href="https://thinkbigtw.com/portfolio/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/portfolio/en/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/portfolio/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Think BIG">
+<meta property="og:url" content="https://thinkbigtw.com/portfolio/">
+<meta property="og:title" content="AI Agent 實戰作品集｜Think BIG">
+<meta property="og:description" content="Think BIG 以自家運作為佐證，呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/portfolio/00-cover.webp">
+<meta property="og:locale" content="zh_TW">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Agent 實戰作品集｜Think BIG">
+<meta name="twitter:description" content="Think BIG 以自家運作為佐證，呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/portfolio/00-cover.webp">
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#organization",
+      "name": "Think BIG",
+      "legalName": "大想成業有限公司",
+      "url": "https://thinkbigtw.com/"
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://thinkbigtw.com/portfolio/#webpage",
+      "url": "https://thinkbigtw.com/portfolio/",
+      "name": "AI Agent 實戰作品集｜Think BIG",
+      "description": "Think BIG 以自家運作為佐證，呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。",
+      "inLanguage": "zh-Hant",
+      "isPartOf": { "@id": "https://thinkbigtw.com/#website" },
+      "publisher": { "@id": "https://thinkbigtw.com/#organization" },
+      "dateModified": "2026-10-01",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "首頁", "item": "https://thinkbigtw.com/" },
+          { "@type": "ListItem", "position": 2, "name": "作品集", "item": "https://thinkbigtw.com/portfolio/" }
+        ]
+      }
+    }
+  ]
+}</script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-7V41XYLLP5');</script>
+
+<link rel="icon" href="/favicon.ico" sizes="32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/generated/site-43d922300c73.css">
+
+<style>
+/* === Portfolio page styles === */
+.pf-section { padding-block: 80px; border-top: 1px solid var(--line); }
+.pf-section:first-of-type { border-top: 0; }
+
+/* Hero */
+.pf-hero { padding-block: 64px 0; }
+.pf-hero-text { max-width: 640px; margin-bottom: 48px; }
+.pf-hero-text h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 500; line-height: 1.15; margin: 12px 0 20px; letter-spacing: -0.02em; }
+.pf-hero-text p { font-size: 17px; color: var(--muted); margin: 0; }
+.pf-hero-text .pf-lang-link { display: inline-block; margin-top: 24px; font-size: 13px; color: var(--muted); border-bottom: 1px solid var(--line); padding-bottom: 2px; text-decoration: none; }
+.pf-hero-text .pf-lang-link:hover { color: var(--ink); border-color: var(--ink); }
+.pf-cover { width: 100%; max-width: 100%; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 2px; }
+
+/* Overview */
+.pf-overview-img { width: 100%; display: block; border-radius: 2px; }
+.pf-overview-desc { margin-top: 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.pf-overview-desc div h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+.pf-overview-desc div p { font-size: 14px; color: var(--muted); line-height: 1.9; margin: 0; }
+
+/* Works grid */
+.pf-works-grid { display: grid; gap: 80px; }
+.pf-work { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: start; }
+.pf-work:nth-child(even) { direction: rtl; }
+.pf-work:nth-child(even) > * { direction: ltr; }
+.pf-work-img-wrap { position: relative; }
+.pf-work-img { width: 100%; display: block; border-radius: 2px; }
+.pf-work-img-note { position: absolute; bottom: 10px; right: 12px; font-size: 10px; color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.35); padding: 3px 7px; border-radius: 2px; pointer-events: none; }
+.pf-work-body { display: flex; flex-direction: column; gap: 20px; }
+.pf-work-num { font-family: ui-monospace, monospace; font-size: 12px; color: var(--rose); }
+.pf-work-body h3 { font-size: 22px; font-weight: 500; margin: 0; line-height: 1.3; }
+.pf-work-stat { font-size: 40px; font-weight: 300; color: var(--ink); letter-spacing: -0.03em; line-height: 1; }
+.pf-work-stat span { font-size: 15px; font-weight: 400; color: var(--muted); margin-left: 6px; }
+.pf-trio { display: grid; gap: 12px; font-size: 14px; line-height: 1.8; }
+.pf-trio dt { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: var(--rose); margin-bottom: 2px; }
+.pf-trio dd { color: var(--muted); margin: 0 0 8px; }
+.pf-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.pf-tags li { font-size: 11px; font-family: ui-monospace, monospace; padding: 4px 10px; border: 1px solid var(--line); border-radius: 2px; color: var(--muted); }
+
+/* Scenes */
+.pf-scenes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.pf-scene-img { width: 100%; display: block; border-radius: 2px; aspect-ratio: 1; object-fit: cover; }
+.pf-scenes-list { margin: 32px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 32px; }
+.pf-scenes-list li { font-size: 14px; color: var(--muted); padding-left: 18px; position: relative; }
+.pf-scenes-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; background: var(--rose); border-radius: 50%; }
+
+/* Delivery */
+.pf-delivery-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.pf-delivery-img { width: 100%; display: block; border-radius: 2px; }
+.pf-delivery-body h2 { font-size: 32px; font-weight: 500; margin-bottom: 20px; }
+.pf-delivery-body p { color: var(--muted); font-size: 15px; line-height: 2; }
+.pf-steps { margin: 28px 0 0; padding: 0; list-style: none; display: grid; gap: 18px; }
+.pf-steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; font-size: 14px; }
+.pf-steps li span:first-child { font-family: ui-monospace, monospace; font-size: 11px; color: var(--rose); padding-top: 2px; }
+.pf-steps li span:last-child { color: var(--muted); line-height: 1.8; }
+
+/* Results + CTA */
+.pf-results-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.pf-results-img { width: 100%; display: block; border-radius: 2px; }
+.pf-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 28px 0; }
+.pf-metric-num { font-size: 42px; font-weight: 300; letter-spacing: -0.04em; color: var(--ink); }
+.pf-metric-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.pf-cta-block { margin-top: 36px; }
+.pf-cta-block p { font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+
+/* CTA button */
+.pf-btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; background: var(--ink); color: #fff; text-decoration: none; font-size: 14px; font-weight: 600; border-radius: 3px; transition: opacity .15s; }
+.pf-btn:hover { opacity: .85; }
+.pf-btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--ink); margin-left: 14px; }
+
+/* Image protection */
+.pf-img-protected { user-select: none; -webkit-user-drag: none; pointer-events: none; }
+.pf-img-wrap { position: relative; overflow: hidden; }
+.pf-img-overlay { position: absolute; inset: 0; z-index: 2; user-select: none; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .pf-work { grid-template-columns: 1fr; gap: 28px; }
+  .pf-work:nth-child(even) { direction: ltr; }
+  .pf-overview-desc { grid-template-columns: 1fr; gap: 24px; }
+  .pf-scenes-grid { grid-template-columns: 1fr 1fr; }
+  .pf-scenes-list { grid-template-columns: 1fr 1fr; }
+  .pf-delivery-layout, .pf-results-layout { grid-template-columns: 1fr; }
+  .pf-metrics { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .pf-section { padding-block: 52px; }
+  .pf-scenes-grid { grid-template-columns: 1fr; }
+  .pf-scenes-list { grid-template-columns: 1fr; }
+  .pf-metrics { grid-template-columns: 1fr; }
+  .pf-work-stat { font-size: 32px; }
+}
+</style>
+</head>
+<body class="homesplit editorial portfolio-page">
+
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="/portfolio/" aria-current="page">作品集</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="/portfolio/">作品集</a></div></details></nav>
+<!-- TB:NAV:END -->
+
+<a class="skip-link" href="#main">跳到主要內容</a>
+
+<main id="main">
+
+  <!-- ① 封面 -->
+  <section class="pf-section pf-hero">
+    <div class="wrap">
+      <div class="pf-hero-text">
+        <p class="eyebrow">PORTFOLIO</p>
+        <h1>AI Agent<br>實戰建置</h1>
+        <p>以 Think BIG 自家運作為佐證，每件作品都在我們自己的系統上跑過。</p>
+        <a class="pf-lang-link" href="/portfolio/en/" lang="en">View in English →</a>
+      </div>
+      <div class="pf-img-wrap">
+        <div class="pf-img-overlay" aria-hidden="true"></div>
+        <img
+          class="pf-cover pf-img-protected"
+          src="/assets/portfolio/00-cover.webp"
+          alt="AI Agent 架構全覽示意圖——從資料輸入到多 Agent 協作輸出的完整流程"
+          width="1200" height="1200"
+          loading="eager"
+          draggable="false">
+      </div>
+    </div>
+  </section>
+
+  <!-- ② 服務總覽 -->
+  <section class="pf-section">
+    <div class="wrap">
+      <p class="eyebrow">OVERVIEW</p>
+      <h2 style="font-size:clamp(24px,3vw,34px);font-weight:500;margin-bottom:36px;">我們建置什麼</h2>
+      <div class="pf-img-wrap">
+        <div class="pf-img-overlay" aria-hidden="true"></div>
+        <img
+          class="pf-overview-img pf-img-protected"
+          src="/assets/portfolio/01-services.webp"
+          alt="Think BIG 服務全覽：維運監控、文件自動化、AI 客服、本地知識庫、個人 AI 助理、資安把關六大服務類型示意"
+          width="1200" height="1200"
+          loading="lazy"
+          draggable="false">
+      </div>
+      <div class="pf-overview-desc">
+        <div>
+          <h3>企業 AI Agent 導入</h3>
+          <p>從成熟度評估（Assess）、架構建置（Build）、情境驗收（Validate）到年度治理維運（Operate），以 TB FRAME 四階段管理交付，確保可回溯、可查核。</p>
+        </div>
+        <div>
+          <h3>個人 AI 助理</h3>
+          <p>在個人電腦上部署可長期運作的 AI 助理，費用以自備 API 金鑰控管，不綁定單一大模型廠商。安裝、設定與維護由 Think BIG 工程師遠端協助。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ③ 精選作品 02–10 -->
+  <section class="pf-section">
+    <div class="wrap">
+      <p class="eyebrow">SELECTED WORKS</p>
+      <h2 style="font-size:clamp(24px,3vw,34px);font-weight:500;margin-bottom:64px;">九件精選建置</h2>
+      <div class="pf-works-grid">
+
+        <!-- 02 維運中心 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/02-ops-hub.webp"
+              alt="多系統整合維運監控看板示意，顯示即時狀態、異常告警與系統健康指標"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">02</p>
+            <h3>維運監控中心</h3>
+            <div class="pf-work-stat">全天候<span>自動值守</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>多個系統各自有告警，異常要等人通報才會知道，處理常常慢半拍。</dd>
+              <dt>做法</dt>
+              <dd>建立統一監控看板，整合各系統狀態，異常自動推播指定通道。</dd>
+              <dt>結果</dt>
+              <dd>異常即時可見，維運反應時間大幅縮短，不再依賴人員主動輪詢。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>Cloudflare Workers</li><li>Telegram Bot</li><li>自動告警</li><li>狀態看板</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 03 AI 入口 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/03-ai-portal.webp"
+              alt="企業知識問答介面示意，AI 依公司文件直接回答，並標示來源段落"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">03</p>
+            <h3>企業知識問答</h3>
+            <div class="pf-work-stat">私有<span>知識庫查詢</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>公司資料分散在不同平台，員工每次都要重新搜尋，找到了還不確定是否最新版。</dd>
+              <dt>做法</dt>
+              <dd>建置私有 RAG 知識庫，AI 依照公司文件直接回答，並標示原始來源。</dd>
+              <dt>結果</dt>
+              <dd>常見問題 AI 先答，人員只需處理真正需要判斷的事，且答案有文件可查。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>RAG</li><li>向量資料庫</li><li>文件索引</li><li>私有部署</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 04 文件自動化 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/04-doc-automation.webp"
+              alt="收文自動分類與回覆草稿生成流程示意，顯示從收件到產出草稿的自動化步驟"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">04</p>
+            <h3>文件自動化處理</h3>
+            <div class="pf-work-stat">重複作業<span>自動完成</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>收文、分類、初擬回覆每天重複，消耗大量人工時間，人員無法聚焦在判斷性工作。</dd>
+              <dt>做法</dt>
+              <dd>AI 讀入來文後自動分類，按對應格式產出初稿，人員審核後發出。</dd>
+              <dt>結果</dt>
+              <dd>文件處理量提升，人員只需審核最終稿，錯發與漏發情形明顯減少。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>文件解析</li><li>自動分類</li><li>草稿生成</li><li>人工審核閘門</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 05 AI 客服 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/05-ai-service.webp"
+              alt="官網 AI 客服對話介面示意，顯示問答流程與轉接機制"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">05</p>
+            <h3>官網 AI 客服</h3>
+            <div class="pf-work-stat">24h<span>即時回覆</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>官網諮詢在下班後無人值守，詢問容易流失，客戶等到隔天才有回應。</dd>
+              <dt>做法</dt>
+              <dd>部署 AI 客服，依知識庫回答常見問題，並自動將複雜需求轉交人員處理。</dd>
+              <dt>結果</dt>
+              <dd>全天候即時回覆，線上諮詢轉化率提升，客戶等待時間大幅縮短。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>Cloudflare Worker</li><li>Supabase</li><li>知識庫</li><li>轉接機制</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 06 安全語音通報 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/06-safety-call.webp"
+              alt="緊急語音通報系統示意，顯示觸發條件、自動撥打與確認收到的流程"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">06</p>
+            <h3>緊急語音通報</h3>
+            <div class="pf-work-stat">通報<span>確認到人為止</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>現場異常需要立即通知負責人，文字訊息容易被忽略，事故應變時間拉長。</dd>
+              <dt>做法</dt>
+              <dd>觸發條件成立後，系統自動撥打語音電話，直到確認收到為止。</dd>
+              <dt>結果</dt>
+              <dd>事故通報無遺漏，應變啟動時間縮短，責任鏈有記錄可查。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>Twilio</li><li>語音通話</li><li>觸發自動化</li><li>責任鏈記錄</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 07 本地 RAG -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/07-local-rag.webp"
+              alt="地端知識庫架構示意，資料在公司設備上完成向量化與查詢，不送往雲端"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">07</p>
+            <h3>地端知識庫</h3>
+            <div class="pf-work-stat">資料<span>不離公司設備</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>將公司文件上傳雲端服務有資料外洩疑慮，但又需要 AI 輔助查詢。</dd>
+              <dt>做法</dt>
+              <dd>在公司指定設備建置本地向量資料庫，向量化與查詢都在設備上完成。</dd>
+              <dt>結果</dt>
+              <dd>資料全程不離公司設備，知識查詢有準確來源標示，可驗收。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>Ollama</li><li>本地向量庫</li><li>資料主權</li><li>私有部署</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 08 個人 AI 平台 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/08-supersolo.webp"
+              alt="個人 AI 助理管理介面示意，顯示模型切換、用量追蹤與自訂指令"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">08</p>
+            <h3>個人 AI 助理平台</h3>
+            <div class="pf-work-stat">費用<span>依實際用量計</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>個人用戶想要長期運作的 AI 助理，但不想被綁在單一廠商，也難以控管費用。</dd>
+              <dt>做法</dt>
+              <dd>建置雲端 AI 助理平台，自備 API 金鑰即可使用，可切換不同模型。</dd>
+              <dt>結果</dt>
+              <dd>訂閱者依實際用量付費，模型可依任務切換，費用透明可追蹤。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>OpenClaw</li><li>Hermes</li><li>多模型支援</li><li>自備 API Key</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 09 資安把關 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/09-security-gate.webp"
+              alt="資安審查閘門流程示意，逐項核對 OWASP 紅線並產出可追溯的審查記錄"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">09</p>
+            <h3>出貨前資安把關</h3>
+            <div class="pf-work-stat">每次部署<span>都有文字記錄</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>AI 系統上線前難以系統化確認資安風險，審查標準因人而異。</dd>
+              <dt>做法</dt>
+              <dd>建立資安審查閘門（D4），每次部署逐項核對 OWASP 紅線，產出審查記錄。</dd>
+              <dt>結果</dt>
+              <dd>審查流程標準化，每個決策有文字依據，可追溯，不因人員異動而斷鏈。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>OWASP</li><li>部署閘門</li><li>審查記錄</li><li>自動化檢核</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 10 LINE 工作流程 -->
+        <article class="pf-work">
+          <div class="pf-img-wrap">
+            <div class="pf-img-overlay" aria-hidden="true"></div>
+            <img class="pf-work-img pf-img-protected"
+              src="/assets/portfolio/10-line-workflow.webp"
+              alt="LINE 訊息自動化工作流程示意，顯示訊息路由、自動回覆與人員轉接機制"
+              width="1200" height="1200" loading="lazy" draggable="false">
+            <span class="pf-work-img-note">示意畫面</span>
+          </div>
+          <div class="pf-work-body">
+            <p class="pf-work-num">10</p>
+            <h3>LINE 自動化工作流</h3>
+            <div class="pf-work-stat">重複訊息<span>自動處理</span></div>
+            <dl class="pf-trio">
+              <dt>痛點</dt>
+              <dd>內部協作與客戶溝通都在 LINE，但訊息量大、分類靠人工，容易遺漏。</dd>
+              <dt>做法</dt>
+              <dd>串接 LINE Messaging API，依訊息類型自動路由，常見問題自動回覆。</dd>
+              <dt>結果</dt>
+              <dd>重複性訊息自動處理，人員聚焦在真正需要判斷的對話，漏接率降低。</dd>
+            </dl>
+            <ul class="pf-tags">
+              <li>LINE Messaging API</li><li>Webhook</li><li>訊息路由</li><li>自動回覆</li>
+            </ul>
+          </div>
+        </article>
+
+      </div><!-- /pf-works-grid -->
+    </div>
+  </section>
+
+  <!-- ④ 應用場景 11–18 -->
+  <section class="pf-section">
+    <div class="wrap">
+      <p class="eyebrow">USE CASES</p>
+      <h2 style="font-size:clamp(24px,3vw,34px);font-weight:500;margin-bottom:16px;">八種應用場景</h2>
+      <p style="font-size:16px;color:var(--muted);max-width:640px;line-height:2;">
+        每個場景都是可以獨立啟動的切入點，先選最痛的一個，建立驗收標準，跑通後再擴展。
+      </p>
+
+      <ul class="pf-scenes-list">
+        <li>銷售跟進與提案</li>
+        <li>財務對帳與費用核實</li>
+        <li>會議記錄與代辦追蹤</li>
+        <li>業務數據分析與摘要</li>
+        <li>報價草稿生成</li>
+        <li>庫存異常監控</li>
+        <li>行銷文案與排程</li>
+        <li>新進人員到職引導</li>
+      </ul>
+
+      <div class="pf-scenes-grid">
+        <div class="pf-img-wrap">
+          <div class="pf-img-overlay" aria-hidden="true"></div>
+          <img class="pf-scene-img pf-img-protected"
+            src="/assets/portfolio/11-scene-sales-followup.webp"
+            alt="銷售跟進場景示意：AI 自動彙整拜訪記錄，產出後續行動清單"
+            width="1200" height="1200" loading="lazy" draggable="false">
+          <span class="pf-work-img-note">示意畫面</span>
+        </div>
+        <div class="pf-img-wrap">
+          <div class="pf-img-overlay" aria-hidden="true"></div>
+          <img class="pf-scene-img pf-img-protected"
+            src="/assets/portfolio/14-scene-biz-analysis.webp"
+            alt="業務分析場景示意：AI 彙整多份報表，產出關鍵指標摘要"
+            width="1200" height="1200" loading="lazy" draggable="false">
+          <span class="pf-work-img-note">示意畫面</span>
+        </div>
+        <div class="pf-img-wrap">
+          <div class="pf-img-overlay" aria-hidden="true"></div>
+          <img class="pf-scene-img pf-img-protected"
+            src="/assets/portfolio/17-scene-marketing.webp"
+            alt="行銷文案場景示意：AI 依品牌語調產出社群貼文草稿"
+            width="1200" height="1200" loading="lazy" draggable="false">
+          <span class="pf-work-img-note">示意畫面</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 導入與交付 19 -->
+  <section class="pf-section">
+    <div class="wrap">
+      <p class="eyebrow">DELIVERY</p>
+      <div class="pf-delivery-layout">
+        <div class="pf-img-wrap">
+          <div class="pf-img-overlay" aria-hidden="true"></div>
+          <img class="pf-delivery-img pf-img-protected"
+            src="/assets/portfolio/19-delivery.webp"
+            alt="TB FRAME 導入流程示意：評估、建置、驗收、維運四階段里程碑與交付物"
+            width="1200" height="1200" loading="lazy" draggable="false">
+          <span class="pf-work-img-note">示意畫面</span>
+        </div>
+        <div class="pf-delivery-body">
+          <h2>TB FRAME 導入流程</h2>
+          <p>不是裝好就走，而是四個階段、每個階段都有交付物與驗收條件，讓導入過程可追蹤、可覆核。</p>
+          <ol class="pf-steps">
+            <li><span>01</span><span><strong>Assess 評估定義</strong> — 確認流程範圍、資料準備與成熟度，輸出書面評估報告。</span></li>
+            <li><span>02</span><span><strong>Build 架構建置</strong> — 依評估結果建置 AI Agent，完成設定、串接與初測。</span></li>
+            <li><span>03</span><span><strong>Validate 驗證交付</strong> — 依書面驗收條件逐項測試，產出驗收紀錄。</span></li>
+            <li><span>04</span><span><strong>Operate 治理維運</strong> — 一年陪跑，問題追蹤、維護檢查與使用調整有紀錄可查。</span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 成效與聯絡 20b -->
+  <section class="pf-section">
+    <div class="wrap">
+      <p class="eyebrow">RESULTS</p>
+      <div class="pf-results-layout">
+        <div class="pf-img-wrap">
+          <div class="pf-img-overlay" aria-hidden="true"></div>
+          <img class="pf-results-img pf-img-protected"
+            src="/assets/portfolio/20b-results-web.webp"
+            alt="thinkbigtw.com 官網版成效截圖示意，顯示 AI Agent 維運、客服與內容自動化數據"
+            width="1200" height="1200" loading="lazy" draggable="false">
+          <span class="pf-work-img-note">示意畫面</span>
+        </div>
+        <div>
+          <h2 style="font-size:clamp(24px,3vw,34px);font-weight:500;margin-bottom:8px;">Think BIG 自己先跑</h2>
+          <p style="font-size:15px;color:var(--muted);line-height:2;margin-bottom:0;">
+            作品集裡的每件建置，都在 Think BIG 自家的官網、維運流程或業務管線上實際運作。
+            我們以自己的系統為試驗場，才能對導入過程的細節有第一手的了解。
+          </p>
+          <div class="pf-metrics">
+            <div>
+              <div class="pf-metric-num">9</div>
+              <div class="pf-metric-label">精選建置件數</div>
+            </div>
+            <div>
+              <div class="pf-metric-num">8</div>
+              <div class="pf-metric-label">可切入的應用場景</div>
+            </div>
+            <div>
+              <div class="pf-metric-num">4</div>
+              <div class="pf-metric-label">TB FRAME 導入階段</div>
+            </div>
+            <div>
+              <div class="pf-metric-num">1yr</div>
+              <div class="pf-metric-label">年度維運陪跑</div>
+            </div>
+          </div>
+          <div class="pf-cta-block">
+            <p>從一件事開始，先做成功再擴展。</p>
+            <a class="pf-btn" href="/enterprise/#consult">預約諮詢</a>
+            <a class="pf-btn pf-btn-outline" href="/enterprise/process/">了解交付流程</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+// 防右鍵另存與拖曳——覆蓋 pointer-events: none 讓 overlay 攔截
+(function() {
+  document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG' || e.target.closest('.pf-img-wrap')) {
+      e.preventDefault();
+    }
+  });
+  document.addEventListener('dragstart', function(e) {
+    if (e.target.tagName === 'IMG') e.preventDefault();
+  });
+})();
+</script>
+
+<!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/pricing/personal/" class="tb-personal-link">個人方案</a><a href="/portfolio/" aria-current="page">作品集</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/portfolio/en/" lang="en">English Portfolio</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+
+<script defer src="/assets/homesplit/interactions.js?v=20260927v8"></script>
+<script defer src="/nav.js"></script>
+<script defer src="/ask-ai.js?v=202609280928"></script>
+</body>
+</html>
