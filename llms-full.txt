@@ -2984,7 +2984,7 @@ GOVERNANCE IN PRACTICE
 ## 以可稽核的紀錄，
 建立營運信任。
 
-Think BIG 自家 AI 團隊涵蓋行銷、客服、業務與維運。透過變更登記、每日巡檢與守衛查核，將工作產物、執行責任及驗證紀錄納入同一套管理方式。
+Think BIG AI 團隊涵蓋行銷、客服、業務與維運。透過變更登記、每日巡檢與守衛查核，將工作產物、執行責任及驗證紀錄納入同一套管理方式。
 
 [檢視 AI 治理承諾 ›](https://thinkbigtw.com/trust/)
 
@@ -3922,7 +3922,7 @@ URL: https://thinkbigtw.com/portfolio/
 
 # AI Agent 實戰作品集｜Think BIG
 
-Think BIG 以自家運作為佐證，呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。
+Think BIG 呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果，每件作品均常態運行中。
 
 ## 精選建置（九件）
 
@@ -3965,7 +3965,7 @@ URL: https://thinkbigtw.com/portfolio/en/
 
 # AI Agent Portfolio｜Think BIG
 
-Think BIG builds AI Agents for operations monitoring, document automation, customer service, local knowledge retrieval, and security gates. Every case shown here runs on our own systems.
+Think BIG builds AI Agents for operations monitoring, document automation, customer service, local knowledge retrieval, and security gates. Every case shown here is actively deployed in production.
 
 ## Nine selected builds
 
