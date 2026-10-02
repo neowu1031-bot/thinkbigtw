@@ -7,8 +7,8 @@
 Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起：TB READINESS 導入成熟度自評、TB DELIVERY 導入建置、TB CONTINUITY 年度治理與維運。企業服務依確認範圍個別報價，不預設交付天數；不公開客戶身分。
 
 ## 作品集
-- [AI Agent 實戰作品集](https://thinkbigtw.com/portfolio/)：Think BIG 以自家運作為佐證，呈現維運監控、文件自動化、AI 客服、本地知識庫、資安把關等九件精選建置，以及八種應用場景切入點
-- [AI Agent Portfolio（English）](https://thinkbigtw.com/portfolio/en/)：Nine selected builds and eight use-case scenarios, all running on Think BIG's own systems
+- [AI Agent 實戰作品集](https://thinkbigtw.com/portfolio/)：Think BIG 呈現維運監控、文件自動化、AI 客服、本地知識庫、資安把關等九件精選建置，以及八種應用場景切入點
+- [AI Agent Portfolio（English）](https://thinkbigtw.com/portfolio/en/)：Nine selected builds and eight use-case scenarios, with real screenshots and measured data
 
 ## 企業導入（優先閱讀）
 - [什麼是 RAG？讓 AI 依公司文件回答](https://thinkbigtw.com/enterprise/rag/)：檢索增強生成、資料準備、權限與引用驗收
