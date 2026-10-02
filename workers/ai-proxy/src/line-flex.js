@@ -39,6 +39,7 @@ const SHOPEE_URL      = 'https://shopee.tw/shop/105010395';
 const PORTFOLIO_URL   = 'https://thinkbigtw.com/portfolio/';
 const CONTACT_URL     = 'https://thinkbigtw.com/contact/';
 const ENTERPRISE_URL  = 'https://thinkbigtw.com/enterprise/';
+const PRICING_URL     = 'https://thinkbigtw.com/pricing/';
 const SITE_URL        = 'https://thinkbigtw.com';
 
 // 每個 bubble body 文字上限（超出則拆 carousel）
@@ -396,6 +397,13 @@ export function splitText(text) {
  * @param {string} [options.intent]      強制指定意圖（'enterprise'|'personal'|'portfolio'|'default'）
  * @param {number} [options.maxButtons]  按鈕上限（0 = 不帶按鈕，預設 3）
  * @returns {{ type: 'flex', altText: string, contents: object }}
+ *
+ * 預設 CTA 規則（2026-10-02 NEO 核准）：
+ *   當 AI 回覆中沒有任何已知網址 → urlDrivenDefs.length === 0，且意圖偵測為 'default'
+ *   （不明確 / 沒對到特定方案），footer 固定放兩顆預設按鈕：
+ *     「企業導入」→ /enterprise/   「個人方案」→ /pricing/
+ *   已有按鈕（urlDrivenDefs > 0）或意圖非 default 時，不插入這兩顆。
+ *   歡迎卡片（buildWelcomeFlex）不受影響。
  */
 export function buildFlexMessage(replyText, options = {}) {
   const { intent: intentOverride = null, maxButtons = 3 } = options;
@@ -427,16 +435,28 @@ export function buildFlexMessage(replyText, options = {}) {
   const cappedCount = Math.min(maxButtons, 3);
   const merged = [...urlDrivenDefs];
 
-  for (const btn of intentButtons) {
+  // 預設 CTA（2026-10-02）：
+  //   回覆無任何網址按鈕（urlDrivenDefs.length===0）且意圖不明確（'default'）→
+  //   固定補上「企業導入」＋「個人方案」兩顆 CTA，取代一般意圖按鈕。
+  //   有 URL 按鈕或意圖明確時，仍走原有意圖按鈕填位邏輯。
+  const useDefaultCtas = urlDrivenDefs.length === 0 && intent === 'default';
+  const fillDefs = useDefaultCtas
+    ? [
+        { type: 'uri', label: '企業導入', uri: ENTERPRISE_URL },
+        { type: 'uri', label: '個人方案', uri: PRICING_URL },
+      ]
+    : intentButtons.map(btn =>
+        btn.action.type === 'uri'
+          ? { type: 'uri',     label: btn.action.label, uri:  btn.action.uri  }
+          : { type: 'message', label: btn.action.label, text: btn.action.text },
+      );
+
+  for (const def of fillDefs) {
     if (merged.length >= cappedCount) break;
-    const label = btn.action.label;
+    const label = def.label;
     if (seenLabels.has(label)) continue;
     seenLabels.add(label);
-    merged.push(
-      btn.action.type === 'uri'
-        ? { type: 'uri',     label, uri:  btn.action.uri  }
-        : { type: 'message', label, text: btn.action.text },
-    );
+    merged.push(def);
   }
 
   const finalDefs = merged.slice(0, cappedCount);
