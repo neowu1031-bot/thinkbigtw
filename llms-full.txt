@@ -1280,7 +1280,7 @@ THINK BIG
 
 AI Agent 市場
 
-## 現在有哪些 AI Agent？龍蝦（OpenClaw）會被取代嗎？
+## 現在有哪些 AI Agent？新的 AI Agent 出來了，還需要龍蝦嗎？
 
 兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。大模型品牌推出的 AI Agent 費用綁訂閱額度，適合需要品牌生態協作的任務；OpenClaw（龍蝦）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作。
 
@@ -1399,13 +1399,13 @@ Think BIG 編輯部 · 2026 年 9 月 26 日
 
 URL: https://thinkbigtw.com/guides/ai-agents/
 
-# AI Agent 有哪些？新 AI Agent 會取代龍蝦嗎｜2026 各家一次看懂｜Think BIG
+# AI Agent 有哪些？新的 AI Agent 出來了，還需要龍蝦嗎｜2026 各家一次看懂｜Think BIG
 
 [Guides](https://thinkbigtw.com/guides/) / AI Agents
 
 AI Agent 總覽 · 2026
 
-# 新 AI Agent 會不會取代龍蝦？各家 AI Agent 一次看懂
+# 新的 AI Agent 出來了，還需要龍蝦嗎？各家 AI Agent 一次看懂
 
 Think BIG 編輯部
 
@@ -1598,7 +1598,7 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模型用量費；模型用量費依實際使用量計算，由你直接付給模型商。詳見 [常見問題](https://thinkbigtw.com/faq/)。
 
-## 龍蝦會被取代嗎
+## 龍蝦還有用嗎
 
 不必二選一。品牌 AI Agent 和龍蝦（OpenClaw）擅長的工作不同：品牌 AI Agent 有品牌生態綁定，額度用完就停，適合需要協作或短時間高強度的任務；龍蝦可以自選模型、24 小時常駐、費用可控，適合長時間例行運作。
 
