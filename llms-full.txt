@@ -3922,7 +3922,7 @@ URL: https://thinkbigtw.com/portfolio/
 
 # AI Agent 實戰作品集｜Think BIG
 
-Think BIG 呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果，每件作品均常態運行中。
+Think BIG 呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。
 
 ## 精選建置（九件）
 
@@ -3965,7 +3965,7 @@ URL: https://thinkbigtw.com/portfolio/en/
 
 # AI Agent Portfolio｜Think BIG
 
-Think BIG builds AI Agents for operations monitoring, document automation, customer service, local knowledge retrieval, and security gates. Every case shown here is actively deployed in production.
+Think BIG builds AI Agents for operations monitoring, document automation, customer service, local knowledge retrieval, and security gates. Each card shows real screens and measured figures; items marked in development are not yet for sale.
 
 ## Nine selected builds
 
