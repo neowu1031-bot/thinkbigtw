@@ -568,3 +568,51 @@ test('T40: maxButtons:0 時 URL 按鈕也不帶（現有 T27 補充）', () => {
   assert.equal(msg.contents.type, 'bubble');
   assert.equal(msg.contents.footer, undefined, 'maxButtons:0 不應有 footer');
 });
+
+// ────────────────────────────────────────────────────────────────────────────
+// T41–T43：預設 CTA（2026-10-02 NEO）— 無網址時補「企業導入」＋「個人方案」
+// ────────────────────────────────────────────────────────────────────────────
+
+test('T41: 無網址且 intent=default → 固定補「企業導入」＋「個人方案」兩顆 CTA', () => {
+  // 意圖不明確的一般回覆（無任何方案關鍵字），AI 未放任何網址
+  const text = '您好！Think BIG 是一家 AI 服務顧問，很樂意為您說明，請問您想了解哪方面呢？';
+  const msg  = buildFlexMessage(text);
+  const labels = collectButtonLabels(msg.contents);
+  assert.ok(labels.includes('企業導入'), `缺少「企業導入」，實際：${labels}`);
+  assert.ok(labels.includes('個人方案'), `缺少「個人方案」，實際：${labels}`);
+  assert.ok(labels.length <= 3, `按鈕數應 ≤ 3，實際：${labels.length}`);
+  // 確認 URI 正確
+  const bubbles = getBubbles(msg);
+  const allBtns = bubbles.flatMap(b => b.footer?.contents ?? []).filter(c => c.type === 'button');
+  const enterprise = allBtns.find(b => b.action.label === '企業導入');
+  const personal   = allBtns.find(b => b.action.label === '個人方案');
+  assert.ok(enterprise?.action?.uri?.includes('/enterprise/'),   `企業導入 URI 不含 /enterprise/: ${enterprise?.action?.uri}`);
+  assert.ok(personal?.action?.uri?.includes('/pricing/'),        `個人方案 URI 不含 /pricing/: ${personal?.action?.uri}`);
+});
+
+test('T42: 回覆含已知網址時 → 走 URL 驅動按鈕，不加預設 CTA', () => {
+  // AI 回覆直接帶了 /enterprise/ 連結，應走 URL 驅動邏輯，不重複補 CTA
+  const text =
+    '您好，以下是企業導入相關資訊：\n' +
+    '・企業方案：https://thinkbigtw.com/enterprise/';
+  const msg  = buildFlexMessage(text);
+  const labels = collectButtonLabels(msg.contents);
+  // URL 驅動按鈕存在（企業導入）
+  assert.ok(labels.includes('企業導入'), `應有「企業導入」，實際：${labels}`);
+  // 無重複的「個人方案」（CTA 未被插入，因為有 URL 按鈕）
+  // 個人方案 CTA 只在無 URL 按鈕時插入
+  const personalCount = labels.filter(l => l === '個人方案').length;
+  assert.ok(personalCount <= 1, `「個人方案」按鈕應最多 1 顆，實際 ${personalCount}`);
+  // 總按鈕數 ≤ 3
+  assert.ok(labels.length <= 3, `按鈕數應 ≤ 3，實際：${labels.length}`);
+});
+
+test('T43: 無網址且強制 intent=enterprise → 不插入預設 CTA，走企業意圖按鈕', () => {
+  // 明確 intent override 時（非 default），不插入「企業導入＋個人方案」預設 CTA
+  const msg = buildFlexMessage('感謝您的詢問，我們會盡快回覆！', { intent: 'enterprise' });
+  const labels = collectButtonLabels(msg.contents);
+  // enterprise intent → 預約需求訪談
+  assert.ok(labels.includes('預約需求訪談'), `應有「預約需求訪談」，實際：${labels}`);
+  // 不應有「個人方案」CTA（intent 非 default，不走預設 CTA 路徑）
+  assert.ok(!labels.includes('個人方案'), `不應有「個人方案」CTA（intent=enterprise），實際：${labels}`);
+});
