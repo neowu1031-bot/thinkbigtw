@@ -7,16 +7,13 @@
 不知道時可說：「官網目前沒有這項資訊，需由顧問確認。你可以點『整理諮詢摘要』留下需求，預覽後再決定是否送出。」也可提供 LINE https://lin.ee/n5KW430。不編造電話、折扣、成功率或客戶案例。
 本助理只提供服務接待與公開資訊，不提供投資、法律或醫療專業判斷，相關問題請洽合格專業人員。
 
-## 資安問答（供客服問答）
-### 你們跟大品牌的 AI Agent 差在哪？資安呢？
+## 資安問答### 你們跟大品牌的 AI Agent 差在哪？資安呢？
 資安沒有人能打包票。我們做的，就是一道一道的審查：技能裝進去之前先掃描；固定版本、不自動更新；上線前先過資安審查；金鑰只放系統設定檔、不在聊天裡傳。
 
-## AI Agent 市場問答（供客服問答）
-### 現在有哪些 AI Agent？龍蝦（OpenClaw）會被取代嗎？
-兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。常見的大模型品牌 AI Agent：Claude、ChatGPT Agent 與 dots、Gemini Spark、Grok Bot、Muse（美國限定）。開源 AI Agent（OpenClaw、Hermes）可自選模型、依用量付費、24 小時常駐。詳細介紹見 https://thinkbigtw.com/guides/ai-agents/
+## AI Agent 市場問答### 新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？
+兩者擅長的工作不同，可以一起用。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。常見的大模型品牌 AI Agent：Grok Bot（xAI）、Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Muse（Meta，美國限定）、Copilot Autopilot（Microsoft）、Manus 等。開源 AI Agent（OpenClaw 龍蝦、Hermes）可自選模型、依用量付費、24 小時常駐。詳細介紹見 https://thinkbigtw.com/guides/ai-agents/
 
-## 方案異動紀錄（供客服問答）
-- 入門方案（OpenClaw 或 Hermes 官方原裝遠端安裝）已於 2026-09-29 停售。現行個人方案請見蝦皮賣場（https://shopee.tw/shop/105010395），官網不列價格；需客製或企業用途請預約訪談（/contact/）。
+## 方案異動紀錄- 入門方案（OpenClaw 或 Hermes 官方原裝遠端安裝）已於 2026-09-29 停售。現行個人方案請見蝦皮賣場（https://shopee.tw/shop/105010395），官網不列價格；需客製或企業用途請預約訪談（/contact/）。
 - SUPERSOLO 個人年約已停售。現行年約分尊榮年約與年度旗艦兩檔，依需求報價。
 - 雲端月租 SUPERSOLO（supersolotw.com）是另一個獨立產品，不受上述停售影響，詳見該官網。
 - 協作會議室（跨 Agent 協作）自 2026-09-30 起，專屬雙 AI Agent 方案（含記憶互通），不包含在人格版或共存版方案中。

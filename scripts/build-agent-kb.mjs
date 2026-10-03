@@ -6,7 +6,7 @@ const dir=path.join(root,'data/agent-kb');
 const chapters=fs.readdirSync(dir).filter(x=>x.endsWith('.md')).sort().map(file=>({
   id:file.slice(0,2), file, text:fs.readFileSync(path.join(dir,file),'utf8').replace(/^(版本|來源)：.*\n/gm,'').trim()
 }));
-if(chapters.length!==11) throw new Error('Expected eleven knowledge chapters');
+if(chapters.length!==12) throw new Error('Expected twelve knowledge chapters');
 // Token budget guard (備援路徑 fallback path): base (ch01+ch10) + any optional chapter must not exceed 2850.
 // 主力路徑 (MiniMax primary) 讀全本 KB，不受此限制。
 const estimateTokens=text=>Math.ceil(Array.from(text).reduce((n,c)=>n+(c.codePointAt(0)>127?2:1/3),0));
@@ -36,4 +36,4 @@ const KB_FULL_LIMIT=16000;
 const KB_WARN_THRESHOLD=Math.floor(KB_FULL_LIMIT*0.8); // 12800
 const fullKBTokens=estimateTokens(chapters.map(c=>c.text).join('\n\n'));
 if(fullKBTokens>KB_WARN_THRESHOLD) console.warn(`⚠ WARN: 全本 KB ${fullKBTokens} token 已超過主力路徑上限的 80%（${KB_WARN_THRESHOLD}），接近退回章節選取模式`);
-console.log(`PASS knowledge build: 11 chapters, ${faq.length} shared local FAQs | full KB ${fullKBTokens} tokens (limit ${KB_FULL_LIMIT}, warn at ${KB_WARN_THRESHOLD})`);
+console.log(`PASS knowledge build: 12 chapters, ${faq.length} shared local FAQs | full KB ${fullKBTokens} tokens (limit ${KB_FULL_LIMIT}, warn at ${KB_WARN_THRESHOLD})`);
