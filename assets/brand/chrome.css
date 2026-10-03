@@ -19,6 +19,9 @@
 #tb-footer .tb-copy{grid-column:1/-1;border-top:1px solid #414146;padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:12px;color:#c2bfc5}
 #tb-footer .tb-legal{display:flex;flex-wrap:wrap;gap:8px 16px}
 #tb-footer .tb-legal a{white-space:nowrap}
+#tb-footer .tb-f-social{display:flex;gap:12px;margin-top:18px}
+#tb-footer .tb-f-social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;padding:6px;border:1px solid #414146;border-radius:8px;flex-shrink:0}
+#tb-footer .tb-f-social svg{width:24px;height:24px;display:block;fill:currentColor}
 @media(max-width:800px){#tb-nav{padding:14px 20px;min-height:66px;gap:16px}
 #tb-nav>.tb-links{display:none}
 #tb-nav .tb-menu{display:block}
