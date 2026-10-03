@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-10-01T23:59:55.422Z",
+  "projectRoot": "/Users/wustanley/Desktop/thinkbigtw",
+  "structure": {
+    "hasPackageJson": false,
+    "hasTsConfig": false,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1790899195422
+}
