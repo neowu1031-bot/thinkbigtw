@@ -4,11 +4,11 @@ Run from the repository root: python3 scripts/sync-site-chrome.py
 from pathlib import Path
 import re,json
 ROOT=Path(__file__).resolve().parents[1]
-LINKS=[('企業導入','/enterprise/'),('AI 部門','/enterprise/departments/'),('導入流程','/enterprise/process/'),('資安承諾','/trust/'),('指南','/guides/'),('個人方案','/pricing/personal/'),('作品集','/portfolio/'),('AI 能見度','/services/ai-visibility/'),('Library','/library/')]
+LINKS=[('企業導入','/enterprise/'),('AI 部門','/enterprise/departments/'),('SEO／GEO','/services/ai-visibility/'),('個人方案','/pricing/personal/'),('導入流程','/enterprise/process/'),('資安承諾','/trust/'),('指南','/guides/'),('作品集','/portfolio/'),('Library','/library/')]
 PERSONAL=('pricing/personal/','annual/','annual-pro/','annual-flagship/','solo-pro/','openclaw-starter/','hermes-starter/','dual-agent/','full-agent/','skill-pack/','gift/','lobster/','harness/','guides/openclaw-daizhuang/','guides/openclaw-safe/','guides/hermes-vs-openclaw/','guides/yuanduan-daizhuang/')
 LOGO='<img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG">'
 def chrome():
- links=''.join(f'<a href="{url}"'+(' class="tb-personal-link"' if name=='個人方案' else '')+f'>{name}</a>' for name,url in LINKS)
+ links=''.join(f'<a href="{url}"'+(' class="tb-info-start"' if name=='導入流程' else '')+f'>{name}</a>' for name,url in LINKS)
  nav=f'''<!-- TB:NAV:START -->
 <nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><div class="tb-links">{links}</div><details class="tb-menu"><summary>選單</summary><div class="tb-links">{links}</div></details></nav>
 <!-- TB:NAV:END -->'''
