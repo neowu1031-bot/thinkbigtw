@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」｜Think BIG NEWS</title>
+<meta name="description" content="本地 AI 回答慢到每題要等好幾分鐘，最常見的原因不是電腦不夠力，而是模型根本沒用到顯卡、全程在用 CPU 算。本文整理怎麼用一個指令確認，以及我們實際部署時遇到的三種原因。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/">
+<meta property="og:title" content="本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」｜Think BIG NEWS">
+<meta property="og:description" content="本地 AI 慢，先懷疑設定，再懷疑電腦。一個指令十秒確認，附三種常見原因與第一手部署心得。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」｜Think BIG NEWS">
+<meta name="twitter:description" content="本地 AI 慢，先懷疑設定，再懷疑電腦。一個指令十秒確認，附三種常見原因與第一手部署心得。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/#article",
+      "headline": "本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」",
+      "description": "本地 AI 回答慢到每題要等好幾分鐘，最常見的原因不是電腦不夠力，而是模型根本沒用到顯卡、全程在用 CPU 算。本文整理怎麼用一個指令確認，以及我們實際部署時遇到的三種原因。",
+      "keywords": "本地 AI 很慢, 本地大模型 GPU, Ollama 沒用到 GPU, ollama ps 100% CPU, 本機部署 AI, AI Agent 本地模型, 顯示記憶體",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-10-05T20:00:00+08:00",
+      "dateModified": "2026-10-05T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "怎麼知道本地 AI 模型有沒有用到顯卡？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "用 Ollama 的話，打 ollama ps 看 PROCESSOR 欄：寫 100% GPU 是全部在顯卡上，100% CPU 是完全沒用到顯卡，出現 CPU/GPU 比例代表模型只有一部分放進顯卡。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "明明有獨立顯卡，為什麼 AI 還是用 CPU 跑？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "常見原因有驅動版本太舊、環境變數停用了顯卡、模型比顯示記憶體大，或顯卡沒被軟體偵測到。這些情況多半不會跳出錯誤訊息，所以要主動檢查。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "本地 AI 每題要等好幾分鐘，是電腦太差嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不一定。我們實際遇過的案例，多數是模型沒用到顯卡、全程在用 CPU 算。先確認 GPU 有沒有在動，再決定要不要升級硬體。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "模型是不是越大越好？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。放不進顯示記憶體的大模型，會有一部分改用 CPU 算，速度可能比一個小一號、能完整放進顯卡的模型還慢。模型大小要配合你的顯示記憶體。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "上下文視窗（AI 的記憶容量）要設多大？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ollama 預設是 4096 個 token。要調大可以，但每加大一級都會多吃記憶體；設太大可能讓整台電腦變得不穩。依機器規格逐步調整，比一次拉滿安全。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"首頁","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"Library","item":"https://thinkbigtw.com/library/"},
+        {"@type":"ListItem","position":3,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/library/news/"},
+        {"@type":"ListItem","position":4,"name":"本地跑大模型 GPU 檢查","item":"https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --paper:#f5f1e6;
+    --panel:#efe9db;
+    --ink:#1c1915;
+    --ink-soft:#575048;
+    --rule:#c9bfa8;
+    --accent:#9c2b1e;
+    --accent-soft:#c6614f;
+    --serif:'Noto Serif TC',Georgia,'Times New Roman',serif;
+    --sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;
+  }
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;
+    --rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;
+  }}
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}
+  .back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}
+  .masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .zh{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}
+  .dateline span{white-space:nowrap}
+  .dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .usage-note{font-family:var(--sans);font-size:12.5px;line-height:1.7;color:var(--ink-soft);max-width:44em;margin:14px auto 0;text-align:center;font-style:normal}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}
+  .body>*{break-inside:avoid-column}
+  .body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}
+  .body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}
+  .body strong{font-weight:700}
+  .code-inline{font-family:monospace;background:var(--panel);padding:1px 5px;border-radius:3px;font-size:14px}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column}
+  .firsthand p{margin:0 0 12px}
+  .firsthand p:last-child{margin:0}
+  .firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}
+  .houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}
+  .houseview p{margin:0 0 12px;font-size:15.5px}
+  .houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}
+  .faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}
+  .faq dt{font-weight:700;font-size:16px;margin-top:14px}
+  .faq dt:first-of-type{margin-top:0}
+  .faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}
+  .sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .colophon b{color:var(--accent);letter-spacing:.14em}
+  .colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">← Think BIG NEWS</a>
+  <div class="topbar">
+    <span>產業實測手記 · 第 002 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="zh">被　AI　看見</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 10 月 5 日　星期一</span>
+    <span class="dot">◆</span>
+    <span>AI 導入的第一手觀察</span>
+    <span class="dot">◆</span>
+    <span>第 002 期</span>
+  </div>
+
+  <p class="kicker">本機部署 AI · 實測手記</p>
+  <h2 class="headline">本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」</h2>
+  <p class="byline">Think BIG 自媒體部　報導　|　2026 / 10 / 05</p>
+  <p class="deck">本地 AI 慢到每題要等好幾分鐘，最常見的原因不是電腦不夠力，而是模型根本沒用到顯卡、全程在用 CPU 算。打一個指令 <code class="code-inline">ollama ps</code>，看「PROCESSOR」欄寫的是 100% GPU 還是 100% CPU，十秒就能確認。</p>
+  <p class="usage-note">（註：本文以開源工具 Ollama 為例說明，因為它是目前在個人電腦上跑本地模型最常見的方式之一；其他工具的原理相同，檢查指令不同。）</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <h2><span class="no">一、</span>現象：大家在討論什麼</h2>
+    <p class="lead">把 AI 模型裝在自己電腦上跑（本地部署），這一年從工程師的玩具變成一般人也會考慮的選項：資料不出門、不用按次付費、斷網也能用。隨之而來最常見的抱怨只有一句：「裝好了，但慢到不能用。」</p>
+    <p>這個抱怨在開源社群有很清楚的紀錄：</p>
+    <p>Ollama 官方 GitHub 上有使用者回報，模型會「偶爾不用 GPU、整個載入 CPU，CPU 使用率 100%，重開才恢復」。（來源：<a href="https://github.com/ollama/ollama/issues/13765" target="_blank" rel="noopener">ollama/ollama #13765</a>）</p>
+    <p>也有使用者回報，更新到某個版本後，模型不再自動使用 GPU，全部載入記憶體用 CPU 跑。（來源：<a href="https://github.com/ollama/ollama/issues/13320" target="_blank" rel="noopener">ollama/ollama #13320</a>）</p>
+    <p>多篇故障排除整理指出，這類問題最麻煩的地方是<strong>不會報錯</strong>：驅動版本太舊、某個環境變數被設成停用顯卡，模型都會安靜地改用 CPU，畫面上看起來一切正常。（來源：<a href="https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/" target="_blank" rel="noopener">cmaven 多 GPU 故障排除整理</a>、<a href="https://localaimaster.com/blog/ollama-not-using-gpu" target="_blank" rel="noopener">localaimaster.com</a>）</p>
+    <p>也就是說，「本地 AI 很慢」通常不是一個效能問題，而是一個<strong>沒被發現的設定問題</strong>。</p>
+
+    <h2><span class="no">二、</span>各方評價：本地跑 AI，值不值得？</h2>
+    <p><strong>看好的一方</strong>認為，本地部署的好處很實在：資料留在自己電腦、沒有按量計費的帳單焦慮、可以 24 小時常駐。對在意隱私、又想長時間讓 AI Agent 幫忙做事的人，這是雲端服務給不了的。</p>
+    <p><strong>保留的一方</strong>的意見集中在兩點：</p>
+    <p><strong>1. 門檻比想像高：</strong>驅動、環境變數、模型大小、記憶體配置，任何一環沒對上，效果就差很多，而且一般人不知道從哪裡查起。</p>
+    <p><strong>2. 硬體要對：</strong>模型如果比顯示記憶體大，放不下的部分會被分到 CPU 去算，速度明顯掉下來。官方說明裡也寫了，模型可能出現「部分 CPU、部分 GPU」的分配狀態。（來源：<a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">Ollama 官方 FAQ</a>）</p>
+    <p>兩邊其實說的是同一件事：本地 AI 可以很好用，但前提是有人確認它<strong>真的在用該用的硬體</strong>。</p>
+
+    <div class="firsthand">
+      <span class="lede">◆ 第一手手記</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+      <p>Think BIG 幫人把 AI Agent 裝在本機時，「GPU 沒在動」是我們最常遇到、也最容易被漏掉的問題。以下是不具名的通用經驗：</p>
+      <p><strong>1. 看起來正常，才是最危險的狀態。</strong>我們遇過一台機器，模型裝好、對話也答得出來，但每問一題要等上一到四分鐘，有時直接逾時。前面花了不少時間調其他設定，最後才查到：模型全程在用 CPU 推理，顯卡一點都沒用到。從此我們把「先確認 GPU 有在動」排到所有調校的第一步。</p>
+      <p><strong>2. 一個指標就能戳破。</strong>Ollama 有兩個地方可以看：<code class="code-inline">ollama ps</code> 的 PROCESSOR 欄（官方說明：100% GPU、100% CPU，或兩者混合），以及 API 回傳的顯示記憶體用量（<code class="code-inline">size_vram</code>）。<strong>顯示記憶體用量是 0，就是純 CPU 在跑</strong>，不管畫面看起來多正常。我們現在交付前一定截這個數字留證據。</p>
+      <p><strong>3. 原因常常不在「硬體夠不夠」。</strong>我們實際查到的原因有三種，都不是換電腦能解決的：</p>
+      <p><strong>顯卡沒被偵測到：</strong>部分新架構的內顯或整合型晶片，預設不會被自動抓到，需要額外的環境設定，而且要設在「實際執行模型的那個使用者帳號」底下才會生效。</p>
+      <p><strong>安裝環境有特殊字元：</strong>我們遇過偵測程序因為安裝路徑的關係直接失敗（這個坑會在下一期單獨講）。</p>
+      <p><strong>記憶體配置拉太滿：</strong>AI 一次能記住的內容（上下文視窗）設太大，記憶體被吃光，連帶整台系統不穩。Ollama 預設是 4096 個 token（官方 FAQ），要調大可以，但要配合機器規格抓合理值。</p>
+      <p><strong>4. 修好之後，差的不是一點點。</strong>同一台機器、同一個模型，從純 CPU 改成真的跑在顯卡上，回應從「等好幾分鐘」變成「幾秒內開始出字」。速度差這麼多，是因為設定，不是因為硬體升級。</p>
+    </div>
+
+    <h2><span class="no">四、</span>我們的建議：本地 AI 慢，先做這三步</h2>
+    <p><strong>先看 PROCESSOR 欄，再談其他。</strong>打 <code class="code-inline">ollama ps</code>，看到 100% CPU 就是沒用到顯卡；看到 CPU/GPU 混合，通常是模型比顯示記憶體大。這一步十秒，能省下你好幾個小時。</p>
+    <p><strong>模型大小配合顯示記憶體。</strong>不是參數越大越好。放不進顯示記憶體的模型，跑起來可能比一個小一號、但全部放得進顯卡的模型還慢。</p>
+    <p><strong>讓「確認 GPU」變成例行檢查。</strong>驅動更新、軟體更新、換使用者帳號之後，都可能讓模型默默改回 CPU。每次異動後重看一次，不要等到「怎麼又變慢了」才查。</p>
+    <p>一句話收尾：<strong>本地 AI 慢，先懷疑設定，再懷疑電腦。</strong>多數時候，你的電腦夠用，只是還沒被用上。</p>
+
+    <section class="houseview">
+      <span class="lede">◆ 編按 · Think BIG 的做法：這套架構帶來什麼</span>
+      <h2>交付前有證據，不是口頭說「裝好了」</h2>
+      <p><em>（以下是 Think BIG 自己的立場，與上方中立報導區隔。）</em></p>
+      <p>我們幫人本機部署 AI Agent 時，「GPU 真的在動」是交付前的必查項目，不是出問題才補做：</p>
+      <p><strong>交付前有證據，不是口頭說「裝好了」。</strong>我們會確認模型實際使用的硬體與顯示記憶體用量，並用「真的會呼叫工具」的任務實測回應速度，不只測聊天。</p>
+      <p><strong>資料跑在你自己手上。</strong>本機部署，資料落地在你的電腦；模型可依你的硬體挑選、之後也能換。</p>
+      <p><strong>固定版本、不自動更新。</strong>版本更新是 GPU 默默失效的常見原因之一，所以我們固定版本，有更新先驗過再上。</p>
+      <p>本地 AI 的價值，要在「真的跑在對的硬體上」之後才兌現。我們做的，就是把這一步確認完再交給你。</p>
+    </section>
+
+    <section class="faq">
+      <h3>常見問答 · FAQ</h3>
+      <dl>
+        <dt>Q：怎麼知道本地 AI 模型有沒有用到顯卡？</dt>
+        <dd>用 Ollama 的話，打 <code class="code-inline">ollama ps</code> 看 PROCESSOR 欄：寫 100% GPU 是全部在顯卡上，100% CPU 是完全沒用到顯卡，出現 CPU/GPU 比例代表模型只有一部分放進顯卡。</dd>
+        <dt>Q：明明有獨立顯卡，為什麼 AI 還是用 CPU 跑？</dt>
+        <dd>常見原因有驅動版本太舊、環境變數停用了顯卡、模型比顯示記憶體大，或顯卡沒被軟體偵測到。這些情況多半不會跳出錯誤訊息，所以要主動檢查。</dd>
+        <dt>Q：本地 AI 每題要等好幾分鐘，是電腦太差嗎？</dt>
+        <dd>不一定。我們實際遇過的案例，多數是模型沒用到顯卡、全程在用 CPU 算。先確認 GPU 有沒有在動，再決定要不要升級硬體。</dd>
+        <dt>Q：模型是不是越大越好？</dt>
+        <dd>不是。放不進顯示記憶體的大模型，會有一部分改用 CPU 算，速度可能比一個小一號、能完整放進顯卡的模型還慢。模型大小要配合你的顯示記憶體。</dd>
+        <dt>Q：上下文視窗（AI 的記憶容量）要設多大？</dt>
+        <dd>Ollama 預設是 4096 個 token。要調大可以，但每加大一級都會多吃記憶體；設太大可能讓整台電腦變得不穩。依機器規格逐步調整，比一次拉滿安全。</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    Ollama 官方 FAQ（PROCESSOR 欄判讀、預設上下文 4096）：<a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com/faq</a>　·　Ollama GitHub #13765（偶爾不用 GPU、改用 CPU）：<a href="https://github.com/ollama/ollama/issues/13765" target="_blank" rel="noopener">github.com/ollama/ollama/issues/13765</a>　·　Ollama GitHub #13320（更新後不再自動使用 GPU）：<a href="https://github.com/ollama/ollama/issues/13320" target="_blank" rel="noopener">github.com/ollama/ollama/issues/13320</a>　·　多 GPU 故障排除整理（驅動版本與靜默改用 CPU）：<a href="https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/" target="_blank" rel="noopener">cmaven.github.io</a>　·　Ollama 不用 GPU 的常見原因整理：<a href="https://localaimaster.com/blog/ollama-not-using-gpu" target="_blank" rel="noopener">localaimaster.com</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業實測手記，根據第一手部署經驗整理，內容不代表任何特定廠商立場，亦不針對任何公司或產品。引用之官方文件與社群回報均標註來源；各工具指令與預設值以官方文件最新版本為準。</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b>　·　AI 導入的第一手觀察
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
