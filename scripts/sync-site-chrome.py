@@ -4,7 +4,7 @@ Run from the repository root: python3 scripts/sync-site-chrome.py
 from pathlib import Path
 import re,json
 ROOT=Path(__file__).resolve().parents[1]
-LINKS=[('企業導入','/enterprise/'),('AI 部門','/enterprise/departments/'),('導入流程','/enterprise/process/'),('資安承諾','/trust/'),('指南','/guides/'),('個人方案','/pricing/personal/')]
+LINKS=[('企業導入','/enterprise/'),('AI 部門','/enterprise/departments/'),('導入流程','/enterprise/process/'),('資安承諾','/trust/'),('指南','/guides/'),('個人方案','/pricing/personal/'),('作品集','/portfolio/'),('Library','/library/')]
 PERSONAL=('pricing/personal/','annual/','annual-pro/','annual-flagship/','solo-pro/','openclaw-starter/','hermes-starter/','dual-agent/','full-agent/','skill-pack/','gift/','lobster/','harness/','guides/openclaw-daizhuang/','guides/openclaw-safe/','guides/hermes-vs-openclaw/','guides/yuanduan-daizhuang/')
 LOGO='<img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG">'
 def chrome():
