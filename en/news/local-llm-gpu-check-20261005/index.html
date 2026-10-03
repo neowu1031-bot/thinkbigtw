@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is Your Local AI Actually Using the GPU? "Installed" Doesn't Mean "Running Well" | Think BIG NEWS</title>
+<meta name="description" content="When a local AI model is painfully slow, the most likely cause isn't underpowered hardware — it's that the model is running entirely on the CPU. One command, ten seconds, and you'll know. First-hand deployment notes from Think BIG.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/">
+<link rel="alternate" hreflang="zh-Hant" href="https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/">
+<meta property="og:title" content="Is Your Local AI Actually Using the GPU? | Think BIG NEWS">
+<meta property="og:description" content="Slow local AI? Check the GPU first. One command, ten seconds to confirm, plus three root causes and first-hand deployment notes from Think BIG.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Is Your Local AI Actually Using the GPU? | Think BIG NEWS">
+<meta name="twitter:description" content="Slow local AI? Check the GPU first. One command, ten seconds to confirm.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/#article",
+      "headline": "Is Your Local AI Actually Using the GPU? \"Installed\" Doesn't Mean \"Running Well\"",
+      "description": "When a local AI model is painfully slow, the most likely cause isn't underpowered hardware — it's that the model is running entirely on the CPU. One command, ten seconds, and you'll know.",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG Editorial",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Think BIG Make it Real Co., Ltd.",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-10-05T20:00:00+08:00",
+      "dateModified": "2026-10-05T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/en/news/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I check whether my local AI model is using the GPU?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For Ollama, run `ollama ps` and look at the PROCESSOR column. 100% GPU means the model is fully on the GPU; 100% CPU means the GPU is not being used at all; a CPU/GPU split means only part of the model fits in video RAM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "I have a dedicated GPU — why is the AI still running on the CPU?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Common causes include an outdated driver, an environment variable that has disabled GPU access, a model that is larger than your available video RAM, or the GPU not being detected by the software at all. In most cases none of these produce an error message, so you have to check actively."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My local AI takes several minutes per response. Is my hardware too weak?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not necessarily. In most cases we have investigated, the model was running entirely on the CPU. Confirm that the GPU is being used before deciding to upgrade hardware."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a bigger model always better?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A model that doesn't fit fully in video RAM will have part of it offloaded to the CPU, which can actually make it slower than a smaller model that fits entirely on the GPU. Match model size to your available video RAM."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How large should I set the context window (AI memory)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ollama defaults to 4096 tokens. You can increase it, but each step up consumes more RAM; setting it too high can destabilize the whole machine. Adjust gradually based on your hardware, rather than setting it to the maximum."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://thinkbigtw.com/en/"},
+        {"@type":"ListItem","position":2,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/en/news/"},
+        {"@type":"ListItem","position":3,"name":"Is Your Local AI Actually Using the GPU?","item":"https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{
+    --paper:#f5f1e6;
+    --panel:#efe9db;
+    --ink:#1c1915;
+    --ink-soft:#575048;
+    --rule:#c9bfa8;
+    --accent:#9c2b1e;
+    --accent-soft:#c6614f;
+    --serif:'Noto Serif',Georgia,'Times New Roman',serif;
+    --sans:'Noto Sans','Helvetica Neue',Arial,sans-serif;
+  }
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;
+    --rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;
+  }}
+  *{box-sizing:border-box}
+  body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}
+  .back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}
+  .masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .sub{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}
+  .dateline span{white-space:nowrap}
+  .dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .usage-note{font-family:var(--sans);font-size:12.5px;line-height:1.7;color:var(--ink-soft);max-width:44em;margin:14px auto 0;text-align:center;font-style:normal}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}
+  .body>*{break-inside:avoid-column}
+  .body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}
+  .body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}
+  .body strong{font-weight:700}
+  .body code{font-family:'Courier New',Courier,monospace;font-size:.9em;background:var(--panel);padding:1px 5px;border-radius:3px}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column}
+  .firsthand p{margin:0 0 12px}
+  .firsthand p:last-child{margin:0}
+  .firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}
+  .houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}
+  .houseview p{margin:0 0 12px;font-size:15.5px}
+  .houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}
+  .faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}
+  .faq dt{font-weight:700;font-size:16px;margin-top:14px}
+  .faq dt:first-of-type{margin-top:0}
+  .faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}
+  .sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+  .colophon b{color:var(--accent);letter-spacing:.14em}
+  .colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/local-llm-gpu-check-20261005/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/local-llm-gpu-check-20261005/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&#8592; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>Field Notes on AI Deployment &middot; Issue 002</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="sub">SEEN BY AI</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>Monday, October 5, 2026</span>
+    <span class="dot">&#9670;</span>
+    <span>First-hand observations on AI deployment</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 002</span>
+  </div>
+
+  <p class="kicker">Local AI Deployment</p>
+  <h2 class="headline">Is your local AI actually using the GPU? "Installed" doesn't mean "running well"</h2>
+  <p class="byline">Think BIG Editorial &nbsp;|&nbsp; October 5, 2026</p>
+  <p class="deck">When a local AI model is painfully slow — minutes per response, or constant timeouts — the most likely cause isn't underpowered hardware. It's that the model is running entirely on the CPU, and the GPU is sitting idle. One command, ten seconds, and you'll know for certain.</p>
+  <p class="usage-note">(Note: This article uses Ollama as the illustrative example because it is one of the most common tools for running local models on a personal computer. The underlying principles apply to other runtimes; the specific commands differ.)</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <h2><span class="no">1.</span> The Situation: A well-documented gap</h2>
+    <p class="lead">Running an AI model on your own machine — no subscription, no data leaving the building, available offline — has gone from an enthusiast experiment to a realistic option for individuals and small teams. The most common complaint that followed is a single sentence: "I installed it, but it's too slow to use."</p>
+    <p>The open-source community has documented this thoroughly. Ollama's GitHub issue tracker includes reports of models that "occasionally fall back to CPU, causing 100% CPU utilization, until a restart." (<a href="https://github.com/ollama/ollama/issues/13765" target="_blank" rel="noopener">ollama/ollama #13765</a>) Another thread describes a version update that caused models to stop using the GPU entirely. (<a href="https://github.com/ollama/ollama/issues/13320" target="_blank" rel="noopener">ollama/ollama #13320</a>) Published troubleshooting guides note that this failure mode is particularly insidious because <strong>it produces no error message</strong> — an outdated driver, a disabled environment variable, and the model quietly falls back to CPU, while everything on screen looks normal. (<a href="https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/" target="_blank" rel="noopener">cmaven.github.io</a>, <a href="https://localaimaster.com/blog/ollama-not-using-gpu" target="_blank" rel="noopener">localaimaster.com</a>)</p>
+    <p>In other words: a "slow local AI" is usually not a performance problem. It's a <strong>configuration problem that hasn't been noticed yet.</strong></p>
+
+    <h2><span class="no">2.</span> The Debate: Is local deployment worth it?</h2>
+    <p>The <strong>case for local deployment</strong> is concrete: data stays on your hardware, there's no per-token bill anxiety, and the model can run around the clock as part of an AI Agent workflow. For anyone who cares about privacy or wants continuous AI presence without ongoing cloud costs, this is something cloud services simply can't offer.</p>
+    <p>The <strong>reservations</strong> cluster around two points:</p>
+    <p><strong>The setup threshold is higher than expected.</strong> Driver version, environment variables, model size relative to video RAM, memory allocation — any one of these being wrong degrades the result significantly, and there's no obvious starting point for diagnosis.</p>
+    <p><strong>Hardware has to match the model.</strong> If the model is larger than the available video RAM, the overflow gets offloaded to the CPU. The official Ollama FAQ notes that models can end up in a "partial CPU, partial GPU" state. (<a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com/faq</a>) That split slows everything down.</p>
+    <p>Both sides are pointing at the same thing: local AI can be excellent, but only after someone confirms it's actually running on the right hardware.</p>
+
+    <div class="firsthand">
+      <span class="lede">&#9670; First-Hand Notes</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">3. What we learned from actually doing this</h2>
+      <p><strong>"Looks fine" is the most dangerous state.</strong> We had a machine where the model was installed, conversations worked, and nothing reported an error — but every response took one to four minutes, with occasional timeouts. We spent considerable time adjusting other settings before finally checking: the model had been running 100% on the CPU. The GPU was untouched. We now check GPU utilization before touching anything else.</p>
+      <p><strong>One metric is all you need.</strong> <code>ollama ps</code> shows the PROCESSOR column — 100% GPU, 100% CPU, or a split. The API also returns video RAM usage (<code>size_vram</code>). <strong>If <code>size_vram</code> is zero, the model is on CPU,</strong> regardless of what everything else looks like. We screenshot this number before every delivery.</p>
+      <p><strong>Three root causes we've actually encountered</strong> — none requiring a hardware upgrade:</p>
+      <p><strong>The GPU wasn't detected.</strong> Some newer integrated or hybrid graphics architectures aren't automatically recognized. They require additional environment configuration, and that configuration must be set for the specific user account that runs the model, not just the admin account.</p>
+      <p><strong>The install path contained non-ASCII characters.</strong> The detection process crashed silently when the path included characters outside standard ASCII. Moving to a plain ASCII path fixed it immediately — the kind of trap that never appears in any spec sheet.</p>
+      <p><strong>The context window was set too large.</strong> Setting the AI's memory (context window) too high exhausted shared system RAM and caused cascading system instability. Ollama defaults to 4096 tokens (per the official FAQ) — that's a reasonable baseline. Increasing it is fine, but it should be sized to the machine.</p>
+      <p><strong>The difference after fixing it.</strong> Same machine, same model — switching from CPU-only to actual GPU use took response time from "minutes per question" to "output starts within seconds." That's a configuration fix, not a hardware upgrade.</p>
+    </div>
+
+    <h2><span class="no">4.</span> Our recommendation: Three steps when local AI is slow</h2>
+    <p><strong>Check the PROCESSOR column first — before anything else.</strong> Run <code>ollama ps</code>. 100% CPU means the GPU isn't being used; a CPU/GPU split usually means the model is larger than available video RAM. This takes ten seconds and can save hours.</p>
+    <p><strong>Match model size to video RAM.</strong> Bigger isn't always better. A smaller model that fits entirely in video RAM will often outperform a larger model that spills onto the CPU. Choose based on what your hardware can actually hold.</p>
+    <p><strong>Make "confirm the GPU" a standing check.</strong> Driver updates, software updates, and account changes can all silently revert to CPU. Check after any meaningful change — don't wait for "why is this slow again?" to surface the issue.</p>
+    <p>One line to close with: <strong>when local AI is slow, suspect the configuration before the hardware.</strong> In most cases, the machine is capable enough — it just hasn't been used correctly yet.</p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; Editorial &middot; How Think BIG approaches this</span>
+      <h2>What "delivered and running well" actually means</h2>
+      <p>When we deploy a local AI Agent on a client's machine, "GPU actually running" is a mandatory pre-delivery check — not something we do only when a problem surfaces. Our delivery standard includes:</p>
+      <p><strong>Evidence before handoff, not a verbal "it's installed."</strong> We confirm which hardware the model is using and record the video RAM consumption. We also run a task that calls a tool — not just a chat response — and verify the response time. Screenshots are kept as delivery documentation.</p>
+      <p><strong>Your data stays on your hardware.</strong> Local deployment keeps records and configuration on your machine. The model can be swapped as better or lower-cost options emerge.</p>
+      <p><strong>Pinned versions; no automatic updates.</strong> A version update is one of the most common causes of GPU fallback. We pin the version and validate any update before applying it — stability over chasing the latest release.</p>
+      <p>The value of local AI only materializes once it's confirmed to be running on the right hardware. That confirmation is what we deliver before handing over the keys.</p>
+    </section>
+
+    <section class="faq">
+      <h3>FAQ &middot; Frequently Asked Questions</h3>
+      <dl>
+        <dt>Q: How do I check whether my local AI model is using the GPU?</dt>
+        <dd>For Ollama, run <code>ollama ps</code> and look at the PROCESSOR column. 100% GPU means fully on GPU; 100% CPU means the GPU is not being used; a split ratio means only part of the model fits in video RAM.</dd>
+        <dt>Q: I have a dedicated GPU — why is the AI still running on CPU?</dt>
+        <dd>Common causes: outdated driver, an environment variable that has disabled GPU access, a model larger than available video RAM, or the GPU not detected by the software. Most of these produce no error message, so you have to check actively.</dd>
+        <dt>Q: My local AI takes minutes per response. Is my hardware too weak?</dt>
+        <dd>Not necessarily. In most cases we've investigated, the model was running entirely on CPU. Confirm GPU is being used before deciding to upgrade.</dd>
+        <dt>Q: Is a bigger model always better?</dt>
+        <dd>No. A model that doesn't fit in video RAM has part offloaded to CPU, which can make it slower than a smaller model that fits entirely on the GPU. Match model size to available video RAM.</dd>
+        <dt>Q: How large should I set the context window?</dt>
+        <dd>Ollama defaults to 4096 tokens. Increasing is fine, but each step up consumes more RAM; setting it too high can destabilize the whole machine. Increase gradually based on your hardware, not all at once.</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Ollama official FAQ (PROCESSOR column interpretation, default context 4096):
+    <a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com</a>
+    &nbsp;&middot;&nbsp;
+    Ollama GitHub #13765 (intermittent CPU fallback):
+    <a href="https://github.com/ollama/ollama/issues/13765" target="_blank" rel="noopener">github.com/ollama/ollama/issues/13765</a>
+    &nbsp;&middot;&nbsp;
+    Ollama GitHub #13320 (update breaks GPU use):
+    <a href="https://github.com/ollama/ollama/issues/13320" target="_blank" rel="noopener">github.com/ollama/ollama/issues/13320</a>
+    &nbsp;&middot;&nbsp;
+    Multi-GPU troubleshooting guide (driver version, silent CPU fallback):
+    <a href="https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/" target="_blank" rel="noopener">cmaven.github.io</a>
+    &nbsp;&middot;&nbsp;
+    Ollama GPU not used — common causes:
+    <a href="https://localaimaster.com/blog/ollama-not-using-gpu" target="_blank" rel="noopener">localaimaster.com</a>
+  </div>
+  <p class="disclaimer">This article is a Think BIG field notes publication, based on first-hand deployment experience. The views expressed do not represent any specific vendor or product. All named sources are linked inline; commands and default values are based on the official Ollama documentation current at time of publication.</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &middot; First-Hand Observations on AI Deployment
+    <span class="brand">Think BIG, Make it Real! &nbsp; Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main>
+<script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/library/news/local-llm-gpu-check-20261005/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

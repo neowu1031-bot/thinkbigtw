@@ -13,7 +13,12 @@
     '/': '/en/',
     '/contact/': '/en/contact/',
     '/pricing/': '/en/pricing/',
-    '/portfolio/': '/portfolio/en/'
+    '/portfolio/': '/portfolio/en/',
+    '/library/': '/en/news/',
+    '/library/news/': '/en/news/',
+    '/library/news/lobster-hermes-abandonment-20261003/': '/en/news/lobster-hermes-abandonment-20261003/',
+    '/library/news/local-llm-gpu-check-20261005/': '/en/news/local-llm-gpu-check-20261005/',
+    '/services/ai-visibility/': '/en/services/seo-geo/'
   };
 
   function getEnDest(path) {
@@ -36,6 +41,8 @@
   }
 
   function injectLangToggle(nav) {
+    /* Skip EN toggle injection on English-language pages (they already have a 中文 link) */
+    if (nav.getAttribute('aria-label') === 'Main navigation') return;
     /* Inject once per page — guard via the flag that already exists */
     if (!document.getElementById('tb-lang-css')) {
       var s = document.createElement('style');
