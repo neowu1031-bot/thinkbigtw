@@ -1,5 +1,6 @@
 .git-local/
-.claude/worktrees/
+.claude/
+.claude-flow/
 **/.wrangler/
 node_modules/
 *.bak.*
