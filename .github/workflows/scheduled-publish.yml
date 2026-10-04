@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           ref: main
           fetch-depth: 0
@@ -55,10 +55,13 @@ jobs:
             if ! git rebase -q main; then
               git rebase --abort || true
               git checkout -q main
-              gh issue create \
-                --title "Scheduled publish conflict: ${b}" \
-                --body "分支 \`${b}\` 排定 ${when} 上線，但與 main 衝突，未發布。請手動 rebase 後重推。" || true
-              echo "- conflict \`${b}\`：已開 issue，未發布" >> "$GITHUB_STEP_SUMMARY"
+              title="Scheduled publish conflict: ${b}"
+              if ! gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -qxF "${title}"; then
+                gh issue create \
+                  --title "${title}" \
+                  --body "分支 \`${b}\` 排定 ${when} 上線，但與 main 衝突，未發布。請手動 rebase 後重推。" || true
+              fi
+              echo "- conflict \`${b}\`：已開 issue（若無既有同名 open issue），未發布" >> "$GITHUB_STEP_SUMMARY"
               continue
             fi
             git checkout -q main
