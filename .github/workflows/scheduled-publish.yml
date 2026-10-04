@@ -1,0 +1,80 @@
+name: Scheduled publish
+
+# 定時上線：把 publish/<UTC時間>-<slug> 分支在指定時間合進 main，再觸發 Pages 部署。
+# 分支命名：publish/YYYYMMDDTHHMMZ-<slug>（UTC），例：publish/20261005T1200Z-gpu-check
+# 注意：GitHub 排程可能延遲 5–30 分鐘。
+
+on:
+  schedule:
+    - cron: "7,37 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+  issues: write
+
+concurrency:
+  group: scheduled-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Merge due publish branches
+        id: merge
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          now=$(date -u +%Y%m%dT%H%MZ)
+          echo "Now (UTC): ${now}" >> "$GITHUB_STEP_SUMMARY"
+          published=0
+          branches=$(git for-each-ref --format='%(refname:strip=3)' 'refs/remotes/origin/publish/' | sort)
+          for b in $branches; do
+            name=${b#publish/}
+            when=${name%%-*}
+            if ! [[ "${when}" =~ ^[0-9]{8}T[0-9]{4}Z$ ]]; then
+              echo "- skip \`${b}\`：名稱格式不符" >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            if [[ "${when}" > "${now}" ]]; then
+              echo "- wait \`${b}\`（排定 ${when}）" >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            git checkout -q -B work "origin/${b}"
+            if ! git rebase -q main; then
+              git rebase --abort || true
+              git checkout -q main
+              gh issue create \
+                --title "Scheduled publish conflict: ${b}" \
+                --body "分支 \`${b}\` 排定 ${when} 上線，但與 main 衝突，未發布。請手動 rebase 後重推。" || true
+              echo "- conflict \`${b}\`：已開 issue，未發布" >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            git checkout -q main
+            git merge -q --ff-only work
+            git push origin main
+            git push origin --delete "${b}"
+            echo "- published \`${b}\` → main $(git rev-parse --short HEAD)" >> "$GITHUB_STEP_SUMMARY"
+            published=$((published + 1))
+          done
+          echo "published=$published" >> "$GITHUB_OUTPUT"
+
+      # GITHUB_TOKEN 推的 commit 不會觸發 push 事件，但可以觸發 workflow_dispatch
+      - name: Trigger Pages deploy
+        if: steps.merge.outputs.published != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run pages.yml --ref main
+          echo "Pages deploy triggered" >> "$GITHUB_STEP_SUMMARY"
