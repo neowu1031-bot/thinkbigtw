@@ -102,7 +102,7 @@
           "name": "What should I watch out for with third-party skills or plugins?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "They typically have direct access to your files and accounts. Before installing, verify the source, do a basic security check, pin the version, and turn off automatic updates. Nobody can provide an absolute security guarantee — the goal is to check every layer you can."
+            "text": "They typically have direct access to your files and accounts. Before installing, verify the source, do a basic security check, pin the version, and turn off automatic updates. Nobody can promise perfect security — the goal is to check every layer you can."
           }
         }
       ]
@@ -238,7 +238,7 @@
       <p><strong>"Running" doesn't mean "running well."</strong> We deployed a local AI setup on one machine that looked fine — it answered questions — but every single response took one to four minutes, sometimes timing out entirely. After a long diagnostic detour, we found the model had been running entirely on the CPU. The GPU was doing nothing. Now we check GPU utilization before we change anything else.</p>
       <p><strong>One verifiable metric is all you need.</strong> For Ollama-based setups, <code>ollama ps</code> shows the PROCESSOR column (100% GPU, 100% CPU, or a split). The API also returns video RAM usage (<code>size_vram</code>). <strong>If video RAM usage is zero, it's running entirely on CPU</strong> — regardless of how normal things look. We screenshot this number before every delivery.</p>
       <p><strong>The reason is usually not "not enough hardware."</strong> Three root causes we've encountered, none of which require buying new equipment: the GPU wasn't detected (some integrated or hybrid graphics cards need extra environment configuration); the install path contained non-ASCII characters that crashed the detection process; the context window was set too large, which exhausted shared system memory and caused repeated crashes across the whole machine. AI memory is not "bigger is always better."</p>
-      <p><strong>Security has no absolute guarantee.</strong> What we can do is check every layer: scan skills before installation, pin versions, audit again before going live, and keep keys in system config rather than in plain text. This isn't "we're safer than others" — it's "we've checked everything that can be checked."</p>
+      <p><strong>Nobody can promise perfect security.</strong> What we can do is check every layer: scan skills before installation, pin versions, audit again before going live, and keep keys in system config rather than in plain text. This isn't "we're safer than others" — it's "we've checked everything that can be checked."</p>
     </div>
 
     <h2><span class="no">4.</span> Our recommendation: Three questions to answer before you deploy</h2>
@@ -267,7 +267,7 @@
         <dt>Q: Local or cloud — which suits me?</dt>
         <dd>Depends on the use case. If data residency matters, you want continuous operation, or you need predictable costs, local deployment makes more sense. For instant access without managing maintenance, cloud is more convenient. Both can be combined.</dd>
         <dt>Q: What should I watch out for with third-party skills or plugins?</dt>
-        <dd>They typically have direct access to your files and accounts. Verify the source, run a basic security check, pin the version, and turn off auto-updates. Nobody can provide an absolute security guarantee — the goal is to check every layer you can.</dd>
+        <dd>They typically have direct access to your files and accounts. Verify the source, run a basic security check, pin the version, and turn off auto-updates. Nobody can promise perfect security — the goal is to check every layer you can.</dd>
       </dl>
     </section>
   </div>
