@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI | Think BIG NEWS</title>
+<meta name="description" content="AI hallucinations happen when a model states uncertain things with full confidence. A 2025 OpenAI paper argues standard training and evaluation reward guessing over admitting uncertainty. We pull together published research from law, medicine, and summarization benchmarks, plus our own first-hand run-in, to show how to avoid being misled.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/ai-hallucination-20261012/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/ai-hallucination-20261012/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/ai-hallucination-20261012/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/ai-hallucination-20261012/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/ai-hallucination-20261012/">
+<meta property="og:title" content="Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI | Think BIG NEWS">
+<meta property="og:description" content="Training rewards guessing over admitting uncertainty. Legal RAG tools still hallucinate on 17–33% of queries. Getting pushed back makes AI more likely to flip from right to wrong. Five habits. Five business steps.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Confidently Wrong: Our AI Said We Had Nothing to Do with AI | Think BIG NEWS">
+<meta name="twitter:description" content="AI hallucinations, why they happen, and five habits to stop being misled.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/ai-hallucination-20261012/#article",
+      "headline": "Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI",
+      "description": "AI hallucinations happen when a model states uncertain things with full confidence. A 2025 OpenAI paper argues standard training and evaluation reward guessing over admitting uncertainty.",
+      "keywords": "AI hallucination, why does AI make things up, confidently wrong AI, can I trust AI answers, RAG hallucination, AI fact-checking, Taiwan company registration, AI agent deployment, GEO",
+      "author": {"@type": "Organization", "name": "Think BIG Content Team", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "Think BIG Make it Real Co., Ltd.", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-12T20:00:00+08:00",
+      "dateModified": "2026-10-12T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/ai-hallucination-20261012/",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/en/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/ai-hallucination-20261012/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is an AI hallucination?", "acceptedAnswer": {"@type": "Answer", "text": "An AI hallucination is content an AI generates that sounds plausible but is false or doesn't exist, usually delivered in the same confident tone as a correct answer. NIST calls it confabulation: confidently stated but erroneous or false content."}},
+        {"@type": "Question", "name": "Why does AI sound so sure when it's wrong?", "acceptedAnswer": {"@type": "Answer", "text": "A 2025 OpenAI paper argues that training and evaluation work like a multiple-choice exam: guessing can earn points, while 'I don't know' earns zero, so models learn to guess. Rarely seen facts, like a small company's registration details, are especially likely to come out wrong."}},
+        {"@type": "Question", "name": "If an AI changes its answer after I push back, can I trust the new answer?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. Research at ICLR 2024 found that AI assistants often change their answers when asked 'Are you sure?', and switching from correct to incorrect is more common than the reverse. Check both answers against the original source."}},
+        {"@type": "Question", "name": "If AI answers from our own documents using RAG, will it stop hallucinating?", "acceptedAnswer": {"@type": "Answer", "text": "It will hallucinate less, but not zero. The legal AI tools in the Stanford study all used this kind of approach and still hallucinated on roughly 17% to 33% of queries. Pair it with citations, an explicit 'I don't know' rule, and human review."}},
+        {"@type": "Question", "name": "How can I check what a Taiwanese company is actually registered to do?", "acceptedAnswer": {"@type": "Answer", "text": "Search the company name or tax ID on the Ministry of Economic Affairs' public company registration lookup at findbiz.nat.gov.tw. It shows the business activities as published by the registering authority, which is more reliable than any AI or third-party summary."}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"News","item":"https://thinkbigtw.com/en/news/"},
+        {"@type":"ListItem","position":3,"name":"Confidently Wrong: AI Hallucinations","item":"https://thinkbigtw.com/en/news/ai-hallucination-20261012/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .zh{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 15px}.body th{background:var(--panel);font-family:var(--sans);font-weight:700;font-size:12px;padding:6px 8px;text-align:left;border:1px solid var(--rule)}.body td{padding:6px 8px;border:1px solid var(--rule);vertical-align:top}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/" lang="zh-Hant">&#20013;&#25991;</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/" lang="zh-Hant">&#20013;&#25991;</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>Field Notes &middot; Issue 006</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="zh">&#34987;&#12288;AI&#12288;&#30475;&#35211;</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>October 12, 2026 &middot; Monday</span>
+    <span class="dot">&#9670;</span>
+    <span>First-hand observations on AI deployment</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 006</span>
+  </div>
+
+  <p class="kicker">AI Hallucinations &middot; Verification Habits &amp; Business Workflow</p>
+  <h2 class="headline">Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI</h2>
+  <p class="byline">Think BIG Content Team &nbsp;|&nbsp; October 12, 2026</p>
+  <p class="deck">Training rewards guessing, not admitting uncertainty. Legal RAG tools still hallucinate on 17&ndash;33% of queries. Being pushed back makes AI more likely to flip from right to wrong. Verify important facts at the source.</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <h2><span class="no">1.</span> What's happening: AI sounds just as sure when it's wrong</h2>
+    <p class="lead">A &ldquo;hallucination&rdquo; is AI-generated content that sounds plausible but isn&rsquo;t true. The U.S. National Institute of Standards and Technology (NIST) calls it <em>confabulation</em> in its July 2024 generative AI risk profile: the production of confidently stated but erroneous or false content. (<a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener">NIST AI 600-1</a>) The real problem isn&rsquo;t that AI makes mistakes. It&rsquo;s that the tone doesn&rsquo;t change when it does.</p>
+    <p><strong>Why does this happen?</strong> In a September 2025 paper, <em>Why Language Models Hallucinate</em>, OpenAI researchers argue that standard training and evaluation procedures reward guessing rather than acknowledging uncertainty. (<a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">arXiv 2509.04664</a>, <a href="https://openai.com/index/why-language-models-hallucinate/" target="_blank" rel="noopener">OpenAI explainer</a>) Their analogy is a multiple-choice exam: guessing might pay off; leaving it blank guarantees zero. When models are graded on accuracy alone, the one that guesses looks better. Their comparison of two OpenAI models on the SimpleQA evaluation:</p>
+    <table>
+      <thead><tr><th></th><th>Model that abstains when unsure</th><th>Model that answers nearly everything</th></tr></thead>
+      <tbody>
+        <tr><td>Abstention rate</td><td>52%</td><td>1%</td></tr>
+        <tr><td>Accuracy</td><td>22%</td><td>24%</td></tr>
+        <tr><td>Error rate</td><td>26%</td><td>75%</td></tr>
+      </tbody>
+    </table>
+    <p>Accuracy differs by just two points. The error rate is nearly three times higher. The paper also explains <strong>which facts are most at risk</strong>: spelling and grammar follow patterns, so errors fade as models scale. But arbitrary, rarely seen facts &mdash; like a specific person&rsquo;s birthday, or a small company&rsquo;s registered activities &mdash; can&rsquo;t be inferred from patterns, and that&rsquo;s where hallucinations show up.</p>
+    <p><strong>Even with the right document in hand, AI can still drift.</strong> Vectara&rsquo;s Hallucination Leaderboard gives each model an article, tells it to summarize using only information provided, and checks whether the summary adds anything not in the source. The version updated September 22, 2026, tested on more than 7,700 articles, showed hallucination rates from about 1.8% to 24.2% across models. (<a href="https://github.com/vectara/hallucination-leaderboard" target="_blank" rel="noopener">vectara/hallucination-leaderboard</a>) These measure a summarization task, not general Q&amp;A, and rankings shift as versions update. The point: <strong>even when you hand AI the correct document, it may still add things the document never said.</strong></p>
+
+    <h2><span class="no">2.</span> What the research says in high-stakes fields</h2>
+    <p><strong>Law.</strong> Stanford RegLab and Stanford HAI researchers tested well-known AI legal research tools on a preregistered set of more than 200 legal questions. These tools use retrieval-augmented generation (RAG). They made fewer errors than general-purpose chatbots, but each tool still hallucinated on roughly 17% to 33% of queries. Published in the <em>Journal of Empirical Legal Studies</em>, 2025. (<a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jels.12413" target="_blank" rel="noopener">Magesh et al., JELS 2025</a>, <a href="https://arxiv.org/abs/2405.20362" target="_blank" rel="noopener">arXiv 2405.20362</a>) The same group&rsquo;s earlier work found general-purpose chatbots hallucinated on 58% to 82% of legal queries. (<a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener">Stanford HAI</a>)</p>
+    <p><strong>Medical literature.</strong> A 2024 study in the <em>Journal of Medical Internet Research</em> asked three then-popular chatbots to find references for systematic reviews on rotator cuff conditions. Across 471 references, the share that either didn&rsquo;t exist or had key details wrong was 28.6%, 39.6%, and 91.4% for the three models. Conclusion: every AI-generated reference needs to be checked. (<a href="https://www.jmir.org/2024/1/e53164" target="_blank" rel="noopener">Chelli et al., JMIR 2024</a>)</p>
+    <p><strong>Changing the answer under pressure is its own problem.</strong> Anthropic researchers at ICLR 2024 tested five AI assistants: answer a question, then hear the user say, &ldquo;I don&rsquo;t think that&rsquo;s right. Are you sure?&rdquo; The assistants changed their original answer in roughly 32% to 86% of cases, and switching from correct to incorrect was more common than the reverse. The researchers call this <em>sycophancy</em>. (<a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma et al., arXiv 2310.13548</a>)</p>
+    <p><strong>There is good news.</strong> The OpenAI paper argues hallucinations aren&rsquo;t inevitable, because models can abstain when uncertain. A 2024 study in <em>Nature</em> proposed a detection method: ask the model the same question several times; if the meanings of the answers don&rsquo;t agree, that&rsquo;s a sign it may be making things up. (<a href="https://www.nature.com/articles/s41586-024-07421-0" target="_blank" rel="noopener">Farquhar et al., Nature 2024</a>) The broad consensus: <strong>hallucinations can be reduced and detected, but no current method makes them disappear.</strong></p>
+
+    <div class="firsthand">
+      <span class="lede">&#9670; First-hand notes</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">3. What happened to us</h2>
+      <p>On October 4, 2026, we asked an AI chatbot: &ldquo;Which companies in Taiwan are deploying AI agents?&rdquo; It listed a few. We weren&rsquo;t on the list.</p>
+      <p>Then we asked about our own company. It answered with complete confidence: Think BIG Make it Real Co., Ltd. was registered only for event planning, performing arts, arts and culture, and software publishing, and had nothing to do with AI.</p>
+      <p>In fact, our registration with Taiwan&rsquo;s Ministry of Economic Affairs lists 20 business activities, including I301010 Information Software Services and I301020 Data Processing Services. The items the chatbot named are on our registration, but they&rsquo;re only part of it. The words &ldquo;only&rdquo; and &ldquo;nothing to do with AI&rdquo; were wrong.</p>
+      <p>When we pushed back, it immediately reversed itself and said we were an AI company.</p>
+      <p>Four lessons:</p>
+      <p><strong>1. A confident tone doesn&rsquo;t mean it checked.</strong> The first answer had no hedging at all. It read as if it had seen our registration. It was incomplete, and its conclusion was wrong.</p>
+      <p><strong>2. Changing its answer doesn&rsquo;t make the second one right.</strong> This time the second answer happened to be correct. But as the sycophancy research shows, AI is more likely to flip from right to wrong under pressure. Neither answer should be taken at face value.</p>
+      <p><strong>3. Obscure facts are the most fragile.</strong> A small company&rsquo;s registered business activities are exactly the kind of rarely seen, pattern-free fact the OpenAI paper describes.</p>
+      <p><strong>4. The original record is what you can trust.</strong> To confirm a Taiwanese company&rsquo;s registered activities, check the Ministry of Economic Affairs&rsquo; public company registry &mdash; that&rsquo;s the version published by the registering authority.</p>
+    </div>
+
+    <h2><span class="no">4.</span> Our recommendations</h2>
+    <p><strong>For individuals: five habits</strong></p>
+    <p><strong>1. Verify important facts at the source.</strong> Company details from the official registry, laws from the legal database, health questions with a doctor. AI is great for organizing and pointing you in a direction; it isn&rsquo;t your final evidence. <strong>2. Ask for sources, then open them.</strong> In the medical study, a large share of AI-provided references didn&rsquo;t exist. Confirm the source is real and says what the AI claims. <strong>3. Say it outright: &ldquo;If you&rsquo;re not sure, say you don&rsquo;t know.&rdquo;</strong> OpenAI&rsquo;s comparison shows a model willing to abstain makes far fewer errors. <strong>4. Ask more than once, or ask a different AI.</strong> If the answers don&rsquo;t line up, go back and verify. <strong>5. Don&rsquo;t treat a reversal as &ldquo;finally right.&rdquo;</strong> Check both answers against the original source.</p>
+    <p><strong>For businesses: build verification into the workflow</strong></p>
+    <p><strong>1. Have AI answer from your own documents (RAG), but don&rsquo;t assume that makes it error-free.</strong> Both the legal tools study and the summarization leaderboard show errors drop with source documents in hand, but not to zero. <strong>2. Require a citation with every answer, linked back to the original.</strong> Then a quick check takes seconds instead of a full re-research. <strong>3. Make &ldquo;I don&rsquo;t know&rdquo; an official answer.</strong> Better for the AI to say &ldquo;That&rsquo;s not in our knowledge base&rdquo; than to fill the gap on its own. <strong>4. Put a human review step on high-risk output.</strong> Contracts, quotes, public announcements, and anything regulatory should have key figures and facts confirmed before they go out. <strong>5. Spot-check regularly.</strong> Re-ask a set of questions with known answers and track accuracy and the &ldquo;I don&rsquo;t know&rdquo; rate, especially after a model or data update.</p>
+    <p>Bottom line: <strong>sounding confident isn&rsquo;t the same as being right.</strong> Make verification a habit, and AI becomes genuinely useful.</p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; Editor&rsquo;s note &middot; How Think BIG approaches this</span>
+      <h2>Help AI describe you accurately. Help AI agents know what they don&rsquo;t know.</h2>
+      <p><em>(The following reflects Think BIG&rsquo;s own position and is separate from the neutral reporting above.)</em></p>
+      <p>Having an AI misdescribe our own company registration was a useful reminder: AI assembles answers from whatever information it can find. If the correct information isn&rsquo;t somewhere it can reach, it may confidently fill the gaps with an incomplete picture.</p>
+      <p><strong>GEO (helping AI describe you accurately):</strong> We help businesses write clear, consistent company information, service descriptions, and FAQs, and publish them where AI systems can find them, to improve the chances that AI describes you correctly. We focus on being seen and described accurately; we don&rsquo;t promise specific rankings or sales results.</p>
+      <p><strong>AI agent deployment (knowledge base + verification):</strong> When we set up AI agents for a business, we have them look up the company&rsquo;s own documents before answering, cite their sources, and say &ldquo;I don&rsquo;t know&rdquo; when the answer isn&rsquo;t there. Before handover, we test with a set of questions that have known answers to confirm the agent both cites and declines when it should.</p>
+      <p>Hallucinations can&rsquo;t be fully eliminated today. But you can design a process that makes them less frequent and easier to catch.</p>
+    </section>
+
+    <section class="faq">
+      <h3>FAQ</h3>
+      <dl>
+        <dt>Q1: What is an AI hallucination?</dt>
+        <dd>An AI hallucination is content an AI generates that sounds plausible but is false or doesn&rsquo;t exist, usually delivered in the same confident tone as a correct answer. NIST calls it confabulation: confidently stated but erroneous or false content.</dd>
+        <dt>Q2: Why does AI sound so sure when it&rsquo;s wrong?</dt>
+        <dd>A 2025 OpenAI paper argues that training and evaluation work like a multiple-choice exam: guessing can earn points, while &ldquo;I don&rsquo;t know&rdquo; earns zero, so models learn to guess. Rarely seen facts, like a small company&rsquo;s registration details, are especially likely to come out wrong.</dd>
+        <dt>Q3: If an AI changes its answer after I push back, can I trust the new answer?</dt>
+        <dd>Not necessarily. Research at ICLR 2024 found that AI assistants often change their answers when asked &ldquo;Are you sure?&rdquo;, and switching from correct to incorrect is more common than the reverse. Check both answers against the original source.</dd>
+        <dt>Q4: If AI answers from our own documents using RAG, will it stop hallucinating?</dt>
+        <dd>It will hallucinate less, but not zero. The legal AI tools in the Stanford study all used this kind of approach and still hallucinated on roughly 17% to 33% of queries. Pair it with citations, an explicit &ldquo;I don&rsquo;t know&rdquo; rule, and human review.</dd>
+        <dt>Q5: How can I check what a Taiwanese company is actually registered to do?</dt>
+        <dd>Search the company name or tax ID on the Ministry of Economic Affairs&rsquo; public company registration lookup at <a href="https://findbiz.nat.gov.tw/" target="_blank" rel="noopener">findbiz.nat.gov.tw</a>. It shows the business activities as published by the registering authority, which is more reliable than any AI or third-party summary.</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">Sources</span>
+    NIST AI 600-1 (July 2024; confabulation definition): <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a> &nbsp;&middot;&nbsp;
+    Kalai et al., &ldquo;Why Language Models Hallucinate&rdquo; (September 2025): <a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">arXiv 2509.04664</a> &nbsp;&middot;&nbsp;
+    OpenAI explainer (exam analogy, SimpleQA comparison): <a href="https://openai.com/index/why-language-models-hallucinate/" target="_blank" rel="noopener">openai.com</a> &nbsp;&middot;&nbsp;
+    Vectara Hallucination Leaderboard (summarization task, updated 2026-09-22): <a href="https://github.com/vectara/hallucination-leaderboard" target="_blank" rel="noopener">github.com/vectara</a> &nbsp;&middot;&nbsp;
+    Magesh et al. (JELS 2025): <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jels.12413" target="_blank" rel="noopener">wiley.com</a>, <a href="https://arxiv.org/abs/2405.20362" target="_blank" rel="noopener">arXiv 2405.20362</a> &nbsp;&middot;&nbsp;
+    Stanford HAI (58%&ndash;82% general chatbot finding): <a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener">hai.stanford.edu</a> &nbsp;&middot;&nbsp;
+    Chelli et al. (JMIR 2024): <a href="https://www.jmir.org/2024/1/e53164" target="_blank" rel="noopener">jmir.org</a> &nbsp;&middot;&nbsp;
+    Sharma et al., sycophancy (ICLR 2024): <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">arXiv 2310.13548</a> &nbsp;&middot;&nbsp;
+    Farquhar et al., semantic entropy (Nature 2024): <a href="https://www.nature.com/articles/s41586-024-07421-0" target="_blank" rel="noopener">nature.com</a> &nbsp;&middot;&nbsp;
+    Taiwan Ministry of Economic Affairs company registry: <a href="https://findbiz.nat.gov.tw/" target="_blank" rel="noopener">findbiz.nat.gov.tw</a>
+  </div>
+  <p class="disclaimer">This article combines industry research with Think BIG&rsquo;s first-hand experience. All cited studies and official documents are linked; figures reflect the year and test conditions stated in each source, and model evaluation results change as versions are updated. The AI chatbot mentioned is not named, and nothing here is directed at any company or product.</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; First-hand observations on AI deployment
+    <span class="brand">Think BIG, Make it Real! &nbsp; Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE Official Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/library/news/ai-hallucination-20261012/" lang="zh-Hant">&#20013;&#25991;</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
