@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 講錯還很有自信，怎麼辦？——我們被 AI 說成「跟 AI 無關的公司」之後學到的事 | Think BIG NEWS</title>
+<meta name="description" content="AI 幻覺是模型把不確定的事講得很肯定。OpenAI 2025 年的研究指出，主因之一是訓練和評分方式獎勵「猜」而不是「說不知道」。本文整理法律、醫學、摘要任務的公開研究數據，加上我們被 AI 講錯公司登記的第一手經驗，說明個人與企業怎麼降低被幻覺誤導的機會。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/ai-hallucination-20261012/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/ai-hallucination-20261012/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/ai-hallucination-20261012/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/ai-hallucination-20261012/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/ai-hallucination-20261012/">
+<meta property="og:title" content="AI 講錯還很有自信，怎麼辦？——我們被 AI 說成「跟 AI 無關的公司」 | Think BIG NEWS">
+<meta property="og:description" content="AI 幻覺：訓練獎勵猜不獎勵說不知道。法律 RAG 工具仍有 17–33% 幻覺率；醫學文獻最高達 91.4%；被你追問更容易從對改成錯。五個習慣、五個企業流程，讓你少被騙。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 講錯還很有自信——第一手：我們被說成「跟 AI 無關的公司」 | Think BIG NEWS">
+<meta name="twitter:description" content="AI 幻覺的原因與應對：五個個人習慣＋五個企業流程，讓幻覺比較少發生、發生時比較容易抓到。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/ai-hallucination-20261012/#article",
+      "headline": "AI 講錯還很有自信，怎麼辦？——我們被 AI 說成「跟 AI 無關的公司」之後學到的事",
+      "description": "AI 幻覺是模型把不確定的事講得很肯定。OpenAI 2025 年的研究指出，主因是訓練獎勵猜而非說不知道。整理法律、醫學、摘要任務的公開研究數據，加上我們的第一手經驗。",
+      "keywords": "AI 幻覺, AI 講錯, AI hallucination, 為什麼 AI 會亂講, AI 回答可以信嗎, RAG 幻覺, AI 查證, 公司登記查詢, AI Agent 導入, GEO",
+      "author": {"@type": "Organization", "name": "Think BIG 自媒體部", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "大想成業有限公司", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-12T20:00:00+08:00",
+      "dateModified": "2026-10-12T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/ai-hallucination-20261012/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/library/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/ai-hallucination-20261012/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "什麼是 AI 幻覺？", "acceptedAnswer": {"@type": "Answer", "text": "AI 幻覺是指 AI 產生看起來合理、實際上錯誤或不存在的內容，而且口氣通常跟講對的時候一樣肯定。美國 NIST 把它稱為 confabulation，定義是以很有把握的方式產生錯誤或不實的內容。"}},
+        {"@type": "Question", "name": "AI 為什麼會很有自信地講錯？", "acceptedAnswer": {"@type": "Answer", "text": "OpenAI 2025 年的研究指出，模型的訓練與評分方式像考選擇題：亂猜可能拿分，說「不知道」一定零分，所以模型被鼓勵去猜。資料裡很少出現的冷門事實，像小公司的登記資料，特別容易猜錯。"}},
+        {"@type": "Question", "name": "AI 被我追問後改口，第二個答案就可信嗎？", "acceptedAnswer": {"@type": "Answer", "text": "不一定。ICLR 2024 的研究發現，AI 助理被問「你確定嗎」時常會改答案，而且從對改成錯的情況比從錯改成對更常見。兩個答案都應該拿去跟原始資料比對。"}},
+        {"@type": "Question", "name": "用 RAG 讓 AI 查公司文件，就不會有幻覺了嗎？", "acceptedAnswer": {"@type": "Answer", "text": "會減少，但不會歸零。史丹佛研究測試的法律 AI 工具都用了這類做法，仍有約 17% 到 33% 的回答含有幻覺。建議搭配附出處、查不到就說不知道、人工覆核等措施。"}},
+        {"@type": "Question", "name": "怎麼查一家台灣公司實際登記的營業項目？", "acceptedAnswer": {"@type": "Answer", "text": "到經濟部「商工登記公示資料查詢服務」，輸入公司名稱或統一編號，就能看到登記機關公告的營業項目。這是原始資料，比任何 AI 或第三方網站的轉述更可靠。"}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"首頁","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/library/news/"},
+        {"@type":"ListItem","position":3,"name":"AI 幻覺：AI 講錯還很有自信怎麼辦","item":"https://thinkbigtw.com/library/news/ai-hallucination-20261012/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 15px}.body th{background:var(--panel);font-family:var(--sans);font-weight:700;font-size:12px;padding:6px 8px;text-align:left;border:1px solid var(--rule)}.body td{padding:6px 8px;border:1px solid var(--rule);vertical-align:top}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">安全</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">安全</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>田野紀錄 &middot; 第 006 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI VISIBILITY FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 10 月 12 日　星期一</span>
+    <span class="dot">&#9670;</span>
+    <span>AI 導入第一手觀察</span>
+    <span class="dot">&#9670;</span>
+    <span>第 006 期</span>
+  </div>
+
+  <p class="kicker">AI 幻覺 &middot; 查證習慣與企業流程</p>
+  <h2 class="headline">AI 講錯還很有自信，怎麼辦？——我們被 AI 說成「跟 AI 無關的公司」之後學到的事</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 10 月 12 日</p>
+  <p class="deck">訓練獎勵猜、不獎勵說不知道，所以 AI 猜不出來也不說。法律 RAG 工具仍有 17–33% 幻覺率；被你追問更容易從對改成錯。重要事實回原始資料查，是目前最可靠的一招。</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <h2><span class="no">一、</span>現象：AI 講錯的時候，口氣跟講對一樣篤定</h2>
+    <p class="lead">「幻覺」（hallucination）是指 AI 生成看起來合理、實際上錯誤的內容。美國國家標準暨技術研究院（NIST）2024 年 7 月發布的生成式 AI 風險框架，把這種現象稱為 confabulation，定義是「以很有把握的方式，產生錯誤或不實的內容」。（<a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener">NIST AI 600-1</a>）</p>
+    <p>麻煩的地方不在「會錯」，而在「錯的時候語氣不變」。使用者很難從口氣分辨哪一句是真的。</p>
+    <p><strong>為什麼會這樣？</strong> OpenAI 研究團隊在 2025 年 9 月發表論文〈Why Language Models Hallucinate〉，核心論點是：語言模型的訓練與評分方式，獎勵「猜」，而不是「承認不確定」。（<a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">arXiv 2509.04664</a>、<a href="https://openai.com/index/why-language-models-hallucinate/" target="_blank" rel="noopener">OpenAI 說明文章</a>）</p>
+    <p>他們用考試比喻：選擇題不會的時候亂猜，可能矇對；留白一定零分。他們比較了 OpenAI 自家兩個模型在 SimpleQA 測驗的結果：</p>
+    <table>
+      <thead><tr><th></th><th>會說「不知道」的模型</th><th>幾乎每題都答的模型</th></tr></thead>
+      <tbody>
+        <tr><td>不作答率</td><td>52%</td><td>1%</td></tr>
+        <tr><td>答對率</td><td>22%</td><td>24%</td></tr>
+        <tr><td>答錯率</td><td>26%</td><td>75%</td></tr>
+      </tbody>
+    </table>
+    <p>答對率只差 2 個百分點，答錯率卻差了將近三倍。論文也解釋了<strong>哪種事最容易錯</strong>：拼字、文法有規律可循，模型越大越少錯；但「某個人的生日」這類沒有規律、又很少出現在資料裡的冷門事實，就容易出現幻覺。</p>
+    <p><strong>有資料在手，也還是會錯。</strong> Vectara 的幻覺排行榜（HHEM Leaderboard）給模型一篇文章、要求「只用文章裡的資訊」寫摘要，再檢查摘要有沒有加入原文沒有的內容。2026 年 9 月 22 日更新的版本，用超過 7,700 篇文章測試，各模型的幻覺率從約 1.8% 到 24.2% 不等。（<a href="https://github.com/vectara/hallucination-leaderboard" target="_blank" rel="noopener">vectara/hallucination-leaderboard</a>）就算把正確文件交給 AI，它還是可能多寫出文件裡沒有的東西。</p>
+
+    <h2><span class="no">二、</span>各方評價：在高風險領域實測的結果</h2>
+    <p><strong>法律領域。</strong> 史丹佛大學 RegLab 與 HAI 的研究團隊，用 200 多題預先登錄的法律問題，測試業界知名的法律研究 AI 工具（全都用了 RAG）。研究發現它們確實比一般聊天機器人錯得少，但每個工具仍有約 17% 到 33% 的回答含有幻覺。（<a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jels.12413" target="_blank" rel="noopener">Magesh 等，JELS 2025</a>、<a href="https://arxiv.org/abs/2405.20362" target="_blank" rel="noopener">arXiv 2405.20362</a>）同一團隊先前的研究發現，一般聊天機器人回答法律問題時，幻覺比例在 58% 到 82% 之間。（<a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener">Stanford HAI</a>）</p>
+    <p><strong>醫學文獻。</strong> 2024 年刊登於《Journal of Medical Internet Research》的研究，請三個當時主流的聊天模型替肩關節旋轉肌袖的系統性回顧找參考文獻。在 471 筆文獻裡，三個模型給出「不存在或關鍵資訊錯誤」的文獻比例，分別是 28.6%、39.6% 和 91.4%。（<a href="https://www.jmir.org/2024/1/e53164" target="_blank" rel="noopener">Chelli 等，JMIR 2024</a>）</p>
+    <p><strong>被追問就改口，也是一個問題。</strong> Anthropic 研究團隊在 ICLR 2024 測試五個 AI 助理：先回答問題，再被使用者問「我覺得不對，你確定嗎？」結果各助理改變原本答案的比例從約 32% 到 86% 不等；而且從「對改成錯」比從「錯改成對」更常見。研究者把這種傾向稱為 sycophancy（迎合使用者）。（<a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma 等，arXiv 2310.13548</a>）</p>
+    <p><strong>樂觀的一面也有根據。</strong> OpenAI 的論文認為幻覺不是無解，因為模型可以在不確定時選擇不回答。《Nature》2024 年刊登的研究提出一種偵測方法：讓模型對同一題回答好幾次，如果答案的意思彼此對不上，就是可能在亂編的訊號。（<a href="https://www.nature.com/articles/s41586-024-07421-0" target="_blank" rel="noopener">Farquhar 等，Nature 2024</a>）各方的共識大致是：<strong>幻覺可以減少、可以偵測，但目前沒有一種做法能讓它完全消失。</strong></p>
+
+    <div class="firsthand">
+      <span class="lede">&#9670; 第一手紀錄</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際遇到的事</h2>
+      <p>2026 年 10 月 4 日，我們問某個 AI 聊天工具：「台灣導入 AI Agent 的公司有哪些？」它列了幾家，沒有我們。</p>
+      <p>接著我們直接問我們公司。它很肯定地回答：大想成業有限公司登記的營業項目只有喜慶、演藝、藝文、軟體出版，跟 AI 無關。</p>
+      <p>實際上，我們在經濟部登記的營業項目有 20 項，包含 I301010 資訊軟體服務業、I301020 資料處理服務業。它列的那幾項確實在我們的登記裡，但只是一部分；「只有」和「跟 AI 無關」這兩個結論是錯的。</p>
+      <p>我們追問之後，它馬上改口，說我們是 AI 相關公司。</p>
+      <p>這件事讓我們學到四點：</p>
+      <p><strong>1. 口氣很肯定，不代表它查過。</strong> 它的第一個答案沒有任何保留，像是看過登記資料；但內容不完整，結論也錯了。</p>
+      <p><strong>2. 改口也不代表第二個答案就對。</strong> 這次第二個答案剛好是對的，但根據 sycophancy 研究，AI 被追問時從對改成錯的情況更常見。</p>
+      <p><strong>3. 越冷門的事實越容易錯。</strong> 一家小公司的登記項目，正是 OpenAI 論文說的那種「在資料裡很少出現、沒有規律可循」的事實。</p>
+      <p><strong>4. 最後能信的，是原始資料。</strong> 公司營業項目要確認，就到經濟部「商工登記公示資料查詢服務」查，那裡的資料是登記機關公告的版本。</p>
+    </div>
+
+    <h2><span class="no">四、</span>我們的建議</h2>
+    <p><strong>個人：五個習慣，少被 AI 騙</strong></p>
+    <p><strong>1. 重要事實回原始資料查。</strong> 公司資料查經濟部商工登記、法規查全國法規資料庫、健康問題問醫師。AI 適合幫你整理和找方向，不適合當最後一手的證據。<strong>2. 要它附來源，而且點開看。</strong> 醫學文獻研究裡，AI 給的參考文獻有相當比例根本不存在。<strong>3. 明說「不確定就說不知道」。</strong> OpenAI 的對照數據顯示，願意不作答的模型，答錯率低很多。<strong>4. 同一題多問幾次，或換一個 AI 問。</strong> 答案彼此對不上，就是要回頭查證的訊號。<strong>5. 被你追問就改口，不要當成「它終於對了」。</strong> 把兩個答案都拿去跟原始資料比對。</p>
+    <p><strong>企業：把查證設計進流程</strong></p>
+    <p><strong>1. 讓 AI 查自己的文件（RAG），但不要以為這樣就不會錯。</strong> 法律工具和摘要排行榜都顯示，有資料在手，錯誤會減少，但不會歸零。<strong>2. 回答一律附出處，能點回原文。</strong> 員工可以花幾秒確認，而不是整段重查。<strong>3. 把「查不到就說不知道」寫進規則。</strong> 寧可讓 AI 回「這題知識庫裡沒有」，也不要讓它自己補。<strong>4. 高風險輸出設人工覆核點。</strong> 合約、報價、對外公告、法規相關內容，送出前由人確認關鍵數字與事實。<strong>5. 定期抽測。</strong> 挑一批已知答案的問題重問，看正確率和「說不知道」的比例有沒有變化，模型或資料更新後尤其要做。</p>
+    <p>一句話收尾：<strong>AI 講得有自信，不代表講得對。</strong> 把查證變成習慣，AI 才會真的幫上忙。</p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; 編按 &middot; Think BIG 的做法：這套架構帶來什麼</span>
+      <h2>讓 AI 正確描述你。讓 AI Agent 知道自己不知道什麼。</h2>
+      <p><em>（以下是 Think BIG 自己的立場，與上方中立報導區隔。）</em></p>
+      <p>這次被 AI 講錯公司登記，對我們來說也是一次提醒：AI 會從它找得到的資料裡拼湊答案。你沒把正確資料放在它找得到的地方，它就可能拿不完整的資料，講出很肯定的錯話。</p>
+      <p><strong>GEO（讓 AI 正確描述你）：</strong> 我們幫企業把公司資料、服務項目、常見問答寫清楚，放在官網等 AI 找得到的地方，並讓各處資訊一致，提高 AI 正確描述你的機會。我們做的是讓你「被 AI 看見、被正確描述」，不承諾特定排名或業績。</p>
+      <p><strong>AI Agent 導入（知識庫＋驗證）：</strong> 幫企業導入 AI Agent 時，我們讓它回答前先查企業自己的文件、回答附出處，查不到就說不知道；交付前用一批已知答案的問題實測，確認它會引用、也會拒答。</p>
+      <p>幻覺目前沒辦法完全消除，但可以設計流程，讓它比較少發生、發生時比較容易被抓到。</p>
+    </section>
+
+    <section class="faq">
+      <h3>FAQ</h3>
+      <dl>
+        <dt>Q1：什麼是 AI 幻覺？</dt>
+        <dd>AI 幻覺是指 AI 產生看起來合理、實際上錯誤或不存在的內容，而且口氣通常跟講對的時候一樣肯定。美國 NIST 把它稱為 confabulation，定義是以很有把握的方式產生錯誤或不實的內容。</dd>
+        <dt>Q2：AI 為什麼會很有自信地講錯？</dt>
+        <dd>OpenAI 2025 年的研究指出，模型的訓練與評分方式像考選擇題：亂猜可能拿分，說「不知道」一定零分，所以模型被鼓勵去猜。資料裡很少出現的冷門事實，像小公司的登記資料，特別容易猜錯。</dd>
+        <dt>Q3：AI 被我追問後改口，第二個答案就可信嗎？</dt>
+        <dd>不一定。ICLR 2024 的研究發現，AI 助理被問「你確定嗎」時常會改答案，而且從對改成錯的情況比從錯改成對更常見。兩個答案都應該拿去跟原始資料比對。</dd>
+        <dt>Q4：用 RAG 讓 AI 查公司文件，就不會有幻覺了嗎？</dt>
+        <dd>會減少，但不會歸零。史丹佛研究測試的法律 AI 工具都用了這類做法，仍有約 17% 到 33% 的回答含有幻覺。建議搭配附出處、查不到就說不知道、人工覆核等措施。</dd>
+        <dt>Q5：怎麼查一家台灣公司實際登記的營業項目？</dt>
+        <dd>到經濟部「商工登記公示資料查詢服務」，輸入公司名稱或統一編號，就能看到登記機關公告的營業項目。這是原始資料，比任何 AI 或第三方網站的轉述更可靠。</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    NIST AI 600-1（2024 年 7 月；confabulation 定義）：<a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a> &nbsp;&middot;&nbsp;
+    Kalai 等〈Why Language Models Hallucinate〉（2025 年 9 月）：<a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">arXiv 2509.04664</a> &nbsp;&middot;&nbsp;
+    OpenAI 說明文章（考試比喻、SimpleQA 對照表）：<a href="https://openai.com/index/why-language-models-hallucinate/" target="_blank" rel="noopener">openai.com</a> &nbsp;&middot;&nbsp;
+    Vectara 幻覺排行榜（摘要任務，2026-09-22 更新）：<a href="https://github.com/vectara/hallucination-leaderboard" target="_blank" rel="noopener">github.com/vectara</a> &nbsp;&middot;&nbsp;
+    Magesh 等（JELS 2025）：<a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/jels.12413" target="_blank" rel="noopener">wiley.com</a>、<a href="https://arxiv.org/abs/2405.20362" target="_blank" rel="noopener">arXiv 2405.20362</a> &nbsp;&middot;&nbsp;
+    Stanford HAI（法律 AI 58%–82%）：<a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener">hai.stanford.edu</a> &nbsp;&middot;&nbsp;
+    Chelli 等（JMIR 2024）：<a href="https://www.jmir.org/2024/1/e53164" target="_blank" rel="noopener">jmir.org</a> &nbsp;&middot;&nbsp;
+    Sharma 等（ICLR 2024，sycophancy）：<a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">arXiv 2310.13548</a> &nbsp;&middot;&nbsp;
+    Farquhar 等（Nature 2024，semantic entropy）：<a href="https://www.nature.com/articles/s41586-024-07421-0" target="_blank" rel="noopener">nature.com</a> &nbsp;&middot;&nbsp;
+    經濟部商工登記公示資料查詢服務：<a href="https://findbiz.nat.gov.tw/" target="_blank" rel="noopener">findbiz.nat.gov.tw</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手經驗整理，引用之研究與官方文件均標註來源；研究數據以各原文所載之年份、測試條件為準，模型評測數字會隨版本更新而變動。文中提到的 AI 聊天工具不具名，內容不針對任何公司或產品。</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI 導入的第一手觀察
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="297" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>本地部署 &middot; 流程整合 &middot; 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">安全</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; 台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/en/contact/">Contact Us</a><a href="/faq/">常見問題</a><a href="/en/news/ai-hallucination-20261012/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
