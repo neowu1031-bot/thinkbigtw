@@ -1,0 +1,274 @@
+/* tb-hero3d — namespaced hero section styles
+   All selectors live under .tb-hero3d to avoid colliding with site-wide styles.
+   CSS variables are also scoped to .tb-hero3d (dark default, light override).
+*/
+.tb-hero3d{
+  color-scheme:dark;
+  --h3d-ground:#191a1d;
+  --h3d-ink:#f7f6f2;
+  --h3d-muted:#b8b4b6;
+  --h3d-pink:#eea4bb;
+  --h3d-rule:rgba(238,164,187,.2)
+}
+.tb-hero3d[data-theme=light]{
+  color-scheme:light;
+  --h3d-ground:#f7f6f2;
+  --h3d-ink:#252629;
+  --h3d-muted:#646064;
+  --h3d-rule:rgba(45,40,43,.18)
+}
+.tb-hero3d::selection{background:#eea4bb;color:#191a1d}
+
+/* Section container */
+.tb-hero3d{
+  position:relative;
+  isolation:isolate;
+  touch-action:pan-y;
+  width:100%;
+  height:80svh;
+  min-height:640px;
+  max-height:1000px;
+  overflow:hidden;
+  border-bottom:1px solid var(--h3d-rule);
+  background:var(--h3d-ground);
+  transition:background .3s,color .3s
+}
+
+/* Canvas visual layer */
+.tb-hero3d .tb-hero3d-visual{
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  touch-action:pan-y
+}
+.tb-hero3d .tb-hero3d-visual:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,var(--h3d-ground) 0%,var(--h3d-ground) 28%,transparent 57%)
+}
+.tb-hero3d canvas{
+  display:block;
+  width:100%;
+  height:100%;
+  opacity:0;
+  transition:opacity .35s ease
+}
+.tb-hero3d.ready canvas{opacity:1}
+
+/* Poster (placeholder before canvas ready) */
+.tb-hero3d .tb-hero3d-poster{
+  position:absolute;
+  left:47%;
+  top:14%;
+  width:46%;
+  aspect-ratio:1;
+  border:1px solid var(--h3d-rule);
+  border-radius:50%;
+  background:
+    radial-gradient(ellipse at 38% 32%,rgba(238,164,187,.2),transparent 62%),
+    repeating-radial-gradient(ellipse at center,transparent 0 26px,var(--h3d-rule) 27px,transparent 28px 42px);
+  box-shadow:inset -30px -25px 70px var(--h3d-ground);
+  opacity:.7;
+  transition:opacity 1s
+}
+.tb-hero3d.ready .tb-hero3d-poster{opacity:0}
+
+/* Halo glow */
+.tb-hero3d .tb-hero3d-halo{
+  position:absolute;
+  left:73%;
+  top:49%;
+  width:min(63vw,100svh);
+  aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  pointer-events:none;
+  background:radial-gradient(circle,rgba(238,164,187,.025) 20%,rgba(238,164,187,.10) 41%,rgba(238,164,187,.065) 48%,rgba(238,164,187,.015) 61%,transparent 72%);
+  opacity:0;
+  transition:opacity 1.5s ease
+}
+.tb-hero3d.ready .tb-hero3d-halo{opacity:1}
+.tb-hero3d[data-theme=light] .tb-hero3d-halo{
+  background:radial-gradient(circle,rgba(238,164,187,.025) 20%,rgba(238,164,187,.20) 42%,rgba(238,164,187,.09) 52%,transparent 70%)
+}
+
+/* Tagline "Make it Real." */
+.tb-hero3d .tb-hero3d-tagline{
+  font:500 11px/1 system-ui,-apple-system,"PingFang TC",sans-serif;
+  letter-spacing:.18em;
+  color:var(--h3d-muted);
+  margin:0 0 14px;
+  white-space:nowrap
+}
+
+/* Copy text */
+.tb-hero3d .tb-hero3d-copy{
+  position:absolute;
+  left:8%;
+  top:26%;
+  z-index:2;
+  pointer-events:none;
+  color:var(--h3d-ink)
+}
+.tb-hero3d .tb-hero3d-eyebrow{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.22em;
+  color:var(--h3d-muted);
+  margin:0 0 24px
+}
+.tb-hero3d .tb-hero3d-copy h1{
+  font-size:clamp(42px,4.1vw,65px);
+  line-height:1.32;
+  letter-spacing:-.035em;
+  font-weight:500;
+  margin:0;
+  color:var(--h3d-ink)
+}
+.tb-hero3d .tb-hero3d-copy h1 span{display:block}
+.tb-hero3d .tb-hero3d-copy a{
+  display:inline-flex;
+  align-items:center;
+  gap:30px;
+  margin-top:34px;
+  padding:10px 0 12px;
+  color:var(--h3d-ink);
+  font-size:14px;
+  text-decoration:none;
+  border-bottom:1px solid var(--h3d-pink);
+  pointer-events:auto
+}
+.tb-hero3d .tb-hero3d-copy a span{
+  font-size:25px;
+  line-height:1;
+  transition:transform .2s
+}
+.tb-hero3d .tb-hero3d-copy a:hover span{transform:translateX(5px)}
+.tb-hero3d .tb-hero3d-copy a:focus-visible{outline:2px solid var(--h3d-pink);outline-offset:8px}
+
+/* Caption bar */
+.tb-hero3d .tb-hero3d-caption{
+  position:absolute;
+  bottom:9%;
+  right:9%;
+  font-size:11px;
+  letter-spacing:.12em;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:var(--h3d-muted);
+  pointer-events:none
+}
+.tb-hero3d .tb-hero3d-signal{
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:var(--h3d-pink)
+}
+.tb-hero3d .tb-hero3d-caption-line{
+  width:56px;
+  height:1px;
+  background:var(--h3d-rule)
+}
+
+/* Theme toggle button */
+.tb-hero3d .tb-hero3d-toggle{
+  position:absolute;
+  top:28px;
+  right:32px;
+  z-index:5;
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid var(--h3d-rule);
+  background:transparent;
+  color:var(--h3d-ink);
+  font:500 10px/1 system-ui,-apple-system,"PingFang TC",sans-serif;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:border-color .2s,background .2s
+}
+.tb-hero3d .tb-hero3d-toggle:hover{border-color:#EEA4BB}
+.tb-hero3d .tb-hero3d-toggle:focus-visible{outline:2px solid #EEA4BB;outline-offset:3px}
+.tb-hero3d .tb-hero3d-tt-dot{
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#EEA4BB;
+  box-shadow:0 0 6px #EEA4BB
+}
+
+/* Mobile */
+@media(max-width:600px){
+  .tb-hero3d{height:70svh;min-height:590px;max-height:none}
+  .tb-hero3d .tb-hero3d-copy{left:8%;top:19%}
+  .tb-hero3d .tb-hero3d-eyebrow{font-size:9px;margin-bottom:17px}
+  .tb-hero3d .tb-hero3d-copy h1{font-size:38px;line-height:1.3}
+  .tb-hero3d .tb-hero3d-copy a{font-size:13px;margin-top:22px;gap:24px}
+  .tb-hero3d .tb-hero3d-visual:after{
+    background:linear-gradient(180deg,var(--h3d-ground) 0%,var(--h3d-ground) 22%,transparent 69%),
+    linear-gradient(90deg,var(--h3d-ground) 0%,transparent 64%)
+  }
+  .tb-hero3d .tb-hero3d-poster{left:23%;top:40%;width:85%}
+  .tb-hero3d .tb-hero3d-halo{left:65%;top:68%;width:135vw}
+  .tb-hero3d .tb-hero3d-caption{right:8%;bottom:9%;font-size:9px}
+  .tb-hero3d .tb-hero3d-caption-line{width:25px}
+  .tb-hero3d .tb-hero3d-toggle{top:18px;right:16px;padding:4px 9px}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  .tb-hero3d *,.tb-hero3d *:before,.tb-hero3d *:after{transition:none!important}
+}
+
+/* Homepage nav logo — tagline "Make it Real." (only on pages with body.home) */
+body.home #tb-nav .tb-logo{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:3px
+}
+body.home #tb-nav .tb-logo .tagline{
+  font:500 10px/1 system-ui,-apple-system,"PingFang TC",sans-serif;
+  letter-spacing:.18em;
+  color:#b8b4b6;
+  align-self:flex-end;
+  margin-right:6.69%;
+  position:relative;
+  white-space:nowrap
+}
+body.home #tb-nav .tb-logo .tl-l{
+  letter-spacing:0
+}
+body.home #tb-nav .tb-logo .tl-dot{
+  position:absolute;
+  left:100%
+}
+
+/* Definition block below 3D hero */
+.tb-hero3d-definition-block{
+  padding:28px 0 24px;
+  border-bottom:1px solid rgba(0,0,0,.07)
+}
+.tb-hero3d-definition-block .tb-definition{
+  margin:0 0 16px;
+  font-size:14px;
+  line-height:1.7;
+  color:inherit
+}
+.tb-hero3d-definition-block .hero-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px 24px;
+  margin:0 0 14px
+}
+.tb-hero3d-definition-block .tb-definition-note{
+  margin:0;
+  font-size:12px;
+  line-height:1.6;
+  opacity:.65
+}
