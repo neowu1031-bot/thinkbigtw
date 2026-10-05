@@ -147,34 +147,6 @@
   margin-top:28px;
   pointer-events:auto
 }
-.tb-hero3d .tb-hero3d-copy a{
-  display:inline-flex;
-  align-items:center;
-  gap:30px;
-  padding:10px 0 12px;
-  color:var(--h3d-ink);
-  font-size:14px;
-  text-decoration:none;
-  border-bottom:1px solid var(--h3d-pink);
-  pointer-events:auto
-}
-.tb-hero3d .tb-hero3d-copy a.tb-hero3d-cta-secondary{
-  border-bottom:1px solid rgba(238,164,187,.3);
-  font-size:13px;
-  color:var(--h3d-muted);
-  gap:8px
-}
-.tb-hero3d .tb-hero3d-copy a span{
-  font-size:25px;
-  line-height:1;
-  transition:transform .2s
-}
-.tb-hero3d .tb-hero3d-copy a.tb-hero3d-cta-secondary span{
-  font-size:14px
-}
-.tb-hero3d .tb-hero3d-copy a:hover span{transform:translateX(5px)}
-.tb-hero3d .tb-hero3d-copy a:focus-visible{outline:2px solid var(--h3d-pink);outline-offset:8px}
-
 /* Caption bar */
 .tb-hero3d .tb-hero3d-caption{
   position:absolute;
@@ -230,27 +202,62 @@
   box-shadow:0 0 6px #EEA4BB
 }
 
-/* Mobile */
+/* Desktop: hide lower block (sub+links duplicated for mobile-only layout) */
+.tb-hero3d .tb-hero3d-lower{display:none}
+
+/* Link styles shared between copy and lower block */
+.tb-hero3d .tb-hero3d-copy a,
+.tb-hero3d .tb-hero3d-lower a{
+  display:inline-flex;align-items:center;gap:30px;padding:10px 0 12px;
+  color:var(--h3d-ink);font-size:14px;text-decoration:none;
+  border-bottom:1px solid var(--h3d-pink);pointer-events:auto
+}
+.tb-hero3d .tb-hero3d-copy a.tb-hero3d-cta-secondary,
+.tb-hero3d .tb-hero3d-lower a.tb-hero3d-cta-secondary{
+  border-bottom:1px solid rgba(238,164,187,.3);font-size:13px;color:var(--h3d-muted);gap:8px
+}
+.tb-hero3d .tb-hero3d-copy a span,
+.tb-hero3d .tb-hero3d-lower a span{font-size:25px;line-height:1;transition:transform .2s}
+.tb-hero3d .tb-hero3d-copy a.tb-hero3d-cta-secondary span,
+.tb-hero3d .tb-hero3d-lower a.tb-hero3d-cta-secondary span{font-size:14px}
+.tb-hero3d .tb-hero3d-copy a:hover span,
+.tb-hero3d .tb-hero3d-lower a:hover span{transform:translateX(5px)}
+.tb-hero3d .tb-hero3d-copy a:focus-visible,
+.tb-hero3d .tb-hero3d-lower a:focus-visible{outline:2px solid var(--h3d-pink);outline-offset:8px}
+
+/* Mobile — new stacked layout: eyebrow+h1 at top, sphere in middle, sub+links below */
 @media(max-width:600px){
-  .tb-hero3d{height:72svh;min-height:480px;max-height:none}
-  /* Copy block pushed to very top so full sphere can live in the lower ~52–98% of the hero */
-  .tb-hero3d .tb-hero3d-copy{left:8%;top:3%}
+  /* Hero taller to accommodate stacked layout */
+  .tb-hero3d{height:90svh;min-height:600px;max-height:none}
+  /* Top copy: eyebrow + h1 only (sub+links hidden here, shown in .tb-hero3d-lower) */
+  .tb-hero3d .tb-hero3d-copy{left:8%;top:3%;right:8%}
+  .tb-hero3d .tb-hero3d-copy .tb-hero3d-sub,
+  .tb-hero3d .tb-hero3d-copy .tb-hero3d-links{display:none}
   .tb-hero3d .tb-hero3d-eyebrow{font-size:9px;margin-bottom:14px}
-  /* 34px keeps copy within ~287px, leaving sphere (starts at ~50% = 304px) fully clear */
-  .tb-hero3d .tb-hero3d-copy h1{font-size:34px;line-height:1.25}
-  .tb-hero3d .tb-hero3d-sub{font-size:14px;margin:10px 0 0;max-width:none}
-  .tb-hero3d .tb-hero3d-links{margin-top:18px;gap:14px 24px}
-  .tb-hero3d .tb-hero3d-copy a{font-size:13px;gap:20px}
-  .tb-hero3d .tb-hero3d-copy a.tb-hero3d-cta-secondary{font-size:12px}
-  /* Vertical-only gradient: solid for top ~47% (covers copy), transparent at 50% (sphere top).
-     Horizontal gradient removed — sphere is now centered, not right-side. */
+  /* 30px h1 keeps top copy within ~155px, leaving sphere (starts ~22%) fully clear */
+  .tb-hero3d .tb-hero3d-copy h1{font-size:30px;line-height:1.25}
+  /* Gradient: solid covers top copy area (0–19%), transparent by 28% (sphere start) */
   .tb-hero3d .tb-hero3d-visual:after{
-    background:linear-gradient(180deg,var(--h3d-ground) 0%,var(--h3d-ground) 46%,transparent 50%)
+    background:linear-gradient(180deg,var(--h3d-ground) 0%,var(--h3d-ground) 19%,transparent 28%)
   }
-  /* Poster / halo: track new sphere centre (cx=50%, cy=74%) */
-  .tb-hero3d .tb-hero3d-poster{left:50%;top:74%;transform:translate(-50%,-50%);width:75vw}
-  .tb-hero3d .tb-hero3d-halo{left:50%;top:74%;width:90vw}
-  .tb-hero3d .tb-hero3d-caption{right:8%;bottom:9%;font-size:9px}
+  /* Poster / halo: track new sphere centre (cx=50%, cy=46%) */
+  .tb-hero3d .tb-hero3d-poster{left:50%;top:46%;transform:translate(-50%,-50%);width:70vw}
+  .tb-hero3d .tb-hero3d-halo{left:50%;top:46%;width:85vw}
+  /* Lower block: sub + links below the sphere (sphere bottom ~62% + gap) */
+  .tb-hero3d .tb-hero3d-lower{
+    display:block;
+    position:absolute;
+    left:8%;right:8%;
+    top:66%;
+    z-index:2;
+    color:var(--h3d-ink);
+    pointer-events:auto
+  }
+  .tb-hero3d .tb-hero3d-lower .tb-hero3d-sub{font-size:14px;margin:0 0 0;max-width:none}
+  .tb-hero3d .tb-hero3d-lower .tb-hero3d-links{margin-top:16px;gap:14px 24px}
+  .tb-hero3d .tb-hero3d-lower a{font-size:13px;gap:20px}
+  .tb-hero3d .tb-hero3d-lower a.tb-hero3d-cta-secondary{font-size:12px}
+  .tb-hero3d .tb-hero3d-caption{right:8%;bottom:5%;font-size:9px}
   .tb-hero3d .tb-hero3d-caption-line{width:25px}
   .tb-hero3d .tb-hero3d-toggle{top:18px;right:16px;padding:4px 9px}
 }
