@@ -170,8 +170,8 @@ requestAnimationFrame(() => requestAnimationFrame(() => {
     const angle = time * .075 + rx * .42, tilt = -.16 + ry * .25;
     const ca = Math.cos(angle), sa = Math.sin(angle), ct = Math.cos(tilt), st = Math.sin(tilt);
     const small = width <= 600;
-    const scale = small ? Math.min(width * .54, height * .37) : Math.min(width * .28, height * .38);
-    const cx = width * (small ? .65 : .73), cy = height * (small ? .68 : .49);
+    const scale = small ? Math.min(width * .38, height * .24) : Math.min(width * .28, height * .38);
+    const cx = width * (small ? .50 : .73), cy = height * (small ? .74 : .49);
     const intro = motion.matches ? 1 : Math.min(time / 1.5, 1);
     const convergence = 1 - Math.pow(1 - intro, 3);
     const networkReveal = motion.matches ? 1 : Math.max(0, (intro - .35) / .65);

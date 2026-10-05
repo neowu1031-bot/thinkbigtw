@@ -233,19 +233,23 @@
 /* Mobile */
 @media(max-width:600px){
   .tb-hero3d{height:72svh;min-height:480px;max-height:none}
-  .tb-hero3d .tb-hero3d-copy{left:8%;top:16%}
+  /* Copy block pushed to very top so full sphere can live in the lower ~52–98% of the hero */
+  .tb-hero3d .tb-hero3d-copy{left:8%;top:3%}
   .tb-hero3d .tb-hero3d-eyebrow{font-size:9px;margin-bottom:14px}
-  .tb-hero3d .tb-hero3d-copy h1{font-size:36px;line-height:1.25}
+  /* 34px keeps copy within ~287px, leaving sphere (starts at ~50% = 304px) fully clear */
+  .tb-hero3d .tb-hero3d-copy h1{font-size:34px;line-height:1.25}
   .tb-hero3d .tb-hero3d-sub{font-size:14px;margin:10px 0 0;max-width:none}
   .tb-hero3d .tb-hero3d-links{margin-top:18px;gap:14px 24px}
   .tb-hero3d .tb-hero3d-copy a{font-size:13px;gap:20px}
   .tb-hero3d .tb-hero3d-copy a.tb-hero3d-cta-secondary{font-size:12px}
+  /* Vertical-only gradient: solid for top ~47% (covers copy), transparent at 50% (sphere top).
+     Horizontal gradient removed — sphere is now centered, not right-side. */
   .tb-hero3d .tb-hero3d-visual:after{
-    background:linear-gradient(180deg,var(--h3d-ground) 0%,var(--h3d-ground) 22%,transparent 69%),
-    linear-gradient(90deg,var(--h3d-ground) 0%,transparent 64%)
+    background:linear-gradient(180deg,var(--h3d-ground) 0%,var(--h3d-ground) 46%,transparent 50%)
   }
-  .tb-hero3d .tb-hero3d-poster{left:23%;top:40%;width:85%}
-  .tb-hero3d .tb-hero3d-halo{left:65%;top:68%;width:135vw}
+  /* Poster / halo: track new sphere centre (cx=50%, cy=74%) */
+  .tb-hero3d .tb-hero3d-poster{left:50%;top:74%;transform:translate(-50%,-50%);width:75vw}
+  .tb-hero3d .tb-hero3d-halo{left:50%;top:74%;width:90vw}
   .tb-hero3d .tb-hero3d-caption{right:8%;bottom:9%;font-size:9px}
   .tb-hero3d .tb-hero3d-caption-line{width:25px}
   .tb-hero3d .tb-hero3d-toggle{top:18px;right:16px;padding:4px 9px}
