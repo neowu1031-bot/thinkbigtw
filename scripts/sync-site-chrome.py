@@ -31,23 +31,25 @@ def get_zh_dest(rel):
  return '/'
 
 def chrome():
- links=''.join(f'<a href="{url}"'+(' class="tb-info-start"' if name=='導入流程' else '')+f'>{name}</a>' for name,url in LINKS)
+ nav_links=''.join(f'<a href="{url}"'+(' class="tb-info-start"' if name=='導入流程' else '')+f'>{name}</a>' for name,url in LINKS)
+ footer_links=''.join(('<i class="tb-f-break" aria-hidden="true"></i>' if name=='導入流程' else '')+f'<a href="{url}">{name}</a>' for name,url in LINKS)
  nav=f'''<!-- TB:NAV:START -->
-<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><div class="tb-links">{links}</div><details class="tb-menu"><summary>選單</summary><div class="tb-links">{links}</div></details></nav>
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><div class="tb-links">{nav_links}</div><details class="tb-menu"><summary>選單</summary><div class="tb-links">{nav_links}</div></details></nav>
 <!-- TB:NAV:END -->'''
  footer=f'''<!-- TB:FOOTER:START -->
-<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p>{IG_SVG}</div><div class="tb-f-links">{links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁">{LOGO}</a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p>{IG_SVG}</div><div class="tb-f-links">{footer_links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
 <!-- TB:FOOTER:END -->'''
  return nav,footer
 
 def en_chrome(zh_url):
- links=''.join(f'<a href="{url}"'+(' class="tb-info-start"' if name=='Deployment Process' else '')+f'>{name}</a>' for name,url in EN_LINKS)
+ nav_links=''.join(f'<a href="{url}"'+(' class="tb-info-start"' if name=='Deployment Process' else '')+f'>{name}</a>' for name,url in EN_LINKS)
+ footer_links=''.join(('<i class="tb-f-break" aria-hidden="true"></i>' if name=='Deployment Process' else '')+f'<a href="{url}">{name}</a>' for name,url in EN_LINKS)
  zh=f'<a href="{zh_url}" lang="zh-Hant">中文</a>'
  nav=f'''<!-- TB:NAV:START -->
-<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home">{LOGO}</a><div class="tb-links">{links}{zh}</div><details class="tb-menu"><summary>Menu</summary><div class="tb-links">{links}{zh}</div></details></nav>
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home">{LOGO}</a><div class="tb-links">{nav_links}{zh}</div><details class="tb-menu"><summary>Menu</summary><div class="tb-links">{nav_links}{zh}</div></details></nav>
 <!-- TB:NAV:END -->'''
  footer=f'''<!-- TB:FOOTER:START -->
-<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home">{LOGO}</a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p>{IG_SVG}</div><div class="tb-f-links">{links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="{zh_url}" lang="zh-Hant">中文</a></div></div></footer>
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home">{LOGO}</a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p>{IG_SVG}</div><div class="tb-f-links">{footer_links}<a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="{zh_url}" lang="zh-Hant">中文</a></div></div></footer>
 <!-- TB:FOOTER:END -->'''
  return nav,footer
 
