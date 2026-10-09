@@ -1701,7 +1701,13 @@ async function runLoadingCase({ message, userId, displayName, env, loadingImpl, 
       log.order.push('loading');
       log.loadingBodies.push(JSON.parse(opts.body));
       log.loadingAuth = opts.headers?.Authorization;
-      if (loadingImpl) return loadingImpl();
+      if (loadingImpl) {
+        // 模擬真 fetch：signal 中止時 reject
+        return Promise.race([
+          Promise.resolve().then(loadingImpl),
+          new Promise((_, rej) => opts.signal?.addEventListener('abort', () => rej(opts.signal.reason ?? new Error('aborted')))),
+        ]);
+      }
       return { ok: true, status: 202, body: { cancel: async () => {} } };
     }
     if (url.includes('/v2/bot/message/reply')) {
@@ -1794,4 +1800,16 @@ test('loading — 要求真人時不顯示輸入中（固定文字立即回）',
   });
   assert.equal(log.loadingBodies.length, 0);
   assert.ok(log.replied);
+});
+
+test('loading — LINE API 卡住時 2 秒逾時放棄，AI 回覆照送', async () => {
+  const t0 = Date.now();
+  const { res, log } = await runLoadingCase({
+    message: { type: 'text', text: '方案怎麼選' }, userId: 'U_loading_hang', displayName: '一般用戶',
+    env: makeLoadingEnv(),
+    loadingImpl: () => new Promise(() => {}),   // 由下方 signal 中止
+  });
+  assert.equal(res.status, 200);
+  assert.ok(log.replied, 'loading 卡住時 AI 回覆仍應送出');
+  assert.ok(Date.now() - t0 < 6000, '不可無限等待');
 });

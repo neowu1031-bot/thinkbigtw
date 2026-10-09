@@ -17,7 +17,7 @@
  *   - 同一 userId 的事件序列化處理（不用 Promise.all），避免 context 競態
  *   - markAsRead：收到 message 事件即在 waitUntil 內標已讀（非 GIFT 用戶）；失敗只 log 不影響回覆
  *   - loading animation：確定要呼叫 AI 時（GIFT/限速/轉真人都不顯示）送 chat/loading/start，
- *     在 waitUntil 內非阻塞；失敗只 log 不影響回覆（只支援一對一，本檔本來就只處理 user 私訊）
+ *     await 上限 2 秒（保證比回覆先到）；失敗只 log 不影響回覆（只支援一對一，本檔本來就只處理 user 私訊）
  */
 
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
@@ -289,7 +289,7 @@ export async function startLoadingAnimation(token, userId, seconds = LINE_LOADIN
     const n = Number.isFinite(raw) ? Math.min(60, Math.max(5, Math.round(raw / 5) * 5)) : 20;
     const res = await fetch(LINE_LOADING_URL, {
       method: 'POST',
-      signal: AbortSignal.timeout(3000),
+      signal: AbortSignal.timeout(2000),
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -690,12 +690,9 @@ async function processEventInner(event, token, kv, env, ctx) {
     return;
   }
 
-  // 呼叫 AI（先送輸入中動畫，非阻塞；失敗不影響回覆）
-  try {
-    ctx.waitUntil(startLoadingAnimation(token, userId));
-  } catch (e) {
-    console.error(JSON.stringify({ event: 'loading_start_error', error: String(e).slice(0, 100) }));
-  }
+  // 呼叫 AI 前先送輸入中動畫：await（上限 2 秒）確保動畫請求比回覆先到，回覆一到動畫就消失；
+  // startLoadingAnimation 內部吞掉所有錯誤，失敗不影響回覆
+  await startLoadingAnimation(token, userId);
   sessionCtx.messages.push({ role: 'user', content: userText });
   const result = await generateLineReply(sessionCtx.messages, env);
 
