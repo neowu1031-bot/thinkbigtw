@@ -24,6 +24,8 @@ import {
   loadHumanOnlyNames,
   isHumanOnlyUser,
   getLineDisplayName,
+  startLoadingAnimation,
+  LINE_LOADING_SECONDS,
 } from './line-webhook.js';
 
 // ──────────────────────────────────────────────
@@ -1660,4 +1662,136 @@ test('F8: 2026-11-27 00:00（台灣時間）轉真人回覆不含美東提示', 
   Date.now = origDateNow;
 
   assert.ok(!replyBody?.includes('美東'), `11/27 00:00 轉真人回覆不應含美東提示`);
+});
+
+
+// ──────────────────────────────────────────────
+// 測試：輸入中動畫（chat/loading/start）
+// ──────────────────────────────────────────────
+
+function makeLoadingEnv(extra = {}) {
+  return {
+    LINE_CHANNEL_SECRET: 'mysecret',
+    LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: makeKvStub(),
+    LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: '個人方案適合個人使用' }) },
+    MINIMAX_API_KEY: null,
+    INQUIRY_SUPABASE_URL: null,
+    INQUIRY_SUPABASE_SERVICE_ROLE_KEY: null,
+    ...extra,
+  };
+}
+
+async function runLoadingCase({ message, userId, displayName, env, loadingImpl, aiImpl }) {
+  const bodyObj = {
+    events: [{
+      type: 'message', message,
+      source: { type: 'user', userId },
+      replyToken: 'reply_' + userId,
+      webhookEventId: 'evt_' + userId,
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature('mysecret', new TextEncoder().encode(bodyStr));
+  const log = { order: [], loadingBodies: [], replied: null };
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/chat/loading/start')) {
+      log.order.push('loading');
+      log.loadingBodies.push(JSON.parse(opts.body));
+      log.loadingAuth = opts.headers?.Authorization;
+      if (loadingImpl) return loadingImpl();
+      return { ok: true, status: 202, body: { cancel: async () => {} } };
+    }
+    if (url.includes('/v2/bot/message/reply')) {
+      log.order.push('reply');
+      log.replied = opts.body;
+      return { ok: true, body: { cancel: async () => {} } };
+    }
+    if (url.includes('/v2/bot/profile')) {
+      return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName }) };
+    }
+    return { ok: true, body: { cancel: async () => {} }, json: async () => ({}) };
+  };
+  if (aiImpl) env.AI = { run: async (...a) => { log.order.push('ai'); return aiImpl(...a); } };
+  const ctx = makeCtxStub();
+  let res;
+  try {
+    res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+    await ctx._flush();
+  } finally {
+    globalThis.fetch = origFetch;
+  }
+  return { res, log };
+}
+
+test('loading — 一般文字訊息在呼叫 AI 前送出輸入中動畫（chatId=userId、30 秒）', async () => {
+  const { res, log } = await runLoadingCase({
+    message: { type: 'text', text: '請問方案怎麼選' }, userId: 'U_loading_ok', displayName: '一般用戶',
+    env: makeLoadingEnv(), aiImpl: async () => ({ response: '個人方案適合個人使用' }),
+  });
+  assert.equal(res.status, 200);
+  assert.equal(log.loadingBodies.length, 1, '應呼叫一次 loading/start');
+  assert.deepEqual(log.loadingBodies[0], { chatId: 'U_loading_ok', loadingSeconds: LINE_LOADING_SECONDS });
+  assert.equal(log.loadingAuth, 'Bearer token');
+  assert.ok(log.order.indexOf('loading') < log.order.indexOf('ai'), `loading 應在 AI 之前：${log.order}`);
+  assert.ok(log.replied, 'AI 回覆應送出');
+});
+
+test('loading — 秒數是 5–60 的 5 倍數', () => {
+  assert.ok(LINE_LOADING_SECONDS >= 5 && LINE_LOADING_SECONDS <= 60 && LINE_LOADING_SECONDS % 5 === 0);
+});
+
+test('loading — startLoadingAnimation 秒數夾在官方範圍內', async () => {
+  const sent = [];
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => { sent.push(JSON.parse(opts.body).loadingSeconds); return { ok: true, status: 202, body: { cancel: async () => {} } }; };
+  try {
+    for (const s of [1, 7, 30, 61, 999, 'x']) await startLoadingAnimation('t', 'U1', s);
+  } finally { globalThis.fetch = origFetch; }
+  assert.deepEqual(sent, [5, 5, 30, 60, 60, 20]);
+});
+
+test('loading — API 回 400 不影響正常 AI 回覆', async () => {
+  const { res, log } = await runLoadingCase({
+    message: { type: 'text', text: '方案怎麼選' }, userId: 'U_loading_400', displayName: '一般用戶',
+    env: makeLoadingEnv(), loadingImpl: () => ({ ok: false, status: 400, body: { cancel: async () => {} } }),
+  });
+  assert.equal(res.status, 200);
+  assert.ok(log.replied, 'loading 失敗時 AI 回覆仍應送出');
+});
+
+test('loading — fetch 拋例外（網路錯誤）不影響正常 AI 回覆，也不讓 waitUntil reject', async () => {
+  const { res, log } = await runLoadingCase({
+    message: { type: 'text', text: '方案怎麼選' }, userId: 'U_loading_throw', displayName: '一般用戶',
+    env: makeLoadingEnv(), loadingImpl: () => { throw new Error('network down'); },
+  });
+  assert.equal(res.status, 200);
+  assert.ok(log.replied, 'loading 例外時 AI 回覆仍應送出');
+});
+
+test('loading — GIFT 用戶不顯示輸入中（不回覆就不該假裝在打字）', async () => {
+  const { log } = await runLoadingCase({
+    message: { type: 'text', text: '你好' }, userId: 'U_loading_gift', displayName: FAKE_GIFT_NAME_1,
+    env: makeLoadingEnv({ LINE_HUMAN_ONLY_NAMES: FAKE_GIFT_NAMES_ENV }),
+  });
+  assert.equal(log.loadingBodies.length, 0);
+});
+
+test('loading — sticker 訊息不顯示輸入中（不呼叫 AI）', async () => {
+  const { log } = await runLoadingCase({
+    message: { type: 'sticker', stickerId: '1', packageId: '1' }, userId: 'U_loading_sticker', displayName: '一般用戶',
+    env: makeLoadingEnv(),
+  });
+  assert.equal(log.loadingBodies.length, 0);
+});
+
+test('loading — 要求真人時不顯示輸入中（固定文字立即回）', async () => {
+  const { log } = await runLoadingCase({
+    message: { type: 'text', text: '我要找真人客服' }, userId: 'U_loading_human', displayName: '一般用戶',
+    env: makeLoadingEnv(),
+  });
+  assert.equal(log.loadingBodies.length, 0);
+  assert.ok(log.replied);
 });

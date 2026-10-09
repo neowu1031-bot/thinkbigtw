@@ -16,6 +16,8 @@
  *   - P1: event dedup（processing → completed）+ timestamp ±5 min 驗證
  *   - 同一 userId 的事件序列化處理（不用 Promise.all），避免 context 競態
  *   - markAsRead：收到 message 事件即在 waitUntil 內標已讀（非 GIFT 用戶）；失敗只 log 不影響回覆
+ *   - loading animation：確定要呼叫 AI 時（GIFT/限速/轉真人都不顯示）送 chat/loading/start，
+ *     在 waitUntil 內非阻塞；失敗只 log 不影響回覆（只支援一對一，本檔本來就只處理 user 私訊）
  */
 
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
@@ -27,6 +29,10 @@ import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 const LINE_REPLY_URL        = 'https://api.line.me/v2/bot/message/reply';
 const LINE_PUSH_URL         = 'https://api.line.me/v2/bot/message/push';
 const LINE_MARK_AS_READ_URL = 'https://api.line.me/v2/bot/chat/markAsRead';
+const LINE_LOADING_URL      = 'https://api.line.me/v2/bot/chat/loading/start';
+// 輸入中動畫秒數：官方只接受 5–60 的 5 倍數；收到回覆訊息時動畫會自動消失。
+// 30 秒涵蓋 AI 備援鏈最壞情況（MiniMax 8s + Llama 70B 10s + Llama 8B 10s ≈ 28s）。
+export const LINE_LOADING_SECONDS = 30;
 
 const WELCOME_TEXT =
   '嗨，歡迎私訊 Think BIG 喔 😊\n\n' +
@@ -267,6 +273,34 @@ async function callMarkAsRead(token, markAsReadToken) {
   } catch (e) {
     // token 不可入 log
     console.error(JSON.stringify({ event: 'mark_as_read_error', error: String(e).slice(0, 100) }));
+  }
+}
+
+/**
+ * LINE Display a loading animation（輸入中動畫）
+ * https://developers.line.biz/en/reference/messaging-api/#display-a-loading-indicator
+ * - 只支援一對一聊天；成功回 202（使用者沒開聊天畫面時也回 202 但不顯示）
+ * - 不計入訊息則數（非 push/multicast/broadcast/narrowcast）
+ * - token / userId 不寫入 log；失敗只記 status/error，不拋出例外
+ */
+export async function startLoadingAnimation(token, userId, seconds = LINE_LOADING_SECONDS) {
+  try {
+    const raw = Number(seconds);
+    const n = Number.isFinite(raw) ? Math.min(60, Math.max(5, Math.round(raw / 5) * 5)) : 20;
+    const res = await fetch(LINE_LOADING_URL, {
+      method: 'POST',
+      signal: AbortSignal.timeout(3000),
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ chatId: userId, loadingSeconds: n }),
+    });
+    const status = res.status;
+    await res.body?.cancel();
+    if (!res.ok) console.error(JSON.stringify({ event: 'loading_start_failed', status }));
+  } catch (e) {
+    console.error(JSON.stringify({ event: 'loading_start_error', error: String(e).slice(0, 100) }));
   }
 }
 
@@ -656,7 +690,12 @@ async function processEventInner(event, token, kv, env, ctx) {
     return;
   }
 
-  // 呼叫 AI
+  // 呼叫 AI（先送輸入中動畫，非阻塞；失敗不影響回覆）
+  try {
+    ctx.waitUntil(startLoadingAnimation(token, userId));
+  } catch (e) {
+    console.error(JSON.stringify({ event: 'loading_start_error', error: String(e).slice(0, 100) }));
+  }
   sessionCtx.messages.push({ role: 'user', content: userText });
   const result = await generateLineReply(sessionCtx.messages, env);
 
