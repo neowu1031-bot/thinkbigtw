@@ -32,13 +32,13 @@ Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治�
 
 電子郵件：AI@thinkbigtw.com ；[LINE 諮詢](https://lin.ee/n5KW430)。
 
-[Instagram](https://www.instagram.com/think_big_ai/) · [Threads](https://www.threads.com/@think_big_ai) · [YouTube](https://www.youtube.com/@think_big_ai)
+[Instagram](https://www.instagram.com/think_big_ai/) · [Threads](https://www.threads.com/@think_big_ai) · [YouTube](https://www.youtube.com/@think_big_ai_tw)
 
 ---
 
 URL: https://thinkbigtw.com/annual-flagship/
 
-# 年度旗艦 依需求報價 — 雙 Agent 全系統，年度旗艦級 AI 部署 | Think BIG!
+# 年度旗艦：Hermes × OpenClaw 雙 AI Agent 全年部署與維護 | Think BIG
 
 個人 AI 助理 · 年度旗艦
 
@@ -46,7 +46,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 雙 Agent，全系統上線，顧一整年。
 
-旗艦維運保證：發現即修復＋48 小時故障修復保證
+旗艦維運承諾：發現即修復＋48 小時故障修復承諾
 雙系統互通＋多部門覆蓋＋季度 AI 戰略規劃
 
 當一個 Agent 不夠用的時候，年度旗艦給你的是一套完整的 AI 作業系統：OpenClaw 主理助理功能、Hermes 負責跨平台通訊與排程，兩套系統互通協作，再由專屬工程師整年度維護升級。不只是「有一個 AI 助理」，而是讓 AI 真的跑起你的日常運作。
@@ -61,7 +61,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 - OpenClaw 或 Hermes，擇一
 
-- 48 小時故障修復保證
+- 48 小時故障修復承諾
 
 - 每週維護＋技能新增
 
@@ -73,7 +73,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 - OpenClaw＋Hermes 同時部署
 
-- 48 小時故障修復保證
+- 48 小時故障修復承諾
 
 - 每週維護＋多部門技能
 
@@ -99,7 +99,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 4
 
-48 小時故障保固 雙系統任一出現異常，主動通知並於 48 小時內修復，不等你發現才動
+48 小時故障修復承諾 雙系統任一出現異常，主動通知並於 48 小時內修復，不等你發現才動
 
 5
 
@@ -111,7 +111,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 - 雙 Agent 系統 ：OpenClaw 主理助理功能＋Hermes 跨平台通訊，兩套互通協作
 
-- 一年維運陪跑 ：發現即修復＋48 小時故障修復保證
+- 一年維運陪跑 ：發現即修復＋48 小時故障修復承諾
 
 - 每週例行維護＋多部門客製技能持續擴充
 
@@ -121,7 +121,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 - 每季 AI 戰略規劃會議（1 次 / 季，共 4 次）★
 
-- 年費 依需求報價，平均每月約 依需求報價
+- 年度旗艦方案，依需求報價，預約訪談了解費用
 
 季度規劃等進階服務的內容與範圍，請於購買前與顧問確認。
 
@@ -129,17 +129,17 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 方案價格
 
-依需求報價／年（年約制，下單前請先聊聊確認需求）
+依需求報價（年約制，下單前請先聊聊確認需求）
 
-[前往蝦皮下單｜確認需求再付款](https://shopee.tw/product/105010395/47108617097)
+[前往蝦皮下單｜確認需求再付款](https://shopee.tw/shop/105010395)
 
-※ 下單前需完成業務盤點訪談並確認雙系統架構。AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。次年續約 依需求報價。
+※ 下單前需完成業務盤點訪談並確認雙系統架構。AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。次年可選配續約，費用依需求報價。
 
 ---
 
 URL: https://thinkbigtw.com/annual-pro/
 
-# 尊榮年約 依需求報價 — 你的專屬工程師，顧一整年 | Think BIG!
+# 尊榮年約 — 你的專屬工程師，顧一整年 | Think BIG!
 
 個人 AI 助理 · 尊榮年約
 
@@ -147,8 +147,8 @@ URL: https://thinkbigtw.com/annual-pro/
 
 你的專屬工程師，顧一整年。
 
-年約含維運：發現即修復＋48 小時故障修復保證
-次年續約 依需求報價／月，持續提供年度維護
+年約含維運：發現即修復＋48 小時故障修復承諾
+次年可選配續約，持續提供年度維護
 
 從架設到長期陪跑，一個方案全包。全客製 AI Agent 架構（OpenClaw 或 Hermes，或雙系統互通）＋專屬工程師整年度維護。你不用學怎麼維護，也不用每次出問題再付一次救火費——年費裡已經包含。
 
@@ -188,7 +188,7 @@ URL: https://thinkbigtw.com/annual-pro/
 
 - 全客製 AI Agent 架構（含多 Agent 協作架構設定）
 
-- 一年維運陪跑 ：發現即修復＋48 小時故障修復保證
+- 一年維運陪跑 ：發現即修復＋48 小時故障修復承諾
 
 - 每週例行維護升級＋每週依需求新增客製技能
 
@@ -196,17 +196,17 @@ URL: https://thinkbigtw.com/annual-pro/
 
 - 全年無限次諮詢，專屬工程師直達
 
-- 年費 依需求報價，平均每月約 依需求報價
+- 尊榮年約方案，依需求報價，年約制
 
 需要雙 AI Agent 系統＋季度 AI 戰略規劃？→ [看「年度旗艦」](https://thinkbigtw.com/annual-flagship/)。
 
 方案價格
 
-依需求報價／年（年約制，下單前請先聊聊確認需求）
+依需求報價（年約制，下單前請先聊聊確認需求）
 
 [前往蝦皮下單｜確認需求再付款](https://shopee.tw/product/105010395/48258528741)
 
-※ 下單前需完成需求訪談並選定主系統。AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。次年續約 依需求報價／年（依需求報價／月）。
+※ 下單前需完成需求訪談並選定主系統。AI 模型使用費依用量向原廠計費，API Key 自行申請、費用自行負擔，非本方案年費所含。次年可選配續約，費用依需求報價。
 
 ---
 
@@ -288,13 +288,13 @@ OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透�
 
 - 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
 
-- 服務費 依需求報價 一次付清，無月費 （指我方服務費）
+- 服務費依需求報價，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
 
 不想自己維護？→ [看「尊榮年約」](https://thinkbigtw.com/annual-pro/)或[「年度旗艦」](https://thinkbigtw.com/annual-flagship/)，全年有工程師陪跑。
 
 方案價格
 
-依需求報價（單次）
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 
 [前往蝦皮下單｜下單後預約遠端安裝時間](https://s.shopee.tw/19tR2HgG4)
 
@@ -302,7 +302,7 @@ OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透�
 
 ## 與「雙 AI Agent 共存版」的差異
 
-項目 共存版 依需求報價 雙 AI Agent 依需求報價 兩個 AI Agent 各自安裝 ✓ ✓
+項目 共存版 雙 AI Agent 兩個 AI Agent 各自安裝 ✓ ✓
 
 人格組合自選 ✓ ✓
 
@@ -314,7 +314,7 @@ OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透�
 
 支援期 7 天技術諮詢 2 小時線上技術導覽＋安裝後 7 天技術諮詢
 
-共存版適合想先以低門檻同時用兩個 AI Agent 的人；本方案（依需求報價）適合想讓兩個 Agent 協作、共享記憶的人。兩個方案都在[個人方案頁](https://thinkbigtw.com/pricing/personal/)。
+共存版適合想先以低門檻同時用兩個 AI Agent 的人；本方案適合想讓兩個 Agent 協作、共享記憶的人。兩個方案都在[個人方案頁](https://thinkbigtw.com/pricing/personal/)。
 
 ---
 
@@ -404,11 +404,10 @@ ENTERPRISE AI / 企業導入
 
 # 公司導入 AI，
 依你的流程量身規劃。
-企業方案依需求報價。
 
-入門 依需求報價
-標準 依需求報價
-完整 依需求報價
+入門方案
+標準方案
+完整方案
 
 照公司文件回答、附出處，不限使用人數。三種方案都含第一年維護服務。
 
@@ -537,16 +536,15 @@ AI AGENT / 能力範圍
 PRICING / 方案定價
 
 ## 公司導入 AI，
-依你的流程量身規劃。
-企業方案依需求報價。
+依需求報價
 
-三種方案，清楚定義範圍與交付天數。三種方案都含第一年維護服務；AI 模型費用由客戶自備。
+三種方案，清楚定義範圍與交付天數，都含第一年維護服務；AI 模型費用由客戶自備。實際內容與報價依需求訪談確認。
 
 STARTER / 入門級
 
-依需求報價
+入門方案
 
-方案詳情請預約訪談｜付款分兩次：簽約 50%、驗收通過 50%
+依需求報價｜付款分兩次：簽約 50%、驗收通過 50%
 
 員工直接問公司的 SOP 和規章。知識庫最多 30 份文件，AI 依文件回答、附出處；沒有依據就交回人確認。
 
@@ -569,14 +567,14 @@ BEST FOR
 
 - 交付天數：範圍凍結與資料到位後 30 天內
 
-第二年選配續約：依需求報價／月 （含稅）。由客戶決定是否續約，不自動扣款。
+第二年選配續約費用依報價（含稅）。由客戶決定是否續約，不自動扣款。
 
 STANDARD
 STANDARD / 標準級
 
-依需求報價
+標準方案
 
-方案詳情請預約訪談｜付款分兩次：簽約 50%、驗收通過 50%
+依需求報價｜付款分兩次：簽約 50%、驗收通過 50%
 
 回答問題，也幫忙打草稿。文件最多 100 份，還能處理試算表，並新增一項工作草稿任務（詢問摘要、回覆草稿或表單摘要三選一）。
 
@@ -601,13 +599,13 @@ BEST FOR
 
 - 交付天數：範圍凍結與資料到位後 30 天內
 
-第二年選配續約：依需求報價／月 （含稅）。由客戶決定是否續約，不自動扣款。
+第二年選配續約費用依報價（含稅）。由客戶決定是否續約，不自動扣款。
 
 COMPLETE / 完整級
 
-依需求報價
+完整方案
 
-方案詳情請預約訪談｜付款分兩次：簽約 50%、驗收通過 50%
+依需求報價｜付款分兩次：簽約 50%、驗收通過 50%
 
 回答、打草稿，文件還會自動同步。額外包含一個唯讀串接（例如雲端硬碟資料夾自動同步），以及可加購擴充包。
 
@@ -634,7 +632,7 @@ BEST FOR
 
 - 可加購擴充包
 
-第二年選配續約：依需求報價／月 （含稅）。由客戶決定是否續約，不自動扣款。
+第二年選配續約費用依報價（含稅）。由客戶決定是否續約，不自動扣款。
 
 ### 三種方案共同條件
 
@@ -646,7 +644,7 @@ BEST FOR
 
 - 簽約前先做遠端設備預檢，裝不起來就不簽，客戶不會付到錢
 
-- 三種方案首年內均可補差價升級：升一級補 依需求報價，直升完整級補 依需求報價
+- 三種方案首年內均可補差價升級：預約訪談了解升級條件
 
 首年內補差價升級，前面付過的錢不會浪費。擴充包（進階功能）僅限完整級加購。
 
@@ -781,7 +779,7 @@ TB FRAME 以評估定義、架構建置、驗證交付與治理維運四階段�
 
 企業方案有哪些級距？
 
-三種方案（入門／標準／完整）依需求報價。三種方案都含建置、教學影片與第一年維護服務。首年內可補差價升級。第二年選配續約，由客戶自己決定是否續約，不自動扣款。
+企業方案依需求報價，請[預約需求訪談](https://thinkbigtw.com/contact/)取得正式報價。三種方案（入門／標準／完整）均含建置、教學影片與第一年維護服務。首年內均可補差價升級。第二年選配續約，由客戶自己決定是否續約，不自動扣款。
 
 企業服務如何界定報價範圍？
 
@@ -1006,7 +1004,7 @@ RAG 著重回答時要參考哪些資料，更新文件與索引通常不必重�
 
 ## 使用 RAG，資料會不會外流？
 
-RAG 是回答方法，不是資料安全保證。資料會傳到哪裡，要看文件儲存、檢索、文字轉換、模型推論、日誌與備份各在哪裡處理，以及連接哪些外部服務。
+RAG 是回答方法，不是資料安全承諾。資料會傳到哪裡，要看文件儲存、檢索、文字轉換、模型推論、日誌與備份各在哪裡處理，以及連接哪些外部服務。
 
 地端部署不等於所有連線都在本機。即使知識庫在公司內，使用雲端模型時，問題與檢索出的段落仍可能送往外部；雲端文字轉換或索引服務也要列入資料流向。若要求資料不出公司，須一併確認本機模型、檢索與資料處理配置、外連限制、日誌及備份。
 
@@ -1068,7 +1066,7 @@ URL: https://thinkbigtw.com/enterprise/start/
 SELF-SERVICE ASSESSMENT / 自助評估
 
 # 公司導入 AI，
-依需求報價，歡迎預約訪談。
+依需求報價。
 
 12 題問卷，自動判斷入門、標準或完整哪種方案適合你的公司。填完即可預約訪談，由顧問確認需求後報價。
 
@@ -1111,7 +1109,6 @@ AI Agent
 （第一年）
 
 —
-
 
 AI Agent
 （第二年起）
@@ -1190,7 +1187,7 @@ THINK BIG
 
 ## 企業如何報價？
 
-三種方案（入門／標準／完整）依需求報價。三種方案都含建置、教學影片與第一年維護服務。付款分兩次：簽約 50%、驗收通過 50%。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。
+企業方案依需求報價。三種方案（入門／標準／完整）都含建置、教學影片與第一年維護服務。付款分兩次：簽約 50%、驗收通過 50%。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。請[預約需求訪談取得報價](https://thinkbigtw.com/contact/)。
 
 [查看方案比較 ›](https://thinkbigtw.com/enterprise/#packages)
 
@@ -1210,7 +1207,7 @@ THINK BIG
 
 ## 個人安裝有哪些選擇？
 
-人格版 AI 助理 依需求報價（討好型或討伐型人格任選，含完整個人技能包＋1 個客製小幫手＋Coding Agent 串接）；雙 AI Agent 共存版 依需求報價（各自運作，不含協作會議室）；雙 AI Agent 依需求報價（含記憶互通與協作會議室）；年約 依需求報價。各方案範圍與加購項目請見個人方案頁。
+個人方案請至蝦皮賣場選購（[thinkbigtw 蝦皮賣場](https://shopee.tw/shop/105010395)），或預約需求訪談取得報價。方案含：人格版 AI 助理（討好型或討伐型）、雙 AI Agent（共存版或含記憶互通）、年約。各方案範圍請見個人方案頁。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
 
@@ -1218,7 +1215,7 @@ THINK BIG
 
 ## 人格版與雙 AI Agent 方案包含多久支援？
 
-人格版 AI 助理 依需求報價 含 7 天技術諮詢；雙 AI Agent 共存版 依需求報價 含 7 天技術諮詢；雙 AI Agent 依需求報價 含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。兩者均無年度維運承諾，需要長期顧請看年約。
+人格版 AI 助理含 7 天技術諮詢；雙 AI Agent 共存版含 7 天技術諮詢；雙 AI Agent（含記憶互通）含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。兩者均無年度維運承諾，需要長期顧請看年約。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/#tier2)
 
@@ -1226,7 +1223,7 @@ THINK BIG
 
 ## 年約如何續約？
 
-個人年約次年續約 依需求報價／年，含每週維護。年約的 48 小時故障修復承諾僅適用個人年約約定範圍。
+個人年約次年可選配續約，含每週維護。年約的 48 小時故障修復承諾僅適用個人年約約定範圍。續約費用依需求報價，請見個人方案頁。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/#tier3)
 
@@ -1252,7 +1249,7 @@ THINK BIG
 
 不含第三方模型用量費。API Key 需自行申請，工程師提供引導；coding agent 訂閱與所需第三方帳號請自行準備。
 
-[查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
+[查看方案範圍 ›](https://thinkbigtw.com/pricing/personal/)
 
 退款
 
@@ -1280,11 +1277,19 @@ THINK BIG
 
 AI Agent 市場
 
-## 現在有哪些 AI Agent？新的 AI Agent 出來了，還需要龍蝦嗎？
+## 新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？
 
-兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。大模型品牌推出的 AI Agent 費用綁訂閱額度，適合需要品牌生態協作的任務；OpenClaw（龍蝦）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作。
+兩者擅長的工作不同，可以一起用。常見的大模型品牌 AI Agent 有 Grok Bot（xAI）、Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Muse（Meta）等，每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。OpenClaw（龍蝦）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作。
 
 [各家 AI Agent 一次看懂 ›](https://thinkbigtw.com/guides/ai-agents/)
+
+資安
+
+## 你們裝的 AI Agent 跟大品牌的有什麼不一樣？資安怎麼顧？
+
+資安沒有人能打包票。我們做的，就是一道一道的審查。技能裝進去之前先掃描；固定版本、不自動更新；上線前先過資安審查；金鑰只放系統設定檔、不在聊天裡傳。
+
+[查看資安承諾 ›](https://thinkbigtw.com/trust/)
 
 ---
 
@@ -1340,13 +1345,13 @@ Multi-Agent Orchestration（多代理協作）：讓 OpenClaw 和你既有的 co
 
 - 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
 
-- 服務費 依需求報價 一次付清，無月費 （指我方服務費）
+- 服務費依需求報價，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
 
 想要會學習的第二顆大腦？→ [看「雙 AI Agent」](https://thinkbigtw.com/dual-agent/)。
 
 方案價格
 
-依需求報價（單次）
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 
 [前往蝦皮下單｜下單後預約遠端安裝時間](https://s.shopee.tw/2gAebp9KEB)
 
@@ -1411,7 +1416,7 @@ Think BIG 編輯部
 
 最近各大品牌密集推出常駐型 AI Agent。這篇整理 2026 年常見的 AI Agent 有哪些、各家怎麼計費、額度用完怎麼辦，以及龍蝦（OpenClaw）在長時間運作情境的定位。
 
-最後更新：2026-10-01｜資料查證：2026-09-30
+最後更新：2026-10-02｜資料查證：2026-09-30
 
 新的 AI Agent 不會讓龍蝦（OpenClaw）失去用處，兩者適合的工作不同。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
 
@@ -1453,7 +1458,7 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 ### Claude（Anthropic）
 
-- 是什麼 ：Claude 是 Anthropic 於 2025 年推出的 AI 助理，2026 年 9 月起整合原 Cowork 功能，可在關閉電腦後繼續背景完成報告、簡報、研究任務。【官方】
+- 是什麼 ：Claude 是 Anthropic 的 AI 助理，2026 年 9 月起整合原 Cowork 功能，可在關閉電腦後繼續背景完成報告、簡報、研究任務。【官方】
 
 - 怎麼用 ：網頁版、桌面版、App、Claude Code（程式碼助理）；網頁、App、Claude Code 共用同一個用量上限。【官方】
 
@@ -1489,11 +1494,11 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 ### Grok Bot（xAI）
 
-- 是什麼 ：Grok Bot 是 xAI 於 2026 年 8 月推出的常駐 AI 隊友，有自己的雲端電腦、瀏覽器、終端機，可以多個同時工作，需要你判斷的事才回頭問你。【官方】
+- 是什麼 ：Grok Bot 是 xAI 於 2026 年 8 月推出的常駐 AI 隊友，有自己的雲端電腦、瀏覽器、終端機，可以多個同時工作，需要你判斷的事才回頭問你。xAI 服務 2026 年 6 月起各功能共用每週額度池。【官方】
 
 - 怎麼用 ：支援 macOS、Windows、Linux 桌面版及 iOS、Android。帳號驗證沿用 Cursor 帳號。【官方】
 
-- 怎麼計費 ：SuperGrok US$30（約 960 TWD）、SuperGrok Plus US$100 含 Grok Bot。【官方】2026 年 6 月起所有功能共用每週額度池；影片與長任務特別耗額度，用完等每週重置，或購買 Extra Usage Credits（US$5 起，網頁購買，效期一年）。【官方】
+- 怎麼計費 ：SuperGrok US$30（約 960 TWD）、SuperGrok Plus US$100 含 Grok Bot。Grok Bot 有自己的每週額度，和 Grok 聊天分開計算；影片與長任務特別耗額度，用完等每週重置。【官方】xAI 訂閱者可購買 Extra Usage Credits 補充額度（US$5 起，網頁購買，效期一年）。【官方】
 
 - 台灣可用 ：官方未列國家清單【待實測】。
 
@@ -1598,7 +1603,7 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模型用量費；模型用量費依實際使用量計算，由你直接付給模型商。詳見 [常見問題](https://thinkbigtw.com/faq/)。
 
-## 龍蝦還有用嗎
+## 龍蝦會被淘汰嗎
 
 不必二選一。品牌 AI Agent 和龍蝦（OpenClaw）擅長的工作不同：品牌 AI Agent 有品牌生態綁定，額度用完就停，適合需要協作或短時間高強度的任務；龍蝦可以自選模型、24 小時常駐、費用可控，適合長時間例行運作。
 
@@ -1608,59 +1613,65 @@ Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模
 
 Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服務商。
 
-- 單 AI Agent（人格版）依需求報價 ：OpenClaw 或 Hermes 擇一，討好型（溫暖支持）或討伐型（直接犀利）人格任選，含完整個人技能包＋1 個客製小幫手、Coding Agent 串接 1–2 個、7 天技術諮詢。
+- 單 AI Agent（人格版） ：OpenClaw 或 Hermes 擇一，討好型（溫暖支持）或討伐型（直接犀利）人格任選，含完整個人技能包＋1 個客製小幫手、Coding Agent 串接 1–2 個、7 天技術諮詢。
 
-- 雙 AI Agent 共存版 依需求報價 ：OpenClaw＋Hermes 各自運作、各自記憶，不含記憶互通與協作會議室，7 天技術諮詢。
+- 雙 AI Agent 共存版 ：OpenClaw＋Hermes 各自運作、各自記憶，不含記憶互通與協作會議室，7 天技術諮詢。
 
-- 雙 AI Agent 依需求報價 ：含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談、2 小時線上技術導覽＋安裝後 7 天技術諮詢。
+- 雙 AI Agent ：含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談、2 小時線上技術導覽＋安裝後 7 天技術諮詢。
 
-- 年約方案 ：依需求報價（單 AI Agent）或 依需求報價（雙 AI Agent）年維護陪跑，48 小時故障修復，次年續約 依需求報價／年。
+- 年約方案 ：尊榮年約（單 AI Agent）或年度旗艦（雙 AI Agent）年維護陪跑，48 小時故障修復，次年可選配續約。
 
 以上方案價格不含第三方 AI 模型用量費；API Key 自行申請，我方引導不代辦。詳見 [個人方案頁](https://thinkbigtw.com/pricing/personal/)。
 
 ### 想裝一個 AI Agent，告訴我們就出貨
 
-從人格版 依需求報價 開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好，可選討好型或討伐型人格。
+個人方案請至蝦皮賣場選購，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好，可選討好型或討伐型人格。
 
-[前往蝦皮下單人格版 依需求報價 →](https://shopee.tw/product/105010395/45107951008)
+[前往蝦皮賣場選購個人方案 →](https://shopee.tw/shop/105010395)
 
-想讓兩個 AI Agent 分工？→ [雙 AI Agent（共存版 依需求報價 或含協作室 依需求報價）](https://thinkbigtw.com/dual-agent/)
+想讓兩個 AI Agent 分工？→ [雙 AI Agent（共存版或含協作室）](https://thinkbigtw.com/dual-agent/)
 
 所有方案→ [個人方案與定價](https://thinkbigtw.com/pricing/personal/)
+
+企業需要系統化導入 AI Agent？→ [Think BIG 企業 AI Agent 導入服務](https://thinkbigtw.com/enterprise/)
 
 ## 常見問題
 
 Q：2026 年常見的 AI Agent 有哪些？
 
-分成兩類：大模型品牌推出、以訂閱方案使用的 AI Agent（如 Claude、ChatGPT Agent、Gemini Spark、Grok Bot、Muse）；以及開源、可自選模型的 AI Agent（如 OpenClaw（龍蝦）、Hermes）。各家介紹見本頁「2026 年常見的 AI Agent 有哪些」。
+分成兩類：大模型品牌推出、以訂閱方案使用的 AI Agent；以及開源、可自選模型的 AI Agent（如龍蝦）。各家介紹見本頁「2026 年常見的 AI Agent 有哪些」。
 
-Q：新推出的 AI Agent 會取代龍蝦（OpenClaw）嗎？
+Q：新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？
 
-兩者擅長的工作不同，可以一起用。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+兩者擅長的工作不同，可以一起用。2026 年常見的大模型品牌 AI Agent 包括：Grok Bot（xAI）、Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Muse（Meta）、Copilot Autopilot（Microsoft）、Manus 等。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。龍蝦（OpenClaw）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作情境。
 
 Q：龍蝦 AI 是什麼？要錢嗎？
 
-龍蝦是台灣使用者對開源 AI Agent OpenClaw 的暱稱。軟體本身開源免費；使用時要付 AI 模型用量費，依用量計算，由使用者直接付給模型商；找人安裝另外收服務費。→ [OpenClaw 代裝服務說明](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+龍蝦是台灣使用者對開源 AI Agent 的暱稱。軟體本身開源免費；使用時要付 AI 模型用量費，依用量計算，由使用者直接付給模型商；找人安裝另外收服務費。→ [龍蝦代裝服務說明](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 
 Q：訂閱制 AI 的額度用完怎麼辦？
 
-等官方額度重置、升級方案、改用依用量計費的 API，或把常駐工作交給自選模型的 AI Agent（如 OpenClaw），品牌 AI Agent 留給需要協作的時段。
+等官方額度重置、升級方案、改用依用量計費的 API，或把常駐工作交給自選模型的 AI Agent（如龍蝦），品牌 AI Agent 留給需要協作的時段。
 
 Q：想讓 AI Agent 長時間運作，費用怎麼控制？
 
-選能自己換模型、依用量付費的做法，並設定用量上限；需要協作的時段再搭配訂閱型 AI Agent。OpenClaw 和 Hermes 都支援自選模型。
+選能自己換模型、依用量付費的做法，並設定用量上限；需要協作的時段再搭配訂閱型 AI Agent。龍蝦等開源 AI Agent 都支援自選模型。
 
 Q：品牌 AI Agent 和龍蝦可以一起用嗎？
 
-可以。常見做法是龍蝦（OpenClaw）負責常駐和例行工作，品牌 AI Agent 負責需要協作的任務。→ [OpenClaw＋coding agent 協作](https://thinkbigtw.com/full-agent/) / [雙 AI Agent 方案](https://thinkbigtw.com/dual-agent/)
+可以。常見做法是龍蝦負責常駐和例行工作，品牌 AI Agent 負責需要協作的任務。→ [龍蝦＋coding agent 協作](https://thinkbigtw.com/full-agent/) / [雙 AI Agent 方案](https://thinkbigtw.com/dual-agent/)
 
 Q：自己安裝 AI Agent 安全嗎？
 
-關鍵在最小權限、本機部署，以及不裝來路不明的技能。詳細說明→ [OpenClaw 安全指南](https://thinkbigtw.com/guides/openclaw-safe/)
+關鍵在最小權限、本機部署，以及不裝來路不明的技能。詳細說明→ [龍蝦安全指南](https://thinkbigtw.com/guides/openclaw-safe/)
 
 Q：Think BIG 的方案包含 AI 模型費用嗎？
 
 不含。方案價格是安裝與設定的服務費；第三方 AI 模型用量費依實際用量計算，由你自行負擔。詳見 [常見問題](https://thinkbigtw.com/faq/)。
+
+Q：你們裝的 AI Agent 跟大品牌的有什麼不一樣？資安怎麼顧？
+
+資安沒有人能打包票。我們做的，就是一道一道的審查。技能裝進去之前先掃描；固定版本、不自動更新；上線前先過資安審查；金鑰只放系統設定檔、不在聊天裡傳。
 
 ## 資料來源與更新紀錄
 
@@ -1680,7 +1691,7 @@ Q：Think BIG 的方案包含 AI 模型費用嗎？
 
 - Microsoft Copilot：[microsoft.com/copilot/pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals)
 
-資料查證日期：2026-09-30，價格以各家官網為準。更新紀錄：2026-10-01 初版上線。
+資料查證日期：2026-09-30，價格以各家官網為準。更新紀錄：2026-10-01 初版上線；2026-10-02 加入「新的 AI Agent 出來了，還需要龍蝦？」FAQ。
 
 ---
 
@@ -1895,7 +1906,7 @@ URL: https://thinkbigtw.com/guides/hermes-vs-openclaw/
 
 Think BIG 編輯部
 
-OpenClaw 跟 Hermes（Nous Research 開源） 到底差在哪？一個人、一家公司、不同工作場景怎麼挑？這篇用白話講清楚定位、記憶方式、技能生態、適合誰，附上 各方案帶哪個工具的對照表。
+OpenClaw 跟 Think BIG 自己養的 Hermes 到底差在哪？一個人、一家公司、不同工作場景怎麼挑？這篇用白話講清楚定位、記憶方式、技能生態、適合誰，附上 Think BIG 各方案帶哪個工具的對照說明。
 
 發布：2026-09-13
 
@@ -1950,9 +1961,9 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 安裝費（人格版，一次付清） 依需求報價 依需求報價
 
-兩個都要（各自運作，不含協作） 雙 AI Agent 共存版 依需求報價（兩個 AI Agent 各自運作，不含記憶互通與協作會議室，7 天技術諮詢）
+兩個都要（各自運作，不含協作） 雙 AI Agent 共存版（兩個 AI Agent 各自運作，不含記憶互通與協作會議室，7 天技術諮詢）
 
-兩個都要（含協作會議室） 雙 AI Agent 依需求報價（含跨 Agent 協作會議室、MCP 記憶互通、2 小時線上技術導覽＋安裝後 7 天技術諮詢）
+兩個都要（含協作會議室） 雙 AI Agent（含跨 Agent 協作會議室、MCP 記憶互通、2 小時線上技術導覽＋安裝後 7 天技術諮詢）
 
 裝在哪 你電腦本機 你電腦本機
 
@@ -1964,7 +1975,7 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 - 你的工作比較雜事多，還是寫東西多？ 雜事多 OpenClaw；寫東西多 Hermes。
 
-- 你想要一個還是要兩個分工？ 一個就從人格版 依需求報價 開始；要兩個但各自運作選共存版 依需求報價；要兩個且想記憶互通、協作，選雙 AI Agent 依需求報價（含協作會議室）。
+- 你想要一個還是要兩個分工？ 一個就從人格版 開始；要兩個但各自運作選共存版；要兩個且想記憶互通、協作，選雙 AI Agent（含協作會議室）。
 
 不確定的話：先裝 OpenClaw 跑一兩週，知道自己「還少什麼」，再決定要不要加 Hermes。多數人會從 OpenClaw 開始。
 
@@ -1981,13 +1992,13 @@ Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理。Think BIG �
 
 雙 AI Agent 依需求報價 OpenClaw + Hermes 記憶互通，跨 Agent 協作會議室（此方案專屬），技能依訪談，含 2 小時線上技術導覽＋安裝後 7 天技術諮詢 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 記憶互通協作
 
-尊榮年約 依需求報價／年 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
+尊榮年約 依需求報價 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
 
-年度旗艦 依需求報價／年 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
+年度旗艦 依需求報價 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
 
 企業部署 洽詢 本地或雲端，依需求評估 公司、團隊、資料需在企業內部
 
-這張表依 Think BIG 個人方案（人格版 依需求報價、共存版 依需求報價、雙 AI Agent 依需求報價、年約 依需求報價）整理，金額對齊官方頁。所有方案都不含第三方 AI 模型的 API 用量費，實際用量依你選的供應商與用量計費。
+這張表依 Think BIG 個人方案（人格版、共存版、雙 AI Agent、年約）整理，金額對齊官方頁。所有方案都不含第三方 AI 模型的 API 用量費，實際用量依你選的供應商與用量計費。
 
 ## 常見問題 FAQ
 
@@ -2001,7 +2012,7 @@ Q：一個就夠還是兩個都要裝？
 
 Q：裝兩個會不會很貴？
 
-想讓兩個助理各自運作但不需記憶互通，選共存版 依需求報價；想讓兩個助理記憶互通並有協作會議室，選雙 AI Agent 依需求報價（含跨 Agent 協作會議室、2 小時線上技術導覽＋安裝後 7 天技術諮詢）。若分開下單兩個人格版各 依需求報價，共 依需求報價，但不含記憶互通與協作會議室。
+想讓兩個助理各自運作但不需記憶互通，選共存版；想讓兩個助理記憶互通並有協作會議室，選雙 AI Agent（含跨 Agent 協作會議室、2 小時線上技術導覽＋安裝後 7 天技術諮詢）。若分開下單兩個人格版各 依需求報價，共 依需求報價，但不含記憶互通與協作會議室。
 
 Q：Think BIG 的 Hermes 跟網路上的 Hermes Agent 是同一個嗎？
 
@@ -2009,7 +2020,7 @@ Q：Think BIG 的 Hermes 跟網路上的 Hermes Agent 是同一個嗎？
 
 Q：可以用年約方式同時養兩個嗎？
 
-可以。年度旗艦 依需求報價／年 就是兩個助理互通加全年維護的方案；尊榮年約 依需求報價／年 是單系統年約。想清楚「要幾個助理」再看年約會比較不繞路。
+可以。年度旗艦 依需求報價 就是兩個助理互通加全年維護的方案；尊榮年約 依需求報價 是單系統年約。想清楚「要幾個助理」再看年約會比較不繞路。
 
 想看其他 AI Agent 的整理，包括各大品牌的計費與龍蝦（OpenClaw）的定位？→ [AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)
 
@@ -2019,21 +2030,23 @@ Q：可以用年約方式同時養兩個嗎？
 
 如果你的工作常常要寫、要研究、要彙整——Hermes 先裝，從寫東西這件事開始加速。
 
-如果你兩種都要、不需記憶互通——共存版 依需求報價；想讓兩個 AI 記憶互通協作——雙 AI Agent 依需求報價；想全年有人顧——年度旗艦 依需求報價。
+如果你兩種都要、不需記憶互通——共存版；想讓兩個 AI 記憶互通協作——雙 AI Agent；想全年有人顧——[年度旗艦方案](https://thinkbigtw.com/annual-flagship/)。
 
-如果還是不確定，先裝人格版 依需求報價 就好。OpenClaw 或 Hermes 擇一，有個性能跑，之後想要兩個協作或改選雙 AI Agent 依需求報價。
+如果還是不確定，先裝人格版 就好。OpenClaw 或 Hermes 擇一，有個性能跑，之後想要兩個協作或改選雙 AI Agent。
 
 ### 想要哪一個，告訴我們就出貨
 
-從人格版 依需求報價 開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好，可選討好型或討伐型人格。預算更高的，直接約時間聊雙 AI Agent 或年約。
+從人格版 開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好，可選討好型或討伐型人格。預算更高的，直接約時間聊雙 AI Agent 或年約。
 
-[前往蝦皮下單人格版 依需求報價 →](https://shopee.tw/product/105010395/45107951008)
+[前往蝦皮下單人格版 →](https://shopee.tw/shop/105010395)
 
 人格版裝什麼？→ [OpenClaw 代裝拆解](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 
 兩個都想要、讓它們互通？→ [雙 AI Agent（OpenClaw＋Hermes）](https://thinkbigtw.com/dual-agent/)
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
+
+想讓兩個 AI Agent 全年有人維護？→ [年度旗艦方案（含全年部署與 48hr 修復承諾）](https://thinkbigtw.com/annual-flagship/)
 
 ---
 
@@ -2133,17 +2146,17 @@ Think BIG 編輯部 · 2026 年 9 月 26 日
 
 URL: https://thinkbigtw.com/guides/openclaw-daizhuang/
 
-# OpenClaw 代裝拆解——人格版 依需求報價 到底幫你裝什麼 | Think BIG!
+# OpenClaw 代裝拆解——人格版 到底幫你裝什麼 | Think BIG!
 
 [Guides](https://thinkbigtw.com/guides/) / OpenClaw 代裝
 
 代裝服務 · 人格版 AI 助理
 
-# OpenClaw 代裝拆解——人格版 依需求報價 到底幫你裝什麼
+# OpenClaw 代裝拆解——人格版 到底幫你裝什麼
 
 Think BIG 編輯部
 
-想用 OpenClaw 但卡在安裝？這篇把「OpenClaw 代裝」一次講清楚：人格版 依需求報價 幫你裝什麼、討好型或討伐型人格怎麼選、安裝流程長怎樣、費用怎麼算。看完你就知道值不值得找人代裝。
+想用 OpenClaw 但卡在安裝？這篇把「OpenClaw 代裝」一次講清楚：人格版 幫你裝什麼、討好型或討伐型人格怎麼選、安裝流程長怎樣、費用怎麼算。看完你就知道值不值得找人代裝。
 
 更新：2026-08-31
 
@@ -2161,9 +2174,9 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 所以就有了 OpenClaw 安裝服務 ，也就是俗稱的「代裝」：你不用碰那些指令，由工程師遠端幫你把整套裝好、跑起來、確認能用，你只要在旁邊看著。AI 助理安裝 這件事，本來就不該是你一個人對著螢幕硬扛。
 
-## 人格版 依需求報價 到底幫你裝什麼？逐項拆解
+## 人格版 到底幫你裝什麼？逐項拆解
 
-這是大家最想知道的一段。我們把人格版 依需求報價 拆開，讓你看清楚每一塊：
+這是大家最想知道的一段。我們把人格版 拆開，讓你看清楚每一塊：
 
 ### 1. OpenClaw 官方原裝，一個 Agent
 
@@ -2187,7 +2200,7 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 很多人以為代裝很麻煩，實際上你的部分很輕鬆：
 
-- 下單 ：在蝦皮完成人格版 依需求報價 下單。
+- 下單 ：在蝦皮完成人格版 下單。
 
 - 約時間 ：工程師依訂單跟你聯繫，約一個雙方方便的安裝時段。
 
@@ -2247,11 +2260,11 @@ Q：完全不懂程式，也能裝 OpenClaw 嗎？
 
 Q：OpenClaw 代裝要多少錢？
 
-人格版 AI 助理服務費 依需求報價，一次付清，含討好型或討伐型人格選擇、完整個人技能包＋1 個客製小幫手＋Coding Agent 串接。要特別注意的是：AI 模型的 API 使用費是依你的實際用量另計、由你自付，不含在 依需求報價 裡。這是兩筆不同的錢，我們會事先講清楚。
+人格版 AI 助理服務費依需求報價，一次付清，含討好型或討伐型人格選擇、完整個人技能包＋1 個客製小幫手＋Coding Agent 串接。要特別注意的是：AI 模型的 API 使用費是依你的實際用量另計、由你自付，不含在 依需求報價 裡。這是兩筆不同的錢，我們會事先講清楚。
 
 Q：人格版和更高階的方案差在哪？
 
-人格版是完整個人技能包＋人格選擇＋Coding Agent 串接，單一 AI Agent 本機部署，無維運。更高階的方案有：雙 AI Agent 共存版 依需求報價（兩個各自運作，不含記憶互通）、雙 AI Agent 依需求報價（含記憶互通與協作會議室）或年約 依需求報價（一整年有工程師顧）。簡單說：人格版是「先裝起來有個性能跑」，高階是「跑得更複雜、有人長期維護」。
+人格版是完整個人技能包＋人格選擇＋Coding Agent 串接，單一 AI Agent 本機部署，無維運。更高階的方案有：雙 AI Agent 共存版（兩個各自運作，不含記憶互通）、雙 AI Agent（含記憶互通與協作會議室）或年約 依需求報價（一整年有工程師顧）。簡單說：人格版是「先裝起來有個性能跑」，高階是「跑得更複雜、有人長期維護」。
 
 Q：資料會不會被上傳到雲端？
 
@@ -2283,7 +2296,7 @@ AnyDesk／DeskIn 是遠端桌面工具，連線由你這端允許才建立、你
 
 人格版 AI 助理在蝦皮直接下單，工程師依訂單聯繫約安裝時間。從「想用但不會裝」到「今天就有自己有個性的 AI 助理」。
 
-[前往蝦皮下單 依需求報價 →](https://shopee.tw/product/105010395/45107951008)
+[前往蝦皮下單 依需求報價 →](https://shopee.tw/shop/105010395)
 
 想要工程師長期陪跑、持續加功能？→ [了解尊榮年約方案](https://thinkbigtw.com/annual-pro/)
 
@@ -2363,7 +2376,7 @@ OpenClaw 會動手做事，動手就包含「刪檔、改檔、寄信、發訊�
 
 自己裝要做什麼 訂閱官方更新公告；每 1–3 個月手動更新一次。
 
-我們代裝預設做什麼 人格版 依需求報價 是一次裝到能跑，更新由你自己決定時機；尊榮年約 依需求報價 與年度旗艦 依需求報價 含每週維護，由我們處理更新。
+我們代裝預設做什麼 人格版 是一次裝到能跑，更新由你自己決定時機；尊榮年約 與年度旗艦 含每週維護，由我們處理更新。
 
 ## 一張對照表：自己裝 vs 代裝
 
@@ -2440,7 +2453,7 @@ Q：什麼人不適合裝 OpenClaw？
 
 Q：裝完之後多久要更新一次？
 
-OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 依需求報價、年度旗艦 依需求報價）含每週維護與 48 小時故障修復，更新這件事就交給我們；人格版 依需求報價 是一次裝到能跑，更新由你決定時機。
+OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 依需求報價、年度旗艦）含每週維護與 48 小時故障修復，更新這件事就交給我們；人格版 是一次裝到能跑，更新由你決定時機。
 
 ## 結論
 
@@ -2450,9 +2463,9 @@ OpenClaw 安不安全，看你裝的時候有沒有把基礎設定做好 。常�
 
 想清楚再裝，裝完記得改密碼、綁本機、只裝官方技能。三件事做完，風險已經可控。
 
-### 決定要裝？人格版 依需求報價
+### 決定要裝？人格版
 
-台灣工程師遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 依需求報價 或年度旗艦 依需求報價。
+台灣工程師遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 或年度旗艦。
 
 [先聊聊需求](https://lin.ee/n5KW430)
 
@@ -2494,7 +2507,7 @@ Think BIG 編輯部
 
 - 下單前先聊 ：告訴我們你的電腦環境（作業系統、大概的規格）跟你想拿 AI 助理做什麼。環境不合適，我們會先講，不會讓你下了單才發現裝不了。
 
-- 下單、約時間 ：人格版 依需求報價 在蝦皮下單，工程師依訂單聯繫，約一個雙方都方便的時段。服務時間是週一至週五 10:00–00:00。
+- 下單、約時間 ：人格版 在蝦皮下單，工程師依訂單聯繫，約一個雙方都方便的時段。服務時間是週一至週五 10:00–00:00。
 
 - 建立遠端連線 ：時間到了，你開啟 AnyDesk 或 DeskIn，把連線代碼給工程師。連線是由你這端允許才建立的，你隨時可以中斷。
 
@@ -2576,7 +2589,7 @@ A：連線由你這端允許才建立、你隨時可中斷、全程操作都在�
 
 Q：遠端代裝要多少錢？之後還有月費嗎？
 
-A：人格版 AI 助理服務費 依需求報價，一次付清，我方不收月租。但 AI 模型的 API 用量費依實際使用量由你自付，這是付給模型原廠的錢，跟服務費是兩回事。
+A：人格版 AI 助理服務費依需求報價，一次付清，我方不收月租。但 AI 模型的 API 用量費依實際使用量由你自付，這是付給模型原廠的錢，跟服務費是兩回事。
 
 Q：可以到府安裝或用 SSH 讓你們直接連嗎？
 
@@ -2845,16 +2858,25 @@ Agent 可替換
 
 URL: https://thinkbigtw.com/
 
-# 企業 AI Agent 導入與治理｜Think BIG
+# 台灣企業 AI Agent 導入與治理 | Think BIG
 
 ENTERPRISE AI AGENTS
 
-# 讓 AI 成為
-可持續的營運能力。
+# 讓 AI 成為可持續的 營運能力。
+
+把 AI Agent 部署在公司自己的設備上，從導入到一年維運一手包辦。
+
+[Artificial Intelligence ›](https://thinkbigtw.com/enterprise/)[預約諮詢 ›](https://thinkbigtw.com/enterprise/#consult)
+
+把 AI Agent 部署在公司自己的設備上，從導入到一年維運一手包辦。
+
+[Artificial Intelligence ›](https://thinkbigtw.com/enterprise/)[預約諮詢 ›](https://thinkbigtw.com/enterprise/#consult)
+
+獨立思考，共同運作。
+
+[了解企業導入 ›](https://thinkbigtw.com/enterprise/)[預約諮詢 ›](https://thinkbigtw.com/enterprise/#consult)[個人使用，蝦皮選購 ›](https://thinkbigtw.com/pricing/personal/)
 
 Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；我們扮演企業的遠端 FDE（Forward Deployed Engineer，前沿部署工程師）團隊：從聽懂需求、建置知識庫與 AI Agent、上線，到後續維運，一手包辦；另有個人 AI 助理安裝方案。
-
-[了解企業導入 ›](https://thinkbigtw.com/enterprise/)[預約諮詢 ›](https://thinkbigtw.com/enterprise/#consult)[個人使用，依需求報價 起 ›](https://thinkbigtw.com/pricing/personal/)
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
 
@@ -3081,9 +3103,17 @@ PERSONAL AI / 個人方案
 
 ### 年度維護與支援
 
-年度方案與超級個體服務，延續安裝後的維護與使用支援。各方案原有服務承諾、續約條件及適用範圍均保留於個別頁面，協助使用者評估持續使用、維護與後續擴充的需求。
+年約方案延續安裝後的維護與使用支援。各方案原有服務承諾、續約條件及適用範圍均保留於個別頁面，協助使用者評估持續使用、維護與後續擴充的需求。
 
 個人專區另提供工具比較、安全指南、禮物與相關服務資訊。若需求涉及企業共用資料、跨部門協作、角色權限或正式系統整合，應依企業導入條件評估；個人與企業服務的責任範圍分別確認。
+
+AI VISIBILITY
+
+## 被 AI 看見。
+
+客人開始直接問 ChatGPT、Perplexity 推薦誰，我們幫你查 AI 有沒有提到你、怎麼補。
+
+[了解 SEO／GEO 服務 ›](https://thinkbigtw.com/services/ai-visibility/)
 
 ---
 
@@ -3221,7 +3251,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 一個人在用：一人公司、自由工作者、個人副業，或公司主管想先給自己裝一套。裝在自己的電腦，用自己申請的 API Key。
 
-價格帶：依需求報價（個人方案請至蝦皮賣場選購）
+個人方案請至蝦皮賣場選購，或預約需求訪談取得報價
 
 - 個人方案 1｜人格版 AI 助理：討好型或討伐型人格，完整技能包，支援 7 天
 
@@ -3235,7 +3265,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ## 個人方案 3｜年約與維護
 
-裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。兩檔：一個 AI Agent 依需求報價、兩個 AI Agent 依需求報價；次年續約 依需求報價。
+裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。兩檔：尊榮年約（單 AI Agent）與年度旗艦（雙 AI Agent），依需求報價。
 
 [看年約三檔 →](https://thinkbigtw.com/pricing/personal/#tier3)
 
@@ -3243,7 +3273,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
         依你的工作需要選擇
 
-        年約 依需求報價 起，全年有工程師顧
+        年約方案，全年有工程師顧
 
         模型與第三方費用另計
 
@@ -3261,14 +3291,13 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ### 個人使用 → [看比較表](https://thinkbigtw.com/pricing/personal/)
 
-- 個人方案 1｜人格版 AI 助理OpenClaw 或 Hermes 擇一，討好型或討伐型人格 · 支援 7 天 依需求報價
+- 個人方案 1｜人格版 AI 助理OpenClaw 或 Hermes 擇一，討好型或討伐型人格 · 支援 7 天 [蝦皮賣場](https://shopee.tw/shop/105010395)
 
-- 個人方案 2｜雙 AI Agent 共存版OpenClaw＋Hermes 各自運作 · 7 天技術諮詢 依需求報價
+- 個人方案 2｜雙 AI Agent 共存版OpenClaw＋Hermes 各自運作 · 7 天技術諮詢 [蝦皮賣場](https://shopee.tw/shop/105010395)
 
-- 個人方案 2｜雙 AI Agent[OpenClaw＋Hermes](https://thinkbigtw.com/dual-agent/) · 記憶互通 · 協作會議室 · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 依需求報價
+- 個人方案 2｜雙 AI Agent[OpenClaw＋Hermes](https://thinkbigtw.com/dual-agent/) · 記憶互通 · 協作會議室 · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 [蝦皮賣場](https://shopee.tw/shop/105010395)
 
 - 個人方案 3｜年約單 AI Agent／雙 AI Agent · 顧一整年 依需求報價
-依需求報價
 
 ## 加購區（掛在個人門下，不算方案階梯）
 
@@ -3277,7 +3306,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 技能包 120 組 依需求報價 技能包頂規檔，OpenClaw 或 Hermes 擇一；不含協作會議室與 coding agent 串接 [技能包頁](https://thinkbigtw.com/skill-pack/)
 
-系統健檢故障修復 季 依需求報價／半年 依需求報價 非年約客（個人方案 1／2）的售後維護；年約客已內含維運 [蝦皮](https://shopee.tw/product/105010395/51411136707)
+系統健檢故障修復 依需求報價 非年約客（個人方案 1／2）的售後維護；年約客已內含維運 [蝦皮](https://shopee.tw/product/105010395/51411136707)
 
 OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/105010395/40029925320)
 
@@ -3299,7 +3328,7 @@ OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/
 
 URL: https://thinkbigtw.com/pricing/personal/
 
-# 個人方案與價格｜依需求報價 起，人格版 AI 助理／雙 AI Agent／年約｜Think BIG! 台灣
+# 個人方案｜人格版 AI 助理／雙 AI Agent／年約｜Think BIG! 台灣
 
 個人使用
 
@@ -3338,18 +3367,18 @@ Tier 1 · 人格版 · 支援 7 天
 
 ### 個人方案 1｜人格版 AI 助理
 
-個人方案 1 是人格版 AI 助理的遠端安裝服務，依需求報價 單次付清，含 OpenClaw 或 Hermes 擇一、討好型或討伐型人格任選、完整個人技能包＋1 個客製小幫手、Coding Agent 串接 1–2 個、7 天技術諮詢，僅供個人使用。
+個人方案 1 是人格版 AI 助理的遠端安裝服務，含 OpenClaw 或 Hermes 擇一、討好型或討伐型人格任選、完整個人技能包＋1 個客製小幫手、Coding Agent 串接 1–2 個、7 天技術諮詢，僅供個人使用。
 
 給誰：第一次要一個有個性的個人 AI 助理、不想要通用平淡 AI 的人。解決的是「AI 用起來千篇一律、沒有自己的感覺」。
 
 [OpenClaw 人格版
 變體 A · 討好型或討伐型人格，完整技能包
-依需求報價
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 討好型（溫暖支持，不盲目附和）或討伐型（直接犀利，不人身攻擊）；完整個人技能包＋1 客製小幫手＋Coding Agent
 前往蝦皮下單 →](https://shopee.tw/product/105010395/45107951008)
 [Hermes 人格版
 變體 B · 持久記憶加人格，越用越有個性
-依需求報價
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 跨對話持久記憶＋討好型或討伐型人格；同價，擇一即可
 前往蝦皮下單 →](https://shopee.tw/product/105010395/45107951008)
 
@@ -3359,18 +3388,18 @@ Tier 2 · 雙 AI Agent · 兩種版本
 
 ### 個人方案 2｜雙 AI Agent
 
-個人方案 2 提供兩種雙 AI Agent 選擇。共存版 依需求報價：OpenClaw＋Hermes 各自運作、各自記憶，人格組合自選，標準技能包，不含記憶互通與協作會議室，含 7 天技術諮詢。雙 AI Agent 依需求報價：兩邊 MCP 記憶互通、跨 Agent 協作會議室（此版本專屬）、技能數依訪談，含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。
+個人方案 2 提供兩種雙 AI Agent 選擇。共存版：OpenClaw＋Hermes 各自運作、各自記憶，人格組合自選，標準技能包，不含記憶互通與協作會議室，含 7 天技術諮詢。雙 AI Agent：兩邊 MCP 記憶互通、跨 Agent 協作會議室（此版本專屬）、技能數依訪談，含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。
 
-給誰：想同時裝兩個 AI 助理的人。先用共存版確認兩個 Agent 的分工，或直接上有記憶互通與協作會議室的 依需求報價 方案。
+給誰：想同時裝兩個 AI 助理的人。先用共存版確認兩個 Agent 的分工，或直接上有記憶互通與協作會議室的雙 AI Agent 方案。
 
 [雙 AI Agent 共存版
 兩個 Agent 各自運作、各自記憶
-依需求報價
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 OpenClaw＋Hermes 各自安裝、人格組合自選；標準個人技能包；7 天技術諮詢；不含記憶互通與協作會議室
 諮詢此方案 →](https://thinkbigtw.com/pricing/personal/#tier2)
 [雙 AI Agent
 記憶互通＋跨 Agent 協作會議室
-依需求報價
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 OpenClaw＋Hermes MCP 記憶互通；跨 Agent 協作會議室（此版本專屬）；技能數依訪談；2 小時線上技術導覽＋安裝後 7 天技術諮詢
 看雙 AI Agent 頁 →](https://thinkbigtw.com/dual-agent/)
 
@@ -3380,18 +3409,18 @@ Tier 3 · 顧一整年 · 主打
 
 ### 個人方案 3｜年約
 
-個人方案 3 是有專屬工程師顧一整年的年約服務，一個 AI Agent 依需求報價、兩個 AI Agent 依需求報價，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年續約 依需求報價。
+個人方案 3 是有專屬工程師顧一整年的年約服務，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年可選配續約含每週維護。個人年約方案請至蝦皮賣場選購。
 
 給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
 
 [單 AI Agent
 副標：尊榮年約
-依需求報價／年
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能
 看尊榮年約頁 →](https://thinkbigtw.com/annual-pro/)
 [雙 AI Agent
 副標：年度旗艦
-依需求報價／年
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
 Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合
 看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
 
@@ -3415,12 +3444,11 @@ AI Agent 組合 OpenClaw 或 Hermes 擇一（可選討好型或討伐型人格�
 
 SLA — — 48 小時故障修復
 
-續約 — — 次年 依需求報價／年
+續約 — — 次年可選配續約（依需求報價）
 
-價格 依需求報價 依需求報價（共存版）
-依需求報價（記憶互通） 依需求報價
+價格 [蝦皮賣場選購](https://shopee.tw/shop/105010395) [蝦皮賣場選購](https://shopee.tw/shop/105010395) [蝦皮賣場選購](https://shopee.tw/shop/105010395)
 
-CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 AI Agent](https://thinkbigtw.com/dual-agent/) [尊榮年約](https://thinkbigtw.com/annual-pro/)／[年度旗艦](https://thinkbigtw.com/annual-flagship/)
+CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 AI Agent](https://thinkbigtw.com/dual-agent/) [32,000](https://thinkbigtw.com/annual-pro/)／[38,000](https://thinkbigtw.com/annual-flagship/)
 
 個人服務・買家回饋
 
@@ -3522,7 +3550,7 @@ CP值:優質賣家,值得推薦
 
 技能包 120 組 依需求報價 技能包頂規檔，OpenClaw 或 Hermes 擇一；不含協作會議室與 coding agent 串接（那是個人方案 2 的功能） [技能包頁](https://thinkbigtw.com/skill-pack/)
 
-系統健檢故障修復 季 依需求報價／半年 依需求報價 非年約客（個人方案 1／2）的售後維護；年約客已內含維運，不需加購 [蝦皮](https://shopee.tw/product/105010395/51411136707)
+系統健檢故障修復 依需求報價 非年約客（個人方案 1／2）的售後維護；年約客已內含維運，不需加購 [蝦皮](https://shopee.tw/product/105010395/51411136707)
 
 OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/105010395/40029925320)
 
@@ -3614,7 +3642,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 客服回覆。對話內容會整理成摘要，供內部服務品質分析與後續聯繫使用；聯絡資料與摘要保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止。如需查詢、更正或刪除，來信 AI@thinkbigtw.com 或於 LINE 官方帳號中提出，我們會在 14 天內處理完成並回覆。
 
-## 十一、Threads／Instagram 社群互動工具（Meta 平台資料）
+## 十、Threads／Instagram 社群互動工具（Meta 平台資料）
 
 本公司使用自行開發的內部工具「ThinkBIG Threads Reply Console」（Meta App：ThinkBIG Social Monitor），管理本公司官方帳號 @think_big_ai 在 Threads 上的互動。
 
@@ -3654,7 +3682,7 @@ Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: T
 
 - Deletion requests : To ask us to delete records related to your Threads account or posts, email AI@thinkbigtw.com  with your Threads username. We will delete the records and confirm within 14 days. You can also remove this app's access in your Threads account settings, under Website permissions.
 
-## 十、聯絡我們
+## 十一、聯絡我們
 
 大想成業有限公司(統一編號 62136066)
 
@@ -3680,7 +3708,7 @@ URL: https://thinkbigtw.com/skill-pack/
 
 AI Agent 是會聊天的大腦，技能才是手腳。
 
-技能包是給已安裝 OpenClaw 或 Hermes 的用戶追加的「客製技能」：自動回信、報價單生成、競品監控、排程提醒……依你的職業與業務量身開發。四種規格：10 組 依需求報價 組 依需求報價 組 依需求報價 組 依需求報價（一次到位，OpenClaw 或 Hermes 擇一）。
+技能包是給已安裝 OpenClaw 或 Hermes 的用戶追加的「客製技能」：自動回信、報價單生成、競品監控、排程提醒……依你的職業與業務量身開發。四種規格（10／20／40／120 組），依需求報價，先談需求再下單。
 
 多數技能採 0-Token 優先設計 ——能不呼叫 AI 模型就不呼叫，大部分技能日常執行不燒模型費。
 
@@ -3724,7 +3752,7 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 
 方案價格
 
-10 組 依需求報價 ｜ 20 組 依需求報價 ｜ 40 組 依需求報價 ｜ 120 組 依需求報價
+依需求報價，[蝦皮賣場](https://shopee.tw/shop/105010395)或[預約訪談](https://thinkbigtw.com/contact/)
 
 120 組為一次到位旗艦規格，含 7 天技術諮詢，OpenClaw 或 Hermes 擇一，0-Token 優先設計。
 
@@ -3798,7 +3826,7 @@ URL: https://thinkbigtw.com/terms.html
 
 ## 九、個人資料保護
 
-本公司對個人資料之蒐集、處理與利用,依[關於 Think BIG](https://thinkbigtw.com/about/)[術語表](https://thinkbigtw.com/guides/glossary/)[隱私權政策](https://thinkbigtw.com/privacy.html)辦理。
+本公司對個人資料之蒐集、處理與利用,依[隱私權政策](https://thinkbigtw.com/privacy.html)辦理。
 
 ## 十、準據法與管轄法院
 
@@ -3810,7 +3838,7 @@ URL: https://thinkbigtw.com/terms.html
 
 電子郵件:AI@thinkbigtw.com
 
-大想成業有限公司 Think BIG Co., Ltd.|統一編號 62136066
+大想成業有限公司 Think BIG Make it Real CO., LTD.|統一編號 62136066
 
 AI@thinkbigtw.com
 
@@ -3898,7 +3926,7 @@ AUDITABILITY / 可稽核性
 ### 網站資料處理
 
 需求摘要在瀏覽器產生，AI 顧問的諮詢摘要與聯絡資料，需預覽並確認送出後才保存，保存至你請求刪除為止；聯絡資料不送入模型，聊天逐字稿不隨摘要保存。AI 自由提問使用外部服務。網站使用 GA4 流量統計，請見
-       [關於 Think BIG](https://thinkbigtw.com/about/)[術語表](https://thinkbigtw.com/guides/glossary/)[隱私權政策](https://thinkbigtw.com/privacy.html)
+       [隱私權政策](https://thinkbigtw.com/privacy.html)
        。
 
 本頁說明 TB 的服務承諾與作業方式，不代表第三方資安認證；個別部署範圍以雙方確認內容為準。
@@ -3922,42 +3950,311 @@ URL: https://thinkbigtw.com/portfolio/
 
 # AI Agent 實戰作品集｜Think BIG
 
-Think BIG 呈現 AI Agent 在維運監控、文件自動化、客服部署、本地知識庫與資安把關等場景的實際建置成果。
+PORTFOLIO
 
-## 精選建置（九件）
+# AI Agent
+實戰建置
 
-### 02 維運監控中心
-全天候自動值守。多個系統各自有告警，異常要等人通報才會知道，處理常常慢半拍。建立統一監控看板，整合各系統狀態，異常自動推播指定通道。異常即時可見，維運反應時間大幅縮短，不再依賴人員主動輪詢。技術標籤：Cloudflare Workers、Telegram Bot、自動告警、狀態看板。
+作品附實際運作畫面與數據；標示「開發中」者為尚未對外販售的產品。
 
-### 03 企業知識問答
-私有知識庫查詢。公司資料分散在不同平台，員工每次都要重新搜尋，找到了還不確定是否最新版。建置私有 RAG 知識庫，AI 依照公司文件直接回答，並標示原始來源。常見問題 AI 先答，人員只需處理真正需要判斷的事，且答案有文件可查。技術標籤：RAG、向量資料庫、文件索引、私有部署。
+[View in English →](https://thinkbigtw.com/portfolio/en/)
 
-### 04 文件自動化處理
-重複作業自動完成。收文、分類、初擬回覆每天重複，消耗大量人工時間。AI 讀入來文後自動分類，按對應格式產出初稿，人員審核後發出。文件處理量提升，人員只需審核最終稿，錯發與漏發情形明顯減少。技術標籤：文件解析、自動分類、草稿生成、人工審核閘門。
+OVERVIEW
 
-### 05 官網 AI 客服
-24h 即時回覆。官網諮詢在下班後無人值守，詢問容易流失。部署 AI 客服，依知識庫回答常見問題，並自動將複雜需求轉交人員處理。全天候即時回覆，線上諮詢轉化率提升。技術標籤：Cloudflare Worker、Supabase、知識庫、轉接機制。
+## 我們建置什麼
 
-### 06 緊急語音通報
-通報確認到人為止。現場異常需要立即通知負責人，文字訊息容易被忽略。觸發條件成立後，系統自動撥打語音電話，直到確認收到為止。事故通報無遺漏，應變啟動時間縮短，責任鏈有記錄可查。技術標籤：Twilio、語音通話、觸發自動化、責任鏈記錄。
+### 企業 AI Agent 導入
 
-### 07 地端知識庫
-資料不離公司設備。將公司文件上傳雲端服務有資料外洩疑慮，但又需要 AI 輔助查詢。在公司指定設備建置本地向量資料庫，向量化與查詢都在設備上完成。資料全程不離公司設備，知識查詢有準確來源標示，可驗收。技術標籤：Ollama、本地向量庫、資料主權、私有部署。
+從成熟度評估（Assess）、架構建置（Build）、情境驗收（Validate）到年度治理維運（Operate），以 TB FRAME 四階段管理交付，確保可回溯、可查核。
 
-### 08 個人 AI 助理平台
-費用依實際用量計。個人用戶想要長期運作的 AI 助理，但不想被綁在單一廠商，也難以控管費用。建置雲端 AI 助理平台，自備 API 金鑰即可使用，可切換不同模型。訂閱者依實際用量付費，模型可依任務切換，費用透明可追蹤。技術標籤：OpenClaw、Hermes、多模型支援、自備 API Key。
+### 個人 AI 助理
 
-### 09 出貨前資安把關
-每次部署都有文字記錄。AI 系統上線前難以系統化確認資安風險，審查標準因人而異。建立資安審查閘門（D4），每次部署逐項核對 OWASP 紅線，產出審查記錄。審查流程標準化，每個決策有文字依據，可追溯。技術標籤：OWASP、部署閘門、審查記錄、自動化檢核。
+在個人電腦上部署可長期運作的 AI 助理，費用以自備 API 金鑰控管，不綁定單一大模型廠商。安裝、設定與維護由 Think BIG 工程師遠端協助。
 
-### 10 LINE 自動化工作流
-重複訊息自動處理。內部協作與客戶溝通都在 LINE，訊息量大、分類靠人工，容易遺漏。串接 LINE Messaging API，依訊息類型自動路由，常見問題自動回覆。重複性訊息自動處理，人員聚焦在真正需要判斷的對話，漏接率降低。技術標籤：LINE Messaging API、Webhook、訊息路由、自動回覆。
+SELECTED WORKS
 
-## 八種應用場景切入點
-銷售跟進與提案、財務對帳與費用核實、會議記錄與代辦追蹤、業務數據分析與摘要、報價草稿生成、庫存異常監控、行銷文案與排程、新進人員到職引導。
+## 九件精選建置
+
+示意畫面
+
+02
+
+### 維運監控中心
+
+全天候自動值守
+
+痛點
+多個系統各自有告警，異常要等人通報才會知道，處理常常慢半拍。
+做法
+建立統一監控看板，整合各系統狀態，異常自動推播指定通道。
+結果
+異常即時可見，維運反應時間大幅縮短，不再依賴人員主動輪詢。
+
+- Cloudflare Workers
+
+- Telegram Bot
+
+- 自動告警
+
+- 狀態看板
+
+示意畫面
+
+03
+
+### 企業知識問答
+
+私有知識庫查詢
+
+痛點
+公司資料分散在不同平台，員工每次都要重新搜尋，找到了還不確定是否最新版。
+做法
+建置私有 RAG 知識庫，AI 依照公司文件直接回答，並標示原始來源。
+結果
+常見問題 AI 先答，人員只需處理真正需要判斷的事，且答案有文件可查。
+
+- RAG
+
+- 向量資料庫
+
+- 文件索引
+
+- 私有部署
+
+示意畫面
+
+04
+
+### 文件自動化處理
+
+重複作業自動完成
+
+痛點
+收文、分類、初擬回覆每天重複，消耗大量人工時間，人員無法聚焦在判斷性工作。
+做法
+AI 讀入來文後自動分類，按對應格式產出初稿，人員審核後發出。
+結果
+文件處理量提升，人員只需審核最終稿，錯發與漏發情形明顯減少。
+
+- 文件解析
+
+- 自動分類
+
+- 草稿生成
+
+- 人工審核閘門
+
+示意畫面
+
+05
+
+### 官網 AI 客服
+
+24h即時回覆
+
+痛點
+官網諮詢在下班後無人值守，詢問容易流失，客戶等到隔天才有回應。
+做法
+部署 AI 客服，依知識庫回答常見問題，並自動將複雜需求轉交人員處理。
+結果
+全天候即時回覆，線上諮詢轉化率提升，客戶等待時間大幅縮短。
+
+- Cloudflare Worker
+
+- Supabase
+
+- 知識庫
+
+- 轉接機制
+
+示意畫面
+
+06
+
+### 緊急語音通報
+
+通報確認到人為止
+
+痛點
+現場異常需要立即通知負責人，文字訊息容易被忽略，事故應變時間拉長。
+做法
+觸發條件成立後，系統自動撥打語音電話，直到確認收到為止。
+結果
+事故通報無遺漏，應變啟動時間縮短，責任鏈有記錄可查。
+
+- Twilio
+
+- 語音通話
+
+- 觸發自動化
+
+- 責任鏈記錄
+
+示意畫面
+
+07
+
+### 地端知識庫
+
+資料不離公司設備
+
+痛點
+將公司文件上傳雲端服務有資料外洩疑慮，但又需要 AI 輔助查詢。
+做法
+在公司指定設備建置本地向量資料庫，向量化與查詢都在設備上完成。
+結果
+資料全程不離公司設備，知識查詢有準確來源標示，可驗收。
+
+- Ollama
+
+- 本地向量庫
+
+- 資料主權
+
+- 私有部署
+
+示意畫面
+
+08
+
+### 個人 AI 助理平台
+
+費用依實際用量計
+
+痛點
+個人用戶想要長期運作的 AI 助理，但不想被綁在單一廠商，也難以控管費用。
+做法
+建置雲端 AI 助理平台，自備 API 金鑰即可使用，可切換不同模型。
+結果
+訂閱者依實際用量付費，模型可依任務切換，費用透明可追蹤。
+
+- OpenClaw
+
+- Hermes
+
+- 多模型支援
+
+- 自備 API Key
+
+示意畫面
+
+09
+
+### 出貨前資安把關
+
+每次部署都有文字記錄
+
+痛點
+AI 系統上線前難以系統化確認資安風險，審查標準因人而異。
+做法
+建立資安審查閘門（D4），每次部署逐項核對 OWASP 紅線，產出審查記錄。
+結果
+審查流程標準化，每個決策有文字依據，可追溯，不因人員異動而斷鏈。
+
+- OWASP
+
+- 部署閘門
+
+- 審查記錄
+
+- 自動化檢核
+
+示意畫面
+
+10
+
+### LINE 自動化工作流
+
+重複訊息自動處理
+
+痛點
+內部協作與客戶溝通都在 LINE，但訊息量大、分類靠人工，容易遺漏。
+做法
+串接 LINE Messaging API，依訊息類型自動路由，常見問題自動回覆。
+結果
+重複性訊息自動處理，人員聚焦在真正需要判斷的對話，漏接率降低。
+
+- LINE Messaging API
+
+- Webhook
+
+- 訊息路由
+
+- 自動回覆
+
+USE CASES
+
+## 八種應用場景
+
+每個場景都是可以獨立啟動的切入點，先選最痛的一個，建立驗收標準，跑通後再擴展。
+
+- 銷售跟進與提案
+
+- 財務對帳與費用核實
+
+- 會議記錄與代辦追蹤
+
+- 業務數據分析與摘要
+
+- 報價草稿生成
+
+- 庫存異常監控
+
+- 行銷文案與排程
+
+- 新進人員到職引導
+
+示意畫面
+
+示意畫面
+
+示意畫面
+
+DELIVERY
+
+示意畫面
 
 ## TB FRAME 導入流程
-Assess 評估定義（確認範圍輸出報告）→ Build 架構建置（依評估建置並完成初測）→ Validate 驗證交付（逐項測試產出驗收記錄）→ Operate 治理維運（一年陪跑，問題追蹤與變更記錄）。
+
+不是裝好就走，而是四個階段、每個階段都有交付物與驗收條件，讓導入過程可追蹤、可覆核。
+
+- 01 Assess 評估定義  — 確認流程範圍、資料準備與成熟度，輸出書面評估報告。
+
+- 02 Build 架構建置  — 依評估結果建置 AI Agent，完成設定、串接與初測。
+
+- 03 Validate 驗證交付  — 依書面驗收條件逐項測試，產出驗收紀錄。
+
+- 04 Operate 治理維運  — 一年陪跑，問題追蹤、維護檢查與使用調整有紀錄可查。
+
+RESULTS
+
+示意畫面
+
+## Think BIG 自己先跑
+
+作品集裡的建置，多數在 Think BIG 的官網、維運流程或業務管線上實際運作。
+            長期在真實環境中迭代，讓我們對導入過程的細節有第一手的積累。
+
+9
+
+精選建置件數
+
+8
+
+可切入的應用場景
+
+4
+
+TB FRAME 導入階段
+
+1yr
+
+年度維運陪跑
+
+從一件事開始，先做成功再擴展。
+
+[預約諮詢](https://thinkbigtw.com/enterprise/#consult)
+[了解交付流程](https://thinkbigtw.com/enterprise/process/)
 
 ---
 
@@ -3965,20 +4262,2429 @@ URL: https://thinkbigtw.com/portfolio/en/
 
 # AI Agent Portfolio｜Think BIG
 
-Think BIG builds AI Agents for operations monitoring, document automation, customer service, local knowledge retrieval, and security gates. Each card shows real screens and measured figures; items marked in development are not yet for sale.
+PORTFOLIO
+
+# Full-Stack
+AI Agent
+Architecture.
+
+Each card shows real screens and measured figures; items marked "in development" are not yet for sale.
+
+[查看中文版 →](https://thinkbigtw.com/portfolio/)
+
+OVERVIEW
+
+## What we build
+
+### Enterprise AI Agent deployment
+
+TB FRAME guides four phases — Assess, Build, Validate, Operate — each with defined deliverables and acceptance criteria, so deployment is traceable and reviewable.
+
+### Personal AI assistants
+
+Long-running AI assistants installed on your own computer. You bring your own API key to keep costs predictable and avoid vendor lock-in. Think BIG engineers handle remote setup and maintenance.
+
+SELECTED WORKS
 
 ## Nine selected builds
 
-02 Operations Monitoring Hub — unified dashboard, auto-push anomaly alerts, 24/7 automated watch. Stack: Cloudflare Workers, Telegram Bot.
-03 Enterprise Knowledge Q&A — private RAG knowledge base, AI answers from company documents with source citation. Stack: RAG, vector database, private deployment.
-04 Document Automation — AI classifies incoming documents and generates reply drafts for human review. Stack: document parsing, auto classification, human review gate.
-05 Website AI Customer Service — 24h instant replies, escalation to staff for complex cases. Stack: Cloudflare Worker, Supabase.
-06 Emergency Voice Alert — auto voice call until person confirms receipt, full accountability log. Stack: Twilio.
-07 Local Knowledge Base — vectorisation and retrieval on company hardware, data never leaves. Stack: Ollama, local vector store.
-08 Personal AI Platform — bring your own API key, switch models, pay per usage. Stack: OpenClaw, Hermes.
-09 Pre-Deployment Security Gate — OWASP checklist gate, written audit record per deployment. Stack: OWASP, automated checks.
-10 LINE Automation Workflow — message routing, auto-reply, human handoff for complex messages. Stack: LINE Messaging API, webhook.
+mockup
 
-Eight use-case scenarios: sales follow-up, finance reconciliation, meeting notes, business analysis, quote drafts, inventory monitoring, marketing copy, employee onboarding.
+02
 
-TB FRAME: Assess → Build → Validate → Operate (1-year operations support included).
+### Operations Monitoring Hub
+
+24/7automated watch
+
+PROBLEM
+Multiple systems each had their own alerts. Issues only surfaced when someone noticed and reported them — response was always delayed.
+APPROACH
+Built a unified monitoring dashboard that aggregates system states and pushes anomaly notifications to designated channels automatically.
+RESULT
+Issues are visible in real time. Response time dropped sharply. No more relying on manual polling.
+
+- Cloudflare Workers
+
+- Telegram Bot
+
+- Auto alerting
+
+- Status dashboard
+
+mockup
+
+03
+
+### Enterprise Knowledge Q&A
+
+Privateknowledge retrieval
+
+PROBLEM
+Company information was scattered across platforms. Staff spent time searching, then still weren't sure they had the latest version.
+APPROACH
+Built a private RAG knowledge base. The AI answers directly from company documents and cites the source.
+RESULT
+Routine questions are answered by the AI. Staff focus on decisions that need judgment. Answers are traceable to source documents.
+
+- RAG
+
+- Vector database
+
+- Document indexing
+
+- Private deployment
+
+mockup
+
+04
+
+### Document Automation
+
+Repetitive workhandled automatically
+
+PROBLEM
+Receiving, classifying, and drafting replies consumed large amounts of staff time daily, leaving little room for judgment-intensive tasks.
+APPROACH
+AI reads incoming documents, classifies them, and generates a draft reply in the correct format. Staff review and send.
+RESULT
+Document throughput increased. Staff only review final drafts. Misdirected and missed replies decreased significantly.
+
+- Document parsing
+
+- Auto classification
+
+- Draft generation
+
+- Human review gate
+
+mockup
+
+05
+
+### Website AI Customer Service
+
+24hinstant response
+
+PROBLEM
+Enquiries outside office hours went unanswered. Leads were lost. Customers waited until the next business day.
+APPROACH
+Deployed an AI support agent trained on the knowledge base. It handles common questions and escalates complex cases to staff.
+RESULT
+Round-the-clock instant replies. Online enquiry conversion improved. Customer wait time dropped substantially.
+
+- Cloudflare Worker
+
+- Supabase
+
+- Knowledge base
+
+- Escalation logic
+
+mockup
+
+06
+
+### Emergency Voice Alert
+
+Alertconfirmed to a person
+
+PROBLEM
+On-site incidents need immediate attention. Text messages are easy to miss, slowing down incident response.
+APPROACH
+When a trigger condition fires, the system places an automated voice call and keeps trying until the person confirms receipt.
+RESULT
+Zero missed incident notifications. Response time shortened. Accountability chain is logged.
+
+- Twilio
+
+- Voice call
+
+- Trigger automation
+
+- Accountability log
+
+mockup
+
+07
+
+### Local Knowledge Base
+
+Datastays on your hardware
+
+PROBLEM
+Uploading company documents to cloud services raised data sovereignty concerns, but AI-assisted search was still needed.
+APPROACH
+Built a local vector database on the company's designated hardware. Vectorisation and retrieval happen entirely on-device.
+RESULT
+Data never leaves company hardware. Knowledge queries return results with verifiable source citations.
+
+- Ollama
+
+- Local vector store
+
+- Data sovereignty
+
+- Private deployment
+
+mockup
+
+08
+
+### Personal AI Platform
+
+Payfor what you use
+
+PROBLEM
+Individual users wanted a long-running AI assistant without being locked to one provider or having unpredictable subscription costs.
+APPROACH
+Built a cloud AI assistant platform. Users bring their own API key, switch between models, and pay only for actual usage.
+RESULT
+Subscribers control costs through model selection. Usage is transparent and trackable.
+
+- OpenClaw
+
+- Hermes
+
+- Multi-model
+
+- Bring your own API key
+
+mockup
+
+09
+
+### Pre-Deployment Security Gate
+
+Every deployhas a written record
+
+PROBLEM
+Systematically verifying security risks before an AI system goes live was difficult. Review standards varied by reviewer.
+APPROACH
+Built a security review gate (D4). Each deployment checks against an OWASP red-line list and produces a written audit record.
+RESULT
+Review process is standardised. Every decision has a written basis. Traceability survives team changes.
+
+- OWASP
+
+- Deployment gate
+
+- Audit trail
+
+- Automated checks
+
+mockup
+
+10
+
+### LINE Automation Workflow
+
+Routine messageshandled automatically
+
+PROBLEM
+Both internal collaboration and customer communication happened in LINE. High message volume meant manual sorting and frequent missed items.
+APPROACH
+Integrated LINE Messaging API to route messages by type. Common questions trigger auto-replies. Complex cases go to staff.
+RESULT
+Routine messages handled without staff. People focus on conversations that actually need judgment. Missed-message rate dropped.
+
+- LINE Messaging API
+
+- Webhook
+
+- Message routing
+
+- Auto-reply
+
+USE CASES
+
+## Eight entry-point scenarios
+
+Each scenario is a self-contained starting point. Pick the most painful one, define acceptance criteria, and expand once it's working.
+
+- Sales follow-up & proposals — Inquiries don't go cold.
+
+- Finance reconciliation
+
+- Meeting notes & action items
+
+- Business data analysis
+
+- Quote draft generation
+
+- Inventory anomaly monitoring
+
+- Marketing copy & scheduling
+
+- Employee onboarding
+
+mockup
+
+Inquiries don't go cold.
+
+mockup
+
+mockup
+
+DELIVERY
+
+mockup
+
+## TB FRAME Delivery Process
+
+Not install-and-leave. Four phases, each with defined deliverables and acceptance conditions — so every deployment is trackable and reviewable.
+
+- 01 Assess  — Define process scope, data readiness, and maturity. Output: written assessment report.
+
+- 02 Build  — Implement AI Agents based on the assessment. Complete configuration, integration, and initial testing.
+
+- 03 Validate  — Test against the written acceptance criteria. Output: acceptance record.
+
+- 04 Operate  — One year of governance and maintenance: issue tracking, maintenance checks, and usage adjustments — all logged.
+
+RESULTS
+
+mockup
+
+## Think BIG runs it first
+
+Most builds in this portfolio run on Think BIG's website, operations pipeline, or business workflows.
+            Continuous use in real environments is how we know what breaks, what works, and what scales.
+
+9
+
+Selected builds
+
+8
+
+Entry-point scenarios
+
+4
+
+TB FRAME phases
+
+1yr
+
+Annual operations support
+
+Start with one thing. Make it work. Then expand.
+
+[Book a consultation](https://thinkbigtw.com/enterprise/#consult)
+[See the delivery process](https://thinkbigtw.com/enterprise/process/)
+
+---
+
+URL: https://thinkbigtw.com/tbos/en/
+
+# Think BIG — Your Own Personal AI Assistant, Installed Once
+
+Personal AI assistants
+
+# Your AI assistant.
+On your own computer.
+
+Start with installation, connect your work tools, or choose annual maintenance. Taiwan-based engineers serve customers worldwide.
+
+Explore personal plans [Enterprise enquiries](https://thinkbigtw.com/enterprise/)
+
+## From your needs to a working setup
+
+### Choose a scope
+
+Tell us about your device and the work you want help with. Entry installation includes the original OpenClaw or Hermes Agent setup, not a custom skill bundle.
+
+### Schedule installation
+
+After ordering, book a remote installation session using AnyDesk or DeskIn. You stay present while the engineer operates your computer and checks the setup.
+
+### Understand support
+
+Entry includes 7 days of technical consultation. The single and dual AI Agent plans include a 2-hour online technical walkthrough plus 7 days of technical consultation after installation. Annual plans include a year of maintenance.
+
+## Know what your setup connects to
+
+Local installation does not mean all data stays local. Cloud models and external services receive the requests needed for their features. You provide your own model API key and pay third-party usage charges separately.
+
+During installation, the engineer operates your computer and may see work data or sensitive information on screen. We use the minimum permissions needed for the agreed task. You can close unrelated windows, end the session and remove remote access afterwards. Later access requires separate authorisation.
+
+[Read our data and access commitments (Chinese) ›](https://thinkbigtw.com/trust/#remote-install)
+
+---
+
+URL: https://thinkbigtw.com/library/
+
+# Library｜報導・問答圖書館｜Think BIG
+
+Library
+
+# 把正確答案
+整理成 AI 看得見的形式
+
+報導型產業手記（Think BIG NEWS）與問答圖書館（Q&A Library）。讓 AI 在回答相關問題時，有正確、可引用的資訊來源。
+
+[Think BIG NEWS
+
+## AI 導入的
+第一手觀察
+
+從實際部署經驗出發，每期一篇——談工具背後的問題、踩坑心得，以及你導入前該問清楚的事。
+
+閱讀報導 →](https://thinkbigtw.com/library/news/)
+[Q&A Library
+
+## 問答圖書館
+
+把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證。
+
+瀏覽問答 →](https://thinkbigtw.com/library/qa/)
+
+---
+
+URL: https://thinkbigtw.com/library/news/
+
+# Think BIG NEWS｜AI 導入的第一手觀察
+
+[← Library](https://thinkbigtw.com/library/)
+
+產業實測手記
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+被　AI　看見
+
+AI Agent 導入的第一手觀察。從實際部署經驗出發，每期一篇——談工具背後的問題、踩坑心得，以及你導入前該問清楚的事。
+
+THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/
+
+# 本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」｜Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+產業實測手記 · 第 002 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+被　AI　看見
+
+2026 年 10 月 5 日　星期一
+◆
+AI 導入的第一手觀察
+◆
+第 002 期
+
+本機部署 AI · 實測手記
+
+## 本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」
+
+Think BIG 自媒體部　報導　|　2026 / 10 / 05
+
+本地 AI 慢到每題要等好幾分鐘，最常見的原因不是電腦不夠力，而是模型根本沒用到顯卡、全程在用 CPU 算。打一個指令 ollama ps ，看「PROCESSOR」欄寫的是 100% GPU 還是 100% CPU，十秒就能確認。
+
+（註：本文以開源工具 Ollama 為例說明，因為它是目前在個人電腦上跑本地模型最常見的方式之一；其他工具的原理相同，檢查指令不同。）
+
+## 一、 現象：大家在討論什麼
+
+把 AI 模型裝在自己電腦上跑（本地部署），這一年從工程師的玩具變成一般人也會考慮的選項：資料不出門、不用按次付費、斷網也能用。隨之而來最常見的抱怨只有一句：「裝好了，但慢到不能用。」
+
+這個抱怨在開源社群有很清楚的紀錄：
+
+Ollama 官方 GitHub 上有使用者回報，模型會「偶爾不用 GPU、整個載入 CPU，CPU 使用率 100%，重開才恢復」。（來源：[ollama/ollama #13765](https://github.com/ollama/ollama/issues/13765)）
+
+也有使用者回報，更新到某個版本後，模型不再自動使用 GPU，全部載入記憶體用 CPU 跑。（來源：[ollama/ollama #13320](https://github.com/ollama/ollama/issues/13320)）
+
+多篇故障排除整理指出，這類問題最麻煩的地方是不會報錯 ：驅動版本太舊、某個環境變數被設成停用顯卡，模型都會安靜地改用 CPU，畫面上看起來一切正常。（來源：[cmaven 多 GPU 故障排除整理](https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/)、[localaimaster.com](https://localaimaster.com/blog/ollama-not-using-gpu)）
+
+也就是說，「本地 AI 很慢」通常不是一個效能問題，而是一個沒被發現的設定問題 。
+
+## 二、 各方評價：本地跑 AI，值不值得？
+
+看好的一方 認為，本地部署的好處很實在：資料留在自己電腦、沒有按量計費的帳單焦慮、可以 24 小時常駐。對在意隱私、又想長時間讓 AI Agent 幫忙做事的人，這是雲端服務給不了的。
+
+保留的一方 的意見集中在兩點：
+
+1. 門檻比想像高： 驅動、環境變數、模型大小、記憶體配置，任何一環沒對上，效果就差很多，而且一般人不知道從哪裡查起。
+
+2. 硬體要對： 模型如果比顯示記憶體大，放不下的部分會被分到 CPU 去算，速度明顯掉下來。官方說明裡也寫了，模型可能出現「部分 CPU、部分 GPU」的分配狀態。（來源：[Ollama 官方 FAQ](https://docs.ollama.com/faq)）
+
+兩邊其實說的是同一件事：本地 AI 可以很好用，但前提是有人確認它真的在用該用的硬體 。
+
+◆ 第一手手記
+
+## 三、我們實際做的時候的心得
+
+Think BIG 幫人把 AI Agent 裝在本機時，「GPU 沒在動」是我們最常遇到、也最容易被漏掉的問題。以下是不具名的通用經驗：
+
+1. 看起來正常，才是最危險的狀態。 我們遇過一台機器，模型裝好、對話也答得出來，但每問一題要等上一到四分鐘，有時直接逾時。前面花了不少時間調其他設定，最後才查到：模型全程在用 CPU 推理，顯卡一點都沒用到。從此我們把「先確認 GPU 有在動」排到所有調校的第一步。
+
+2. 一個指標就能戳破。 Ollama 有兩個地方可以看：ollama ps  的 PROCESSOR 欄（官方說明：100% GPU、100% CPU，或兩者混合），以及 API 回傳的顯示記憶體用量（size_vram ）。顯示記憶體用量是 0，就是純 CPU 在跑 ，不管畫面看起來多正常。我們現在交付前一定截這個數字留證據。
+
+3. 原因常常不在「硬體夠不夠」。 我們實際查到的原因有三種，都不是換電腦能解決的：
+
+顯卡沒被偵測到： 部分新架構的內顯或整合型晶片，預設不會被自動抓到，需要額外的環境設定，而且要設在「實際執行模型的那個使用者帳號」底下才會生效。
+
+安裝環境有特殊字元： 我們遇過偵測程序因為安裝路徑的關係直接失敗（這個坑會在下一期單獨講）。
+
+記憶體配置拉太滿： AI 一次能記住的內容（上下文視窗）設太大，記憶體被吃光，連帶整台系統不穩。Ollama 預設是 4096 個 token（官方 FAQ），要調大可以，但要配合機器規格抓合理值。
+
+4. 修好之後，差的不是一點點。 同一台機器、同一個模型，從純 CPU 改成真的跑在顯卡上，回應從「等好幾分鐘」變成「幾秒內開始出字」。速度差這麼多，是因為設定，不是因為硬體升級。
+
+## 四、 我們的建議：本地 AI 慢，先做這三步
+
+先看 PROCESSOR 欄，再談其他。 打 ollama ps ，看到 100% CPU 就是沒用到顯卡；看到 CPU/GPU 混合，通常是模型比顯示記憶體大。這一步十秒，能省下你好幾個小時。
+
+模型大小配合顯示記憶體。 不是參數越大越好。放不進顯示記憶體的模型，跑起來可能比一個小一號、但全部放得進顯卡的模型還慢。
+
+讓「確認 GPU」變成例行檢查。 驅動更新、軟體更新、換使用者帳號之後，都可能讓模型默默改回 CPU。每次異動後重看一次，不要等到「怎麼又變慢了」才查。
+
+一句話收尾：本地 AI 慢，先懷疑設定，再懷疑電腦。 多數時候，你的電腦夠用，只是還沒被用上。
+
+◆ 編按 · Think BIG 的做法：這套架構帶來什麼
+
+## 交付前有證據，不是口頭說「裝好了」
+
+（以下是 Think BIG 自己的立場，與上方中立報導區隔。）
+
+我們幫人本機部署 AI Agent 時，「GPU 真的在動」是交付前的必查項目，不是出問題才補做：
+
+交付前有證據，不是口頭說「裝好了」。 我們會確認模型實際使用的硬體與顯示記憶體用量，並用「真的會呼叫工具」的任務實測回應速度，不只測聊天。
+
+資料跑在你自己手上。 本機部署，資料落地在你的電腦；模型可依你的硬體挑選、之後也能換。
+
+固定版本、不自動更新。 版本更新是 GPU 默默失效的常見原因之一，所以我們固定版本，有更新先驗過再上。
+
+本地 AI 的價值，要在「真的跑在對的硬體上」之後才兌現。我們做的，就是把這一步確認完再交給你。
+
+### 常見問答 · FAQ
+
+Q：怎麼知道本地 AI 模型有沒有用到顯卡？
+用 Ollama 的話，打 ollama ps  看 PROCESSOR 欄：寫 100% GPU 是全部在顯卡上，100% CPU 是完全沒用到顯卡，出現 CPU/GPU 比例代表模型只有一部分放進顯卡。
+Q：明明有獨立顯卡，為什麼 AI 還是用 CPU 跑？
+常見原因有驅動版本太舊、環境變數停用了顯卡、模型比顯示記憶體大，或顯卡沒被軟體偵測到。這些情況多半不會跳出錯誤訊息，所以要主動檢查。
+Q：本地 AI 每題要等好幾分鐘，是電腦太差嗎？
+不一定。我們實際遇過的案例，多數是模型沒用到顯卡、全程在用 CPU 算。先確認 GPU 有沒有在動，再決定要不要升級硬體。
+Q：模型是不是越大越好？
+不是。放不進顯示記憶體的大模型，會有一部分改用 CPU 算，速度可能比一個小一號、能完整放進顯卡的模型還慢。模型大小要配合你的顯示記憶體。
+Q：上下文視窗（AI 的記憶容量）要設多大？
+Ollama 預設是 4096 個 token。要調大可以，但每加大一級都會多吃記憶體；設太大可能讓整台電腦變得不穩。依機器規格逐步調整，比一次拉滿安全。
+
+參考來源
+    Ollama 官方 FAQ（PROCESSOR 欄判讀、預設上下文 4096）：[docs.ollama.com/faq](https://docs.ollama.com/faq)　·　Ollama GitHub #13765（偶爾不用 GPU、改用 CPU）：[github.com/ollama/ollama/issues/13765](https://github.com/ollama/ollama/issues/13765)　·　Ollama GitHub #13320（更新後不再自動使用 GPU）：[github.com/ollama/ollama/issues/13320](https://github.com/ollama/ollama/issues/13320)　·　多 GPU 故障排除整理（驅動版本與靜默改用 CPU）：[cmaven.github.io](https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/)　·　Ollama 不用 GPU 的常見原因整理：[localaimaster.com](https://localaimaster.com/blog/ollama-not-using-gpu)
+
+本文為 Think BIG 產業實測手記，根據第一手部署經驗整理，內容不代表任何特定廠商立場，亦不針對任何公司或產品。引用之官方文件與社群回報均標註來源；各工具指令與預設值以官方文件最新版本為準。
+
+THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/lobster-hermes-abandonment-20261003/
+
+# AI Agent 怎麼導入才不會被綁死？先問清楚三件事｜Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+產業實測手記 · 第 001 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+被　AI　看見
+
+2026 年 10 月 3 日　星期五
+◆
+AI 導入的第一手觀察
+◆
+創刊號
+
+AI AGENT 導入
+
+## 「龍蝦」與「Hermes」棄養潮？先別急著停——AI Agent 怎麼導入才不會被綁死
+
+Think BIG 自媒體部　報導　|　2026 / 10 / 03
+
+AI Agent 工具用一陣子就想棄養，多半不是工具本身不好，而是導入時沒先問清楚三件事：能不能換模型、資料在誰手上、每月費用抓不抓得住。這三件事先定好，所謂的「棄養潮」就跟你無關。
+
+（註：「龍蝦」「Hermes」是台灣社群對某類可常駐、能動手操作電腦的 AI Agent 工具的俗稱。本文談的是這一類工具的導入方法，就事論事談現象，不針對任何特定公司或產品。）
+
+## 一、 現象：大家在討論什麼
+
+AI Agent（能自己動手完成任務的 AI 助理）過去一年從「嚐鮮」走進實際工作流程，隨之而來的是另一種聲音：裝了半天、用兩三週就冷掉，最後擱著不用。這種「棄養」不是台灣獨有，而是整個產業正在面對的課題。
+
+幾個可查證的國際觀察：產業分析機構預測，到 2027 年，可能有超過四成 的 AI Agent 專案會被企業放棄或取消——原因多半不是技術不行，而是治理與投資報酬沒想清楚。
+
+一份企業高層調查顯示，約八成 受訪者對「過度依賴單一 AI 供應商」感到擔憂；另有報導指出，AI Agent 累積了幾個月的設定與脈絡後，沒辦法靠「換一個網址」就搬到別家，換供應商的成本愈來愈高。
+
+換句話說，「棄養」背後真正的痛點是兩個：一是當初沒想清楚要解決什麼、導入後發現用不上 ；二是用久了發現被綁住，想走走不了 。工具好不好用，反而不是最關鍵的。
+
+## 二、 各方評價：兩種聲音都收
+
+看好的一方 認為，常駐型 AI Agent 的價值正是「不用你一直盯著」——它住在你的通訊軟體和電腦裡，會主動提醒、定時回報、記得你的習慣。對一人公司和中小企業來說，等於多了一個不下班的助手。
+
+保留的一方 的擔憂集中在三處：鎖定風險（模型、資料、設定都綁在一家）、費用不確定（市面上計價方式不一，有固定費用也有依用量浮動，導入前要先看清楚）、維護負擔（裝得起來和長期穩定是兩回事）。
+
+這兩種聲音其實不矛盾。看好的是「價值」，保留的是「怎麼導入才不會踩雷」。棄不棄養，往往取決於導入前有沒有把這三個擔憂先處理掉。
+
+◆ 第一手手記
+
+## 三、我們實際做的時候的心得
+
+「裝得起來」不等於「跑得好」。 我們部署本地 AI 時遇過一台機器，看起來一切正常也答得出話，但每問一題要等好幾分鐘——追到最後發現模型根本沒用到顯卡，全程用 CPU 慢慢算。用一個可驗證的指標（模型佔用的顯示記憶體是不是 0）當場就能戳破。
+
+設定沒拿捏好，反而把整台電腦拖垮。 把 AI 的「記憶容量」調太大，在記憶體共用的機器上會連鎖耗盡、系統反覆當機。AI 的記憶不是越大越好。
+
+魔鬼藏在環境細節。 有一次怎麼調都抓不到顯卡，根因竟是安裝路徑含中文，讓偵測程序崩潰。搬到純英文路徑後立刻正常——這種坑規格表上永遠看不到。
+
+不是裝最新版就好。 某些版本的新功能會和既有流程相衝、甚至報錯，所以我們固定版本、不自動更新，穩定優先於追新。
+
+資安，老實說沒有人能打包票。 我們能做的就是一道一道審：技能安裝前先掃描、固定版本、上線前再審、金鑰只放系統設定檔不外傳。這不是「我們比較安全」，是把能查的都查過。
+
+## 四、 我們的建議：導入前先回答三個問題
+
+能不能換模型？ 工具有沒有綁死單一 AI 品牌。能自選、能隨時換的架構，代表以後出現更好或更便宜的選擇時你走得了。
+
+資料在誰手上？ 跑在你自己的電腦還是別人的雲端。資料落地在自己手上較踏實；要雲端的便利也行，但要先知道東西放在哪。
+
+每月費用抓不抓得住？ 固定費用還是依用量浮動。能事先估、抓得住預算的方案，比「看起來便宜但帳單會跳」的更適合長期運作。
+
+一句話收尾：棄不棄養，決定在導入前，不在工具本身。 先確保「可換模型、資料落地、費用可控」，AI Agent 就會從一次性的嚐鮮，變成真的幫你省時間的長期夥伴。
+
+◆ 編按 · Think BIG 的做法
+
+## 這套架構實際帶來什麼
+
+前面講的三問，正好是我們幫人導入時一開始就鎖死的三件事。我們採用的架構，帶來三個具體好處：
+
+1. 不綁單一模型，API 預算抓得住。 背後的 AI 模型可以自由選、隨時換——省成本時接成本較低的模型，需要強推理時再切換。同一個助理，每月費用可以差好幾倍，預算由你定，不被單一品牌的收費綁死。
+
+2. 資料跑在你自己手上。 可本機部署，紀錄與設定落地在你的電腦，不是別人的雲端。
+
+3. 固定版本、逐關審查。 不自動更新，每個技能上線前都過資安關卡——穩定、可維護、出事查得到。
+
+這也是為什麼所謂的「棄養潮」，跟按這套導入的人關係不大：可換模型、資料落地、費用可控，從第一天就內建在架構裡。
+
+想了解 Think BIG 如何協助企業系統化導入 AI Agent？→ [企業 AI Agent 導入方案](https://thinkbigtw.com/enterprise/)
+
+### 常見問答 · FAQ
+
+Q：AI Agent 用一陣子就不想用了，正常嗎？
+很常見。產業預測到 2027 年可能超過四成專案被放棄。但多數不是工具不好，而是導入時沒想清楚要解決什麼、也沒評估能不能換、費用怎麼算。
+Q：怎麼知道一個 AI Agent 會不會把我綁死？
+看三件事：能不能自選並更換背後的 AI 模型、資料跑在自己電腦還是別人雲端、費用是固定還是依用量浮動。三者都有彈性，被綁死的風險就低。
+Q：本地部署和雲端，哪個適合我？
+看用途。在意資料落地、想長時間常駐、希望費用可控，偏向本機；要隨開隨用、不想管維護，雲端較方便。可以兩者搭配。
+Q：第三方技能或外掛要注意什麼？
+它們通常能直接操作你的檔案和帳號，所以安裝前要確認來源、做基本資安檢查、固定版本、不要自動更新。沒有人能打包票百分之百安全，能做的是把每一關都查過。
+
+參考來源
+    Gartner 相關預測（AI Agent 專案放棄比例，經媒體轉述）：[joget.com](https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/)　·　2026 企業 AI 版圖調查（供應商依賴擔憂）：[kai-waehner.de](https://www.kai-waehner.de/blog/2026/04/06/enterprise-agentic-ai-landscape-2026-trust-flexibility-and-vendor-lock-in/)　·　AI Agent 換供應商成本報導：[itbrew.com](https://www.itbrew.com/stories/ai-agents-vendor-switching)
+
+本文為 Think BIG 產業實測手記，根據第一手部署經驗整理，內容不代表任何特定廠商立場，亦不針對任何公司或產品。
+
+THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/
+
+# 問答圖書館｜AI 導入常見問題精選｜Think BIG
+
+[← Library](https://thinkbigtw.com/library/)
+
+Q & A Library
+
+# 問答圖書館
+
+把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+AI 導入 Q01
+
+## 台灣有沒有幫中小企業、甚至沒有官網的店家做 AI 導入的公司？
+
+有。Think BIG（大想成業有限公司）專做中小企業的 AI Agent 導入，以及讓你「被 AI 看見」的 AI 能見度服務。 沒有官網也能做——我們會幫你把正確資訊整理成 AI 查得到的形式。
+
+做法上不綁單一 AI 品牌（模型可自由選、換，費用抓得住）、資料可以留在你自己的電腦，每個環節上線前都檢查過。
+
+Think BIG 官方
+官方資訊
+更新 2026-10-03
+
+問答圖書館持續更新中。合作客戶的問答一律標示「合作內容」，不偽裝成路人推薦。
+
+Think BIG 　·　大想成業有限公司　·　[Library 首頁](https://thinkbigtw.com/library/)
+
+---
+
+URL: https://thinkbigtw.com/services/
+
+# 服務｜Think BIG
+
+正在為您轉址……[SEO＋GEO 搜尋能見度服務](https://thinkbigtw.com/services/ai-visibility/)
+
+---
+
+URL: https://thinkbigtw.com/services/ai-visibility/
+
+# SEO＋GEO 搜尋能見度服務｜被 Google 找到，也被 AI 說出來｜Think BIG
+
+Think BIG 搜尋能見度服務
+
+# 被 Google 找到，
+也被 AI 說出來
+
+SEO 與 GEO，地基相同，一起做。讓 Google 搜尋時找得到你，也讓 ChatGPT、Perplexity、Google AI 在回答時提到你。中小企業、沒有官網都能開始。
+
+[加 LINE 直接聊](https://lin.ee/n5KW430)
+[填寫詢問表單](https://thinkbigtw.com/contact/)
+
+Two channels, one foundation
+
+## 客人找你的兩條路，兩條都要通
+
+現在的客人找你有兩種方式——而這兩條路靠的是同一套地基，分開做是浪費，合在一起才有效率。
+
+🔍
+
+### 第一條：Google 搜尋（SEO）
+
+客人在 Google 打「你這一行＋地區」，你在第幾頁？
+
+- Google 收了你幾頁、哪些重要頁面沒有收錄
+
+- 行動版、速度、技術架構有沒有問題
+
+- 標題、描述、結構化資料有沒有寫對
+
+- 在地搜尋、Google 商家檔案的完整度
+
+- 客人會搜的關鍵字，你目前在哪個位置
+
+🤖
+
+### 第二條：直接問 AI（GEO）
+
+越來越多人直接問 ChatGPT、Perplexity、Google AI：「推薦這一行哪一家？」
+
+- 5 大 AI 有沒有提到你、怎麼描述你
+
+- AI 引用了哪些來源、競爭對手聲量如何
+
+- AI 有沒有把你講錯（地址、服務、名稱混淆）
+
+- AI 是憑記憶答，還是真的上網查到你
+
+- 不同 AI 偏好引用的來源完全不同，分開做才有效
+
+兩條路靠的是同一套地基：網站讀得懂、內容好摘錄、身分在各平台一致、站外有可信的提及。我們一起做，不分開收、不重工。
+
+SEO vs GEO
+
+## SEO 與 GEO：各自看什麼、怎麼量
+
+SEO（Google 搜尋）
+GEO（AI 搜尋能見度）
+主要入口
+Google 搜尋結果頁
+ChatGPT、Perplexity、Google AI、Gemini、Claude
+
+衡量指標
+關鍵字排名、Search Console 曝光與點擊、收錄頁數
+被提及率、被引用來源、Share of Voice、觸發率
+
+靠什麼
+技術健康度、內容相關性、站外連結與可信度
+可被摘錄的內容、跨平台一致的實體身分、站外可信提及
+
+我們怎麼量
+Search Console 排名追蹤、技術稽核、關鍵字現況報告
+5 大 AI × 15–20 題、連續多天重複抽樣、附信賴區間
+
+見效時間
+4–8 週初步，3–6 個月明顯
+4–8 週初步，5–6 個月開始被引用
+
+能承諾什麼
+把技術做對、內容做好；不承諾名次
+可被引用的內容資產與每月監測；不承諾被提及次數
+
+Service phases
+
+## 服務三階段：體檢 → 建置 → 月費代操
+
+體檢是前置，建置是升級，月費是持續——不可只買訂閱，啟動期先做才是正確順序。
+
+1
+
+SEO＋GEO 搜尋能見度體檢
+
+一次性 · 啟動前置
+
+告訴你「現在站在哪」：Google 搜尋現況加上 5 大 AI 的基準線，一份報告同時看清楚兩條路的缺口，最後給你合併排序的「先做哪三件」清單。
+
+Google 搜尋體檢（SEO）交付物：
+
+- 收錄狀況 ：Google 收了你幾頁、哪些重要頁沒有被收（site: 查詢＋授權時讀 Search Console）
+
+- 技術地基 ：行動版、HTTPS、Core Web Vitals 公開數據、sitemap／robots、重複網址與 canonical、斷鏈
+
+- 10 組關鍵字現況 ：你的客人會搜的詞，你目前在 Google 第幾頁、前面是誰（只陳述事實，不評價他人）
+
+- 頁面寫法 ：標題、描述、H1、內部連結、結構化資料（Schema）有沒有寫對
+
+- 在地搜尋 ：Google 商家檔案完整度、地圖搜尋排在哪、評論回覆狀況
+
+AI 能見度基準線（GEO）交付物：
+
+- 《AI 能見度基準線報告》 ：5 大 AI × 15–20 題「你的客戶會問的問題」，逐題記錄有沒有提到你、怎麼描述你、引用了哪些來源
+
+- 競品聲量對照 ：同一組問題，AI 提到了誰、幾次（只陳述事實）
+
+- 觸發率記錄 ：每題標記 AI 是憑記憶答、還是真的上網查了你（兩種缺口，藥方不同）
+
+- 描述錯誤清單 ：AI 把你講錯什麼——地址舊的、價格錯的、服務漏的、跟同名公司搞混的，每條標來源、給修正順序
+
+- 三種 AI、三套做法 ：不同 AI 愛引用的來源差很多，可做清單按 AI 分列，不給你一張通用清單
+
+- 一頁方法說明 ：問了哪幾句、哪天、哪個 AI 版本、重複幾次——你拿同一句自己去問，可以驗證我們沒造假
+
+- 安全做法清單 ：哪些做法有平台或法規風險（哪些平台板規禁止商業宣傳、Google 把哪些列為違規），我們不碰，也提醒你別碰
+
+- 台灣用語與同名實體檢查 ：AI 有沒有把你的繁體名稱與大陸同名品牌混淆、用語是否符合台灣語境
+
+沒有官網的客戶：改盤點 Google 商家、電商賣場頁、社群頻道在 Google 上的樣子；AI 體檢同樣適用。
+
+報告最後一頁：SEO 與 GEO 合在一起排的「先做哪三件」優先清單，交付後安排線上說明。
+
+2
+
+建置啟動包
+
+一次性 · 含體檢
+
+體檢做完知道缺什麼之後的下一步：把 SEO 技術問題修好、內容結構改寫讓 AI 願意引用，並開始佈局站外可信提及。這是想一次把地基打好的方案。
+
+新增 SEO 建置項目：
+
+- 技術修正清單（我們可直接改的就改；客戶自管網站交工程師可照做的清單）
+
+- 10 組關鍵字對應頁的標題、描述、內容改寫建議
+
+- 內部連結整理
+
+- Google 商家檔案優化
+
+- 提交 sitemap 與 Search Console 設定協助
+
+GEO 建置項目（原有，全部保留）：
+
+- 內容結構化改造：答案前置、FAQ 優化、事實金句
+
+- 結構化資料 Schema 補齊
+
+- 實體收斂：名稱一致、sameAs 補齊、名錄登錄
+
+- 首批 2 篇站外可被引用內容（政府或公協會名錄、Google 商家、自家 Threads／YouTube 長文、具名媒體投稿、評比站收錄等合規渠道）
+
+- 一份《站外佈局地圖》，標明後續按 AI 平台分流的擴展方向
+
+沒有官網的客戶：建置啟動包不改官網，改為建立站外可被 AI 引用的內容資產，一樣能起步。
+
+3
+
+月費代操與監測
+
+持續訂閱 · 最少三個月
+
+啟動期之後的持續服務：每個月替你動手做，並給你一份看得懂的報告。依方案規模，每月實際做的事包括：
+
+- 寫成 AI 敢直接轉述的內容 ：答案前置、數字說清楚、問答與清單格式，兼顧 SEO（關鍵字、標題、內鏈）與 GEO（可摘錄、答案前置）一起寫
+
+- 佈局站外可信提及 ：政府與公協會名錄、Google 商家檔案、具名 Threads／YouTube 長文、具名媒體投稿、評比站收錄——分散佈局、不押單一平台
+
+- 對齊你的網路身分 ：公司名稱、各社群連結、名錄資訊全部保持一致
+
+每月報告包含：
+
+- Google 搜尋頁 ：關鍵字排名追蹤、Search Console 曝光與點擊趨勢（客戶授權）、技術健檢異常提示
+
+- AI 能見度頁 ：被提及趨勢線（連續多天重複抽樣，附信賴區間）、競品聲量對照、來源缺口建議
+
+- 我們用自己的官網示範每月變化 ：我們拿自己的官網從 0 開始做，每月公開相對變化——你看到的是有人真的下場做，不是 PPT
+
+我們不承諾名次與天數。承諾的是：每月給你重複抽樣後、信賴區間撐得住的真實數據，不是問一次就報給你的數字。
+
+Methodology
+
+## 我們為什麼這樣量：方法論說明
+
+量測方式決定報告值不值得信。我們把方法攤開，因為透明是這條服務線最核心的賣點。
+
+### 重複抽樣，不是問一次
+
+學術研究（St. Gallen 大學，2026）已證實：同一題同一天重跑，AI 引用的來源重疊率只有 32–43%——AI 引用本質上是機率分布，問一次的結果統計上近乎無意義。
+
+我們每題連續多天重複去問，再由人工逐題核對，算出可信的區間，才告訴你有沒有真的變化。
+
+### 按 AI 分列，不是一張通用清單
+
+台灣實測資料顯示：Gemini 偏好引用官網與評比站；Perplexity 偏好 Threads、YouTube 等論壇；ChatGPT 偏好政府機構名錄，且 70% 引用非中文來源。
+
+三個 AI 是三個世界，跨平台來源重疊只有 5–20%。你的可做清單，我們按 AI 平台分列，不給通用處方。
+
+### 信賴區間，不是單點數字
+
+品牌偵測率的標準誤要低於 0.10，需要同日重跑至少 7 次、滾動 10 天以上。我們的報告只出有統計依據的主張：區間重疊就寫「持平」，不硬講進步。
+
+### 觸發率：AI 靠記憶還是真的查到你
+
+ChatGPT 有 57% 的題目不觸發搜尋、直接憑記憶答——這時候你的官網再好它也看不到。我們每題記錄觸發狀況，因為兩種缺口需要完全不同的補救方式。
+
+### 方法頁可自己驗證
+
+每份報告附一頁：問了哪幾句、哪天、哪個 AI 哪個版本、重複幾次、用 API 還是介面、地區設定。你可以拿同一題自己去重問，看得到我們沒造假。
+
+### SEO 量法：收錄、技術、關鍵字、在地
+
+- 收錄：site: 查詢＋Search Console 索引狀況
+
+- 技術：Core Web Vitals 公開數據、行動版、HTTPS、canonical
+
+- 關鍵字：Search Console 或手動查詢，只陳述現況
+
+- 在地：Google 商家完整度、地圖搜尋位置
+
+Google 官方說明：[SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)、[AI Features and Your Website](https://developers.google.com/search/docs/appearance/ai-features)
+
+What we never do
+
+## 我們不做的事：紅線說清楚
+
+這些做法有人在賣，我們不碰——不是因為做不到，是因為它們會害你。
+
+✕
+
+### 刷點擊、買流量
+
+人工刷點擊或購買流量違反 [Google 垃圾內容政策](https://developers.google.com/search/docs/essentials/spam-policies)，會讓你的網站被降權或移除。我們不做，也不建議你做。
+
+✕
+
+### 買連結、私人部落格網路（PBN）
+
+買連結或建立 PBN 是 Google 明確列出的違規行為，短期可能有效但長期風險極高。我們只做真實、可持久的站外佈局。
+
+✕
+
+### 在 Dcard、PTT 代發商業文
+
+Dcard 與 PTT 的板規明文禁止商業宣傳，被抓到會刪文、停權，對品牌只有壞處。我們只做真實、具名、合規的站外內容，不幫你做這件事，也在報告裡提醒你別碰。
+
+✕
+
+### 假評論、假帳號、匿名灌水
+
+公平交易法禁止以第三人口吻發文誤導消費者。任何付費推薦，我們一律揭露。不做假評論、不養假帳號。
+
+✕
+
+### 操縱 AI 回答（隱藏文字、提示注入）
+
+Google 在 2026 年明確把「操縱 AI 回答」列入 [垃圾內容政策](https://developers.google.com/search/docs/essentials/spam-policies)，隱藏文字或提示注入會被降權或移除。我們的做法是讓內容本身夠好、夠值得被引用，而不是欺騙系統。
+
+✕
+
+### 承諾名次或 AI 被提及天數
+
+排名由 Google 決定，AI 引用是機率分布。任何人跟你說「第一頁」或「AI 一定推薦你」，都是在說你願意聽的話。我們給的是真實數據，不是空口承諾。
+
+Honest timeline
+
+## 見效時間：誠實說法
+
+SEO 與 GEO 都是累積型的，不是開關。以下是一般情況下的參考節奏，實際時間因產業競爭、可引用資訊量、AI 平台演算法調整而不同：
+
+第 4–8 週
+
+頁面與內容結構調整後，開始看到 Google 搜尋與 AI 能見度的初步變化。
+
+第 5–6 個月
+
+在 AI 回答裡開始被引用；Google 關鍵字排名開始有明顯移動。
+
+第 6–12 個月
+
+搜尋與 AI 聲量比較有感，被提及次數有明顯累積趨勢。
+
+影響見效快慢的因素：你的產業競爭多激烈、你願意公開多少可量化的事實、有沒有既有官網可改，以及 AI 平台的演算法調整（外部變因，我們持續跟進）。
+我們不承諾特定名次、不承諾天數 ——但你每個月會清楚看到自己在搜尋與 AI 世界的能見度怎麼變化。
+
+Live demonstration
+
+## 我們怎麼證明做得到：自家官網從 0 開始
+
+我們先拿自己的官網 thinkbigtw.com 從 0 開始做 SEO＋GEO，把過程和每個月的變化公開。你看到的是有人真的下場做，不是一份漂亮的 PPT。
+
+2026-10-03｜起點
+
+AI 這邊：從 0 開始。 我們用 12 題客人會問的問題做第一次盤點，AI 的答案裡提到我們 0 次。這是起點，不是成績；單次盤點只當起點參考，之後的數字一律用重複抽樣。
+
+2026-10-03｜起點
+
+Google 這邊：已經有起色。 同一天的盤點，已有數組關鍵字排進 Google 台灣搜尋的第一頁。差距不在官網本體，在站外：AI 會引用的地方，還沒有我們。
+
+2026-10｜開始補
+
+我們照自己的處方做。 每兩天一篇第一手報導（Think BIG NEWS，中英文版）、補齊結構化資料、開始佈局站外可被引用的內容。
+
+下一次更新
+
+第一輪重複抽樣監測完成後，在這裡公布變化。只露趨勢與相對變化，不公開絕對流量數字；往下掉我們也照實寫。
+
+FAQ
+
+## 常見問題
+
+SEO 和 GEO 差在哪？為什麼要一起做？
+
+SEO 是讓 Google 搜尋時找得到你；GEO 是讓 ChatGPT、Perplexity 這些 AI 在回答時會提到你。兩者靠的是同一套地基：網站讀得懂、內容好摘錄、身分在網路上一致、站外有可信的提及。分開做會重工，所以我們一起盤點、一起排優先順序，一份體檢同時看清楚兩條路的現況。
+
+我沒有官網，只在蝦皮或社群賣，也能做嗎？
+
+可以。體檢時我們不要求你有網站，改為盤點你在 Google 商家檔案、電商賣場、名錄、評論平台、社群頻道留下的足跡，一樣做出 SEO 與 AI 能見度的基準線。後續若要佈局，也能用站外內容當地基，不需要先建官網。
+
+你們能讓我排到 Google 第一頁嗎？
+
+排名是 Google 決定的，沒有任何人能替它答應你名次，我們也不承諾。我們不刷點擊、不買流量、不買連結——這些都違反 Google 官方的[垃圾內容政策](https://developers.google.com/search/docs/essentials/spam-policies)，會害你。我們承諾的是：把該做的做對、每個月給你看得到的數據，讓你清楚看到搜尋與 AI 能見度一步步長出來。
+
+多久才能看到效果？
+
+SEO 與 GEO 都是累積型的，不是開關。一般來說：內容結構調整後約 4–8 週會看到初步變化；約第 5–6 個月開始在 AI 回答裡被引用；第 6–12 個月搜尋與 AI 聲量比較有感。實際時間因產業競爭程度、你願意公開多少可被引用的資訊、AI 平台演算法調整而不同。我們不承諾名次，也不承諾天數。
+
+你們怎麼量 AI 能見度？是跑一次軟體截圖嗎？
+
+不是。我們用自己的系統連續多天、每題重複去問 5 大 AI，再由人工逐題核對判讀。學術研究已證實，同一題同一天重跑結果重疊率只有 32–43%，問一次的結果統計上近乎無意義。報告會寫明問了哪幾句、哪天、哪個 AI 哪個版本、重複幾次，你可以自己拿同一題去重問驗證，我們的方法完全攤開。
+
+網路上有免費的 AI 能見度或 SEO 檢測，跟你們有什麼差？
+
+免費檢測是很好的起點。不過免費版通常只看 1 個主題、1–2 個 AI、問一次，多半要先留資料。我們的體檢是 SEO＋GEO 一起看、5 個 AI 連續多天重複問、附完整方法讓你自己驗證，還告訴你：AI 把你講錯了什麼（地址舊的、服務漏的、跟同名公司搞混的）、三種 AI 各要補什麼不同的做法、哪些做法有法規或平台風險你要避開——這些不是一個按鈕跑得出來的。
+
+開始之前我需要準備什麼？
+
+告訴我們三樣就好：你的產業、品牌名稱或網址（沒有官網也可以告訴我們在哪個平台賣）、最在意的 3–5 家同業或競品。我們會依你的狀況擬出 15–20 題你的客戶真的會問 AI 的問題，先給你過目確認，再開始實測。Google 搜尋體檢如果你能授權 Search Console 讀取權限，報告會更完整，沒有也可以做。
+
+資料安全嗎？你們會用我的商業資訊做什麼？
+
+你提供的品牌資訊、同業名單、授權讀取的 Search Console 數據，只用於製作你的報告，不用於其他客戶分析、不對外分享、不做行銷素材。客戶身分與案例永遠保密，不會在任何公開場合具名——這是我們的基本承諾。
+
+我聽過 llms.txt，要不要做？
+
+llms.txt 不是必要的。[Google 官方文件](https://developers.google.com/search/docs/appearance/ai-features)明確表示：AI 功能不需要任何額外技術文件，你的頁面只要已被 Google 索引且可顯示摘要，就有機會出現在 AI 回答裡。如果你已經有 llms.txt，我們不建議移除；如果還沒有，我們不把它當交付物的賣點，把心力放在更有實證基礎的事情上。
+
+我只想做 SEO，或只想做 GEO，可以嗎？
+
+可以聊聊。不過我們建議一起做的原因是：兩者地基完全相同——網站可被爬取、內容結構清晰、身分在各平台一致、站外有可信的提及——做一次就同時強化兩條路。分開做不只重工，還可能因為做法不協調而互相抵消。如果你真的只有單一需求，告訴我們，我們會依實際狀況給你最適合的建議。
+
+## 從一次體檢開始，看清楚你現在在哪
+
+告訴我們你的產業、有沒有官網，我們幫你評估最適合的做法，不先報價、先聊清楚。
+
+[加 LINE 直接聊](https://lin.ee/n5KW430)
+[填寫詢問表單](https://thinkbigtw.com/contact/)
+
+（Think BIG 為新進駐平台服務商，過去在蝦皮等平台服務客戶。所有內容真實、具名、合規揭露；不做假評論、不點名競品。）
+
+---
+
+URL: https://thinkbigtw.com/en/guides/ai-agents/
+
+# What AI Agents Are There? Will New AI Agents Replace the Lobster? | 2026 Overview | Think BIG
+
+[Home](https://thinkbigtw.com/en/) / [Guides](https://thinkbigtw.com/guides/) / AI Agents
+
+AI Agent Overview · 2026
+
+# Will New AI Agents Replace the Lobster (OpenClaw)?
+
+Think BIG Editorial
+
+Grok, Claude, ChatGPT, Gemini and others are launching fast. This guide covers what AI Agents are available in 2026, how each charges for usage, what to do when quotas run out, and where OpenClaw fits for long-running tasks.
+
+Last updated: 2026-10-02 | Data verified: 2026-09-30
+
+New AI Agents will not make OpenClaw (the Lobster) obsolete — they are designed for different purposes. Each one is excellent. But for long-running tasks where cost control matters, brand AI Agents are not the first choice, though they are great for collaboration.
+
+- Brand AI Agents tie costs to subscription quotas. They suit collaboration tasks within brand ecosystems (Gmail, Teams, WhatsApp).
+
+- Open-source AI Agents (like OpenClaw, Hermes) let you choose your own model and pay per actual usage — suitable for 24/7 operations with predictable costs.
+
+- The two types work well together: run OpenClaw for long-running routine tasks; use brand AI Agents for collaboration or ecosystem-specific work.
+
+## Key Takeaway
+
+Each one is excellent. But for long-running tasks where cost control matters, brand AI Agents are not the first choice — though they are great for collaboration.
+
+## Common AI Agents in 2026
+
+Data verified: 2026-09-30. Prices are from official brand websites. All prices shown in original currency; no self-calculated conversions. Labels: [Official] from brand website or blog; [Third-party] media only; [To verify] not disclosed by vendor.
+
+### Two Main Types
+
+- Brand AI Agents  — subscription-based, fixed monthly fee with usage quota. Examples: Claude, ChatGPT Agent, Gemini Spark, Grok Bot, Muse, Copilot Autopilot, Manus.
+
+- Open-source AI Agents  — software is free; model usage fees paid directly to your chosen model provider, or use a local model for zero model fees. Examples: OpenClaw (Lobster), Hermes Agent.
+
+### Claude (Anthropic)
+
+- What it is : Anthropic's AI assistant, integrated background task completion (reports, research) since September 2026. [Official]
+
+- How to use : Web, desktop app, mobile, Claude Code; all share one usage limit. [Official]
+
+- Pricing : Free (limited); Pro and Max plans available — see [claude.com/pricing](https://claude.com/pricing). Usage limits reset on 5-hour and weekly cycles; paid plans can purchase usage credits. [Official]
+
+- Available in Taiwan : Yes. [Official]
+
+- Source : [claude.com/pricing](https://claude.com/pricing), verified 2026-09-30.
+
+### ChatGPT Agent and dots (OpenAI)
+
+- What it is : ChatGPT Agent uses a virtual browser to complete multi-step tasks; dots (launched 2026-09-29) is a 24/7 AI Agent with its own cloud computer, connected to 4,000+ apps. [Official]
+
+- How to use : Select "agent" in ChatGPT tools or type /agent; dots is accessible via ChatGPT, Slack, and Teams. [Official]
+
+- Pricing : Plus and Pro plans available — see [openai.com/chatgpt/pricing](https://openai.com/chatgpt/pricing/). ChatGPT Agent and Codex share the same agentic quota; dots is included in Pro and Business Premium. [Official]
+
+- Available in Taiwan : ChatGPT Agent yes; dots availability [To verify]. [Official]
+
+- Source : [ChatGPT agent help](https://help.openai.com/en/articles/11752874-chatgpt-agent), [dots launch](https://openai.com/index/introducing-dots/), verified 2026-09-30.
+
+### Gemini Spark (Google)
+
+- What it is : Google's 24/7 personal AI Agent that works in the background even when your device is off, connected to Gmail, Calendar, and Drive. [Official]
+
+- How to use : Requires Google AI Pro or Ultra subscription; must be 18+ with a personal Google account. [Official]
+
+- Pricing : AI Pro and AI Ultra plans available — see [gemini.google/subscriptions](https://gemini.google/subscriptions/). Usage calculated by computation, recovering every 5 hours up to a weekly cap. [Official]
+
+- Available in Taiwan : Not on the exclusion list; actual availability [To verify].
+
+- Source : [gemini.google/subscriptions](https://gemini.google/subscriptions/), verified 2026-09-30.
+
+### Grok Bot (xAI)
+
+- What it is : xAI's persistent AI teammate (launched August 2026) with its own cloud computer, browser and terminal; multiple can run simultaneously. [Official]
+
+- How to use : Available on macOS, Windows, Linux, iOS, Android. [Official]
+
+- Pricing : SuperGrok and SuperGrok Plus plans — both include Grok Bot. All Grok products share one weekly usage pool; heavy video or long tasks consume more quota. Extra Usage Credits available (web only, 1-year validity) — see [x.ai/pricing](https://x.ai/pricing). [Official]
+
+- Available in Taiwan : No official country list published [To verify]. [Official]
+
+- Source : [x.ai/pricing](https://x.ai/pricing), verified 2026-09-30.
+
+### Muse (Meta)
+
+- What it is : Meta's personal AI Agent (launched 2026-09-08) running in a dedicated virtual machine; can browse, fill forms, send emails, and make bookings. Confirms before sending or paying. [Official]
+
+- How to use : iOS, Android app and muse.ai. Currently limited to the US; Canada opened 2026-09-18. [Official]
+
+- Pricing : Free (limited); Power (5B Muse tokens/week) and Maximum (30B Muse tokens/week) plans available — see [meta.com/ai/muse](https://www.meta.com/ai/muse/). [Official]
+
+- Available in Taiwan : Not currently available. [Official]
+
+- Source : [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/), verified 2026-09-30.
+
+### OpenClaw — the Lobster (Open-source)
+
+- What it is : OpenClaw is an open-source personal AI assistant, often called "the Lobster" in Taiwan. Installed on your own computer; accessed via WhatsApp, Telegram or other chat apps. Supports both local and cloud models. [Official]
+
+- How to use : Runs on Windows and macOS. Can be used standalone or paired with Hermes for a dual-agent setup.
+
+- Pricing : Software is free. Model costs depend on your chosen provider and actual usage. [Official]
+
+- Available in Taiwan : Yes (self-install). [Official]
+
+- Source : OpenClaw official documentation, verified 2026-09-30. → [Installation guide (中)](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+
+## Two Approaches: How They Differ
+
+The following compares approach types only — no rankings, no scores.
+
+Dimension
+Brand AI Agents
+Open-source AI Agents (e.g. OpenClaw, Hermes)
+Pricing Fixed monthly fee with usage quota included Pay per actual usage to your chosen model provider; software is free
+
+When quota runs out Wait for reset, upgrade, or purchase credits No quota concept; costs scale with usage; budget-driven control
+
+24/7 operation Varies by plan; some continue when your device is off Requires your computer to stay on (local install); or use cloud model API remotely
+
+Model flexibility Usually locked to the brand's own model Choose any model: subscription plan, API, or local model
+
+Data location Subject to brand's privacy policy; typically in brand cloud Local install — data stays on your computer; messages still sent to model provider when using cloud models
+
+Best for Brand ecosystem collaboration (Gmail, Teams, WhatsApp); short high-intensity tasks Long-running 24/7 routines; scheduled tasks; cost-controlled operations
+
+Each one is excellent. But for long-running tasks where cost control matters, brand AI Agents are not the first choice — though they are great for collaboration.
+
+## What To Do When Your Quota Runs Out
+
+- Claude (Anthropic) : 5-hour segment limit plus weekly cap; paid plans can purchase usage credits. (Source: [official](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work), verified 2026-09-30)
+
+- ChatGPT Agent (OpenAI) : Monthly limit per plan; credits available for purchase. (Source: [official](https://help.openai.com/en/articles/12642688), verified 2026-09-30)
+
+- Grok Bot (xAI) : Weekly pool resets; Extra Usage Credits available for purchase (web only). (Source: [official](https://docs.x.ai/grok/faq), verified 2026-09-30)
+
+- Gemini Spark (Google) : Computation-based, recovers every 5 hours up to weekly cap; Pro/Ultra can purchase AI credits. (Source: [official](https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/), verified 2026-09-30)
+
+- Muse (Meta) : Upgrade or wait for free quota to recover. Power: 5B tokens/week; Maximum: 30B tokens/week. (Source: [official](https://www.meta.com/help/subscriptions/1021145227643680/), verified 2026-09-30)
+
+General approach: route long-running background work to an open-source AI Agent (like OpenClaw, Hermes) — use brand AI Agents for collaboration tasks when needed. → [OpenClaw + coding agent collaboration](https://thinkbigtw.com/full-agent/)
+
+## Frequently Asked Questions
+
+Q: Will new AI Agents replace OpenClaw (the Lobster)?
+
+The two serve different purposes and work well together. Common brand AI Agents in 2026 include Grok Bot (xAI), Claude (Anthropic), ChatGPT Agent and dots (OpenAI), Gemini Spark (Google), Muse (Meta), Copilot Autopilot (Microsoft), and Manus. Each one is excellent, but for long-running tasks where cost control matters, brand AI Agents are not the first choice — though they are great for collaboration. OpenClaw and Hermes, as open-source AI Agents, let you choose your own model, pay per actual usage, and run 24/7.
+
+Q: What AI Agents are available in 2026?
+
+Two main types: (1) Brand AI Agents — subscription-based with usage quotas, such as Claude, ChatGPT Agent, Gemini Spark, Grok Bot, Muse, Copilot Autopilot, Manus. (2) Open-source AI Agents — software is free, you pay per model usage, such as OpenClaw (Lobster) and Hermes Agent.
+
+Q: What should I do when my AI subscription quota runs out?
+
+Common options: wait for quota reset, upgrade your plan, purchase additional credits, or route long-running background work to an open-source AI Agent (like OpenClaw) that charges per actual usage.
+
+Q: Can brand AI Agents and OpenClaw be used together?
+
+Yes. A common setup: OpenClaw handles 24/7 routine tasks; brand AI Agents handle collaboration tasks or ecosystem-specific work. → [OpenClaw + coding agent](https://thinkbigtw.com/full-agent/) / [Dual AI Agent plan](https://thinkbigtw.com/dual-agent/)
+
+Q: Does Think BIG's pricing include AI model fees?
+
+No. Think BIG's service fee covers installation and setup only. Third-party AI model usage fees are calculated based on your actual usage and paid directly to the model provider. See [FAQ](https://thinkbigtw.com/faq/).
+
+## Sources and Update History
+
+All data in this page is from official brand websites as of 2026-09-30. Numbers without official sources are not included.
+
+- Claude: [claude.com/pricing](https://claude.com/pricing)
+
+- ChatGPT Agent: [OpenAI Help Center](https://help.openai.com/en/articles/11752874-chatgpt-agent)
+
+- dots: [openai.com/index/introducing-dots](https://openai.com/index/introducing-dots/)
+
+- Gemini Spark: [gemini.google/overview/agent](https://gemini.google/overview/agent/)
+
+- Grok Bot: [x.ai/news/introducing-grok-bot](https://x.ai/news/introducing-grok-bot)
+
+- Muse: [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)
+
+Data verified: 2026-09-30. Prices subject to change. Update history: 2026-10-02 initial publication.
+
+---
+
+URL: https://thinkbigtw.com/en/news/
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT · FIELD NOTES
+
+First-hand observations on AI deployment
+◆
+thinkbigtw.com
+
+Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
+
+[Issue 004
+
+October 9, 2026 · GEO Measurement
+
+## Asked AI Once and Called It? AI Answers Are Probabilities, Not Rankings: How to Measure GEO Properly
+
+Ask an AI the same question twice and most of the cited sources may change. A 2026 University of St. Gallen study found that when the same question is re-asked minutes apart, only about a third of the cited sources overlap. We cover what that means for measuring GEO properly.](https://thinkbigtw.com/en/news/geo-measurement-20261009/)
+[Issue 003
+
+October 7, 2026 · SEO / GEO
+
+## You Rank on Google. So Why Doesn’t ChatGPT Mention You? — SEO vs. GEO, Explained
+
+SEO gets you found in search results. GEO gets you mentioned in AI answers. Same foundation, different finish line: AI picks passages and weighs what others say about you.](https://thinkbigtw.com/en/news/seo-geo-difference-20261007/)
+[Issue 002
+
+October 5, 2026 · Local AI Deployment
+
+## Is Your Local AI Actually Using the GPU? “Installed” Doesn’t Mean “Running Well”
+
+When a local AI model is painfully slow, the most likely cause isn’t underpowered hardware — it’s that the model is running entirely on the CPU. One command, ten seconds, and you’ll know.](https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/)
+[Issue 001
+
+October 3, 2026 · AI Agent Deployment
+
+## Thinking about abandoning your AI Agent? Ask these three questions first — and stop getting locked in
+
+Most AI Agent abandonment has nothing to do with the tool itself. It comes down to three things nobody confirmed at the start: can you switch models, who owns the data, and can you predict the monthly cost?](https://thinkbigtw.com/en/news/lobster-hermes-abandonment-20261003/)
+
+This edition is also available in [Traditional Chinese (繁中版)](https://thinkbigtw.com/library/news/).
+
+---
+
+URL: https://thinkbigtw.com/en/news/lobster-hermes-abandonment-20261003/
+
+# Thinking about abandoning your AI Agent? Ask these three questions first | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Field Notes on AI Deployment · Issue 001
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+SEEN BY AI
+
+Friday, October 3, 2026
+◆
+First-hand observations on AI deployment
+◆
+Issue 001
+
+AI Agent Deployment
+
+## Thinking about abandoning your AI Agent? Ask these three questions first — and stop getting locked in
+
+Think BIG Editorial  |  October 3, 2026
+
+Most AI Agent abandonment has nothing to do with the tool itself. It comes down to three things nobody confirmed at the start: can you switch models, who owns the data, and can you predict the monthly cost? Get these three right upfront, and so-called "abandonment waves" will have nothing to do with you.
+
+(Note: "Lobster" and "Hermes" are informal names used in the Taiwanese tech community for a category of AI Agent tools that can run continuously and operate the computer on your behalf. This article addresses deployment methodology for that type of tool, staying focused on the phenomenon without targeting any specific company or product.)
+
+## 1.  The Situation: What the conversation is really about
+
+AI Agents — AI assistants that can take action and complete tasks on their own — have moved over the past year from early-adopter experiments into real workflows. Alongside that shift came a familiar pattern: install it, use it for two or three weeks, lose interest, leave it gathering digital dust. This "abandonment" isn't unique to Taiwan; the whole industry is grappling with it.
+
+A few independently verifiable observations from published research: industry analysts project that by 2027, more than 40%  of AI Agent projects may be abandoned or cancelled by businesses — and the cause is rarely the technology itself. The most common culprits are unclear governance and unexamined ROI assumptions.
+
+One survey of senior executives found that roughly 80%  of respondents were concerned about "over-reliance on a single AI vendor." Separate reporting notes that after months of accumulated configuration and context, switching AI Agent providers is far from a simple URL swap — and switching costs keep rising.
+
+In short, abandonment usually comes down to two underlying problems: starting without a clear use case, then discovering the tool doesn't fit ; and getting so embedded in a setup that you can't leave even when you want to . Whether the tool itself is good barely enters into it.
+
+## 2.  The Debate: Two legitimate perspectives
+
+The optimistic view  is that the core value of a continuously running AI Agent is precisely that you don't need to supervise it — it lives in your messaging app and on your computer, sends proactive reminders, reports on schedule, and learns your habits. For solo operators and small businesses, that's the equivalent of a tireless assistant who never clocks out.
+
+The skeptical view  centres on three concerns: lock-in risk (model, data, and configuration all tied to one vendor), cost unpredictability (pricing structures vary widely across the market — fixed fee, usage-based, or hybrid — and the difference matters over a year), and maintenance burden (getting it running and keeping it stable are two very different things).
+
+These perspectives don't actually contradict each other. The optimists are talking about the value ; the skeptics are talking about how to deploy without stepping on a landmine . Whether you end up abandoning the tool almost always comes down to whether you addressed those three skeptic concerns before you started.
+
+◆ First-Hand Notes
+
+## 3. What we learned from actually doing this
+
+"Running" doesn't mean "running well."  We deployed a local AI setup on one machine that looked fine — it answered questions — but every single response took one to four minutes, sometimes timing out entirely. After a long diagnostic detour, we found the model had been running entirely on the CPU. The GPU was doing nothing. Now we check GPU utilization before we change anything else.
+
+One verifiable metric is all you need.  For Ollama-based setups, ollama ps  shows the PROCESSOR column (100% GPU, 100% CPU, or a split). The API also returns video RAM usage (size_vram ). If video RAM usage is zero, it's running entirely on CPU  — regardless of how normal things look. We screenshot this number before every delivery.
+
+The reason is usually not "not enough hardware."  Three root causes we've encountered, none of which require buying new equipment: the GPU wasn't detected (some integrated or hybrid graphics cards need extra environment configuration); the install path contained non-ASCII characters that crashed the detection process; the context window was set too large, which exhausted shared system memory and caused repeated crashes across the whole machine. AI memory is not "bigger is always better."
+
+Nobody can promise perfect security.  What we can do is check every layer: scan skills before installation, pin versions, audit again before going live, and keep keys in system config rather than in plain text. This isn't "we're safer than others" — it's "we've checked everything that can be checked."
+
+## 4.  Our recommendation: Three questions to answer before you deploy
+
+Can you switch the underlying model?  Is the tool tied to a single AI provider, or can you swap models freely? An architecture that lets you choose and switch means that when a better or cheaper model appears, you can move. That's the exit you want to have.
+
+Who holds the data?  Does it run on your own hardware, or on someone else's cloud? Local deployment keeps your data under your control. Cloud is also fine — but you should know exactly where your data sits before you commit.
+
+Can you predict the monthly cost?  Fixed fee, or does it scale with usage? A plan where you can estimate costs in advance and stay within budget serves long-term operations far better than one where the bill might surprise you.
+
+One line to close with: abandonment is decided before deployment, not by the tool.  Make sure you can switch models, that your data stays in your control, and that costs are predictable — and an AI Agent stops being a one-time experiment and starts being a genuine long-term collaborator.
+
+◆ Editorial · How Think BIG approaches this
+
+## What this architecture actually delivers
+
+The three questions above are precisely what we lock down at the start of every deployment. The architecture we use delivers three concrete outcomes:
+
+1. No single-model lock-in; API costs stay predictable.  The underlying model is interchangeable — switch to a lower-cost model when saving budget, switch to a higher-capability model when the task demands it. The same assistant can cost dramatically different amounts from month to month, and you control it.
+
+2. Your data stays on your hardware.  Local deployment keeps records and configuration on your machine, not someone else's cloud.
+
+3. Pinned versions, layered security review.  No automatic updates; every skill goes through a security check before going live — stable, maintainable, and auditable.
+
+This is why the so-called "abandonment wave" doesn't touch the people who deploy this way: model flexibility, data ownership, and cost predictability are built in from day one.
+
+### FAQ · Frequently Asked Questions
+
+Q: Is it normal to stop using an AI Agent after a few weeks?
+Very common. Industry projections suggest more than 40% of projects may be abandoned by 2027. But in most cases it's not the tool — it's that deployment started without clarifying the problem to solve, or whether the setup could be changed, or what the cost would look like.
+Q: How do I know if an AI Agent will lock me in?
+Check three things: can you choose and swap the underlying AI model; is the data on your machine or someone else's cloud; is the cost fixed or usage-based. Flexibility on all three keeps lock-in risk low.
+Q: Local or cloud — which suits me?
+Depends on the use case. If data residency matters, you want continuous operation, or you need predictable costs, local deployment makes more sense. For instant access without managing maintenance, cloud is more convenient. Both can be combined.
+Q: What should I watch out for with third-party skills or plugins?
+They typically have direct access to your files and accounts. Verify the source, run a basic security check, pin the version, and turn off auto-updates. Nobody can promise perfect security — the goal is to check every layer you can.
+
+Sources
+    Gartner-related projections on AI Agent project abandonment (via media reporting):
+    [joget.com](https://joget.com/ai-agent-adoption-in-2026-what-the-analysts-data-shows/)
+     ·
+    2026 enterprise AI landscape survey (vendor dependency concerns):
+    [kai-waehner.de](https://www.kai-waehner.de/blog/2026/04/06/enterprise-agentic-ai-landscape-2026-trust-flexibility-and-vendor-lock-in/)
+     ·
+    AI Agent switching costs reporting:
+    [itbrew.com](https://www.itbrew.com/stories/ai-agents-vendor-switching)
+
+This article is a Think BIG field notes publication, based on first-hand deployment experience. The views expressed do not represent any specific vendor or product. All named sources are linked inline.
+
+THINK BIG NEWS  · First-Hand Observations on AI Deployment
+    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/library/news/seo-geo-difference-20261007/
+
+# Google 排得上去，為什麼 ChatGPT 還是不提你？SEO 和 GEO 差在哪｜Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+產業實測手記 · 第 003 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+被　AI　看見
+
+2026 年 10 月 7 日　星期三
+◆
+AI 導入的第一手觀察
+◆
+第 003 期
+
+SEO · GEO · AI 能見度
+
+## Google 排得上去，為什麼 ChatGPT 還是不提你？——SEO 和 GEO 差在哪
+
+Think BIG 自媒體部　報導　|　2026 / 10 / 07
+
+SEO 讓你在 Google 被找到，GEO 讓你在 AI 回答裡被提到。地基相同，但 AI 挑段落、也看別人怎麼講你，排名好不代表 AI 會提你。
+
+## 一、 現象：大家開始「問 AI」，不只「搜尋」
+
+2025 年 10 月 8 日，Google 在台灣正式推出繁體中文版「AI 模式」。官方說明，它會用「查詢展開」（query fan-out）把一個問題拆成多個子題、送出大量查詢，再整理成一段附連結的回答。ChatGPT 也會在問題需要最新資訊時自動上網查，回答附上可點開的來源。
+
+使用者的習慣跟著變了。過去是打關鍵字、看十條藍色連結、自己點進去比較；現在越來越多人直接問一句完整的話，等 AI 給一個整理好的答案。Microsoft 2025 年 10 月的官方文章把這個變化講得很直白：在 AI 搜尋裡，重點不只是「被找到」，而是「被選中」。
+
+於是出現一個很常見的困惑：我的網站在 Google 排得不錯，為什麼問 ChatGPT，它就是不提我？
+
+先把兩個詞講清楚：
+
+SEO（搜尋最佳化） GEO（生成式 AI 最佳化）
+目標 在 Google 搜尋結果被找到、被點進來 在 AI 的回答裡被提到、被引用、被描述正確
+
+對象 Google、Bing 的搜尋結果頁 ChatGPT、Gemini、Google AI 模式、Perplexity、Copilot
+
+單位 整個頁面排第幾名 頁面裡的某一段，能不能被拿去組答案
+
+看什麼 收錄、排名、點擊 有沒有被提到、有沒有附你的網址、描述對不對
+
+## 二、 各方評價：官方說「地基一樣」，研究說「結果不一樣」
+
+Google 的立場：先把 SEO 做好。  Google Search Central 的官方文件寫得很清楚：要出現在 AI 摘要（AI Overviews）或 AI 模式，沒有額外的要求，也不需要特別的優化；前提是頁面必須已被 Google 收錄，而且符合「能在搜尋結果顯示摘要」的條件。同一份文件也說，不需要建立新的機器可讀檔案、AI 文字檔，也沒有必須額外加的結構化資料。換句話說，在 Google 自家的 AI 功能裡，SEO 就是門票。
+
+但其他 AI 用的不是 Google 的資料。  ChatGPT 的搜尋功能靠 OpenAI 自己的爬蟲 OAI-SearchBot 建索引，官方文件說，封鎖這個爬蟲的網站「不會出現在 ChatGPT 的搜尋回答裡」。Perplexity 也有自己的 PerplexityBot。所以「Google 排得上去」只代表 Google 看得到你，其他 AI 要另外確認。
+
+AI 挑的是「段落」，不是「頁面」。  Microsoft 的官方文章說明，Copilot 這類 AI 助理不會從頭到尾讀一頁，而是把內容拆成小段，逐段評估，再從多個來源組成答案。它給的建議很具體：標題、說明和 H1 要一致；用清楚的小標切開段落；答案寫成一兩句就能獨立成立；用條列和比較表；重要資訊不要藏在分頁標籤、圖片或 PDF 裡。文中也承認，沒有任何祕訣能確定被 AI 選中。
+
+學術研究：有效果，但沒有穩定的公式。  普林斯頓大學等團隊在 KDD 2024 發表的〈GEO: Generative Engine Optimization〉，在他們建立的測試集裡發現，加上引述、統計數字、引用來源等改寫方式，最多能讓內容在 AI 回答中的能見度提升約 40%。不過，2026 年一篇回顧 45 篇研究的綜述結論比較保守：最能重現的因素是「內容跟問題有多相關」和「在上下文裡的位置」；目前沒有任何一種技巧，被證明能長期、跨平台、穩定地提升被發現的機會。
+
+平台的紅線也越來越清楚。  Google 的垃圾內容政策已明文把「試圖操縱 Google 搜尋中生成式 AI 的回答」列為違規手法；大量產出低價值頁面也屬於「大規模濫用內容」。想靠隱藏文字、灌頁面騙 AI，是走錯方向。
+
+◆ 第一手手記
+
+## 三、我們自己的官網：Google 有起色，AI 還是很少提我們
+
+2026 年 10 月初，我們用同一套標準替自己的官網做了一次六層體檢：技術地基、內容寫法、結構化資料、權威與身分、站外可被引用性、量測。
+
+站內三層八到九成，站外兩層兩到三成。  技術地基、結構化資料、量測三層都拿到八到九成；但「權威與身分」和「站外可被引用性」兩層，只有兩到三成。差距不在官網本身，在官網以外。
+
+Google 排得上去，AI 卻很少提到我們。  Google Search Console 顯示，我們幾篇指南頁已經排進相關關鍵字的搜尋結果第一頁。但我們用同樣主題、換成「問 AI」的問法跑了一輪查詢，幾乎看不到自己，連一篇標題就是那句問題原文的指南頁，那一輪也沒有被拿去當答案。（只跑一輪的結果統計上並不可靠，這是我們後來修正量測方法的起點，下一期專文說明。）
+
+AI 對我們的描述，甚至會錯。  我們曾問某個 AI 聊天工具我們公司是做什麼的，它很肯定地說我們「跟 AI 無關」。這說明 AI 對一家小公司的印象，來自它碰得到的少數資料；資料不夠或不一致，它就自己拼湊。
+
+我們已經做的事：  robots.txt 開放主要 AI 爬蟲、首頁第一段就是一句完整的公司定義句、每頁都有結構化資料、公司名稱與描述在各處統一、每篇 NEWS 同步出英文版。我們還在補的事：站外被提到——具名的媒體露出、公開名錄登錄、以公司名義發表的社群長文。
+
+這次體檢讓我們學到最重要的一件事：SEO 做好了，只是讓 AI「找得到」你；要讓 AI「說出」你，還需要別人也在講你，而且講得一致。
+
+## 四、 我們的建議：SEO 和 GEO 一起做，分開量
+
+先確認 Google 和 AI 都進得來。  重要頁面要被 Google 收錄、能顯示摘要；robots.txt 不要誤擋 OAI-SearchBot、PerplexityBot 這類搜尋用爬蟲。（要不要開放「訓練用」爬蟲是另一個決定，可以分開設定。）
+
+把每一段寫成能單獨被引用的樣子。  一個小標回答一個問題，第一兩句就給答案，數字、定義、步驟、比較表寫清楚。這對 Google 的摘要和 AI 的段落挑選都有幫助。
+
+讓你的「身分」在網路上一致。  公司全名、簡稱、地址、電話、服務描述，在官網、Google 商家檔案、社群簡介、公開名錄都用同一套說法。
+
+累積真實的站外提及。  公協會與政府公開名錄、Google 商家檔案、具名媒體投稿、自家具名的社群長文與影片。不要找人在論壇假裝網友推薦：以 Dcard 為例，官方公告把口碑操作、品牌推廣的業配帳號列為永久停權對象；以消費者口吻推薦卻沒揭露利益關係，也可能違反公平會的薦證廣告規範。
+
+分開量，不要混在一起看。  Google 的表現看 Search Console；Copilot 和 Bing 的 AI 引用，可以看 Bing Webmaster Tools 2026 年 2 月推出的 AI Performance 報表（公開預覽中）；ChatGPT、Perplexity 等 AI 的回答，要用重複抽樣的方法量。
+
+一句話收尾：SEO 讓 AI 找得到你，GEO 讓 AI 說得出你。  兩件事地基一樣，終點不一樣。
+
+◆ 編按 · Think BIG 的做法
+
+## 這套架構實際帶來什麼
+
+我們把 Think BIG 官網當第一個實驗場，先把自己從頭做一遍，再把同一套方法提供給企業：Think BIG 搜尋能見度服務（SEO＋GEO）——被 Google 找到，也被 AI 說出來。
+
+一次體檢，兩邊都看：  Google 這邊看收錄、技術地基、關鍵字現況和頁面寫法；AI 這邊看各個 AI 有沒有提到你、怎麼描述你、引用了哪些來源。最後合併成一份「先做哪三件」的清單。
+
+同一篇內容，兩邊都顧：  寫內容時同時照 SEO（關鍵字、標題、內部連結）和 GEO（答案前置、可被摘錄、站外佈局）的要求寫，不做兩套。
+
+量測講方法：  AI 的回答每次都可能不同，我們用重複抽樣、按 AI 分開報告，不拿一次截圖當結論。
+
+只做合規的事：  不買連結、不刷點擊、不養假帳號、不寫假評論、不做隱藏文字。我們不承諾名次或業績，承諾把該做的做對，每個月給你看得到的數據。
+
+### 常見問答 · FAQ
+
+Q1：SEO 和 GEO 有什麼不同？
+SEO 是讓你的網頁在 Google、Bing 的搜尋結果被找到；GEO 是讓 ChatGPT、Gemini、Perplexity 這類 AI 在回答問題時提到你、引用你的網頁，而且描述正確。兩者都需要網站能被收錄、內容清楚，但 AI 是挑段落組答案，也很看重其他網站怎麼講你。
+Q2：我在 Google 排名很好，為什麼 ChatGPT 不提我？
+ChatGPT 的搜尋用的是 OpenAI 自己的爬蟲和索引，不是直接沿用 Google 排名；而且很多問題它不上網查，直接靠模型記憶回答。加上 AI 挑的是能獨立成立的段落，以及多個來源一致的說法，所以 Google 排名好，不代表會被 ChatGPT 提到。
+Q3：要出現在 Google 的 AI 摘要，需要額外做什麼嗎？
+依 Google 官方文件，沒有額外要求，也不需要特別的檔案或結構化資料。頁面必須被 Google 收錄，並且符合在搜尋結果顯示摘要的條件。把 SEO 基本功做好，就是進入 Google AI 功能的前提。
+Q4：做 GEO 需要 llms.txt 嗎？
+Google 官方文件說明，出現在 AI 摘要和 AI 模式不需要建立新的機器可讀檔案或 AI 文字檔。可以放，但不要把它當成重點；可被收錄、段落清楚、身分一致、站外有真實提及，影響比較大。
+Q5：怎麼知道 AI 有沒有提到我的公司？
+不要只問一次就下結論，AI 的回答每次都可能不同。建議同一題換幾種問法、每題重複問多次、連續追蹤幾週，並分開記錄「有沒有提到你」「有沒有附你的網址」「描述對不對」。Copilot 和 Bing 的引用情況，也可以看 Bing Webmaster Tools 的 AI Performance 報表。
+
+參考來源
+    Google 台灣官方部落格〈AI 模式〉（2025-10-08）：[blog.google](https://blog.google/intl/zh-tw/products/explore-get-answers/ai-mode-zhtw/)　·
+    Google Search Central〈AI features and your website〉（無額外要求；2025-12-10）：[developers.google.com](https://developers.google.com/search/docs/appearance/ai-features)　·
+    Google 垃圾內容政策（2026-08-28）：[developers.google.com](https://developers.google.com/search/docs/essentials/spam-policies)　·
+    OpenAI 爬蟲說明：[developers.openai.com](https://developers.openai.com/api/docs/bots)　·
+    Microsoft Advertising〈Optimizing Content for AI Search〉（2025-10-08）：[ads.microsoft.com](https://about.ads.microsoft.com/en/blog/post/october-2025/optimizing-your-content-for-inclusion-in-ai-search-answers)　·
+    Bing Webmaster Blog〈AI Performance〉（2026-02-10）：[blogs.bing.com](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)　·
+    Aggarwal 等〈GEO: Generative Engine Optimization〉KDD 2024：[arXiv 2311.09735](https://arxiv.org/abs/2311.09735)　·
+    〈GEO Critical Survey 2023–2026〉：[arXiv 2607.14035](https://arxiv.org/abs/2607.14035)　·
+    Dcard 廣告定義（2025-06-06）：[dcard.tw](https://www.dcard.tw/f/announcement/p/234243656)　·
+    公平交易委員會薦證廣告規範：[ftc.gov.tw](https://www.ftc.gov.tw/internet/main/doc/docDetail.aspx?uid=165&docid=13021)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用之官方文件與研究均標註來源；各平台規則與功能以官方文件最新版本為準。文中官網數據只呈現相對變化與趨勢。文中提到的 AI 聊天工具不具名，內容不針對任何公司或產品。
+
+THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/en/news/seo-geo-difference-20261007/
+
+# You Rank on Google. So Why Doesn’t ChatGPT Mention You? SEO vs. GEO, Explained | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Field Notes · Issue 003
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+被　AI　看見
+
+October 7, 2026 · Wednesday
+◆
+First-hand observations on AI deployment
+◆
+Issue 003
+
+SEO · GEO · AI Visibility
+
+## You Rank on Google. So Why Doesn’t ChatGPT Mention You? — SEO vs. GEO, Explained
+
+Think BIG Editorial  |  October 7, 2026
+
+SEO gets you found in search results. GEO gets you mentioned in AI answers. Same foundation, different finish line: AI picks passages and weighs what others say about you, so ranking well doesn’t mean AI will name you.
+
+## 1.  What’s happening: people are asking AI, not just searching
+
+On October 8, 2025, Google launched AI Mode in Traditional Chinese for users in Taiwan. AI Mode uses a “query fan-out” technique: it breaks a question into subtopics, runs many searches at once, and returns a synthesized answer with links. ChatGPT also searches the web automatically when a question would benefit from current information, and its answers include clickable citations.
+
+User behavior is shifting. Instead of typing keywords, scanning ten blue links, and comparing pages themselves, more people now ask a full question and wait for an AI to hand back an answer. A Microsoft post from October 2025 put it plainly: in AI search, it’s not just about being found — it’s about being selected .
+
+That leads to a question we hear constantly: “My site ranks well on Google. Why won’t ChatGPT mention us?”
+
+SEO (Search Engine Optimization) GEO (Generative Engine Optimization)
+Goal Get found and clicked in search results Get mentioned, cited, and described accurately in AI answers
+
+Where Google and Bing results pages ChatGPT, Gemini, Google AI Mode, Perplexity, Copilot
+
+Unit Where a whole page ranks Whether a specific passage gets pulled into an answer
+
+Track Indexing, rankings, clicks Mentions, citations of your URL, accuracy of description
+
+## 2.  What the sources say: official docs say “same foundation,” research says “different outcomes”
+
+Google’s position: get your SEO right first.  Google Search Central states there are no additional requirements to appear in AI Overviews or AI Mode, and no special optimizations needed. A page must be indexed and snippet-eligible. The same page says you don’t need new machine-readable files, AI text files, or special schema.org markup. In other words, for Google’s own AI features, SEO is the ticket in.
+
+Other AI tools don’t use Google’s index.  ChatGPT search relies on OpenAI’s own crawler, OAI-SearchBot. OpenAI’s documentation says sites that block it will not be shown in ChatGPT search answers. Perplexity runs its own crawler, PerplexityBot. Ranking on Google only tells you Google can see you. Everything else needs to be checked separately.
+
+AI selects passages, not pages.  Microsoft explains that assistants like Copilot don’t read a page top to bottom. They break content into smaller pieces, evaluate each one, and assemble an answer from multiple sources. The practical advice: keep the title, description, and H1 aligned; use clear subheadings to separate ideas; write answers that stand on their own in one or two sentences; use lists and comparison tables; don’t bury key information in tabs, images, or PDFs. The same post acknowledges there’s no secret formula that ensures selection.
+
+Research: real effects, no stable formula.  The paper that coined the term, “GEO: Generative Engine Optimization” (Princeton and collaborators, KDD 2024), found that rewrites such as adding quotations, statistics, and citations could boost visibility in AI responses by up to about 40% on the authors’ benchmark. A 2026 review of 45 studies is more cautious: topical relevance and position in context are the most reproducible levers, and no reviewed technique shows a stable, long-term, cross-platform causal effect.
+
+Platform rules are getting sharper.  Google’s spam policies now explicitly list attempts to manipulate generative AI responses as a spam technique, and mass-producing low-value pages falls under scaled content abuse. Hidden text and page farms aimed at AI are a dead end.
+
+◆ First-hand notes
+
+## 3. Our own website: Google is warming up, AI still rarely mentions us
+
+In early October 2026, we ran our own site through a six-layer audit: technical foundation, content, structured data, authority and entity, off-site citability, and measurement.
+
+On-site layers scored 80–90%. Off-site layers scored 20–30%.  Technical foundation, structured data, and measurement all landed in the 80–90% range. “Authority and entity” and “off-site citability” landed at 20–30%. The gap wasn’t on our website. It was everywhere else.
+
+Google ranks us; AI rarely brings us up.  Google Search Console shows several of our guides on the first page of results for their target queries. But when we ran a round of the same topics phrased as questions to AI, we barely showed up. Even a guide whose headline is that exact question wasn’t used as a source in that round. (A single round isn’t statistically reliable — that realization is what pushed us to rebuild our measurement method, which we cover in the next issue.)
+
+AI has even described us incorrectly.  We once asked an AI chatbot what our company does, and it said, with full confidence, that we had nothing to do with AI. An AI’s picture of a small company comes from the little information it can reach. When that information is thin or inconsistent, it fills in the blanks.
+
+What we’ve done:  opened robots.txt to major AI crawlers including OAI-SearchBot and PerplexityBot; put a complete one-sentence company definition at the top of our homepage; added Organization, Article, and FAQ structured data across the site; standardized our name and description everywhere; published an English edition of every NEWS article because research shows ChatGPT cites a large share of English sources when answering questions about Taiwan.
+
+What we’re still building:  off-site mentions. Bylined media coverage, public directory listings, and long-form posts on our own named social accounts. We won’t fill the gap with fake accounts or paid forum posts.
+
+The biggest lesson: good SEO makes you findable to AI. Getting AI to actually say your name takes other people talking about you, consistently.
+
+## 4.  Our recommendations: do SEO and GEO together, measure them separately
+
+Make sure both Google and AI crawlers can get in.  Key pages should be indexed and snippet-eligible. Check that robots.txt doesn’t accidentally block search crawlers like OAI-SearchBot or PerplexityBot. (Whether to allow AI training  crawlers is a separate decision.)
+
+Write every section so it can be quoted on its own.  One subheading, one question. Put the answer in the first sentence or two. Spell out numbers, definitions, steps, and comparisons. This helps both Google snippets and AI passage selection.
+
+Keep your identity consistent across the web.  Use the same legal name, short name, address, phone number, and service description on your website, Google Business Profile, social bios, and public directories.
+
+Earn real off-site mentions.  Think industry association and government directories, Google Business Profile, bylined media contributions, and long-form posts on your own named accounts. Don’t hire people to pose as happy customers on forums. Dcard, a popular anonymous forum in Taiwan, permanently bans accounts used for word-of-mouth marketing, and an undisclosed paid endorsement in a consumer’s voice may violate Taiwan Fair Trade Commission rules on endorsement advertising.
+
+Measure each channel on its own terms.  Use Search Console for Google; for Copilot and Bing, use the AI Performance report in Bing Webmaster Tools (public preview since February 2026); for ChatGPT, Perplexity, and other AI answers, use repeated sampling.
+
+Bottom line: SEO lets AI find you. GEO gets AI to say your name.  Same foundation, different finish line.
+
+◆ Editor’s note · How Think BIG approaches this
+
+## One audit. Both sides. Built into every piece of content.
+
+(The following reflects Think BIG’s own position and is separate from the neutral reporting above.)
+
+We used our own website as the first test case, working through everything ourselves before offering the same method to businesses: Think BIG Search Visibility (SEO + GEO) — get found on Google, get named by AI.
+
+One audit, both sides:  Google side covers indexing, technical foundation, keyword standing, and on-page writing. AI side covers whether each AI mentions you, how it describes you, and which sources it cites. Both roll up into one “top three things to fix first” list.
+
+One piece of content, both jobs:  every piece is written for SEO (keywords, titles, internal links) and GEO (answer first, quotable passages, off-site placement) at the same time.
+
+Measurement with a stated method:  AI answers change from run to run, so we use repeated sampling and report each AI separately. One screenshot is never a conclusion.
+
+Compliant by design:  no bought links, no click farms, no fake accounts, no fake reviews, no hidden text. We don’t promise rankings or sales results. We promise to do the right things well and show you the numbers every month.
+
+### FAQ
+
+Q1: What’s the difference between SEO and GEO?
+SEO helps your pages get found in Google and Bing search results. GEO helps AI tools like ChatGPT, Gemini, and Perplexity mention you, cite your pages, and describe you accurately when they answer questions. Both require indexable sites and clear content, but AI assembles answers from individual passages and gives weight to what other sites say about you.
+Q2: I rank well on Google. Why doesn’t ChatGPT mention me?
+ChatGPT search uses OpenAI’s own crawler and index rather than Google’s rankings, and for many questions it doesn’t search at all, answering from what the model already learned. It also favors passages that stand on their own and claims that multiple sources agree on. A strong Google ranking doesn’t carry over automatically.
+Q3: Do I need to do anything extra to appear in Google’s AI Overviews?
+According to Google’s documentation, no. There are no additional requirements, special files, or required structured data. The page must be indexed and eligible to show with a snippet in Google Search. Solid SEO fundamentals are the prerequisite.
+Q4: Do I need an llms.txt file for GEO?
+Google says you don’t need new machine-readable files or AI text files to appear in AI Overviews or AI Mode. You can add one, but don’t treat it as a priority. Indexability, clear passages, a consistent identity, and genuine off-site mentions matter more.
+Q5: How can I tell whether AI mentions my company?
+Don’t judge from a single question. AI answers vary from run to run. Ask the same question several ways, repeat each one multiple times, track it over several weeks, and record separately whether you were mentioned, whether your URL was cited, and whether the description was accurate. For Copilot and Bing, check the AI Performance report in Bing Webmaster Tools.
+
+Sources
+    Google Taiwan blog, launch of AI Mode in Traditional Chinese (2025-10-08): [blog.google](https://blog.google/intl/zh-tw/products/explore-get-answers/ai-mode-zhtw/)  ·
+    Google Search Central, “AI features and your website” (no additional requirements; updated 2025-12-10): [developers.google.com](https://developers.google.com/search/docs/appearance/ai-features)  ·
+    Google Search spam policies (2026-08-28): [developers.google.com](https://developers.google.com/search/docs/essentials/spam-policies)  ·
+    OpenAI, “Overview of OpenAI crawlers”: [developers.openai.com](https://developers.openai.com/api/docs/bots)  ·
+    Microsoft Advertising, “Optimizing Content for AI Search Answers” (2025-10-08): [ads.microsoft.com](https://about.ads.microsoft.com/en/blog/post/october-2025/optimizing-your-content-for-inclusion-in-ai-search-answers)  ·
+    Bing Webmaster Blog, “AI Performance” (2026-02-10): [blogs.bing.com](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)  ·
+    Aggarwal et al., “GEO: Generative Engine Optimization,” KDD 2024: [arXiv 2311.09735](https://arxiv.org/abs/2311.09735)  ·
+    “GEO Critical Survey 2023–2026”: [arXiv 2607.14035](https://arxiv.org/abs/2607.14035)  ·
+    Dcard advertising and commercial content rules (2025-06-06): [dcard.tw](https://www.dcard.tw/f/announcement/p/234243656)  ·
+    Taiwan Fair Trade Commission, endorsement advertising guidelines: [ftc.gov.tw](https://www.ftc.gov.tw/internet/main/doc/docDetail.aspx?uid=165&docid=13021)
+
+This article combines industry reporting with Think BIG’s first-hand work on its own website. All cited official documents and studies are linked; platform rules and features follow the latest official documentation. Data about our own site is shown only as relative figures and trends. The AI chatbot mentioned is not named, and nothing here is directed at any company or product.
+
+THINK BIG NEWS   ·  First-hand observations on AI deployment
+    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/services/seo-geo/
+
+# Search Visibility Service (SEO + GEO) — Found on Google and Cited by AI | Think BIG
+
+Think BIG Search Visibility Service
+
+# Found on Google.
+Cited by AI.
+
+SEO and GEO share the same foundation — one service, no duplicated effort. Let Google find you in search results and let ChatGPT, Perplexity, and Google AI mention you when answering questions. Works for businesses without a website too.
+
+[Chat on LINE](https://lin.ee/n5KW430)
+[Contact us](https://thinkbigtw.com/en/contact/)
+
+Two channels, one foundation
+
+## Two ways customers find you — both need to work
+
+Today's customers find you in two very different ways. Both rely on the same underlying foundation, so doing them separately is wasteful — doing them together is efficient.
+
+### Channel 1: Google Search (SEO)
+
+When a customer types your industry and location into Google, where do you rank?
+
+- How many of your pages Google has indexed, which important pages are missing
+
+- Mobile usability, page speed, and technical architecture issues
+
+- Title tags, descriptions, and structured data correctness
+
+- Local search and Google Business Profile completeness
+
+- Where you currently rank for the keywords your customers actually search
+
+### Channel 2: AI Answers (GEO)
+
+A growing share of customers ask ChatGPT, Perplexity, or Google AI directly: "Which company in this category is recommended?"
+
+- Whether 5 major AI platforms mention you, and how they describe you
+
+- Which sources the AI cites, and how competitors compare
+
+- Whether the AI has described you incorrectly (wrong address, missing services, confusion with another brand)
+
+- Whether the AI answered from training memory or actually retrieved your site
+
+- Different AI platforms prefer entirely different sources — what works for one may not work for another
+
+Both channels rely on the same foundation: a crawlable site, well-structured content, a consistent identity across platforms, and credible off-site mentions. We address all of this together — no duplicated work, no conflicting advice.
+
+SEO vs GEO
+
+## What each channel measures and how
+
+SEO (Google Search)
+GEO (AI Answer Visibility)
+Primary entry point
+Google search results page
+ChatGPT, Perplexity, Google AI, Gemini, Claude
+
+Key metrics
+Keyword rankings, Search Console impressions and clicks, indexed page count
+Mention rate, cited sources, Share of Voice, retrieval trigger rate
+
+Driven by
+Technical health, content relevance, off-site authority
+Quotable content, consistent entity identity across platforms, credible off-site mentions
+
+How we measure
+Search Console rank tracking, technical audit, keyword status report
+5 AI platforms × 15–20 questions, repeated sampling over multiple days, with confidence intervals
+
+Typical time to results
+4–8 weeks initial; 3–6 months meaningful
+4–8 weeks initial; 5–6 months for first citations
+
+What we can commit to
+Correct technical execution and content quality; we do not promise rankings
+Citable content assets and monthly monitoring; we do not promise mention counts
+
+Service phases
+
+## Audit → Foundation Build → Monthly Management
+
+The audit comes first. The foundation build is next. Monthly management is ongoing — not a subscription you can skip to.
+
+1
+
+SEO + GEO Visibility Audit
+
+One-time · Prerequisite
+
+Tells you exactly where you stand: a combined Google search status and AI mention baseline across five major platforms in one report, ending with a prioritized "do these three things first" list.
+
+Google Search Audit deliverables (SEO):
+
+- Index coverage:  how many pages Google has indexed, which important pages are missing (via site: query and Search Console if authorized)
+
+- Technical foundation:  mobile usability, HTTPS, Core Web Vitals public data, sitemap/robots, duplicate URLs and canonicals, broken links
+
+- 10 keyword positions:  where you currently rank on Google for searches your customers use, and who ranks above you (factual report only — no commentary on competitors)
+
+- Page structure:  title tags, meta descriptions, H1, internal linking, and structured data (Schema) correctness
+
+- Local search:  Google Business Profile completeness, map search ranking, review response status
+
+AI Visibility Baseline deliverables (GEO):
+
+- AI Visibility Baseline Report:  5 major AI platforms × 15–20 questions your customers would actually ask — each question logged for whether the AI mentioned you, how it described you, and which sources it cited
+
+- Competitor mention comparison:  who the AI mentioned for the same questions, and how often (factual record only)
+
+- Retrieval trigger log:  for each question, whether the AI answered from training memory or actually retrieved your site (two different gaps, two different fixes)
+
+- Error and confusion inventory:  what the AI has gotten wrong about you — outdated address, missing services, confusion with a same-name company — each item sourced and ranked by priority
+
+- Per-AI action list:  different AI platforms prefer entirely different source types, so your action list is broken down by platform, not given as a single universal prescription
+
+- Methodology page:  which questions, which day, which AI version, how many repetitions — you can re-run the same queries and verify our numbers
+
+- Compliant tactics only:  the report flags which approaches carry platform rule violations or legal risk in Taiwan, so you know what to avoid
+
+For businesses without a website: we audit your Google Business Profile, marketplace listings, and social channels instead; the AI check works identically.
+
+The report's final page combines SEO and GEO findings into a single prioritized "do these three things first" list. A debrief call is included after delivery.
+
+2
+
+Foundation Build Package
+
+One-time · Includes audit
+
+The next step after the audit: fix the SEO technical issues, restructure content so AI platforms are willing to cite it, and begin building credible off-site mentions. The right choice for anyone who wants to build the foundation correctly from the start.
+
+SEO build items:
+
+- Technical fix list (we implement what we can directly; for client-managed sites we provide an engineer-ready checklist)
+
+- Title, description, and content revision recommendations for 10 keyword-matched pages
+
+- Internal linking clean-up
+
+- Google Business Profile optimization
+
+- Sitemap submission and Search Console setup assistance
+
+GEO build items:
+
+- Content restructuring: answer-first writing, FAQ optimization, quotable fact statements
+
+- Schema structured data implementation
+
+- Entity consolidation: consistent name, sameAs links, directory registration
+
+- First two off-site citable content pieces (government or trade directories, Google Business, Threads/YouTube long-form, named media submissions, review site listings — compliant channels only)
+
+- Off-site roadmap document: per-AI-platform expansion directions for future months
+
+For businesses without a website: the foundation build skips website changes and instead creates off-site content assets that AI platforms can cite.
+
+3
+
+Monthly Management and Monitoring
+
+Ongoing · Three-month minimum
+
+Ongoing work and reporting after the foundation is in place. Each month's deliverables include a combination of content production, off-site placement, and a monitoring report.
+
+- Content written for AI citation:  answer-first, clearly stated facts, Q&A and list formats — structured so it works for both SEO (keyword relevance, headings, internal links) and GEO (quotable, answer-first) at the same time
+
+- Off-site placement:  government and trade directories, Google Business Profile, named Threads/YouTube long-form content, named media submissions, review site listings — distributed across multiple channels, not concentrated in one
+
+- Identity alignment:  company name, social links, and directory information kept consistent across all platforms
+
+Monthly report includes:
+
+- Google Search section:  keyword rank tracking, Search Console impressions and click trends (with client authorization), technical anomaly alerts
+
+- AI Visibility section:  mention rate trend (repeated sampling over multiple days, with confidence intervals), competitor mention comparison, source gap recommendations
+
+- Our own site as a live demonstration:  we run the same process on thinkbigtw.com from scratch and report our own relative changes each month — so what you see is someone actually doing the work, not just a slide deck
+
+We do not commit to specific rankings or citation counts. What we commit to is: real repeated-sampling data with confidence intervals that hold up statistically — not a single query screenshot.
+
+Methodology
+
+## Why we measure this way
+
+The measurement method determines whether a report is worth trusting. We publish the methodology because transparency is the core of this service.
+
+### Repeated sampling, not a single query
+
+Academic research (University of St. Gallen, 2026) has confirmed that re-running the same question on the same day yields citations with only a 32–43% overlap. AI citation is a probability distribution — a single query is statistically near-meaningless. We query each question across multiple days, then review results manually to derive a defensible range.
+
+### Per-AI breakdown, not a universal list
+
+Taiwan field data shows: Gemini tends to cite official websites and review directories; Perplexity favors Threads and YouTube discussions; ChatGPT favors government institution directories and cites non-Chinese sources 70% of the time. Cross-platform source overlap is only 5–20%. Your action list is broken down by AI platform.
+
+### Confidence intervals, not single-point numbers
+
+For a brand detection rate to have a standard error below 0.10, you need at least 7 repetitions on the same day and a rolling window of 10+ days. Our reports only make claims supported by statistical evidence: if confidence intervals overlap, we write "no meaningful change," not a fabricated improvement figure.
+
+### Retrieval trigger rate: memory vs. live retrieval
+
+57% of ChatGPT responses to queries don't trigger a web search at all — the model answers from training memory, meaning your website is invisible to it regardless of how good it is. We log the trigger status per question; the two gap types require entirely different fixes.
+
+### Methodology you can verify yourself
+
+Every report includes: which questions were asked, on which dates, with which AI version, how many repetitions, API or browser, and region settings. You can take the same questions and re-run them yourself to verify our numbers aren't fabricated.
+
+### SEO measurement: index, technical, keywords, local
+
+- Index: site: queries and Search Console index status
+
+- Technical: Core Web Vitals public data, mobile, HTTPS, canonicals
+
+- Keywords: Search Console or manual queries, factual current-state report only
+
+- Local: Google Business Profile completeness, map ranking position
+
+Google official references: [SEO Starter Guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide), [AI Features and Your Website](https://developers.google.com/search/docs/appearance/ai-features)
+
+What we never do
+
+## Our hard limits — stated plainly
+
+These practices are available in the market. We don't use them — not because we can't, but because they harm you.
+
+✕
+
+### Buying clicks or traffic
+
+Artificially inflating clicks or purchasing traffic violates [Google's spam policies](https://developers.google.com/search/docs/essentials/spam-policies) and can result in your site being penalized or removed. We don't do it and don't recommend it.
+
+✕
+
+### Buying links or building PBNs
+
+Link buying and private blog networks are explicitly cited violations in Google's spam policies. They may produce short-term effects but carry serious long-term risk. We only build genuine, sustainable off-site presence.
+
+✕
+
+### Posting commercial content on forums that prohibit it
+
+Forums like Dcard and PTT explicitly prohibit commercial promotion in their rules. Getting caught means deleted posts, account bans, and reputational damage. We only produce named, compliant off-site content.
+
+✕
+
+### Fake reviews, sock-puppet accounts, anonymous astroturfing
+
+Taiwan's Fair Trade Act prohibits content written in a third-party voice to mislead consumers. Any paid recommendation we produce is disclosed. We don't write fake reviews or maintain fake accounts.
+
+✕
+
+### Manipulating AI answers (hidden text, prompt injection)
+
+Google explicitly listed "manipulating AI-generated answers" in its [spam policies](https://developers.google.com/search/docs/essentials/spam-policies) in 2026. Hidden text and prompt injection can get your site penalized or removed. Our approach is to make content genuinely worth citing — not to deceive the system.
+
+✕
+
+### Promising specific rankings or citation counts
+
+Rankings are decided by Google. AI citations are probability distributions. Anyone who tells you "you will be on page one" or "AI will definitely recommend you" is telling you what you want to hear. We give you real data, not empty promises.
+
+Honest timeline
+
+## How long does it take? The honest version.
+
+SEO and GEO both accumulate over time — they are not on/off switches. The following reflects typical patterns; actual timelines vary by industry competitiveness, how much verifiable information you make available, and AI platform algorithm changes.
+
+Weeks 4–8
+
+After content and page structure adjustments, initial movement starts appearing in both Google search and AI visibility.
+
+Months 5–6
+
+AI platforms start citing you in answers; Google keyword rankings show meaningful movement.
+
+Months 6–12
+
+Search and AI presence becomes more established; citation count shows a clear upward trend.
+
+Factors that influence speed: how competitive your industry is, how much quantifiable information you are willing to publish, whether you have an existing website to improve, and AI platform algorithm changes (an external variable we monitor continuously).
+We do not promise specific rankings or dates  — but you will see real monthly data showing how your search and AI visibility is developing.
+
+FAQ
+
+## Frequently asked questions
+
+What is the difference between SEO and GEO, and why do them together?
+
+SEO is about being found when someone searches on Google. GEO is about being cited when someone asks ChatGPT, Perplexity, or a similar AI a question. Both rely on the same foundation: a crawlable site, well-structured content, consistent identity across platforms, and credible off-site mentions. Doing them separately means duplicated effort — we audit and prioritize both together in one pass.
+
+I don't have a website. Can I still use this service?
+
+Yes. For businesses without a website, we audit your Google Business Profile, marketplace listings, directories, and social channels instead. The AI visibility check works identically. For the foundation build, we create off-site content assets rather than modifying a website.
+
+Can you get me to the first page of Google?
+
+Rankings are determined by Google — no one can promise you a specific position. We do not buy clicks, traffic, or links; those violate [Google's spam policies](https://developers.google.com/search/docs/essentials/spam-policies). What we commit to is doing the right work and providing verifiable monthly data so you can see your search and AI visibility develop over time.
+
+How long before I see results?
+
+SEO and GEO both accumulate — they are not on/off switches. In general: initial changes from content restructuring appear within 4–8 weeks; AI citations start to appear around months 5–6; noticeable presence growth comes around months 6–12. Actual timelines depend on industry competitiveness, how much verifiable information you publish, and AI platform algorithm changes. We do not commit to specific rankings or dates.
+
+How do you measure AI visibility? Is it just a screenshot of one query?
+
+No. We query five major AI platforms with 15–20 questions your customers would actually ask, repeated across multiple days. Academic research (University of St. Gallen, 2026) shows citation overlap between runs on the same question on the same day is only 32–43% — a single query is statistically near-meaningless. Our reports show a range with a confidence interval. Every report includes the full methodology — which questions, which day, which AI version, how many repetitions — so you can re-run the queries yourself and verify.
+
+What do you never do?
+
+We never buy clicks, traffic, or links; never create fake reviews or sock-puppet accounts; never post commercial content on forums that prohibit it; and never use hidden text or prompt injection to influence AI answers. Google explicitly listed AI answer manipulation in its spam policies in 2026. We build genuinely citable content — not gaming the system.
+
+What do I need to provide to get started?
+
+Three things: your industry, your brand name or URL (if you don't have a website, tell us where you sell), and the 3–5 competitors you care most about. We'll draft 15–20 questions your customers would actually ask an AI, share them with you first, then run the full check. For the Google search audit, Search Console read access makes the report significantly more complete — but it works without it too.
+
+Is my information kept confidential?
+
+Your brand information, competitor list, and any Search Console data you authorize us to read are used solely to produce your report. They are not used for other client research, not shared externally, and not used as marketing material. Client identities and cases are always kept confidential — we never name clients publicly. That is a baseline commitment.
+
+## Ready to be found on Google
+and cited by AI?
+
+Start with an audit. Know exactly where you stand — then decide the next step.
+
+[Chat on LINE](https://lin.ee/n5KW430)
+[Contact form](https://thinkbigtw.com/en/contact/)
+
+---
+
+URL: https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/
+
+# Is Your Local AI Actually Using the GPU? "Installed" Doesn't Mean "Running Well" | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Field Notes on AI Deployment · Issue 002
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+SEEN BY AI
+
+Monday, October 5, 2026
+◆
+First-hand observations on AI deployment
+◆
+Issue 002
+
+Local AI Deployment
+
+## Is your local AI actually using the GPU? "Installed" doesn't mean "running well"
+
+Think BIG Editorial  |  October 5, 2026
+
+When a local AI model is painfully slow — minutes per response, or constant timeouts — the most likely cause isn't underpowered hardware. It's that the model is running entirely on the CPU, and the GPU is sitting idle. One command, ten seconds, and you'll know for certain.
+
+(Note: This article uses Ollama as the illustrative example because it is one of the most common tools for running local models on a personal computer. The underlying principles apply to other runtimes; the specific commands differ.)
+
+## 1.  The Situation: A well-documented gap
+
+Running an AI model on your own machine — no subscription, no data leaving the building, available offline — has gone from an enthusiast experiment to a realistic option for individuals and small teams. The most common complaint that followed is a single sentence: "I installed it, but it's too slow to use."
+
+The open-source community has documented this thoroughly. Ollama's GitHub issue tracker includes reports of models that "occasionally fall back to CPU, causing 100% CPU utilization, until a restart." ([ollama/ollama #13765](https://github.com/ollama/ollama/issues/13765)) Another thread describes a version update that caused models to stop using the GPU entirely. ([ollama/ollama #13320](https://github.com/ollama/ollama/issues/13320)) Published troubleshooting guides note that this failure mode is particularly insidious because it produces no error message  — an outdated driver, a disabled environment variable, and the model quietly falls back to CPU, while everything on screen looks normal. ([cmaven.github.io](https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/), [localaimaster.com](https://localaimaster.com/blog/ollama-not-using-gpu))
+
+In other words: a "slow local AI" is usually not a performance problem. It's a configuration problem that hasn't been noticed yet.
+
+## 2.  The Debate: Is local deployment worth it?
+
+The case for local deployment  is concrete: data stays on your hardware, there's no per-token bill anxiety, and the model can run around the clock as part of an AI Agent workflow. For anyone who cares about privacy or wants continuous AI presence without ongoing cloud costs, this is something cloud services simply can't offer.
+
+The reservations  cluster around two points:
+
+The setup threshold is higher than expected.  Driver version, environment variables, model size relative to video RAM, memory allocation — any one of these being wrong degrades the result significantly, and there's no obvious starting point for diagnosis.
+
+Hardware has to match the model.  If the model is larger than the available video RAM, the overflow gets offloaded to the CPU. The official Ollama FAQ notes that models can end up in a "partial CPU, partial GPU" state. ([docs.ollama.com/faq](https://docs.ollama.com/faq)) That split slows everything down.
+
+Both sides are pointing at the same thing: local AI can be excellent, but only after someone confirms it's actually running on the right hardware.
+
+◆ First-Hand Notes
+
+## 3. What we learned from actually doing this
+
+"Looks fine" is the most dangerous state.  We had a machine where the model was installed, conversations worked, and nothing reported an error — but every response took one to four minutes, with occasional timeouts. We spent considerable time adjusting other settings before finally checking: the model had been running 100% on the CPU. The GPU was untouched. We now check GPU utilization before touching anything else.
+
+One metric is all you need.  ollama ps  shows the PROCESSOR column — 100% GPU, 100% CPU, or a split. The API also returns video RAM usage (size_vram ). If size_vram  is zero, the model is on CPU,  regardless of what everything else looks like. We screenshot this number before every delivery.
+
+Three root causes we've actually encountered  — none requiring a hardware upgrade:
+
+The GPU wasn't detected.  Some newer integrated or hybrid graphics architectures aren't automatically recognized. They require additional environment configuration, and that configuration must be set for the specific user account that runs the model, not just the admin account.
+
+The install path contained non-ASCII characters.  The detection process crashed silently when the path included characters outside standard ASCII. Moving to a plain ASCII path fixed it immediately — the kind of trap that never appears in any spec sheet.
+
+The context window was set too large.  Setting the AI's memory (context window) too high exhausted shared system RAM and caused cascading system instability. Ollama defaults to 4096 tokens (per the official FAQ) — that's a reasonable baseline. Increasing it is fine, but it should be sized to the machine.
+
+The difference after fixing it.  Same machine, same model — switching from CPU-only to actual GPU use took response time from "minutes per question" to "output starts within seconds." That's a configuration fix, not a hardware upgrade.
+
+## 4.  Our recommendation: Three steps when local AI is slow
+
+Check the PROCESSOR column first — before anything else.  Run ollama ps . 100% CPU means the GPU isn't being used; a CPU/GPU split usually means the model is larger than available video RAM. This takes ten seconds and can save hours.
+
+Match model size to video RAM.  Bigger isn't always better. A smaller model that fits entirely in video RAM will often outperform a larger model that spills onto the CPU. Choose based on what your hardware can actually hold.
+
+Make "confirm the GPU" a standing check.  Driver updates, software updates, and account changes can all silently revert to CPU. Check after any meaningful change — don't wait for "why is this slow again?" to surface the issue.
+
+One line to close with: when local AI is slow, suspect the configuration before the hardware.  In most cases, the machine is capable enough — it just hasn't been used correctly yet.
+
+◆ Editorial · How Think BIG approaches this
+
+## What "delivered and running well" actually means
+
+When we deploy a local AI Agent on a client's machine, "GPU actually running" is a mandatory pre-delivery check — not something we do only when a problem surfaces. Our delivery standard includes:
+
+Evidence before handoff, not a verbal "it's installed."  We confirm which hardware the model is using and record the video RAM consumption. We also run a task that calls a tool — not just a chat response — and verify the response time. Screenshots are kept as delivery documentation.
+
+Your data stays on your hardware.  Local deployment keeps records and configuration on your machine. The model can be swapped as better or lower-cost options emerge.
+
+Pinned versions; no automatic updates.  A version update is one of the most common causes of GPU fallback. We pin the version and validate any update before applying it — stability over chasing the latest release.
+
+The value of local AI only materializes once it's confirmed to be running on the right hardware. That confirmation is what we deliver before handing over the keys.
+
+### FAQ · Frequently Asked Questions
+
+Q: How do I check whether my local AI model is using the GPU?
+For Ollama, run ollama ps  and look at the PROCESSOR column. 100% GPU means fully on GPU; 100% CPU means the GPU is not being used; a split ratio means only part of the model fits in video RAM.
+Q: I have a dedicated GPU — why is the AI still running on CPU?
+Common causes: outdated driver, an environment variable that has disabled GPU access, a model larger than available video RAM, or the GPU not detected by the software. Most of these produce no error message, so you have to check actively.
+Q: My local AI takes minutes per response. Is my hardware too weak?
+Not necessarily. In most cases we've investigated, the model was running entirely on CPU. Confirm GPU is being used before deciding to upgrade.
+Q: Is a bigger model always better?
+No. A model that doesn't fit in video RAM has part offloaded to CPU, which can make it slower than a smaller model that fits entirely on the GPU. Match model size to available video RAM.
+Q: How large should I set the context window?
+Ollama defaults to 4096 tokens. Increasing is fine, but each step up consumes more RAM; setting it too high can destabilize the whole machine. Increase gradually based on your hardware, not all at once.
+
+Sources
+    Ollama official FAQ (PROCESSOR column interpretation, default context 4096):
+    [docs.ollama.com](https://docs.ollama.com/faq)
+     ·
+    Ollama GitHub #13765 (intermittent CPU fallback):
+    [github.com/ollama/ollama/issues/13765](https://github.com/ollama/ollama/issues/13765)
+     ·
+    Ollama GitHub #13320 (update breaks GPU use):
+    [github.com/ollama/ollama/issues/13320](https://github.com/ollama/ollama/issues/13320)
+     ·
+    Multi-GPU troubleshooting guide (driver version, silent CPU fallback):
+    [cmaven.github.io](https://cmaven.github.io/en/etc/ollama-multi-gpu-troubleshooting/)
+     ·
+    Ollama GPU not used — common causes:
+    [localaimaster.com](https://localaimaster.com/blog/ollama-not-using-gpu)
+
+This article is a Think BIG field notes publication, based on first-hand deployment experience. The views expressed do not represent any specific vendor or product. All named sources are linked inline; commands and default values are based on the official Ollama documentation current at time of publication.
+
+THINK BIG NEWS  · First-Hand Observations on AI Deployment
+    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/library/news/geo-measurement-20261009/
+
+# 問 AI 一次就下結論？AI 的回答是機率，不是名次——GEO 該怎麼量才算數｜Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+產業實測手記 · 第 004 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+被　AI　看見
+
+2026 年 10 月 9 日　星期五
+◆
+AI 導入的第一手觀察
+◆
+第 004 期
+
+GEO 量測 · AI 能見度
+
+## 問 AI 一次就下結論？——AI 的回答是機率，不是名次，GEO 該怎麼量才算數
+
+Think BIG 自媒體部　報導　|　2026 / 10 / 09
+
+AI 每次回答都可能不同，同一題幾分鐘內重問，引用來源只重疊三到四成。想知道 AI 會不會提你，要同題重問多次、追蹤數週，看區間不看單次。
+
+## 一、 現象：一張截圖，說不了什麼
+
+「我問了 ChatGPT，它推薦我們耶！」「我問了三個 AI，都沒提到我們。」這兩種說法我們都常聽到，背後是同一個習慣：問一次，就當成結果。  這在傳統搜尋還說得過去，同一個關鍵字幾分鐘內重搜，排名通常差不多。但 AI 的回答不是這樣運作的。
+
+瑞士聖加侖大學（University of St. Gallen）的研究團隊在 2026 年 4 月發表論文〈Don't Measure Once〉，專門研究這件事。他們在 2026 年 1 月到 3 月之間，每天用同一批問題問四個 AI 搜尋服務（ChatGPT、Perplexity、Google AI 模式、Gemini），涵蓋四個產業、每個產業 8 題，連續追蹤 45 到 46 天；另外還在同一天內對同一題重問最多 10 次。（來源：[arXiv 2604.07585](https://arxiv.org/abs/2604.07585)）
+
+結果：
+
+天天在換。  前一天和後一天比，被引用的來源平均只重疊 34% 到 42%。幾分鐘內重問，一樣在換。  同一題同一天重問，引用來源的重疊度平均只有 32% 到 43%，跟隔天比差不多。研究者的結論是：不穩定主要來自模型生成答案本身的隨機性，不是外在的演算法調整。
+
+品牌比來源穩一點。  以「回答中提到哪些品牌」來看，隔天的重疊度是 45% 到 59%，比引用來源穩定。有些題目很穩、有些幾乎全換。  只看一兩題，看到的是那幾題的個性，不是整體能見度。
+
+AI 不一定會上網查。  ChatGPT 有 57.8% 的回答完全沒有附引用，因為它只在特定問題才啟動網路搜尋，其他時候靠模型本身的記憶回答。
+
+研究摘要裡有一句話很適合當這篇的標題：AI 搜尋的能見度，應該被描述成一個分布 ，而不是一個單點結果 。
+
+## 二、 各方評價：要量多少次才夠？
+
+研究給了具體的門檻。  同一篇論文用統計方法推算，要讓「某品牌被提到的比例」估得夠穩（標準誤低於 0.10），同一題每天至少要問 7 次 ；如果要看引用來源，至少 8 次。時間上，以單一品牌來看，連續追蹤 10 天 標準誤才會低於 0.10，追蹤 24 天可以再降到 0.05 以下；作者建議用兩到四週的滾動區間 來看數字。他們也建議：每個 AI 各自設基準線，不要把不同 AI 混成一個分數；監測時把「品牌有沒有被提到」當主要指標，「引用了哪些網址」當診斷用。
+
+「多問幾次」也是偵測 AI 亂講的方法。 《Nature》2024 年刊登的研究提出：讓模型對同一題回答好幾次，如果答案的意思彼此對不上，就是它可能在亂編的訊號。（來源：[Farquhar 等，Nature 2024](https://www.nature.com/articles/s41586-024-07421-0)）一次的答案只是抽樣，重複才看得到真實樣貌。
+
+技巧的效果，也要靠嚴謹量測才看得出來。  2026 年一篇回顧 45 篇 GEO 研究的綜述指出，商業稽核裡普遍出現「來源重疊低、每次結果差很多」的現象；而且目前沒有任何技巧被證明能長期、跨平台、穩定地提升被發現的機會。（來源：[arXiv 2607.14035](https://arxiv.org/abs/2607.14035)）如果量測本身不穩，你根本分不出「是做法有效」還是「剛好抽到好結果」。
+
+但不能為了量測去違規。  Google 的垃圾內容政策明文禁止「機器產生的流量」，也就是未經許可、用程式自動查詢 Google 搜尋，包括為了查排名去抓取結果。（來源：[Google 搜尋垃圾內容政策](https://developers.google.com/search/docs/essentials/spam-policies)）量測要走各 AI 的官方 API，再搭配人工抽查，並在報告裡說清楚用的是哪個通道。
+
+官方數據也開始出現。  Bing Webmaster Tools 在 2026 年 2 月推出 AI Performance 報表（公開預覽），可以看到內容在 Copilot 與 Bing 的 AI 摘要中被引用的次數與頁面，以及隨時間的變化。（來源：[Bing 網站管理員部落格](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)）
+
+◆ 第一手手記
+
+## 三、我們自己量的時候，踩過的三個坑
+
+我們做 AI 能見度服務之前，先拿我們的官網量。過程中踩了三個坑，後來都寫進了我們的量測方法裡。
+
+坑一：只跑一輪，就以為看到真相。  我們第一次做基準線，是每題問一次、跑一輪。結果幾乎看不到自己，一度很挫折。後來對照 Google Search Console，才發現我們有幾篇指南在 Google 已經排進第一頁，跟那一輪的印象差很多。讀到聖加侖的研究後我們才確定：一輪的結果，統計上本來就撐不起任何結論。
+
+坑二：測試環境不乾淨，答案會被污染。  2026 年 10 月 4 日，我們在內部用一個 AI 工具做代理測試，結果發現它讀到了測試電腦上我們自己的筆記，回答時把這些內容帶了進去。答案看起來很「懂我們」，但那不是一般使用者會看到的版本。OpenAI 的官方說明提到，開啟記憶功能時，ChatGPT 可能會用你存過的記憶來改寫搜尋查詢。從此我們規定：量測一律在乾淨的環境跑，不登入個人帳號、不帶對話紀錄、不帶記憶。
+
+坑三：把「有提到」「有引用」「講對了」混成一件事。  AI 提到你的名字，不一定附你的網址；附了你的網址，描述也不一定正確。我們自己就遇過 AI 很肯定地把我們的營業項目講錯。所以現在每一次回答，我們都分開記錄：AI 有沒有上網查、有沒有提到我們、有沒有引用我們的網址、描述對不對。
+
+踩完這三個坑，我們的量測方法改成這樣：
+
+項目 我們現在的做法
+題目 依意圖分層：泛問、情境、條件、品牌比較、事實型；每個意圖寫 3 到 5 種問法，含英文
+
+鎖題 題庫建好就凍結，只加不改，數字才能前後比較
+
+次數 每題每天每個 AI 重問多次，兩次之間至少隔 10 分鐘
+
+天數 連續多天，用兩到四週的滾動區間看
+
+分開看 每個 AI 各自一份基準線，不做跨 AI 平均
+
+記錄 是否上網查、是否提到、提到的位置、是否引用網址、描述是否正確
+
+呈現 每個數字附 95% 信賴區間；這期和上期的區間重疊，就寫「持平」，不說成長
+
+通道 標明用的是 API 還是使用者介面；不自動化刷 Google 的頁面
+
+## 四、 我們的建議：自己檢查的六個原則
+
+如果你想自己看看 AI 有沒有提到你的公司：
+
+1. 同一題換幾種問法。  客人怎麼問，你就怎麼問：「台中有哪些○○推薦？」「五個人的公司適合哪種○○？」「A 跟 B 差在哪？」
+
+2. 每一題至少問 5 到 7 次。  記下這幾次裡有幾次提到你，用「幾成」來看，不要用「有或沒有」來看。
+
+3. 用乾淨的環境。  登出帳號或用無痕視窗、關掉記憶功能、開新對話。不然你看到的可能是「AI 對你個人的回答」。
+
+4. 分開記四件事。  有沒有上網查、有沒有提到你、有沒有附你的網址、描述對不對。
+
+5. 至少追兩週再談趨勢。  一天的起伏多半是雜訊。每個 AI 分開看，不要混在一起平均。
+
+6. 不要用程式狂刷 Google。  違反 Google 的政策。需要大量量測，就走官方 API，或請專業團隊用合規的方式做。
+
+如果你請別人幫你量，可以問對方五個問題：題目有幾題、幾種問法？每題問幾次？連續幾天？用 API 還是使用者介面？數字有沒有附信賴區間？  答不出來的報告，參考價值就要打折。
+
+一句話收尾：AI 的回答是機率，不是名次。  量一次是運氣，量對了才是數據。
+
+◆ 編按 · Think BIG 的做法
+
+## 量得誠實、看得懂、可以驗證
+
+（以下是 Think BIG 自己的立場，與上方中立報導區隔。）
+
+我們的 AI 能見度報告，是照上面這套方法設計的，而且每份報告都把方法攤開：
+
+一頁「分母與方法」：  幾題、幾種問法、每題重問幾次、量了幾天、哪些 AI、用什麼通道，全部寫清楚，你可以自己重問驗證。
+
+觸發率單獨列：  AI 這次有沒有上網查。沒上網查的題目，靠的是模型記憶，改善方法和有上網查的題目不一樣。
+
+描述對不對單獨列：  不只看 AI 有沒有提到你，也看它說的是不是事實，講錯的地方列出來追蹤修正。
+
+每個 AI 各一套處方：  不同 AI 偏好的來源不一樣，所以建議也分開寫。
+
+結論分級：  每個結論標明是【計數】、【對比】還是【推論】；區間重疊就寫持平，不美化。
+
+我們不承諾名次或業績。我們承諾的是：量得誠實、看得懂、可以驗證。
+
+### 常見問答 · FAQ
+
+Q1：為什麼同一個問題問 AI，每次答案都不一樣？
+AI 生成答案時本身帶有隨機性，引用的來源也會跟著變。瑞士聖加侖大學 2026 年的研究發現，同一題在同一天幾分鐘內重問，引用來源平均只重疊 32% 到 43%，和隔天重問差不多，表示變動主要來自模型本身，不是外在的演算法調整。
+Q2：要知道 AI 會不會提到我的公司，要問幾次才夠？
+依同一篇研究的推算，同一題每天至少問 7 次，才能把「被提到的比例」估得比較穩；要看引用來源，至少 8 次。時間上建議連續追蹤 10 天以上，用兩到四週的滾動區間來看趨勢。
+Q3：可以寫程式自動查詢 Google 的 AI 模式來量測嗎？
+不建議。Google 的垃圾內容政策禁止未經許可用程式自動查詢 Google 搜尋，包括為了查排名而抓取結果。合規的做法是使用各 AI 的官方 API，搭配人工抽查，並在報告中標明通道。
+Q4：AI「提到」我和「引用」我有什麼不同？
+提到是回答裡出現你的名字；引用是回答附上你的網頁連結當來源。兩者不一定同時發生，而且就算提到了，描述也可能不正確。建議分開記錄「有沒有提到」「有沒有引用網址」「描述對不對」。
+Q5：有沒有官方工具可以看我的網站被 AI 引用的情況？
+Bing Webmaster Tools 在 2026 年 2 月推出 AI Performance 報表（公開預覽），可以看到內容在 Copilot 與 Bing AI 摘要中被引用的次數與頁面。Google 這邊，AI 功能的流量會併在 Search Console 的「網頁」搜尋類型裡，無法單獨拆出。
+
+參考來源
+    Schulte、Bleeker、Kaufmann〈Don't Measure Once〉，聖加侖大學（2026-04；重疊度數字、7/8 次與 10/24 天門檻、ChatGPT 57.8% 無引用）：[arXiv 2604.07585](https://arxiv.org/abs/2604.07585)　·　Farquhar 等〈Detecting hallucinations in large language models using semantic entropy〉，Nature（2024）：[nature.com](https://www.nature.com/articles/s41586-024-07421-0)　·　〈GEO Critical Survey 2023–2026〉：[arXiv 2607.14035](https://arxiv.org/abs/2607.14035)　·　Google 搜尋垃圾內容政策（機器產生的流量；2026-08-28）：[developers.google.com](https://developers.google.com/search/docs/essentials/spam-policies)　·　Bing Webmaster Blog〈AI Performance〉（2026-02-10）：[blogs.bing.com](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)　·　OpenAI 說明中心〈Searching the web with ChatGPT〉（記憶影響查詢改寫）：[help.openai.com](https://help.openai.com/en/articles/9237897-chatgpt-search)
+
+本文為 Think BIG 產業觀察與第一手量測心得整理，引用之研究與官方文件均標註來源；研究數字以原文所載之時間、平台與測試條件為準。文中量測只呈現方法與相對觀察，不揭露絕對數字。文中提到的 AI 工具不具名，內容不針對任何公司或產品。
+
+THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/en/news/geo-measurement-20261009/
+
+# Asked AI Once and Called It? AI Answers Are Probabilities, Not Rankings: How to Measure GEO Properly | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Field Notes · Issue 004
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+被　AI　看見
+
+October 9, 2026 · Friday
+◆
+First-hand observations on AI deployment
+◆
+Issue 004
+
+GEO Measurement · AI Visibility
+
+## Asked AI Once and Called It? — AI Answers Are Probabilities, Not Rankings: How to Measure GEO Properly
+
+Think BIG Editorial  |  October 9, 2026
+
+AI answers change every time. Re-ask the same question minutes apart and roughly two-thirds of the cited sources will be different. To know whether AI mentions you, ask repeatedly, track for weeks, and look at ranges — not single results.
+
+## 1.  The problem: one screenshot proves nothing
+
+“ChatGPT just recommended us!” “I asked three AIs and none of them mentioned us.” We hear both versions constantly. Behind each one is the same habit: ask once, treat it as the answer.  That works for traditional search, where the same keyword returns the same rankings minutes apart. AI doesn’t work that way.
+
+A team at the University of St. Gallen published a paper in April 2026 titled “Don’t Measure Once,” studying this problem directly. From January to March 2026, they asked the same sets of questions to four AI search services (ChatGPT, Perplexity, Google AI Mode, Gemini) every day across four industries — 8 questions per industry — tracking continuously for 45–46 days and re-asking the same question up to 10 times within the same day. ([arXiv 2604.07585](https://arxiv.org/abs/2604.07585))
+
+Key findings: day-to-day turnover is high.  Cited sources on consecutive days overlap only 34–42% on average. Same-day re-asks show the same instability:  re-asking minutes apart overlaps only 32–43% of cited sources — nearly the same as asking on different days. The researchers concluded the instability comes from how models generate text, not from external algorithm updates.
+
+Brands are more stable than sources.  Brand mentions overlap 45–59% day-over-day, more than citation sources. Some questions are very stable, some aren’t at all.  Seeing just one or two questions reveals the personality of those questions, not your overall visibility.
+
+AI doesn’t always search the web.  ChatGPT answered 57.8% of questions without any citations — because it only triggers web search for certain queries, and relies on model memory for the rest.
+
+One line from the paper’s abstract fits as this article’s headline: AI search visibility should be described as a distribution , not a single data point .
+
+## 2.  What the research says: how many times is enough?
+
+The paper gives concrete thresholds.  To estimate “the rate at which a brand is mentioned” with enough stability (standard error below 0.10), you need at least 7 repetitions per question per day ; for citation sources, at least 8. For time, a single brand requires at least 10 consecutive days  to bring the standard error below 0.10, and 24 days to drop below 0.05. The authors recommend using a 2–4 week rolling window . They also advise: set a separate baseline for each AI, don’t average across AI tools; use brand mention rate as the primary signal and citation URL tracking as a diagnostic.
+
+Repeated questioning also detects AI fabrications.  A 2024 Nature paper proposed: ask a model the same question multiple times; if the answers contradict each other, that’s a signal the model may be hallucinating. ([Farquhar et al., Nature 2024](https://www.nature.com/articles/s41586-024-07421-0)) One answer is a sample; repetition reveals the real picture.
+
+Technique effectiveness can only be demonstrated with rigorous measurement.  A 2026 review of 45 GEO studies found that low source overlap and high run-to-run variability are pervasive in commercial audits; and no technique has been shown to improve discoverability stably, long-term, or across platforms. ([arXiv 2607.14035](https://arxiv.org/abs/2607.14035)) If your measurement is noisy, you can’t tell whether a technique worked or you got a lucky sample.
+
+But don’t break the rules to measure.  Google’s spam policies prohibit unauthorized automated queries to Google Search, including scraping for ranking data. The compliant path: use each AI’s official API, supplement with manual UI checks, and state which channel you used in every report.
+
+Official data is now available.  Bing Webmaster Tools launched an AI Performance report in public preview in February 2026, showing how often your pages are cited in Copilot and Bing AI summaries, which pages are cited, and how that changes over time. ([Bing Webmaster Blog](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview))
+
+◆ First-hand notes
+
+## 3. Three mistakes we made measuring our own AI visibility
+
+Before launching our AI visibility service, we measured our own website first. We made three mistakes. All three are now written into our methodology.
+
+Mistake 1: running one round and thinking we saw the truth.  Our first baseline was one question, one ask, one round. We barely showed up anywhere and felt discouraged. Then we checked Google Search Console and saw several of our guide pages ranked on the first page for their target queries. After reading the St. Gallen study, we confirmed: one round is statistically insufficient for any conclusion, positive or negative.
+
+Mistake 2: a dirty test environment pollutes results.  On October 4, 2026, we ran a proxy test using an internal AI tool and found it had read notes stored on the test computer and incorporated them into answers. The results looked uncannily accurate — but that’s not what regular users see. OpenAI’s documentation notes that when memory is enabled, ChatGPT may use stored memories to rewrite search queries. Rule established: all measurements run in a clean environment — logged out, no conversation history, no memory, fresh session.
+
+Mistake 3: treating “mentioned,” “cited,” and “described correctly” as the same thing.  AI can mention your name without linking to your page. It can link to your page while describing you incorrectly. We experienced this firsthand — an AI stated with complete confidence that our company had nothing to do with AI. Now every run records four things separately: did AI search the web, did it mention us, did it cite our URL, did it describe us accurately.
+
+Our revised methodology in brief:
+
+Item Our current practice
+Questions Layered by intent: broad, contextual, conditional, brand comparison, factual; 3–5 phrasings per intent, including English versions
+
+Lock questions Freeze the question set once built; add but never edit, so comparisons are valid over time
+
+Repetitions Each question, each AI, multiple times per day with at least 10 minutes between runs
+
+Duration Consecutive days; report on a 2–4 week rolling window
+
+Separation Separate baseline for each AI; no cross-AI averages
+
+Recording Did it search; was brand mentioned; position in answer; was URL cited; was description accurate
+
+Reporting Every figure includes a 95% confidence interval; overlapping intervals between periods = “stable,” not “growth”
+
+Channel State API vs. UI for each measurement; no automated scraping of Google pages
+
+## 4.  Six principles for checking AI visibility yourself
+
+1. Ask the same question several different ways.  Think like a customer: “Which [service] companies do you recommend in [city]?” “What’s good for a five-person company?” “How does A compare to B?”
+
+2. Ask each question at least 5–7 times.  Record how many of those times you were mentioned. Look at the rate, not just “yes or no.”
+
+3. Use a clean environment.  Log out or use a private window, disable memory, start a fresh session. Otherwise you’re seeing a personalized answer, not a representative one.
+
+4. Track four things separately.  Did it search the web; did it mention you; did it cite your URL; did it describe you accurately.
+
+5. Track for at least two weeks before talking about trends.  One-day fluctuations are mostly noise. Look at each AI separately — don’t average across platforms.
+
+6. Don’t scrape Google.  It violates Google’s policies. For large-scale measurement, use official APIs or work with a team that does it compliantly.
+
+If you’re evaluating a GEO vendor, ask five questions: How many questions, how many phrasings? How many repetitions per question? How many consecutive days? API or UI? Do the numbers include confidence intervals?  If they can’t answer, discount the report.
+
+Bottom line: AI answers are probabilities, not rankings.  One ask is luck. Doing it properly gives you data.
+
+◆ Editor’s note · How Think BIG approaches this
+
+## Honest numbers. Readable reports. Verifiable methods.
+
+(The following reflects Think BIG’s own position and is separate from the neutral reporting above.)
+
+Our AI visibility reports follow this methodology and lay the method open in every report:
+
+One “denominator and method” page:  how many questions, how many phrasings, how many repetitions per day, how many days, which AIs, which channel — all stated. You can re-run any query and verify.
+
+Trigger rate listed separately:  did AI search the web for this question? Questions AI doesn’t search require different interventions than ones it does search.
+
+Description accuracy listed separately:  not just whether AI mentioned you, but whether what it said was true. Inaccuracies are logged and tracked for correction.
+
+Separate recommendations per AI:  different AIs favor different sources, so recommendations are split by platform.
+
+Tiered conclusions:  each finding is labeled [count], [comparison], or [inference]; overlapping confidence intervals between periods = “stable,” not “growth.”
+
+We don’t promise rankings or sales. We promise honest numbers, readable reports, and methods you can verify.
+
+### FAQ
+
+Q1: Why does the same AI question get different answers each time?
+AI models introduce randomness when generating answers, and the sources they cite change along with the answer. A 2026 University of St. Gallen study found that re-asking the same question minutes apart overlaps only about 32–43% of cited sources on average — roughly the same as asking on consecutive days. The instability comes from how models generate text, not from external algorithm changes.
+Q2: How many times do I need to ask AI the same question to get a reliable result?
+The same study estimates you need at least 7 repetitions per question per day for brand mention rates, or 8 for citation rates, to bring the standard error below 0.10. For tracking trends, you need at least 10 consecutive days. The authors recommend using a 2–4 week rolling window.
+Q3: Can I write a script to automatically query Google AI Mode for measurement?
+No. Google’s spam policies prohibit automated queries to Google Search without permission, including scraping for ranking data. The compliant approach is to use each AI’s official API alongside manual spot-checks, and to document which channel you used in your report.
+Q4: What’s the difference between AI “mentioning” me and “citing” me?
+A mention means your name appears in the answer. A citation means the answer links to your page as a source. They don’t always happen together — and even when both occur, the description of your company may still be inaccurate. Track them separately.
+Q5: Is there an official tool to see how often AI cites my website?
+Bing Webmaster Tools launched an AI Performance report in public preview in February 2026, showing how often your pages are cited in Copilot and Bing AI summaries. On the Google side, AI-driven traffic is rolled into the “Web” search type in Search Console and can’t be broken out separately.
+
+Sources
+    Schulte, Bleeker, Kaufmann, “Don’t Measure Once: Measuring Visibility in AI Search (GEO),” University of St. Gallen (April 2026): [arXiv 2604.07585](https://arxiv.org/abs/2604.07585)  ·
+    Farquhar et al., “Detecting hallucinations in large language models using semantic entropy,” Nature (2024): [nature.com](https://www.nature.com/articles/s41586-024-07421-0)  ·
+    “Optimizing Visibility in Generative Engines: A Critical Survey of GEO (2023–2026)”: [arXiv 2607.14035](https://arxiv.org/abs/2607.14035)  ·
+    Google Search spam policies (automated traffic; 2026-08-28): [developers.google.com](https://developers.google.com/search/docs/essentials/spam-policies)  ·
+    Bing Webmaster Blog, “AI Performance” (2026-02-10): [blogs.bing.com](https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview)  ·
+    OpenAI Help Center, “Searching the web with ChatGPT”: [help.openai.com](https://help.openai.com/en/articles/9237897-chatgpt-search)
+
+This article combines industry reporting with Think BIG’s first-hand measurement experience. All cited research and official documents are linked; figures follow the original papers’ stated conditions, platforms, and time windows. Data about our own site is shown only as relative observations. AI tools are not named, and nothing here is directed at any company or product.
+
+THINK BIG NEWS   ·  First-hand observations on AI deployment
+    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
