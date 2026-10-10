@@ -244,7 +244,7 @@
     <div class="firsthand">
       <span class="lede">◆ 第一手手記</span>
       <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們自己量的時候，踩過的三個坑</h2>
-      <p>我們做 AI 能見度服務之前，先拿自家官網量。過程中踩了三個坑，後來都寫進了我們的量測方法裡。</p>
+      <p>我們做 AI 能見度服務之前，先拿我們的官網量。過程中踩了三個坑，後來都寫進了我們的量測方法裡。</p>
       <p><strong>坑一：只跑一輪，就以為看到真相。</strong> 我們第一次做基準線，是每題問一次、跑一輪。結果幾乎看不到自己，一度很挫折。後來對照 Google Search Console，才發現我們有幾篇指南在 Google 已經排進第一頁，跟那一輪的印象差很多。讀到聖加侖的研究後我們才確定：一輪的結果，統計上本來就撐不起任何結論。</p>
       <p><strong>坑二：測試環境不乾淨，答案會被污染。</strong> 2026 年 10 月 4 日，我們在內部用一個 AI 工具做代理測試，結果發現它讀到了測試電腦上我們自己的筆記，回答時把這些內容帶了進去。答案看起來很「懂我們」，但那不是一般使用者會看到的版本。OpenAI 的官方說明提到，開啟記憶功能時，ChatGPT 可能會用你存過的記憶來改寫搜尋查詢。從此我們規定：量測一律在乾淨的環境跑，不登入個人帳號、不帶對話紀錄、不帶記憶。</p>
       <p><strong>坑三：把「有提到」「有引用」「講對了」混成一件事。</strong> AI 提到你的名字，不一定附你的網址；附了你的網址，描述也不一定正確。我們自己就遇過 AI 很肯定地把我們的營業項目講錯。所以現在每一次回答，我們都分開記錄：AI 有沒有上網查、有沒有提到我們、有沒有引用我們的網址、描述對不對。</p>
@@ -309,7 +309,7 @@
     <span class="lede">參考來源</span>
     Schulte、Bleeker、Kaufmann〈Don't Measure Once〉，聖加侖大學（2026-04；重疊度數字、7/8 次與 10/24 天門檻、ChatGPT 57.8% 無引用）：<a href="https://arxiv.org/abs/2604.07585" target="_blank" rel="noopener">arXiv 2604.07585</a>　·　Farquhar 等〈Detecting hallucinations in large language models using semantic entropy〉，Nature（2024）：<a href="https://www.nature.com/articles/s41586-024-07421-0" target="_blank" rel="noopener">nature.com</a>　·　〈GEO Critical Survey 2023–2026〉：<a href="https://arxiv.org/abs/2607.14035" target="_blank" rel="noopener">arXiv 2607.14035</a>　·　Google 搜尋垃圾內容政策（機器產生的流量；2026-08-28）：<a href="https://developers.google.com/search/docs/essentials/spam-policies" target="_blank" rel="noopener">developers.google.com</a>　·　Bing Webmaster Blog〈AI Performance〉（2026-02-10）：<a href="https://blogs.bing.com/webmaster/February-2026/Introducing-AI-Performance-in-Bing-Webmaster-Tools-Public-Preview" target="_blank" rel="noopener">blogs.bing.com</a>　·　OpenAI 說明中心〈Searching the web with ChatGPT〉（記憶影響查詢改寫）：<a href="https://help.openai.com/en/articles/9237897-chatgpt-search" target="_blank" rel="noopener">help.openai.com</a>
   </div>
-  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手量測心得整理，引用之研究與官方文件均標註來源；研究數字以原文所載之時間、平台與測試條件為準。自家量測只呈現方法與相對觀察，不揭露絕對數字。文中提到的 AI 工具不具名，內容不針對任何公司或產品。</p>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手量測心得整理，引用之研究與官方文件均標註來源；研究數字以原文所載之時間、平台與測試條件為準。文中量測只呈現方法與相對觀察，不揭露絕對數字。文中提到的 AI 工具不具名，內容不針對任何公司或產品。</p>
 
   <div class="colophon">
     <b>THINK BIG NEWS</b>　·　AI 導入的第一手觀察
