@@ -43,6 +43,39 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - Q：AI Agent 的自主操作權限如何控管？ A：依最小權限原則配置資料與操作範圍。對外發送、花費及正式系統異動須經指定負責人核准；AI Agent 提供工作產物與執行證據，人員保留關鍵決策權。
 - Q：既有工具與模型能否持續沿用？ A：先盤點既有系統介面、帳號權限與相容性，再評估整合範圍。更換模型時須重新驗證流程與輸出品質，既有配置能否沿用依實際測試結果確認。
 
+## 問答圖書館（中小企業 AI 導入問答）
+每一則都有先說答案、可查證出處與更新日期：https://thinkbigtw.com/library/qa/
+- [AI Agent 是什麼？跟 ChatGPT 這種聊天 AI 差在哪？](https://thinkbigtw.com/library/qa/what-is-ai-agent/)
+- [中小企業要怎麼開始導入 AI？第一步該做什麼？](https://thinkbigtw.com/library/qa/sme-how-to-start-ai/)
+- [公司沒有工程師、也沒有 IT 部門，可以導入 AI 嗎？](https://thinkbigtw.com/library/qa/no-engineer-ai-adoption/)
+- [店家沒有官網，只在蝦皮、Google 商家或 IG 上，也能做 AI 導入和「被 AI 看見」嗎？](https://thinkbigtw.com/library/qa/no-website-ai-visibility/)
+- [中小企業把 AI 和資料留在自己公司的電腦（地端部署）可行嗎？要什麼設備？](https://thinkbigtw.com/library/qa/on-premise-ai-feasibility/)
+- [AI 裝在自己公司電腦上，資料就一定不會外流嗎？](https://thinkbigtw.com/library/qa/on-premise-not-equal-no-leak/)
+- [LINE 官方帳號可以接 AI 客服嗎？店家要準備什麼？](https://thinkbigtw.com/library/qa/line-ai-customer-service/)
+- [官網可以放 AI 客服嗎？會不會亂回答、害到店家？](https://thinkbigtw.com/library/qa/website-ai-customer-service/)
+- [AI 會不會亂講話（幻覺）？公司導入後怎麼避免？](https://thinkbigtw.com/library/qa/ai-hallucination-prevention/)
+- [公司哪些工作適合先交給 AI 自動化？怎麼挑第一個？](https://thinkbigtw.com/library/qa/which-tasks-to-automate-first/)
+- [AI 自動化可以做到「全自動」嗎？哪些步驟一定要留人核准？](https://thinkbigtw.com/library/qa/full-automation-human-approval/)
+- [「被 AI 看見」或「AI 能見度」是什麼意思？對店家有什麼差別？](https://thinkbigtw.com/library/qa/what-is-ai-visibility/)
+- [GEO 是什麼？跟 SEO 差在哪？中小企業要分開做嗎？](https://thinkbigtw.com/library/qa/geo-vs-seo/)
+- [怎麼知道 ChatGPT 或 Gemini 有沒有提到我的店？自己可以怎麼查？](https://thinkbigtw.com/library/qa/check-ai-mentions-my-business/)
+- [在 Dcard、PTT 發文或買評論，能讓 AI 推薦我嗎？會不會出事？](https://thinkbigtw.com/library/qa/forum-posts-fake-reviews-ai/)
+- [公司導入 AI，個資法要注意什麼？客人的資料可以丟給 AI 嗎？](https://thinkbigtw.com/library/qa/pdpa-ai-adoption/)
+- [導入 AI Agent 的資安怎麼顧？中小企業該要求導入方做到什麼？](https://thinkbigtw.com/library/qa/ai-security-review/)
+- [中小企業導入 AI 要多久？為什麼有的公司拖了半年還沒上線？](https://thinkbigtw.com/library/qa/ai-adoption-timeline/)
+- [中小企業導入 AI 費用怎麼抓？有哪些隱藏成本？](https://thinkbigtw.com/library/qa/ai-adoption-cost/)
+- [導入後 AI 模型可以換嗎？綁定某一家會不會有風險？](https://thinkbigtw.com/library/qa/switch-ai-model/)
+- [AI 導入後誰來維護？壞了找誰？第二年要付錢嗎？](https://thinkbigtw.com/library/qa/who-maintains-after-launch/)
+- [公司導入 AI 之後就不需要員工了嗎？員工會不會反對？](https://thinkbigtw.com/library/qa/ai-and-employees/)
+- [小公司現在導入 AI 會不會太早？要不要等技術更成熟？](https://thinkbigtw.com/library/qa/too-early-for-sme/)
+- [中小企業導入 AI 一定要上雲端嗎？本地跟雲端怎麼選？](https://thinkbigtw.com/library/qa/cloud-vs-local-choice/)
+- [台灣的 AI 導入公司怎麼挑？第一次談要問哪些問題？](https://thinkbigtw.com/library/qa/how-to-choose-ai-partner-taiwan/)
+- [台灣政府有補助中小企業導入 AI 嗎？怎麼查、怎麼申請？](https://thinkbigtw.com/library/qa/government-subsidy-ai-sme/)
+- [一人公司、自由工作者也能導入 AI Agent 嗎？跟企業方案差在哪？](https://thinkbigtw.com/library/qa/solo-business-ai-agent/)
+- [AI Agent 要一台 24 小時開著的電腦嗎？可以用筆電或關機嗎？](https://thinkbigtw.com/library/qa/always-on-computer/)
+- [用 AI 處理公司資料，模型供應商會不會拿去訓練？](https://thinkbigtw.com/library/qa/will-ai-train-on-my-data/)
+- [員工已經在用 ChatGPT 了，公司為什麼還要「導入」AI？差在哪？](https://thinkbigtw.com/library/qa/chat-tool-vs-ai-agent/)
+
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
 - [隱私權政策](https://thinkbigtw.com/privacy.html)
