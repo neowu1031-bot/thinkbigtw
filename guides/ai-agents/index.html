@@ -2,6 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <!-- Google tag (gtag.js) -->
+<script>if(new URLSearchParams(location.search).has('tb_qa')||navigator.webdriver)window['ga-disable-G-7V41XYLLP5']=true;</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -91,9 +92,20 @@ a{color:var(--red);text-decoration:none}
 /* ── CTA band ── */
 .cta-band{background:var(--gray);border-radius:16px;padding:32px 36px;margin:40px 0;text-align:center}
 .cta-band h3{font-size:20px;color:var(--ink);margin-bottom:10px}
-.cta-band p{font-size:14px;color:var(--muted);margin-bottom:24px}
+.cta-band p{font-size:14px;color:var(--muted);margin-bottom:16px}
 .cta-btn{display:inline-block;background:var(--red);color:#fff;font-family:var(--tc);font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;transition:background .2s;letter-spacing:0.3px}
-@media (hover:hover) and (pointer:fine){.cta-btn:hover{background:#c73821;text-decoration:none}}
+.cta-btn-outline{background:transparent;border:2px solid var(--red);color:var(--red)}
+@media (hover:hover) and (pointer:fine){.cta-btn:hover{background:#c73821;text-decoration:none}.cta-btn-outline:hover{background:var(--red);color:#fff}}
+/* Two-column end CTA */
+.cta-band-two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px;text-align:left}
+.cta-col{display:flex;flex-direction:column}
+.cta-col-label{font-size:11px;font-weight:800;letter-spacing:.1em;color:var(--rose,#c73821);text-transform:uppercase;margin-bottom:8px}
+@media(max-width:640px){.cta-band-two-col{grid-template-columns:1fr}.cta-band{padding:24px 20px}}
+/* Mid-article CTA card */
+.mid-cta-card{background:var(--gray);border-radius:12px;padding:24px 28px;margin:32px 0;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.mid-cta-q{font-size:15px;font-weight:700;color:var(--ink);flex:0 0 auto;margin:0}
+.mid-cta-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+@media(max-width:640px){.mid-cta-card{flex-direction:column;align-items:flex-start}.mid-cta-btns .cta-btn{font-size:13px;padding:10px 18px}}
 
 /* ── Article nav ── */
 .art-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0 40px;border-top:1px solid var(--gray2);font-size:14px}
@@ -482,6 +494,14 @@ a{color:var(--red);text-decoration:none}
       </ol>
       <p class="data-notice">Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模型用量費；模型用量費依實際使用量計算，由你直接付給模型商。詳見 <a href="/faq/">常見問題</a>。</p>
 
+      <div class="mid-cta-card">
+        <p class="mid-cta-q">想知道哪一種適合你？</p>
+        <div class="mid-cta-btns">
+          <a href="https://shopee.tw/shop/105010395" class="cta-btn" target="_blank" rel="noopener">個人使用 → 蝦皮選購人格版 →</a>
+          <a href="/enterprise/start/" class="cta-btn cta-btn-outline">公司導入 → 2 分鐘自助評估 →</a>
+        </div>
+      </div>
+
       <h2 id="will-lobster-be-replaced">龍蝦會被淘汰嗎</h2>
       <p>不必二選一。品牌 AI Agent 和龍蝦（OpenClaw）擅長的工作不同：品牌 AI Agent 有品牌生態綁定，額度用完就停，適合需要協作或短時間高強度的任務；龍蝦可以自選模型、24 小時常駐、費用可控，適合長時間例行運作。</p>
       <p>每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。</p>
@@ -496,13 +516,18 @@ a{color:var(--red);text-decoration:none}
       </ul>
       <p class="data-notice">以上方案價格不含第三方 AI 模型用量費；API Key 自行申請，我方引導不代辦。詳見 <a href="/pricing/personal/">個人方案頁</a>。</p>
 
-      <div class="cta-band">
-        <h3>想裝一個 AI Agent，告訴我們就出貨</h3>
-        <p>個人方案請至蝦皮賣場選購，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好，可選討好型或討伐型人格。</p>
-        <a href="https://shopee.tw/shop/105010395" class="cta-btn" target="_blank" rel="noopener">前往蝦皮賣場選購個人方案 →</a>
-        <p style="margin-top:18px;font-size:13px;color:var(--muted)">想讓兩個 AI Agent 分工？→ <a href="/dual-agent/" style="color:var(--red)">雙 AI Agent（共存版或含協作室）</a></p>
-        <p style="margin-top:8px;font-size:13px;color:var(--muted)">所有方案→ <a href="/pricing/personal/" style="color:var(--red)">個人方案與定價</a></p>
-        <p style="margin-top:8px;font-size:13px;color:var(--muted)">企業需要系統化導入 AI Agent？→ <a href="/enterprise/" style="color:var(--red)">Think BIG 企業 AI Agent 導入服務</a></p>
+      <div class="cta-band cta-band-two-col">
+        <div class="cta-col">
+          <p class="cta-col-label">個人使用</p>
+          <p>蝦皮賣場選購，台灣工程師遠端裝到好，可選討好型或討伐型人格。</p>
+          <a href="https://shopee.tw/shop/105010395" class="cta-btn" target="_blank" rel="noopener">前往蝦皮賣場選購 →</a>
+        </div>
+        <div class="cta-col">
+          <p class="cta-col-label">公司導入</p>
+          <p>先填問卷自動判級，或直接 LINE 預約 15 分鐘評估，確認適合再說。</p>
+          <a href="/enterprise/start/" class="cta-btn">公司導入自助評估 →</a>
+          <a href="https://lin.ee/n5KW430" class="cta-btn cta-btn-outline" target="_blank" rel="noopener noreferrer" style="margin-top:10px">LINE 預約 15 分鐘評估 →</a>
+        </div>
       </div>
 
       <h2 id="faq">常見問題</h2>
