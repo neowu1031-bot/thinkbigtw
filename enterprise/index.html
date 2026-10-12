@@ -250,6 +250,13 @@
 .upgrade-note{font-size:13px;color:var(--muted);margin-top:16px}
 .upgrade-note strong{color:var(--ink)}
 @media(max-width:860px){.tier-grid{grid-template-columns:1fr}}
+@media(max-width:420px){
+  /* Reduce h1 at very narrow screens so text fits within content area */
+  .editorial .enterprise-hero-copy h1,.editorial h1{font-size:clamp(24px,7.2vw,30px)!important;letter-spacing:-.02em}
+  /* Allow subnav link row to wrap when total width exceeds container */
+  .enterprise-subnav>div{flex-wrap:wrap;justify-content:flex-start;gap:4px 8px}
+  .enterprise-subnav .local-consult{padding:0 10px!important}
+}
 </style>
 </head>
 <body class="homesplit editorial enterprise-overview">
