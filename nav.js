@@ -112,3 +112,39 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* ── GA4 QA filter + custom events ──────────────────────────────────────── */
+(function () {
+  'use strict';
+  /* Disable GA4 for headless/QA sessions (set before config fires when possible;
+     this late-binding version still suppresses events after page load). */
+  var QA_PARAM = 'tb_qa';
+  try {
+    if (new URLSearchParams(location.search).has(QA_PARAM) || navigator.webdriver) {
+      window['ga-disable-G-7V41XYLLP5'] = true;
+    }
+    if (new URLSearchParams(location.search).has(QA_PARAM)) {
+      try { localStorage.setItem('tb_qa', '1'); } catch (_) {}
+    }
+    if (localStorage.getItem('tb_qa')) {
+      window['ga-disable-G-7V41XYLLP5'] = true;
+    }
+  } catch (_) {}
+
+  /* Custom event helper — safe to call before gtag is defined */
+  function tbEvent(name, params) {
+    if (typeof gtag === 'function') gtag('event', name, params || {});
+  }
+
+  /* Track outbound link clicks */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.href || '';
+    if (href.indexOf('lin.ee') !== -1 || href.indexOf('line.me') !== -1) {
+      tbEvent('line_click', { page_location: location.href, link_url: href });
+    } else if (href.indexOf('shopee.tw') !== -1) {
+      tbEvent('shopee_click', { page_location: location.href, link_url: href });
+    }
+  }, true);
+})();

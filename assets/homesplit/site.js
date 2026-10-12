@@ -5,6 +5,7 @@
   const status = document.getElementById('brief-status');
   const output = document.getElementById('brief-output');
   const preview = document.getElementById('brief-text');
+  const LINE_URL = 'https://lin.ee/n5KW430';
   // Use the same inline feedback for native-required and whitespace-only values.
   form.noValidate = true;
   const fields = ['role', 'workflow', 'timing'];
@@ -14,6 +15,22 @@
     output.hidden = true;
     form.querySelectorAll('[name="' + name + '"]').forEach(field => field.setAttribute('aria-invalid', 'true'));
     form.querySelector('[name="' + name + '"]').focus();
+  }
+  async function copyAndOpenLine() {
+    try {
+      await navigator.clipboard.writeText(preview.textContent);
+      status.textContent = '摘要已複製，到 LINE 貼上送出即可。';
+    } catch (_) {
+      // Fallback: select text so user can copy manually
+      const selection = window.getSelection();
+      const range = document.createRange();
+      range.selectNodeContents(preview);
+      selection.removeAllRanges();
+      selection.addRange(range);
+      status.textContent = '瀏覽器無法自動複製，已選取摘要，請手動複製後到 LINE 貼上。';
+    }
+    if (typeof gtag === 'function') gtag('event', 'consult_summary', { page_location: location.href });
+    window.open(LINE_URL, '_blank', 'noopener,noreferrer');
   }
   form.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -34,7 +51,8 @@
     }
     preview.textContent = ['企業 AI Agent 導入諮詢', '部門／職位：' + data.get('role').trim(), '想用在哪些流程：' + flows.join('、'), '導入規劃：' + data.get('timing'), '優先改善目標：' + (data.get('need').trim() || '於諮詢時進一步確認')].join('\n');
     output.hidden = false;
-    status.textContent = '摘要已產生，尚未送出。請複製後到 LINE 貼上，確認內容再傳送。';
+    // Auto-copy and open LINE immediately after generation
+    copyAndOpenLine();
   });
   form.addEventListener('input', function () {
     if (!output.hidden) {
@@ -43,17 +61,12 @@
     }
   });
   form.querySelector('[type="submit"]').disabled = false;
-  document.getElementById('copy-brief').addEventListener('click', async function () {
-    try {
-      await navigator.clipboard.writeText(preview.textContent);
-      status.textContent = '已複製。到 LINE 貼上並確認後，即可送出。';
-    } catch (_) {
-      const selection = window.getSelection();
-      const range = document.createRange();
-      range.selectNodeContents(preview);
-      selection.removeAllRanges();
-      selection.addRange(range);
-      status.textContent = '瀏覽器無法自動複製，已選取摘要，請使用複製指令。';
-    }
-  });
+  // "開啟 LINE 洽詢" link also re-copies on click (in case user wants to send again)
+  const openLineBtn = document.getElementById('open-line-brief');
+  if (openLineBtn) {
+    openLineBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      copyAndOpenLine();
+    });
+  }
 })();

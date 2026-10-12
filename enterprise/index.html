@@ -3,6 +3,7 @@
 <html lang="zh-Hant">
 <head>
 <!-- Google tag (gtag.js) -->
+<script>if(new URLSearchParams(location.search).has('tb_qa')||navigator.webdriver)window['ga-disable-G-7V41XYLLP5']=true;</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5">
 </script>
 <script>
@@ -249,13 +250,13 @@
 .upgrade-note{font-size:13px;color:var(--muted);margin-top:16px}
 .upgrade-note strong{color:var(--ink)}
 @media(max-width:860px){.tier-grid{grid-template-columns:1fr}}
-/* 為什麼敢開這個價格 2026-09-28 */
-.why-price{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:32px 28px;margin-top:48px}
-.why-price-heading{font-size:13px;font-weight:700;letter-spacing:.1em;color:var(--rose);margin-bottom:20px}
-.why-price-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:18px}
-.why-price-list li{display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--ink);line-height:1.7}
-.why-price-num{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--rose);color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:2px}
-@media(max-width:390px){.why-price{padding:24px 16px}.why-price-list li{font-size:14px;gap:10px}}
+@media(max-width:420px){
+  /* Reduce h1 at very narrow screens so text fits within content area */
+  .editorial .enterprise-hero-copy h1,.editorial h1{font-size:clamp(24px,7.2vw,30px)!important;letter-spacing:-.02em}
+  /* Allow subnav link row to wrap when total width exceeds container */
+  .enterprise-subnav>div{flex-wrap:wrap;justify-content:flex-start;gap:4px 8px}
+  .enterprise-subnav .local-consult{padding:0 10px!important}
+}
 </style>
 </head>
 <body class="homesplit editorial enterprise-overview">
@@ -276,7 +277,7 @@
 </div>
 <p class="hero-sub-desc">照公司文件回答、附出處，不限使用人數。三種方案都含第一年維護服務。</p>
 <a class="button" href="/enterprise/start/">自助評估，看看哪種方案適合<span aria-hidden="true"> ›</span></a>
-<a class="button outline" href="#packages" style="margin-top:10px">查看方案與價格<span aria-hidden="true"> ›</span></a>
+<a class="button outline" href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" style="margin-top:10px">預約 15 分鐘線上評估<span aria-hidden="true"> ›</span></a>
 <div class="hero-frame-note">
 <strong>ABOUT THINK BIG</strong>
 <p>Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）方法論協助企業把 AI Agent 部署在公司自己的設備上、資料留在公司內，並提供一年陪跑維運；我們扮演企業的遠端 FDE（Forward Deployed Engineer，前沿部署工程師）團隊：從聽懂需求、建置知識庫與 AI Agent、上線，到後續維運，一手包辦；另有個人 AI 助理安裝方案。</p>
@@ -472,18 +473,9 @@
 
 <div class="tier-cta-row">
 <a class="button" href="/enterprise/start/">填問卷，看看哪種方案適合我 <span aria-hidden="true">›</span></a>
-<a class="button outline" href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">預約 20 分鐘評估 <span aria-hidden="true">›</span></a>
+<a class="button outline" href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">預約 15 分鐘線上評估 <span aria-hidden="true">›</span></a>
 </div>
 
-<div class="section wrap why-price" id="why-price">
-<p class="why-price-heading">WHY THIS PRICE</p>
-<h2 style="font-size:clamp(22px,4vw,30px);margin-bottom:20px">為什麼敢開這個價格</h2>
-<ol class="why-price-list">
-<li><span class="why-price-num">①</span><span>AI 把技術門檻打下來了。以前要一整個工程團隊做好幾個月的系統，現在用 AI 幾週就能建好，成本自然降下來。</span></li>
-<li><span class="why-price-num">②</span><span>我們是小規模的新創公司。不用養大辦公室和層層管理，營運成本低，省下來的直接反映在價格上。</span></li>
-<li><span class="why-price-num">③</span><span>便宜，但不隨便。每一套交付前，都經過工程師與多個 AI 交叉審查、先過資安檢查。Think BIG 自己就是 20 多個 AI Agent 每天協作營運的公司，交付給你的，是我們每天在用的架構。</span></li>
-</ol>
-</div>
 
 </section>
 <section class="section wrap" id="deployment"><div class="section-head"><div><p class="eyebrow">DATA SOVEREIGNTY</p><h2>以資料政<span class="title-tail">策<span class="punct">，</span></span><br/>決定部署架<span class="title-tail">構<span class="punct">。</span></span></h2></div><p class="intro">資料主權（Data Sovereignty）落實於處理位置、存取權限與外部傳送規則。依企業政策與設備條件選擇配置，並逐項驗證串接相容性。</p></div><div class="fit-grid"><div id="local"><h3>地端配置</h3><p class="intro">模型與指定資料在公司設備內處理。若要求資料不外傳，也要一起核對日誌、備份及外部串接。</p></div><div id="cloud"><h3>外部模型與服務</h3><p class="intro">需要外部服務時，先列出傳送欄位、用途、帳號權限與費用，確認授權後再納入流程。</p></div></div><p class="note">支援技術：OpenClaw、Claude、MCP、RAG。串接與更換模型需確認相容性，並重新驗證工作結果。</p></section>
@@ -698,21 +690,18 @@
 <label for="need">優先改善目標（選填）</label>
 <textarea id="need" maxlength="600" name="need" placeholder="例如：每天整理詢問紀錄，常漏掉該回覆的人。" rows="3"></textarea>
 </div>
-<button class="button" disabled="" type="submit">產生導入需求摘要 ↗</button>
+<button class="button" disabled="" type="submit">產生需求摘要並開啟 LINE ↗</button>
 <p class="status-message" id="brief-status" role="status">
 </p>
 <div hidden="" id="brief-output">
 <pre class="brief-result" id="brief-text"></pre>
 <div class="form-actions">
-<button class="button outline" id="copy-brief" type="button">
-         複製摘要
-        </button>
-<a class="button" href="https://lin.ee/n5KW430" rel="noopener noreferrer" target="_blank">
+<a class="button" id="open-line-brief" href="https://lin.ee/n5KW430" rel="noopener noreferrer" target="_blank">
          開啟 LINE 洽詢 ›
         </a>
 </div>
 <small>
-        複製後貼到 LINE，由你確認送出。
+        摘要已複製，到 LINE 貼上送出即可。
        </small>
 </div>
 <noscript>
