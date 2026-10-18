@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 導入後沒人用？問題多半不在 AI——從員工每天真的會做的那一件事反推 | Think BIG NEWS</title>
+<meta name="description" content="公司導入 AI 之後，員工還是照舊做事，最常見的原因不是模型不夠聰明，而是沒有先回答「要拿 AI 做什麼」、沒教、也沒放進員工每天的工作裡。本文整理國內外調查怎麼看導入卡關，以及我們部署 AI Agent 時「從一件事反推」的第一手做法。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/ai-adoption-nobody-uses-20261021/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/">
+<meta property="og:title" content="AI 導入後沒人用？問題多半不在 AI | Think BIG NEWS">
+<meta property="og:description" content="買了、裝了、開通了，然後沒人用——中小企業 AI 導入最大卡關是「尚無明確應用需求」，BCG 調查 74% 未見成效，MIT 初步報告指向學習落差。解法：從一件事反推。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 導入後沒人用？問題多半不在 AI | Think BIG NEWS">
+<meta name="twitter:description" content="從一件事反推，不要從一堆功能開始。員工每天做的那件事，才是 AI 該從哪裡進去的答案。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/#article",
+      "headline": "AI 導入後沒人用？問題多半不在 AI——從員工每天真的會做的那一件事反推",
+      "description": "公司導入 AI 之後，員工還是照舊做事，最常見的原因不是模型不夠聰明，而是沒有先回答「要拿 AI 做什麼」、沒教、也沒放進員工每天的工作裡。本文整理國內外調查怎麼看導入卡關，以及我們部署 AI Agent 時「從一件事反推」的第一手做法。",
+      "keywords": "AI 導入沒人用, AI 導入失敗原因, 員工不用 AI, 企業 AI 導入, 中小企業 AI 導入, AI Agent 導入, AI 落地, AI 導入 教育訓練, 尚無明確應用需求, AI 導入 驗收",
+      "author": {"@type": "Organization", "name": "Think BIG 自媒體部", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "大想成業有限公司", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-21T20:00:00+08:00",
+      "dateModified": "2026-10-21T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/library/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "為什麼公司導入 AI 之後，員工還是不用？", "acceptedAnswer": {"@type": "Answer", "text": "最常見的原因不是 AI 不夠聰明，而是沒有先想清楚要拿 AI 做哪一件事、沒有教員工怎麼用，也沒有把 AI 放進員工每天的工作流程裡。答案沒附出處、入口太難找，也會讓員工試一兩次就放棄。"}},
+        {"@type": "Question", "name": "台灣中小企業導入 AI 最大的障礙是什麼？", "acceptedAnswer": {"@type": "Answer", "text": "據媒體報導的經濟部中小及新創企業署委託工研院〈2025 年中小企業 AI 運用現況調查〉，中小企業考慮導入 AI 時，最大的挑戰是「尚無明確應用需求」，其次是對 AI 不理解、導入成本高、人才短缺與成效難以評估。"}},
+        {"@type": "Question", "name": "導入 AI 該從哪裡開始？", "acceptedAnswer": {"@type": "Answer", "text": "從一件事開始：找出員工每天重複做、規則寫得出來、答錯代價可控的工作，例如查產品規格或查內部規定。先讓這件事天天有人用，再擴大到第二件。"}},
+        {"@type": "Question", "name": "怎麼判斷 AI 導入到底有沒有成功？", "acceptedAnswer": {"@type": "Answer", "text": "不要只看展示效果。用員工平常真的會問的問法做驗收題，確認回答正確、附出處、查不到會說不知道；交付後持續看使用紀錄，觀察有沒有人用、哪些問題答不好。"}},
+        {"@type": "Question", "name": "員工會不會因為擔心工作被搶走而不想用 AI？", "acceptedAnswer": {"@type": "Answer", "text": "有可能，所以溝通很重要。建議先從員工最煩、最花時間的重複性工作下手，讓 AI 幫他們省時間，而不是一開始就碰需要他們專業判斷的工作。員工看到 AI 幫自己減輕負擔，接受度通常會比較高。"}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"首頁","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/library/news/"},
+        {"@type":"ListItem","position":3,"name":"AI 導入後沒人用？問題多半不在 AI","item":"https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 15px}.body th{background:var(--panel);font-family:var(--sans);font-weight:700;font-size:12px;padding:6px 8px;text-align:left;border:1px solid var(--rule)}.body td{padding:6px 8px;border:1px solid var(--rule);vertical-align:top}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>AI 導入實測手記 &middot; 第 009 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 10 月 21 日　星期三</span>
+    <span class="dot">&#9670;</span>
+    <span>AI 導入實測手記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 009 期</span>
+  </div>
+
+  <p class="kicker">AI 導入 · 落地卡關 · 使用率</p>
+  <h2 class="headline">AI 導入後沒人用？問題多半不在 AI——從員工每天真的會做的那一件事反推</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 10 月 21 日</p>
+  <p class="deck">AI 導入後沒人用，多半不是模型不夠聰明，而是沒先想清楚要拿它做什麼、沒教員工用，也沒放進每天的工作裡。解法是從員工每天真的會做的一件事反推。</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <h2><span class="no">一</span>現象：買了、裝了、開通了，然後沒人用</h2>
+    <p class="lead">很多公司都經歷過這個過程：老闆看到 AI 很厲害，買了工具、開了帳號、辦了一場說明會。兩三個禮拜後再看，員工還是照舊用原本的方法做事，AI 的入口沒什麼人點。</p>
+    <p>這不是個別公司的問題，國內外的調查都看到類似的狀況：</p>
+    <p><strong>台灣：最大的卡關是「不知道要用在哪」。</strong>據媒體報導，經濟部中小及新創企業署委託工研院做的〈2025 年中小企業 AI 運用現況調查〉，有效回收 1,207 家 199 人以下的公司。結果顯示，中小企業考慮導入 AI 時，最大的挑戰是「尚無明確應用需求」，其次才是對 AI 不理解、導入成本高、人才短缺、成效難以評估。同一份調查也指出，只有約一成五的中小企業有 AI 人才，其中約七成五是會操作現成工具的初階人才。（來源：<a href="https://wantrich.chinatimes.com/news/20251226900494-420501" target="_blank" rel="noopener">中時新聞網旺得富，2025-12-26</a>）</p>
+    <p><strong>全球：多數公司還沒看到成效。</strong>一家國際管理顧問公司 2024 年調查 1,000 位企業高階主管，發現 74% 的公司還沒有從 AI 得到具體價值，只有 26% 建立了跨出概念驗證、產生實際價值的能力。（來源：<a href="https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value" target="_blank" rel="noopener">BCG 新聞稿，2024-10-24</a>）</p>
+    <p><strong>有人用，但不是用公司給的。</strong>一家大型軟體公司 2024 年調查 31 個市場、31,000 位知識工作者：75% 已在工作中使用生成式 AI，但其中 78% 是自己帶 AI 工具上班；在工作中用 AI 的人，只有 39% 從公司那裡得到過 AI 訓練。（來源：<a href="https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part" target="_blank" rel="noopener">Microsoft Work Trend Index 2024</a>）</p>
+    <p>把三份資料放在一起看，畫面很清楚：<strong>員工不是不想用 AI，而是公司給的那一套，沒有接上他們每天真的在做的事。</strong></p>
+
+    <h2><span class="no">二</span>各方評價：問題在 AI，還是在人和流程？</h2>
+    <p><strong>認為問題在流程與組織的一方</strong>，證據不少。前面那家顧問公司在同一份報告中提出「10-20-70」原則：做得好的公司，把 10% 的資源放在演算法、20% 放在技術與資料、70% 放在人與流程。（來源：<a href="https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value" target="_blank" rel="noopener">BCG 新聞稿</a>）</p>
+    <p>美國麻省理工學院（MIT）一個研究計畫 2025 年發布的初步報告也有類似結論。據《Fortune》報導，報告指出多數企業的生成式 AI 導入沒有達到預期，關鍵不在 AI 模型的品質，而在工具與組織之間的「學習落差」，以及企業整合方式出了問題。（來源：<a href="https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/" target="_blank" rel="noopener">Fortune，2025-08-18</a>）</p>
+    <p><strong>持保留態度的一方</strong>提醒兩件事：1. <strong>數字要看清楚來源。</strong>MIT 那份報告是初步研究，樣本與方法各家報導說法不一，不能當成「所有 AI 專案都會失敗」的定論。2. <strong>工具本身也有責任。</strong>答案常出錯、沒附出處、反應很慢的 AI，員工試一兩次就不會再用。工具品質不夠，再多教育訓練也救不回來。</p>
+    <p>兩邊其實不衝突：<strong>工具要夠好，是基本門檻；但跨過門檻之後，決定有沒有人用的，是「用在哪、誰在用、怎麼用」。</strong></p>
+
+    <section class="firsthand">
+      <span class="lede">&#9670; 第一手心得</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+      <p>Think BIG 幫企業部署 AI Agent，交付後也會持續看使用紀錄。以下是不具名的通用經驗：</p>
+      <p><strong>1. 沒人用的系統，症狀都很像。</strong>員工繼續用舊方法；問一次答錯就不再問；入口藏在要登入好幾層的地方；大家不知道該問什麼；答案沒附出處，員工不敢直接用；權限設錯，該看到的文件看不到。這些幾乎都和模型聰不聰明無關。</p>
+      <p><strong>2. 從「一件事」反推，而不是從「一堆功能」開始。</strong>我們開工前會先找一件符合三個條件的工作：每天重複發生、規則寫得出來、答錯的代價可以控制。例如「業務查產品規格」或「新人查內部規定」。一件事先做到大家天天用，再談第二件。</p>
+      <p><strong>3. 驗收題用員工真的會問的問法。</strong>我們會準備一批「已知答案」的驗收題，而且盡量用員工平常的說法，包括簡稱、口語、甚至錯字。用標準問法測得很漂亮、員工一問就答不出來，是很常見的落差。</p>
+      <p><strong>4. 把 AI 放在員工已經在用的地方。</strong>多開一個新網站、新帳號，就多一道門檻。能放進員工每天在用的聊天工具或既有系統，使用率通常會好很多。要注意的是，接上 LINE 這類外部聊天通路時，透過那個通路的訊息會經過該服務，導入前要先講清楚。</p>
+      <p><strong>5. 查不到就說不知道，答得出來就附出處。</strong>員工敢不敢用，取決於信不信得過。AI 回答附上來自哪份文件，員工可以自己點開確認；查不到時明說不知道，比硬掰一個答案更能建立信任。</p>
+      <p><strong>6. 交付之後，每週看一次紀錄。</strong>員工問了什麼、哪幾題沒答好、哪些文件該補，都在紀錄裡。內部指定一位窗口，每週花一點時間看紀錄、補資料，系統就會越用越準。這也是前面提到的「學習落差」最實際的補法。</p>
+      <p>做了這段時間，我們最深的體會是：<strong>AI 導入的成敗，常常在開工前就決定了。</strong>先把「要拿 AI 做哪一件事」講清楚，後面的問題會少一大半。</p>
+    </section>
+
+    <h2><span class="no">四</span>我們的建議：導入前先回答這五個問題</h2>
+    <p><strong>1. 員工每天最花時間、又最煩的工作是什麼？</strong>直接去問第一線，不要只問主管。<strong>2. 這件事有沒有規則可循？</strong>有文件、有標準答案的工作，最適合先交給 AI Agent。<strong>3. 答錯會怎樣？</strong>先挑答錯代價可控的工作。對外報價、法務判斷這類高風險工作，先讓 AI 擬稿、人工確認。<strong>4. 員工會在哪裡用？</strong>盡量放進員工已經在用的工具裡，少開新入口。<strong>5. 誰負責看紀錄、補資料？</strong>指定一位內部窗口，不需要懂技術，但要懂流程、能拍板。</p>
+    <table>
+      <thead><tr><th></th><th>先堆功能</th><th>從一件事反推</th></tr></thead>
+      <tbody>
+        <tr><td>起點</td><td>工具能做什麼</td><td>員工每天在煩什麼</td></tr>
+        <tr><td>第一個月</td><td>功能很多，大家不知道從哪用起</td><td>一件事先做到天天有人用</td></tr>
+        <tr><td>驗收方式</td><td>看展示效果</td><td>用員工真的會問的問題實測</td></tr>
+        <tr><td>交付之後</td><td>沒人看紀錄，慢慢沒人用</td><td>每週看紀錄、補資料，越用越準</td></tr>
+      </tbody>
+    </table>
+    <p>一句話收尾：<strong>AI 導入沒人用，先別換 AI，先換問題。</strong></p>
+    <p>延伸閱讀：如果公司內部沒有人能負責把 AI 接進流程，可以參考 <a href="/library/news/fde-outsourced-engineer-20261013/">Think BIG NEWS 第 007 期〈FDE 是什麼？〉</a>，談中小企業怎麼用派駐式做法補上這一段。</p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; 編按 · Think BIG 的做法：這套架構帶來什麼</span>
+      <h2>先問一件事。範圍凍結，30 天內交付。</h2>
+      <p><em>（以下是 Think BIG 自己的立場，與上方中立報導區隔。）</em></p>
+      <p>我們扮演企業的遠端 FDE（派駐式工程）團隊，用 TB FRAME 四階段（評估、建置、驗證、維運）把 AI Agent 接進你的工作：<strong>先問一件事：</strong>評估階段先找出員工每天真的會做、規則清楚的那一件事，再決定 AI Agent 要做什麼、不做什麼。<strong>範圍凍結、30 天內交付：</strong>開工前寫清楚範圍與驗收題；範圍凍結與資料到位後 30 天內交付。<strong>用員工的問法驗收：</strong>交付前用已知答案實測，回答附出處，查不到會說不知道。<strong>第一年維運：</strong>三種方案都含第一年維護服務，交付後持續看紀錄、補資料、主動告警。</p>
+      <p>我們不承諾業績，承諾的是把 AI 真正接進你的工作，並且讓你看得到它在動。</p>
+    </section>
+
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：為什麼公司導入 AI 之後，員工還是不用？</dt>
+        <dd>最常見的原因不是 AI 不夠聰明，而是沒有先想清楚要拿 AI 做哪一件事、沒有教員工怎麼用，也沒有把 AI 放進員工每天的工作流程裡。答案沒附出處、入口太難找，也會讓員工試一兩次就放棄。</dd>
+        <dt>Q2：台灣中小企業導入 AI 最大的障礙是什麼？</dt>
+        <dd>據媒體報導的經濟部中小及新創企業署委託工研院〈2025 年中小企業 AI 運用現況調查〉，中小企業考慮導入 AI 時，最大的挑戰是「尚無明確應用需求」，其次是對 AI 不理解、導入成本高、人才短缺與成效難以評估。</dd>
+        <dt>Q3：導入 AI 該從哪裡開始？</dt>
+        <dd>從一件事開始：找出員工每天重複做、規則寫得出來、答錯代價可控的工作，例如查產品規格或查內部規定。先讓這件事天天有人用，再擴大到第二件。</dd>
+        <dt>Q4：怎麼判斷 AI 導入到底有沒有成功？</dt>
+        <dd>不要只看展示效果。用員工平常真的會問的問法做驗收題，確認回答正確、附出處、查不到會說不知道；交付後持續看使用紀錄，觀察有沒有人用、哪些問題答不好。</dd>
+        <dt>Q5：員工會不會因為擔心工作被搶走而不想用 AI？</dt>
+        <dd>有可能，所以溝通很重要。建議先從員工最煩、最花時間的重複性工作下手，讓 AI 幫他們省時間，而不是一開始就碰需要他們專業判斷的工作。員工看到 AI 幫自己減輕負擔，接受度通常會比較高。</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    中時新聞網旺得富〈2025中小企業AI運用調查 13行業逾9成公司僅粗淺了解〉（2025-12-26；中企署委託工研院，1,207 家有效樣本，最大挑戰「尚無明確應用需求」）：<a href="https://wantrich.chinatimes.com/news/20251226900494-420501" target="_blank" rel="noopener">wantrich.chinatimes.com</a> &nbsp;&middot;&nbsp;
+    BCG 新聞稿〈AI Adoption in 2024: 74% of Companies Struggle to Achieve and Scale Value〉（2024-10-24；1,000 位高階主管、10-20-70 原則）：<a href="https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value" target="_blank" rel="noopener">bcg.com</a> &nbsp;&middot;&nbsp;
+    Microsoft〈2024 Work Trend Index: AI at Work Is Here. Now Comes the Hard Part〉（2024-05-08；31 市場 31,000 人，75% 使用、78% 自帶、39% 受訓）：<a href="https://www.microsoft.com/en-us/worklab/work-trend-index/ai-at-work-is-here-now-comes-the-hard-part" target="_blank" rel="noopener">microsoft.com</a> &nbsp;&middot;&nbsp;
+    Fortune〈MIT report: 95% of generative AI pilots at companies are failing〉（2025-08-18；MIT NANDA 初步報告轉述）：<a href="https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/" target="_blank" rel="noopener">fortune.com</a> &nbsp;&middot;&nbsp;
+    Think BIG NEWS 第 007 期〈FDE 是什麼？〉：<a href="/library/news/fde-outsourced-engineer-20261013/">thinkbigtw.com</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用之調查與報導均標註來源；調查數字為各來源公布之結果，MIT 研究為初步報告，本文以報導轉述並註明限制。文中提到的公司以描述代稱、連結附於來源，內容不評價任何公司或產品。我們的第一手經驗全不具名。</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI 導入第一手手記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/ai-adoption-nobody-uses-20261021/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
