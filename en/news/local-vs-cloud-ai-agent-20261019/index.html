@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Do Some Companies Run AI Agents on Their Own Machines Instead of the Cloud? Start With One Question: Can the Data Leave? | Think BIG NEWS</title>
+<meta name="description" content="Companies run AI agents on their own hardware (on-premises) mostly because their data can't or shouldn't leave the building; the cloud wins on speed and zero hardware to manage. We look at how Taiwan's public-sector AI guideline, its personal data law, and cloud providers' terms frame the choice, plus the trade-offs we've learned deploying both on-premises and cloud AI agents.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/local-vs-cloud-ai-agent-20261019/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/local-vs-cloud-ai-agent-20261019/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/">
+<meta property="og:title" content="On-Premises vs. Cloud AI Agents: Can the Data Leave? | Think BIG NEWS">
+<meta property="og:description" content="On-premises keeps the model and documents on company hardware; the cloud launches fast but sends your data to the provider. Taiwan public-sector guidance, personal data law, provider terms, and six first-hand lessons.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="On-Premises vs. Cloud AI Agents | Think BIG NEWS">
+<meta name="twitter:description" content="Can the data leave? That one question usually decides whether AI agents belong on company hardware or in the cloud.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/#article",
+      "headline": "Why Do Some Companies Run AI Agents on Their Own Machines Instead of the Cloud? Start With One Question: Can the Data Leave?",
+      "description": "Companies run AI agents on their own hardware (on-premises) mostly because their data can't or shouldn't leave the building; the cloud wins on speed and zero hardware to manage. We look at how Taiwan's public-sector AI guideline, its personal data law, and cloud providers' terms frame the choice, plus the trade-offs we've learned deploying both on-premises and cloud AI agents.",
+      "keywords": "on-premises AI agent, local AI agent, on-prem vs cloud AI, enterprise local LLM, keep data in-house, cloud AI data privacy, Taiwan generative AI guideline on-premises, Taiwan personal data protection act AI, local LLM cost, AI agent security",
+      "author": {"@type": "Organization", "name": "Think BIG Content Team", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "Think BIG Make it Real Co., Ltd.", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-19T20:00:00+08:00",
+      "dateModified": "2026-10-19T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/en/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "Why do some companies run AI agents on their own computers?", "acceptedAnswer": {"@type": "Answer", "text": "The most common reason is that their data can't or shouldn't leave the company: client contracts have confidentiality clauses, the data includes personal information, or an industry regulator has rules. On-premises deployment keeps the model and documents on company hardware, so questions never pass through an outside model provider."}},
+        {"@type": "Question", "name": "What's the difference between running an AI agent on-premises and in the cloud?", "acceptedAnswer": {"@type": "Answer", "text": "Where the data goes. On-premises, it's processed on the company's own hardware; in the cloud, questions and relevant document excerpts are sent to the model provider. The cloud launches faster and needs no hardware; on-premises needs ongoing maintenance, and hardware limits model capability."}},
+        {"@type": "Question", "name": "If it's installed locally, does that mean the data never leaves?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. Automatic updates, error reporting, remote maintenance, or a connection to an outside chat channel like LINE can all route data through outside services. Keeping data in-house takes more than a local model; you also need to check logs, backups, and every outside integration."}},
+        {"@type": "Question", "name": "Can Taiwan's government agencies use on-premises generative AI for confidential data?", "acceptedAnswer": {"@type": "Answer", "text": "Under point four of the Reference Guidelines for the Use of Generative AI by the Executive Yuan and Its Agencies, a generative AI model deployed in a closed, on-premises environment may be used according to classification level once the security of the system environment has been confirmed. Each agency's own rules still govern actual practice."}},
+        {"@type": "Question", "name": "Should a small business choose on-premises or cloud?", "acceptedAnswer": {"@type": "Answer", "text": "Ask three questions first: can the data leave the company, how heavy will usage be, and is anyone available to look after a machine? Sensitive data points to on-premises; a quick trial with low-sensitivity data can start in the cloud. If you have both kinds of data, a hybrid setup works, but classify your data first."}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"News","item":"https://thinkbigtw.com/en/news/"},
+        {"@type":"ListItem","position":3,"name":"On-Premises vs. Cloud AI Agents","item":"https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 15px}.body th{background:var(--panel);font-family:var(--sans);font-weight:700;font-size:12px;padding:6px 8px;text-align:left;border:1px solid var(--rule)}.body td{padding:6px 8px;border:1px solid var(--rule);vertical-align:top}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/" lang="zh-Hant">&#20013;&#25991;</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/" lang="zh-Hant">&#20013;&#25991;</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>Field Notes &middot; Issue 008</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>Monday, October 19, 2026</span>
+    <span class="dot">&#9670;</span>
+    <span>First-hand AI deployment notes</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 008</span>
+  </div>
+
+  <p class="kicker">On-Premises vs. Cloud &middot; AI Agent Deployment &middot; Data Security</p>
+  <h2 class="headline">Why Do Some Companies Run AI Agents on Their Own Machines Instead of the Cloud? Start With One Question: Can the Data Leave?</h2>
+  <p class="byline">Think BIG Content Team &nbsp;|&nbsp; October 19, 2026</p>
+  <p class="deck">Companies keep AI agents on their own machines mostly because the data can't leave the building. On-premises, the model and documents are processed on company hardware. The cloud is faster to launch and needs no hardware, but your questions and document excerpts go to the model provider. Neither is better; it depends on the job.</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <h2><span class="no">1.</span> What's happening: "Can this data leave?" is now the first question in any AI rollout</h2>
+    <p class="lead">There's one key difference between a chatbot and an AI agent: an AI agent <strong>goes and gets data on its own and takes action on its own.</strong> It might read your price quotes, dig through support tickets, check inventory, then turn the results into a reply or write them into a system. It touches far more data than the few lines a person types into a chat window.</p>
+    <p>So when companies evaluate AI agents, the first question often isn't "Which model is smartest?" It's "<strong>Is it OK for this data to leave the company?</strong>"</p>
+    <p>Taiwan's public sector has already answered that question once. The <em>Reference Guidelines for the Use of Generative AI by the Executive Yuan and Its Agencies</em>, drafted by the National Science and Technology Council and presented to the Executive Yuan on August 31, 2023 before being issued to agencies, say in point four that staff must not give generative AI any information that is confidential, personal, or not yet approved for release, and must not ask it questions that could involve confidential matters or personal data. Then comes the exception: <strong>a generative AI model deployed in a closed, on-premises environment may be used according to classification level, once the security of the system environment has been confirmed.</strong> (Source: <a href="https://www.ey.gov.tw/Page/9277F759E41CCD91/e63572a7-fb79-4c02-9ea3-b731e7c06a56" target="_blank" rel="noopener">Executive Yuan press release, 2023-08-31</a>)</p>
+    <p>In other words, under the public sector's rules, the same generative AI gets treated two different ways depending on whether it's processed outside or inside your own environment.</p>
+    <p>Private companies aren't bound by that guideline, but they have their own concerns. Article 21 of Taiwan's Personal Data Protection Act lets the competent authority restrict a private organization's international transfer of personal data in certain cases, such as when major national interests are involved or the receiving country lacks adequate data protection laws. (Source: <a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=I0050021&flno=21" target="_blank" rel="noopener">Laws &amp; Regulations Database, Personal Data Protection Act, Article 21</a>) Confidentiality clauses in client contracts and industry regulators' rules can also shape where data is allowed to go.</p>
+    <p>Meanwhile, running models on your own computer keeps getting easier. Open-source tools for local models are now common, and the official FAQ of one popular tool puts it plainly: when you run locally, the developer doesn't see your prompts or data, but if you switch to its cloud-hosted models, your prompts and responses are processed by its service. (Source: <a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">Ollama official FAQ</a>) Same tool, different mode, completely different data flow.</p>
+    <p>In short: <strong>the difference between on-premises and cloud isn't about which technology is newer. It's about where the data goes.</strong></p>
+
+    <h2><span class="no">2.</span> The debate: what the cloud camp and the on-prem camp each get right</h2>
+    <p><strong>The cloud camp's</strong> case is practical: you're up and running fast, with no machines to buy and no GPUs to manage, and the newest, most capable models usually show up in the cloud first. For teams whose data isn't very sensitive and who want to try things out, the cloud is the easiest place to start.</p>
+    <p>Cloud providers are also responding to data concerns. Take one major AI model provider's enterprise privacy page: business data isn't used to train its models by default, and API inputs and outputs may be retained for up to 30 days to provide the service and detect abuse, then deleted, with zero data retention available for qualifying use cases. (Source: <a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener">OpenAI Enterprise Privacy</a>) The terms are getting clearer, and that's a fact.</p>
+    <p><strong>The on-prem camp</strong> looks at the other side: no matter how clear the terms are, the data still left the company, and you're relying on the other party to keep its promises and on its systems not to fail. On-premises, the model and documents are processed on company hardware, and questions never pass through an outside model provider. Costs are mostly equipment, so they don't swing month to month with usage.</p>
+    <p>On-premises comes with clear costs too: <strong>someone has to look after it</strong> (the machine has to stay on 24/7, and somebody has to deal with power outages, reboots, and full disks); <strong>hardware caps model capability</strong> (the models a company machine can run are usually smaller than the largest cloud models); <strong>upgrades are your call</strong> (cloud providers upgrade models for you; on-premises, you evaluate, test, and switch versions yourself).</p>
+    <p>Both sides are right. The real question isn't "which side?" It's <strong>which side each type of data in your company belongs on.</strong></p>
+
+    <div class="firsthand">
+      <span class="lede">&#9670; First-hand notes</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">3. What we've learned doing this work</h2>
+      <p>Think BIG deploys AI agents for businesses both on-premises and in the cloud. Here's what we've learned, with no client details:</p>
+      <p><strong>1. Map the data flow before choosing on-prem or cloud.</strong> Before we start, we list where six things will live: the application, the model, the knowledge base index, the original documents, conversation logs, and backups. Many people assume "installed locally" means everything is local. But the moment you connect an outside chat channel like LINE, messages sent through that channel pass through that service. All of this has to be spelled out before rollout.</p>
+      <p><strong>2. "Local" doesn't mean "never connects out."</strong> Automatic updates, error reporting, and remote maintenance connections can all make a machine reach the internet. Keeping data from leaving takes more than a local model; you also have to check logs, backups, and every outside integration.</p>
+      <p><strong>3. With dual-mode tools, confirm which mode you're actually using.</strong> As noted above, some local model tools also offer cloud models. We confirm that the model in use really is local and turn off cloud features when needed, so nobody ends up thinking data stays local when it's actually being sent out.</p>
+      <p><strong>4. The most common on-prem trap: "it installs" doesn't mean "it runs well."</strong> If the model never touches the GPU and runs entirely on the CPU, answers get so slow that nobody wants to use it. We covered this in <a href="https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/" target="_blank" rel="noopener">Think BIG NEWS No. 2</a>. Acceptance has to rest on measured results, not on how smooth the demo looks.</p>
+      <p><strong>5. The most underestimated cloud cost: how much an AI agent uses.</strong> Chat is one question, one answer. To finish a single task, an AI agent often calls the model several times, and usage multiplies. Cloud billing is mostly usage-based, so estimate before rollout and set usage caps and alerts.</p>
+      <p><strong>6. On-prem or cloud, accounts belong in the company's name.</strong> Cloud API access is set up under the company's own account, so the company confirms terms directly with the model provider. On-premises, the machines, data, and configuration all belong to the company too. That way, switching models or vendors later never leaves you locked in.</p>
+      <p>Our biggest takeaway: <strong>on-prem versus cloud isn't a matter of belief. It's a matter of data classification.</strong> Sort your data first, and the answer usually becomes obvious.</p>
+    </div>
+
+    <h2><span class="no">4.</span> Our recommendations: three questions that decide where it goes</h2>
+    <p><strong>1. Can this type of data leave the company?</strong> Check three things: confidentiality clauses in client contracts, your industry regulator's rules, and whether personal data is involved. If any one of them says no, that data belongs on-premises. <strong>2. How much will it be used, and will that grow?</strong> If a few people ask occasional questions, the cloud is a bargain. If the whole company uses it every day and AI agents run workflows automatically, factor monthly usage into the comparison. <strong>3. Is anyone available to look after a machine?</strong> On-premises needs someone, internal or external, to keep it running, monitor it, and update it. Without that, even a great on-prem system slowly breaks down.</p>
+    <table>
+      <thead><tr><th></th><th>On-premises</th><th>Cloud</th><th>Hybrid</th></tr></thead>
+      <tbody>
+        <tr><td>Data flow</td><td>Model and documents processed on company hardware</td><td>Questions and document excerpts sent to the model provider</td><td>Sensitive data on-prem, general data in the cloud</td></tr>
+        <tr><td>Best for</td><td>Companies with lots of contracts, personal data, or internal secrets</td><td>Teams that want to try fast with low-sensitivity data</td><td>Companies with both kinds of data and a clear way to tell them apart</td></tr>
+        <tr><td>Main cost</td><td>Equipment and maintenance</td><td>Usage-based billing</td><td>Both, plus two systems to manage</td></tr>
+        <tr><td>Watch out for</td><td>Needs someone to maintain it; hardware caps model capability</td><td>Terms and model versions change</td><td>Data classification has to come first</td></tr>
+      </tbody>
+    </table>
+    <p>Bottom line: <strong>ask whether the data can leave before you decide where your AI agent lives.</strong></p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; Editor's Note &middot; How Think BIG Approaches This</span>
+      <h2>On-premises by default. Security reviewed before every launch.</h2>
+      <p><em>(The following reflects Think BIG's own position and is separate from the neutral reporting above.)</em></p>
+      <p>We start from protecting our clients' security and build AI agents on the company's own machines. All three plans offer two deployment options: <strong>On-premises edition</strong> — the model and documents are processed on your company's machines, and questions don't pass through an outside model provider. If you add outside channels such as LINE, messages through those channels pass through that service; we list every item for you before rollout. <strong>Cloud-assisted edition</strong> — model API access is set up under your company's own account. Questions and retrieved document excerpts are sent to the model provider for processing, under that provider's terms of service. It suits companies whose data policies allow it, that want to launch fast, and that don't want to manage hardware.</p>
+      <p><strong>Security review before every launch:</strong> every launch goes through a security review of code and configuration first, and nothing ships until it passes. Third-party packages are version-pinned, keys stay out of version control, and cloud accounts are opened in your company's name. <strong>Delivery within 30 days:</strong> delivery happens within 30 days once scope is frozen and the data is in place, with the first year of maintenance included.</p>
+      <p>Nobody can promise perfect security. What we do is review it, step by step.</p>
+    </section>
+
+    <section class="faq">
+      <h3>FAQ</h3>
+      <dl>
+        <dt>Q1: Why do some companies run AI agents on their own computers?</dt>
+        <dd>The most common reason is that their data can't or shouldn't leave the company: client contracts have confidentiality clauses, the data includes personal information, or an industry regulator has rules. On-premises deployment keeps the model and documents on company hardware, so questions never pass through an outside model provider.</dd>
+        <dt>Q2: What's the difference between running an AI agent on-premises and in the cloud?</dt>
+        <dd>Where the data goes. On-premises, it's processed on the company's own hardware; in the cloud, questions and relevant document excerpts are sent to the model provider. The cloud launches faster and needs no hardware; on-premises needs ongoing maintenance, and hardware limits model capability.</dd>
+        <dt>Q3: If it's installed locally, does that mean the data never leaves?</dt>
+        <dd>Not necessarily. Automatic updates, error reporting, remote maintenance, or a connection to an outside chat channel like LINE can all route data through outside services. Keeping data in-house takes more than a local model; you also need to check logs, backups, and every outside integration.</dd>
+        <dt>Q4: Can Taiwan's government agencies use on-premises generative AI for confidential data?</dt>
+        <dd>Under point four of the Reference Guidelines for the Use of Generative AI by the Executive Yuan and Its Agencies, a generative AI model deployed in a closed, on-premises environment may be used according to classification level once the security of the system environment has been confirmed. Each agency's own rules still govern actual practice.</dd>
+        <dt>Q5: Should a small business choose on-premises or cloud?</dt>
+        <dd>Ask three questions first: can the data leave the company, how heavy will usage be, and is anyone available to look after a machine? Sensitive data points to on-premises; a quick trial with low-sensitivity data can start in the cloud. If you have both kinds of data, a hybrid setup works, but classify your data first.</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Executive Yuan press release on the <em>Reference Guidelines for the Use of Generative AI</em> (2023-08-31; includes the NSTC press release and full guideline text, with the closed on-premises exception in point four): <a href="https://www.ey.gov.tw/Page/9277F759E41CCD91/e63572a7-fb79-4c02-9ea3-b731e7c06a56" target="_blank" rel="noopener">ey.gov.tw</a> &nbsp;&middot;&nbsp;
+    Laws &amp; Regulations Database of the Republic of China (Taiwan), Personal Data Protection Act, Article 21: <a href="https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=I0050021&flno=21" target="_blank" rel="noopener">law.moj.gov.tw</a> &nbsp;&middot;&nbsp;
+    Ollama official FAQ: <a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com</a> &nbsp;&middot;&nbsp;
+    OpenAI, "Enterprise Privacy": <a href="https://openai.com/enterprise-privacy/" target="_blank" rel="noopener">openai.com</a> &nbsp;&middot;&nbsp;
+    Think BIG NEWS No. 2, "Is Your Local AI Actually Using the GPU?": <a href="https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/" target="_blank" rel="noopener">thinkbigtw.com</a>
+  </div>
+  <p class="disclaimer">This article combines industry reporting with Think BIG's first-hand practice. All cited laws, official documents, and provider terms are linked; terms reflect each source's latest published version. Companies are described rather than named in the text, with links in the sources; nothing here evaluates any company or product. This article is not legal advice; consult a professional on personal data and contract questions. Our first-hand experience is shared without client details.</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; First-hand AI deployment notes
+    <span class="brand">Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE Official Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/library/news/local-vs-cloud-ai-agent-20261019/" lang="zh-Hant">&#20013;&#25991;</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
