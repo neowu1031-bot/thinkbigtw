@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups? | Q&amp;A Library | Think BIG</title>
+<meta name="description" content="With retrieval-augmented generation (RAG), the on-premises version processes questions, documents, and answers on company hardware, while the cloud-assisted version sends the question and the retrieved document passages to the model provider. This page splits the data path into indexing, retrieval, answering, and logging, with five questions to ask before you start.">
+<link rel="canonical" href="https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/rag-data-flow-cloud-vs-local/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/rag-data-flow-cloud-vs-local/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/">
+<meta property="og:title" content="When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups? | Q&amp;A Library | Think BIG">
+<meta property="og:description" content="With retrieval-augmented generation (RAG), the on-premises version processes questions, documents, and answers on company hardware, while the cloud-assisted version sends the question and the retrieved document passages to the model provider. This page splits the data path into indexing, retrieval, answering, and logging, with five questions to ask before you start.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups? | Q&amp;A Library | Think BIG">
+<meta name="twitter:description" content="With retrieval-augmented generation (RAG), the on-premises version processes questions, documents, and answers on company hardware, while the cloud-assisted version sends the question and the retrieved document passages to the model provider. This page splits the data path into indexing, retrieval, answering, and logging, with five questions to ask before you start.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/#article",
+   "headline": "When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups?",
+   "description": "With retrieval-augmented generation (RAG), the on-premises version processes questions, documents, and answers on company hardware, while the cloud-assisted version sends the question and the retrieved document passages to the model provider. This page splits the data path into indexing, retrieval, answering, and logging, with five questions to ask before you start.",
+   "keywords": "RAG data leakage, on-premises AI data, cloud AI data flow, local LLM deployment, RAG explained, cloud-assisted AI, data residency AI, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "Think BIG Make it Real Co., Ltd.",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-19T12:00:00+08:00",
+   "dateModified": "2026-10-19T12:00:00+08:00",
+   "url": "https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/",
+   "mainEntityOfPage": "https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "citation": [
+    "https://arxiv.org/abs/2005.11401",
+    "https://platform.openai.com/docs/guides/your-data",
+    "https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data",
+    "https://platform.openai.com/docs/guides/embeddings",
+    "https://thinkbigtw.com/enterprise/rag/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "On-premises: employees' questions, company documents, and the AI's answers are all processed on the company's own hardware. Cloud-assisted: the employee's question, plus the document passages the system retrieves, are sent to the model provider and retained for a period under the provider's rules (for example, up to 30 days by default for the OpenAI and Anthropic APIs). One more check: if the embedding step used for indexing also runs on a cloud service, document content is sent out in chunks when the index is built."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does using a cloud model to search company documents send the whole knowledge base?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No, but each question sends the employee's question and the passages retrieved for it to the model provider. If the indexing step uses a cloud embedding API, document content is also sent in chunks when the index is built."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does on-premises deployment mean no data ever leaves?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not necessarily. On-premises decides where the model and documents sit. If the workflow connects to a cloud model, messaging app, or other external service, that part of the data goes out. Check the local model, outbound restrictions, logs, and backups."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How long do cloud model providers keep the data I send?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Per official documentation, OpenAI API abuse monitoring logs are kept up to 30 days by default; Anthropic API inputs and outputs are deleted within 30 days by default, with exceptions. Actual terms depend on your plan and contract."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What should we ask before letting AI search company documents?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Where embedding happens, where the answering model runs, where logs are kept and for how long, which external services are connected, and which documents must never leave the company."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://thinkbigtw.com/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Q&A Library",
+     "item": "https://thinkbigtw.com/en/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "AI document search: where the data goes",
+     "item": "https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/en/qa/">&larr; Q&amp;A Library</a>
+  <div class="qa-top">
+    <span class="cat">Enterprise AI Security</span>
+    <span class="no">TB03</span>
+  </div>
+  <h1 class="q">When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups?</h1>
+  <p class="byline">Think BIG Q&amp;A Library&nbsp;&nbsp;·&nbsp;&nbsp;<time datetime="2026-10-19T12:00:00+08:00">2026-10-19</time>
+    &nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://thinkbigtw.com/library/qa/rag-data-flow-cloud-vs-local/" hreflang="zh-Hant-TW" style="color:var(--ink-soft)">中文</a></p>
+
+  <section class="answer" aria-label="The short answer">
+    <span class="lede">The short answer</span>
+    <div><p>On-premises: employees' questions, company documents, and the AI's answers are all processed on the company's own hardware. Cloud-assisted: the employee's question, plus the document passages the system retrieves, are sent to the model provider and retained for a period under the provider's rules (for example, up to 30 days by default for the OpenAI and Anthropic APIs). One more check: if the embedding step used for indexing also runs on a cloud service, document content is sent out in chunks when the index is built.</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">1. </span>The four stages data passes through</h2>
+<p>The common way to let AI search company documents is RAG (retrieval-augmented generation): before answering, the AI retrieves relevant passages from company documents and writes the answer from them. The approach comes from Lewis et al. (2020). Data passes four stages:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>What happens</th>
+<th>On-premises</th>
+<th>Cloud-assisted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Indexing</td>
+<td>Documents are split and converted to vectors in a knowledge base</td>
+<td>On company hardware</td>
+<td>Depends: a local embedding model keeps it in-house; a cloud embedding API sends the passages out</td>
+</tr>
+<tr>
+<td>2. Retrieval</td>
+<td>Relevant passages are found for the question</td>
+<td>On company hardware</td>
+<td>Usually on company hardware or a server under the company's account</td>
+</tr>
+<tr>
+<td>3. Answering</td>
+<td>"Question + retrieved passages" go to the model</td>
+<td>Model on company hardware</td>
+<td><strong>Question and passages go to the model provider</strong></td>
+</tr>
+<tr>
+<td>4. Logging</td>
+<td>Chat logs, system logs, backups</td>
+<td>Stored where the company designates</td>
+<td>The company keeps its own logs; the provider retains data under its own policy</td>
+</tr>
+</tbody>
+</table></div>
+<p>Stage 3 is the key. The cloud-assisted version does not send the whole knowledge base, but every question sends the passages retrieved for it. More questions mean more document fragments leave the company.</p>
+<h2><span class="no">2. </span>How long providers retain data</h2>
+<p>Per official documentation (checked 2026-10-19):</p>
+<ul>
+<li><strong>OpenAI API</strong>: since March 1, 2023, API data is not used for training by default. Abuse monitoring logs, which may include prompts and responses, are retained up to 30 days by default. Eligible customers can apply for Zero Data Retention, subject to OpenAI's prior approval.</li>
+<li><strong>Anthropic API</strong>: inputs and outputs are deleted within 30 days of receipt or generation by default. Exceptions include customer-controlled storage (such as the Files API), separate agreements, Usage Policy enforcement, and legal requirements.</li>
+</ul>
+<p>So the cloud-assisted version means two things: data leaves the company, and it stays on someone else's servers for a while. If a policy says a document must never leave the company, it belongs only in the on-premises knowledge base.</p>
+<h2><span class="no">3. </span>Five questions to ask before you start</h2>
+<ol>
+<li><strong>Where does embedding happen?</strong> A local model or a cloud API? With a cloud API, document content leaves when the index is built.</li>
+<li><strong>Where is the answering model?</strong> Local or a cloud provider? Under whose account?</li>
+<li><strong>Where are chat logs and system logs kept, and for how long?</strong> Who can see them?</li>
+<li><strong>What other external services are connected?</strong> LINE, email, cloud storage: messages through any of these pass through that service.</li>
+<li><strong>Which documents must never leave?</strong> List them and confirm they only go into the on-premises knowledge base.</li>
+</ol>
+<p>If all five have clear answers, the data flow is understood. Any question without an answer is where to dig further.</p></div>
+
+  <section class="brand" aria-label="Brand information | Think BIG">
+    <span class="lede">Brand information | Think BIG</span>
+    <h2>Think BIG&#x27;s two deployment options</h2>
+    <p>Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.</p>
+<ol>
+<li><strong>External channels confirmed one by one</strong>: on-premises does not mean every connection stays local. If an external channel such as LINE is added, messages through that channel pass through that service; we list this for the client before building.</li>
+<li><strong>API accounts under the company's name</strong>: with the cloud-assisted version, the company applies for the model API under its own account, under the provider's terms, so billing and usage records stay with the company.</li>
+<li><strong>Data flow listed before building</strong>: where the application, model, knowledge-base index, source documents, logs, and backups each sit is listed item by item. Permissions are enforced at retrieval, not only through prompts.</li>
+</ol>
+<p>See <a href="https://thinkbigtw.com/enterprise/rag/">RAG knowledge Q&amp;A</a>, <a href="https://thinkbigtw.com/guides/local-ai-data/">On-premises AI and data sovereignty</a>, and <a href="https://thinkbigtw.com/trust/">Trust</a>.</p>
+    <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
+  </section>
+
+  <section class="faq" aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl><dt>Q1: Does using a cloud model to search company documents send the whole knowledge base?</dt><dd>No, but each question sends the employee&#x27;s question and the passages retrieved for it to the model provider. If the indexing step uses a cloud embedding API, document content is also sent in chunks when the index is built.</dd><dt>Q2: Does on-premises deployment mean no data ever leaves?</dt><dd>Not necessarily. On-premises decides where the model and documents sit. If the workflow connects to a cloud model, messaging app, or other external service, that part of the data goes out. Check the local model, outbound restrictions, logs, and backups.</dd><dt>Q3: How long do cloud model providers keep the data I send?</dt><dd>Per official documentation, OpenAI API abuse monitoring logs are kept up to 30 days by default; Anthropic API inputs and outputs are deleted within 30 days by default, with exceptions. Actual terms depend on your plan and contract.</dd><dt>Q4: What should we ask before letting AI search company documents?</dt><dd>Where embedding happens, where the answering model runs, where logs are kept and for how long, which external services are connected, and which documents must never leave the company.</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/employees-chatgpt-company-data/">What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It?</a></li><li><a href="/en/qa/rag-access-control-by-department/">When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data?</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">Sources (checked 2026-10-19)</span>
+    <ol><li>Lewis et al. (2020), Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks: <a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noopener">arxiv.org</a></li><li>OpenAI API, Your data (no training by default, abuse logs up to 30 days, Zero Data Retention by approval): <a href="https://platform.openai.com/docs/guides/your-data" target="_blank" rel="noopener">platform.openai.com</a></li><li>Anthropic Privacy Center, How long do you store my organization&#x27;s data? (30-day deletion and exceptions): <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">privacy.claude.com</a></li><li>OpenAI, Embeddings guide (embedding text via the API): <a href="https://platform.openai.com/docs/guides/embeddings" target="_blank" rel="noopener">platform.openai.com</a></li><li>Think BIG, RAG knowledge Q&amp;A (data flow; cloud text conversion and indexing services count as data flow): <a href="https://thinkbigtw.com/enterprise/rag/" target="_blank" rel="noopener">thinkbigtw.com</a></li></ol>
+  </div>
+  <p class="disclaimer">This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws &amp; Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG&#8217;s services depends on what both parties confirm.</p>
+
+  <div class="colophon">
+    <b>Q&amp;A Library</b>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/en/" style="color:inherit">Think BIG Home (EN)</a>
+    <span class="sig">Think BIG, Make it Real!&nbsp;&nbsp;Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

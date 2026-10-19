@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 交付前的資安審查，實際上在審什麼？｜問答圖書館｜Think BIG</title>
+<meta name="description" content="AI Agent 交付前的資安審查，審的是「實際要交付的那一版」：程式和設定、對外連線、權限、金鑰、第三方套件與模型，每一項對照清單檢查並留下紀錄，沒通過就不交付。本文把 8 個檢查項對應到 OWASP LLM Top 10 2025，並說明審查結果怎麼判定。">
+<link rel="canonical" href="https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/ai-agent-pre-delivery-security-review/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/">
+<meta property="og:title" content="AI Agent 交付前的資安審查，實際上在審什麼？｜問答圖書館｜Think BIG">
+<meta property="og:description" content="AI Agent 交付前的資安審查，審的是「實際要交付的那一版」：程式和設定、對外連線、權限、金鑰、第三方套件與模型，每一項對照清單檢查並留下紀錄，沒通過就不交付。本文把 8 個檢查項對應到 OWASP LLM Top 10 2025，並說明審查結果怎麼判定。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Agent 交付前的資安審查，實際上在審什麼？｜問答圖書館｜Think BIG">
+<meta name="twitter:description" content="AI Agent 交付前的資安審查，審的是「實際要交付的那一版」：程式和設定、對外連線、權限、金鑰、第三方套件與模型，每一項對照清單檢查並留下紀錄，沒通過就不交付。本文把 8 個檢查項對應到 OWASP LLM Top 10 2025，並說明審查結果怎麼判定。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/#article",
+   "headline": "AI Agent 交付前的資安審查，實際上在審什麼？",
+   "description": "AI Agent 交付前的資安審查，審的是「實際要交付的那一版」：程式和設定、對外連線、權限、金鑰、第三方套件與模型，每一項對照清單檢查並留下紀錄，沒通過就不交付。本文把 8 個檢查項對應到 OWASP LLM Top 10 2025，並說明審查結果怎麼判定。",
+   "keywords": "AI Agent 資安, AI Agent 資安審查, AI Agent 資安問題, AI 資安檢查清單, OWASP LLM Top 10, AI 供應鏈安全, AI 導入 資安, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG 問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "大想成業有限公司",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-19T12:00:00+08:00",
+   "dateModified": "2026-10-19T12:00:00+08:00",
+   "url": "https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/",
+   "mainEntityOfPage": "https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/",
+   "inLanguage": "zh-Hant-TW",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "citation": [
+    "https://genai.owasp.org/llm-top-10/",
+    "https://genai.owasp.org/llmrisk/llm032025-supply-chain/",
+    "https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/",
+    "https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/",
+    "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+    "https://www.nist.gov/itl/ai-risk-management-framework"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "AI Agent 交付前的資安審查，實際上在審什麼？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "審的是「實際要交付的那一版」，不是開發過程中的某一版：程式和設定、對外連線、權限、金鑰、第三方套件與模型，每一項都對照清單檢查並留下紀錄，沒通過就不交付。資安沒有人能打包票，審查的意義是把已知的風險一道一道排除，並讓別人事後查得到「查了什麼、結果如何」。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "AI Agent 的資安審查和一般軟體的資安檢查有什麼不同？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "除了一般軟體會查的版本、金鑰、套件與權限，AI Agent 還要查它讀進來的外部內容會不會被當成指令（提示注入）、權限是不是超出工作需要（過度代理），以及知識庫會不會把無權看的內容交給使用者。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "為什麼要確認「審查的版本」和「交付的版本」一致？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "如果審的是開發中的版本，交付時又改了幾行，審查就失去意義。比對檔案雜湊值，可以確認審的就是實際交付的那一份。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "資安審查通過，就代表 AI Agent 沒有漏洞嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不代表。資安沒有人能打包票，審查是把已知風險一項一項排除並留下紀錄。交付後的每次變更，也要重新檢查受影響的項目。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "AI Agent 的資安審查可以參考哪些標準？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "常用的是 OWASP 大型語言模型應用十大風險 2025 年版、OWASP Agentic Applications 2026 年版，以及美國 NIST 的 AI 風險管理框架（AI RMF 1.0）與生成式 AI 補充文件 AI 600-1。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "首頁",
+     "item": "https://thinkbigtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Library",
+     "item": "https://thinkbigtw.com/library/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "問答圖書館",
+     "item": "https://thinkbigtw.com/library/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "name": "AI Agent 交付前資安審查的 8 個檢查項",
+     "item": "https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/library/qa/">&larr; 問答圖書館</a>
+  <div class="qa-top">
+    <span class="cat">AI Agent 建置</span>
+    <span class="no">TB07</span>
+  </div>
+  <h1 class="q">AI Agent 交付前的資安審查，實際上在審什麼？</h1>
+  <p class="byline">Think BIG 問答圖書館　·　<time datetime="2026-10-19T12:00:00+08:00">2026 年 10 月 19 日　星期一</time>
+    ·　<a href="https://thinkbigtw.com/en/qa/ai-agent-pre-delivery-security-review/" hreflang="en" style="color:var(--ink-soft)">English</a></p>
+
+  <section class="answer" aria-label="先說答案">
+    <span class="lede">先說答案</span>
+    <div><p>審的是「實際要交付的那一版」，不是開發過程中的某一版：程式和設定、對外連線、權限、金鑰、第三方套件與模型，每一項都對照清單檢查並留下紀錄，沒通過就不交付。資安沒有人能打包票，審查的意義是把已知的風險一道一道排除，並讓別人事後查得到「查了什麼、結果如何」。</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">一、</span>8 個檢查項</h2>
+<p>下表整理 AI Agent 交付前常見的檢查項，以及對應的國際資安標準（OWASP 大型語言模型應用十大風險 2025 年版）：</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>檢查項</th>
+<th>具體在看什麼</th>
+<th>對應風險</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>版本一致</td>
+<td>審查的檔案和實際要交付的檔案是同一份（例如比對雜湊值），避免「審的是 A、裝的是 B」</td>
+<td>供應鏈（LLM03）</td>
+</tr>
+<tr>
+<td>2</td>
+<td>對外連線</td>
+<td>列出系統預期會連到哪些外部服務、送出什麼資料；實際連線不能多出清單以外的</td>
+<td>敏感資訊洩漏（LLM02）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>權限</td>
+<td>每個 AI Agent 只拿到工作需要的工具與資料；用「不該做的做不到」的測試題驗證</td>
+<td>過度代理（LLM06）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>金鑰</td>
+<td>API 金鑰不寫在程式碼、不進版本庫、不出現在系統提示或聊天紀錄，只放在受權限保護的設定檔</td>
+<td>系統提示洩漏（LLM07）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>第三方套件與模型</td>
+<td>來源可信、授權清楚、固定版本不自動更新；模型檔用雜湊值確認沒被改過</td>
+<td>供應鏈（LLM03）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>外部內容的處理</td>
+<td>AI 讀進來的網頁、信件、文件不會被當成指令；輸出格式用程式檢查</td>
+<td>提示注入（LLM01）、不當輸出處理（LLM05）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>文件與資料權限</td>
+<td>知識庫依使用者權限檢索，連引用來源都不會露出無權看的內容</td>
+<td>向量與嵌入弱點（LLM08）</td>
+</tr>
+<tr>
+<td>8</td>
+<td>紀錄與復原</td>
+<td>這次改了什麼、為什麼改、出問題怎麼退回上一版，都有紀錄</td>
+<td>治理（NIST AI RMF）</td>
+</tr>
+</tbody>
+</table></div>
+<p>OWASP 在供應鏈風險裡特別提到：只使用來源可驗證的模型，並用簽章與檔案雜湊值檢查完整性；用軟體物料清單（SBOM）記錄所有元件，並盤點涉及的授權。在系統提示洩漏風險裡則寫明：憑證、連線字串這類敏感資料不應該放在系統提示裡。</p>
+<h2><span class="no">二、</span>審查結果怎麼判定</h2>
+<p>建議用三種結果，而且事先講好：</p>
+<ul>
+<li><strong>通過</strong>：所有檢查項符合，可以交付。</li>
+<li><strong>附條件通過</strong>：有問題但風險可控，列出必須修正的條件和期限，修完再確認。</li>
+<li><strong>不通過</strong>：有會造成資料外洩、越權操作或無法復原的問題，修好重審之前不交付。</li>
+</ul>
+<p>審查建議由沒有參與開發的人來做，並留下紀錄：審的是哪一版、每一項怎麼查、查到什麼。美國 NIST 的 AI 風險管理框架（AI RMF 1.0）把 AI 風險管理分成治理、對應、量測、管理四個功能，並在 2024 年 7 月 26 日發布生成式 AI 的補充文件（AI 600-1）；審查紀錄就是「量測」和「管理」留下的證據。</p>
+<h2><span class="no">三、</span>交付後還要做什麼</h2>
+<p>交付當下通過，不代表之後都安全：模型會更新、套件會出漏洞、權限會被調整。所以交付後的每一次變更，都要用同樣的清單重新檢查受影響的項目。對企業來說，可以在合約裡寫明：哪些變更要重新審查、審查紀錄由誰保存。</p></div>
+
+  <section class="brand" aria-label="品牌資訊｜Think BIG">
+    <span class="lede">品牌資訊｜Think BIG</span>
+    <h2>Think BIG 的交付前資安審查</h2>
+    <p>Think BIG（大想成業有限公司）是總部位於台灣的企業 AI Agent 導入商，從守護企業資安出發，幫企業把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機）。部署分兩種：地端版的模型與文件都在公司設備內處理；雲端輔助版會把員工的問題與系統找出的文件段落送到模型廠商處理。</p>
+<ol>
+<li><strong>交付前資安審查</strong>：每一套系統交付前，程式與設定都先過一道資安審查：比對實際要交付的版本、檢查外部連線與權限、確認金鑰不外露。沒通過不交付。</li>
+<li><strong>第三方元件與金鑰</strong>：使用的第三方套件先審查來源與授權、固定版本、不自動更新；金鑰只放在受權限保護的設定檔，不進版本庫、不在對話裡傳；雲端帳號開在客戶名下。</li>
+<li><strong>變更有紀錄</strong>：變更前確認範圍、原因、負責人與復原方式，依授權範圍核准後執行。</li>
+</ol>
+<p>資安沒有人能打包票，我們做的是一道一道的審查。詳見<a href="https://thinkbigtw.com/trust/">資安與治理</a>。</p>
+<p><em>brand-src</em>：Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+    <p class="brand-src">Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+  </section>
+
+  <section class="faq" aria-label="常見問題">
+    <h2>常見問題</h2>
+    <dl><dt>Q1：AI Agent 的資安審查和一般軟體的資安檢查有什麼不同？</dt><dd>除了一般軟體會查的版本、金鑰、套件與權限，AI Agent 還要查它讀進來的外部內容會不會被當成指令（提示注入）、權限是不是超出工作需要（過度代理），以及知識庫會不會把無權看的內容交給使用者。</dd><dt>Q2：為什麼要確認「審查的版本」和「交付的版本」一致？</dt><dd>如果審的是開發中的版本，交付時又改了幾行，審查就失去意義。比對檔案雜湊值，可以確認審的就是實際交付的那一份。</dd><dt>Q3：資安審查通過，就代表 AI Agent 沒有漏洞嗎？</dt><dd>不代表。資安沒有人能打包票，審查是把已知風險一項一項排除並留下紀錄。交付後的每次變更，也要重新檢查受影響的項目。</dd><dt>Q4：AI Agent 的資安審查可以參考哪些標準？</dt><dd>常用的是 OWASP 大型語言模型應用十大風險 2025 年版、OWASP Agentic Applications 2026 年版，以及美國 NIST 的 AI 風險管理框架（AI RMF 1.0）與生成式 AI 補充文件 AI 600-1。</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul><li><a href="/library/qa/prompt-injection-ai-agent/">提示注入是什麼？</a></li><li><a href="/library/qa/ai-agent-permissions/">AI Agent 的權限要怎麼設？</a></li><li><a href="/library/qa/ai-api-key-leak/">AI 的 API 金鑰外洩會怎樣？</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">參考來源（連結於 2026-10-19 查證）</span>
+    <ol><li>OWASP Top 10 for LLM Applications 2025 總覽：<a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>OWASP〈LLM03:2025 Supply Chain〉（可驗證來源、簽章與雜湊值、SBOM、授權盤點）：<a href="https://genai.owasp.org/llmrisk/llm032025-supply-chain/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>OWASP〈LLM07:2025 System Prompt Leakage〉（憑證不放系統提示）：<a href="https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>OWASP〈LLM02:2025 Sensitive Information Disclosure〉：<a href="https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>OWASP Top 10 for Agentic Applications for 2026（2025-12-09 發布）：<a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>NIST AI Risk Management Framework（AI RMF 1.0、AI 600-1）：<a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">www.nist.gov</a></li></ol>
+  </div>
+  <p class="disclaimer">本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。</p>
+
+  <div class="colophon">
+    <b>問答圖書館</b>　·　<a href="/library/" style="color:inherit">Library 首頁</a>
+    <span class="sig">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

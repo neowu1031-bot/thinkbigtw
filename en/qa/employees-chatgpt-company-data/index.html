@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It? | Q&amp;A Library | Think BIG</title>
+<meta name="description" content="The risk has two layers: once pasted, the data sits on the provider&#x27;s servers, and the company cannot control settings on employees&#x27; personal accounts. This page summarizes the official data policies by plan, the relevant articles of Taiwan&#x27;s Personal Data Protection Act, three steps a company can take now, and a sample data classification table.">
+<link rel="canonical" href="https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/">
+<meta property="og:title" content="What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It? | Q&amp;A Library | Think BIG">
+<meta property="og:description" content="The risk has two layers: once pasted, the data sits on the provider&#x27;s servers, and the company cannot control settings on employees&#x27; personal accounts. This page summarizes the official data policies by plan, the relevant articles of Taiwan&#x27;s Personal Data Protection Act, three steps a company can take now, and a sample data classification table.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It? | Q&amp;A Library | Think BIG">
+<meta name="twitter:description" content="The risk has two layers: once pasted, the data sits on the provider&#x27;s servers, and the company cannot control settings on employees&#x27; personal accounts. This page summarizes the official data policies by plan, the relevant articles of Taiwan&#x27;s Personal Data Protection Act, three steps a company can take now, and a sample data classification table.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/#article",
+   "headline": "What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It?",
+   "description": "The risk has two layers: once pasted, the data sits on the provider's servers, and the company cannot control settings on employees' personal accounts. This page summarizes the official data policies by plan, the relevant articles of Taiwan's Personal Data Protection Act, three steps a company can take now, and a sample data classification table.",
+   "keywords": "employees ChatGPT company data, ChatGPT confidential data, ChatGPT data leak, company ChatGPT policy, generative AI usage policy, AI data leakage, on-premises AI, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "Think BIG Make it Real Co., Ltd.",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-19T12:00:00+08:00",
+   "dateModified": "2026-10-19T12:00:00+08:00",
+   "url": "https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/",
+   "mainEntityOfPage": "https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "citation": [
+    "https://help.openai.com/en/articles/7730893-data-controls-faq",
+    "https://platform.openai.com/docs/guides/your-data",
+    "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training",
+    "https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data",
+    "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021",
+    "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050022",
+    "https://www.ey.gov.tw/Page/448DE008087A1971/40c1a925-121d-4b6b-8f40-7e9e1a5401f2"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The risk has two layers. Once data is pasted, it sits on the provider's servers (even if it is not used for training, it is retained for some time). And when employees use personal accounts, the company cannot control whether their chats are used for training. The answer is not a blanket ban but three steps: name the approved tools and company accounts, classify data and state which level may go where, and give confidential data a tool that does not send it outside the company."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "If employees use ChatGPT for company data, will it be used for training?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends on the plan. On ChatGPT personal accounts, the user decides whether \"Improve the model for everyone\" is on. ChatGPT Business, Enterprise and other managed workspaces are not used for training by default, per OpenAI. OpenAI API data has not been used for training by default since March 1, 2023."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "If training is off, is the data safe?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not entirely. No training is not the same as no retention: OpenAI API abuse monitoring logs are kept up to 30 days by default, and ChatGPT Temporary Chats may be kept up to 30 days. For truly confidential data, ask whether it may leave the company at all."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Should a company ban ChatGPT outright?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "A ban alone tends not to hold. It works better to name approved tools and accounts, classify data into public, internal, confidential, and personal data with clear rules for each, and give confidential data an alternative that stays inside the company."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does pasting customer data into AI violate Taiwan's Personal Data Protection Act?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It can, depending on the data and the purpose. Article 5 says collection, processing, and use of personal data must not exceed what the specific purpose requires, and Article 20 says non-government entities must use personal data within the necessary scope of the specific purpose of collection. If pasting data into AI serves a purpose beyond the one it was collected for, that may be a problem. Confirm the use fits the collection purpose, and de-identify where possible."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://thinkbigtw.com/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Q&A Library",
+     "item": "https://thinkbigtw.com/en/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Employees pasting company data into ChatGPT",
+     "item": "https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/en/qa/">&larr; Q&amp;A Library</a>
+  <div class="qa-top">
+    <span class="cat">Enterprise AI Security</span>
+    <span class="no">TB01</span>
+  </div>
+  <h1 class="q">What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It?</h1>
+  <p class="byline">Think BIG Q&amp;A Library&nbsp;&nbsp;·&nbsp;&nbsp;<time datetime="2026-10-19T12:00:00+08:00">2026-10-19</time>
+    &nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/" hreflang="zh-Hant-TW" style="color:var(--ink-soft)">中文</a></p>
+
+  <section class="answer" aria-label="The short answer">
+    <span class="lede">The short answer</span>
+    <div><p>The risk has two layers. Once data is pasted, it sits on the provider's servers (even if it is not used for training, it is retained for some time). And when employees use personal accounts, the company cannot control whether their chats are used for training. The answer is not a blanket ban but three steps: name the approved tools and company accounts, classify data and state which level may go where, and give confidential data a tool that does not send it outside the company.</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">1. </span>Where does pasted data go?</h2>
+<p>When an employee presses send, the text goes to the provider's servers. Whether it is then stored or used for training depends on the plan. Official documentation as of 2026-10-19:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Usage</th>
+<th>Used for model training?</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT personal accounts (Free, Go, Plus, Pro)</td>
+<td>The user turns "Improve the model for everyone" on or off in Data controls; when off, new chats are not used for training</td>
+<td>Chats stay in history; Temporary Chats may be retained up to 30 days for safety</td>
+</tr>
+<tr>
+<td>ChatGPT Business, Enterprise and other managed workspaces</td>
+<td>Not used for training by default, per OpenAI</td>
+<td>Follows the workspace's retention settings</td>
+</tr>
+<tr>
+<td>OpenAI API</td>
+<td>Since March 1, 2023, API data is not used for training unless you opt in</td>
+<td>Abuse monitoring logs retained up to 30 days by default</td>
+</tr>
+<tr>
+<td>Anthropic (Claude) commercial products and API</td>
+<td>Not used for training by default</td>
+<td>API inputs and outputs deleted within 30 days by default, with exceptions</td>
+</tr>
+</tbody>
+</table></div>
+<p>The point: <strong>"Is it used for training?" and "Is it retained?" are separate questions.</strong> Even on a no-training plan, the data has left the company and stayed on someone else's servers for a while. For truly confidential material, the test is not whether training is off but whether the data may leave the company at all.</p>
+<h2><span class="no">2. </span>Legal points in Taiwan</h2>
+<p>If the pasted text contains personal data of customers or staff, Taiwan's Personal Data Protection Act may come into play:</p>
+<ul>
+<li><strong>Article 5</strong>: collection, processing, and use of personal data must not exceed what is necessary for the specific purpose.</li>
+<li><strong>Article 20</strong>: non-government entities must use personal data within the necessary scope of the specific purpose of collection.</li>
+<li><strong>Article 4</strong>: a party commissioned by a government or non-government entity to collect, process, or use personal data is treated as the commissioning party within the scope of the Act. Under Article 8 of the Act's Enforcement Rules, a party that commissions others to collect, process, or use personal data must properly supervise the commissioned party (for example, by agreeing on the scope of processing, security measures, and the return or deletion of data when the engagement ends, and by checking compliance regularly). In other words, if handing personal data to an outside service counts as commissioning under the Act, the company has a duty to supervise, and its responsibility does not pass to the provider just because the data was handed over. Whether pasting data into a particular AI service counts as commissioning depends on the facts, such as the service terms, the account type, and how the data is used.</li>
+</ul>
+<p>For government agencies, the Executive Yuan presented the "Reference Guidelines for the Use of Generative AI by the Executive Yuan and Its Agencies" at its cabinet meeting on August 31, 2023. One aim is for agencies to maintain the confidentiality and professionalism of official business, and ministries are asked to set rules or internal controls for generative AI as their work requires. Private companies are not bound by it, but the direction is useful: decide which data must not go into generative AI before deciding how to use it.</p>
+<p>This is a general explanation of the law, not legal advice for any specific situation; for an actual case, consult a lawyer.</p>
+<h2><span class="no">3. </span>Three steps a company can take now</h2>
+<p><strong>1. Name the tools and accounts.</strong> List approved AI tools and use company-managed accounts or workspaces. Personal accounts leave training settings, chat history, and post-resignation data outside the company's control.</p>
+<p><strong>2. Classify data and post the table internally.</strong> A sample to adapt:</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Examples</th>
+<th>Where it may go</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public</td>
+<td>Website copy, published catalogs</td>
+<td>Any approved AI tool</td>
+</tr>
+<tr>
+<td>Internal</td>
+<td>General SOPs, internal notices</td>
+<td>Company workspace or API only, with no-training settings confirmed</td>
+</tr>
+<tr>
+<td>Confidential</td>
+<td>Quotes, contracts, formulas, drawings, financials</td>
+<td>Not sent to outside AI services; use a local model on company hardware</td>
+</tr>
+<tr>
+<td>Personal data</td>
+<td>Customer names and phone numbers, staff records, medical records</td>
+<td>Generally not pasted; de-identify first and confirm the use fits the collection purpose</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>3. Give confidential data a usable alternative.</strong> A rule that only says "don't" pushes people to workarounds. A tool that keeps data inside the company, such as a local model on company hardware, makes the rule hold.</p>
+<p>Finally, explain the why. Most leaks are not malicious; employees simply do not know where the text goes.</p></div>
+
+  <section class="brand" aria-label="Brand information | Think BIG">
+    <span class="lede">Brand information | Think BIG</span>
+    <h2>How Think BIG handles &quot;can this data leave the company?&quot;</h2>
+    <p>Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.</p>
+<ol>
+<li><strong>Map the data flow before building</strong>: which data enters the AI, where it is stored, and whether anything leaves the company, listed item by item for the client to confirm.</li>
+<li><strong>Decide which data may leave first</strong>: before building, we use the company's data classification to confirm which data must stay in the on-premises version and which may be processed with the cloud-assisted version; the cloud-assisted version is subject to the model provider's terms.</li>
+<li><strong>Pre-delivery security review</strong>: before each system is delivered, its code and configuration go through a security review; if it does not pass, it is not delivered. No one can promise perfect security; what we do is review, one gate at a time.</li>
+</ol>
+<p>See <a href="https://thinkbigtw.com/enterprise/">Enterprise</a> and <a href="https://thinkbigtw.com/trust/">Trust</a>.</p>
+    <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
+  </section>
+
+  <section class="faq" aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl><dt>Q1: If employees use ChatGPT for company data, will it be used for training?</dt><dd>It depends on the plan. On ChatGPT personal accounts, the user decides whether &quot;Improve the model for everyone&quot; is on. ChatGPT Business, Enterprise and other managed workspaces are not used for training by default, per OpenAI. OpenAI API data has not been used for training by default since March 1, 2023.</dd><dt>Q2: If training is off, is the data safe?</dt><dd>Not entirely. No training is not the same as no retention: OpenAI API abuse monitoring logs are kept up to 30 days by default, and ChatGPT Temporary Chats may be kept up to 30 days. For truly confidential data, ask whether it may leave the company at all.</dd><dt>Q3: Should a company ban ChatGPT outright?</dt><dd>A ban alone tends not to hold. It works better to name approved tools and accounts, classify data into public, internal, confidential, and personal data with clear rules for each, and give confidential data an alternative that stays inside the company.</dd><dt>Q4: Does pasting customer data into AI violate Taiwan&#x27;s Personal Data Protection Act?</dt><dd>It can, depending on the data and the purpose. Article 5 says collection, processing, and use of personal data must not exceed what the specific purpose requires, and Article 20 says non-government entities must use personal data within the necessary scope of the specific purpose of collection. If pasting data into AI serves a purpose beyond the one it was collected for, that may be a problem. Confirm the use fits the collection purpose, and de-identify where possible.</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/rag-data-flow-cloud-vs-local/">When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups?</a></li><li><a href="/en/qa/ai-api-key-leak/">What Happens If an AI API Key Leaks, and How Should a Company Store It?</a></li><li><a href="/en/qa/offline-local-llm-updates/">Can a Local LLM Work Offline, and How Do You Update Models and Software in an Air-Gapped Environment?</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">Sources (checked 2026-10-19)</span>
+    <ol><li>OpenAI Help Center, Data controls in ChatGPT (&quot;Improve the model for everyone&quot;, Temporary Chat up to 30 days, managed workspaces not used for training by default): <a href="https://help.openai.com/en/articles/7730893-data-controls-faq" target="_blank" rel="noopener">help.openai.com</a></li><li>OpenAI API, Your data (API data not used for training since 2023-03-01; abuse monitoring logs up to 30 days): <a href="https://platform.openai.com/docs/guides/your-data" target="_blank" rel="noopener">platform.openai.com</a></li><li>Anthropic Privacy Center, Is my data used for model training? (commercial products not used for training by default): <a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" target="_blank" rel="noopener">privacy.claude.com</a></li><li>Anthropic Privacy Center, How long do you store my organization&#x27;s data? (API deletion within 30 days and exceptions): <a href="https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data" target="_blank" rel="noopener">privacy.claude.com</a></li><li>Personal Data Protection Act (Articles 4, 5, 20), Laws &amp; Regulations Database of the ROC (Taiwan): <a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>Enforcement Rules of the Personal Data Protection Act (Article 8, supervision of commissioned parties): <a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050022" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>Executive Yuan, Reference Guidelines for the Use of Generative AI by the Executive Yuan and Its Agencies (cabinet meeting, 2023-08-31): <a href="https://www.ey.gov.tw/Page/448DE008087A1971/40c1a925-121d-4b6b-8f40-7e9e1a5401f2" target="_blank" rel="noopener">www.ey.gov.tw</a></li></ol>
+  </div>
+  <p class="disclaimer">This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws &amp; Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG&#8217;s services depends on what both parties confirm.</p>
+
+  <div class="colophon">
+    <b>Q&amp;A Library</b>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/en/" style="color:inherit">Think BIG Home (EN)</a>
+    <span class="sig">Think BIG, Make it Real!&nbsp;&nbsp;Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

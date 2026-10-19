@@ -43,6 +43,37 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - Q：AI Agent 的自主操作權限如何控管？ A：依最小權限原則配置資料與操作範圍。對外發送、花費及正式系統異動須經指定負責人核准；AI Agent 提供工作產物與執行證據，人員保留關鍵決策權。
 - Q：既有工具與模型能否持續沿用？ A：先盤點既有系統介面、帳號權限與相容性，再評估整合範圍。更換模型時須重新驗證流程與輸出品質，既有配置能否沿用依實際測試結果確認。
 
+
+## 問答圖書館（企業 AI）
+- [員工把公司資料貼進 ChatGPT，會有什麼風險？公司該怎麼管？](https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/)
+- [公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？](https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/)
+- [用 AI 查公司文件，雲端版跟地端版的資料各會送到哪裡？](https://thinkbigtw.com/library/qa/rag-data-flow-cloud-vs-local/)
+- [提示注入是什麼？AI Agent 讀到的文件或網頁，會不會反過來對它下指令？](https://thinkbigtw.com/library/qa/prompt-injection-ai-agent/)
+- [AI Agent 的權限要怎麼設？哪些動作一定要人核准？](https://thinkbigtw.com/library/qa/ai-agent-permissions/)
+- [本地模型夠不夠聰明？怎麼判斷能不能用在公司？](https://thinkbigtw.com/library/qa/is-local-llm-good-enough/)
+- [AI Agent 交付前的資安審查，實際上在審什麼？](https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/)
+- [本地模型斷網可以用嗎？離線環境要怎麼更新模型和軟體？](https://thinkbigtw.com/library/qa/offline-local-llm-updates/)
+- [AI Agent 導入後要怎麼驗收？測試題要怎麼準備？](https://thinkbigtw.com/library/qa/ai-agent-acceptance-testing/)
+- [公司文件給 AI 查，怎麼讓每個部門只看得到自己的資料？](https://thinkbigtw.com/library/qa/rag-access-control-by-department/)
+- [AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？](https://thinkbigtw.com/library/qa/ai-api-key-leak/)
+- [開源模型可以商用嗎？企業採用前要看授權的 4 個檢查點](https://thinkbigtw.com/library/qa/open-model-license-checklist/)
+
+
+## Q&A Library (Enterprise AI)
+- [Q&A Library — Enterprise AI Security & Local LLMs](https://thinkbigtw.com/en/qa/)
+- [What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It?](https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/)
+- [What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory?](https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/)
+- [When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups?](https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/)
+- [What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions?](https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/)
+- [How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve?](https://thinkbigtw.com/en/qa/ai-agent-permissions/)
+- [Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company?](https://thinkbigtw.com/en/qa/is-local-llm-good-enough/)
+- [What Does a Pre-Delivery Security Review of an AI Agent Actually Check?](https://thinkbigtw.com/en/qa/ai-agent-pre-delivery-security-review/)
+- [Can a Local LLM Work Offline, and How Do You Update Models and Software in an Air-Gapped Environment?](https://thinkbigtw.com/en/qa/offline-local-llm-updates/)
+- [How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared?](https://thinkbigtw.com/en/qa/ai-agent-acceptance-testing/)
+- [When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data?](https://thinkbigtw.com/en/qa/rag-access-control-by-department/)
+- [What Happens If an AI API Key Leaks, and How Should a Company Store It?](https://thinkbigtw.com/en/qa/ai-api-key-leak/)
+- [Can Open Models Be Used Commercially? Four License Checks Before a Company Adopts One](https://thinkbigtw.com/en/qa/open-model-license-checklist/)
+
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
 - [隱私權政策](https://thinkbigtw.com/privacy.html)
