@@ -1,5 +1,5 @@
 # 08｜FAQ、未知問題與人工轉介
-版本：2026-09-30
+版本：2026-10-19
 來源：/enterprise/#faq、/trust/、/pricing/personal/。
 
 不要求企業預先具備 AI 開發能力；以流程、授權資料、驗收人及預期產物評估。既有工具能否沿用，須盤點介面、帳號權限及相容性，更換模型也須重新驗證。
@@ -16,7 +16,8 @@
 兩者擅長的工作不同，可以一起用。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。常見的大模型品牌 AI Agent：Grok Bot（xAI）、Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Muse（Meta，美國限定）、Copilot Autopilot（Microsoft）、Manus 等。開源 AI Agent（OpenClaw 龍蝦、Hermes）可自選模型、依用量付費、24 小時常駐。詳細介紹見 https://thinkbigtw.com/guides/ai-agents/
 
 ## 方案異動紀錄
-- 入門方案（OpenClaw 或 Hermes 官方原裝遠端安裝）已於 2026-09-29 停售。現行個人方案請見蝦皮賣場（https://shopee.tw/shop/105010395），官網不列價格；需客製或企業用途請預約訪談（/contact/）。
-- SUPERSOLO 個人年約已停售。現行年約分尊榮年約與年度旗艦兩檔，依需求報價。
-- 雲端月租 SUPERSOLO（supersolotw.com）是另一個獨立產品，不受上述停售影響，詳見該官網。
-- 協作會議室（跨 Agent 協作）自 2026-09-30 起，專屬雙 AI Agent 方案（含記憶互通），不包含在人格版或共存版方案中。
+- 個人方案自 2026-10-19 起全面改為「本地大模型 AI Agent 搭建」；已購方案不受影響不用補費用；共存版無蝦皮商品，諮詢請透過 LINE（https://lin.ee/n5KW430）。
+- 入門方案（原裝遠端安裝）已於 2026-09-29 停售；現行個人方案見蝦皮賣場（https://shopee.tw/shop/105010395）。
+- SUPERSOLO 個人年約已停售；現行年約分尊榮年約與年度旗艦。
+- 雲端月租 SUPERSOLO（supersolotw.com）是獨立產品，不受停售影響。
+- 協作會議室專屬雙 AI Agent 方案（含記憶互通），人格版和共存版均不含。

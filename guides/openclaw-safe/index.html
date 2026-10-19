@@ -226,7 +226,7 @@ a{color:var(--red);text-decoration:none}
           "name": "OpenClaw 會偷我的資料嗎？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫 AI 模型的 API（這是必要成本）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。"
+            "text": "OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫外部 AI 模型的 API（雲端版的必要成本；本地版的模型運算在你電腦上進行，問題不會送到模型廠商；透過 LINE／Telegram 對話時，訊息仍會經過該平台。）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。"
           }
         },
         {
@@ -336,7 +336,7 @@ a{color:var(--red);text-decoration:none}
         <p>AI 模型 API 金鑰（如 Anthropic / OpenAI）一旦外洩，別人可以花你的額度、甚至用你的金鑰亂跑被記帳到你頭上。常見外洩管道：寫進公開 GitHub repo、貼在社群截圖、把金鑰直接交給別人。</p>
         <div class="risk-do">
           <div><strong>自己裝要做什麼</strong>金鑰存進本機環境變數，不寫進任何 commit；不要把 .env 推到公開 repo；定期到模型供應商後台看用量。</div>
-          <div><strong>我們代裝預設做什麼</strong>金鑰由你自己申請、自己保管，工程師只引導流程、不代你申請也不保留你的金鑰；裝完後在你面前刪除連線暫存。</div>
+          <div><strong>我們代裝預設做什麼</strong>本地版不需要 API Key；改搭雲端大模型時，金鑰由你自己申請、自己保管，工程師只引導流程、不代你申請也不保留你的金鑰；裝完後在你面前刪除連線暫存。</div>
         </div>
       </div>
 
@@ -369,7 +369,7 @@ a{color:var(--red);text-decoration:none}
           <tr><td style="border:1.5px solid var(--gray2);padding:10px">綁本機不對外</td><td style="border:1.5px solid var(--gray2);padding:10px">查預設綁定 IP</td><td style="border:1.5px solid var(--gray2);padding:10px">預設 127.0.0.1</td></tr>
           <tr><td style="border:1.5px solid var(--gray2);padding:10px">高風險動作二次確認</td><td style="border:1.5px solid var(--gray2);padding:10px">改 policy 設定</td><td style="border:1.5px solid var(--gray2);padding:10px">預設開啟</td></tr>
           <tr><td style="border:1.5px solid var(--gray2);padding:10px">技能白名單</td><td style="border:1.5px solid var(--gray2);padding:10px">自己維護清單</td><td style="border:1.5px solid var(--gray2);padding:10px">只裝官方原裝</td></tr>
-          <tr><td style="border:1.5px solid var(--gray2);padding:10px">金鑰保管</td><td style="border:1.5px solid var(--gray2);padding:10px">自己設環境變數、不 commit</td><td style="border:1.5px solid var(--gray2);padding:10px">引導你自己申請，工程師不留存</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">金鑰保管</td><td style="border:1.5px solid var(--gray2);padding:10px">本地版不需要 API Key；雲端版自己設環境變數、不 commit</td><td style="border:1.5px solid var(--gray2);padding:10px">本地版不需要 API Key；雲端版引導你自己申請，工程師不留存</td></tr>
           <tr><td style="border:1.5px solid var(--gray2);padding:10px">更新維護</td><td style="border:1.5px solid var(--gray2);padding:10px">每 1–3 個月手動</td><td style="border:1.5px solid var(--gray2);padding:10px">年約方案含每週維護</td></tr>
         </tbody>
       </table>
@@ -409,7 +409,7 @@ a{color:var(--red);text-decoration:none}
 
       <div class="faq-item">
         <div class="faq-q">Q：OpenClaw 會偷我的資料嗎？</div>
-        <p class="faq-a">OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫 AI 模型的 API（這是必要成本）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。</p>
+        <p class="faq-a">OpenClaw 本機部署時跑在你自己的電腦，預設不會主動上傳任何資料到任何地方。會外送資料的只有兩個出口：你主動呼叫外部 AI 模型的 API（雲端版的必要成本；本地版的模型運算在你電腦上進行，問題不會送到模型廠商；透過 LINE／Telegram 對話時，訊息仍會經過該平台。）、以及你串接的對外服務（如 LINE 官方帳號）。如果你沒串這些對外服務，OpenClaw 就只在你的電腦裡跑。</p>
       </div>
 
       <div class="faq-item">
