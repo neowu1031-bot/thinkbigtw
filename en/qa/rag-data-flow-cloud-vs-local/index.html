@@ -270,7 +270,7 @@
 <li><strong>API accounts under the company's name</strong>: with the cloud-assisted version, the company applies for the model API under its own account, under the provider's terms, so billing and usage records stay with the company.</li>
 <li><strong>Data flow listed before building</strong>: where the application, model, knowledge-base index, source documents, logs, and backups each sit is listed item by item. Permissions are enforced at retrieval, not only through prompts.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/enterprise/rag/">RAG knowledge Q&amp;A</a>, <a href="https://thinkbigtw.com/guides/local-ai-data/">On-premises AI and data sovereignty</a>, and <a href="https://thinkbigtw.com/trust/">Trust</a>.</p>
+<p>See RAG knowledge Q&amp;A, On-premises AI and data sovereignty, and Trust.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -279,7 +279,7 @@
     <dl><dt>Q1: Does using a cloud model to search company documents send the whole knowledge base?</dt><dd>No, but each question sends the employee&#x27;s question and the passages retrieved for it to the model provider. If the indexing step uses a cloud embedding API, document content is also sent in chunks when the index is built.</dd><dt>Q2: Does on-premises deployment mean no data ever leaves?</dt><dd>Not necessarily. On-premises decides where the model and documents sit. If the workflow connects to a cloud model, messaging app, or other external service, that part of the data goes out. Check the local model, outbound restrictions, logs, and backups.</dd><dt>Q3: How long do cloud model providers keep the data I send?</dt><dd>Per official documentation, OpenAI API abuse monitoring logs are kept up to 30 days by default; Anthropic API inputs and outputs are deleted within 30 days by default, with exceptions. Actual terms depend on your plan and contract.</dd><dt>Q4: What should we ask before letting AI search company documents?</dt><dd>Where embedding happens, where the answering model runs, where logs are kept and for how long, which external services are connected, and which documents must never leave the company.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/employees-chatgpt-company-data/">What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It?</a></li><li><a href="/en/qa/rag-access-control-by-department/">When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data?</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>

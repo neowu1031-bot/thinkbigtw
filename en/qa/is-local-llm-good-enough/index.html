@@ -233,7 +233,7 @@
 <li><strong>Re-verify after changing models</strong>: when a model is changed, the workflow and output quality are re-verified, and whether existing settings still apply is decided by test results.</li>
 <li><strong>Pre-delivery security review</strong>: before each system is delivered, its code and configuration go through a security review; if it does not pass, it is not delivered.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/enterprise/rag/">RAG knowledge Q&amp;A</a> and <a href="https://thinkbigtw.com/guides/ai-acceptance/">AI Agent acceptance framework</a>.</p>
+<p>See RAG knowledge Q&amp;A and AI Agent acceptance framework.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -242,7 +242,7 @@
     <dl><dt>Q1: How far behind cloud models like ChatGPT are local models?</dt><dd>It depends on the task; public leaderboards cannot answer it for your company. Run 30 to 50 real company questions on both, with the same documents and settings, and compare accuracy and speed question by question.</dd><dt>Q2: Why does a local model answer poorly when reading company documents?</dt><dd>Often the context is too short. Ollama&#x27;s default context is 4,096 tokens, so retrieved passages that do not fit are cut off. You can raise the context, but memory use goes up.</dd><dt>Q3: How many questions are needed to test a local model?</dt><dd>About 30 to 50, covering questions answerable from documents, questions the AI should decline or hand off, and questions the user has no permission to see, each with a correct answer and source.</dd><dt>Q4: After switching to a new local model, do we need to test again?</dt><dd>Yes. After any model or setting change, rerun the same test set and confirm accuracy and declining behavior have not regressed before going live.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/local-llm-hardware-sizing/">What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory?</a></li><li><a href="/en/qa/ai-agent-acceptance-testing/">How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared?</a></li><li><a href="/en/qa/open-model-license-checklist/">Can Open Models Be Used Commercially? Four License Checks Before a Company Adopts One</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>

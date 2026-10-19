@@ -281,7 +281,7 @@
 <li><strong>Verify with real work, not just specs</strong>: before delivery we confirm which hardware the model actually uses (for example, whether the GPU is really running) and test response speed with the company's real questions.</li>
 <li><strong>Pre-delivery security review</strong>: before each system is delivered, its code and configuration go through a security review; if it does not pass, it is not delivered.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/enterprise-local/">On-premises deployment</a> and <a href="https://thinkbigtw.com/enterprise/">Enterprise</a>.</p>
+<p>See On-premises deployment and Enterprise.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -290,7 +290,7 @@
     <dl><dt>Q1: For a local LLM, does the CPU or the graphics card matter more?</dt><dd>Start with GPU memory. When the whole model fits, the GPU does the work; whatever does not fit goes to the CPU and slows things down noticeably. With Ollama, the PROCESSOR column in `ollama ps` shows the split.</dd><dt>Q2: What can run on 16GB of GPU memory?</dt><dd>By Ollama&#x27;s official library sizes, 8B-class (about 5.2GB) and 14B-class (about 9.3GB) models fit. OpenAI also states that gpt-oss-20b runs within 16GB of memory. Leave room for context.</dd><dt>Q3: How much memory if many staff use it at once?</dt><dd>Calculate it separately. Ollama&#x27;s FAQ states that required memory scales with the number of parallel requests times context length, and new requests queue when memory runs short.</dd><dt>Q4: Can the local model machine be exposed to the internet?</dt><dd>Not recommended. Ollama binds only to 127.0.0.1 by default. To let other office devices use it, open access to specific devices through a firewall rather than to the internet.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/is-local-llm-good-enough/">Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company?</a></li><li><a href="/en/qa/offline-local-llm-updates/">Can a Local LLM Work Offline, and How Do You Update Models and Software in an Air-Gapped Environment?</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>

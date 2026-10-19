@@ -271,7 +271,7 @@
 <li><strong>Human approval kept</strong>: external sending, spending, and production system changes require approval from a designated person. AI Agents provide work output and evidence; people keep the key decisions.</li>
 <li><strong>Permission changes recorded</strong>: adding or adjusting permissions leaves a change record, and the data and permission list covers sources, storage locations, read/write scope, external services, and approvers.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/trust/">Trust</a> and <a href="https://thinkbigtw.com/guides/local-ai-data/">On-premises AI and data sovereignty</a>.</p>
+<p>See Trust and On-premises AI and data sovereignty.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -280,7 +280,7 @@
     <dl><dt>Q1: What is &quot;excessive agency&quot; in AI Agents?</dt><dd>OWASP LLM06:2025 describes it as a system letting an AI take damaging actions when its output is wrong, ambiguous, or manipulated. The causes are excessive functionality, excessive permissions, and excessive autonomy.</dd><dt>Q2: Which AI Agent actions must a person approve?</dt><dd>Sending externally, spending money, deleting, changing production systems, and anything involving personal data or commitments to outsiders should pause until a designated person confirms.</dd><dt>Q3: Is writing &quot;don&#x27;t do X&quot; in the prompt enough as access control?</dt><dd>No. OWASP recommends enforcing authorization in downstream systems rather than relying on the model&#x27;s judgment. Set permissions in the database, file, and mail systems.</dd><dt>Q4: Can an AI Agent use a shared admin account?</dt><dd>Not recommended. OWASP recommends acting in the user&#x27;s own context with minimally scoped credentials, so the agent cannot see or do more than the user is allowed to.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/prompt-injection-ai-agent/">What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions?</a></li><li><a href="/en/qa/rag-access-control-by-department/">When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data?</a></li><li><a href="/en/qa/ai-agent-acceptance-testing/">How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared?</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>

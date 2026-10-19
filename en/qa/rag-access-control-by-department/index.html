@@ -251,7 +251,7 @@
 <li><strong>Permissions applied to citations too</strong>: readable scope is checked by role, and neither answers nor citations may expose restricted content.</li>
 <li><strong>Acceptance includes permission boundaries</strong>: we confirm unauthorized users are blocked, and retest after documents are withdrawn or the index is updated.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/enterprise/rag/">RAG knowledge Q&amp;A</a> and <a href="https://thinkbigtw.com/trust/">Trust</a>.</p>
+<p>See RAG knowledge Q&amp;A and Trust.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -260,7 +260,7 @@
     <dl><dt>Q1: Can an AI knowledge base have department-level permissions?</dt><dd>Yes. Tag each passage with department and allowed roles when indexing, and search only the scope the asker may see, so restricted passages never reach the AI.</dd><dt>Q2: Is telling the AI in the prompt not to reveal secrets enough?</dt><dd>No. Once a restricted passage is retrieved into the context, the model has seen it and may reveal it by mistake or under prompt injection. The system must block it at retrieval.</dd><dt>Q3: Is it safe for several departments to share one vector database?</dt><dd>Only with access control. OWASP LLM08:2025 warns that when multiple user groups share a vector database, data can leak between users, and recommends permission-aware stores with strict partitioning.</dd><dt>Q4: How do you confirm permissions actually work?</dt><dd>Use must-not-see tests: have an account without permission ask about restricted content and confirm neither the answer nor the citations expose it. Test again after staff changes and document withdrawals.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/rag-data-flow-cloud-vs-local/">When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups?</a></li><li><a href="/en/qa/ai-agent-permissions/">How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve?</a></li><li><a href="/en/qa/ai-agent-acceptance-testing/">How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared?</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>

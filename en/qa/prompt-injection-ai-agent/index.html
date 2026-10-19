@@ -240,7 +240,7 @@
 <li><strong>Human approval</strong>: external sending, spending, and changes to production systems are decided by a designated person. AI Agents provide work output and evidence; people keep the key decisions.</li>
 <li><strong>Pre-delivery security review</strong>: before each system is delivered, its code and configuration go through a security review; if it does not pass, it is not delivered. No one can promise perfect security; what we do is review, one gate at a time.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/trust/">Trust</a> and <a href="https://thinkbigtw.com/enterprise/">Enterprise</a>.</p>
+<p>See Trust and Enterprise.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -249,7 +249,7 @@
     <dl><dt>Q1: What is indirect prompt injection?</dt><dd>The AI takes in content from an outside source such as a web page or file, and hidden instructions in that content get treated as commands. The instructions may be invisible to people.</dd><dt>Q2: How is prompt injection different from jailbreaking?</dt><dd>OWASP notes the terms are often used interchangeably. Jailbreaking is a form of prompt injection aimed at making the model ignore its safety rules; prompt injection is broader and covers any input that alters the model&#x27;s behavior.</dd><dt>Q3: Can RAG or fine-tuning prevent prompt injection?</dt><dd>Not fully. OWASP states that RAG and fine-tuning improve relevance and accuracy, but research shows they do not fully mitigate prompt injection.</dd><dt>Q4: How can a company defend against prompt injection?</dt><dd>Separate outside content from instructions, give AI Agents least privilege, require human approval for high-risk actions, validate output formats in code, and run adversarial tests regularly. The goal is that a fooled AI still cannot do anything dangerous.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/ai-agent-permissions/">How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve?</a></li><li><a href="/en/qa/ai-agent-pre-delivery-security-review/">What Does a Pre-Delivery Security Review of an AI Agent Actually Check?</a></li><li><a href="/en/qa/ai-agent-acceptance-testing/">How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared?</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>

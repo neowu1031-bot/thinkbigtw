@@ -263,7 +263,7 @@
 <li><strong>Pinned versions, no auto-updates</strong>: skills and packages are scanned before installation, pinned, and not auto-updated; updates are verified before they go in.</li>
 <li><strong>Changes can be rolled back</strong>: before any change, scope, reason, owner, and rollback method are confirmed, and the change runs only after approval within the authorized scope.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/guides/local-ai-data/">On-premises AI and data sovereignty</a> and <a href="https://thinkbigtw.com/trust/">Trust</a>.</p>
+<p>See On-premises AI and data sovereignty and Trust.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -272,7 +272,7 @@
     <dl><dt>Q1: Can Ollama run completely offline?</dt><dd>Yes. Once a model is downloaded, answering needs no network. To keep it from reaching the cloud, set `OLLAMA_NO_CLOUD=1` or `disable_ollama_cloud` in server.json; the trade-off is losing cloud models and web search.</dd><dt>Q2: How do you install a new model without internet?</dt><dd>Download the GGUF model file on a connected machine and check its hash, move it to the offline machine, create a Modelfile with `FROM /path/to/file.gguf`, and run `ollama create`.</dd><dt>Q3: Does Ollama update itself?</dt><dd>Per the official FAQ, the macOS and Windows versions download updates automatically and apply them when you choose &quot;Restart to update&quot;; on Linux you rerun the install script. For production, pin the version and update only after testing.</dd><dt>Q4: How do you confirm a local model makes no outbound connections?</dt><dd>Run a real Q&amp;A test with outbound connections blocked at the firewall, and check connection logs for any unexpected outbound traffic.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/local-llm-hardware-sizing/">What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory?</a></li><li><a href="/en/qa/is-local-llm-good-enough/">Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company?</a></li><li><a href="/en/qa/ai-agent-pre-delivery-security-review/">What Does a Pre-Delivery Security Review of an AI Agent Actually Check?</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>

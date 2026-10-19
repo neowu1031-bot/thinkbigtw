@@ -265,7 +265,7 @@
 <li><strong>Normal, abnormal, and unauthorized cases tested</strong>: test cases cover complete data, unverifiable data, missing fields, service outages, and insufficient permissions; for steps that require approval, we confirm the system stops until authorized.</li>
 <li><strong>Traceable test records, retested after changes</strong>: test conditions, configuration, input scope, and expected and actual results are recorded; after model, data, or permission changes, the related cases are verified again.</li>
 </ol>
-<p>See <a href="https://thinkbigtw.com/guides/ai-acceptance/">AI Agent acceptance framework</a> and <a href="https://thinkbigtw.com/enterprise/rag/">RAG knowledge Q&amp;A</a>.</p>
+<p>See AI Agent acceptance framework and RAG knowledge Q&amp;A.</p>
     <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
   </section>
 
@@ -274,7 +274,7 @@
     <dl><dt>Q1: How is AI Agent acceptance different from regular system acceptance?</dt><dd>Besides confirming features work, you test that what should not happen does not: it declines when it should, users cannot see restricted content, it does not send or pay before approval, and instructions hidden in documents do not change its behavior.</dd><dt>Q2: Who should write the acceptance test questions?</dt><dd>People who know the business write the questions and correct answers, not the people who built the system. Each question notes which passage of which document the answer comes from.</dd><dt>Q3: How should the pass standard for an AI Agent be set?</dt><dd>Set it separately for each question type and write it down before testing. For example, a required share of correct answers on answerable questions, and no failures at all on decline and permission questions.</dd><dt>Q4: Is more testing needed after acceptance?</dt><dd>Yes. After changing the model, retrieval or context settings, adding or withdrawing documents, or adjusting permissions, rerun the same set to confirm nothing has regressed.</dd></dl>
   </section>
 
-  
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/is-local-llm-good-enough/">Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company?</a></li><li><a href="/en/qa/ai-agent-permissions/">How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve?</a></li><li><a href="/en/qa/rag-access-control-by-department/">When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data?</a></li></ul></nav>
 
   <div class="sources">
     <span class="lede">Sources (checked 2026-10-19)</span>
