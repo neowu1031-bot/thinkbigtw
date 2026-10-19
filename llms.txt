@@ -1,6 +1,6 @@
 # Think BIG｜企業 AI Agent 導入（總部台灣・服務全球）
 
-> Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，從守護企業資安出發，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機），並提供一年陪跑維運。選地端版時，模型與文件都在公司設備內處理；選雲端輔助版時，問題與檢索到的文件段落會送到模型廠商處理；我們扮演企業的遠端 FDE（Forward Deployed Engineer，前沿部署工程師）團隊：從聽懂需求、建置知識庫與 AI Agent、上線，到後續維運，一手包辦；另有個人 AI 助理安裝方案。更新：2026-10-19。
+> Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，從守護企業資安出發，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機），並提供一年陪跑維運。選地端版時，模型與文件都在公司設備內處理；選雲端輔助版時，問題與檢索到的文件段落會送到模型廠商處理；我們扮演企業的遠端 FDE（Forward Deployed Engineer，前沿部署工程師）團隊：從聽懂需求、建置知識庫與 AI Agent、上線，到後續維運，一手包辦；另有個人 AI 助理搭建方案。更新：2026-10-19。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
 
@@ -33,7 +33,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [遠端代裝指南](https://thinkbigtw.com/guides/yuanduan-daizhuang/)：評估安裝流程與準備條件
 
 ## 常見問題
-- Q：新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？ A：兩者擅長的工作不同，可以一起用。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。詳細各家比較：https://thinkbigtw.com/guides/ai-agents/ Think BIG 方案價格不含第三方 AI 模型用量費。
+- Q：新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？ A：兩者擅長的工作不同，可以一起用。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。詳細各家比較：https://thinkbigtw.com/guides/ai-agents/ Think BIG 個人方案以本地大模型 AI Agent 搭建為主，本地版不另收模型用量費；改搭雲端大模型時，用量費另計。
 - Q：如何評選 AI 導入服務商？ A：評選應涵蓋流程適配、資料治理、交付驗收及持續維運。要求服務商明列工作範圍、存取權限、驗收條件與問題處理責任。Think BIG 以實際運作的 AI 團隊治理流程說明能力，不展示客戶身分或資料。
 - Q：地端部署如何落實資料主權？ A：地端配置將工作資料與執行環境部署於企業指定設備。使用雲端模型或外部服務時，須另行確認傳送欄位、用途與授權。要求資料不出公司，仍需核對本機模型、外連限制、日誌及備份配置。
 - Q：導入適用性是否取決於企業規模？ A：適用性主要取決於流程可定義程度、資料可用性與驗收責任。可先界定單一工作流程進行評估，再依驗證結果規劃擴充；僅需個人助理的需求另有個人方案。
@@ -82,14 +82,14 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Instagram](https://www.instagram.com/think_big_ai/)、[Threads](https://www.threads.com/@think_big_ai)、[YouTube](https://www.youtube.com/@think_big_ai)
 - [全站內容全文](https://thinkbigtw.com/llms-full.txt)
 
-個人 AI 部門：人格版 AI 助理、雙 AI Agent（共存版或含記憶互通）、年約方案；個人方案請至蝦皮賣場（https://shopee.tw/shop/105010395）選購，或預約需求訪談（/contact/）取得報價。
+個人 AI 部門：本地大模型 AI Agent 搭建（人格版、雙 AI Agent 共存版或含記憶互通、年約方案）；電腦規格不夠可改搭雲端大模型，同方案同價格；共存版請透過 LINE 諮詢，其他方案可至蝦皮賣場（https://shopee.tw/shop/105010395）選購，或預約需求訪談（/contact/）取得報價。
 
 - [聯絡我們](https://thinkbigtw.com/contact/)
 - [常見問題](https://thinkbigtw.com/faq/)
 - [English personal plans](https://thinkbigtw.com/tbos/en/pricing.html)
 
 ## Optional
-個人方案依需求報價，可至蝦皮賣場（https://shopee.tw/shop/105010395）選購個人方案，或預約需求訪談（/contact/）。不含第三方模型用量費。服務費、支援期與續約條件以對應頁面為準；企業服務另行評估。
+個人方案以本地大模型 AI Agent 搭建為主，依需求報價；電腦規格不夠可改搭雲端大模型，同方案同價格。本地版不另收模型用量費；雲端版依用量另計。可至蝦皮賣場（https://shopee.tw/shop/105010395）選購，共存版請透過 LINE 諮詢，或預約需求訪談（/contact/）。服務費、支援期與續約條件以對應頁面為準；企業服務另行評估。
 - [個人方案專區](https://thinkbigtw.com/pricing/personal/)
 - [全 Agent 串接](https://thinkbigtw.com/full-agent/)
 - [雙 AI Agent](https://thinkbigtw.com/dual-agent/)

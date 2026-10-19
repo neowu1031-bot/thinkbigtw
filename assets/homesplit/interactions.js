@@ -136,3 +136,19 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once: true});
   else init();
 })();
+
+/* GA4 LINE click tracking — fires line_click event on lin.ee / line.me link clicks */
+(function () {
+  'use strict';
+  document.addEventListener('click', function (e) {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    if (!/lin\.ee|line\.me/.test(href)) return;
+    if (typeof gtag !== 'function') return;
+    gtag('event', 'line_click', {
+      link_url: href,
+      link_text: (link.textContent || '').trim().slice(0, 100)
+    });
+  }, { passive: true });
+})();
