@@ -202,6 +202,11 @@ test('Q20 本地版多少錢 → 選到 ch07（個人方案）', () => {
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
 });
 
+test('Q21 一人公司想用人格版多少錢 → 選到 ch07（一人公司屬個人方案）', () => {
+  const { selected } = selectKnowledge(msg('一人公司想用人格版多少錢？'));
+  assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
+});
+
 // ── 負向斷言：全本 KB 與 generated 檔不得含任何 NT$ 金額或三方案定價 ─────────
 test('負向斷言 KB_PRICE_FREE：fullKBText 不含 NT$ 金額、33000/66000/99000 等企業定價', () => {
   const PRICE_RE = /NT\$\s*\d|33,?000|66,?000|99,?000|12,?000|15,?000|6,?000/;
