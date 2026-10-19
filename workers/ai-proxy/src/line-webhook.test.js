@@ -24,6 +24,11 @@ import {
   loadHumanOnlyNames,
   isHumanOnlyUser,
   getLineDisplayName,
+  AICHECK_KEYWORDS,
+  AICHECK_STEPS,
+  processAicheckStep,
+  buildAicheckIntroText,
+  buildAicheckConfirmText,
 } from './line-webhook.js';
 
 // ──────────────────────────────────────────────
@@ -275,21 +280,22 @@ test('handleLineWebhook — follow 事件回歡迎文並跳過 AI', async () => 
 test('isHumanRequest — 轉真人關鍵字識別', () => {
   assert.equal(isHumanRequest('我要找真人'), true);
   assert.equal(isHumanRequest('有專人可以問嗎'), true);
-  assert.equal(isHumanRequest('想預約諮詢'), true);
   assert.equal(isHumanRequest('客服在哪'), true);
   assert.equal(isHumanRequest('你好想了解方案'), false);
   assert.equal(isHumanRequest('AI 能做什麼'), false);
+  // 「預約」已改為觸發 AI 健檢流程，不再路由到人工
+  assert.equal(isHumanRequest('我想預約諮詢'), false);
 });
 
 // ──────────────────────────────────────────────
 // 測試 6：轉真人觸發（#8: 斷言在測試本體）
 // ──────────────────────────────────────────────
-test('handleLineWebhook — 傳「預約」回固定文字並標記 needs_human', async () => {
+test('handleLineWebhook — 傳「我要找真人」回固定文字並標記 needs_human', async () => {
   const secret = 'mysecret';
   const bodyObj = {
     events: [{
       type: 'message',
-      message: { type: 'text', text: '我想預約諮詢' },
+      message: { type: 'text', text: '我要找真人' },
       source: { type: 'user', userId: 'U789' },
       replyToken: 'reply001',
       webhookEventId: 'evt001',
@@ -298,11 +304,12 @@ test('handleLineWebhook — 傳「預約」回固定文字並標記 needs_human'
   const bodyStr = JSON.stringify(bodyObj);
   const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
 
-  let repliedText = null, reportPayload = null;
+  let repliedMsg = null, reportPayload = null;
   const origFetch = globalThis.fetch;
   globalThis.fetch = async (url, opts) => {
     if (url.includes('/v2/bot/message/reply')) {
-      repliedText = JSON.parse(opts.body).messages?.[0]?.text;
+      const body = JSON.parse(opts.body);
+      repliedMsg = body.messages?.[0];
       return { ok: true, body: { cancel: async () => {} } };
     }
     if (url.includes('/v2/bot/profile')) {
@@ -332,7 +339,10 @@ test('handleLineWebhook — 傳「預約」回固定文字並標記 needs_human'
   globalThis.fetch = origFetch;
 
   assert.equal(res.status, 200);
-  assert.ok(repliedText?.includes('通知'), `回覆應包含「通知」，實際：${repliedText}`);
+  // 回覆現在是 Flex 圖卡，用 altText 或 contents 文字確認有傳人工轉移語
+  const replyStr = JSON.stringify(repliedMsg);
+  assert.ok(replyStr.includes('通知') || replyStr.includes('同仁') || replyStr.includes('真人'),
+    `回覆應包含人工轉移文字，實際：${replyStr?.slice(0, 200)}`);
   // #8: 斷言在測試本體（不在 mock 內）
   assert.ok(reportPayload !== null, 'Supabase report 應被送出');
   assert.equal(reportPayload?.p_summary_json?.needs_human, true, 'needs_human 應為 true');
@@ -367,11 +377,11 @@ test('handleLineWebhook — 已轉真人後新訊息儲存 context 並更新報�
   const bodyStr = JSON.stringify(bodyObj);
   const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
 
-  let repliedText = null, reportPayload = null;
+  let repliedMsg = null, reportPayload = null;
   const origFetch = globalThis.fetch;
   globalThis.fetch = async (url, opts) => {
     if (url.includes('/v2/bot/message/reply')) {
-      repliedText = JSON.parse(opts.body).messages?.[0]?.text;
+      repliedMsg = JSON.parse(opts.body).messages?.[0];
       return { ok: true, body: { cancel: async () => {} } };
     }
     if (url.includes('/v2/bot/profile')) {
@@ -401,7 +411,10 @@ test('handleLineWebhook — 已轉真人後新訊息儲存 context 並更新報�
   globalThis.fetch = origFetch;
 
   assert.equal(res.status, 200);
-  assert.ok(repliedText?.includes('已轉達') || repliedText?.includes('同仁'), `reply text: ${repliedText}`);
+  // 回覆是 Flex 圖卡，檢查 altText 或 contents 含有已轉真人確認文字
+  const replyStr = JSON.stringify(repliedMsg);
+  assert.ok(replyStr.includes('已轉達') || replyStr.includes('同仁') || replyStr.includes('通知'),
+    `reply msg: ${replyStr?.slice(0, 200)}`);
 
   // Context 應更新（新訊息已加入）
   const savedCtx = await kv.get('ctx:' + keyHash, 'json');
@@ -1123,4 +1136,221 @@ test('handleLineWebhook — 錯誤簽章回傳 401', async () => {
   };
   const res = await handleLineWebhook(makeRequest('POST', body, 'wrong_base64_sig=='), env, makeCtxStub());
   assert.equal(res.status, 401);
+});
+
+// ══════════════════════════════════════════════════════════════════
+// AI 健檢 / 開發信功能測試（feat-line-aicheck-1019）
+// ══════════════════════════════════════════════════════════════════
+
+// ──────────────────────────────────────────────
+// 測試 A1：AICHECK_KEYWORDS 觸發偵測
+// ──────────────────────────────────────────────
+test('AICHECK_KEYWORDS — 關鍵字正確觸發', () => {
+  const matches = [
+    'AI健檢', '我想預約健檢', '免費盤點', 'aicheck', 'AICHECK',
+    '預約健檢', '健檢預約', '預約盤點', '盤點預約',
+  ];
+  for (const kw of matches) {
+    assert.ok(AICHECK_KEYWORDS.test(kw), `應觸發：${kw}`);
+  }
+
+  const noMatches = ['你好', '報價多少', '企業方案', '預約真人'];
+  for (const kw of noMatches) {
+    assert.ok(!AICHECK_KEYWORDS.test(kw), `不應觸發：${kw}`);
+  }
+});
+
+// ──────────────────────────────────────────────
+// 測試 A2：AI 健檢問答機 — 七步驟完整流程
+// ──────────────────────────────────────────────
+test('processAicheckStep — 七步驟完整蒐集流程', () => {
+  const sessionCtx = {
+    aicheck: { step: 0, data: {}, waitingConfirm: false },
+  };
+
+  const answers = [
+    '大想成科技',       // company
+    '12345678',        // tax_id
+    '20 人',           // employees
+    '陳小明 0912345678', // contact
+    '下午兩點到五點',    // time_slots
+    '客服自動回覆',     // work_area
+    'A',               // delivery
+  ];
+
+  for (let i = 0; i < answers.length - 1; i++) {
+    const result = processAicheckStep(sessionCtx, answers[i]);
+    assert.ok(result, `步驟 ${i} 應有回傳`);
+    assert.equal(result.done, false, `步驟 ${i} 不應 done`);
+    assert.equal(result.cancelled, false, `步驟 ${i} 不應 cancelled`);
+    assert.ok(result.reply, `步驟 ${i} 應有下一題文字`);
+  }
+
+  // 最後一步 → waitingConfirm
+  const beforeConfirm = processAicheckStep(sessionCtx, answers[answers.length - 1]);
+  assert.ok(beforeConfirm.waitingConfirm, '最後一步應進入確認階段');
+  assert.equal(beforeConfirm.done, false);
+
+  // 套用 waitingConfirm 旗標
+  sessionCtx.aicheck.waitingConfirm = true;
+
+  // 確認送出
+  const confirmResult = processAicheckStep(sessionCtx, '確認');
+  assert.equal(confirmResult.done, true, '確認後應 done');
+  assert.equal(confirmResult.cancelled, false);
+
+  // 驗證蒐集的資料
+  assert.equal(sessionCtx.aicheck.data.company, '大想成科技');
+  assert.equal(sessionCtx.aicheck.data.delivery, 'A');
+});
+
+// ──────────────────────────────────────────────
+// 測試 A3：AI 健檢問答機 — 取消流程
+// ──────────────────────────────────────────────
+test('processAicheckStep — 取消關鍵字中斷流程', () => {
+  const sessionCtx = {
+    aicheck: { step: 0, data: {}, waitingConfirm: false },
+  };
+
+  // 填第一步
+  processAicheckStep(sessionCtx, '測試公司');
+
+  // 取消
+  const result = processAicheckStep(sessionCtx, '算了');
+  assert.ok(result.cancelled, '應回傳 cancelled');
+  assert.equal(result.done, false);
+  assert.ok(result.reply.includes('取消'), '取消文字應提及取消');
+  assert.equal(sessionCtx.aicheck, null, '取消後 sessionCtx.aicheck 應清空');
+});
+
+// ──────────────────────────────────────────────
+// 測試 A4：問企業報價 — 回覆不能含金額數字
+// ──────────────────────────────────────────────
+test('agent-kb.generated.js 企業章節 — 不含 33000/66000/99000/10萬', async () => {
+  const kbMod = await import('./agent-kb.generated.js');
+  const chapters = kbMod.chapters || kbMod.default?.chapters || [];
+  const ch11 = chapters.find(c => c.id === '11') || {};
+  const text = ch11.text || ch11.content || JSON.stringify(ch11);
+
+  const forbiddenPatterns = [
+    /33[,，]?000/,
+    /66[,，]?000/,
+    /99[,，]?000/,
+    /33k/i,
+    /66k/i,
+    /99k/i,
+    /10\s*萬\s*有找/,
+    /首年不另收維護費/,
+    /三種含稅/,
+  ];
+
+  for (const pat of forbiddenPatterns) {
+    assert.ok(!pat.test(text), `KB ch11 不應含：${pat}`);
+  }
+});
+
+// ──────────────────────────────────────────────
+// 測試 A5：postback aicheck 觸發流程（end-to-end）
+// ──────────────────────────────────────────────
+test('handleLineWebhook — postback aicheck 觸發回歡迎健檢圖卡', async () => {
+  const secret = 'testsecret';
+  const kv = makeKvStub();
+  const bodyObj = {
+    events: [{
+      type: 'postback',
+      replyToken: 'reply-token-postback',
+      source: { type: 'user', userId: 'U_postback_test' },
+      postback: { data: 'aicheck' },
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let capturedUrl = null;
+  let capturedBody = null;
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (typeof url === 'string' && url.includes('reply')) {
+      capturedUrl = url;
+      capturedBody = JSON.parse(opts.body);
+    }
+    return new Response(JSON.stringify({}), { status: 200 });
+  };
+
+  const env = {
+    LINE_CHANNEL_SECRET: secret,
+    LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: kv,
+    LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: 'AI reply' }) },
+  };
+
+  try {
+    const res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, makeCtxStub());
+    assert.equal(res.status, 200, 'postback 應回 200');
+    // 驗證有呼叫 LINE reply API
+    if (capturedBody) {
+      const msgText = JSON.stringify(capturedBody);
+      // 不應包含金額
+      assert.ok(!/NT\$[\d,]+/.test(msgText), '回覆不應含 NT$ 金額');
+    }
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+// ──────────────────────────────────────────────
+// 測試 A6：問「報價多少錢」 → 回覆不含金額
+// ──────────────────────────────────────────────
+test('handleLineWebhook — 詢問價格回覆不含 NT$ 金額', async () => {
+  const secret = 'testsecret6';
+  const kv = makeKvStub();
+  const bodyObj = {
+    events: [{
+      type: 'message',
+      replyToken: 'reply-token-price',
+      source: { type: 'user', userId: 'U_price_test' },
+      message: { type: 'text', id: 'msg001', text: '請問企業方案報價多少錢？' },
+    }],
+  };
+  const bodyStr = JSON.stringify(bodyObj);
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+
+  let capturedReply = '';
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (typeof url === 'string' && url.includes('reply')) {
+      try {
+        const body = JSON.parse(opts.body);
+        const msgs = body.messages || [];
+        for (const m of msgs) {
+          if (m.text) capturedReply += m.text;
+          if (m.altText) capturedReply += m.altText;
+          if (m.contents) capturedReply += JSON.stringify(m.contents);
+        }
+      } catch {}
+    }
+    return new Response(JSON.stringify({}), { status: 200 });
+  };
+
+  // AI stub 回傳一個不含金額的回覆
+  const aiReply = '費用依需求與範圍而定，歡迎預約免費 AI 工作盤點進一步了解。';
+  const env = {
+    LINE_CHANNEL_SECRET: secret,
+    LINE_CHANNEL_ACCESS_TOKEN: 'token',
+    LINE_KV: kv,
+    LINE_HASH_PEPPER: TEST_PEPPER,
+    AI: { run: async () => ({ response: aiReply }) },
+    MINIMAX_API_KEY: null,
+  };
+
+  try {
+    await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, makeCtxStub());
+    // 回覆不應含明確金額數字如 NT$33,000 / 33k
+    const forbiddenAmounts = /NT\$[\d,]+|3[36]k|33,000|66,000|99,000|10萬有找/i;
+    assert.ok(!forbiddenAmounts.test(capturedReply),
+      `回覆不應含明確金額：${capturedReply.slice(0, 200)}`);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
 });

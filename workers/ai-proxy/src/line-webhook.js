@@ -18,6 +18,7 @@
  */
 
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
+import { sendFlexReply, sendWelcomeFlex, buildFlexMessage } from './line-flex.js';
 
 // ──────────────────────────────────────────────
 // 常數
@@ -53,7 +54,8 @@ const AI_UNAVAILABLE_TEXT =
   '抱歉，AI 顧問暫時無法回覆，請稍後再試，或直接寄信至 ai@thinkbigtw.com。';
 
 // 觸發轉真人的關鍵字（用戶原文）
-const HUMAN_KEYWORDS = /真人|專人|客服|預約/;
+// 注意：「預約」已改為觸發 AI 健檢收件流程，不再觸發人工轉接
+const HUMAN_KEYWORDS = /真人|專人|客服/;
 
 // AI 判斷需要真人時的回覆信號
 const AI_HUMAN_SIGNAL = /需要真人|轉接人工|安排顧問聯繫|顧問會主動聯繫/;
@@ -61,10 +63,28 @@ const AI_HUMAN_SIGNAL = /需要真人|轉接人工|安排顧問聯繫|顧問會�
 // AI 回答不出來時的第一句（由 system prompt 指示）
 const AI_NEEDS_ANSWER_SIGNAL = /^這題我幫您轉給專人確認/;
 
+// AI 健檢觸發關鍵字（優先於一般 AI 處理）
+export const AICHECK_KEYWORDS = /AI健檢|健檢|盤點|aicheck|AICHECK|預約.*盤點|盤點.*預約|預約.*健檢|健檢.*預約/i;
+
+// utm_content=aicheck 引發的 postback 觸發字
+export const AICHECK_UTM_DATA = /^aicheck/i;
+
+// AI 健檢收件步驟定義
+export const AICHECK_STEPS = [
+  { key: 'company',    q: '請告訴我貴公司的名稱呢？' },
+  { key: 'tax_id',     q: '謝謝！公司的統一編號是幾號呢？（如果還不確定可以輸入「稍後補填」）' },
+  { key: 'employees',  q: '公司目前大概有多少位員工呢？（例如：20 人）' },
+  { key: 'contact',    q: '方便的聯絡窗口是？（姓名 + 可聯繫的 Email 或電話，擇一即可）' },
+  { key: 'time_slots', q: '您偏好什麼時段聯繫呢？（例如：週一到週五上午 10–12 點）' },
+  { key: 'work_area',  q: '目前最想先改善哪一類工作呢？（例如：客服回覆、文件整理、業務追蹤）' },
+  { key: 'delivery',   q: '最後一題！盤點結果您比較想要：\n(A) 線上報告連結（限時 7 天，線上查看）\n(B) 約 15 分鐘線上說明\n\n輸入 A 或 B 就可以了喔 😊' },
+];
+
 // GIFT 客戶名單：僅從 env.LINE_HUMAN_ONLY_NAMES 讀取，無硬編碼預設值
 // (C1: 名單只存在 Cloudflare Worker secrets，不進 repo)
 
 const LINE_PROFILE_URL = 'https://api.line.me/v2/bot/profile/';
+const LINE_LOADING_URL = 'https://api.line.me/v2/bot/chat/loading/start';
 
 // LINE 頻道補充：語氣 + 答不出來信號
 const LINE_SYSTEM_PROMPT_SUFFIX = `
@@ -77,6 +97,136 @@ const LINE_SYSTEM_PROMPT_SUFFIX = `
 - 若是 Think BIG 相關、但知識庫沒有答案的問題（例如特定客製需求、合約細節、個案報價），第一句話固定說「這題我幫您轉給專人確認一下喔」，不多解釋。
 - 與公司業務無關的請求，照【話題範圍】俏皮婉拒並把話題帶回，不要轉專人。
 - 不說「引擎」「保證」「取代」；不點名競品；不聲稱自己是真人。`;
+
+// ──────────────────────────────────────────────
+// 輸入中動畫（fail-open，失敗不拋出）
+// ──────────────────────────────────────────────
+
+export async function showTypingIndicator(token, userId, seconds = 5) {
+  if (!token || !userId) return;
+  try {
+    const res = await fetch(LINE_LOADING_URL, {
+      method: 'POST',
+      signal: AbortSignal.timeout(3000),
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      body: JSON.stringify({ chatId: userId, loadingSeconds: Math.min(seconds, 60) }),
+    });
+    await res.body?.cancel();
+  } catch { /* fail-open */ }
+}
+
+// ──────────────────────────────────────────────
+// AI 健檢圖卡
+// ──────────────────────────────────────────────
+
+/** 建立 AI 健檢介紹 Flex 圖卡文字。 */
+export function buildAicheckIntroText() {
+  return (
+    '【免費 AI 工作盤點】\n\n' +
+    '用 5 個工作天，在 2~3 台公司電腦上記下「在哪個系統、做什麼、花多久」，' +
+    '再整理成圖表讓你看：時間花在哪、哪幾類最適合交給 AI。\n\n' +
+    '交付方式：線上報告連結（限時 7 天），或約 15 分鐘線上說明，你二選一。\n' +
+    '免費 · 採審核制\n\n' +
+    '接下來我會收集幾項基本資料，填完後我們審核通過，2 個工作天內與你聯繫喔 😊\n\n' +
+    '（如要取消，直接說「取消」或「算了」就好）'
+  );
+}
+
+/** 建立 AI 健檢確認文字（收齊後）。 */
+export function buildAicheckConfirmText(data) {
+  const delivery = data.delivery
+    ? (data.delivery.toUpperCase().startsWith('A') ? '(A) 線上報告連結' : '(B) 15 分鐘線上說明')
+    : '待確認';
+  return (
+    '收到了！整理給你確認一下：\n\n' +
+    `・公司：${data.company || ''}\n` +
+    `・統編：${data.tax_id || ''}\n` +
+    `・員工人數：${data.employees || ''}\n` +
+    `・聯絡窗口：${data.contact || ''}\n` +
+    `・方便時段：${data.time_slots || ''}\n` +
+    `・想改善：${data.work_area || ''}\n` +
+    `・交付方式：${delivery}\n\n` +
+    '以上正確嗎？回覆「確認」就送出；想修改的話直接告訴我喔。'
+  );
+}
+
+// ──────────────────────────────────────────────
+// AI 健檢收件 — 狀態機
+// ──────────────────────────────────────────────
+
+/** 取消 AI 健檢的關鍵字 */
+export const AICHECK_CANCEL_KEYWORDS = /取消|算了|不填了|不想了|停止|stop/i;
+
+/**
+ * 進入 AI 健檢流程：發送介紹圖卡並設置 session 狀態。
+ * 傳回是否成功觸發（布林值）。
+ */
+export async function startAicheckFlow(token, replyToken, sessionCtx, kv, keyHash, nowMs) {
+  const introText = buildAicheckIntroText();
+  await sendFlexReply(token, replyToken, introText, { intent: 'default', maxButtons: 1 });
+
+  sessionCtx.aicheck = { step: 0, data: {} };
+  sessionCtx.lastAt = nowMs;
+  await kv.put('ctx:' + keyHash, JSON.stringify(sessionCtx), { expirationTtl: 7200 });
+  return true;
+}
+
+/**
+ * 繼續 AI 健檢流程：依目前步驟收集資料，並提問下一步。
+ * 傳回 { done: boolean, reply: string }。
+ */
+export function processAicheckStep(sessionCtx, userText) {
+  const aicheck = sessionCtx.aicheck;
+  if (!aicheck) return null;
+
+  // 取消
+  if (AICHECK_CANCEL_KEYWORDS.test(userText)) {
+    sessionCtx.aicheck = null;
+    return { done: false, cancelled: true, reply: '好的，已取消申請囉。有任何問題隨時問我 😊' };
+  }
+
+  const steps = AICHECK_STEPS;
+  const currentStep = aicheck.step;
+
+  // 還在收集步驟
+  if (currentStep < steps.length) {
+    const key = steps[currentStep].key;
+    aicheck.data[key] = userText.slice(0, 500);
+    aicheck.step += 1;
+
+    if (aicheck.step < steps.length) {
+      // 還有下一題
+      return { done: false, cancelled: false, reply: steps[aicheck.step].q };
+    } else {
+      // 全部收集完，顯示確認
+      return {
+        done: false,
+        cancelled: false,
+        waitingConfirm: true,
+        reply: buildAicheckConfirmText(aicheck.data),
+      };
+    }
+  }
+
+  // 等待確認階段
+  if (aicheck.waitingConfirm) {
+    const confirmText = userText.trim();
+    if (/確認|對|是的|送出|OK|ok/.test(confirmText)) {
+      return { done: true, cancelled: false, reply: null };
+    }
+    // 用戶說有問題，重置到步驟 0 讓他重填
+    aicheck.step = 0;
+    aicheck.data = {};
+    aicheck.waitingConfirm = false;
+    return {
+      done: false,
+      cancelled: false,
+      reply: '好的，讓我們重新填一遍～\n\n' + steps[0].q,
+    };
+  }
+
+  return null;
+}
 
 // ──────────────────────────────────────────────
 // 純函式（方便單元測試）
@@ -374,6 +524,64 @@ async function submitLineReport(env, sessionId, messages, needsHuman) {
 }
 
 /**
+ * 送出 AI 健檢申請報告。
+ */
+async function submitAicheckReport(env, keyHash, aicheckData) {
+  if (!env.INQUIRY_SUPABASE_URL || !env.INQUIRY_SUPABASE_SERVICE_ROLE_KEY) return;
+  let url;
+  try {
+    url = new URL(env.INQUIRY_SUPABASE_URL);
+    if (url.protocol !== 'https:' || url.username || url.password) return;
+  } catch { return; }
+
+  const delivery = aicheckData.delivery
+    ? (aicheckData.delivery.toUpperCase().startsWith('A') ? '(A) 線上報告' : '(B) 15分鐘說明')
+    : '未選擇';
+
+  const summaryJson = {
+    need_one_line: `免費 AI 工作盤點申請：${(aicheckData.company || '').slice(0, 60)}`,
+    heat: 'high',
+    tier_guess: 'aicheck_lead',
+    questions: [`公司：${aicheckData.company || ''} | 統編：${aicheckData.tax_id || ''} | 員工：${aicheckData.employees || ''}`],
+    answers_quality: '健檢申請資料收齊',
+    next_step: `聯絡窗口：${aicheckData.contact || ''} | 時段：${aicheckData.time_slots || ''} | 想改善：${aicheckData.work_area || ''} | 交付：${delivery}`,
+    kb_gap: '',
+    industry_scale: aicheckData.employees || '',
+    source: 'line',
+    needs_answer: true,
+    aicheck_application: true,
+    key_hash: keyHash,
+  };
+
+  const userMsg = Object.entries(aicheckData)
+    .map(([k, v]) => `${k}: ${v}`)
+    .join('\n')
+    .slice(0, 1200);
+
+  try {
+    const response = await fetch(url.origin + '/rest/v1/rpc/submit_thinkbig_chat_report', {
+      method: 'POST', signal: AbortSignal.timeout(10000),
+      headers: {
+        'Content-Type': 'application/json',
+        apikey: env.INQUIRY_SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: `Bearer ${env.INQUIRY_SUPABASE_SERVICE_ROLE_KEY}`,
+      },
+      body: JSON.stringify({
+        p_id: generateUUID(),
+        p_user_turns: 7,
+        p_has_contact: true,
+        p_is_test: false,
+        p_heat: 'high',
+        p_tier_guess: 'aicheck_lead',
+        p_summary_json: summaryJson,
+        p_full_messages: [{ role: 'user', content: userMsg }],
+      }),
+    });
+    if (!response.ok) await response.body?.cancel();
+  } catch { /* 靜默失敗 */ }
+}
+
+/**
  * 6B: 送出「答不出來」通知報告（needs_answer: true）。
  */
 async function submitNeedsAnswerReport(env, keyHash, userQuestion) {
@@ -478,9 +686,9 @@ async function generateLineReply(messages, env) {
     .replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理')
     .trim();
 
-  // P7: 假收據防護（LINE 版：引導傳「預約」觸發轉真人）
+  // P7: 假收據防護（LINE 版：引導傳「預約」觸發健檢流程）
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
-    reply = '如需顧問聯繫，請傳送「預約」，我馬上幫您通知同仁喔～';
+    reply = '如需顧問聯繫，請傳送「預約」，我可以幫你申請免費 AI 工作盤點喔～';
   }
 
   const aiWantsHuman  = AI_HUMAN_SIGNAL.test(reply);
@@ -499,7 +707,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   // #1: 只處理 source.type==='user'；群組/room 事件一律略過
   if (source?.type !== 'user') return;
 
-  // follow 事件：先做 GIFT 判斷，再決定是否回歡迎文
+  // follow 事件：先做 GIFT 判斷，再決定是否回歡迎文（Flex 品牌圖卡）
   if (type === 'follow') {
     if (!userId) return;
     if (env.LINE_HASH_PEPPER) {
@@ -507,7 +715,26 @@ async function processEventInner(event, token, kv, env, ctx) {
       const { isGift } = await checkGiftStatus(token, userId, keyHash, env, ctx, kv);
       if (isGift) return; // GIFT 用戶不發歡迎文
     }
-    if (replyToken) await replyToLine(token, replyToken, WELCOME_TEXT);
+    if (replyToken) await sendWelcomeFlex(token, replyToken);
+    return;
+  }
+
+  // postback 事件（例如 Flex 按鈕觸發 aicheck）
+  if (type === 'postback') {
+    const pbData = event.postback?.data || '';
+    if (AICHECK_UTM_DATA.test(pbData) && userId && env.LINE_HASH_PEPPER) {
+      const keyHash = await hashUserId(userId, env.LINE_HASH_PEPPER);
+      const { isGift } = await checkGiftStatus(token, userId, keyHash, env, ctx, kv);
+      if (!isGift && replyToken) {
+        const nowMs = Date.now();
+        let sessionCtx = await loadContext(kv, keyHash);
+        if (!sessionCtx) {
+          sessionCtx = { sessionId: generateUUID(), startedAt: nowMs, messages: [], humanTransferred: false };
+        }
+        ctx.waitUntil(kv.put('uidmap:' + keyHash, userId, { expirationTtl: 604800 }));
+        await startAicheckFlow(token, replyToken, sessionCtx, kv, keyHash, nowMs);
+      }
+    }
     return;
   }
 
@@ -543,9 +770,8 @@ async function processEventInner(event, token, kv, env, ctx) {
 
   // #5: Profile API 失敗 → fail-closed（無法確認是否為 GIFT 客戶，不給 AI 回）
   if (profileFailed) {
-    const sessionId = generateUUID();
     ctx.waitUntil(submitNeedsAnswerReport(env, keyHash, userText));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT);
     return;
   }
 
@@ -554,7 +780,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     try {
       const { success } = await env.RATE_LIMITER.limit({ key: keyHash });
       if (!success) {
-        await replyToLine(token, replyToken, RATE_LIMIT_TEXT);
+        await sendFlexReply(token, replyToken, RATE_LIMIT_TEXT, { maxButtons: 0 });
         return;
       }
     } catch { /* fail-open */ }
@@ -563,7 +789,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   // F3: KV rate limit（per-user；全域改用 CF RATE_LIMITER）
   const rl = await checkRateLimit(kv, keyHash, nowMs);
   if (!rl.allowed) {
-    await replyToLine(token, replyToken, RATE_LIMIT_TEXT);
+    await sendFlexReply(token, replyToken, RATE_LIMIT_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -585,8 +811,45 @@ async function processEventInner(event, token, kv, env, ctx) {
     }
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_REPEAT_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_REPEAT_TEXT, { maxButtons: 0 });
     return;
+  }
+
+  // AI 健檢收件流程（進行中的步驟）
+  if (sessionCtx.aicheck) {
+    // 顯示輸入中動畫
+    ctx.waitUntil(showTypingIndicator(token, userId));
+
+    const stepResult = processAicheckStep(sessionCtx, userText);
+    if (stepResult) {
+      sessionCtx.lastAt = nowMs;
+
+      if (stepResult.cancelled) {
+        sessionCtx.aicheck = null;
+        await saveContext(kv, keyHash, sessionCtx);
+        await sendFlexReply(token, replyToken, stepResult.reply, { maxButtons: 0 });
+        return;
+      }
+
+      if (stepResult.done) {
+        // 送出報告
+        const aicheckData = sessionCtx.aicheck.data;
+        sessionCtx.aicheck = null;
+        await saveContext(kv, keyHash, sessionCtx);
+        ctx.waitUntil(submitAicheckReport(env, keyHash, aicheckData));
+        const confirmReply = '送出了！我們審核後會在 2 個工作天內與您聯繫喔 😊\n\n有任何其他問題都可以繼續問我呢～';
+        await sendFlexReply(token, replyToken, confirmReply, { maxButtons: 0 });
+        return;
+      }
+
+      // waitingConfirm 標記需同步到 sessionCtx
+      if (stepResult.waitingConfirm) {
+        sessionCtx.aicheck.waitingConfirm = true;
+      }
+      await saveContext(kv, keyHash, sessionCtx);
+      await sendFlexReply(token, replyToken, stepResult.reply, { maxButtons: 0 });
+      return;
+    }
   }
 
   // 用戶明確要求真人
@@ -596,9 +859,19 @@ async function processEventInner(event, token, kv, env, ctx) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
     return;
   }
+
+  // AI 健檢觸發關鍵字（開始新的申請流程）
+  if (AICHECK_KEYWORDS.test(userText) && !sessionCtx.aicheck) {
+    ctx.waitUntil(showTypingIndicator(token, userId));
+    await startAicheckFlow(token, replyToken, sessionCtx, kv, keyHash, nowMs);
+    return;
+  }
+
+  // 顯示輸入中動畫（在 AI 呼叫前）
+  ctx.waitUntil(showTypingIndicator(token, userId));
 
   // 呼叫 AI
   sessionCtx.messages.push({ role: 'user', content: userText });
@@ -607,7 +880,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   if (!result) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
-    await replyToLine(token, replyToken, AI_UNAVAILABLE_TEXT);
+    await sendFlexReply(token, replyToken, AI_UNAVAILABLE_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -622,7 +895,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     }
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await replyToLine(token, replyToken, HUMAN_TRANSFER_TEXT);
+    await sendFlexReply(token, replyToken, HUMAN_TRANSFER_TEXT, { maxButtons: 0 });
     return;
   }
 
@@ -636,18 +909,18 @@ async function processEventInner(event, token, kv, env, ctx) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitNeedsAnswerReport(env, keyHash, userText));
-    await replyToLine(token, replyToken, fullReply);
+    await sendFlexReply(token, replyToken, fullReply, { maxButtons: 0 });
     return;
   }
 
-  // 一般回覆
+  // 一般回覆（Flex 品牌圖卡）
   sessionCtx.messages.push({ role: 'assistant', content: reply });
   if (sessionCtx.messages.length > MAX_ROUNDS * 2) {
     sessionCtx.messages = sessionCtx.messages.slice(-MAX_ROUNDS * 2);
   }
   sessionCtx.lastAt = nowMs;
   await saveContext(kv, keyHash, sessionCtx);
-  await replyToLine(token, replyToken, reply);
+  await sendFlexReply(token, replyToken, reply);
 }
 
 // ──────────────────────────────────────────────
