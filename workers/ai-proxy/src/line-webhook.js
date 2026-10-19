@@ -72,12 +72,12 @@ export const AICHECK_UTM_DATA = /^aicheck/i;
 // AI 健檢收件步驟定義
 export const AICHECK_STEPS = [
   { key: 'company',    q: '請告訴我貴公司的名稱呢？' },
-  { key: 'tax_id',     q: '謝謝！公司的統一編號是幾號呢？（如果還不確定可以輸入「稍後補填」）' },
-  { key: 'employees',  q: '公司目前大概有多少位員工呢？（例如：20 人）' },
+  { key: 'tax_id',     q: '謝謝！公司的統一編號是幾號呢？（可以略過，直接輸入「略過」也沒關係）' },
+  { key: 'employees',  q: '公司目前大概有多少位員工呢？（可以略過，直接輸入「略過」也沒關係）' },
   { key: 'contact',    q: '方便的聯絡窗口是？（姓名 + 可聯繫的 Email 或電話，擇一即可）' },
   { key: 'time_slots', q: '您偏好什麼時段聯繫呢？（例如：週一到週五上午 10–12 點）' },
   { key: 'work_area',  q: '目前最想先改善哪一類工作呢？（例如：客服回覆、文件整理、業務追蹤）' },
-  { key: 'delivery',   q: '最後一題！盤點結果您比較想要：\n(A) 線上報告連結（限時 7 天，線上查看）\n(B) 約 15 分鐘線上說明\n\n輸入 A 或 B 就可以了喔 😊' },
+  { key: 'delivery',   q: '最後一題！健檢結果您比較想要：\n(A) 線上報告連結（限時 7 天，線上查看）\n(B) 約 15 分鐘線上說明\n\n輸入 A 或 B 就可以了喔 😊' },
 ];
 
 // GIFT 客戶名單：僅從 env.LINE_HUMAN_ONLY_NAMES 讀取，無硬編碼預設值
@@ -122,7 +122,7 @@ export async function showTypingIndicator(token, userId, seconds = 5) {
 /** 建立 AI 健檢介紹 Flex 圖卡文字。 */
 export function buildAicheckIntroText() {
   return (
-    '【免費 AI 工作盤點】\n\n' +
+    '【免費 AI 健檢】\n\n' +
     '用 5 個工作天，在 2~3 台公司電腦上記下「在哪個系統、做什麼、花多久」，' +
     '再整理成圖表讓你看：時間花在哪、哪幾類最適合交給 AI。\n\n' +
     '交付方式：線上報告連結（限時 7 天），或約 15 分鐘線上說明，你二選一。\n' +
@@ -539,7 +539,7 @@ async function submitAicheckReport(env, keyHash, aicheckData) {
     : '未選擇';
 
   const summaryJson = {
-    need_one_line: `免費 AI 工作盤點申請：${(aicheckData.company || '').slice(0, 60)}`,
+    need_one_line: `免費 AI 健檢申請：${(aicheckData.company || '').slice(0, 60)}`,
     heat: 'high',
     tier_guess: 'aicheck_lead',
     questions: [`公司：${aicheckData.company || ''} | 統編：${aicheckData.tax_id || ''} | 員工：${aicheckData.employees || ''}`],
@@ -688,7 +688,7 @@ async function generateLineReply(messages, env) {
 
   // P7: 假收據防護（LINE 版：引導傳「預約」觸發健檢流程）
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
-    reply = '如需顧問聯繫，請傳送「預約」，我可以幫你申請免費 AI 工作盤點喔～';
+    reply = '如需顧問聯繫，請傳送「預約」，我可以幫你申請免費 AI 健檢喔～';
   }
 
   const aiWantsHuman  = AI_HUMAN_SIGNAL.test(reply);
@@ -837,7 +837,11 @@ async function processEventInner(event, token, kv, env, ctx) {
         sessionCtx.aicheck = null;
         await saveContext(kv, keyHash, sessionCtx);
         ctx.waitUntil(submitAicheckReport(env, keyHash, aicheckData));
-        const confirmReply = '送出了！我們審核後會在 2 個工作天內與您聯繫喔 😊\n\n有任何其他問題都可以繼續問我呢～';
+        const confirmReply = (
+          '送出了！我們審核後會在 2 個工作天內與您聯繫喔 😊\n\n' +
+          '您填的資料只用於安排健檢聯絡，不會另作他用。\n\n' +
+          '有任何其他問題都可以繼續問我呢～'
+        );
         await sendFlexReply(token, replyToken, confirmReply, { maxButtons: 0 });
         return;
       }

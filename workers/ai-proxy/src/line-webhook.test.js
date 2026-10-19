@@ -1334,7 +1334,7 @@ test('handleLineWebhook — 詢問價格回覆不含 NT$ 金額', async () => {
   };
 
   // AI stub 回傳一個不含金額的回覆
-  const aiReply = '費用依需求與範圍而定，歡迎預約免費 AI 工作盤點進一步了解。';
+  const aiReply = '費用依需求與範圍而定，歡迎預約免費 AI 健檢進一步了解。';
   const env = {
     LINE_CHANNEL_SECRET: secret,
     LINE_CHANNEL_ACCESS_TOKEN: 'token',
