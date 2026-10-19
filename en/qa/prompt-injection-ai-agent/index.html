@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions? | Q&amp;A Library | Think BIG</title>
+<meta name="description" content="Yes. Prompt injection hides instructions in content the AI reads so that it does things it should not; when hidden in web pages, documents, or résumés it is called indirect prompt injection. OWASP lists it as LLM01 and says it is unclear whether fool-proof prevention exists. This page covers how it differs from jailbreaking and five defenses a company can put in place.">
+<link rel="canonical" href="https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/prompt-injection-ai-agent/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/prompt-injection-ai-agent/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/">
+<meta property="og:title" content="What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions? | Q&amp;A Library | Think BIG">
+<meta property="og:description" content="Yes. Prompt injection hides instructions in content the AI reads so that it does things it should not; when hidden in web pages, documents, or résumés it is called indirect prompt injection. OWASP lists it as LLM01 and says it is unclear whether fool-proof prevention exists. This page covers how it differs from jailbreaking and five defenses a company can put in place.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions? | Q&amp;A Library | Think BIG">
+<meta name="twitter:description" content="Yes. Prompt injection hides instructions in content the AI reads so that it does things it should not; when hidden in web pages, documents, or résumés it is called indirect prompt injection. OWASP lists it as LLM01 and says it is unclear whether fool-proof prevention exists. This page covers how it differs from jailbreaking and five defenses a company can put in place.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/#article",
+   "headline": "What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions?",
+   "description": "Yes. Prompt injection hides instructions in content the AI reads so that it does things it should not; when hidden in web pages, documents, or résumés it is called indirect prompt injection. OWASP lists it as LLM01 and says it is unclear whether fool-proof prevention exists. This page covers how it differs from jailbreaking and five defenses a company can put in place.",
+   "keywords": "prompt injection, prompt injection attack, what is prompt injection, indirect prompt injection, prompt injection vs jailbreak, AI agent security risks, OWASP LLM01, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "Think BIG Make it Real Co., Ltd.",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-19T12:00:00+08:00",
+   "dateModified": "2026-10-19T12:00:00+08:00",
+   "url": "https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/",
+   "mainEntityOfPage": "https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "citation": [
+    "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+    "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+    "https://genai.owasp.org/llm-top-10/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Prompt injection hides instructions in content the AI will read so that it does something it should not. When the instructions sit in outside content such as web pages, documents, or résumés, it is called indirect prompt injection. OWASP lists it as LLM01 in its 2025 Top 10 for large language model applications and states it is unclear whether fool-proof prevention exists. So the goal for a company is that even if the AI is fooled, it cannot do anything dangerous."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What is indirect prompt injection?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The AI takes in content from an outside source such as a web page or file, and hidden instructions in that content get treated as commands. The instructions may be invisible to people."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How is prompt injection different from jailbreaking?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "OWASP notes the terms are often used interchangeably. Jailbreaking is a form of prompt injection aimed at making the model ignore its safety rules; prompt injection is broader and covers any input that alters the model's behavior."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can RAG or fine-tuning prevent prompt injection?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not fully. OWASP states that RAG and fine-tuning improve relevance and accuracy, but research shows they do not fully mitigate prompt injection."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How can a company defend against prompt injection?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Separate outside content from instructions, give AI Agents least privilege, require human approval for high-risk actions, validate output formats in code, and run adversarial tests regularly. The goal is that a fooled AI still cannot do anything dangerous."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://thinkbigtw.com/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Q&A Library",
+     "item": "https://thinkbigtw.com/en/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Prompt injection: can content give an AI orders?",
+     "item": "https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/en/qa/">&larr; Q&amp;A Library</a>
+  <div class="qa-top">
+    <span class="cat">Enterprise AI Security</span>
+    <span class="no">TB04</span>
+  </div>
+  <h1 class="q">What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions?</h1>
+  <p class="byline">Think BIG Q&amp;A Library&nbsp;&nbsp;·&nbsp;&nbsp;<time datetime="2026-10-19T12:00:00+08:00">2026-10-19</time>
+    &nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://thinkbigtw.com/library/qa/prompt-injection-ai-agent/" hreflang="zh-Hant-TW" style="color:var(--ink-soft)">中文</a></p>
+
+  <section class="answer" aria-label="The short answer">
+    <span class="lede">The short answer</span>
+    <div><p>Yes. Prompt injection hides instructions in content the AI will read so that it does something it should not. When the instructions sit in outside content such as web pages, documents, or résumés, it is called indirect prompt injection. OWASP lists it as LLM01 in its 2025 Top 10 for large language model applications and states it is unclear whether fool-proof prevention exists. So the goal for a company is that even if the AI is fooled, it cannot do anything dangerous.</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">1. </span>How prompt injection happens</h2>
+<p>OWASP's definition: a prompt injection occurs when input alters the model's behavior or output in unintended ways. There are two kinds:</p>
+<ul>
+<li><strong>Direct prompt injection</strong>: the user types input meant to make the AI break its rules.</li>
+<li><strong>Indirect prompt injection</strong>: the AI takes in content from an outside source (a website or file) that contains hidden instructions, and treats them as commands. These can be invisible to people, such as white text on a white background.</li>
+</ul>
+<p>OWASP's scenarios include: an AI asked to summarize a web page whose hidden instructions cause it to leak the private conversation; a résumé uploaded with malicious instructions split across sections, which manipulate the model's evaluation of the candidate; and an attacker modifying a document in a RAG knowledge base to change the AI's answers.</p>
+<p><strong>Why AI Agents need more care than chat AI:</strong> a fooled chatbot says something wrong; a fooled AI Agent that can send email, query data, or edit files may actually act.</p>
+<p><strong>How it differs from jailbreaking:</strong> OWASP notes the terms are often used interchangeably. Jailbreaking is a form of prompt injection aimed at making the model ignore its safety rules; prompt injection is broader and covers any input that alters the model's behavior.</p>
+<h2><span class="no">2. </span>Five defenses a company can put in place</h2>
+<p>OWASP's recommendations, in a form companies can apply:</p>
+<ol>
+<li><strong>Separate outside content from instructions.</strong> Web pages, emails, and attachments the AI reads are marked as data, not instructions. The system prompt states the AI's role and limits.</li>
+<li><strong>Least privilege.</strong> An AI Agent that reads outside email does not get permission to send email or delete files. Sensitive functions are handled in code, not left to the model.</li>
+<li><strong>Human approval for high-risk actions.</strong> Sending externally, spending money, deleting, or changing production data happens only after a person confirms. Even if the AI is fooled, it stops at that gate.</li>
+<li><strong>Check output formats in code.</strong> Define the expected output format and validate it with deterministic code; anything that does not match is blocked.</li>
+<li><strong>Run adversarial tests regularly.</strong> Treat the model as an untrusted user and test whether trust boundaries hold.</li>
+</ol>
+<p>OWASP also notes that RAG and fine-tuning make answers more relevant and accurate, but research shows they do not fully mitigate prompt injection. The defenses have to come from permissions and process, not the model alone.</p>
+<h2><span class="no">3. </span>A quick self-check</h2>
+<p>Ask your provider or your IT team:</p>
+<ul>
+<li>Which content written by others does this AI Agent read? (Web pages, customer emails, uploaded files, shared documents)</li>
+<li>After reading it, what actions can it take? (Send email, change data, pay, call external services)</li>
+<li>Which actions always pause for a person to confirm?</li>
+</ul>
+<p>Anything that both reads outside content and can act directly, with no human check in between, is the first thing to fix.</p></div>
+
+  <section class="brand" aria-label="Brand information | Think BIG">
+    <span class="lede">Brand information | Think BIG</span>
+    <h2>How Think BIG reduces the impact of prompt injection</h2>
+    <p>Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.</p>
+<ol>
+<li><strong>Least privilege</strong>: for each AI Agent we confirm data sources, read/write scope, and access roles under the principle of least privilege.</li>
+<li><strong>Human approval</strong>: external sending, spending, and changes to production systems are decided by a designated person. AI Agents provide work output and evidence; people keep the key decisions.</li>
+<li><strong>Pre-delivery security review</strong>: before each system is delivered, its code and configuration go through a security review; if it does not pass, it is not delivered. No one can promise perfect security; what we do is review, one gate at a time.</li>
+</ol>
+<p>See <a href="https://thinkbigtw.com/trust/">Trust</a> and <a href="https://thinkbigtw.com/enterprise/">Enterprise</a>.</p>
+    <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
+  </section>
+
+  <section class="faq" aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl><dt>Q1: What is indirect prompt injection?</dt><dd>The AI takes in content from an outside source such as a web page or file, and hidden instructions in that content get treated as commands. The instructions may be invisible to people.</dd><dt>Q2: How is prompt injection different from jailbreaking?</dt><dd>OWASP notes the terms are often used interchangeably. Jailbreaking is a form of prompt injection aimed at making the model ignore its safety rules; prompt injection is broader and covers any input that alters the model&#x27;s behavior.</dd><dt>Q3: Can RAG or fine-tuning prevent prompt injection?</dt><dd>Not fully. OWASP states that RAG and fine-tuning improve relevance and accuracy, but research shows they do not fully mitigate prompt injection.</dd><dt>Q4: How can a company defend against prompt injection?</dt><dd>Separate outside content from instructions, give AI Agents least privilege, require human approval for high-risk actions, validate output formats in code, and run adversarial tests regularly. The goal is that a fooled AI still cannot do anything dangerous.</dd></dl>
+  </section>
+
+  
+
+  <div class="sources">
+    <span class="lede">Sources (checked 2026-10-19)</span>
+    <ol><li>OWASP GenAI Security Project, LLM01:2025 Prompt Injection (definition, direct and indirect, scenarios, mitigations, relation to jailbreaking): <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>OWASP GenAI Security Project, LLM06:2025 Excessive Agency (least privilege, human approval): <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>OWASP Top 10 for LLM Applications 2025: <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">genai.owasp.org</a></li></ol>
+  </div>
+  <p class="disclaimer">This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws &amp; Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG&#8217;s services depends on what both parties confirm.</p>
+
+  <div class="colophon">
+    <b>Q&amp;A Library</b>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/en/" style="color:inherit">Think BIG Home (EN)</a>
+    <span class="sig">Think BIG, Make it Real!&nbsp;&nbsp;Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

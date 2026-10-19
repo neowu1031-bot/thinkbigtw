@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG</title>
+<meta name="description" content="本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。">
+<link rel="canonical" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
+<meta property="og:title" content="公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG">
+<meta property="og:description" content="本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG">
+<meta name="twitter:description" content="本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/#article",
+   "headline": "公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？",
+   "description": "本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。",
+   "keywords": "本地大模型 硬體, LLM 硬體需求, Ollama 硬體需求, Ollama 顯卡需求, 顯示記憶體 VRAM, gpt-oss-20b 硬體需求, 地端 AI 設備, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG 問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "大想成業有限公司",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-19T12:00:00+08:00",
+   "dateModified": "2026-10-19T12:00:00+08:00",
+   "url": "https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/",
+   "mainEntityOfPage": "https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/",
+   "inLanguage": "zh-Hant-TW",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "citation": [
+    "https://docs.ollama.com/faq",
+    "https://ollama.com/library/qwen3",
+    "https://ollama.com/library/gpt-oss",
+    "https://github.com/openai/gpt-oss",
+    "https://github.com/QwenLM/Qwen3",
+    "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/",
+    "https://www.nvidia.com/en-us/products/workstations/dgx-spark/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。以 Ollama 官方模型庫的下載大小來看，8B 級模型約 5.2GB、14B 約 9.3GB、32B 約 20GB；OpenAI 的 gpt-oss-20b 官方寫明可以在 16GB 記憶體內執行，gpt-oss-120b 則可以放進單張 80GB 的 GPU。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "跑本地大模型，CPU 重要還是顯示卡重要？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "先看顯示卡的記憶體。模型能整個放進顯示記憶體時由 GPU 計算，放不下的部分會分到 CPU，速度明顯變慢。用 Ollama 的話，`ollama ps` 的 PROCESSOR 欄可以看到分配比例。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "16GB 顯示記憶體可以跑什麼模型？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "以 Ollama 官方模型庫的大小來看，8B 級（約 5.2GB）和 14B 級（約 9.3GB）都放得進去；OpenAI 官方也寫明 gpt-oss-20b 可在 16GB 記憶體內執行。實際還要留空間給上下文。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "公司很多人同時用，要多大的記憶體？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "要另外算。Ollama 官方 FAQ 寫明，所需記憶體會隨同時請求數乘上上下文長度增加；記憶體不夠時，新的請求會排隊等待。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "本地模型的電腦可以直接開放到網路上嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不建議。Ollama 預設只綁定本機 127.0.0.1；需要讓公司內其他設備使用時，用防火牆只開放給指定設備，不要直接開放到網際網路。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "首頁",
+     "item": "https://thinkbigtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Library",
+     "item": "https://thinkbigtw.com/library/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "問答圖書館",
+     "item": "https://thinkbigtw.com/library/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "name": "本地大模型的硬體：顯示記憶體怎麼抓",
+     "item": "https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/library/qa/">&larr; 問答圖書館</a>
+  <div class="qa-top">
+    <span class="cat">本地大模型</span>
+    <span class="no">TB02</span>
+  </div>
+  <h1 class="q">公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？</h1>
+  <p class="byline">Think BIG 問答圖書館　·　<time datetime="2026-10-19T12:00:00+08:00">2026 年 10 月 19 日　星期一</time>
+    ·　<a href="https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/" hreflang="en" style="color:var(--ink-soft)">English</a></p>
+
+  <section class="answer" aria-label="先說答案">
+    <span class="lede">先說答案</span>
+    <div><p>先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。以 Ollama 官方模型庫的下載大小來看，8B 級模型約 5.2GB、14B 約 9.3GB、32B 約 20GB；OpenAI 的 gpt-oss-20b 官方寫明可以在 16GB 記憶體內執行，gpt-oss-120b 則可以放進單張 80GB 的 GPU。</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">一、</span>為什麼先看顯示記憶體</h2>
+<p>本地模型回答問題時，要把整個模型載入記憶體。放得進顯示卡的記憶體，就由 GPU 計算；放不下的部分，會被分到系統記憶體由 CPU 計算，速度明顯變慢。</p>
+<p>Ollama 的 <code>ollama ps</code> 指令可以直接看到分配結果：PROCESSOR 欄如果寫 <code>100% GPU</code>，代表整個模型都在顯示卡上；寫成 <code>48%/52% CPU/GPU</code> 這種比例，代表模型只有一部分放進顯示卡（Ollama 官方 FAQ 的範例）。所以挑硬體的順序是：先決定要跑多大的模型，再算顯示記憶體夠不夠，最後才看其他規格。</p>
+<h2><span class="no">二、</span>常見模型要多少空間</h2>
+<p>下表是 Ollama 官方模型庫列出的下載大小（預設版本，2026-10-19 查證）。模型檔大小大致就是載入時要占的空間，另外還要加上上下文使用的記憶體。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>下載大小</th>
+<th>上下文長度</th>
+<th>官方補充</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>qwen3:8b</td>
+<td>5.2GB</td>
+<td>40K</td>
+<td>—</td>
+</tr>
+<tr>
+<td>qwen3:14b</td>
+<td>9.3GB</td>
+<td>40K</td>
+<td>—</td>
+</tr>
+<tr>
+<td>qwen3:30b（MoE，30B-A3B）</td>
+<td>19GB</td>
+<td>256K</td>
+<td>混合專家模型，每次只用到部分參數</td>
+</tr>
+<tr>
+<td>qwen3:32b</td>
+<td>20GB</td>
+<td>40K</td>
+<td>—</td>
+</tr>
+<tr>
+<td>gpt-oss:20b</td>
+<td>14GB</td>
+<td>128K</td>
+<td>官方：可在 16GB 記憶體內執行</td>
+</tr>
+<tr>
+<td>gpt-oss:120b</td>
+<td>65GB</td>
+<td>128K</td>
+<td>官方：可放進單張 80GB GPU</td>
+</tr>
+</tbody>
+</table></div>
+<p>對照硬體規格（官方數字）：</p>
+<ul>
+<li>消費級顯示卡舉例：NVIDIA GeForce RTX 5090 配備 32GB GDDR7 顯示記憶體。上表 32B 以下的模型都放得進去。</li>
+<li>桌上型 AI 主機舉例：NVIDIA DGX Spark 有 128GB 統一記憶體，官方寫單機可跑最多 2,000 億參數的模型。</li>
+</ul>
+<p>硬體價格與台灣供貨變動快，本文不列價格，以各通路實際報價為準。</p>
+<h2><span class="no">三、</span>選硬體的 4 個步驟</h2>
+<p><strong>1. 先決定任務，再決定模型。</strong>依公司文件回答問題、整理資料、擬回覆草稿，常用的是中型模型；不需要一開始就買跑得動超大型模型的機器。怎麼判斷模型夠不夠用，見〈本地模型夠不夠聰明？〉那一題。</p>
+<p><strong>2. 用模型檔大小抓顯示記憶體，並留餘裕。</strong>Ollama 預設上下文是 4,096 個 token；要讓 AI 一次讀進更多文件段落，就得把上下文調大，記憶體占用也會跟著增加。</p>
+<p><strong>3. 多人同時用要另外算。</strong>Ollama 官方 FAQ 寫明：每個模型同時處理的請求數由 <code>OLLAMA_NUM_PARALLEL</code> 控制，所需記憶體會隨「同時請求數 × 上下文長度」增加；記憶體不夠時，新的請求會排隊。公司 10 個人同時問，和 1 個人問，需要的記憶體不一樣。</p>
+<p><strong>4. 機器要放對地方、開對設定。</strong>需要隨時回應的 AI Agent，機器要 24 小時開機。Ollama 預設只綁定本機 127.0.0.1 的 11434 埠；改成對內網開放時，要搭配防火牆只讓指定的設備連線，不要直接開放到網際網路。</p></div>
+
+  <section class="brand" aria-label="品牌資訊｜Think BIG">
+    <span class="lede">品牌資訊｜Think BIG</span>
+    <h2>Think BIG 怎麼幫企業挑本地模型的硬體</h2>
+    <p>Think BIG（大想成業有限公司）是總部位於台灣的企業 AI Agent 導入商，從守護企業資安出發，幫企業把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機）。部署分兩種：地端版的模型與文件都在公司設備內處理；雲端輔助版會把員工的問題與系統找出的文件段落送到模型廠商處理。</p>
+<ol>
+<li><strong>先盤點既有設備</strong>：先看公司現有的電腦能不能用，再決定要不要添購，不預設一定要買新機器。</li>
+<li><strong>用實際工作驗證，不只看規格</strong>：交付前確認模型實際使用的硬體（例如 GPU 有沒有真的在跑），並用公司真實的問題測回應速度。</li>
+<li><strong>交付前資安審查</strong>：每一套系統交付前，程式與設定都先過一道資安審查，沒通過不交付。</li>
+</ol>
+<p>詳見<a href="https://thinkbigtw.com/enterprise-local/">地端部署說明</a>與<a href="https://thinkbigtw.com/enterprise/">企業導入</a>。</p>
+<p><em>brand-src</em>：Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+    <p class="brand-src">Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+  </section>
+
+  <section class="faq" aria-label="常見問題">
+    <h2>常見問題</h2>
+    <dl><dt>Q1：跑本地大模型，CPU 重要還是顯示卡重要？</dt><dd>先看顯示卡的記憶體。模型能整個放進顯示記憶體時由 GPU 計算，放不下的部分會分到 CPU，速度明顯變慢。用 Ollama 的話，`ollama ps` 的 PROCESSOR 欄可以看到分配比例。</dd><dt>Q2：16GB 顯示記憶體可以跑什麼模型？</dt><dd>以 Ollama 官方模型庫的大小來看，8B 級（約 5.2GB）和 14B 級（約 9.3GB）都放得進去；OpenAI 官方也寫明 gpt-oss-20b 可在 16GB 記憶體內執行。實際還要留空間給上下文。</dd><dt>Q3：公司很多人同時用，要多大的記憶體？</dt><dd>要另外算。Ollama 官方 FAQ 寫明，所需記憶體會隨同時請求數乘上上下文長度增加；記憶體不夠時，新的請求會排隊等待。</dd><dt>Q4：本地模型的電腦可以直接開放到網路上嗎？</dt><dd>不建議。Ollama 預設只綁定本機 127.0.0.1；需要讓公司內其他設備使用時，用防火牆只開放給指定設備，不要直接開放到網際網路。</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul><li><a href="/library/qa/is-local-llm-good-enough/">本地模型夠不夠聰明？</a></li><li><a href="/library/qa/offline-local-llm-updates/">本地模型斷網可以用嗎？</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">參考來源（連結於 2026-10-19 查證）</span>
+    <ol><li>Ollama 官方 FAQ（ollama ps 的 CPU/GPU 分配、預設上下文 4096、OLLAMA_NUM_PARALLEL 與記憶體、預設綁定 127.0.0.1:11434）：<a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com</a></li><li>Ollama 模型庫 qwen3（各版本下載大小與上下文）：<a href="https://ollama.com/library/qwen3" target="_blank" rel="noopener">ollama.com</a></li><li>Ollama 模型庫 gpt-oss（下載大小、16GB 與單張 80GB GPU）：<a href="https://ollama.com/library/gpt-oss" target="_blank" rel="noopener">ollama.com</a></li><li>OpenAI gpt-oss 官方 GitHub（117B／21B 參數、MXFP4 量化、硬體需求）：<a href="https://github.com/openai/gpt-oss" target="_blank" rel="noopener">github.com</a></li><li>Qwen3 官方 GitHub（30B-A3B 等模型尺寸）：<a href="https://github.com/QwenLM/Qwen3" target="_blank" rel="noopener">github.com</a></li><li>NVIDIA GeForce RTX 5090 官方規格（32GB GDDR7）：<a href="https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" rel="noopener">www.nvidia.com</a></li><li>NVIDIA DGX Spark 官方規格（128GB 統一記憶體、最多 2,000 億參數）：<a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">www.nvidia.com</a></li></ol>
+  </div>
+  <p class="disclaimer">本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。</p>
+
+  <div class="colophon">
+    <b>問答圖書館</b>　·　<a href="/library/" style="color:inherit">Library 首頁</a>
+    <span class="sig">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安承諾</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

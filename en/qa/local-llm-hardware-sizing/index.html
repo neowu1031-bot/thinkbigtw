@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory? | Q&amp;A Library | Think BIG</title>
+<meta name="description" content="For local LLMs, start with GPU memory, not the CPU: the model file must fit entirely in GPU memory, with room left for context and concurrent users. This page lists official model file sizes, hardware specs, and four steps to choose hardware.">
+<link rel="canonical" href="https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/">
+<meta property="og:title" content="What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory? | Q&amp;A Library | Think BIG">
+<meta property="og:description" content="For local LLMs, start with GPU memory, not the CPU: the model file must fit entirely in GPU memory, with room left for context and concurrent users. This page lists official model file sizes, hardware specs, and four steps to choose hardware.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory? | Q&amp;A Library | Think BIG">
+<meta name="twitter:description" content="For local LLMs, start with GPU memory, not the CPU: the model file must fit entirely in GPU memory, with room left for context and concurrent users. This page lists official model file sizes, hardware specs, and four steps to choose hardware.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/#article",
+   "headline": "What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory?",
+   "description": "For local LLMs, start with GPU memory, not the CPU: the model file must fit entirely in GPU memory, with room left for context and concurrent users. This page lists official model file sizes, hardware specs, and four steps to choose hardware.",
+   "keywords": "local LLM hardware, LLM hardware requirements, Ollama hardware requirements, Ollama GPU requirements, VRAM, gpt-oss-20b requirements, on-premises AI hardware, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "Think BIG Make it Real Co., Ltd.",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-19T12:00:00+08:00",
+   "dateModified": "2026-10-19T12:00:00+08:00",
+   "url": "https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/",
+   "mainEntityOfPage": "https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "citation": [
+    "https://docs.ollama.com/faq",
+    "https://ollama.com/library/qwen3",
+    "https://ollama.com/library/gpt-oss",
+    "https://github.com/openai/gpt-oss",
+    "https://github.com/QwenLM/Qwen3",
+    "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/",
+    "https://www.nvidia.com/en-us/products/workstations/dgx-spark/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Start with GPU memory, not the CPU. The model file must fit entirely in GPU memory, with room left for context and the number of people using it at once. Going by download sizes in Ollama's official library, an 8B-class model is about 5.2GB, 14B about 9.3GB, and 32B about 20GB. OpenAI states that gpt-oss-20b can run within 16GB of memory, while gpt-oss-120b fits on a single 80GB GPU."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "For a local LLM, does the CPU or the graphics card matter more?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Start with GPU memory. When the whole model fits, the GPU does the work; whatever does not fit goes to the CPU and slows things down noticeably. With Ollama, the PROCESSOR column in `ollama ps` shows the split."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What can run on 16GB of GPU memory?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "By Ollama's official library sizes, 8B-class (about 5.2GB) and 14B-class (about 9.3GB) models fit. OpenAI also states that gpt-oss-20b runs within 16GB of memory. Leave room for context."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How much memory if many staff use it at once?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Calculate it separately. Ollama's FAQ states that required memory scales with the number of parallel requests times context length, and new requests queue when memory runs short."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can the local model machine be exposed to the internet?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Not recommended. Ollama binds only to 127.0.0.1 by default. To let other office devices use it, open access to specific devices through a firewall rather than to the internet."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://thinkbigtw.com/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Q&A Library",
+     "item": "https://thinkbigtw.com/en/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Local LLM hardware: sizing GPU memory",
+     "item": "https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/en/qa/">&larr; Q&amp;A Library</a>
+  <div class="qa-top">
+    <span class="cat">Local LLMs</span>
+    <span class="no">TB02</span>
+  </div>
+  <h1 class="q">What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory?</h1>
+  <p class="byline">Think BIG Q&amp;A Library&nbsp;&nbsp;·&nbsp;&nbsp;<time datetime="2026-10-19T12:00:00+08:00">2026-10-19</time>
+    &nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/" hreflang="zh-Hant-TW" style="color:var(--ink-soft)">中文</a></p>
+
+  <section class="answer" aria-label="The short answer">
+    <span class="lede">The short answer</span>
+    <div><p>Start with GPU memory, not the CPU. The model file must fit entirely in GPU memory, with room left for context and the number of people using it at once. Going by download sizes in Ollama's official library, an 8B-class model is about 5.2GB, 14B about 9.3GB, and 32B about 20GB. OpenAI states that gpt-oss-20b can run within 16GB of memory, while gpt-oss-120b fits on a single 80GB GPU.</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">1. </span>Why GPU memory comes first</h2>
+<p>To answer a question, a local model has to be loaded into memory. Whatever fits in GPU memory runs on the GPU; whatever does not is placed in system memory and computed by the CPU, which is noticeably slower.</p>
+<p>Ollama's <code>ollama ps</code> shows the split directly. A PROCESSOR value of <code>100% GPU</code> means the whole model is on the graphics card; a ratio such as <code>48%/52% CPU/GPU</code> means only part of it fits (the example in Ollama's FAQ). So the order is: decide the model size, check whether GPU memory is enough, then look at everything else.</p>
+<h2><span class="no">2. </span>How much space common models need</h2>
+<p>Download sizes from Ollama's official library (default tags, checked 2026-10-19). File size roughly equals the memory needed to load the model; context needs additional memory on top.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Download size</th>
+<th>Context length</th>
+<th>Official note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>qwen3:8b</td>
+<td>5.2GB</td>
+<td>40K</td>
+<td>—</td>
+</tr>
+<tr>
+<td>qwen3:14b</td>
+<td>9.3GB</td>
+<td>40K</td>
+<td>—</td>
+</tr>
+<tr>
+<td>qwen3:30b (MoE, 30B-A3B)</td>
+<td>19GB</td>
+<td>256K</td>
+<td>Mixture of experts; only part of the parameters are active per step</td>
+</tr>
+<tr>
+<td>qwen3:32b</td>
+<td>20GB</td>
+<td>40K</td>
+<td>—</td>
+</tr>
+<tr>
+<td>gpt-oss:20b</td>
+<td>14GB</td>
+<td>128K</td>
+<td>Official: runs within 16GB of memory</td>
+</tr>
+<tr>
+<td>gpt-oss:120b</td>
+<td>65GB</td>
+<td>128K</td>
+<td>Official: fits on a single 80GB GPU</td>
+</tr>
+</tbody>
+</table></div>
+<p>Hardware reference points (official figures):</p>
+<ul>
+<li>Consumer graphics card example: the NVIDIA GeForce RTX 5090 has 32GB of GDDR7 memory, enough for every model above up to 32B.</li>
+<li>Desktop AI system example: NVIDIA DGX Spark has 128GB of unified memory; NVIDIA states a single unit runs models up to 200 billion parameters.</li>
+</ul>
+<p>Prices and availability in Taiwan change quickly, so this page lists none; check current quotes from resellers.</p>
+<h2><span class="no">3. </span>Four steps to choose hardware</h2>
+<p><strong>1. Decide the task, then the model.</strong> Answering from company documents, organizing data, and drafting replies usually work with mid-sized models. There is no need to start with a machine for the largest model. To judge whether a model is good enough, see "Is a local model smart enough?"</p>
+<p><strong>2. Size GPU memory from the model file, with headroom.</strong> Ollama's default context is 4,096 tokens. Letting the AI read more document passages at once means raising the context, which uses more memory.</p>
+<p><strong>3. Count concurrent users separately.</strong> Ollama's FAQ states that <code>OLLAMA_NUM_PARALLEL</code> sets how many requests each model handles at once, and required memory scales with parallel requests times context length. When memory runs short, new requests queue. Ten people asking at once need more memory than one.</p>
+<p><strong>4. Place and configure the machine properly.</strong> An AI Agent that must respond at any time needs a machine that stays on 24 hours. Ollama binds to 127.0.0.1 port 11434 by default; if you open it to the office network, use a firewall to allow only specific devices, and do not expose it to the internet.</p></div>
+
+  <section class="brand" aria-label="Brand information | Think BIG">
+    <span class="lede">Brand information | Think BIG</span>
+    <h2>How Think BIG helps companies choose hardware for local models</h2>
+    <p>Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.</p>
+<ol>
+<li><strong>Check existing equipment first</strong>: we look at whether current computers can do the job before suggesting any purchase.</li>
+<li><strong>Verify with real work, not just specs</strong>: before delivery we confirm which hardware the model actually uses (for example, whether the GPU is really running) and test response speed with the company's real questions.</li>
+<li><strong>Pre-delivery security review</strong>: before each system is delivered, its code and configuration go through a security review; if it does not pass, it is not delivered.</li>
+</ol>
+<p>See <a href="https://thinkbigtw.com/enterprise-local/">On-premises deployment</a> and <a href="https://thinkbigtw.com/enterprise/">Enterprise</a>.</p>
+    <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
+  </section>
+
+  <section class="faq" aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl><dt>Q1: For a local LLM, does the CPU or the graphics card matter more?</dt><dd>Start with GPU memory. When the whole model fits, the GPU does the work; whatever does not fit goes to the CPU and slows things down noticeably. With Ollama, the PROCESSOR column in `ollama ps` shows the split.</dd><dt>Q2: What can run on 16GB of GPU memory?</dt><dd>By Ollama&#x27;s official library sizes, 8B-class (about 5.2GB) and 14B-class (about 9.3GB) models fit. OpenAI also states that gpt-oss-20b runs within 16GB of memory. Leave room for context.</dd><dt>Q3: How much memory if many staff use it at once?</dt><dd>Calculate it separately. Ollama&#x27;s FAQ states that required memory scales with the number of parallel requests times context length, and new requests queue when memory runs short.</dd><dt>Q4: Can the local model machine be exposed to the internet?</dt><dd>Not recommended. Ollama binds only to 127.0.0.1 by default. To let other office devices use it, open access to specific devices through a firewall rather than to the internet.</dd></dl>
+  </section>
+
+  
+
+  <div class="sources">
+    <span class="lede">Sources (checked 2026-10-19)</span>
+    <ol><li>Ollama FAQ (CPU/GPU split in ollama ps, default context 4096, OLLAMA_NUM_PARALLEL and memory, default binding 127.0.0.1:11434): <a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com</a></li><li>Ollama library, qwen3 (download sizes and context): <a href="https://ollama.com/library/qwen3" target="_blank" rel="noopener">ollama.com</a></li><li>Ollama library, gpt-oss (download sizes, 16GB and single 80GB GPU): <a href="https://ollama.com/library/gpt-oss" target="_blank" rel="noopener">ollama.com</a></li><li>OpenAI gpt-oss on GitHub (117B/21B parameters, MXFP4, hardware): <a href="https://github.com/openai/gpt-oss" target="_blank" rel="noopener">github.com</a></li><li>Qwen3 on GitHub (model sizes including 30B-A3B): <a href="https://github.com/QwenLM/Qwen3" target="_blank" rel="noopener">github.com</a></li><li>NVIDIA GeForce RTX 5090 specifications (32GB GDDR7): <a href="https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/" target="_blank" rel="noopener">www.nvidia.com</a></li><li>NVIDIA DGX Spark specifications (128GB unified memory, up to 200B parameters): <a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">www.nvidia.com</a></li></ol>
+  </div>
+  <p class="disclaimer">This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws &amp; Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG&#8217;s services depends on what both parties confirm.</p>
+
+  <div class="colophon">
+    <b>Q&amp;A Library</b>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/en/" style="color:inherit">Think BIG Home (EN)</a>
+    <span class="sig">Think BIG, Make it Real!&nbsp;&nbsp;Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
