@@ -37,7 +37,7 @@ jobs:
           test -f _site/index.html && test -f _site/CNAME && test -f _site/.well-known/security.txt
           ! test -e _site/workers && ! test -e _site/supabase && ! test -e _site/scripts
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: '_site'
       - name: Deploy to GitHub Pages
