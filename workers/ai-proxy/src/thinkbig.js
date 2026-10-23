@@ -1,3 +1,4 @@
+import { retailExperience } from './retail-experience.js';
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
 // 話題範圍（官網＋LINE 共用，不計入 KB token budget）
 export const SCOPE_RULE = `
@@ -161,6 +162,11 @@ async function chat(body, env) {
     } catch { /* Try the next configured model; no transcript persistence. */ }
   }
   if (!reply) return json({ error: 'ai_unavailable', fallback: LINE }, 503);
+  reply = filterReply(reply);
+  const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
+  return json({ reply, model, inquirySuggested });
+}
+function filterReply(reply) {
   // Models sometimes answer in Simplified Chinese; normalise to Taiwan Traditional (OpenCC cn→twp).
   reply = toTraditionalTW(reply).replace(/臺/g, '台').replace(/客制/g, '客製').replace(/匯入/g, '導入');
   // The widget renders plain text (textContent), so strip Markdown the model may emit.
@@ -168,11 +174,10 @@ async function chat(body, env) {
   // NEO 9/27: the advisor never surfaces the Hermes name.
   reply = reply.replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理');
   // Receipt claims must come exclusively from the confirmed database write, never a model.
-  if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
+  if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|已收到.{0,8}資料|顧問會主動/.test(reply)) {
     reply = '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
   }
-  const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
-  return json({ reply, model, inquirySuggested });
+  return reply;
 }
 export function cleanReply(value) {
   return typeof value === 'string' ? value.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi, '').trim().slice(0, 3000) : '';
@@ -387,6 +392,11 @@ export async function handleThinkBig(request, env) {
   try { body = await readJSON(request.body, maxBody); }
   catch (error) { return json({ error: error.message }, error.message === 'too_large' ? 413 : 400); }
   try {
+    if (path === '/thinkbig-retail') {
+      const result = await retailExperience(body, env);
+      if (result.body.reply) result.body.reply = filterReply(result.body.reply);
+      return json(result.body, result.status);
+    }
     if (path === '/thinkbig-inquiry') return await inquiry(body, env);
     if (path === '/thinkbig-end-chat') return await endChat(body, env);
     return await chat(body, env);
