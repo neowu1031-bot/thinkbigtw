@@ -32,9 +32,9 @@ const experienceRoles = {
  {store:'C 店',metrics:[1000,30,3000,1000,30,2400]}
  ].map(s=>({...s,calculated:calculateRetail(s.metrics,1000000)}))}},
  sales: {title:'AI 業務助理',owners:'業務專員、業務主管',data:{notice:'以下客戶均為虛構代號，沒有聯絡資料；未核定報價及日期',leads:[
- {name:'潛客 A',inquiry:'想替 3 家門市整理每週報表，詢問導入範圍及交付內容',status:'初次詢價，尚未確認資料格式',next:'先確認現有報表格式及使用人數'},
- {name:'潛客 B',inquiry:'客服每天重複回覆商品與營業時間，想了解知識整理及人工接手方式',status:'已看過示範，等待需求確認',next:'建議 2 個工作天後詢問常見問題清單是否方便整理'},
- {name:'潛客 C',inquiry:'希望協助業務整理詢價及跟進草稿，詢問是否能串接現有系統',status:'系統名稱及權限尚未確認',next:'先約需求訪談，再由業務確認報價；不可保證相容'}
+ {name:'潛客 A',company:'晴日生活（虛構）',contact:'陳店長',item:'3 家門市的每週報表整理',followup:'方便分享目前使用的報表範本，以及預計會使用的人數嗎？我再幫您整理適合的導入範圍與交付內容。',inquiry:'想替 3 家門市整理每週報表，詢問導入範圍及交付內容',status:'初次詢價，尚未確認資料格式',next:'先確認現有報表格式及使用人數'},
+ {name:'潛客 B',company:'禾木選物（虛構）',contact:'林小姐',item:'商品與營業時間的客服回覆，以及人工接手方式',followup:'方便先挑 3 到 5 題最常收到的問題給我嗎？我可以先整理回覆範例，再一起確認哪些情況交由同事接手。',inquiry:'客服每天重複回覆商品與營業時間，想了解知識整理及人工接手方式',status:'已看過示範，等待需求確認',next:'建議 2 個工作天後詢問常見問題清單是否方便整理'},
+ {name:'潛客 C',company:'向陽商行（虛構）',contact:'王先生',item:'詢價整理、跟進草稿及現有系統串接',followup:'方便告訴我目前使用的系統名稱，以及這週哪個時段方便聊聊嗎？我們先確認需求與權限，再評估串接方式及報價。',inquiry:'希望協助業務整理詢價及跟進草稿，詢問是否能串接現有系統',status:'系統名稱及權限尚未確認',next:'先約需求訪談，再由業務確認報價；不可保證相容'}
  ]}},
  service: {title:'AI 客服接待',owners:'門市店員、客服專員、店長',data:{store:'日常選物示範店（虛構）',hours:'週二至週日 11:00–19:00，週一公休',products:[{name:'陶瓷馬克杯',info:'350ml，米白／霧灰，不可直火加熱'},{name:'帆布提袋',info:'原色，可裝 A4，建議手洗'}],booking:'到店商品諮詢，每次 30 分鐘；請提前 1 個營業日提出希望日期、時段及人數，需由店員確認。此體驗僅能查虛構時段及建立示範草稿。',unknown:'價格、現貨、節日營業時間皆未提供，需詢問店員；請勿在此留下個資'}}
 };
@@ -60,13 +60,18 @@ export function executeSandboxPlan(role, plan) {
    case 'revenue_breakdown': title=`試算 ${args.store} 店營收拆解`;result=data.stores.find(s=>s.store===args.store+' 店').calculated;break;
    case 'weekly_tasks': title='建立 3 項本週待辦';result=data.tasks=[{owner:'店長',task:`核對 ${args.store} 店來客計數`,metric:'來客數'},{owner:'店員',task:'記錄未成交原因',metric:'成交率'},{owner:'店長',task:'週末覆核商品組合',metric:'客單價'}];break;
    case 'lead_data': title=`查潛客 ${args.lead} 資料`;result=data.leads.find(l=>l.name==='潛客 '+args.lead);break;
-   case 'draft_followup': title='待送匣（示範，不會寄出）';result=data.outbox={lead:'潛客 '+args.lead,draft:'您好，想與您確認：'+data.leads.find(l=>l.name==='潛客 '+args.lead).next+'。方便由業務再與您討論嗎？'};break;
+   case 'draft_followup': {
+    const lead=data.leads.find(l=>l.name==='潛客 '+args.lead);
+    title='待送匣（示範，不會寄出）';
+    result=data.outbox={lead:lead.name,draft:`${lead.contact}您好！上次聊到${lead.company}想了解${lead.item}，想再跟您確認一下。${lead.followup}`};break;
+   }
    case 'schedule_contact': title='示範行事曆';result=data.calendar={lead:'潛客 '+args.lead,slot:args.slot,notice:'僅本次示範，未排入真實行事曆'};break;
    case 'product_hours': title='查商品／營業時間';result=args.topic==='商品'?data.products:{hours:data.hours};break;
    case 'available_slots': title='查示範可預約時段';result={slots,notice:'虛構時段，非真實空位'};break;
    case 'booking_draft': title='預約草稿（示範，不會真的預約）';result=data.bookingDraft={slot:args.slot,people:args.people,notice:'須由店員另行確認，未建立真實預約'};break;
   }
-  steps.push({name:call.name,title:'✅ '+title+'（示範）',action:'🔧 '+title+'…（示範）',result});
+  const label=title.includes('示範')?title:title+'（示範）';
+  steps.push({name:call.name,title:'✅ '+label,action:'🔧 '+label+'…',result});
  }
  return steps;
 }
@@ -97,10 +102,10 @@ export async function employeeExperience(body, env) {
  try {
   const planned=await runEmployeeAI(env,[{role:'system',content:system+`判斷需要哪些工具。只輸出 JSON {"calls":[{"name":"工具名","args":{}}]}，最多三次，無需工具用空陣列。參數只能選以下列舉值，禁止增加欄位：${JSON.stringify(sandboxTools[body.role])}`},...history],450);
   let plan;
-  try {plan=parseSandboxPlan(planned && Object.hasOwn(planned,'response') ? planned.response : planned);} catch {return {status:200,body:{reply:'這次未能整理出安全的示範步驟，沒有執行工具。請再指定要查的示範店、潛客或商品。',steps:[],mode:'live-ai'}};}
+  try {plan=parseSandboxPlan(planned && Object.hasOwn(planned,'response') ? planned.response : planned);} catch {return {status:200,body:{reply:'這次沒整理成功。你想先看哪家示範店、哪位潛客，或哪項商品？',steps:[],mode:'live-ai'}};}
   steps=executeSandboxPlan(body.role,plan);
-  const r=await runEmployeeAI(env,[{role:'system',content:system+'依已驗證工具結果簡短回報判斷與下一步；沒有執行的工作不可聲稱完成。所有草稿均須人工確認。工具結果：'+JSON.stringify(steps)},...history],650);
+  const r=await runEmployeeAI(env,[{role:'system',content:system+'像 LINE 上的同事一樣口語、短句，先講結果，再用一句簡短追問確認下一步。禁止在回覆提到「工具」「工具結果」「根據資料」「根據工具結果」或其他機器式開場。不要重複貼出卡片已有的整份內容。可以說「幫你擬好了，放在待送匣 👇 要不要語氣再熱情一點？」；待送匣僅為示範草稿，不代表寄出。有執行步驟才回報已完成的示範結果；沒有執行的工作不可聲稱完成。所有草稿均須人工確認。工具結果：'+JSON.stringify(steps)},...history],650);
   const reply=typeof r?.response==='string'?r.response.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi,'').trim().slice(0,1600):'';
   return {status:200,body:{reply:reply||'示範步驟如卡片所示，請核對後再決定下一步。',steps,mode:'live-ai'}};
- } catch {return steps.length?{status:200,body:{reply:'示範工具結果已整理在卡片中，文字回覆暫時無法產生。請先核對示範內容。',steps,mode:'live-ai'}}:{status:503,body:{error:'ai_unavailable'}};}
+ } catch {return steps.length?{status:200,body:{reply:'卡片裡已整理好這次的示範內容，但回覆暫時沒寫好。你可以先看看，有草稿的話也請確認後再使用。',steps,mode:'live-ai'}}:{status:503,body:{error:'ai_unavailable'}};}
 }
