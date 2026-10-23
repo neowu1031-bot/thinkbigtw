@@ -18,6 +18,10 @@ for(const [role,tools] of Object.entries(sandboxTools))for(const [name,spec] of 
  const [step]=executeSandboxPlan(role,{calls:[{name,args}]});context.step=step;
  const card=vm.runInContext('renderTool(step)',context);
  assert.ok(card.textContent.length>5);
+ if(Array.isArray(step.result.rows)){
+  for(const [label,value] of step.result.rows){assert.ok(card.textContent.includes(label));assert.ok(card.textContent.includes(value));}
+  assert.doesNotMatch(card.textContent,/示範步驟已整理/);
+ }
  assert.doesNotMatch(card.textContent,/\[object Object\]|"(?:lead|draft|metrics)"\s*:/);
  if(name==='draft_followup'){assert.ok(card.textContent.includes(step.result.draft));assert.match(card.textContent,/示範，不會寄出/);}
  if(name==='weekly_tasks')assert.equal(card.children.filter(c=>c.tag==='label').length,3);

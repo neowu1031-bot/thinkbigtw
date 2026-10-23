@@ -36,3 +36,18 @@ body.chat-open #tb-nav,body.chat-open #tb-footer{display:none}
  .chat-head{padding-top:max(6px,env(safe-area-inset-top))}
  .chat-bottom{padding-bottom:max(6px,env(safe-area-inset-bottom))}
 }
+
+/* 九部門組織圖：同一公司節點串起三列部門。 */
+.org-root{position:relative;width:fit-content;margin:36px auto 0;padding:16px 28px;border:1px solid #aaa2a8;text-align:center;background:#fff;color:#252629;font-weight:700}
+.org-root span{display:block;margin-top:6px;font-size:13px;font-weight:400;color:#784157}
+.org-root::after{content:"";position:absolute;top:100%;left:50%;height:32px;border-left:1px solid #aaa2a8}
+.employee-list{gap:24px;margin-top:32px;border-top:1px solid #aaa2a8;padding-top:24px}
+.employee-list button{position:relative;gap:12px;padding:24px;border:1px solid #c7bdc2;background:#fff;min-width:0}
+.employee-list button::before{content:"";position:absolute;bottom:100%;left:50%;height:25px;border-left:1px solid #aaa2a8}
+.employee-list button:hover{border-color:#784157;background:#faf6f8}
+.employee-list button:focus-visible{outline:3px solid #784157;outline-offset:4px}
+.employee-list .department-name{color:#784157;font-weight:700}
+.employee-list strong{font-size:24px}.employee-list b{margin-top:auto;padding-top:8px}
+.employee-list img{width:100%;height:auto;aspect-ratio:4/3;object-fit:contain;max-height:150px}
+@media(max-width:640px){.employee-list{grid-template-columns:1fr;gap:24px}.employee-list button{padding:24px}.org-root{width:100%;box-sizing:border-box}.employee-list img{max-height:130px}}
+.tool-step ol{padding-left:22px;margin:8px 0}.tool-step li{padding:5px 0}.artifact-draft{padding:4px 8px;background:#fff}.artifact-calendar p{padding:8px 0;border-bottom:1px solid #75817933}

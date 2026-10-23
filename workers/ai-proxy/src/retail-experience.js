@@ -1,3 +1,4 @@
+import {departmentRoles, departmentTools, departmentLabels} from './department-demos.js';
 // Public demo: deterministic calculation, bounded language-model advice, no external actions.
 export function calculateRetail(metrics, target) {
   if (!Array.isArray(metrics) || metrics.length !== 6 || metrics.some(n => typeof n !== 'number' || !Number.isFinite(n) || n < 0 || n > 10000000) || metrics[1] > 100 || metrics[4] > 100 || !Number.isFinite(target) || target <= 0 || target > 1000000000) throw new Error('invalid_metrics');
@@ -26,6 +27,7 @@ export async function retailExperience(body, env) {
 
 // Role fixtures stay in the Worker bundle; the browser sends only a role and conversation.
 const experienceRoles = {
+ ...departmentRoles,
  retail: {title:'AI 門市主管', owners:'店長、店員、區經理、行銷、總部營運', data:{period:'等長兩期，金額為新台幣；推算營收，不代表因果', stores:[
  {store:'A 店',metrics:[1000,30,3000,800,30,3000]},
  {store:'B 店',metrics:[1000,30,3000,1000,24,3000]},
@@ -40,6 +42,7 @@ const experienceRoles = {
 };
 // Tool parameters are enum-only: no customer text, contact details or executable values.
 export const sandboxTools = {
+ ...departmentTools,
  retail: {store_data:{store:['A','B','C']}, revenue_breakdown:{store:['A','B','C']}, weekly_tasks:{store:['A','B','C']}},
  sales: {lead_data:{lead:['A','B','C']}, draft_followup:{lead:['A','B','C']}, schedule_contact:{lead:['A','B','C'],slot:['下個示範營業日 11:00','下個示範營業日 15:00']}},
  service: {product_hours:{topic:['商品','營業時間']}, available_slots:{}, booking_draft:{slot:['下個示範營業日 11:00','下個示範營業日 15:00'],people:[1,2,3,4]}}
@@ -70,6 +73,7 @@ export function executeSandboxPlan(role, plan) {
    case 'available_slots': title='查示範可預約時段';result={slots,notice:'虛構時段，非真實空位'};break;
    case 'booking_draft': title='預約草稿（示範，不會真的預約）';result=data.bookingDraft={slot:args.slot,people:args.people,notice:'須由店員另行確認，未建立真實預約'};break;
   }
+  if (Object.hasOwn(departmentLabels,call.name)) {title=departmentLabels[call.name];result=data.artifacts[call.name];}
   const label=title.includes('示範')?title:title+'（示範）';
   steps.push({name:call.name,title:'✅ '+label,action:'🔧 '+label+'…',result});
  }
@@ -102,7 +106,7 @@ export async function employeeExperience(body, env) {
  try {
   const planned=await runEmployeeAI(env,[{role:'system',content:system+`判斷需要哪些工具。只輸出 JSON {"calls":[{"name":"工具名","args":{}}]}，最多三次，無需工具用空陣列。參數只能選以下列舉值，禁止增加欄位：${JSON.stringify(sandboxTools[body.role])}`},...history],450);
   let plan;
-  try {plan=parseSandboxPlan(planned && Object.hasOwn(planned,'response') ? planned.response : planned);} catch {return {status:200,body:{reply:'這次沒整理成功。你想先看哪家示範店、哪位潛客，或哪項商品？',steps:[],mode:'live-ai'}};}
+  try {plan=parseSandboxPlan(planned && Object.hasOwn(planned,'response') ? planned.response : planned);} catch {return {status:200,body:{reply:'這次沒整理成功。你想先處理這個部門的哪一項工作？',steps:[],mode:'live-ai'}};}
   steps=executeSandboxPlan(body.role,plan);
   const r=await runEmployeeAI(env,[{role:'system',content:system+'像 LINE 上的同事一樣口語、短句，先講結果，再用一句簡短追問確認下一步。禁止在回覆提到「工具」「工具結果」「根據資料」「根據工具結果」或其他機器式開場。不要重複貼出卡片已有的整份內容。可以說「幫你擬好了，放在待送匣 👇 要不要語氣再熱情一點？」；待送匣僅為示範草稿，不代表寄出。有執行步驟才回報已完成的示範結果；沒有執行的工作不可聲稱完成。所有草稿均須人工確認。工具結果：'+JSON.stringify(steps)},...history],650);
   const reply=typeof r?.response==='string'?r.response.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi,'').trim().slice(0,1600):'';

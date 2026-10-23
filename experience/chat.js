@@ -1,6 +1,12 @@
 (() => {
 'use strict';
 const roles={
+ marketing:{"name":"AI 行銷企劃","hello":"嗨，我是你的AI 行銷企劃。這裡用禾木選物（完全虛構公司）的資料，看活動成效，寫貼文草稿與內容日曆。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["查活動成效","擬社群貼文草稿","排內容日曆"]},
+ media:{"name":"AI 影音企劃","hello":"嗨，我是你的AI 影音企劃。這裡用禾木選物（完全虛構公司）的資料，整理短影音分鏡、標題與發片時程。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["擬短影音腳本","建議標題與封面字","排發片時程"]},
+ accounting:{"name":"AI 會計助理","hello":"嗨，我是你的AI 會計助理。這裡用禾木選物（完全虛構公司）的資料，核對帳款差異，整理請款與月報。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["對帳找差異","整理待請款清單","月報摘要"]},
+ admin:{"name":"AI 行政助理","hello":"嗨，我是你的AI 行政助理。這裡用禾木選物（完全虛構公司）的資料，整理會議待辦、會議室草稿與採購。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["整理會議重點與待辦","訂會議室草稿","整理採購清單"]},
+ training:{"name":"AI 訓練專員","hello":"嗨，我是你的AI 訓練專員。這裡用禾木選物（完全虛構公司）的資料，準備新人清單、小測驗與 SOP。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["整理新人到職訓練清單","出 5 題小測驗","整理 SOP 步驟"]},
+ research:{"name":"AI 市調分析師","hello":"嗨，我是你的AI 市調分析師。這裡用禾木選物（完全虛構公司）的資料，用虛構資料比較競品、評論與市場假設。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["整理競品資料表","歸納顧客評論重點","列可驗證的市場假設"]},
  retail:{name:'AI 門市主管',hello:'嗨，我是你的 AI 門市主管。我們可以一起看 A、B、C 店的示範數據，找出這週先做什麼。你想先看哪家店？',quick:['幫我比較 A／B／C 店','A 店這週先做什麼？','B 店有人來卻沒買，怎麼辦？','C 店客單變小，先看哪裡？']},
  sales:{name:'AI 業務助理',hello:'嗨，我是你的 AI 業務助理。這裡有三位示範潛客的詢價，我可以陪你整理報價重點、寫跟進草稿，也能一起排下次聯絡。先看看誰需要跟進嗎？',quick:['整理三位潛客的需求','幫潛客 B 寫跟進訊息','整理潛客 A 的報價重點','安排下次聯絡建議']},
  service:{name:'AI 客服接待',hello:'嗨，我是你的 AI 客服接待。今天用日常選物示範店練習接待，我可以幫你回商品問題、確認客人需求，再整理預約草稿。這裡不會真的預約，你想先試哪種問題？',quick:['客人問有哪些商品，怎麼回？','店裡幾點營業？','客人想預約，先問什麼？','幫我回覆馬克杯的使用問題']}
@@ -26,6 +32,44 @@ function renderTool(step){
  case 'booking_draft': line('時間',data.slot);line('人數',data.people);line('品項','到店商品諮詢（30 分鐘）');line('提醒',data.notice);break;
  case 'product_hours': if(Array.isArray(r))r.forEach(item=>{if(item&&typeof item==='object')line(text(item.name),item.info);});else line('營業時間',data.hours);break;
  case 'available_slots': line('可選時段',Array.isArray(data.slots)?data.slots.filter(x=>typeof x==='string').join('、'):undefined);line('提醒',data.notice);break;
+ case 'campaign_results':
+ case 'reconcile_accounts':
+ case 'monthly_summary':
+ case 'competitor_table':
+ case 'review_themes': {
+ const items=Array.isArray(data.rows)?data.rows.filter(row=>Array.isArray(row)&&row.length===2):[];
+ rows(items.map(([label,value])=>[text(label),value]));
+ break;
+ }
+ case 'social_draft':
+ case 'video_titles':
+ case 'meeting_room': {
+ const items=Array.isArray(data.rows)?data.rows.filter(row=>Array.isArray(row)&&row.length===2):[];
+ body.className='artifact-draft';items.forEach(([label,value])=>line(text(label),value));
+ break;
+ }
+ case 'content_calendar':
+ case 'release_schedule': {
+ const items=Array.isArray(data.rows)?data.rows.filter(row=>Array.isArray(row)&&row.length===2):[];
+ body.className='artifact-calendar';items.forEach(([label,value])=>line(text(label),value));
+ break;
+ }
+ case 'video_script':
+ case 'sop_steps':
+ case 'training_quiz': {
+ const items=Array.isArray(data.rows)?data.rows.filter(row=>Array.isArray(row)&&row.length===2):[];
+ const list=document.createElement('ol');items.forEach(([label,value])=>{const item=document.createElement('li');item.textContent=text(label)+'：'+text(value);list.append(item);});body.append(list);
+ break;
+ }
+ case 'payment_list':
+ case 'meeting_notes':
+ case 'purchase_list':
+ case 'onboarding_list':
+ case 'market_hypotheses': {
+ const items=Array.isArray(data.rows)?data.rows.filter(row=>Array.isArray(row)&&row.length===2):[];
+ items.forEach(([label,value])=>{const item=document.createElement('label'),check=document.createElement('input'),span=document.createElement('span');check.type='checkbox';span.textContent=text(label)+'：'+text(value);item.append(check,span);body.append(item);});
+ break;
+ }
  default: line('摘要','示範步驟已整理，請參考同事回覆。');
  }
  return body;
@@ -35,7 +79,7 @@ function addSteps(steps){
  steps.slice(0,3).forEach(step=>{
   if(!step||typeof step.title!=='string'||typeof step.action!=='string')return;
   const card=document.createElement('details');card.className='tool-step';
-  card.open=['draft_followup','booking_draft','schedule_contact','weekly_tasks'].includes(step.name);
+  card.open=['campaign_results','social_draft','content_calendar','video_script','video_titles','release_schedule','reconcile_accounts','payment_list','monthly_summary','meeting_notes','meeting_room','purchase_list','onboarding_list','training_quiz','sop_steps','competitor_table','review_themes','market_hypotheses','draft_followup','booking_draft','schedule_contact','weekly_tasks'].includes(step.name);
   const summary=document.createElement('summary');summary.textContent=step.title;
   const result=renderTool(step);card.append(summary,result);thread.append(card);
   transcript.push({role:'assistant',content:step.title+'\n'+result.textContent,time:new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})});
