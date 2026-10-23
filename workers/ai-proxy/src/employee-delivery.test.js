@@ -19,15 +19,15 @@ for(const role of Object.keys(sandboxTools))test(`${role}：主打快捷問題�
  assert.equal(result.status,200);assert.equal(calls,2);assert.ok(result.body.reply.length>1600);assert.ok(result.body.reply.length<=2400);
 });
 test('路由保留 2400 字與分隔表格，超長回覆截斷且下一輪可用',async()=>{
- const ask=async messages=>handleThinkBig(new Request('https://local.test/thinkbig-experience',{method:'POST',headers:{Origin:'https://thinkbigtw.com','Content-Type':'application/json'},body:JSON.stringify({role:'media',consent:true,messages})}),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>({response:p.max_tokens===450?'{"calls":[]}':'鏡號｜秒數\n'+ '字'.repeat(2500)})}});
+ const ask=async messages=>handleThinkBig(new Request('https://local.test/thinkbig-experience',{method:'POST',headers:{Origin:'https://thinkbigtw.com','Content-Type':'application/json'},body:JSON.stringify({role:'media',consent:true,messages})}),{LINE_KV:{get:async()=>null,put:async()=>{}},RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>({response:p.max_tokens===450?'{"calls":[]}':'鏡號｜秒數\n'+ '字'.repeat(2500)})}});
  const result=await (await ask([{role:'user',content:'寫腳本'}])).json();assert.equal(result.reply.length,2400);assert.match(result.reply,/鏡號｜秒數/);
  assert.equal((await ask([{role:'user',content:'寫腳本'},{role:'assistant',content:result.reply},{role:'user',content:'換個鉤子'}])).status,200);
 });
-test('總對話 18000 字接受，18001 字拒絕，不呼叫 AI',async()=>{
- const messages=[...Array.from({length:7},()=>({role:'assistant',content:'字'.repeat(2400)})),{role:'user',content:'字'.repeat(1200)}];
+test('合法交替最大 15600 字接受，超長訊息拒絕',async()=>{
+ const messages=Array.from({length:9},(_,i)=>({role:i%2?'assistant':'user',content:'字'.repeat(i%2?2400:1200)}));
  let calls=0;const env={AI:{run:async(_,p)=>{calls++;return {response:p.max_tokens===450?'{"calls":[]}':'示範草稿'};}}};
  const body={role:'media',consent:true,messages};assert.equal((await employeeExperience(body,env)).status,200);assert.equal(calls,2);
- messages.splice(0,0,{role:'assistant',content:'字'});assert.equal((await employeeExperience(body,env)).status,400);assert.equal(calls,2);
+ messages[0].content+='字';assert.equal((await employeeExperience(body,env)).status,400);assert.equal(calls,2);
 });
 test('前端上下限及表格捲動樣式一致，維持文字安全渲染',()=>{
  assert.match(source,/data.reply.length>2400/);assert.match(source,/>18000/);assert.match(source,/bubble.textContent=content/);assert.match(source,/content.includes\('｜'\)/);

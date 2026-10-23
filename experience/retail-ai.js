@@ -14,10 +14,11 @@ form.addEventListener('submit',async e=>{
  const text=question.value.trim();if(!text)return;
  const pending=[...history,{role:'user',content:text}];if(text.length>1200||pending.reduce((n,m)=>n+m.content.length,0)>18000){status.textContent='訊息請控制在 1200 字內，累計對話最多 18000 字。';return;}const myEpoch=epoch;controller=new AbortController();const active=controller;const timer=setTimeout(()=>active.abort(),25000);send.disabled=true;status.textContent='AI 正在參考數據，整理分析與下一步…';
  try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({metrics:keys.map(k=>Number(document.getElementById(k).value)),target:Number(document.getElementById('target').value),messages:pending,consent:true})});
- if(!response.ok)throw new Error(response.status===429?'rate_limited':'unavailable');
- const data=await response.json();if(typeof data.reply!=='string'||data.reply.length>2400||data.mode!=='live-ai')throw new Error('unavailable');if(epoch!==myEpoch)return;
+ const data=await response.json();
+ if(!response.ok)throw new Error(data.error==='daily_limit'?'daily_limit':response.status===429?'rate_limited':'unavailable');
+ if(typeof data.reply!=='string'||data.reply.length>2400||data.mode!=='live-ai')throw new Error('unavailable');if(epoch!==myEpoch)return;
  history=[...pending,{role:'assistant',content:data.reply.slice(0,2400)}];add('user',text);add('assistant',data.reply);question.value='';download.hidden=false;status.textContent='AI 已回覆。可補充情況繼續追問；建議仍需由主管核對。';
- }catch(error){if(epoch!==myEpoch)return;status.textContent=error.message==='rate_limited'?'目前使用較頻繁，請稍後再試。':'目前無法連上 AI 服務，未產生 AI 回答。你仍可使用上方的本機數據拆解，或稍後重試。';}
+ }catch(error){if(epoch!==myEpoch)return;if(error.message==='daily_limit')document.querySelector('.cta')?.scrollIntoView({block:'nearest'});status.textContent=error.message==='daily_limit'?'今天的體驗次數用完了，明天再來，或直接預約我們幫你搭一個。':error.message==='rate_limited'?'目前使用較頻繁，請稍後再試。':'目前無法連上 AI 服務，未產生 AI 回答。你仍可使用上方的本機數據拆解，或稍後重試。';}
  finally{clearTimeout(timer);if(epoch===myEpoch){controller=null;send.disabled=false;}}
 });
 document.getElementById('ai-reset').addEventListener('click',reset);

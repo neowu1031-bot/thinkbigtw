@@ -385,6 +385,23 @@ async function endChat(body, env) {
   }
 }
 
+// 每次有效體驗請求先扣額度；兩段 AI 共用一次額度，失敗不退還。
+async function reserveExperienceQuota(request, env) {
+  try {
+    const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+    const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ip));
+    const hash = Array.from(new Uint8Array(digest), b => b.toString(16).padStart(2, '0')).join('').slice(0, 16);
+    const date = new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    const key = `expcap:${hash}:${date}`;
+    const stored = await env.LINE_KV.get(key);
+    const count = stored === null ? 0 : Number(stored);
+    if (!Number.isSafeInteger(count) || count < 0 || stored === '') throw Error('invalid_counter');
+    if (count >= 30) return {status:429,body:{error:'daily_limit'}};
+    await env.LINE_KV.put(key, String(count + 1), {expirationTtl:172800});
+    return null;
+  } catch { return {status:503,body:{error:'temporarily_unavailable'}}; }
+}
+
 export async function handleThinkBig(request, env) {
   const path = new URL(request.url).pathname;
   if (request.headers.get('Origin') !== ORIGIN) return json({ error: 'origin_denied' }, 403);
@@ -405,12 +422,12 @@ export async function handleThinkBig(request, env) {
   catch (error) { return json({ error: error.message }, error.message === 'too_large' ? 413 : 400); }
   try {
     if (path === '/thinkbig-experience') {
-      const result = await employeeExperience(body, env);
+      const result = await employeeExperience(body, env, () => reserveExperienceQuota(request, env));
       if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'experience').slice(0,2400);
       return json(result.body, result.status);
     }
     if (path === '/thinkbig-retail') {
-      const result = await retailExperience(body, env);
+      const result = await retailExperience(body, env, () => reserveExperienceQuota(request, env));
       if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'retail').slice(0,2400);
       return json(result.body, result.status);
     }
