@@ -79,3 +79,31 @@ test('容錯計畫仍限制白名單、型別及前三次嘗試',async()=>{
   }
  }
 });
+
+test('所有卡片只標示一次示範',()=>{
+ for(const [role,tools] of Object.entries(sandboxTools))for(const [name,spec] of Object.entries(tools)){
+  const args=Object.fromEntries(Object.entries(spec).map(([k,v])=>[k,v[0]]));
+  const [step]=execute(role,name,args);
+  for(const text of [step.title,step.action])assert.equal((text.match(/示範/g)||[]).length,1);
+ }
+});
+test('三位潛客草稿有稱呼、詢價細節與可回覆的下一步',()=>{
+ for(const lead of ['A','B','C']){
+  const [{result:data}]=execute('sales','lead_data',{lead});
+  const [{result:{draft}}]=execute('sales','draft_followup',{lead});
+  assert.ok(data.company);assert.ok(data.contact);assert.ok(data.item);
+  for(const text of [data.company,data.contact,data.item])assert.ok(draft.includes(text));
+  assert.match(draft,/方便.*嗎？/);assert.doesNotMatch(draft,/2 個工作天後詢問/);
+ }
+});
+for(const role of ['retail','sales','service'])test(`${role}：第二段要求同事口吻且保留草稿確認界線`,async()=>{
+ let calls=0,replyPrompt;
+ await employeeExperience({...body,role},{AI:{run:async(_,p)=>{
+  if(++calls===1)return {response:'{"calls":[]}'};
+  replyPrompt=p.messages[0].content;
+  return {response:'幫你整理好了，要先看哪一項？'};
+ }}});assert.equal(calls,2);
+  assert.match(replyPrompt,/禁止.*工具.*工具結果.*根據資料/);
+  assert.match(replyPrompt,/LINE.*短句.*先講結果/);
+  assert.match(replyPrompt,/所有草稿均須人工確認/);
+});
