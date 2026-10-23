@@ -32,7 +32,7 @@ for(const role of roles){
  });
  test(`${role}：防護在 AI 前攔截，同時保留假完成過濾`,async()=>{
   let calls=0;const env={RATE_LIMITER:limiter,AI:{run:async(_,p)=>{calls++;return {response:p.max_tokens===450?'{"calls":[]}':'已排入行事曆'};}}};
-  for(const bad of [{...payload(role),consent:false},{...payload(role),data:{}},{...payload(role),messages:[{role:'user',content:'字'.repeat(1201)}]},{...payload(role),messages:[{role:'assistant',content:'字'.repeat(1601)},...payload(role).messages]},{...payload(role),messages:[{role:'assistant',content:'字'},...Array.from({length:5},()=>({role:'user',content:'字'.repeat(1200)}))]}])assert.equal((await handleThinkBig(request(bad),env)).status,400);
+  for(const bad of [{...payload(role),consent:false},{...payload(role),data:{}},{...payload(role),messages:[{role:'user',content:'字'.repeat(1201)}]},{...payload(role),messages:[{role:'assistant',content:'字'.repeat(2401)},...payload(role).messages]},{...payload(role),messages:[...Array.from({length:9},()=>({role:'assistant',content:'字'.repeat(2400)})),...payload(role).messages]}])assert.equal((await handleThinkBig(request(bad),env)).status,400);
   assert.equal((await handleThinkBig(request(payload(role),'https://evil.test'),env)).status,403);
   assert.equal((await handleThinkBig(request(payload(role)),{})).status,503);
   assert.equal((await handleThinkBig(request(payload(role)),{RATE_LIMITER:{limit:async()=>({success:false})}})).status,429);

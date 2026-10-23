@@ -69,3 +69,7 @@ html:has(body.chat-open){overflow-x:hidden}
 .chat-bottom{padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
 .quick,.chat-tools{min-width:0;overflow-x:auto}
 .quick button{white-space:normal}
+
+/* 成品保留換行與條列；純文字表格在氣泡內水平捲動。 */
+.assistant .bubble{line-height:1.85;tab-size:2}
+.assistant .bubble.has-table{font-family:ui-monospace,SFMono-Regular,Consolas,"Noto Sans Mono",monospace;white-space:pre;overflow-wrap:normal;overflow-x:auto;overscroll-behavior-x:contain}

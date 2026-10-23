@@ -406,12 +406,12 @@ export async function handleThinkBig(request, env) {
   try {
     if (path === '/thinkbig-experience') {
       const result = await employeeExperience(body, env);
-      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'experience').slice(0,1600);
+      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'experience').slice(0,2400);
       return json(result.body, result.status);
     }
     if (path === '/thinkbig-retail') {
       const result = await retailExperience(body, env);
-      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'retail');
+      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'retail').slice(0,2400);
       return json(result.body, result.status);
     }
     if (path === '/thinkbig-inquiry') return await inquiry(body, env);

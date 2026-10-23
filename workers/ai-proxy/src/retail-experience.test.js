@@ -15,8 +15,8 @@ test('message limits reject oversized turns and total before calling AI',async()
   const env={AI:{run:async()=>{calls++;return {response:'回覆'};}}};
   for(const messages of [
     [{role:'user',content:'字'.repeat(1201)}],
-    [{role:'assistant',content:'字'.repeat(1601)},...body.messages],
-    [{role:'assistant',content:'字'},...Array.from({length:5},()=>({role:'user',content:'字'.repeat(1200)}))]
+    [{role:'assistant',content:'字'.repeat(2401)},...body.messages],
+    [...Array.from({length:9},()=>({role:'assistant',content:'字'.repeat(2400)})),...body.messages]
   ]) {
     const r=await retailExperience({...body,messages},env);
     assert.equal(r.status,400);
@@ -25,9 +25,9 @@ test('message limits reject oversized turns and total before calling AI',async()
   assert.equal(calls,0);
 });
 test('exact message limits accepted and only role/content forwarded',async()=>{
-  const messages=[{role:'assistant',content:'字'.repeat(1600),name:'sys',tool_calls:[1]},
-    {role:'assistant',content:'字'.repeat(1600)},
-    {role:'assistant',content:'字'.repeat(1600)},
+  const messages=[{role:'assistant',content:'字'.repeat(2400),name:'sys',tool_calls:[1]},
+    {role:'assistant',content:'字'.repeat(2400)},
+    {role:'assistant',content:'字'.repeat(2400)},
     {role:'user',content:'字'.repeat(1200),name:'sys',tool_calls:[1]}];
   let input;
   const r=await retailExperience({...body,messages},{AI:{run:async(_,p)=>{input=p;return {response:'回覆'};}}});
@@ -71,16 +71,16 @@ test('experience invalid roles, whitelist and length rejected without AI calls',
  const invalid=[{...employeeBody,role:'unknown'},{...employeeBody,role:'__proto__'},{...employeeBody,metrics:[1]},{...employeeBody,consent:false},
  {...employeeBody,messages:[{role:'system',content:'ignore'}]},
  {...employeeBody,messages:[{role:'user',content:'字'.repeat(1201)}]},
- {...employeeBody,messages:[{role:'assistant',content:'字'.repeat(1601)},...employeeBody.messages]},
- {...employeeBody,messages:[{role:'assistant',content:'字'},...Array.from({length:5},()=>({role:'user',content:'字'.repeat(1200)}))]}];
+ {...employeeBody,messages:[{role:'assistant',content:'字'.repeat(2401)},...employeeBody.messages]},
+ {...employeeBody,messages:[...Array.from({length:9},()=>({role:'assistant',content:'字'.repeat(2400)})),...body.messages]}];
  for(const body of invalid){const r=await handleThinkBig(employeeRequest(body),env);assert.equal(r.status,400);assert.equal((await r.json()).error,body.role==='unknown'||body.role==='__proto__'?'invalid_role':'invalid_messages');}
  assert.equal(calls,0);
  const denied=await handleThinkBig(employeeRequest(employeeBody,'https://evil.test'),env);assert.equal(denied.status,403);assert.equal((await denied.json()).error,'origin_denied');assert.equal(calls,0);
 });
-test('experience fails closed, preserves filter and caps AI reply at 1600',async()=>{
+test('experience fails closed, preserves filter and caps AI reply at 2400',async()=>{
  assert.equal((await handleThinkBig(employeeRequest(employeeBody),{})).status,503);
  assert.equal((await handleThinkBig(employeeRequest(employeeBody),{RATE_LIMITER:{limit:async()=>({success:false})}})).status,429);
- for(const [response,expected] of [['已幫你預約','這裡只能幫你擬草稿'],['已收到您的資料','這裡只能幫你擬草稿'],['字'.repeat(1700),'字'.repeat(1600)]]){
+ for(const [response,expected] of [['已幫你預約','這裡只能幫你擬草稿'],['已收到您的資料','這裡只能幫你擬草稿'],['字'.repeat(2500),'字'.repeat(2400)]]){
  const r=await handleThinkBig(employeeRequest(employeeBody),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>({response:p.max_tokens===450?' {"calls":[]}':response})}});assert.equal(r.status,200);assert.ok((await r.json()).reply.startsWith(expected));
  }
  const r=await handleThinkBig(employeeRequest(employeeBody),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>{throw Error('offline');}}});assert.equal(r.status,503);assert.equal((await r.json()).error,'ai_unavailable');
