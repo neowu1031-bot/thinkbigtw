@@ -52,3 +52,30 @@ test('route blocks all receipt words outside demo cards',async()=>{
  assert.equal(r.status,200);assert.doesNotMatch((await r.json()).reply,/已寄出|已預約|已收到/);
  }
 });
+
+const validPlan={calls:[{name:'draft_followup',args:{lead:'B'}}]};
+for(const [label,planned] of [
+ ['JSON 圍欄',{response:'```json\n'+JSON.stringify(validPlan)+'\n```'}],
+ ['前後文字',{response:'以下是計畫：'+JSON.stringify(validPlan)+'\n請確認。'}],
+ ['response 物件',{response:validPlan}],
+ ['直接物件',validPlan]
+]) {
+ test(`工具計畫容錯：${label}`,async()=>{
+  let calls=0;
+  const r=await employeeExperience(body,{AI:{run:async()=>++calls===1?planned:{response:'請核對草稿。'}}});
+  assert.equal(r.status,200);assert.equal(calls,2);
+  assert.deepEqual(r.body.steps.map(s=>s.name),['draft_followup']);
+ });
+}
+test('容錯計畫仍限制白名單、型別及前三次嘗試',async()=>{
+ for(const wrap of [p=>({response:'計畫：'+JSON.stringify(p)+' 完畢'}),p=>({response:p}),p=>p]) {
+  for(const [plan,expected] of [
+   [{calls:Array(4).fill(validPlan.calls[0])},3],
+   [{calls:[{name:'fetch',args:{}},{name:'draft_followup',args:{lead:['B']}},{name:'booking_draft',args:{}},validPlan.calls[0]]},0]
+  ]) {
+   let calls=0;
+   const r=await employeeExperience(body,{AI:{run:async()=>++calls===1?wrap(plan):{response:'請核對草稿。'}}});
+   assert.equal(r.body.steps.length,expected);
+  }
+ }
+});

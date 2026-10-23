@@ -75,8 +75,17 @@ async function runEmployeeAI(env,messages,max_tokens) {
  try {return await Promise.race([env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast',{messages,max_tokens,temperature:0.2}),new Promise((_,reject)=>{timer=setTimeout(()=>reject(Error('timeout')),10000);})]);}
  finally {clearTimeout(timer);}
 }
+// 僅容錯輸出包裝；工具白名單、參數型別與次數仍由 executeSandboxPlan 驗證。
+function parseSandboxPlan(value) {
+ if (value && typeof value === 'object' && !Array.isArray(value)) return value;
+ if (typeof value !== 'string') throw Error('invalid_plan');
+ try {return JSON.parse(value);} catch { /* 嘗試擷取前後說明文字中的 JSON 物件。 */ }
+ const start=value.indexOf('{'), end=value.lastIndexOf('}');
+ if(start<0 || end<start) throw Error('invalid_plan');
+ return JSON.parse(value.slice(start,end+1));
+}
 export async function employeeExperience(body, env) {
- const config = Object.hasOwn(experienceRoles, body?.role) ? experienceRoles[body.role] : null;
+ const config = typeof body?.role === 'string' && Object.hasOwn(experienceRoles, body.role) ? experienceRoles[body.role] : null;
  if (!config) return {status:400,body:{error:'invalid_role'}};
  if (Object.keys(body).some(k=>!['role','messages','consent'].includes(k))) return {status:400,body:{error:'invalid_messages'}};
  const messages=body.messages;
@@ -88,7 +97,7 @@ export async function employeeExperience(body, env) {
  try {
   const planned=await runEmployeeAI(env,[{role:'system',content:system+`判斷需要哪些工具。只輸出 JSON {"calls":[{"name":"工具名","args":{}}]}，最多三次，無需工具用空陣列。參數只能選以下列舉值，禁止增加欄位：${JSON.stringify(sandboxTools[body.role])}`},...history],450);
   let plan;
-  try {plan=JSON.parse(planned?.response);} catch {return {status:200,body:{reply:'這次未能整理出安全的示範步驟，沒有執行工具。請再指定要查的示範店、潛客或商品。',steps:[],mode:'live-ai'}};}
+  try {plan=parseSandboxPlan(planned && Object.hasOwn(planned,'response') ? planned.response : planned);} catch {return {status:200,body:{reply:'這次未能整理出安全的示範步驟，沒有執行工具。請再指定要查的示範店、潛客或商品。',steps:[],mode:'live-ai'}};}
   steps=executeSandboxPlan(body.role,plan);
   const r=await runEmployeeAI(env,[{role:'system',content:system+'依已驗證工具結果簡短回報判斷與下一步；沒有執行的工作不可聲稱完成。所有草稿均須人工確認。工具結果：'+JSON.stringify(steps)},...history],650);
   const reply=typeof r?.response==='string'?r.response.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi,'').trim().slice(0,1600):'';
