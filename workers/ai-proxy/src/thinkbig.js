@@ -181,7 +181,7 @@ function filterReply(reply, context = 'chat') {
   // 體驗回覆先去掉空白，避免拆字繞過假完成攔截；分析「已收到的」則保留。
   // 僅 experience 擴充外部工作假完成；chat / retail 沿用既有規則。
   const experienceAction = '(?:訂|預訂|保留|借|下單|採購|購買|付款|付清|付了|匯款|轉帳|請款|開立|開好|沖帳|發布|發佈|發文|發出|發給|發了|傳給|貼到|貼上|PO|po|刊登|投放|上線|上片|上傳|上架|發片|排程|建立帳號|開通|查詢|搜尋|爬|連網|上網)';
-  const experienceCompletion = new RegExp(`(?<![未沒不尚])(?:已|已經|剛剛?|我(?:已|剛)?)(?:幫你|替你|為你|把)?.{0,6}${experienceAction}|${experienceAction}(?:完成|成功|好了|好囉)|(?:款項|貼文|影片|會議室|測驗).{0,3}已(?!入帳)|${experienceAction}好|發.{0,4}邀請|查.{0,3}網路`, 'u');
+  const experienceCompletion = new RegExp(`(?<![未沒不尚])(?:已|已經|剛剛?|我(?:已|剛))(?:幫你|替你|為你|把)?.{0,6}${experienceAction}|${experienceAction}(?:完成|成功|好了|好囉)|(?:款項|貼文|影片|會議室|測驗).{0,3}已(?!入帳)|${experienceAction}好|發.{0,4}邀請|查.{0,3}網路`, 'u');
   const demoCompletion = context === 'experience' && (
     /已收到(?!的)|(?:已|經|我).{0,6}(?:寄|發送|傳送|送達|通知|排入|排進|加入行事曆|訂位)|(?:預約|訂位|寄送|發送)(?:完成|成功)|寄出了/.test(reply.replace(/\s+/gu, ''))
     || experienceCompletion.test(reply.replace(/\s+/gu, ''))

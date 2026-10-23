@@ -37,19 +37,35 @@ body.chat-open #tb-nav,body.chat-open #tb-footer{display:none}
  .chat-bottom{padding-bottom:max(6px,env(safe-area-inset-bottom))}
 }
 
-/* 九部門組織圖：同一公司節點串起三列部門。 */
-.org-root{position:relative;width:fit-content;margin:36px auto 0;padding:16px 28px;border:1px solid #aaa2a8;text-align:center;background:#fff;color:#252629;font-weight:700}
-.org-root span{display:block;margin-top:6px;font-size:13px;font-weight:400;color:#784157}
-.org-root::after{content:"";position:absolute;top:100%;left:50%;height:32px;border-left:1px solid #aaa2a8}
-.employee-list{grid-auto-rows:1fr;gap:24px;margin-top:32px;border-top:1px solid #aaa2a8;padding-top:24px}
+/* 九部門卡片。 */
+.employee-list{grid-auto-rows:1fr;gap:24px;margin-top:32px}
 .employee-list button{position:relative;display:grid;grid-template-rows:1fr 1fr;gap:0;padding:0;border:1px solid #c7bdc2;background:#fff;min-width:0}
-.employee-list button::before{content:"";position:absolute;bottom:100%;left:50%;height:25px;border-left:1px solid #aaa2a8}
 .employee-list button:hover{border-color:#784157;background:#faf6f8}
 .employee-list button:focus-visible{outline:3px solid #784157;outline-offset:4px}
 .employee-list .department-name{color:#784157;font-weight:700}
 .employee-list strong{font-size:24px}.employee-list b{margin-top:auto;padding-top:8px}
 .employee-list button>img{display:block;width:100%;height:100%;min-height:0;max-height:none;aspect-ratio:auto;object-fit:cover;object-position:center}.department-copy{display:flex;flex-direction:column;gap:12px;padding:24px;min-width:0}.demo-notice{font-size:12px;line-height:1.6;color:#62565d}
-@media(max-width:640px){.employee-list{grid-template-columns:1fr;gap:24px}.employee-list button{padding:0}.org-root{width:100%;box-sizing:border-box}}
+@media(max-width:640px){.employee-list{grid-template-columns:1fr;gap:24px}.employee-list button{padding:0}}
 .tool-step ol{padding-left:22px;margin:8px 0}.tool-step li{padding:5px 0}.artifact-draft{padding:4px 8px;background:#fff}.artifact-calendar p{padding:8px 0;border-bottom:1px solid #75817933}
 
 #quota-remaining{font-size:12px;color:var(--accent);margin:0 0 5px}.experience-cta{background:#fff;border:1px solid var(--accent);border-radius:16px;padding:18px;margin:16px 0;overflow-wrap:anywhere}.experience-cta h3{font-size:18px;margin:0 0 10px}.experience-cta p{font-size:14px;line-height:1.7;margin:0 0 16px}.experience-cta>div{display:flex;flex-wrap:wrap;gap:10px}.experience-cta a{flex:1;min-width:100px;text-align:center;padding:12px 10px;border:1px solid var(--accent);border-radius:10px;color:var(--accent);font-size:14px;text-decoration:none}.experience-cta a:first-child{background:var(--accent);color:#fff}.phone textarea:disabled{background:#f1f3f1}.phone button:disabled{cursor:default}
+
+@media(max-width:768px){
+ .employee-list{grid-auto-rows:auto}
+ .employee-list button{grid-template-rows:auto 1fr}
+ .employee-list button>img{height:auto;aspect-ratio:16/9;object-fit:cover}
+}
+
+/* 限制格線與彈性子元素，長內容只能在卡片內捲動。 */
+html:has(body.chat-open){overflow-x:hidden}
+.chat-main,.phone,.phone *{box-sizing:border-box;min-width:0;max-width:100%;overflow-wrap:anywhere}
+.phone{grid-template-columns:minmax(0,1fr)}
+.conversation{overflow-x:hidden}
+.tool-step{overflow-x:auto}
+.tool-step table{table-layout:fixed}
+.tool-step input[type=checkbox]{flex-shrink:0}
+.phone textarea{flex:1;width:0}
+#send{flex:0 0 auto}
+.chat-bottom{padding-bottom:calc(6px + env(safe-area-inset-bottom,0px))}
+.quick,.chat-tools{min-width:0;overflow-x:auto}
+.quick button{white-space:normal}

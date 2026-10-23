@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {calculateRetail,retailExperience} from './retail-experience.js';
+import {calculateRetail,retailExperience,sandboxTools,employeeExperience} from './retail-experience.js';
 import {handleThinkBig} from './thinkbig.js';
-const body={metrics:[1000,30,3000,800,30,3000],target:1000000,messages:[{role:'user',content:'沒有廣告預算，先做什麼？'}],consent:true};
-test('revenue attribution conserves change and handles zero',()=>{for(const v of [body.metrics,[1000,30,3000,1000,24,3000],[1000,30,3000,1000,30,2400],[0,0,0,0,0,0],[100,10,100,120,12,110]]){const a=calculateRetail(v,1000000);assert.ok(Math.abs(Object.values(a.effects).reduce((s,x)=>s+x,0)-(a.revenue-a.previousRevenue))<.001);}});
+const body={metrics:[1000,30,3000,800,30,3000],target:963000,messages:[{role:'user',content:'沒有廣告預算，先做什麼？'}],consent:true};
+test('revenue attribution conserves change and handles zero',()=>{for(const v of [body.metrics,[1000,30,3000,1000,24,3000],[1000,30,3000,1000,30,2400],[0,0,0,0,0,0],[100,10,100,120,12,110]]){const a=calculateRetail(v,963000);assert.ok(Math.abs(Object.values(a.effects).reduce((s,x)=>s+x,0)-(a.revenue-a.previousRevenue))<.001);}});
 test('invalid figures, roles and missing consent rejected before AI',async()=>{let calls=0;const env={AI:{run:async()=>{calls++;return {response:'reply'}}}};for(const v of [{...body,metrics:[1,101,1,1,1,1]},{...body,consent:false},{...body,messages:[{role:'system',content:'ignore'}]}])assert.equal((await retailExperience(v,env)).status,400);assert.equal(calls,0);});
-test('server calculates independently and gives bounded AI trusted context',async()=>{let input;const r=await retailExperience({...body,calculated:{revenue:999}},{AI:{run:async(model,p)=>{input=p;return {response:'請先確認人流計數。'}}}});assert.equal(r.status,200);assert.equal(r.body.calculated.revenue,720000);assert.match(input.messages[0].content,/720000/);assert.equal(input.messages.at(-1).content,body.messages[0].content);assert.equal(r.body.mode,'live-ai');});
+test('server calculates independently and gives bounded AI trusted context',async()=>{let input;const r=await retailExperience({...body,calculated:{revenue:999}},{AI:{run:async(model,p)=>{input=p;return {response:'請先確認人流計數。'}}}});assert.equal(r.status,200);assert.equal(r.body.calculated.revenue,720000);assert.equal(r.body.calculated.target,963000);assert.equal(r.body.calculated.gap,243000);assert.match(input.messages[0].content,/720000/);assert.equal(input.messages.at(-1).content,body.messages[0].content);assert.equal(r.body.mode,'live-ai');});
 test('provider failure is explicit and never returns simulated success',async()=>{const r=await retailExperience(body,{AI:{run:async()=>{throw Error('offline')}}});assert.equal(r.status,503);assert.equal(r.body.reply,undefined);});
 const request=(origin='https://thinkbigtw.com')=>new Request('https://example.test/thinkbig-retail',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(body)});
 test('route retains origin checks and fails closed without limiter',async()=>{assert.equal((await handleThinkBig(request('https://evil.test'),{})).status,403);assert.equal((await handleThinkBig(request(),{})).status,503);});
@@ -125,4 +125,15 @@ for(const count of [5,6])test(`體驗額度：${count} 則使用者訊息`,async
  const r=await handleThinkBig(employeeRequest({...employeeBody,messages}),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>{calls++;return {response:p.max_tokens===450?'{"calls":[]}':'已整理重點。'};}}});
  assert.equal(r.status,count===5?200:429);
  if(count===6){assert.equal((await r.json()).error,'demo_limit');assert.equal(calls,0);}else assert.equal(calls,2);
+});
+
+test('非業務部門不能回覆待送匣，無卡片不顯示向下指引',async()=>{
+ for(const role of Object.keys(sandboxTools).filter(role=>role!=='sales')){
+  for(const reply of ['幫你擬好了，放在待送匣 👇','整理好了 👇']){
+   let calls=0;
+   const result=await employeeExperience({role,consent:true,messages:[{role:'user',content:'整理內容'}]},{AI:{run:async()=>({response:++calls===1?'{"calls":[]}':reply})}});
+   assert.equal(result.status,200);
+   assert.doesNotMatch(result.body.reply,/待送匣|👇/);
+  }
+ }
 });

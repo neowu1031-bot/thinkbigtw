@@ -31,7 +31,7 @@ function showCTA(){
 }
 function updateQuota(){
  const count=used(),exhausted=count>=5;
- $('quota-remaining').textContent='每段對話最多 5 題（前端每日計數）；還可以問 '+(5-count)+' 題';
+ $('quota-remaining').textContent='今天還可以問 '+(5-count)+' 題';
  $('message').disabled=exhausted;$('message').placeholder=exhausted?'本次體驗額度已用完':'想請同事幫什麼忙？';
  $('send').disabled=!!controller||exhausted;document.querySelectorAll('#quick button').forEach(b=>b.disabled=!!controller||exhausted);
  if(exhausted&&!controller){$('chat-status').textContent='本次體驗額度已用完';showCTA();}
@@ -97,6 +97,11 @@ function renderTool(step){
  }
  return body;
 }
+function replyForCards(reply,steps){
+ const hasCard=Array.isArray(steps)&&steps.slice(0,3).some(step=>step&&typeof step.title==='string'&&typeof step.action==='string');
+ // 卡片顯示在回覆上方；沒有卡片時移除指向符號。
+ return reply.replace(/👇\uFE0F?/gu,hasCard?'👆':'').trim();
+}
 function addSteps(steps){
  if(!Array.isArray(steps))return;
  steps.slice(0,3).forEach(step=>{
@@ -119,7 +124,7 @@ async function send(text){
  if(history.length>10||history.reduce((n,m)=>n+m.content.length,0)>6000){$('chat-status').textContent='這段聊得很完整了，請先下載，再按「重新聊」繼續。';return;}
  saveQuota(used()+1);
  const turn=epoch,active=new AbortController();controller=active;busy(true);$('chat-status').textContent='';add('user',text);$('message').value='';resizeInput();scroll();const timer=setTimeout(()=>active.abort(),25000);
- try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});const data=await response.json();if(!response.ok){if(data.error==='demo_limit'){if(turn!==epoch)return;saveQuota(5);showCTA();throw Error('demo_limit');}throw Error(response.status===429?'rate':'offline');}if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>1600)throw Error('offline');if(turn!==epoch)return;messages=[...history,{role:'assistant',content:data.reply}];addSteps(data.steps);add('assistant',data.reply);
+ try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});const data=await response.json();if(!response.ok){if(data.error==='demo_limit'){if(turn!==epoch)return;saveQuota(5);showCTA();throw Error('demo_limit');}throw Error(response.status===429?'rate':'offline');}if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>1600)throw Error('offline');if(turn!==epoch)return;const reply=replyForCards(data.reply,data.steps);messages=[...history,{role:'assistant',content:reply}];addSteps(data.steps);add('assistant',reply);
  }catch(error){if(turn!==epoch)return;$('chat-status').textContent=error.message==='rate'?'現在有點忙，請稍後再送一次。':'暫時連不上 AI，這則沒有取得回覆。請稍後再送一次。';if(error.message!=='demo_limit')$('message').value=text;resizeInput();
  }finally{clearTimeout(timer);if(turn===epoch){controller=null;busy(false);}}
 }

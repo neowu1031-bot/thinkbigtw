@@ -35,3 +35,19 @@ test('未知工具與不合法欄位不洩漏原始資料，HTML 僅作文字',(
  assert.match(card.textContent,/<img src=x onerror=alert\(1\)>/);
  assert.doesNotMatch(card.textContent,/private|hidden|\[object Object\]/);
 });
+test('沒有卡片時移除向下指引，有卡片時指向上方',()=>{
+ const replySource=source.slice(source.indexOf('function replyForCards('),source.indexOf('function addSteps('));
+ const clean=vm.runInNewContext(replySource+';replyForCards');
+ assert.equal(clean('擬好了 👇',[]),'擬好了');
+ assert.equal(clean('擬好了 👇',[{title:'腳本',action:'整理'}]),'擬好了 👆');
+ assert.equal(clean('擬好了 👇',[{title:'腳本'}]),'擬好了');
+});
+test('草稿、腳本與清單卡片預設展開',()=>{
+ const fragment=source.slice(source.indexOf('function addSteps('),source.indexOf('function resizeInput('));
+ const rendered=[];
+ const ctx=vm.createContext({document:{createElement:tag=>new Element(tag)},thread:{append:card=>rendered.push(card)},transcript:[],scroll:()=>{},renderTool:()=>new Element('div')});
+ vm.runInContext(fragment,ctx);
+ for(const name of ['draft_followup','social_draft','video_script','payment_list','purchase_list','onboarding_list','weekly_tasks']){
+  ctx.step={name,title:'內容',action:'整理'};vm.runInContext('addSteps([step])',ctx);assert.equal(rendered.at(-1).open,true,name);
+ }
+});

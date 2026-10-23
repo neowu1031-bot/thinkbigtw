@@ -32,11 +32,11 @@ if(typeof document!=='undefined' && document.getElementById('metrics')){
  let report='';
  const result=document.getElementById('result');
  const plans=[
- ['先核對人流與營業條件','是否有營業天數、商場活動、天氣或人流計數方式的變化？','店長：今天比對同星期、同時段人流及營業時數。','行銷：本週盤點新客來源，安排一項可追蹤的來客活動。','店長：每日追蹤來客、成交率與活動成本，一週後回看。'],
+ ['先核對人流與營業條件','是否有營業天數、商場活動、天氣或人流統計方式的變化？','店長：今天比對同星期、同時段人流及營業時數。','行銷：本週盤點新客來源，安排一項可追蹤的來客活動。','店長：每日追蹤來客、成交率與活動成本，一週後回看。'],
  ['先觀察接待與商品供應','是否有缺貨、排班變動、促銷結束，或客群結構改變？','店長：今天抽樣記錄未成交原因，先查缺貨與等候時間。','培訓：本週依觀察安排需求探索與異議處理演練。','店長：每日追蹤分時段成交率與未成交原因，一週後回看。'],
  ['先看商品組合與購買件數','是否有折扣、退貨、高單價商品缺貨，或購買組合改變？','店長：今天拆看每單件數、平均單件售價及折扣。','培訓：本週練習依需求推薦搭配，觀察客人接受度。','店長：每日追蹤客單價、毛利與退貨，一週後回看。']
  ];
- function load(name){keys.forEach((k,i)=>document.getElementById(k).value=samples[name][i]);document.getElementById('target').value=1000000;document.querySelectorAll('[data-case]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.case===name)));result.innerHTML='<p class="eyebrow">02 / 從數據到行動</p><h3>案例已載入</h3><p>按下「產出診斷與行動清單」，查看這家店的線索與下一步。</p>';report='';}
+ function load(name){keys.forEach((k,i)=>document.getElementById(k).value=samples[name][i]);document.getElementById('target').value=963000;document.querySelectorAll('[data-case]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.case===name)));result.innerHTML='<p class="eyebrow">02 / 從數據到行動</p><h3>案例已載入</h3><p>按下「產出診斷與行動清單」，查看這家店的線索與下一步。</p>';report='';}
  document.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',()=>load(b.dataset.case)));
  document.getElementById('metrics').addEventListener('input',()=>{document.querySelectorAll('[data-case]').forEach(b=>b.setAttribute('aria-pressed','false'));result.innerHTML='<h3>數據已更新</h3><p>請重新產出分析，以免使用前一次結果。</p>';report='';});
  document.getElementById('metrics').addEventListener('submit',e=>{
