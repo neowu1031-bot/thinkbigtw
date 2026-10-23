@@ -38,8 +38,17 @@ test('retail route filters false receipts and strips Markdown using chat rules',
   for(const reply of ['已幫你預約','已送出','已收到你的資料','已收到您的資料']) {
     const r=await handleThinkBig(request(),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>({response:reply})}});
     assert.equal(r.status,200);
-    assert.match((await r.json()).reply,/是否收件以介面顯示的送出結果為準/);
+    assert.match((await r.json()).reply,/討論我的門市需求/);
   }
   const r=await handleThinkBig(request(),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>({response:'# 數據線索\n**先核對資料**\n- 確認人流'})}});
   assert.equal((await r.json()).reply,'數據線索\n先核對資料\n・確認人流');
+});
+
+test('retail preserves analysis phrasing but blocks explicit receipt claims',async()=>{
+  for(const reply of ['已收到的營運資料顯示來客下降。','我們已收到您的營運資料','我已收到你的需求','已收到您的預約']) {
+    const r=await handleThinkBig(request(),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>({response:reply})}});
+    const result=(await r.json()).reply;
+    if(reply.startsWith('已收到的')) assert.equal(result,reply);
+    else {assert.match(result,/討論我的門市需求/);assert.doesNotMatch(result,/整理諮詢摘要/);}
+  }
 });

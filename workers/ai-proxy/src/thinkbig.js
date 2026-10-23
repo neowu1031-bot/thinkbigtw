@@ -166,7 +166,7 @@ async function chat(body, env) {
   const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
   return json({ reply, model, inquirySuggested });
 }
-function filterReply(reply) {
+function filterReply(reply, context = 'chat') {
   // Models sometimes answer in Simplified Chinese; normalise to Taiwan Traditional (OpenCC cn→twp).
   reply = toTraditionalTW(reply).replace(/臺/g, '台').replace(/客制/g, '客製').replace(/匯入/g, '導入');
   // The widget renders plain text (textContent), so strip Markdown the model may emit.
@@ -174,8 +174,8 @@ function filterReply(reply) {
   // NEO 9/27: the advisor never surfaces the Hermes name.
   reply = reply.replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理');
   // Receipt claims must come exclusively from the confirmed database write, never a model.
-  if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|已收到.{0,8}資料|顧問會主動/.test(reply)) {
-    reply = '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
+  if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|(?:我們|我)?已收到(?:您的|你的|您|你).{0,20}(?:資料|需求|預約)|顧問會主動/.test(reply)) {
+    reply = context === 'retail' ? '這個體驗不會替你送出或預約任何事情。若想討論正式導入，請按頁面下方「討論我的門市需求」。' : '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
   }
   return reply;
 }
@@ -394,7 +394,7 @@ export async function handleThinkBig(request, env) {
   try {
     if (path === '/thinkbig-retail') {
       const result = await retailExperience(body, env);
-      if (result.body.reply) result.body.reply = filterReply(result.body.reply);
+      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'retail');
       return json(result.body, result.status);
     }
     if (path === '/thinkbig-inquiry') return await inquiry(body, env);
