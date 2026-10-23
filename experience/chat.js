@@ -1,15 +1,15 @@
 (() => {
 'use strict';
 const roles={
- marketing:{"name":"AI 行銷企劃","hello":"嗨，我是你的AI 行銷企劃。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，看活動成效，寫貼文草稿與內容日曆。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["查活動成效","擬社群貼文草稿","排內容日曆"]},
- media:{"name":"AI 影音企劃","hello":"嗨，我是你的AI 影音企劃。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，整理短影音分鏡、標題與發片時程。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["擬短影音腳本","建議標題與封面字","排發片時程"]},
- accounting:{"name":"AI 會計助理","hello":"嗨，我是你的AI 會計助理。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，核對帳款差異，整理請款與月報。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["對帳找差異","整理待請款清單","月報摘要"]},
- admin:{"name":"AI 行政助理","hello":"嗨，我是你的AI 行政助理。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，整理會議待辦、會議室草稿與採購。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["整理會議重點與待辦","訂會議室草稿","整理採購清單"]},
- training:{"name":"AI 訓練專員","hello":"嗨，我是你的AI 訓練專員。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，準備新人清單、小測驗與 SOP。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["整理新人到職訓練清單","出 5 題小測驗","整理 SOP 步驟"]},
- research:{"name":"AI 市調分析師","hello":"嗨，我是你的AI 市調分析師。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，用虛構資料比較競品、評論與市場假設。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["整理競品資料表","歸納顧客評論重點","列可驗證的市場假設"]},
- retail:{name:'AI 門市主管',hello:'嗨，我是你的 AI 門市主管。這裡是大想成業（Think BIG）的示範資料，人名與數字皆為虛構。我們可以一起看 A、B、C 店的示範數據，找出這週先做什麼。你想先看哪家店？',quick:['幫我比較 A／B／C 店','A 店這週先做什麼？','B 店有人來卻沒買，怎麼辦？','C 店客單變小，先看哪裡？']},
- sales:{name:'AI 業務助理',hello:'嗨，我是你的 AI 業務助理。這裡是大想成業（Think BIG）的示範資料，人名與數字皆為虛構。這裡有三位示範潛客的詢價，我可以陪你整理報價重點、寫跟進草稿，也能一起排下次聯絡。先看看誰需要跟進嗎？',quick:['整理三位潛客的需求','幫潛客 B 寫跟進訊息','整理潛客 A 的報價重點','安排下次聯絡建議']},
- service:{name:'AI 客服接待',hello:'嗨，我是你的 AI 客服接待。今天用大想成業示範店練習接待。示範資料，人名與數字皆為虛構，我可以幫你回商品問題、確認客人需求，再整理預約草稿。這裡不會真的預約，你想先試哪種問題？',quick:['客人問有哪些商品，怎麼回？','店裡幾點營業？','客人想預約，先問什麼？','幫我回覆馬克杯的使用問題']}
+ marketing:{"name":"AI 行銷企劃","hello":"嗨，我是你的AI 行銷企劃。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，看活動成效，寫貼文草稿與內容日曆。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["幫我寫 3 版不同語氣貼文，附 hashtag 與發文時段","擬社群貼文草稿","排內容日曆"]},
+ media:{"name":"AI 影音企劃","hello":"嗨，我是你的AI 影音企劃。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，整理短影音分鏡、標題與發片時程。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["幫我寫一支 30 秒短影音腳本","建議標題與封面字","排發片時程"]},
+ accounting:{"name":"AI 會計助理","hello":"嗨，我是你的AI 會計助理。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，核對帳款差異，整理請款與月報。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["幫我整理對帳差異表，列筆數、金額、原因與確認人","整理待請款清單","月報摘要"]},
+ admin:{"name":"AI 行政助理","hello":"嗨，我是你的AI 行政助理。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，整理會議待辦、會議室草稿與採購。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["幫我整理會議摘要與待辦，列負責人與期限","訂會議室草稿","整理採購清單"]},
+ training:{"name":"AI 訓練專員","hello":"嗨，我是你的AI 訓練專員。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，準備新人清單、小測驗與 SOP。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["幫我排新人第一週訓練表，附 5 題測驗與答案","出 5 題小測驗","整理 SOP 步驟"]},
+ research:{"name":"AI 市調分析師","hello":"嗨，我是你的AI 市調分析師。這裡用大想成業（Think BIG；示範資料，人名與數字皆為虛構）的資料，用虛構資料比較競品、評論與市場假設。所有內容只供示範，草稿請同事覆核。想先試哪一項？","quick":["幫我做競品比較表，附 3 個假設與驗證方法","歸納顧客評論重點","列可驗證的市場假設"]},
+ retail:{name:'AI 門市主管',hello:'嗨，我是你的 AI 門市主管。這裡是大想成業（Think BIG）的示範資料，人名與數字皆為虛構。我們可以一起看 A、B、C 店的示範數據，找出這週先做什麼。你想先看哪家店？',quick:['幫我拆解 A 店營收，列本週 3 件事、負責人、時間與指標','A 店這週先做什麼？','B 店有人來卻沒買，怎麼辦？','C 店客單變小，先看哪裡？']},
+ sales:{name:'AI 業務助理',hello:'嗨，我是你的 AI 業務助理。這裡是大想成業（Think BIG）的示範資料，人名與數字皆為虛構。這裡有三位示範潛客的詢價，我可以陪你整理報價重點、寫跟進草稿，也能一起排下次聯絡。先看看誰需要跟進嗎？',quick:['幫潛客 A 寫一封可寄的跟進信','幫潛客 B 寫跟進訊息','整理潛客 A 的報價重點','安排下次聯絡建議']},
+ service:{name:'AI 客服接待',hello:'嗨，我是你的 AI 客服接待。今天用大想成業示範店練習接待。示範資料，人名與數字皆為虛構，我可以幫你回商品問題、確認客人需求，再整理預約草稿。這裡不會真的預約，你想先試哪種問題？',quick:['幫我直接回覆客人買杯子與週一到店的訊息，附一題追問','店裡幾點營業？','客人想預約，先問什麼？','幫我回覆馬克杯的使用問題']}
 };
 const $=id=>document.getElementById(id),thread=$('thread');
 let role='retail',messages=[],transcript=[],consent=false,pending='',controller=null,epoch=0;
@@ -37,7 +37,7 @@ function updateQuota(){
  if(exhausted&&!controller){$('chat-status').textContent='本次體驗額度已用完';showCTA();}
 }
 function scroll(){const box=thread.parentElement;box.scrollTop=box.scrollHeight;}
-function add(who,content){const at=new Date();transcript.push({role:who,content,time:at.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})});const item=document.createElement('article');item.className='chat-message '+who;const bubble=document.createElement('p');bubble.className='bubble';bubble.textContent=content;const time=document.createElement('time');time.dateTime=at.toISOString();time.textContent=(who==='user'?'你':'AI 同事')+' · '+transcript.at(-1).time;item.append(bubble,time);thread.append(item);scroll();}
+function add(who,content){const at=new Date();transcript.push({role:who,content,time:at.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})});const item=document.createElement('article');item.className='chat-message '+who;const bubble=document.createElement('p');bubble.className='bubble';if(who==='assistant'&&content.includes('｜'))bubble.className+=' has-table';bubble.textContent=content;const time=document.createElement('time');time.dateTime=at.toISOString();time.textContent=(who==='user'?'你':'AI 同事')+' · '+transcript.at(-1).time;item.append(bubble,time);thread.append(item);scroll();}
 function renderTool(step){
  const body=document.createElement('div'),r=step.result;
  const text=value=>typeof value==='string'||typeof value==='number'?String(value):'未提供';
@@ -47,7 +47,7 @@ function renderTool(step){
  switch(step.name){
  case 'draft_followup': line('收件人',data.lead);line('草稿',data.draft);line('狀態','示範，不會寄出');break;
  case 'schedule_contact': line('日期時間',data.slot);line('對象',data.lead);line('事項','聯絡跟進');line('提醒',data.notice);break;
- case 'weekly_tasks': if(Array.isArray(r))r.forEach(item=>{if(!item||typeof item!=='object')return;const label=document.createElement('label'),check=document.createElement('input'),span=document.createElement('span');check.type='checkbox';span.textContent=text(item.task)+'（'+text(item.owner)+'／追蹤：'+text(item.metric)+'）';label.append(check,span);body.append(label);});break;
+ case 'weekly_tasks': if(Array.isArray(r))r.forEach(item=>{if(!item||typeof item!=='object')return;const label=document.createElement('label'),check=document.createElement('input'),span=document.createElement('span');check.type='checkbox';span.textContent=text(item.task)+'（'+text(item.owner)+'／'+text(item.deadline)+'／追蹤：'+text(item.metric)+'）';label.append(check,span);body.append(label);});break;
  case 'store_data': {
  line('門市',data.store);const m=Array.isArray(data.metrics)?data.metrics:[];rows([['指標','前期 → 本期'],['來客數',text(m[0])+' → '+text(m[3])],['成交率',text(m[1])+'% → '+text(m[4])+'%'],['客單價',text(m[2])+' → '+text(m[5])]]);line('說明','等長兩期，金額為新台幣');break;}
  case 'revenue_breakdown': rows([['前期推算營收',data.previousRevenue],['本期推算營收',data.revenue],['目標',data.target],['達成率（%）',typeof data.achievementPercent==='number'?data.achievementPercent.toFixed(1):undefined],['目標差距',data.gap],['來客變動影響',data.effects?.traffic],['成交變動影響',data.effects?.conversion],['客單變動影響',data.effects?.basket]]);line('說明','金額為新台幣；推算值與變動拆解不代表因果');break;
@@ -121,12 +121,12 @@ function offer(text){updateQuota();if(used()>=5||controller||pending)return;text
 async function send(text){
  if(!text||controller)return;updateQuota();if(used()>=5)return;
  const history=[...messages,{role:'user',content:text}];
- if(history.length>10||history.reduce((n,m)=>n+m.content.length,0)>6000){$('chat-status').textContent='這段聊得很完整了，請先下載，再按「重新聊」繼續。';return;}
+ if(history.length>10||history.reduce((n,m)=>n+m.content.length,0)>18000){$('chat-status').textContent='這段聊得很完整了，請先下載，再按「重新聊」繼續。';return;}
  saveQuota(used()+1);
- const turn=epoch,active=new AbortController();controller=active;busy(true);$('chat-status').textContent='';add('user',text);$('message').value='';resizeInput();scroll();const timer=setTimeout(()=>active.abort(),25000);
- try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});const data=await response.json();if(!response.ok){if(data.error==='demo_limit'){if(turn!==epoch)return;saveQuota(5);showCTA();throw Error('demo_limit');}throw Error(response.status===429?'rate':'offline');}if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>1600)throw Error('offline');if(turn!==epoch)return;const reply=replyForCards(data.reply,data.steps);messages=[...history,{role:'assistant',content:reply}];addSteps(data.steps);add('assistant',reply);
- }catch(error){if(turn!==epoch)return;$('chat-status').textContent=error.message==='rate'?'現在有點忙，請稍後再送一次。':'暫時連不上 AI，這則沒有取得回覆。請稍後再送一次。';if(error.message!=='demo_limit')$('message').value=text;resizeInput();
- }finally{clearTimeout(timer);if(turn===epoch){controller=null;busy(false);}}
+ let dailyLimited=false;const turn=epoch,active=new AbortController();controller=active;busy(true);$('chat-status').textContent='';add('user',text);$('message').value='';resizeInput();scroll();const timer=setTimeout(()=>active.abort(),25000);
+ try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});const data=await response.json();if(!response.ok){if(data.error==='daily_limit'){if(turn!==epoch)return;dailyLimited=true;showCTA();throw Error('daily_limit');}if(data.error==='demo_limit'){if(turn!==epoch)return;saveQuota(5);showCTA();throw Error('demo_limit');}throw Error(response.status===429?'rate':'offline');}if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>2400)throw Error('offline');if(turn!==epoch)return;const reply=replyForCards(data.reply,data.steps);messages=[...history,{role:'assistant',content:reply}];addSteps(data.steps);add('assistant',reply);
+ }catch(error){if(turn!==epoch)return;$('chat-status').textContent=error.message==='daily_limit'?'今天的體驗次數用完了，明天再來，或直接預約我們幫你搭一個。':error.message==='rate'?'現在有點忙，請稍後再送一次。':'暫時連不上 AI，這則沒有取得回覆。請稍後再送一次。';if(error.message!=='demo_limit')$('message').value=text;resizeInput();
+ }finally{clearTimeout(timer);if(turn===epoch){controller=null;busy(false);if(dailyLimited)$('chat-status').textContent='今天的體驗次數用完了，明天再來，或直接預約我們幫你搭一個。';}}
 }
 updateQuota();
 document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.role)));

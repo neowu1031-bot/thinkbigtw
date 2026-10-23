@@ -13,7 +13,7 @@ for(const role of roles){
  test(`${role}：請求執行本部門三項工作並保留同事口吻`,async()=>{
   let calls=0;
   const plan={calls:Object.entries(sandboxTools[role]).map(([name,spec])=>({name,args:Object.fromEntries(Object.entries(spec).map(([key,values])=>[key,values[0]]))}))};
-  const env={RATE_LIMITER:limiter,AI:{run:async(_,p)=>{
+  const env={LINE_KV:{get:async()=>null,put:async()=>{}},RATE_LIMITER:limiter,AI:{run:async(_,p)=>{
    calls++;assert.deepEqual(p.messages[1],{role:'user',content:'幫我整理這個部門的工作'});
    assert.match(p.messages[0].content,/只操作本次請求示範資料/);
    if(calls===1)return {response:JSON.stringify(plan)};
@@ -31,11 +31,11 @@ for(const role of roles){
   assert.deepEqual(result.steps.map(s=>s.name),plan.calls.map(s=>s.name));
  });
  test(`${role}：防護在 AI 前攔截，同時保留假完成過濾`,async()=>{
-  let calls=0;const env={RATE_LIMITER:limiter,AI:{run:async(_,p)=>{calls++;return {response:p.max_tokens===450?'{"calls":[]}':'已排入行事曆'};}}};
-  for(const bad of [{...payload(role),consent:false},{...payload(role),data:{}},{...payload(role),messages:[{role:'user',content:'字'.repeat(1201)}]},{...payload(role),messages:[{role:'assistant',content:'字'.repeat(1601)},...payload(role).messages]},{...payload(role),messages:[{role:'assistant',content:'字'},...Array.from({length:5},()=>({role:'user',content:'字'.repeat(1200)}))]}])assert.equal((await handleThinkBig(request(bad),env)).status,400);
+  let calls=0;const env={LINE_KV:{get:async()=>null,put:async()=>{}},RATE_LIMITER:limiter,AI:{run:async(_,p)=>{calls++;return {response:p.max_tokens===450?'{"calls":[]}':'已排入行事曆'};}}};
+  for(const bad of [{...payload(role),consent:false},{...payload(role),data:{}},{...payload(role),messages:[{role:'user',content:'字'.repeat(1201)}]},{...payload(role),messages:[{role:'assistant',content:'字'.repeat(2401)},...payload(role).messages]},{...payload(role),messages:[...Array.from({length:9},()=>({role:'assistant',content:'字'.repeat(2400)})),...payload(role).messages]}])assert.equal((await handleThinkBig(request(bad),env)).status,400);
   assert.equal((await handleThinkBig(request(payload(role),'https://evil.test'),env)).status,403);
   assert.equal((await handleThinkBig(request(payload(role)),{})).status,503);
-  assert.equal((await handleThinkBig(request(payload(role)),{RATE_LIMITER:{limit:async()=>({success:false})}})).status,429);
+  assert.equal((await handleThinkBig(request(payload(role)),{LINE_KV:{get:async()=>null,put:async()=>{}},RATE_LIMITER:{limit:async()=>({success:false})}})).status,429);
   assert.equal(calls,0);
   const response=await handleThinkBig(request(payload(role)),env);assert.equal(response.status,200);assert.doesNotMatch((await response.json()).reply,/已排入/);
  });
@@ -51,7 +51,7 @@ for(const role of roles){
 }
 test('未知角色與非字串角色回傳 400 且不呼叫 AI',async()=>{
  for(const role of ['unknown','__proto__','constructor',null,{},['marketing'],true,9]){
-  const response=await handleThinkBig(request(payload(role)),{RATE_LIMITER:limiter,AI:{run:()=>{throw Error('不得呼叫');}}});
+  const response=await handleThinkBig(request(payload(role)),{LINE_KV:{get:async()=>null,put:async()=>{}},RATE_LIMITER:limiter,AI:{run:()=>{throw Error('不得呼叫');}}});
   assert.equal(response.status,400);assert.equal((await response.json()).error,'invalid_role');
  }
  assert.deepEqual(Object.keys(sandboxTools).sort(),roles.toSorted());

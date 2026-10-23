@@ -48,7 +48,7 @@ test('two-stage context uses validated results; final failure retains demo artif
 test('route blocks all receipt words outside demo cards',async()=>{
  for(const response of ['已寄出訊息','已預約','已收到']){
  const request=new Request('https://example.test/thinkbig-experience',{method:'POST',headers:{Origin:'https://thinkbigtw.com','Content-Type':'application/json'},body:JSON.stringify(body)});
- const r=await handleThinkBig(request,{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>({response:p.max_tokens===450?'{"calls":[]}':response})}});
+ const r=await handleThinkBig(request,{LINE_KV:{get:async()=>null,put:async()=>{}},RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>({response:p.max_tokens===450?'{"calls":[]}':response})}});
  assert.equal(r.status,200);assert.doesNotMatch((await r.json()).reply,/已寄出|已預約|已收到/);
  }
 });

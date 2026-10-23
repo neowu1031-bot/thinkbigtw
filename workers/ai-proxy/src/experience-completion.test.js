@@ -20,7 +20,7 @@ const currentSource=readFileSync(new URL('./thinkbig.js',import.meta.url),'utf8'
 const currentFilter=vm.runInNewContext('('+currentSource.slice(currentSource.indexOf('function filterReply('),currentSource.indexOf('export function cleanReply'))+')',{toTraditionalTW});
 async function replyFor(role,reply){
  const req=new Request('https://local.test/thinkbig-experience',{method:'POST',headers:{Origin:'https://thinkbigtw.com','Content-Type':'application/json'},body:JSON.stringify({role,consent:true,messages:[{role:'user',content:'整理示範工作'}]})});
- const response=await handleThinkBig(req,{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>({response:p.max_tokens===450?'{"calls":[]}':reply})}});
+ const response=await handleThinkBig(req,{LINE_KV:{get:async()=>null,put:async()=>{}},RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>({response:p.max_tokens===450?'{"calls":[]}':reply})}});
  assert.equal(response.status,200);return (await response.json()).reply;
 }
 const blocked=reply=>reply.startsWith('這裡只能幫你擬草稿');
