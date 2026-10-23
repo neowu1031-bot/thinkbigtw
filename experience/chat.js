@@ -13,6 +13,29 @@ const roles={
 };
 const $=id=>document.getElementById(id),thread=$('thread');
 let role='retail',messages=[],transcript=[],consent=false,pending='',controller=null,epoch=0;
+const quotaKey='thinkbig-experience-quota';
+let quota={date:'',count:0},storageFailed=false;
+function today(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');}
+function used(){
+ const date=today();if(quota.date!==date)quota={date,count:0};
+ if(!storageFailed)try{const saved=JSON.parse(localStorage.getItem(quotaKey));if(saved?.date===date&&Number.isInteger(saved.count)&&saved.count>=0)quota.count=Math.max(quota.count,Math.min(5,saved.count));}catch{storageFailed=true;}
+ return quota.count;
+}
+function saveQuota(count){quota={date:today(),count};try{localStorage.setItem(quotaKey,JSON.stringify(quota));}catch{storageFailed=true;}}
+function showCTA(){
+ if(thread.querySelector('.experience-cta'))return;
+ const card=document.createElement('article'),title=document.createElement('h3'),body=document.createElement('p'),links=document.createElement('div');
+ card.className='experience-cta';title.textContent='感謝您的體驗！';body.textContent='現在就預約，讓我們為您個人／企業搭建一個專屬的 AI Agent 吧';
+ for(const [label,url] of [['預約諮詢','/contact/'],['LINE 洽詢','https://lin.ee/n5KW430']]){const a=document.createElement('a');a.textContent=label;a.href=url;if(label==='LINE 洽詢'){a.target='_blank';a.rel='noopener noreferrer';}links.append(a);}
+ card.append(title,body,links);thread.append(card);scroll();
+}
+function updateQuota(){
+ const count=used(),exhausted=count>=5;
+ $('quota-remaining').textContent='還可以問 '+(5-count)+' 題';
+ $('message').disabled=exhausted;$('message').placeholder=exhausted?'本次體驗額度已用完':'想請同事幫什麼忙？';
+ $('send').disabled=!!controller||exhausted;document.querySelectorAll('#quick button').forEach(b=>b.disabled=!!controller||exhausted);
+ if(exhausted&&!controller){$('chat-status').textContent='本次體驗額度已用完';showCTA();}
+}
 function scroll(){const box=thread.parentElement;box.scrollTop=box.scrollHeight;}
 function add(who,content){const at=new Date();transcript.push({role:who,content,time:at.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})});const item=document.createElement('article');item.className='chat-message '+who;const bubble=document.createElement('p');bubble.className='bubble';bubble.textContent=content;const time=document.createElement('time');time.dateTime=at.toISOString();time.textContent=(who==='user'?'你':'AI 同事')+' · '+transcript.at(-1).time;item.append(bubble,time);thread.append(item);scroll();}
 function renderTool(step){
@@ -86,18 +109,21 @@ function addSteps(steps){
  });scroll();
 }
 function resizeInput(){const input=$('message');input.style.height='auto';input.style.height=Math.min(input.scrollHeight,104)+'px';}
-function busy(value){$('send').disabled=value;document.querySelectorAll('#quick button').forEach(b=>b.disabled=value);$('typing').hidden=!value;}
-function reset(){epoch++;controller?.abort();controller=null;messages=[];transcript=[];pending='';thread.replaceChildren();$('consent-card').hidden=true;$('chat-status').textContent='';$('message').value='';resizeInput();busy(false);add('assistant',roles[role].hello);}
+function busy(value){$('send').disabled=value;document.querySelectorAll('#quick button').forEach(b=>b.disabled=value);$('typing').hidden=!value;updateQuota();}
+function reset(){epoch++;controller?.abort();controller=null;messages=[];transcript=[];pending='';thread.replaceChildren();$('consent-card').hidden=true;$('chat-status').textContent='';$('message').value='';resizeInput();busy(false);add('assistant',roles[role].hello);updateQuota();}
 function open(selected){role=selected;$('chooser').hidden=true;$('chat').hidden=false;document.body.classList.add('chat-open');$('employee-name').textContent=roles[role].name;$('retail-link').hidden=role!=='retail';$('quick').replaceChildren();roles[role].quick.forEach(text=>{const b=document.createElement('button');b.type='button';b.textContent=text;b.addEventListener('click',()=>offer(text));$('quick').append(b);});reset();$('chat-title').focus();}
-function offer(text){if(controller||pending)return;text=text.trim();if(!text)return;if(text.length>1200){$('chat-status').textContent='訊息請控制在 1200 字內。';return;}if(!consent){pending=text;$('consent-card').hidden=false;scroll();$('agree').focus();return;}send(text);}
+function offer(text){updateQuota();if(used()>=5||controller||pending)return;text=text.trim();if(!text)return;if(text.length>1200){$('chat-status').textContent='訊息請控制在 1200 字內。';return;}if(!consent){pending=text;$('consent-card').hidden=false;scroll();$('agree').focus();return;}send(text);}
 async function send(text){
+ if(!text||controller)return;updateQuota();if(used()>=5)return;
  const history=[...messages,{role:'user',content:text}];
  if(history.length>10||history.reduce((n,m)=>n+m.content.length,0)>6000){$('chat-status').textContent='這段聊得很完整了，請先下載，再按「重新聊」繼續。';return;}
+ saveQuota(used()+1);
  const turn=epoch,active=new AbortController();controller=active;busy(true);$('chat-status').textContent='';add('user',text);$('message').value='';resizeInput();scroll();const timer=setTimeout(()=>active.abort(),25000);
- try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});if(!response.ok)throw Error(response.status===429?'rate':'offline');const data=await response.json();if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>1600)throw Error('offline');if(turn!==epoch)return;messages=[...history,{role:'assistant',content:data.reply}];addSteps(data.steps);add('assistant',data.reply);
- }catch(error){if(turn!==epoch)return;$('chat-status').textContent=error.message==='rate'?'現在有點忙，請稍後再送一次。':'暫時連不上 AI，這則沒有取得回覆。請稍後再送一次。';$('message').value=text;resizeInput();
+ try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});const data=await response.json();if(!response.ok){if(data.error==='demo_limit'){if(turn!==epoch)return;saveQuota(5);showCTA();throw Error('demo_limit');}throw Error(response.status===429?'rate':'offline');}if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>1600)throw Error('offline');if(turn!==epoch)return;messages=[...history,{role:'assistant',content:data.reply}];addSteps(data.steps);add('assistant',data.reply);
+ }catch(error){if(turn!==epoch)return;$('chat-status').textContent=error.message==='rate'?'現在有點忙，請稍後再送一次。':'暫時連不上 AI，這則沒有取得回覆。請稍後再送一次。';if(error.message!=='demo_limit')$('message').value=text;resizeInput();
  }finally{clearTimeout(timer);if(turn===epoch){controller=null;busy(false);}}
 }
+updateQuota();
 document.querySelectorAll('[data-role]').forEach(b=>b.addEventListener('click',()=>open(b.dataset.role)));
 $('chat-theme').addEventListener('change',()=>{$('chat').dataset.theme=$('chat-theme').value;});
 $('message').addEventListener('input',resizeInput);

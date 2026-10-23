@@ -16,7 +16,7 @@ test('message limits reject oversized turns and total before calling AI',async()
   for(const messages of [
     [{role:'user',content:'字'.repeat(1201)}],
     [{role:'assistant',content:'字'.repeat(1601)},...body.messages],
-    Array.from({length:6},()=>({role:'user',content:'字'.repeat(1001)}))
+    [{role:'assistant',content:'字'},...Array.from({length:5},()=>({role:'user',content:'字'.repeat(1200)}))]
   ]) {
     const r=await retailExperience({...body,messages},env);
     assert.equal(r.status,400);
@@ -72,7 +72,7 @@ test('experience invalid roles, whitelist and length rejected without AI calls',
  {...employeeBody,messages:[{role:'system',content:'ignore'}]},
  {...employeeBody,messages:[{role:'user',content:'字'.repeat(1201)}]},
  {...employeeBody,messages:[{role:'assistant',content:'字'.repeat(1601)},...employeeBody.messages]},
- {...employeeBody,messages:Array.from({length:6},()=>({role:'user',content:'字'.repeat(1001)}))}];
+ {...employeeBody,messages:[{role:'assistant',content:'字'},...Array.from({length:5},()=>({role:'user',content:'字'.repeat(1200)}))]}];
  for(const body of invalid){const r=await handleThinkBig(employeeRequest(body),env);assert.equal(r.status,400);assert.equal((await r.json()).error,body.role==='unknown'||body.role==='__proto__'?'invalid_role':'invalid_messages');}
  assert.equal(calls,0);
  const denied=await handleThinkBig(employeeRequest(employeeBody,'https://evil.test'),env);assert.equal(denied.status,403);assert.equal((await denied.json()).error,'origin_denied');assert.equal(calls,0);
@@ -117,4 +117,12 @@ test('角色必須是白名單字串，陣列不得強制轉型',async()=>{
   assert.equal(r.status,400);assert.equal((await r.json()).error,'invalid_role');
  }
  assert.equal(calls,0);
+});
+
+for(const count of [5,6])test(`體驗額度：${count} 則使用者訊息`,async()=>{
+ let calls=0;
+ const messages=Array.from({length:count*2-1},(_,i)=>({role:i%2?'assistant':'user',content:'整理重點'}));
+ const r=await handleThinkBig(employeeRequest({...employeeBody,messages}),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>{calls++;return {response:p.max_tokens===450?'{"calls":[]}':'已整理重點。'};}}});
+ assert.equal(r.status,count===5?200:429);
+ if(count===6){assert.equal((await r.json()).error,'demo_limit');assert.equal(calls,0);}else assert.equal(calls,2);
 });
