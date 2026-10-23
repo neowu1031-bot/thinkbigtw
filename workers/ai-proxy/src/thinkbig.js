@@ -1,4 +1,4 @@
-import { retailExperience } from './retail-experience.js';
+import { retailExperience, employeeExperience } from './retail-experience.js';
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
 // 話題範圍（官網＋LINE 共用，不計入 KB token budget）
 export const SCOPE_RULE = `
@@ -166,7 +166,7 @@ async function chat(body, env) {
   const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
   return json({ reply, model, inquirySuggested });
 }
-function filterReply(reply) {
+function filterReply(reply, context = 'chat') {
   // Models sometimes answer in Simplified Chinese; normalise to Taiwan Traditional (OpenCC cn→twp).
   reply = toTraditionalTW(reply).replace(/臺/g, '台').replace(/客制/g, '客製').replace(/匯入/g, '導入');
   // The widget renders plain text (textContent), so strip Markdown the model may emit.
@@ -174,8 +174,14 @@ function filterReply(reply) {
   // NEO 9/27: the advisor never surfaces the Hermes name.
   reply = reply.replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理');
   // Receipt claims must come exclusively from the confirmed database write, never a model.
-  if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|已收到.{0,8}資料|顧問會主動/.test(reply)) {
-    reply = '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
+  const isDemo = context === 'retail' || context === 'experience';
+  const receiptClaim = isDemo
+    ? /已收到(?!的).{0,20}(?:資料|需求|預約)/.test(reply)
+    : /已收到.{0,8}資料|(?:我們|我)?已收到(?:您的|你的|您|你).{0,20}(?:資料|需求|預約)/.test(reply);
+  // 體驗回覆先去掉空白，避免拆字繞過假完成攔截；分析「已收到的」則保留。
+  const demoCompletion = context === 'experience' && /已收到(?!的)|(?:已|經|我).{0,6}(?:寄|發送|傳送|送達|通知|排入|排進|加入行事曆|訂位)|(?:預約|訂位|寄送|發送)(?:完成|成功)|寄出了/.test(reply.replace(/\s+/gu, ''));
+  if (receiptClaim || demoCompletion || /已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
+    reply = context === 'experience' ? '這裡只能幫你擬草稿，不會送出訊息、接收資料或完成預約。要不要先一起確認草稿內容？' : context === 'retail' ? '這個體驗不會替你送出或預約任何事情。若想討論正式導入，請按頁面下方「討論我的門市需求」。' : '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
   }
   return reply;
 }
@@ -392,9 +398,14 @@ export async function handleThinkBig(request, env) {
   try { body = await readJSON(request.body, maxBody); }
   catch (error) { return json({ error: error.message }, error.message === 'too_large' ? 413 : 400); }
   try {
+    if (path === '/thinkbig-experience') {
+      const result = await employeeExperience(body, env);
+      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'experience').slice(0,1600);
+      return json(result.body, result.status);
+    }
     if (path === '/thinkbig-retail') {
       const result = await retailExperience(body, env);
-      if (result.body.reply) result.body.reply = filterReply(result.body.reply);
+      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'retail');
       return json(result.body, result.status);
     }
     if (path === '/thinkbig-inquiry') return await inquiry(body, env);

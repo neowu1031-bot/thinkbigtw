@@ -24,5 +24,5 @@ document.getElementById('ai-reset').addEventListener('click',reset);
 document.getElementById('ai-consent').addEventListener('change',e=>{if(!e.target.checked)reset();});
 document.getElementById('metrics').addEventListener('input',reset);
 document.querySelectorAll('[data-case]').forEach(b=>b.addEventListener('click',reset));
-download.addEventListener('click',()=>{const content='Think BIG｜AI 門市主管討論紀錄（建議待覆核）\n\n'+thread.innerText;const url=URL.createObjectURL(new Blob(['\ufeff'+content],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='ThinkBIG-AI-討論紀錄.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+download.addEventListener('click',()=>{const content=discussionReport(Array.from(thread.querySelectorAll('.ai-message p'),p=>({content:p.textContent}))); const url=URL.createObjectURL(new Blob([content],{type:'text/html;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='ThinkBIG-AI討論紀錄.html';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
 })();
