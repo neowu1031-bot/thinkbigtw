@@ -9,6 +9,18 @@ const $=id=>document.getElementById(id),thread=$('thread');
 let role='retail',messages=[],transcript=[],consent=false,pending='',controller=null,epoch=0;
 function scroll(){const box=thread.parentElement;box.scrollTop=box.scrollHeight;}
 function add(who,content){const at=new Date();transcript.push({role:who,content,time:at.toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})});const item=document.createElement('article');item.className='chat-message '+who;const bubble=document.createElement('p');bubble.className='bubble';bubble.textContent=content;const time=document.createElement('time');time.dateTime=at.toISOString();time.textContent=(who==='user'?'你':'AI 同事')+' · '+transcript.at(-1).time;item.append(bubble,time);thread.append(item);scroll();}
+function addSteps(steps){
+ if(!Array.isArray(steps))return;
+ steps.slice(0,3).forEach(step=>{
+  if(typeof step.title!=='string'||typeof step.action!=='string')return;
+  const card=document.createElement('details');card.className='tool-step';
+  const summary=document.createElement('summary');summary.textContent=step.title;
+  const action=document.createElement('p');action.textContent=step.action;
+  const result=document.createElement('pre');result.textContent=JSON.stringify(step.result,null,2);
+  card.append(summary,action,result);thread.append(card);
+  transcript.push({role:'assistant',content:step.action+'\n'+step.title+'\n'+result.textContent,time:new Date().toLocaleTimeString('zh-TW',{hour:'2-digit',minute:'2-digit',hour12:false})});
+ });scroll();
+}
 function busy(value){$('send').disabled=value;document.querySelectorAll('#quick button').forEach(b=>b.disabled=value);$('typing').hidden=!value;}
 function reset(){epoch++;controller?.abort();controller=null;messages=[];transcript=[];pending='';thread.replaceChildren();$('consent-card').hidden=true;$('chat-status').textContent='';$('message').value='';busy(false);add('assistant',roles[role].hello);}
 function open(selected){role=selected;$('chooser').hidden=true;$('chat').hidden=false;document.body.classList.add('chat-open');$('employee-name').textContent=roles[role].name;$('retail-link').hidden=role!=='retail';$('quick').replaceChildren();roles[role].quick.forEach(text=>{const b=document.createElement('button');b.type='button';b.textContent=text;b.addEventListener('click',()=>offer(text));$('quick').append(b);});reset();$('chat-title').focus();}
@@ -17,7 +29,7 @@ async function send(text){
  const history=[...messages,{role:'user',content:text}];
  if(history.length>10||history.reduce((n,m)=>n+m.content.length,0)>6000){$('chat-status').textContent='這段聊得很完整了，請先下載，再按「重新聊」繼續。';return;}
  const turn=epoch,active=new AbortController();controller=active;busy(true);$('chat-status').textContent='';add('user',text);$('message').value='';scroll();const timer=setTimeout(()=>active.abort(),25000);
- try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});if(!response.ok)throw Error(response.status===429?'rate':'offline');const data=await response.json();if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>1600)throw Error('offline');if(turn!==epoch)return;messages=[...history,{role:'assistant',content:data.reply}];add('assistant',data.reply);
+ try{const response=await fetch('https://moneyradar-ai-proxy.thinkbigtw.workers.dev/thinkbig-experience',{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({role,messages:history,consent:true})});if(!response.ok)throw Error(response.status===429?'rate':'offline');const data=await response.json();if(data.mode!=='live-ai'||typeof data.reply!=='string'||!data.reply.trim()||data.reply.length>1600)throw Error('offline');if(turn!==epoch)return;messages=[...history,{role:'assistant',content:data.reply}];addSteps(data.steps);add('assistant',data.reply);
  }catch(error){if(turn!==epoch)return;$('chat-status').textContent=error.message==='rate'?'現在有點忙，請稍後再送一次。':'暫時連不上 AI，這則沒有取得回覆。請稍後再送一次。';$('message').value=text;
  }finally{clearTimeout(timer);if(turn===epoch){controller=null;busy(false);}}
 }
