@@ -69,7 +69,7 @@ test('組織圖九個部門、快捷問題與插畫資源完整，聊天版本�
 
  for(const role of roles){assert.ok(page.includes(`data-role="${role}"`));assert.ok(config[role].quick.length>=3&&config[role].quick.length<=4);}
  for(const [,path] of page.matchAll(/src="(\/assets\/illustrations\/[^\"]+)"/g))assert.ok(existsSync(new URL('../../..'+path,import.meta.url)));
- assert.match(page,/chat\.css\?v=20261023h/);assert.match(page,/chat\.js\?v=20261023h/);
+ assert.match(page,/chat\.css\?v=20261024b/);assert.match(page,/chat\.js\?v=20261024b/);
 });
 test('九部門點選沿用聊天、快捷問題、同意與返回流程，未同意不得送出',()=>{
  const source=readFileSync(new URL('../../../experience/chat.js',import.meta.url),'utf8');

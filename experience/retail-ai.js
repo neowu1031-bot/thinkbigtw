@@ -12,7 +12,7 @@ form.addEventListener('submit',async e=>{
  if(!document.getElementById('ai-consent').checked)return;
  if(history.length>=10){status.textContent='本次體驗已達 5 輪，請清除對話後重新開始。';return;}
  const text=question.value.trim();if(!text)return;
- const pending=[...history,{role:'user',content:text}];if(text.length>1200||pending.reduce((n,m)=>n+m.content.length,0)>18000){status.textContent='訊息請控制在 1200 字內，累計對話最多 18000 字。';return;}const myEpoch=epoch;controller=new AbortController();const active=controller;const timer=setTimeout(()=>active.abort(),25000);send.disabled=true;status.textContent='AI 正在參考數據，整理分析與下一步…';
+ const pending=[...history,{role:'user',content:text}];if(text.length>1200||pending.reduce((n,m)=>n+m.content.length,0)>18000){status.textContent='訊息請控制在 1200 字內，累計對話最多 18000 字。';return;}const myEpoch=epoch;controller=new AbortController();const active=controller;const timer=setTimeout(()=>active.abort(),70000);send.disabled=true;status.textContent='AI 正在參考數據，整理分析與下一步…';
  try{const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},signal:active.signal,body:JSON.stringify({metrics:keys.map(k=>Number(document.getElementById(k).value)),target:Number(document.getElementById('target').value),messages:pending,consent:true})});
  const data=await response.json();
  if(!response.ok)throw new Error(data.error==='daily_limit'?'daily_limit':response.status===429?'rate_limited':'unavailable');
