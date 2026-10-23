@@ -98,6 +98,7 @@ export async function employeeExperience(body, env) {
  if (!config) return {status:400,body:{error:'invalid_role'}};
  if (Object.keys(body).some(k=>!['role','messages','consent'].includes(k))) return {status:400,body:{error:'invalid_messages'}};
  const messages=body.messages;
+ // 只限制本次請求的對話最多 5 題；每日計數由前端維護，非伺服器端每日上限。
  if (Array.isArray(messages) && messages.filter(m=>m?.role==='user').length>5) return {status:429,body:{error:'demo_limit'}};
  if (body.consent!==true || !Array.isArray(messages) || !messages.length || messages.length>10 || messages.at(-1)?.role!=='user' || messages.some(m=>!m || !['user','assistant'].includes(m.role) || typeof m.content!=='string' || !m.content.trim() || m.content.length>(m.role==='user'?1200:1600)) || messages.reduce((n,m)=>n+m.content.length,0)>6000) return {status:400,body:{error:'invalid_messages'}};
  if (!env.AI) return {status:503,body:{error:'ai_unavailable'}};

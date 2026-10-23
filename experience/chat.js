@@ -31,7 +31,7 @@ function showCTA(){
 }
 function updateQuota(){
  const count=used(),exhausted=count>=5;
- $('quota-remaining').textContent='還可以問 '+(5-count)+' 題';
+ $('quota-remaining').textContent='每段對話最多 5 題（前端每日計數）；還可以問 '+(5-count)+' 題';
  $('message').disabled=exhausted;$('message').placeholder=exhausted?'本次體驗額度已用完':'想請同事幫什麼忙？';
  $('send').disabled=!!controller||exhausted;document.querySelectorAll('#quick button').forEach(b=>b.disabled=!!controller||exhausted);
  if(exhausted&&!controller){$('chat-status').textContent='本次體驗額度已用完';showCTA();}
