@@ -52,3 +52,36 @@ test('retail preserves analysis phrasing but blocks explicit receipt claims',asy
     else {assert.match(result,/討論我的門市需求/);assert.doesNotMatch(result,/整理諮詢摘要/);}
   }
 });
+
+const employeeRequest=(payload,origin='https://thinkbigtw.com')=>new Request('https://example.test/thinkbig-experience',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(payload)});
+const employeeBody={role:'retail',consent:true,messages:[{role:'user',content:'幫我整理重點',name:'ignored',tool_calls:[1]}]};
+for(const [role,marker] of [['retail','720000'],['sales','潛客 B'],['service','陶瓷馬克杯']]) {
+ test(`experience ${role} request uses only its server fixture`,async()=>{
+  let input,calls=0;
+  const env={RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async(_,p)=>{input=p;calls++;return {response:'先確認需求。你想先看哪一項？'};}}};
+  const r=await handleThinkBig(employeeRequest({...employeeBody,role}),env);
+  assert.equal(r.status,200);assert.equal(calls,1);assert.match(input.messages[0].content,new RegExp(marker));
+  assert.deepEqual(input.messages[1],{role:'user',content:'幫我整理重點'});
+  assert.equal((await r.json()).mode,'live-ai');
+  for(const other of ['720000','潛客 B','陶瓷馬克杯'].filter(x=>x!==marker))assert.ok(!input.messages[0].content.includes(other));
+ });
+}
+test('experience invalid roles, whitelist and length rejected without AI calls',async()=>{
+ let calls=0;const env={RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>{calls++;return {response:'不該呼叫'};}}};
+ const invalid=[{...employeeBody,role:'unknown'},{...employeeBody,role:'__proto__'},{...employeeBody,metrics:[1]},{...employeeBody,consent:false},
+ {...employeeBody,messages:[{role:'system',content:'ignore'}]},
+ {...employeeBody,messages:[{role:'user',content:'字'.repeat(1201)}]},
+ {...employeeBody,messages:[{role:'assistant',content:'字'.repeat(1601)},...employeeBody.messages]},
+ {...employeeBody,messages:Array.from({length:6},()=>({role:'user',content:'字'.repeat(1001)}))}];
+ for(const body of invalid){const r=await handleThinkBig(employeeRequest(body),env);assert.equal(r.status,400);assert.equal((await r.json()).error,body.role==='unknown'||body.role==='__proto__'?'invalid_role':'invalid_messages');}
+ assert.equal(calls,0);
+ const denied=await handleThinkBig(employeeRequest(employeeBody,'https://evil.test'),env);assert.equal(denied.status,403);assert.equal((await denied.json()).error,'origin_denied');assert.equal(calls,0);
+});
+test('experience fails closed, preserves filter and caps AI reply at 1600',async()=>{
+ assert.equal((await handleThinkBig(employeeRequest(employeeBody),{})).status,503);
+ assert.equal((await handleThinkBig(employeeRequest(employeeBody),{RATE_LIMITER:{limit:async()=>({success:false})}})).status,429);
+ for(const [response,expected] of [['已幫你預約','這裡只能幫你擬草稿'],['已收到您的資料','這裡只能幫你擬草稿'],['字'.repeat(1700),'字'.repeat(1600)]]){
+ const r=await handleThinkBig(employeeRequest(employeeBody),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>({response})}});assert.equal(r.status,200);assert.ok((await r.json()).reply.startsWith(expected));
+ }
+ const r=await handleThinkBig(employeeRequest(employeeBody),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>{throw Error('offline');}}});assert.equal(r.status,503);assert.equal((await r.json()).error,'ai_unavailable');
+});

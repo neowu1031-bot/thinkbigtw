@@ -1,4 +1,4 @@
-import { retailExperience } from './retail-experience.js';
+import { retailExperience, employeeExperience } from './retail-experience.js';
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
 // 話題範圍（官網＋LINE 共用，不計入 KB token budget）
 export const SCOPE_RULE = `
@@ -175,7 +175,7 @@ function filterReply(reply, context = 'chat') {
   reply = reply.replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理');
   // Receipt claims must come exclusively from the confirmed database write, never a model.
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|(?:我們|我)?已收到(?:您的|你的|您|你).{0,20}(?:資料|需求|預約)|顧問會主動/.test(reply)) {
-    reply = context === 'retail' ? '這個體驗不會替你送出或預約任何事情。若想討論正式導入，請按頁面下方「討論我的門市需求」。' : '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
+    reply = context === 'experience' ? '這裡只能幫你擬草稿，不會送出訊息、接收資料或完成預約。要不要先一起確認草稿內容？' : context === 'retail' ? '這個體驗不會替你送出或預約任何事情。若想討論正式導入，請按頁面下方「討論我的門市需求」。' : '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
   }
   return reply;
 }
@@ -392,6 +392,11 @@ export async function handleThinkBig(request, env) {
   try { body = await readJSON(request.body, maxBody); }
   catch (error) { return json({ error: error.message }, error.message === 'too_large' ? 413 : 400); }
   try {
+    if (path === '/thinkbig-experience') {
+      const result = await employeeExperience(body, env);
+      if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'experience').slice(0,1600);
+      return json(result.body, result.status);
+    }
     if (path === '/thinkbig-retail') {
       const result = await retailExperience(body, env);
       if (result.body.reply) result.body.reply = filterReply(result.body.reply, 'retail');

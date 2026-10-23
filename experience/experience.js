@@ -12,10 +12,10 @@ function analyze(v,target){
 }
 // Downloaded documents are inert, self-contained HTML. Escape every dynamic text value.
 function escapeReportHTML(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function reportDocument(title,content,date=new Date().toLocaleDateString('zh-TW')){
+function reportDocument(title,content,date=new Date().toLocaleDateString('zh-TW'),label='AI 門市主管・互動模擬',path='/experience/retail/'){
  return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escapeReportHTML(title)}｜Think BIG</title><style>
 :root{--pink:#c24870;--accent:#a55270;--ink:#252629;--paper:#f7f6f2}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","Microsoft JhengHei",sans-serif;font-size:14px;line-height:1.65}main{max-width:790px;margin:32px auto;padding:32px;background:white;border-radius:12px}header{border-bottom:2px solid var(--pink);padding-bottom:16px;margin-bottom:22px}header strong{color:var(--accent)}header p{margin:4px 0;color:#68646a;font-size:12px}h1{font-size:27px;line-height:1.35;letter-spacing:-.03em;margin:0 0 20px}h2{font-size:17px;margin:22px 0 10px}p{margin:8px 0}.card{border:1px solid #e1dcde;border-radius:8px;padding:14px 18px;margin:10px 0;break-inside:avoid;page-break-inside:avoid}.tint{background:#f7f0f3}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}.metrics span{display:block;font-size:12px;color:#68646a}.metrics strong{font-size:17px;font-variant-numeric:tabular-nums}table{width:100%;border-collapse:collapse;text-align:left;font-variant-numeric:tabular-nums}th,td{padding:7px 4px;border-bottom:1px solid #e1dcde}th{font-size:12px}td,th{overflow-wrap:anywhere}.effects{display:flex;flex-wrap:wrap;gap:12px}.effects p{flex:1;min-width:140px}.effects strong{display:block}.positive{color:#22634b}.negative{color:#a03350}.neutral{color:#625a60}ol{padding-left:24px}li{padding:5px 0;break-inside:avoid}.small,footer{font-size:11px;color:#68646a}footer{border-top:1px solid #e1dcde;padding-top:14px;margin-top:22px}.message{white-space:pre-wrap;overflow-wrap:anywhere}.label{font-size:12px;color:var(--accent);font-weight:700}h1,p,strong,li{overflow-wrap:anywhere}@page{size:A4 portrait;margin:14mm}@media(max-width:600px){main{margin:0;padding:24px 16px;border-radius:0}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}h1{font-size:24px}body{font-size:13px}}@media print{body,main{background:white}body{font-size:10pt}main{max-width:none;margin:0;padding:0;border-radius:0}h1{font-size:21pt}h2{break-after:avoid}.card{padding:10px 14px}.metrics strong{font-size:13pt}header{margin-bottom:16px}footer{font-size:9pt}.tint{background:white}}
-</style></head><body><main><header><strong>Think BIG｜AI 門市主管・互動模擬</strong><p>產出日期：${escapeReportHTML(date)}</p></header>${content}<footer>https://thinkbigtw.com/experience/retail/<br>互動模擬結果，供初步討論</footer></main></body></html>`;
+</style></head><body><main><header><strong>Think BIG｜${escapeReportHTML(label)}</strong><p>產出日期：${escapeReportHTML(date)}</p></header>${content}<footer>https://thinkbigtw.com${escapeReportHTML(path)}<br>互動模擬結果，供初步討論</footer></main></body></html>`;
 }
 function actionReport({v,target,a,title,question,actions,date}){
  const e=escapeReportHTML;
@@ -28,7 +28,7 @@ function discussionReport(messages,date){
  return reportDocument('AI 討論紀錄',`<h1>AI 討論紀錄</h1><p class="label">AI 建議・待主管覆核</p>${messages.map((m,i)=>i%2===0?`<section class="card"><p class="label">你的問題</p><p class="message">${e(m.content)}</p>${messages[i+1]?`<p class="label">AI 建議</p><p class="message">${e(messages[i+1].content)}</p>`:''}</section>`:'').join('')}`,date);
 }
 if(typeof module!=='undefined')module.exports={analyze,actionReport,discussionReport,escapeReportHTML};
-if(typeof document!=='undefined'){
+if(typeof document!=='undefined' && document.getElementById('metrics')){
  let report='';
  const result=document.getElementById('result');
  const plans=[
