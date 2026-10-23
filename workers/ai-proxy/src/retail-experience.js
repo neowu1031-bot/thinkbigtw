@@ -61,7 +61,7 @@ export function executeSandboxPlan(role, plan) {
   switch(call.name) {
    case 'store_data': title=`查 ${args.store} 店數據`;result=data.stores.find(s=>s.store===args.store+' 店');break;
    case 'revenue_breakdown': title=`試算 ${args.store} 店營收拆解`;result=data.stores.find(s=>s.store===args.store+' 店').calculated;break;
-   case 'weekly_tasks': title='建立 3 項本週待辦';result=data.tasks=[{owner:'店長',task:`核對 ${args.store} 店來客計數`,metric:'來客數'},{owner:'店員',task:'記錄未成交原因',metric:'成交率'},{owner:'店長',task:'週末覆核商品組合',metric:'客單價'}];break;
+   case 'weekly_tasks': title='建立 3 項本週待辦';result=data.tasks=[{owner:'店長',task:`核對 ${args.store} 店來客統計`,metric:'來客數'},{owner:'店員',task:'記錄未成交原因',metric:'成交率'},{owner:'店長',task:'週末覆核商品組合',metric:'客單價'}];break;
    case 'lead_data': title=`查潛客 ${args.lead} 資料`;result=data.leads.find(l=>l.name==='潛客 '+args.lead);break;
    case 'draft_followup': {
     const lead=data.leads.find(l=>l.name==='潛客 '+args.lead);
@@ -93,6 +93,17 @@ function parseSandboxPlan(value) {
  if(start<0 || end<start) throw Error('invalid_plan');
  return JSON.parse(value.slice(start,end+1));
 }
+const roleVoice={
+ marketing:'貼文草稿整理好了，要不要把語氣改得活潑一點？',
+ media:'短影音分鏡整理好了，要不要先調整開場？',
+ accounting:'帳款差異整理好了，要先核對哪一筆？',
+ admin:'會議待辦整理好了，要先確認負責人嗎？',
+ training:'新人訓練清單整理好了，要先從哪個步驟開始？',
+ research:'競品比較整理好了，要先看哪個差異？',
+ retail:'本週待辦整理好了，要先確認哪家店？',
+ sales:'跟進草稿擬好了，請先核對內容，要不要調整語氣？',
+ service:'預約草稿整理好了，還需要店員確認，要先調整時段嗎？'
+};
 export async function employeeExperience(body, env) {
  const config = typeof body?.role === 'string' && Object.hasOwn(experienceRoles, body.role) ? experienceRoles[body.role] : null;
  if (!config) return {status:400,body:{error:'invalid_role'}};
@@ -110,8 +121,10 @@ export async function employeeExperience(body, env) {
   let plan;
   try {plan=parseSandboxPlan(planned && Object.hasOwn(planned,'response') ? planned.response : planned);} catch {return {status:200,body:{reply:'這次沒整理成功。你想先處理這個部門的哪一項工作？',steps:[],mode:'live-ai'}};}
   steps=executeSandboxPlan(body.role,plan);
-  const r=await runEmployeeAI(env,[{role:'system',content:system+'像 LINE 上的同事一樣口語、短句，先講結果，再用一句簡短追問確認下一步。禁止在回覆提到「工具」「工具結果」「根據資料」「根據工具結果」或其他機器式開場。不要重複貼出卡片已有的整份內容。可以說「幫你擬好了，放在待送匣 👇 要不要語氣再熱情一點？」；待送匣僅為示範草稿，不代表寄出。有執行步驟才回報已完成的示範結果；沒有執行的工作不可聲稱完成。所有草稿均須人工確認。工具結果：'+JSON.stringify(steps)},...history],650);
-  const reply=typeof r?.response==='string'?r.response.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi,'').trim().slice(0,1600):'';
-  return {status:200,body:{reply:reply||'示範步驟如卡片所示，請核對後再決定下一步。',steps,mode:'live-ai'}};
+  const r=await runEmployeeAI(env,[{role:'system',content:system+'像 LINE 上的同事一樣口語、短句，先講結果，再用一句簡短追問確認下一步。禁止在回覆提到「工具」「工具結果」「根據資料」「根據工具結果」或其他機器式開場。不要重複貼出卡片已有的整份內容。只能提到本部門工具實際產出的卡片名稱；沒有對應卡片就不要說放在某處 👇。卡片會顯示在回覆上方，請用「上方卡片」指引，不用向下指。以下口吻範例只在對應內容確實產出時使用：'+roleVoice[body.role]+'。有執行步驟才回報已完成的示範結果；沒有執行的工作不可聲稱完成。所有草稿均須人工確認。工具結果：'+JSON.stringify(steps)},...history],650);
+  let reply=typeof r?.response==='string'?r.response.replace(/<think>[\s\S]*?(?:<\/think>|$)/gi,'').trim().slice(0,1600):'';
+  if(body.role!=='sales'&&reply.includes('待送匣'))reply=steps.length?'這次的示範內容已整理在上方卡片，請先核對。要先調整哪一項？':'你想先處理這個部門的哪一項工作？';
+  if(!steps.length)reply=reply.replace(/👇\uFE0F?/gu,'').trim();
+  return {status:200,body:{reply:reply||(steps.length?'示範步驟如卡片所示，請核對後再決定下一步。':'你想先處理這個部門的哪一項工作？'),steps,mode:'live-ai'}};
  } catch {return steps.length?{status:200,body:{reply:'卡片裡已整理好這次的示範內容，但回覆暫時沒寫好。你可以先看看，有草稿的話也請確認後再使用。',steps,mode:'live-ai'}}:{status:503,body:{error:'ai_unavailable'}};}
 }
