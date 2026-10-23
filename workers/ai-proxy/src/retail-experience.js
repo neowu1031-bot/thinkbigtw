@@ -32,7 +32,7 @@ const experienceRoles = {
  {store:'A 店',metrics:[1000,30,3000,800,30,3000]},
  {store:'B 店',metrics:[1000,30,3000,1000,24,3000]},
  {store:'C 店',metrics:[1000,30,3000,1000,30,2400]}
- ].map(s=>({...s,calculated:calculateRetail(s.metrics,1000000)}))}},
+ ].map(s=>({...s,calculated:calculateRetail(s.metrics,963000)}))}},
  sales: {title:'AI 業務助理',owners:'業務專員、業務主管',data:{company:'大想成業（Think BIG）',notice:'示範資料，人名與數字皆為虛構；以下客戶均為虛構代號，沒有聯絡資料；未核定報價及日期',leads:[
  {name:'潛客 A',company:'晴日生活（虛構）',contact:'陳店長',item:'3 家門市的每週報表整理',followup:'方便分享目前使用的報表範本，以及預計會使用的人數嗎？我再幫您整理適合的導入範圍與交付內容。',inquiry:'想替 3 家門市整理每週報表，詢問導入範圍及交付內容',status:'初次詢價，尚未確認資料格式',next:'先確認現有報表格式及使用人數'},
  {name:'潛客 B',company:'示範潛客 B 公司（虛構）',contact:'林小姐',item:'商品與營業時間的客服回覆，以及人工接手方式',followup:'方便先挑 3 到 5 題最常收到的問題給我嗎？我可以先整理回覆範例，再一起確認哪些情況交由同事接手。',inquiry:'客服每天重複回覆商品與營業時間，想了解知識整理及人工接手方式',status:'已看過示範，等待需求確認',next:'建議 2 個工作天後詢問常見問題清單是否方便整理'},
