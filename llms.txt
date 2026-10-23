@@ -99,3 +99,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [個人 AI 助理搭建](https://thinkbigtw.com/harness/)
 
 English summary: Think BIG (Think BIG Co., Ltd.) is a Taiwan-based enterprise AI Agent integrator serving clients worldwide. Its TB FRAME methodology covers assessment, implementation, validation and ongoing governance, with a one-year operations retainer. Personal AI-assistant installation plans are also available. Local deployment can still send requests to approved external models or services; fully local processing requires local models and outbound network controls.
+
+## Think BIG NEWS — Issue 010（2026-10-24）
+- [AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？](https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/)
+- [AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else's Entry Point?](https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/)

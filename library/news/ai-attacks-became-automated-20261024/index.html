@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？ | Think BIG NEWS</title>
+<meta name="description" content="微軟於 2026 年 10 月 24 日公布 Storm-0940 使用 ARTEX 自動化攻擊的調查，記錄多起少於三小時取得雲端特權存取的案例。本文依官方原文說明事件範圍，並以開源治理與零信任文件為背景，提出企業盤點 AI 工具權限、執行身分與責任的建議。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/">
+<meta property="og:title" content="AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？ | Think BIG NEWS">
+<meta property="og:description" content="微軟於 2026 年 10 月 24 日公布 Storm-0940 使用 ARTEX 自動化攻擊的調查，記錄多起少於三小時取得雲端特權存取的案例。本文依官方原文說明事件範圍，並以開源治理與零信任文件為背景，提出企業盤點 AI 工具權限、執行身分與責任的建議。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？ | Think BIG NEWS">
+<meta name="twitter:description" content="微軟於 2026 年 10 月 24 日公布 Storm-0940 使用 ARTEX 自動化攻擊的調查，記錄多起少於三小時取得雲端特權存取的案例。本文依官方原文說明事件範圍，並以開源治理與零信任文件為背景，提出企業盤點 AI 工具權限、執行身分與責任的建議。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/#article",
+      "headline": "AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？",
+      "description": "微軟於 2026 年 10 月 24 日公布 Storm-0940 使用 ARTEX 自動化攻擊的調查，記錄多起少於三小時取得雲端特權存取的案例。本文依官方原文說明事件範圍，並以開源治理與零信任文件為背景，提出企業盤點 AI 工具權限、執行身分與責任的建議。",
+      "keywords": "AI 攻擊, 自動化攻擊, AI Agent 權限, 零信任, AI 工具治理, 企業資安, AI Agent 部署, MCP, 身分管理, AI 技能套件",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-10-24T20:00:00+08:00",
+      "dateModified": "2026-10-24T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "這次報告中的 AI 自動化攻擊，值得注意的是什麼？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "微軟記錄了 Storm-0940 使用 ARTEX 加速攻擊，以及多起從初始鎖定目標到取得雲端特權存取少於 3 小時的案例。[1] 這項觀察有其事件範圍，不能推論所有攻擊都已由 AI 自主完成。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "中小型企業也需要盤點嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "建議同樣先確認工具、資料、權限與負責人，再依資料敏感程度與操作影響決定處理順序。盤點的人力、時程與技術協助，應按實際環境安排。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "怎麼確認 AI 工具是否會把資料送出去？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "建議把產品文件、權限設定、外部服務清單與執行紀錄放在一起核對，必要時請技術人員在測試環境觀察資料流向。調整權限後，也應重新驗證需要保留的功能。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "員工自己裝的 AI 工具，該怎麼管理？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "建議先定義可安裝的範圍、申報方式與敏感資料使用規則。對尚未釐清來源或授權的工具，先限制敏感資料輸入，再由負責人完成評估。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI Agent 都會常駐並主動對外傳送資料嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本文不將所有產品視為同一種部署方式。評估時請逐項確認：是否排程執行、可呼叫哪些工具、是否能寫入或對外傳送資料，以及哪些操作須經人工核准。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "懷疑已發生相關攻擊時，可以先做什麼？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "微軟建議保全相關登入與稽核紀錄、檢查服務主體活動及異常憑證或權限變更，並在確認可疑活動後撤回不必要的權限、輪替憑證。[1] 請由獲授權的處置人員依事件範圍執行，保全證據的同時不要延誤必要的遏止措施。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？",
+          "item": "https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 15px}.body th{background:var(--panel);font-family:var(--sans);font-weight:700;font-size:12px;padding:6px 8px;text-align:left;border:1px solid var(--rule)}.body td{padding:6px 8px;border:1px solid var(--rule);vertical-align:top}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>AI 導入實測手記 &middot; 第 010 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 10 月 24 日　星期六</span>
+    <span class="dot">&#9670;</span>
+    <span>AI 導入實測手記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 010 期</span>
+  </div>
+
+  <p class="kicker">AI 資安 · 自動化攻擊 · 權限治理</p>
+  <h2 class="headline">AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 10 月 24 日</p>
+  <p class="deck">微軟的最新調查記錄了攻擊者使用 AI 加速既有攻擊流程的案例。對企業而言，值得立刻追問的是：哪些工具能讀資料、能執行操作，又由誰核准與負責？</p>
+  <hr class="head-rule">
+
+  <div class="body">
+<h2>一、現象：部分攻擊從鎖定目標到取得特權，少於三小時</h2>
+<p class="lead">微軟於 <strong>2026 年 10 月 21 日</strong>發表調查，指出其追蹤的威脅行為者 <strong>Storm-0940</strong> 最早在同年 9 月已使用代理式 AI 滲透測試框架 <strong>ARTEX</strong> 自動化攻擊。在多起案例中，從初始鎖定目標到取得組織雲端基礎設施的特權存取，時間<strong>少於 3 小時</strong>。[1]</p>
+<p>報告記錄了既有應用程式授權與憑證遭濫用的活動，也提醒：環境中存在受影響應用程式，或攻擊者成功通過身分驗證，<strong>本身都不能證明資料曾被存取或外洩</strong>。[1] 因此，不宜把攻擊嘗試、成功驗證身分、取得特權與資料外洩混為一談。</p>
+<p>開發生態則有另一條需要分開看待的脈絡。Linux Foundation 早在 <strong>2025 年 12 月 9 日</strong>就宣布成立 <strong>Agentic AI Foundation（AAIF）</strong>，創始專案貢獻包括 Model Context Protocol（MCP）、goose 與 AGENTS.md。[2] 這是開源協作與治理的背景，並非這次攻擊的同日事件。</p>
+<p>技能套件也應回到具體定義。以 GitHub 上的 <strong>anthropics/skills</strong> 官方儲存庫為例，其 README 將 Skills 說明為由指令、腳本與資源組成的資料夾。[4] 本文據此建議：盤點時分別記錄技能內容、執行環境，以及實際使用的帳號與權限。</p>
+<h2>二、各方評價：官方文件各自強調什麼</h2>
+<p><strong>微軟：應檢查應用程式身分與後續操作。</strong></p>
+<p>微軟的處置建議包括檢查服務主體登入、異常憑證與權限變更，並落實最小權限。[1] 對本文而言，這表示部署驗收也應納入應用程式的授權範圍與操作紀錄。</p>
+<p><strong>Linux Foundation：以開放治理支持協作。</strong></p>
+<p>AAIF 成立公告強調中立、開放的協作環境，以及工具、標準與社群共同發展的方向。[2] 本文的判讀是：基金會治理與個別部署的安全審核應分別處理，不能僅憑專案加入基金會，就推定任一套件已獲安全認證。</p>
+<p><strong>NIST：不因位於內網就給予隱含信任。</strong></p>
+<p>美國國家標準暨技術研究院（NIST）在《Zero Trust Architecture》中說明，不應僅因資產或帳號的網路位置、實體位置或所有權而給予隱含信任；存取企業資源的工作階段建立前，須進行身分驗證與授權。[3]</p>
+<p>這些文件的重點各有不同。我們的建議是將它們轉成同一份部署檢查清單：<strong>以什麼身分執行、能存取哪些資源、誰核准，以及如何留下操作紀錄。</strong></p>
+<h2>三、我們的第一手心得（不具名）：把權限寫成可驗收的約定</h2>
+<p>面對 AI Agent 導入，我們會先把兩個問題放進討論：</p>
+<blockquote>
+<p>「它可以對我的資料做哪些事？」
+「誰核准、誰維護，異常時由誰處理？」</p>
+</blockquote>
+<p>以下以不具名方式呈現團隊的實作觀點與建議，不作為客戶成效或產業統計。</p>
+<h3>心得一：先畫權限，再決定工具</h3>
+<p>我們主張先整理一張清單，至少列出四個欄位：<strong>工具／技能名稱、資料與操作範圍、使用者／執行身分、負責人</strong>。</p>
+<p>資料與操作範圍應繼續拆開：能讀取哪些檔案、能否修改或刪除、能否呼叫外部服務、能否傳送資料。把預期用途與實際設定放在一起核對，再決定哪些能力需要保留或調整。</p>
+<h3>心得二：把核准、維護與處置責任寫下來</h3>
+<p>我們建議為每項工具記錄核准人、維護人與異常通報窗口，也約定停用或撤回授權的方式。</p>
+<p>涉及重要資料寫入、刪除或對外傳送時，應在導入前約定是否需要人工覆核，以及由誰執行。負責人的名字應對應到明確的工作與權限。</p>
+<h3>心得三：驗收指標要有期間、定義與門檻</h3>
+<p>我們建議記錄三項指標：<strong>使用次數、無需修改即可採用的回覆比例、經授權後實際完成的任務數</strong>。</p>
+<p>統計期間、計算方式與通過門檻應在試用前約定。若結果未達標，再依紀錄檢查資料品質、權限設定、流程設計與使用方式，不以單一固定天數或是否成長直接判定成敗。</p>
+<h2>四、我們的建議：先做三件事</h2>
+<p><strong>1. 用既有文件開始盤點</strong></p>
+<p>列出正在使用的 AI 技能、工具與外掛，包含員工自行安裝的項目。先確認盤點範圍、需要哪些系統管理者協助，再安排人力與時程。</p>
+<p>清單除了名稱，也要記錄資料與操作範圍、執行身分及負責人。不要只問「有沒有使用 AI」。</p>
+<p><strong>2. 依資料、操作權限與來源逐項處理</strong></p>
+<ul>
+<li><strong>來源或授權不清楚</strong>：先暫停新增授權與敏感資料輸入，交由負責人釐清，必要時限制連線或停用。</li>
+<li><strong>用途明確但權限過大</strong>：在測試環境確認所需功能，再縮減權限並驗證流程。</li>
+<li><strong>用途、權限與責任都明確</strong>：保留紀錄，約定複查時間與異常處理方式。</li>
+</ul>
+<p>若已懷疑發生事件，應同步保全紀錄並進行必要的遏止處置，避免將例行整理清單當成事件調查。</p>
+<p><strong>3. 把責任與撤回方式寫成文件</strong></p>
+<p>為每個保留的工具指定負責人，記錄如何聯繫、誰能撤回授權，以及異常時的處理順序。若採用同類工具共同管理，也應明確列出涵蓋項目。</p>
+<section class="houseview"><h2>編按 · Think BIG 的做法：讓部署可以逐項驗收</h2>
+<p><em>（以下為 Think BIG 的實作主張與建議。）</em></p>
+<p>我們主張以「評估、建置、驗證、維運」安排 AI Agent 導入工作：</p>
+<ul>
+<li><strong>評估</strong>：先盤點工具、資料、執行身分與責任，再決定導入範圍。</li>
+<li><strong>建置</strong>：依實際需求設定權限，為重要操作約定人工覆核與撤回方式。</li>
+<li><strong>驗證</strong>：使用已知答案與明確任務測試，檢查回答出處、操作紀錄及權限邊界。</li>
+<li><strong>維運</strong>：在個別提案中列明服務範圍、期間、回應方式與費用，並約定紀錄複查及異常通報安排。</li>
+</ul>
+<p>我們的主張是把「可以做什麼、誰核准、如何停下來」寫成可檢查的交付項目，讓導入與後續管理都有依據。</p>
+<hr /></section>
+<section class="faq" id="faq"><h3>FAQ</h3><dl><dt>Q1：這次報告中的 AI 自動化攻擊，值得注意的是什麼？</dt><dd>微軟記錄了 Storm-0940 使用 ARTEX 加速攻擊，以及多起從初始鎖定目標到取得雲端特權存取少於 3 小時的案例。[1] 這項觀察有其事件範圍，不能推論所有攻擊都已由 AI 自主完成。</dd><dt>Q2：中小型企業也需要盤點嗎？</dt><dd>建議同樣先確認工具、資料、權限與負責人，再依資料敏感程度與操作影響決定處理順序。盤點的人力、時程與技術協助，應按實際環境安排。</dd><dt>Q3：怎麼確認 AI 工具是否會把資料送出去？</dt><dd>建議把產品文件、權限設定、外部服務清單與執行紀錄放在一起核對，必要時請技術人員在測試環境觀察資料流向。調整權限後，也應重新驗證需要保留的功能。</dd><dt>Q4：員工自己裝的 AI 工具，該怎麼管理？</dt><dd>建議先定義可安裝的範圍、申報方式與敏感資料使用規則。對尚未釐清來源或授權的工具，先限制敏感資料輸入，再由負責人完成評估。</dd><dt>Q5：AI Agent 都會常駐並主動對外傳送資料嗎？</dt><dd>本文不將所有產品視為同一種部署方式。評估時請逐項確認：是否排程執行、可呼叫哪些工具、是否能寫入或對外傳送資料，以及哪些操作須經人工核准。</dd><dt>Q6：懷疑已發生相關攻擊時，可以先做什麼？</dt><dd>微軟建議保全相關登入與稽核紀錄、檢查服務主體活動及異常憑證或權限變更，並在確認可疑活動後撤回不必要的權限、輪替憑證。[1] 請由獲授權的處置人員依事件範圍執行，保全證據的同時不要延誤必要的遏止措施。</dd></dl></section>
+</div>
+<div class="sources"><span class="lede">參考來源</span><p>查核日期：2026-10-23。以下日期為官方發布日期；儲存庫另列固定版本日期。</p>
+<ol>
+<li>Microsoft Security Blog，〈AI-driven, large-scale nation-state campaign using ARTEX enables supply chain compromise〉，2026-10-21。<a href="https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/">https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/</a></li>
+<li>Linux Foundation，〈Linux Foundation Announces the Formation of the Agentic AI Foundation (AAIF), Anchored by New Project Contributions Including Model Context Protocol (MCP), goose and AGENTS.md〉，2025-12-09。<a href="https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation">https://www.linuxfoundation.org/press/linux-foundation-announces-the-formation-of-the-agentic-ai-foundation</a></li>
+<li>NIST，〈Zero Trust Architecture〉，NIST SP 800-207，2020-08-11。<a href="https://csrc.nist.gov/pubs/sp/800/207/final">https://csrc.nist.gov/pubs/sp/800/207/final</a></li>
+<li>Anthropic，〈Skills〉，GitHub 官方儲存庫 anthropics/skills 的 README.md；固定版本 f458cee31a7577a47ba0c9a101976fa599385174，版本日期 2026-05-09（UTC），查閱日期 2026-10-23。<a href="https://github.com/anthropics/skills/blob/f458cee31a7577a47ba0c9a101976fa599385174/README.md">https://github.com/anthropics/skills/blob/f458cee31a7577a47ba0c9a101976fa599385174/README.md</a></li>
+</ol></div>
+<p class="disclaimer">本文「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI 導入第一手手記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
