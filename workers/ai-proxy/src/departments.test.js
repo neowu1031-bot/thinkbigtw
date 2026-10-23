@@ -21,7 +21,7 @@ for(const role of roles){
    assert.match(p.messages[0].content,/所有草稿均須人工確認/);
    if(departmentRoles[role]){
     assert.ok(p.messages[0].content.includes(departmentRoles[role].title));
-    assert.match(p.messages[0].content,/禾木選物（完全虛構公司）/);
+    assert.match(p.messages[0].content,/大想成業（Think BIG；示範資料，人名與數字皆為虛構）/);
     for(const other of Object.keys(departmentRoles).filter(r=>r!==role))assert.ok(!p.messages[0].content.includes(departmentRoles[other].title));
    }
    return {response:'幫你整理好示範內容了，想先看哪一項？'};
@@ -62,9 +62,14 @@ test('組織圖九個部門、快捷問題與插畫資源完整，聊天版本�
  const config=vm.runInNewContext('('+source.slice(source.indexOf('const roles=')+12,source.indexOf('\nconst $=')-1)+')');
  assert.deepEqual(Object.keys(config).sort(),roles.toSorted());
  assert.equal((page.match(/data-role=/g)||[]).length,9);
+ assert.match(page,/大想成業（Think BIG）/);
+ const cards=[...page.matchAll(/<button type="button" data-role="[^"]+">([\s\S]*?)<\/button>/g)];
+ assert.equal(cards.length,9);
+ for(const [,card] of cards) assert.ok(card.includes('示範資料，人名與數字皆為虛構'));
+
  for(const role of roles){assert.ok(page.includes(`data-role="${role}"`));assert.ok(config[role].quick.length>=3&&config[role].quick.length<=4);}
  for(const [,path] of page.matchAll(/src="(\/assets\/illustrations\/[^\"]+)"/g))assert.ok(existsSync(new URL('../../..'+path,import.meta.url)));
- assert.match(page,/chat\.css\?v=20261023f/);assert.match(page,/chat\.js\?v=20261023f/);
+ assert.match(page,/chat\.css\?v=20261023g/);assert.match(page,/chat\.js\?v=20261023g/);
 });
 test('九部門點選沿用聊天、快捷問題、同意與返回流程，未同意不得送出',()=>{
  const source=readFileSync(new URL('../../../experience/chat.js',import.meta.url),'utf8');

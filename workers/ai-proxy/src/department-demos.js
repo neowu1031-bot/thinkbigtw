@@ -4,8 +4,8 @@ export const departmentRoles = {
     "title": "AI 行銷企劃",
     "owners": "行銷企劃、行銷主管",
     "data": {
-      "company": "禾木選物（完全虛構公司）",
-      "notice": "以下全部為虛構示範；不儲存、不連外，草稿須人工覆核",
+      "company": "大想成業（Think BIG；示範資料，人名與數字皆為虛構）",
+      "notice": "示範資料，人名與數字皆為虛構；非真實客戶或真實營收；不儲存、不連外，草稿須人工覆核",
       "artifacts": {
         "campaign_results": {
           "rows": [
@@ -35,7 +35,7 @@ export const departmentRoles = {
           "rows": [
             [
               "貼文草稿",
-              "週末來禾木選物，看看適合日常的杯子與提袋。想先看哪一款？"
+              "週末來大想成業，看看適合日常的杯子與提袋。想先看哪一款？"
             ],
             [
               "狀態",
@@ -66,8 +66,8 @@ export const departmentRoles = {
     "title": "AI 影音企劃",
     "owners": "影音企劃、攝影師、剪輯師",
     "data": {
-      "company": "禾木選物（完全虛構公司）",
-      "notice": "以下全部為虛構示範；不儲存、不連外，草稿須人工覆核",
+      "company": "大想成業（Think BIG；示範資料，人名與數字皆為虛構）",
+      "notice": "示範資料，人名與數字皆為虛構；非真實客戶或真實營收；不儲存、不連外，草稿須人工覆核",
       "artifacts": {
         "video_script": {
           "rows": [
@@ -124,8 +124,8 @@ export const departmentRoles = {
     "title": "AI 會計助理",
     "owners": "會計、出納、會計主管",
     "data": {
-      "company": "禾木選物（完全虛構公司）",
-      "notice": "以下全部為虛構示範；不儲存、不連外，草稿須人工覆核",
+      "company": "大想成業（Think BIG；示範資料，人名與數字皆為虛構）",
+      "notice": "示範資料，人名與數字皆為虛構；非真實客戶或真實營收；不儲存、不連外，草稿須人工覆核",
       "artifacts": {
         "reconcile_accounts": {
           "rows": [
@@ -190,14 +190,14 @@ export const departmentRoles = {
     "title": "AI 行政助理",
     "owners": "行政專員、採購專員、會議主持人",
     "data": {
-      "company": "禾木選物（完全虛構公司）",
-      "notice": "以下全部為虛構示範；不儲存、不連外，草稿須人工覆核",
+      "company": "大想成業（Think BIG；示範資料，人名與數字皆為虛構）",
+      "notice": "示範資料，人名與數字皆為虛構；非真實客戶或真實營收；不儲存、不連外，草稿須人工覆核",
       "artifacts": {
         "meeting_notes": {
           "rows": [
             [
               "會議重點",
-              "禾木選物準備週末展示，先核對陳列與包材。"
+              "大想成業準備週末展示，先核對陳列與包材。"
             ],
             [
               "行政專員",
@@ -213,7 +213,7 @@ export const departmentRoles = {
           "rows": [
             [
               "會議室",
-              "禾木選物示範 A 室"
+              "大想成業示範 A 室"
             ],
             [
               "時段",
@@ -248,8 +248,8 @@ export const departmentRoles = {
     "title": "AI 訓練專員",
     "owners": "訓練專員、店長、帶教店員",
     "data": {
-      "company": "禾木選物（完全虛構公司）",
-      "notice": "以下全部為虛構示範；不儲存、不連外，草稿須人工覆核",
+      "company": "大想成業（Think BIG；示範資料，人名與數字皆為虛構）",
+      "notice": "示範資料，人名與數字皆為虛構；非真實客戶或真實營收；不儲存、不連外，草稿須人工覆核",
       "artifacts": {
         "onboarding_list": {
           "rows": [
@@ -314,8 +314,8 @@ export const departmentRoles = {
     "title": "AI 市調分析師",
     "owners": "市調專員、行銷主管",
     "data": {
-      "company": "禾木選物（完全虛構公司）",
-      "notice": "以下全部為虛構示範；不儲存、不連外，草稿須人工覆核",
+      "company": "大想成業（Think BIG；示範資料，人名與數字皆為虛構）",
+      "notice": "示範資料，人名與數字皆為虛構；非真實客戶或真實營收；不儲存、不連外，草稿須人工覆核",
       "artifacts": {
         "competitor_table": {
           "rows": [
