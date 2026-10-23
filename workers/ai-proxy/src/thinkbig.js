@@ -1,3 +1,4 @@
+import { retailExperience } from './retail-experience.js';
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
 // 話題範圍（官網＋LINE 共用，不計入 KB token budget）
 export const SCOPE_RULE = `
@@ -387,6 +388,11 @@ export async function handleThinkBig(request, env) {
   try { body = await readJSON(request.body, maxBody); }
   catch (error) { return json({ error: error.message }, error.message === 'too_large' ? 413 : 400); }
   try {
+    if (path === '/thinkbig-retail') {
+      const result = await retailExperience(body, env);
+      if (result.body.reply) result.body.reply = toTraditionalTW(result.body.reply);
+      return json(result.body, result.status);
+    }
     if (path === '/thinkbig-inquiry') return await inquiry(body, env);
     if (path === '/thinkbig-end-chat') return await endChat(body, env);
     return await chat(body, env);

@@ -1734,7 +1734,7 @@ export default {
     const thinkBigPath = new URL(request.url).pathname;
     if (thinkBigPath === '/line-webhook') return handleLineWebhook(request, env, ctx);
     if (thinkBigPath === '/line-push-answer') return handleLinePushAnswer(request, env);
-    if (['/thinkbig-chat', '/thinkbig-inquiry', '/thinkbig-end-chat'].includes(thinkBigPath)) return handleThinkBig(request, env);
+    if (['/thinkbig-chat', '/thinkbig-inquiry', '/thinkbig-end-chat', '/thinkbig-retail'].includes(thinkBigPath)) return handleThinkBig(request, env);
     // === V279_EARLY_INTERCEPT ===
     try {
       const _u = new URL(request.url);

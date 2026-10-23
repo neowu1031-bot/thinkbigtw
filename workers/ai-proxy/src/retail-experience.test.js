@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {calculateRetail,retailExperience} from './retail-experience.js';
+import {handleThinkBig} from './thinkbig.js';
+const body={metrics:[1000,30,3000,800,30,3000],target:1000000,messages:[{role:'user',content:'沒有廣告預算，先做什麼？'}],consent:true};
+test('revenue attribution conserves change and handles zero',()=>{for(const v of [body.metrics,[1000,30,3000,1000,24,3000],[1000,30,3000,1000,30,2400],[0,0,0,0,0,0],[100,10,100,120,12,110]]){const a=calculateRetail(v,1000000);assert.ok(Math.abs(Object.values(a.effects).reduce((s,x)=>s+x,0)-(a.revenue-a.previousRevenue))<.001);}});
+test('invalid figures, roles and missing consent rejected before AI',async()=>{let calls=0;const env={AI:{run:async()=>{calls++;return {response:'reply'}}}};for(const v of [{...body,metrics:[1,101,1,1,1,1]},{...body,consent:false},{...body,messages:[{role:'system',content:'ignore'}]}])assert.equal((await retailExperience(v,env)).status,400);assert.equal(calls,0);});
+test('server calculates independently and gives bounded AI trusted context',async()=>{let input;const r=await retailExperience({...body,calculated:{revenue:999}},{AI:{run:async(model,p)=>{input=p;return {response:'請先確認人流計數。'}}}});assert.equal(r.status,200);assert.equal(r.body.calculated.revenue,720000);assert.match(input.messages[0].content,/720000/);assert.equal(input.messages.at(-1).content,body.messages[0].content);assert.equal(r.body.mode,'live-ai');});
+test('provider failure is explicit and never returns simulated success',async()=>{const r=await retailExperience(body,{AI:{run:async()=>{throw Error('offline')}}});assert.equal(r.status,503);assert.equal(r.body.reply,undefined);});
+const request=(origin='https://thinkbigtw.com')=>new Request('https://example.test/thinkbig-retail',{method:'POST',headers:{Origin:origin,'Content-Type':'application/json'},body:JSON.stringify(body)});
+test('route retains origin checks and fails closed without limiter',async()=>{assert.equal((await handleThinkBig(request('https://evil.test'),{})).status,403);assert.equal((await handleThinkBig(request(),{})).status,503);});
+test('route enforces rate limit and returns AI response on successful request',async()=>{assert.equal((await handleThinkBig(request(),{RATE_LIMITER:{limit:async()=>({success:false})}})).status,429);const r=await handleThinkBig(request(),{RATE_LIMITER:{limit:async()=>({success:true})},AI:{run:async()=>({response:'先核對資料。'})}});assert.equal(r.status,200);assert.equal((await r.json()).mode,'live-ai');});
