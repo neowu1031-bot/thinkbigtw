@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 系統出資安事件怎麼辦？發現後先做的 5 件事｜問答圖書館｜Think BIG</title>
+<meta name="description" content="AI 系統出資安事件，發現後先做 5 件事：停、留、查、報、修。整理資通安全事件通報應變及演練辦法的通報時限、個資法第 12 條的通知義務（含 2025 年修正、尚未施行的版本），以及 NIST SP 800-61 第 3 版的事件應變架構。">
+<link rel="canonical" href="https://thinkbigtw.com/library/qa/ai-incident-response/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/ai-incident-response/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/ai-incident-response/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/ai-incident-response/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/qa/ai-incident-response/">
+<meta property="og:title" content="AI 系統出資安事件怎麼辦？發現後先做的 5 件事｜問答圖書館｜Think BIG">
+<meta property="og:description" content="AI 系統出資安事件，發現後先做 5 件事：停、留、查、報、修。整理資通安全事件通報應變及演練辦法的通報時限、個資法第 12 條的通知義務（含 2025 年修正、尚未施行的版本），以及 NIST SP 800-61 第 3 版的事件應變架構。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-10-31T16:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 系統出資安事件怎麼辦？發現後先做的 5 件事｜問答圖書館｜Think BIG">
+<meta name="twitter:description" content="AI 系統出資安事件，發現後先做 5 件事：停、留、查、報、修。整理資通安全事件通報應變及演練辦法的通報時限、個資法第 12 條的通知義務（含 2025 年修正、尚未施行的版本），以及 NIST SP 800-61 第 3 版的事件應變架構。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/library/qa/ai-incident-response/#article",
+   "headline": "AI 系統出資安事件怎麼辦？發現後先做的 5 件事",
+   "description": "AI 系統出資安事件，發現後先做 5 件事：停、留、查、報、修。整理資通安全事件通報應變及演練辦法的通報時限、個資法第 12 條的通知義務（含 2025 年修正、尚未施行的版本），以及 NIST SP 800-61 第 3 版的事件應變架構。",
+   "keywords": "AI 資安事件, 資安事件 應變, 資安事件 通報 時限, 個資外洩 通知, 資通安全事件通報應變及演練辦法, NIST SP 800-61, AI Agent 資安, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG 問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "大想成業有限公司",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-31T16:00:00+08:00",
+   "dateModified": "2026-10-31T16:00:00+08:00",
+   "url": "https://thinkbigtw.com/library/qa/ai-incident-response/",
+   "mainEntityOfPage": "https://thinkbigtw.com/library/qa/ai-incident-response/",
+   "inLanguage": "zh-Hant-TW",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "citation": [
+    "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030305",
+    "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030297",
+    "https://law.moj.gov.tw/LawClass/LawOldVer.aspx?pcode=I0050021",
+    "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021",
+    "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050022",
+    "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf",
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/library/qa/ai-incident-response/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "AI 系統出資安事件怎麼辦？發現後先做的 5 件事",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "發現後先做 5 件事：停（暫停受影響的 AI 功能、撤銷外洩的金鑰或權限）、留（保存紀錄和證據，不要急著刪）、查（影響範圍：哪些資料、哪些人、哪段時間）、報（依身分、行業和合約通知；公務機關與特定非公務機關要在知悉後 1 小時內通報；依現行個資法第 12 條，違反本法致個資被竊取、洩漏、竄改或其他侵害時，要通知當事人）、修（修補原因、重新驗證後再上線）。NIST SP 800-61 第 3 版把事件應變放在偵測、回應、復原三個功能裡，並強調事前準備。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "AI 系統出資安事件，第一步要做什麼？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "先停：暫停受影響的 AI 功能或 AI Agent 的自動執行，撤銷外洩的金鑰或權限。接著保存紀錄和證據，再查影響範圍、依規定通知，最後修補並重新驗證後再上線。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "公司發生資安事件，一定要在 1 小時內通報嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "要看公司的身分。依資通安全事件通報應變及演練辦法，公務機關與特定非公務機關（例如關鍵基礎設施提供者、公營事業）知悉後應於 1 小時內通報；一般民間公司不適用這項規定；但依現行個資法第 12 條，違反本法致個資被竊取、洩漏、竄改或其他侵害時，仍要通知當事人，行業與合約也可能另有規定。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "個資外洩要通知誰？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "依現行個資法第 12 條，要查明後以適當方式通知當事人，內容包括被侵害的事實及已採取的因應措施。2025 年修正的第 12 條另要求符合一定範圍時通報主管機關，但施行日期由行政院定之，截至 2026 年 10 月 24 日尚未施行。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "出事時可以先把被攻擊的資料刪掉嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不建議急著刪。先保存紀錄、對話、工具呼叫紀錄和設定，才查得出影響範圍和原因；修補前先備份。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "首頁",
+     "item": "https://thinkbigtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Library",
+     "item": "https://thinkbigtw.com/library/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "問答圖書館",
+     "item": "https://thinkbigtw.com/library/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "name": "AI 資安事件怎麼應變",
+     "item": "https://thinkbigtw.com/library/qa/ai-incident-response/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/library/qa/">&larr; 問答圖書館</a>
+  <div class="qa-top">
+    <span class="cat">企業資安</span>
+    <span class="no">TB18</span>
+  </div>
+  <h1 class="q">AI 系統出資安事件怎麼辦？發現後先做的 5 件事</h1>
+  <p class="byline">Think BIG 問答圖書館　·　<time datetime="2026-10-31T16:00:00+08:00">2026 年 10 月 31 日　星期六</time>
+    ·　<a href="https://thinkbigtw.com/en/qa/ai-incident-response/" hreflang="en" style="color:var(--ink-soft)">English</a></p>
+
+  <section class="answer" aria-label="先說答案">
+    <span class="lede">先說答案</span>
+    <div><p>發現後先做 5 件事：<strong>停</strong>（暫停受影響的 AI 功能、撤銷外洩的金鑰或權限）、<strong>留</strong>（保存紀錄和證據，不要急著刪）、<strong>查</strong>（影響範圍：哪些資料、哪些人、哪段時間）、<strong>報</strong>（依身分、行業和合約通知；公務機關與特定非公務機關要在知悉後 1 小時內通報；依現行個資法第 12 條，違反本法致個資被竊取、洩漏、竄改或其他侵害時，要通知當事人）、<strong>修</strong>（修補原因、重新驗證後再上線）。NIST SP 800-61 第 3 版把事件應變放在偵測、回應、復原三個功能裡，並強調事前準備。</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">一、</span>什麼算 AI 資安事件</h2>
+<p>以下是 AI 系統特有、或特別容易發生的情況：</p>
+<ul>
+<li>AI 讀到藏有指令的文件或網頁，做了不該做的事（提示注入），見<a href="/library/qa/prompt-injection-ai-agent/">提示注入是什麼？</a></li>
+<li>員工問 AI 時，看到了自己權限外的文件，見<a href="/library/qa/rag-access-control-by-department/">怎麼讓每個部門只看得到自己的資料？</a></li>
+<li>呼叫 AI 的金鑰外洩，見<a href="/library/qa/ai-api-key-leak/">AI 的 API 金鑰外洩會怎樣？</a></li>
+<li>AI Agent 自動對外發送、刪除或修改了正式資料</li>
+<li>第三方套件、外掛或模型檔被動過手腳</li>
+</ul>
+<h2><span class="no">二、</span>5 件事怎麼做</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>做什麼</th>
+<th>依據</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. 停</strong></td>
+<td>暫停受影響的 AI 功能或 AI Agent 的自動執行；撤銷外洩的金鑰、權杖；必要時切斷對外連線</td>
+<td>NIST SP 800-61r3：回應（Respond）包含圍堵事件</td>
+</tr>
+<tr>
+<td><strong>2. 留</strong></td>
+<td>保存 AI 系統的紀錄、對話、工具呼叫紀錄和設定；先備份再修</td>
+<td>施行細則第 12 條把證據保存列為安全措施之一；個資法 2025 年修正、尚未施行的第 12 條也要求記載相關事實並保存紀錄</td>
+</tr>
+<tr>
+<td><strong>3. 查</strong></td>
+<td>確認影響範圍：哪些資料、哪些人、從什麼時候開始、還在不在發生</td>
+<td>NIST SP 800-61r3：偵測（Detect）包含分析事件</td>
+</tr>
+<tr>
+<td><strong>4. 報</strong></td>
+<td>依身分與合約通知：主管機關、當事人、客戶、供應商</td>
+<td>見下一節</td>
+</tr>
+<tr>
+<td><strong>5. 修</strong></td>
+<td>修補原因（權限、設定、套件版本），用測試題重新驗證後再上線；把學到的寫回規則</td>
+<td>NIST SP 800-61r3：復原（Recover）與持續改善；NIST AI RMF MANAGE 4.3</td>
+</tr>
+</tbody>
+</table></div>
+<h2><span class="no">三、</span>要通知誰、多快</h2>
+<ol>
+<li><strong>公務機關與特定非公務機關</strong>：資通安全管理法所稱的特定非公務機關，包括關鍵基礎設施提供者、公營事業、特定財團法人及受政府控制的事業等。依〈資通安全事件通報應變及演練辦法〉，公務機關知悉資通安全事件後應於 1 小時內至主管機關指定的系統平臺通報（第 6 條）；第 11 條則規定，特定非公務機關知悉資通安全事件後，應於 1 小時內依中央目的事業主管機關指定的方式通報；第 13 條規定，第一、二級事件於知悉後 72 小時內、重大事件於 36 小時內完成損害控制或復原，並於 1 個月內送交調查、處理及改善報告。</li>
+<li><strong>個資被侵害時（現行條文）</strong>：個資法第 12 條規定，公務機關或非公務機關違反本法規定，致個人資料被竊取、洩漏、竄改或其他侵害者，應查明後以適當方式通知當事人；施行細則第 22 條說明，通知內容應包括個資被侵害的事實及已採取的因應措施。</li>
+<li><strong>個資法 2025 年修正（已公布、尚未施行）</strong>：2025 年 11 月 11 日修正的第 12 條，除了通知當事人，還要求符合一定範圍時向主管機關通報，並採取即時有效的應變措施、保存相關紀錄；這部分條文的施行日期由行政院定之，截至 2026 年 10 月 24 日查詢時尚未施行。</li>
+<li><strong>行業與合約</strong>：部分行業的主管機關另有規定，客戶合約也可能約定通知時限，要一併查。</li>
+</ol>
+<h2><span class="no">四、</span>事前準備</h2>
+<p>NIST SP 800-61 第 3 版指出，治理（Govern）、識別（Identify）、保護（Protect）這些準備工作，雖然不屬於事件應變本身，卻決定事件發生時能不能處理得好。對 AI 系統來說，至少事先準備好：誰有權限按下「暫停」、紀錄放在哪裡、金鑰怎麼撤銷、要通知誰。要留哪些紀錄，見<a href="/library/qa/ai-audit-logs/">AI 系統要留哪些紀錄？</a></p></div>
+
+  <section class="brand" aria-label="品牌資訊｜Think BIG">
+    <span class="lede">品牌資訊｜Think BIG</span>
+    <h2>Think BIG 怎麼準備異常處理</h2>
+    <p>Think BIG（大想成業有限公司）是總部位於台灣的企業 AI Agent 導入商，從守護企業資安出發，幫企業把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機）。部署分兩種：地端版的模型與文件都在公司設備內處理；雲端輔助版會把員工的問題與系統找出的文件段落送到模型廠商處理。</p>
+<ol>
+<li><strong>巡檢項目與通知對象寫進範圍</strong>：企業導入時會確認巡檢項目、通知對象與維護責任，寫進約定範圍。</li>
+<li><strong>變更有紀錄</strong>：變更前確認範圍、原因、負責人與復原方式，依授權範圍核准後執行。</li>
+<li><strong>交付前資安審查</strong>：每一套系統交付前，程式與設定都先過一道資安審查，沒通過不交付。</li>
+</ol>
+<p>資安沒有人能打包票，我們做的是一道一道的審查。詳見<a href="https://thinkbigtw.com/trust/">資安與治理</a>。</p>
+<p><em>brand-src</em>：Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+    <p class="brand-src">Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+  </section>
+
+  <section class="faq" aria-label="常見問題">
+    <h2>常見問題</h2>
+    <dl><dt>Q1：AI 系統出資安事件，第一步要做什麼？</dt><dd>先停：暫停受影響的 AI 功能或 AI Agent 的自動執行，撤銷外洩的金鑰或權限。接著保存紀錄和證據，再查影響範圍、依規定通知，最後修補並重新驗證後再上線。</dd><dt>Q2：公司發生資安事件，一定要在 1 小時內通報嗎？</dt><dd>要看公司的身分。依資通安全事件通報應變及演練辦法，公務機關與特定非公務機關（例如關鍵基礎設施提供者、公營事業）知悉後應於 1 小時內通報；一般民間公司不適用這項規定；但依現行個資法第 12 條，違反本法致個資被竊取、洩漏、竄改或其他侵害時，仍要通知當事人，行業與合約也可能另有規定。</dd><dt>Q3：個資外洩要通知誰？</dt><dd>依現行個資法第 12 條，要查明後以適當方式通知當事人，內容包括被侵害的事實及已採取的因應措施。2025 年修正的第 12 條另要求符合一定範圍時通報主管機關，但施行日期由行政院定之，截至 2026 年 10 月 24 日尚未施行。</dd><dt>Q4：出事時可以先把被攻擊的資料刪掉嗎？</dt><dd>不建議急著刪。先保存紀錄、對話、工具呼叫紀錄和設定，才查得出影響範圍和原因；修補前先備份。</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul><li><a href="/library/qa/ai-api-key-leak/">AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？</a></li><li><a href="/library/qa/prompt-injection-ai-agent/">提示注入是什麼？AI Agent 讀到的文件或網頁，會不會反過來對它下指令？</a></li><li><a href="/library/qa/ai-audit-logs/">AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">參考來源（連結於 2026-10-24 查證）</span>
+    <ol><li>資通安全事件通報應變及演練辦法 第 6、11、13 條（2026-01-05 修正）｜全國法規資料庫：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030305" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>資通安全管理法 第 3 條（特定非公務機關定義，2025-09-24 修正）｜全國法規資料庫：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=A0030297" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>個人資料保護法（現行第 12 條）｜全國法規資料庫 歷史版本：<a href="https://law.moj.gov.tw/LawClass/LawOldVer.aspx?pcode=I0050021" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>個人資料保護法（2025-11-11 修正第 12 條，施行日期由行政院定之）｜全國法規資料庫：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>個人資料保護法施行細則 第 12、22 條｜全國法規資料庫：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050022" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>NIST SP 800-61 Rev. 3：Incident Response Recommendations and Considerations for Cybersecurity Risk Management（2025-04）：<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a></li><li>NIST AI 100-1：AI RMF 1.0（MANAGE 4.3）：<a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a></li></ol>
+  </div>
+  <p class="disclaimer">本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。</p>
+
+  <div class="colophon">
+    <b>問答圖書館</b>　·　<a href="/library/" style="color:inherit">Library 首頁</a>
+    <span class="sig">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
