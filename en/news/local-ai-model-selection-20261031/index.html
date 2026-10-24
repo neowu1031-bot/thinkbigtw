@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Choosing a Local AI Model: Bigger Isn't Automatically Better — Test It on Your Own Work | Think BIG NEWS</title>
+<meta name="description" content="When you run AI models on your own computer or servers, model size, context length, and concurrency all compete for the same memory. Drawing on Ollama's documentation, quantization documentation, and the NIST AI Risk Management Framework, this article sets out a selection method you can verify yourself: define tasks and metrics, do the memory math, then test on real work.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/">
+<meta property="og:title" content="Choosing a Local AI Model: Bigger Isn't Automatically Better — Test It on Your Own Work | Think BIG NEWS">
+<meta property="og:description" content="Model size, context length, and concurrency all draw on the same VRAM. A large model that doesn't fit can run slower than a smaller one fully on the GPU. Four steps: define tasks and metrics, do the memory math, test on your own questions, pick the smallest that passes.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Choosing a Local AI Model: Bigger Isn't Automatically Better | Think BIG NEWS">
+<meta name="twitter:description" content="A large model that doesn't fit in VRAM can run slower than a smaller one fully on the GPU. Four steps to model selection backed by Ollama docs and NIST AI RMF.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/#article",
+      "headline": "Choosing a Local AI Model: Bigger Isn't Automatically Better — Test It on Your Own Work",
+      "description": "When you run AI models on your own computer or servers, model size, context length, and concurrency all compete for the same memory. Drawing on Ollama's documentation, quantization documentation, and the NIST AI Risk Management Framework, this article sets out a selection method you can verify yourself: define tasks and metrics, do the memory math, then test on real work.",
+      "keywords": "local AI model selection, local LLM, parameter count, model quantization, VRAM, ollama ps, local AI agent deployment, model evaluation, NIST AI RMF",
+      "author": {"@type": "Organization", "name": "Think BIG Media", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "Think BIG", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-31T20:00:00+08:00",
+      "dateModified": "2026-10-31T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/en/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "Is a model with more parameters always better?", "acceptedAnswer": {"@type": "Answer", "text": "Not necessarily. The model, the context length, and concurrent requests all take memory. When a model doesn't fit in VRAM, part of it runs on the CPU and speed can drop noticeably. Test on your own work before deciding."}},
+        {"@type": "Question", "name": "How do I know whether a model is running fully on the GPU?", "acceptedAnswer": {"@type": "Answer", "text": "Run ollama ps. PROCESSOR showing 100% GPU means the model is fully loaded on the GPU; 100% CPU or a CPU/GPU split means all or part of it is in system memory."}},
+        {"@type": "Question", "name": "Does quantization make a model worse?", "acceptedAnswer": {"@type": "Answer", "text": "Quantization stores weights at lower precision to save memory while trying to preserve accuracy. The actual effect depends on the model and task, and Ollama's documentation suggests experimenting to find the balance. Compare before and after on your own acceptance questions."}},
+        {"@type": "Question", "name": "How do I measure a local model's speed?", "acceptedAnswer": {"@type": "Answer", "text": "Ollama's API response includes eval_count and eval_duration (in nanoseconds); divide them to get tokens generated per second. load_duration shows how long the model took to load."}},
+        {"@type": "Question", "name": "How should we prepare test questions?", "acceptedAnswer": {"@type": "Answer", "text": "NIST's AI RMF recommends clearly defined, realistic test sets that represent conditions of expected use, with the test method documented. In practice, ask the owner for the questions they really ask, with reference answers."}},
+        {"@type": "Question", "name": "How much context does an AI agent need?", "acceptedAnswer": {"@type": "Answer", "text": "Ollama recommends at least 64,000 tokens for agent tasks. That takes a fair amount of memory, so include it when choosing a model; see our Issue 11 for how to set it."}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://thinkbigtw.com/en/"},
+        {"@type":"ListItem","position":2,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/en/news/"},
+        {"@type":"ListItem","position":3,"name":"Choosing a Local AI Model: Bigger Isn't Automatically Better","item":"https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>Local AI Field Notes &middot; Issue 013</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>October 31, 2026 &nbsp;&middot;&nbsp; Saturday</span>
+    <span class="dot">&#9670;</span>
+    <span>Local AI Field Notes</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 013</span>
+  </div>
+
+  <p class="kicker">Local LLM &middot; Model Selection &middot; VRAM Management</p>
+  <h2 class="headline">Choosing a Local AI Model: Bigger Isn&#x2019;t Automatically Better &#x2014; Test It on Your Own Work</h2>
+  <p class="byline">Think BIG Media &nbsp;|&nbsp; October 31, 2026</p>
+  <p class="deck">When choosing a local model, ask what work the machine has to do, then whether the model fits, and finally test it on your real tasks. A large model that doesn&#x2019;t fit in VRAM can run slower than a smaller one that sits entirely on the GPU.</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <p style="font-size:14px;background:var(--panel);padding:12px 14px;column-span:all;margin-bottom:20px;border-left:3px solid var(--rule);">(We use the open-source tool Ollama to illustrate the checks. This article does not rank or recommend any specific model.)<br>Our Issue 2 asked whether the GPU was doing anything; Issue 11 looked at context lengths set too high. This issue connects the two: the model, the context, and the number of people served at once all draw on the same memory.</p>
+
+    <h2><span class="no">One.</span>What&#x2019;s Happening: The Model and the Context Compete for Memory</h2>
+    <p class="lead">"Can I run the biggest one on my own machine?" is often the first question. Answering it means doing the memory math for everything at once.</p>
+    <p>Ollama's documentation says a larger context length increases the memory needed to run a model, and that you should confirm you have enough VRAM before raising it. The same page recommends at least 64,000 tokens of context for tasks such as agents and coding tools, and advises avoiding offloading the model to the CPU for best performance.[2] The FAQ adds that when serving several requests at once, required memory scales with parallel requests multiplied by context length.[1]</p>
+    <p>Put simply, an AI agent already needs a fairly large context. The bigger the model you pick, the less room is left for that context and for concurrent requests.</p>
+    <p>Quantization is the usual trade-off tool. The documentation describes it as storing model weights at lower precision to reduce the memory needed to load and use a model while preserving as much accuracy as possible. Weights are typically stored as 32-bit or 16-bit floating point, and some methods go further down to integer formats such as int8 or int4.[4]</p>
+
+    <h2><span class="no">Two.</span>Perspectives: Read the Spec Sheet, or Run the Test?</h2>
+    <p><strong>The spec-sheet view:</strong> more parameters and longer context mean more potential. For complex reasoning or very long documents that has merit, and the guidance above does support larger contexts for agent tasks.[2]</p>
+    <p><strong>The testing view:</strong> The US National Institute of Standards and Technology's AI Risk Management Framework (AI RMF 1.0) says accuracy measurements should be paired with clearly defined, realistic test sets that represent conditions of expected use, along with details of the test method; system performance should be measured and demonstrated under conditions similar to the deployment setting.[5] Ollama's FAQ makes a related point about K/V cache quantization: its effect on answer quality depends on the model and task, and you may need to experiment to find the right balance.[1]</p>
+    <p>Both views can coexist. Order is what matters: the spec sheet decides which candidates are on the list; testing decides which one you pick.</p>
+
+    <section class="firsthand">
+      <span class="lede">&#9670; First-Hand Lessons</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">Three. What We've Learned in Practice</h2>
+      <p>These observations come from our local AI agent deployments. They are not industry statistics and don't describe any particular client.</p>
+      <p><strong>1. "Which model should we install?" is one of the most common questions, and it has no single answer.</strong> The first question is what the machine will mainly do. Answering support emails, summarizing meetings, searching internal documents, and writing code each place different demands on speed, context length, and answer quality.</p>
+      <p><strong>2. A common sticking point is "it installs, but it can't keep up."</strong> The model loads and answers in chat, but slows down on real work or stalls once two or three people use it at the same time. The cause is often a model that's too large: add the context an agent needs, and memory can't hold it all, so part of the model lands on the CPU. The PROCESSOR column in <code>ollama ps</code> shows it at a glance.[1]</p>
+      <p><strong>3. A size down is often enough.</strong> We start with the smallest candidate that passes acceptance, and keep larger models in reserve until real work shows they're needed.</p>
+      <p><strong>4. Acceptance uses the client's own questions.</strong> Public leaderboards test other people's questions. We ask the owner to prepare a set of questions they actually ask, with reference answers, and compare candidates on that.</p>
+    </section>
+
+    <h2><span class="no">Four.</span>Our Recommendations: Four Steps</h2>
+    <p><strong>1. Write down the tasks and metrics.</strong> List the three to five jobs the machine will do and, for each, the metrics that matter: how many seconds people can wait, how accurate answers must be, whether data can leave the company, and how many people use it at once.</p>
+    <p><strong>2. Do the memory math: model + context + concurrency.</strong> Check whether the model itself fits in VRAM, then add the context and concurrency the work needs.[1][2] Drop candidates that don't fit, or look at quantized versions.[4]</p>
+    <p><strong>3. Test on your own questions.</strong> Prepare questions and reference answers that reflect real use, and record how you tested.[5] For speed, the Ollama API response includes <code>eval_count</code> (output tokens) and <code>eval_duration</code> (time spent generating output, in nanoseconds); divide one by the other for tokens per second.[3] Check <code>ollama ps</code> at the same time to confirm PROCESSOR reads 100% GPU.[1]</p>
+    <p><strong>4. Pick the smallest model that passes.</strong> Among candidates that meet both quality and speed thresholds, choose the smallest. When the work changes, rerun the same test set.</p>
+    <p>In short: <strong>choose a model by measuring it against your work, not by picking the biggest number on the spec sheet.</strong></p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; Editor&#x2019;s Note &middot; How Think BIG Approaches This: Selections You Can Retest</span>
+      <h2>Task and metric sheet, acceptance test set, runtime evidence — delivered together.</h2>
+      <p><em>(The following is Think BIG's own practice, kept separate from the reporting above.)</em></p>
+      <p>When we help choose a local model, the deliverable is more than an installed model: a <strong>task and metric sheet</strong> — what each job needs and its thresholds, confirmed by the owner; an <strong>acceptance test set</strong> — the client's own questions and reference answers, delivered with the test method, so any future model change can be retested the same way; <strong>runtime evidence</strong> — the PROCESSOR and CONTEXT columns from <code>ollama ps</code> plus speed records, as the basis for handover.</p>
+      <p>Our position: a model choice should be retestable with the same question set.</p>
+    </section>
+
+    <section class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <dl>
+        <dt>Q1: Is a model with more parameters always better?</dt>
+        <dd>Not necessarily. The model, the context length, and concurrent requests all take memory.[1][2] When a model doesn't fit in VRAM, part of it runs on the CPU and speed can drop noticeably. Test on your own work before deciding.</dd>
+        <dt>Q2: How do I know whether a model is running fully on the GPU?</dt>
+        <dd>Run <code>ollama ps</code>. PROCESSOR showing 100% GPU means the model is fully loaded on the GPU; 100% CPU or a CPU/GPU split means all or part of it is in system memory.[1]</dd>
+        <dt>Q3: Does quantization make a model worse?</dt>
+        <dd>Quantization stores weights at lower precision to save memory while trying to preserve accuracy.[4] The actual effect depends on the model and task, and Ollama's documentation suggests experimenting to find the balance.[1] Compare before and after on your own acceptance questions.</dd>
+        <dt>Q4: How do I measure a local model's speed?</dt>
+        <dd>Ollama's API response includes <code>eval_count</code> and <code>eval_duration</code> (in nanoseconds); divide them to get tokens generated per second. <code>load_duration</code> shows how long the model took to load.[3]</dd>
+        <dt>Q5: How should we prepare test questions?</dt>
+        <dd>NIST's AI RMF recommends clearly defined, realistic test sets that represent conditions of expected use, with the test method documented.[5] In practice, ask the owner for the questions they really ask, with reference answers.</dd>
+        <dt>Q6: How much context does an AI agent need?</dt>
+        <dd>Ollama recommends at least 64,000 tokens for agent tasks.[2] That takes a fair amount of memory, so include it when choosing a model; see our Issue 11 for how to set it.</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Fact-checked on October 24, 2026.<br>
+    [1] Ollama, "FAQ" (the PROCESSOR column in <code>ollama ps</code>, <code>OLLAMA_NUM_PARALLEL</code> and memory, K/V cache quantization); accessed October 24, 2026: <a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com/faq</a> &nbsp;&middot;&nbsp;
+    [2] Ollama, "Context length" (context and memory, recommendation for agent tasks, avoiding CPU offload); accessed October 24, 2026: <a href="https://docs.ollama.com/context-length" target="_blank" rel="noopener">docs.ollama.com/context-length</a> &nbsp;&middot;&nbsp;
+    [3] Ollama, "Usage" (API response fields <code>eval_count</code>, <code>eval_duration</code>, <code>load_duration</code>; timings in nanoseconds); accessed October 24, 2026: <a href="https://docs.ollama.com/api/usage" target="_blank" rel="noopener">docs.ollama.com/api/usage</a> &nbsp;&middot;&nbsp;
+    [4] Hugging Face, "Quantization" (Transformers documentation, overview); accessed October 24, 2026: <a href="https://huggingface.co/docs/transformers/main/en/quantization/overview" target="_blank" rel="noopener">huggingface.co</a> &nbsp;&middot;&nbsp;
+    [5] NIST, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, January 26, 2023 (Section 3.1 on accuracy and test sets; MEASURE 2.3): <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a>
+  </div>
+  <p class="disclaimer">This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of customer outcomes.</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; Local AI Field Notes
+    <span class="brand">Think BIG, Make it Real!</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent deployment &amp; governance.<br>On-premises &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE Official Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE Contact &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact/">Contact Us</a><a href="/library/news/local-ai-model-selection-20261031/" lang="zh-Hant">繁體中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

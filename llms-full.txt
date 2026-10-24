@@ -13369,3 +13369,237 @@ PHP 基金會說明，AI 輔助研究讓回報量大增，AI 也被用來驗證�
 
 THINK BIG NEWS   ·  企業資安實務
     Think BIG, Make it Real!　大想成業有限公司
+
+URL: https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/
+
+# Choosing a Local AI Model: Bigger Isn't Automatically Better — Test It on Your Own Work | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 013
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+October 31, 2026  ·  Saturday
+◆
+Local AI Field Notes
+◆
+Issue 013
+
+Local LLM · Model Selection · VRAM Management
+
+## Choosing a Local AI Model: Bigger Isn’t Automatically Better — Test It on Your Own Work
+
+Think BIG Media  |  October 31, 2026
+
+When choosing a local model, ask what work the machine has to do, then whether the model fits, and finally test it on your real tasks. A large model that doesn’t fit in VRAM can run slower than a smaller one that sits entirely on the GPU.
+
+(We use the open-source tool Ollama to illustrate the checks. This article does not rank or recommend any specific model.)
+Our Issue 2 asked whether the GPU was doing anything; Issue 11 looked at context lengths set too high. This issue connects the two: the model, the context, and the number of people served at once all draw on the same memory.
+
+## One. What’s Happening: The Model and the Context Compete for Memory
+
+"Can I run the biggest one on my own machine?" is often the first question. Answering it means doing the memory math for everything at once.
+
+Ollama's documentation says a larger context length increases the memory needed to run a model, and that you should confirm you have enough VRAM before raising it. The same page recommends at least 64,000 tokens of context for tasks such as agents and coding tools, and advises avoiding offloading the model to the CPU for best performance.[2] The FAQ adds that when serving several requests at once, required memory scales with parallel requests multiplied by context length.[1]
+
+Put simply, an AI agent already needs a fairly large context. The bigger the model you pick, the less room is left for that context and for concurrent requests.
+
+Quantization is the usual trade-off tool. The documentation describes it as storing model weights at lower precision to reduce the memory needed to load and use a model while preserving as much accuracy as possible. Weights are typically stored as 32-bit or 16-bit floating point, and some methods go further down to integer formats such as int8 or int4.[4]
+
+## Two. Perspectives: Read the Spec Sheet, or Run the Test?
+
+The spec-sheet view:  more parameters and longer context mean more potential. For complex reasoning or very long documents that has merit, and the guidance above does support larger contexts for agent tasks.[2]
+
+The testing view:  The US National Institute of Standards and Technology's AI Risk Management Framework (AI RMF 1.0) says accuracy measurements should be paired with clearly defined, realistic test sets that represent conditions of expected use, along with details of the test method; system performance should be measured and demonstrated under conditions similar to the deployment setting.[5] Ollama's FAQ makes a related point about K/V cache quantization: its effect on answer quality depends on the model and task, and you may need to experiment to find the right balance.[1]
+
+Both views can coexist. Order is what matters: the spec sheet decides which candidates are on the list; testing decides which one you pick.
+
+◆ First-Hand Lessons
+
+## Three. What We've Learned in Practice
+
+These observations come from our local AI agent deployments. They are not industry statistics and don't describe any particular client.
+
+1. "Which model should we install?" is one of the most common questions, and it has no single answer.  The first question is what the machine will mainly do. Answering support emails, summarizing meetings, searching internal documents, and writing code each place different demands on speed, context length, and answer quality.
+
+2. A common sticking point is "it installs, but it can't keep up."  The model loads and answers in chat, but slows down on real work or stalls once two or three people use it at the same time. The cause is often a model that's too large: add the context an agent needs, and memory can't hold it all, so part of the model lands on the CPU. The PROCESSOR column in ollama ps  shows it at a glance.[1]
+
+3. A size down is often enough.  We start with the smallest candidate that passes acceptance, and keep larger models in reserve until real work shows they're needed.
+
+4. Acceptance uses the client's own questions.  Public leaderboards test other people's questions. We ask the owner to prepare a set of questions they actually ask, with reference answers, and compare candidates on that.
+
+## Four. Our Recommendations: Four Steps
+
+1. Write down the tasks and metrics.  List the three to five jobs the machine will do and, for each, the metrics that matter: how many seconds people can wait, how accurate answers must be, whether data can leave the company, and how many people use it at once.
+
+2. Do the memory math: model + context + concurrency.  Check whether the model itself fits in VRAM, then add the context and concurrency the work needs.[1][2] Drop candidates that don't fit, or look at quantized versions.[4]
+
+3. Test on your own questions.  Prepare questions and reference answers that reflect real use, and record how you tested.[5] For speed, the Ollama API response includes eval_count  (output tokens) and eval_duration  (time spent generating output, in nanoseconds); divide one by the other for tokens per second.[3] Check ollama ps  at the same time to confirm PROCESSOR reads 100% GPU.[1]
+
+4. Pick the smallest model that passes.  Among candidates that meet both quality and speed thresholds, choose the smallest. When the work changes, rerun the same test set.
+
+In short: choose a model by measuring it against your work, not by picking the biggest number on the spec sheet.
+
+◆ Editor’s Note · How Think BIG Approaches This: Selections You Can Retest
+
+## Task and metric sheet, acceptance test set, runtime evidence — delivered together.
+
+(The following is Think BIG's own practice, kept separate from the reporting above.)
+
+When we help choose a local model, the deliverable is more than an installed model: a task and metric sheet  — what each job needs and its thresholds, confirmed by the owner; an acceptance test set  — the client's own questions and reference answers, delivered with the test method, so any future model change can be retested the same way; runtime evidence  — the PROCESSOR and CONTEXT columns from ollama ps  plus speed records, as the basis for handover.
+
+Our position: a model choice should be retestable with the same question set.
+
+### Frequently Asked Questions
+
+Q1: Is a model with more parameters always better?
+Not necessarily. The model, the context length, and concurrent requests all take memory.[1][2] When a model doesn't fit in VRAM, part of it runs on the CPU and speed can drop noticeably. Test on your own work before deciding.
+Q2: How do I know whether a model is running fully on the GPU?
+Run ollama ps . PROCESSOR showing 100% GPU means the model is fully loaded on the GPU; 100% CPU or a CPU/GPU split means all or part of it is in system memory.[1]
+Q3: Does quantization make a model worse?
+Quantization stores weights at lower precision to save memory while trying to preserve accuracy.[4] The actual effect depends on the model and task, and Ollama's documentation suggests experimenting to find the balance.[1] Compare before and after on your own acceptance questions.
+Q4: How do I measure a local model's speed?
+Ollama's API response includes eval_count  and eval_duration  (in nanoseconds); divide them to get tokens generated per second. load_duration  shows how long the model took to load.[3]
+Q5: How should we prepare test questions?
+NIST's AI RMF recommends clearly defined, realistic test sets that represent conditions of expected use, with the test method documented.[5] In practice, ask the owner for the questions they really ask, with reference answers.
+Q6: How much context does an AI agent need?
+Ollama recommends at least 64,000 tokens for agent tasks.[2] That takes a fair amount of memory, so include it when choosing a model; see our Issue 11 for how to set it.
+
+Sources
+    Fact-checked on October 24, 2026.
+
+    [1] Ollama, "FAQ" (the PROCESSOR column in ollama ps , OLLAMA_NUM_PARALLEL  and memory, K/V cache quantization); accessed October 24, 2026: [docs.ollama.com/faq](https://docs.ollama.com/faq)  ·
+    [2] Ollama, "Context length" (context and memory, recommendation for agent tasks, avoiding CPU offload); accessed October 24, 2026: [docs.ollama.com/context-length](https://docs.ollama.com/context-length)  ·
+    [3] Ollama, "Usage" (API response fields eval_count , eval_duration , load_duration ; timings in nanoseconds); accessed October 24, 2026: [docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)  ·
+    [4] Hugging Face, "Quantization" (Transformers documentation, overview); accessed October 24, 2026: [huggingface.co](https://huggingface.co/docs/transformers/main/en/quantization/overview)  ·
+    [5] NIST, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, January 26, 2023 (Section 3.1 on accuracy and test sets; MEASURE 2.3): [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of customer outcomes.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/
+
+# 本地 AI 模型怎麼選？參數量不是越大越好——用自己的工作實測再決定 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 013 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 10 月 31 日　星期六
+◆
+本地 AI 實測筆記
+◆
+第 013 期
+
+本地大模型 · 模型選型 · 顯示記憶體管理
+
+## 本地 AI 模型怎麼選？參數量不是越大越好——用自己的工作實測再決定
+
+Think BIG 自媒體部  |  2026 年 10 月 31 日
+
+選本地模型，先問「這台機器要做什麼工作」，再問「放不放得下」，最後拿自己的真實工作測。放不進顯示記憶體的大模型，可能比小一號、完整跑在顯卡上的模型更慢。
+
+（本文以開源工具 Ollama 為例說明檢查方式；不評比、不推薦任何特定模型。）
+本報第 2 期談「GPU 有沒有在動」，第 11 期談「上下文長度設太大」。這期把兩件事接起來：模型本身、上下文、同時服務的人數，其實都在搶同一塊記憶體。
+
+## 一 現象：模型和上下文搶同一塊記憶體
+
+「能不能在自己的機器上跑參數最大的那個？」是常見的第一個問題。要回答它，記憶體的帳得一起算。
+
+Ollama 官方文件說，上下文長度設大會增加執行模型所需的記憶體，調大前要確認顯示記憶體夠用；同一頁也建議，AI Agent、程式工具這類任務的上下文至少設到 64000 個 token，並為了效能避免模型被卸載到 CPU。[2] FAQ 另外寫明，同時處理多個請求時，所需記憶體會隨「並行請求數 × 上下文長度」放大。[1]
+
+換句話說，要跑 AI Agent，上下文本來就需要開得比較大；模型選得越大，留給上下文和並行請求的空間就越少。
+
+量化是常見的取捨工具。技術文件的說明是：量化把模型權重存成較低精度，以降低載入與使用模型所需的記憶體，同時盡量保留準確度；權重通常以 32 位元或 16 位元浮點數儲存，部分方法可以再降到 int8、int4 這類整數格式。[4]
+
+## 二 各方評價：看規格，還是看實測？
+
+看規格的思路： 參數多、上下文長，代表模型潛力大。對需要複雜推理或很長文件的工作，這個方向有它的道理，前面提到的官方建議也支持 Agent 類任務開大上下文。[2]
+
+看實測的思路： 美國國家標準暨技術研究院（NIST）的《AI 風險管理框架》（AI RMF 1.0）寫到，準確度的量測應搭配定義清楚、貼近實際使用情境的測試集，並記錄測試方法；系統的效能也應在接近部署環境的條件下量測與呈現。[5] Ollama 的 FAQ 談到 K/V cache 量化時也說，量化對回答品質的影響依模型和任務而定，需要自己實驗找平衡。[1]
+
+兩種思路可以並存，順序比較重要：規格決定「有哪些候選」，實測決定「選哪一個」。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們部署本地 AI Agent 時的觀察，不是產業統計，也不代表任何特定客戶。
+
+1. 「應該裝哪個模型？」是最常見的問題之一，但它沒有單一答案。 要先問的是：這台機器主要做什麼？回客服信、整理會議紀錄、查內部文件、寫程式，對回應速度、上下文長度、回答品質的要求都不一樣。
+
+2. 常見的卡關點是「裝得起來，用不下去」。 模型載入成功，對話也答得出來，但一上真實工作就慢，或同時兩三個人用就卡。查下去常常是模型太大，加上 Agent 需要的上下文，記憶體已經放不下，部分跑到 CPU。ollama ps  的 PROCESSOR 欄一看就知道。[1]
+
+3. 小一號的模型常常就夠用。 我們的做法是從候選裡最小、能過驗收的那個開始用。比較大的模型留著備用，等真實工作證明需要時再升級。
+
+4. 驗收用客戶自己的題目。 公開排行榜測的是別人的題目。我們會請負責人準備一組他們真正會問的問題和標準答案，拿來比較候選模型。
+
+## 四 我們的建議：四步選型
+
+1. 先寫下工作與指標。 列出這台機器要做的三到五種工作，每種寫下在意的指標：可以等幾秒、回答要多準、資料能不能離開公司、同時幾個人用。
+
+2. 算記憶體：模型＋上下文＋並行數。 先確認模型本身放不放得進顯示記憶體，再加上工作需要的上下文與並行數。[1][2] 放不下的候選先刪掉，或改看量化版本。[4]
+
+3. 用自己的題目測。 準備一組貼近真實使用的題目與標準答案，記錄測試方式。[5] 速度可以直接看 Ollama API 回應裡的 eval_count （輸出 token 數）和 eval_duration （產生輸出的時間，單位奈秒），相除就是每秒產生的 token 數。[3] 同時看 ollama ps ，確認 PROCESSOR 是 100% GPU。[1]
+
+4. 選最小、能過關的那一個。 品質、速度都達標的候選中，挑最小的。之後工作內容變了，再用同一組題目重測。
+
+一句話：選模型是用工作去量，不是看參數表挑最大的。
+
+◆ 編按 · Think BIG 的做法：選型要能重測
+
+## 任務指標表、驗收題組、執行證據——交付時一起給。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們幫人選本地模型時，交付的不只是「裝好的模型」：任務與指標表 ——每種工作在意什麼、門檻多少，由負責人確認；驗收題組 ——用客戶自己的問題與標準答案，連同測試方式一起交付，之後換模型可以照同一組重測；執行證據 ——ollama ps  的 PROCESSOR、CONTEXT 欄位與速度紀錄，作為交付時的依據。
+
+我們的立場是：選型結果要能拿同一組題目重測。
+
+### 常見問題
+
+Q1：參數量越大的模型越好嗎？
+不一定。模型本身、上下文長度與並行請求都要佔記憶體。[1][2] 放不進顯示記憶體時，模型會部分跑到 CPU，速度可能明顯變慢。建議用自己的工作實測再決定。
+Q2：怎麼知道模型有沒有完整跑在顯卡上？
+執行 ollama ps ，PROCESSOR 欄顯示 100% GPU 代表完整載入顯卡；顯示 100% CPU 或 CPU/GPU 比例，代表全部或部分放在系統記憶體。[1]
+Q3：量化會讓模型變笨嗎？
+量化用較低精度儲存權重來省記憶體，同時盡量保留準確度。[4] 實際影響依模型與任務而定，Ollama 文件也建議自己實驗找平衡。[1] 請用你的驗收題組比較量化前後。
+Q4：怎麼量本地模型的速度？
+Ollama API 回應附有 eval_count  與 eval_duration （奈秒），兩者相除可算出每秒產生的 token 數；load_duration  可看模型載入花了多久。[3]
+Q5：測試題目要怎麼準備？
+NIST AI RMF 建議用定義清楚、貼近實際使用情境的測試集，並記錄測試方法。[5] 實務上，請負責人準備他們真正會問的問題與標準答案。
+Q6：AI Agent 的上下文要開多大？
+Ollama 建議 Agent 類任務至少 64000 個 token。[2] 這會吃掉不少記憶體，所以選模型時要把上下文一起算進去；設定方式可參考本報第 11 期。
+
+參考來源
+    查核日期：2026-10-24。
+
+    [1] Ollama，〈FAQ〉（ollama ps  的 PROCESSOR 欄、OLLAMA_NUM_PARALLEL  與記憶體、K/V cache 量化），查閱日期 2026-10-24：[docs.ollama.com/faq](https://docs.ollama.com/faq)　·
+    [2] Ollama，〈Context length〉（上下文與記憶體、Agent 任務建議值、避免卸載到 CPU），查閱日期 2026-10-24：[docs.ollama.com/context-length](https://docs.ollama.com/context-length)　·
+    [3] Ollama，〈Usage〉（API 回應的 eval_count 、eval_duration 、load_duration ，時間單位奈秒），查閱日期 2026-10-24：[docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)　·
+    [4] Hugging Face，〈Quantization〉（Transformers 文件：量化概述），查閱日期 2026-10-24：[huggingface.co](https://huggingface.co/docs/transformers/main/en/quantization/overview)　·
+    [5] NIST，〈Artificial Intelligence Risk Management Framework (AI RMF 1.0)〉，NIST AI 100-1，2023-01-26（第 3.1 節準確度與測試集、MEASURE 2.3）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---

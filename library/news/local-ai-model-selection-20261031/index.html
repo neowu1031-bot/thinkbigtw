@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本地 AI 模型怎麼選？參數量不是越大越好——用自己的工作實測再決定 | Think BIG NEWS</title>
+<meta name="description" content="在自己的電腦或機房跑 AI 模型，模型大小、上下文長度與並行數會搶同一塊記憶體。本文依 Ollama 官方文件、量化技術文件與 NIST AI 風險管理框架，整理一套可以自己驗證的選型方法：先定任務與指標，再算記憶體，最後用真實工作實測。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/">
+<meta property="og:title" content="本地 AI 模型怎麼選？參數量不是越大越好——用自己的工作實測再決定 | Think BIG NEWS">
+<meta property="og:description" content="選本地 AI 模型，先問「這台機器要做什麼工作」，再問「放不放得下」，最後拿自己的真實工作測。模型、上下文、並行請求三者搶同一塊顯示記憶體。四步選型：定任務指標→算記憶體→自己題目測→選最小能過關的。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="本地 AI 模型怎麼選？參數量不是越大越好 | Think BIG NEWS">
+<meta name="twitter:description" content="放不進顯示記憶體的大模型，可能比小一號的模型還慢。四步選型：定任務→算記憶體→自己題目測→選最小能過關的。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/#article",
+      "headline": "本地 AI 模型怎麼選？參數量不是越大越好——用自己的工作實測再決定",
+      "description": "在自己的電腦或機房跑 AI 模型，模型大小、上下文長度與並行數會搶同一塊記憶體。本文依 Ollama 官方文件、量化技術文件與 NIST AI 風險管理框架，整理一套可以自己驗證的選型方法：先定任務與指標，再算記憶體，最後用真實工作實測。",
+      "keywords": "本地 AI 模型選型, 本地大模型, 參數量, 模型量化, 顯示記憶體, ollama ps, AI Agent 本地部署, 模型評測, NIST AI RMF",
+      "author": {"@type": "Organization", "name": "Think BIG 自媒體部", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "大想成業有限公司", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-31T20:00:00+08:00",
+      "dateModified": "2026-10-31T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/library/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "參數量越大的模型越好嗎？", "acceptedAnswer": {"@type": "Answer", "text": "不一定。模型本身、上下文長度與並行請求都要佔記憶體。放不進顯示記憶體時，模型會部分跑到 CPU，速度可能明顯變慢。建議用自己的工作實測再決定。"}},
+        {"@type": "Question", "name": "怎麼知道模型有沒有完整跑在顯卡上？", "acceptedAnswer": {"@type": "Answer", "text": "執行 ollama ps，PROCESSOR 欄顯示 100% GPU 代表完整載入顯卡；顯示 100% CPU 或 CPU/GPU 比例，代表全部或部分放在系統記憶體。"}},
+        {"@type": "Question", "name": "量化會讓模型變笨嗎？", "acceptedAnswer": {"@type": "Answer", "text": "量化用較低精度儲存權重來省記憶體，同時盡量保留準確度。實際影響依模型與任務而定，Ollama 文件也建議自己實驗找平衡。請用你的驗收題組比較量化前後。"}},
+        {"@type": "Question", "name": "怎麼量本地模型的速度？", "acceptedAnswer": {"@type": "Answer", "text": "Ollama API 回應附有 eval_count 與 eval_duration（奈秒），兩者相除可算出每秒產生的 token 數；load_duration 可看模型載入花了多久。"}},
+        {"@type": "Question", "name": "測試題目要怎麼準備？", "acceptedAnswer": {"@type": "Answer", "text": "NIST AI RMF 建議用定義清楚、貼近實際使用情境的測試集，並記錄測試方法。實務上，請負責人準備他們真正會問的問題與標準答案。"}},
+        {"@type": "Question", "name": "AI Agent 的上下文要開多大？", "acceptedAnswer": {"@type": "Answer", "text": "Ollama 建議 Agent 類任務至少 64000 個 token。這會吃掉不少記憶體，所以選模型時要把上下文一起算進去；設定方式可參考本報第 11 期。"}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"首頁","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/library/news/"},
+        {"@type":"ListItem","position":3,"name":"本地 AI 模型怎麼選？參數量不是越大越好","item":"https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>本地 AI 實測筆記 &middot; 第 013 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 10 月 31 日　星期六</span>
+    <span class="dot">&#9670;</span>
+    <span>本地 AI 實測筆記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 013 期</span>
+  </div>
+
+  <p class="kicker">本地大模型 &middot; 模型選型 &middot; 顯示記憶體管理</p>
+  <h2 class="headline">本地 AI 模型怎麼選？參數量不是越大越好——用自己的工作實測再決定</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 10 月 31 日</p>
+  <p class="deck">選本地模型，先問「這台機器要做什麼工作」，再問「放不放得下」，最後拿自己的真實工作測。放不進顯示記憶體的大模型，可能比小一號、完整跑在顯卡上的模型更慢。</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <p style="font-size:14px;background:var(--panel);padding:12px 14px;column-span:all;margin-bottom:20px;border-left:3px solid var(--rule);">（本文以開源工具 Ollama 為例說明檢查方式；不評比、不推薦任何特定模型。）<br>本報第 2 期談「GPU 有沒有在動」，第 11 期談「上下文長度設太大」。這期把兩件事接起來：模型本身、上下文、同時服務的人數，其實都在搶同一塊記憶體。</p>
+
+    <h2><span class="no">一</span>現象：模型和上下文搶同一塊記憶體</h2>
+    <p class="lead">「能不能在自己的機器上跑參數最大的那個？」是常見的第一個問題。要回答它，記憶體的帳得一起算。</p>
+    <p>Ollama 官方文件說，上下文長度設大會增加執行模型所需的記憶體，調大前要確認顯示記憶體夠用；同一頁也建議，AI Agent、程式工具這類任務的上下文至少設到 64000 個 token，並為了效能避免模型被卸載到 CPU。[2] FAQ 另外寫明，同時處理多個請求時，所需記憶體會隨「並行請求數 × 上下文長度」放大。[1]</p>
+    <p>換句話說，要跑 AI Agent，上下文本來就需要開得比較大；模型選得越大，留給上下文和並行請求的空間就越少。</p>
+    <p>量化是常見的取捨工具。技術文件的說明是：量化把模型權重存成較低精度，以降低載入與使用模型所需的記憶體，同時盡量保留準確度；權重通常以 32 位元或 16 位元浮點數儲存，部分方法可以再降到 int8、int4 這類整數格式。[4]</p>
+
+    <h2><span class="no">二</span>各方評價：看規格，還是看實測？</h2>
+    <p><strong>看規格的思路：</strong>參數多、上下文長，代表模型潛力大。對需要複雜推理或很長文件的工作，這個方向有它的道理，前面提到的官方建議也支持 Agent 類任務開大上下文。[2]</p>
+    <p><strong>看實測的思路：</strong>美國國家標準暨技術研究院（NIST）的《AI 風險管理框架》（AI RMF 1.0）寫到，準確度的量測應搭配定義清楚、貼近實際使用情境的測試集，並記錄測試方法；系統的效能也應在接近部署環境的條件下量測與呈現。[5] Ollama 的 FAQ 談到 K/V cache 量化時也說，量化對回答品質的影響依模型和任務而定，需要自己實驗找平衡。[1]</p>
+    <p>兩種思路可以並存，順序比較重要：規格決定「有哪些候選」，實測決定「選哪一個」。</p>
+
+    <section class="firsthand">
+      <span class="lede">&#9670; 第一手心得</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+      <p>以下是我們部署本地 AI Agent 時的觀察，不是產業統計，也不代表任何特定客戶。</p>
+      <p><strong>1. 「應該裝哪個模型？」是最常見的問題之一，但它沒有單一答案。</strong>要先問的是：這台機器主要做什麼？回客服信、整理會議紀錄、查內部文件、寫程式，對回應速度、上下文長度、回答品質的要求都不一樣。</p>
+      <p><strong>2. 常見的卡關點是「裝得起來，用不下去」。</strong>模型載入成功，對話也答得出來，但一上真實工作就慢，或同時兩三個人用就卡。查下去常常是模型太大，加上 Agent 需要的上下文，記憶體已經放不下，部分跑到 CPU。<code>ollama ps</code> 的 PROCESSOR 欄一看就知道。[1]</p>
+      <p><strong>3. 小一號的模型常常就夠用。</strong>我們的做法是從候選裡最小、能過驗收的那個開始用。比較大的模型留著備用，等真實工作證明需要時再升級。</p>
+      <p><strong>4. 驗收用客戶自己的題目。</strong>公開排行榜測的是別人的題目。我們會請負責人準備一組他們真正會問的問題和標準答案，拿來比較候選模型。</p>
+    </section>
+
+    <h2><span class="no">四</span>我們的建議：四步選型</h2>
+    <p><strong>1. 先寫下工作與指標。</strong>列出這台機器要做的三到五種工作，每種寫下在意的指標：可以等幾秒、回答要多準、資料能不能離開公司、同時幾個人用。</p>
+    <p><strong>2. 算記憶體：模型＋上下文＋並行數。</strong>先確認模型本身放不放得進顯示記憶體，再加上工作需要的上下文與並行數。[1][2] 放不下的候選先刪掉，或改看量化版本。[4]</p>
+    <p><strong>3. 用自己的題目測。</strong>準備一組貼近真實使用的題目與標準答案，記錄測試方式。[5] 速度可以直接看 Ollama API 回應裡的 <code>eval_count</code>（輸出 token 數）和 <code>eval_duration</code>（產生輸出的時間，單位奈秒），相除就是每秒產生的 token 數。[3] 同時看 <code>ollama ps</code>，確認 PROCESSOR 是 100% GPU。[1]</p>
+    <p><strong>4. 選最小、能過關的那一個。</strong>品質、速度都達標的候選中，挑最小的。之後工作內容變了，再用同一組題目重測。</p>
+    <p>一句話：<strong>選模型是用工作去量，不是看參數表挑最大的。</strong></p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; 編按 &middot; Think BIG 的做法：選型要能重測</span>
+      <h2>任務指標表、驗收題組、執行證據——交付時一起給。</h2>
+      <p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+      <p>我們幫人選本地模型時，交付的不只是「裝好的模型」：<strong>任務與指標表</strong>——每種工作在意什麼、門檻多少，由負責人確認；<strong>驗收題組</strong>——用客戶自己的問題與標準答案，連同測試方式一起交付，之後換模型可以照同一組重測；<strong>執行證據</strong>——<code>ollama ps</code> 的 PROCESSOR、CONTEXT 欄位與速度紀錄，作為交付時的依據。</p>
+      <p>我們的立場是：選型結果要能拿同一組題目重測。</p>
+    </section>
+
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：參數量越大的模型越好嗎？</dt>
+        <dd>不一定。模型本身、上下文長度與並行請求都要佔記憶體。[1][2] 放不進顯示記憶體時，模型會部分跑到 CPU，速度可能明顯變慢。建議用自己的工作實測再決定。</dd>
+        <dt>Q2：怎麼知道模型有沒有完整跑在顯卡上？</dt>
+        <dd>執行 <code>ollama ps</code>，PROCESSOR 欄顯示 100% GPU 代表完整載入顯卡；顯示 100% CPU 或 CPU/GPU 比例，代表全部或部分放在系統記憶體。[1]</dd>
+        <dt>Q3：量化會讓模型變笨嗎？</dt>
+        <dd>量化用較低精度儲存權重來省記憶體，同時盡量保留準確度。[4] 實際影響依模型與任務而定，Ollama 文件也建議自己實驗找平衡。[1] 請用你的驗收題組比較量化前後。</dd>
+        <dt>Q4：怎麼量本地模型的速度？</dt>
+        <dd>Ollama API 回應附有 <code>eval_count</code> 與 <code>eval_duration</code>（奈秒），兩者相除可算出每秒產生的 token 數；<code>load_duration</code> 可看模型載入花了多久。[3]</dd>
+        <dt>Q5：測試題目要怎麼準備？</dt>
+        <dd>NIST AI RMF 建議用定義清楚、貼近實際使用情境的測試集，並記錄測試方法。[5] 實務上，請負責人準備他們真正會問的問題與標準答案。</dd>
+        <dt>Q6：AI Agent 的上下文要開多大？</dt>
+        <dd>Ollama 建議 Agent 類任務至少 64000 個 token。[2] 這會吃掉不少記憶體，所以選模型時要把上下文一起算進去；設定方式可參考本報第 11 期。</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-24。<br>
+    [1] Ollama，〈FAQ〉（<code>ollama ps</code> 的 PROCESSOR 欄、<code>OLLAMA_NUM_PARALLEL</code> 與記憶體、K/V cache 量化），查閱日期 2026-10-24：<a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com/faq</a>　&middot;
+    [2] Ollama，〈Context length〉（上下文與記憶體、Agent 任務建議值、避免卸載到 CPU），查閱日期 2026-10-24：<a href="https://docs.ollama.com/context-length" target="_blank" rel="noopener">docs.ollama.com/context-length</a>　&middot;
+    [3] Ollama，〈Usage〉（API 回應的 <code>eval_count</code>、<code>eval_duration</code>、<code>load_duration</code>，時間單位奈秒），查閱日期 2026-10-24：<a href="https://docs.ollama.com/api/usage" target="_blank" rel="noopener">docs.ollama.com/api/usage</a>　&middot;
+    [4] Hugging Face，〈Quantization〉（Transformers 文件：量化概述），查閱日期 2026-10-24：<a href="https://huggingface.co/docs/transformers/main/en/quantization/overview" target="_blank" rel="noopener">huggingface.co</a>　&middot;
+    [5] NIST，〈Artificial Intelligence Risk Management Framework (AI RMF 1.0)〉，NIST AI 100-1，2023-01-26（第 3.1 節準確度與測試集、MEASURE 2.3）：<a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; 本地 AI 實測筆記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
