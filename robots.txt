@@ -26,3 +26,4 @@ Allow: /
 Disallow: /clawland/
 
 Sitemap: https://thinkbigtw.com/sitemap.xml
+Sitemap: https://thinkbigtw.com/sitemap-qa.xml
