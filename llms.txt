@@ -63,6 +63,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [導入 AI 服務前，供應商的資料條款要看哪幾點？](https://thinkbigtw.com/library/qa/ai-vendor-data-terms/)
 - [把檔案交給 AI 前，個資要怎麼去識別化？](https://thinkbigtw.com/library/qa/deidentify-before-ai/)
 - [AI 系統出資安事件怎麼辦？發現後先做的 5 件事](https://thinkbigtw.com/library/qa/ai-incident-response/)
+- [生成式 AI 有哪些資安風險？用 OWASP LLM Top 10（2025）一次看懂](https://thinkbigtw.com/library/qa/owasp-llm-top10-overview/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -85,6 +86,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Before Adopting an AI Service, Which Points in the Vendor's Data Terms Should You Check?](https://thinkbigtw.com/en/qa/ai-vendor-data-terms/)
 - [How Should Personal Data Be De-Identified Before Files Are Given to AI?](https://thinkbigtw.com/en/qa/deidentify-before-ai/)
 - [What Should a Company Do When an AI System Has a Security Incident? Five Things to Do First](https://thinkbigtw.com/en/qa/ai-incident-response/)
+- [What Are the Security Risks of Generative AI? The OWASP LLM Top 10 (2025) at a Glance](https://thinkbigtw.com/en/qa/owasp-llm-top10-overview/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
