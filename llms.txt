@@ -60,6 +60,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [本地大模型有什麼優勢？企業把 AI 放在公司裡跑的 5 個好處](https://thinkbigtw.com/library/qa/local-llm-advantages/)
 - [本地大模型有什麼缺點？什麼情況反而該用雲端](https://thinkbigtw.com/library/qa/local-llm-limitations/)
 - [AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼](https://thinkbigtw.com/library/qa/ai-audit-logs/)
+- [導入 AI 服務前，供應商的資料條款要看哪幾點？](https://thinkbigtw.com/library/qa/ai-vendor-data-terms/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -79,6 +80,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [What Are the Advantages of a Local LLM? Five Benefits of Running AI Inside the Company](https://thinkbigtw.com/en/qa/local-llm-advantages/)
 - [What Are the Drawbacks of a Local LLM, and When Is the Cloud the Better Choice?](https://thinkbigtw.com/en/qa/local-llm-limitations/)
 - [What Logs Should an AI System Keep So You Can Trace Who Asked What and What the AI Did?](https://thinkbigtw.com/en/qa/ai-audit-logs/)
+- [Before Adopting an AI Service, Which Points in the Vendor's Data Terms Should You Check?](https://thinkbigtw.com/en/qa/ai-vendor-data-terms/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
