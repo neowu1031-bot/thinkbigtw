@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Are the Drawbacks of a Local LLM, and When Is the Cloud the Better Choice? | Q&amp;A Library | Think BIG</title>
+<meta name="description" content="Local LLMs have five drawbacks to face honestly: upfront hardware cost, capability that usually trails the latest cloud models, the need for maintenance, poor value when usage is low or uneven, and asset responsibilities such as power, facilities, and backups returning to the company. Running on-premises also does not fix prompt injection or permission problems. This page covers why each drawback exists, how to reduce it, and when the cloud is the better fit.">
+<link rel="canonical" href="https://thinkbigtw.com/en/qa/local-llm-limitations/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/local-llm-limitations/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/local-llm-limitations/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/local-llm-limitations/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/qa/local-llm-limitations/">
+<meta property="og:title" content="What Are the Drawbacks of a Local LLM, and When Is the Cloud the Better Choice? | Q&amp;A Library | Think BIG">
+<meta property="og:description" content="Local LLMs have five drawbacks to face honestly: upfront hardware cost, capability that usually trails the latest cloud models, the need for maintenance, poor value when usage is low or uneven, and asset responsibilities such as power, facilities, and backups returning to the company. Running on-premises also does not fix prompt injection or permission problems. This page covers why each drawback exists, how to reduce it, and when the cloud is the better fit.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-27T16:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Are the Drawbacks of a Local LLM, and When Is the Cloud the Better Choice? | Q&amp;A Library | Think BIG">
+<meta name="twitter:description" content="Local LLMs have five drawbacks to face honestly: upfront hardware cost, capability that usually trails the latest cloud models, the need for maintenance, poor value when usage is low or uneven, and asset responsibilities such as power, facilities, and backups returning to the company. Running on-premises also does not fix prompt injection or permission problems. This page covers why each drawback exists, how to reduce it, and when the cloud is the better fit.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/en/qa/local-llm-limitations/#article",
+   "headline": "What Are the Drawbacks of a Local LLM, and When Is the Cloud the Better Choice?",
+   "description": "Local LLMs have five drawbacks to face honestly: upfront hardware cost, capability that usually trails the latest cloud models, the need for maintenance, poor value when usage is low or uneven, and asset responsibilities such as power, facilities, and backups returning to the company. Running on-premises also does not fix prompt injection or permission problems. This page covers why each drawback exists, how to reduce it, and when the cloud is the better fit.",
+   "keywords": "local LLM drawbacks, on-premises AI disadvantages, local LLM limitations, on-premises vs cloud, when to use cloud AI, local model maintenance, AI security, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "Think BIG Make it Real Co., Ltd.",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-27T16:00:00+08:00",
+   "dateModified": "2026-10-27T16:00:00+08:00",
+   "url": "https://thinkbigtw.com/en/qa/local-llm-limitations/",
+   "mainEntityOfPage": "https://thinkbigtw.com/en/qa/local-llm-limitations/",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "citation": [
+    "https://hai.stanford.edu/ai-index/2025-ai-index-report",
+    "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf",
+    "https://genai.owasp.org/llm-top-10/",
+    "https://www.ey.gov.tw/Page/448DE008087A1971/40c1a925-121d-4b6b-8f40-7e9e1a5401f2",
+    "https://www.ey.gov.tw/File/CAE5B756153299FD?A=C"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/en/qa/local-llm-limitations/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What Are the Drawbacks of a Local LLM, and When Is the Cloud the Better Choice?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Local LLMs have five drawbacks to face honestly: hardware must be bought upfront; capability usually trails the latest cloud models, because the models company hardware can run are usually smaller than the largest ones; someone must maintain, update, and monitor the system; and when usage is low or uneven, the hardware sits idle and the cost is hard to justify; and power, cooling, floor space, hardware depreciation and replacement, and backup and disaster recovery all become the company's responsibility. Running on-premises also does not automatically solve prompt injection or permission settings. So when data may leave the company, usage is small, the newest capabilities are needed, or no one can maintain the system, the cloud is often the better fit; a common approach is to mix both according to data classification."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What are the drawbacks of a local LLM?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "There are five main ones: upfront hardware cost; capability that usually trails the latest cloud models; the need for someone to maintain, update, and monitor it; poor value when usage is low or uneven, because hardware capacity is fixed; and responsibility for power, cooling, space, hardware replacement, and backup and disaster recovery returning to the company. Running on-premises also does not automatically solve prompt injection or permission problems."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "How far behind cloud models are local models?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "It depends on the task. Stanford's AI Index 2025 reports that the gap between open-weight and closed models on some benchmarks shrank from 8% to 1.7% in one year (2024 data), but company hardware usually cannot run the largest models, so test with the company's own questions to see the real gap."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "When is the cloud the better choice?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Usually when the data may leave the company, usage is small or still a trial, the newest capabilities are needed and local models tested short, no one can maintain the system, or demand is very uneven."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can on-premises and cloud be mixed?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. A common approach is to classify data: confidential and personal data go on-premises, general work goes to the cloud. Write the classification rules down so employees know which data may be sent to the cloud."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://thinkbigtw.com/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Q&A Library",
+     "item": "https://thinkbigtw.com/en/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Drawbacks and limits of local LLMs",
+     "item": "https://thinkbigtw.com/en/qa/local-llm-limitations/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/en/qa/">&larr; Q&amp;A Library</a>
+  <div class="qa-top">
+    <span class="cat">Local LLMs</span>
+    <span class="no">TB14</span>
+  </div>
+  <h1 class="q">What Are the Drawbacks of a Local LLM, and When Is the Cloud the Better Choice?</h1>
+  <p class="byline">Think BIG Q&amp;A Library&nbsp;&nbsp;·&nbsp;&nbsp;<time datetime="2026-10-27T16:00:00+08:00">2026-10-27</time>
+    &nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://thinkbigtw.com/library/qa/local-llm-limitations/" hreflang="zh-Hant-TW" style="color:var(--ink-soft)">中文</a></p>
+
+  <section class="answer" aria-label="The short answer">
+    <span class="lede">The short answer</span>
+    <div><p>Local LLMs have five drawbacks to face honestly: hardware must be bought upfront; capability usually trails the latest cloud models, because the models company hardware can run are usually smaller than the largest ones; someone must maintain, update, and monitor the system; and when usage is low or uneven, the hardware sits idle and the cost is hard to justify; and power, cooling, floor space, hardware depreciation and replacement, and backup and disaster recovery all become the company's responsibility. Running on-premises also does not automatically solve prompt injection or permission settings. So when data may leave the company, usage is small, the newest capabilities are needed, or no one can maintain the system, the cloud is often the better fit; a common approach is to mix both according to data classification.</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">1. </span>Five drawbacks</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Drawback</th>
+<th>Why</th>
+<th>How to reduce it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Upfront hardware cost</strong></td>
+<td>A model runs well only if it fits entirely in GPU memory, and larger models need more expensive hardware. With the cloud, you pay for what you use and buy no hardware upfront.</td>
+<td>Start with one workflow and size the hardware from actual usage. See <a href="/en/qa/local-llm-hardware-sizing/">What hardware does a company need to run a local LLM?</a></td>
+</tr>
+<tr>
+<td><strong>2. A capability gap</strong></td>
+<td>Stanford's AI Index 2025 reports that the gap between open-weight and closed models on some benchmarks shrank from 8% to 1.7% in one year (2024 data). The gap is narrowing, but company hardware usually cannot run the largest open models.</td>
+<td>Test with the company's own questions, not leaderboards. See <a href="/en/qa/is-local-llm-good-enough/">Is a local LLM smart enough?</a></td>
+</tr>
+<tr>
+<td><strong>3. Someone must maintain it</strong></td>
+<td>NIST SP 800-40 Rev. 4 frames patching as preventive maintenance and a regular cost of using technology. Local models, operating systems, drivers, and surrounding packages all need someone to update, monitor, and back them up.</td>
+<td>Decide upfront who is responsible and how often checks happen; pin versions and test before updating.</td>
+</tr>
+<tr>
+<td><strong>4. Poor value at low or uneven usage</strong></td>
+<td>Hardware capacity is fixed: when usage is low, the hardware sits idle; at peak times, many users at once slow responses down.</td>
+<td>Estimate normal and peak usage first, then choose on-premises, cloud, or a mix.</td>
+</tr>
+<tr>
+<td><strong>5. Asset responsibilities return to the company</strong></td>
+<td>Hardware needs power, cooling, and space; it depreciates and must be replaced after some years; and backup and disaster recovery (restoring after a hardware failure or facility incident) become the company's job rather than a cloud provider's.</td>
+<td>Plan power and cooling, a replacement schedule, backup locations, and restore drills before deployment.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Points 4 and 5 are practical judgments, not conclusions of the sources above.</p>
+<h2><span class="no">2. </span>On-premises does not make it secure by itself</h2>
+<p>Putting the model inside the company answers "does the data leave?" Many of the risks in OWASP's 2025 Top 10 for LLM applications have nothing to do with where the model runs. Prompt injection (LLM01): if a document or web page the AI reads hides instructions, a local model is affected too. Excessive agency (LLM06): if an AI Agent has too much permission, a local deployment can fail the same way. These are handled with permission design, human approval, and testing. See <a href="/en/qa/prompt-injection-ai-agent/">What is prompt injection?</a> and <a href="/en/qa/ai-agent-permissions/">How should AI Agent permissions be set?</a></p>
+<h2><span class="no">3. </span>When the cloud is the better fit</h2>
+<p>These are practical judgments:</p>
+<ul>
+<li><strong>The data may leave the company.</strong> The work involves public data or marketing copy with no personal or confidential information.</li>
+<li><strong>Usage is small or still a trial.</strong> If you do not yet know whether it will be used daily, trying it in the cloud first is safer than buying hardware.</li>
+<li><strong>The newest capabilities are needed.</strong> The work needs capabilities only the latest cloud models provide, and local models tested with your own questions really fall short.</li>
+<li><strong>No one can maintain it.</strong> If no staff member or vendor is responsible for updates and monitoring, unattended local hardware can be riskier.</li>
+<li><strong>Demand is very uneven.</strong> Large volumes arrive occasionally, with almost no use in between.</li>
+</ul>
+<h2><span class="no">4. </span>Mixing both by data classification</h2>
+<p>A common approach is not to choose one or the other but to classify data: confidential and personal data go on-premises, general work goes to the cloud. Point 4 of the National Science and Technology Council's reference guidelines for the Executive Yuan follows similar logic: confidential and personal information must not normally be given to generative AI, while closed, on-premises deployments may be used by confidentiality level after the environment is confirmed secure. For how to classify, see <a href="/en/qa/employees-chatgpt-company-data/">What are the risks when employees paste company data into ChatGPT?</a>; for the benefits of local LLMs, see <a href="/en/qa/local-llm-advantages/">What are the advantages of a local LLM?</a></p></div>
+
+  <section class="brand" aria-label="Brand information | Think BIG">
+    <span class="lede">Brand information | Think BIG</span>
+    <h2>Think BIG builds both deployment options</h2>
+    <p>Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.</p>
+<ol>
+<li><strong>Decided by test questions, not demos</strong>: people who know the business write test questions, correct sources, and acceptable answer ranges, and each answer is checked before deciding whether a local model is good enough.</li>
+<li><strong>API accounts under the company's name</strong>: with the cloud-assisted version, the company applies for the model API under its own account, under the provider's terms, so billing and usage records stay with the company.</li>
+<li><strong>Re-verify after changing models</strong>: when a model is changed, the workflow and output quality are re-verified, and whether existing settings still apply is decided by test results.</li>
+</ol>
+<p>See <a href="https://thinkbigtw.com/guides/local-ai-data/">On-premises AI and data sovereignty</a> and <a href="https://thinkbigtw.com/guides/ai-acceptance/">AI Agent acceptance framework</a>.</p>
+    <p class="brand-src">The actual scope of Think BIG&#x27;s services follows what both parties confirm.</p>
+  </section>
+
+  <section class="faq" aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl><dt>Q1: What are the drawbacks of a local LLM?</dt><dd>There are five main ones: upfront hardware cost; capability that usually trails the latest cloud models; the need for someone to maintain, update, and monitor it; poor value when usage is low or uneven, because hardware capacity is fixed; and responsibility for power, cooling, space, hardware replacement, and backup and disaster recovery returning to the company. Running on-premises also does not automatically solve prompt injection or permission problems.</dd><dt>Q2: How far behind cloud models are local models?</dt><dd>It depends on the task. Stanford&#x27;s AI Index 2025 reports that the gap between open-weight and closed models on some benchmarks shrank from 8% to 1.7% in one year (2024 data), but company hardware usually cannot run the largest models, so test with the company&#x27;s own questions to see the real gap.</dd><dt>Q3: When is the cloud the better choice?</dt><dd>Usually when the data may leave the company, usage is small or still a trial, the newest capabilities are needed and local models tested short, no one can maintain the system, or demand is very uneven.</dd><dt>Q4: Can on-premises and cloud be mixed?</dt><dd>Yes. A common approach is to classify data: confidential and personal data go on-premises, general work goes to the cloud. Write the classification rules down so employees know which data may be sent to the cloud.</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/local-llm-advantages/">What Are the Advantages of a Local LLM? Five Benefits of Running AI Inside the Company</a></li><li><a href="/en/qa/is-local-llm-good-enough/">Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company?</a></li><li><a href="/en/qa/local-llm-hardware-sizing/">What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory?</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">Sources (checked 2026-10-24)</span>
+    <ol><li>Stanford HAI, The 2025 AI Index Report (2024 data: gap between open-weight and closed models shrank from 8% to 1.7%): <a href="https://hai.stanford.edu/ai-index/2025-ai-index-report" target="_blank" rel="noopener">hai.stanford.edu</a></li><li>NIST SP 800-40 Rev. 4, Guide to Enterprise Patch Management Planning: Preventive Maintenance for Technology (2022): <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r4.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a></li><li>OWASP Top 10 for LLM Applications 2025 (LLM01 Prompt Injection, LLM06 Excessive Agency): <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>Executive Yuan Council agenda item: Reference Guidelines for the Use of Generative AI by the Executive Yuan and Its Agencies (2023-08-31): <a href="https://www.ey.gov.tw/Page/448DE008087A1971/40c1a925-121d-4b6b-8f40-7e9e1a5401f2" target="_blank" rel="noopener">www.ey.gov.tw</a></li><li>National Science and Technology Council press release with the full guideline text, point 4 (2023-08-31): <a href="https://www.ey.gov.tw/File/CAE5B756153299FD?A=C" target="_blank" rel="noopener">www.ey.gov.tw</a></li></ol>
+  </div>
+  <p class="disclaimer">This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws &amp; Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG&#8217;s services depends on what both parties confirm.</p>
+
+  <div class="colophon">
+    <b>Q&amp;A Library</b>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/en/" style="color:inherit">Think BIG Home (EN)</a>
+    <span class="sig">Think BIG, Make it Real!&nbsp;&nbsp;Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
