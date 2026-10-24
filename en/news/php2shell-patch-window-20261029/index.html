@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT | Think BIG NEWS</title>
+<meta name="description" content="On October 21, 2026, PHP released 8.5.12, 8.4.27, 8.3.36, and 8.2.35 to fix two critical vulnerabilities that can allow unauthenticated remote code execution (known as php2shell). This article covers the facts, perspectives from PHP, CISA, and the PHP Foundation, first-hand lessons from deployments, and three things to do first.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/">
+<meta property="og:title" content="AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT | Think BIG NEWS">
+<meta property="og:description" content="PHP2Shell: two critical flaws (CVE-2026-109618, CVE-2026-109619), CVSS 9.2, every web-facing PHP installation is in scope. CISA: patch now, or take it offline. Three steps: inventory, update, write event-driven patching into your process.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Joins the Bug Hunt, and the Patch Window Shrinks | Think BIG NEWS">
+<meta name="twitter:description" content="PHP2Shell: CVSS 9.2, unauthenticated remote code execution. AI-assisted research is accelerating both reports and patch cycles. Three steps for enterprise IT: inventory, update, patch on events.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/#article",
+      "headline": "AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT",
+      "description": "On October 21, 2026, PHP released 8.5.12, 8.4.27, 8.3.36, and 8.2.35 to fix two critical vulnerabilities that can allow unauthenticated remote code execution (known as php2shell). This article covers the facts, perspectives from PHP, CISA, and the PHP Foundation, first-hand lessons from deployments, and three things to do first.",
+      "keywords": "PHP2Shell, php2shell, CVE-2026-109618, CVE-2026-109619, PHP vulnerability, PHP update, remote code execution, enterprise security, patch management, AI security research, CISA",
+      "author": {"@type": "Organization", "name": "Think BIG Media", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "Think BIG", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-29T20:00:00+08:00",
+      "dateModified": "2026-10-29T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/en/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is PHP2Shell?", "acceptedAnswer": {"@type": "Answer", "text": "It's CISA's name for two critical PHP vulnerabilities, CVE-2026-109618 and CVE-2026-109619, both of which can allow unauthenticated remote code execution."}},
+        {"@type": "Question", "name": "Which versions need updating, and to what?", "acceptedAnswer": {"@type": "Answer", "text": "The fixed releases are PHP 8.5.12, 8.4.27, 8.3.36, and 8.2.35, and every installation serving web requests is in scope. If you use operating-system packages, confirm the matching version with your vendor."}},
+        {"@type": "Question", "name": "What if we're still on PHP 8.1 or older?", "acceptedAnswer": {"@type": "Answer", "text": "PHP no longer updates 8.1 and earlier; some distributions and LTS vendors provide backports, so contact your vendor or upgrade. CISA advises taking systems offline if they can't be updated right away."}},
+        {"@type": "Question", "name": "Has anyone been attacked yet?", "acceptedAnswer": {"@type": "Answer", "text": "CISA had not observed successful exploitation when its alert was published. When we checked the KEV catalog on October 24 (version 2026.10.23), neither CVE was listed. That doesn't mean there's no risk; patch promptly."}},
+        {"@type": "Question", "name": "Is there a workaround if we can't update right now?", "acceptedAnswer": {"@type": "Answer", "text": "PHP lists settings that reduce exposure to specific attack paths, but states plainly that only an update is a complete solution and that these measures don't make an installation safe. CISA notes a WAF may offer some protection in the meantime."}},
+        {"@type": "Question", "name": "What role did AI play here?", "acceptedAnswer": {"@type": "Answer", "text": "The PHP Foundation says AI-assisted research has driven a large increase in reports, and AI is also used to validate reports and group those with a shared root cause, while people make every decision and write every patch. Our Issue 10 covered how attackers use AI; this issue covers the defense."}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://thinkbigtw.com/en/"},
+        {"@type":"ListItem","position":2,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/en/news/"},
+        {"@type":"ListItem","position":3,"name":"AI Joins the Bug Hunt, and the Patch Window Shrinks","item":"https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>Enterprise Security Notes &middot; Issue 012</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">ENTERPRISE SECURITY NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>October 29, 2026 &nbsp;&middot;&nbsp; Thursday</span>
+    <span class="dot">&#9670;</span>
+    <span>Enterprise Security Notes</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 012</span>
+  </div>
+
+  <p class="kicker">PHP2Shell &middot; Enterprise Security &middot; Patch Management</p>
+  <h2 class="headline">AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT</h2>
+  <p class="byline">Think BIG Media &nbsp;|&nbsp; October 29, 2026</p>
+  <p class="deck">PHP fixed two critical flaws on October 21 that could let an unauthenticated attacker run code on a server. The first job is straightforward: find every system running PHP, move it to a fixed release, and confirm the update took effect.</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <p style="font-size:14px;background:var(--panel);padding:12px 14px;column-span:all;margin-bottom:20px;border-left:3px solid var(--rule);">Our Issue 10, "AI Is Being Used to Automate Attacks," covered the attacker's side: AI speeding up existing attack workflows. This issue covers the defender's side. The same kind of tools are helping find bugs, reports are piling up, patches are arriving faster, and patch processes need to keep pace.</p>
+
+    <h2><span class="no">One.</span>What Happened: Two Critical Flaws Affecting Every Web-Facing PHP Install</h2>
+    <p class="lead">On <strong>October 21, 2026</strong>, the PHP project released 8.5.12, 8.4.27, 8.3.36, and 8.2.35 to fix two critical vulnerabilities, CVE-2026-109618 and CVE-2026-109619, that can allow <strong>unauthenticated remote code execution</strong>, and urged all PHP users to update immediately.[1] Both are rated 9.2 under CVSS v4.0.[2][6][7]</p>
+    <p>According to the advisory, every PHP installation that serves web requests is at risk, including PHP-FPM, Apache with mod_php, php-cgi, FrankenPHP, and LiteSpeed. PHP rates mod_php as highest risk, with a demonstrated exploit in which an unauthenticated request triggers the attack before any application code runs.[1]</p>
+    <p>The US Cybersecurity and Infrastructure Security Agency (CISA) issued an alert the same day, referring to the vulnerabilities as "php2shell." It urged organizations to patch immediately, starting with internet-facing systems, and said that systems which cannot be updated right away, or which still run unsupported PHP 8.1 or earlier, should be taken offline until patched.[4] CISA also noted that PHP is often a component of other software, so where it runs may not be obvious.[4]</p>
+    <p>On October 23, PHP published a follow-up: under an unusual combination of configuration and application code, a low-likelihood remote execution path remains. It is tracked as CVE-2026-115560, with a full advisory due alongside the next regular bugfix release. Until then, PHP recommends setting <code>session.upload_progress.enabled</code> to 0.[3]</p>
+
+    <h2><span class="no">Two.</span>Perspectives: AI Brings More Reports, but People Still Make the Calls</h2>
+    <p><strong>The PHP Foundation: tools find bugs faster, for both sides.</strong></p>
+    <p>In a post published on release day, the PHP Foundation explained that early signs of the root cause surfaced in 2024 during follow-up work on an external audit, and that several outside research groups later reported its full impact.[8] The Foundation also said AI-assisted research has sharply increased the volume of reports: the team has published 15 CVEs since July 1 and worked through more than 100 reports that proved invalid, duplicate, or not reproducible. AI helps validate reports and group those that share a root cause, but a person makes every call and works on every patch.[8] In the Foundation's words, tools now find bugs faster than ever, for defenders and attackers alike.[8]</p>
+    <p><strong>PHP: the disclosure schedule was pulled forward.</strong></p>
+    <p>The Foundation explained that around 15:00 UTC on October 20, the two CVE IDs began circulating on forums and social media, along with a wrong release time and a wrong score of 10.0. No technical details leaked. PHP brought its pre-announcement forward and moved the release up a day, from October 22 to October 21 at 14:00 UTC.[8]</p>
+    <p><strong>CISA: patch now, or take it offline.</strong></p>
+    <p>CISA's alert says it had not observed successful exploitation as of publication, but unpatched systems remain at risk; a web application firewall may provide some protection until updates are applied.[4] When we checked CISA's Known Exploited Vulnerabilities (KEV) catalog on October 24 (catalog version 2026.10.23), neither CVE was listed.[5] Our reading: not being listed means CISA hasn't added it, not that nobody has been attacked.</p>
+    <p>Bugs are being found and made public faster. Patching has to speed up to match.</p>
+
+    <section class="firsthand">
+      <span class="lede">&#9670; First-Hand Lessons</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">Three. What We've Learned in Practice</h2>
+      <p>These observations come from our work on systems and AI tool deployments. They are not industry statistics and don't describe any particular client.</p>
+      <p><strong>1. "AI found the bug, so who fixes it?" is a common question.</strong> Finding and fixing are different jobs. Someone has to schedule the patch, restart services, and confirm the site still works. AI can help organize that work, but the responsibility has to sit with a named person.</p>
+      <p><strong>2. "We don't use PHP" is often wrong.</strong> PHP commonly sits inside a website's admin panel, a form plugin, or the management screen of an internal system, and the owner doesn't know it. It's the same point CISA makes about PHP being a component of other software.[4]</p>
+      <p><strong>3. Check the full package version.</strong> PHP says Linux distributions and LTS vendors received the patches in advance and that you should check with your vendor for updated packages.[1] A situation we see often: a distribution backports fixes into an older version line, so reading just the first three digits can mislead you. Verify against the full version listed in the vendor's notice.</p>
+      <p><strong>4. Restart every worker after a configuration change.</strong> PHP's interim guidance says settings such as <code>session.upload_progress.enabled=0</code> must apply before request parsing, require restarting every worker, and can't rely on <code>ini_set()</code> in code.[1] We list "recheck version and settings after restart" as an acceptance item.</p>
+    </section>
+
+    <h2><span class="no">Four.</span>Our Recommendations: Three Things First</h2>
+    <p><strong>1. Inventory every place PHP runs.</strong> Include public websites, internal systems, and PHP bundled inside plugins and packages. For each, record the execution mode (FPM, mod_php, and so on), full version, package source, and owner. Internet-facing systems go first.[4]</p>
+    <p><strong>2. Update to 8.5.12, 8.4.27, 8.3.36, or 8.2.35.</strong> If you use distribution packages, confirm the corresponding fixed version with your vendor.[1] PHP no longer ships updates for 8.1 and older, so look for a vendor backport or move to a supported version;[1] CISA advises taking systems offline if they can't be dealt with yet.[4] The interim measures PHP lists reduce exposure to specific paths but do not make an installation safe.[1]</p>
+    <p><strong>3. Write event-driven patching into your process.</strong> Agree in advance who assesses a critical advisory, who approves downtime, how quickly it must be done, and how the fix is verified. Waiting for next month's maintenance window may be too late. Also keep an eye on CVE-2026-115560, due to be addressed in PHP's next regular release.[3]</p>
+    <p>CISA also recommends monitoring for suspicious activity, such as PHP worker processes launching shells or downloading tools.[4] If you suspect a compromise, preserve logs and hand the matter to authorized responders.</p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; Editor's Note &middot; How Think BIG Approaches This: Make Patching Verifiable</span>
+      <h2>Inventory sheet, acceptance evidence, emergency patch agreement — built into every deployment.</h2>
+      <p><em>(The following is Think BIG's own practice, kept separate from the reporting above.)</em></p>
+      <p>When we deploy AI agents and the systems around them, the patch process ships with the deployment: an <strong>inventory sheet</strong> — site, runtime, package source, full version, owner, maintenance window, and backup and recovery method; <strong>acceptance evidence</strong> — version and configuration checks captured after updating and restarting, handed to the owner; an <strong>emergency patch agreement</strong> — contacts, approvers, and order of actions for critical advisories, documented in advance.</p>
+      <p>Our position: AI can help find problems and organize information, but decisions about patching, and responsibility for them, have to sit clearly with people.</p>
+    </section>
+
+    <section class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <dl>
+        <dt>Q1: What is PHP2Shell?</dt>
+        <dd>It's CISA's name for two critical PHP vulnerabilities, CVE-2026-109618 and CVE-2026-109619, both of which can allow unauthenticated remote code execution.[4][1]</dd>
+        <dt>Q2: Which versions need updating, and to what?</dt>
+        <dd>The fixed releases are PHP 8.5.12, 8.4.27, 8.3.36, and 8.2.35, and every installation serving web requests is in scope.[1] If you use operating-system packages, confirm the matching version with your vendor.[1]</dd>
+        <dt>Q3: What if we're still on PHP 8.1 or older?</dt>
+        <dd>PHP no longer updates 8.1 and earlier; some distributions and LTS vendors provide backports, so contact your vendor or upgrade.[1] CISA advises taking systems offline if they can't be updated right away.[4]</dd>
+        <dt>Q4: Has anyone been attacked yet?</dt>
+        <dd>CISA had not observed successful exploitation when its alert was published.[4] When we checked the KEV catalog on October 24 (version 2026.10.23), neither CVE was listed.[5] That doesn't mean there's no risk; patch promptly.</dd>
+        <dt>Q5: Is there a workaround if we can't update right now?</dt>
+        <dd>PHP lists settings that reduce exposure to specific attack paths, but states plainly that only an update is a complete solution and that these measures don't make an installation safe.[1] CISA notes a WAF may offer some protection in the meantime.[4]</dd>
+        <dt>Q6: What role did AI play here?</dt>
+        <dd>The PHP Foundation says AI-assisted research has driven a large increase in reports, and AI is also used to validate reports and group those with a shared root cause, while people make every decision and write every patch.[8] Our Issue 10 covered how attackers use AI; this issue covers the defense.</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Fact-checked on October 24, 2026.<br>
+    [1] PHP, "Security advisory: Critical remote code execution vulnerabilities, update now," October 21, 2026: <a href="https://www.php.net/archive/2026.php#2026-10-21-5" target="_blank" rel="noopener">php.net</a> &nbsp;&middot;&nbsp;
+    [2] PHP, "Upcoming Critical PHP Security Release," October 20, 2026: <a href="https://www.php.net/archive/2026.php#2026-10-20-1" target="_blank" rel="noopener">php.net</a> &nbsp;&middot;&nbsp;
+    [3] PHP, "Informational advisory: Session upload progress," October 23, 2026: <a href="https://www.php.net/archive/2026.php#2026-10-23-1" target="_blank" rel="noopener">php.net</a> &nbsp;&middot;&nbsp;
+    [4] CISA, "Critical Vulnerabilities in PHP Require Immediate Patching," October 21, 2026 (updated October 23, 2026): <a href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching" target="_blank" rel="noopener">cisa.gov</a> &nbsp;&middot;&nbsp;
+    [5] CISA, "Known Exploited Vulnerabilities Catalog," version 2026.10.23; accessed October 24, 2026: <a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">cisa.gov</a> &nbsp;&middot;&nbsp;
+    [6] NIST NVD, "CVE-2026-109618," October 21, 2026: <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-109618" target="_blank" rel="noopener">nvd.nist.gov</a> &nbsp;&middot;&nbsp;
+    [7] NIST NVD, "CVE-2026-109619," October 21, 2026: <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-109619" target="_blank" rel="noopener">nvd.nist.gov</a> &nbsp;&middot;&nbsp;
+    [8] The PHP Foundation, "Today's PHP Security Release, and How We're Strengthening PHP Security," October 21, 2026: <a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/" target="_blank" rel="noopener">thephp.foundation</a>
+  </div>
+  <p class="disclaimer">This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of customer outcomes.</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; Enterprise Security Notes
+    <span class="brand">Think BIG, Make it Real!</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent deployment &amp; governance.<br>On-premises &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE Official Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE Contact &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact/">Contact Us</a><a href="/library/news/php2shell-patch-window-20261029/" lang="zh-Hant">繁體中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
