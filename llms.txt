@@ -74,6 +74,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [公司資料要怎麼分級？哪些可以給雲端 AI、哪些只能留在公司](https://thinkbigtw.com/library/qa/data-classification-for-ai/)
 - [AI Agent 可以幫你操作瀏覽器和電腦嗎？要注意哪些風險](https://thinkbigtw.com/library/qa/computer-use-agent-risks/)
 - [行政院的生成式 AI 參考指引寫了什麼？企業可以借用的 5 個重點](https://thinkbigtw.com/library/qa/taiwan-gov-genai-guideline/)
+- [AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事](https://thinkbigtw.com/library/qa/ai-output-copyright/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -107,6 +108,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
 - [Can an AI Agent Operate a Browser or Computer, and What Are the Risks?](https://thinkbigtw.com/en/qa/computer-use-agent-risks/)
 - [What Do Taiwan’s Government Generative AI Guidelines Say? Five Lessons for Companies](https://thinkbigtw.com/en/qa/taiwan-gov-genai-guideline/)
+- [Do AI-Generated Articles and Images Have Copyright in Taiwan?](https://thinkbigtw.com/en/qa/ai-output-copyright/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
