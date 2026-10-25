@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好 | Think BIG NEWS</title>
+<meta name="description" content="本地 AI 主機不是裝好模型就能長期放著運作。從原廠的通風、排程電源與復電設定文件，配合 Think BIG 的斷電維運紀錄，整理擺放、供電、日常檢查及重開機驗收，避免只看到服務正常就忽略工作是否真的完成。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/office-ai-server-power-cooling-20261124/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/">
+<meta property="og:title" content="辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好 | Think BIG NEWS">
+<meta property="og:description" content="要讓 AI 主機常駐，先決定它放哪裡、誰看電源、斷電後誰處理。開機、服務啟動與排程完成，應分別確認。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-24T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 主機的辦公室條件 | Think BIG NEWS">
+<meta name="twitter:description" content="要讓 AI 主機常駐，先決定它放哪裡、誰看電源、斷電後誰處理。開機、服務啟動與排程完成，應分別確認。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/#article",
+      "headline": "辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好",
+      "description": "本地 AI 主機不是裝好模型就能長期放著運作。從原廠的通風、排程電源與復電設定文件，配合 Think BIG 的斷電維運紀錄，整理擺放、供電、日常檢查及重開機驗收，避免只看到服務正常就忽略工作是否真的完成。",
+      "keywords": "本地 AI, 主機散熱, 電源管理",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-24T20:00:00+08:00",
+      "dateModified": "2026-11-24T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      },
+      "citation": [
+        "https://support.apple.com/en-ie/102336",
+        "https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries",
+        "https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element",
+        "https://www.intel.com/content/www/us/en/support/articles/000059976.html"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "有電池的筆電可以當備援嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能只憑有電池下結論。我們的維運紀錄曾記錄電池耗盡後排程未跑，仍需評估供電與復原。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "螢幕沒亮就是沒有執行嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "未必。Microsoft 文件說明，排程喚醒電腦後螢幕仍可能關閉；要看工作紀錄。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "每台電腦都能復電自動開機嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本文沒有這項通用結論。Intel 文件只支持其適用設備的設定，應查自己的機型。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "服務正常為什麼還要看開機時間？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們遇過剛重開機後服務正常，但先前工作已漏跑；要把工作完成紀錄一起看。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI 主機的辦公室條件",
+          "item": "https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>本地 AI 實測筆記 &middot; 第 025 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 11 月 24 日　星期二</span>
+    <span class="dot">&#9670;</span>
+    <span>本地 AI 實測筆記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 025 期</span>
+  </div>
+  <p class="kicker">本地 AI &middot; 主機散熱 &middot; 電源管理</p>
+  <h2 class="headline">辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 11 月 24 日</p>
+  <p class="deck">要讓 AI 主機常駐，先決定它放哪裡、誰看電源、斷電後誰處理。開機、服務啟動與排程完成，應分別確認。</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">一</span>現象：主機的環境，也是系統的一部分</h2>
+<p class="lead">辦公室準備一台電腦跑 AI，規劃表常從模型開始。原廠文件提醒，實體擺放與電源設定也需要確認。Apple 的 Mac 筆電說明建議使用可良好通風的穩固工作面，避免放在枕頭或寢具上。這是該設備的使用指引，其他機型應查自己的手冊。[1]</p>
+<p>排程也會受到電源條件影響。Microsoft 的工作排程器文件，將「使用電池時不啟動工作」列為可設定屬性；另一項 WakeToRun 則用來指定排程時喚醒電腦。[2][3] 兩者談的是不同條件，不能因為設定了喚醒，就忽略電池與工作本身的限制。</p>
+<p>復電後自動開機又是另一層。Intel 的支援文件針對其適用伺服器板，說明 BIOS 電源復原選項及測試步驟。[4] 本文引用它來說明檢查位置，不把特定設備功能推廣成每一台電腦都有。</p>
+<h2><span class="no">二</span>各方評價：能放進辦公室，仍要看使用條件</h2>
+<p class="lead"><strong>支持辦公室部署的思路：工作與維護可以在現場安排。</strong>我們認為，若有明確的擺放位置、供電與負責人，本地運作便能納入辦公室的日常管理。但這是導入規劃的判斷，不是某種機型適合全天運作的認證。</p>
+<p><strong>保留的思路：日常使用與無人值守不同。</strong>筆電的通風指引、工作排程的電源條件，與韌體的復電行為，分屬不同設定。[1][2][4] 我們的判讀是，長期運作要把這些環節接起來驗收，而不只在有人坐在旁邊時測一次。</p>
+<p>噪音則應交給現場測試。我們建議在預定座位距離，觀察一般工作及集中處理時是否妨礙通話、會議與閱讀；不要自行給所有機器套用同一個分貝值，也不拿不同公司設備做排名。若想搬進櫃內降低聲音，仍先核對通風與維護空間。[1]</p>
+<section class="firsthand"><span class="lede">&#9670; 第一手心得</span><h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+<p class="lead">以下來自我們本地 AI 主機的維運紀錄，不是產業統計，也不代表任何特定客戶。</p>
+<p><strong>1. 服務健康，不代表整晚正常。</strong>我們遇過筆電型 AI 主機整夜沒有接電源，電池耗盡後硬關機，隔天早上的排程沒跑。遠端檢查時，各項服務已顯示健康，實際上機器才剛重新開機。</p>
+<p><strong>2. 先看開機時間與電源。</strong>這次留下的診斷心法，是不要只看目前服務狀態，還要看機器何時開機，以及當時的供電狀態。後來加入低電量提醒；</p>
+<p><strong>3. 常駐條件要另外確認。</strong>我們的檢查項目包括接市電、評估不斷電系統、確認散熱與擺放位置，以及斷電後自動開機與服務自動啟動。每項都要按設備條件確認，不能把筆電有電池直接視為完整備援。</p>
+</section>
+<h2><span class="no">四</span>我們的建議：把環境與復原一起驗收</h2>
+<p class="lead"><strong>1. 先定義運作時段。</strong>寫清楚哪些工作需要夜間執行，哪些可以等上班再跑。若不需要全天運作，就依任務安排時段；需要常駐的，指定檢查電源與異常通知的負責人。</p>
+<p><strong>2. 依手冊安排擺放。</strong>確認進出風空間、工作面與環境條件，不讓文件或其他物品遮擋通風位置。將設備型號、手冊連結與現場照片留在維運文件，移位時再檢查。[1]</p>
+<p><strong>3. 檢查供電與排程條件。</strong>確認電源是否接妥，並逐項核對電池、睡眠與喚醒設定。使用 Windows 工作排程器時，查看工作是否因電池條件而不能啟動；其他平台另依文件檢查。[2][3]</p>
+<p><strong>4. 設計受控的復原演練。</strong>先有可用備份，再由有授權的人依設備手冊測試復電、開機與服務啟動。接著檢查排程是否漏跑、是否重複執行；不能只看登入畫面出現就結束。[4]</p>
+<p><strong>5. 把聲音與夜間條件一起試。</strong>在實際使用位置執行預定工作，記錄周邊人員是否能正常通話，並核對下班後的環境安排。評估不斷電設備時，請維護人員依實際負載與關機流程確認，不套用通用續航數字。</p>
+<p>現場交接時，可以把檢查拆成「上班前能否開始工作」與「下班後能否持續完成」兩段。前者確認開機、連線、模型服務與一個已知測試工作；後者確認電源、預定排程及異常通知。再約定清潔、移動設備或調整座位後由誰重新檢查。這是我們建議的日常程序，不是要求操作人自行拆機或改接電路。若環境或供電條件不明，交由設備維護人員確認，再決定主機的位置與運作安排。</p>
+<section class="houseview"><span class="lede">&#9670; 編按 &middot; Think BIG 的做法：把現場條件寫進維運文件</span><h2>有人照看電源，也有人確認工作完成。</h2><p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+<p class="lead">Think BIG 主張，把擺放、供電、服務啟動與工作完成紀錄放進同一份交接文件。主機換位置、換用途或改運作時段時，重新檢查環境與復原流程。</p>
+<p>我們關心的是下一位維護者能找到原因。服務在線只是其中一項訊號；開機時間、電源狀態與工作結果一起看，才有足夠脈絡決定後續處理。</p>
+</section>
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：有電池的筆電可以當備援嗎？</dt>
+        <dd>不能只憑有電池下結論。我們的維運紀錄曾記錄電池耗盡後排程未跑，仍需評估供電與復原。</dd>
+        <dt>Q2：螢幕沒亮就是沒有執行嗎？</dt>
+        <dd>未必。Microsoft 文件說明，排程喚醒電腦後螢幕仍可能關閉；要看工作紀錄。[3]</dd>
+        <dt>Q3：每台電腦都能復電自動開機嗎？</dt>
+        <dd>本文沒有這項通用結論。Intel 文件只支持其適用設備的設定，應查自己的機型。[4]</dd>
+        <dt>Q4：服務正常為什麼還要看開機時間？</dt>
+        <dd>我們遇過剛重開機後服務正常，但先前工作已漏跑；要把工作完成紀錄一起看。</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-26。<br>
+    [1] Apple，〈Keep your Mac laptop within acceptable operating temperatures〉（通風與工作面），查閱日期 2026-10-26：<a href="https://support.apple.com/en-ie/102336" target="_blank" rel="noopener">support.apple.com</a>　&middot;
+    [2] Microsoft，〈TaskSettings.DisallowStartIfOnBatteries property〉（電池條件），查閱日期 2026-10-26：<a href="https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries" target="_blank" rel="noopener">learn.microsoft.com</a>　&middot;
+    [3] Microsoft，〈WakeToRun (settingsType) Element〉（喚醒與螢幕），查閱日期 2026-10-26：<a href="https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element" target="_blank" rel="noopener">learn.microsoft.com</a>　&middot;
+    [4] Intel，〈How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems〉（適用設備復電設定），查閱日期 2026-10-26：<a href="https://www.intel.com/content/www/us/en/support/articles/000059976.html" target="_blank" rel="noopener">www.intel.com</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; 本地 AI 實測筆記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

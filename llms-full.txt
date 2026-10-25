@@ -2287,6 +2287,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 025
+
+November 24, 2026 · Local AI Field Notes
+
+## An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery
+
+For an always-on AI host, assign its location, power checks, and outage response.](https://thinkbigtw.com/en/news/office-ai-server-power-cooling-20261124/)
 [Issue 024
 
 November 22, 2026 · AI Deployment Field Notes
@@ -3275,6 +3282,113 @@ Sources
     [2] Microsoft, “Unicode in the Windows API”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api) ·
     [3] Ollama, “Troubleshooting”, accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/troubleshooting) ·
     [4] Microsoft, “mklink”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/office-ai-server-power-cooling-20261124/
+
+# An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 025
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 24, 2026  ·  Tuesday
+◆
+Local AI Field Notes
+◆
+Issue 025
+
+local AI · host cooling · power management
+
+## An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery
+
+Think BIG Media  |  November 24, 2026
+
+For an always-on AI host, assign its location, power checks, and outage response. Verify boot, service startup, and scheduled work separately.
+
+## One. The Environment Is Part of the System
+
+Office AI plans often start with models, but vendor guidance also addresses physical placement and power. Apple recommends a stable, well-ventilated surface for Mac laptops and avoiding pillows or bedding. That guidance applies to those devices; other machines need their own manuals.[1]
+
+Task conditions matter too. Microsoft documents a Task Scheduler property that prevents work from starting on battery power. A separate WakeToRun setting specifies waking the computer for a task.[2][3] Enabling waking does not remove the need to check battery conditions and the task itself.
+
+Power-on after an outage is another layer. Intel documents a BIOS recovery setting and testing procedure for its applicable server board.[4] We cite it to identify the kind of setting to check, not to suggest that every computer supports it.
+
+## Two. Office Placement Still Needs Conditions
+
+The case for office deployment: assignable local responsibilities.  We consider a defined location, power arrangement, and owner prerequisites for including a local host in routine office operations. That planning judgment is not a certification that a particular machine is suitable for continuous use.
+
+The caution: attended use differs from unattended operation.  Ventilation guidance, task power conditions, and firmware recovery behavior describe different parts of the setup.[1][2][4] Our reading is that continuous operation requires an end-to-end check, beyond a successful test while someone is present.
+
+Noise should be evaluated on site. We recommend checking normal and intensive work at the intended seating distance for interference with calls, meetings, and reading. Do not assign a universal decibel figure or rank vendors. Before moving a host into a cabinet to reduce noise, review ventilation and access.[1]
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These notes come from our local AI host maintenance records. They are not industry statistics or an account of any particular client.
+
+1. Healthy services did not mean a healthy night.  A laptop-based host was left without external power overnight. Its battery ran out, it shut down abruptly, and the morning jobs did not run. When checked remotely, services appeared healthy because the machine had recently restarted.
+
+2. Check boot time and power first.  The diagnostic lesson was to look beyond current service status to when the host booted and its power condition. We later added a low-battery alert.
+
+3. Check always-on conditions explicitly.  Our list includes mains power, evaluating a UPS, cooling and placement, power restoration behavior, and automatic service startup. Verify each against the equipment. A laptop battery should not be treated as a complete recovery plan.
+
+## Four. Our Recommendations: Verify the Site and Recovery
+
+1. Define operating hours.  Identify jobs that need overnight execution and those that can wait. Schedule around actual needs. Assign power checks and exception notifications for continuous operation.
+
+2. Place the machine according to its manual.  Check airflow, support surface, and environmental requirements. Keep the model, manual link, and site photo with maintenance notes. Recheck after a move.[1]
+
+3. Inspect power and task conditions.  Check the connection, then battery, sleep, and wake settings. On Windows Task Scheduler, inspect whether battery conditions prevent startup; use the corresponding documentation for other platforms.[2][3]
+
+4. Plan a controlled recovery drill.  Have a usable backup first. Let an authorized maintainer follow the equipment manual to test power restoration, boot, and service startup. Then check for missed and duplicate tasks rather than stopping at the login screen.[4]
+
+5. Test sound and after-hours conditions.  Run the intended work at its actual location and assess whether people can still make calls. Review the after-hours environment. Have maintainers assess UPS needs against the real load and shutdown process rather than assuming a universal runtime.
+
+For site handover, separate readiness before work from completion after hours. Check boot, connectivity, the model service, and a known task for readiness; check power, schedules, and notifications for overnight operation. Assign rechecks after cleaning, moving equipment, or changing desks. This is a proposed operating procedure, not a request for staff to open hardware or alter wiring. Have maintainers resolve unclear site or power conditions before choosing a location and operating arrangement.
+
+◆ Editor’s Note · How Think BIG Approaches This: Document the Physical Setup
+
+## Assign power checks and verify completed work.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to document placement, power, service startup, and completed work together. A move, new purpose, or different operating hours should prompt another site and recovery check.
+
+The next maintainer needs enough context to diagnose a problem. Service availability is one signal. Boot time, power state, and work results help establish what actually happened.
+
+### Frequently Asked Questions
+
+Q1: Does a laptop battery provide a complete backup arrangement?
+Do not infer that from the battery alone. Our operating records include a depleted battery and missed jobs. Review power and recovery.
+Q2: Does a dark screen mean no task is running?
+Not necessarily. Microsoft notes that the screen may stay off after a task wakes the computer. Check task records.[3]
+Q3: Can every computer power on after an outage?
+This article makes no universal claim. The Intel guidance covers its applicable hardware. Check your own model.[4]
+Q4: Why inspect boot time when services are healthy?
+Our operating records include healthy services after a recent restart but missed earlier jobs. Review completion records too.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Apple, “Keep your Mac laptop within acceptable operating temperatures” (ventilation and surfaces); accessed 2026-10-26: [support.apple.com](https://support.apple.com/en-ie/102336) ·
+    [2] Microsoft, “TaskSettings.DisallowStartIfOnBatteries property” (battery conditions); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries) ·
+    [3] Microsoft, “WakeToRun (settingsType) Element” (waking and screen state); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element) ·
+    [4] Intel, “How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems” (applicable hardware); accessed 2026-10-26: [www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
 
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
@@ -10888,6 +11002,113 @@ Q4：需要把整個使用者資料夾改名嗎？
     [2] Microsoft，〈Unicode in the Windows API〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api)　·
     [3] Ollama，〈Troubleshooting〉，查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/troubleshooting)　·
     [4] Microsoft，〈mklink〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/
+
+# 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 025 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 24 日　星期二
+◆
+本地 AI 實測筆記
+◆
+第 025 期
+
+本地 AI · 主機散熱 · 電源管理
+
+## 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好
+
+Think BIG 自媒體部  |  2026 年 11 月 24 日
+
+要讓 AI 主機常駐，先決定它放哪裡、誰看電源、斷電後誰處理。開機、服務啟動與排程完成，應分別確認。
+
+## 一 現象：主機的環境，也是系統的一部分
+
+辦公室準備一台電腦跑 AI，規劃表常從模型開始。原廠文件提醒，實體擺放與電源設定也需要確認。Apple 的 Mac 筆電說明建議使用可良好通風的穩固工作面，避免放在枕頭或寢具上。這是該設備的使用指引，其他機型應查自己的手冊。[1]
+
+排程也會受到電源條件影響。Microsoft 的工作排程器文件，將「使用電池時不啟動工作」列為可設定屬性；另一項 WakeToRun 則用來指定排程時喚醒電腦。[2][3] 兩者談的是不同條件，不能因為設定了喚醒，就忽略電池與工作本身的限制。
+
+復電後自動開機又是另一層。Intel 的支援文件針對其適用伺服器板，說明 BIOS 電源復原選項及測試步驟。[4] 本文引用它來說明檢查位置，不把特定設備功能推廣成每一台電腦都有。
+
+## 二 各方評價：能放進辦公室，仍要看使用條件
+
+支持辦公室部署的思路：工作與維護可以在現場安排。 我們認為，若有明確的擺放位置、供電與負責人，本地運作便能納入辦公室的日常管理。但這是導入規劃的判斷，不是某種機型適合全天運作的認證。
+
+保留的思路：日常使用與無人值守不同。 筆電的通風指引、工作排程的電源條件，與韌體的復電行為，分屬不同設定。[1][2][4] 我們的判讀是，長期運作要把這些環節接起來驗收，而不只在有人坐在旁邊時測一次。
+
+噪音則應交給現場測試。我們建議在預定座位距離，觀察一般工作及集中處理時是否妨礙通話、會議與閱讀；不要自行給所有機器套用同一個分貝值，也不拿不同公司設備做排名。若想搬進櫃內降低聲音，仍先核對通風與維護空間。[1]
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們本地 AI 主機的維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 服務健康，不代表整晚正常。 我們遇過筆電型 AI 主機整夜沒有接電源，電池耗盡後硬關機，隔天早上的排程沒跑。遠端檢查時，各項服務已顯示健康，實際上機器才剛重新開機。
+
+2. 先看開機時間與電源。 這次留下的診斷心法，是不要只看目前服務狀態，還要看機器何時開機，以及當時的供電狀態。後來加入低電量提醒；
+
+3. 常駐條件要另外確認。 我們的檢查項目包括接市電、評估不斷電系統、確認散熱與擺放位置，以及斷電後自動開機與服務自動啟動。每項都要按設備條件確認，不能把筆電有電池直接視為完整備援。
+
+## 四 我們的建議：把環境與復原一起驗收
+
+1. 先定義運作時段。 寫清楚哪些工作需要夜間執行，哪些可以等上班再跑。若不需要全天運作，就依任務安排時段；需要常駐的，指定檢查電源與異常通知的負責人。
+
+2. 依手冊安排擺放。 確認進出風空間、工作面與環境條件，不讓文件或其他物品遮擋通風位置。將設備型號、手冊連結與現場照片留在維運文件，移位時再檢查。[1]
+
+3. 檢查供電與排程條件。 確認電源是否接妥，並逐項核對電池、睡眠與喚醒設定。使用 Windows 工作排程器時，查看工作是否因電池條件而不能啟動；其他平台另依文件檢查。[2][3]
+
+4. 設計受控的復原演練。 先有可用備份，再由有授權的人依設備手冊測試復電、開機與服務啟動。接著檢查排程是否漏跑、是否重複執行；不能只看登入畫面出現就結束。[4]
+
+5. 把聲音與夜間條件一起試。 在實際使用位置執行預定工作，記錄周邊人員是否能正常通話，並核對下班後的環境安排。評估不斷電設備時，請維護人員依實際負載與關機流程確認，不套用通用續航數字。
+
+現場交接時，可以把檢查拆成「上班前能否開始工作」與「下班後能否持續完成」兩段。前者確認開機、連線、模型服務與一個已知測試工作；後者確認電源、預定排程及異常通知。再約定清潔、移動設備或調整座位後由誰重新檢查。這是我們建議的日常程序，不是要求操作人自行拆機或改接電路。若環境或供電條件不明，交由設備維護人員確認，再決定主機的位置與運作安排。
+
+◆ 編按 · Think BIG 的做法：把現場條件寫進維運文件
+
+## 有人照看電源，也有人確認工作完成。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，把擺放、供電、服務啟動與工作完成紀錄放進同一份交接文件。主機換位置、換用途或改運作時段時，重新檢查環境與復原流程。
+
+我們關心的是下一位維護者能找到原因。服務在線只是其中一項訊號；開機時間、電源狀態與工作結果一起看，才有足夠脈絡決定後續處理。
+
+### 常見問題
+
+Q1：有電池的筆電可以當備援嗎？
+不能只憑有電池下結論。我們的維運紀錄曾記錄電池耗盡後排程未跑，仍需評估供電與復原。
+Q2：螢幕沒亮就是沒有執行嗎？
+未必。Microsoft 文件說明，排程喚醒電腦後螢幕仍可能關閉；要看工作紀錄。[3]
+Q3：每台電腦都能復電自動開機嗎？
+本文沒有這項通用結論。Intel 文件只支持其適用設備的設定，應查自己的機型。[4]
+Q4：服務正常為什麼還要看開機時間？
+我們遇過剛重開機後服務正常，但先前工作已漏跑；要把工作完成紀錄一起看。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Apple，〈Keep your Mac laptop within acceptable operating temperatures〉（通風與工作面），查閱日期 2026-10-26：[support.apple.com](https://support.apple.com/en-ie/102336)　·
+    [2] Microsoft，〈TaskSettings.DisallowStartIfOnBatteries property〉（電池條件），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries)　·
+    [3] Microsoft，〈WakeToRun (settingsType) Element〉（喚醒與螢幕），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element)　·
+    [4] Intel，〈How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems〉（適用設備復電設定），查閱日期 2026-10-26：[www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
 
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
