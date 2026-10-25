@@ -1574,36 +1574,38 @@ test('F6: GIFT 用戶不收任何回覆（Flex 或純文字）', async () => {
 });
 
 // ──────────────────────────────────────────────
-// 出差提示日期閘門：純函式測試（F7a–F7d）+ 整合測試（F7–F8）
+// 回覆提示三態日期閘門：純函式測試（F7a–F7d）+ 整合測試（F7–F8）
+// 三態：現在～11/24 → 美東進修；11/25～11/27 → 海外出差；11/28起 → 空
 // ──────────────────────────────────────────────
 
-// F7a–F7d：直接測 getOooNote 的四個邊界
-test('F7a: getOooNote — 11/24 23:59 CST（開始前 1ms）→ 空字串', () => {
+// F7a–F7d：直接測 getOooNote 的三個邊界
+test('F7a: getOooNote — 11/24 23:59 CST（出差前 1ms）→ 含美東提示', () => {
   const start = new Date('2026-11-25T00:00:00+08:00').getTime();
-  assert.equal(getOooNote(start - 1), '', '出差前不應顯示提示');
+  const note = getOooNote(start - 1);
+  assert.ok(note.includes('美東'), `11/24 23:59 應顯示美東進修提示，得到：${note}`);
 });
 
-test('F7b: getOooNote — 11/25 00:00 CST（開始瞬間）→ 含出差提示', () => {
+test('F7b: getOooNote — 11/25 00:00 CST（出差開始瞬間）→ 含海外出差提示', () => {
   const start = new Date('2026-11-25T00:00:00+08:00').getTime();
   const note = getOooNote(start);
   assert.ok(note.includes('海外出差'), `11/25 00:00 應顯示出差提示，得到：${note}`);
 });
 
-test('F7c: getOooNote — 11/27 23:59 CST（結束前 1ms）→ 含出差提示', () => {
+test('F7c: getOooNote — 11/27 23:59 CST（出差結束前 1ms）→ 含海外出差提示', () => {
   const end = new Date('2026-11-28T00:00:00+08:00').getTime();
   const note = getOooNote(end - 1);
   assert.ok(note.includes('海外出差'), `11/27 23:59 應仍顯示出差提示，得到：${note}`);
 });
 
-test('F7d: getOooNote — 11/28 00:00 CST（結束瞬間）→ 空字串', () => {
+test('F7d: getOooNote — 11/28 00:00 CST（出差結束瞬間）→ 空字串', () => {
   const end = new Date('2026-11-28T00:00:00+08:00').getTime();
-  assert.equal(getOooNote(end), '', '11/28 00:00 起不應顯示提示');
+  assert.equal(getOooNote(end), '', '11/28 00:00 起不應顯示任何提示');
 });
 
 // F7/F8：整合測試（透過 handleLineWebhook，mocking Date.now）
-test('F7: 11/25 00:00（台灣時間）轉真人回覆含出差提示', async () => {
+test('F7: 11/24 23:59（台灣時間）轉真人回覆含美東提示', async () => {
   const start = new Date('2026-11-25T00:00:00+08:00').getTime();
-  const fakeNow = start; // OOO_START → 應顯示出差提示
+  const fakeNow = start - 1; // 出差前 → 應顯示美東進修提示
   const origDateNow = Date.now;
   Date.now = () => fakeNow;
 
@@ -1642,12 +1644,12 @@ test('F7: 11/25 00:00（台灣時間）轉真人回覆含出差提示', async ()
   globalThis.fetch = origFetch;
   Date.now = origDateNow;
 
-  assert.ok(replyBody?.includes('海外出差'), `11/25 00:00 轉真人回覆應含出差提示`);
+  assert.ok(replyBody?.includes('美東'), `11/24 23:59 轉真人回覆應含美東進修提示`);
 });
 
-test('F8: 11/28 00:00（台灣時間）轉真人回覆不含出差提示', async () => {
+test('F8: 11/28 00:00（台灣時間）轉真人回覆不含任何提示', async () => {
   const end = new Date('2026-11-28T00:00:00+08:00').getTime();
-  const fakeNow = end; // OOO_END → 不應顯示出差提示
+  const fakeNow = end; // OOO_END → 不應顯示任何提示
   const origDateNow = Date.now;
   Date.now = () => fakeNow;
 
@@ -1686,7 +1688,7 @@ test('F8: 11/28 00:00（台灣時間）轉真人回覆不含出差提示', async
   globalThis.fetch = origFetch;
   Date.now = origDateNow;
 
-  assert.ok(!replyBody?.includes('海外出差'), `11/28 00:00 轉真人回覆不應含出差提示`);
+  assert.ok(!replyBody?.includes('美東') && !replyBody?.includes('海外出差'), `11/28 00:00 轉真人回覆不應含任何提示`);
 });
 
 

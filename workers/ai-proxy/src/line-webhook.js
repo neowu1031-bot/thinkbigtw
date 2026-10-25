@@ -9,8 +9,8 @@
  *   - LINE_HASH_PEPPER 必須透過 wrangler secret put 設定，未設定直接 503
  *   - 對話脈絡存 LINE_KV，閒置 30 分鐘後由 Cron 報告並清除（KV TTL 2小時）
  *   - 限速：CF atomic RATE_LIMITER（6/min，選配）→ KV per-user 5/min + 60/day
- *   - 轉真人：回固定文字（含出差提示，僅 2026-11-25～11-27）+ Supabase 報告（needs_human: true）
- *   - 答不出來：回「這題我幫您轉給專人確認」+ 出差提示（期間內）+ needs_answer 報告
+ *   - 轉真人：回固定文字 + 延遲提示（現在~11/24：美東進修；11/25~11/27：海外出差；11/28起：省略）
+ *   - 答不出來：回「這題我幫您轉給專人確認」+ 同上延遲提示 + needs_answer 報告
  *   - /line-push-answer：HMAC(GM_PUSH_KEY) → uidmap lookup → LINE push
  *   - GIFT 客戶名單（LINE_HUMAN_ONLY_NAMES env var only，無預設）：完全不回，只送報告
  *   - P1: event dedup（processing → completed）+ timestamp ±5 min 驗證
@@ -43,21 +43,33 @@ const WELCOME_TEXT =
   '・方案介紹：https://thinkbigtw.com/pricing/\n' +
   '・企業合作：https://thinkbigtw.com/enterprise/';
 
-/** 海外出差提示顯示區間（台灣時間 UTC+8）：2026-11-25 00:00 起至 2026-11-28 00:00 止。 */
+/**
+ * 回覆延遲提示區間（台灣時間 UTC+8）：
+ *   現在 ～ 2026-11-24 23:59：美東進修說明（真人回覆時間點）
+ *   2026-11-25 00:00 ～ 2026-11-27 23:59：海外出差三天說明
+ *   2026-11-28 00:00 起：不顯示任何提示
+ */
 const OOO_START_MS = new Date('2026-11-25T00:00:00+08:00').getTime();
 const OOO_END_MS   = new Date('2026-11-28T00:00:00+08:00').getTime();
 
 /**
- * 出差提示（僅在 2026-11-25 00:00～2026-11-28 00:00 台灣時間區間內回傳提示句，其餘時間回傳空字串）。
+ * 回覆延遲提示，根據時間回傳對應句子或空字串：
+ *   nowMs < OOO_START_MS → 美東進修提示
+ *   OOO_START_MS <= nowMs < OOO_END_MS → 海外出差提示
+ *   nowMs >= OOO_END_MS → ''
  * @param {number} [nowMs] 當前時間戳（毫秒），預設 Date.now()，供單元測試注入。
  */
 export function getOooNote(nowMs = Date.now()) {
-  return nowMs >= OOO_START_MS && nowMs < OOO_END_MS
-    ? '11/25–11/27 顧問海外出差三天，這幾天回覆可能會稍慢，11/28 起會第一時間幫你處理喔 🙏'
-    : '';
+  if (nowMs < OOO_START_MS) {
+    return '我們的工程師們目前都在美東進修中，如果需要專人回覆，可能要稍等一下下喔🙏 我們會盡快回覆您～';
+  }
+  if (nowMs < OOO_END_MS) {
+    return '11/25–11/27 顧問海外出差三天，這幾天回覆可能會稍慢，11/28 起會第一時間幫你處理喔 🙏';
+  }
+  return '';
 }
 
-/** 第一次轉真人時用（出差期間自動附提示，其他時間省略）。 */
+/** 第一次轉真人時用（依時間自動附對應提示，11/28 起省略）。 */
 function getHumanTransferText(nowMs = Date.now()) {
   const note = getOooNote(nowMs);
   return '好的～已經幫您通知 Think BIG 的同仁了，上班時間會盡快回覆你喔 🙏' + (note ? '\n\n' + note : '');
