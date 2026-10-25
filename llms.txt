@@ -77,6 +77,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事](https://thinkbigtw.com/library/qa/ai-output-copyright/)
 - [工作上的提示詞怎麼寫？用 4 段說清楚任務與限制](https://thinkbigtw.com/library/qa/prompt-structure-for-work/)
 - [本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理](https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/)
+- [本地模型的繁體中文好不好？台灣用語要怎麼測](https://thinkbigtw.com/library/qa/traditional-chinese-local-llm/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -113,6 +114,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Do AI-Generated Articles and Images Have Copyright in Taiwan?](https://thinkbigtw.com/en/qa/ai-output-copyright/)
 - [How Do You Write a Work Prompt? A Four-Part Structure for Clearer Tasks](https://thinkbigtw.com/en/qa/prompt-structure-for-work/)
 - [Can a Local LLM Read PDFs, Excel Files, and Scans?](https://thinkbigtw.com/en/qa/local-llm-read-pdf-excel/)
+- [How Good Is a Local LLM’s Traditional Chinese, and How Should You Test Taiwan Usage?](https://thinkbigtw.com/en/qa/traditional-chinese-local-llm/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
