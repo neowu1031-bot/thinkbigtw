@@ -90,6 +90,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [可以用 AI 篩履歷嗎？公平與個資要注意什麼](https://thinkbigtw.com/library/qa/ai-resume-screening-risks/)
 - [小模型適合做什麼？不是每件工作都要用最大的 AI](https://thinkbigtw.com/library/qa/small-language-models-uses/)
 - [本地模型看得懂圖片嗎？多模態 AI 在公司的用途與限制](https://thinkbigtw.com/library/qa/multimodal-local-llm/)
+- [員工離職時，AI 帳號和裡面的資料要怎麼收回？](https://thinkbigtw.com/library/qa/offboarding-ai-accounts/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -139,6 +140,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Can AI Screen Resumes? What About Fairness and Personal Data?](https://thinkbigtw.com/en/qa/ai-resume-screening-risks/)
 - [What Are Small Language Models Useful For?](https://thinkbigtw.com/en/qa/small-language-models-uses/)
 - [Can a Local Model Understand Images? Business Uses and Limits of Multimodal AI](https://thinkbigtw.com/en/qa/multimodal-local-llm/)
+- [How Should AI Accounts and Data Be Handed Over When an Employee Leaves?](https://thinkbigtw.com/en/qa/offboarding-ai-accounts/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
