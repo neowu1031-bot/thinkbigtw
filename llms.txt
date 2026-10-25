@@ -67,6 +67,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [完全不懂技術，AI 線上課程看不太懂，要怎麼開始學會用 AI？](https://thinkbigtw.com/library/qa/learn-ai-without-tech-background/)
 - [AI Agent 是什麼？跟聊天機器人差在哪](https://thinkbigtw.com/library/qa/what-is-ai-agent/)
 - [RAG 是什麼？讓 AI 查公司文件，跟直接問 AI 差在哪](https://thinkbigtw.com/library/qa/what-is-rag/)
+- [AI 的 token 是什麼？為什麼字數上限不是用「字」算](https://thinkbigtw.com/library/qa/what-is-token/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -93,6 +94,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [No Tech Background and Official AI Courses Feel Hard to Follow: How Do You Start Learning to Use AI?](https://thinkbigtw.com/en/qa/learn-ai-without-tech-background/)
 - [What Is an AI Agent, and How Does It Differ from a Chatbot?](https://thinkbigtw.com/en/qa/what-is-ai-agent/)
 - [What Is RAG, and How Does It Differ from Asking AI Directly?](https://thinkbigtw.com/en/qa/what-is-rag/)
+- [What Is an AI Token, and Why Aren’t Limits Measured in Characters?](https://thinkbigtw.com/en/qa/what-is-token/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
