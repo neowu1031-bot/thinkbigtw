@@ -85,6 +85,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [用 AI 做會議記錄要注意什麼？錄音、逐字稿與個資](https://thinkbigtw.com/library/qa/ai-meeting-notes-privacy/)
 - [AI 客服答錯了，誰要負責？上線前要設好的 4 道防線](https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/)
 - [怎麼讓 AI 回答時附上出處？查公司文件時特別重要](https://thinkbigtw.com/library/qa/ai-answers-with-citations/)
+- [推論跟訓練差在哪？公司用 AI 是在做哪一種](https://thinkbigtw.com/library/qa/inference-vs-training/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -129,6 +130,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [What Should You Check Before Using AI for Meeting Notes?](https://thinkbigtw.com/en/qa/ai-meeting-notes-privacy/)
 - [Who Is Responsible When an AI Chatbot Gives a Wrong Answer?](https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/)
 - [How Can You Get AI Answers With Checkable Sources?](https://thinkbigtw.com/en/qa/ai-answers-with-citations/)
+- [What Is the Difference Between Inference and Training?](https://thinkbigtw.com/en/qa/inference-vs-training/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
