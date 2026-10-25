@@ -2,6 +2,30 @@
   var video = document.querySelector('.home-video');
   if (!video) return;
 
+  // Responsive source + poster selection (fallback for browsers where <source media> on video is unreliable)
+  var isDesktop = window.matchMedia('(min-width:901px)').matches;
+  var desktopSrc = '/assets/video/tb-ad-v3a-54.mp4';
+  var mobileSrc = '/assets/video/tb-ad-v3a.mp4';
+  var desktopPoster = '/assets/video/tb-ad-v3a-54-poster.webp';
+  var mobilePoster = '/assets/video/tb-ad-v3a-poster.webp';
+
+  video.poster = isDesktop ? desktopPoster : mobilePoster;
+
+  // Ensure only the right source is queued (browser <source media> should handle this,
+  // but reload with correct src as a safety net when needed)
+  var sources = video.querySelectorAll('source');
+  var expectedSrc = isDesktop ? desktopSrc : mobileSrc;
+  var currentSrc = video.currentSrc || (sources[0] && sources[0].src) || '';
+  if (currentSrc && currentSrc.indexOf(isDesktop ? 'v3a-54' : 'v3a.') === -1) {
+    // Browser picked the wrong source; swap to the right one
+    for (var i = 0; i < sources.length; i++) { video.removeChild(sources[i]); }
+    var s = document.createElement('source');
+    s.src = expectedSrc;
+    s.type = 'video/mp4';
+    video.appendChild(s);
+    video.load();
+  }
+
   // Respect prefers-reduced-motion: pause instead of autoplay
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     video.pause();
@@ -28,7 +52,6 @@
     }
     video.addEventListener('play', syncPlayBtn);
     video.addEventListener('pause', syncPlayBtn);
-    // Sync immediately to match actual video state at script load time
     syncPlayBtn();
 
     playBtn.addEventListener('click', function () {
