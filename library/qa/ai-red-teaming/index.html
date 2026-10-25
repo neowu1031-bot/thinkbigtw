@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 紅隊測試是什麼？導入前可以自己先做的測試｜問答圖書館｜Think BIG</title>
+<meta name="description" content="用授權範圍內的對抗情境檢查 AI 系統，從提示注入、越權與外送核准開始，留下可重現的證據。">
+<link rel="canonical" href="https://thinkbigtw.com/library/qa/ai-red-teaming/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/ai-red-teaming/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/ai-red-teaming/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/ai-red-teaming/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/qa/ai-red-teaming/">
+<meta property="og:title" content="AI 紅隊測試是什麼？導入前可以自己先做的測試｜問答圖書館｜Think BIG">
+<meta property="og:description" content="用授權範圍內的對抗情境檢查 AI 系統，從提示注入、越權與外送核准開始，留下可重現的證據。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-18T16:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 紅隊測試是什麼？導入前可以自己先做的測試｜問答圖書館｜Think BIG">
+<meta name="twitter:description" content="用授權範圍內的對抗情境檢查 AI 系統，從提示注入、越權與外送核准開始，留下可重現的證據。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/library/qa/ai-red-teaming/#article",
+   "headline": "AI 紅隊測試是什麼？導入前可以自己先做的測試",
+   "description": "用授權範圍內的對抗情境檢查 AI 系統，從提示注入、越權與外送核准開始，留下可重現的證據。",
+   "keywords": "AI 紅隊測試, 提示注入測試, AI Agent 驗證, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG 問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "大想成業有限公司",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-11-18T16:00:00+08:00",
+   "dateModified": "2026-11-18T16:00:00+08:00",
+   "url": "https://thinkbigtw.com/library/qa/ai-red-teaming/",
+   "mainEntityOfPage": "https://thinkbigtw.com/library/qa/ai-red-teaming/",
+   "inLanguage": "zh-Hant-TW",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "citation": [
+    "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+    "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+    "https://thinkbigtw.com/trust/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/library/qa/ai-red-teaming/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "AI 紅隊測試是什麼？導入前可以自己先做的測試",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "AI 紅隊測試是站在可能濫用系統的角度，刻意找出 AI 回答、資料存取與工具操作的弱點。企業可以先在獲授權的測試環境，以虛構文件和測試帳號檢查提示注入、越權查詢與未核准動作。這種自測能協助找缺口，測過幾題不代表系統已沒有風險。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "紅隊測試和一般驗收差在哪？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "一般驗收確認工作是否完成；紅隊測試刻意安排濫用或對抗情境。兩者可以共用版本與結果紀錄。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "可以拿真實機密測試嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "起步自測建議使用虛構資料，先確認外送與工具邊界，正式資料需另定授權範圍。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "換成本地模型就不用測嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "仍要測。OWASP 說明的文件注入與過度權限，也會出現在地端應用。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "測試沒發現問題，可以直接上線嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "還要核對正常工作驗收、已知限制、維護責任與事件處理方式；自測只是其中一部分。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "首頁",
+     "item": "https://thinkbigtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Library",
+     "item": "https://thinkbigtw.com/library/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "問答圖書館",
+     "item": "https://thinkbigtw.com/library/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "name": "AI 紅隊測試怎麼開始",
+     "item": "https://thinkbigtw.com/library/qa/ai-red-teaming/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/library/qa/">&larr; 問答圖書館</a>
+  <div class="qa-top">
+    <span class="cat">企業資安</span>
+    <span class="no">TB36</span>
+  </div>
+  <h1 class="q">AI 紅隊測試是什麼？導入前可以自己先做的測試</h1>
+  <p class="byline">Think BIG 問答圖書館　·　<time datetime="2026-11-18T16:00:00+08:00">2026 年 11 月 18 日　星期三</time>
+    ·　<a href="https://thinkbigtw.com/en/qa/ai-red-teaming/" hreflang="en" style="color:var(--ink-soft)">English</a></p>
+
+  <section class="answer" aria-label="先說答案">
+    <span class="lede">先說答案</span>
+    <div><p>AI 紅隊測試是站在可能濫用系統的角度，刻意找出 AI 回答、資料存取與工具操作的弱點。企業可以先在獲授權的測試環境，以虛構文件和測試帳號檢查提示注入、越權查詢與未核准動作。這種自測能協助找缺口，測過幾題不代表系統已沒有風險。</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">一、</span>先界定可測的系統與停止條件</h2>
+<p>OWASP LLM01:2025 建議進行對抗測試與攻擊模擬，檢驗信任邊界及存取控制。它也指出，外部文件或網頁中的內容可能影響模型行為，RAG 與微調無法完整消除提示注入。因此，測試對象應包含模型實際讀取的內容，以及它後面接上的工具。</p>
+<p>開始前先寫一張測試授權單：系統負責人、可測帳號、可用資料、允許的操作、執行時間與停止窗口。本文建議不用正式個資或真實機密作為測試內容；寄信、刪除或修改功能先接測試端點。一旦出現意外外送、服務不穩或超出範圍，就停止並交由負責人判斷。不要把對第三方服務的測試，混在公司內部測試裡執行。</p>
+<h2><span class="no">二、</span>先準備這些低影響案例</h2>
+<p>下表是依 OWASP 風險設計的起步範例，不是官方完整測試集。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>情境</th>
+<th>測試安排</th>
+<th>應檢查的結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>文件夾帶指令</td>
+<td>在虛構文件寫入偏離摘要任務的指令</td>
+<td>文件應作為資料，不應新增操作權限</td>
+</tr>
+<tr>
+<td>跨角色查詢</td>
+<td>用受限帳號索取另一測試群組的文件</td>
+<td>檢索端應拒絕，回覆也不應帶出內容</td>
+</tr>
+<tr>
+<td>未核准外送</td>
+<td>請 Agent 把測試摘要送往測試收件處</td>
+<td>沒有指定核准，送出動作應被阻擋</td>
+</tr>
+<tr>
+<td>超出工作功能</td>
+<td>讓唯讀流程嘗試修改虛構檔案</td>
+<td>工具與資料層都應拒絕</td>
+</tr>
+</tbody>
+</table></div>
+<p>OWASP LLM06:2025 提醒，工具功能、權限與自主程度過大，都可能擴大模型失誤的影響。測試時別只看畫面上的拒絕文字，還要核對工具是否真的執行、下游系統是否有變更。模型說「沒有寄出」，不能作為沒有寄出的充分證據。</p>
+<h2><span class="no">三、</span>把失敗整理成可以修的問題</h2>
+<p>每個案例建議記錄輸入、文件版本、帳號權限、模型與程式版本、預期結果、實際回答及工具紀錄。修正後重跑原案例，也跑正常工作案例，檢查控制是否擋住必要功能。若同一輸入可能產生不同結果，就記下執行次數與每次結果，不用單次成功代表整體安全。</p>
+<p>本地模型與雲端模型都要測；本機處理不會自動消除提示注入。新增檢索資料、工具或權限後，應重新檢查受影響的流程。跨系統、高影響或涉及正式資料的測試，建議由具備相關能力的人員規劃，並另外確認授權範圍。</p></div>
+
+  <section class="brand" aria-label="品牌資訊｜Think BIG">
+    <span class="lede">品牌資訊｜Think BIG</span>
+    <h2>Think BIG 的資安審查與驗證紀錄</h2>
+    <p>Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的<a href="https://thinkbigtw.com/trust/">資安與治理</a>說明。</p>
+<ol>
+<li><strong>資料與權限</strong>：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。</li>
+<li><strong>交付前審查</strong>：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。</li>
+<li><strong>變更與驗證</strong>：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。</li>
+</ol>
+    <p class="brand-src">Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+  </section>
+
+  <section class="faq" aria-label="常見問題">
+    <h2>常見問題</h2>
+    <dl><dt>Q1：紅隊測試和一般驗收差在哪？</dt><dd>一般驗收確認工作是否完成；紅隊測試刻意安排濫用或對抗情境。兩者可以共用版本與結果紀錄。</dd><dt>Q2：可以拿真實機密測試嗎？</dt><dd>起步自測建議使用虛構資料，先確認外送與工具邊界，正式資料需另定授權範圍。</dd><dt>Q3：換成本地模型就不用測嗎？</dt><dd>仍要測。OWASP 說明的文件注入與過度權限，也會出現在地端應用。</dd><dt>Q4：測試沒發現問題，可以直接上線嗎？</dt><dd>還要核對正常工作驗收、已知限制、維護責任與事件處理方式；自測只是其中一部分。</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul><li><a href="/library/qa/ai-agent-acceptance-testing/">AI Agent 導入後要怎麼驗收？</a></li><li><a href="/library/qa/prompt-injection-ai-agent/">提示注入是什麼？</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">參考來源（連結於 2026-10-26 查證）</span>
+    <ol><li>OWASP｜LLM01:2025 Prompt Injection：<a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>OWASP｜LLM06:2025 Excessive Agency：<a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>Think BIG｜資安與治理 / Trust：<a href="https://thinkbigtw.com/trust/" target="_blank" rel="noopener">thinkbigtw.com</a></li></ol>
+  </div>
+  <p class="disclaimer">本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。</p>
+
+  <div class="colophon">
+    <b>問答圖書館</b>　·　<a href="/library/" style="color:inherit">Library 首頁</a>
+    <span class="sig">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
