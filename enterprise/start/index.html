@@ -264,10 +264,11 @@
 
 <!-- Q1 用途 -->
 <div class="quiz-q" id="q1-wrap">
-<label for="q1">1. 這套 AI 是做什麼用的？<span style="color:var(--rose)">*</span></label>
-<div class="radio-group">
-<label><input type="radio" name="purpose" value="business" required> 公司營業使用或替客戶服務（企業方案）</label>
-<label><input type="radio" name="purpose" value="personal"> 個人自己使用（非營業）</label>
+<label>1. 這套 AI 是做什麼用的？<span style="color:var(--rose)">*</span></label>
+<p class="q-note">可複選；兩者皆勾時，以企業方案判斷</p>
+<div class="check-group">
+<label><input type="checkbox" name="purpose" value="business"> 公司營業使用或替客戶服務（企業方案）</label>
+<label><input type="checkbox" name="purpose" value="personal"> 個人自己使用（非營業）</label>
 </div>
 </div>
 
@@ -357,11 +358,11 @@
 
 <!-- Q10 使用通路 -->
 <div class="quiz-q" id="q10-wrap">
-<label>10. 想在哪裡使用這套 AI？</label>
-<div class="radio-group">
-<label><input type="radio" name="channel" value="line"> LINE 官方帳號</label>
-<label><input type="radio" name="channel" value="web"> 嵌入公司網站或內部頁面</label>
-<label><input type="radio" name="channel" value="internal_comms"> 公司內部通訊工具（Teams、Slack 等）</label>
+<label>10. 想在哪裡使用這套 AI？（可複選）</label>
+<div class="check-group">
+<label><input type="checkbox" name="channel" value="line"> LINE 官方帳號</label>
+<label><input type="checkbox" name="channel" value="web"> 嵌入公司網站或內部頁面</label>
+<label><input type="checkbox" name="channel" value="internal_comms"> 公司內部通訊工具（Teams、Slack 等）</label>
 </div>
 </div>
 
@@ -390,7 +391,7 @@
 <button type="submit" class="button" id="quiz-submit" style="margin-top:28px;width:100%" disabled>
   計算適合的級距 <span aria-hidden="true">›</span>
 </button>
-<p id="quiz-submit-hint" style="font-size:13px;color:var(--muted);margin-top:8px">請回答第 1 題（用途）和第 12 題（個資同意）後啟用</p>
+<p id="quiz-submit-hint" style="font-size:13px;color:var(--muted);margin-top:8px">請至少勾選第 1 題（用途）一個選項，並勾選第 12 題（個資同意）後啟用</p>
 </form>
 
 <!-- Grade Result (shown after submit) -->
@@ -595,6 +596,7 @@ const submitBtn = document.getElementById('quiz-submit');
 const submitHint = document.getElementById('quiz-submit-hint');
 function checkSubmitEligible(){
   const f = document.getElementById('quiz-form');
+  // Q1 is now checkbox: at least one option must be checked
   const hasPurpose = !!f.querySelector('input[name="purpose"]:checked');
   const hasConsent = f.querySelector('#q12-consent').checked;
   submitBtn.disabled = !(hasPurpose && hasConsent);
@@ -614,19 +616,20 @@ function computeGrade(f){
   const get = name => f.querySelector('input[name="'+name+'"]:checked')?.value || '';
   const getChecked = name => [...f.querySelectorAll('input[name="'+name+'"]:checked')].map(e=>e.value);
 
-  const purpose = get('purpose');
+  // Q1 is now multi-select checkbox
+  const purposes = getChecked('purpose');
   const docCount = get('doc_count');
   const docFormats = getChecked('doc_format');
   const needsDraft = get('needs_draft');
   const docLocation = get('doc_location');
-  const channel = get('channel');
+  // Q10 is now multi-select checkbox
+  const channels = getChecked('channel');
   const device = get('device');
 
-  // Personal use → redirect
-  if(purpose === 'personal') return 'personal';
+  // If only "personal" is checked (no "business"), redirect to personal plans
+  if(purposes.length > 0 && !purposes.includes('business')) return 'personal';
 
   // Out-of-scope check
-  const mostlyScans = docFormats.length > 0 && docFormats.every(f=>f==='scan') && docFormats.includes('scan');
   const onlyScans = docFormats.length === 1 && docFormats[0] === 'scan';
   if(onlyScans) return 'consult';
   if(device === 'no_device') return 'consult';
@@ -639,7 +642,7 @@ function computeGrade(f){
   if(docCount === '31to100') grade = 'standard';
   if(docFormats.includes('spreadsheet')) grade = 'standard';
   if(needsDraft && needsDraft !== 'none') grade = 'standard';
-  if(channel === 'internal_comms') grade = 'standard';
+  if(channels.includes('internal_comms')) grade = 'standard';
 
   // Bump to complete
   if(docLocation === 'cloud_frequent') grade = 'complete';
@@ -832,7 +835,7 @@ function collectAnswers(f, grade){
     '【企業 AI 自助評估問卷】',
     '判斷級距：' + grade,
     urlSrc ? '來源：' + urlSrc : '',
-    '用途：' + get('purpose'),
+    '用途：' + getChecked('purpose'),
     '公司：' + (f.querySelector('#q2-name').value.trim() || '（未填）'),
     '統編：' + (f.querySelector('#q2-tin').value.trim() || '（未填）'),
     '填寫人：' + (f.querySelector('#q3-name').value.trim() || '（未填）'),
@@ -842,7 +845,7 @@ function collectAnswers(f, grade){
     '文件格式：' + getChecked('doc_format'),
     '草稿需求：' + get('needs_draft'),
     '文件位置：' + get('doc_location'),
-    '使用通路：' + get('channel'),
+    '使用通路：' + getChecked('channel'),
     '設備狀況：' + get('device'),
   ].filter(Boolean).join('\n');
 }
