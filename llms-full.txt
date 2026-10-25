@@ -1744,6 +1744,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 016
+
+November 6, 2026 · AI Deployment Field Notes
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.](https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/)
 [Issue 015
 
 November 4, 2026 · Local AI Field Notes
@@ -1851,6 +1858,117 @@ October 3, 2026 · AI Agent Deployment
 Most AI Agent abandonment has nothing to do with the tool itself. It comes down to three things nobody confirmed at the start: can you switch models, who owns the data, and can you predict the monthly cost?](https://thinkbigtw.com/en/news/lobster-hermes-abandonment-20261003/)
 
 This edition is also available in [Traditional Chinese (繁中版)](https://thinkbigtw.com/library/news/).
+
+---
+
+URL: https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/
+
+# What Is ISO/IEC 42001? Documenting How a Business Governs AI | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 016
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 6, 2026  ·  Friday
+◆
+AI Deployment Field Notes
+◆
+Issue 016
+
+ISO/IEC 42001:2023 · AI Governance · Management Systems
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Think BIG Media  |  November 6, 2026
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.
+
+## One.  What’s Happening: AI Governance Is Becoming Subject to Independent Assessment
+
+On September 5, 2025, the UK accreditation body UKAS said it was advancing accreditation work for ISO/IEC 42001 AI management system certification.[1] We use that institutional development to introduce business preparation. We do not present its historical progress as today’s status or rank certification bodies.
+
+ISO describes ISO/IEC 42001:2023 as requirements for establishing, implementing, maintaining, and continually improving an AI management system. It applies to organizations providing or using AI products and services.[2] A business does not need to train its own model to have AI uses worth inventorying.
+
+ISO’s public explainer covers responsibility, risk, data and system management, oversight, and improvement.[3] Our reading is that an organization should be able to explain why a use is allowed and what happens when it goes wrong. This article introduces public guidance; it is not a clause-by-clause treatment of the full standard or a certification checklist.
+
+## Two.  Perspectives: A Common Framework Helps; Certificates Need Context
+
+The case for structure:  UKAS describes accreditation work as supporting consistency and credibility in AI certification.[1] ISO describes a management system in terms of policies, objectives, and processes.[2] In our view, this makes governance accountable rather than leaving each department to interpret it independently.
+
+The limitation:  ISO explains that its framework supports compliance obligations while laws and regulations still apply.[3] A certificate therefore should not be read as evidence that every answer is accurate or every use has received legal review. Management processes and task-specific checks address different questions.
+
+ISO develops standards; external certification bodies conduct certification. Accreditation formally recognizes a certification body’s competence.[4] Keep those roles distinct. Ask about the standard edition, certified organization, covered activities, and verification contact rather than simply asking whether a supplier “has ISO.”
+
+Begin with a bounded use, such as internal document Q&A. Ask which documents are allowed, who maintains versions, what happens without evidence, and who can suspend use. This starts the governance discussion; it does not establish conformity with the whole standard.
+
+For external descriptions, distinguish completed work from plans. Completed checks need records; open items need owners and actions. Planning around a standard should not be worded as completed independent certification. Keep the wording consistent with actual progress.
+
+◆ Deployment Checklist
+
+## Three. Our Deployment Checklist
+
+This section proposes questions for deployment preparation. It does not describe a certification engagement or claim certification experience.
+
+1. Which uses belong in scope?  We would ask whether AI drafts text, retrieves documents, or participates in decisions. Write down inputs, output purposes, and recipients. If the answer is “everyone uses it,” start with one describable task.
+
+2. Who may change the rules?  Identify who approves data uploads, model or plugin changes, and who can suspend use. The point is a clear decision owner, not assigning every responsibility to one engineer.
+
+3. What demonstrates routine execution?  Keep tests, versions, incident handling, and improvement tracking under the relevant use. Records should explain decisions made at the time rather than being reconstructed only before an audit.
+
+4. What needs specialist review?  Turn contract, privacy, and sector-specific questions into explicit requests for qualified advisers. This introduction is informational, not legal advice or a conformity assessment.
+
+## Four.  Our Recommendations: Start with One Use and Traceable Records
+
+1. Inventory AI uses.  Record purpose, owner, sources, users, supplier, and shutdown method. Include services actually used, beyond the purchasing list.
+
+2. Connect risks to responses.  For outdated documents, unsupported answers, or unauthorized retrieval, name the reviewer, response, and retest condition. This is our practical application of the risk-management direction in ISO’s public guidance.[3]
+
+3. Keep change and correction records.  When changing a model, document source, or tool, record the change, approval, and test questions. Track incident outcomes and open actions rather than closing a ticket with “improved.”
+
+4. Confirm certification needs separately.  Discuss scope, procedures, and evidence with the certification body when required. ISO describes certification as voluntary, while some industries may have contractual or legal requirements; assess the specific situation.[3][4]
+
+Build everyday management records that an independent reviewer can follow.
+
+◆ Editor’s Note · How Think BIG Approaches This: Responsibility Before Paperwork
+
+## Connect uses, owners, checks, and improvements.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend deployment records tied to actual work, with an approval, testing, shutdown, and improvement contact for each use. Governance can expand gradually; a written policy alone does not complete the work.
+
+This is Think BIG’s governance position. It is not a claim that Think BIG holds ISO/IEC 42001 certification.
+
+### Frequently Asked Questions
+
+Q1: What does ISO/IEC 42001 cover?
+ISO/IEC 42001:2023 covers AI management systems for organizations providing or using AI.[2]
+Q2: Is it relevant to users of external AI services?
+Yes. ISO’s public description includes organizations using AI systems.[2][3]
+Q3: Does ISO issue the certificate?
+No. ISO develops standards; external certification bodies perform certification.[4]
+Q4: Does certification eliminate answer checks?
+We recommend task acceptance checks. Management-system assessment and the accuracy of an individual output are different questions.[2][3]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] UKAS, “AI accreditation update,” September 5, 2025, accessed 2026-10-26: [www.ukas.com](https://www.ukas.com/resources/latest-news/ai-accreditation-update/) ·
+    [2] ISO, “ISO/IEC 42001:2023,” public description, accessed 2026-10-26: [www.iso.org](https://www.iso.org/standard/42001) ·
+    [3] ISO, “ISO/IEC 42001 explained”, accessed 2026-10-26: [www.iso.org](https://www.iso.org/insights/iso-42001-explained) ·
+    [4] ISO, “Certification”, accessed 2026-10-26: [www.iso.org](https://www.iso.org/certification.html)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
 
 ---
 
@@ -8480,6 +8598,117 @@ NEWS
 AI Agent 導入的第一手觀察。從實際部署經驗出發，每期一篇——談工具背後的問題、踩坑心得，以及你導入前該問清楚的事。
 
 THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/iso-42001-ai-management-20261106/
+
+# ISO/IEC 42001 是什麼？——企業管理 AI，要留下哪些決定與證據 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 016 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 6 日　星期五
+◆
+AI 導入實測手記
+◆
+第 016 期
+
+ISO/IEC 42001:2023 · AI 治理 · 管理系統
+
+## ISO/IEC 42001 是什麼？——企業管理 AI，要留下哪些決定與證據
+
+Think BIG 自媒體部  |  2026 年 11 月 6 日
+
+先盤點公司在哪裡用 AI、誰負責、怎麼檢查，再討論驗證。管理制度要能在日常工作中留下證據。
+
+## 一 現象：AI 的治理，也進入第三方查核流程
+
+2025 年 9 月 5 日，英國認可機構 UKAS 公告，正推進 ISO/IEC 42001 AI 管理系統驗證的認可工作。[1] 本文以這項制度發展為引子，解釋企業該準備什麼，不把當年的進度當成今日狀態，也不列驗證機構排名。
+
+依 ISO 公開說明，ISO/IEC 42001:2023 要求組織建立、實施、維持並持續改善 AI 管理系統，對象包括提供或使用 AI 產品、服務的組織。[2] 換句話說，討論範圍不限於自己訓練模型；把外部 AI 用進流程，也值得先盤點。
+
+ISO 的解說把治理內容整理為責任、風險、資料與系統管理、監督及持續改善等面向。[3] 我們的理解是，企業要能解釋「為什麼允許這樣用、出了偏差怎麼處理」。本文只依已公開說明介紹方向，不宣稱逐條涵蓋標準全文，也不把下方清單當成正式驗證準則。
+
+## 二 各方評價：共同框架有價值，證書的解讀要有範圍
+
+支持制度化的一面： UKAS 表示，認可工作要提升 AI 驗證的一致性與可信度。[1] ISO 則把管理系統描述為有關政策、目標與流程的一組安排。[2] 我們的判讀是，這能把「有在管理 AI」轉成可問責的事項，避免每個部門自行理解。
+
+需要保留的一面： ISO 解說明確指出，這套框架協助處理合規義務，但法律與法規仍須另行遵守。[3] 因而不能從一張證書推論每個模型答案都正確，或所有使用情境都已完成法律評估。前者是管理流程，後者仍需要對具體任務查核。
+
+還有兩個容易混淆的角色：ISO 制定標準，驗證由外部驗證機構執行；認可則是對驗證機構能力的正式承認。[4] 本文沿用這個區分。詢問供應商時，與其只問「有沒有 ISO」，我們更建議確認標準年版、組織名稱、涵蓋活動及查證窗口。
+
+實際討論時，我們建議先選一個範圍清楚的用途，例如內部文件問答，請負責人逐一回答：哪些文件准用、誰維護版本、答案沒有依據時怎麼辦、誰決定暫停。這個例子是管理討論的起點，不代表照做這幾項就符合整份標準。
+
+對外描述制度時，我們也建議逐句區分事實與計畫。已執行的檢查要能拿出紀錄，尚未完成的項目要標示負責人與待辦；使用「依標準方向規劃」時，也不要讓讀者誤以為已經通過獨立驗證。文件的用語應和實際進度一致。
+
+◆ 導入檢查清單
+
+## 三、我們導入時的檢查清單
+
+以下是我們導入 AI 前會先跟負責人確認的四個問題，不是 ISO/IEC 42001 驗證或輔導紀錄。
+
+1. 哪些用途要納入管理？ 我們會先問：AI 是協助寫草稿、查文件，還是參與決策？把輸入資料、輸出用途與接收人寫下來。若回答只是「大家都有用」，就先縮小到一項可描述的工作。
+
+2. 誰能改規則？ 我們會問誰核准資料上傳、模型或外掛變更，以及誰有權暫停使用。這份責任表的目的，是讓決定有明確窗口，並非把所有工作都交給同一位工程人員。
+
+3. 怎麼證明日常有照做？ 我們建議把測試紀錄、版本、異常處理與改善追蹤放在同一個用途底下。資料要能說明當時判斷，不要只在稽核前補寫一份看不出執行過程的文件。
+
+4. 哪些問題需要另請專業人員？ 合約、個資及產業規範疑問，應列成明確問題交由相應專業人員確認。本期是管理入門，供參考，不構成法律意見或驗證符合性判定。
+
+## 四 我們的建議：從一個用途開始，留下可追蹤的管理紀錄
+
+1. 建一張 AI 用途表。 每項填用途、負責人、資料來源、使用對象、供應商及停止方式。先把實際在用的服務列出來，再討論管理範圍；不要只盤點採購清單。
+
+2. 對用途寫風險與處置。 例如文件過期、答案無依據或讀到不該看的資料，分別約定檢查人、處置方式與再測條件。這是我們把 ISO 公開風險管理方向轉成日常工作的建議。[3]
+
+3. 保存變更與修正紀錄。 換模型、改文件來源或加工具時，記錄改了什麼、誰核准、測了哪些題目。異常則記錄處理結果與待辦，不要只寫「已改善」就關單。
+
+4. 另行確認驗證需求。 若有契約或管理需求，再向驗證機構確認範圍、程序及所需證據。ISO 說明驗證可以自願選擇，部分產業亦可能有法定或契約要求，應依具體情況確認。[3][4]
+
+一句話：先把管理做成日常紀錄，再讓外部查核看得懂。
+
+◆ 編按 · Think BIG 的做法：先有責任，再談文件
+
+## 用途、負責人、檢查與改善要連在一起。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張 AI 導入文件能對應實際工作，讓每個用途都找到核准、測試、停止與改善的窗口。制度規模可以逐步擴充，但不要把寫完政策當成工作已完成。
+
+可先參考[AI Agent 驗收題組](https://thinkbigtw.com/library/qa/ai-agent-acceptance-testing/)。此處描述的是 Think BIG 的治理主張，不表示本公司取得 ISO/IEC 42001 驗證。
+
+### 常見問題
+
+Q1：ISO/IEC 42001 管的是什麼？
+ISO/IEC 42001:2023 是 AI 管理系統標準，適用於提供或使用 AI 的組織。[2]
+Q2：只買外部 AI 也值得看嗎？
+值得先盤點。ISO 公開說明的適用對象包含使用 AI 系統的組織。[2][3]
+Q3：ISO 會直接發證書嗎？
+不會。ISO 制定標準，外部驗證機構執行驗證。[4]
+Q4：有證書就不用檢查回答嗎？
+我們建議仍做任務驗收。管理系統查核與每次輸出的正確性是不同問題。[2][3]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] UKAS，〈AI accreditation update〉，2025-09-05，查閱日期 2026-10-26：[www.ukas.com](https://www.ukas.com/resources/latest-news/ai-accreditation-update/)　·
+    [2] ISO，〈ISO/IEC 42001:2023〉公開說明，查閱日期 2026-10-26：[www.iso.org](https://www.iso.org/standard/42001)　·
+    [3] ISO，〈ISO/IEC 42001 explained〉，查閱日期 2026-10-26：[www.iso.org](https://www.iso.org/insights/iso-42001-explained)　·
+    [4] ISO，〈Certification〉，查閱日期 2026-10-26：[www.iso.org](https://www.iso.org/certification.html)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
