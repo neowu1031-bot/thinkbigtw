@@ -1744,6 +1744,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 014
+
+November 2, 2026 · Enterprise Security Notes
+
+## What Is MCP? Set Permission Boundaries Before Connecting an AI Agent
+
+Before connecting an agent, define what it may read, change, and send. Review the connection protocol, authentication, and business approvals separately.](https://thinkbigtw.com/en/news/mcp-ai-agent-permissions-20261102/)
 [Issue 013
 
 October 31, 2026 · Local AI Field Notes
@@ -2327,6 +2334,117 @@ This article combines industry reporting with Think BIG's first-hand practice. A
 
 THINK BIG NEWS   ·  First-hand AI deployment notes
     Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/news/mcp-ai-agent-permissions-20261102/
+
+# What Is MCP? Set Permission Boundaries Before Connecting an AI Agent | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Enterprise Security Notes · Issue 014
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+November 2, 2026  ·  Monday
+◆
+Enterprise Security Notes
+◆
+Issue 014
+
+MCP · AI Agents · Access Control
+
+## What Is MCP? Set Permission Boundaries Before Connecting an AI Agent
+
+Think BIG Media  |  November 2, 2026
+
+Before connecting an agent, define what it may read, change, and send. Review the connection protocol, authentication, and business approvals separately.
+
+## One.  What’s Happening: Connections Are Easier; Accountability Stays with the Business
+
+In May 2025, Anthropic announced an API MCP connector that let developers connect to remote MCP servers without writing separate client code.[1] That announcement is the starting point for this practical discussion, rather than a new product update. Easier connections shift the business question from whether an agent can connect to what it may do afterward.
+
+MCP stands for Model Context Protocol. Its tools specification lets servers expose functions a model can invoke, including database queries, API calls, and computations.[3] Reading a list and editing it remain different business actions even when both appear in the same tool menu. We recommend assigning approval conditions to each action.
+
+The authorization document at the 2025-06-18 path covers HTTP transports and says STDIO implementations should obtain credentials from the environment instead.[2] The tools document requires server access controls and recommends user confirmation for sensitive operations.[3] A successful connection therefore does not complete permission acceptance.
+
+## Two.  Perspectives: Interoperability Helps; Authorization Still Needs Work
+
+The case for adoption:  The connector announcement describes less custom client work for remote integrations.[1] In our assessment, a consistent interface can also help teams inventory tools. It does not make each connected system’s data boundaries or business responsibilities identical.
+
+The caution:  The authorization specification requires servers to validate that access tokens were issued for them.[2] The security guidance describes how insufficiently restricted local MCP programs can execute commands, expose data, or cause data loss.[4] These are implementation risks, not a claim that every MCP service has suffered an incident.
+
+We recommend separate records for connectivity, permissions, and approvals. Engineering maps the data flow. The system owner defines accessible fields. The business owner identifies changes that require a person to approve them. Being signed in should not serve as permission for every available action.
+
+Consider a hypothetical permission test: someone may read a document, but may they ask the agent to email it externally? If the answers differ, document separate conditions for reading and sending. The approval view should identify the actual document and recipient, with consent scoped to this action.
+
+For cross-system work, map revocation responsibilities. Disabling the AI tool, disconnecting MCP, and revoking a downstream account are different control points; the required combination depends on the architecture. Ask the maintainer to demonstrate shutdown and test the result. Track unfinished work before deciding how to close it.
+
+We also recommend acceptance with a restricted test identity, beyond an administrator’s successful demonstration. Run both permitted and denied actions and have the owner review the reasons. This establishes a usable baseline for future access changes.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These points come from our review practice for skills, plugins, and MCP servers. They are not industry statistics or an account of any particular organization.
+
+1. Read what the program actually does.  We check its source, maintainer, license, access to environment variables or keys, outbound connections, and execution of downloaded code. A tool labeled “search” still needs a review of its actual operations.
+
+2. Review permissions and versions together.  We check requested privileges and pin versions. Packages that fail review are not installed. This creates a traceable decision before introducing third-party code; it does not remove all risk.
+
+3. Record unresolved questions.  Extending that practice, we recommend tracking unexplained destinations, write operations, and credential sources. A program starting successfully is not a reason to close the review.
+
+## Four.  Our Recommendations: Turn Boundaries into Repeatable Tests
+
+1. Inventory tools.  Record the system, account, folders or tables, read and write capabilities, and owner. Start query tools with read-only accounts. Document the reason and approver for any write access.
+
+2. Enforce restrictions in the system.  Use account permissions, API authorization, or server rules, then test that out-of-scope requests are rejected. Prompts can explain a policy; acceptance should demonstrate its enforcement.[3]
+
+3. Preview sensitive operations.  We recommend human confirmation before sending messages, deleting records, or changing production data. Show the recipient, target, and proposed change. This turns the specification’s confirmation guidance into a usable workflow.[3]
+
+4. Test revocation and record results.  With test data, check permitted access, denied access, and failure after revocation. Record time, actor, and outcome without logging full credentials. Set tool-call timeouts too.[2][3]
+
+Demonstrate permission boundaries with rejection tests and approval records.
+
+◆ Editor’s Note · How Think BIG Approaches This: Connections You Can Revoke
+
+## Deliver the tool inventory, approval conditions, and revocation tests together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Our position is that every integration should have a documented purpose, data scope, and maintenance contact. Human confirmation for sensitive operations belongs in acceptance. Review the changed components whenever a tool or permission is added.
+
+The handover should let the owner understand the authorization and stop the connection.
+
+### Frequently Asked Questions
+
+Q1: Is MCP an AI model?
+No. Its tools specification describes how models invoke external functions.[3]
+Q2: Does MCP handle all permissions?
+Access controls still need implementation in the server and connected systems.[2][3]
+Q3: Should local MCP programs be reviewed?
+Yes. The security guidance identifies local command execution and data access risks.[4]
+Q4: What should require approval?
+We recommend previews and designated approvers for messages, deletions, and production changes, applying the sensitive-operation guidance.[3]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Anthropic, “New capabilities for building agents on the Anthropic API,” May 22, 2025, accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/news/agent-capabilities-api) ·
+    [2] MCP, “Authorization,” 2025-06-18 path, accessed 2026-10-26: [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) ·
+    [3] MCP, “Tools,” 2025-06-18 path, accessed 2026-10-26: [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-06-18/server/tools) ·
+    [4] MCP, “Security Best Practices”, accessed 2026-10-26: [modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
 
 ---
 
@@ -8728,6 +8846,117 @@ Q5：中小企業該選地端還是雲端？
 本文為 Think BIG 產業觀察與第一手實作整理，引用之法規、官方文件與廠商條款均標註來源，條款內容以各來源最新版本為準。文中提到的公司以描述代稱、連結附於來源，內容不評價任何公司或產品。本文不構成法律意見，涉及個資與合約的判斷請洽專業人士。我們的第一手經驗全不具名。
 
 THINK BIG NEWS   ·  AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/mcp-ai-agent-permissions-20261102/
+
+# MCP 是什麼？AI Agent 接上公司系統前，先看清楚權限邊界 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+企業資安實務 · 第 014 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+2026 年 11 月 2 日　星期一
+◆
+企業資安實務
+◆
+第 014 期
+
+MCP · AI Agent · 權限管理
+
+## MCP 是什麼？AI Agent 接上公司系統前，先看清楚權限邊界
+
+Think BIG 自媒體部  |  2026 年 11 月 2 日
+
+接上系統之前，先列出 AI 能讀、能改、能送出的內容。連接規格、登入授權與企業核准流程，要分開檢查。
+
+## 一 現象：連接變容易，責任仍留在企業
+
+2025 年 5 月，Anthropic 公布 API 的 MCP connector，說明開發者可以連接遠端 MCP 伺服器，不必另外撰寫連接端程式。[1] 這則公告提供一個具體引子：當 AI 連接外部系統的門檻降低，企業該問的也從「能不能接」走到「接上後能做什麼」。本文引用當年的公告延伸實務，並非新功能快訊。
+
+MCP 是 Model Context Protocol。其工具規格讓伺服器公開可由模型呼叫的功能，例如查詢資料庫、呼叫 API 或執行運算。[3] 但同一套連接方式下，查詢名單與修改名單是不同動作；我們建議，不能因為它們出現在同一個工具選單，就給相同的核准條件。
+
+授權規格另有範圍：本文查閱的 2025-06-18 路徑說明，HTTP 傳輸有對應授權流程，STDIO 則應從環境取得憑證。[2] 工具文件也要求伺服器做存取控制，並建議連接端對敏感操作要求使用者確認。[3] 因此，MCP 的連線成功不能當成公司權限驗收完成。
+
+## 二 各方評價：互通值得採用，授權不能省略
+
+便利的一面： 官方連接公告呈現的價值，是減少連接遠端工具時要自行處理的程式工作。[1] 我們的判讀是，統一介面讓團隊較容易盤點工具；但介面一致，不代表各系統的資料範圍與商業責任也一致。
+
+保留的一面： 授權文件要求伺服器驗證存取權杖確實是簽發給自己的，不能把任何拿來的權杖都當成有效。[2] 安全文件也提醒，本地 MCP 程式若缺乏限制，可能執行指令、外傳或刪除資料。[4] 這些是實作風險說明，不代表每個 MCP 服務都曾發生事件。
+
+我們主張把討論拆成連接、權限與核准三張表。工程人員確認資料如何流動；系統負責人決定能讀哪些欄位；業務負責人決定哪些變更必須停下來等人。不要讓「已登入」成為所有動作的通行證。
+
+我們建議用一個假設情境檢查權限表：同一位同仁能查詢某份文件，是否也應能要求 AI 把它寄到外部信箱？若答案不同，就要分開列出讀取與送出的條件。核准畫面也應顯示實際文件與收件人，讓人知道這次同意的是哪個動作，而非一次開放後續所有工具。
+
+遇到跨系統工作，我們建議再確認撤權的責任鏈。停用 AI 端工具、關閉 MCP 連接與撤銷下游帳號，是不同的操作點；實際要做哪些，由連接架構決定。驗收時應請維護者示範停止入口，並用測試請求確認結果。若仍有未結束的工作，先留下待處理清單，再決定如何收尾。
+
+我們也建議避免只用管理員帳號展示成功畫面。請負責人指定一個權限較小的測試身分，實際跑允許與不允許的操作，把拒絕原因交給他確認。這樣的證據較能回答交付後的使用範圍，並讓新增權限有明確的比較基準。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們審查技能、外掛與 MCP 伺服器的做法，不是產業統計，也不描述特定對象。
+
+1. 先看程式實際做什麼。 我們會檢查來源、維護者、授權，以及是否讀環境變數或金鑰、對外連線、執行下載的程式。工具名稱寫「查詢」，仍要看實際呼叫範圍。
+
+2. 權限與版本一起審。 我們會確認所需權限並固定版本；審查未通過就不安裝。這不代表第三方程式碼沒有風險，而是每次引入前都有可追溯的判斷。
+
+3. 用清單留下疑問。 從上述做法延伸，我們建議把尚未說清楚的連線目的地、寫入行為與憑證來源列成待確認項；不要因為工具可以啟動就直接結案。
+
+## 四 我們的建議：把邊界做成可以重跑的測試
+
+1. 建工具清單。 逐項記下系統、帳號、資料夾或資料表、讀寫能力與負責人。查詢工具先用唯讀帳號試行；需要寫入時，另列理由與核准人。
+
+2. 在系統端限制。 把資料範圍落在帳號權限、API 授權或伺服器規則，並測試超出範圍的請求會被拒絕。提示詞可以說明規則，但驗收要看真正的拒絕結果。[3]
+
+3. 敏感動作先顯示預覽。 我們建議寄信、刪除及修改正式資料先交人確認，畫面列出收件人、目標與變更內容。這是把工具文件的確認建議落成具體流程。[3]
+
+4. 測撤權與留紀錄。 用測試資料跑讀取成功、越權失敗與撤權後失敗三種情境，記下時間、操作者與結果。紀錄不放完整金鑰，工具逾時也要能停止。[2][3]
+
+一句話：權限邊界要由系統拒絕與核准證據來證明。
+
+◆ 編按 · Think BIG 的做法：接通之後還要能收回
+
+## 工具清單、核准條件、撤權測試一起交付。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張每個連接都留下用途、資料範圍與維護窗口，並把敏感操作的人工確認列為驗收項。新增工具或擴大權限時，重新審查變動部分。
+
+可延伸閱讀[AI Agent 權限設定問答](https://thinkbigtw.com/library/qa/ai-agent-permissions/)。我們的做法重點是讓負責人看得懂授權，也有能力停止連接。
+
+### 常見問題
+
+Q1：MCP 是一種 AI 模型嗎？
+不是。MCP 的工具規格描述 AI 如何呼叫外部功能，不是模型本身。[3]
+Q2：用 MCP 就有權限管理嗎？
+仍要在伺服器與連接系統實作存取控制；連線成功不等於授權範圍正確。[2][3]
+Q3：本機 MCP 也需要審查嗎？
+需要。官方安全文件提醒，本地程式可能有指令執行與資料存取風險。[4]
+Q4：哪些動作適合等人核准？
+我們建議寄信、刪除與正式資料變更先顯示預覽，由指定人確認；這是實作建議。[3]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Anthropic，〈New capabilities for building agents on the Anthropic API〉，2025-05-22，查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/news/agent-capabilities-api)　·
+    [2] MCP，〈Authorization〉，2025-06-18 路徑，查閱日期 2026-10-26：[modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)　·
+    [3] MCP，〈Tools〉，2025-06-18 路徑，查閱日期 2026-10-26：[modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-06-18/server/tools)　·
+    [4] MCP，〈Security Best Practices〉，查閱日期 2026-10-26：[modelcontextprotocol.io](https://modelcontextprotocol.io/specification/2025-06-18/basic/security_best_practices)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  企業資安實務
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
