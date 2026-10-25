@@ -1744,6 +1744,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 017
+
+November 8, 2026 · Local AI Field Notes
+
+## Should AI Tools Update Automatically? Pin Versions and Plan Patches
+
+A business AI agent needs a known runtime. Pin a reproducible combination, then assign owners for updates, acceptance checks, and recovery.](https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/)
 [Issue 016
 
 November 6, 2026 · AI Deployment Field Notes
@@ -2805,6 +2812,117 @@ Sources
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of customer outcomes.
 
 THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/
+
+# Should AI Tools Update Automatically? Pin Versions and Plan Patches | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 017
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 8, 2026  ·  Sunday
+◆
+Local AI Field Notes
+◆
+Issue 017
+
+Version Management · AI Agents · Update Acceptance
+
+## Should AI Tools Update Automatically? Pin Versions and Plan Patches
+
+Think BIG Media  |  November 8, 2026
+
+A business AI agent needs a known runtime. Pin a reproducible combination, then assign owners for updates, acceptance checks, and recovery.
+
+## One.  What’s Happening: Repeatability and Patching Belong Together
+
+Updates involve more than new features. pip documents version pinning as a way to build repeatable environments, with hashes available to check downloaded packages.[1] npm’s npm ci  requires an existing lockfile and fails if it conflicts with the package declaration rather than rewriting it.[2] Both make the intended installation more explicit.
+
+NIST SP 800-40 Rev. 4, its 2022 enterprise patch-management planning guide, describes identifying, prioritizing, acquiring, installing, and verifying updates.[4] Pinning is therefore no reason to ignore vulnerabilities indefinitely. We recommend recording both the current version combination and the next update review.
+
+Installation methods matter too. Ollama’s Windows documentation distinguishes its installer from a standalone CLI archive that can be integrated as a service.[3] This illustrates why deployment methods should be recorded; it is not a product recommendation or a claim that all AI tools update alike.
+
+## Two.  Perspectives: Automation Helps; Production Changes Need Control
+
+The case for automation:  NIST frames patching as preventive maintenance and calls for an operational enterprise strategy.[4] In our assessment, automation can support inventories, notifications, and agreed procedures. Relying entirely on someone remembering to read announcements is fragile.
+
+The caution:  pip says pinning reduces exposure to bugs or incompatibilities in new releases, but still relies on the package source; hash checking adds another control.[1] A pinned version alone does not establish source trust or successful configuration and data migration.
+
+We distinguish notification from installation. Notifications may be automatic, while production changes need an owner, test results, and recovery preparation. Critical security announcements should trigger a separate exposure assessment rather than waiting for a routine maintenance date. The appropriate cadence depends on the environment.
+
+Add an unchanged-components field to the change record. If packages changed while the model and external connections stayed the same, record that scope. Troubleshooting can then begin with the actual differences rather than reinstalling everything.
+
+Before closing the maintenance window, have a user repeat the ordinary workflow. Engineering checks startup; the user checks data access, tools, and schedules. Record both outcomes and keep unverified items open even after the version number changes.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from AI agent deployment and maintenance records. They are not industry statistics or an account of any particular organization.
+
+1. Major updates can change data too.  We encountered migration conflicts that caused repeated service restarts, and configuration-format changes that cleared existing settings. A successful download did not reveal these later effects.
+
+2. Upstream changes can reach local systems.  A change in an AI service’s streaming format caused package validation failures across AI calls. After adding a fix, we had to check that it remained present after package updates. Local pinning does not freeze external dependencies.
+
+3. Update prompts are not version records.  A diagnostic command once reported a one-version gap that actually crossed several releases with substantial changes. Our practice is to pin versions, review known issues, test, back up settings and data, prepare recovery commands, and schedule the upgrade.
+
+4. Recovery involves state.  Our backup list includes settings, schedules, service definitions, and database snapshots. We stop the service before packaging an upgrade backup and rehearse restoration. Program and data states need to be planned together.
+
+## Four.  Our Recommendations: Set Entry and Exit Conditions for Every Upgrade
+
+1. Record the full combination.  Include the framework, dependencies, runtime, model, installation method, and lockfiles. Use pip and npm documentation for their respective package-management practices.[1][2]
+
+2. Test the change.  Read release and migration notes, then exercise ordinary conversations, tools, retrieval, and schedules in a test environment. Record versions and results, including useful failure evidence.
+
+3. Back up and define stop conditions.  Obtain a consistent backup and identify failures that require stopping and who decides on recovery. If a migration has changed the data structure, verify the recovery method before running old code against new data.
+
+4. Assign patch ownership.  Name the announcement reviewer, routine maintenance window, and accelerated process for critical vulnerabilities. Verify the service, data, and workflows before closing the change, reflecting NIST’s post-installation verification principle.[4]
+
+Pinning establishes a baseline; operations also needs updates, acceptance, and recovery.
+
+◆ Editor’s Note · How Think BIG Approaches This: Comparable Changes
+
+## Keep versions, backups, and acceptance results together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend treating updates as owned changes instead of allowing unattended overnight version changes in long-running services. Routine maintenance and urgent patches need distinct entry points, with repeatable task tests.
+
+Post-installation acceptance belongs in the handover.
+
+### Frequently Asked Questions
+
+Q1: Does pinning mean never updating?
+No. Keep a baseline while continuing to identify, prioritize, install, and verify patches.[4]
+Q2: Is the framework version enough?
+Record runtime and dependencies too. pip’s repeatable-install guidance includes transitive dependencies.[1]
+Q3: Does npm ci update the lockfile?
+No. It reports a mismatch rather than updating the lockfile.[2]
+Q4: Is downgrading the program enough?
+Check whether data and settings migrated, then use a rehearsed restoration plan. Program and state recovery need joint planning.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] pip, “Repeatable Installs”, accessed 2026-10-26: [pip.pypa.io](https://pip.pypa.io/en/stable/topics/repeatable-installs/) ·
+    [2] npm, “npm ci”, accessed 2026-10-26: [docs.npmjs.com](https://docs.npmjs.com/cli/v11/commands/npm-ci) ·
+    [3] Ollama, “Windows”, accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/windows) ·
+    [4] NIST, SP 800-40 Rev. 4 (2022), “Guide to Enterprise Patch Management Planning”, accessed 2026-10-26: [csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/40/r4/final)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
     Think BIG, Make it Real!
 
 ---
@@ -9540,6 +9658,117 @@ PHP 基金會說明，AI 輔助研究讓回報量大增，AI 也被用來驗證�
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
 THINK BIG NEWS   ·  企業資安實務
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/
+
+# AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 017 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 8 日　星期日
+◆
+本地 AI 實測筆記
+◆
+第 017 期
+
+版本管理 · AI Agent · 更新驗收
+
+## AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補
+
+Think BIG 自媒體部  |  2026 年 11 月 8 日
+
+正式運作的 AI Agent 不適合在沒人知道時改變執行環境。先固定可重現的組合，再安排有人負責的更新與驗收。
+
+## 一 現象：可重現部署與持續修補，要一起做
+
+套件更新不是只有「新功能」。pip 官方文件把固定版本列為建立可重現環境的方法，也說明可加上雜湊值核對下載檔案。[1] npm 的 npm ci  則要求既有鎖定檔；若鎖定內容與套件宣告不符，會報錯而非自行改寫鎖定檔。[2] 這些設計都把安裝內容變得更明確。
+
+另一方面，美國 NIST《企業修補管理規劃指南》SP 800-40 Rev. 4（2022）把修補管理定義為辨識、排序、取得、安裝並驗證更新的流程。[4] 所以固定版本不能成為長期忽略漏洞的理由。我們主張把「目前跑哪組版本」與「何時評估更新」放在同一份維護紀錄。
+
+不同安裝方式也值得分開看。Ollama 的 Windows 文件區分一般安裝程式與可整合為服務的獨立 CLI 壓縮檔。[3] 本文引用它說明部署方式需要被記錄，不推薦工具，也不假設所有 AI 工具都有相同更新行為。
+
+## 二 各方評價：便利更新有用途，正式環境需要可控的變更
+
+支持自動化的一面： NIST 把修補視為預防性維護，強調企業應建立能日常執行的策略。[4] 我們的判讀是，自動化可以協助盤點、通知與執行既定程序；如果每次都靠人記得看公告，維護容易失去節奏。
+
+需要保留的一面： pip 文件說固定依賴版本可以降低新版錯誤或不相容帶來的影響，但也指出這仍信任套件取得來源；雜湊核對是另一層措施。[1] 因而「版本已固定」不能直接推論來源可信，也不能證明設定或資料遷移會成功。
+
+我們的立場是區分通知與安裝：可以自動提醒有更新，但正式服務何時改動，要有負責人、測試結果與回復準備。對重大安全公告，則另外判斷暴露範圍與暫時處置，不必等例行維護日才開始處理。這是建議流程，不是所有環境都應採用同一頻率。
+
+我們建議在變更單上另留「本次沒有更新什麼」的欄位。例如套件升級了，模型與外部連接仍維持原設定，就清楚記下範圍。若測試出問題，維護者才知道應從哪組差異開始比對，而不是把整個系統重新安裝一次。
+
+維護時段結束前，也可以請實際使用人用原本工作走一遍。工程檢查確認服務能啟動，使用人再確認讀得到資料、工具回應與排程符合預期。兩邊都留下結果，尚未驗證的項目則持續追蹤，不因為版本號已改就結案。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們的 AI Agent 部署與維運紀錄，不是產業統計，也不描述特定對象。
+
+1. 大版本更新可能連資料一起改。 我們遇過升級後舊資料遷移衝突，服務反覆重啟；也遇過新版設定格式改變，舊設定被自動清掉。只確認程式下載完成，看不到這些後續影響。
+
+2. 上游格式改動也會傳到本機。 一次 AI 服務的串流格式改變，使套件驗證失敗，所有 AI 呼叫一起出錯。我們補上修正後，每次套件更新都要再確認修正是否仍存在。固定本機套件，仍要留意外部服務的相依關係。
+
+3. 更新提示不能代替版本紀錄。 我們遇過除錯指令顯示只差一版，實際卻跨過多個版本的大幅變更。後來的做法是固定版本，先看已知問題、測試、備份設定與資料，準備回復指令，再排時間升級。
+
+4. 回復不只是把程式降版。 我們的備份清單也包含設定、排程、服務設定與資料庫快照；升級前先停服務再打包，並演練還原。這些經驗提醒我們，程式與資料狀態要一起規劃。
+
+## 四 我們的建議：讓每次升級都有進場與退場條件
+
+1. 記完整組合。 列出框架、套件依賴、執行環境、模型與安裝方式；有鎖定檔就一起保存。pip 與 npm 文件可作為各自套件管理方式的參考。[1][2]
+
+2. 用測試環境試改。 先讀版本說明與遷移要求，再跑平常的對話、工具、檢索及排程。記下版本與測試結果，失敗時保留錯誤線索，避免只留下「測過了」。
+
+3. 備份並定義停止條件。 我們建議升級前取得一致的備份，寫明哪些錯誤要停止、由誰決定回復。若新版已改資料結構，不要直接用舊程式讀新資料，應先確認回復方式。
+
+4. 設修補責任與追蹤。 指定公告檢查人、例行維護時段及重大漏洞的加速處理窗口。升級後驗證服務、資料與工作流程，再關閉變更單，呼應 NIST 的安裝後驗證原則。[4]
+
+一句話：固定版本是起點，能更新、能驗收、能回復才是維運。
+
+◆ 編按 · Think BIG 的做法：每次變更都能對照
+
+## 把版本表、備份與驗收結果留在一起。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張將更新視為有責任人的變更，不讓長期運作的服務自行在夜間改版。日常維護與緊急修補各有入口，並保留可重跑的工作測試。
+
+延伸閱讀[離線環境怎麼更新](https://thinkbigtw.com/library/qa/offline-local-llm-updates/)。安裝完成後的驗收，同樣是交付的一部分。
+
+### 常見問題
+
+Q1：固定版本等於不更新嗎？
+不是。固定部署基準後，仍要辨識、排序、安裝與驗證修補。[4]
+Q2：只記 AI 框架版本夠嗎？
+我們建議連執行環境與依賴一起記錄。pip 的可重現安裝說明也涵蓋間接依賴。[1]
+Q3：npm ci 會自動改鎖定檔嗎？
+官方文件說不會；宣告與鎖定檔不符時會報錯。[2]
+Q4：升級失敗，只降版就好嗎？
+我們建議先確認資料與設定是否已遷移，再使用經演練的還原方式。程式降版與資料還原要一起規劃。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] pip，〈Repeatable Installs〉，查閱日期 2026-10-26：[pip.pypa.io](https://pip.pypa.io/en/stable/topics/repeatable-installs/)　·
+    [2] npm，〈npm ci〉，查閱日期 2026-10-26：[docs.npmjs.com](https://docs.npmjs.com/cli/v11/commands/npm-ci)　·
+    [3] Ollama，〈Windows〉，查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/windows)　·
+    [4] NIST，SP 800-40 Rev. 4（2022），〈Guide to Enterprise Patch Management Planning〉，查閱日期 2026-10-26：[csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/40/r4/final)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---

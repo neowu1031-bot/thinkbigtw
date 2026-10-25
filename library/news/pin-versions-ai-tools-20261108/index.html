@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補 | Think BIG NEWS</title>
+<meta name="description" content="固定 AI 工具版本，是為了讓部署可以重現與驗收，不是從此不修補。從套件官方文件與維運紀錄，整理升級前的依賴盤點、測試、備份、回復方式，以及重大漏洞需要另開處理流程的原因。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/">
+<meta property="og:title" content="AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補 | Think BIG NEWS">
+<meta property="og:description" content="正式運作的 AI Agent 不適合在沒人知道時改變執行環境。先固定可重現的組合，再安排有人負責的更新與驗收。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-08T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="固定版本與排程升級 | Think BIG NEWS">
+<meta name="twitter:description" content="正式運作的 AI Agent 不適合在沒人知道時改變執行環境。先固定可重現的組合，再安排有人負責的更新與驗收。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/#article",
+      "headline": "AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補",
+      "description": "固定 AI 工具版本，是為了讓部署可以重現與驗收，不是從此不修補。從套件官方文件與維運紀錄，整理升級前的依賴盤點、測試、備份、回復方式，以及重大漏洞需要另開處理流程的原因。",
+      "keywords": "版本管理, AI Agent, 更新驗收",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-08T20:00:00+08:00",
+      "dateModified": "2026-11-08T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      },
+      "citation": [
+        "https://pip.pypa.io/en/stable/topics/repeatable-installs/",
+        "https://docs.npmjs.com/cli/v11/commands/npm-ci",
+        "https://docs.ollama.com/windows",
+        "https://csrc.nist.gov/pubs/sp/800/40/r4/final"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "固定版本等於不更新嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是。固定部署基準後，仍要辨識、排序、安裝與驗證修補。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "只記 AI 框架版本夠嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們建議連執行環境與依賴一起記錄。pip 的可重現安裝說明也涵蓋間接依賴。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "npm ci 會自動改鎖定檔嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "官方文件說不會；宣告與鎖定檔不符時會報錯。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "升級失敗，只降版就好嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們建議先確認資料與設定是否已遷移，再使用經演練的還原方式。程式降版與資料還原要一起規劃。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "固定版本與排程升級",
+          "item": "https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>本地 AI 實測筆記 &middot; 第 017 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 11 月 8 日　星期日</span>
+    <span class="dot">&#9670;</span>
+    <span>本地 AI 實測筆記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 017 期</span>
+  </div>
+  <p class="kicker">版本管理 &middot; AI Agent &middot; 更新驗收</p>
+  <h2 class="headline">AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 11 月 8 日</p>
+  <p class="deck">正式運作的 AI Agent 不適合在沒人知道時改變執行環境。先固定可重現的組合，再安排有人負責的更新與驗收。</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">一</span>現象：可重現部署與持續修補，要一起做</h2>
+<p class="lead">套件更新不是只有「新功能」。pip 官方文件把固定版本列為建立可重現環境的方法，也說明可加上雜湊值核對下載檔案。[1] npm 的 <code>npm ci</code> 則要求既有鎖定檔；若鎖定內容與套件宣告不符，會報錯而非自行改寫鎖定檔。[2] 這些設計都把安裝內容變得更明確。</p>
+<p>另一方面，美國 NIST《企業修補管理規劃指南》SP 800-40 Rev. 4（2022）把修補管理定義為辨識、排序、取得、安裝並驗證更新的流程。[4] 所以固定版本不能成為長期忽略漏洞的理由。我們主張把「目前跑哪組版本」與「何時評估更新」放在同一份維護紀錄。</p>
+<p>不同安裝方式也值得分開看。Ollama 的 Windows 文件區分一般安裝程式與可整合為服務的獨立 CLI 壓縮檔。[3] 本文引用它說明部署方式需要被記錄，不推薦工具，也不假設所有 AI 工具都有相同更新行為。</p>
+<h2><span class="no">二</span>各方評價：便利更新有用途，正式環境需要可控的變更</h2>
+<p><strong>支持自動化的一面：</strong>NIST 把修補視為預防性維護，強調企業應建立能日常執行的策略。[4] 我們的判讀是，自動化可以協助盤點、通知與執行既定程序；如果每次都靠人記得看公告，維護容易失去節奏。</p>
+<p><strong>需要保留的一面：</strong>pip 文件說固定依賴版本可以降低新版錯誤或不相容帶來的影響，但也指出這仍信任套件取得來源；雜湊核對是另一層措施。[1] 因而「版本已固定」不能直接推論來源可信，也不能證明設定或資料遷移會成功。</p>
+<p>我們的立場是區分通知與安裝：可以自動提醒有更新，但正式服務何時改動，要有負責人、測試結果與回復準備。對重大安全公告，則另外判斷暴露範圍與暫時處置，不必等例行維護日才開始處理。這是建議流程，不是所有環境都應採用同一頻率。</p>
+<p>我們建議在變更單上另留「本次沒有更新什麼」的欄位。例如套件升級了，模型與外部連接仍維持原設定，就清楚記下範圍。若測試出問題，維護者才知道應從哪組差異開始比對，而不是把整個系統重新安裝一次。</p>
+<p>維護時段結束前，也可以請實際使用人用原本工作走一遍。工程檢查確認服務能啟動，使用人再確認讀得到資料、工具回應與排程符合預期。兩邊都留下結果，尚未驗證的項目則持續追蹤，不因為版本號已改就結案。</p>
+<section class="firsthand">
+<span class="lede">&#9670; 第一手心得</span>
+<h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+<p>以下取自我們的 AI Agent 部署與維運紀錄，不是產業統計，也不描述特定對象。</p>
+<p><strong>1. 大版本更新可能連資料一起改。</strong>我們遇過升級後舊資料遷移衝突，服務反覆重啟；也遇過新版設定格式改變，舊設定被自動清掉。只確認程式下載完成，看不到這些後續影響。</p>
+<p><strong>2. 上游格式改動也會傳到本機。</strong>一次 AI 服務的串流格式改變，使套件驗證失敗，所有 AI 呼叫一起出錯。我們補上修正後，每次套件更新都要再確認修正是否仍存在。固定本機套件，仍要留意外部服務的相依關係。</p>
+<p><strong>3. 更新提示不能代替版本紀錄。</strong>我們遇過除錯指令顯示只差一版，實際卻跨過多個版本的大幅變更。後來的做法是固定版本，先看已知問題、測試、備份設定與資料，準備回復指令，再排時間升級。</p>
+<p><strong>4. 回復不只是把程式降版。</strong>我們的備份清單也包含設定、排程、服務設定與資料庫快照；升級前先停服務再打包，並演練還原。這些經驗提醒我們，程式與資料狀態要一起規劃。</p>
+</section>
+<h2><span class="no">四</span>我們的建議：讓每次升級都有進場與退場條件</h2>
+<p><strong>1. 記完整組合。</strong>列出框架、套件依賴、執行環境、模型與安裝方式；有鎖定檔就一起保存。pip 與 npm 文件可作為各自套件管理方式的參考。[1][2]</p>
+<p><strong>2. 用測試環境試改。</strong>先讀版本說明與遷移要求，再跑平常的對話、工具、檢索及排程。記下版本與測試結果，失敗時保留錯誤線索，避免只留下「測過了」。</p>
+<p><strong>3. 備份並定義停止條件。</strong>我們建議升級前取得一致的備份，寫明哪些錯誤要停止、由誰決定回復。若新版已改資料結構，不要直接用舊程式讀新資料，應先確認回復方式。</p>
+<p><strong>4. 設修補責任與追蹤。</strong>指定公告檢查人、例行維護時段及重大漏洞的加速處理窗口。升級後驗證服務、資料與工作流程，再關閉變更單，呼應 NIST 的安裝後驗證原則。[4]</p>
+<p>一句話：<strong>固定版本是起點，能更新、能驗收、能回復才是維運。</strong></p>
+<section class="houseview">
+<span class="lede">&#9670; 編按 &middot; Think BIG 的做法：每次變更都能對照</span>
+<h2>把版本表、備份與驗收結果留在一起。</h2>
+<p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+<p>我們主張將更新視為有責任人的變更，不讓長期運作的服務自行在夜間改版。日常維護與緊急修補各有入口，並保留可重跑的工作測試。</p>
+<p>延伸閱讀<a href="/library/qa/offline-local-llm-updates/">離線環境怎麼更新</a>。安裝完成後的驗收，同樣是交付的一部分。</p>
+</section>
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：固定版本等於不更新嗎？</dt>
+        <dd>不是。固定部署基準後，仍要辨識、排序、安裝與驗證修補。[4]</dd>
+        <dt>Q2：只記 AI 框架版本夠嗎？</dt>
+        <dd>我們建議連執行環境與依賴一起記錄。pip 的可重現安裝說明也涵蓋間接依賴。[1]</dd>
+        <dt>Q3：npm ci 會自動改鎖定檔嗎？</dt>
+        <dd>官方文件說不會；宣告與鎖定檔不符時會報錯。[2]</dd>
+        <dt>Q4：升級失敗，只降版就好嗎？</dt>
+        <dd>我們建議先確認資料與設定是否已遷移，再使用經演練的還原方式。程式降版與資料還原要一起規劃。</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-26。<br>
+    [1] pip，〈Repeatable Installs〉，查閱日期 2026-10-26：<a href="https://pip.pypa.io/en/stable/topics/repeatable-installs/" target="_blank" rel="noopener">pip.pypa.io</a>　&middot;
+    [2] npm，〈npm ci〉，查閱日期 2026-10-26：<a href="https://docs.npmjs.com/cli/v11/commands/npm-ci" target="_blank" rel="noopener">docs.npmjs.com</a>　&middot;
+    [3] Ollama，〈Windows〉，查閱日期 2026-10-26：<a href="https://docs.ollama.com/windows" target="_blank" rel="noopener">docs.ollama.com</a>　&middot;
+    [4] NIST，SP 800-40 Rev. 4（2022），〈Guide to Enterprise Patch Management Planning〉，查閱日期 2026-10-26：<a href="https://csrc.nist.gov/pubs/sp/800/40/r4/final" target="_blank" rel="noopener">csrc.nist.gov</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; 本地 AI 實測筆記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
