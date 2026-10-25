@@ -80,6 +80,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [本地模型的繁體中文好不好？台灣用語要怎麼測](https://thinkbigtw.com/library/qa/traditional-chinese-local-llm/)
 - [GPU、NPU 差在哪？「AI PC」能跑公司用的大模型嗎](https://thinkbigtw.com/library/qa/gpu-vs-npu-ai-pc/)
 - [零信任是什麼？套用到 AI Agent 要怎麼做](https://thinkbigtw.com/library/qa/zero-trust-ai-agent/)
+- [AI 紅隊測試是什麼？導入前可以自己先做的測試](https://thinkbigtw.com/library/qa/ai-red-teaming/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -119,6 +120,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [How Good Is a Local LLM’s Traditional Chinese, and How Should You Test Taiwan Usage?](https://thinkbigtw.com/en/qa/traditional-chinese-local-llm/)
 - [GPU or NPU: Can an “AI PC” Run a Company’s Local LLM?](https://thinkbigtw.com/en/qa/gpu-vs-npu-ai-pc/)
 - [What Is Zero Trust, and How Does It Apply to AI Agents?](https://thinkbigtw.com/en/qa/zero-trust-ai-agent/)
+- [What Is AI Red Teaming, and What Can a Company Test Before Launch?](https://thinkbigtw.com/en/qa/ai-red-teaming/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
