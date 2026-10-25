@@ -71,6 +71,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [微調跟 RAG 怎麼選？想讓 AI 懂公司的事，先分清楚兩種做法](https://thinkbigtw.com/library/qa/fine-tuning-vs-rag/)
 - [開放權重模型跟開源模型差在哪？企業看授權前要先懂的名詞](https://thinkbigtw.com/library/qa/open-weights-vs-open-source/)
 - [地端、私有雲、公有雲差在哪？怎麼確認 AI 的資料流向？](https://thinkbigtw.com/library/qa/on-prem-private-public-cloud/)
+- [公司資料要怎麼分級？哪些可以給雲端 AI、哪些只能留在公司](https://thinkbigtw.com/library/qa/data-classification-for-ai/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -101,6 +102,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Fine-Tuning or RAG: How Should a Company Choose?](https://thinkbigtw.com/en/qa/fine-tuning-vs-rag/)
 - [Open Weights or Open Source: What Is the Difference for Enterprise AI?](https://thinkbigtw.com/en/qa/open-weights-vs-open-source/)
 - [On-Premises, Private Cloud, or Public Cloud: Where Does AI Data Actually Go?](https://thinkbigtw.com/en/qa/on-prem-private-public-cloud/)
+- [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
