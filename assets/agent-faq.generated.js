@@ -53,7 +53,7 @@ window.TB_AGENT_FAQ = [
   {
     "id": "11",
     "question": "可以先試用嗎？",
-    "answer": "無試用，建議先預約20分鐘免費評估確認需求（https://thinkbigtw.com/enterprise/start/）。"
+    "answer": "無試用，建議先預約30分鐘免費評估確認需求（https://thinkbigtw.com/enterprise/start/）。"
   },
   {
     "id": "12",
