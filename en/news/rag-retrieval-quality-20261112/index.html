@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models | Think BIG NEWS</title>
+<meta name="description" content="When document AI answers poorly, inspect the passages it retrieved. Check parsing, chunk boundaries, versions, terminology, and answer grounding with real questions.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/">
+<meta property="og:title" content="AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models | Think BIG NEWS">
+<meta property="og:description" content="Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-12T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Inspect Retrieval Before Answers | Think BIG NEWS">
+<meta name="twitter:description" content="Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/#article",
+      "headline": "AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models",
+      "description": "When document AI answers poorly, inspect the passages it retrieved. Check parsing, chunk boundaries, versions, terminology, and answer grounding with real questions.",
+      "keywords": "RAG, Chunking, Retrieval Quality",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG Media",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "Think BIG",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-12T20:00:00+08:00",
+      "dateModified": "2026-11-12T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/en/news/"
+      },
+      "citation": [
+        "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview",
+        "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents",
+        "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators",
+        "https://arxiv.org/abs/2307.03172"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is RAG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It retrieves relevant content and provides it to the model as evidence for an answer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are larger chunks always better?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Test size, overlap, and boundaries against your content and use case."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does a citation prove the answer is correct?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Check whether it supports the claim and whether the answer is relevant and complete. These are separate evaluation dimensions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should we consider another model?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "First establish that retrieval delivers the right evidence. Then compare model and prompt choices on the same questions if answers still fail."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://thinkbigtw.com/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/en/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Inspect Retrieval Before Answers",
+          "item": "https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>AI Deployment Field Notes &middot; Issue 019</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>November 12, 2026 &nbsp;&middot;&nbsp; Thursday</span>
+    <span class="dot">&#9670;</span>
+    <span>AI Deployment Field Notes</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 019</span>
+  </div>
+  <p class="kicker">RAG &middot; Chunking &middot; Retrieval Quality</p>
+  <h2 class="headline">AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models</h2>
+  <p class="byline">Think BIG Media &nbsp;|&nbsp; November 12, 2026</p>
+  <p class="deck">Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">One.</span> What’s Happening: Having Documents Does Not Mean Retrieving the Right Evidence</h2>
+<p class="lead">Retrieval-augmented generation, or RAG, retrieves relevant content before asking a model to answer from it. Microsoft’s official overview identifies terminology mismatches, content preparation, and input limits as implementation challenges.[1] Uploading files and answering questions reliably are separate steps.</p>
+<p>Chunking is one of those steps. Official documentation describes fixed-size, structural, and semantic approaches, with size and overlap adjusted to the content and use.[2] We would not apply one character count to every Chinese policy, table, or scanned document. Read the resulting chunks to check whether they retain subjects, conditions, and exceptions.</p>
+<p>Microsoft’s evaluation guidance separates retrieval-process quality from final-answer quality. One asks whether retrieved material is relevant; the other examines grounding, relevance, and completeness of the answer.[3] We use that distinction as a diagnostic method, without recommending a service or treating an automated score as a business decision.</p>
+<h2><span class="no">Two.</span> Perspectives: Inspect Retrieval Without Ignoring Model Behavior</h2>
+<p><strong>The case for checking data first:</strong> The overview ties RAG quality to content preparation and retrieval relevance.[1] If the necessary evidence never reached the model, we would investigate indexing and retrieval first. A larger model does not resolve that missing input.</p>
+<p><strong>The model-side caution:</strong> Receiving a passage does not establish that a model uses it correctly. The original 2023 study “Lost in the Middle” found position-dependent performance in its multi-document question-answering and key-value retrieval tasks.[4] It does not establish identical behavior in every newer model. It does challenge adding more context as a universal remedy.</p>
+<p>Test both stages: whether the evidence was retrieved and whether the answer used it faithfully. When documents conflict, ask their owner to determine which is valid rather than asking the model to settle company policy.</p>
+<p>Add explicit failure definitions: missing exceptions, treating an old version as current, or citing the wrong document. This gives document owners and engineers shared criteria beyond fluency or a retrieval score.</p>
+<p>Keep the original phrasing too. Rewriting conversational questions into document titles before every test can hide the terminology mismatch being tested. Save original and rewritten queries with their retrieval results before deciding whether to adopt query rewriting.</p>
+<section class="firsthand">
+<span class="lede">&#9670; First-Hand Lessons</span>
+<h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">Three. What We Learned in Practice</h2>
+<p>These observations come from our RAG document and answer-quality work. They are not industry statistics or an account of any particular organization.</p>
+<p><strong>1. Inspect retrieved passages first.</strong> When an answer is poor, we check the retrieved material before analyzing generation. Chunks that are too large or small are among the causes we encounter; model capability is not always the problem.</p>
+<p><strong>2. A readable original can produce damaged text.</strong> We have seen tables and scanned documents become corrupted during text extraction. We inspect the extracted text instead of repeatedly asking the model to read broken material better.</p>
+<p><strong>3. One subject may have two versions.</strong> Retrieving old and new documents together mixes evidence. We remove outdated versions or mark their status so validity can be checked.</p>
+<p><strong>4. Keep real questions and reference answers.</strong> We build test sets and watch for differences between conversational questions and formal document terms. Questions should reflect actual phrasing, beyond document titles.</p>
+</section>
+<h2><span class="no">Four.</span> Our Recommendations: Diagnose with a Fixed Question Set</h2>
+<p><strong>1. Inspect extracted text.</strong> Compare tables, scans, and exception clauses against originals. Check whether labels still match values. Correct preprocessing problems before rebuilding the index.</p>
+<p><strong>2. Map questions to evidence.</strong> Record expected answers and supporting documents and passages. Include unanswerable questions, outdated material, and terminology differences. Retrieval evaluation needs explicit relevance evidence.[3]</p>
+<p><strong>3. Change one class of settings at a time.</strong> Keep the model and questions fixed when comparing segmentation, overlap, or query methods. Save retrieved passages so improvements have an identifiable cause. Validate parameters on your own content.[2][3]</p>
+<p><strong>4. Assess evidence and answers separately.</strong> Wrong evidence points toward retrieval; correct evidence with a wrong answer calls for prompt and model checks; conflicting documents go to their owner. This is our recommended triage, beyond one aggregate score.</p>
+<p><strong>5. Test missing answers too.</strong> Require an explicit evidence gap when support is insufficient. Independently test access permissions so retrieved content stays within authorization.[1]</p>
+<p><strong>Check that the model received the right material before judging its answer.</strong></p>
+<section class="houseview">
+<span class="lede">&#9670; Editor&#x2019;s Note &middot; How Think BIG Approaches This: Keep Failures as Repeatable Tests</span>
+<h2>Save questions, passages, answers, and document versions together.</h2>
+<p><em>(The following is Think BIG&#x2019;s practical position, separate from the reporting above.)</em></p>
+<p>We recommend rerunning the same questions after knowledge-base changes. Failure records should identify the stage and document owner so future maintenance can build on prior work.</p>
+<p>Answer quality and document access each need acceptance checks.</p>
+</section>
+    <section class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <dl>
+        <dt>Q1: What is RAG?</dt>
+        <dd>It retrieves relevant content and provides it to the model as evidence for an answer.[1]</dd>
+        <dt>Q2: Are larger chunks always better?</dt>
+        <dd>No. Test size, overlap, and boundaries against your content and use case.[2]</dd>
+        <dt>Q3: Does a citation prove the answer is correct?</dt>
+        <dd>Check whether it supports the claim and whether the answer is relevant and complete. These are separate evaluation dimensions.[3]</dd>
+        <dt>Q4: When should we consider another model?</dt>
+        <dd>First establish that retrieval delivers the right evidence. Then compare model and prompt choices on the same questions if answers still fail.</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Fact-checked: 2026-10-26.<br>
+    [1] Microsoft, “RAG and Generative AI”, accessed 2026-10-26: <a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">learn.microsoft.com</a> &middot;
+    [2] Microsoft, “Chunk Documents”, accessed 2026-10-26: <a href="https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents" target="_blank" rel="noopener">learn.microsoft.com</a> &middot;
+    [3] Microsoft, “Retrieval-Augmented Generation (RAG) Evaluators”, accessed 2026-10-26: <a href="https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators" target="_blank" rel="noopener">learn.microsoft.com</a> &middot;
+    [4] Liu et al., “Lost in the Middle: How Language Models Use Long Contexts,” 2023, arXiv:2307.03172, accessed 2026-10-26: <a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener">arxiv.org</a>
+  </div>
+  <p class="disclaimer">This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI Deployment Field Notes
+    <span class="brand">Think BIG, Make it Real!</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent deployment &amp; governance.<br>On-premises &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE Official Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE Contact &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact/">Contact Us</a><a href="/library/news/local-ai-model-selection-20261031/" lang="zh-Hant">繁體中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

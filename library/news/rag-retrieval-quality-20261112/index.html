@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型 | Think BIG NEWS</title>
+<meta name="description" content="公司文件放進知識庫，AI 卻答不準，先看它實際拿到了哪些段落。從 RAG 官方文件與部署心得，拆解文字解析、切塊、新舊文件與口語查詢問題，整理可重測的題組、檢索紀錄及無答案時的處理方式。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/">
+<meta property="og:title" content="AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型 | Think BIG NEWS">
+<meta property="og:description" content="先把問題、檢索段落與回答放在一起看。找到錯誤出在哪個環節，才知道應該改文件、改檢索，還是調整模型。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-12T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="先查檢索，再看回答 | Think BIG NEWS">
+<meta name="twitter:description" content="先把問題、檢索段落與回答放在一起看。找到錯誤出在哪個環節，才知道應該改文件、改檢索，還是調整模型。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/#article",
+      "headline": "AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型",
+      "description": "公司文件放進知識庫，AI 卻答不準，先看它實際拿到了哪些段落。從 RAG 官方文件與部署心得，拆解文字解析、切塊、新舊文件與口語查詢問題，整理可重測的題組、檢索紀錄及無答案時的處理方式。",
+      "keywords": "RAG, 切塊, 檢索品質",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-12T20:00:00+08:00",
+      "dateModified": "2026-11-12T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      },
+      "citation": [
+        "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview",
+        "https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents",
+        "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators",
+        "https://arxiv.org/abs/2307.03172"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "RAG 是什麼？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "是先檢索資料，再把相關內容交給模型作為回答依據的方式。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "切塊越大越好嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不是通用規則。大小、重疊與分段方式要依內容及用途測試。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "有引用就表示答對嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們建議另外檢查引用是否支持回答，以及回答是否完整切題；這些是不同評估面向。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "什麼時候再考慮換模型？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們建議先確認檢索到正確材料；若材料正確但仍答錯，再用同一組題目比較模型與提示設定。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "先查檢索，再看回答",
+          "item": "https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>AI 導入實測手記 &middot; 第 019 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 11 月 12 日　星期四</span>
+    <span class="dot">&#9670;</span>
+    <span>AI 導入實測手記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 019 期</span>
+  </div>
+  <p class="kicker">RAG &middot; 切塊 &middot; 檢索品質</p>
+  <h2 class="headline">AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 11 月 12 日</p>
+  <p class="deck">先把問題、檢索段落與回答放在一起看。找到錯誤出在哪個環節，才知道應該改文件、改檢索，還是調整模型。</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">一</span>現象：有文件，不代表每次都找到對的段落</h2>
+<p class="lead">RAG 是檢索增強生成：先從資料中找出相關內容，再交給模型作為回答依據。Microsoft 的官方概述指出，提問用語與文件術語不一致、文件前處理及輸入長度限制，都是實作挑戰。[1] 這說明「文件已上傳」與「能回答問題」之間，還有值得檢查的流程。</p>
+<p>切塊是其中一環。官方文件列出固定長度、依結構或語意分段等方式，也提醒重疊與大小應依文件及用途調整。[2] 因此，我們不建議把某個字數當成所有中文制度、表格或掃描檔都通用的設定。切完的段落是否保留主詞、條件與例外，應拿出來閱讀。</p>
+<p>評估也需要分層。Microsoft 的 RAG 評估文件區分檢索流程與最終回答：前者看找回內容是否與問題相關，後者再看回答是否依據內容、切題且完整。[3] 本文引用這個區分說明排查方法，不推薦特定服務，也不把評分工具的分數當成業務判斷。</p>
+<h2><span class="no">二</span>各方評價：改善檢索有根據，模型能力也不能忽略</h2>
+<p><strong>先檢查資料的一面：</strong>官方概述把內容準備與檢索相關性放在 RAG 品質的核心。[1] 我們的判讀是，當標準答案根本沒有出現在模型收到的段落裡，應先查索引與檢索紀錄；直接換更大的模型，沒有處理這個缺口。</p>
+<p><strong>保留模型判斷的一面：</strong>找到段落後，模型仍可能沒有正確使用。2023 年原始研究〈Lost in the Middle〉在指定的多文件問答與鍵值檢索任務中，觀察到相關資訊放在長上下文不同位置，表現會改變。[4] 這不代表所有新模型都有同樣結果，但提醒我們不能只用「塞更多資料」當通用答案。</p>
+<p>兩種方向可以放進同一份測試：先判定該找到的證據有沒有被找回，再判定模型有沒有忠實回答。若文件本身就互相矛盾，則先交由文件負責人確認，而不是請模型替公司決定哪份規定有效。</p>
+<p>我們建議在測試表再加一欄「怎樣算答錯」：漏掉例外、把舊版當現行、引用別份文件，分開記錄。這是為了讓文件維護者與工程人員看同一題時有共同判準，不會一個只看文字流暢、另一個只看檢索分數。</p>
+<p>題組也要保留原始問法。若每次測試前都先把口語問題改寫成文件標題，就可能把原本要驗證的用語落差藏起來。我們建議同時保留原問句與改寫版本，分別記錄檢索結果，再決定是否採用查詢改寫。</p>
+<section class="firsthand">
+<span class="lede">&#9670; 第一手心得</span>
+<h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+<p>以下取自我們處理 RAG 文件與回答問題時的觀察，不是產業統計，也不描述特定對象。</p>
+<p><strong>1. 先看檢索回來的段落。</strong>我們遇到答不準時，會先看找回的內容對不對，再看模型如何回答。常見原因包括切塊太大或太小，並非每次都是模型不夠聰明。</p>
+<p><strong>2. 原檔看起來正常，轉成文字可能走樣。</strong>我們見過表格、掃描文件轉文字後變成亂碼。處理順序是回頭看文字內容，而不是繼續修改提示詞，要求模型把錯誤資料讀得更準。</p>
+<p><strong>3. 同一件事可能有兩個版本。</strong>新舊文件同時被找到，會讓回答依據混在一起。我們的做法是把舊版下架，或標明版本，讓文件的有效狀態能被檢查。</p>
+<p><strong>4. 真實問題與標準答案要一起留。</strong>我們會建立題組測試，也留意口語提問與正式名詞之間的落差。題目不是只寫文件標題，而是整理實際會怎麼問，才看得到檢索有沒有接上用語。</p>
+</section>
+<h2><span class="no">四</span>我們的建議：用同一組題目，逐項排查</h2>
+<p><strong>1. 抽查轉出的文字。</strong>挑表格、掃描頁與有例外條件的段落，對照原檔。把欄位標題與數值是否仍對得上列為檢查點；若前處理錯了，先修內容，再重建索引。</p>
+<p><strong>2. 建題目與證據表。</strong>每題記下預期答案、可支持的文件及段落，另外放入找不到答案、文件過期與用語不同的題目。檢索評估需要清楚的相關性依據。[3]</p>
+<p><strong>3. 一次改一類設定。</strong>固定模型與題組，再比較分段、重疊或查詢方式。保留每次找回的段落，避免答案變好卻不知道是哪項變動造成；參數應依自己的內容驗證。[2][3]</p>
+<p><strong>4. 分開看證據與回答。</strong>證據沒找對，回檢索層；證據正確但回答錯，查提示與模型；文件矛盾，交負責人處理。這是我們建議的分流，不把單一分數當成全部結論。</p>
+<p><strong>5. 把找不到也列為驗收。</strong>要求系統在沒有足夠依據時說明缺口，不拼出貌似完整的答案。另測使用者權限，確認能查到的內容都在授權範圍內。[1]</p>
+<p>一句話：<strong>先確認 AI 讀對材料，再判斷它有沒有答對。</strong></p>
+<section class="houseview">
+<span class="lede">&#9670; 編按 &middot; Think BIG 的做法：把錯誤留成可重測的題目</span>
+<h2>問題、段落、答案與文件版本一起保存。</h2>
+<p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+<p>我們主張每次調整知識庫，都能用相同題組檢查。錯誤紀錄應指出失敗環節與文件負責人，讓後續維護能沿用，而不是每次重新猜原因。</p>
+<p>延伸閱讀<a href="/library/qa/rag-access-control-by-department/">公司文件的部門存取控制</a>。回答品質與資料權限，都需要獨立驗收。</p>
+</section>
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：RAG 是什麼？</dt>
+        <dd>是先檢索資料，再把相關內容交給模型作為回答依據的方式。[1]</dd>
+        <dt>Q2：切塊越大越好嗎？</dt>
+        <dd>不是通用規則。大小、重疊與分段方式要依內容及用途測試。[2]</dd>
+        <dt>Q3：有引用就表示答對嗎？</dt>
+        <dd>我們建議另外檢查引用是否支持回答，以及回答是否完整切題；這些是不同評估面向。[3]</dd>
+        <dt>Q4：什麼時候再考慮換模型？</dt>
+        <dd>我們建議先確認檢索到正確材料；若材料正確但仍答錯，再用同一組題目比較模型與提示設定。</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-26。<br>
+    [1] Microsoft，〈RAG and Generative AI〉，查閱日期 2026-10-26：<a href="https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview" target="_blank" rel="noopener">learn.microsoft.com</a>　&middot;
+    [2] Microsoft，〈Chunk Documents〉，查閱日期 2026-10-26：<a href="https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents" target="_blank" rel="noopener">learn.microsoft.com</a>　&middot;
+    [3] Microsoft，〈Retrieval-Augmented Generation (RAG) Evaluators〉，查閱日期 2026-10-26：<a href="https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators" target="_blank" rel="noopener">learn.microsoft.com</a>　&middot;
+    [4] Liu 等，〈Lost in the Middle: How Language Models Use Long Contexts〉，2023，arXiv:2307.03172，查閱日期 2026-10-26：<a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener">arxiv.org</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI 導入實測手記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

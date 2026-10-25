@@ -1744,6 +1744,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 019
+
+November 12, 2026 · AI Deployment Field Notes
+
+## AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models
+
+Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.](https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/)
 [Issue 018
 
 November 10, 2026 · Enterprise Security Notes
@@ -2930,6 +2937,119 @@ Sources
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
 THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/
+
+# AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 019
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 12, 2026  ·  Thursday
+◆
+AI Deployment Field Notes
+◆
+Issue 019
+
+RAG · Chunking · Retrieval Quality
+
+## AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models
+
+Think BIG Media  |  November 12, 2026
+
+Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.
+
+## One.  What’s Happening: Having Documents Does Not Mean Retrieving the Right Evidence
+
+Retrieval-augmented generation, or RAG, retrieves relevant content before asking a model to answer from it. Microsoft’s official overview identifies terminology mismatches, content preparation, and input limits as implementation challenges.[1] Uploading files and answering questions reliably are separate steps.
+
+Chunking is one of those steps. Official documentation describes fixed-size, structural, and semantic approaches, with size and overlap adjusted to the content and use.[2] We would not apply one character count to every Chinese policy, table, or scanned document. Read the resulting chunks to check whether they retain subjects, conditions, and exceptions.
+
+Microsoft’s evaluation guidance separates retrieval-process quality from final-answer quality. One asks whether retrieved material is relevant; the other examines grounding, relevance, and completeness of the answer.[3] We use that distinction as a diagnostic method, without recommending a service or treating an automated score as a business decision.
+
+## Two.  Perspectives: Inspect Retrieval Without Ignoring Model Behavior
+
+The case for checking data first:  The overview ties RAG quality to content preparation and retrieval relevance.[1] If the necessary evidence never reached the model, we would investigate indexing and retrieval first. A larger model does not resolve that missing input.
+
+The model-side caution:  Receiving a passage does not establish that a model uses it correctly. The original 2023 study “Lost in the Middle” found position-dependent performance in its multi-document question-answering and key-value retrieval tasks.[4] It does not establish identical behavior in every newer model. It does challenge adding more context as a universal remedy.
+
+Test both stages: whether the evidence was retrieved and whether the answer used it faithfully. When documents conflict, ask their owner to determine which is valid rather than asking the model to settle company policy.
+
+Add explicit failure definitions: missing exceptions, treating an old version as current, or citing the wrong document. This gives document owners and engineers shared criteria beyond fluency or a retrieval score.
+
+Keep the original phrasing too. Rewriting conversational questions into document titles before every test can hide the terminology mismatch being tested. Save original and rewritten queries with their retrieval results before deciding whether to adopt query rewriting.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from our RAG document and answer-quality work. They are not industry statistics or an account of any particular organization.
+
+1. Inspect retrieved passages first.  When an answer is poor, we check the retrieved material before analyzing generation. Chunks that are too large or small are among the causes we encounter; model capability is not always the problem.
+
+2. A readable original can produce damaged text.  We have seen tables and scanned documents become corrupted during text extraction. We inspect the extracted text instead of repeatedly asking the model to read broken material better.
+
+3. One subject may have two versions.  Retrieving old and new documents together mixes evidence. We remove outdated versions or mark their status so validity can be checked.
+
+4. Keep real questions and reference answers.  We build test sets and watch for differences between conversational questions and formal document terms. Questions should reflect actual phrasing, beyond document titles.
+
+## Four.  Our Recommendations: Diagnose with a Fixed Question Set
+
+1. Inspect extracted text.  Compare tables, scans, and exception clauses against originals. Check whether labels still match values. Correct preprocessing problems before rebuilding the index.
+
+2. Map questions to evidence.  Record expected answers and supporting documents and passages. Include unanswerable questions, outdated material, and terminology differences. Retrieval evaluation needs explicit relevance evidence.[3]
+
+3. Change one class of settings at a time.  Keep the model and questions fixed when comparing segmentation, overlap, or query methods. Save retrieved passages so improvements have an identifiable cause. Validate parameters on your own content.[2][3]
+
+4. Assess evidence and answers separately.  Wrong evidence points toward retrieval; correct evidence with a wrong answer calls for prompt and model checks; conflicting documents go to their owner. This is our recommended triage, beyond one aggregate score.
+
+5. Test missing answers too.  Require an explicit evidence gap when support is insufficient. Independently test access permissions so retrieved content stays within authorization.[1]
+
+Check that the model received the right material before judging its answer.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Failures as Repeatable Tests
+
+## Save questions, passages, answers, and document versions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend rerunning the same questions after knowledge-base changes. Failure records should identify the stage and document owner so future maintenance can build on prior work.
+
+Answer quality and document access each need acceptance checks.
+
+### Frequently Asked Questions
+
+Q1: What is RAG?
+It retrieves relevant content and provides it to the model as evidence for an answer.[1]
+Q2: Are larger chunks always better?
+No. Test size, overlap, and boundaries against your content and use case.[2]
+Q3: Does a citation prove the answer is correct?
+Check whether it supports the claim and whether the answer is relevant and complete. These are separate evaluation dimensions.[3]
+Q4: When should we consider another model?
+First establish that retrieval delivers the right evidence. Then compare model and prompt choices on the same questions if answers still fail.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Microsoft, “RAG and Generative AI”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) ·
+    [2] Microsoft, “Chunk Documents”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) ·
+    [3] Microsoft, “Retrieval-Augmented Generation (RAG) Evaluators”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators) ·
+    [4] Liu et al., “Lost in the Middle: How Language Models Use Long Contexts,” 2023, arXiv:2307.03172, accessed 2026-10-26: [arxiv.org](https://arxiv.org/abs/2307.03172)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
     Think BIG, Make it Real!
 
 ---
@@ -9887,6 +10007,119 @@ Q4：升級失敗，只降版就好嗎？
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
 THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/
+
+# AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 019 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 12 日　星期四
+◆
+AI 導入實測手記
+◆
+第 019 期
+
+RAG · 切塊 · 檢索品質
+
+## AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型
+
+Think BIG 自媒體部  |  2026 年 11 月 12 日
+
+先把問題、檢索段落與回答放在一起看。找到錯誤出在哪個環節，才知道應該改文件、改檢索，還是調整模型。
+
+## 一 現象：有文件，不代表每次都找到對的段落
+
+RAG 是檢索增強生成：先從資料中找出相關內容，再交給模型作為回答依據。Microsoft 的官方概述指出，提問用語與文件術語不一致、文件前處理及輸入長度限制，都是實作挑戰。[1] 這說明「文件已上傳」與「能回答問題」之間，還有值得檢查的流程。
+
+切塊是其中一環。官方文件列出固定長度、依結構或語意分段等方式，也提醒重疊與大小應依文件及用途調整。[2] 因此，我們不建議把某個字數當成所有中文制度、表格或掃描檔都通用的設定。切完的段落是否保留主詞、條件與例外，應拿出來閱讀。
+
+評估也需要分層。Microsoft 的 RAG 評估文件區分檢索流程與最終回答：前者看找回內容是否與問題相關，後者再看回答是否依據內容、切題且完整。[3] 本文引用這個區分說明排查方法，不推薦特定服務，也不把評分工具的分數當成業務判斷。
+
+## 二 各方評價：改善檢索有根據，模型能力也不能忽略
+
+先檢查資料的一面： 官方概述把內容準備與檢索相關性放在 RAG 品質的核心。[1] 我們的判讀是，當標準答案根本沒有出現在模型收到的段落裡，應先查索引與檢索紀錄；直接換更大的模型，沒有處理這個缺口。
+
+保留模型判斷的一面： 找到段落後，模型仍可能沒有正確使用。2023 年原始研究〈Lost in the Middle〉在指定的多文件問答與鍵值檢索任務中，觀察到相關資訊放在長上下文不同位置，表現會改變。[4] 這不代表所有新模型都有同樣結果，但提醒我們不能只用「塞更多資料」當通用答案。
+
+兩種方向可以放進同一份測試：先判定該找到的證據有沒有被找回，再判定模型有沒有忠實回答。若文件本身就互相矛盾，則先交由文件負責人確認，而不是請模型替公司決定哪份規定有效。
+
+我們建議在測試表再加一欄「怎樣算答錯」：漏掉例外、把舊版當現行、引用別份文件，分開記錄。這是為了讓文件維護者與工程人員看同一題時有共同判準，不會一個只看文字流暢、另一個只看檢索分數。
+
+題組也要保留原始問法。若每次測試前都先把口語問題改寫成文件標題，就可能把原本要驗證的用語落差藏起來。我們建議同時保留原問句與改寫版本，分別記錄檢索結果，再決定是否採用查詢改寫。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們處理 RAG 文件與回答問題時的觀察，不是產業統計，也不描述特定對象。
+
+1. 先看檢索回來的段落。 我們遇到答不準時，會先看找回的內容對不對，再看模型如何回答。常見原因包括切塊太大或太小，並非每次都是模型不夠聰明。
+
+2. 原檔看起來正常，轉成文字可能走樣。 我們見過表格、掃描文件轉文字後變成亂碼。處理順序是回頭看文字內容，而不是繼續修改提示詞，要求模型把錯誤資料讀得更準。
+
+3. 同一件事可能有兩個版本。 新舊文件同時被找到，會讓回答依據混在一起。我們的做法是把舊版下架，或標明版本，讓文件的有效狀態能被檢查。
+
+4. 真實問題與標準答案要一起留。 我們會建立題組測試，也留意口語提問與正式名詞之間的落差。題目不是只寫文件標題，而是整理實際會怎麼問，才看得到檢索有沒有接上用語。
+
+## 四 我們的建議：用同一組題目，逐項排查
+
+1. 抽查轉出的文字。 挑表格、掃描頁與有例外條件的段落，對照原檔。把欄位標題與數值是否仍對得上列為檢查點；若前處理錯了，先修內容，再重建索引。
+
+2. 建題目與證據表。 每題記下預期答案、可支持的文件及段落，另外放入找不到答案、文件過期與用語不同的題目。檢索評估需要清楚的相關性依據。[3]
+
+3. 一次改一類設定。 固定模型與題組，再比較分段、重疊或查詢方式。保留每次找回的段落，避免答案變好卻不知道是哪項變動造成；參數應依自己的內容驗證。[2][3]
+
+4. 分開看證據與回答。 證據沒找對，回檢索層；證據正確但回答錯，查提示與模型；文件矛盾，交負責人處理。這是我們建議的分流，不把單一分數當成全部結論。
+
+5. 把找不到也列為驗收。 要求系統在沒有足夠依據時說明缺口，不拼出貌似完整的答案。另測使用者權限，確認能查到的內容都在授權範圍內。[1]
+
+一句話：先確認 AI 讀對材料，再判斷它有沒有答對。
+
+◆ 編按 · Think BIG 的做法：把錯誤留成可重測的題目
+
+## 問題、段落、答案與文件版本一起保存。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張每次調整知識庫，都能用相同題組檢查。錯誤紀錄應指出失敗環節與文件負責人，讓後續維護能沿用，而不是每次重新猜原因。
+
+延伸閱讀[公司文件的部門存取控制](https://thinkbigtw.com/library/qa/rag-access-control-by-department/)。回答品質與資料權限，都需要獨立驗收。
+
+### 常見問題
+
+Q1：RAG 是什麼？
+是先檢索資料，再把相關內容交給模型作為回答依據的方式。[1]
+Q2：切塊越大越好嗎？
+不是通用規則。大小、重疊與分段方式要依內容及用途測試。[2]
+Q3：有引用就表示答對嗎？
+我們建議另外檢查引用是否支持回答，以及回答是否完整切題；這些是不同評估面向。[3]
+Q4：什麼時候再考慮換模型？
+我們建議先確認檢索到正確材料；若材料正確但仍答錯，再用同一組題目比較模型與提示設定。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Microsoft，〈RAG and Generative AI〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)　·
+    [2] Microsoft，〈Chunk Documents〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)　·
+    [3] Microsoft，〈Retrieval-Augmented Generation (RAG) Evaluators〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators)　·
+    [4] Liu 等，〈Lost in the Middle: How Language Models Use Long Contexts〉，2023，arXiv:2307.03172，查閱日期 2026-10-26：[arxiv.org](https://arxiv.org/abs/2307.03172)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
