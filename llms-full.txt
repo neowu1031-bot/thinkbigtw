@@ -1744,6 +1744,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 015
+
+November 4, 2026 · Local AI Field Notes
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.](https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/)
 [Issue 014
 
 November 2, 2026 · Enterprise Security Notes
@@ -2444,6 +2451,117 @@ Sources
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
 THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/
+
+# Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 015
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 4, 2026  ·  Wednesday
+◆
+Local AI Field Notes
+◆
+Issue 015
+
+Windows · Unicode Paths · Local AI
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+Think BIG Media  |  November 4, 2026
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.
+
+## One.  What’s Happening: Unicode Support Does Not Validate Every Component
+
+A local model running on the CPU can have a problem outside the model itself. Microsoft documents Unicode storage for long filenames and distinguishes ANSI code-page APIs from Unicode APIs.[1][2] A valid Chinese path in Windows does not establish that every package, subprocess, or startup script passes it correctly. That is a diagnostic possibility, not a diagnosis based on someone’s username.
+
+Ollama’s troubleshooting guide recommends inspecting logs and lists Windows log and binary locations.[3] We use that documentation to illustrate an inspection method, without ranking tools or claiming this tool fails on all Chinese accounts.
+
+Our deployment record was specific: the model answered, but used the CPU. Debug logs showed GPU-discovery subprocess failures and corrupted paths. That internal record supports the practice notes below. It cannot tell us how often this happens on other computers.
+
+## Two.  Perspectives: Support Valid Names and Keep Deployment Paths Maintainable
+
+The user perspective:  Chinese names and file paths are legitimate needs, consistent with Microsoft’s Unicode documentation.[1][2] We believe a reproducible tool failure should be documented for maintainers rather than attributed to the user’s choice of name.
+
+The operations perspective:  A simple English program directory can help isolate a variable in a particular environment. This is our deployment trade-off, not a general Windows requirement. Keep the model, tool version, and driver unchanged where possible when comparing paths.
+
+Microsoft documents mklink /j  as creating a Directory Junction.[4] A junction does not repair a tool’s text encoding. Whether to use one, and which way it should point, depends on the file layout and startup method. A single command is not a universal fix.
+
+Use a comparison table: tool and model, startup directory, execution account, and failing step. Changing several variables together makes attribution difficult. If they must change together, say so rather than crediting the entire result to an English path.
+
+If the English-directory test does not help, return to the logs and investigate other causes. Avoid further bulk moves or rebuilding every account because of this case. Preserve unsuccessful tests too so another maintainer can continue.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from one Windows deployment and maintenance record. They are not industry statistics and do not identify any particular organization.
+
+1. It initially looked like a GPU issue.  The program and model were under a user directory containing Chinese characters. The model ran slowly on the CPU. Changes to several GPU-related environment variables did not resolve it.
+
+2. Logs pointed toward the path.  Debug records showed all GPU-discovery subprocesses failing and paths appearing as corrupted text. An OpenSSH startup script on the same machine also mishandled the account path. This does not establish a limitation across remote-access tools.
+
+3. We changed program locations while preserving user data.  We moved the program and model to an English directory, connected the old location through a junction, created an English-named management account, and used Task Scheduler for startup. The model then ran fully on the GPU and became visibly faster. We have no measured multiplier to report.
+
+4. We moved the check earlier.  We now inspect the account name with whoami  and plan an English program path when it contains non-ASCII characters. This is a deployment habit, not a request for people to change their names.
+
+## Four.  Our Recommendations: Keep Evidence Before and After Changes
+
+1. Record the environment.  Save the tool version, program and model directories, startup account, and failure time. Record the display name and actual logged path separately. Remove names and tokens before seeking outside support.
+
+2. Read logs before choosing a fix.  Locate logs using the tool documentation and check whether subprocess failures coincide with corrupted paths.[3] Without that evidence, keep driver, permission, and other causes open.
+
+3. Test a copy in another path.  Use a backup or test environment to compare an English directory. Document service, schedule, and model-path changes. If a junction is used, verify its source and target and document rollback.[4]
+
+4. Repeat the original task.  With the same model and question, compare the execution device and errors, then check service startup after reboot. Acceptance should establish that the original failure is gone, beyond simply opening the application.
+
+Let logs guide the investigation and controlled comparisons guide the change.
+
+◆ Editor’s Note · How Think BIG Approaches This: Document the Paths
+
+## Give the next maintainer a usable map of the installation.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend documenting physical directories, links, startup accounts, and schedules together. Every change should have a reversal plan; do not casually move an entire user profile.
+
+Path checks and execution-device checks belong in the same acceptance checklist.
+
+### Frequently Asked Questions
+
+Q1: Can a Chinese Windows account run local AI?
+Windows supports Unicode. This article describes a specific toolchain problem, not a general prohibition.[1][2]
+Q2: Does CPU-only execution prove a path problem?
+No. Inspect logs and run controlled comparisons rather than diagnosing from speed or a username.[3]
+Q3: What is a junction?
+Microsoft documents mklink /j as creating a Directory Junction. It is not an encoding repair.[4]
+Q4: Should I rename the whole user profile?
+We do not recommend casually moving a whole profile. In this deployment we changed program and model locations while preserving user data.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Microsoft, “Naming Files, Paths, and Namespaces”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file) ·
+    [2] Microsoft, “Unicode in the Windows API”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api) ·
+    [3] Ollama, “Troubleshooting”, accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/troubleshooting) ·
+    [4] Microsoft, “mklink”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
     Think BIG, Make it Real!
 
 ---
@@ -8957,6 +9075,117 @@ Q4：哪些動作適合等人核准？
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
 THINK BIG NEWS   ·  企業資安實務
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/non-ascii-username-local-ai-20261104/
+
+# Windows 使用者名稱是中文，本地 AI 為什麼可能卡住？——先查路徑與日誌 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 015 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 4 日　星期三
+◆
+本地 AI 實測筆記
+◆
+第 015 期
+
+Windows · 中文路徑 · 本地 AI
+
+## Windows 使用者名稱是中文，本地 AI 為什麼可能卡住？——先查路徑與日誌
+
+Think BIG 自媒體部  |  2026 年 11 月 4 日
+
+中文帳號不是錯誤設定。遇到安裝或顯示卡偵測異常，先查工具實際讀到的路徑，再決定是否改用英文目錄。
+
+## 一 現象：系統支援中文，不等於每個環節都處理正確
+
+本地 AI 沒跑上顯示卡，問題可能在模型之外。Microsoft 的檔名文件說明，Windows 檔案系統使用 Unicode 儲存長檔名；Windows API 文件則區分使用字碼頁的 ANSI 版本與 Unicode 版本。[1][2] 這兩件事要一起看：中文路徑在系統中合法，不代表每個套件、子程序與啟動腳本都正確傳遞了文字。後半句是排查方向，不能單憑帳號名稱就下診斷。
+
+以本地模型工具的官方疑難排解文件為例，Ollama 建議先看日誌，並列出 Windows 的日誌與程式目錄。[3] 本文用它說明檢查方式，不評比工具，也不宣稱該工具在所有中文帳號上都有問題。
+
+我們遇到的情況更具體：模型能回答，卻只用 CPU；開啟除錯日誌後，才看到顯示卡偵測子程序失敗，以及路徑出現亂碼。這份內部部署紀錄，是本期第一手段落的依據。它能提示一條線索，不能推估其他電腦出問題的比例。
+
+## 二 各方評價：相容性應該修，部署也需要可維護的路徑
+
+從使用者角度： 中文名稱與中文檔案路徑是正常需求，Microsoft 的 Unicode 文件支持這個基礎。[1][2] 我們的看法是，發現工具處理異常時，應留下可重現證據交給維護者，不該直接把問題歸咎於使用者取名。
+
+從維運角度： 在特定環境中先選用簡單的英文程式目錄，可以作為排除變因的測試。這是我們的實作取捨，不是 Windows 的通用要求。測試時盡量維持模型、工具版本與驅動相同，才看得出更改路徑與結果的關係。
+
+目錄連結也有明確用途：Microsoft 的 mklink  文件把 /j  定義為建立 Directory Junction。[4] 但它不會修正工具的文字編碼；要不要使用、連結方向如何安排，仍需依檔案位置與啟動方式規劃。不要把一行指令當成每台電腦通用的修法。
+
+我們建議把排查紀錄寫成對照表：相同的工具與模型，各在哪個目錄啟動、由哪個帳號執行、哪一步失敗。一次改太多項，就很難知道哪項調整與結果相關；若必須一起更動，報告也應如實註明，避免把多項處置的結果都歸功於英文路徑。
+
+如果英文目錄測試沒有改善，我們建議回到原始日誌，另查其他原因。不要繼續大搬資料，也不要只因為本文案例就要求所有人重建帳號。把成功與失敗的測試都留下來，才方便後續維護者接手。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們的一次 Windows 部署與維運紀錄，不是產業統計，也不描述特定對象。
+
+1. 一開始看起來像顯示卡問題。 程式與模型放在含中文帳號的使用者目錄底下，模型可以跑，但只用 CPU、回應很慢。我們調整多個顯示卡相關環境變數，症狀沒有改善。
+
+2. 日誌把問題指向路徑。 除錯紀錄顯示，顯示卡偵測子程序全部失敗，路徑被寫成亂碼。同一台機器的 OpenSSH 啟動腳本也把帳號路徑寫壞。這些是當次觀察，不能推論所有遠端登入工具都有相同限制。
+
+3. 我們調整程式位置，保留使用者資料。 後來把程式與模型改放英文目錄，用 junction 串接原有位置，另建英文管理帳號，再由工作排程器開機啟動服務。完成後模型完整跑在顯示卡上，速度明顯回升；沒有在這裡提供未量測的倍數。
+
+4. 把線索提前檢查。 此後我們拿到新電腦，先用 whoami  看帳號名稱；遇到非 ASCII 字元，就先規劃英文程式路徑。這是部署習慣，不是要求每個人改掉中文姓名。
+
+## 四 我們的建議：更動前後都留下證據
+
+1. 先記環境。 保存工具版本、程式與模型目錄、啟動帳號，以及錯誤時間。畫面上的顯示名稱與日誌中的實際路徑分別記錄；對外求助前遮去姓名與權杖。
+
+2. 先讀日誌，再試修法。 依工具文件找日誌，對照子程序失敗與路徑亂碼是否同時出現。[3] 沒有這些證據時，仍應保留驅動、權限與其他原因的可能性，避免先把所有故障都歸到中文。
+
+3. 用測試副本驗證路徑。 我們建議先在備份或測試環境比較英文目錄，寫清楚需要調整的服務、排程與模型位置。若使用 junction，先確認來源與目標，另留移除連結與還原設定的步驟。[4]
+
+4. 用原本工作驗收。 同一個模型、同一個問題，在修改前後確認執行裝置、錯誤紀錄與重開機後的服務狀態。驗收不是只看「能開啟」，也要看原先的故障有沒有消失。
+
+一句話：先讓日誌指路，再讓對照測試決定要改哪裡。
+
+◆ 編按 · Think BIG 的做法：把路徑列入部署文件
+
+## 讓下一位維護者知道程式到底放在哪裡。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張交付文件同時記錄實體目錄、連結、啟動帳號與排程，避免只留下桌面捷徑。所有調整都應有還原方式，不直接搬動整個使用者資料夾。
+
+延伸閱讀[GPU 有沒有在動](https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/)。路徑檢查和執行裝置檢查，應該放在同一份驗收清單。
+
+### 常見問題
+
+Q1：中文 Windows 帳號不能跑本地 AI 嗎？
+不能這樣推論。Windows 支援 Unicode；本文只描述一次部署中的工具鏈問題。[1][2]
+Q2：只用 CPU 就是中文路徑造成的嗎？
+不是。要看日誌與對照測試，不能只憑速度或帳號名稱下判斷。[3]
+Q3：junction 是什麼？
+Microsoft 將 mklink 的 /j 參數定義為建立目錄接合點。它不是編碼修正工具。[4]
+Q4：需要把整個使用者資料夾改名嗎？
+我們不建議直接搬動整個使用者資料夾。本次做法是調整程式與模型位置，保留原有使用者資料。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Microsoft，〈Naming Files, Paths, and Namespaces〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file)　·
+    [2] Microsoft，〈Unicode in the Windows API〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api)　·
+    [3] Ollama，〈Troubleshooting〉，查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/troubleshooting)　·
+    [4] Microsoft，〈mklink〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
