@@ -84,6 +84,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [AI 會有偏見嗎？企業用 AI 做判斷前要檢查什麼](https://thinkbigtw.com/library/qa/ai-bias-enterprise/)
 - [用 AI 做會議記錄要注意什麼？錄音、逐字稿與個資](https://thinkbigtw.com/library/qa/ai-meeting-notes-privacy/)
 - [AI 客服答錯了，誰要負責？上線前要設好的 4 道防線](https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/)
+- [怎麼讓 AI 回答時附上出處？查公司文件時特別重要](https://thinkbigtw.com/library/qa/ai-answers-with-citations/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -127,6 +128,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Can AI Be Biased? What Should a Company Check Before Using It to Inform Decisions?](https://thinkbigtw.com/en/qa/ai-bias-enterprise/)
 - [What Should You Check Before Using AI for Meeting Notes?](https://thinkbigtw.com/en/qa/ai-meeting-notes-privacy/)
 - [Who Is Responsible When an AI Chatbot Gives a Wrong Answer?](https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/)
+- [How Can You Get AI Answers With Checkable Sources?](https://thinkbigtw.com/en/qa/ai-answers-with-citations/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
