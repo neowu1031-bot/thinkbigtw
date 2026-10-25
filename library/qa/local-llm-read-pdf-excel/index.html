@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理｜問答圖書館｜Think BIG</title>
+<meta name="description" content="本地 AI 系統能否讀 PDF、Excel 與掃描檔，取決於解析、OCR、模型與檢索流程。先檢查抽出的文字、表格與公式值，再談問答品質與資料權限。">
+<link rel="canonical" href="https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/local-llm-read-pdf-excel/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/">
+<meta property="og:title" content="本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理｜問答圖書館｜Think BIG">
+<meta property="og:description" content="本地 AI 系統能否讀 PDF、Excel 與掃描檔，取決於解析、OCR、模型與檢索流程。先檢查抽出的文字、表格與公式值，再談問答品質與資料權限。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-14T16:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理｜問答圖書館｜Think BIG">
+<meta name="twitter:description" content="本地 AI 系統能否讀 PDF、Excel 與掃描檔，取決於解析、OCR、模型與檢索流程。先檢查抽出的文字、表格與公式值，再談問答品質與資料權限。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/#article",
+   "headline": "本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理",
+   "description": "本地 AI 系統能否讀 PDF、Excel 與掃描檔，取決於解析、OCR、模型與檢索流程。先檢查抽出的文字、表格與公式值，再談問答品質與資料權限。",
+   "keywords": "本地模型 PDF, Excel AI, 掃描檔 OCR, RAG 文件處理, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG 問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "大想成業有限公司",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-11-14T16:00:00+08:00",
+   "dateModified": "2026-11-14T16:00:00+08:00",
+   "url": "https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/",
+   "mainEntityOfPage": "https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/",
+   "inLanguage": "zh-Hant-TW",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "citation": [
+    "https://pypdf.readthedocs.io/en/stable/user/extract-text.html",
+    "https://openpyxl.readthedocs.io/en/stable/tutorial.html",
+    "https://tesseract-ocr.github.io/tessdoc/ImproveQuality.html",
+    "https://thinkbigtw.com/trust/",
+    "https://thinkbigtw.com/guides/local-ai-data/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "本地 AI 系統可以依設計處理 PDF、Excel 與掃描檔，但不是把任何檔案放進資料夾，純文字模型就會直接讀懂。通常要先解析文字、表格，掃描內容則評估 OCR（光學字元辨識）或具影像能力的處理方式。能否讀得正確，要從抽出的內容開始驗收，再看模型回答。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "PDF 都需要 OCR 嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不需要一概如此。先看是否有可擷取文字；圖片型頁面再評估 OCR 或影像處理。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Excel 讀到數值，表示公式已重新算過嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不能這樣推定。部分讀取方式取得的是檔案保存的值，需確認更新與計算流程。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "辨識後可以直接放進知識庫嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "建議先比對抽取內容，確認版本、權限與來源標記，再測檢索。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "本地模型就表示解析也在本地嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不表示。解析、OCR、模型、紀錄與備份的處理位置要分別確認。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "首頁",
+     "item": "https://thinkbigtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Library",
+     "item": "https://thinkbigtw.com/library/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "問答圖書館",
+     "item": "https://thinkbigtw.com/library/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "name": "文件進本地 AI 前要做的處理",
+     "item": "https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/library/qa/">&larr; 問答圖書館</a>
+  <div class="qa-top">
+    <span class="cat">本地大模型</span>
+    <span class="no">TB32</span>
+  </div>
+  <h1 class="q">本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理</h1>
+  <p class="byline">Think BIG 問答圖書館　·　<time datetime="2026-11-14T16:00:00+08:00">2026 年 11 月 14 日　星期六</time>
+    ·　<a href="https://thinkbigtw.com/en/qa/local-llm-read-pdf-excel/" hreflang="en" style="color:var(--ink-soft)">English</a></p>
+
+  <section class="answer" aria-label="先說答案">
+    <span class="lede">先說答案</span>
+    <div><p>本地 AI 系統可以依設計處理 PDF、Excel 與掃描檔，但不是把任何檔案放進資料夾，純文字模型就會直接讀懂。通常要先解析文字、表格，掃描內容則評估 OCR（光學字元辨識）或具影像能力的處理方式。能否讀得正確，要從抽出的內容開始驗收，再看模型回答。</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">一、</span>不同檔案，先走不同的讀取步驟</h2>
+<p>pypdf 官方文件說明，PDF 的文字擷取可能受版面與表格排列影響；只有圖片的頁面，需要另外使用 OCR。這表示 PDF 副檔名相同，不代表裡面都有可直接擷取的文字。</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>檔案情況</th>
+<th>起步處理方向</th>
+<th>建議核對項目</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可選取文字的 PDF</td>
+<td>擷取文字並保留頁碼與結構</td>
+<td>段落順序、表格欄列</td>
+</tr>
+<tr>
+<td>掃描 PDF、照片</td>
+<td>OCR 或經驗證的影像處理流程</td>
+<td>漏字、方向、符號與頁次</td>
+</tr>
+<tr>
+<td>Excel 工作簿</td>
+<td>讀工作表、欄位與儲存格</td>
+<td>表頭、公式、日期及隱藏內容</td>
+</tr>
+</tbody>
+</table></div>
+<p>表格是本文的驗收起點，不代表所有工具都支援每種處理方式。模型、OCR 與檔案解析程式是不同元件；其中一項在本地，不能推定其他項目也在本地。對含敏感資料的原檔，應先確認整段流程的處理位置。</p>
+<h2><span class="no">二、</span>能抽出文字，仍要確認意思有沒有變</h2>
+<p>Tesseract 的官方說明指出，雜訊與頁面歪斜可能降低 OCR 準確度。本文建議先挑有小字、跨頁表格與特殊符號的樣本，比對原圖與辨識結果；不要只用清楚的大字封面示範。</p>
+<p>Excel 也要確認讀到的是公式還是值。openpyxl 的教學說明，<code>data_only</code> 可選擇讀取公式，或 Excel 上次讀取工作表時儲存的值。後者不等於本次重新計算的結果，因此不要看到一個數值就推定它已更新。</p>
+<p>建議把關鍵數字、單位、否定句與註腳列為檢查點。例如「不適用」少了一個字，或欄位錯接到下一列，後續回答即使語句自然，也可能偏離文件。這些是假想的驗收案例，用來提醒應比較實際抽取內容，不是宣稱某工具有特定錯誤率。</p>
+<h2><span class="no">三、</span>交給 RAG 前保留可追溯的內容</h2>
+<p>本文建議每個段落保留原檔名稱、頁碼或工作表、版本與存取權限。先決定要納入哪些工作表及欄位，再切成可檢索內容；欄位說明、單位和適用條件應能一起被取回。若來源文件改版，也要知道舊段落何時下架。</p>
+<p>我們部署時常見的現象，是轉文字後表格錯位或新舊版本一起被找到。這是內部實務觀察，不是產業統計。建議同時檢查「原檔→抽取結果→檢索段落→回答」，每一步都留下可比較樣本，才容易確認需要修正的位置。</p>
+<p>若接上會寫入或送出的 AI Agent，應把文件解析與後續操作分開授權。雲端解析可依核准用途採用；需要留在公司內的內容，則須連同 OCR、模型、日誌與備份一起確認。</p></div>
+
+  <section class="brand" aria-label="品牌資訊｜Think BIG">
+    <span class="lede">品牌資訊｜Think BIG</span>
+    <h2>Think BIG 的文件處理位置與驗證</h2>
+    <p>Think BIG（大想成業有限公司）協助企業把 AI Agent 建在公司自己的環境裡。地端部署不等於所有連線都在本機；若使用雲端模型、通訊軟體或外部服務，相關請求仍會送出。</p>
+<ol>
+<li><strong>資料流向先列清楚</strong>：導入前逐項確認資料來源、處理位置、輸出接收者、日誌與備份；部署位置與外部串接分別評估。</li>
+<li><strong>以證據驗證工作</strong>：工作完成條件須有對應的變更紀錄與驗證結果，並確認維護與交接責任。</li>
+</ol>
+<p>詳見<a href="https://thinkbigtw.com/trust/">資安與治理</a>與<a href="https://thinkbigtw.com/guides/local-ai-data/">地端 AI 與資料主權</a>。</p>
+    <p class="brand-src">Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+  </section>
+
+  <section class="faq" aria-label="常見問題">
+    <h2>常見問題</h2>
+    <dl><dt>Q1：PDF 都需要 OCR 嗎？</dt><dd>不需要一概如此。先看是否有可擷取文字；圖片型頁面再評估 OCR 或影像處理。</dd><dt>Q2：Excel 讀到數值，表示公式已重新算過嗎？</dt><dd>不能這樣推定。部分讀取方式取得的是檔案保存的值，需確認更新與計算流程。</dd><dt>Q3：辨識後可以直接放進知識庫嗎？</dt><dd>建議先比對抽取內容，確認版本、權限與來源標記，再測檢索。</dd><dt>Q4：本地模型就表示解析也在本地嗎？</dt><dd>不表示。解析、OCR、模型、紀錄與備份的處理位置要分別確認。</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul><li><a href="/library/qa/what-is-rag/">RAG 是什麼？</a></li><li><a href="/library/qa/rag-access-control-by-department/">文件問答如何落實部門權限？</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">參考來源（連結於 2026-10-26 查證）</span>
+    <ol><li>pypdf｜Extract Text from a PDF：<a href="https://pypdf.readthedocs.io/en/stable/user/extract-text.html" target="_blank" rel="noopener">pypdf.readthedocs.io</a></li><li>openpyxl｜Tutorial：<a href="https://openpyxl.readthedocs.io/en/stable/tutorial.html" target="_blank" rel="noopener">openpyxl.readthedocs.io</a></li><li>Tesseract｜Improving the quality of the output：<a href="https://tesseract-ocr.github.io/tessdoc/ImproveQuality.html" target="_blank" rel="noopener">tesseract-ocr.github.io</a></li><li>Think BIG｜資安與治理：<a href="https://thinkbigtw.com/trust/" target="_blank" rel="noopener">thinkbigtw.com</a></li><li>Think BIG｜地端 AI 與資料主權：<a href="https://thinkbigtw.com/guides/local-ai-data/" target="_blank" rel="noopener">thinkbigtw.com</a></li></ol>
+  </div>
+  <p class="disclaimer">本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。</p>
+
+  <div class="colophon">
+    <b>問答圖書館</b>　·　<a href="/library/" style="color:inherit">Library 首頁</a>
+    <span class="sig">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
