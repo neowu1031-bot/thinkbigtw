@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length | Think BIG NEWS</title>
+<meta name="description" content="When you run an AI model locally, a larger context length needs more memory. Drawing on Ollama's official documentation, this article covers the defaults, how to change them, and how to check what is actually allocated, plus symptoms we commonly see in deployments and a practical way to pick a sensible value.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/">
+<meta property="og:title" content="Give Your Local AI Too Much &ldquo;Memory&rdquo; and It Can Drag Down the Whole Machine | Think BIG NEWS">
+<meta property="og:description" content="Context set too large, memory runs out, everything slows — start with two columns in ollama ps and work back to a sensible value in three steps.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Give Your Local AI Too Much &ldquo;Memory&rdquo; and It Can Drag Down the Whole Machine | Think BIG NEWS">
+<meta name="twitter:description" content="Oversized context fills VRAM and spills onto the CPU. Run ollama ps, read PROCESSOR and CONTEXT, then size it from real workloads.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/#article",
+      "headline": "Give Your Local AI Too Much \"Memory\" and It Can Drag Down the Whole Machine — How to Size the Context Length",
+      "description": "When you run an AI model locally, a larger context length needs more memory. Drawing on Ollama's official documentation, this article covers the defaults, how to change them, and how to check what is actually allocated, plus symptoms we commonly see in deployments and a practical way to pick a sensible value.",
+      "keywords": "context length, num_ctx, OLLAMA_CONTEXT_LENGTH, local LLM, slow local AI, out of memory, ollama ps, local AI agent deployment, K/V cache",
+      "author": {"@type": "Organization", "name": "Think BIG Content Team", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "Think BIG Make it Real Co., Ltd.", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-25T20:00:00+08:00",
+      "dateModified": "2026-10-25T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/",
+      "inLanguage": "en",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/en/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is context length?", "acceptedAnswer": {"@type": "Answer", "text": "The amount of material the AI can carry while it answers, counted in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory."}},
+        {"@type": "Question", "name": "What is Ollama's default context length?", "acceptedAnswer": {"@type": "Answer", "text": "The FAQ says 4,096 tokens; the Context length page describes VRAM-based defaults of 4k, 32k, or 256k. Because they differ, check the CONTEXT column in ollama ps for what your machine actually uses."}},
+        {"@type": "Question", "name": "How do I change the context length?", "acceptedAnswer": {"@type": "Answer", "text": "Use the OLLAMA_CONTEXT_LENGTH environment variable for the server-wide default, and num_ctx for a single model or request (/set parameter num_ctx in the CLI, or the API options)."}},
+        {"@type": "Question", "name": "Is a bigger context always better?", "acceptedAnswer": {"@type": "Answer", "text": "Ollama recommends at least 64,000 tokens for agents and coding tools, and also notes that larger contexts need more memory, so confirm you have enough VRAM. Our advice is to measure your actual need first."}},
+        {"@type": "Question", "name": "What if memory is tight but I need a longer context?", "acceptedAnswer": {"@type": "Answer", "text": "Ollama's documentation points to Flash Attention and K/V cache quantization (q8_0 at roughly half, q4_0 at roughly a quarter of f16 memory). How much quantization affects quality depends on the model and task, so test it yourself."}},
+        {"@type": "Question", "name": "Is this the same problem as the GPU not being used?", "acceptedAnswer": {"@type": "Answer", "text": "Not quite, but you check it the same way. Our Issue 2 covered a model not using the GPU; this article covers a context too large for memory. In both cases, start with the PROCESSOR column in ollama ps."}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"News","item":"https://thinkbigtw.com/en/news/"},
+        {"@type":"ListItem","position":3,"name":"Give Your Local AI Too Much Memory and It Can Drag Down the Whole Machine","item":"https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>Local AI Deployment Notes &middot; Issue 011</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI DEPLOYMENT NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>October 27, 2026 &nbsp; Tuesday</span>
+    <span class="dot">&#9670;</span>
+    <span>Local AI Deployment Notes</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 011</span>
+  </div>
+
+  <p class="kicker">Local AI &middot; Context Length &middot; Memory Management</p>
+  <h2 class="headline">Give Your Local AI Too Much &#x201C;Memory&#x201D; and It Can Drag Down the Whole Machine &#x2014; How to Size the Context Length</h2>
+  <p class="byline">Think BIG Content Team &nbsp;|&nbsp; October 27, 2026</p>
+  <p class="deck">If a local AI keeps getting slower and the rest of the computer bogs down with it, an unused GPU is one suspect. An oversized context length is another. Run <code>ollama ps</code> and check two columns, PROCESSOR and CONTEXT, to see how much context is actually allocated and whether the model has spilled onto the CPU.</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <p style="font-size:14px;color:var(--ink-soft);column-span:all;margin-bottom:18px;">(We use the open-source tool Ollama as the example because its documentation spells out the defaults and the checks clearly. Other local runtimes work along similar lines under different setting names.)</p>
+    <p style="font-size:14px;background:var(--panel);padding:12px 14px;column-span:all;margin-bottom:20px;border-left:3px solid var(--rule);">This piece pairs with our Issue 2, &#x201C;Running a Model Locally: Is Your GPU Actually Doing Anything?&#x201D; Issue 2 covered models that never touch the GPU. This one covers the other case: the GPU is in use, but the context is set so large that memory runs out. Both start with the same command.</p>
+
+    <h2><span class="no">One.</span> What&#x2019;s Happening: Context Takes Memory Too</h2>
+    <p class="lead">Context length is how much material the model can carry while it answers, measured in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]</p>
+    <p>It isn&#x2019;t free. Ollama&#x2019;s documentation states that a larger context length increases the memory needed to run a model, and that you should make sure you have enough VRAM before raising it.[2] The FAQ adds that when a model serves several requests at once, required memory scales with parallel requests multiplied by context length; the default for parallel requests is 1.[1]</p>
+    <p><strong>Watch the default.</strong> Ollama&#x2019;s FAQ says the default context window is 4,096 tokens.[1] The separate &#x201C;Context length&#x201D; page describes VRAM-based defaults instead: 4k below 24 GiB, 32k from 24 to 48 GiB, and 256k at 48 GiB or more.[2] Because the two pages differ, we don&#x2019;t rely on either from memory. We read the CONTEXT column in <code>ollama ps</code> and go by what the machine has actually allocated.[2]</p>
+    <p>Changing it is documented too. To change the server-wide default, set the <code>OLLAMA_CONTEXT_LENGTH</code> environment variable. To change it for one model or one session, use <code>/set parameter num_ctx</code> in the CLI, or pass <code>num_ctx</code> in the API options.[1]</p>
+
+    <h2><span class="no">Two.</span> Perspectives: Go Big, or Stay Stable?</h2>
+    <p><strong>The case for larger contexts:</strong> Ollama&#x2019;s &#x201C;Context length&#x201D; page recommends at least 64,000 tokens for context-heavy tasks such as web search, agents, and coding tools. The same page says that for best performance you can use a model&#x2019;s maximum context length while avoiding offloading the model to the CPU.[2]</p>
+    <p><strong>The case for counting the cost:</strong> The FAQ explains that Flash Attention can significantly reduce memory use as context grows, and that the K/V cache (where context is held) can be quantized. <code>q8_0</code> uses roughly half the memory of <code>f16</code>, and <code>q4_0</code> roughly a quarter, but precision loss may be more noticeable at larger context sizes, and the impact depends on the model and task.[1]</p>
+    <p>These views don&#x2019;t really conflict. The documentation&#x2019;s assumption throughout is that the model fits: open the context up, but check the memory budget first and confirm nothing has been pushed to the CPU.[2]</p>
+
+    <section class="firsthand">
+      <span class="lede">&#9670; First-Hand Notes</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">Three. What We&#x2019;ve Learned in Practice</h2>
+      <p>These are observations from our own local AI agent deployments. They are not industry statistics and don&#x2019;t describe any specific site.</p>
+      <p><strong>1. &#x201C;It&#x2019;s getting slower &#x2014; is the GPU too old?&#x201D; is a common question. The common answer is configuration.</strong> A pattern we see often: someone raises the context sharply so the AI &#x201C;remembers more,&#x201D; memory can&#x2019;t hold it, part of the model ends up on the CPU, and response times stretch out.</p>
+      <p><strong>2. Be extra careful on unified-memory machines.</strong> When the graphics chip and the system share one pool of memory, context isn&#x2019;t only eating &#x201C;the GPU&#x2019;s share.&#x201D; The symptoms we commonly see: responses get progressively slower, the whole computer turns sluggish, and the disk starts writing heavily to swap. At that point it isn&#x2019;t just the AI that&#x2019;s slow; every other program is being held back too.</p>
+      <p><strong>3. Measure the need before picking a number.</strong> We don&#x2019;t start with a fixed figure. The steadier sequence is to run a few real tasks, see how many tokens each actually sends, and then decide how much headroom to leave. Ollama&#x2019;s API responses include <code>prompt_eval_count</code>, the number of input tokens in that request, which is a good enough basis.[3]</p>
+      <p><strong>4. Check CONTEXT and PROCESSOR before handover.</strong> In <code>ollama ps</code>, PROCESSOR shows 100% GPU, 100% CPU, or a split between them;[1] CONTEXT shows the allocated context length.[2] We screenshot both columns at handover.</p>
+    </section>
+
+    <h2><span class="no">Four.</span> Our Recommendations: Three Steps</h2>
+    <p><strong>1. Measure, then set.</strong> Take the three to five tasks you run most often (answering support emails, summarizing meeting notes, searching internal documents), run each a few times, and record <code>prompt_eval_count</code>.[3] Take the highest value, add room for the answer, and start there.</p>
+    <p><strong>2. Run <code>ollama ps</code> right after any change.</strong> If PROCESSOR shows any CPU share, the model plus its context no longer fits in VRAM.[1] Bring the context back down, or look at Flash Attention or K/V cache quantization. If you quantize, re-check quality on your real tasks.[1]</p>
+    <p><strong>3. Size parallelism and context together.</strong> If several people will use it at once, memory needs multiply.[1] Decide how many concurrent requests you need first, then set the context.</p>
+    <p>In short: <strong>a big context is fine if the machine can hold it.</strong> If it can&#x2019;t, the whole computer slows down with it.</p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; Editor&#x2019;s Note &middot; How Think BIG Approaches This: Settings With a Reason Behind Them</span>
+      <h2>Measure first, then set. Every setting should answer &#x201C;why this number?&#x201D;</h2>
+      <p><em>(The following is Think BIG&#x2019;s own practice, kept separate from the reporting above.)</em></p>
+      <p>When we deploy local AI agents, context length isn&#x2019;t a guess: <strong>set from real workloads</strong> &#x2014; we measure input size on the client&#x2019;s own tasks before fixing context length and parallelism; <strong>leave evidence at handover</strong> &#x2014; screenshots of the PROCESSOR and CONTEXT columns from <code>ollama ps</code>, handed to the owner with the settings; <strong>re-verify after changes</strong> &#x2014; after adjusting context, quantization, or parallelism, we rerun the same tasks to confirm speed and answer quality are still acceptable.</p>
+      <p>Our position: every setting should come with an answer to &#x201C;why this number?&#x201D; Issue 13 extends this to model selection, using the same logic as a foundation.</p>
+    </section>
+
+    <section class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <dl>
+        <dt>Q1: What is context length?</dt>
+        <dd>The amount of material the AI can carry while it answers, counted in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]</dd>
+        <dt>Q2: What is Ollama&#x2019;s default context length?</dt>
+        <dd>The FAQ says 4,096 tokens; the &#x201C;Context length&#x201D; page describes VRAM-based defaults of 4k, 32k, or 256k.[1][2] Because they differ, check the CONTEXT column in <code>ollama ps</code> for what your machine actually uses.[2]</dd>
+        <dt>Q3: How do I change it?</dt>
+        <dd>Use the <code>OLLAMA_CONTEXT_LENGTH</code> environment variable for the server-wide default, and <code>num_ctx</code> for a single model or request (<code>/set parameter num_ctx</code> in the CLI, or the API options).[1]</dd>
+        <dt>Q4: Is a bigger context always better?</dt>
+        <dd>Ollama recommends at least 64,000 tokens for agents and coding tools, and also notes that larger contexts need more memory, so confirm you have enough VRAM.[2] Our advice is to measure your actual need first.</dd>
+        <dt>Q5: What if memory is tight but I need a longer context?</dt>
+        <dd>Ollama&#x2019;s documentation points to Flash Attention and K/V cache quantization (<code>q8_0</code> at roughly half, <code>q4_0</code> at roughly a quarter of <code>f16</code> memory). How much quantization affects quality depends on the model and task, so test it yourself.[1]</dd>
+        <dt>Q6: Is this the same problem as &#x201C;the GPU isn&#x2019;t being used&#x201D;?</dt>
+        <dd>Not quite, but you check it the same way. Our Issue 2 covered a model not using the GPU; this article covers a context too large for memory. In both cases, start with the PROCESSOR column in <code>ollama ps</code>.[1]</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Fact-checked on October 24, 2026.<br>
+    [1] Ollama, &#x201C;FAQ&#x201D; (context window settings, the PROCESSOR column in <code>ollama ps</code>, <code>OLLAMA_NUM_PARALLEL</code>, Flash Attention, K/V cache quantization); accessed October 24, 2026: <a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com/faq</a> &nbsp;&middot;&nbsp;
+    [2] Ollama, &#x201C;Context length&#x201D; (definition, VRAM-based defaults, recommendation for agent tasks, the CONTEXT column in <code>ollama ps</code>); accessed October 24, 2026: <a href="https://docs.ollama.com/context-length" target="_blank" rel="noopener">docs.ollama.com/context-length</a> &nbsp;&middot;&nbsp;
+    [3] Ollama, &#x201C;Usage&#x201D; (API response fields including <code>prompt_eval_count</code>); accessed October 24, 2026: <a href="https://docs.ollama.com/api/usage" target="_blank" rel="noopener">docs.ollama.com/api/usage</a>
+  </div>
+  <p class="disclaimer">The first-hand lessons, recommendations, and editor&#x2019;s note present Think BIG&#x2019;s practical views and do not constitute industry statistics or evidence of customer outcomes.</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; Local AI Deployment Notes
+    <span class="brand">Think BIG, Make it Real!&#x3000;Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent deployment &amp; governance.<br>On-premises &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE Official Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE Consult &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact/">Contact</a><a href="/faq/">FAQ</a><a href="/library/news/ai-context-length-too-large-20261025/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
