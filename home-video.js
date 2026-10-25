@@ -3,8 +3,7 @@
   if (!video) return;
 
   // Respect prefers-reduced-motion: pause instead of autoplay
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     video.pause();
   }
 
@@ -18,23 +17,25 @@
     });
   }
 
-  // Play / pause toggle
+  // Play / pause toggle — driven by video events so button always reflects actual state
   var playBtn = document.getElementById('tb-play');
   if (playBtn) {
-    // Sync initial state with actual video state (may be paused due to reduced-motion)
-    if (prefersReduced || video.paused) {
-      playBtn.setAttribute('aria-pressed', 'false');
-      playBtn.textContent = '播放';
+    function syncPlayBtn() {
+      var playing = !video.paused;
+      playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+      playBtn.setAttribute('aria-label', playing ? '暫停影片' : '播放影片');
+      playBtn.textContent = playing ? '暫停' : '播放';
     }
+    video.addEventListener('play', syncPlayBtn);
+    video.addEventListener('pause', syncPlayBtn);
+    // Sync immediately to match actual video state at script load time
+    syncPlayBtn();
+
     playBtn.addEventListener('click', function () {
       if (video.paused) {
-        video.play();
-        playBtn.setAttribute('aria-pressed', 'true');
-        playBtn.textContent = '暫停';
+        video.play().catch(function () { /* autoplay blocked by browser */ });
       } else {
         video.pause();
-        playBtn.setAttribute('aria-pressed', 'false');
-        playBtn.textContent = '播放';
       }
     });
   }
