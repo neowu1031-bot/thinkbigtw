@@ -2287,6 +2287,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 026
+
+November 26, 2026 · AI Deployment Field Notes
+
+## Can AI-Generated Code Go Straight to Production? — Review Before Release
+
+Running code is the start of review.](https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/)
 [Issue 025
 
 November 24, 2026 · Local AI Field Notes
@@ -3738,6 +3745,113 @@ Sources
     [2] Microsoft, “Chunk Documents”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) ·
     [3] Microsoft, “Retrieval-Augmented Generation (RAG) Evaluators”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators) ·
     [4] Liu et al., “Lost in the Middle: How Language Models Use Long Contexts,” 2023, arXiv:2307.03172, accessed 2026-10-26: [arxiv.org](https://arxiv.org/abs/2307.03172)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/
+
+# Can AI-Generated Code Go Straight to Production? — Review Before Release | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 026
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 26, 2026  ·  Thursday
+◆
+AI Deployment Field Notes
+◆
+Issue 026
+
+AI-generated code · code review · secure development
+
+## Can AI-Generated Code Go Straight to Production? — Review Before Release
+
+Think BIG Media  |  November 26, 2026
+
+Running code is the start of review. Before release, check data access, write permissions, failure behavior, and recovery.
+
+## One. Code Generation and Release Approval Are Separate
+
+On May 19, 2025, GitHub introduced a coding agent that accepts assigned work and proposes changes. That announcement provides a concrete starting point for discussing the review that follows a generated change. This article does not rank or recommend tools.[1]
+
+GitHub’s responsible-use documentation also warns that generated code may miss developer intent or introduce security problems, and calls for review and testing before merging.[2] Plausible syntax and an agent’s completion message are insufficient evidence of acceptance.
+
+Established security guidance applies. NIST SP 800-218, Secure Software Development Framework version 1.1, published in 2022, covers code review and analysis in PW.7 and executable testing in PW.8. OWASP’s review guidance covers input validation, authentication, authorization, data flow, and business logic.[3][4]
+
+## Two. Useful Assistance Still Needs Context
+
+The benefit: assistance on clearly scoped work.  GitHub recommends a clear problem statement, acceptance criteria, and context.[2] In our reading, assistance with changes and tests can make discussion more concrete. It does not establish that every output meets requirements.
+
+The caution: security depends on context.  OWASP emphasizes human understanding of business logic and complex permissions.[4] We recommend testing that an unauthorized account is refused, alongside a successful authorized request. Both paths must match the requirement.
+
+Automated checks and human review can work together. NIST PW.7 asks organizations to choose appropriate review or analysis methods and record findings and remediation.[3] Our view is to scale checks to risk, without accepting code simply because AI generated it or imposing identical burdens on every minor change.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are questions we would ask during adoption. They are not an account of an incident involving AI-generated code or any particular client.
+
+1. Who confirms the requirement?  State who may do what, with which input, and what should happen. Narrow a request such as “automate this” until reviewers can recognize behavior outside scope.
+
+2. Where does data go?  Ask about file access, environment variables, keys, outbound connections, and added packages. An explanation accompanying a change does not remove the need to inspect the change itself.
+
+3. Who approves production execution?  Identify the authoring, review, and release roles, and who can pause unclear behavior. For deletions or external writes, establish a test environment and recovery procedure before scheduling the work.
+
+## Four. Our Recommendations: Five Release Checks
+
+1. Define acceptance before implementation.  Include normal input, empty input, denied access, and interruptions. Tests should check the requirement rather than simply reproduce the generated implementation.[2][4]
+
+2. Follow data through the change.  Review input, processing, storage, and external output. Check authentication and authorization at the relevant boundaries, including configuration and deployment files.[4]
+
+3. Inspect dependencies and secrets.  List added packages, sources, licenses, and versions. Check for secrets in code and logs. This is our recommended delivery checklist; a familiar package name is not evidence of review.
+
+4. Run meaningful functional and security tests.  Following the direction of NIST PW.8, test successful, failed, and denied operations, retaining the environment and results.[3] Record unresolved failures and owners rather than a generic “tested” note.
+
+5. Document approval and recovery.  Give the approver the scope, open issues, and evidence. Confirm backups, recovery steps, and stopping conditions before production use. AI explanations can assist reading; an identifiable person still owns the decision.
+
+A handover can demonstrate a denied operation: have an unauthorized test account make the same request, verify rejection, and inspect whether the record explains the outcome without revealing secrets. Keep the scenario repeatable for later changes. If an environment prevents a check, label it untested and explain the possible impact rather than including it among passed checks. We recommend showing the approver passed, failed, and untested items together. The same reporting method applies to human-written code.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Reviewable Evidence
+
+## Keep requirements, changes, and acceptance results together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to make changes, acceptance reasoning, and recovery understandable to the next maintainer. Review records should connect to requirements and test results.
+
+Generation speed is not a release criterion. Work involving secrets, permissions, or actions that are difficult to undo needs explicit approval boundaries and inspectable evidence.
+
+### Frequently Asked Questions
+
+Q1: Is runnable code ready for production?
+It still needs requirement and security checks. GitHub calls for reviewing and testing generated code.[2]
+Q2: Can AI help review AI-generated code?
+It can assist. We recommend retaining human checks of requirements, permissions, and business logic, where OWASP emphasizes context.[4]
+Q3: Does every small change need every test?
+Scale checks to scope and risk. NIST PW.7 asks organizations to choose review and analysis methods.[3]
+Q4: What evidence should we retain?
+We recommend requirements, scope, tests, open issues, approver, and recovery steps. NIST PW.7.2 also calls for recording findings and remediation.[3]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] GitHub, “GitHub Copilot: Meet the new coding agent,” May 19, 2025 (announcement); accessed 2026-10-26: [github.blog](https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/) ·
+    [2] GitHub, “Application card: GitHub Copilot Agents” (limitations and review); accessed 2026-10-26: [docs.github.com](https://docs.github.com/en/copilot/responsible-use/agents) ·
+    [3] NIST, SP 800-218, SSDF version 1.1, 2022 (PW.7 and PW.8); accessed 2026-10-26: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf) ·
+    [4] OWASP, “Secure Code Review Cheat Sheet” (human context and data flow); accessed 2026-10-26: [cheatsheetseries.owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html)
 
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
@@ -11458,6 +11572,113 @@ Q4：什麼時候再考慮換模型？
     [2] Microsoft，〈Chunk Documents〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)　·
     [3] Microsoft，〈Retrieval-Augmented Generation (RAG) Evaluators〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators)　·
     [4] Liu 等，〈Lost in the Middle: How Language Models Use Long Contexts〉，2023，arXiv:2307.03172，查閱日期 2026-10-26：[arxiv.org](https://arxiv.org/abs/2307.03172)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/
+
+# AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 026 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 26 日　星期四
+◆
+AI 導入實測手記
+◆
+第 026 期
+
+AI 程式碼 · 程式審查 · 安全開發
+
+## AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式
+
+Think BIG 自媒體部  |  2026 年 11 月 26 日
+
+程式能執行，是審查的起點。正式使用前，還要知道它能讀哪些資料、能改哪些系統，以及失敗後怎麼恢復。
+
+## 一 現象：AI 能提出修改，核准流程仍需獨立
+
+2025 年 5 月 19 日，GitHub 在官方文章介紹程式 Agent，可接受指派並提出程式修改。這是開發流程自動化的一個具體進展；本文以該公告為引子，討論修改提出之後如何審查，不評比或推薦特定工具。[1]
+
+同一平台的負責任使用文件也提醒，產生的程式可能不符合開發者意圖，甚至有安全問題，合併前應審查及測試。[2] 這項提醒的重要之處，在於不能把語法看似正確、或工具自述已完成，當成符合正式需求的證據。
+
+安全開發原則早有可用依據。NIST SP 800-218《安全軟體開發框架》1.1 版，2022 年的 PW.7 與 PW.8 分別處理程式審查／分析及可執行程式的測試；OWASP 安全程式碼審查指引則涵蓋輸入驗證、身分驗證、授權、資料流與業務邏輯。[3][4]
+
+## 二 各方評價：協助開發與審查，但人要理解後果
+
+支持的理由：明確範圍的工作可以交給工具協助。 GitHub 的文件建議提供清楚的問題描述、驗收條件與相關脈絡。[2] 我們的判讀是，工具協助準備修改與測試，有助於把討論集中到具體變更；這不代表每一份產出都已符合需求。
+
+保留的理由：安全取決於程式所在的環境。 OWASP 指引強調人工審查的情境理解，特別是業務邏輯與複雜權限。[4] 我們因此主張，測試帳號能成功讀到文件之外，還應測試沒有權限的帳號是否被拒絕；正常路徑與拒絕路徑都要對照需求。
+
+自動檢查與人工審查也不必二選一。NIST 的 PW.7 建議組織決定適用的審查或分析方式，記錄發現與修正。[3] 我們認為檢查項目應依風險安排，不能只因為程式由 AI 起草就一律接受，也不需要把所有小改動都套上相同負擔。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們導入時會先問的檢查問題，不是 AI 產生程式碼造成事故的紀錄，也不代表任何特定客戶。
+
+1. 需求由誰確認？ 先用一般語言說明：誰能做什麼、輸入是什麼、完成後應出現什麼結果。若需求只有「幫我自動處理」，就先縮小範圍；審查者要知道哪些行為屬於越界。
+
+2. 程式會把資料帶去哪裡？ 我們會要求交代檔案讀寫、環境變數、金鑰使用、對外連線與新增套件。這些是導入檢查項目，不能因為工具附上解釋，就省略閱讀實際修改內容。
+
+3. 誰有權核准正式執行？ 確認產生修改、審查修改與核准部署的角色，以及遇到不明行為時由誰暫停。對會刪除資料或對外寫入的動作，先問測試環境與復原方式，再討論排程。
+
+## 四 我們的建議：用五個問題決定能否交付
+
+1. 把驗收條件寫在修改前。 列出正常輸入、空白輸入、權限不足與中斷時預期的結果，讓測試對照需求，而不是只照著產生的程式確認它有執行。[2][4]
+
+2. 沿資料流閱讀修改。 從輸入、處理、儲存到對外輸出，檢查身分與權限是否在適當位置執行。涉及設定或部署檔也要一起看，不能只閱讀畫面上的功能程式。[4]
+
+3. 確認套件與機密處理。 列出新增依賴、來源、授權與版本，確認機密是否寫在程式或日誌中。這是我們建議加入的交付清單；不將套件名稱看起來熟悉當成已審查。
+
+4. 跑有意義的功能與安全測試。 依 NIST PW.8 的測試方向，確認成功、失敗與拒絕情境，並保存執行環境及結果。[3] 沒有通過的項目，要記下原因與負責人；不要只留一句「測過了」。
+
+5. 寫明核准與回復。 將修改範圍、未解問題與測試結果交給核准者，確認備份、回復步驟及停止條件，再安排正式使用。AI 對程式的解釋可以協助閱讀，最終決定仍要有具名負責人。
+
+交接時也可以選一個拒絕情境做示範：讓沒有授權的測試帳號提出同一個請求，確認系統拒絕，並查看紀錄是否足以說明原因、又沒有露出機密內容。接著將相同情境留成可重做的測試，供後續修改使用。若某項檢查因環境不足而未執行，就明寫未測與可能影響，不將它混在通過清單裡。我們建議讓核准者同時看到已通過、未通過及未測的項目，才能依完整資訊決定是否交付。這套表達方式同樣適用於人工寫的程式。
+
+◆ 編按 · Think BIG 的做法：讓修改有可核對的依據
+
+## 需求、變更與驗收結果，一起留下來。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，程式交付要讓人看得懂改了什麼、為什麼能接受，以及出問題時如何回復。審查紀錄應連得到需求與驗收結果。
+
+我們不把產生速度當作上線條件。修改越接近機密資料、權限或不可輕易撤回的操作，就越需要把核准邊界與可查證的測試證據寫清楚。
+
+### 常見問題
+
+Q1：程式跑得動就可以上線嗎？
+還要確認需求與安全條件。GitHub 官方文件要求審查與測試產生的程式。[2]
+Q2：AI 可以幫忙審 AI 寫的程式嗎？
+可作輔助，但我們建議保留人工對需求、權限與業務邏輯的核對；OWASP 說明人工情境理解的重要性。[4]
+Q3：小改動也要全部重測嗎？
+應依變更範圍與風險安排。NIST PW.7 要求組織決定審查或分析方式，不是每次採同樣清單。[3]
+Q4：審查要留下哪些紀錄？
+建議保留需求、修改範圍、測試結果、未解問題、核准者與回復步驟；NIST PW.7.2 亦提出記錄發現與修正。[3]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] GitHub，〈GitHub Copilot: Meet the new coding agent〉，2025-05-19（官方公告），查閱日期 2026-10-26：[github.blog](https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/)　·
+    [2] GitHub，〈Application card: GitHub Copilot Agents〉（限制與審查），查閱日期 2026-10-26：[docs.github.com](https://docs.github.com/en/copilot/responsible-use/agents)　·
+    [3] NIST，SP 800-218，SSDF 1.1 版，2022 年（PW.7、PW.8），查閱日期 2026-10-26：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf)　·
+    [4] OWASP，〈Secure Code Review Cheat Sheet〉（人工審查與資料流），查閱日期 2026-10-26：[cheatsheetseries.owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html)
 
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 

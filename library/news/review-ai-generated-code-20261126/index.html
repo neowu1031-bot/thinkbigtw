@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式 | Think BIG NEWS</title>
+<meta name="description" content="AI 可以協助修改程式，但提交修改與核准上線仍是不同工作。從 2025 年程式 Agent 官方公告與安全開發文件出發，整理需求驗收、資料流、套件來源、異常測試及回復方式，供企業建立可以留存證據的審查流程。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/">
+<meta property="og:title" content="AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式 | Think BIG NEWS">
+<meta property="og:description" content="程式能執行，是審查的起點。正式使用前，還要知道它能讀哪些資料、能改哪些系統，以及失敗後怎麼恢復。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-26T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 程式碼上線前審查 | Think BIG NEWS">
+<meta name="twitter:description" content="程式能執行，是審查的起點。正式使用前，還要知道它能讀哪些資料、能改哪些系統，以及失敗後怎麼恢復。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/#article",
+      "headline": "AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式",
+      "description": "AI 可以協助修改程式，但提交修改與核准上線仍是不同工作。從 2025 年程式 Agent 官方公告與安全開發文件出發，整理需求驗收、資料流、套件來源、異常測試及回復方式，供企業建立可以留存證據的審查流程。",
+      "keywords": "AI 程式碼, 程式審查, 安全開發",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-26T20:00:00+08:00",
+      "dateModified": "2026-11-26T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      },
+      "citation": [
+        "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/",
+        "https://docs.github.com/en/copilot/responsible-use/agents",
+        "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "程式跑得動就可以上線嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "還要確認需求與安全條件。GitHub 官方文件要求審查與測試產生的程式。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "AI 可以幫忙審 AI 寫的程式嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可作輔助，但我們建議保留人工對需求、權限與業務邏輯的核對；OWASP 說明人工情境理解的重要性。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "小改動也要全部重測嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "應依變更範圍與風險安排。NIST PW.7 要求組織決定審查或分析方式，不是每次採同樣清單。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "審查要留下哪些紀錄？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "建議保留需求、修改範圍、測試結果、未解問題、核准者與回復步驟；NIST PW.7.2 亦提出記錄發現與修正。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI 程式碼上線前審查",
+          "item": "https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>AI 導入實測手記 &middot; 第 026 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 11 月 26 日　星期四</span>
+    <span class="dot">&#9670;</span>
+    <span>AI 導入實測手記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 026 期</span>
+  </div>
+  <p class="kicker">AI 程式碼 &middot; 程式審查 &middot; 安全開發</p>
+  <h2 class="headline">AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 11 月 26 日</p>
+  <p class="deck">程式能執行，是審查的起點。正式使用前，還要知道它能讀哪些資料、能改哪些系統，以及失敗後怎麼恢復。</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">一</span>現象：AI 能提出修改，核准流程仍需獨立</h2>
+<p class="lead">2025 年 5 月 19 日，GitHub 在官方文章介紹程式 Agent，可接受指派並提出程式修改。這是開發流程自動化的一個具體進展；本文以該公告為引子，討論修改提出之後如何審查，不評比或推薦特定工具。[1]</p>
+<p>同一平台的負責任使用文件也提醒，產生的程式可能不符合開發者意圖，甚至有安全問題，合併前應審查及測試。[2] 這項提醒的重要之處，在於不能把語法看似正確、或工具自述已完成，當成符合正式需求的證據。</p>
+<p>安全開發原則早有可用依據。NIST SP 800-218《安全軟體開發框架》1.1 版，2022 年的 PW.7 與 PW.8 分別處理程式審查／分析及可執行程式的測試；OWASP 安全程式碼審查指引則涵蓋輸入驗證、身分驗證、授權、資料流與業務邏輯。[3][4]</p>
+<h2><span class="no">二</span>各方評價：協助開發與審查，但人要理解後果</h2>
+<p class="lead"><strong>支持的理由：明確範圍的工作可以交給工具協助。</strong>GitHub 的文件建議提供清楚的問題描述、驗收條件與相關脈絡。[2] 我們的判讀是，工具協助準備修改與測試，有助於把討論集中到具體變更；這不代表每一份產出都已符合需求。</p>
+<p><strong>保留的理由：安全取決於程式所在的環境。</strong>OWASP 指引強調人工審查的情境理解，特別是業務邏輯與複雜權限。[4] 我們因此主張，測試帳號能成功讀到文件之外，還應測試沒有權限的帳號是否被拒絕；正常路徑與拒絕路徑都要對照需求。</p>
+<p>自動檢查與人工審查也不必二選一。NIST 的 PW.7 建議組織決定適用的審查或分析方式，記錄發現與修正。[3] 我們認為檢查項目應依風險安排，不能只因為程式由 AI 起草就一律接受，也不需要把所有小改動都套上相同負擔。</p>
+<section class="firsthand"><span class="lede">&#9670; 第一手心得</span><h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+<p class="lead">以下是我們導入時會先問的檢查問題，不是 AI 產生程式碼造成事故的紀錄，也不代表任何特定客戶。</p>
+<p><strong>1. 需求由誰確認？</strong>先用一般語言說明：誰能做什麼、輸入是什麼、完成後應出現什麼結果。若需求只有「幫我自動處理」，就先縮小範圍；審查者要知道哪些行為屬於越界。</p>
+<p><strong>2. 程式會把資料帶去哪裡？</strong>我們會要求交代檔案讀寫、環境變數、金鑰使用、對外連線與新增套件。這些是導入檢查項目，不能因為工具附上解釋，就省略閱讀實際修改內容。</p>
+<p><strong>3. 誰有權核准正式執行？</strong>確認產生修改、審查修改與核准部署的角色，以及遇到不明行為時由誰暫停。對會刪除資料或對外寫入的動作，先問測試環境與復原方式，再討論排程。</p>
+</section>
+<h2><span class="no">四</span>我們的建議：用五個問題決定能否交付</h2>
+<p class="lead"><strong>1. 把驗收條件寫在修改前。</strong>列出正常輸入、空白輸入、權限不足與中斷時預期的結果，讓測試對照需求，而不是只照著產生的程式確認它有執行。[2][4]</p>
+<p><strong>2. 沿資料流閱讀修改。</strong>從輸入、處理、儲存到對外輸出，檢查身分與權限是否在適當位置執行。涉及設定或部署檔也要一起看，不能只閱讀畫面上的功能程式。[4]</p>
+<p><strong>3. 確認套件與機密處理。</strong>列出新增依賴、來源、授權與版本，確認機密是否寫在程式或日誌中。這是我們建議加入的交付清單；不將套件名稱看起來熟悉當成已審查。</p>
+<p><strong>4. 跑有意義的功能與安全測試。</strong>依 NIST PW.8 的測試方向，確認成功、失敗與拒絕情境，並保存執行環境及結果。[3] 沒有通過的項目，要記下原因與負責人；不要只留一句「測過了」。</p>
+<p><strong>5. 寫明核准與回復。</strong>將修改範圍、未解問題與測試結果交給核准者，確認備份、回復步驟及停止條件，再安排正式使用。AI 對程式的解釋可以協助閱讀，最終決定仍要有具名負責人。</p>
+<p>交接時也可以選一個拒絕情境做示範：讓沒有授權的測試帳號提出同一個請求，確認系統拒絕，並查看紀錄是否足以說明原因、又沒有露出機密內容。接著將相同情境留成可重做的測試，供後續修改使用。若某項檢查因環境不足而未執行，就明寫未測與可能影響，不將它混在通過清單裡。我們建議讓核准者同時看到已通過、未通過及未測的項目，才能依完整資訊決定是否交付。這套表達方式同樣適用於人工寫的程式。</p>
+<section class="houseview"><span class="lede">&#9670; 編按 &middot; Think BIG 的做法：讓修改有可核對的依據</span><h2>需求、變更與驗收結果，一起留下來。</h2><p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+<p class="lead">Think BIG 主張，程式交付要讓人看得懂改了什麼、為什麼能接受，以及出問題時如何回復。審查紀錄應連得到需求與驗收結果。</p>
+<p>我們不把產生速度當作上線條件。修改越接近機密資料、權限或不可輕易撤回的操作，就越需要把核准邊界與可查證的測試證據寫清楚。</p>
+</section>
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：程式跑得動就可以上線嗎？</dt>
+        <dd>還要確認需求與安全條件。GitHub 官方文件要求審查與測試產生的程式。[2]</dd>
+        <dt>Q2：AI 可以幫忙審 AI 寫的程式嗎？</dt>
+        <dd>可作輔助，但我們建議保留人工對需求、權限與業務邏輯的核對；OWASP 說明人工情境理解的重要性。[4]</dd>
+        <dt>Q3：小改動也要全部重測嗎？</dt>
+        <dd>應依變更範圍與風險安排。NIST PW.7 要求組織決定審查或分析方式，不是每次採同樣清單。[3]</dd>
+        <dt>Q4：審查要留下哪些紀錄？</dt>
+        <dd>建議保留需求、修改範圍、測試結果、未解問題、核准者與回復步驟；NIST PW.7.2 亦提出記錄發現與修正。[3]</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-26。<br>
+    [1] GitHub，〈GitHub Copilot: Meet the new coding agent〉，2025-05-19（官方公告），查閱日期 2026-10-26：<a href="https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/" target="_blank" rel="noopener">github.blog</a>　&middot;
+    [2] GitHub，〈Application card: GitHub Copilot Agents〉（限制與審查），查閱日期 2026-10-26：<a href="https://docs.github.com/en/copilot/responsible-use/agents" target="_blank" rel="noopener">docs.github.com</a>　&middot;
+    [3] NIST，SP 800-218，SSDF 1.1 版，2022 年（PW.7、PW.8），查閱日期 2026-10-26：<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a>　&middot;
+    [4] OWASP，〈Secure Code Review Cheat Sheet〉（人工審查與資料流），查閱日期 2026-10-26：<a href="https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html" target="_blank" rel="noopener">cheatsheetseries.owasp.org</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI 導入實測手記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

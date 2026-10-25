@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Can AI-Generated Code Go Straight to Production? — Review Before Release | Think BIG NEWS</title>
+<meta name="description" content="AI-generated changes need clear requirements, security review, meaningful tests, and a recovery plan before release. Keep evidence of each decision.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/">
+<meta property="og:title" content="Can AI-Generated Code Go Straight to Production? — Review Before Release | Think BIG NEWS">
+<meta property="og:description" content="Running code is the start of review. Before release, check data access, write permissions, failure behavior, and recovery.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-26T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reviewing AI-Generated Code | Think BIG NEWS">
+<meta name="twitter:description" content="Running code is the start of review. Before release, check data access, write permissions, failure behavior, and recovery.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/#article",
+      "headline": "Can AI-Generated Code Go Straight to Production? — Review Before Release",
+      "description": "AI-generated changes need clear requirements, security review, meaningful tests, and a recovery plan before release. Keep evidence of each decision.",
+      "keywords": "AI-generated code, code review, secure development",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG Media",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "Think BIG",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-26T20:00:00+08:00",
+      "dateModified": "2026-11-26T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/en/news/"
+      },
+      "citation": [
+        "https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/",
+        "https://docs.github.com/en/copilot/responsible-use/agents",
+        "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is runnable code ready for production?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It still needs requirement and security checks. GitHub calls for reviewing and testing generated code."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI help review AI-generated code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It can assist. We recommend retaining human checks of requirements, permissions, and business logic, where OWASP emphasizes context."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does every small change need every test?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Scale checks to scope and risk. NIST PW.7 asks organizations to choose review and analysis methods."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What evidence should we retain?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We recommend requirements, scope, tests, open issues, approver, and recovery steps. NIST PW.7.2 also calls for recording findings and remediation."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://thinkbigtw.com/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/en/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Reviewing AI-Generated Code",
+          "item": "https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="/library/news/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>AI Deployment Field Notes &middot; Issue 026</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>November 26, 2026 &nbsp;&middot;&nbsp; Thursday</span>
+    <span class="dot">&#9670;</span>
+    <span>AI Deployment Field Notes</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 026</span>
+  </div>
+  <p class="kicker">AI-generated code &middot; code review &middot; secure development</p>
+  <h2 class="headline">Can AI-Generated Code Go Straight to Production? — Review Before Release</h2>
+  <p class="byline">Think BIG Media &nbsp;|&nbsp; November 26, 2026</p>
+  <p class="deck">Running code is the start of review. Before release, check data access, write permissions, failure behavior, and recovery.</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">One.</span>Code Generation and Release Approval Are Separate</h2>
+<p class="lead">On May 19, 2025, GitHub introduced a coding agent that accepts assigned work and proposes changes. That announcement provides a concrete starting point for discussing the review that follows a generated change. This article does not rank or recommend tools.[1]</p>
+<p>GitHub’s responsible-use documentation also warns that generated code may miss developer intent or introduce security problems, and calls for review and testing before merging.[2] Plausible syntax and an agent’s completion message are insufficient evidence of acceptance.</p>
+<p>Established security guidance applies. NIST SP 800-218, Secure Software Development Framework version 1.1, published in 2022, covers code review and analysis in PW.7 and executable testing in PW.8. OWASP’s review guidance covers input validation, authentication, authorization, data flow, and business logic.[3][4]</p>
+<h2><span class="no">Two.</span>Useful Assistance Still Needs Context</h2>
+<p class="lead"><strong>The benefit: assistance on clearly scoped work.</strong> GitHub recommends a clear problem statement, acceptance criteria, and context.[2] In our reading, assistance with changes and tests can make discussion more concrete. It does not establish that every output meets requirements.</p>
+<p><strong>The caution: security depends on context.</strong> OWASP emphasizes human understanding of business logic and complex permissions.[4] We recommend testing that an unauthorized account is refused, alongside a successful authorized request. Both paths must match the requirement.</p>
+<p>Automated checks and human review can work together. NIST PW.7 asks organizations to choose appropriate review or analysis methods and record findings and remediation.[3] Our view is to scale checks to risk, without accepting code simply because AI generated it or imposing identical burdens on every minor change.</p>
+<section class="firsthand"><span class="lede">&#9670; First-Hand Lessons</span><h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">Three. What We Learned in Practice</h2>
+<p class="lead">These are questions we would ask during adoption. They are not an account of an incident involving AI-generated code or any particular client. </p>
+<p><strong>1. Who confirms the requirement?</strong> State who may do what, with which input, and what should happen. Narrow a request such as “automate this” until reviewers can recognize behavior outside scope.</p>
+<p><strong>2. Where does data go?</strong> Ask about file access, environment variables, keys, outbound connections, and added packages. An explanation accompanying a change does not remove the need to inspect the change itself.</p>
+<p><strong>3. Who approves production execution?</strong> Identify the authoring, review, and release roles, and who can pause unclear behavior. For deletions or external writes, establish a test environment and recovery procedure before scheduling the work.</p>
+</section>
+<h2><span class="no">Four.</span>Our Recommendations: Five Release Checks</h2>
+<p class="lead"><strong>1. Define acceptance before implementation.</strong> Include normal input, empty input, denied access, and interruptions. Tests should check the requirement rather than simply reproduce the generated implementation.[2][4]</p>
+<p><strong>2. Follow data through the change.</strong> Review input, processing, storage, and external output. Check authentication and authorization at the relevant boundaries, including configuration and deployment files.[4]</p>
+<p><strong>3. Inspect dependencies and secrets.</strong> List added packages, sources, licenses, and versions. Check for secrets in code and logs. This is our recommended delivery checklist; a familiar package name is not evidence of review.</p>
+<p><strong>4. Run meaningful functional and security tests.</strong> Following the direction of NIST PW.8, test successful, failed, and denied operations, retaining the environment and results.[3] Record unresolved failures and owners rather than a generic “tested” note.</p>
+<p><strong>5. Document approval and recovery.</strong> Give the approver the scope, open issues, and evidence. Confirm backups, recovery steps, and stopping conditions before production use. AI explanations can assist reading; an identifiable person still owns the decision.</p>
+<p>A handover can demonstrate a denied operation: have an unauthorized test account make the same request, verify rejection, and inspect whether the record explains the outcome without revealing secrets. Keep the scenario repeatable for later changes. If an environment prevents a check, label it untested and explain the possible impact rather than including it among passed checks. We recommend showing the approver passed, failed, and untested items together. The same reporting method applies to human-written code.</p>
+<section class="houseview"><span class="lede">&#9670; Editor&#x2019;s Note &middot; How Think BIG Approaches This: Keep Reviewable Evidence</span><h2>Keep requirements, changes, and acceptance results together.</h2><p><em>(The following is Think BIG&#x2019;s practical position, separate from the reporting above.)</em></p>
+<p class="lead">Think BIG’s position is to make changes, acceptance reasoning, and recovery understandable to the next maintainer. Review records should connect to requirements and test results.</p>
+<p>Generation speed is not a release criterion. Work involving secrets, permissions, or actions that are difficult to undo needs explicit approval boundaries and inspectable evidence.</p>
+</section>
+    <section class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <dl>
+        <dt>Q1: Is runnable code ready for production?</dt>
+        <dd>It still needs requirement and security checks. GitHub calls for reviewing and testing generated code.[2]</dd>
+        <dt>Q2: Can AI help review AI-generated code?</dt>
+        <dd>It can assist. We recommend retaining human checks of requirements, permissions, and business logic, where OWASP emphasizes context.[4]</dd>
+        <dt>Q3: Does every small change need every test?</dt>
+        <dd>Scale checks to scope and risk. NIST PW.7 asks organizations to choose review and analysis methods.[3]</dd>
+        <dt>Q4: What evidence should we retain?</dt>
+        <dd>We recommend requirements, scope, tests, open issues, approver, and recovery steps. NIST PW.7.2 also calls for recording findings and remediation.[3]</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Fact-checked: 2026-10-26.<br>
+    [1] GitHub, “GitHub Copilot: Meet the new coding agent,” May 19, 2025 (announcement); accessed 2026-10-26: <a href="https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/" target="_blank" rel="noopener">github.blog</a> &middot;
+    [2] GitHub, “Application card: GitHub Copilot Agents” (limitations and review); accessed 2026-10-26: <a href="https://docs.github.com/en/copilot/responsible-use/agents" target="_blank" rel="noopener">docs.github.com</a> &middot;
+    [3] NIST, SP 800-218, SSDF version 1.1, 2022 (PW.7 and PW.8); accessed 2026-10-26: <a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a> &middot;
+    [4] OWASP, “Secure Code Review Cheat Sheet” (human context and data flow); accessed 2026-10-26: <a href="https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html" target="_blank" rel="noopener">cheatsheetseries.owasp.org</a>
+  </div>
+  <p class="disclaimer">This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI Deployment Field Notes
+    <span class="brand">Think BIG, Make it Real!</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG Home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent deployment &amp; governance.<br>On-premises &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE Official Account"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/en/pricing/">Personal Plans</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/enterprise/process/">Process</a><a href="/trust/">Security</a><a href="/en/guides/ai-agents/">Guides</a><a href="/en/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE Contact &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact/">Contact Us</a><a href="/library/news/local-ai-model-selection-20261031/" lang="zh-Hant">繁體中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
