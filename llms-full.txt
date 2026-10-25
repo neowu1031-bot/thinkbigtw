@@ -2287,6 +2287,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 027
+
+November 28, 2026 · AI Deployment Field Notes
+
+## Taiwan’s Artificial Intelligence Basic Act — Start with Uses, Data, and Owners
+
+Inventory AI uses, data, and approval owners.](https://thinkbigtw.com/en/news/taiwan-ai-basic-act-20261128/)
 [Issue 026
 
 November 26, 2026 · AI Deployment Field Notes
@@ -3995,6 +4002,113 @@ This article combines industry reporting with Think BIG’s first-hand work on i
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
     Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/news/taiwan-ai-basic-act-20261128/
+
+# Taiwan’s Artificial Intelligence Basic Act — Start with Uses, Data, and Owners | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 027
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 28, 2026  ·  Saturday
+◆
+AI Deployment Field Notes
+◆
+Issue 027
+
+Artificial Intelligence Basic Act · AI governance · data management
+
+## Taiwan’s Artificial Intelligence Basic Act — Start with Uses, Data, and Owners
+
+Think BIG Media  |  November 28, 2026
+
+Inventory AI uses, data, and approval owners. The Act sets a governance direction; specific obligations still require checking applicable laws and sector guidance. This is not legal advice.
+
+## One. Read the Enacted Law in Layers
+
+Taiwan promulgated the Artificial Intelligence Basic Act on January 14, 2026. Article 20 provides for implementation from promulgation.[1] The Executive Yuan’s May 21, 2026 implementation plan describes interagency work and risk management.[2] This article interprets that existing development using sources checked on October 26, 2026.
+
+Start with the subject of each provision. Article 4 addresses principles for government promotion of AI development and use, including human autonomy, privacy, security, transparency, fairness, and accountability. Article 16 addresses a risk-classification framework and sector authorities’ rules.[1] NSTC also publishes an English text for bilingual reference.[4]
+
+Other laws still matter. Article 1 preserves the application of other laws to matters the Act does not cover.[1] For example, Article 5 of the Personal Data Protection Act limits personal-data activities to what is necessary for a specified purpose.[3] Studying emerging AI rules is no reason to defer existing data obligations.
+
+## Two. A Clearer Direction Still Requires Specific Checks
+
+The benefit: development and risk share a framework.  The Executive Yuan’s plan discusses industry development alongside social welfare, rights, and interagency management.[2] Our reading is that businesses can use this vocabulary to discuss purpose, data, access, and responsibility together.
+
+The caution: summaries cannot decide individual cases.  Under Article 5, high-risk advisory notices or warnings involve identification by the relevant central sector authority in consultation with the Ministry of Digital Affairs.[1][4] That should not be rewritten as an identical labeling specification for every AI output. Check the application and applicable sector rules.
+
+Also distinguish government regulatory adjustment from a business grace period. The implementation plan discusses government reviews of laws and administrative measures.[2] We do not interpret that as permission to defer existing obligations. Specific cases need qualified legal review of the facts and effective provisions. This article is for reference and is not legal advice.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are questions we would ask during adoption, not a completed legal-compliance engagement or an account of any particular client.
+
+1. What decisions does AI make?  Describe actions such as organizing files, proposing drafts, or executing external work. Ask whose interests are affected, who reviews the result, and how errors are corrected. Record facts before assigning a legal risk category.
+
+2. Where does data come from and go?  Document sources, purpose, recipients, and retention. “Internal use” is insufficient detail: identify who can read or edit the information and who handles it when it is no longer needed.
+
+3. Who tracks rules and handles concerns?  Assign owners for official updates, correction requests, and pausing work. Connect technical configuration with legal assessment without presenting the checklist as a self-issued compliance certificate.
+
+## Four. Our Recommendations: Prepare Usable Records
+
+1. Inventory uses.  Record inputs, outputs, affected parties, departments, and owners, including outputs sent externally. This is our preparation method, not a claim that the Act prescribes this exact form.
+
+2. Examine data necessity.  Ask whether names, contact details, or complete source files are needed and which fields can be removed. Review the case against applicable provisions, including Article 5 of the Personal Data Protection Act.[3]
+
+3. Define review and correction.  For outputs affecting others, assign review, a way to raise concerns, and stopping conditions. Make instructions usable by operators rather than leaving them in a governance presentation.
+
+4. Check effective requirements.  Identify the sector authority, notice date, and scope. Read commencement notes in the Laws and Regulations Database as well. The Personal Data Protection Act page checked for this article marks some amendments as not yet effective; do not treat every displayed amendment as an operative rule.[3]
+
+5. Keep reassessment records.  Recheck when purposes, data, or service terms change. Track legal questions, owners, and status separately. Check official information again before publication or operational adoption.
+
+The inventory should distinguish confirmed legal requirements from voluntary internal controls. For the former, record the provision, applicability reasoning, and reviewer; for the latter, describe the risk and procedure. Do not present internal recommendations as statutory duties. This distinction helps identify what needs reassessment when rules change.
+
+◆ Editor’s Note · How Think BIG Approaches This: Make Governance Maintainable
+
+## Document purpose and ownership, then check applicable requirements.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is that governance records should reflect operations: a clear purpose, traceable data flow, identifiable approvers, and owners for problems. Update them when the system changes.
+
+We organize technical facts for the appropriate people to assess legal applicability. A completed installation is not a compliance determination, and an internal checklist is not regulatory approval.
+
+### Frequently Asked Questions
+
+Q1: Has Taiwan promulgated the Act?
+Yes, on January 14, 2026. Article 20 provides for implementation from promulgation.[1]
+Q2: Does every company need the same AI label?
+The Act does not support that blanket conclusion. Article 5’s high-risk warnings involve official identification. Check the application and relevant rules.[1][4]
+Q3: Does the Act remove personal-data obligations?
+No. Article 1 preserves other applicable laws. Review data necessity under provisions such as Personal Data Protection Act Article 5.[1][3]
+Q4: What can a business prepare now?
+Inventory uses, data flow, approval owners, and issue handling, then obtain appropriate review of effective rules. This is for reference, not legal advice.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Laws and Regulations Database, Artificial Intelligence Basic Act (promulgation; Articles 1, 4, 5, 16, 20); accessed 2026-10-26: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0160093) ·
+    [2] Executive Yuan, “AI Basic Act Implementation Plan,” May 21, 2026 (government implementation); accessed 2026-10-26: [www.ey.gov.tw](https://www.ey.gov.tw/Page/448DE008087A1971/f784469b-fe42-438b-8788-18846a53cec4) ·
+    [3] Laws and Regulations Database, Personal Data Protection Act (Article 5 and commencement notice); accessed 2026-10-26: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021) ·
+    [4] NSTC Laws and Regulations Retrieving System, “Artificial Intelligence Basic Act” (English cross-check; Article 5); accessed 2026-10-26: [law.nstc.gov.tw](https://law.nstc.gov.tw/EngLawContent.aspx?id=10099&lan=E)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
 
 ---
 
@@ -11819,6 +11933,113 @@ Q5：怎麼知道 AI 有沒有提到我的公司？
 本文為 Think BIG 產業觀察與第一手實作整理，引用之官方文件與研究均標註來源；各平台規則與功能以官方文件最新版本為準。文中官網數據只呈現相對變化與趨勢。文中提到的 AI 聊天工具不具名，內容不針對任何公司或產品。
 
 THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/taiwan-ai-basic-act-20261128/
+
+# 《人工智慧基本法》公布之後——企業先盤點用途、資料與負責人 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 027 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 28 日　星期六
+◆
+AI 導入實測手記
+◆
+第 027 期
+
+人工智慧基本法 · AI 治理 · 資料管理
+
+## 《人工智慧基本法》公布之後——企業先盤點用途、資料與負責人
+
+Think BIG 自媒體部  |  2026 年 11 月 28 日
+
+先確認公司在哪些工作使用 AI、處理什麼資料，以及誰核准結果。基本法提供治理方向；個別義務仍要核對適用法規與主管機關公告。本文供參考，不構成法律意見。
+
+## 一 現象：法律已公布，讀法要分清層次
+
+《人工智慧基本法》已於 2026 年 1 月 14 日公布；全國法規資料庫所列《人工智慧基本法》第 20 條規定自公布之日起施行。[1] 行政院在 2026 年 5 月 21 日的施行規劃，說明跨部會推動與風險管理方向。[2] 本文是既有法制進展的實務解讀，查核截至 2026 年 10 月 26 日。
+
+閱讀時先看條文對誰說話。《人工智慧基本法》第 4 條以政府推動研發與應用為主體，列出人類自主、隱私與資料治理、安全、透明、公平及問責等原則；第 16 條則規範風險分類框架與目的事業主管機關的管理規範。[1] 國科會亦提供該法英文文本，可供雙語核對。[4]
+
+基本法並未讓其他法律退場。《人工智慧基本法》第 1 條明列未規定事項適用其他法律。[1] 例如《個人資料保護法》第 5 條，要求個資蒐集、處理與利用不得超出特定目的的必要範圍。[3] 因此企業不能把「正在研究 AI 規範」當成暫不處理既有資料義務的理由。
+
+## 二 各方評價：治理方向更清楚，具體適用仍須核對
+
+支持的角度：發展與風險放在同一個架構。 行政院施行規劃同時談產業發展、社會福祉與人權，並說明由各部會推進管理。[2] 我們的判讀是，企業可以據此建立內部討論語言，把用途、資料、權限與責任放在同一張盤點表，而不是只談模型能力。
+
+保留的角度：不能靠一張摘要判斷個案。 《人工智慧基本法》第 5 條對高風險應用的注意事項或警語，涉及中央目的事業主管機關會商數位發展部的認定；不能自行改寫成所有 AI 輸出都適用相同標示規格。[1][4] 是否涉及特定要求，要看應用與主管機關規範。
+
+也要區分法規調適與企業緩衝期。行政院施行規劃提到政府的法規與行政措施調適工作。[2] 我們不把它解讀為企業可暫停遵守既有法律。涉及個案，應請法律專業人員依事實與有效條文確認；本文供參考，不構成法律意見。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們導入時會先問的問題清單，不是法律合規專案的完成紀錄，也不代表任何特定客戶。
+
+1. AI 正在做什麼決定？ 把用途寫成具體動作，例如整理文件、提出草稿或對外執行工作。再問是否影響他人權益、是否有人複核，以及錯誤結果能否被更正；先描述事實，不自行替系統貼法定風險分類。
+
+2. 資料從哪裡來、到哪裡去？ 要求交代資料來源、使用目的、接收對象與保存方式。不要只寫「內部使用」，而要指出誰能讀取、誰能修改，以及資料不再需要時由誰處理。
+
+3. 誰負責查規範與處理爭議？ 確認追蹤主管機關公告的人、接受更正或申訴的人，以及有權暫停工作的人。技術人員的設定說明與法律適用判斷要能互相對照，但不能混成一張自行認證的證書。
+
+## 四 我們的建議：先準備能回答問題的文件
+
+1. 建立用途盤點表。 每項用途記下輸入、輸出、影響對象、使用部門與負責人，並標出哪些結果會被送往外部。這是我們建議的準備方法，不宣稱是基本法逐項要求的表單。
+
+2. 把資料必要性寫成可回答的問題。 逐項確認是否需要姓名、聯絡方式或完整原件，能否先刪除不需要的欄位；個案仍依《個人資料保護法》第 5 條等適用規定審視。[3]
+
+3. 設定人工核准與更正流程。 對會影響他人權益的輸出，先指定誰審核、如何提出異議、什麼情況先停止。把處理方式寫給實際操作人員看，不只留在治理簡報中。
+
+4. 逐項核對有效規範。 依應用確認目的事業主管機關、公告日期與適用範圍。查《個人資料保護法》時，也要看全國法規資料庫的生效註記；本次查核頁面明列部分修正尚未生效，不能將整頁新文字一概當成現行要求。[3]
+
+5. 留下定期重看與變更紀錄。 用途、資料或服務供應條款改變時，重新檢查原來的判斷。將法務待確認事項、負責人與處理狀態分開記錄；發布或正式採用前，再查一次主管機關資料。
+
+盤點表也應區分「已確認的法規要求」與「公司自行採用的管理做法」。前者附上條號、適用理由與確認人；後者說明希望處理的風險及操作方式。兩類內容都可以維護，但不應把內部建議寫成法定義務。這樣後續規範變動時，才知道哪些判斷需要重新確認。
+
+◆ 編按 · Think BIG 的做法：把治理做成可以維護的紀錄
+
+## 用途與責任寫清楚，再核對適用要求。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，AI 治理文件要對應實際運作：用途說得清楚、資料流找得到、核准人能辨識、問題有人處理。文件應隨系統調整而更新。
+
+我們把技術事實整理成可供查核的紀錄，再交由適當角色判斷法律適用。不把安裝完成寫成合規認定，也不把內部檢查清單當成主管機關的認可。
+
+### 常見問題
+
+Q1：人工智慧基本法已經公布了嗎？
+已於 2026 年 1 月 14 日公布；《人工智慧基本法》第 20 條規定自公布之日起施行。[1]
+Q2：每家公司都要用同樣的 AI 標示嗎？
+不能從本法直接得出這項結論。《人工智慧基本法》第 5 條的高風險警語涉及主管機關認定，須核對應用與相關規範。[1][4]
+Q3：有基本法就不用看個資法嗎？
+不是。《人工智慧基本法》第 1 條保留其他法律適用；個資必要範圍仍應依《個人資料保護法》第 5 條等規定審視。[1][3]
+Q4：企業現在可以先準備什麼？
+建議先盤點用途、資料流、核准人與問題處理方式，再請適當專業人員核對有效規範。本文供參考，不構成法律意見。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] 全國法規資料庫，《人工智慧基本法》（公布日期；第 1、4、5、16、20 條），查閱日期 2026-10-26：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0160093)　·
+    [2] 行政院，〈人工智慧基本法施行規劃〉，2026-05-21（政府推動與調適），查閱日期 2026-10-26：[www.ey.gov.tw](https://www.ey.gov.tw/Page/448DE008087A1971/f784469b-fe42-438b-8788-18846a53cec4)　·
+    [3] 全國法規資料庫，《個人資料保護法》（第 5 條及生效註記），查閱日期 2026-10-26：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)　·
+    [4] 國科會主管法規查詢系統，〈Artificial Intelligence Basic Act〉（英文核對；第 5 條認定），查閱日期 2026-10-26：[law.nstc.gov.tw](https://law.nstc.gov.tw/EngLawContent.aspx?id=10099&lan=E)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
