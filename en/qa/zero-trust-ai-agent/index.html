@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is Zero Trust, and How Does It Apply to AI Agents? | Q&amp;A Library | Think BIG</title>
+<meta name="description" content="Apply resource-level authorization to identities, document retrieval, tools, and approvals across local and cloud deployments.">
+<link rel="canonical" href="https://thinkbigtw.com/en/qa/zero-trust-ai-agent/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/zero-trust-ai-agent/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/zero-trust-ai-agent/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/zero-trust-ai-agent/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/qa/zero-trust-ai-agent/">
+<meta property="og:title" content="What Is Zero Trust, and How Does It Apply to AI Agents? | Q&amp;A Library | Think BIG">
+<meta property="og:description" content="Apply resource-level authorization to identities, document retrieval, tools, and approvals across local and cloud deployments.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-17T16:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What Is Zero Trust, and How Does It Apply to AI Agents? | Q&amp;A Library | Think BIG">
+<meta name="twitter:description" content="Apply resource-level authorization to identities, document retrieval, tools, and approvals across local and cloud deployments.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/en/qa/zero-trust-ai-agent/#article",
+   "headline": "What Is Zero Trust, and How Does It Apply to AI Agents?",
+   "description": "Apply resource-level authorization to identities, document retrieval, tools, and approvals across local and cloud deployments.",
+   "keywords": "zero trust, AI Agent access, least privilege, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "Think BIG Make it Real Co., Ltd.",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-11-17T16:00:00+08:00",
+   "dateModified": "2026-11-17T16:00:00+08:00",
+   "url": "https://thinkbigtw.com/en/qa/zero-trust-ai-agent/",
+   "mainEntityOfPage": "https://thinkbigtw.com/en/qa/zero-trust-ai-agent/",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Q&A Library",
+    "url": "https://thinkbigtw.com/en/qa/"
+   },
+   "citation": [
+    "https://csrc.nist.gov/pubs/sp/800/207/final",
+    "https://genai.owasp.org/llmrisk/llm062025-excessive-agency/",
+    "https://thinkbigtw.com/trust/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/en/qa/zero-trust-ai-agent/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "What Is Zero Trust, and How Does It Apply to AI Agents?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Zero trust means a company network location does not automatically make an account or device trusted. For an AI Agent, apply authorization checks to data access and tool actions. NIST SP 800-207 (2020) places authentication and authorization before a resource session is established; local and cloud systems both need these controls."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does zero trust mean repeatedly typing passwords?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. NIST focuses on authentication and authorization for resource access; the mechanism depends on risk and system design."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does a local model need it?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. An internal network location does not entitle every identity to every document."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is a confidentiality prompt enough?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. OWASP places authorization in downstream systems rather than the model’s judgment."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Where can a small company start?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Choose one retrieval workflow, identify accounts, data, tools, and owners, and test access boundaries and revocation."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://thinkbigtw.com/en/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Q&A Library",
+     "item": "https://thinkbigtw.com/en/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Zero trust for AI Agents",
+     "item": "https://thinkbigtw.com/en/qa/zero-trust-ai-agent/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/" class="tb-info-start">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/en/qa/">&larr; Q&amp;A Library</a>
+  <div class="qa-top">
+    <span class="cat">Enterprise AI Security</span>
+    <span class="no">TB35</span>
+  </div>
+  <h1 class="q">What Is Zero Trust, and How Does It Apply to AI Agents?</h1>
+  <p class="byline">Think BIG Q&amp;A Library&nbsp;&nbsp;·&nbsp;&nbsp;<time datetime="2026-11-17T16:00:00+08:00">2026-11-17</time>
+    &nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://thinkbigtw.com/library/qa/zero-trust-ai-agent/" hreflang="zh-Hant-TW" style="color:var(--ink-soft)">中文</a></p>
+
+  <section class="answer" aria-label="The short answer">
+    <span class="lede">The short answer</span>
+    <div><p>Zero trust means a company network location does not automatically make an account or device trusted. For an AI Agent, apply authorization checks to data access and tool actions. NIST SP 800-207 (2020) places authentication and authorization before a resource session is established; local and cloud systems both need these controls.</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">1. </span>Ask who is doing what</h2>
+<p>NIST shifts the focus toward users, devices, and resources. Employee login, document retrieval, and a tool changing data are separate authorization steps. A signed-in employee should not implicitly receive the system’s administrative privileges through an Agent.</p>
+<p>Map the path from user to Agent, tool, and data. Identify the actual execution identity at each step. OWASP LLM06:2025 describes the risk of a tool using a privileged shared identity to access documents beyond the current user’s scope.</p>
+<h2><span class="no">2. </span>Put controls where actions happen</h2>
+<p>The following are implementation suggestions derived from NIST and OWASP, not a certification checklist.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Point</th>
+<th>Suggested control</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Identity</td>
+<td>Distinguish employee and service identities</td>
+<td>Account purpose and owner</td>
+</tr>
+<tr>
+<td>Retrieval</td>
+<td>Check document permissions for the requesting identity</td>
+<td>Allowed and denied cases</td>
+</tr>
+<tr>
+<td>Tools</td>
+<td>Separate reading from modification</td>
+<td>Enabled functions and scope</td>
+</tr>
+<tr>
+<td>High-impact actions</td>
+<td>Require designated human approval</td>
+<td>Approved content and actual result</td>
+</tr>
+<tr>
+<td>Incidents</td>
+<td>Support revocation and tool suspension</td>
+<td>Revocation exercises and activity records</td>
+</tr>
+</tbody>
+</table></div>
+<p>OWASP calls for authorization in downstream systems. A prompt can describe boundaries, but the application, database, or tool must enforce them. Approval should happen before execution and cover the action that will actually run.</p>
+<h2><span class="no">3. </span>Verify one workflow first</h2>
+<p>Use test accounts and synthetic files for authorized access, cross-department access, and a retry after revocation. Specify expected outcomes before testing, including visibility and access to logs. Check whether summaries, caches, or attachments bypass a denial.</p>
+<p>These are suggested verification steps, not proof that a company has completed zero trust. Revisit permissions when adding tools, changing models, or connecting external services. Local deployment can meet local-processing needs; cloud systems can apply the same access principles. Include data requirements and maintenance responsibilities in the deployment decision.</p></div>
+
+  <section class="brand" aria-label="Brand information | Think BIG">
+    <span class="lede">Brand information | Think BIG</span>
+    <h2>Think BIG’s Agent permissions and delivery review</h2>
+    <p>Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published <a href="https://thinkbigtw.com/trust/">Trust</a> page.</p>
+<ol>
+<li><strong>Data and access</strong>: identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.</li>
+<li><strong>Pre-delivery review</strong>: check the actual delivery version, external connections, permissions, and key exposure.</li>
+<li><strong>Changes and verification</strong>: confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.</li>
+</ol>
+    <p class="brand-src">The actual scope of Think BIG’s services follows what both parties confirm.</p>
+  </section>
+
+  <section class="faq" aria-label="FAQ">
+    <h2>FAQ</h2>
+    <dl><dt>Q1: Does zero trust mean repeatedly typing passwords?</dt><dd>No. NIST focuses on authentication and authorization for resource access; the mechanism depends on risk and system design.</dd><dt>Q2: Does a local model need it?</dt><dd>Yes. An internal network location does not entitle every identity to every document.</dd><dt>Q3: Is a confidentiality prompt enough?</dt><dd>No. OWASP places authorization in downstream systems rather than the model’s judgment.</dd><dt>Q4: Where can a small company start?</dt><dd>Choose one retrieval workflow, identify accounts, data, tools, and owners, and test access boundaries and revocation.</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="Related reading"><b>Related</b><ul><li><a href="/en/qa/ai-agent-permissions/">How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve?</a></li><li><a href="/en/qa/rag-access-control-by-department/">When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data?</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">Sources (checked 2026-10-26)</span>
+    <ol><li>NIST, SP 800-207, Zero Trust Architecture（2020）: <a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener">csrc.nist.gov</a></li><li>OWASP, LLM06:2025 Excessive Agency: <a href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener">genai.owasp.org</a></li><li>Think BIG, 資安與治理 / Trust: <a href="https://thinkbigtw.com/trust/" target="_blank" rel="noopener">thinkbigtw.com</a></li></ol>
+  </div>
+  <p class="disclaimer">This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws &amp; Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG&#8217;s services depends on what both parties confirm.</p>
+
+  <div class="colophon">
+    <b>Q&amp;A Library</b>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="/en/" style="color:inherit">Think BIG Home (EN)</a>
+    <span class="sig">Think BIG, Make it Real!&nbsp;&nbsp;Think BIG Make it Real Co., Ltd.</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise</a><a href="/enterprise/departments/">AI Departments</a><a href="/en/services/seo-geo/">SEO / GEO</a><a href="/en/pricing/">Personal plans</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">Deployment Process</a><a href="/trust/">Security</a><a href="/guides/">Guides</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">Consult via LINE &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">About Think BIG</a><a href="/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ</a><a href="/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
