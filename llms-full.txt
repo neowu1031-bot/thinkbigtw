@@ -1414,6 +1414,113 @@ THINK BIG NEWS   ·  AI Deployment Field Notes
 
 ---
 
+URL: https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/
+
+# What Should You Back Up in a Local AI System? — Beyond Model Files | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 023
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 20, 2026  ·  Friday
+◆
+Local AI Field Notes
+◆
+Issue 023
+
+local AI · system backup · recovery drills
+
+## What Should You Back Up in a Local AI System? — Beyond Model Files
+
+Think BIG Media  |  November 20, 2026
+
+Recovering a model does not reconstruct the working system. A backup plan needs file locations, a consistent recovery point, and work-based acceptance checks.
+
+## One. A File Copy Is Not a Recovery Plan
+
+Model files are conspicuous, but size should not determine backup priority. Ollama’s FAQ describes configurable model storage and service settings managed through the operating system. The default directory may not describe the deployed setup.[1]
+
+Databases also need specific handling. PostgreSQL says a direct file-level copy requires shutdown; an appropriate consistent snapshot can work while running, provided its conditions, logs, and full data scope are covered.[2]
+
+SQLite offers an online backup API for database snapshots and discusses the locking and interruption risks of traditional copying.[3] CISA recommends offline, encrypted backups of critical data and regular availability and integrity tests.[4] These sources focus on recoverability, beyond simply having another copy.
+
+## Two. Offline and Online Methods Have Conditions
+
+The case for stopping writes: a clearer state.  Where maintenance windows are possible, we favor stopping writing services before a documented backup. This is our operational choice. PostgreSQL’s restrictions on direct copying do not mean every database requires an offline backup.[2]
+
+The case for online backup: service continuity.  SQLite’s API and PostgreSQL’s consistent-snapshot guidance offer conditional paths for working systems.[2][3] Our reading is that database and storage architecture should determine the method. A completed copy command is insufficient evidence by itself.
+
+Convenience also needs to be weighed against isolation. CISA notes that ransomware can delete or encrypt accessible backups.[4] We recommend reviewing backup access separately from everyday access while ensuring an authorized recovery owner can obtain what is needed.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These notes come from our local AI deployment and maintenance records. They are not industry statistics or an account of any particular client.
+
+1. The model is one component.  Our checklist includes configuration, schedules, service definitions, database snapshots, knowledge indexes, agent memory files, and conversation records. Where model files can be downloaded again, we still record the exact version rather than an ambiguous name.
+
+2. Make a consistent backup before upgrades.  Our recorded practice is to stop services before packaging the system, giving the backup a defined point with writes stopped. That is our method, not a universal prescription. Online requirements need a method appropriate to the database.[2][3]
+
+3. Use the existing backup process.  We use the established daily backup mechanism rather than adding a separate process without an owner. We consider the job complete after a recovery drill.
+
+## Four. Our Recommendations: From Inventory to Recovery
+
+1. Inventory by purpose.  Mark what must be preserved and what can be rebuilt. Record locations, owners, versions, retention, and rebuild instructions. If an index will be rebuilt, keep its source documents and build procedure.
+
+2. Document consistency.  Identify the services to stop, database order, and how to confirm writing has stopped. For online methods, save options and completion evidence. Do not assume that a copy of a live data directory is a usable snapshot.[2][3]
+
+3. Protect and isolate backups.  Consider offline storage and encryption under CISA’s guidance, and test authorized access to recovery and decryption material.[4] Keep secret retrieval controlled rather than placing complete secrets in general handover notes.
+
+4. Restore in isolation.  Select a backup, record the steps, and use known questions to check retrieval, memory access, and service startup. Disable outbound scheduled actions during the drill to avoid repeating production work. This is our recommended test design.
+
+5. Return results to the owner.  Keep the recovery point, elapsed time, failures, and corrections. Add missing settings to the inventory. Use the revised procedure for the next drill instead of carrying forward an old completion check.
+
+A useful drill can start with one concrete task, such as retrieving a known document. Define the expected answer and authorized account, restore from the instructions, and check the source data, version, and permissions. If an index is rebuilt, confirm that all required originals exist. Compare the drill against the inventory: any file obtained ad hoc during recovery belongs on the next checklist. This is our proposed acceptance method; service startup alone does not establish complete recovery.
+
+◆ Editor’s Note · How Think BIG Approaches This: Deliver the Recovery Procedure
+
+## A completed backup needs a repeatable restoration record.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to deliver backup scope, restoration order, and acceptance questions with a local AI system. Recovery belongs in the maintenance documentation.
+
+Another authorized person should be able to follow the procedure. Changes to configuration, data locations, or schedules should update the recovery instructions so they describe the system actually in use.
+
+### Frequently Asked Questions
+
+Q1: Is backing up model files enough?
+Our inventory also covers settings, schedules, databases, indexes, memory, and records. Model locations can be customized.[1]
+Q2: Can I copy database files directly?
+Use a method appropriate to the database. PostgreSQL requires shutdown for a direct file backup; SQLite offers an online backup API.[2][3]
+Q3: Do daily backups still need a recovery drill?
+Yes. CISA recommends testing availability and integrity regularly.[4]
+Q4: Must every model file be duplicated?
+We first assess whether it can be obtained again and record the exact version. An uncertain rebuild path should not be treated as disposable.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Ollama, “FAQ” (model storage and service configuration); accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/faq) ·
+    [2] PostgreSQL, “File System Level Backup” (copies and consistent snapshots); accessed 2026-10-26: [www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html) ·
+    [3] SQLite, “SQLite Backup API” (online snapshots); accessed 2026-10-26: [www.sqlite.org](https://www.sqlite.org/backup.html) ·
+    [4] CISA, “#StopRansomware Guide” (offline encrypted backups and testing); accessed 2026-10-26: [www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/
 
 # Was This Image Made with AI? — What Content Credentials Can Tell You | Think BIG NEWS
@@ -2073,6 +2180,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 023
+
+November 20, 2026 · Local AI Field Notes
+
+## What Should You Back Up in a Local AI System? — Beyond Model Files
+
+Recovering a model does not reconstruct the working system.](https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/)
 [Issue 022
 
 November 18, 2026 · AI Deployment Field Notes
@@ -8965,6 +9079,113 @@ Q4：常駐系統可以自行寄信嗎？
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
 THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/
+
+# 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 023 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 20 日　星期五
+◆
+本地 AI 實測筆記
+◆
+第 023 期
+
+本地 AI · 系統備份 · 還原演練
+
+## 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄
+
+Think BIG 自媒體部  |  2026 年 11 月 20 日
+
+模型能重新取得，不代表原來的工作環境能重新組回來。備份清單要回答：資料在哪裡、哪個時間點是一致的，以及還原後要用什麼工作驗收。
+
+## 一 現象：複製檔案與可還原的備份，有一段距離
+
+本地 AI 的模型檔很醒目，但備份不能只照檔案大小排順序。以 Ollama 為例，官方 FAQ 說明模型目錄可用環境變數調整，服務設定也可能在作業系統的服務管理中。單看預設目錄，未必就是實際部署的位置。[1]
+
+資料庫更不能一概視為普通文件。PostgreSQL 的檔案層備份文件說，直接複製資料檔的方式需要關閉資料庫；如果使用符合條件的一致性快照，則可在運作時進行，但也要涵蓋相關日誌及完整資料範圍。[2]
+
+SQLite 官方提供線上備份 API，用來建立資料庫快照，並說明傳統複製方式的鎖定與中斷風險。[3] CISA 的防勒索指引則建議保留離線、加密的關鍵資料備份，並定期測試可用性與完整性。[4] 這些文件共同指向的是「如何回復」，而不只是「檔案有沒有多一份」。
+
+## 二 各方評價：停機備份與線上備份各有條件
+
+支持停機備份的理由：狀態比較容易交代。 對能安排維護時段的部署，我們傾向先停止會寫入資料的服務，再依確認過的程序備份。這是我們的操作選擇；PostgreSQL 對直接檔案複製的限制，不能擴大成所有資料庫都只能停機。[2]
+
+支持線上備份的理由：服務仍要運作。 SQLite 的 API 與 PostgreSQL 文件中的一致性快照，提供了不必一律長時間停機的路徑，但各自有條件。[2][3] 我們的判讀是，選哪一種方法要依資料庫與儲存架構，不應只因某個複製指令跑完就算完成。
+
+另一個取捨是方便與隔離。CISA 說明可存取的備份也可能遭勒索程式刪除或加密。[4] 因此我們建議把備份存取權限與日常操作分開考慮，同時確認負責人真的拿得到復原需要的資料。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們本地 AI 系統的部署與維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 模型不是全部。 我們的備份清單包含設定檔、排程、服務設定、資料庫快照、知識庫索引、AI Agent 記憶檔與對話紀錄。模型檔本身可重新下載的情況下，也要記下確切版本；不能只留一個容易混淆的名稱。
+
+2. 升級前先做一致的備份。 我們會先停服務再打包，讓這份備份對應到同一個停止寫入的時間點。這是我們的操作方式，不是要求所有系統照抄；有線上備份需求時，應另依所用資料庫確認方法。[2][3]
+
+3. 接進原有備份機制。 我們使用既有的每日備份流程，不另外建立一套沒人接手的機制；還原要實際演練過，才算完成。
+
+## 四 我們的建議：從清單走到還原驗收
+
+1. 依用途列出清單。 把每一項分成「必須保留」與「可以重建」，並記下位置、負責人、版本、保留期限與重建步驟。知識庫索引若打算重建，也要留下原始文件及建立方式。
+
+2. 明寫一致性方法。 決定停止哪些服務、先備份哪個資料庫、最後如何確認沒有新的寫入。使用線上工具時，保存工具選項與完成紀錄；不要自行把運作中的資料目錄當成可用快照。[2][3]
+
+3. 隔離並保護備份。 按 CISA 指引考慮離線與加密，並測試有權人員能否取得解密與還原所需的資料。[4] 金鑰的取用方式應另受控，不宜把完整機密直接寫在一般交接文件中。
+
+4. 在隔離環境還原。 選定一份備份，記下還原步驟，再用已知問題檢查文件查詢、記憶讀取與服務啟動。測試時停用對外排程，確認不會重複執行正式工作；這是我們的演練建議。
+
+5. 把結果交回負責人。 保留備份時間點、實際用時、失敗項目與修正方式。若還原後仍缺設定，就把缺項補回清單；下一次演練使用更新後的步驟，不能只沿用上次的完成勾選。
+
+演練可以先選一項具體工作，例如查詢一份已知文件。先寫下預期答案與可存取帳號，再依文件還原，確認回覆所用資料、版本與權限都符合原來設定。若索引採重建方式，還要記錄重建所需的原始檔是否齊全。最後把還原結果與備份清單逐項對照：沒有列進備份、卻在還原時臨時找回的檔案，就是下一次要補的項目。這是我們建議的驗收方法，不能把服務能啟動直接寫成全部資料已復原。
+
+◆ 編按 · Think BIG 的做法：把復原方式一起交付
+
+## 備份完成，要有可重做的還原紀錄。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，交付本地 AI 時應一併交付備份範圍、復原順序與驗收題目。備份不是獨立於維運之外的附件，而是維護文件的一部分。
+
+我們重視的是另一位有授權的人能照文件重做。當系統改了設定、資料位置或排程，也應同步更新備份與還原說明，讓紀錄反映實際運作的樣子。
+
+### 常見問題
+
+Q1：只備份模型夠嗎？
+依我們的維運清單，還要納入設定、排程、資料庫、知識庫、記憶與紀錄；模型位置也可能經過調整。[1]
+Q2：資料庫可以直接複製嗎？
+要依資料庫方法。PostgreSQL 的直接檔案層備份要求停機；SQLite 有專用線上備份 API。[2][3]
+Q3：每天有備份，還要演練嗎？
+要確認資料能用。CISA 建議定期測試備份的可用性與完整性。[4]
+Q4：模型都要再留一份嗎？
+我們會先判斷能否重新取得，並記下確切版本。若重建條件不明，就不應把它列為可省略的項目。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Ollama，〈FAQ〉（模型位置與服務環境設定），查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/faq)　·
+    [2] PostgreSQL，〈File System Level Backup〉（直接複製與一致性快照），查閱日期 2026-10-26：[www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html)　·
+    [3] SQLite，〈SQLite Backup API〉（線上快照），查閱日期 2026-10-26：[www.sqlite.org](https://www.sqlite.org/backup.html)　·
+    [4] CISA，〈#StopRansomware Guide〉（離線、加密、定期測試），查閱日期 2026-10-26：[www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---

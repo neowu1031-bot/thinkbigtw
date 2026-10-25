@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄 | Think BIG NEWS</title>
+<meta name="description" content="本地 AI 備份不能只看模型資料夾。本文從資料庫備份的一致性與官方復原建議出發，整理 Think BIG 維運紀錄中的設定、排程、知識庫、記憶與紀錄清單，並說明如何在隔離環境確認還原後真的能工作。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/">
+<meta property="og:title" content="本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄 | Think BIG NEWS">
+<meta property="og:description" content="模型能重新取得，不代表原來的工作環境能重新組回來。備份清單要回答：資料在哪裡、哪個時間點是一致的，以及還原後要用什麼工作驗收。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-20T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="本地 AI 備份與還原 | Think BIG NEWS">
+<meta name="twitter:description" content="模型能重新取得，不代表原來的工作環境能重新組回來。備份清單要回答：資料在哪裡、哪個時間點是一致的，以及還原後要用什麼工作驗收。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/#article",
+      "headline": "本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄",
+      "description": "本地 AI 備份不能只看模型資料夾。本文從資料庫備份的一致性與官方復原建議出發，整理 Think BIG 維運紀錄中的設定、排程、知識庫、記憶與紀錄清單，並說明如何在隔離環境確認還原後真的能工作。",
+      "keywords": "本地 AI, 系統備份, 還原演練",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-20T20:00:00+08:00",
+      "dateModified": "2026-11-20T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      },
+      "citation": [
+        "https://docs.ollama.com/faq",
+        "https://www.postgresql.org/docs/18/backup-file.html",
+        "https://www.sqlite.org/backup.html",
+        "https://www.cisa.gov/stopransomware/ransomware-guide"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "只備份模型夠嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "依我們的維運清單，還要納入設定、排程、資料庫、知識庫、記憶與紀錄；模型位置也可能經過調整。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "資料庫可以直接複製嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "要依資料庫方法。PostgreSQL 的直接檔案層備份要求停機；SQLite 有專用線上備份 API。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "每天有備份，還要演練嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "要確認資料能用。CISA 建議定期測試備份的可用性與完整性。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "模型都要再留一份嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們會先判斷能否重新取得，並記下確切版本。若重建條件不明，就不應把它列為可省略的項目。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "本地 AI 備份與還原",
+          "item": "https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>本地 AI 實測筆記 &middot; 第 023 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 11 月 20 日　星期五</span>
+    <span class="dot">&#9670;</span>
+    <span>本地 AI 實測筆記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 023 期</span>
+  </div>
+  <p class="kicker">本地 AI &middot; 系統備份 &middot; 還原演練</p>
+  <h2 class="headline">本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 11 月 20 日</p>
+  <p class="deck">模型能重新取得，不代表原來的工作環境能重新組回來。備份清單要回答：資料在哪裡、哪個時間點是一致的，以及還原後要用什麼工作驗收。</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">一</span>現象：複製檔案與可還原的備份，有一段距離</h2>
+<p class="lead">本地 AI 的模型檔很醒目，但備份不能只照檔案大小排順序。以 Ollama 為例，官方 FAQ 說明模型目錄可用環境變數調整，服務設定也可能在作業系統的服務管理中。單看預設目錄，未必就是實際部署的位置。[1]</p>
+<p>資料庫更不能一概視為普通文件。PostgreSQL 的檔案層備份文件說，直接複製資料檔的方式需要關閉資料庫；如果使用符合條件的一致性快照，則可在運作時進行，但也要涵蓋相關日誌及完整資料範圍。[2]</p>
+<p>SQLite 官方提供線上備份 API，用來建立資料庫快照，並說明傳統複製方式的鎖定與中斷風險。[3] CISA 的防勒索指引則建議保留離線、加密的關鍵資料備份，並定期測試可用性與完整性。[4] 這些文件共同指向的是「如何回復」，而不只是「檔案有沒有多一份」。</p>
+<h2><span class="no">二</span>各方評價：停機備份與線上備份各有條件</h2>
+<p class="lead"><strong>支持停機備份的理由：狀態比較容易交代。</strong>對能安排維護時段的部署，我們傾向先停止會寫入資料的服務，再依確認過的程序備份。這是我們的操作選擇；PostgreSQL 對直接檔案複製的限制，不能擴大成所有資料庫都只能停機。[2]</p>
+<p><strong>支持線上備份的理由：服務仍要運作。</strong>SQLite 的 API 與 PostgreSQL 文件中的一致性快照，提供了不必一律長時間停機的路徑，但各自有條件。[2][3] 我們的判讀是，選哪一種方法要依資料庫與儲存架構，不應只因某個複製指令跑完就算完成。</p>
+<p>另一個取捨是方便與隔離。CISA 說明可存取的備份也可能遭勒索程式刪除或加密。[4] 因此我們建議把備份存取權限與日常操作分開考慮，同時確認負責人真的拿得到復原需要的資料。</p>
+<section class="firsthand"><span class="lede">&#9670; 第一手心得</span><h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+<p class="lead">以下來自我們本地 AI 系統的部署與維運紀錄，不是產業統計，也不代表任何特定客戶。</p>
+<p><strong>1. 模型不是全部。</strong>我們的備份清單包含設定檔、排程、服務設定、資料庫快照、知識庫索引、AI Agent 記憶檔與對話紀錄。模型檔本身可重新下載的情況下，也要記下確切版本；不能只留一個容易混淆的名稱。</p>
+<p><strong>2. 升級前先做一致的備份。</strong>我們會先停服務再打包，讓這份備份對應到同一個停止寫入的時間點。這是我們的操作方式，不是要求所有系統照抄；有線上備份需求時，應另依所用資料庫確認方法。[2][3]</p>
+<p><strong>3. 接進原有備份機制。</strong>我們使用既有的每日備份流程，不另外建立一套沒人接手的機制；還原要實際演練過，才算完成。</p>
+</section>
+<h2><span class="no">四</span>我們的建議：從清單走到還原驗收</h2>
+<p class="lead"><strong>1. 依用途列出清單。</strong>把每一項分成「必須保留」與「可以重建」，並記下位置、負責人、版本、保留期限與重建步驟。知識庫索引若打算重建，也要留下原始文件及建立方式。</p>
+<p><strong>2. 明寫一致性方法。</strong>決定停止哪些服務、先備份哪個資料庫、最後如何確認沒有新的寫入。使用線上工具時，保存工具選項與完成紀錄；不要自行把運作中的資料目錄當成可用快照。[2][3]</p>
+<p><strong>3. 隔離並保護備份。</strong>按 CISA 指引考慮離線與加密，並測試有權人員能否取得解密與還原所需的資料。[4] 金鑰的取用方式應另受控，不宜把完整機密直接寫在一般交接文件中。</p>
+<p><strong>4. 在隔離環境還原。</strong>選定一份備份，記下還原步驟，再用已知問題檢查文件查詢、記憶讀取與服務啟動。測試時停用對外排程，確認不會重複執行正式工作；這是我們的演練建議。</p>
+<p><strong>5. 把結果交回負責人。</strong>保留備份時間點、實際用時、失敗項目與修正方式。若還原後仍缺設定，就把缺項補回清單；下一次演練使用更新後的步驟，不能只沿用上次的完成勾選。</p>
+<p>演練可以先選一項具體工作，例如查詢一份已知文件。先寫下預期答案與可存取帳號，再依文件還原，確認回覆所用資料、版本與權限都符合原來設定。若索引採重建方式，還要記錄重建所需的原始檔是否齊全。最後把還原結果與備份清單逐項對照：沒有列進備份、卻在還原時臨時找回的檔案，就是下一次要補的項目。這是我們建議的驗收方法，不能把服務能啟動直接寫成全部資料已復原。</p>
+<section class="houseview"><span class="lede">&#9670; 編按 &middot; Think BIG 的做法：把復原方式一起交付</span><h2>備份完成，要有可重做的還原紀錄。</h2><p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+<p class="lead">Think BIG 主張，交付本地 AI 時應一併交付備份範圍、復原順序與驗收題目。備份不是獨立於維運之外的附件，而是維護文件的一部分。</p>
+<p>我們重視的是另一位有授權的人能照文件重做。當系統改了設定、資料位置或排程，也應同步更新備份與還原說明，讓紀錄反映實際運作的樣子。</p>
+</section>
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：只備份模型夠嗎？</dt>
+        <dd>依我們的維運清單，還要納入設定、排程、資料庫、知識庫、記憶與紀錄；模型位置也可能經過調整。[1]</dd>
+        <dt>Q2：資料庫可以直接複製嗎？</dt>
+        <dd>要依資料庫方法。PostgreSQL 的直接檔案層備份要求停機；SQLite 有專用線上備份 API。[2][3]</dd>
+        <dt>Q3：每天有備份，還要演練嗎？</dt>
+        <dd>要確認資料能用。CISA 建議定期測試備份的可用性與完整性。[4]</dd>
+        <dt>Q4：模型都要再留一份嗎？</dt>
+        <dd>我們會先判斷能否重新取得，並記下確切版本。若重建條件不明，就不應把它列為可省略的項目。</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-26。<br>
+    [1] Ollama，〈FAQ〉（模型位置與服務環境設定），查閱日期 2026-10-26：<a href="https://docs.ollama.com/faq" target="_blank" rel="noopener">docs.ollama.com</a>　&middot;
+    [2] PostgreSQL，〈File System Level Backup〉（直接複製與一致性快照），查閱日期 2026-10-26：<a href="https://www.postgresql.org/docs/18/backup-file.html" target="_blank" rel="noopener">www.postgresql.org</a>　&middot;
+    [3] SQLite，〈SQLite Backup API〉（線上快照），查閱日期 2026-10-26：<a href="https://www.sqlite.org/backup.html" target="_blank" rel="noopener">www.sqlite.org</a>　&middot;
+    [4] CISA，〈#StopRansomware Guide〉（離線、加密、定期測試），查閱日期 2026-10-26：<a href="https://www.cisa.gov/stopransomware/ransomware-guide" target="_blank" rel="noopener">www.cisa.gov</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; 本地 AI 實測筆記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
