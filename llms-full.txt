@@ -1303,6 +1303,117 @@ THINK BIG NEWS   ·  First-hand observations on AI deployment
 
 ---
 
+URL: https://thinkbigtw.com/en/news/ambient-vs-chat-ai-20261114/
+
+# Chat AI or an Ambient Agent? Define Triggers and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 020
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 14, 2026  ·  Saturday
+◆
+AI Deployment Field Notes
+◆
+Issue 020
+
+Ambient AI · Event Triggers · Human Review
+
+## Chat AI or an Ambient Agent? Define Triggers and Stop Conditions
+
+Think BIG Media  |  November 14, 2026
+
+Start with who triggers the work and where it waits for a person. Background operation needs a defined scope, approval gates, and a way to stop.
+
+## One.  What’s Happening: From Waiting for Prompts to Responding to Events
+
+In January 2025, LangChain published “Introducing ambient agents,” describing agents that respond to signals and seek human input when needed, alongside an email-assistant reference implementation.[1] This historical announcement introduces our discussion of interaction and governance; it is not a current product launch report.
+
+Here, “going to AI” means a person initiates a request. “AI coming to you” means an event or schedule starts work and produces a notification or review item. This is an explanatory distinction, not an industry-wide taxonomy. The original article says ambient agents need not be completely autonomous.[1] Background operation does not mean watching every screen or receiving all system permissions.
+
+Waiting for a person can be an explicit program state. LangGraph documents interrupts that pause execution, save state, and resume with external input.[2] OWASP LLM06:2025 recommends limiting tools, permissions, and autonomy, with human approval for high-impact actions.[4] Background execution and approval authority need separate designs.
+
+## Two.  Perspectives: Less Repetition, More Operational Responsibility
+
+The benefit:  The original article distinguishes notification, questions, and review.[1] In our assessment, a well-defined trigger can make preparing a review queue more suitable than repeatedly briefing a tool. Measure that on real work rather than assuming a quantified time saving.
+
+The caution:  Background work also involves scheduling and retries. Kubernetes says its CronJob controller may sometimes create duplicate jobs or miss a job, so jobs should be idempotent: repeating them should not add unintended effects.[3] This is that scheduler’s documented behavior, not a defect attributed to every AI platform.
+
+We recommend turning this into acceptance questions: What happens when an event arrives twice? Is waiting-for-approval state visible? With no reply, does the job keep waiting, expire, or escalate? Decide these conditions before deployment.
+
+Define when a person needs an interruption: missing information, pending approval, or repeated failure. Group related items and identify an owner and deadline where relevant. Repeated reminders need a stop or escalation rule. This is an interaction recommendation, not a measured outcome.
+
+If a task lacks a clear event and completion condition, use conversation to clarify the workflow first. Once a person can describe its start, inputs, and outputs, move a bounded portion into the background. Not every task needs a schedule.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from operating persistent AI agents. They are not industry statistics or an account of any particular organization.
+
+1. Model calls continue without a conversation.  Heartbeat checks and automatic memory organization can consume usage allowances or compute unnoticed. We inventory schedules, disable unnecessary jobs, and set limits.
+
+2. Long conversations create maintenance work.  Old context needs summarization as conversations grow. Local summarization can take minutes and time out, blocking a conversation. We summarize earlier, set timeouts, and separate channels.
+
+3. A healthy service may have just restarted.  A laptop host once lost power overnight after its battery drained, leaving morning jobs unexecuted. The service later appeared healthy because it had just restarted. We check uptime and power alongside service status, and added low-battery alerts.
+
+4. Important memory must be inspectable.  We keep important items in memory files that can be viewed, edited, and deleted. Persistent state should remain understandable to its owner.
+
+## Four.  Our Recommendations: Pilot One Task with a Clear Endpoint
+
+1. Specify triggers.  Define the event or schedule, input data, output, and completion condition. When no work remains, execution should end rather than continually asking a model to find another task.
+
+2. Separate notification from action.  Begin with summaries, drafts, or review queues. Require designated approval for external sending or production changes, showing target and content beforehand.[4] Waiting for approval should be a workflow state.[2]
+
+3. Test duplicates, missed work, and recovery.  Use synthetic events to check duplicate handling and restart behavior.[3] Track last success and outstanding work, beyond process existence.
+
+4. Set usage and stop conditions.  Specify call, duration, and retry limits, with an alert recipient. Test manual shutdown and confirm unfinished work and pending approvals remain readable.
+
+Give background work a beginning, endpoint, and owner before expanding autonomy.
+
+◆ Editor’s Note · How Think BIG Approaches This: Background Work That Can Be Handed Over
+
+## Deliver triggers, state records, approvals, and shutdown instructions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend a visible inventory of schedules, recent actions, and outstanding approvals. New jobs should bring an explicit data scope, resource limits, and shutdown method.
+
+Whether an agent stays active and which actions it may perform are separate questions that both need answers.
+
+### Frequently Asked Questions
+
+Q1: Must ambient agents be fully autonomous?
+No. The original article includes notification, questions, and review.[1]
+Q2: Is adding a schedule enough?
+Test state, retries, duplicate handling, approvals, and shutdown separately.[2][3]
+Q3: Can model usage continue without a user prompt?
+In our operations records, heartbeat and memory jobs continue calling models, so we inventory them and set limits.
+Q4: Should an ambient agent send messages by itself?
+Separate capability from authorization. We recommend a preview and designated approval for outbound sending, applying high-impact-action guidance.[4]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] LangChain, “Introducing ambient agents,” January 14, 2025, accessed 2026-10-26: [blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/) ·
+    [2] LangChain, “Interrupts”, accessed 2026-10-26: [docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts) ·
+    [3] Kubernetes, “CronJob”, accessed 2026-10-26: [kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) ·
+    [4] OWASP, “LLM06:2025 Excessive Agency”, accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/chatgpt-tw-citations-20261011/
 
 # Who Does ChatGPT Cite When It Answers Questions About Taiwan? Where Local Brands Should Put Their Information | Think BIG NEWS
@@ -1744,6 +1855,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 020
+
+November 14, 2026 · AI Deployment Field Notes
+
+## Chat AI or an Ambient Agent? Define Triggers and Stop Conditions
+
+Start with who triggers the work and where it waits for a person. Background operation needs a defined scope, approval gates, and a way to stop.](https://thinkbigtw.com/en/news/ambient-vs-chat-ai-20261114/)
 [Issue 019
 
 November 12, 2026 · AI Deployment Field Notes
@@ -8504,6 +8622,117 @@ Q5：怎麼查一家台灣公司實際登記的營業項目？
 本文為 Think BIG 產業觀察與第一手經驗整理，引用之研究與官方文件均標註來源；研究數據以各原文所載之年份、測試條件為準，模型評測數字會隨版本更新而變動。文中提到的 AI 聊天工具不具名，內容不針對任何公司或產品。
 
 THINK BIG NEWS   ·  AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/ambient-vs-chat-ai-20261114/
+
+# 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 020 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 14 日　星期六
+◆
+AI 導入實測手記
+◆
+第 020 期
+
+常駐型 AI · 事件觸發 · 人工確認
+
+## 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止
+
+Think BIG 自媒體部  |  2026 年 11 月 14 日
+
+差別先看誰啟動工作，以及執行到哪裡要等人。常駐是一種運作安排，不代表應該持續觀察所有資料或自行完成所有動作。
+
+## 一 現象：從等人提問，走向事件來了就啟動
+
+LangChain 在 2025 年 1 月發表〈Introducing ambient agents〉，描述一種回應事件訊號、需要時才找人介入的設計，也公布電子郵件助理參考實作。[1] 這是本期的原始公告引子；本文談互動方式與管理條件，不把當年的產品發布寫成今日新消息。
+
+我們把「你去找 AI」理解為人發起一次請求；把「AI 來找你」理解為事件或排程先啟動工作，再提出通知或待核准事項。這是本文的說明方式，並非產業統一分類。原始文章也說，ambient agents 不必完全自主。[1] 常駐不等於時時讀取每個畫面，更不等於拿到所有系統權限。
+
+要停下等人，可以做成程式狀態。LangGraph 的官方文件說明，interrupt 可暫停執行，保存狀態並等外部輸入後恢復。[2] OWASP LLM06:2025 則建議限制工具、權限與自主程度，對高影響動作保留人工核准。[4] 因此，能在背景做事與能自行核准事情，要分開設計。
+
+## 二 各方評價：少一點重複提問，也多一份維運責任
+
+支持背景工作的思路： 原始文章區分通知、提問與審閱三種人機互動。[1] 我們的判讀是，若工作有清楚觸發點，先整理待辦再請人判斷，可能比每天重新交代一次更合適；但要用實際工作觀察，而非直接宣稱節省多少時間。
+
+保留的思路： 背景程序還有排程與重試問題。Kubernetes 官方 CronJob 文件提醒，在某些情況可能建立重複工作，或沒有建立工作，因此工作應具備重複執行不造成額外效果的設計。[3] 這是該排程系統的技術限制，不是所有 AI 平台的共同缺陷。
+
+我們建議把這個提醒轉成驗收題：同一事件來兩次，會不會重複通知或寫入？等人核准時，狀態是否清楚？沒人回答時，是持續等待、逾期關閉，還是升級通知？這些選項需要事先決定，不能用「AI 自己會處理」帶過。
+
+我們建議先列出「需要打擾人的條件」，例如資料缺漏、等待核准或連續失敗，再討論通知頻率。把可合併的事項整理成一則待辦，並標明誰要處理、是否有期限；對同一件事反覆提醒，也應有停止或轉交規則。這是互動設計建議，不是已量測的使用成效。
+
+若原本工作沒有明確事件與完成條件，我們建議先用對話工具整理流程。能由人清楚說出起點、輸入與輸出後，再挑一小段改成背景工作；不必為了使用常駐功能，硬把每項工作都排成自動任務。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們維運常駐 AI Agent 的觀察，不是產業統計，也不描述特定對象。
+
+1. 沒人聊天，也可能持續呼叫模型。 我們發現心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。因此會逐項列出自動排程，關閉不需要的項目並設上限。
+
+2. 對話累積後，也有整理工作。 常駐對話超出上下文時要壓縮舊內容；本地模型做摘要可能要好幾分鐘，逾時會讓對話卡住。我們會提早壓縮、設逾時，並把不同通道的對話分開。
+
+3. 服務顯示健康，還要看開機時間。 我們遇過筆電主機整夜沒接電，耗盡電池關機，隔天排程沒跑。遠端看到服務健康，其實只是剛重啟。因此診斷時會一起看開機時間與電源狀態，後來也加上低電量提醒。
+
+4. 重要記憶要可以檢查。 我們把重要事項寫入可檢查的記憶檔，要求能看、能改、能刪。背景工作需要保存狀態，但不應讓狀態變成負責人無法理解的黑盒子。
+
+## 四 我們的建議：先試一個有清楚終點的工作
+
+1. 寫觸發條件。 明定哪個事件或排程會啟動、讀哪些資料、產生什麼輸出，以及怎樣算完成。沒有新的工作時，應能結束，不必每次都讓模型自由找下一件事。
+
+2. 分開通知與執行。 我們建議先從摘要、草稿或待辦試行；對外送出與正式資料變更交指定人核准，並在操作前顯示目標與內容。[4] 等待核准應是流程狀態，不只是聊天裡的一句提醒。[2]
+
+3. 測重複、漏跑與恢復。 用測試事件驗證同一事件重送不會重複處理，並檢查重開機後如何接續。[3] 紀錄最後成功時間與下一個待辦，不能只監控程序是否存在。
+
+4. 設用量與停止條件。 列出呼叫次數、執行時間及重試上限，指定告警接收人。測一次手動停止，確認未完成工作與待核准事項會留下可讀狀態。
+
+一句話：先讓背景工作有起點、終點與負責人，再增加自主程度。
+
+◆ 編按 · Think BIG 的做法：常駐也要可交接
+
+## 觸發表、狀態紀錄、核准與停止方式一起交付。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張把背景工作列成清單，讓負責人看得到有哪些排程、最近做了什麼、接下來在等誰。新增任務時，也同步確認資料範圍、資源上限與停止方式。
+
+延伸閱讀[MCP 權限邊界](https://thinkbigtw.com/library/news/mcp-ai-agent-permissions-20261102/)。是否常駐與能做哪些動作，是兩個都需要回答的問題。
+
+### 常見問題
+
+Q1：常駐型 AI 需要完全自主嗎？
+不需要。原始 ambient agents 文章就保留通知、提問與審閱的人機互動。[1]
+Q2：加一個排程就算導入完成嗎？
+我們建議另驗證狀態、重試、重複處理、人工核准及停止；排程本身不處理所有責任。[2][3]
+Q3：沒有人問，也會用到模型嗎？
+我們的維運紀錄中，心跳與記憶整理等自動排程會持續呼叫模型，因此需要盤點與上限。
+Q4：常駐系統可以自行寄信嗎？
+技術能力與授權要分開。我們建議對外寄送先預覽、再由指定人核准，符合高影響動作的人工作業方向。[4]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] LangChain，〈Introducing ambient agents〉，2025-01-14，查閱日期 2026-10-26：[blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/)　·
+    [2] LangChain，〈Interrupts〉，查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts)　·
+    [3] Kubernetes，〈CronJob〉，查閱日期 2026-10-26：[kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)　·
+    [4] OWASP，〈LLM06:2025 Excessive Agency〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
