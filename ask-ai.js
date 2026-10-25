@@ -227,6 +227,7 @@
           throw new Error(response.status === 429 ? 'rate' : 'failed');
         }
         const result = await response.json(); if (result.accepted !== true) throw new Error('failed');
+        if (typeof gtag === 'function') { try { gtag('event', 'generate_lead', { method: 'ask_ai_widget' }); } catch (_) {} }
         inquirySent = true; inquiryButton.disabled = true;
         card.replaceChildren(); const done = document.createElement('p'); done.setAttribute('role', 'status'); done.textContent = '已送出，顧問會主動與你聯繫'; card.append(done);
         form.reset(); for (const key of Object.keys(data)) delete data[key];
@@ -250,4 +251,10 @@
   window.visualViewport?.addEventListener('scroll', viewport); viewport();
   window.toggleChat = () => dialog.open ? dialog.close() : open(document.activeElement);
   window.askQuick = text => { open(document.activeElement); input.value = text; resize(); };
+  // GA4: track clicks on LINE links (lin.ee) across the whole page
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href*="lin.ee"]');
+    if (!a) return;
+    try { if (typeof gtag === 'function') gtag('event', 'click_line', { link_url: a.href }); } catch (_) {}
+  }, { passive: true });
 })();
