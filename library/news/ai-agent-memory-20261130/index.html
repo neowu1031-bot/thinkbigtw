@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 會記得你說過的話嗎？——對話、摘要與長期記憶要分開管理 | Think BIG NEWS</title>
+<meta name="description" content="AI 助理的記憶不是單一功能。對話紀錄、壓縮摘要與跨對話保存的資料，可能有不同的保存位置和刪除方式。本文依官方記憶文件與 Think BIG 維運紀錄，整理企業應確認的權限、來源、更新與驗收問題，避免把記得住誤當成記得準。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/ai-agent-memory-20261130/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/ai-agent-memory-20261130/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/ai-agent-memory-20261130/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/ai-agent-memory-20261130/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/ai-agent-memory-20261130/">
+<meta property="og:title" content="AI 會記得你說過的話嗎？——對話、摘要與長期記憶要分開管理 | Think BIG NEWS">
+<meta property="og:description" content="先問記憶存在哪裡、什麼時候被讀取，以及誰能更正或刪除。重要事項要能核對，不能只靠 AI 說「我記住了」。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-30T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 記憶與企業資料 | Think BIG NEWS">
+<meta name="twitter:description" content="先問記憶存在哪裡、什麼時候被讀取，以及誰能更正或刪除。重要事項要能核對，不能只靠 AI 說「我記住了」。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/ai-agent-memory-20261130/#article",
+      "headline": "AI 會記得你說過的話嗎？——對話、摘要與長期記憶要分開管理",
+      "description": "AI 助理的記憶不是單一功能。對話紀錄、壓縮摘要與跨對話保存的資料，可能有不同的保存位置和刪除方式。本文依官方記憶文件與 Think BIG 維運紀錄，整理企業應確認的權限、來源、更新與驗收問題，避免把記得住誤當成記得準。",
+      "keywords": "AI Agent, 長期記憶, 對話壓縮",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-30T20:00:00+08:00",
+      "dateModified": "2026-11-30T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/ai-agent-memory-20261130/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      },
+      "citation": [
+        "https://docs.langchain.com/oss/python/concepts/memory",
+        "https://www.anthropic.com/research/effective-context-engineering-for-ai-agents",
+        "https://docs.langchain.com/oss/python/langgraph/add-memory",
+        "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/ai-agent-memory-20261130/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "AI 的記憶跟聊天紀錄一樣嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不一定。LangChain 文件分成對話內短期記憶與跨對話長期記憶；實際保存方式取決於應用。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "壓縮後每一句都還在嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能這樣假設。壓縮會摘要內容，過度壓縮可能丟失重要細節。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "刪除聊天就刪光所有記憶了嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能直接推論。文件中的檢查點刪除有其範圍，長期資料、摘要、日誌與備份要另外盤點。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "公司應該讓 AI 永久記住所有對話嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們建議依用途限定保存內容與期限；涉及個資時，依《個人資料保護法》第 5、11 條等適用規定確認，本文不構成法律意見。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI 記憶與企業資料",
+          "item": "https://thinkbigtw.com/library/news/ai-agent-memory-20261130/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>本地 AI 實測筆記 &middot; 第 028 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 11 月 30 日　星期一</span>
+    <span class="dot">&#9670;</span>
+    <span>本地 AI 實測筆記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 028 期</span>
+  </div>
+  <p class="kicker">AI Agent &middot; 長期記憶 &middot; 對話壓縮</p>
+  <h2 class="headline">AI 會記得你說過的話嗎？——對話、摘要與長期記憶要分開管理</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 11 月 30 日</p>
+  <p class="deck">先問記憶存在哪裡、什麼時候被讀取，以及誰能更正或刪除。重要事項要能核對，不能只靠 AI 說「我記住了」。</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">一</span>現象：「記得」可能是不同的技術流程</h2>
+<p class="lead">問 AI「還記得上次說的事嗎」，答案背後可能是對話紀錄，也可能是另外保存的資料。LangChain 官方概念文件，以 LangGraph 為例區分同一對話內的短期記憶與跨對話的長期記憶；長期資料可以依命名空間管理，範圍由應用設計決定。[1]</p>
+<p>對話變長後，還可能先做摘要。Anthropic 在 2025 年 9 月 29 日的上下文工程文章，說明把接近容量的對話壓縮後，帶著摘要繼續工作，也提醒壓縮過度可能失去重要細節。[2] 所以持續對話，不表示每一句原話都還在當次輸入中。</p>
+<p>管理介面也要分層看。LangGraph 記憶文件分別說明訊息整理、摘要，以及查閱和刪除對話檢查點。[3] 若資料涉及個人資訊，《個人資料保護法》第 5 條的必要範圍與第 11 條的正確性、更正及特定目的消失時的處理規定，也應納入個案檢視；有例外與適用條件，本文供參考，不構成法律意見。[4]</p>
+<h2><span class="no">二</span>各方評價：延續工作有幫助，保存界線要清楚</h2>
+<p class="lead"><strong>支持記憶的理由：讓跨次工作有脈絡。</strong>官方文件把跨對話資料與當前對話區分，提供不同的保存及取回方式。[1] 我們的判讀是，明確選定值得保存的事項，比要求操作人每次從頭交代更有規劃空間；是否真的有幫助，仍需用自己的任務測試。</p>
+<p><strong>保留的理由：摘要不是逐字紀錄。</strong>壓縮需要選擇留下哪些資訊，過度刪減可能失去細節。[2] 我們因此建議，重要決議保留可查核的原始依據與更新日期，別讓生成的摘要自動升格成正式政策或核准。</p>
+<p>另一個保留是刪除範圍。文件中的刪除對話檢查點，是特定儲存層的操作。[3] 我們的建議是另外盤點長期資料、摘要、日誌與備份；不能從「畫面上的聊天不見了」推論所有副本都已處理，也不能把命名空間直接當成權限驗證。</p>
+<section class="firsthand"><span class="lede">&#9670; 第一手心得</span><h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+<p class="lead">以下來自我們常駐型 AI Agent 的部署與維運紀錄，不是產業統計，也不代表任何特定客戶。</p>
+<p><strong>1. 壓縮本身也是一項工作。</strong>對話累積到上下文限制時，需要摘要舊內容；我們遇到本地模型壓縮耗時，逾時後對話卡住。這是部署紀錄中的現象，不能外推成所有模型的速度表現。</p>
+<p><strong>2. 提早整理，通道分開。</strong>我們採取提早壓縮、設定逾時，以及不同通訊通道分開對話的方式。這些是我們對這些問題的處理方式，不表示分開通道就完成身分驗證或資料隔離。</p>
+<p><strong>3. 重要事項寫成能檢查的檔案。</strong>我們把重要事項寫進可檢查的記憶檔，並要求記憶能看、能改、能刪。這個要求的重點，是有授權的人能回頭確認內容，而不只是下一次聊天時得到一個熟悉的答案。</p>
+</section>
+<h2><span class="no">四</span>我們的建議：讓記憶可查、可改、可刪</h2>
+<p class="lead"><strong>1. 畫出保存位置。</strong>列出原始對話、壓縮摘要、長期記憶、操作紀錄與備份，各自記下讀寫角色、用途與保存方式。先確認使用中的實作，不只沿用產品對「記憶」的泛稱。[1][3]</p>
+<p><strong>2. 限定可以記住的內容。</strong>用工作需求決定保留哪些資訊，排除不必要的個資與機密；涉及個資時，再依《個人資料保護法》第 5 條與其他適用規定確認。[4] 不把每次對話都自動轉成永久資料。</p>
+<p><strong>3. 為重要記憶保留依據。</strong>建議附上來源、更新日期、適用範圍與確認人。遇到新舊內容衝突時，回到原始文件判斷，再更正記憶；不要只請 AI 自己選一個看起來合理的版本。</p>
+<p><strong>4. 測試壓縮與讀取。</strong>準備跨回合工作，檢查摘要後是否保留重要條件，以及不同帳號是否只能讀取獲授權資料。把壓縮失敗、逾時與找不到依據的處理方式寫進操作說明。[2][3]</p>
+<p><strong>5. 演練更正與刪除。</strong>選用測試資料，走完更正、刪除、再次查詢及備份復原的檢查。將各儲存層的處理結果分開記錄，標出尚未處理或依法需保留的部分，再由適當角色確認。</p>
+<p>驗收時可以用一筆虛構的測試偏好走完整個生命週期：先讓系統記下，再更正內容，開新對話確認讀到新版，最後刪除並重新查詢。另用不同權限的測試帳號確認讀取界線。若答案仍出現舊內容，就回頭查它來自原始訊息、摘要還是長期儲存，而不是反覆對 AI 說忘記它。這是我們建議的驗收設計；每一步都要留下實際查到的範圍，不能把一次沒有回答當成所有儲存層都已清除的證據。</p>
+<section class="houseview"><span class="lede">&#9670; 編按 &middot; Think BIG 的做法：把記憶當成可維護的資料</span><h2>有來源、有用途，也有到期與更正方式。</h2><p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+<p class="lead">Think BIG 主張，AI 記憶應有明確用途與管理責任。保留多少不是主要目標；重要的是內容有依據、權限有界線，出錯時有人能更正。</p>
+<p>我們會把記憶的保存位置、更新方式與刪除檢查放進交接清單。需要延續的工作應能接續，需要停止保存的資料也應有可追查的處理流程。</p>
+</section>
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：AI 的記憶跟聊天紀錄一樣嗎？</dt>
+        <dd>不一定。LangChain 文件分成對話內短期記憶與跨對話長期記憶；實際保存方式取決於應用。[1]</dd>
+        <dt>Q2：壓縮後每一句都還在嗎？</dt>
+        <dd>不能這樣假設。壓縮會摘要內容，過度壓縮可能丟失重要細節。[2]</dd>
+        <dt>Q3：刪除聊天就刪光所有記憶了嗎？</dt>
+        <dd>不能直接推論。文件中的檢查點刪除有其範圍，長期資料、摘要、日誌與備份要另外盤點。[3]</dd>
+        <dt>Q4：公司應該讓 AI 永久記住所有對話嗎？</dt>
+        <dd>我們建議依用途限定保存內容與期限；涉及個資時，依《個人資料保護法》第 5、11 條等適用規定確認，本文不構成法律意見。[4]</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-26。<br>
+    [1] LangChain，〈Memory overview〉（短期與長期記憶），查閱日期 2026-10-26：<a href="https://docs.langchain.com/oss/python/concepts/memory" target="_blank" rel="noopener">docs.langchain.com</a>　&middot;
+    [2] Anthropic，〈Effective context engineering for AI agents〉，2025-09-29（壓縮與資訊遺失），查閱日期 2026-10-26：<a href="https://www.anthropic.com/research/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">www.anthropic.com</a>　&middot;
+    [3] LangChain，〈Memory〉（摘要、查看與刪除對話檢查點），查閱日期 2026-10-26：<a href="https://docs.langchain.com/oss/python/langgraph/add-memory" target="_blank" rel="noopener">docs.langchain.com</a>　&middot;
+    [4] 全國法規資料庫，《個人資料保護法》（第 5、11 條），查閱日期 2026-10-26：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021" target="_blank" rel="noopener">law.moj.gov.tw</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; 本地 AI 實測筆記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

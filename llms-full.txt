@@ -910,6 +910,113 @@ THINK BIG NEWS   ·  First-hand AI deployment notes
 
 ---
 
+URL: https://thinkbigtw.com/en/news/ai-agent-memory-20261130/
+
+# Will an AI Assistant Remember This? — Manage History, Summaries, and Memory | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 028
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 30, 2026  ·  Monday
+◆
+Local AI Field Notes
+◆
+Issue 028
+
+AI agents · long-term memory · conversation compaction
+
+## Will an AI Assistant Remember This? — Manage History, Summaries, and Memory
+
+Think BIG Media  |  November 30, 2026
+
+Ask where memory lives, when it is retrieved, and who can correct or delete it. Important facts need verification beyond an assistant saying it will remember.
+
+## One. Remembering Can Mean Different Processes
+
+An assistant may recall a previous exchange from chat history or separately stored data. LangChain’s conceptual documentation distinguishes LangGraph’s thread-scoped short-term memory from cross-thread long-term memory. Custom namespaces scope long-term records according to the application design.[1]
+
+Long conversations may also be summarized. Anthropic’s September 29, 2025 context-engineering article describes continuing with a compressed summary and warns that aggressive compaction can lose important details.[2] A continuing conversation does not mean every original sentence remains in the current input.
+
+Management operates at several layers. LangGraph documents message management, summaries, and viewing and deleting thread checkpoints.[3] For personal information, review applicable provisions such as Personal Data Protection Act Article 5 on necessity and Article 11 on accuracy, correction, and handling data when its purpose expires. Conditions and exceptions apply. This is for reference, not legal advice.[4]
+
+## Two. Continuity Helps When Retention Has Boundaries
+
+The benefit: continuity across work sessions.  The documentation distinguishes current conversation state from cross-session records and retrieval.[1] Our reading is that deliberately selecting useful information creates room for continuity without asking operators to restate everything. Test the benefit on your own tasks.
+
+The caution: a summary is not a transcript.  Compaction selects information, and excessive compression can discard critical detail.[2] We recommend preserving original evidence and update dates for important decisions. A generated summary should not become an official policy or approval by default.
+
+Deletion scope matters too. Removing thread checkpoints addresses a particular storage layer.[3] We recommend inventorying long-term records, summaries, logs, and backups separately. A vanished chat display does not demonstrate removal of every copy, and a namespace alone does not establish authorization.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These notes come from our always-on AI agent deployment and maintenance records. They are not industry statistics or an account of any particular client.
+
+1. Compaction is work too.  As conversations accumulate, older content needs summarizing. We encountered slow compaction on a local model and a stalled conversation after a timeout. That observation does not describe every model’s performance.
+
+2. Compact earlier and separate channels.  Our response includes earlier compaction, timeouts, and separate conversations for different communication channels. Channel separation alone is not authentication or verified data isolation.
+
+3. Keep important points inspectable.  We put important information in inspectable memory files and require memory to be viewable, editable, and deletable. An authorized person should be able to check what is stored, beyond recognizing a familiar answer in a later conversation.
+
+## Four. Our Recommendations: Inspect, Correct, and Delete
+
+1. Map storage locations.  List original messages, summaries, long-term memory, operating records, and backups. Record readers, writers, purpose, and retention for each. Check the deployed implementation rather than relying on a broad memory label.[1][3]
+
+2. Decide what may be retained.  Choose information needed for work and exclude unnecessary personal or confidential data. Review personal information against applicable rules, including Personal Data Protection Act Article 5.[4] Do not automatically turn every conversation into a permanent record.
+
+3. Preserve evidence for important memory.  Add sources, update dates, scope, and a confirmer. Resolve conflicting records against original documents before editing memory, rather than asking AI to choose the more plausible version.
+
+4. Test compaction and retrieval.  Use a multi-turn task to check preservation of important conditions and authorized access across accounts. Document behavior when summarization fails, times out, or lacks supporting evidence.[2][3]
+
+5. Exercise correction and deletion.  Use test data to check correction, deletion, subsequent queries, and backup restoration. Record outcomes by storage layer, including unresolved copies or records subject to lawful retention, for appropriate review.
+
+A lifecycle test can use a fictional preference: save it, correct it, open a new conversation to check the update, then delete it and query again. Test access with a differently authorized account too. If old content returns, trace it to messages, a summary, or long-term storage instead of repeatedly telling the assistant to forget. This is our proposed acceptance design. Record the scope checked at each step; one unanswered query does not establish deletion across every storage layer.
+
+◆ Editor’s Note · How Think BIG Approaches This: Treat Memory as Maintained Data
+
+## Keep purpose, sources, and a correction and retention process.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is that AI memory needs a defined purpose and an owner. Retaining more is not the primary goal. Records need evidence, access boundaries, and a correction path.
+
+Our handover checklist should identify memory locations, update methods, and deletion checks. Work that needs continuity should be resumable, while data no longer needed should have a traceable handling process.
+
+### Frequently Asked Questions
+
+Q1: Is memory the same as chat history?
+Not necessarily. LangChain distinguishes thread-level and cross-thread memory. The application determines storage.[1]
+Q2: Does compaction retain every sentence?
+Do not assume so. Compaction summarizes, and excessive compression can lose important detail.[2]
+Q3: Does deleting a chat remove all memory?
+Do not infer that. Checkpoint deletion has a defined scope. Inventory long-term data, summaries, logs, and backups separately.[3]
+Q4: Should a business retain all conversations permanently?
+We recommend purpose-based retention. Review personal data against applicable provisions such as Articles 5 and 11 of the Personal Data Protection Act. This is not legal advice.[4]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] LangChain, “Memory overview” (short- and long-term memory); accessed 2026-10-26: [docs.langchain.com](https://docs.langchain.com/oss/python/concepts/memory) ·
+    [2] Anthropic, “Effective context engineering for AI agents,” September 29, 2025 (compaction); accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents) ·
+    [3] LangChain, “Memory” (summaries and checkpoint management); accessed 2026-10-26: [docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/add-memory) ·
+    [4] Laws and Regulations Database, Personal Data Protection Act (Articles 5 and 11); accessed 2026-10-26: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/
 
 # An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions | Think BIG NEWS
@@ -2287,6 +2394,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 028
+
+November 30, 2026 · Local AI Field Notes
+
+## Will an AI Assistant Remember This? — Manage History, Summaries, and Memory
+
+Ask where memory lives, when it is retrieved, and who can correct or delete it.](https://thinkbigtw.com/en/news/ai-agent-memory-20261130/)
 [Issue 027
 
 November 28, 2026 · AI Deployment Field Notes
@@ -9027,6 +9141,113 @@ Q5：員工會不會因為擔心工作被搶走而不想用 AI？
 本文為 Think BIG 產業觀察與第一手實作整理，引用之調查與報導均標註來源；調查數字為各來源公布之結果，MIT 研究為初步報告，本文以報導轉述並註明限制。文中提到的公司以描述代稱、連結附於來源，內容不評價任何公司或產品。我們的第一手經驗全不具名。
 
 THINK BIG NEWS   ·  AI 導入第一手手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/ai-agent-memory-20261130/
+
+# AI 會記得你說過的話嗎？——對話、摘要與長期記憶要分開管理 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 028 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 30 日　星期一
+◆
+本地 AI 實測筆記
+◆
+第 028 期
+
+AI Agent · 長期記憶 · 對話壓縮
+
+## AI 會記得你說過的話嗎？——對話、摘要與長期記憶要分開管理
+
+Think BIG 自媒體部  |  2026 年 11 月 30 日
+
+先問記憶存在哪裡、什麼時候被讀取，以及誰能更正或刪除。重要事項要能核對，不能只靠 AI 說「我記住了」。
+
+## 一 現象：「記得」可能是不同的技術流程
+
+問 AI「還記得上次說的事嗎」，答案背後可能是對話紀錄，也可能是另外保存的資料。LangChain 官方概念文件，以 LangGraph 為例區分同一對話內的短期記憶與跨對話的長期記憶；長期資料可以依命名空間管理，範圍由應用設計決定。[1]
+
+對話變長後，還可能先做摘要。Anthropic 在 2025 年 9 月 29 日的上下文工程文章，說明把接近容量的對話壓縮後，帶著摘要繼續工作，也提醒壓縮過度可能失去重要細節。[2] 所以持續對話，不表示每一句原話都還在當次輸入中。
+
+管理介面也要分層看。LangGraph 記憶文件分別說明訊息整理、摘要，以及查閱和刪除對話檢查點。[3] 若資料涉及個人資訊，《個人資料保護法》第 5 條的必要範圍與第 11 條的正確性、更正及特定目的消失時的處理規定，也應納入個案檢視；有例外與適用條件，本文供參考，不構成法律意見。[4]
+
+## 二 各方評價：延續工作有幫助，保存界線要清楚
+
+支持記憶的理由：讓跨次工作有脈絡。 官方文件把跨對話資料與當前對話區分，提供不同的保存及取回方式。[1] 我們的判讀是，明確選定值得保存的事項，比要求操作人每次從頭交代更有規劃空間；是否真的有幫助，仍需用自己的任務測試。
+
+保留的理由：摘要不是逐字紀錄。 壓縮需要選擇留下哪些資訊，過度刪減可能失去細節。[2] 我們因此建議，重要決議保留可查核的原始依據與更新日期，別讓生成的摘要自動升格成正式政策或核准。
+
+另一個保留是刪除範圍。文件中的刪除對話檢查點，是特定儲存層的操作。[3] 我們的建議是另外盤點長期資料、摘要、日誌與備份；不能從「畫面上的聊天不見了」推論所有副本都已處理，也不能把命名空間直接當成權限驗證。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們常駐型 AI Agent 的部署與維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 壓縮本身也是一項工作。 對話累積到上下文限制時，需要摘要舊內容；我們遇到本地模型壓縮耗時，逾時後對話卡住。這是部署紀錄中的現象，不能外推成所有模型的速度表現。
+
+2. 提早整理，通道分開。 我們採取提早壓縮、設定逾時，以及不同通訊通道分開對話的方式。這些是我們對這些問題的處理方式，不表示分開通道就完成身分驗證或資料隔離。
+
+3. 重要事項寫成能檢查的檔案。 我們把重要事項寫進可檢查的記憶檔，並要求記憶能看、能改、能刪。這個要求的重點，是有授權的人能回頭確認內容，而不只是下一次聊天時得到一個熟悉的答案。
+
+## 四 我們的建議：讓記憶可查、可改、可刪
+
+1. 畫出保存位置。 列出原始對話、壓縮摘要、長期記憶、操作紀錄與備份，各自記下讀寫角色、用途與保存方式。先確認使用中的實作，不只沿用產品對「記憶」的泛稱。[1][3]
+
+2. 限定可以記住的內容。 用工作需求決定保留哪些資訊，排除不必要的個資與機密；涉及個資時，再依《個人資料保護法》第 5 條與其他適用規定確認。[4] 不把每次對話都自動轉成永久資料。
+
+3. 為重要記憶保留依據。 建議附上來源、更新日期、適用範圍與確認人。遇到新舊內容衝突時，回到原始文件判斷，再更正記憶；不要只請 AI 自己選一個看起來合理的版本。
+
+4. 測試壓縮與讀取。 準備跨回合工作，檢查摘要後是否保留重要條件，以及不同帳號是否只能讀取獲授權資料。把壓縮失敗、逾時與找不到依據的處理方式寫進操作說明。[2][3]
+
+5. 演練更正與刪除。 選用測試資料，走完更正、刪除、再次查詢及備份復原的檢查。將各儲存層的處理結果分開記錄，標出尚未處理或依法需保留的部分，再由適當角色確認。
+
+驗收時可以用一筆虛構的測試偏好走完整個生命週期：先讓系統記下，再更正內容，開新對話確認讀到新版，最後刪除並重新查詢。另用不同權限的測試帳號確認讀取界線。若答案仍出現舊內容，就回頭查它來自原始訊息、摘要還是長期儲存，而不是反覆對 AI 說忘記它。這是我們建議的驗收設計；每一步都要留下實際查到的範圍，不能把一次沒有回答當成所有儲存層都已清除的證據。
+
+◆ 編按 · Think BIG 的做法：把記憶當成可維護的資料
+
+## 有來源、有用途，也有到期與更正方式。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，AI 記憶應有明確用途與管理責任。保留多少不是主要目標；重要的是內容有依據、權限有界線，出錯時有人能更正。
+
+我們會把記憶的保存位置、更新方式與刪除檢查放進交接清單。需要延續的工作應能接續，需要停止保存的資料也應有可追查的處理流程。
+
+### 常見問題
+
+Q1：AI 的記憶跟聊天紀錄一樣嗎？
+不一定。LangChain 文件分成對話內短期記憶與跨對話長期記憶；實際保存方式取決於應用。[1]
+Q2：壓縮後每一句都還在嗎？
+不能這樣假設。壓縮會摘要內容，過度壓縮可能丟失重要細節。[2]
+Q3：刪除聊天就刪光所有記憶了嗎？
+不能直接推論。文件中的檢查點刪除有其範圍，長期資料、摘要、日誌與備份要另外盤點。[3]
+Q4：公司應該讓 AI 永久記住所有對話嗎？
+我們建議依用途限定保存內容與期限；涉及個資時，依《個人資料保護法》第 5、11 條等適用規定確認，本文不構成法律意見。[4]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] LangChain，〈Memory overview〉（短期與長期記憶），查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/concepts/memory)　·
+    [2] Anthropic，〈Effective context engineering for AI agents〉，2025-09-29（壓縮與資訊遺失），查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/research/effective-context-engineering-for-ai-agents)　·
+    [3] LangChain，〈Memory〉（摘要、查看與刪除對話檢查點），查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/add-memory)　·
+    [4] 全國法規資料庫，《個人資料保護法》（第 5、11 條），查閱日期 2026-10-26：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
