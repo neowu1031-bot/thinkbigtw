@@ -21,7 +21,7 @@
 ## 為什麼這個規模的公司適合
 ①AI打下技術門檻，以前幾個月，現在幾週建好。②小規模新創低管銷。③每套系統交付前，由工程師與多個 AI 做資安審查，沒通過不交付；TB 自己 20+ Agent 每天跑。
 
-可預約20分鐘免費評估：https://thinkbigtw.com/enterprise/start/
+可預約30分鐘免費評估：https://thinkbigtw.com/enterprise/start/
 
 ## 常見問題
 ### 企業方案多少錢？
@@ -29,4 +29,4 @@
 ### 續約怎麼算？
 第二年選配續約費用依方案報價（含稅），客戶自決不自動扣款。
 ### 可以先試用嗎？
-無試用，建議先預約20分鐘免費評估確認需求（https://thinkbigtw.com/enterprise/start/）。
+無試用，建議先預約30分鐘免費評估確認需求（https://thinkbigtw.com/enterprise/start/）。
