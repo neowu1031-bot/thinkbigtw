@@ -86,6 +86,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [AI 客服答錯了，誰要負責？上線前要設好的 4 道防線](https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/)
 - [怎麼讓 AI 回答時附上出處？查公司文件時特別重要](https://thinkbigtw.com/library/qa/ai-answers-with-citations/)
 - [推論跟訓練差在哪？公司用 AI 是在做哪一種](https://thinkbigtw.com/library/qa/inference-vs-training/)
+- [向量資料庫是什麼？AI 怎麼「找到」相關的文件](https://thinkbigtw.com/library/qa/what-is-embedding-vector-db/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -131,6 +132,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Who Is Responsible When an AI Chatbot Gives a Wrong Answer?](https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/)
 - [How Can You Get AI Answers With Checkable Sources?](https://thinkbigtw.com/en/qa/ai-answers-with-citations/)
 - [What Is the Difference Between Inference and Training?](https://thinkbigtw.com/en/qa/inference-vs-training/)
+- [What Is a Vector Database, and How Does AI Find Relevant Documents?](https://thinkbigtw.com/en/qa/what-is-embedding-vector-db/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
