@@ -1414,6 +1414,113 @@ THINK BIG NEWS   ·  AI Deployment Field Notes
 
 ---
 
+URL: https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/
+
+# Was This Image Made with AI? — What Content Credentials Can Tell You | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 022
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 18, 2026  ·  Wednesday
+◆
+AI Deployment Field Notes
+◆
+Issue 022
+
+C2PA · Content Credentials · AI disclosure
+
+## Was This Image Made with AI? — What Content Credentials Can Tell You
+
+Think BIG Media  |  November 18, 2026
+
+Read what a credential records and who signed it, then verify the claim made by the image. Missing credentials do not establish AI use. Teams need an intake and publication checklist.
+
+## One. The Shift Toward Provenance
+
+Can appearance alone tell us whether AI was used? Provenance offers another route. C2PA says its conformance program and official trust list launched in mid-2025 to check implementation and security requirements. This article follows that development; it is not a report of a new announcement today.[1]
+
+Content Credentials can record creation, editing, and tools used, with digitally signed provenance data. The C2PA FAQ describes a checkable history rather than a visual clue that readers must interpret from appearance.[2]
+
+Two limits matter. The C2PA 2.2 explainer separates provenance from factual truth. CAI documentation also says missing credentials are not evidence that an image is inauthentic. A valid record and an accurate story answer different questions.[3][4]
+
+## Two. The Case for Transparency, and Its Limits
+
+The benefit: inspectable evidence.  The conformance program evaluates credential implementations and publishes a list of conforming products.[1] In our reading, this gives teams concrete questions to ask about supported workflows instead of accepting a broad claim that AI content is labeled.
+
+The limitation: history may be incomplete.  CAI notes that a normal screenshot does not carry the original image’s C2PA metadata.[4] C2PA describes soft bindings such as watermarking or fingerprinting to help recover credentials, but that does not mean every forwarded image has a complete history.[2]
+
+We support using credentials as one part of verification while retaining editorial checks. Signing information, the depicted claim, the caption, and permission to use the asset need separate review. One successful technical check should not be extended to the entire story.[3]
+
+We suggest three review fields: provenance present in the file, checks actually performed by the validator, and facts independently checked by the editor. Do not let one field stand in for another. A recorded creation time still needs to be compared with the event date in the caption. This design makes the evidence boundary visible instead of adding an unexplained approval badge.[3]
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are questions we would ask during adoption, not a completed C2PA deployment or an account involving a particular client.
+
+1. Do we have the original file?  Ask where the asset came from, whether the team has only a screenshot, and whether the original is available. Keep an identifiable file location so reviewers and publishers inspect the same version.
+
+2. Who interprets the result?  Assign responsibility for checking the signer, verifying the caption, and handling an unverifiable file. Record missing data, unsupported data, and failed validation separately rather than labeling all three as a fabricated image.
+
+3. What will readers see?  Agree on a visible source and AI-use statement if the publication surface does not show credentials. Assign a new check when the file changes. This is a workflow proposal, not a claim that every platform preserves metadata.
+
+## Four. Our Recommendations: Four Checks
+
+1. Record the source at intake.  Keep the provider, acquisition date, original file location, and intended use. Ask whether the delivery is an original or an exported copy. Track permission separately.
+
+2. Match the record to the file.  Use a credential-aware tool and save the date and result. Distinguish signature checks, trust status, and recorded edits. Ask the provider about unclear fields instead of filling gaps with assumptions.[1][2]
+
+3. Verify factual claims separately.  List people, locations, dates, and event claims. Keep checks with the original publisher and caption review even when provenance validates. This is our editorial recommendation based on the specification’s limits.[3]
+
+4. Test the publishing path.  Run a sample through the actual crop, export, and upload process, then download and inspect it. If provenance does not survive, add an understandable explanation and retain the original and review record.[4]
+
+For handover, run one test asset from original-file intake through inspection, editing, export, upload, and download, then have another editor inspect the final file. Record filenames and results. If only a screenshot is available, say the original was unavailable rather than reporting that no AI use was found. This proposed drill checks how the team handles unknowns. Public wording should match available evidence even under publication pressure.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Evidence Before Publication
+
+## Check disclosure, signatures, and facts separately.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to retain the source, AI-use disclosure, and publication review together. The checklist should distinguish confirmed facts from unknowns and identify who can approve use.
+
+We do not treat a badge as a factual verdict. When evidence is incomplete, narrow the wording to what it supports. The next editor should be able to inspect the reasoning behind the decision.
+
+### Frequently Asked Questions
+
+Q1: Does C2PA tell us whether an image is true?
+No. The explainer separates provenance from factual accuracy. Verify the depicted event separately.[3]
+Q2: Does a missing credential prove AI use?
+No. CAI says absence of credentials is not a negative authenticity signal.[4]
+Q3: Does a screenshot preserve the original credential?
+A normal screenshot does not contain the original C2PA metadata. Recovery mechanisms have separate requirements.[4][2]
+Q4: Does a credential grant usage rights?
+No. Provenance differs from DRM and access control. Confirm permission separately.[2]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] C2PA, “Conformance” (2025 program and public list); accessed 2026-10-26: [c2pa.org](https://c2pa.org/conformance/) ·
+    [2] C2PA, “FAQs” (signed provenance and soft bindings); accessed 2026-10-26: [c2pa.org](https://c2pa.org/faqs/) ·
+    [3] C2PA, “C2PA and Content Credentials Explainer,” specification 2.2 (limits); accessed 2026-10-26: [spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html) ·
+    [4] CAI, “Frequently-asked questions” (screenshots and missing credentials); accessed 2026-10-26: [opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/chatgpt-tw-citations-20261011/
 
 # Who Does ChatGPT Cite When It Answers Questions About Taiwan? Where Local Brands Should Put Their Information | Think BIG NEWS
@@ -1966,6 +2073,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 022
+
+November 18, 2026 · AI Deployment Field Notes
+
+## Was This Image Made with AI? — What Content Credentials Can Tell You
+
+Read what a credential records and who signed it, then verify the claim made by the image.](https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/)
 [Issue 021
 
 November 16, 2026 · Enterprise Security Notes
@@ -8847,6 +8961,113 @@ Q4：常駐系統可以自行寄信嗎？
     [2] LangChain，〈Interrupts〉，查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts)　·
     [3] Kubernetes，〈CronJob〉，查閱日期 2026-10-26：[kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)　·
     [4] OWASP，〈LLM06:2025 Excessive Agency〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/c2pa-content-credentials-20261118/
+
+# 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 022 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 18 日　星期三
+◆
+AI 導入實測手記
+◆
+第 022 期
+
+C2PA · 內容憑證 · AI 生成標示
+
+## 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實
+
+Think BIG 自媒體部  |  2026 年 11 月 18 日
+
+看到內容憑證，先看它記錄了什麼、由誰簽署，再核對影像要表達的事實。沒有憑證也不能直接判定是 AI 圖。企業需要的是收圖與發布檢查流程。
+
+## 一 現象：從辨識外觀走向查閱來源
+
+一張看起來自然的照片，能不能只憑肉眼判斷有沒有用 AI？這期從來源紀錄談起。C2PA 官方說明，符合性計畫與正式信任清單於 2025 年中推出，用來檢查實作是否符合內容憑證規格及安全要求；這是既有進展的延伸解讀，不是本日新公告。[1]
+
+內容憑證可以記錄建立、編輯過程與使用的工具，並用數位簽章連結相關資料。依 C2PA 官方常見問題，這份紀錄的重點是可供檢驗的內容履歷，而不是讓觀眾憑圖示猜測來源。[2]
+
+兩個界線要先說清楚。C2PA 規格 2.2 的解說文件明列：來源資料本身不能決定內容是否符合事實；CAI 開源文件也說，沒有內容憑證不能當成影像不真實的證據。這表示「驗得過」與「報導得對」是不同問題。[3][4]
+
+## 二 各方評價：透明有幫助，判讀有邊界
+
+支持的理由：查核多了可檢驗的線索。 符合性計畫把產生與驗證憑證的實作納入檢查，通過的產品列在公開清單。[1] 我們的判讀是，採購或接收素材時，可以具體詢問支援哪些流程，而不只接受一句「有 AI 標示」。
+
+保留的理由：紀錄可能不完整。 CAI 文件指出，一般截圖不會帶走原圖的 C2PA 中繼資料。[4] C2PA 則說明，可透過浮水印或指紋等軟性綁定協助找回憑證，但不能據此假定每張轉傳圖片都有完整歷程。[2]
+
+因此我們支持把憑證當成證據的一部分，也主張保留人工查核。簽署來源、圖片裡的敘述、刊登文字與素材使用許可，應各自有核對位置；不要把一個驗證結果擴大解讀成整份稿件都已查清。[3]
+
+我們建議審稿表不要只留「有／沒有憑證」的勾選。可以分成三欄：檔案提供了哪些來源資料、驗證工具實際確認了哪些項目、編輯另行核對了哪些事實。三欄之間不能互相代填。例如來源工具記錄了建立時間，仍要核對照片配文所說的事件日期。這樣設計，是為了讓審稿人知道目前證據的範圍，而不是增加一個看似正式、卻沒人理解的合格章。[3]
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們導入時會先問的問題清單，不是已完成 C2PA 部署的案例，也不代表任何特定客戶。
+
+1. 原始檔還在嗎？ 先問素材從哪裡來、是否只剩通訊軟體截圖、能否向提供者索取原檔。收圖時要有一個可回頭查的檔案位置，避免審稿人與發布人看的不是同一份。
+
+2. 誰負責讀懂驗證結果？ 確認誰檢查簽署者、誰核實照片配文、遇到無法驗證時由誰決定如何標示。我們會要求把「沒有資料」「不支援」「驗證失敗」分開記錄，而不是一律寫成假圖。
+
+3. 最終讀者會看到什麼？ 發布前先約定：若平台沒有顯示憑證，是否另外補上來源與 AI 使用說明；若編輯後換檔，誰負責重新檢查。這是流程設計，不是宣稱平台都會保留標記。
+
+## 四 我們的建議：把查核拆成四個動作
+
+1. 收圖時留下來源。 記下提供者、取得日期、原始檔位置及預計用途。與外部素材提供者確認交付的是原檔還是轉存檔，並把授權確認列成獨立欄位。
+
+2. 對照檔案與紀錄。 使用能讀取內容憑證的工具，保留檢查日期與結果；依工具顯示區分簽章、信任狀態及編輯歷程。對於無法判讀的欄位，先請提供者說明，不自行補故事。[1][2]
+
+3. 把關鍵事實另列清單。 人物、地點、時間與事件敘述分別確認。即使來源驗證通過，也保留查詢原始發布者、核對配文的步驟；這是我們依規格限制提出的編輯建議。[3]
+
+4. 測試正式發布流程。 把同一檔案經過實際使用的裁切、匯出與上傳流程，再下載檢查。若資料無法沿途保留，就加上讀者看得懂的說明，並保存原始檔與審稿紀錄。[4]
+
+實際交接時，可以用一份測試素材走完流程：收取原檔、查看憑證、編輯匯出、上傳後下載，再由另一位編輯核對最終檔案。每一步記下檔名與處理結果；若只剩截圖，就明寫「未取得原始檔」，不要寫「未發現 AI」。這是我們建議的演練方式，目的是確認團隊如何處理未知資訊。最後的公開說明，應對應真正拿得到的證據，不因為趕著發布就把未知改成肯定。
+
+◆ 編按 · Think BIG 的做法：發布前留下證據
+
+## 標示、簽章與事實，分開確認。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，影像導入流程要同時保留素材來源、AI 使用說明與發布前核對紀錄。檢查表應寫清楚什麼已確認、什麼還未知，以及誰有權核准使用。
+
+我們不把標記當成真實性的結論。沒有足夠證據時，文案就應收斂到能支持的範圍；讓下一位編輯看得到判斷依據，比留下含糊的「已驗證」更有用。
+
+### 常見問題
+
+Q1：C2PA 能直接判斷圖片是真是假嗎？
+不能。規格解說將來源紀錄與內容是否符合事實分開，仍要核實圖片所描述的事件。[3]
+Q2：沒有內容憑證就是 AI 圖嗎？
+不能這樣判斷。CAI 文件說明，缺少憑證不構成影像不真實的負面證據。[4]
+Q3：截圖會留下原圖憑證嗎？
+一般截圖不會包含原圖的 C2PA 中繼資料；支援的找回機制另有條件。[4][2]
+Q4：憑證是否等於使用授權？
+不是。C2PA 的來源紀錄與 DRM 權限控制不同；素材使用許可應另外確認。[2]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] C2PA，〈Conformance〉（2025 年計畫與公開清單），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/conformance/)　·
+    [2] C2PA，〈FAQs〉（來源履歷、簽章與軟性綁定），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/faqs/)　·
+    [3] C2PA，〈C2PA and Content Credentials Explainer〉，規格 2.2（真實性界線），查閱日期 2026-10-26：[spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html)　·
+    [4] CAI，〈Frequently-asked questions〉（截圖及缺少憑證），查閱日期 2026-10-26：[opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
 
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
