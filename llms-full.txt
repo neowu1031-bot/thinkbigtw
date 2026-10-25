@@ -910,6 +910,113 @@ THINK BIG NEWS   ·  First-hand AI deployment notes
 
 ---
 
+URL: https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/
+
+# An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 024
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 22, 2026  ·  Sunday
+◆
+AI Deployment Field Notes
+◆
+Issue 024
+
+AI agents · usage limits · scheduling
+
+## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
+
+Think BIG Media  |  November 22, 2026
+
+Start with schedules and retries. Usage alerts, blocking new work, and canceling work already underway are separate controls that need separate tests.
+
+## One. Agent Loops Accumulate Resource Use
+
+An agent may call a model repeatedly for one task. In its June 13, 2025 research-system report, Anthropic describes agents exploring directions in parallel and warns that this architecture consumes tokens rapidly. Those observations belong to that system, not to every business deployment.[1]
+
+OWASP’s 2025 LLM10 entry treats uncontrolled inference consumption as a risk and recommends input limits, rate limits, quotas, timeouts, and monitoring.[2] A task still running deserves a check on its progress and stopping conditions.
+
+Controls also differ by layer. Pydantic AI distinguishes model turns from successful tool executions; a turn count does not cover every underlying transport attempt.[3] AWS warns that a timeout does not establish that a remote action failed to happen, and retries can add load to an overloaded service.[4]
+
+## Two. Room to Explore Needs a Boundary
+
+The case for execution room: exploration takes work.  The research report describes tasks whose direction changes as evidence arrives.[1] Our reading is that forcing every task into a very short run can conflict with the work. Limits should reflect the task.
+
+The caution: distinguish progress from repetition.  OWASP recommends resource monitoring as well as input controls.[2] We suggest tracking completed steps, repeated actions, and stop reasons. Token totals alone do not measure quality, and an unfinished answer does not justify an open-ended run.
+
+More retries do not automatically produce a more reliable service. AWS explains backoff and jitter, while emphasizing the need to consider safe repetition for actions with side effects.[4] We recommend different retry rules for reads and external writes, plus a recoverable state when work stops.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from our always-on agent maintenance notes. They are not industry statistics or an account of any particular client.
+
+1. No chat messages does not mean no model calls.  Heartbeat checks and automatic memory maintenance can continue consuming quota or compute unnoticed. Our inventory includes background work as well as chat activity. This does not imply that every framework has identical defaults.
+
+2. Inventory, disable, then limit.  We list automatic jobs, turn off unnecessary ones, and apply limits. We do not have a universal threshold or a savings percentage, so we make neither claim.
+
+3. Ask who takes over.  Our proposed adoption checklist asks for each job’s purpose, trigger, and owner. Agree in advance whether a stopped task waits for review, restarts later, or ends. This is a recommended control, not an additional deployment anecdote.
+
+## Four. Our Recommendations: Limits and What Happens Next
+
+1. Inventory triggers.  Include timers, incoming events, health checks, and retry queues. Record model calls and external writes. Disable jobs without a clear purpose, then test necessary work.
+
+2. Set several kinds of limits.  Manage model turns, tool executions, elapsed time, input and output, and concurrency separately. Check the framework’s definitions rather than treating a turn limit as a count of all network attempts.[2][3]
+
+3. Bound retries and add waiting.  Set retry counts, backoff, and an execution deadline. Check the earlier result before repeating an action with side effects. A timeout alone does not mean nothing happened.[4]
+
+4. Test stops and notifications.  Deliberately reach a limit. Check whether new work stops, how in-flight work is handled, and who is notified. Include a task identifier, the last completed step, and actions still requiring confirmation.
+
+5. Review background usage.  Compare schedules with purpose and look for duplicate triggers or persistent failures. Assign approval and a reason for limit changes instead of expanding the allowance whenever a task fails.[2]
+
+We suggest testing limits with a deliberately failing job: make a test dependency unavailable, verify that retries end as designed, and check that later schedules do not recreate the same work. Also run a successful job to confirm the limits allow normal operation. Retain both records so maintainers can distinguish an intentional stop from a new fault. For shared resources, test what happens to other authorized work when one job reaches its limit, rather than testing a single conversation alone.
+
+◆ Editor’s Note · How Think BIG Approaches This: Make Automated Work Easy to Hand Off
+
+## Every scheduled job needs an owner and a purpose.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to include schedules, limit scope, stopping procedures, and handoff owners in the operating documentation. A stopping rule belongs in the task design.
+
+Automated work should be inspectable, pausable, and traceable. When work exceeds expectations, preserve progress and unresolved actions so the owner can decide what happens next.
+
+### Frequently Asked Questions
+
+Q1: Why is there usage when nobody is chatting?
+Our maintenance notes include model calls from heartbeat and memory jobs. Inventory automatic schedules.
+Q2: Is a model-turn limit sufficient?
+No. Frameworks can count turns and tool executions separately, and transport retries may fall outside the turn count.[3]
+Q3: Can I retry immediately after a timeout?
+Check the previous outcome first. A remote action with side effects may already have happened.[4]
+Q4: Does a usage alert mean the task stopped?
+Do not assume so. We recommend testing new-work blocking, in-flight work, and the handoff separately.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Anthropic, “How we built our multi-agent research system,” June 13, 2025 (exploration and consumption); accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system) ·
+    [2] OWASP, “LLM10:2025 Unbounded Consumption” (limits and monitoring); accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/) ·
+    [3] Pydantic AI, “Agents,” usage limits (turns and tool counts); accessed 2026-10-26: [pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits) ·
+    [4] AWS, “Timeouts, retries, and backoff with jitter” (timeouts and side effects); accessed 2026-10-26: [aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/
 
 # AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else's Entry Point? | Think BIG NEWS
@@ -2180,6 +2287,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 024
+
+November 22, 2026 · AI Deployment Field Notes
+
+## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
+
+Start with schedules and retries.](https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/)
 [Issue 023
 
 November 20, 2026 · Local AI Field Notes
@@ -8571,6 +8685,113 @@ Q5：員工會不會因為擔心工作被搶走而不想用 AI？
 本文為 Think BIG 產業觀察與第一手實作整理，引用之調查與報導均標註來源；調查數字為各來源公布之結果，MIT 研究為初步報告，本文以報導轉述並註明限制。文中提到的公司以描述代稱、連結附於來源，內容不評價任何公司或產品。我們的第一手經驗全不具名。
 
 THINK BIG NEWS   ·  AI 導入第一手手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/
+
+# AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 024 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 22 日　星期日
+◆
+AI 導入實測手記
+◆
+第 024 期
+
+AI Agent · 用量上限 · 排程管理
+
+## AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設
+
+Think BIG 自媒體部  |  2026 年 11 月 22 日
+
+先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。
+
+## 一 現象：工作被拆成迴圈，資源也跟著累積
+
+一個問題交給 AI Agent 後，未必只呼叫模型一次。Anthropic 在 2025 年 6 月 13 日公開的研究系統實作文章，說明多個 Agent 可以平行探索不同方向，同時提醒這類架構會快速消耗 token。這是該團隊的實作報告，不能當成所有企業的用量統計。[1]
+
+OWASP《生成式 AI 應用風險》2025 年版的 LLM10，把不受控的推論消耗列為風險，並提出輸入限制、請求速率、配額、逾時與監控等措施。[2] 所以「還在執行」不等於「仍在產生有用結果」，也值得問是否已有停止條件。
+
+技術上也要分層。Pydantic AI 官方文件區分模型回合限制與成功工具執行次數限制；前者不等於每一筆底層傳輸請求。[3] AWS 的重試文件則提醒，逾時不代表遠端動作沒有發生，重試還可能增加原本已過載服務的負擔。[4]
+
+## 二 各方評價：有空間探索，也要有停止界線
+
+支持較大執行空間的理由：有些工作需要探索。 上述多 Agent 報告描述的研究任務，需要隨中間結果改變方向。[1] 我們的判讀是，把所有工作都壓到很短的單次回合，可能不符合任務本身；限制應依工作種類設計。
+
+保留的理由：有用的探索與空轉要能分辨。 OWASP 建議觀察資源分配與異常用量，而不只限制單一輸入。[2] 我們因此建議，同時看完成項目、重複步驟與停止原因；不能只以總 token 多少判斷品質，也不能因為回答尚未完成就無限放行。
+
+重試也不是越多越穩。AWS 說明退避與隨機延遲可用來分散請求，但有副作用的操作還須考慮能否安全重做。[4] 我們的立場是，對外寫入與單純查詢要有不同的重試規則，停止後也要留下可接手的狀態。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們常駐型 AI Agent 的維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 沒人傳訊息，仍然會呼叫模型。 心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。盤點不能只問誰在聊天，還要逐項看背景工作。這是我們記錄到的現象，不是宣稱所有框架都有相同預設。
+
+2. 先列清單，再關閉不需要的項目。 我們會逐項列出自動排程、關掉用不到的、設定上限。我們沒有一套通用的上限數字，也不估算節省比例。
+
+3. 接下來要問誰能接手。 在導入檢查清單中，我們會要求說明每項工作的目的、觸發來源與負責人；被停止的任務是等待人工、稍後重跑，還是直接結束，也要事先約定。這是我們提出的檢查方式。
+
+## 四 我們的建議：設好上限，也寫好停下來之後
+
+1. 盤點觸發來源。 列出時間排程、訊息事件、健康檢查與重試佇列，記下是否呼叫模型、是否寫入外部系統。先停掉沒有明確用途的工作，再測試必要的工作是否仍能完成。
+
+2. 按任務設多種上限。 分別管理模型回合、工具執行、總時間、輸入輸出與並行工作。對照所用框架的計數定義，別把回合上限誤讀為所有網路呼叫的總數。[2][3]
+
+3. 限制重試並留出等待。 設定重試次數、退避與最晚結束時間；對有副作用的操作，先確認前次結果再決定能否重送。逾時後不要直接假設「沒有執行」。[4]
+
+4. 測試停止與通知。 刻意觸發上限，檢查是否停止新增任務、如何處理已送出的工作，以及誰收到通知。通知文字應包括任務編號、最後完成步驟與待確認動作，方便人工接續。
+
+5. 定期檢查背景用量。 以工作目的對照排程紀錄，尋找重複觸發與持續失敗的項目。上限調整要有人核准並記下理由，避免每次任務失敗都只是把限制放大。[2]
+
+建議用一個刻意失敗的測試工作驗收限制：讓外部測試服務暫時無法回應，觀察重試是否按規則結束，並確認後續排程不會再建立相同工作。接著用成功工作確認正常流程沒有被限制擋住。這兩份紀錄一起交給維護人員，才容易判斷日後的停止究竟是預期控制，還是新故障。若多項工作共用資源，也應確認一項任務達到限制時，其他已獲授權的工作如何處理；別只測單一對話。
+
+◆ 編按 · Think BIG 的做法：讓自動工作可以交接
+
+## 每一項排程，都要有人知道它為何存在。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，常駐 AI Agent 的交接文件應包含排程清單、限制範圍、停止方式與接手人。把「何時停」寫清楚，是任務設計的一部分。
+
+我們希望自動工作能被檢視、暫停與追查。當任務超出預期，先留下目前進度與待確認事項，再由負責人決定下一步；不能讓停止原因消失在背景紀錄裡。
+
+### 常見問題
+
+Q1：沒有人聊天，為什麼還有用量？
+我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。
+Q2：只限制模型回合就夠嗎？
+不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。[3]
+Q3：逾時後可以直接重送嗎？
+先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。[4]
+Q4：用量通知等於停止了嗎？
+不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Anthropic，〈How we built our multi-agent research system〉，2025-06-13（探索與 token 消耗），查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system)　·
+    [2] OWASP，〈LLM10:2025 Unbounded Consumption〉（限制與監控），查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/)　·
+    [3] Pydantic AI，〈Agents〉用量限制章節（回合與工具計數），查閱日期 2026-10-26：[pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits)　·
+    [4] AWS，〈Timeouts, retries, and backoff with jitter〉（逾時與副作用），查閱日期 2026-10-26：[aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---

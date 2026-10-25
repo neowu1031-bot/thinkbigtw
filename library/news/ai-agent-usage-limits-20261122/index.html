@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS</title>
+<meta name="description" content="常駐 AI Agent 的管理不能只看單次回答。從 2025 年官方多 Agent 實作文章與 OWASP 用量風險說明出發，整理排程盤點、請求次數、逾時、重試與人工接手的做法，讓自動工作有明確的資源邊界。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/">
+<meta property="og:title" content="AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS">
+<meta property="og:description" content="先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-11-22T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Agent 用量與停止條件 | Think BIG NEWS">
+<meta name="twitter:description" content="先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/#article",
+      "headline": "AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設",
+      "description": "常駐 AI Agent 的管理不能只看單次回答。從 2025 年官方多 Agent 實作文章與 OWASP 用量風險說明出發，整理排程盤點、請求次數、逾時、重試與人工接手的做法，讓自動工作有明確的資源邊界。",
+      "keywords": "AI Agent, 用量上限, 排程管理",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG 自媒體部",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "大想成業有限公司",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-22T20:00:00+08:00",
+      "dateModified": "2026-11-22T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/library/news/"
+      },
+      "citation": [
+        "https://www.anthropic.com/research/multi-agent-research-system",
+        "https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/",
+        "https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits",
+        "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "沒有人聊天，為什麼還有用量？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "只限制模型回合就夠嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "逾時後可以直接重送嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "用量通知等於停止了嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首頁",
+          "item": "https://thinkbigtw.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/library/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "AI Agent 用量與停止條件",
+          "item": "https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>AI 導入實測手記 &middot; 第 024 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">AI DEPLOYMENT FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 11 月 22 日　星期日</span>
+    <span class="dot">&#9670;</span>
+    <span>AI 導入實測手記</span>
+    <span class="dot">&#9670;</span>
+    <span>第 024 期</span>
+  </div>
+  <p class="kicker">AI Agent &middot; 用量上限 &middot; 排程管理</p>
+  <h2 class="headline">AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 11 月 22 日</p>
+  <p class="deck">先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。</p>
+  <hr class="head-rule">
+  <div class="body">
+<h2><span class="no">一</span>現象：工作被拆成迴圈，資源也跟著累積</h2>
+<p class="lead">一個問題交給 AI Agent 後，未必只呼叫模型一次。Anthropic 在 2025 年 6 月 13 日公開的研究系統實作文章，說明多個 Agent 可以平行探索不同方向，同時提醒這類架構會快速消耗 token。這是該團隊的實作報告，不能當成所有企業的用量統計。[1]</p>
+<p>OWASP《生成式 AI 應用風險》2025 年版的 LLM10，把不受控的推論消耗列為風險，並提出輸入限制、請求速率、配額、逾時與監控等措施。[2] 所以「還在執行」不等於「仍在產生有用結果」，也值得問是否已有停止條件。</p>
+<p>技術上也要分層。Pydantic AI 官方文件區分模型回合限制與成功工具執行次數限制；前者不等於每一筆底層傳輸請求。[3] AWS 的重試文件則提醒，逾時不代表遠端動作沒有發生，重試還可能增加原本已過載服務的負擔。[4]</p>
+<h2><span class="no">二</span>各方評價：有空間探索，也要有停止界線</h2>
+<p class="lead"><strong>支持較大執行空間的理由：有些工作需要探索。</strong>上述多 Agent 報告描述的研究任務，需要隨中間結果改變方向。[1] 我們的判讀是，把所有工作都壓到很短的單次回合，可能不符合任務本身；限制應依工作種類設計。</p>
+<p><strong>保留的理由：有用的探索與空轉要能分辨。</strong>OWASP 建議觀察資源分配與異常用量，而不只限制單一輸入。[2] 我們因此建議，同時看完成項目、重複步驟與停止原因；不能只以總 token 多少判斷品質，也不能因為回答尚未完成就無限放行。</p>
+<p>重試也不是越多越穩。AWS 說明退避與隨機延遲可用來分散請求，但有副作用的操作還須考慮能否安全重做。[4] 我們的立場是，對外寫入與單純查詢要有不同的重試規則，停止後也要留下可接手的狀態。</p>
+<section class="firsthand"><span class="lede">&#9670; 第一手心得</span><h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+<p class="lead">以下來自我們常駐型 AI Agent 的維運紀錄，不是產業統計，也不代表任何特定客戶。</p>
+<p><strong>1. 沒人傳訊息，仍然會呼叫模型。</strong>心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。盤點不能只問誰在聊天，還要逐項看背景工作。這是我們記錄到的現象，不是宣稱所有框架都有相同預設。</p>
+<p><strong>2. 先列清單，再關閉不需要的項目。</strong>我們會逐項列出自動排程、關掉用不到的、設定上限。我們沒有一套通用的上限數字，也不估算節省比例。</p>
+<p><strong>3. 接下來要問誰能接手。</strong>在導入檢查清單中，我們會要求說明每項工作的目的、觸發來源與負責人；被停止的任務是等待人工、稍後重跑，還是直接結束，也要事先約定。這是我們提出的檢查方式。</p>
+</section>
+<h2><span class="no">四</span>我們的建議：設好上限，也寫好停下來之後</h2>
+<p class="lead"><strong>1. 盤點觸發來源。</strong>列出時間排程、訊息事件、健康檢查與重試佇列，記下是否呼叫模型、是否寫入外部系統。先停掉沒有明確用途的工作，再測試必要的工作是否仍能完成。</p>
+<p><strong>2. 按任務設多種上限。</strong>分別管理模型回合、工具執行、總時間、輸入輸出與並行工作。對照所用框架的計數定義，別把回合上限誤讀為所有網路呼叫的總數。[2][3]</p>
+<p><strong>3. 限制重試並留出等待。</strong>設定重試次數、退避與最晚結束時間；對有副作用的操作，先確認前次結果再決定能否重送。逾時後不要直接假設「沒有執行」。[4]</p>
+<p><strong>4. 測試停止與通知。</strong>刻意觸發上限，檢查是否停止新增任務、如何處理已送出的工作，以及誰收到通知。通知文字應包括任務編號、最後完成步驟與待確認動作，方便人工接續。</p>
+<p><strong>5. 定期檢查背景用量。</strong>以工作目的對照排程紀錄，尋找重複觸發與持續失敗的項目。上限調整要有人核准並記下理由，避免每次任務失敗都只是把限制放大。[2]</p>
+<p>建議用一個刻意失敗的測試工作驗收限制：讓外部測試服務暫時無法回應，觀察重試是否按規則結束，並確認後續排程不會再建立相同工作。接著用成功工作確認正常流程沒有被限制擋住。這兩份紀錄一起交給維護人員，才容易判斷日後的停止究竟是預期控制，還是新故障。若多項工作共用資源，也應確認一項任務達到限制時，其他已獲授權的工作如何處理；別只測單一對話。</p>
+<section class="houseview"><span class="lede">&#9670; 編按 &middot; Think BIG 的做法：讓自動工作可以交接</span><h2>每一項排程，都要有人知道它為何存在。</h2><p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+<p class="lead">Think BIG 主張，常駐 AI Agent 的交接文件應包含排程清單、限制範圍、停止方式與接手人。把「何時停」寫清楚，是任務設計的一部分。</p>
+<p>我們希望自動工作能被檢視、暫停與追查。當任務超出預期，先留下目前進度與待確認事項，再由負責人決定下一步；不能讓停止原因消失在背景紀錄裡。</p>
+</section>
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：沒有人聊天，為什麼還有用量？</dt>
+        <dd>我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。</dd>
+        <dt>Q2：只限制模型回合就夠嗎？</dt>
+        <dd>不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。[3]</dd>
+        <dt>Q3：逾時後可以直接重送嗎？</dt>
+        <dd>先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。[4]</dd>
+        <dt>Q4：用量通知等於停止了嗎？</dt>
+        <dd>不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-26。<br>
+    [1] Anthropic，〈How we built our multi-agent research system〉，2025-06-13（探索與 token 消耗），查閱日期 2026-10-26：<a href="https://www.anthropic.com/research/multi-agent-research-system" target="_blank" rel="noopener">www.anthropic.com</a>　&middot;
+    [2] OWASP，〈LLM10:2025 Unbounded Consumption〉（限制與監控），查閱日期 2026-10-26：<a href="https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/" target="_blank" rel="noopener">genai.owasp.org</a>　&middot;
+    [3] Pydantic AI，〈Agents〉用量限制章節（回合與工具計數），查閱日期 2026-10-26：<a href="https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits" target="_blank" rel="noopener">pydantic.dev</a>　&middot;
+    [4] AWS，〈Timeouts, retries, and backoff with jitter〉（逾時與副作用），查閱日期 2026-10-26：<a href="https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/" target="_blank" rel="noopener">aws.amazon.com</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; AI 導入實測手記
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/local-ai-model-selection-20261031/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
