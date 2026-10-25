@@ -88,6 +88,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [推論跟訓練差在哪？公司用 AI 是在做哪一種](https://thinkbigtw.com/library/qa/inference-vs-training/)
 - [向量資料庫是什麼？AI 怎麼「找到」相關的文件](https://thinkbigtw.com/library/qa/what-is-embedding-vector-db/)
 - [可以用 AI 篩履歷嗎？公平與個資要注意什麼](https://thinkbigtw.com/library/qa/ai-resume-screening-risks/)
+- [小模型適合做什麼？不是每件工作都要用最大的 AI](https://thinkbigtw.com/library/qa/small-language-models-uses/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -135,6 +136,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [What Is the Difference Between Inference and Training?](https://thinkbigtw.com/en/qa/inference-vs-training/)
 - [What Is a Vector Database, and How Does AI Find Relevant Documents?](https://thinkbigtw.com/en/qa/what-is-embedding-vector-db/)
 - [Can AI Screen Resumes? What About Fairness and Personal Data?](https://thinkbigtw.com/en/qa/ai-resume-screening-risks/)
+- [What Are Small Language Models Useful For?](https://thinkbigtw.com/en/qa/small-language-models-uses/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
