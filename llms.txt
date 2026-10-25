@@ -92,6 +92,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [本地模型看得懂圖片嗎？多模態 AI 在公司的用途與限制](https://thinkbigtw.com/library/qa/multimodal-local-llm/)
 - [員工離職時，AI 帳號和裡面的資料要怎麼收回？](https://thinkbigtw.com/library/qa/offboarding-ai-accounts/)
 - [AI 寫的程式碼可以商用嗎？授權與來源要怎麼查](https://thinkbigtw.com/library/qa/ai-generated-code-license/)
+- [企業導入 AI 前的 10 題自我檢核：資料、權限、紀錄、驗收](https://thinkbigtw.com/library/qa/ai-readiness-checklist/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -143,6 +144,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Can a Local Model Understand Images? Business Uses and Limits of Multimodal AI](https://thinkbigtw.com/en/qa/multimodal-local-llm/)
 - [How Should AI Accounts and Data Be Handed Over When an Employee Leaves?](https://thinkbigtw.com/en/qa/offboarding-ai-accounts/)
 - [Can AI-Generated Code Be Used Commercially? How Should Licenses and Sources Be Checked?](https://thinkbigtw.com/en/qa/ai-generated-code-license/)
+- [Is Your Company Ready for AI? A 10-Question Checklist](https://thinkbigtw.com/en/qa/ai-readiness-checklist/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
