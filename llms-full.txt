@@ -1744,6 +1744,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 018
+
+November 10, 2026 · Enterprise Security Notes
+
+## Should Every AI Skill Be Reviewed? Treat It as Part of the Supply Chain
+
+Before installing a skill, ask what it reads, executes, and sends elsewhere. Written instructions and executable scripts need different evidence.](https://thinkbigtw.com/en/news/vet-ai-agent-skills-20261110/)
 [Issue 017
 
 November 8, 2026 · Local AI Field Notes
@@ -3062,6 +3069,117 @@ This article combines industry reporting with Think BIG’s first-hand work on i
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
     Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/news/vet-ai-agent-skills-20261110/
+
+# Should Every AI Skill Be Reviewed? Treat It as Part of the Supply Chain | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Enterprise Security Notes · Issue 018
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+November 10, 2026  ·  Tuesday
+◆
+Enterprise Security Notes
+◆
+Issue 018
+
+AI Skills · Supply Chain · Installation Review
+
+## Should Every AI Skill Be Reviewed? Treat It as Part of the Supply Chain
+
+Think BIG Media  |  November 10, 2026
+
+Before installing a skill, ask what it reads, executes, and sends elsewhere. Written instructions and executable scripts need different evidence.
+
+## One.  What’s Happening: Skills Can Bundle Both Instructions and Code
+
+In October 2025, Anthropic published an engineering article explaining Agent Skills as bundles of instructions and code. It also warned that malicious skills could lead to data exfiltration or unintended actions.[1] We use that article to examine installation practice, without alleging a compromise at any platform or treating popularity as security evidence.
+
+Supply-chain management includes the external components a system depends on. OWASP’s 2025 LLM Top 10 entry LLM03:2025 covers third-party packages, models, and data, and recommends supplier review and component inventories.[2] We apply that principle to a skill’s scripts, dependencies, and download sources.
+
+A skill’s name does not establish its capabilities. The official article recommends reading bundled files, with attention to dependencies, scripts, and instructions to connect to untrusted network sources.[1] For text-only workflows, review instructions and data use. For executable components, review execution identity and file access as well. That is our proposed way to scale review depth.
+
+## Two.  Perspectives: Reuse Knowledge; Verify Trust Separately
+
+The benefit:  The article presents skills as a way to share composable expertise.[1] In our view, clear procedures and scripts can support repeated work and handovers. Writing everything again does not automatically make maintenance easier.
+
+The caution:  Public availability, usable licensing, and safe behavior are separate questions. OWASP identifies licensing and provenance risks.[2] NIST SP 800-218 (2022), the Secure Software Development Framework, offers purchasers and suppliers a common vocabulary for secure-development practices.[3] We recommend recording what was checked, beyond the installation decision.
+
+Hashes have limits too. pip documents checking downloaded packages against locally stored hashes, including dependencies.[4] A match establishes consistency with the approved file; it does not establish harmless behavior. Scanning, reading code, and testing answer different questions.
+
+A review need not end with a bare pass or rejection. It can specify a test directory, draft-only outputs, or unresolved connections, with owners and review triggers. These are examples of approval conditions, not a claim that every skill supports equivalent isolation.
+
+If nobody can review the scripts, narrow the pilot and request inspectable files and behavior explanations. AI can help identify questions, but its favorable judgment alone should not close a review the approver cannot explain.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These points come from our review practice for skills, plugins, and MCP servers. They are not industry statistics or an account of any particular organization.
+
+1. Read before installing.  We check sources, maintainers, licensing, and actual program behavior. We look for environment-variable or key access, outbound connections, and execution of downloaded content. Installation instructions lead us to the files that implement the behavior.
+
+2. Explain requested privileges.  We review permissions and pin versions. Packages that fail review are not installed. We have rejected packages, but do not name them here or present individual decisions as product rankings.
+
+3. Keep unresolved questions visible.  Third-party code retains risk. We record judgments about source, behavior, permissions, and versions. When content changes, those judgments need to be revisited.
+
+## Four.  Our Recommendations: Make Installation a Traceable Decision
+
+1. Inventory purpose and components.  Record the skill’s purpose, source, maintainer, license, scripts, and dependencies. Keep more than an installation command so future updates can be compared with reviewed files.[2]
+
+2. Map access and connections.  List readable directories, writable files, external destinations, and credentials. Withhold production data while those remain unexplained. Require a reason and approval for added capabilities.
+
+3. Test in isolation.  Use synthetic data and minimum necessary privileges. Observe outputs, file changes, and connections. Mark untested behavior as unresolved; a clean test run is not evidence of every future outcome.
+
+4. Pin the reviewed version and schedule review.  Keep version and file-verification records, with an owner for update notices.[4] Compare instructions, dependencies, privileges, and destinations when upgrading.
+
+5. Define shutdown steps.  Document skill removal, schedule shutdown, credential revocation, and log access. This is our exit-planning recommendation so an owner knows where to stop execution.
+
+Review the capabilities a skill receives and how they can be withdrawn.
+
+◆ Editor’s Note · How Think BIG Approaches This: Every Component Needs a History
+
+## Keep purpose, version, access, and shutdown instructions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend written review outcomes that identify permitted scope, open questions, and review triggers. Review depth should reflect capabilities and data access rather than the introduction page alone.
+
+At handover, the owner should be able to find each component’s source and shutdown method.
+
+### Frequently Asked Questions
+
+Q1: Should text-only skills be reviewed?
+Yes. Instructions can also direct unintended actions or external connections.[1]
+Q2: Does open source establish safety?
+No. Review provenance, licensing, behavior, and permissions separately, consistent with OWASP’s supplier and component guidance.[2]
+Q3: Is a hash match enough?
+A hash checks file consistency; review behavior and permissions separately.[4]
+Q4: Must everything be rereviewed after an update?
+Compare changes and review affected instructions, dependencies, privileges, and connections. Without a comparable version, establish a new baseline.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Anthropic, “Equipping agents for the real world with Agent Skills,” October 16, 2025, accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) ·
+    [2] OWASP, “LLM03:2025 Supply Chain”, accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm032025-supply-chain/) ·
+    [3] NIST, SP 800-218 (2022), “Secure Software Development Framework (SSDF) Version 1.1”, accessed 2026-10-26: [csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/218/final) ·
+    [4] pip, “Secure installs”, accessed 2026-10-26: [pip.pypa.io](https://pip.pypa.io/en/stable/topics/secure-installs/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
 
 ---
 
@@ -9905,6 +10023,117 @@ Q5：怎麼知道 AI 有沒有提到我的公司？
 本文為 Think BIG 產業觀察與第一手實作整理，引用之官方文件與研究均標註來源；各平台規則與功能以官方文件最新版本為準。文中官網數據只呈現相對變化與趨勢。文中提到的 AI 聊天工具不具名，內容不針對任何公司或產品。
 
 THINK BIG NEWS 　·　AI 導入的第一手觀察
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/vet-ai-agent-skills-20261110/
+
+# 裝進電腦的 AI 技能，都要先審查嗎？——把技能當成供應鏈的一部分 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+企業資安實務 · 第 018 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+2026 年 11 月 10 日　星期二
+◆
+企業資安實務
+◆
+第 018 期
+
+AI 技能 · 供應鏈 · 安裝審查
+
+## 裝進電腦的 AI 技能，都要先審查嗎？——把技能當成供應鏈的一部分
+
+Think BIG 自媒體部  |  2026 年 11 月 10 日
+
+先問技能會讀什麼、執行什麼、把資料送到哪裡，再決定能不能安裝。純文字說明與可執行腳本，要看不同的證據。
+
+## 一 現象：技能可以是工作說明，也可以帶著程式碼
+
+Anthropic 在 2025 年 10 月發表 Agent Skills 工程文章，說明技能可以封裝指示與程式碼，也提醒惡意技能可能導向資料外傳或非預期動作。[1] 本文從這篇官方文章延伸安裝實務，不指控任何技能或平台已遭入侵，也不以套件流行程度判斷安全。
+
+供應鏈的意思，是把依賴的外部元件一起納入管理。OWASP《大型語言模型應用十大風險》2025 年版的 LLM03:2025，把風險範圍放到第三方套件、模型與資料，也建議審查供應商及維持元件清單。[2] 我們據此主張，技能帶進來的腳本、依賴與下載來源，都應能被追蹤。
+
+技能的名字不決定能力。官方文章建議閱讀隨附檔案，特別注意依賴、腳本，以及連接不受信任外部網路的指示。[1] 若一個技能只提供文字流程，審查重點會是指令與資料使用；若它能執行程式，還要檢查執行身分與檔案存取。這是我們依能力分配審查深度的做法。
+
+## 二 各方評價：知識可以重用，信任仍需逐項確認
+
+支持重用的一面： 官方文章把技能描述為讓 AI 取得可組合專業知識的方式。[1] 我們的判讀是，清楚的流程與腳本有助於重複工作，也方便團隊交接；全部重新手寫，並不自動比較容易維護。
+
+需要保留的一面： 來源公開、授權可用與程式安全，是三個分開的問題。OWASP 列出授權與來源追溯風險；[2] NIST SP 800-218（2022）的安全軟體開發框架，則提供採購方與供應商溝通安全實務的共同用語。[3] 我們建議把「檢查到什麼」留下來，不只記錄同意安裝。
+
+雜湊值也有邊界。pip 安全安裝文件說明，可用事先保存的雜湊核對下載檔案，且需涵蓋依賴。[4] 我們的解讀是，核對成功說明檔案與核准版本一致，仍不能證明內容沒有不當行為。掃描、人工閱讀與測試各自回答不同問題，不宜只靠其中一項結案。
+
+我們建議審查結論不要只剩通過或退件。也可以限定「只能處理測試目錄」「只能產生草稿」「外部連線待確認」等範圍，寫清楚條件、負責人與再看一次的時機。這些是准用條件的範例，不表示任何技能都能靠設定完成相同隔離。
+
+若團隊找不到有能力閱讀腳本的人，我們建議先縮小導入範圍，請維護者提供可檢查的檔案與行為說明。不要把看不懂的程式交給另一個 AI 說安全就結案；AI 可以協助找疑點，核准的人仍要能說明依據。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們的技能、外掛與 MCP 伺服器審查做法，不是產業統計，也不描述特定對象。
+
+1. 裝之前先讀。 我們依序檢查來源與維護者、授權及程式實際行為。尤其看是否讀環境變數或金鑰、是否對外連線、是否執行從網路下載的內容；安裝說明只是入口，還要往實際檔案看。
+
+2. 所需權限要說得清楚。 我們會檢查程式要求的權限，並固定版本。檢查未通過的套件就不裝；我們也確實遇過退件，但不在文章中列名字，以免把單次審查結果寫成對外評比。
+
+3. 通過審查仍要保留疑問。 沒有人能讓第三方程式碼沒有風險。我們的做法是逐關把關，針對來源、行為、權限與版本留下判斷。後續如果變更內容，也應回頭檢查原先依據是否仍成立。
+
+## 四 我們的建議：把安裝變成可追溯的決定
+
+1. 收齊元件與用途。 記下技能目的、來源網址、維護者、授權、腳本與依賴。不要只保存一段安裝指令；更新時要知道哪些檔案是原先審過的。[2]
+
+2. 畫出讀寫與連線範圍。 列出會讀的目錄、可能改的檔案、外部網址與憑證。說不清楚的先不給正式資料；需要新增能力時，再補上理由與核准。
+
+3. 先在隔離環境測試。 我們建議使用假資料與最低所需權限，觀察輸出、檔案變更和對外連線。測不到的行為記為未確認，不要把「這次沒發生」寫成永遠不會發生。
+
+4. 固定核准版本並安排重審。 保留版本與檔案核對資訊，指定更新通知與審查人。[4] 升級時比較指示、依賴、權限與連線目的地，不只看新增功能清單。
+
+5. 先寫停用方法。 列出移除技能、停止排程、撤銷憑證與查看紀錄的步驟。這是我們的退出建議；發生疑慮時，負責人應知道從哪個控制點停止。
+
+一句話：審查的是技能實際拿到的能力，以及日後怎麼收回。
+
+◆ 編按 · Think BIG 的做法：每個元件都要有來歷
+
+## 用途、版本、權限與停止方式一起留檔。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張安裝審查要有書面結論，說明准用範圍、尚未確認的事項與重審時機。審查深度依能力與接觸資料調整，不能只看技能介紹頁。
+
+延伸閱讀[交付前資安審查](https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/)。交付時，負責人應能找到每個元件的來源與停用方式。
+
+### 常見問題
+
+Q1：只有 Markdown 的技能也要看嗎？
+要。官方文章指出，指示本身也可能讓 AI 做非預期動作或連接外部來源。[1]
+Q2：開源就代表安全嗎？
+不能這樣推論。我們建議分別查來源、授權、程式行為與權限；OWASP 也要求審查供應商及元件。[2]
+Q3：雜湊相同就能直接安裝嗎？
+雜湊用來核對核准檔案，不代替內容與權限審查。[4]
+Q4：每次更新都要重看全部嗎？
+我們建議先比較變更，再重審受影響的指示、依賴、權限與連線；沒有可比較版本時，重新建立基準。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Anthropic，〈Equipping agents for the real world with Agent Skills〉，2025-10-16，查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)　·
+    [2] OWASP，〈LLM03:2025 Supply Chain〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm032025-supply-chain/)　·
+    [3] NIST，SP 800-218（2022），〈Secure Software Development Framework (SSDF) Version 1.1〉，查閱日期 2026-10-26：[csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/218/final)　·
+    [4] pip，〈Secure installs〉，查閱日期 2026-10-26：[pip.pypa.io](https://pip.pypa.io/en/stable/topics/secure-installs/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  企業資安實務
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
