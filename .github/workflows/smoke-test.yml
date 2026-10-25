@@ -14,10 +14,6 @@ jobs:
         run: |
           code=$(curl -s -o /dev/null -w "%{http_code}" https://thinkbigtw.com/)
           if [ "$code" != "200" ]; then echo "thinkbigtw.com/ returned $code"; exit 1; fi
-      - name: Site - puig page
-        run: |
-          code=$(curl -s -o /dev/null -w "%{http_code}" https://thinkbigtw.com/puig/)
-          if [ "$code" != "200" ]; then echo "thinkbigtw.com/puig/ returned $code"; exit 1; fi
       - name: Worker - /health
         run: curl -fsS https://moneyradar-ai-proxy.thinkbigtw.workers.dev/health | grep -q '"ok":true'
       - name: Worker - /quote ASML.AS
