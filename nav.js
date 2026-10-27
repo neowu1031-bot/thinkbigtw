@@ -14,6 +14,9 @@
     '/contact/': '/en/contact/',
     '/pricing/': '/en/pricing/',
     '/portfolio/': '/portfolio/en/',
+    '/portfolio/ai-agent/': '/portfolio/ai-agent/en/',
+    '/portfolio/ai-agent/deck/': '/portfolio/ai-agent/deck/en/',
+    '/portfolio/erp-demo/': '/portfolio/erp-demo/en/',
     '/library/': '/en/news/',
     '/library/news/': '/en/news/',
     '/library/news/lobster-hermes-abandonment-20261003/': '/en/news/lobster-hermes-abandonment-20261003/',
@@ -83,10 +86,13 @@
   function init() {
     var nav = document.getElementById('tb-nav');
     if (!nav) return;
+    // The experience now lives under Portfolio; also normalize older static chrome.
+    nav.querySelectorAll('a[href="/experience/"]').forEach(function (link) { link.remove(); });
     var path = location.pathname.replace(/index\.html?$/, '');
     nav.querySelectorAll('a').forEach(function (link) {
       var href = link.getAttribute('href');
       if (href === path) link.setAttribute('aria-current', 'page');
+      else if ((href === '/portfolio/' || href === '/portfolio/en/') && path.startsWith('/portfolio/')) link.setAttribute('aria-current', 'location');
       else if (href === '/pricing/personal/' && document.querySelector('.tb-personal-context')) link.setAttribute('aria-current', 'location');
       else if (href === '/guides/' && path.startsWith('/guides/')) link.setAttribute('aria-current', 'location');
       else if (href === '/enterprise/process/' && path.startsWith('/enterprise/process/')) link.setAttribute('aria-current', 'location');
