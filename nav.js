@@ -84,10 +84,10 @@
   /* ─────────────────────────────────────────────────────────────────────── */
 
   function init() {
+    // Experience remains reachable from page content, but not global navigation.
+    document.querySelectorAll('#tb-nav a[href="/experience/"], footer a[href="/experience/"]').forEach(function (link) { link.remove(); });
     var nav = document.getElementById('tb-nav');
     if (!nav) return;
-    // The experience now lives under Portfolio; also normalize older static chrome.
-    nav.querySelectorAll('a[href="/experience/"]').forEach(function (link) { link.remove(); });
     var path = location.pathname.replace(/index\.html?$/, '');
     nav.querySelectorAll('a').forEach(function (link) {
       var href = link.getAttribute('href');

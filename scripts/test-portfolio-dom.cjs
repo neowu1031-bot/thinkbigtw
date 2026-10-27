@@ -67,6 +67,29 @@ if(require.main===module)(async()=>{
   }
   const unavailable=boot(true,null,true);assert.match(unavailable.q('#storage-status').textContent,/unavailable/);unavailable.nav('products');unavailable.click('[data-action=add-product]');unavailable.input('[name=sku]','VOLATILE');unavailable.input('[name=name]','temporary');unavailable.submit('#product-form');assert.ok(unavailable.q('#product-results').textContent.includes('VOLATILE'));assert.deepEqual(unavailable.errors,[]);unavailable.dom.window.close();checks+=3;
   const navSource=fs.readFileSync(path.join(root,'nav.js'),'utf8');
+  // Restored legacy HTML must load nav.js and lose global experience links at runtime.
+  // Exercise actual site markup, preserving content links (including the entry cards).
+  const htmlFiles=require('node:child_process').execFileSync('git',['ls-files','-z','--','*.html'],{cwd:root,encoding:'utf8'}).split('\0').filter(Boolean);
+  let navPages=0;
+  for(const file of htmlFiles){
+    const html=fs.readFileSync(path.join(root,file),'utf8');
+    if(!/id=["']tb-nav["']/.test(html))continue;
+    const dom=new JSDOM(html,{url:'http://localhost/'+file,runScripts:'outside-only'});
+    const doc=dom.window.document;
+    assert.ok([...doc.scripts].some(s=>s.src&&new URL(s.src).pathname==='/nav.js'),`${file}: nav.js must load`);
+    const contentLinks=[...doc.querySelectorAll('a[href="/experience/"]')].filter(a=>!a.closest('#tb-nav, footer'));
+    dom.window.eval(navSource);await tick();
+    assert.equal(doc.querySelectorAll('#tb-nav a[href="/experience/"], footer a[href="/experience/"]').length,0,`${file}: desktop/mobile/footer`);
+    assert.ok(contentLinks.every(a=>a.isConnected),`${file}: content entry links retained`);
+    dom.window.close();navPages++;checks+=3;
+  }
+  // Footer normalization also works on a page without the shared header.
+  const footerOnly=new JSDOM('<footer><a href="/experience/">Experience</a><a href="/portfolio/">Portfolio</a></footer><main><a href="/experience/">Try it</a></main>',{url:'http://localhost/',runScripts:'outside-only'});
+  footerOnly.window.eval(navSource);await tick();
+  assert.equal(footerOnly.window.document.querySelectorAll('footer a[href="/experience/"]').length,0);
+  assert.ok(footerOnly.window.document.querySelector('footer a[href="/portfolio/"]'));
+  assert.ok(footerOnly.window.document.querySelector('main a[href="/experience/"]'));
+  footerOnly.window.close();checks+=3;
   for(const base of ['portfolio/','portfolio/ai-agent/','portfolio/ai-agent/deck/','portfolio/erp-demo/']){
     for(const en of [false,true]){
       const route=base+(en?'en/':'');
@@ -79,5 +102,5 @@ if(require.main===module)(async()=>{
       dom.window.close();checks+=2;
     }
   }
-  console.log(`PASS: ${checks} ERP DOM assertions (Chinese + English). Layout and native browser behavior not covered.`);
+  console.log(`PASS: ${checks} ERP/navigation DOM assertions (Chinese + English; ${navPages} site headers + footer-only fixture). Layout and native browser behavior not covered.`);
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -7,14 +7,8 @@
 Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起：TB READINESS 導入成熟度自評、TB DELIVERY 導入建置、TB CONTINUITY 年度治理與維運。企業服務依確認範圍個別報價，三種方案於範圍凍結與資料到位後 30 天內交付；不公開客戶身分。
 
 ## 作品集
-- [作品集｜示範作品索引](https://thinkbigtw.com/portfolio/)：AI Agent 實戰建置與 ERP 進銷存互動示範入口
-- [Portfolio（English）](https://thinkbigtw.com/portfolio/en/)：An index of interactive demos and portfolio decks
-- [AI Agent 實戰建置](https://thinkbigtw.com/portfolio/ai-agent/)：選擇實戰體驗或瀏覽作品集簡報
-- [AI Agent builds（English）](https://thinkbigtw.com/portfolio/ai-agent/en/)：Choose the interactive experience or the portfolio deck
-- [AI Agent 作品集簡報](https://thinkbigtw.com/portfolio/ai-agent/deck/)：原完整作品集的網頁簡報；目前無 PDF 下載
-- [AI Agent portfolio deck（English）](https://thinkbigtw.com/portfolio/ai-agent/deck/en/)：The complete web deck; no downloadable PDF is currently available
-- [ERP 進銷存互動 Demo](https://thinkbigtw.com/portfolio/erp-demo/)：虛構文具批發資料，商品、進貨、銷貨、庫存、報表與 CSV；僅儲存在瀏覽器，AI 助理為固定腳本示意
-- [ERP inventory demo（English）](https://thinkbigtw.com/portfolio/erp-demo/en/)：Fictional stationery wholesale data with local browser storage, reports, CSV export, and a scripted assistant; no backend or model calls
+- [AI Agent 實戰作品集](https://thinkbigtw.com/portfolio/)：Think BIG 呈現維運監控、文件自動化、AI 客服、本地知識庫、資安把關等精選建置與應用場景切入點
+- [AI Agent Portfolio（English）](https://thinkbigtw.com/portfolio/en/)：Selected builds and use-case scenarios, with real screenshots and measured data
 
 ## 企業導入（優先閱讀）
 - [什麼是 RAG？讓 AI 依公司文件回答](https://thinkbigtw.com/enterprise/rag/)：檢索增強生成、資料準備、權限與引用驗收
