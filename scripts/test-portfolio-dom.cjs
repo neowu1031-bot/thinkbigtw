@@ -24,7 +24,8 @@ function boot(en=false,saved=null,blocked=false){
   const readBlob=()=>new Promise(resolve=>{const reader=new w.FileReader();reader.onload=()=>resolve(reader.result);reader.readAsText(blob);});
   return {dom,w,q,click,input,submit,nav,data,errors,readBlob};
 }
-(async()=>{
+module.exports={boot};
+if(require.main===module)(async()=>{
   let checks=0;
   for(const en of [false,true]){
     let b=boot(en);let {q,click,input,submit,nav,data,w}=b;

@@ -42,10 +42,12 @@ const KEY='tb-erp-demo-v1';
     await page.reload();assert.equal((await stored()).products.find(p=>p.id===id).stock,7);
     for(const view of ['products','purchases','sales','inventory','contacts','reports']){await nav(view);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${view} overflow`);}
     const downloadPromise=page.waitForEvent('download');await page.locator('[data-action=export]').click();await (await downloadPromise).saveAs(path.join(out,`${width}-${suffix?'en':'zh'}-report.csv`));
-    await page.locator('#assistant-open').click();await page.locator('[data-question=stock]').click();assert.ok((await page.locator('#assistant-answer').innerText()).length);
-    for(let i=0;i<10;i++){await page.keyboard.press('Tab');assert.ok(await page.evaluate(()=>document.querySelector('#assistant-dialog').contains(document.activeElement)));}
+    await page.locator('#assistant-open').click();assert.equal(await page.evaluate(()=>document.activeElement.id),'assistant-question');
+    const drawer=await page.locator('#assistant-dialog').boundingBox();assert.ok(drawer.y>=0&&drawer.y<2&&drawer.x>=0&&drawer.x+drawer.width<=width+1,'Assistant must be a visible fixed drawer');
+    await page.screenshot({path:path.join(out,`${width}-${en?'en':'zh'}-assistant.png`)});await page.locator('[data-question=stock]').click();assert.ok((await page.locator('#assistant-answer').innerText()).length);
+    for(let i=0;i<20;i++){await page.keyboard.press('Tab');assert.ok(await page.evaluate(()=>document.querySelector('#assistant-dialog').contains(document.activeElement)));}
     await page.keyboard.press('Escape');assert.ok(await page.locator('#assistant-open').evaluate(e=>e===document.activeElement));
-    await page.locator('#reset-data').click();await page.locator('#confirm-dialog [value=confirm]').click();assert.equal((await stored()).products.length,20);assert.equal((await stored()).orders.length,120);
+    await page.locator('#reset-data').click();await page.locator('#confirm-dialog [value=confirm]').click();await page.waitForFunction(()=>{try{return JSON.parse(localStorage.getItem('tb-erp-demo-v1')).products.length===20}catch(e){return false}},null,{timeout:5000}).catch(()=>{});assert.equal((await stored()).products.length,20);assert.equal((await stored()).orders.length,120);
    }
    assert.deepEqual(errors,[]);results.push({width,pages:routes.length,bilingualERP:true,consoleErrors:errors});await context.close();
   }
