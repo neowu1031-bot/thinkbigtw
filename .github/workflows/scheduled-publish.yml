@@ -39,6 +39,7 @@ jobs:
           now=$(date -u +%Y%m%dT%H%MZ)
           echo "Now (UTC): ${now}" >> "$GITHUB_STEP_SUMMARY"
           published=0
+          AGGREGATE_FILES="en/qa/index.html library/qa/index.html llms.txt sitemap-qa.xml en/news/index.html library/news/index.html llms-full.txt sitemap.xml"
           branches=$(git for-each-ref --format='%(refname:strip=3)' 'refs/remotes/origin/publish/' | sort)
           for b in $branches; do
             name=${b#publish/}
@@ -52,8 +53,48 @@ jobs:
               continue
             fi
             git checkout -q -B work "origin/${b}"
-            if ! git rebase -q main; then
-              git rebase --abort || true
+
+            REBASE_OK=false
+            CONFLICT_BRANCH=false
+            MAX_ROUNDS=30
+            round=0
+            while [ $round -lt $MAX_ROUNDS ]; do
+              round=$((round+1))
+              if [ $round -eq 1 ]; then
+                if git rebase -q main 2>/dev/null; then REBASE_OK=true; break; fi
+              else
+                if git rebase --continue 2>/dev/null; then REBASE_OK=true; break; fi
+              fi
+
+              CONFLICTS=$(git ls-files -u --format='%(path)' | sort -u | tr '\n' ' ')
+              if [ -z "$CONFLICTS" ]; then
+                if git rebase --continue 2>/dev/null; then REBASE_OK=true; fi
+                break
+              fi
+
+              all_agg=true
+              for cf in $CONFLICTS; do
+                is_agg=false
+                for af in $AGGREGATE_FILES; do
+                  [ "$cf" = "$af" ] && is_agg=true && break
+                done
+                $is_agg || { all_agg=false; break; }
+              done
+
+              if ! $all_agg; then
+                git rebase --abort 2>/dev/null || true
+                CONFLICT_BRANCH=true
+                break
+              fi
+
+              if ! python3 .github/scripts/resolve-aggregate.py; then
+                git rebase --abort 2>/dev/null || true
+                CONFLICT_BRANCH=true
+                break
+              fi
+            done
+
+            if $CONFLICT_BRANCH || ! $REBASE_OK; then
               git checkout -q main
               title="Scheduled publish conflict: ${b}"
               if ! gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -qxF "${title}"; then
@@ -64,6 +105,7 @@ jobs:
               echo "- conflict \`${b}\`：已開 issue（若無既有同名 open issue），未發布" >> "$GITHUB_STEP_SUMMARY"
               continue
             fi
+
             git checkout -q main
             git merge -q --ff-only work
             git push origin main
