@@ -1,0 +1,30 @@
+/* Behavioral tests only. Real browser evidence is produced by test-portfolio-browser.cjs. */
+const assert=require('node:assert/strict');
+const {boot}=require('./test-portfolio-dom.cjs');
+const tick=()=>new Promise(r=>setTimeout(r,0));
+(async()=>{for(const en of [false,true]){
+ const {q,w,click,input,submit,nav,data,errors}=boot(en);
+ const agent=text=>{input('#agent-input',text);submit('#agent-form');};
+ click('[data-action=tour-skip]');
+ assert.equal(q('.anatomy-flow'),null);
+ nav('crm');input('[data-ops-form=crm] [name=stage]','won');input('[data-ops-form=crm] [name=note]','QA note');submit('[data-ops-form=crm]');assert.equal(data().crm[0].stage,'won');
+ click('[data-action=ops-quote]');input('[data-ops-form=quote] [name=qty]',2);const before=data().products[0].stock;submit('[data-ops-form=quote]');
+ const id=data().orders.at(-1).id;assert.equal(data().products[0].stock,before);assert.equal(data().crm[0].stage,'won');
+ click(`[data-action=advance-order][data-id="${id}"]`);assert.equal(data().orders.at(-1).status,'confirmed');assert.equal(data().products[0].stock,before);
+ click(`[data-action=advance-order][data-id="${id}"]`);assert.equal(data().products[0].stock,before-2);assert.equal(data().orders.at(-1).paid,false);
+ click(`[data-action=ops-pay][data-id="${id}"]`);q('#confirm-dialog').close('confirm');await tick();assert.equal(data().orders.at(-1).paid,true);
+ click('[data-action=undo]');assert.equal(data().orders.at(-1).paid,false);
+ click('[data-mode=agent]');
+ agent(en?'Mr Wang will order next week; note this and remind me Monday':'王老闆說下週要下單，幫我記下來、週一提醒我');assert.ok(q('#ops-agent-confirm'));assert.equal(data().crm[0].notes.length,1);submit('#ops-agent-confirm');assert.equal(data().crm[0].notes.length,2);assert.equal(new Date(data().crm[0].next+'T12:00:00').getDay(),1);assert.equal(q('#ops-agent-confirm'),null);
+ agent(en?'Chen needs annual leave tomorrow':'小陳明天請特休一天');assert.equal(data().leaves.length,0);submit('#ops-agent-confirm');assert.equal(data().leaves.length,1);assert.equal(data().leaves[0].status,'pending');
+ const lid=data().leaves[0].id;click(`[data-action=ops-leave-approve][data-id="${lid}"]`);q('#confirm-dialog').close('confirm');await tick();assert.equal(data().leaves[0].status,'approved');
+ agent(en?'Chen needs annual leave tomorrow':'小陳明天請特休一天');submit('#ops-agent-confirm');assert.equal(data().leaves.length,1);click('[data-action=agent-cancel]');
+ agent(en?'Who has the most overtime this month':'這個月誰加班最多');assert.match(q('#agent-result').textContent,/Hsu|小許/);
+ agent(en?'Quote 50 boxes of A4 paper for Dingcheng':'幫鼎成開一張報價，A4 紙 50 箱');assert.ok(q('#agent-confirm'));assert.equal(q('#agent-confirm [name=qty]').value,'50');assert.equal(q('#agent-confirm [name=party]').value,'C01');assert.equal(q('#agent-confirm [name=product]').value,'P001');submit('#agent-confirm');assert.equal(data().orders.at(-1).lines[0].qty,50);assert.equal(data().products[0].stock,before-2);
+ agent(en?'Which payments are over 30 days overdue':'哪些客戶超過 30 天沒付款');assert.equal(q('#agent-data [data-ops-overdue]').checked,true);
+ agent(en?'Morning brief':'每日晨報');assert.ok(q('#agent-data .ops-metrics'));assert.match(q('#agent-result').textContent,/revenue|營收/);
+ const persisted=JSON.stringify(data());const reload=boot(en,persisted);assert.equal(reload.data().crm[0].notes.length,2);assert.equal(reload.data().leaves[0].status,'approved');assert.equal(reload.q('#storage-status').textContent,'');reload.w.close();
+ const corrupt=JSON.parse(persisted);corrupt.crm[0].notes=null;const bad=boot(en,JSON.stringify(corrupt));assert.ok(bad.q('#storage-status').textContent);bad.w.close();
+ assert.deepEqual(errors,[]);w.close();
+ }console.log('PASS: round3 bilingual CRM → quote → order → stock → receivable/payment/undo, Agent follow-up/leave/quote/analytics, reload and corruption protection');
+})().catch(e=>{console.error(e);process.exitCode=1});
