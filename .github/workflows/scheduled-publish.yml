@@ -34,6 +34,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          export GIT_EDITOR=true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           now=$(date -u +%Y%m%dT%H%MZ)
@@ -95,6 +96,7 @@ jobs:
             done
 
             if $CONFLICT_BRANCH || ! $REBASE_OK; then
+              git rebase --abort 2>/dev/null || true
               git checkout -q main
               title="Scheduled publish conflict: ${b}"
               if ! gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -qxF "${title}"; then
