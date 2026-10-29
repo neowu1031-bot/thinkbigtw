@@ -8590,7 +8590,7 @@ Two channels, one foundation
 
 - AI 是憑記憶答，還是真的上網查到你
 
-- 不同 AI 常引用不同類型的來源（第三方研究：跨平台重疊約 5–20%），所以按 AI 分開量、分開看
+- 不同 AI 常引用不同類型的來源，所以按 AI 分開量、分開看
 
 兩條路靠的是同一套地基：網站能被收錄、內容獨特有料、身分在各平台一致、站外有真實的評價與報導。我們一起做，不分開收、不重工。
 
@@ -8746,9 +8746,7 @@ Methodology
 
 ### 按 AI 分列，不是一張通用清單
 
-一份 2026 年第三方研究（繁體中文市場，來源連結待補）觀察到：Gemini 偏好引用官網與評比站；Perplexity 偏好 Threads、YouTube 等論壇；ChatGPT 偏好政府機構名錄，且 70% 引用非中文來源。我們會在你的產業重新量測，這份研究僅供參考方向。
-
-三個 AI 是三個世界，跨平台來源重疊只有 5–20%。你的可做清單，我們按 AI 平台分列，不給通用處方。
+三個 AI 是三個世界，各有不同的引用邏輯。你的可做清單，我們按 AI 平台分列，不給通用處方。
 
 ### 信賴區間，不是單點數字
 
@@ -9738,7 +9736,7 @@ A growing share of customers ask ChatGPT, Perplexity, or Google AI directly: "Wh
 
 - Whether the AI answered from training memory or actually retrieved your site
 
-- Different AI platforms frequently cite different types of sources (third-party research: cross-platform overlap is roughly 5–20%) — we measure each platform separately
+- Different AI platforms frequently cite different types of sources — we measure each platform separately
 
 Both channels rely on the same foundation: a crawlable site, distinctive first-hand content, a consistent identity across platforms, and genuine off-site recognition. We address all of this together — no duplicated work, no conflicting advice.
 
@@ -9890,7 +9888,7 @@ Academic research (University of St. Gallen, 2026) has confirmed that re-running
 
 ### Per-AI breakdown, not a universal list
 
-Taiwan field data shows: Gemini tends to cite official websites and review directories; Perplexity favors Threads and YouTube discussions; ChatGPT favors government institution directories and cites non-Chinese sources 70% of the time. Cross-platform source overlap is only 5–20%. Your action list is broken down by AI platform.
+Each AI has its own citation logic. Your action list is broken down by AI platform.
 
 ### Confidence intervals, not single-point numbers
 
