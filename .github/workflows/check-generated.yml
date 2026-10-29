@@ -1,0 +1,40 @@
+name: Check generated files are up to date
+
+# Fail the PR if llms-full.txt or the agent KB JS files are out of sync
+# with the source HTML pages or Markdown chapters.
+# Maintainer note: when you change any page, run:
+#   python3 scripts/build-llms-full.py
+#   node scripts/build-agent-kb.mjs
+# then commit the regenerated files in the same commit.
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+
+jobs:
+  check-generated:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python dependencies
+        run: pip install beautifulsoup4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Check llms-full.txt is up to date
+        run: python3 scripts/build-llms-full.py --check
+
+      - name: Check agent KB JS files are up to date
+        run: node scripts/build-agent-kb.mjs --check
