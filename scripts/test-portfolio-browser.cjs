@@ -6,6 +6,7 @@ const origin=process.env.REVIEW_ORIGIN||'http://127.0.0.1:8766';
 const out=process.env.REVIEW_OUTPUT||'/tmp/portfolio-browser-review';
 const routes=['/portfolio/','/portfolio/en/','/portfolio/ai-agent/','/portfolio/ai-agent/en/','/portfolio/ai-agent/deck/','/portfolio/ai-agent/deck/en/','/portfolio/erp-demo/','/portfolio/erp-demo/en/'];
 const KEY='tb-erp-demo-v1';
+const checkRound3=require('./check-erp-round3-browser.cjs');
 (async()=>{
  fs.mkdirSync(out,{recursive:true});
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'});
@@ -28,7 +29,8 @@ const KEY='tb-erp-demo-v1';
     await page.locator(`.project-card[href="/portfolio/ai-agent/deck/${suffix}"]`).click();assert.equal(new URL(page.url()).pathname,`/portfolio/ai-agent/deck/${suffix}`);
     await page.goto(origin+`/portfolio/ai-agent/${suffix}`);await page.locator('.project-card[href="/experience/"]').click();assert.equal(new URL(page.url()).pathname,'/experience/');
     await page.goto(origin+`/portfolio/${suffix}`);await page.locator(`.project-card[href="/portfolio/erp-demo/${suffix}"]`).click();
-    const nav=async view=>page.locator(`[data-action=navigate][data-view=${view}]`).click();
+    if(await page.locator('#tour').isVisible())await page.locator('[data-action=tour-skip]').click();
+    const nav=async view=>page.locator(`#module-nav [data-action=navigate][data-view=${view}]`).click();
     const stored=()=>page.evaluate(key=>JSON.parse(localStorage.getItem(key)),KEY);
     await page.locator('#reset-data').click();await page.locator('#confirm-dialog [value=confirm]').click();
     await nav('products');await page.locator('[data-action=add-product]').click();
@@ -47,6 +49,7 @@ const KEY='tb-erp-demo-v1';
     await page.screenshot({path:path.join(out,`${width}-${en?'en':'zh'}-assistant.png`)});await page.locator('[data-question=stock]').click();assert.ok((await page.locator('#assistant-answer').innerText()).length);
     for(let i=0;i<20;i++){await page.keyboard.press('Tab');assert.ok(await page.evaluate(()=>document.querySelector('#assistant-dialog').contains(document.activeElement)));}
     await page.keyboard.press('Escape');assert.ok(await page.locator('#assistant-open').evaluate(e=>e===document.activeElement));
+    await checkRound3(page,{width,en,stored});
     await page.locator('#reset-data').click();await page.locator('#confirm-dialog [value=confirm]').click();await page.waitForFunction(()=>{try{return JSON.parse(localStorage.getItem('tb-erp-demo-v1')).products.length===20}catch(e){return false}},null,{timeout:5000}).catch(()=>{});assert.equal((await stored()).products.length,20);assert.equal((await stored()).orders.length,120);
    }
    assert.deepEqual(errors,[]);results.push({width,pages:routes.length,bilingualERP:true,consoleErrors:errors});await context.close();

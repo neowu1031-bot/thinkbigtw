@@ -16,11 +16,12 @@
   const uid = prefix => `${prefix}-${crypto.randomUUID()}`;
   const categories = [['paper','紙品','Paper'],['writing','書寫','Writing'],['filing','收納','Filing'],['tools','事務用品','Office tools']];
   const categoryName = key => { const c = categories.find(c => c[0] === key); return c ? c[en ? 2 : 1] : key; };
-  const modules = [['dashboard','儀表板','Dashboard'],['products','商品','Products'],['purchases','進貨單','Purchases'],['sales','銷貨單','Sales'],['inventory','庫存','Inventory'],['contacts','客戶與供應商','Contacts'],['reports','報表','Reports']];
+  const modules = [['dashboard','首頁待辦','Overview'],['crm','客戶管理','CRM'],['attendance','員工出勤','Attendance'],['receivables','報價與收款','Quotes & payments'],['products','商品','Products'],['purchases','進貨單','Purchases'],['sales','出貨（銷貨）','Sales / shipping'],['inventory','庫存','Inventory'],['contacts','客戶與供應商','Contacts'],['reports','報表','Reports']];
   let view = 'dashboard', search = '', category = '', reportMonth = currentMonth();
   let editing = null, orderLines = [], lineSequence = 0;
   let state, lastSaved = null, volatile = false, corrupt = false;
   let undoState = null, sortKey = 'sku', sortDirection = 1, onlyLow = false, selected = new Set();
+  let agentChange = null;
   let mode = 'manual', orderFilter = '', orderSearch = '', orderPeriod = '', orderSort = 'newest', pendingIntent = null;
   const posted = o => !o.status || o.status === 'posted';
   const content = $('#erp-content');
@@ -55,6 +56,7 @@
       const sold = data.products[(day*7)%16];
       addOrder(data,'sale',data.customers[day%8].id,[{productId:sold.id,qty:Math.min(sold.stock,2+day%4),unit:sold.price}],dateKey(date),`SO-DEMO-${day+1}`);
     }
+    upgradeOperations(data);
     return data;
   }
 
@@ -99,6 +101,15 @@
     const ids = new Set(data.products.map(p=>p.id));
     if (!data.orders.every(o => o && str(o.id) && (!o.status || ['draft','confirmed','posted'].includes(o.status)) && (!o.kind || ['order','quote'].includes(o.kind)) && (o.paid===undefined || typeof o.paid==='boolean') && (!o.dueDate || date(o.dueDate)) && date(o.date) && ['purchase','sale'].includes(o.type) && str(o.partyName) && str(o.partyNameEn) && int(o.total) && int(o.cost) && Array.isArray(o.lines) && o.lines.length && o.lines.every(l => l && ids.has(l.productId) && str(l.sku) && str(l.name) && str(l.nameEn) && int(l.qty) && l.qty>0 && int(l.unit) && int(l.cost)))) return false;
     if (!data.movements.every(m => m && ids.has(m.productId) && date(m.date) && ['opening','purchase','sale'].includes(m.kind) && str(m.id) && str(m.sku) && str(m.name) && str(m.nameEn) && str(m.orderId) && Number.isSafeInteger(m.qty) && int(m.balance))) return false;
+    if(data.operationsVersion!==undefined){
+      if(data.operationsVersion!==1||!['crm','employees','attendance','leaves'].every(k=>Array.isArray(data[k])))return false;
+      const customers=new Set(data.customers.map(c=>c.id));
+      if(data.crm.length!==customers.size||new Set(data.crm.map(c=>c.customerId)).size!==customers.size||!data.crm.every(c=>customers.has(c.customerId)&&['talk','quote','won','lost'].includes(c.stage)&&date(c.next)&&Array.isArray(c.notes)&&c.notes.every(n=>date(n.date)&&str(n.text))))return false;
+      if(!data.employees.length||!data.employees.every(e=>str(e.id)&&str(e.name)&&str(e.nameEn)))return false;
+      const employees=new Set(data.employees.map(e=>e.id));
+      if(!data.attendance.every(a=>str(a.id)&&employees.has(a.employeeId)&&date(a.date)&&/^\d{2}:\d{2}$/.test(a.in)&&(a.out===''||/^\d{2}:\d{2}$/.test(a.out))&&int(a.overtime)))return false;
+      if(!data.leaves.every(l=>str(l.id)&&employees.has(l.employeeId)&&date(l.date)&&['annual','sick'].includes(l.kind)&&['pending','approved','rejected'].includes(l.status)))return false;
+    }
     return data.products.every(p => data.movements.filter(m=>m.productId===p.id).reduce((sum,m)=>sum+m.qty,0) === p.stock);
   }
   function storageNotice(message) { $('#storage-status').textContent = message; }
@@ -129,6 +140,7 @@
       }
     }
     const next = JSON.parse(JSON.stringify(state));
+    upgradeOperations(next);
     change(next);
     if (!volatile) {
       const raw = JSON.stringify(next);
@@ -152,23 +164,28 @@
   }
   function metric(label,value,note='',detail='month-sales') { return `<button type="button" class="metric" data-action="drill" data-detail="${detail}"><small>${label} ↗</small><strong>${value}</strong><span>${note}</span></button>`; }
   function render(focus=false) {
+    renderAgentData();
     $('#module-nav').innerHTML = modules.map(([key,zh,english])=>button('navigate',t(zh,english),`data-view="${key}" ${key===view?'aria-current="page"':''}`)).join('');
     const title = modules.find(m=>m[0]===view);
     content.innerHTML = `<header class="module-head"><h2 id="module-title" tabindex="-1">${t(title[1],title[2])}</h2>${button('export',t('匯出 CSV','Export CSV'))}</header>`;
-    ({dashboard:renderDashboard,products:renderProducts,purchases:renderOrder,sales:renderOrder,inventory:renderInventory,contacts:renderContacts,reports:renderReports})[view]();
+    ({dashboard:renderDashboard,crm:()=>renderCRM(content),attendance:()=>renderAttendance(content),receivables:()=>renderReceivables(content),products:renderProducts,purchases:renderOrder,sales:renderOrder,inventory:renderInventory,contacts:renderContacts,reports:renderReports})[view]();
     if (pendingIntent) updatePreview();
     if (focus) $('#module-title').focus({preventScroll:true});
   }
   function renderDashboard() {
+    renderOverview(content);
     const sales = salesFor(currentMonth()), purchases = state.orders.filter(o=>o.type==='purchase' && posted(o) && o.date.startsWith(currentMonth()));
-    content.insertAdjacentHTML('beforeend',`<div class="metrics">${metric(t('今日銷售','Sales today'),money(sum(state.orders.filter(o=>o.type==='sale'&&posted(o)&&o.date===today()),'total')),today(),'today')}${metric(t('庫存不足','Low stock'),number(lowStock().length),t('品項達安全庫存或以下','products at or below safety stock'),'low')}${metric(t('本月進貨','Received this month'),number(units(purchases)),t(`${purchases.length} 張進貨單`,`${purchases.length} purchase orders`),'purchases')}${metric(t('本月出貨','Shipped this month'),number(units(sales)),t(`${sales.length} 張銷貨單`,`${sales.length} sales orders`),'month-sales')}</div><div class="dashboard-columns"><section><h3>${t('補貨提醒','Stock to review')}</h3><ul class="stock-alerts">${lowStock().map(p=>`<li>${button('agent-product',escape(name(p)),`data-id="${escape(p.id)}"`)}<span class="warning">${p.stock} / ${p.safety}</span></li>`).join('')||`<li>${t('目前庫存皆高於安全量。','All products are above safety stock.')}</li>`}</ul><p class="hint">${t('目前庫存 / 安全庫存；本示範不做需求預測。','Current stock / safety stock. No demand forecast is used.')}</p></section><section><h3>${t('本月營運','This month at a glance')}</h3>${metric(t('銷售額（示範資料）','Sales (demo data)'),money(sum(sales,'total')))}${metric(t('毛利（示範資料）','Gross profit (demo data)'),money(sum(sales,'total')-sum(sales,'cost')))}<p class="hint">${t('試著新增一項商品，再建立進貨單與銷貨單。數據會隨操作更新。','Add a product, then post a purchase and a sale. These figures update as you go.')}</p></section></div><section class="erp-panel"><h3>${t('最近單據','Recent orders')}</h3>${orderTable(state.orders.slice(-6).reverse())}</section>`);
+    const waiting = state.orders.filter(o=>!posted(o));
+    content.insertAdjacentHTML('beforeend',`<section class="manual-start"><div><span class="eyebrow">${t('今天先處理這些事','START HERE')}</span><h3>${t('貨進來、貨出去，都從這裡開始。','Receive, ship, and keep stock in view.')}</h3><p>${t('選進貨或出貨 → 填商品與數量 → 確認。也能切到 Agent 版，用一句話準備同一張單。','Choose receive or ship → enter items and quantities → confirm. Agent mode prepares the same order from one request.')}</p></div><div class="quick-actions">${button('navigate',t('建立進貨單','Receive stock'),'data-view="purchases" class="primary"')}${button('navigate',t('建立出貨單','Ship stock'),'data-view="sales"')}${button('navigate',t('管理商品','Manage products'),'data-view="products"')}</div></section><div class="metrics">${metric(t('需要補貨','Needs replenishment'),number(lowStock().length),t('點開查看商品','Open product list'),'low')}${metric(t('本月進貨數量','Units received this month'),number(units(purchases)),t(`${purchases.length} 張進貨單`,`${purchases.length} purchase orders`),'purchases')}${metric(t('本月出貨數量','Units shipped this month'),number(units(sales)),t(`${sales.length} 張出貨單`,`${sales.length} sales orders`),'month-sales')}</div><section class="erp-panel"><h3>${t('待完成單據','Orders to finish')} · ${waiting.length}</h3>${waiting.length?orderTable(waiting.slice(-5).reverse()):`<p class="hint">${t('目前沒有待完成單據。可以直接建立進貨或出貨單。','All orders are complete. You can create a new purchase or sale.')}</p>`}</section><section id="manual-data" class="erp-panel stock-snapshot" aria-label="${t('庫存與單據','Stock and orders')}"></section>`);
+    renderAgentData($('#manual-data'));
   }
+
   function productRows() {
     const q = search.trim().toLocaleLowerCase();
     return activeProducts().filter(p=>(!onlyLow||p.stock<=p.safety)&&(!category||p.category===category)&&(!q||`${p.sku} ${p.name} ${p.nameEn}`.toLocaleLowerCase().includes(q))).sort((a,b)=>sortDirection*(typeof a[sortKey]==='number'?a[sortKey]-b[sortKey]:String(sortKey==='name'?name(a):a[sortKey]).localeCompare(String(sortKey==='name'?name(b):b[sortKey]),en?'en':'zh-TW')));
   }
   function productTable() {
-    return table([`<input type="checkbox" id="select-all" aria-label="${t('選取目前列表','Select visible products')}" ${productRows().length && productRows().every(p=>selected.has(p.id))?'checked':''}>`,t('編號 / 商品','SKU / Product'),t('分類','Category'),t('成本 / 售價','Cost / Price'),t('庫存 / 安全量','Stock / Safety'),t('操作','Actions')],productRows().map(p=>[
+    return table([`<input type="checkbox" id="select-all" aria-label="${t('選取目前列表','Select visible products')}" ${productRows().length && productRows().every(p=>selected.has(p.id))?'checked':''}>`,t('編號 / 商品','Code / Product'),t('分類','Category'),t('成本 / 售價','Cost / Price'),t('庫存 / 安全量','Stock / Safety'),t('操作','Actions')],productRows().map(p=>[
       `<input type="checkbox" data-select="${escape(p.id)}" aria-label="${escape(t('選取 ','Select ')+name(p))}" ${selected.has(p.id)?'checked':''}>`,
       `<strong>${escape(p.sku)}</strong><br>${escape(name(p))}`,escape(categoryName(p.category)),`${money(p.cost)}<br>${money(p.price)}`,
       `<span class="${p.stock<=p.safety?'warning':''}">${p.stock}</span> / <input class="inline-safety" type="number" min="0" max="100000" step="1" data-safety="${escape(p.id)}" value="${p.safety}" aria-label="${escape(name(p)+' '+t('安全庫存','safety stock'))}">`,
@@ -176,21 +193,21 @@
     ]));
   }
   function renderProducts() {
-    content.insertAdjacentHTML('beforeend',`<div class="toolbar"><label>${t('搜尋商品','Search products')}<input id="product-search" type="search" value="${escape(search)}" placeholder="${t('商品名稱或編號','Product name or SKU')}"></label><label>${t('分類','Category')}<select id="category-filter">${options([['',t('所有分類','All categories')],...categories.map(c=>[c[0],c[en?2:1]])],category)}</select></label>${button('add-product',t('新增商品','Add product'),'class="primary"')}</div><div class="toolbar compact"><label>${t('排序','Sort by')}<select id="product-sort">${options([['sku',t('編號','SKU')],['name',t('名稱','Name')],['stock',t('庫存','Stock')],['price',t('售價','Price')],['safety',t('安全庫存','Safety stock')]],sortKey)}</select></label>${button('sort-direction',sortDirection===1?'↑':'↓',`aria-label="${t('切換排序方向','Reverse sort order')}"`)}<label class="check-label"><input type="checkbox" id="low-only" ${onlyLow?'checked':''}>${t('只看庫存不足','Low stock only')}</label></div><div class="batch-bar"><span id="selected-count">${selected.size} ${t('項已選','selected')}</span><label>${t('批次安全庫存','Safety stock for selection')}<input id="batch-safety" type="number" min="0" max="100000" value="30"></label>${button('batch-safety',t('套用安全庫存','Apply safety stock'))}${button('batch-delete',t('刪除所選','Delete selected'))}</div><div id="product-editor"></div><div id="product-results">${productTable()}</div><p class="hint">${t('新商品從零庫存開始，數量由進出貨異動。尚有庫存的商品不可刪除；歷史單據會保留。','New products start at zero stock. Use orders to change quantities. Products with stock cannot be deleted; order history is retained.')}</p>`);
+    content.insertAdjacentHTML('beforeend',`<div class="toolbar"><label>${t('搜尋商品','Search products')}<input id="product-search" type="search" value="${escape(search)}" placeholder="${t('商品名稱或編號','Product name or code')}"></label><label>${t('分類','Category')}<select id="category-filter">${options([['',t('所有分類','All categories')],...categories.map(c=>[c[0],c[en?2:1]])],category)}</select></label>${button('add-product',t('新增商品','Add product'),'class="primary"')}</div><div class="toolbar compact"><label>${t('排序','Sort by')}<select id="product-sort">${options([['sku',t('編號','Product code')],['name',t('名稱','Name')],['stock',t('庫存','Stock')],['price',t('售價','Price')],['safety',t('安全庫存','Safety stock')]],sortKey)}</select></label>${button('sort-direction',sortDirection===1?'↑':'↓',`aria-label="${t('切換排序方向','Reverse sort order')}"`)}<label class="check-label"><input type="checkbox" id="low-only" ${onlyLow?'checked':''}>${t('只看庫存不足','Low stock only')}</label></div><div class="batch-bar"><span id="selected-count">${selected.size} ${t('項已選','selected')}</span><label>${t('批次安全庫存','Safety stock for selection')}<input id="batch-safety" type="number" min="0" max="100000" value="30"></label>${button('batch-safety',t('套用安全庫存','Apply safety stock'))}${button('batch-delete',t('刪除所選','Delete selected'))}</div><div id="product-editor"></div><div id="product-results">${productTable()}</div><p class="hint">${t('新商品從零庫存開始，數量由進出貨異動。尚有庫存的商品不可刪除；歷史單據會保留。','New products start at zero stock. Use orders to change quantities. Products with stock cannot be deleted; order history is retained.')}</p>`);
   }
   function showProduct(id) {
     editing = id || '';
     const p = state.products.find(p=>p.id===id) || {sku:'',name:'',nameEn:'',category:'paper',cost:0,price:0,safety:10};
-    $('#product-editor').innerHTML = `<form id="product-form" class="edit-panel"><h3>${id?t('編輯商品','Edit product'):t('新增商品','Add product')}</h3><div class="form-grid"><label>${t('商品編號','SKU')}<input name="sku" required maxlength="40" value="${escape(p.sku)}"></label><label>${t('商品名稱（中文）','Product name (Chinese)')}<input name="name" required maxlength="80" value="${escape(p.name)}"></label><label>${t('英文名稱（選填）','English name (optional)')}<input name="nameEn" maxlength="100" value="${escape(p.nameEn)}"></label><label>${t('分類','Category')}<select name="category">${options(categories.map(c=>[c[0],c[en?2:1]]),p.category)}</select></label><label>${t('成本（NT$）','Cost (NT$)')}<input name="cost" type="number" min="0" max="1000000" step="0.01" required value="${p.cost/100}" ${id&&p.stock>0?'readonly':''}></label><label>${t('售價（NT$）','Price (NT$)')}<input name="price" type="number" min="0" max="1000000" step="0.01" required value="${p.price/100}"></label><label>${t('安全庫存','Safety stock')}<input name="safety" type="number" min="0" max="100000" step="1" required value="${p.safety}"></label></div><p class="hint">${t('有庫存時成本依進貨加權平均計算；歷史銷貨毛利不受後續修改影響。','For stocked products, cost uses a moving weighted average of purchases. Past sales keep their original cost.')}</p><p id="product-error" class="form-error" role="alert"></p><div class="form-actions">${button('cancel-product',t('取消','Cancel'))}<button type="submit" class="primary">${t('儲存商品','Save product')}</button></div></form>`;
+    $('#product-editor').innerHTML = `<form id="product-form" class="edit-panel"><h3>${id?t('編輯商品','Edit product'):t('新增商品','Add product')}</h3><div class="form-grid"><label>${t('商品編號','Product code')}<input name="sku" required maxlength="40" value="${escape(p.sku)}"></label><label>${t('商品名稱（中文）','Product name (Chinese)')}<input name="name" required maxlength="80" value="${escape(p.name)}"></label><label>${t('英文名稱（選填）','English name (optional)')}<input name="nameEn" maxlength="100" value="${escape(p.nameEn)}"></label><label>${t('分類','Category')}<select name="category">${options(categories.map(c=>[c[0],c[en?2:1]]),p.category)}</select></label><label>${t('成本（NT$）','Cost (NT$)')}<input name="cost" type="number" min="0" max="1000000" step="0.01" required value="${p.cost/100}" ${id&&p.stock>0?'readonly':''}></label><label>${t('售價（NT$）','Price (NT$)')}<input name="price" type="number" min="0" max="1000000" step="0.01" required value="${p.price/100}"></label><label>${t('安全庫存','Safety stock')}<input name="safety" type="number" min="0" max="100000" step="1" required value="${p.safety}"></label></div><p class="hint">${t('有庫存時成本依進貨加權平均計算；歷史銷貨毛利不受後續修改影響。','For stocked products, cost uses a moving weighted average of purchases. Past sales keep their original cost.')}</p><p id="product-error" class="form-error" role="alert"></p><div class="form-actions">${button('cancel-product',t('取消','Cancel'))}<button type="submit" class="primary">${t('儲存商品','Save product')}</button></div></form>`;
     $('#product-form [name=sku]').focus();
   }
   function saveProduct(form) {
     const f = new FormData(form), value = key => String(f.get(key)||'').trim();
     const product = {sku:value('sku'),name:value('name'),nameEn:value('nameEn')||value('name'),category:value('category'),cost:Math.round(Number(value('cost'))*100),price:Math.round(Number(value('price'))*100),safety:Number(value('safety'))};
     try {
-      if (!product.sku || !product.name || !Number.isInteger(product.safety)) throw new Error(t('請填寫商品編號、名稱與有效安全庫存。','Enter a SKU, name, and valid safety stock.'));
+      if (!product.sku || !product.name || !Number.isInteger(product.safety)) throw new Error(t('請填寫商品編號、名稱與有效安全庫存。','Enter a product code, name, and valid safety stock.'));
       transact(data=>{
-        if (data.products.some(p=>p.id!==editing && p.sku.toLowerCase()===product.sku.toLowerCase())) throw new Error(t('商品編號已使用，請換一個編號。','This SKU is already in use. Choose another.'));
+        if (data.products.some(p=>p.id!==editing && p.sku.toLowerCase()===product.sku.toLowerCase())) throw new Error(t('商品編號已使用，請換一個編號。','This product code is already in use. Choose another.'));
         const p = data.products.find(p=>p.id===editing);
         if (p) Object.assign(p,{...product,cost:p.stock>0?p.cost:product.cost});
         else data.products.push({...product,id:uid('P'),stock:0,active:true});
@@ -202,7 +219,7 @@
   function renderOrder() {
     const purchase = orderType()==='purchase';
     orderLines=[]; lineSequence=0;
-    content.insertAdjacentHTML('beforeend',`<form id="order-form" class="edit-panel"><h3>${purchase?t('建立進貨單','New purchase order'):t('建立銷貨單','New sales order')}</h3><div class="form-grid"><label>${purchase?t('供應商','Supplier'):t('客戶','Customer')}<select name="party" required>${options((purchase?state.suppliers:state.customers).map(p=>[p.id,name(p)]))}</select></label><label>${t('單據日期','Order date')}<input type="date" name="date" value="${today()}" readonly></label></div><div id="order-lines"></div>${button('add-line',t('新增品項','Add line'))}<p class="hint">${t('可先存草稿，再確認與出入庫；直接出入庫會立即更新庫存。最近一次操作可復原。','Save a draft, confirm it, then receive or ship. Direct posting updates stock immediately. You can undo the latest change.')}</p><p id="order-error" class="form-error" role="alert"></p><div class="form-actions"><output id="order-total" class="order-total"></output>${button('save-draft',t('存為草稿','Save draft'))}<button type="submit" class="primary" ${activeProducts().length?'':'disabled'}>${purchase?t('確認入庫','Receive stock'):t('確認出貨','Ship order')}</button></div></form><section class="order-history"><h3>${t('單據與狀態','Orders and status')}</h3>${orderToolbar()}<div id="order-results">${orderTable(filteredOrders())}</div></section>`);
+    content.insertAdjacentHTML('beforeend',`<form id="order-form" class="edit-panel"><ol class="order-steps"><li>${t('選擇客戶或供應商','Choose a contact')}</li><li>${t('填商品與數量','Enter items and quantities')}</li><li>${t('確認入庫或出貨','Confirm receipt or shipment')}</li></ol><h3>${purchase?t('建立進貨單','New purchase order'):t('建立銷貨單','New sales order')}</h3><div class="form-grid"><label>${purchase?t('供應商','Supplier'):t('客戶','Customer')}<select name="party" required>${options((purchase?state.suppliers:state.customers).map(p=>[p.id,name(p)]))}</select></label><label>${t('單據日期','Order date')}<input type="date" name="date" value="${today()}" readonly></label></div><div id="order-lines"></div>${button('add-line',t('新增品項','Add line'))}<p class="hint">${t('可先存草稿，再確認與出入庫；直接出入庫會立即更新庫存。最近一次操作可復原。','Save a draft, confirm it, then receive or ship. Direct posting updates stock immediately. You can undo the latest change.')}</p><p id="order-error" class="form-error" role="alert"></p><div class="form-actions"><output id="order-total" class="order-total"></output>${button('save-draft',t('存為草稿','Save draft'))}<button type="submit" class="primary" ${activeProducts().length?'':'disabled'}>${purchase?t('確認入庫','Receive stock'):t('確認出貨','Ship order')}</button></div></form><section class="order-history"><h3>${t('單據與狀態','Orders and status')}</h3>${orderToolbar()}<div id="order-results">${orderTable(filteredOrders())}</div></section>`);
     addLine();
   }
   function addLine() {
@@ -234,13 +251,13 @@
   }
   function orderTable(orders) {
     return table([t('日期 / 單號','Date / Order'),t('往來對象','Contact'),t('進出貨','Type'),t('數量','Units'),t('金額 / 明細','Amount / Details')],orders.map(o=>[
-      `${escape(o.date)}<br><small title="${escape(o.id)}">${escape(o.id.startsWith('PO-DEMO')||o.id.startsWith('SO-DEMO')?o.id:o.id.slice(0,11))}</small>`,escape(en?o.partyNameEn:o.partyName),`<span class="order-status" data-status="${o.status||'posted'}">${statusName(o)}</span>${o.kind==='quote'?`<small>${t('報價','Quote')}</small>`:''}${o.type==='sale'&&posted(o)?`<small class="payment-note">${o.paid===false?t('未付款','Unpaid'):t('已付款','Paid')}${o.paid===false&&o.dueDate?` · ${t('到期','due')} ${escape(o.dueDate)}`:''}</small>`:''}`,number(sum(o.lines,'qty')),
+      `${escape(o.date)}<br><small title="${escape(o.id)}">${escape(o.id.startsWith('PO-DEMO')||o.id.startsWith('SO-DEMO')?o.id:o.id.slice(0,11))}</small>`,o.type==='sale'?customerLink(o.partyId):escape(en?o.partyNameEn:o.partyName),`<span class="order-status" data-status="${o.status||'posted'}">${statusName(o)}</span>${o.kind==='quote'?`<small>${t('報價','Quote')}</small>`:''}${o.type==='sale'&&posted(o)?`<small class="payment-note">${o.paid===false?t('未付款','Unpaid'):t('已付款','Paid')}${o.paid===false&&o.dueDate?` · ${t('到期','due')} ${escape(o.dueDate)}`:''}</small>`:''}`,number(sum(o.lines,'qty')),
       `<details><summary>${money(o.total)}</summary><ul class="order-detail">${o.lines.map(l=>`<li>${escape(l.sku)} · ${escape(name(l))}<br>${l.qty} × ${money(l.unit)} = ${money(l.qty*l.unit)}</li>`).join('')}</ul></details><div class="table-actions">${!posted(o)?button('advance-order',o.status==='draft'?t('確認單據','Confirm order'):t('完成出入庫','Post stock'),`data-id="${escape(o.id)}"`):''}${button('print-order',t('檢視 / 列印','View / Print'),`data-id="${escape(o.id)}"`)}</div>`
     ]));
   }
   const movementKind = kind => ({opening:t('期初','Opening'),purchase:t('進貨','Purchase'),sale:t('銷貨','Sale')}[kind]);
   function renderInventory() {
-    content.insertAdjacentHTML('beforeend',`<h3>${t('即時庫存','Current stock')}</h3>${table([t('編號','SKU'),t('商品','Product'),t('現有量','On hand'),t('安全量','Safety'),t('狀態','Status')],activeProducts().map(p=>[escape(p.sku),escape(name(p)),number(p.stock),number(p.safety),p.stock<=p.safety?`<span class="warning">${t('需補貨','Low stock')}</span>`:`<span class="ok">${t('充足','In stock')}</span>`]))}<section class="erp-panel"><h3>${t('庫存異動紀錄','Stock movements')}</h3><p class="hint">${t('匯出 CSV 包含所有異動；期初庫存與進出貨均可追溯。','CSV includes every movement, from opening stock to posted orders.')}</p>${table([t('日期','Date'),t('商品','Product'),t('原因','Reason'),t('異動量','Change'),t('異動後庫存','Balance'),t('單號','Order')],state.movements.slice().reverse().map(m=>[escape(m.date),`${escape(m.sku)}<br>${escape(name(m))}`,movementKind(m.kind),(m.qty>0?'+':'')+m.qty,number(m.balance),escape(m.orderId||'—')]))}</section>`);
+    content.insertAdjacentHTML('beforeend',`<h3>${t('即時庫存','Current stock')}</h3>${table([t('編號','Product code'),t('商品','Product'),t('現有量','On hand'),t('安全量','Safety'),t('狀態','Status')],activeProducts().map(p=>[escape(p.sku),escape(name(p)),number(p.stock),number(p.safety),p.stock<=p.safety?`<span class="warning">${t('需補貨','Low stock')}</span>`:`<span class="ok">${t('充足','In stock')}</span>`]))}<section class="erp-panel"><h3>${t('庫存異動紀錄','Stock movements')}</h3><p class="hint">${t('匯出 CSV 包含所有異動；期初庫存與進出貨均可追溯。','CSV includes every movement, from opening stock to posted orders.')}</p>${table([t('日期','Date'),t('商品','Product'),t('原因','Reason'),t('異動量','Change'),t('異動後庫存','Balance'),t('單號','Order')],state.movements.slice().reverse().map(m=>[escape(m.date),`${escape(m.sku)}<br>${escape(name(m))}`,movementKind(m.kind),(m.qty>0?'+':'')+m.qty,number(m.balance),escape(m.orderId||'—')]))}</section>`);
   }
   function renderContacts() {
     content.insertAdjacentHTML('beforeend',`<p class="hint">${t('以下均為虛構往來對象，沒有真實公司或個人聯絡資料。','All contacts below are fictional. No real business or personal contact details are used.')}</p>`);
@@ -269,20 +286,26 @@
   }
   function exportCSV() {
     let headers,rows;
-    if (view==='products') {
-      headers=[t('編號','SKU'),t('中文名稱','Chinese name'),t('英文名稱','English name'),t('分類','Category'),t('庫存','Stock'),t('安全庫存','Safety stock'),t('成本 NTD','Cost NTD'),t('售價 NTD','Price NTD')];
+    if(view==='crm'){
+      headers=[t('客戶','Customer'),t('階段','Stage'),t('下次跟進','Next follow-up'),t('聯絡紀錄','Notes')];
+      rows=state.crm.map(r=>[name(state.customers.find(c=>c.id===r.customerId)),stages().find(s=>s[0]===r.stage)[1],r.next,r.notes.map(n=>n.date+' '+n.text).join(' / ')]);
+    } else if(view==='attendance'){
+      headers=[t('員工','Employee'),t('日期','Date'),t('上班','In'),t('下班','Out'),t('加班分鐘','Overtime minutes')];
+      rows=state.attendance.map(a=>[name(state.employees.find(e=>e.id===a.employeeId)),a.date,a.in,a.out,a.overtime]);
+    } else if (view==='products') {
+      headers=[t('編號','Product code'),t('中文名稱','Chinese name'),t('英文名稱','English name'),t('分類','Category'),t('庫存','Stock'),t('安全庫存','Safety stock'),t('成本 NTD','Cost NTD'),t('售價 NTD','Price NTD')];
       rows=productRows().map(p=>[p.sku,p.name,p.nameEn,categoryName(p.category),p.stock,p.safety,p.cost/100,p.price/100]);
     } else if (view==='inventory') {
-      headers=[t('日期','Date'),t('單號','Order'),t('編號','SKU'),t('商品','Product'),t('原因','Reason'),t('異動量','Change'),t('結餘','Balance')];
+      headers=[t('日期','Date'),t('單號','Order'),t('編號','Product code'),t('商品','Product'),t('原因','Reason'),t('異動量','Change'),t('結餘','Balance')];
       rows=state.movements.map(m=>[m.date,m.orderId,m.sku,name(m),movementKind(m.kind),m.qty,m.balance]);
     } else if (view==='contacts') {
       headers=[t('類型','Type'),t('編號','ID'),t('名稱','Name'),t('聯絡窗口','Contact'),t('區域','Area')];
       rows=['customers','suppliers'].flatMap(kind=>state[kind].map(p=>[kind==='customers'?t('客戶','Customer'):t('供應商','Supplier'),p.id,name(p),en?p.contactEn:p.contact,en?p.areaEn:p.area]));
     } else if (view==='reports') {
-      headers=[t('月份','Month'),t('編號','SKU'),t('商品','Product'),t('銷售數量','Units sold'),t('銷售額 NTD','Sales NTD'),t('成本 NTD','Cost NTD'),t('毛利 NTD','Gross profit NTD')];
+      headers=[t('月份','Month'),t('編號','Product code'),t('商品','Product'),t('銷售數量','Units sold'),t('銷售額 NTD','Sales NTD'),t('成本 NTD','Cost NTD'),t('毛利 NTD','Gross profit NTD')];
       rows=bestsellers(salesFor(reportMonth)).map(p=>[reportMonth,p.sku,name(p),p.qty,p.revenue/100,p.cost/100,(p.revenue-p.cost)/100]);
     } else {
-      headers=[t('單號','Order'),t('日期','Date'),t('類型','Type'),t('往來對象','Contact'),t('商品編號','SKU'),t('商品','Product'),t('數量','Quantity'),t('單價 NTD','Unit price NTD'),t('小計 NTD','Subtotal NTD'),t('單位成本 NTD','Unit cost NTD')];
+      headers=[t('單號','Order'),t('日期','Date'),t('類型','Type'),t('往來對象','Contact'),t('商品編號','Product code'),t('商品','Product'),t('數量','Quantity'),t('單價 NTD','Unit price NTD'),t('小計 NTD','Subtotal NTD'),t('單位成本 NTD','Unit cost NTD')];
       const orders=state.orders.filter(o=>view==='dashboard'||o.type===orderType());
       rows=orders.flatMap(o=>o.lines.map(l=>[o.id,o.date,movementKind(o.type),en?o.partyNameEn:o.partyName,l.sku,name(l),l.qty,l.unit/100,l.qty*l.unit/100,l.cost/100]));
     }
@@ -312,7 +335,7 @@
     const next=seed(),raw=JSON.stringify(next);
     try { localStorage.setItem(KEY,raw);lastSaved=raw;volatile=false;corrupt=false;storageNotice(''); }
     catch (_) { if (corrupt) { announce(t('無法重設瀏覽器內的資料，請確認儲存權限後重試。','Could not reset browser data. Check storage permissions and try again.'));return; } volatile=true;storageNotice(t('目前僅在本頁暫存；重新整理將還原。','Changes last only for this page session and will be lost on refresh.')); }
-    state=next;undoState=null;showUndo();pendingIntent=null;$('#agent-preview').innerHTML='';$('#agent-result').textContent='';view='dashboard';search='';category='';onlyLow=false;selected.clear();orderFilter='';orderPeriod='';orderSearch='';reportMonth=currentMonth();editing=null;render();announce(t('已還原初始示範資料。','Initial demo data restored.'));$('#reset-data').focus();
+    state=next;agentChange=null;undoState=null;showUndo();pendingIntent=null;$('#agent-preview').innerHTML='';$('#agent-result').textContent='';view='dashboard';search='';category='';onlyLow=false;selected.clear();orderFilter='';orderPeriod='';orderSearch='';reportMonth=currentMonth();editing=null;render();announce(t('已還原初始示範資料。','Initial demo data restored.'));$('#reset-data').focus();
   }
   const prompts = [
     ['stock','本週哪些商品快缺貨？','Which products need restocking this week?'],
@@ -416,7 +439,7 @@
   function undo() {
     if(!undoState)return;
     const previous=undoState;
-    try {transact(data=>{for(const key of Object.keys(data))delete data[key];Object.assign(data,previous);});undoState=null;showUndo();selected.clear();render();announce(t('已復原最近一次變更。','Latest change undone.'));$('#agent-result').textContent=t('已復原，兩版資料同步。','Undone. Both modes are in sync.');(mode==='agent'?$('#agent-input'):$('#module-title')).focus();}
+    try {transact(data=>{for(const key of Object.keys(data))delete data[key];Object.assign(data,previous);});undoState=null;agentChange=null;showUndo();selected.clear();render();announce(t('已復原最近一次變更。','Latest change undone.'));$('#agent-result').textContent=t('已復原，兩版資料同步。','Undone. Both modes are in sync.');(mode==='agent'?$('#agent-input'):$('#module-title')).focus();}
     catch(error){announce(error.message);}
   }
   function openDialog(dialog,focus) {
@@ -439,7 +462,7 @@
         if(o.status==='draft'){o.status='confirmed';return;}
         data.orders=data.orders.filter(row=>row.id!==id);
         addOrder(data,o.type,o.partyId,o.lines,today(),o.id,'posted',o.kind);
-        const replacement=data.orders.at(-1);replacement.createdDate=o.createdDate||o.date;replacement.dueDate=o.dueDate;
+        const replacement=data.orders.at(-1);replacement.createdDate=o.createdDate||o.date;replacement.dueDate=o.dueDate;replacement.paid=false;
       });render();announce(t('單據狀態已更新。','Order status updated.'));$('#module-title').focus();
     }catch(error){announce(error.message);}
   }
@@ -472,19 +495,30 @@
     $('#command-results').innerHTML=found.map(c=>button('command-result',escape(c.label),`data-kind="${c.type}" data-id="${escape(c.id)}"`)).join('')||`<p class="empty-state">${t('找不到結果，試試商品編號或客戶代號。','No results. Try a SKU or contact ID.')}</p>`;
   }
   function applyMode() {
+    document.body.dataset.mode=mode;
+    if(mode==='agent')renderAgentData();
     $('#agent-workspace').hidden=mode!=='agent';$('.erp-layout').hidden=mode==='agent';
     document.querySelectorAll('[data-action=mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
   }
   const agentExamples = [
-    ['文具A 售出 5 個給大成','Sell 5 ST-001 to C01'],['進貨 B 款 20 個','Receive 20 ST-002 from S01'],
-    ['C 還剩多少','How many ST-003 are left'],['這週誰還沒付款','Who has unpaid orders due this week'],
-    ['把 D 安全庫存改成 30','Set ST-004 safety stock to 30'],['幫我開一張給順達的報價','Create a quote for C02']
+    ['A4 再生影印紙 售出 5 個給 C01','Sell 5 A4 recycled paper to C01'],
+    ['進貨 A5 筆記本 20 個','Receive 20 A5 notebook from S01'],
+    ['本週哪些商品快缺貨','Which products have low stock'],
+    ['方格便條紙 還剩多少','How many Grid memo pad are left']
   ];
+  function renderAgentData(panel=$('#agent-data')) {
+    if(!panel)return;
+    if(panel.id==='agent-data')document.querySelectorAll('.ops-agent-nav button').forEach(b=>{if(b.dataset.view===agentView)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
+    if(panel.id==='agent-data' && agentView!=='inventory'){panel.innerHTML='';({dashboard:renderOverview,crm:renderCRM,attendance:renderAttendance,receivables:renderReceivables})[agentView](panel);return;}
+    const products=activeProducts().slice().sort((a,b)=>Number(b.id===agentChange?.id)-Number(a.id===agentChange?.id));
+    panel.innerHTML=`<header><span class="eyebrow">${panel.id==='agent-data'?t('03 · 看資料變化','03 · See what changed'):t('兩版同步 · 即時資料','SHARED LIVE RECORDS')}</span><h3>${t('現在的庫存','Stock right now')}</h3><p class="hint">${t('確認後同步更新；底色標出最近一次變動。','Updates after confirmation. Highlight shows the latest change.')}</p></header><div class="agent-stock-scroll" tabindex="0" role="region" aria-label="${t('商品庫存，可上下捲動','Product stock, scroll for more')}"><table><thead><tr><th>${t('商品','Product')}</th><th>${t('現有數量','On hand')}</th><th>${t('提醒','Status')}</th></tr></thead><tbody>${products.map(p=>`<tr data-product="${escape(p.id)}" class="${agentChange?.id===p.id?'agent-changed':''}"><td>${escape(name(p))}</td><td>${agentChange?.id===p.id&&agentChange.before!==p.stock?`<span class="agent-before">${agentChange.before} → </span>`:''}<strong>${p.stock}</strong></td><td>${p.stock<=p.safety?t('需補貨','Low stock'):t('充足','In stock')}</td></tr>`).join('')}</tbody></table></div><h3 class="agent-orders-heading">${t('最近單據','Recent orders')}</h3><div class="agent-orders">${state.orders.slice(-3).reverse().map(o=>`<article class="${agentChange?.orderId===o.id?'agent-changed':''}"><strong>${o.type==='purchase'?t('進貨單','Purchase order'):o.kind==='quote'?t('報價草稿','Quote draft'):t('出貨單','Sales order')}</strong><span>${statusName(o)}</span><small>${escape(o.id)}</small><p>${escape(o.lines.map(l=>name(l)+' × '+l.qty).join(', '))}</p></article>`).join('')||`<p>${t('還沒有單據。確認第一筆操作後會出現在這裡。','No orders yet. Confirm your first action to see it here.')}</p>`}</div>`;
+  }
   // Taiwanese synonyms plus English equivalents. IDs and exact names also work.
   const saleWords=/售出|賣掉|賣出|賣了|賣|出了|出貨|銷貨|sell|sold|ship/i;
   const purchaseWords=/進貨|進了|補貨|補進|買進|入庫|採購|receive|purchase|restock|buy/i;
   function resolveProduct(text) {
     const q=text.toLowerCase();
+    if(/A4\s*(紙|paper)/i.test(text))return activeProducts().find(p=>p.id==='P001');
     const exact=activeProducts().filter(p=>[p.sku,p.name,p.nameEn].some(n=>q.includes(n.toLowerCase())));
     if(exact.length>1)return null;
     if(exact.length===1)return exact[0];
@@ -498,6 +532,7 @@
     const found=parties.filter(p=>[p.id,p.name,p.nameEn].some(n=>new RegExp(n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'(?![0-9])','i').test(q)));
     if(found.length===1)return found[0];
     if(found.length>1)return null;
+    if(type!=='purchase' && /鼎成|Dingcheng|王老闆|Mr Wang/i.test(text))return parties[0];
     if(type!=='purchase')return /大成/.test(text)?parties[0]:/順達/.test(text)?parties[1]:null;
     // A missing supplier is an explicit editable default on the confirmation card.
     return /(?:供應商|supplier|from)\s*\S+/i.test(text)?null:parties[0];
@@ -511,7 +546,7 @@
       if(!p||!value)return null;return {type:'safety',productId:p.id,qty:Number(value[1])};
     }
     if(p&&/剩|還有|幾個|多少|庫存|left|on hand|how many/i.test(text)&&!saleWords.test(text)&&!purchaseWords.test(text))return {type:'stock',productId:p.id};
-    if(quote){const quantity=text.replace(/ST-\d+|[PCS]\d{2,3}/gi,'').match(/(\d+)\s*(?:個|件|本|支|units?)/i);return {type:'quote',partyId:resolveParty(text,'sale')?.id||'',productId:p?.id||'',qty:quantity?Number(quantity[1]):1};}
+    if(quote){const quantity=text.replace(/ST-\d+|[PCS]\d{2,3}/gi,'').match(/(\d+)\s*(?:個|件|本|支|箱|boxes|units?)/i);return {type:'quote',partyId:resolveParty(text,'sale')?.id||'',productId:p?.id||'',qty:quantity?Number(quantity[1]):1};}
     // Analytical questions must win over words such as 補貨 / restock.
     const key=questionKey(text);
     if(key&&(/哪些|什麼|哪個|這週|本週|下週|本月|最低|最久|誰|值|which|what|who|week|month|lowest|oldest/i.test(text)))return {type:'insight',key};
@@ -528,13 +563,14 @@
   }
   function agentRespond(text) {
     pendingIntent=null;$('#agent-preview').innerHTML='';
+    if(operationsAgent(text))return;
     const intent=parseAgent(text);
     if(!intent){$('#agent-result').innerHTML=`<p>${t('我還不確定商品、數量或對象。你想做哪一件事？請一次指定一項商品與數量。','I need a product, quantity and contact. Which action did you mean? Please use one product per request.')}</p>${agentExamples.slice(0,3).map(([zh,english])=>button('agent-example',escape(t(zh,english)),`data-text="${escape(t(zh,english))}"`)).join('')}`;return;}
     if(intent.type==='stock'){const p=state.products.find(p=>p.id===intent.productId);$('#agent-result').innerHTML=`<p>${escape(name(p))} · ${p.stock} ${t('件；安全量','units; safety stock')} ${p.safety}</p>${button('agent-product',t('點我看明細 →','View details →'),`data-id="${escape(p.id)}"`)}`;return;}
     if(intent.type==='insight'){const r=insights(intent.key);$('#agent-result').innerHTML=`<p>${escape(r.message).replace(/\n/g,'<br>')}</p>${button('insight-detail',t('點我看明細 →','View details →'),`data-detail="${intent.key}"`)}`;return;}
     pendingIntent=intent;$('#agent-result').textContent=t('請檢查下方內容；按確認後才會寫入。','Review the fields below. Nothing changes until you confirm.');
     const purchase=intent.type==='purchase',safety=intent.type==='safety',parties=purchase?state.suppliers:state.customers;
-    $('#agent-preview').innerHTML=`<form id="agent-confirm" class="edit-panel"><h3>${t('我理解成：','My understanding: ')}${safety?t('修改安全庫存','Update safety stock'):intent.type==='quote'?t('建立報價草稿','Create quotation draft'):purchase?t('建立進貨單並入庫','Create and receive purchase'):t('建立銷貨單並出貨','Create and ship sale')}</h3><div class="form-grid">${!safety?`<label>${purchase?t('供應商','Supplier'):t('客戶','Customer')}<select name="party" required>${options([['',t('請選擇','Choose a contact')],...parties.map(p=>[p.id,name(p)])],intent.partyId)}</select></label>`:''}<label>${t('商品','Product')}<select name="product" required>${options([['',t('請選擇商品','Choose a product')],...activeProducts().map(p=>[p.id,p.sku+' · '+name(p)])],intent.productId)}</select></label><label>${safety?t('新安全庫存','New safety stock'):t('數量','Quantity')}<input name="qty" type="number" min="${safety?0:1}" max="100000" step="1" required value="${intent.qty}"></label>${!safety?`<label>${t('單價（NT$）','Unit price (NT$)')}<input name="unit" type="number" min="0" max="1000000" step="0.01" required></label>`:''}</div><p id="agent-impact" aria-live="polite"></p><p id="agent-error" role="alert" class="form-error"></p><div class="form-actions">${button('agent-cancel',t('取消','Cancel'))}<button type="submit" class="primary">${t('確認執行','Confirm action')}</button></div></form>`;
+    $('#agent-preview').innerHTML=`<form id="agent-confirm" class="edit-panel"><span class="eyebrow">${t('02 · 確認再執行','02 · Review and confirm')}</span><h3>${t('我理解成：','My understanding: ')}${safety?t('修改安全庫存','Update safety stock'):intent.type==='quote'?t('建立報價草稿','Create quotation draft'):purchase?t('建立進貨單並入庫','Create and receive purchase'):t('建立銷貨單並出貨','Create and ship sale')}</h3><div class="form-grid">${!safety?`<label>${purchase?t('供應商','Supplier'):t('客戶','Customer')}<select name="party" required>${options([['',t('請選擇','Choose a contact')],...parties.map(p=>[p.id,name(p)])],intent.partyId)}</select></label>`:''}<label>${t('商品','Product')}<select name="product" required>${options([['',t('請選擇商品','Choose a product')],...activeProducts().map(p=>[p.id,p.sku+' · '+name(p)])],intent.productId)}</select></label><label>${safety?t('新安全庫存','New safety stock'):t('數量','Quantity')}<input name="qty" type="number" min="${safety?0:1}" max="100000" step="1" required value="${intent.qty}"></label>${!safety?`<label>${t('單價（NT$）','Unit price (NT$)')}<input name="unit" type="number" min="0" max="1000000" step="0.01" required></label>`:''}</div><p id="agent-impact" aria-live="polite"></p><p id="agent-error" role="alert" class="form-error"></p><div class="form-actions">${button('agent-cancel',t('取消','Cancel'))}<button type="submit" class="primary">${t('確認執行','Confirm action')}</button></div></form>`;
     updatePreview(true);$('#agent-confirm select')?.focus();
   }
   function updatePreview(updatePrice=false) {
@@ -546,18 +582,35 @@
   function confirmAgent(form) {
     if(!pendingIntent||!form.reportValidity())return;
     const intent={...pendingIntent},id=form.elements.product.value,qty=Number(form.elements.qty.value),unit=Math.round(Number(form.elements.unit?.value||0)*100),party=form.elements.party?.value;
+    const before=state.products.find(p=>p.id===id);
     try {
       transact(data=>{
         if(intent.type==='safety'){const p=data.products.find(p=>p.id===id&&p.active);if(!p||!Number.isInteger(qty)||qty<0||qty>100000)throw Error(t('請輸入有效安全庫存。','Enter a valid safety level.'));p.safety=qty;}
         else addOrder(data,intent.type==='purchase'?'purchase':'sale',party,[{productId:id,qty,unit}],today(),uid(intent.type==='purchase'?'PO':intent.type==='quote'?'QT':'SO'),intent.type==='quote'?'draft':'posted',intent.type==='quote'?'quote':'order');
-      });pendingIntent=null;$('#agent-preview').innerHTML='';$('#agent-result').textContent=t('已完成，庫存與單據同步更新。右下角可復原。','Done. Inventory and orders are in sync. Undo is available below.');render();$('#agent-input').focus();
+        if(intent.type==='quote'){const c=data.crm.find(c=>c.customerId===party);if(c&&c.stage!=='won')c.stage='quote';}
+      });
+      const after=state.products.find(p=>p.id===id),order=intent.type==='safety'?null:state.orders.at(-1);
+      agentChange={id,before:before.stock,orderId:order?.id};pendingIntent=null;$('#agent-preview').innerHTML='';
+      $('#agent-result').innerHTML=`<article class="agent-receipt"><h3>${t('已完成 · 做了這些事','Done · Here is what changed')}</h3>${order?`<p>${intent.type==='quote'?t('建立報價草稿','Created quote draft'):intent.type==='purchase'?t('建立進貨單並入庫','Created purchase order and received stock'):t('建立出貨單並出貨','Created sales order and shipped stock')}<br><strong>${escape(order.id)}</strong></p>`:''}<p>${escape(name(after))}<br>${intent.type==='safety'?t('補貨提醒門檻','Low-stock threshold'):t('庫存','Stock')} <strong>${intent.type==='safety'?before.safety:before.stock} → ${intent.type==='safety'?after.safety:after.stock}</strong>${intent.type==='quote'?t('（草稿不改庫存）',' (draft leaves stock unchanged)'):''}</p>${button('undo',t('復原這次操作','Undo this action'))}</article>`;
+      render();$('#agent-input').focus();
     }catch(error){$('#agent-error').textContent=error.message;}
   }
   function setupWorkspace() {
     $('#storage-status').insertAdjacentElement('afterend',$('#app-status'));
+    // Keep the explanatory illustration after the working controls.
+    const flow=$('.anatomy-flow');
+    flow?.remove();
     $('.erp-heading').insertAdjacentHTML('beforeend',`<div class="workspace-tools"><div class="mode-switch" role="group" aria-label="${t('操作模式','Workspace mode')}">${button('mode',t('手動版','Manual'),'data-mode="manual" aria-pressed="true"')}${button('mode',t('Agent 版','Agent'),'data-mode="agent" aria-pressed="false"')}</div>${button('command',t('搜尋 / 指令','Search / Commands')+' <kbd>⌘ K</kbd>')}${button('theme',t('深色主題','Dark theme'),'id="theme-toggle"')}${button('tour',t('操作導覽','Quick tour'))}</div>`);
     $('.demo-notice').insertAdjacentHTML('afterend','<section id="tour" aria-label="'+t('操作導覽','Quick tour')+'" hidden></section>');
-    $('.erp-layout').insertAdjacentHTML('beforebegin',`<section id="agent-workspace" hidden><div class="agent-intro"><span class="eyebrow">${t('你的營運工作台','YOUR OPERATIONS DESK')}</span><h2>${t('說一句，接著確認。','Tell us what needs doing.')}</h2><p>${t('查庫存、開單、調整安全量。每次修改都由你確認。','Check stock, create orders, adjust safety levels. You confirm every change.')}</p></div><form id="agent-form"><label for="agent-input">${t('想處理什麼事？','What would you like to do?')}</label><div class="agent-input-row"><input id="agent-input" maxlength="300" autocomplete="off" placeholder="${t('例如：文具A 售出 5 個給大成','For example: Sell 5 ST-001 to C01')}" required><button type="submit" class="primary">${t('送出指令','Preview action')}</button><button type="button" id="voice-button" hidden>${t('語音輸入','Voice input')}</button></div></form><p id="voice-note" class="hint" hidden></p><div class="agent-examples">${agentExamples.map(([zh,english])=>button('agent-example',escape(t(zh,english)),`data-text="${escape(t(zh,english))}"`)).join('')}</div><p class="hint">${t('示意：正式版接企業本地大模型，資料不出公司。此頁只用前端規則，不呼叫模型。A–D 對應 ST-001–004；大成、順達為 C01、C02 的虛構口令。','Demo: the production design uses an on-premises model with company data kept in-house. This page uses local rules, with no model calls. A–D refer to ST-001–004.')}</p><div id="agent-result" role="status" aria-live="polite"></div><div id="agent-preview"></div></section>`);
+    $('.erp-layout').insertAdjacentHTML('beforebegin',`<p class="shared-data-note">${t('同一份資料，兩種操作方式：手動選單填寫，或讓 Agent 依一句話準備。切換不會重設庫存。','One dataset, two ways to work: fill in a form or ask Agent to prepare it. Switching keeps your stock and orders.')}</p>`);
+    const notice=$('.demo-notice'), shared=$('.shared-data-note');
+    notice.insertAdjacentHTML('beforebegin',`<div class="demo-help"><span class="demo-caption">${t('假資料示範 · 兩版共用庫存','Demo data · Shared stock')}</span><details id="demo-help"><summary>${t('怎麼玩','How to play')}</summary><div class="demo-help-body"></div></details></div>`);
+    const help=$('.demo-help-body');
+    help.append(notice,shared);
+    const extras=document.createElement('div');extras.className='help-tools';
+    document.querySelectorAll('.workspace-tools > button').forEach(el=>extras.append(el));
+    help.append(extras);
+    $('.erp-layout').insertAdjacentHTML('beforebegin',`<section id="agent-workspace" hidden><div class="agent-intro"><span class="eyebrow">${t('你的營運工作台','YOUR OPERATIONS DESK')}</span><h2>${t('說一句，處理今天的營運。','One request. Run today’s operations.')}</h2><p>${t('客戶跟進、請假、報價與庫存。每次修改都由你確認。','Follow-ups, leave, quotes and stock. You confirm every change.')}</p></div><div class="agent-desk"><section class="agent-conversation" aria-label="${t('操作與確認','Request and confirmation')}"><span class="eyebrow">${t('01 · 說出要做的事','01 · Make a request')}</span><form id="agent-form"><label for="agent-input">${t('想處理什麼事？','What would you like to do?')}</label><div class="agent-input-row"><input id="agent-input" maxlength="300" autocomplete="off" placeholder="${t('例如：A4 再生影印紙 售出 5 個給 C01','Example: Sell 5 A4 recycled paper to C01')}" required><button type="submit" class="primary">${t('送出指令','Preview action')}</button><button type="button" id="voice-button" hidden>${t('語音輸入','Voice input')}</button></div></form><p id="voice-note" class="hint" hidden></p><div class="agent-examples">${agentExamples.map(([zh,english])=>button('agent-example',escape(t(zh,english)),`data-text="${escape(t(zh,english))}"`)).join('')}</div><p class="hint">${t('本機示範：依範例辨識文字，未連接 AI 或正式資料。先確認，才會改動資料。','Local demo: recognizes example patterns; no AI or live business connection. Changes require your confirmation.')}</p><div id="agent-result" role="status" aria-live="polite"></div><div id="agent-preview"></div></section><section id="agent-data" aria-label="${t('庫存與單據','Stock and orders')}"></section></div></section>`);
     document.body.insertAdjacentHTML('beforeend',`<div id="undo-toast" hidden><span role="status"></span>${button('undo',t('復原','Undo'))}</div><dialog id="command-dialog" aria-labelledby="command-title"><header class="assistant-top"><h2 id="command-title">${t('搜尋與指令','Search and commands')}</h2>${button('close-dialog',t('關閉','Close'))}</header><label>${t('搜尋商品、客戶、單據或功能','Search products, customers, orders or actions')}<input id="command-search" type="search" autocomplete="off"></label><p class="hint">${t('↑ ↓ 選擇 · Enter 開啟 · Esc 關閉','↑ ↓ select · Enter open · Esc close')}</p><div id="command-results"></div></dialog><dialog id="detail-dialog" aria-labelledby="detail-title"><header class="assistant-top"><h2 id="detail-title"></h2>${button('close-dialog',t('關閉','Close'))}</header><div id="detail-body"></div></dialog>`);
     document.querySelectorAll('dialog').forEach(dialog=>{
       dialog.addEventListener('keydown',event=>{
@@ -571,7 +624,7 @@
       dialog.addEventListener('close',()=>{if(document.querySelector('dialog[open]'))return;if(dialog._returnFocus?.isConnected)dialog._returnFocus.focus();else $('#module-title')?.focus();});
     });
     $('#agent-form').addEventListener('submit',event=>{event.preventDefault();agentRespond($('#agent-input').value.trim());});
-    $('#agent-preview').addEventListener('submit',event=>{event.preventDefault();confirmAgent(event.target);});
+    $('#agent-preview').addEventListener('submit',event=>{event.preventDefault();if(event.target.id==='ops-agent-confirm')return;confirmAgent(event.target);});
     $('#agent-preview').addEventListener('input',event=>updatePreview(event.target.name==='product'));
     $('#command-search').addEventListener('input',paletteResults);
     $('#command-dialog').addEventListener('keydown',event=>{
@@ -580,18 +633,6 @@
       if(event.key==='Enter'&&document.activeElement===$('#command-search')){event.preventDefault();items[0]?.click();}
     });
     document.addEventListener('keydown',event=>{if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){event.preventDefault();if(document.querySelector('dialog[open]'))return;openCommands();}});
-    const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
-    if(Recognition){
-      $('#voice-button').hidden=false;$('#voice-note').hidden=false;
-      $('#voice-note').textContent=t('語音由瀏覽器處理，可能使用瀏覽器供應商的服務；辨識結果只填入指令框。','Voice is processed by your browser and may use its provider’s services. Results only fill the command field.');
-      $('#voice-button').addEventListener('click',()=>{
-        const recognition=new Recognition();recognition.lang=en?'en-US':'zh-TW';recognition.interimResults=false;
-        recognition.onresult=event=>{$('#agent-input').value=event.results[0][0].transcript;$('#agent-input').focus();};
-        recognition.onerror=()=>{$('#agent-result').textContent=t('無法辨識語音，請用文字輸入。','Voice recognition unavailable. Please type your request.');};
-        recognition.onend=()=>{$('#voice-button').disabled=false;};
-        try{recognition.start();$('#voice-button').disabled=true;}catch(_){$('#agent-result').textContent=t('無法啟動語音，請用文字輸入。','Could not start voice input. Please type.');}
-      });
-    }
     let theme=window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light',seen=false;
     try{theme=localStorage.getItem('tb-erp-theme')||theme;seen=localStorage.getItem('tb-erp-tour')==='done';}catch(_){}
     setTheme(theme);if(!seen)showTour(0);
@@ -604,7 +645,7 @@
       [t('一句話也能開單','Create an order in a sentence'),t('切到 Agent 版，選一個範例。先看確認卡與庫存變化，再按確認執行。','Switch to Agent, choose an example, review the fields and stock change, then confirm.')],
       [t('放心試，也能復原','Try it and undo'),t('右下角可復原最近一次變更。⌘K / Ctrl+K 隨時找商品、客戶與單據。','Undo the latest change at the bottom right. Use ⌘K / Ctrl+K to find products, contacts and orders.')]
     ];
-    tour.innerHTML=`<div><span class="eyebrow">${t('30 秒上手','A 30-SECOND TOUR')} · ${step+1} / 3</span><h2>${steps[step][0]}</h2><p>${steps[step][1]}</p></div><div class="table-actions">${button('tour-skip',t('跳過','Skip'))}${button('tour-next',step===2?t('開始操作','Get started'):t('下一步','Next'),'class="primary"')}</div>`;
+    tour.innerHTML=`<div><span class="eyebrow">${t('30 秒上手','A 30-SECOND TOUR')} · ${step+1} / 3</span><h2>${steps[step][0]}</h2><p>${steps[step][1]}</p></div><div class="table-actions">${button('tour-skip',t('關閉提示','Dismiss'))}${button('tour-next',step===2?t('開始操作','Get started'):t('下一步','Next'),'class="primary"')}</div>`;
   }
   function finishTour(){ $('#tour').hidden=true;try{localStorage.setItem('tb-erp-tour','done');}catch(_){} }
   function setTheme(theme){document.body.dataset.theme=theme;$('#theme-toggle').textContent=theme==='dark'?t('淺色主題','Light theme'):t('深色主題','Dark theme');try{localStorage.setItem('tb-erp-theme',theme);}catch(_){} }
@@ -671,5 +712,54 @@
     if(el.id==='order-filter'||el.id==='order-sort'){if(el.id==='order-filter')orderFilter=el.value;else orderSort=el.value;$('#order-results').innerHTML=orderTable(filteredOrders());}
   });
 
-  load();setupWorkspace();render();
+  let agentView='inventory', customerId='C01', overdueOnly=false;
+  const stages=()=>[['talk',t('洽談','Discussion')],['quote',t('報價','Quotation')],['won',t('成交','Won')],['lost',t('流失','Lost')]];
+  function offsetDate(days){const d=new Date();d.setDate(d.getDate()+days);return dateKey(d);}
+  function upgradeOperations(data){
+    if(data.operationsVersion===1)return;
+    data.customers[0].name='鼎成文具（虛構）';data.customers[0].nameEn='Dingcheng Stationery (fictional)';
+    data.customers[0].contact='王老闆（虛構）';data.customers[0].contactEn='Mr Wang (fictional)';
+    data.crm=data.customers.map((c,i)=>({customerId:c.id,stage:['talk','quote','won','lost'][i%4],next:offsetDate(i-2),notes:[]}));
+    data.employees=[{id:'E01',name:'小陳（虛構）',nameEn:'Chen (fictional)'},{id:'E02',name:'小林（虛構）',nameEn:'Lin (fictional)'},{id:'E03',name:'小許（虛構）',nameEn:'Hsu (fictional)'}];
+    data.attendance=[];for(let day=1;day<=new Date().getDate();day++)for(const [i,e] of data.employees.entries())data.attendance.push({id:`AT-${day}-${e.id}`,employeeId:e.id,date:`${currentMonth()}-${String(day).padStart(2,'0')}`,in:i===1?'09:12':'08:55',out:day===new Date().getDate()?'':'18:00',overtime:day===new Date().getDate()?0:i*30});
+    data.leaves=[];data.operationsVersion=1;
+  }
+  function customerLink(id){const c=state.customers.find(c=>c.id===id);return c?button('ops-customer',escape(name(c)),`data-id="${escape(id)}" class="text-link"`):escape(id);}
+  function unpaid(){return state.orders.filter(o=>o.type==='sale'&&posted(o)&&!o.paid);}
+  function overdue(o,days=0){return o.dueDate<offsetDate(-days);}
+  function morning(){const due=unpaid().filter(o=>overdue(o));return t(`今天營收 ${money(sum(salesFor(currentMonth()).filter(o=>o.date===today()),'total'))}；${state.orders.filter(o=>o.type==='sale'&&!posted(o)).length} 張單待出貨、${lowStock().length} 項商品需補貨。逾期應收 ${due.length} 筆，${state.crm.filter(c=>c.next&&c.next<=today()).length} 位客戶待跟進；今天已有 ${state.attendance.filter(a=>a.date===today()).length} 人打卡。`,`Today's revenue is ${money(sum(salesFor(currentMonth()).filter(o=>o.date===today()),'total'))}; ${state.orders.filter(o=>o.type==='sale'&&!posted(o)).length} orders await shipping and ${lowStock().length} products need replenishment. ${due.length} payments are overdue, ${state.crm.filter(c=>c.next&&c.next<=today()).length} customers need follow-up, and ${state.attendance.filter(a=>a.date===today()).length} people have clocked in.`);}
+  function renderOverview(target){target.insertAdjacentHTML('beforeend',`<section class="morning"><h3>${t('今日營運 · 晨報','Today · Morning brief')}</h3><p>${morning()}</p></section><div class="ops-metrics">${[[t('今日營收','Today’s revenue'),money(sum(salesFor(currentMonth()).filter(o=>o.date===today()),'total')),'sales'],[t('待出貨','Awaiting shipment'),state.orders.filter(o=>o.type==='sale'&&!posted(o)).length,'receivables'],[t('缺貨提醒','Low stock'),lowStock().length,'inventory'],[t('逾期應收','Overdue payments'),unpaid().filter(o=>overdue(o)).length,'receivables'],[t('今日出勤','Clocked in today'),state.attendance.filter(a=>a.date===today()).length,'attendance'],[t('待跟進客戶','Follow-ups due'),state.crm.filter(c=>c.next&&c.next<=today()).length,'crm']].map(([label,value,v])=>button('ops-view',`<small>${label}</small><strong>${value}</strong>`,`data-view="${v}"`)).join('')}</div>`);}
+  function renderCRM(target){
+    const record=state.crm.find(c=>c.customerId===customerId)||state.crm[0],c=state.customers.find(c=>c.id===record.customerId);
+    target.insertAdjacentHTML('beforeend',`<h3>${t('商機階段','Opportunity pipeline')}</h3><div class="pipeline">${stages().map(([key,label])=>`<section><h4>${label} <span>${state.crm.filter(c=>c.stage===key).length}</span></h4>${state.crm.filter(c=>c.stage===key).map(c=>`<article>${customerLink(c.customerId)}<small class="${c.next&&c.next<=today()?'warning':''}">${t('下次跟進','Next follow-up')} ${escape(c.next||'—')}</small></article>`).join('')}</section>`).join('')}</div>${table([t('客戶','Customer'),t('聯絡人','Contact'),t('下次跟進','Next follow-up')],state.customers.map(c=>[customerLink(c.id),escape(en?c.contactEn:c.contact),escape(state.crm.find(r=>r.customerId===c.id)?.next||'—')]))}<section class="erp-panel"><h3>${escape(name(c))}</h3><form data-ops-form="crm" class="edit-panel"><input type="hidden" name="customerId" value="${c.id}"><div class="form-grid"><label>${t('商機階段','Stage')}<select name="stage">${options(stages(),record.stage)}</select></label><label>${t('下次跟進日期','Next follow-up date')}<input name="next" type="date" value="${escape(record.next)}" required></label><label>${t('聯絡紀錄','Contact note')}<input name="note" maxlength="300" placeholder="${t('記下這次聯絡內容','Record this conversation')}"></label></div><div class="form-actions"><button class="primary">${t('儲存紀錄','Save record')}</button>${button('ops-quote',t('為此客戶開報價','Create quote for customer'),`data-id="${c.id}"`)}</div></form><ul class="contact-history">${record.notes.map(n=>`<li>${escape(n.date)} · ${escape(n.text)}</li>`).join('')||`<li>${t('尚無聯絡紀錄。','No contact notes yet.')}</li>`}</ul><h3>${t('此客戶的報價與訂單','Customer quotes and orders')}</h3>${orderTable(state.orders.filter(o=>o.partyId===c.id&&o.type==='sale').slice(-8).reverse())}</section>`);
+  }
+  function renderAttendance(target){
+    const month=state.attendance.filter(a=>a.date.startsWith(currentMonth()));
+    target.insertAdjacentHTML('beforeend',`<h3>${t('本月出勤統計','Attendance this month')} · ${currentMonth()}</h3>${table([t('員工','Employee'),t('出勤天數','Days'),t('遲到次數','Late arrivals'),t('加班分鐘','Overtime minutes')],state.employees.map(e=>{const rows=month.filter(a=>a.employeeId===e.id);return [escape(name(e)),rows.length,rows.filter(a=>a.in>'09:00').length,sum(rows,'overtime')]}))}<section class="erp-panel"><h3>${t('請假申請','Request leave')}</h3><form data-ops-form="leave" class="edit-panel"><div class="form-grid"><label>${t('員工','Employee')}<select name="employeeId">${options(state.employees.map(e=>[e.id,name(e)]),'E01')}</select></label><label>${t('日期（一天）','Date (one day)')}<input name="date" type="date" required value="${offsetDate(1)}"></label><label>${t('假別','Leave type')}<select name="kind">${options([['annual',t('特休','Annual leave')],['sick',t('病假','Sick leave')]],'annual')}</select></label></div><div class="form-actions"><button class="primary">${t('送出申請','Submit request')}</button></div></form>${table([t('員工','Employee'),t('日期','Date'),t('假別','Type'),t('審核','Review')],state.leaves.map(l=>[escape(name(state.employees.find(e=>e.id===l.employeeId))),l.date,l.kind==='annual'?t('特休','Annual leave'):t('病假','Sick leave'),l.status==='pending'?`${button('ops-leave-approve',t('核准','Approve'),`data-id="${l.id}"`)} ${button('ops-leave-reject',t('駁回','Reject'),`data-id="${l.id}"`)}`:l.status==='approved'?t('已核准','Approved'):t('已駁回','Rejected')]))}</section><section class="erp-panel"><h3>${t('打卡紀錄','Clock records')}</h3>${table([t('日期','Date'),t('員工','Employee'),t('上班','In'),t('下班','Out'),t('狀態','Status')],month.slice().reverse().map(a=>[a.date,escape(name(state.employees.find(e=>e.id===a.employeeId))),a.in,a.out||'—',`${a.in>'09:00'?`<span class="warning">${t('遲到','Late')}</span>`:t('準時','On time')}${a.overtime?` · ${t('加班','Overtime')} ${a.overtime} ${t('分','min')}`:''}`]))}</section>`);
+  }
+  function renderReceivables(target){
+    const rows=state.orders.filter(o=>o.type==='sale'&&(!overdueOnly||(posted(o)&&!o.paid&&overdue(o,30)))).slice().reverse();
+    target.insertAdjacentHTML('beforeend',`<p class="hint">${t('報價 → 確認訂單 → 出貨扣庫存 → 登記收款。金額均為虛構交易示範。','Quote → confirm order → ship and deduct stock → record payment. All amounts are fictional transaction data.')}</p><form data-ops-form="quote" class="edit-panel"><div class="form-grid"><label>${t('客戶','Customer')}<select name="customerId">${options(state.customers.map(c=>[c.id,name(c)]),customerId)}</select></label><label>${t('商品','Product')}<select name="productId">${options(activeProducts().map(p=>[p.id,name(p)]),'P001')}</select></label><label>${t('數量','Quantity')}<input name="qty" type="number" min="1" max="100000" step="1" value="50" required></label></div><div class="form-actions"><button class="primary">${t('建立報價草稿','Create quote draft')}</button></div></form><label class="check-label"><input type="checkbox" data-ops-overdue ${overdueOnly?'checked':''}>${t('只看逾期超過 30 天','Only overdue by more than 30 days')}</label>${table([t('單號 / 客戶','Order / Customer'),t('狀態','Status'),t('應收金額','Amount'),t('到期日','Due date'),t('下一步','Next step')],rows.map(o=>[`${escape(o.id)}<br>${customerLink(o.partyId)}`,o.status==='draft'?t('報價草稿','Quote draft'):o.status==='confirmed'?t('待出貨','Awaiting shipment'):o.paid?t('已收款','Paid'):t('待收款','Unpaid'),money(o.total),`<span class="${!o.paid&&posted(o)&&overdue(o)?'warning':''}">${o.dueDate}</span>`,!posted(o)?button('advance-order',o.status==='draft'?t('轉訂單','Convert to order'):t('出貨扣庫存','Ship & deduct stock'),`data-id="${o.id}"`):!o.paid?button('ops-pay',t('登記收款','Record payment'),`data-id="${o.id}"`):'—']))}`);
+  }
+  function opsNavigate(v){if(mode==='agent'&&['dashboard','crm','attendance','receivables','inventory'].includes(v)){agentView=v;renderAgentData();}else navigate(v);}
+  function createQuote(data,customerId,productId,qty){const p=data.products.find(p=>p.id===productId);addOrder(data,'sale',customerId,[{productId,qty,unit:p?.price}],today(),uid('QT'),'draft','quote');const c=data.crm.find(c=>c.customerId===customerId);if(c.stage!=='won')c.stage='quote';}
+  function createLeave(data,employeeId,date,kind){if(!data.employees.some(e=>e.id===employeeId)||!/^\d{4}-\d{2}-\d{2}$/.test(date)||!['annual','sick'].includes(kind))throw Error(t('請檢查員工、日期與假別。','Check employee, date and leave type.'));if(data.leaves.some(l=>l.employeeId===employeeId&&l.date===date&&l.status!=='rejected'))throw Error(t('這一天已有請假申請。','A leave request already exists for this date.'));data.leaves.push({id:uid('LV'),employeeId,date,kind,status:'pending'});}
+  function setupOperations(){
+    $('#agent-data').insertAdjacentHTML('beforebegin',`<nav class="ops-agent-nav" aria-label="${t('營運模組','Operations modules')}">${modules.filter(m=>['dashboard','crm','attendance','receivables','inventory'].includes(m[0])).map(([v,zh,english])=>button('ops-view',t(zh,english),`data-view="${v}"`)).join('')}</nav>`);
+    $('.agent-examples').insertAdjacentHTML('beforeend',[[t('王老闆說下週要下單，幫我記下來、週一提醒我','Mr Wang will order next week; note this and remind me Monday')],[t('小陳明天請特休一天','Chen needs annual leave tomorrow')],[t('這個月誰加班最多','Who has the most overtime this month')],[t('幫鼎成開一張報價，A4 紙 50 箱','Quote 50 boxes of A4 paper for Dingcheng')],[t('哪些客戶超過 30 天沒付款','Which payments are over 30 days overdue')],[t('每日晨報','Morning brief')]].map(([q])=>button('agent-example',escape(q),`data-text="${escape(q)}"`)).join(''));
+    document.addEventListener('submit',e=>{const f=e.target;if(!f.dataset.opsForm)return;e.preventDefault();if(!f.reportValidity())return;const fields=Object.fromEntries(new FormData(f));try{transact(data=>{if(f.dataset.opsForm==='crm'){const r=data.crm.find(c=>c.customerId===fields.customerId);r.stage=fields.stage;r.next=fields.next;if(fields.note.trim())r.notes.push({date:today(),text:fields.note.trim()});}if(f.dataset.opsForm==='quote')createQuote(data,fields.customerId,fields.productId,Number(fields.qty));if(f.dataset.opsForm==='leave')createLeave(data,fields.employeeId,fields.date,fields.kind);});if(f.id==='ops-agent-confirm'){$('#agent-preview').innerHTML='';$('#agent-result').textContent=t('已儲存，兩版資料同步。','Saved. Both modes are in sync.');}render();announce(t('已儲存，兩版資料同步。','Saved. Both modes are in sync.'));}catch(error){announce(error.message);$('#agent-result').textContent=error.message;}});
+    document.addEventListener('change',e=>{if(e.target.hasAttribute('data-ops-overdue')){overdueOnly=e.target.checked;render();}});
+    document.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b)return;const a=b.dataset.action,id=b.dataset.id;if(a==='ops-view')opsNavigate(b.dataset.view);if(a==='ops-customer'){customerId=id;opsNavigate('crm');}if(a==='ops-quote'){customerId=id;opsNavigate('receivables');}if(a==='ops-pay'||a==='ops-leave-approve'||a==='ops-leave-reject'){if(!await confirmAction(t('確認更新紀錄','Confirm record update'),a==='ops-pay'?t('將此筆應收標為已收款。','Mark this receivable as paid.'):t('更新此筆請假審核結果。','Update this leave review.')))return;try{transact(data=>{if(a==='ops-pay'){const o=data.orders.find(o=>o.id===id);if(!o||!posted(o)||o.paid)throw Error(t('此單已處理。','Already processed.'));o.paid=true;o.paidDate=today();}else{const l=data.leaves.find(l=>l.id===id);if(l.status!=='pending')throw Error(t('此單已處理。','Already processed.'));l.status=a==='ops-leave-approve'?'approved':'rejected';}});render();announce(t('紀錄已更新，可復原。','Record updated. Undo is available.'));}catch(error){announce(error.message);}}});
+  }
+  function operationsAgent(text){
+    if(/不要|取消|別|don't|do not|cancel/i.test(text))return false;
+    if(/晨報|morning brief/i.test(text)){$('#agent-result').textContent=morning();opsNavigate('dashboard');return true;}
+    if(/加班最多|most overtime/i.test(text)){const ranks=state.employees.map(e=>({e,total:sum(state.attendance.filter(a=>a.employeeId===e.id&&a.date.startsWith(currentMonth())),'overtime')})).sort((a,b)=>b.total-a.total);$('#agent-result').textContent=t(`本月加班最多：${name(ranks[0].e)}，${ranks[0].total} 分鐘。`,`Most overtime this month: ${name(ranks[0].e)}, ${ranks[0].total} minutes.`);opsNavigate('attendance');return true;}
+    if(/30.*(?:付款|overdue)|payments.*30/i.test(text)){overdueOnly=true;opsNavigate('receivables');$('#agent-result').textContent=t('已列出逾期超過 30 天的未收款單據。','Showing unpaid invoices overdue by more than 30 days.');return true;}
+    if(/王老闆|Mr Wang/i.test(text)&&/提醒|remind/i.test(text)){const d=new Date();d.setDate(d.getDate()+((8-d.getDay())%7||7));customerId='C01';opsNavigate('crm');$('#agent-preview').innerHTML=`<form id="ops-agent-confirm" data-ops-form="crm" class="edit-panel"><h3>${t('確認聯絡紀錄與提醒','Review note and reminder')}</h3><input type="hidden" name="customerId" value="C01"><input type="hidden" name="stage" value="${state.crm[0].stage}"><label>${t('聯絡紀錄','Note')}<input name="note" maxlength="300" value="${escape(text)}" required></label><label>${t('下次週一（日期可改）','Next Monday (editable)')}<input name="next" type="date" value="${dateKey(d)}" required></label><button class="primary">${t('確認儲存','Confirm save')}</button>${button('agent-cancel',t('取消','Cancel'))}</form>`;return true;}
+    if(/小陳|Chen/i.test(text)&&/明天.*特休|annual leave tomorrow/i.test(text)){opsNavigate('attendance');$('#agent-preview').innerHTML=`<form id="ops-agent-confirm" data-ops-form="leave" class="edit-panel"><h3>${t('確認小陳特休一天','Review Chen’s one-day annual leave')}</h3><input type="hidden" name="employeeId" value="E01"><input type="hidden" name="kind" value="annual"><label>${t('請假日期','Leave date')}<input name="date" type="date" value="${offsetDate(1)}" required></label><p>${t('送出後待核准，不會自動核准。','Submitted requests await approval.')}</p><button class="primary">${t('確認申請','Confirm request')}</button>${button('agent-cancel',t('取消','Cancel'))}</form>`;return true;}
+    return false;
+  }
+
+  load();upgradeOperations(state);setupWorkspace();setupOperations();render();
 })();
