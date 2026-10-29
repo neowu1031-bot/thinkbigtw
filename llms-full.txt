@@ -8617,8 +8617,8 @@ Search Console 排名追蹤、技術稽核、關鍵字現況報告
 5 大 AI × 15–20 題、連續多天重複抽樣、附信賴區間
 
 見效時間
-4–8 週初步，3–6 個月明顯
-4–8 週 Google 初步變化；AI 能見度無固定時程，每月重量看趨勢
+無固定時程，每月重量看趨勢
+無固定時程，每月重量看趨勢
 
 能承諾什麼
 把技術做對、內容做好；不承諾名次
@@ -8820,17 +8820,17 @@ Honest timeline
 
 SEO 與 GEO 都是累積型的，沒有固定時程。AI 能見度的變化取決於產業競爭、你願意公開多少第一手資訊，以及各 AI 平台的演算法調整——Google 官方也說不保證被收錄或顯示。我們每月用同一套方法重量，讓你看到趨勢，不承諾天數。
 
-第 4–8 週
+盤點
 
-技術修正與內容補強後，開始看到 Google 搜尋的初步變化（Search Console 曝光、點擊趨勢）。
+先做 SEO＋GEO 體檢：找出技術問題、量出 AI 能見度現況、列出優先清單。
 
-持續累積
+建置
 
-每月用相同問題重複抽樣，追蹤 AI 能見度趨勢。Google 搜尋與 AI 摘要都是累積型的，進步來自持續的第一手內容與真實外部能見度。
+修正技術問題、補強第一手內容、建立商家資料、啟動站外真實能見度。Google 搜尋與 AI 摘要都是累積型的，沒有固定時程。
 
-每月報告
+每月回報
 
-三通道數據分開列（Google 生成式 AI 成效報表、Bing AI Performance、其他 AI 重複抽樣），讓你清楚看到每條路的變化趨勢。
+三通道數據分開列（Google 生成式 AI 成效報表、Bing AI Performance、其他 AI 重複抽樣），讓你清楚看到每條路的趨勢，不承諾名次，也不承諾天數。
 
 影響見效快慢的因素：你的產業競爭多激烈、你願意公開多少第一手事實（Google 官方指南說這是影響 AI 搜尋能見度最大的因素）、有沒有既有官網可改，以及 AI 平台的演算法調整（外部變因，我們持續跟進）。
 我們不承諾特定名次、不承諾天數 ——但你每個月會清楚看到自己在搜尋與 AI 世界的能見度怎麼變化。
@@ -8875,7 +8875,7 @@ SEO 是讓 Google 搜尋時找得到你；GEO 是讓 ChatGPT、Perplexity 這些
 
 多久才能看到效果？
 
-SEO 與 GEO 都是累積型的，不是開關。沒有固定時程：技術調整後約 4–8 週看到 Google 搜尋的初步變化；AI 能見度的變化取決於產業競爭、你願意公開多少第一手資訊，以及各 AI 平台演算法。我們每月用同一套方法重量，讓你看到趨勢，不承諾名次，也不承諾天數。
+沒有固定時程；技術與內容調整後，我們每月用同一套方法重量，讓你看到 Google 搜尋與各 AI 的趨勢，不承諾名次，也不承諾天數。
 
 你們怎麼量 AI 能見度？是跑一次軟體截圖嗎？
 
@@ -9763,8 +9763,8 @@ Search Console rank tracking, technical audit, keyword status report
 5 AI platforms × 15–20 questions, repeated sampling over multiple days, with confidence intervals
 
 Typical time to results
-4–8 weeks initial; 3–6 months meaningful
-4–8 weeks initial; 5–6 months for first citations
+No fixed timeline; monthly tracking
+No fixed timeline; monthly tracking
 
 What we can commit to
 Correct technical execution and content quality; we do not promise rankings
@@ -9962,17 +9962,17 @@ Honest timeline
 
 SEO and GEO both accumulate over time — they are not on/off switches. The following reflects typical patterns; actual timelines vary by industry competitiveness, how much verifiable information you make available, and AI platform algorithm changes.
 
-Weeks 4–8
+Audit
 
-After content and page structure adjustments, initial movement starts appearing in both Google search and AI visibility.
+We run the SEO + GEO audit: identify technical issues, measure your current AI visibility baseline, and produce a prioritized action list.
 
-Months 5–6
+Build
 
-AI platforms start citing you in answers; Google keyword rankings show meaningful movement.
+We fix technical issues, add first-hand content, set up business profiles, and start building genuine off-site visibility. Search and AI results both accumulate — there is no fixed timeline.
 
-Months 6–12
+Monthly reporting
 
-Search and AI presence becomes more established; citation count shows a clear upward trend.
+Three separate channels reported: Google Search Console Generative AI performance, Bing AI Performance, and other AI repeated sampling — so you can see how each track is trending. We do not commit to rankings or specific dates.
 
 Factors that influence speed: how competitive your industry is, how much quantifiable information you are willing to publish, whether you have an existing website to improve, and AI platform algorithm changes (an external variable we monitor continuously).
 We do not promise specific rankings or dates  — but you will see real monthly data showing how your search and AI visibility is developing.
@@ -9995,7 +9995,7 @@ Rankings are determined by Google — no one can promise you a specific position
 
 How long before I see results?
 
-SEO and GEO both accumulate — there is no fixed timeline. Technical improvements typically produce initial movement in Google Search within 4–8 weeks. AI visibility changes depend on your industry competition, how much first-hand information you are willing to publish, and each platform's algorithms. We measure with the same method every month so you can see the trend. We do not commit to specific rankings or dates.
+There is no fixed timeline. After technical and content work, we measure with the same method every month so you can see the Google Search and AI trend. We do not commit to specific rankings or dates.
 
 How do you measure AI visibility? Is it just a screenshot of one query?
 
