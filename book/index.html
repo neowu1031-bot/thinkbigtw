@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="robots" content="noindex, nofollow"/>
+<meta name="referrer" content="no-referrer"/>
+<title>預約 30 分鐘免費評估｜Think BIG</title>
+<link rel="icon" href="/favicon.ico" sizes="32x32 48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+:root{--ink:#191a1d;--paper:#f7f6f2;--card:#fff;--muted:#6b6c72;--line:#e4e2dc;--rose:#91344f;--brand:#eea4bb;--soft:#f3eef0;--ok:#2f6b4f;--radius:20px;
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro TC","PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;--mono:ui-monospace,"SF Mono",Menlo,monospace}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);line-height:1.7;-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+.wrap{max-width:640px;margin:0 auto;padding:28px 16px 72px}
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px}
+.top img{height:22px;width:auto;display:block}
+.top .tz{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--muted)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--rose);margin:0 0 14px}
+h1{font-size:clamp(28px,7vw,40px);line-height:1.2;letter-spacing:-.01em;margin:0 0 14px;font-weight:700}
+.lead{color:var(--muted);font-size:16px;margin:0 0 28px}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 36px;padding:0;list-style:none}
+.facts li{font-size:12.5px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:var(--card)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px 20px;box-shadow:0 1px 0 rgba(25,26,29,.02),0 12px 32px -18px rgba(25,26,29,.18)}
+.step{display:flex;align-items:baseline;gap:10px;margin:0 0 14px}
+.step .n{font-family:var(--mono);font-size:12px;color:var(--rose)}
+.step h2{font-size:16px;margin:0;font-weight:650}
+.dates{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 10px;margin:0 -2px 18px;scrollbar-width:none}
+.dates::-webkit-scrollbar{display:none}
+.date{flex:0 0 auto;scroll-snap-align:start;width:68px;padding:10px 0;border:1px solid var(--line);border-radius:14px;background:var(--card);cursor:pointer;text-align:center;transition:border-color .15s,background .15s,transform .15s}
+.date .wd{display:block;font-size:12px;color:var(--muted)}
+.date .d{display:block;font-size:20px;font-weight:650;line-height:1.3}
+.date .m{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em}
+.date:hover{border-color:#bdbab2}
+.date[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.date[aria-pressed="true"] .wd,.date[aria-pressed="true"] .m{color:rgba(255,255,255,.7)}
+.date.full{opacity:.4;cursor:not-allowed}
+.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.time{padding:13px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer;transition:border-color .15s,background .15s}
+.time:hover:not(:disabled){border-color:var(--rose);color:var(--rose)}
+.time:disabled{color:#b9b8b3;text-decoration:line-through;cursor:not-allowed;background:#faf9f6}
+.hint{font-size:13px;color:var(--muted);margin:14px 0 0}
+.agenda{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:14px}
+.agenda li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:15px}
+.agenda .n{font-family:var(--mono);font-size:12px;color:var(--rose);padding-top:3px}
+.agenda b{display:block;font-weight:650}
+.agenda span{color:var(--muted);font-size:14px}
+.skeleton{height:68px;border-radius:14px;background:linear-gradient(90deg,#efede8 0%,#f7f6f2 50%,#efede8 100%);background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.msg{font-size:14px;color:var(--rose);margin:12px 0 0}
+/* sheet */
+.sheet-bg{position:fixed;inset:0;background:rgba(25,26,29,.42);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.sheet{visibility:hidden;position:fixed;left:0;right:0;bottom:0;max-width:560px;margin:0 auto;background:var(--card);border-radius:24px 24px 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);z-index:11;max-height:92vh;overflow:auto}
+.open .sheet-bg{opacity:1;pointer-events:auto}
+.open .sheet{transform:none;visibility:visible}
+@media(min-width:700px){.sheet{bottom:50%;border-radius:24px;transform:translateY(60%) scale(.98);opacity:0;transition:transform .25s,opacity .2s}.open .sheet{transform:translateY(50%);opacity:1}}
+.grab{width:40px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 16px}
+@media(min-width:700px){.grab{display:none}}
+.chosen{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:14px;background:var(--soft);margin:0 0 20px}
+.chosen .k{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--rose);display:block}
+.chosen .v{font-size:17px;font-weight:650}
+.chosen button{border:0;background:none;color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer;padding:6px}
+.field{margin:0 0 16px}
+.field label{display:flex;justify-content:space-between;font-size:14px;font-weight:600;margin:0 0 6px}
+.field label small{font-weight:400;color:var(--muted)}
+.field input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:16px;outline:none;transition:border-color .15s,box-shadow .15s}
+.field input:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(145,52,79,.12)}
+.consent{display:flex;gap:10px;font-size:13px;color:var(--muted);margin:4px 0 20px;align-items:flex-start}
+.consent input{margin-top:3px;width:16px;height:16px;accent-color:var(--rose);flex:none}
+.consent a{color:var(--ink)}
+.primary{width:100%;padding:15px;border:0;border-radius:999px;background:var(--ink);color:#fff;font-size:16px;font-weight:650;cursor:pointer;transition:opacity .15s}
+.primary:disabled{opacity:.45;cursor:not-allowed}
+.done{text-align:center;padding:24px 0 8px}
+.done .check{width:64px;height:64px;border-radius:50%;background:var(--ink);display:grid;place-items:center;margin:0 auto 18px}
+.done .check svg{width:28px;height:28px;stroke:#fff;stroke-width:2.4;fill:none;stroke-dasharray:30;stroke-dashoffset:30;animation:dr .5s .1s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.done h2{font-size:22px;margin:0 0 8px}
+.done p{color:var(--muted);margin:0 0 6px}
+.done .when{display:inline-block;margin:10px 0 20px;padding:8px 16px;border-radius:999px;background:var(--soft);font-weight:650}
+.foot{margin:44px 0 0;font-size:12px;color:var(--muted);text-align:center}
+.foot a{color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <a href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-light.png" width="1509" height="327" alt="Think BIG"></a>
+    <span class="tz">TAIPEI TIME · GMT+8</span>
+  </div>
+
+  <p class="eyebrow">PRIVATE BOOKING</p>
+  <h1>預約 30 分鐘<br>免費 AI 評估</h1>
+  <p class="lead">挑一個你方便的時段就好。評估時我們會陪你看看，公司哪些重複的工作適合交給 AI Agent。</p>
+  <ul class="facts"><li>線上視訊</li><li>30 分鐘</li><li>全程免費</li><li>不先收任何費用</li></ul>
+
+  <section class="panel" aria-labelledby="pick">
+    <div class="step"><span class="n">01</span><h2 id="pick">選擇日期</h2></div>
+    <div class="dates" id="dates" role="group" aria-label="可預約日期">
+      <div class="skeleton" style="flex:0 0 68px"></div><div class="skeleton" style="flex:0 0 68px"></div><div class="skeleton" style="flex:0 0 68px"></div><div class="skeleton" style="flex:0 0 68px"></div>
+    </div>
+    <div class="step"><span class="n">02</span><h2>選擇時段</h2></div>
+    <div class="times" id="times" role="group" aria-label="可預約時段"></div>
+    <p class="hint" id="hint">時間皆為台灣時間。</p>
+    <p class="msg" id="loadMsg" hidden></p>
+  </section>
+
+  <p class="eyebrow" style="margin:40px 0 0">評估時會聊什麼</p>
+  <ol class="agenda">
+    <li><span class="n">—</span><div><b>聽你說一天怎麼過</b><span>哪些事每天都在重複、最花時間。</span></div></li>
+    <li><span class="n">—</span><div><b>一起挑出能交給 AI 的工作</b><span>你不用先想好，我們幫你看。</span></div></li>
+    <li><span class="n">—</span><div><b>給你一個可以馬上開始的第一步</b><span>適不適合導入，聽完再決定。</span></div></li>
+  </ol>
+
+  <p class="foot">大想成業有限公司・統編 62136066　<a href="/privacy.html">隱私權政策</a></p>
+</div>
+
+<div id="sheetRoot">
+  <div class="sheet-bg" id="sheetBg"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="grab"></div>
+    <form id="form" novalidate>
+      <div class="step"><span class="n">03</span><h2 id="sheetTitle">留下聯絡方式</h2></div>
+      <div class="chosen"><div><span class="k">你選的時間</span><span class="v" id="chosen"></span></div><button type="button" id="change">更改</button></div>
+      <div class="field"><label for="name">怎麼稱呼你</label><input id="name" name="name" maxlength="40" autocomplete="name" placeholder="例如：王小姐、陳經理" required></div>
+      <div class="field"><label for="lineName">LINE 名稱 <small id="lineHint">方便我們在 LINE 找到你</small></label><input id="lineName" name="lineName" maxlength="60" placeholder="你在 LINE 上顯示的名字"></div>
+      <div class="field"><label for="email">Email <small>會議連結也會寄一份到這裡</small></label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" inputmode="email" placeholder="name@company.com" required></div>
+      <label class="consent"><input type="checkbox" id="consent"><span>我同意 Think BIG 使用以上資料聯繫我安排評估，資料 30 天後自動刪除。詳見<a href="/privacy.html" target="_blank" rel="noopener">隱私權政策</a>。</span></label>
+      <button class="primary" id="submit" type="submit" disabled>確認預約</button>
+      <p class="msg" id="formMsg" hidden></p>
+    </form>
+    <div class="done" id="done" hidden>
+      <div class="check"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2>預約完成</h2>
+      <span class="when" id="doneWhen"></span>
+      <p>我們會在評估前，透過 LINE 或 Email 傳會議連結給你。</p>
+      <p>想改時間，直接在 LINE 跟我們說就好。</p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var API='https://moneyradar-ai-proxy.thinkbigtw.workers.dev';
+  var token='';
+  try{var q=new URLSearchParams(location.search).get('t')||'';if(/^[A-Za-z0-9_-]{16,64}$/.test(q))token=q;
+    if(location.search)history.replaceState(null,'',location.pathname);}catch(e){}
+  var $=function(id){return document.getElementById(id)};
+  var data=null,selDate=null,selTime=null,busy=false;
+  if(token){$('lineHint').textContent='已從 LINE 連過來，可以不填';}
+
+  function post(path,body){return fetch(API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body||{})}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){j._status=r.status;return j})})}
+  function parts(date){var p=date.split('-');var wd=new Date(Date.UTC(+p[0],+p[1]-1,+p[2])).getUTCDay();return{m:+p[1],d:+p[2],wd:'日一二三四五六'[wd]}}
+
+  function renderDates(){
+    var box=$('dates');box.innerHTML='';
+    if(!data||!data.dates.length){$('loadMsg').hidden=false;$('loadMsg').textContent='近兩週的時段都滿了，請直接在 LINE 告訴我們方便的時間。';return}
+    data.dates.forEach(function(x){
+      var open=x.slots.some(function(s){return!s.taken});var p=parts(x.date);
+      var b=document.createElement('button');b.type='button';b.className='date'+(open?'':' full');b.disabled=!open;
+      b.setAttribute('aria-pressed',x.date===selDate?'true':'false');b.setAttribute('aria-label',x.label+(open?'':'（已滿）'));
+      b.innerHTML='<span class="wd">週'+p.wd+'</span><span class="d">'+p.d+'</span><span class="m">'+p.m+' 月</span>';
+      b.onclick=function(){selDate=x.date;renderDates();renderTimes()};
+      box.appendChild(b);
+    });
+    if(!selDate){var first=data.dates.find(function(x){return x.slots.some(function(s){return!s.taken})});if(first){selDate=first.date;renderDates();renderTimes()}}
+  }
+  function renderTimes(){
+    var box=$('times');box.innerHTML='';
+    var day=data.dates.find(function(x){return x.date===selDate});if(!day)return;
+    day.slots.forEach(function(s){
+      var b=document.createElement('button');b.type='button';b.className='time';b.textContent=s.time;b.disabled=s.taken;
+      if(s.taken)b.setAttribute('aria-label',s.time+' 已被預約');
+      b.onclick=function(){selTime=s.time;openSheet()};
+      box.appendChild(b);
+    });
+    $('hint').textContent=day.label+'・時間皆為台灣時間。';
+  }
+  function load(){
+    return post('/thinkbig-booking-slots').then(function(j){
+      if(j._status!==200||!j.dates)throw 0;data=j;renderDates();
+    }).catch(function(){$('dates').innerHTML='';$('loadMsg').hidden=false;$('loadMsg').textContent='時段暫時載入不了，請稍後重新整理，或直接在 LINE 告訴我們方便的時間。'});
+  }
+  function whenText(){var day=data.dates.find(function(x){return x.date===selDate});return day.label+' '+selTime}
+  function openSheet(){
+    $('chosen').textContent=whenText();$('formMsg').hidden=true;$('form').hidden=false;$('done').hidden=true;
+    document.body.classList.add('open');document.body.style.overflow='hidden';
+    setTimeout(function(){$('name').focus({preventScroll:true})},280);
+  }
+  function closeSheet(){if(busy)return;document.body.classList.remove('open');document.body.style.overflow=''}
+  $('sheetBg').onclick=closeSheet;$('change').onclick=closeSheet;
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSheet()});
+
+  function valid(){
+    var em=$('email').value.trim();
+    return $('name').value.trim()&&/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(em)&&$('consent').checked&&(token||$('lineName').value.trim());
+  }
+  ['name','lineName','email','consent'].forEach(function(id){$(id).addEventListener('input',function(){$('submit').disabled=!valid()});$(id).addEventListener('change',function(){$('submit').disabled=!valid()})});
+
+  $('form').onsubmit=function(e){
+    e.preventDefault();if(!valid()||busy)return;busy=true;
+    var btn=$('submit');btn.disabled=true;btn.textContent='送出中…';$('formMsg').hidden=true;
+    post('/thinkbig-booking',{date:selDate,time:selTime,name:$('name').value.trim(),lineName:$('lineName').value.trim(),email:$('email').value.trim(),token:token,consent:true}).then(function(j){
+      busy=false;btn.textContent='確認預約';
+      if(j._status===200&&j.accepted){
+        $('form').hidden=true;$('done').hidden=false;$('doneWhen').textContent=whenText()+'（台灣時間）';
+        try{if(window.gtag)gtag('event','booking_submit')}catch(e){}
+        load();return;
+      }
+      btn.disabled=!valid();$('formMsg').hidden=false;
+      if(j.error==='slot_taken'||j.error==='slot_unavailable'){$('formMsg').textContent='這個時段剛被預約走了，請換一個時段。';selTime=null;load().then(function(){setTimeout(closeSheet,1400)})}
+      else if(j.error==='invalid_email'){$('formMsg').textContent='Email 格式好像不太對，再確認一下。'}
+      else if(j._status===429){$('formMsg').textContent='送出次數有點多，請稍後再試，或直接在 LINE 跟我們說。'}
+      else{$('formMsg').textContent='送出沒有成功，請再試一次，或直接在 LINE 跟我們說方便的時間。'}
+    }).catch(function(){busy=false;btn.textContent='確認預約';btn.disabled=!valid();$('formMsg').hidden=false;$('formMsg').textContent='網路好像不穩，請再試一次。'});
+  };
+  load();
+})();
+</script>
+</body>
+</html>

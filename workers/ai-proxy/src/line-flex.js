@@ -82,6 +82,7 @@ export function urlToLabel(url) {
     if (host === 'shopee.tw') return '蝦皮賣場';
 
     if (host === 'thinkbigtw.com') {
+      if (path.startsWith('/book/'))            return '選擇預約時間';
       if (path.startsWith('/enterprise/start')) return '自助評估';
       if (path.startsWith('/enterprise/'))      return '企業導入';
       if (path.startsWith('/pricing/personal')) return '個人方案';
