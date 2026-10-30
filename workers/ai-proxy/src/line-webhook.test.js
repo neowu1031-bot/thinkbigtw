@@ -15,6 +15,10 @@ import assert from 'node:assert/strict';
 import {
   verifyLineSignature,
   isHumanRequest,
+  isBookingRequest,
+  BOOKING_TIME_TEXT,
+  BOOKING_INFO_TEXT,
+  BOOKING_SLOTS,
   sanitizeUserMessage,
   hashUserId,
   checkRateLimit,
@@ -279,7 +283,11 @@ test('handleLineWebhook — follow 事件回歡迎文並跳過 AI', async () => 
 test('isHumanRequest — 轉真人關鍵字識別', () => {
   assert.equal(isHumanRequest('我要找真人'), true);
   assert.equal(isHumanRequest('有專人可以問嗎'), true);
-  assert.equal(isHumanRequest('想預約諮詢'), true);
+  assert.equal(isHumanRequest('想預約諮詢'), false, '「預約」改走預約流程，不直接轉真人');
+  assert.equal(isBookingRequest('想預約諮詢'), true);
+  assert.equal(isBookingRequest('預約'), true);
+  assert.equal(isBookingRequest('我要評估'), true);
+  assert.equal(isBookingRequest('你好想了解方案'), false);
   assert.equal(isHumanRequest('客服在哪'), true);
   assert.equal(isHumanRequest('你好想了解方案'), false);
   assert.equal(isHumanRequest('AI 能做什麼'), false);
@@ -288,25 +296,16 @@ test('isHumanRequest — 轉真人關鍵字識別', () => {
 // ──────────────────────────────────────────────
 // 測試 6：轉真人觸發（#8: 斷言在測試本體）
 // ──────────────────────────────────────────────
-test('handleLineWebhook — 傳「預約」回固定文字並標記 needs_human', async () => {
+test('handleLineWebhook — 「預約」三步：問時段（快速按鈕）→ 問公司與需求 → 登記並標記 needs_human', async () => {
   const secret = 'mysecret';
-  const bodyObj = {
-    events: [{
-      type: 'message',
-      message: { type: 'text', text: '我想預約諮詢' },
-      source: { type: 'user', userId: 'U789' },
-      replyToken: 'reply001',
-      webhookEventId: 'evt001',
-    }],
-  };
-  const bodyStr = JSON.stringify(bodyObj);
-  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
-
-  let repliedText = null, reportPayload = null;
+  const kv = makeKvStub();
+  const replies = [];
+  let reportPayload = null;
   const origFetch = globalThis.fetch;
   globalThis.fetch = async (url, opts) => {
     if (url.includes('/v2/bot/message/reply')) {
-      const _m0 = JSON.parse(opts.body).messages?.[0]; repliedText = _m0?.type === 'flex' ? _m0?.altText : _m0?.text;
+      const m = JSON.parse(opts.body).messages?.[0];
+      replies.push({ text: m?.type === 'flex' ? m?.altText : m?.text, quick: m?.quickReply?.items?.map(i => i.action.text) || [] });
       return { ok: true, body: { cancel: async () => {} } };
     }
     if (url.includes('/v2/bot/profile')) {
@@ -318,28 +317,57 @@ test('handleLineWebhook — 傳「預約」回固定文字並標記 needs_human'
     }
     return { ok: false, body: { cancel: async () => {} } };
   };
-
   const env = {
     LINE_CHANNEL_SECRET: secret,
     LINE_CHANNEL_ACCESS_TOKEN: 'token',
-    LINE_KV: makeKvStub(),
+    LINE_KV: kv,
     LINE_HASH_PEPPER: TEST_PEPPER,
-    AI: { run: async () => ({ response: '需要真人協助' }) },
+    AI: { run: async () => ({ response: '不應被呼叫' }) },
     MINIMAX_API_KEY: null,
     INQUIRY_SUPABASE_URL: 'https://supabase.example.com',
     INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'service_key',
   };
-
-  const ctx = makeCtxStub();
-  const res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
-  await ctx._flush();
+  const send = async (text, id) => {
+    const bodyStr = JSON.stringify({ events: [{ type: 'message', message: { type: 'text', text }, source: { type: 'user', userId: 'U789' }, replyToken: 'r' + id, webhookEventId: 'evtB' + id }] });
+    const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+    const ctx = makeCtxStub();
+    const res = await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+    await ctx._flush();
+    assert.equal(res.status, 200);
+  };
+  await send('我想預約諮詢', 1);
+  await send('平日晚上', 2);
+  assert.equal(reportPayload, null, '資料還沒收齊前不送報告');
+  await send('大想科技，想先讓 AI 整理客服信件', 3);
   globalThis.fetch = origFetch;
 
-  assert.equal(res.status, 200);
-  assert.ok(repliedText?.includes('通知'), `回覆應包含「通知」，實際：${repliedText}`);
-  // #8: 斷言在測試本體（不在 mock 內）
+  assert.equal(replies.length, 3, '三則訊息各回一次');
+  assert.deepEqual(replies[0].quick, BOOKING_SLOTS, '第一步要帶時段快速按鈕');
+  assert.deepEqual(replies[1].quick, [], '第二步不帶快速按鈕');
+  assert.ok(replies[2].text.includes('登記'), `第三步應確認已登記，實際：${replies[2].text}`);
   assert.ok(reportPayload !== null, 'Supabase report 應被送出');
   assert.equal(reportPayload?.p_summary_json?.needs_human, true, 'needs_human 應為 true');
+});
+
+test('handleLineWebhook — 傳「真人」仍直接轉真人', async () => {
+  const secret = 'mysecret';
+  const bodyStr = JSON.stringify({ events: [{ type: 'message', message: { type: 'text', text: '我要找真人' }, source: { type: 'user', userId: 'U790' }, replyToken: 'rh', webhookEventId: 'evtH1' }] });
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+  let repliedText = null, reportPayload = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/message/reply')) { const m = JSON.parse(opts.body).messages?.[0]; repliedText = m?.type === 'flex' ? m?.altText : m?.text; return { ok: true, body: { cancel: async () => {} } }; }
+    if (url.includes('/v2/bot/profile')) return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: '一般用戶' }) };
+    if (url.includes('submit_thinkbig_chat_report')) { reportPayload = JSON.parse(opts.body); return { ok: true, body: { cancel: async () => {} } }; }
+    return { ok: false, body: { cancel: async () => {} } };
+  };
+  const env = { LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token', LINE_KV: makeKvStub(), LINE_HASH_PEPPER: TEST_PEPPER, AI: { run: async () => ({ response: 'x' }) }, MINIMAX_API_KEY: null, INQUIRY_SUPABASE_URL: 'https://supabase.example.com', INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'service_key' };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.ok(repliedText?.includes('通知'), `回覆應包含「通知」，實際：${repliedText}`);
+  assert.equal(reportPayload?.p_summary_json?.needs_human, true);
 });
 
 // ──────────────────────────────────────────────

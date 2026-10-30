@@ -86,7 +86,21 @@ const AI_UNAVAILABLE_TEXT =
   '抱歉，AI 顧問暫時無法回覆，請稍後再試，或直接寄信至 ai@thinkbigtw.com。';
 
 // 觸發轉真人的關鍵字（用戶原文）
-const HUMAN_KEYWORDS = /真人|專人|客服|預約/;
+const HUMAN_KEYWORDS = /真人|專人|客服/;
+// 觸發預約流程的關鍵字（NEO 10/30：回「預約」就直接問方便的時間）
+const BOOKING_KEYWORDS = /預約|我要評估/;
+export const BOOKING_SLOTS = ['平日上午', '平日下午', '平日晚上', '週末'];
+export const BOOKING_TIME_TEXT =
+  '好的～幫你安排 30 分鐘免費線上評估 📅\n請問你方便的時段？可以直接點下方選項，或打字告訴我日期和時間喔！';
+export const BOOKING_INFO_TEXT =
+  '收到！再麻煩留一下：\n1. 公司名稱\n2. 最想先交給 AI 處理的一件事（一句話就好）\n我們確認時間後，會傳會議連結給你喔～';
+function getBookingDoneText(nowMs = Date.now()) {
+  const note = getOooNote(nowMs);
+  return '已幫你登記預約 🙌 我們確認時間後，會在這裡傳會議連結給你。評估全程免費、不先收任何費用喔！' + (note ? '\n\n' + note : '');
+}
+export function isBookingRequest(text) {
+  return BOOKING_KEYWORDS.test(text);
+}
 
 // AI 判斷需要真人時的回覆信號
 const AI_HUMAN_SIGNAL = /需要真人|轉接人工|安排顧問聯繫|顧問會主動聯繫/;
@@ -575,7 +589,7 @@ async function generateLineReply(messages, env) {
 
   // P7: 假收據防護（LINE 版：引導傳「預約」觸發轉真人）
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
-    reply = '如需顧問聯繫，請傳送「預約」，我馬上幫您通知同仁喔～';
+    reply = '如需顧問聯繫，請傳送「真人」，我馬上幫您通知同仁；想預約 30 分鐘免費評估，請傳送「預約」喔～';
   }
 
   const aiWantsHuman  = AI_HUMAN_SIGNAL.test(reply);
@@ -692,6 +706,32 @@ async function processEventInner(event, token, kv, env, ctx) {
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
     await sendFlexReply(token, replyToken, HUMAN_TRANSFER_REPEAT_TEXT, { maxButtons: 0 });
+    return;
+  }
+
+  // 預約流程：問時段 → 問公司與需求 → 登記並通知同仁
+  if (sessionCtx.booking === 'time' || sessionCtx.booking === 'info') {
+    sessionCtx.messages.push({ role: 'user', content: (sessionCtx.booking === 'time' ? '【預約時段】' : '【預約資料】') + userText });
+    sessionCtx.lastAt = nowMs;
+    if (sessionCtx.booking === 'time') {
+      sessionCtx.booking = 'info';
+      await saveContext(kv, keyHash, sessionCtx);
+      await sendFlexReply(token, replyToken, BOOKING_INFO_TEXT, { maxButtons: 0 });
+      return;
+    }
+    sessionCtx.booking = 'done';
+    sessionCtx.humanTransferred = true;
+    await saveContext(kv, keyHash, sessionCtx);
+    ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
+    await sendFlexReply(token, replyToken, getBookingDoneText(nowMs), { maxButtons: 0 });
+    return;
+  }
+  if (isBookingRequest(userText)) {
+    sessionCtx.messages.push({ role: 'user', content: userText });
+    sessionCtx.booking = 'time';
+    sessionCtx.lastAt = nowMs;
+    await saveContext(kv, keyHash, sessionCtx);
+    await sendFlexReply(token, replyToken, BOOKING_TIME_TEXT, { maxButtons: 0, quickReplies: BOOKING_SLOTS });
     return;
   }
 
