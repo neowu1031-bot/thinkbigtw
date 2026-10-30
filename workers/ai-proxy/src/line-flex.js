@@ -53,7 +53,8 @@ const MAX_BODY_CHARS = 400;
 export const WELCOME_FLEX_BODY =
   '嗨，歡迎來到Think BIG ✨\n' +
   '我是 Think BIG AI小助理\n' +
-  '有任何 AI 導入的問題直接問我就好呢！\n\n' +
+  '有任何 AI 導入的問題直接問我就好呢！\n' +
+  '想預約 30 分鐘免費評估，按下方按鈕或回覆「預約」就可以囉～\n\n' +
   '期待我們為你打開更深一層的AI領域\n' +
   '幫助你走在科技的最前線\n' +
   '讓我們一起Make it Real!';
@@ -251,6 +252,18 @@ function makeMessageButton(label, messageText) {
   };
 }
 
+/** 主要 CTA：預約 30 分鐘免費評估（傳「預約」進入預約流程）。 */
+export function makeBookingButton() {
+  return {
+    type: 'button',
+    action: { type: 'message', label: '預約 30 分鐘免費評估', text: '預約' },
+    style: 'primary',
+    color: BRAND_DARK,
+    height: 'sm',
+    margin: 'sm',
+  };
+}
+
 /**
  * 根據意圖返回 1–3 顆按鈕（按鈕指向 /portfolio/ 一律用「導入案例」）。
  * @param {'enterprise'|'personal'|'portfolio'|'default'} intent
@@ -263,14 +276,14 @@ export function buildButtons(intent) {
     case 'personal':
       return [
         makeUriButton('蝦皮賣場', SHOPEE_URL, true),
-        makeMessageButton('真人協助', '預約'),
+        makeMessageButton('真人協助', '真人'),
       ];
     case 'portfolio':
       return [makeUriButton('導入案例', PORTFOLIO_URL, true)];
     default:
       return [
         makeUriButton('導入案例', PORTFOLIO_URL, false),
-        makeMessageButton('真人協助', '預約'),
+        makeMessageButton('真人協助', '真人'),
       ];
   }
 }
@@ -536,6 +549,7 @@ export function buildWelcomeFlex() {
     paddingTop: '4px',
     backgroundColor: BRAND_PAPER,
     contents: [
+      makeBookingButton(),
       makeUriButton('導入案例', PORTFOLIO_URL, false),
       makeUriButton('企業導入', ENTERPRISE_URL, false),
       makeUriButton('官網',    SITE_URL,        false),
@@ -590,6 +604,10 @@ export function checkFlexSize(flexMsg) {
 export async function sendFlexReply(token, replyToken, replyText, options = {}) {
   const safeText = String(replyText ?? '').slice(0, 1000);
   const flex = buildFlexMessage(safeText, options);
+  const quick = Array.isArray(options.quickReplies) ? options.quickReplies.slice(0, 13) : [];
+  if (quick.length) {
+    flex.quickReply = { items: quick.map(t => ({ type: 'action', action: { type: 'message', label: String(t).slice(0, 20), text: String(t).slice(0, 300) } })) };
+  }
 
   // 先做大小檢查，超出就直接降回純文字
   const sizeCheck = checkFlexSize(flex);

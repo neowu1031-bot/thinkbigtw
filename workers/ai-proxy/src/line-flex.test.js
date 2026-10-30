@@ -116,7 +116,7 @@ test('T6: personal intent → 蝦皮賣場 URI + 真人協助 message', () => {
   assert.ok(shopeeBtn.action.uri.startsWith('https://'));
   const humanBtn = buttons.find(b => b.action.label === '真人協助');
   assert.equal(humanBtn.action.type, 'message');
-  assert.equal(humanBtn.action.text, '預約');
+  assert.equal(humanBtn.action.text, '真人');
 });
 
 test('T7: default intent → 導入案例 + 真人協助', () => {
@@ -385,9 +385,10 @@ test('T28: buildWelcomeFlex 結構正確', () => {
   assert.ok(msg.altText.includes('Think BIG'), `altText: ${msg.altText}`);
   // contents 是 bubble
   assert.equal(msg.contents.type, 'bubble');
-  // footer 有 3 顆按鈕
+  // footer 有 4 顆按鈕（10/30 加「預約 30 分鐘免費評估」）
   const labels = collectButtonLabels(msg.contents);
-  assert.equal(labels.length, 3, `按鈕數應為 3，實際：${labels.join(',')}`);
+  assert.equal(labels.length, 4, `按鈕數應為 4，實際：${labels.join(',')}`);
+  assert.ok(labels.includes('預約 30 分鐘免費評估'));
   assert.ok(labels.includes('導入案例'));
   assert.ok(labels.includes('企業導入'));
   assert.ok(labels.includes('官網'));
@@ -615,4 +616,21 @@ test('T43: 無網址且強制 intent=enterprise → 不插入預設 CTA，走企
   assert.ok(labels.includes('預約需求訪談'), `應有「預約需求訪談」，實際：${labels}`);
   // 不應有「個人方案」CTA（intent 非 default，不走預設 CTA 路徑）
   assert.ok(!labels.includes('個人方案'), `不應有「個人方案」CTA（intent=enterprise），實際：${labels}`);
+});
+
+test('T40: 歡迎卡第一顆按鈕是「預約 30 分鐘免費評估」並傳「預約」', () => {
+  const flex = buildWelcomeFlex();
+  const btns = flex.contents.footer.contents;
+  assert.equal(btns[0].action.label, '預約 30 分鐘免費評估');
+  assert.equal(btns[0].action.type, 'message');
+  assert.equal(btns[0].action.text, '預約');
+});
+
+test('T41: sendFlexReply 帶 quickReplies → 訊息附 quickReply 按鈕', async () => {
+  let sent = null;
+  const orig = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => { sent = JSON.parse(opts.body).messages[0]; return { ok: true, body: { cancel: async () => {} } }; };
+  await sendFlexReply('tok', 'rt', '請問你方便的時段？', { maxButtons: 0, quickReplies: ['平日上午', '週末'] });
+  globalThis.fetch = orig;
+  assert.deepEqual(sent.quickReply.items.map(i => i.action.text), ['平日上午', '週末']);
 });
