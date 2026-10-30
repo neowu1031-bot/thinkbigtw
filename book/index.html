@@ -38,10 +38,12 @@ h1{font-size:clamp(28px,7vw,40px);line-height:1.2;letter-spacing:-.01em;margin:0
 .date[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
 .date[aria-pressed="true"] .wd,.date[aria-pressed="true"] .m{color:rgba(255,255,255,.7)}
 .date.full{opacity:.4;cursor:not-allowed}
-.times{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.times{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .time{padding:13px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;cursor:pointer;transition:border-color .15s,background .15s}
 .time:hover:not(:disabled){border-color:var(--rose);color:var(--rose)}
 .time:disabled{color:#b9b8b3;text-decoration:line-through;cursor:not-allowed;background:#faf9f6}
+.tgroup{grid-column:1/-1;margin:6px 0 -2px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted)}
+.tgroup:first-child{margin-top:0}
 .hint{font-size:13px;color:var(--muted);margin:14px 0 0}
 .agenda{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:14px}
 .agenda li{display:grid;grid-template-columns:28px 1fr;gap:10px;font-size:15px}
@@ -171,7 +173,10 @@ h1{font-size:clamp(28px,7vw,40px);line-height:1.2;letter-spacing:-.01em;margin:0
   function renderTimes(){
     var box=$('times');box.innerHTML='';
     var day=data.dates.find(function(x){return x.date===selDate});if(!day)return;
+    var lastGroup='';
     day.slots.forEach(function(s){
+      var h=+s.time.slice(0,2),g=h<12?'上午':h<18?'下午':'晚上';
+      if(g!==lastGroup){lastGroup=g;var t=document.createElement('p');t.className='tgroup';t.textContent=g;box.appendChild(t)}
       var b=document.createElement('button');b.type='button';b.className='time';b.textContent=s.time;b.disabled=s.taken;
       if(s.taken)b.setAttribute('aria-label',s.time+' 已被預約');
       b.onclick=function(){selTime=s.time;openSheet()};
