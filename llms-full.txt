@@ -1,4 +1,5 @@
-URL: https://thinkbigtw.com/about/
+Built 113 URL sections
+.com/about/
 
 # 關於 Think BIG｜Think BIG
 
@@ -3427,7 +3428,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-09-29
+更新日期：2026-10-31
 
 大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
 
@@ -3481,13 +3482,23 @@ URL: https://thinkbigtw.com/privacy.html
 
 本公司得視需要修訂本政策,修訂後將公布於本頁面,並更新生效日期。
 
-## 九、官網 AI 顧問與諮詢摘要
+## 九、AI 客服對話
+
+官網右下角的 AI 客服與 LINE 官方帳號的 AI 客服，會把您輸入的對話內容傳送到第三方雲端 AI 模型服務，由該服務產生回覆後再回傳顯示。此類服務可能由境外業者提供，適用該業者自身的服務條款與隱私政策。
+
+這些對話的用途僅限於：回覆您的諮詢，以及在對話結束後整理成匿名的內部詢問摘要，供本公司改善服務品質與辨識後續聯繫需求。除非您在對話中主動提供聯絡方式並同意送出諮詢摘要，否則本公司不會把對話內容用於其他目的。
+
+請不要在 AI 客服對話中提供公司機密資料、個人敏感資訊（如身分證字號、帳號密碼、信用卡資訊）。 若您希望深入討論業務細節或技術需求，建議直接[預約 30 分鐘免費評估](https://thinkbigtw.com/enterprise/start/)，由顧問一對一確認。
+
+在企業導入方案中，客戶的機密資料由部署於客戶自有環境的本地 AI 模型處理，這與本網站的公開 AI 客服服務是完全分開的兩套機制。
+
+## 十、官網 AI 顧問與諮詢摘要
 
 官網「AI 實戰體驗」在您勾選同意後，會將您輸入的示範數據與對話送至 Cloudflare Workers AI 處理以產生回覆；我們不將這些內容寫入資料庫。
 
 自由提問與必要的對話脈絡會送至外部 AI 服務處理；常見問題可直接在網站查看。請勿在聊天輸入密碼、API Key、付款資料、機密或聯絡個資。本公司不將官網 AI 顧問的聊天逐字稿或 IP 寫入諮詢資料庫；外部 AI、網站及網路服務的技術處理仍依其政策與設定，並非全地端服務。
 
-對話結束後，AI 顧問會自動將對話內容的匿名摘要（不含姓名與直接聯絡資料）傳回本公司內部系統，用於改善服務品質與辨識後續聯繫需求。完整對話記錄的暫存副本會先存放於加密雲端資料庫最長約 10 分鐘，以利本公司設備定期同步擷取；擷取完成後，雲端的逐字稿副本即刻刪除。對話記錄與您提供的聯絡資料，保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止，不會出售或提供給第三方；傳回的匿名摘要同樣不含 IP 位址、裝置識別碼或可直接識別個人的資訊。
+對話結束後，AI 顧問會自動將對話內容的匿名摘要（不含姓名與直接聯絡資料）傳回本公司內部系統，用於改善服務品質與辨識後續聯繫需求；本公司不保存完整對話逐字稿。對話中您提供的聯絡資料，保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止，不會出售或提供給第三方；傳回的匿名摘要同樣不含 IP 位址、裝置識別碼或可直接識別個人的資訊。
 
 諮詢摘要先在目前瀏覽器分頁整理。您可以編修稱呼、公司／產業（可略）、想解決的問題、規模與單一聯絡方式及聯絡資料。這些欄位不送給 AI 模型；您預覽內容、勾選同意並按「確認送出」後，才傳送至本公司的諮詢資料庫，供顧問回覆本次需求。
 
@@ -3497,7 +3508,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 客服回覆。對話內容會整理成摘要，供內部服務品質分析與後續聯繫使用；聯絡資料與摘要保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止。如需查詢、更正或刪除，來信 AI@thinkbigtw.com 或於 LINE 官方帳號中提出，我們會在 14 天內處理完成並回覆。
 
-## 十、Threads／Instagram 社群互動工具（Meta 平台資料）
+## 十一、Threads／Instagram 社群互動工具（Meta 平台資料）
 
 本公司使用自行開發的內部工具「ThinkBIG Threads Reply Console」（Meta App：ThinkBIG Social Monitor），管理本公司官方帳號 @think_big_ai 在 Threads 上的互動。
 
@@ -3517,7 +3528,7 @@ LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 
 
 - 刪除請求 ：若您希望本公司刪除與您的 Threads 帳號或貼文相關的紀錄，請來信 AI@thinkbigtw.com ，註明您的 Threads 帳號名稱。本公司將於 14 天內刪除並回覆確認。您也可以在 Threads 帳號設定的「網站權限」中移除本 App 的授權。
 
-### 11. Threads / Instagram social engagement tool (Meta Platform data)
+### 12. Threads / Instagram social engagement tool (Meta Platform data)
 
 Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: ThinkBIG Social Monitor), to manage how our official account @think_big_ai takes part in conversations on Threads.
 
@@ -3537,7 +3548,7 @@ Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: T
 
 - Deletion requests : To ask us to delete records related to your Threads account or posts, email AI@thinkbigtw.com  with your Threads username. We will delete the records and confirm within 14 days. You can also remove this app's access in your Threads account settings, under Website permissions.
 
-## 十一、聯絡我們
+## 十二、聯絡我們
 
 大想成業有限公司(統一編號 62136066)
 
