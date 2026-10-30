@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼｜問答圖書館｜Think BIG</title>
+<meta name="description" content="AI 系統的紀錄至少要記下誰、何時、從哪裡、做了什麼、結果如何；密碼、金鑰、權杖和敏感個資不要直接寫進紀錄；紀錄本身也要防竄改、設權限。依 OWASP 紀錄指南、個資法施行細則第 12 條與 NIST AI 風險管理框架整理。">
+<link rel="canonical" href="https://thinkbigtw.com/library/qa/ai-audit-logs/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/ai-audit-logs/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/ai-audit-logs/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/ai-audit-logs/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/qa/ai-audit-logs/">
+<meta property="og:title" content="AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼｜問答圖書館｜Think BIG">
+<meta property="og:description" content="AI 系統的紀錄至少要記下誰、何時、從哪裡、做了什麼、結果如何；密碼、金鑰、權杖和敏感個資不要直接寫進紀錄；紀錄本身也要防竄改、設權限。依 OWASP 紀錄指南、個資法施行細則第 12 條與 NIST AI 風險管理框架整理。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2026-10-28T16:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼｜問答圖書館｜Think BIG">
+<meta name="twitter:description" content="AI 系統的紀錄至少要記下誰、何時、從哪裡、做了什麼、結果如何；密碼、金鑰、權杖和敏感個資不要直接寫進紀錄；紀錄本身也要防竄改、設權限。依 OWASP 紀錄指南、個資法施行細則第 12 條與 NIST AI 風險管理框架整理。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "@id": "https://thinkbigtw.com/library/qa/ai-audit-logs/#article",
+   "headline": "AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼",
+   "description": "AI 系統的紀錄至少要記下誰、何時、從哪裡、做了什麼、結果如何；密碼、金鑰、權杖和敏感個資不要直接寫進紀錄；紀錄本身也要防竄改、設權限。依 OWASP 紀錄指南、個資法施行細則第 12 條與 NIST AI 風險管理框架整理。",
+   "keywords": "AI 稽核紀錄, AI 系統 log, AI Agent 紀錄, 使用紀錄 軌跡資料, 個資法施行細則 第12條, OWASP logging, AI 資安, Think BIG",
+   "author": {
+    "@type": "Organization",
+    "name": "Think BIG 問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "@id": "https://thinkbigtw.com/#organization",
+    "name": "大想成業有限公司",
+    "url": "https://thinkbigtw.com/",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+    }
+   },
+   "datePublished": "2026-10-28T16:00:00+08:00",
+   "dateModified": "2026-10-28T16:00:00+08:00",
+   "url": "https://thinkbigtw.com/library/qa/ai-audit-logs/",
+   "mainEntityOfPage": "https://thinkbigtw.com/library/qa/ai-audit-logs/",
+   "inLanguage": "zh-Hant-TW",
+   "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "問答圖書館",
+    "url": "https://thinkbigtw.com/library/qa/"
+   },
+   "citation": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+    "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050022",
+    "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+    "https://thinkbigtw.com/guides/local-ai-data/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://thinkbigtw.com/library/qa/ai-audit-logs/#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "AI 系統至少要記下「誰、什麼時候、從哪裡、做了什麼、結果如何」：使用者是誰、時間、用哪個介面和哪個版本、問了什麼或叫 AI 做什麼、AI 讀了哪些文件、呼叫了哪些工具、有沒有經人核准、結果成功或失敗。OWASP 的紀錄指南要求每筆紀錄包含 when、where、who、what；密碼、金鑰、權杖和敏感個資則不要直接寫進紀錄，要遮蔽或去識別。台灣個資法施行細則第 12 條，也把「使用紀錄、軌跡資料及證據保存」列為可採取的安全維護措施之一。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "AI 系統要記錄什麼？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "至少記下誰、何時、從哪裡、做了什麼、結果如何。套到 AI 系統，還要記用的是哪個模型與版本、檢索到哪些文件、呼叫了哪些工具、誰核准。這是依 OWASP 紀錄指南的 when、where、who、what 原則整理。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "員工問 AI 的內容要整段存下來嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "不一定。問答常夾帶個資或機密，要事先決定存全文還是只存摘要、文件編號，存多久，並寫進規則。OWASP 建議敏感個資不要直接寫進紀錄，要遮蔽或去識別。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "AI 的紀錄要存多久？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "沒有一體適用的天數。要依適用的法規、合約和用途訂出保存期限，期滿刪除；個資法施行細則第 12 條把使用紀錄與證據保存列為安全措施之一，並以與保護目的具有適當比例為原則。"
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "AI Agent 自動執行的動作也要記嗎？",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "要。AI Agent 會自己呼叫工具、改資料或對外發送，每一次工具呼叫、參數、代表哪位使用者、誰核准、結果如何，都要記下來，出事時才查得到。"
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "首頁",
+     "item": "https://thinkbigtw.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Library",
+     "item": "https://thinkbigtw.com/library/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "問答圖書館",
+     "item": "https://thinkbigtw.com/library/qa/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 4,
+     "name": "AI 系統要留哪些紀錄",
+     "item": "https://thinkbigtw.com/library/qa/ai-audit-logs/"
+    }
+   ]
+  }
+ ]
+}
+</script>
+<style>
+  :root{--bg:#f3f3ef;--card:#fbfbf8;--ink:#1a211f;--ink-soft:#5a635f;--line:#daded7;--accent:#1f5f5b;--accent-soft:#e3ece9;--gold:#9a7b35;--serif:'Noto Serif TC',Georgia,serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#13181a;--card:#1b2224;--ink:#e7ece9;--ink-soft:#97a09b;--line:#2b3335;--accent:#5cb8af;--accent-soft:#1d2e2d;--gold:#c6a862;color-scheme:dark;}}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;-webkit-font-smoothing:antialiased;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-block:40px 64px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-size:13px;color:var(--accent);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .qa-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .qa-top .cat{color:var(--accent);font-weight:700}.qa-top .no{color:var(--ink-soft);font-family:var(--serif);font-weight:700;letter-spacing:.1em}
+  h1.q{font-family:var(--serif);font-weight:900;font-size:clamp(25px,6vw,36px);line-height:1.35;margin:0 0 12px;text-wrap:balance}
+  .byline{font-size:12.5px;color:var(--ink-soft);margin:0 0 24px;font-variant-numeric:tabular-nums}
+  .answer{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:20px 22px;margin:0 0 30px}
+  .lede{display:block;font-size:11px;letter-spacing:.16em;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .answer p,.answer ul,.answer ol{margin:0 0 10px;font-size:16.5px;font-weight:500}.answer p:last-child,.answer ul:last-child,.answer ol:last-child{margin-bottom:0}
+  .body h2{font-family:var(--serif);font-weight:900;font-size:21px;line-height:1.4;margin:34px 0 12px;padding-top:12px;border-top:1px solid var(--line);text-wrap:balance}
+  .body h2 .no{color:var(--accent);margin-right:.3em}
+  .body p{margin:0 0 14px;font-size:16px}
+  .body ul,.body ol{margin:0 0 14px;padding-left:1.4em}.body li{margin-bottom:6px}
+  .body a,.brand a,.sources a,.related a{color:var(--accent)}
+  .tbl{overflow-x:auto;margin:0 0 16px}
+  .body table{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+  .body th{background:var(--accent-soft);font-weight:700;font-size:13px;padding:8px 10px;text-align:left;border:1px solid var(--line)}
+  .body td{padding:8px 10px;border:1px solid var(--line);vertical-align:top}
+  @media(max-width:600px){.body table{min-width:0}.body thead{display:none}.body tr{display:block;border:1px solid var(--line);border-radius:10px;margin:0 0 12px;background:var(--card)}.body td{display:block;border:0;border-top:1px dashed var(--line);padding:8px 12px}.body td:first-child{border-top:0}.body td[data-label]::before{content:attr(data-label);display:block;font-size:11px;letter-spacing:.1em;color:var(--accent);font-weight:700;margin-bottom:2px}}
+  .brand{background:var(--card);border:2px solid var(--accent);border-radius:14px;padding:22px 22px 16px;margin:36px 0 0}
+  .brand h2{font-family:var(--serif);font-weight:900;font-size:20px;margin:0 0 12px}
+  .brand p,.brand li{font-size:15.5px}.brand p{margin:0 0 12px}.brand ol{padding-left:1.3em;margin:0 0 12px}.brand li{margin-bottom:6px}
+  .brand .brand-src{font-size:12.5px;color:var(--ink-soft);border-top:1px dashed var(--line);padding-top:10px;margin-top:6px}
+  .faq{margin:36px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+  .faq h2{font-family:var(--serif);font-weight:900;font-size:21px;margin:0 0 6px}
+  .faq dt{font-weight:700;font-size:16px;margin-top:16px}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .related{margin:30px 0 0;font-size:14.5px}.related ul{padding-left:1.2em;margin:6px 0 0}
+  .sources{margin-top:30px;border-top:1px solid var(--line);padding-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.7}
+  .sources .lede{color:var(--ink)}.sources ol{padding-left:1.3em;margin:0}.sources li{margin-bottom:4px}.sources a{word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
+  .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
+  .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主要導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="wrap">
+  <a class="back-link" href="/library/qa/">&larr; 問答圖書館</a>
+  <div class="qa-top">
+    <span class="cat">企業資安</span>
+    <span class="no">TB15</span>
+  </div>
+  <h1 class="q">AI 系統要留哪些紀錄？出事時查得到誰問了什麼、AI 做了什麼</h1>
+  <p class="byline">Think BIG 問答圖書館　·　<time datetime="2026-10-28T16:00:00+08:00">2026 年 10 月 28 日　星期三</time>
+    ·　<a href="https://thinkbigtw.com/en/qa/ai-audit-logs/" hreflang="en" style="color:var(--ink-soft)">English</a></p>
+
+  <section class="answer" aria-label="先說答案">
+    <span class="lede">先說答案</span>
+    <div><p>AI 系統至少要記下「誰、什麼時候、從哪裡、做了什麼、結果如何」：使用者是誰、時間、用哪個介面和哪個版本、問了什麼或叫 AI 做什麼、AI 讀了哪些文件、呼叫了哪些工具、有沒有經人核准、結果成功或失敗。OWASP 的紀錄指南要求每筆紀錄包含 when、where、who、what；密碼、金鑰、權杖和敏感個資則不要直接寫進紀錄，要遮蔽或去識別。台灣個資法施行細則第 12 條，也把「使用紀錄、軌跡資料及證據保存」列為可採取的安全維護措施之一。</p></div>
+  </section>
+
+  <div class="body"><h2><span class="no">一、</span>要記哪些欄位</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>OWASP 分類</th>
+<th>一般系統會記的</th>
+<th>AI 系統要多記的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>When（何時）</strong></td>
+<td>事件發生時間、寫入紀錄的時間</td>
+<td>同一次對話或任務的識別碼，把多個步驟串起來</td>
+</tr>
+<tr>
+<td><strong>Where（在哪裡）</strong></td>
+<td>應用程式名稱與版本、主機、服務、頁面或入口</td>
+<td>用的是哪個模型、哪個版本，提示詞與設定是哪一版</td>
+</tr>
+<tr>
+<td><strong>Who（誰）</strong></td>
+<td>使用者身分、來源裝置或 IP</td>
+<td>是真人操作，還是 AI Agent 自動執行；代表哪位使用者執行</td>
+</tr>
+<tr>
+<td><strong>What（做了什麼）</strong></td>
+<td>事件類型、嚴重程度、動作、對象、結果、原因</td>
+<td>檢索到哪些文件（記文件編號即可）、呼叫了哪些工具和參數、誰核准、AI 的回覆或動作結果</td>
+</tr>
+</tbody>
+</table></div>
+<p>左兩欄整理自 OWASP Logging Cheat Sheet 的事件屬性；右欄是依同樣原則，套到 AI 系統上的做法。</p>
+<h2><span class="no">二、</span>不要記什麼</h2>
+<p>OWASP 列出通常不應直接寫進紀錄、而要刪除、遮蔽、雜湊或加密的資料，包括：工作階段識別值、存取權杖、敏感個資（例如健康資料、政府核發的識別號碼）、密碼、資料庫連線字串、加密金鑰、銀行帳號或信用卡資料、商業敏感資訊；姓名、電話、Email 這類非敏感個資，也建議在不需要辨識身分時去識別化。</p>
+<p>套到 AI 系統：員工的問題和 AI 的回答常常夾帶個資或機密，<strong>要不要存全文、存多久，要事先決定並寫進規則</strong>。常見做法是只存摘要或文件編號，或存全文但遮蔽個資、縮短保存期限。</p>
+<h2><span class="no">三、</span>紀錄本身要保護</h2>
+<p>OWASP 提醒：紀錄可能含有個資和敏感資訊，要防止傳輸中被竄改，存放後也要防止未經授權的讀取、修改和刪除；同時要能發現「紀錄停了」或被動過手腳。實務上：</p>
+<ol>
+<li>紀錄存在 AI 系統以外的地方，AI Agent 本身沒有刪除紀錄的權限。</li>
+<li>能讀紀錄的人要限縮，讀取紀錄本身也留下紀錄。</li>
+<li>訂出保存期限，期滿刪除。</li>
+</ol>
+<h2><span class="no">四、</span>法規與框架怎麼說</h2>
+<ul>
+<li><strong>個資法施行細則第 12 條</strong>：公務機關或非公務機關為防止個資被竊取、竄改、毀損、滅失或洩漏所採取的技術上及組織上措施，得包括「使用紀錄、軌跡資料及證據保存」等事項，並以與保護目的具有適當比例為原則。</li>
+<li><strong>NIST AI 風險管理框架 1.0</strong>：GOVERN 4.3 要求組織有能進行 AI 測試、發現事件和分享資訊的做法；MANAGE 4.1 要求 AI 系統上線後有監控計畫，包含事件應變與復原。沒有紀錄，這些都做不到。</li>
+</ul></div>
+
+  <section class="brand" aria-label="品牌資訊｜Think BIG">
+    <span class="lede">品牌資訊｜Think BIG</span>
+    <h2>Think BIG 導入時怎麼處理紀錄</h2>
+    <p>Think BIG（大想成業有限公司）是總部位於台灣的企業 AI Agent 導入商，從守護企業資安出發，幫企業把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機）。部署分兩種：地端版的模型與文件都在公司設備內處理；雲端輔助版會把員工的問題與系統找出的文件段落送到模型廠商處理。</p>
+<ol>
+<li><strong>紀錄放哪裡先列清楚</strong>：應用程式、模型、知識庫索引、原始文件、紀錄與備份各放在哪裡，導入前逐項列出，註明用途、存取角色與保留方式。</li>
+<li><strong>權限調整留下變更紀錄</strong>：對外發送、花費及正式系統異動保留指定人員核准，權限新增或調整須留下變更紀錄。</li>
+<li><strong>交付前資安審查</strong>：每一套系統交付前，程式與設定都先過一道資安審查，沒通過不交付。</li>
+</ol>
+<p>詳見<a href="https://thinkbigtw.com/guides/local-ai-data/">地端 AI 與資料主權</a>與<a href="https://thinkbigtw.com/trust/">資安與治理</a>。</p>
+<p><em>brand-src</em>：Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+    <p class="brand-src">Think BIG 服務的實際範圍，以雙方確認的內容為準。</p>
+  </section>
+
+  <section class="faq" aria-label="常見問題">
+    <h2>常見問題</h2>
+    <dl><dt>Q1：AI 系統要記錄什麼？</dt><dd>至少記下誰、何時、從哪裡、做了什麼、結果如何。套到 AI 系統，還要記用的是哪個模型與版本、檢索到哪些文件、呼叫了哪些工具、誰核准。這是依 OWASP 紀錄指南的 when、where、who、what 原則整理。</dd><dt>Q2：員工問 AI 的內容要整段存下來嗎？</dt><dd>不一定。問答常夾帶個資或機密，要事先決定存全文還是只存摘要、文件編號，存多久，並寫進規則。OWASP 建議敏感個資不要直接寫進紀錄，要遮蔽或去識別。</dd><dt>Q3：AI 的紀錄要存多久？</dt><dd>沒有一體適用的天數。要依適用的法規、合約和用途訂出保存期限，期滿刪除；個資法施行細則第 12 條把使用紀錄與證據保存列為安全措施之一，並以與保護目的具有適當比例為原則。</dd><dt>Q4：AI Agent 自動執行的動作也要記嗎？</dt><dd>要。AI Agent 會自己呼叫工具、改資料或對外發送，每一次工具呼叫、參數、代表哪位使用者、誰核准、結果如何，都要記下來，出事時才查得到。</dd></dl>
+  </section>
+
+  <nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul><li><a href="/library/qa/ai-agent-permissions/">AI Agent 的權限要怎麼設？哪些動作一定要人核准？</a></li><li><a href="/library/qa/rag-access-control-by-department/">公司文件給 AI 查，怎麼讓每個部門只看得到自己的資料？</a></li><li><a href="/library/qa/local-llm-advantages/">本地大模型有什麼優勢？企業把 AI 放在公司裡跑的 5 個好處</a></li></ul></nav>
+
+  <div class="sources">
+    <span class="lede">參考來源（連結於 2026-10-24 查證）</span>
+    <ol><li>OWASP Logging Cheat Sheet（Event attributes、Data to exclude、保護紀錄）：<a href="https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html" target="_blank" rel="noopener">cheatsheetseries.owasp.org</a></li><li>個人資料保護法施行細則 第 12 條｜全國法規資料庫：<a href="https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050022" target="_blank" rel="noopener">law.moj.gov.tw</a></li><li>NIST AI 100-1：Artificial Intelligence Risk Management Framework (AI RMF 1.0)（GOVERN 4.3、MANAGE 4.1）：<a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a></li><li>Think BIG〈地端 AI 與資料主權〉（資料流向清單含日誌與備份）：<a href="https://thinkbigtw.com/guides/local-ai-data/" target="_blank" rel="noopener">thinkbigtw.com</a></li></ol>
+  </div>
+  <p class="disclaimer">本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。</p>
+
+  <div class="colophon">
+    <b>問答圖書館</b>　·　<a href="/library/" style="color:inherit">Library 首頁</a>
+    <span class="sig">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script>
+<script src="/ask-ai.js?v=202609280928" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入與治理。<br>地端部署・流程整合・年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業導入</a><a href="/enterprise/departments/">AI 部門</a><a href="/services/ai-visibility/">SEO／GEO</a><a href="/pricing/personal/">個人方案</a><i class="tb-f-break" aria-hidden="true"></i><a href="/enterprise/process/">導入流程</a><a href="/trust/">資安與治理</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/">Library</a><a href="/experience/">AI 實戰體驗</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 洽詢 ↗</a></div><div class="tb-copy"><span>© 2026 Think BIG・台灣</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">術語表</a><a href="/privacy.html">隱私權政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/tbos/en/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

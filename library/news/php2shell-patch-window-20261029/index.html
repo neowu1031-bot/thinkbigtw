@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 加入找漏洞的行列，修補時間跟著被壓縮——PHP2Shell 給企業 IT 的功課 | Think BIG NEWS</title>
+<meta name="description" content="PHP 於 2026 年 10 月 21 日發布 8.5.12、8.4.27、8.3.36、8.2.35，修補兩個可讓未登入者遠端執行程式的重大漏洞（外界稱 php2shell）。本文依 PHP 官方公告、CISA 告警與 NVD 紀錄整理事實，並談 AI 輔助資安研究讓回報變多、修補節奏變快之後，企業該怎麼盤點與修補。">
+<link rel="canonical" href="https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/">
+<meta property="og:title" content="AI 加入找漏洞的行列，修補時間跟著被壓縮——PHP2Shell 給企業 IT 的功課 | Think BIG NEWS">
+<meta property="og:description" content="PHP2Shell 兩個重大漏洞（CVE-2026-109618、CVE-2026-109619），CVSS 9.2，所有處理網頁請求的 PHP 都在範圍內。CISA：先修，修不了就下線。三件事先做：盤點、升版、寫進流程。">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="zh_TW">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI 加入找漏洞的行列，修補時間跟著被壓縮 | Think BIG NEWS">
+<meta name="twitter:description" content="PHP2Shell：CVSS 9.2，未登入就能執行程式。AI 找漏洞讓回報量暴增，PHP 也提前了揭露時程。企業三步：盤點→升版→事件驅動修補寫進流程。">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/#article",
+      "headline": "AI 加入找漏洞的行列，修補時間跟著被壓縮——PHP2Shell 給企業 IT 的功課",
+      "description": "PHP 於 2026 年 10 月 21 日發布 8.5.12、8.4.27、8.3.36、8.2.35，修補兩個可讓未登入者遠端執行程式的重大漏洞（外界稱 php2shell）。本文依 PHP 官方公告、CISA 告警與 NVD 紀錄整理事實，並談 AI 輔助資安研究讓回報變多、修補節奏變快之後，企業該怎麼盤點與修補。",
+      "keywords": "PHP2Shell, php2shell, CVE-2026-109618, CVE-2026-109619, PHP 漏洞, PHP 更新, 遠端程式執行, 企業資安, 漏洞修補, AI 資安研究, CISA",
+      "author": {"@type": "Organization", "name": "Think BIG 自媒體部", "url": "https://thinkbigtw.com/"},
+      "publisher": {"@type": "Organization", "@id": "https://thinkbigtw.com/#organization", "name": "大想成業有限公司", "url": "https://thinkbigtw.com/", "logo": {"@type": "ImageObject", "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"}},
+      "datePublished": "2026-10-29T20:00:00+08:00",
+      "dateModified": "2026-10-29T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/",
+      "inLanguage": "zh-Hant-TW",
+      "isPartOf": {"@type": "Periodical", "name": "Think BIG NEWS", "url": "https://thinkbigtw.com/library/news/"}
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/#faq",
+      "mainEntity": [
+        {"@type": "Question", "name": "PHP2Shell 是什麼？", "acceptedAnswer": {"@type": "Answer", "text": "是 CISA 對兩個 PHP 重大漏洞 CVE-2026-109618、CVE-2026-109619 的稱呼，兩者都可能讓未經身分驗證的攻擊者遠端執行程式。"}},
+        {"@type": "Question", "name": "哪些版本要更新？要更新到哪一版？", "acceptedAnswer": {"@type": "Answer", "text": "PHP 官方的修補版本是 8.5.12、8.4.27、8.3.36 與 8.2.35，所有處理網頁請求的安裝都在風險範圍內。使用作業系統發行版套件的，請向供應商確認對應版本。"}},
+        {"@type": "Question", "name": "還在用 PHP 8.1 或更舊的版本怎麼辦？", "acceptedAnswer": {"@type": "Answer", "text": "PHP 官方已不再為 8.1 以前的版本提供更新，部分發行版與長期支援廠商有回補，請洽供應商或升級。CISA 建議無法立即更新的系統先下線。"}},
+        {"@type": "Question", "name": "已經有人被攻擊了嗎？", "acceptedAnswer": {"@type": "Answer", "text": "CISA 告警發布時尚未觀察到成功利用。我們 10 月 24 日查詢 KEV 目錄（2026.10.23 版）時，兩個編號尚未列入。未列入不等於沒有風險，仍應盡快修補。"}},
+        {"@type": "Question", "name": "暫時不能更新，有沒有替代做法？", "acceptedAnswer": {"@type": "Answer", "text": "PHP 官方列了幾項降低特定攻擊路徑的設定，但明說只有更新才是完整解法，這些措施不能讓系統變安全。CISA 提到 WAF 在更新前可能提供部分保護。"}},
+        {"@type": "Question", "name": "AI 在這次事件裡扮演什麼角色？", "acceptedAnswer": {"@type": "Answer", "text": "PHP 基金會說明，AI 輔助研究讓回報量大增，AI 也被用來驗證回報與歸類相同根因，但每個判斷與修補都由人負責。本報第 10 期談的是攻擊端如何用 AI 加速，這期談的是防禦端。"}}
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"首頁","item":"https://thinkbigtw.com/"},
+        {"@type":"ListItem","position":2,"name":"Think BIG NEWS","item":"https://thinkbigtw.com/library/news/"},
+        {"@type":"ListItem","position":3,"name":"AI 加入找漏洞的行列，修補時間跟著被壓縮","item":"https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="主導覽"><a class="tb-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div><details class="tb-menu"><summary>選單</summary><div class="tb-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="/en/news/" lang="en">English</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/library/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>企業資安實務 &middot; 第 012 期</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">ENTERPRISE SECURITY NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>2026 年 10 月 29 日　星期四</span>
+    <span class="dot">&#9670;</span>
+    <span>企業資安實務</span>
+    <span class="dot">&#9670;</span>
+    <span>第 012 期</span>
+  </div>
+
+  <p class="kicker">PHP2Shell &middot; 企業資安 &middot; 漏洞修補</p>
+  <h2 class="headline">AI 加入找漏洞的行列，修補時間跟著被壓縮——PHP2Shell 給企業 IT 的功課</h2>
+  <p class="byline">Think BIG 自媒體部 &nbsp;|&nbsp; 2026 年 10 月 29 日</p>
+  <p class="deck">PHP 在 10 月 21 日修補了兩個重大漏洞，未登入的攻擊者有機會在伺服器上執行程式。企業要先做的事很單純：找出所有跑 PHP 的系統，升到修補版本，並確認更新真的生效。</p>
+  <hr class="head-rule">
+
+  <div class="body">
+    <p style="font-size:14px;background:var(--panel);padding:12px 14px;column-span:all;margin-bottom:20px;border-left:3px solid var(--rule);">本報第 10 期〈AI 已被用來自動化攻擊〉寫的是攻擊端：攻擊者用 AI 加快既有流程。這期寫防禦端：同樣的工具也在幫人找漏洞，回報變多、修補節奏變快，企業的修補流程得跟上。</p>
+
+    <h2><span class="no">一</span>現象：兩個重大漏洞，一次影響所有對外服務的 PHP</h2>
+    <p class="lead">PHP 官方在 <strong>2026 年 10 月 21 日</strong>發布 8.5.12、8.4.27、8.3.36 與 8.2.35，修補兩個可能讓<strong>未經身分驗證的遠端程式執行</strong>發生的重大漏洞：CVE-2026-109618 與 CVE-2026-109619，並呼籲所有 PHP 使用者立即更新。[1] 兩者的 CVSS v4.0 分數都是 9.2。[2][6][7]</p>
+    <p>官方公告說，風險涵蓋所有處理網頁請求的 PHP 安裝，包括 PHP-FPM、Apache 的 mod_php、php-cgi、FrankenPHP 與 LiteSpeed；其中 mod_php 風險最高，已有展示案例顯示未登入的請求能在任何應用程式碼執行之前觸發攻擊。[1]</p>
+    <p>美國網路安全暨基礎設施安全局（CISA）同日發出告警，稱這組漏洞為「php2shell」，要求組織立即修補、優先處理對外系統；無法立即更新，或仍使用 8.1 以前不受支援版本的系統，應先下線直到完成修補。[4] CISA 也提醒，PHP 常是其他軟體的一部分，使用範圍不一定看得出來。[4]</p>
+    <p>10 月 23 日，PHP 又發布一則說明：在特定設定與程式寫法的少見組合下，仍有一條低機率的遠端執行路徑，編號 CVE-2026-115560，完整公告會隨下一次例行修正版發布；在那之前建議把 <code>session.upload_progress.enabled</code> 設為 0。[3]</p>
+
+    <h2><span class="no">二</span>各方評價：AI 讓回報變多，判斷仍要靠人</h2>
+    <p><strong>PHP 基金會：工具讓漏洞更快被找到，攻防兩邊都是。</strong></p>
+    <p>PHP 基金會在發布當天的文章中說明，這次的根本問題最早在 2024 年一次外部稽核後續修正中就出現跡象，後來由多個外部研究單位回報完整影響。[8] 基金會也提到，AI 輔助研究讓安全團隊收到的回報大增：7 月 1 日以來發布了 15 個 CVE，另處理了超過 100 份最後證實無效、重複或無法重現的回報；AI 幫忙驗證回報、把同一根因的回報歸類，但每個判斷與每個修補都由人負責。[8] 文章的說法是，工具現在找漏洞比以往都快，防守方和攻擊方都一樣。[8]</p>
+    <p><strong>PHP 官方：揭露節奏被迫提前。</strong></p>
+    <p>基金會說明，10 月 20 日約 15:00（UTC）兩個 CVE 編號開始在網路論壇與社群流傳，附帶錯誤的發布時間與錯誤的 10.0 分，但沒有技術細節外洩；PHP 因此提前發出預告，並把正式發布從 22 日提前到 21 日 14:00（UTC）。[8]</p>
+    <p><strong>CISA：先修，修不了就下線。</strong></p>
+    <p>CISA 的告警寫到，截至發布時尚未觀察到這組漏洞遭成功利用，但若不修補仍有風險；網頁應用程式防火牆（WAF）在更新前可能提供部分保護。[4] 我們 10 月 24 日查詢 CISA 的「已知遭利用漏洞」（KEV）目錄（2026.10.23 版），兩個編號尚未列入。[5] 我們的判讀是：未列入代表 CISA 還沒有收錄，不能當成「沒有人被攻擊」的證明。</p>
+    <p>漏洞被找到、被公開的速度變快了，企業修補的速度也得跟上。</p>
+
+    <section class="firsthand">
+      <span class="lede">&#9670; 第一手心得</span>
+      <h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">三、我們實際做的時候的心得</h2>
+      <p>以下是我們協助企業處理系統與 AI 工具部署時的觀察，不是產業統計，也不代表任何特定客戶。</p>
+      <p><strong>1. 「AI 幫我們找到漏洞，那誰來修？」是常見的問題。</strong>找得到和修得完是兩件事。修補要有人排時間、有人負責重新啟動服務、有人確認沒有把網站弄壞。這些事 AI 可以幫忙整理，但責任要落在具名的人身上。</p>
+      <p><strong>2. 「我們沒有用 PHP」常常不準。</strong>常見的情況是 PHP 藏在網站後台、表單外掛、內部系統的管理介面裡，負責的人不知道。這和 CISA 提醒的「PHP 常是其他軟體的一部分」是同一件事。[4]</p>
+      <p><strong>3. 看版本號要看完整套件版本。</strong>PHP 官方說明，各 Linux 發行版與長期支援廠商事先就拿到修補，應向供應商確認更新後的套件。[1] 我們常見的狀況是，發行版會把修補補進舊的主版本號裡，只看前三碼可能誤判。驗收要對照供應商公告上的完整版本。</p>
+      <p><strong>4. 改完設定要重啟所有 worker。</strong>官方的暫時措施寫明，像 <code>session.upload_progress.enabled=0</code> 這類設定要在請求解析前就生效，改完要重啟每一個 worker，不能只靠程式裡的 <code>ini_set()</code>。[1] 我們會把「重啟後再查一次版本與設定」列成驗收項。</p>
+    </section>
+
+    <h2><span class="no">四</span>我們的建議：先做三件事</h2>
+    <p><strong>1. 盤點：列出所有跑 PHP 的地方。</strong>含對外網站、內部系統、外掛與套件裡內含的 PHP。每一筆記下執行方式（FPM、mod_php 等）、完整版本、套件來源、負責人。對外系統排第一。[4]</p>
+    <p><strong>2. 更新：升到 8.5.12、8.4.27、8.3.36 或 8.2.35。</strong>使用發行版套件的，向供應商確認對應的修補版本。[1] 8.1 以前的版本 PHP 官方已不再提供更新，要找供應商的回補或升級到受支援版本；[1] 暫時無法處理的，CISA 建議先下線。[4] 官方列出的暫時措施只能降低部分風險，不能讓系統變安全。[1]</p>
+    <p><strong>3. 把「事件驅動的修補」寫進流程。</strong>事先約定：遇到重大漏洞公告時，誰負責判斷、誰核准停機、多久內要完成、修完怎麼驗證。等到下一次月度維護才處理，可能已經來不及。同時留意 PHP 後續例行修正版會補上的 CVE-2026-115560。[3]</p>
+    <p>另外，CISA 建議監控可疑活動，例如 PHP worker 程序啟動 shell 或下載工具。[4] 若懷疑已被入侵，先保全紀錄，交給有授權的處置人員。</p>
+
+    <section class="houseview">
+      <span class="lede">&#9670; 編按 &middot; Think BIG 的做法：讓修補可以驗收</span>
+      <h2>盤點表、驗收證據、緊急修補約定——交付前就準備好。</h2>
+      <p><em>（以下是 Think BIG 的實作主張，與上方報導區隔。）</em></p>
+      <p>我們部署 AI Agent 與相關系統時，修補流程和部署一起交付：<strong>盤點表</strong>——網站、執行環境、套件來源、完整版本、負責人、維護時段、備份與回復方式；<strong>驗收證據</strong>——更新與重啟後的版本畫面、設定檢查結果，交給負責人保存；<strong>緊急修補約定</strong>——重大漏洞公告時的聯絡窗口、核准人與處理順序，事先寫進文件。</p>
+      <p>我們的立場是：AI 可以幫忙找問題、整理資料，修補的決定和責任要清楚落在人身上。</p>
+    </section>
+
+    <section class="faq">
+      <h3>常見問題</h3>
+      <dl>
+        <dt>Q1：PHP2Shell 是什麼？</dt>
+        <dd>是 CISA 對兩個 PHP 重大漏洞 CVE-2026-109618、CVE-2026-109619 的稱呼，兩者都可能讓未經身分驗證的攻擊者遠端執行程式。[4][1]</dd>
+        <dt>Q2：哪些版本要更新？要更新到哪一版？</dt>
+        <dd>PHP 官方的修補版本是 8.5.12、8.4.27、8.3.36 與 8.2.35，所有處理網頁請求的安裝都在風險範圍內。[1] 使用作業系統發行版套件的，請向供應商確認對應版本。[1]</dd>
+        <dt>Q3：還在用 PHP 8.1 或更舊的版本怎麼辦？</dt>
+        <dd>PHP 官方已不再為 8.1 以前的版本提供更新，部分發行版與長期支援廠商有回補，請洽供應商或升級。[1] CISA 建議無法立即更新的系統先下線。[4]</dd>
+        <dt>Q4：已經有人被攻擊了嗎？</dt>
+        <dd>CISA 告警發布時尚未觀察到成功利用。[4] 我們 10 月 24 日查詢 KEV 目錄（2026.10.23 版）時，兩個編號尚未列入。[5] 未列入不等於沒有風險，仍應盡快修補。</dd>
+        <dt>Q5：暫時不能更新，有沒有替代做法？</dt>
+        <dd>PHP 官方列了幾項降低特定攻擊路徑的設定，但明說只有更新才是完整解法，這些措施不能讓系統變安全。[1] CISA 提到 WAF 在更新前可能提供部分保護。[4]</dd>
+        <dt>Q6：AI 在這次事件裡扮演什麼角色？</dt>
+        <dd>PHP 基金會說明，AI 輔助研究讓回報量大增，AI 也被用來驗證回報與歸類相同根因，但每個判斷與修補都由人負責。[8] 本報第 10 期談的是攻擊端如何用 AI 加速，這期談的是防禦端。</dd>
+      </dl>
+    </section>
+  </div>
+
+  <div class="sources">
+    <span class="lede">參考來源</span>
+    查核日期：2026-10-24。<br>
+    [1] PHP，〈Security advisory: Critical remote code execution vulnerabilities, update now〉，2026-10-21：<a href="https://www.php.net/archive/2026.php#2026-10-21-5" target="_blank" rel="noopener">php.net</a>　&middot;
+    [2] PHP，〈Upcoming Critical PHP Security Release〉，2026-10-20：<a href="https://www.php.net/archive/2026.php#2026-10-20-1" target="_blank" rel="noopener">php.net</a>　&middot;
+    [3] PHP，〈Informational advisory: Session upload progress〉，2026-10-23：<a href="https://www.php.net/archive/2026.php#2026-10-23-1" target="_blank" rel="noopener">php.net</a>　&middot;
+    [4] CISA，〈Critical Vulnerabilities in PHP Require Immediate Patching〉，2026-10-21（2026-10-23 更新）：<a href="https://www.cisa.gov/news-events/alerts/2026/10/21/critical-vulnerabilities-php-require-immediate-patching" target="_blank" rel="noopener">cisa.gov</a>　&middot;
+    [5] CISA，〈Known Exploited Vulnerabilities Catalog〉，目錄版本 2026.10.23，查閱日期 2026-10-24：<a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener">cisa.gov</a>　&middot;
+    [6] NIST NVD，〈CVE-2026-109618〉，2026-10-21：<a href="https://nvd.nist.gov/vuln/detail/CVE-2026-109618" target="_blank" rel="noopener">nvd.nist.gov</a>　&middot;
+    [7] NIST NVD，〈CVE-2026-109619〉，2026-10-21：<a href="https://nvd.nist.gov/vuln/detail/CVE-2026-109619" target="_blank" rel="noopener">nvd.nist.gov</a>　&middot;
+    [8] The PHP Foundation，〈Today's PHP Security Release, and How We're Strengthening PHP Security〉，2026-10-21：<a href="https://thephp.foundation/blog/2026/10/21/todays-php-security-release-and-how-were-strengthening-php-security/" target="_blank" rel="noopener">thephp.foundation</a>
+  </div>
+  <p class="disclaimer">本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。</p>
+
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; 企業資安實務
+    <span class="brand">Think BIG, Make it Real!　大想成業有限公司</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/" aria-label="Think BIG 首頁"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>企業 AI Agent 導入 &amp; 治理。<br>地端部署 · 工作流程整合 · 年度維運</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer" aria-label="LINE 官方帳號"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">企業方案</a><a href="/enterprise/departments/">AI 部門化</a><a href="/services/ai-visibility/">SEO / GEO</a><a href="/pricing/">個人方案</a><a href="/enterprise/process/" class="tb-info-start">導入流程</a><a href="/trust/">資安</a><a href="/guides/">指南</a><a href="/portfolio/">作品集</a><a href="/library/news/">NEWS</a><a href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 諮詢 &#x2197;</a></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/about/">關於 Think BIG</a><a href="/guides/glossary/">詞彙表</a><a href="/privacy.html">隱私政策</a><a href="/terms.html">服務條款</a><a href="/contact/">聯絡我們</a><a href="/faq/">常見問題</a><a href="/en/news/php2shell-patch-window-20261029/" lang="en">English</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

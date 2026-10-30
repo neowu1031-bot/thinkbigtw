@@ -58,7 +58,7 @@ window.TB_AGENT_FAQ = [
   {
     "id": "12",
     "question": "你們的搜尋能見度服務是什麼？",
-    "answer": "讓 Google 找得到你、讓 AI 回答時提到你～SEO＋GEO 一起做，先體檢再佈局，每月報告喔！"
+    "answer": "讓 Google 找得到你、讓 AI 回答時提到你～SEO＋GEO 一起做，先體檢再建置，每月報告喔！"
   },
   {
     "id": "12",
@@ -72,8 +72,13 @@ window.TB_AGENT_FAQ = [
   },
   {
     "id": "12",
+    "question": "要不要做 llms.txt？",
+    "answer": "Google 官方說 Google 搜尋不用 llms.txt，做了不加分也不扣分；不是我們的交付項～"
+  },
+  {
+    "id": "12",
     "question": "多久看到效果？",
-    "answer": "4–8 週初步、第 5–6 個月被 AI 引用、6–12 個月有感。不承諾名次或天數。"
+    "answer": "沒有固定時程；每月用同一套方法重量看趨勢，不承諾名次或天數。"
   },
   {
     "id": "12",
@@ -88,7 +93,7 @@ window.TB_AGENT_FAQ = [
   {
     "id": "12",
     "question": "免費檢測跟你們差在哪？",
-    "answer": "免費版只看 1 個 AI 問一次。我們 SEO＋GEO 一起看、5 個 AI 連續多天重複問、告訴你 AI 講錯什麼、三種 AI 各補什麼、哪些做法有風險。"
+    "answer": "免費版通常只看 1 個 AI 問一次。我們 SEO＋GEO 一起、5 AI 重複多天、告訴你 AI 講錯什麼、各 AI 各補什麼、哪些有風險。"
   },
   {
     "id": "12",

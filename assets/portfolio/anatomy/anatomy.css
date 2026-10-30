@@ -1,0 +1,70 @@
+/* Original Think BIG integration; Anatomy geometry © 2026 Ryan, MIT (LICENSE). */
+.anatomy-svg,.anatomy-cover,.anatomy-flow{
+  --anatomy-paper:#f2f0eb;--anatomy-top:#fffdf8;
+  --anatomy-shade-0:#aaa69f;--anatomy-shade-1:#c4c0b8;--anatomy-shade-2:#d9d5cd;--anatomy-shade-3:#e9e5dd;
+  --anatomy-screen-text:#fffdf8;--anatomy-hi:#39363a;--anatomy-mid:#77716d;--anatomy-lo:#a29b93;--anatomy-accent:#823049;--anatomy-accent-top:#f4dfe5;
+  --anatomy-text:#626168;--anatomy-rule:#d9d4cd;
+}
+.anatomy-svg{display:block;width:100%;height:auto;max-width:100%;background:var(--anatomy-paper);isolation:isolate}
+.anatomy-svg .iso-fill{fill:var(--anatomy-paper)}
+.anatomy-svg .iso-top{fill:var(--anatomy-top)}
+.anatomy-svg .iso-shade[data-shade="0"]{fill:var(--anatomy-shade-0)}
+.anatomy-svg .iso-shade[data-shade="1"]{fill:var(--anatomy-shade-1)}
+.anatomy-svg .iso-shade[data-shade="2"]{fill:var(--anatomy-shade-2)}
+.anatomy-svg .iso-shade[data-shade="3"]{fill:var(--anatomy-shade-3)}
+.anatomy-svg .iso-line{fill:none;stroke:var(--anatomy-lo);stroke-width:.65;stroke-linecap:round;stroke-linejoin:round}
+.anatomy-svg .iso-edge{stroke:var(--anatomy-mid)}
+.anatomy-svg .iso-bevel{stroke:var(--anatomy-top);stroke-width:.5}
+.anatomy-svg .iso-dots{fill:var(--anatomy-mid)}
+.anatomy-svg .iso-face-text{fill:var(--anatomy-screen-text);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.anatomy-svg [data-lit]>.iso-top{fill:var(--anatomy-accent-top)}
+.anatomy-svg [data-lit]>.iso-shade{fill:var(--anatomy-accent)}
+.anatomy-svg [data-lit]>.iso-edge{stroke:var(--anatomy-accent)}
+.anatomy-cover{background:var(--anatomy-paper);border-bottom:1px solid var(--anatomy-rule);min-width:0}
+.anatomy-cover .project-cover{border:0;aspect-ratio:5/3}
+.anatomy-caption{display:flex;justify-content:space-between;gap:10px;padding:20px 24px 0;color:var(--anatomy-text);font-size:11px;letter-spacing:.04em;line-height:1.5}
+.anatomy-caption-bottom{padding:0 24px 20px;letter-spacing:0}
+.anatomy-flow{margin:24px 0 28px;padding:24px;border:1px solid var(--anatomy-rule);border-radius:12px;background:var(--anatomy-paper);min-width:0}
+.anatomy-flow-heading{display:block}.anatomy-kicker{font:10px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:var(--anatomy-text)}
+.anatomy-flow h2{font-size:clamp(19px,2vw,24px);font-weight:500;letter-spacing:-.025em;line-height:1.4;margin:8px 0}
+.anatomy-flow-heading p,.anatomy-flow-note{color:var(--anatomy-text);font-size:12px;line-height:1.7;margin:0}
+.anatomy-flow-svg{margin:4px 0 8px}
+.anatomy-flow [data-flow-art]{cursor:pointer}
+.anatomy-flow [data-flow-art] .iso-edge{transition:stroke 180ms ease}
+.anatomy-flow [data-flow-art][data-active=true] .iso-edge{stroke:var(--anatomy-accent)}
+.anatomy-flow [data-flow-art][data-active=true] .iso-top{fill:var(--anatomy-accent-top)}
+.anatomy-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.anatomy-step{min-width:0}
+.erp-page .anatomy-step button{display:flex;align-items:center;justify-content:flex-start;gap:10px;width:100%;min-height:44px;padding:10px 12px;border:1px solid var(--anatomy-rule);background:transparent;color:var(--anatomy-hi);font-size:13px;white-space:normal;text-align:left;line-height:1.5;border-radius:4px;box-shadow:none}
+.anatomy-step button span{font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--anatomy-text)}
+.erp-page .anatomy-step button[aria-pressed=true]{background:var(--anatomy-accent-top);border-color:var(--anatomy-accent);color:var(--anatomy-accent)}
+.erp-page .anatomy-step button:focus-visible{outline:2px solid var(--anatomy-accent);outline-offset:3px}
+.anatomy-step p,.anatomy-description{font-size:14px;line-height:1.8;color:var(--anatomy-hi);margin:12px 0}
+.anatomy-description{min-height:3.6em;margin:16px 0 8px}
+.anatomy-flow.is-enhanced .anatomy-step p{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.anatomy-flow-note{border-top:1px solid var(--anatomy-rule);padding-top:12px}
+@media(max-width:600px){
+ .anatomy-flow{padding:18px;margin-block:20px}.anatomy-steps{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .anatomy-description{min-height:5.4em}.anatomy-caption{padding-inline:20px}
+ /* Keep each mechanism legible: reflow SVG stations to the same 2×2 order as controls. */
+ .anatomy-flow.is-enhanced .anatomy-flow-svg{aspect-ratio:480/490}
+ .anatomy-flow.is-enhanced .anatomy-flow-svg [data-flow-art="0"]{transform:translate(0,0)}
+ .anatomy-flow.is-enhanced .anatomy-flow-svg [data-flow-art="1"]{transform:translate(0,0)}
+ .anatomy-flow.is-enhanced .anatomy-flow-svg [data-flow-art="2"]{transform:translate(-480px,230px)}
+ .anatomy-flow.is-enhanced .anatomy-flow-svg [data-flow-art="3"]{transform:translate(-480px,230px)}
+}
+@media(prefers-reduced-motion:reduce){.anatomy-svg *,.anatomy-flow *{animation:none!important;transition:none!important}}
+
+[data-theme=dark] .anatomy-svg,[data-theme=dark] .anatomy-cover,[data-theme=dark] .anatomy-flow{--anatomy-paper:#222327;--anatomy-top:#59595b;
+ --anatomy-shade-0:#26272b;--anatomy-shade-1:#303136;--anatomy-shade-2:#3b3c40;--anatomy-shade-3:#494a4e;
+ --anatomy-screen-text:#271b20;--anatomy-hi:#f2eeea;--anatomy-mid:#a7a29c;--anatomy-lo:#6e6b69;--anatomy-accent:#e0a6b5;--anatomy-accent-top:#4e3440;
+ --anatomy-text:#bcb8b6;--anatomy-rule:#49474a;}
+@media(prefers-color-scheme:dark){
+ .anatomy-index:not([data-theme=light]) .anatomy-svg,.anatomy-index:not([data-theme=light]) .anatomy-cover,svg.anatomy-svg:root{--anatomy-paper:#222327;--anatomy-top:#59595b;
+ --anatomy-shade-0:#26272b;--anatomy-shade-1:#303136;--anatomy-shade-2:#3b3c40;--anatomy-shade-3:#494a4e;
+ --anatomy-screen-text:#271b20;--anatomy-hi:#f2eeea;--anatomy-mid:#a7a29c;--anatomy-lo:#6e6b69;--anatomy-accent:#e0a6b5;--anatomy-accent-top:#4e3440;
+ --anatomy-text:#bcb8b6;--anatomy-rule:#49474a;}
+ .portfolio-page.anatomy-index:not([data-theme=light]){--paper:#191a1d;--ink:#f2eeea;--muted:#bcb8b6;--line:#3e3e43;background:var(--paper);color:var(--ink)}
+ .portfolio-page.anatomy-index:not([data-theme=light]) .project-card{background:#222327;color:var(--ink)}
+ .portfolio-page.anatomy-index:not([data-theme=light]) .project-tags span{color:#e0a6b5;background:#382b32;border-color:#82616d}
+}

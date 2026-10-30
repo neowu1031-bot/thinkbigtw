@@ -114,6 +114,142 @@
   <p class="intro">Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.</p>
 
   <div class="issue-list">
+<article class="sheet">
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="sub">AI DEPLOYMENT &middot; FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>First-hand observations on AI deployment</span>
+    <span>&#9670;</span>
+    <span>thinkbigtw.com</span>
+  </div>
+
+  <p class="intro">Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.</p>
+
+  <div class="issue-list">
+
+    <a class="issue" href="/en/news/php2shell-patch-window-20261029/">
+      <div class="issue-no">Issue 012</div>
+      <div>
+        <div class="issue-meta">October 29, 2026 &middot; Enterprise Security Notes</div>
+        <h2 class="issue-title">AI Joins the Bug Hunt, and the Patch Window Shrinks &#x2014; What PHP2Shell Means for Enterprise IT</h2>
+        <p class="issue-deck">PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them &#x201C;php2shell&#x201D; and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/ai-context-length-too-large-20261027/">
+      <div class="issue-no">Issue 011</div>
+      <div>
+        <div class="issue-meta">October 27, 2026 &middot; Local AI Deployment</div>
+        <h2 class="issue-title">Give Your Local AI Too Much &#x201C;Memory&#x201D; and It Can Drag Down the Whole Machine &#x2014; How to Size the Context Length</h2>
+        <p class="issue-deck">Ollama&#x2019;s FAQ and its &#x201C;Context length&#x201D; page give different defaults; the safest check is the CONTEXT column in <code>ollama ps</code>. We look at why an oversized context slows everything down, what Flash Attention and K/V cache quantization offer, and how to work backward from real tasks to a number you can justify.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/ai-attacks-became-automated-20261024/">
+      <div class="issue-no">Issue 010</div>
+      <div>
+        <div class="issue-meta">October 24, 2026 &middot; AI Security</div>
+        <h2 class="issue-title">AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else&#x27;s Entry Point?</h2>
+        <p class="issue-deck">Microsoft&#x27;s latest investigation documents attackers using AI to accelerate existing attack workflows. For organizations, the immediate questions are which tools can read data or take action, and who approves and owns that access.</p>
+      </div>
+    </a>
+    <a class="issue" href="/en/news/ai-adoption-nobody-uses-20261021/">
+      <div class="issue-no">Issue 009</div>
+      <div>
+        <div class="issue-meta">October 21, 2026 &middot; AI Adoption</div>
+        <h2 class="issue-title">Rolled Out AI and Nobody Uses It? The Problem Usually Isn't the AI. Work Backward From the One Task Employees Actually Do Every Day</h2>
+        <p class="issue-deck">Taiwan SMEs' biggest barrier is "no clear use case." BCG found 74% haven't seen results. MIT preliminary report: learning gap. The fix isn't a smarter model — work backward from one task employees actually do every day.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/local-vs-cloud-ai-agent-20261019/">
+      <div class="issue-no">Issue 008</div>
+      <div>
+        <div class="issue-meta">October 19, 2026 &middot; On-Premises vs. Cloud AI</div>
+        <h2 class="issue-title">Why Do Some Companies Run AI Agents on Their Own Machines Instead of the Cloud? Can the Data Leave?</h2>
+        <p class="issue-deck">On-premises keeps the model and documents on company hardware; the cloud launches fast but your data goes to the provider. Taiwan's public-sector guideline, personal data law, provider terms, and six first-hand lessons from deploying both.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/fde-outsourced-engineer-20261013/">
+      <div class="issue-no">Issue 007</div>
+      <div>
+        <div class="issue-meta">October 13, 2026 &middot; AI Deployment</div>
+        <h2 class="issue-title">What Is a Forward Deployed Engineer, and Why Is It AI's Most Wanted Role? What Small Businesses Can Do Without an FDE Budget</h2>
+        <p class="issue-deck">FDE postings grew more than 800% in 2025. In 2026, major companies invested billions in forward-deployed units. AI's bottleneck has moved from building models to putting them to work. Six lessons from doing this remotely.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/ai-hallucination-20261012/">
+      <div class="issue-no">Issue 006</div>
+      <div>
+        <div class="issue-meta">October 12, 2026 &middot; AI Hallucinations</div>
+        <h2 class="issue-title">Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI</h2>
+        <p class="issue-deck">Training rewards guessing, not admitting uncertainty. Legal RAG tools still hallucinate on 17–33% of queries. Being pushed back makes AI more likely to flip from right to wrong. Five habits for individuals and five steps for businesses.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/chatgpt-tw-citations-20261011/">
+      <div class="issue-no">Issue 005</div>
+      <div>
+        <div class="issue-meta">October 11, 2026 &middot; GEO Source Analysis</div>
+        <h2 class="issue-title">Who Does ChatGPT Cite When It Answers Questions About Taiwan? Where Local Brands Should Put Their Information</h2>
+        <p class="issue-deck">15,729 citations reveal: ChatGPT leans on brand sites and government bodies, roughly 70% not in Chinese. Three AIs, three separate playing fields — local brands need a separate plan for each.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/geo-measurement-20261009/">
+      <div class="issue-no">Issue 004</div>
+      <div>
+        <div class="issue-meta">October 9, 2026 &middot; GEO Measurement</div>
+        <h2 class="issue-title">Asked AI Once and Called It? AI Answers Are Probabilities, Not Rankings: How to Measure GEO Properly</h2>
+        <p class="issue-deck">Ask an AI the same question twice and most of the cited sources may change. A 2026 University of St. Gallen study found that when the same question is re-asked minutes apart, only about a third of the cited sources overlap. We cover what that means for measuring GEO properly.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/seo-geo-difference-20261007/">
+      <div class="issue-no">Issue 003</div>
+      <div>
+        <div class="issue-meta">October 7, 2026 &middot; SEO / GEO</div>
+        <h2 class="issue-title">You Rank on Google. So Why Doesn&#8217;t ChatGPT Mention You?&#8202;&#8212;&#8202;SEO vs. GEO, Explained</h2>
+        <p class="issue-deck">SEO gets you found in search results. GEO gets you mentioned in AI answers. Same foundation, different finish line: AI picks passages and weighs what others say about you.</p>
+      </div>
+    </a>
+
+    <a class="issue" href="/en/news/local-llm-gpu-check-20261005/">
+      <div class="issue-no">Issue 002</div>
+      <div>
+        <div class="issue-meta">October 5, 2026 &middot; Local AI Deployment</div>
+        <h2 class="issue-title">Is Your Local AI Actually Using the GPU? &ldquo;Installed&rdquo; Doesn&rsquo;t Mean &ldquo;Running Well&rdquo;</h2>
+        <p class="issue-deck">When a local AI model is painfully slow, the most likely cause isn&rsquo;t underpowered hardware &mdash; it&rsquo;s that the model is running entirely on the CPU. One command, ten seconds, and you&rsquo;ll know.</p>
+      </div>
+    </a>
+    <a class="issue" href="/en/news/lobster-hermes-abandonment-20261003/">
+      <div class="issue-no">Issue 001</div>
+      <div>
+        <div class="issue-meta">October 3, 2026 &middot; AI Agent Deployment</div>
+        <h2 class="issue-title">Thinking about abandoning your AI Agent? Ask these three questions first — and stop getting locked in</h2>
+        <p class="issue-deck">Most AI Agent abandonment has nothing to do with the tool itself. It comes down to three things nobody confirmed at the start: can you switch models, who owns the data, and can you predict the monthly cost?</p>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="lang-note">This edition is also available in <a href="/library/news/">Traditional Chinese (繁中版)</a>.</p>
+</article>
+<a class="issue" href="/en/news/ai-context-length-too-large-20261027/">
+      <div class="issue-no">Issue 011</div>
+      <div>
+        <div class="issue-meta">October 27, 2026 &middot; Local AI Deployment</div>
+        <h2 class="issue-title">Give Your Local AI Too Much &#x201C;Memory&#x201D; and It Can Drag Down the Whole Machine &#x2014; How to Size the Context Length</h2>
+        <p class="issue-deck">Ollama&#x2019;s FAQ and its &#x201C;Context length&#x201D; page give different defaults; the safest check is the CONTEXT column in <code>ollama ps</code>. We look at why an oversized context slows everything down, what Flash Attention and K/V cache quantization offer, and how to work backward from real tasks to a number you can justify.</p>
+      </div>
+    </a>
+
 
     <a class="issue" href="/en/news/ai-context-length-too-large-20261025/">
       <div class="issue-no">Issue 011</div>

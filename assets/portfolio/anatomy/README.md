@@ -1,0 +1,13 @@
+# Anatomy illustrations · task 1e
+
+Original Think BIG scenes, built with Ryan's MIT-licensed Anatomy isometric geometry kit. The complete notice is in LICENSE; the unchanged build-only kit and its license live in scripts/vendor/anatomy/. No browser dependency, download, package installation, or runtime SVG fetch is needed.
+
+Scale: Figure. Shared 45° azimuth / 30° elevation, four neutral side tones, warm top face, one rose accent, solid occlusion, fine bevels. Rebuild with `node scripts/build-portfolio-anatomy.mjs`; generated SVGs are also embedded in the two index and two ERP pages for theme inheritance, localized accessible names and direct interaction.
+
+Concept and parts plan (before geometry):
+- Agent workbench: eight department drawers surround a central dispatch console; two exposed indexing gears describe task routing. Parts: four feet, four mounts, base, base inlay, four bolts, four uprights, two drawer housings, eight drawers, sixteen handle mounts, eight handles, eight label plates, worktop, two gear seats, two gears, two hubs, console foot, console case, screen, six vents, six keys. Static: no pretend agent activity.
+- Warehouse: shelving behind a working conveyor; a single parcel enters, inventory moves 12 → 13, then a parcel exits and inventory returns to 12. Parts: four feet, base, four bolts, four post shoes, four posts, three shelves, six shelf brackets, six cartons with tape and label, four conveyor legs, two rails, twelve belt slats, two end stops, parcel with tape and label, counter housing and window. Animation is a four-second illustrative cycle on hover or keyboard focus, never ERP data.
+- Empty display: a quiet plinth, left empty for the next project. Parts: four feet, four collars, base, inlay, four bolts, four corner supports, apron, eight recessed fastening slots, pedestal, platform, rim, four platform bolts, four mounting pads, four inset pad slots, blank maker plate. Detail stays at the joints; the display surface stays empty as requested.
+- ERP flow: a sales-slip tray, inventory shelving, shipping conveyor, report printer. They explain order → stock deduction → shipment → reporting. The text makes clear that this demo deducts stock when shipment is posted, not on draft creation. Each station is selectable through its image or an HTML button; the text remains available with JavaScript disabled.
+
+Verification scope: DOM behavior and static SVG checks locally; GM owns browser acceptance, actual 375px layout, both themes, native focus/hover/touch and close-up/line-end visual review. These conceptual illustrations are not audited physical engineering models.
