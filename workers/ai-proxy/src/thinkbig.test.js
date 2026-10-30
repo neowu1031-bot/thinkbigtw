@@ -22,7 +22,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { selectKnowledge, selectKnowledgePrimary, fullKBText, KB_FULL_LIMIT, estimateTokens } from './thinkbig.js';
+import { selectKnowledge, selectKnowledgePrimary, fullKBText, KB_FULL_LIMIT, estimateTokens, SCOPE_RULE } from './thinkbig.js';
 
 function msg(content) {
   return [{ role: 'user', content }];
@@ -109,7 +109,7 @@ test('Q10 Muse 取代龍蝦？ → 選到 ch08，含核心句，不貶低品牌'
   const { selected, text } = selectKnowledge(msg('Muse 會不會取代龍蝦？'));
   assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
   // 核心句：兩者可以一起用，費用可控是差異點
-  assert.ok(text.includes('每一個都很好'), '文字應含「每一個都很好」（核心句）');
+  assert.ok(text.includes('可以一起用'), '文字應含「可以一起用」（核心句，ch08 現行定稿）');
   assert.ok(text.includes('費用可控'), '文字應含「費用可控」（核心句）');
   // 不貶低任何品牌
   assert.ok(!text.includes('比較差') && !text.includes('不如') && !text.includes('劣'), '不應出現貶低品牌的詞彙');
@@ -119,7 +119,7 @@ test('Q10 Muse 取代龍蝦？ → 選到 ch08，含核心句，不貶低品牌'
 test('Q11 Grok 出了 agent 還需要龍蝦嗎？ → 選到 ch08，含核心句', () => {
   const { selected, text } = selectKnowledge(msg('Grok 出了 agent 那我還需要龍蝦嗎？'));
   assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
-  assert.ok(text.includes('每一個都很好'), '文字應含「每一個都很好」（核心句）');
+  assert.ok(text.includes('可以一起用'), '文字應含「可以一起用」（核心句，ch08 現行定稿）');
   assert.ok(text.includes('長時間運作'), '文字應含「長時間運作」（核心句）');
 });
 
@@ -127,7 +127,7 @@ test('Q11 Grok 出了 agent 還需要龍蝦嗎？ → 選到 ch08，含核心句
 test('Q12 新的 AI Agent 那麼多要怎麼選？ → 選到 ch08，含核心句', () => {
   const { selected, text } = selectKnowledge(msg('新的 AI Agent 那麼多要怎麼選？'));
   assert.ok(selected.includes('08'), `expected ch08, got ${selected}`);
-  assert.ok(text.includes('每一個都很好'), '文字應含「每一個都很好」（核心句）');
+  assert.ok(text.includes('可以一起用'), '文字應含「可以一起用」（核心句，ch08 現行定稿）');
   assert.ok(text.includes('協作'), '文字應含「協作」（核心句結尾）');
 });
 
@@ -165,7 +165,7 @@ test('Q15 你們企業版資安怎麼做 → 備援路徑選到 ch06，含八層
 // ── Q16：主力路徑應讀取全本 KB（所有章節都在 context 中）────────────────
 test('Q16 主力路徑 selectKnowledgePrimary → 全本 KB 在預算內，返回所有章節', () => {
   const r = selectKnowledgePrimary(msg('請問你們的服務是什麼？'));
-  assert.strictEqual(r.tier, 'full', `expected tier=full, got ${r.tier}`);
+  assert.ok(['core', 'core+supplement'].includes(r.tier), `expected core tier, got ${r.tier}`);
   assert.ok(r.estimatedTokens <= KB_FULL_LIMIT, `full KB ${r.estimatedTokens} should be ≤ ${KB_FULL_LIMIT}`);
   // 所有章節都在 text 中（以 ch06 的八層框架為代表）
   assert.ok(r.text.includes('八層') || r.text.includes('八道'), '全本 KB 應含八層資安框架');
@@ -212,4 +212,85 @@ test('負向斷言 KB_PRICE_FREE：fullKBText 不含 NT$ 金額、33000/66000/99
   const PRICE_RE = /NT\$\s*\d|33,?000|66,?000|99,?000|12,?000|15,?000|6,?000/;
   assert.ok(!PRICE_RE.test(fullKBText),
     'KB 全文不應含任何 NT$ 金額或企業三方案定價，違反 NEO 2026-10-01 鐵則');
+});
+
+// ── 2026-10-31 補充章節（13 起）：官網導覽、方案交付物、本地大模型技術問答 ─────────
+test('KB13 補充章節：每章加上 ch01＋ch10 都在備援預算 2850 內', () => {
+  const sel = selectKnowledge(msg('Mac Studio 可以跑嗎？'));
+  assert.ok(sel.estimatedTokens <= 2850, `got ${sel.estimatedTokens}`);
+});
+test('KB13 技術題：20 人公司要買什麼等級電腦 → ch17（硬體）', () => {
+  const { selected, text } = selectKnowledge(msg('我們公司大概 20 個人，想裝本地大模型，要買什麼等級的電腦？'));
+  assert.ok(selected.includes('17'), `expected ch17, got ${selected}`);
+  assert.ok(/24GB/.test(text) && text.includes('30 分鐘免費評估'), '應含規格起點與評估 CTA');
+});
+test('KB13 技術題沒點名個人方案：本地大模型要什麼顯卡 → ch17 而非 ch07', () => {
+  const { selected } = selectKnowledge(msg('本地大模型要什麼顯卡？'));
+  assert.strictEqual(selected[2], '17', `expected ch17 first, got ${selected}`);
+});
+test('KB13 點名個人方案的技術題仍走 ch07：人格版需要什麼顯卡', () => {
+  const { selected } = selectKnowledge(msg('人格版需要什麼顯卡？'));
+  assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
+});
+test('KB13 Ollama／vLLM／Dify → ch18；資料外洩 → ch20；回答很慢 → ch21', () => {
+  assert.ok(selectKnowledge(msg('Ollama、vLLM、Dify 差在哪？')).selected.includes('18'));
+  assert.ok(selectKnowledge(msg('資料真的不會外洩嗎？')).selected.includes('20'));
+  assert.ok(selectKnowledge(msg('回答很慢怎麼辦？')).selected.includes('21'));
+});
+test('KB13 官網題：作品集 → ch13；隱私追蹤 → ch14；企業交付物 → ch15；技能包 → ch16', () => {
+  assert.ok(selectKnowledge(msg('作品集裡有什麼？')).selected.includes('13'));
+  assert.ok(selectKnowledge(msg('你們官網有用什麼追蹤工具嗎？')).selected.includes('14'));
+  assert.ok(selectKnowledge(msg('企業導入做完之後，我們實際會拿到哪些東西？')).selected.includes('15'));
+  assert.ok(selectKnowledge(msg('技能包是什麼？')).selected.includes('16'));
+});
+test('KB13 TB FRAME 不可被「RAM」誤判成硬體章', () => {
+  const { selected } = selectKnowledge(msg('TB FRAME 是什麼？'));
+  assert.ok(selected.includes('04') && !selected.includes('17'), `got ${selected}`);
+});
+test('KB13 主力路徑：核心章節全載入，再加命中的補充章節，且不超過 KB_FULL_LIMIT', () => {
+  const r = selectKnowledgePrimary(msg('Mac Studio 可以跑嗎？資料會外洩嗎？'));
+  assert.ok(['01', '06', '11', '12'].every(id => r.selected.includes(id)), 'core chapters missing');
+  assert.ok(r.selected.includes('17') && r.selected.includes('20'), `got ${r.selected}`);
+  assert.ok(r.estimatedTokens <= KB_FULL_LIMIT);
+  const plain = selectKnowledgePrimary(msg('你好'));
+  assert.ok(plain.selected.every(id => Number(id) < 13), 'no supplement for small talk');
+});
+test('KB13 補充章節不含任何金額，交付時程只寫 30 天內', () => {
+  assert.ok(!/NT\$\s*\d|\d+\s*萬元|32,?000|38,?000/.test(fullKBText), 'KB 不得含金額');
+  assert.ok(!/(14|21)\s*天內交付/.test(fullKBText));
+});
+
+// ── 2026-10-31 對抗審修正：意圖與路由反例 ─────────
+test('KB13 「顯示卡」與「顯卡」同義：本地大模型要什麼顯示卡 → ch17', () => {
+  for (const q of ['本地大模型要什麼顯示卡？', '本地大模型要什麼顯卡？']) {
+    const { selected } = selectKnowledge(msg(q));
+    assert.strictEqual(selected[2], '17', `${q} → ${selected}`);
+  }
+});
+test('KB13 企業意圖會延續：前一句說公司導入，下一句問維護 → 不走個人章', () => {
+  const m = [{ role: 'user', content: '我們公司要導入本地大模型' }, { role: 'assistant', content: '好的' }, { role: 'user', content: '維護包含哪些？' }];
+  const { selected } = selectKnowledge(m);
+  assert.ok(selected.includes('15') && !selected.includes('07'), `got ${selected}`);
+});
+test('KB13 主力路徑個人意圖不加企業補充章', () => {
+  const r = selectKnowledgePrimary(msg('我是個人，想裝 OpenClaw 人格版，壞了怎麼維護？'));
+  assert.ok(!r.selected.includes('15') && !r.selected.includes('17'), `got ${r.selected}`);
+  assert.ok(['core', 'core+supplement'].includes(r.tier) && Array.isArray(r.omitted));
+});
+test('KB13 寬泛字詞不誤判：MAC 位址、WordPress、內部問答', () => {
+  assert.ok(!selectKnowledge(msg('MAC 位址會被保存嗎？')).selected.includes('17'));
+  assert.ok(!selectKnowledge(msg('WordPress 官網可以接客服嗎？')).selected.includes('19'));
+  assert.ok(!selectKnowledge(msg('可以幫我設定內部問答嗎？')).selected.includes('12'));
+});
+test('KB13 訓練與保存的同義問法 → ch19', () => {
+  assert.ok(selectKnowledge(msg('我的資料會拿來訓練嗎？')).selected.includes('19'));
+  assert.ok(selectKnowledge(msg('OpenAI API 會保存多久？')).selected.includes('19'));
+});
+test('KB13 硬體章對齊企業標準：16GB、AMD、Mac 不在地端標準範圍；不寫 Ollama 預設數字', () => {
+  const ch17 = selectKnowledge(msg('Mac Studio 可以跑嗎？')).text;
+  assert.ok(/16GB 顯示卡、AMD 顯示卡、Mac/.test(ch17), 'ch17 應寫明不在標準範圍');
+  assert.ok(!/預設 4,?096|NUM_PARALLEL 預設/.test(fullKBText), '不寫未綁版本的 Ollama 預設值');
+});
+test('KB13 SCOPE_RULE 保留未知規格／合約例外的轉接出口', () => {
+  assert.ok(/合約例外、法律個案不推測/.test(SCOPE_RULE) && /轉專人/.test(SCOPE_RULE));
 });
