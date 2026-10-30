@@ -9,8 +9,8 @@
  *   - LINE_HASH_PEPPER 必須透過 wrangler secret put 設定，未設定直接 503
  *   - 對話脈絡存 LINE_KV，閒置 30 分鐘後由 Cron 報告並清除（KV TTL 2小時）
  *   - 限速：CF atomic RATE_LIMITER（6/min，選配）→ KV per-user 5/min + 60/day
- *   - 轉真人：回固定文字（含美東提示）+ Supabase 報告（needs_human: true）
- *   - 答不出來：回「這題我幫您轉給專人確認」+ 美東提示 + needs_answer 報告
+ *   - 轉真人：回固定文字 + 延遲提示（現在~11/24：美東進修；11/25~11/27：海外出差；11/28起：省略）
+ *   - 答不出來：回「這題我幫您轉給專人確認」+ 同上延遲提示 + needs_answer 報告
  *   - /line-push-answer：HMAC(GM_PUSH_KEY) → uidmap lookup → LINE push
  *   - GIFT 客戶名單（LINE_HUMAN_ONLY_NAMES env var only，無預設）：完全不回，只送報告
  *   - P1: event dedup（processing → completed）+ timestamp ±5 min 驗證
@@ -43,20 +43,36 @@ const WELCOME_TEXT =
   '・方案介紹：https://thinkbigtw.com/pricing/\n' +
   '・企業合作：https://thinkbigtw.com/enterprise/';
 
-/** 美東時差提示到期時間（2026-11-27 00:00 台灣時間 UTC+8，NEO 返台後自動停用）。 */
-const US_EAST_NOTE_UNTIL = '2026-11-27T00:00:00+08:00';
+/**
+ * 回覆延遲提示區間（台灣時間 UTC+8）：
+ *   現在 ～ 2026-11-24 23:59：美東進修說明（真人回覆時間點）
+ *   2026-11-25 00:00 ～ 2026-11-27 23:59：海外出差三天說明
+ *   2026-11-28 00:00 起：不顯示任何提示
+ */
+const OOO_START_MS = new Date('2026-11-25T00:00:00+08:00').getTime();
+const OOO_END_MS   = new Date('2026-11-28T00:00:00+08:00').getTime();
 
-/** 美東時差提示（到期後回傳空字串）。 */
-function getEastUsNote() {
-  return Date.now() < new Date(US_EAST_NOTE_UNTIL).getTime()
-    ? '我們的工程師們目前都在美東進修中，如果需要專人回覆，可能要稍等一下下喔🙏 我們會盡快回覆您～'
-    : '';
+/**
+ * 回覆延遲提示，根據時間回傳對應句子或空字串：
+ *   nowMs < OOO_START_MS → 美東進修提示
+ *   OOO_START_MS <= nowMs < OOO_END_MS → 海外出差提示
+ *   nowMs >= OOO_END_MS → ''
+ * @param {number} [nowMs] 當前時間戳（毫秒），預設 Date.now()，供單元測試注入。
+ */
+export function getOooNote(nowMs = Date.now()) {
+  if (nowMs < OOO_START_MS) {
+    return '我們的工程師們目前都在美東進修中，如果需要專人回覆，可能要稍等一下下喔🙏 我們會盡快回覆您～';
+  }
+  if (nowMs < OOO_END_MS) {
+    return '11/25–11/27 顧問海外出差三天，這幾天回覆可能會稍慢，11/28 起會第一時間幫你處理喔 🙏';
+  }
+  return '';
 }
 
-/** 第一次轉真人時用（美東提示到期後自動省略）。 */
-function getHumanTransferText() {
-  const note = getEastUsNote();
-  return '好的～已經幫您通知 Think BIG 的同仁了，上班時間會盡快回覆您喔 🙏' + (note ? '\n\n' + note : '');
+/** 第一次轉真人時用（依時間自動附對應提示，11/28 起省略）。 */
+function getHumanTransferText(nowMs = Date.now()) {
+  const note = getOooNote(nowMs);
+  return '好的～已經幫您通知 Think BIG 的同仁了，上班時間會盡快回覆你喔 🙏' + (note ? '\n\n' + note : '');
 }
 
 /** 已轉真人後再傳訊時用（較短，不重複美東提示）。 */
@@ -635,7 +651,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   if (profileFailed) {
     const sessionId = generateUUID();
     ctx.waitUntil(submitNeedsAnswerReport(env, keyHash, userText));
-    await sendFlexReply(token, replyToken, getHumanTransferText(), { maxButtons: 0 });
+    await sendFlexReply(token, replyToken, getHumanTransferText(nowMs), { maxButtons: 0 });
     return;
   }
 
@@ -686,7 +702,7 @@ async function processEventInner(event, token, kv, env, ctx) {
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await sendFlexReply(token, replyToken, getHumanTransferText(), { maxButtons: 0 });
+    await sendFlexReply(token, replyToken, getHumanTransferText(nowMs), { maxButtons: 0 });
     return;
   }
 
@@ -706,7 +722,7 @@ async function processEventInner(event, token, kv, env, ctx) {
   const { reply, aiWantsHuman, aiNeedsAnswer } = result;
 
   if (aiWantsHuman) {
-    sessionCtx.messages.push({ role: 'assistant', content: getHumanTransferText() });
+    sessionCtx.messages.push({ role: 'assistant', content: getHumanTransferText(nowMs) });
     sessionCtx.humanTransferred = true;
     sessionCtx.lastAt = nowMs;
     if (sessionCtx.messages.length > MAX_ROUNDS * 2) {
@@ -714,13 +730,13 @@ async function processEventInner(event, token, kv, env, ctx) {
     }
     await saveContext(kv, keyHash, sessionCtx);
     ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await sendFlexReply(token, replyToken, getHumanTransferText(), { maxButtons: 0 });
+    await sendFlexReply(token, replyToken, getHumanTransferText(nowMs), { maxButtons: 0 });
     return;
   }
 
   if (aiNeedsAnswer) {
-    // 6B: 答不出來 → 附美東提示（到期後省略） + needs_answer 報告
-    const _note = getEastUsNote();
+    // 6B: 答不出來 → 附出差提示（期間內）+ needs_answer 報告
+    const _note = getOooNote(nowMs);
     const fullReply = _note ? reply + '\n\n' + _note : reply;
     sessionCtx.messages.push({ role: 'assistant', content: reply });
     if (sessionCtx.messages.length > MAX_ROUNDS * 2) {

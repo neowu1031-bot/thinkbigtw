@@ -2,6 +2,8 @@
 <html lang="zh-Hant">
 <head>
 <!-- Google tag (gtag.js) -->
+<!-- Meta Pixel — 填入廣告帳號的像素 ID 後生效；空白時不載入任何追蹤程式碼 -->
+<script>(function(){var META_PIXEL_ID='';if(!META_PIXEL_ID)return;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',META_PIXEL_ID);fbq('track','PageView');})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -928,6 +930,8 @@ document.getElementById('cf-submit').addEventListener('click', async function(){
     if(data.accepted){
       statusEl.textContent = '已收到！TB 將在 1 個工作日內主動聯繫，安排遠端預檢。';
       statusEl.className = 'form-status success';
+      try { if(typeof gtag==='function') gtag('event','generate_lead',{method:'enterprise_start_form'}); } catch(_){}
+      try { if(typeof fbq==='function') fbq('track','Lead'); } catch(_){}
       this.disabled = true;
       document.getElementById('consult-form-wrap').querySelectorAll('input,select,textarea').forEach(el=>el.disabled=true);
     } else if(data.error === 'rate_limited'){
