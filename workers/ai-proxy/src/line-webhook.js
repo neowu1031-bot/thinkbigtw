@@ -544,7 +544,7 @@ async function generateLineReply(messages, env) {
       const res = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
         method: 'POST', signal: AbortSignal.timeout(8000),
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.MINIMAX_API_KEY}` },
-        body: JSON.stringify({ model: 'MiniMax-M2', messages: context, max_tokens: 500, temperature: 0.2 }),
+        body: JSON.stringify({ model: 'MiniMax-M3', messages: context, max_tokens: 500, temperature: 0.2 }),
       });
       if (res.ok) {
         const data = await res.json();

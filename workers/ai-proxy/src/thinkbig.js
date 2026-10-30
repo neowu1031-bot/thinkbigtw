@@ -135,7 +135,7 @@ async function chat(body, env) {
       const response = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
         method: 'POST', signal: AbortSignal.timeout(8000),
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.MINIMAX_API_KEY}` },
-        body: JSON.stringify({ model: 'MiniMax-M2', messages: primaryContext, max_tokens: 600, temperature: 0.2 }),
+        body: JSON.stringify({ model: 'MiniMax-M3', messages: primaryContext, max_tokens: 600, temperature: 0.2 }),
       });
       if (response.ok) {
         const data = await readJSON(response.body, 50000);
@@ -148,7 +148,7 @@ async function chat(body, env) {
           // 1002=rate_limit, 1008=insufficient_balance, 1027=output_content_error — log alert, fall through to CF AI
           console.log(JSON.stringify({ type: 'minimax_quota_alert', ts: new Date().toISOString(), status_code: data.base_resp.status_code }));
         }
-        model = 'MiniMax-M2';
+        model = 'MiniMax-M3';
       } else {
         if (response.status === 429) console.log(JSON.stringify({ type: 'minimax_quota_alert', ts: new Date().toISOString(), status: 429 }));
         await response.body?.cancel();
@@ -294,7 +294,7 @@ export async function generateChatSummary(messages, env) {
       const res = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
         method: 'POST', signal: AbortSignal.timeout(10000),
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.MINIMAX_API_KEY}` },
-        body: JSON.stringify({ model: 'MiniMax-M2', messages: [{ role: 'system', content: SUMMARY_SYSTEM }, { role: 'user', content: userPrompt }], max_tokens: 500, temperature: 0.1 }),
+        body: JSON.stringify({ model: 'MiniMax-M3', messages: [{ role: 'system', content: SUMMARY_SYSTEM }, { role: 'user', content: userPrompt }], max_tokens: 500, temperature: 0.1 }),
       });
       if (res.ok) {
         const data = await readJSON(res.body, 50000);

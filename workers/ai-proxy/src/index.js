@@ -340,7 +340,7 @@ async function handleErpChat(request, env) {
   }
 
   let reply = '';
-  let modelUsed = 'MiniMax-M2';
+  let modelUsed = 'MiniMax-M3';
 
   // Primary: MiniMax-M2
   const MINIMAX_KEY = env.MINIMAX_API_KEY;
@@ -353,7 +353,7 @@ async function handleErpChat(request, env) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: 'MiniMax-M2',
+          model: 'MiniMax-M3',
           messages: [{ role: 'system', content: systemPrompt }, ...messages],
           max_tokens: 800,
           temperature: 0.3,
