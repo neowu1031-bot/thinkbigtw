@@ -4230,6 +4230,30 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+企業資安 TB17
+
+## [把檔案交給 AI 前，個資要怎麼去識別化？](https://thinkbigtw.com/library/qa/deidentify-before-ai/)
+
+先分兩類處理：直接識別的資料（姓名、身分證字號、電話、Email、地址）直接刪除或換成代碼；間接識別的資料（生日、職稱、部門、少見的病名、時間與地點的組合）要模…
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/deidentify-before-ai/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-10-30
+
+親子共讀與客製繪本 Q20
+
+## [5 歲以下螢幕時間怎麼抓？紙本書在家能扮演什麼角色](https://thinkbigtw.com/library/qa/screen-time-under-5/)
+
+世界衛生組織（WHO）2019 年的指引建議：1 歲以下不建議看螢幕，1 歲也不建議久坐看螢幕，2–4 歲每天久坐看螢幕不超過 1 小時，越少越好；孩子坐著的時候，鼓勵照顧者陪孩子閱讀、說故事。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/screen-time-under-5/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-10-30
+
 企業資安 TB16
 
 ## [導入 AI 服務前，供應商的資料條款要看哪幾點？](https://thinkbigtw.com/library/qa/ai-vendor-data-terms/)
@@ -5202,6 +5226,18 @@ URL: https://thinkbigtw.com/en/qa/
 Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
+
+Enterprise AI Security TB17
+
+## [How Should Personal Data Be De-Identified Before Files Are Given to AI?](https://thinkbigtw.com/en/qa/deidentify-before-ai/)
+
+Handle two kinds of data separately: direct identifiers (names, national ID…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/deidentify-before-ai/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-10-30
 
 Enterprise AI Security TB16
 
