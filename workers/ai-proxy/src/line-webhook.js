@@ -72,12 +72,12 @@ export function getOooNote(nowMs = Date.now()) {
 /** 第一次轉真人時用（依時間自動附對應提示，11/28 起省略）。 */
 function getHumanTransferText(nowMs = Date.now()) {
   const note = getOooNote(nowMs);
-  return '好的～已經幫您通知 Think BIG 的同仁了，上班時間會盡快回覆你喔 🙏' + (note ? '\n\n' + note : '');
+  return '好的～已經幫您轉給人工客服，我們會安排時間與您聯繫喔 🙏' + (note ? '\n\n' + note : '');
 }
 
 /** 已轉真人後再傳訊時用（較短，不重複美東提示）。 */
 const HUMAN_TRANSFER_REPEAT_TEXT =
-  '您的訊息已轉達給同仁了，我們會盡快回覆您喔 🙏';
+  '您的訊息已轉給人工客服，我們會安排時間與您聯繫喔 🙏';
 
 const RATE_LIMIT_TEXT =
   '您傳訊的速度有點快呢，請稍候幾分鐘再試試看喔 😊';
@@ -86,7 +86,7 @@ const AI_UNAVAILABLE_TEXT =
   '抱歉，AI 顧問暫時無法回覆，請稍後再試，或直接寄信至 ai@thinkbigtw.com。';
 
 // 觸發轉真人的關鍵字（用戶原文）
-const HUMAN_KEYWORDS = /真人|專人|客服/;
+const HUMAN_KEYWORDS = /人工|真人|專人|客服/;
 // 觸發預約流程的關鍵字（NEO 10/30：回「預約」就直接問方便的時間）
 const BOOKING_KEYWORDS = /預約|我要評估/;
 export const BOOKING_SLOTS = ['平日上午', '平日下午', '平日晚上', '週末'];
@@ -589,7 +589,7 @@ async function generateLineReply(messages, env) {
 
   // P7: 假收據防護（LINE 版：引導傳「預約」觸發轉真人）
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
-    reply = '如需顧問聯繫，請傳送「真人」，我馬上幫您通知同仁；想預約 30 分鐘免費評估，請傳送「預約」喔～';
+    reply = '如需顧問聯繫，請傳送「人工客服」，我們會安排時間與您聯繫；想預約 30 分鐘免費評估，請傳送「預約」喔～';
   }
 
   const aiWantsHuman  = AI_HUMAN_SIGNAL.test(reply);

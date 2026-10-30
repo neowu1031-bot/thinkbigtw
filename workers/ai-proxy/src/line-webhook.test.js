@@ -366,7 +366,7 @@ test('handleLineWebhook — 傳「真人」仍直接轉真人', async () => {
   await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
   await ctx._flush();
   globalThis.fetch = origFetch;
-  assert.ok(repliedText?.includes('通知'), `回覆應包含「通知」，實際：${repliedText}`);
+  assert.ok(repliedText?.includes('安排時間與您聯繫'), `回覆應包含「安排時間與您聯繫」，實際：${repliedText}`);
   assert.equal(reportPayload?.p_summary_json?.needs_human, true);
 });
 
@@ -433,7 +433,7 @@ test('handleLineWebhook — 已轉真人後新訊息儲存 context 並更新報�
   globalThis.fetch = origFetch;
 
   assert.equal(res.status, 200);
-  assert.ok(repliedText?.includes('已轉達') || repliedText?.includes('同仁'), `reply text: ${repliedText}`);
+  assert.ok(repliedText?.includes('安排時間與您聯繫'), `reply text: ${repliedText}`);
 
   // Context 應更新（新訊息已加入）
   const savedCtx = await kv.get('ctx:' + keyHash, 'json');
@@ -1867,4 +1867,26 @@ test('loading — LINE API 卡住時 2 秒逾時放棄，AI 回覆照送', async
   assert.equal(res.status, 200);
   assert.ok(log.replied, 'loading 卡住時 AI 回覆仍應送出');
   assert.ok(Date.now() - t0 < 6000, '不可無限等待');
+});
+
+
+test('handleLineWebhook — 傳「人工客服」轉人工並回覆會安排時間聯繫', async () => {
+  const secret = 'mysecret';
+  const bodyStr = JSON.stringify({ events: [{ type: 'message', message: { type: 'text', text: '人工客服' }, source: { type: 'user', userId: 'U791' }, replyToken: 'rh', webhookEventId: 'evtCS1' }] });
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+  let repliedText = null, reportPayload = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/message/reply')) { const m = JSON.parse(opts.body).messages?.[0]; repliedText = m?.type === 'flex' ? m?.altText : m?.text; return { ok: true, body: { cancel: async () => {} } }; }
+    if (url.includes('/v2/bot/profile')) return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: '一般用戶' }) };
+    if (url.includes('submit_thinkbig_chat_report')) { reportPayload = JSON.parse(opts.body); return { ok: true, body: { cancel: async () => {} } }; }
+    return { ok: false, body: { cancel: async () => {} } };
+  };
+  const env = { LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token', LINE_KV: makeKvStub(), LINE_HASH_PEPPER: TEST_PEPPER, AI: { run: async () => ({ response: 'x' }) }, MINIMAX_API_KEY: null, INQUIRY_SUPABASE_URL: 'https://supabase.example.com', INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'service_key' };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.ok(repliedText?.includes('安排時間與您聯繫'), `回覆應包含「安排時間與您聯繫」，實際：${repliedText}`);
+  assert.equal(reportPayload?.p_summary_json?.needs_human, true);
 });

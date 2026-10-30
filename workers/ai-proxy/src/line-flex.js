@@ -276,14 +276,14 @@ export function buildButtons(intent) {
     case 'personal':
       return [
         makeUriButton('蝦皮賣場', SHOPEE_URL, true),
-        makeMessageButton('真人協助', '真人'),
+        makeMessageButton('人工客服', '人工客服'),
       ];
     case 'portfolio':
       return [makeUriButton('導入案例', PORTFOLIO_URL, true)];
     default:
       return [
         makeUriButton('導入案例', PORTFOLIO_URL, false),
-        makeMessageButton('真人協助', '真人'),
+        makeMessageButton('人工客服', '人工客服'),
       ];
   }
 }

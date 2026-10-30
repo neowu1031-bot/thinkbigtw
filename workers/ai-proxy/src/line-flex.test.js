@@ -105,25 +105,25 @@ test('T5: enterprise intent → 預約需求訪談 URI /contact/', () => {
   assert.equal(buttons[0].action.type, 'uri');
 });
 
-test('T6: personal intent → 蝦皮賣場 URI + 真人協助 message', () => {
+test('T6: personal intent → 蝦皮賣場 URI + 人工客服 message', () => {
   const buttons = buildButtons('personal');
   assert.equal(buttons.length, 2);
   const labels = buttons.map(b => b.action.label);
   assert.ok(labels.includes('蝦皮賣場'));
-  assert.ok(labels.includes('真人協助'));
+  assert.ok(labels.includes('人工客服'));
   const shopeeBtn = buttons.find(b => b.action.label === '蝦皮賣場');
   assert.equal(shopeeBtn.action.type, 'uri');
   assert.ok(shopeeBtn.action.uri.startsWith('https://'));
-  const humanBtn = buttons.find(b => b.action.label === '真人協助');
+  const humanBtn = buttons.find(b => b.action.label === '人工客服');
   assert.equal(humanBtn.action.type, 'message');
-  assert.equal(humanBtn.action.text, '真人');
+  assert.equal(humanBtn.action.text, '人工客服');
 });
 
-test('T7: default intent → 導入案例 + 真人協助', () => {
+test('T7: default intent → 導入案例 + 人工客服', () => {
   const buttons = buildButtons('default');
   const labels = buttons.map(b => b.action.label);
   assert.ok(labels.includes('導入案例'), `labels: ${labels}`);
-  assert.ok(labels.includes('真人協助'));
+  assert.ok(labels.includes('人工客服'));
 });
 
 test('T8: portfolio intent → 導入案例 URI to /portfolio/', () => {
