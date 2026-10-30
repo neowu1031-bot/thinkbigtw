@@ -130,7 +130,7 @@ h1{font-size:clamp(28px,7vw,40px);line-height:1.2;letter-spacing:-.01em;margin:0
       <div class="field"><label for="name">怎麼稱呼你</label><input id="name" name="name" maxlength="40" autocomplete="name" placeholder="例如：王小姐、陳經理" required></div>
       <div class="field"><label for="lineName">LINE 名稱 <small id="lineHint">方便我們在 LINE 找到你</small></label><input id="lineName" name="lineName" maxlength="60" placeholder="你在 LINE 上顯示的名字"></div>
       <div class="field"><label for="email">Email <small>會議連結也會寄一份到這裡</small></label><input id="email" name="email" type="email" maxlength="254" autocomplete="email" inputmode="email" placeholder="name@company.com" required></div>
-      <label class="consent"><input type="checkbox" id="consent"><span>我同意 Think BIG 使用以上資料聯繫我安排評估，資料 30 天後自動刪除。詳見<a href="/privacy.html" target="_blank" rel="noopener">隱私權政策</a>。</span></label>
+      <label class="consent"><input type="checkbox" id="consent"><span>我同意 Think BIG 使用以上資料聯繫我安排評估。資料保存與刪除方式詳見<a href="/privacy.html" target="_blank" rel="noopener">隱私權政策</a>。</span></label>
       <button class="primary" id="submit" type="submit" disabled>確認預約</button>
       <p class="msg" id="formMsg" hidden></p>
     </form>
@@ -217,6 +217,7 @@ h1{font-size:clamp(28px,7vw,40px);line-height:1.2;letter-spacing:-.01em;margin:0
       }
       btn.disabled=!valid();$('formMsg').hidden=false;
       if(j.error==='slot_taken'||j.error==='slot_unavailable'){$('formMsg').textContent='這個時段剛被預約走了，請換一個時段。';selTime=null;load().then(function(){setTimeout(closeSheet,1400)})}
+      else if(j.error==='already_booked'){$('formMsg').textContent='這個 Email 已經有一筆預約了，想改時間請直接在 LINE 跟我們說。'}
       else if(j.error==='invalid_email'){$('formMsg').textContent='Email 格式好像不太對，再確認一下。'}
       else if(j._status===429){$('formMsg').textContent='送出次數有點多，請稍後再試，或直接在 LINE 跟我們說。'}
       else{$('formMsg').textContent='送出沒有成功，請再試一次，或直接在 LINE 跟我們說方便的時間。'}

@@ -207,6 +207,7 @@ export function validateInquiry(body) {
     result[key] = body[key].trim();
     if (key !== 'organization' && !result[key]) throw new Error('invalid_inquiry');
   }
+  if (result.scale === '預約評估') throw new Error('invalid_inquiry'); // 保留給 /thinkbig-booking（AEGIS M2）
   if (body.contactMethod === 'email') {
     if (!/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(result.contact)) throw new Error('invalid_contact');
     result.contact = result.contact.toLowerCase();
@@ -438,7 +439,7 @@ export async function handleThinkBig(request, env) {
     }
     if (path === '/thinkbig-inquiry') return await inquiry(body, env);
     if (path === '/thinkbig-booking-slots') return json(await bookingSlots(env));
-    if (path === '/thinkbig-booking') { const r = await createBooking(body, env, d => writeInquiry(d, env)); return json(r.body, r.status); }
+    if (path === '/thinkbig-booking') { const ipd = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('booking:' + (request.headers.get('CF-Connecting-IP') || 'unknown'))); const ipHash = Array.from(new Uint8Array(ipd), b => b.toString(16).padStart(2, '0')).join('').slice(0, 16); const r = await createBooking(body, env, d => writeInquiry(d, env), Date.now(), ipHash); return json(r.body, r.status); }
     if (path === '/thinkbig-end-chat') return await endChat(body, env);
     return await chat(body, env);
   } catch { return json({ error: 'temporarily_unavailable' }, 503); }

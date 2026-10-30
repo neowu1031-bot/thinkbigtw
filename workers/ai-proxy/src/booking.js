@@ -58,12 +58,16 @@ export async function createBookingToken(kv, keyHash, displayName) {
 
 export async function bookingSlots(env, nowMs = Date.now()) {
   const kv = env.LINE_KV;
+  const takenSet = new Set();
+  if (kv?.list) {
+    try { (await kv.list({ prefix: 'booking:slot:', limit: 1000 })).keys.forEach(k => takenSet.add(k.name)); } catch { /* 讀不到就全顯示可選，送出時仍會再檢查 */ }
+  }
   const dates = [];
   for (const date of bookableDates(nowMs)) {
     const slots = [];
     for (const time of slotsForDate(date)) {
       if (slotStartMs(date, time) - nowMs < MIN_NOTICE_MS) continue;
-      const taken = kv ? (await kv.get(slotKey(date, time))) !== null : false;
+      const taken = takenSet.has(slotKey(date, time));
       slots.push({ time, taken });
     }
     if (slots.length) dates.push({ date, label: dateLabel(date), slots });
@@ -71,7 +75,7 @@ export async function bookingSlots(env, nowMs = Date.now()) {
   return { dates, timezone: 'Asia/Taipei' };
 }
 
-const clean = (v, max) => (typeof v === 'string' && v.length <= max && !/[\u0000-\u001f]/.test(v) ? v.trim() : null);
+const clean = (v, max) => (typeof v === 'string' && v.length <= max && !/[\u0000-\u001f\u007f\u200b-\u200f\u202a-\u202e\u2066-\u2069\ufeff]/.test(v) ? v.trim() : null);
 
 export function validateBooking(body, nowMs = Date.now()) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) throw new Error('invalid_booking');
@@ -102,7 +106,21 @@ async function pushLineConfirm(env, userId, text) {
  * 建立預約。writeInquiry(data) 由 thinkbig.js 注入（寫 thinkbig_inquiries，回 { ok, status, body }）。
  * 回傳 { status, body }。
  */
-export async function createBooking(body, env, writeInquiry, nowMs = Date.now()) {
+export const MAX_BOOKINGS_PER_IP_DAY = 3;
+export const MAX_UNLINKED_PER_DAY = 10;
+async function bump(kv, key, max, ttl) {
+  const n = Number((await kv.get(key)) || 0);
+  if (!Number.isSafeInteger(n) || n >= max) return false;
+  await kv.put(key, String(n + 1), { expirationTtl: ttl });
+  return true;
+}
+async function sha(text) {
+  const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(d), b => b.toString(16).padStart(2, '0')).join('').slice(0, 24);
+}
+
+/** ipHash：呼叫端傳入雜湊後的連線 IP（不存原始 IP）。 */
+export async function createBooking(body, env, writeInquiry, nowMs = Date.now(), ipHash = 'unknown') {
   let data;
   try { data = validateBooking(body, nowMs); } catch (e) { return { status: e.message === 'slot_unavailable' ? 409 : 400, body: { error: e.message } }; }
   const kv = env.LINE_KV;
@@ -114,6 +132,12 @@ export async function createBooking(body, env, writeInquiry, nowMs = Date.now())
   if (data.token) {
     try { line = await kv.get('booking:token:' + data.token, 'json'); } catch { line = null; }
   }
+  // 防灌滿（AEGIS M3）：同 Email 只能有 1 筆未來預約；每 IP 每天 3 筆；沒從 LINE 連過來的每天總共 10 筆
+  const day = new Date(nowMs + TPE_OFFSET_MS).toISOString().slice(0, 10);
+  const emailKey = 'booking:email:' + await sha(data.email);
+  if ((await kv.get(emailKey)) !== null) return { status: 409, body: { error: 'already_booked' } };
+  if (!(await bump(kv, `booking:ip:${ipHash}:${day}`, MAX_BOOKINGS_PER_IP_DAY, 172800))) return { status: 429, body: { error: 'daily_limit' } };
+  if (!line && !(await bump(kv, `booking:unlinked:${day}`, MAX_UNLINKED_PER_DAY, 172800))) return { status: 429, body: { error: 'daily_limit' } };
   const lineShown = data.lineName || line?.name || '（未填）';
   const when = `${dateLabel(data.date)} ${data.time}（台灣時間）`;
   const need = [
@@ -131,6 +155,9 @@ export async function createBooking(body, env, writeInquiry, nowMs = Date.now())
     await kv.delete(key);
     return { status: result.status, body: result.body };
   }
+  const untilSlot = Math.max(60, Math.ceil((slotStartMs(data.date, data.time) - nowMs) / 1000) + 86400);
+  await kv.put(emailKey, '1', { expirationTtl: untilSlot });
+  if (data.token) await kv.delete('booking:token:' + data.token); // 代碼用過即失效（AEGIS L2）
   // 確認訊息：沿用 6D uidmap（keyHash → userId，7 天）推播，查不到就略過
   const pushTo = line?.keyHash ? await kv.get('uidmap:' + line.keyHash) : null;
   if (pushTo) {

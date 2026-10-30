@@ -7,7 +7,8 @@ function kvStub() {
   const m = new Map();
   return { _m: m,
     async get(k, t) { const v = m.get(k); if (v === undefined) return null; return t === 'json' ? JSON.parse(v) : v; },
-    async put(k, v) { m.set(k, v); }, async delete(k) { m.delete(k); } };
+    async put(k, v) { m.set(k, v); }, async delete(k) { m.delete(k); },
+    async list({ prefix }) { return { keys: [...m.keys()].filter(k => k.startsWith(prefix)).map(name => ({ name })) }; } };
 }
 const okWrite = rec => async d => { rec.push(d); return { ok: true, status: 200, body: { accepted: true } }; };
 
@@ -79,4 +80,22 @@ test('slots 回應只有時間與是否已滿，不含任何預約者資料', as
   const out = JSON.stringify(await bookingSlots({ LINE_KV: kv }, NOW));
   assert.ok(!/王小姐|Amy|a@b\.com/.test(out));
   assert.ok(out.includes('"taken":true'));
+});
+
+test('防灌滿：同 Email 只能一筆、每 IP 每天 3 筆、LINE 代碼用過即失效', async () => {
+  const kv = kvStub(); const env = { LINE_KV: kv };
+  const b = (time, email, extra = {}) => createBooking({ date: '2026-11-03', time, name: 'A', email, consent: true, ...extra }, env, okWrite([]), NOW, 'ip1');
+  assert.equal((await b('09:00', 'a@b.com')).status, 200);
+  assert.equal((await b('09:30', 'a@b.com')).body.error, 'already_booked');
+  assert.equal((await b('10:00', 'c@b.com')).status, 200);
+  assert.equal((await b('10:30', 'd@b.com')).status, 200);
+  assert.equal((await b('11:00', 'e@b.com')).body.error, 'daily_limit');
+  const token = await createBookingToken(kv, 'h1', 'X');
+  const t = (time, email) => createBooking({ date: '2026-11-04', time, name: 'A', email, token, consent: true }, env, okWrite([]), NOW, 'ip2');
+  assert.equal((await t('09:00', 'f@b.com')).status, 200);
+  assert.equal(kv._m.has('booking:token:' + token), false);
+});
+
+test('稱呼擋掉方向控制與零寬字元', () => {
+  assert.throws(() => validateBooking({ date: '2026-11-02', time: '09:00', name: 'A\u202eB', email: 'a@b.com', consent: true }, NOW));
 });
