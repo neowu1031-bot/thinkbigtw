@@ -16,9 +16,7 @@ import {
   verifyLineSignature,
   isHumanRequest,
   isBookingRequest,
-  BOOKING_TIME_TEXT,
-  BOOKING_INFO_TEXT,
-  BOOKING_SLOTS,
+  getBookingLinkText,
   sanitizeUserMessage,
   hashUserId,
   checkRateLimit,
@@ -336,17 +334,16 @@ test('handleLineWebhook — 「預約」三步：問時段（快速按鈕）→ 
     assert.equal(res.status, 200);
   };
   await send('我想預約諮詢', 1);
-  await send('平日晚上', 2);
-  assert.equal(reportPayload, null, '資料還沒收齊前不送報告');
-  await send('大想科技，想先讓 AI 整理客服信件', 3);
   globalThis.fetch = origFetch;
 
-  assert.equal(replies.length, 3, '三則訊息各回一次');
-  assert.deepEqual(replies[0].quick, BOOKING_SLOTS, '第一步要帶時段快速按鈕');
-  assert.deepEqual(replies[1].quick, [], '第二步不帶快速按鈕');
-  assert.ok(replies[2].text.includes('登記'), `第三步應確認已登記，實際：${replies[2].text}`);
-  assert.ok(reportPayload !== null, 'Supabase report 應被送出');
-  assert.equal(reportPayload?.p_summary_json?.needs_human, true, 'needs_human 應為 true');
+  assert.equal(replies.length, 1, '預約只回一則：給行事曆連結');
+  assert.ok(replies[0].text.includes('30 分鐘免費線上評估'), `應說明預約，實際：${replies[0].text}`);
+  assert.deepEqual(replies[0].quick, [], '不再用快速按鈕問時段');
+  assert.equal(reportPayload, null, '給連結時不送轉人工報告');
+  const tokenKeys = [...kv._raw.keys()].filter(k => k.startsWith('booking:token:'));
+  assert.equal(tokenKeys.length, 1, '應建立一組預約連結代碼');
+  const saved = JSON.parse(kv._raw.get(tokenKeys[0]).value);
+  assert.ok(saved.keyHash && !JSON.stringify(saved).includes('U789'), '代碼只存雜湊，不存明文 userId');
 });
 
 test('handleLineWebhook — 傳「真人」仍直接轉真人', async () => {
@@ -366,7 +363,7 @@ test('handleLineWebhook — 傳「真人」仍直接轉真人', async () => {
   await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
   await ctx._flush();
   globalThis.fetch = origFetch;
-  assert.ok(repliedText?.includes('通知'), `回覆應包含「通知」，實際：${repliedText}`);
+  assert.ok(repliedText?.includes('安排時間與您聯繫'), `回覆應包含「安排時間與您聯繫」，實際：${repliedText}`);
   assert.equal(reportPayload?.p_summary_json?.needs_human, true);
 });
 
@@ -433,7 +430,7 @@ test('handleLineWebhook — 已轉真人後新訊息儲存 context 並更新報�
   globalThis.fetch = origFetch;
 
   assert.equal(res.status, 200);
-  assert.ok(repliedText?.includes('已轉達') || repliedText?.includes('同仁'), `reply text: ${repliedText}`);
+  assert.ok(repliedText?.includes('安排時間與您聯繫'), `reply text: ${repliedText}`);
 
   // Context 應更新（新訊息已加入）
   const savedCtx = await kv.get('ctx:' + keyHash, 'json');
@@ -1867,4 +1864,26 @@ test('loading — LINE API 卡住時 2 秒逾時放棄，AI 回覆照送', async
   assert.equal(res.status, 200);
   assert.ok(log.replied, 'loading 卡住時 AI 回覆仍應送出');
   assert.ok(Date.now() - t0 < 6000, '不可無限等待');
+});
+
+
+test('handleLineWebhook — 傳「人工客服」轉人工並回覆會安排時間聯繫', async () => {
+  const secret = 'mysecret';
+  const bodyStr = JSON.stringify({ events: [{ type: 'message', message: { type: 'text', text: '人工客服' }, source: { type: 'user', userId: 'U791' }, replyToken: 'rh', webhookEventId: 'evtCS1' }] });
+  const sig = await makeSignature(secret, new TextEncoder().encode(bodyStr));
+  let repliedText = null, reportPayload = null;
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts) => {
+    if (url.includes('/v2/bot/message/reply')) { const m = JSON.parse(opts.body).messages?.[0]; repliedText = m?.type === 'flex' ? m?.altText : m?.text; return { ok: true, body: { cancel: async () => {} } }; }
+    if (url.includes('/v2/bot/profile')) return { ok: true, body: { cancel: async () => {} }, json: async () => ({ displayName: '一般用戶' }) };
+    if (url.includes('submit_thinkbig_chat_report')) { reportPayload = JSON.parse(opts.body); return { ok: true, body: { cancel: async () => {} } }; }
+    return { ok: false, body: { cancel: async () => {} } };
+  };
+  const env = { LINE_CHANNEL_SECRET: secret, LINE_CHANNEL_ACCESS_TOKEN: 'token', LINE_KV: makeKvStub(), LINE_HASH_PEPPER: TEST_PEPPER, AI: { run: async () => ({ response: 'x' }) }, MINIMAX_API_KEY: null, INQUIRY_SUPABASE_URL: 'https://supabase.example.com', INQUIRY_SUPABASE_SERVICE_ROLE_KEY: 'service_key' };
+  const ctx = makeCtxStub();
+  await handleLineWebhook(makeRequest('POST', bodyStr, sig), env, ctx);
+  await ctx._flush();
+  globalThis.fetch = origFetch;
+  assert.ok(repliedText?.includes('安排時間與您聯繫'), `回覆應包含「安排時間與您聯繫」，實際：${repliedText}`);
+  assert.equal(reportPayload?.p_summary_json?.needs_human, true);
 });

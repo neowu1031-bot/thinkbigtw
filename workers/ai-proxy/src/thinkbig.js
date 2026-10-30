@@ -16,6 +16,7 @@ export const SCOPE_RULE = `
 
 export const toTraditionalTW = OpenCCConverter({ from: 'cn', to: 'tw' });
 import { chapters } from './agent-kb.generated.js';
+import { bookingSlots, createBooking } from './booking.js';
 
 const ORIGIN = 'https://thinkbigtw.com';
 const LINE = 'https://lin.ee/n5KW430';
@@ -206,6 +207,7 @@ export function validateInquiry(body) {
     result[key] = body[key].trim();
     if (key !== 'organization' && !result[key]) throw new Error('invalid_inquiry');
   }
+  if (result.scale === '預約評估') throw new Error('invalid_inquiry'); // 保留給 /thinkbig-booking（AEGIS M2）
   if (body.contactMethod === 'email') {
     if (!/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(result.contact)) throw new Error('invalid_contact');
     result.contact = result.contact.toLowerCase();
@@ -218,15 +220,13 @@ export function validateInquiry(body) {
   } else throw new Error('invalid_contact');
   return result;
 }
-async function inquiry(body, env) {
-  let data;
-  try { data = validateInquiry(body); } catch (error) { return json({ error: error.message }, 400); }
-  if (!env.INQUIRY_SUPABASE_URL || !env.INQUIRY_SUPABASE_SERVICE_ROLE_KEY) return json({ error: 'inquiry_unavailable', fallback: LINE }, 503);
+async function writeInquiry(data, env) {
+  if (!env.INQUIRY_SUPABASE_URL || !env.INQUIRY_SUPABASE_SERVICE_ROLE_KEY) return { ok: false, status: 503, body: { error: 'inquiry_unavailable', fallback: LINE } };
   let url;
   try {
     url = new URL(env.INQUIRY_SUPABASE_URL);
     if (url.protocol !== 'https:' || url.username || url.password) throw new Error();
-  } catch { return json({ error: 'inquiry_unavailable', fallback: LINE }, 503); }
+  } catch { return { ok: false, status: 503, body: { error: 'inquiry_unavailable', fallback: LINE } }; }
   try {
     const response = await fetch(url.origin + '/rest/v1/rpc/submit_thinkbig_inquiry', {
       method: 'POST', signal: AbortSignal.timeout(10000),
@@ -235,14 +235,20 @@ async function inquiry(body, env) {
     });
     if (!response.ok) { await response.body?.cancel(); throw new Error('storage'); }
     const result = await readJSON(response.body, 2048);
-    if (result === 'accepted' || result === 'duplicate') return json({ accepted: true });
-    if (result === 'rate_limited') return json({ error: 'rate_limited', fallback: LINE }, 429, { 'Retry-After': '1800' });
-    if (result === 'conflict') return json({ error: 'id_conflict', fallback: LINE }, 409);
+    if (result === 'accepted' || result === 'duplicate') return { ok: true, status: 200, body: { accepted: true } };
+    if (result === 'rate_limited') return { ok: false, status: 429, body: { error: 'rate_limited', fallback: LINE }, extra: { 'Retry-After': '1800' } };
+    if (result === 'conflict') return { ok: false, status: 409, body: { error: 'id_conflict', fallback: LINE } };
     throw new Error('storage');
   } catch {
     console.error(JSON.stringify({ event: 'thinkbig_inquiry_write_failed' }));
-    return json({ error: 'receipt_unconfirmed', fallback: LINE }, 503);
+    return { ok: false, status: 503, body: { error: 'receipt_unconfirmed', fallback: LINE } };
   }
+}
+async function inquiry(body, env) {
+  let data;
+  try { data = validateInquiry(body); } catch (error) { return json({ error: error.message }, 400); }
+  const r = await writeInquiry(data, env);
+  return json(r.body, r.status, r.extra || {});
 }
 // ============== /thinkbig-end-chat：對話結束報告 ==============
 // 前端在對話結束時呼叫（>=2 輪用戶發言）。
@@ -417,7 +423,7 @@ export async function handleThinkBig(request, env) {
     if (!(await env.RATE_LIMITER.limit({ key })).success) return json({ error: 'rate_limited' }, 429, { 'Retry-After': '60' });
   } catch { return json({ error: 'temporarily_unavailable' }, 503); }
   let body;
-  const maxBody = path === '/thinkbig-inquiry' ? 8000 : path === '/thinkbig-end-chat' ? 60000 : 80000;
+  const maxBody = path === '/thinkbig-inquiry' || path.startsWith('/thinkbig-booking') ? 8000 : path === '/thinkbig-end-chat' ? 60000 : 80000;
   try { body = await readJSON(request.body, maxBody); }
   catch (error) { return json({ error: error.message }, error.message === 'too_large' ? 413 : 400); }
   try {
@@ -432,6 +438,8 @@ export async function handleThinkBig(request, env) {
       return json(result.body, result.status);
     }
     if (path === '/thinkbig-inquiry') return await inquiry(body, env);
+    if (path === '/thinkbig-booking-slots') return json(await bookingSlots(env));
+    if (path === '/thinkbig-booking') { const ipd = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('booking:' + (request.headers.get('CF-Connecting-IP') || 'unknown'))); const ipHash = Array.from(new Uint8Array(ipd), b => b.toString(16).padStart(2, '0')).join('').slice(0, 16); const r = await createBooking(body, env, d => writeInquiry(d, env), Date.now(), ipHash); return json(r.body, r.status); }
     if (path === '/thinkbig-end-chat') return await endChat(body, env);
     return await chat(body, env);
   } catch { return json({ error: 'temporarily_unavailable' }, 503); }

@@ -20,6 +20,7 @@
  *     await 上限 2 秒（保證比回覆先到）；失敗只 log 不影響回覆（只支援一對一，本檔本來就只處理 user 私訊）
  */
 
+import { createBookingToken } from './booking.js';
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
 import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 
@@ -72,12 +73,12 @@ export function getOooNote(nowMs = Date.now()) {
 /** 第一次轉真人時用（依時間自動附對應提示，11/28 起省略）。 */
 function getHumanTransferText(nowMs = Date.now()) {
   const note = getOooNote(nowMs);
-  return '好的～已經幫您通知 Think BIG 的同仁了，上班時間會盡快回覆你喔 🙏' + (note ? '\n\n' + note : '');
+  return '好的～已經幫您轉給人工客服，我們會安排時間與您聯繫喔 🙏' + (note ? '\n\n' + note : '');
 }
 
 /** 已轉真人後再傳訊時用（較短，不重複美東提示）。 */
 const HUMAN_TRANSFER_REPEAT_TEXT =
-  '您的訊息已轉達給同仁了，我們會盡快回覆您喔 🙏';
+  '您的訊息已轉給人工客服，我們會安排時間與您聯繫喔 🙏';
 
 const RATE_LIMIT_TEXT =
   '您傳訊的速度有點快呢，請稍候幾分鐘再試試看喔 😊';
@@ -86,17 +87,13 @@ const AI_UNAVAILABLE_TEXT =
   '抱歉，AI 顧問暫時無法回覆，請稍後再試，或直接寄信至 ai@thinkbigtw.com。';
 
 // 觸發轉真人的關鍵字（用戶原文）
-const HUMAN_KEYWORDS = /真人|專人|客服/;
+const HUMAN_KEYWORDS = /人工|真人|專人|客服/;
 // 觸發預約流程的關鍵字（NEO 10/30：回「預約」就直接問方便的時間）
 const BOOKING_KEYWORDS = /預約|我要評估/;
-export const BOOKING_SLOTS = ['平日上午', '平日下午', '平日晚上', '週末'];
-export const BOOKING_TIME_TEXT =
-  '好的～幫你安排 30 分鐘免費線上評估 📅\n請問你方便的時段？可以直接點下方選項，或打字告訴我日期和時間喔！';
-export const BOOKING_INFO_TEXT =
-  '收到！再麻煩留一下：\n1. 公司名稱\n2. 最想先交給 AI 處理的一件事（一句話就好）\n我們確認時間後，會傳會議連結給你喔～';
-function getBookingDoneText(nowMs = Date.now()) {
-  const note = getOooNote(nowMs);
-  return '已幫你登記預約 🙌 我們確認時間後，會在這裡傳會議連結給你。評估全程免費、不先收任何費用喔！' + (note ? '\n\n' + note : '');
+export const BOOKING_PAGE_URL = 'https://thinkbigtw.com/book/';
+export function getBookingLinkText(token) {
+  return '好的～幫你安排 30 分鐘免費線上評估 📅\n點下方「選擇預約時間」，挑你方便的日期和時段，再留稱呼跟 Email 就完成囉！\n' +
+    BOOKING_PAGE_URL + (token ? '?t=' + token : '');
 }
 export function isBookingRequest(text) {
   return BOOKING_KEYWORDS.test(text);
@@ -589,7 +586,7 @@ async function generateLineReply(messages, env) {
 
   // P7: 假收據防護（LINE 版：引導傳「預約」觸發轉真人）
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
-    reply = '如需顧問聯繫，請傳送「真人」，我馬上幫您通知同仁；想預約 30 分鐘免費評估，請傳送「預約」喔～';
+    reply = '如需顧問聯繫，請傳送「人工客服」，我們會安排時間與您聯繫；想預約 30 分鐘免費評估，請傳送「預約」喔～';
   }
 
   const aiWantsHuman  = AI_HUMAN_SIGNAL.test(reply);
@@ -709,29 +706,14 @@ async function processEventInner(event, token, kv, env, ctx) {
     return;
   }
 
-  // 預約流程：問時段 → 問公司與需求 → 登記並通知同仁
-  if (sessionCtx.booking === 'time' || sessionCtx.booking === 'info') {
-    sessionCtx.messages.push({ role: 'user', content: (sessionCtx.booking === 'time' ? '【預約時段】' : '【預約資料】') + userText });
-    sessionCtx.lastAt = nowMs;
-    if (sessionCtx.booking === 'time') {
-      sessionCtx.booking = 'info';
-      await saveContext(kv, keyHash, sessionCtx);
-      await sendFlexReply(token, replyToken, BOOKING_INFO_TEXT, { maxButtons: 0 });
-      return;
-    }
-    sessionCtx.booking = 'done';
-    sessionCtx.humanTransferred = true;
-    await saveContext(kv, keyHash, sessionCtx);
-    ctx.waitUntil(submitLineReport(env, sessionCtx.sessionId, sessionCtx.messages, true));
-    await sendFlexReply(token, replyToken, getBookingDoneText(nowMs), { maxButtons: 0 });
-    return;
-  }
+  // 預約：給官網行事曆頁連結（NEO 10/30：不在 LINE 裡追問，客戶在頁面挑時段＋留稱呼與 Email）
   if (isBookingRequest(userText)) {
     sessionCtx.messages.push({ role: 'user', content: userText });
-    sessionCtx.booking = 'time';
     sessionCtx.lastAt = nowMs;
     await saveContext(kv, keyHash, sessionCtx);
-    await sendFlexReply(token, replyToken, BOOKING_TIME_TEXT, { maxButtons: 0, quickReplies: BOOKING_SLOTS });
+    let bookingToken = '';
+    try { bookingToken = await createBookingToken(kv, keyHash, await kv.get('name:' + keyHash)); } catch { bookingToken = ''; }
+    await sendFlexReply(token, replyToken, getBookingLinkText(bookingToken), { maxButtons: 1 });
     return;
   }
 
