@@ -6,9 +6,10 @@ const dir=path.join(root,'data/agent-kb');
 const chapters=fs.readdirSync(dir).filter(x=>x.endsWith('.md')).sort().map(file=>({
   id:file.slice(0,2), file, text:fs.readFileSync(path.join(dir,file),'utf8').replace(/^(版本|來源)：.*\n/gm,'').trim()
 }));
-if(chapters.length!==12) throw new Error('Expected twelve knowledge chapters');
+// 01–12 為核心章節（主力路徑全文讀取）；13 起為補充章節（官網導覽、方案交付物、本地大模型技術問答），依提問命中載入。
+if(chapters.length<12||chapters.slice(0,12).some((c,i)=>Number(c.id)!==i+1)) throw new Error('Expected core knowledge chapters 01–12');
 // Token budget guard (備援路徑 fallback path): base (ch01+ch10) + any optional chapter must not exceed 2850.
-// 主力路徑 (MiniMax primary) 讀全本 KB，不受此限制。
+// LINE（含 MiniMax）與官網備援都走這條路徑；官網主力路徑讀核心 01–12＋命中補充章，另受 KB_FULL_LIMIT 限制。
 const estimateTokens=text=>Math.ceil(Array.from(text).reduce((n,c)=>n+(c.codePointAt(0)>127?2:1/3),0));
 const baseText=chapters.filter(c=>c.id==='01'||c.id==='10').map(c=>c.text).join('\n\n');
 const BASE_TOKENS=estimateTokens(baseText);
@@ -34,6 +35,9 @@ for(const [file,text] of Object.entries(outputs)){
 // Primary path budget warning: warn if full KB exceeds 80% of KB_FULL_LIMIT (16000)
 const KB_FULL_LIMIT=16000;
 const KB_WARN_THRESHOLD=Math.floor(KB_FULL_LIMIT*0.8); // 12800
-const fullKBTokens=estimateTokens(chapters.map(c=>c.text).join('\n\n'));
-if(fullKBTokens>KB_WARN_THRESHOLD) console.warn(`⚠ WARN: 全本 KB ${fullKBTokens} token 已超過主力路徑上限的 80%（${KB_WARN_THRESHOLD}），接近退回章節選取模式`);
-console.log(`PASS knowledge build: 12 chapters, ${faq.length} shared local FAQs | full KB ${fullKBTokens} tokens (limit ${KB_FULL_LIMIT}, warn at ${KB_WARN_THRESHOLD})`);
+const coreKBTokens=estimateTokens(chapters.filter(c=>Number(c.id)<13).map(c=>c.text).join('\n\n'));
+const maxSupplement=Math.max(0,...chapters.filter(c=>Number(c.id)>=13).map(c=>estimateTokens(c.text)));
+const fullKBTokens=coreKBTokens+maxSupplement; // 單題最常見的主力路徑大小
+if(coreKBTokens+2*maxSupplement>KB_FULL_LIMIT) console.warn(`⚠ WARN: 核心 KB＋最大補充章 ${fullKBTokens} token 已超過主力路徑上限的 80%（${KB_WARN_THRESHOLD}），補充章節可能無法同時載入兩章`);
+if(coreKBTokens>KB_FULL_LIMIT) throw new Error(`Core KB ${coreKBTokens} exceeds KB_FULL_LIMIT ${KB_FULL_LIMIT}`);
+console.log(`PASS knowledge build: ${chapters.length} chapters, ${faq.length} shared local FAQs | core KB ${coreKBTokens} tokens + largest supplement ${maxSupplement} (limit ${KB_FULL_LIMIT}, warn at ${KB_WARN_THRESHOLD})`);

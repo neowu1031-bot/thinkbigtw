@@ -38,3 +38,6 @@ jobs:
 
       - name: Check agent KB JS files are up to date
         run: node scripts/build-agent-kb.mjs --check
+
+      - name: Check customer-service KB covers the 60 test questions
+        run: node scripts/eval-agent-kb.mjs --min 54
