@@ -10,9 +10,16 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [AI Agent 實戰作品集](https://thinkbigtw.com/portfolio/)：Think BIG 呈現維運監控、文件自動化、AI 客服、本地知識庫、資安把關等精選建置與應用場景切入點
 - [AI Agent Portfolio（English）](https://thinkbigtw.com/portfolio/en/)：Selected builds and use-case scenarios, with real screenshots and measured data
 
+## 服務
+- [服務總覽](https://thinkbigtw.com/services/)：Think BIG 服務一覽，含企業 AI Agent 導入與 SEO＋GEO 搜尋能見度服務
+- [SEO＋GEO 搜尋能見度服務](https://thinkbigtw.com/services/ai-visibility/)：讓 Google 找得到你、讓 ChatGPT 與 Perplexity 在回答時提到你；體檢、建置地基、每月監測報告
+- [Search Visibility Service (SEO + GEO)](https://thinkbigtw.com/en/services/seo-geo/)：Found on Google and cited by AI — one shared foundation, monthly monitoring reports
+- [方案與價格總覽](https://thinkbigtw.com/pricing/)：個人使用與企業使用兩扇門，台灣工程師遠端安裝
+
 ## 企業導入（優先閱讀）
 - [什麼是 RAG？讓 AI 依公司文件回答](https://thinkbigtw.com/enterprise/rag/)：檢索增強生成、資料準備、權限與引用驗收
 - [企業 AI Agent 導入](https://thinkbigtw.com/enterprise/)：流程適配、交付與驗收
+- [企業 AI 導入自助評估](https://thinkbigtw.com/enterprise/start/)：12 題問卷自動判斷適合方案，填完可預約顧問訪談
 - [AI 部門職能組合](https://thinkbigtw.com/enterprise/departments/)：客服、業務、行銷、財務、維運與資安
 - [TB FRAME 導入方法論](https://thinkbigtw.com/enterprise/process/)：四階段交付物與責任
 - [AI 治理與資安承諾](https://thinkbigtw.com/trust/)：資料流向、權限與人工核准
@@ -45,6 +52,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 
 
 ## 問答圖書館（企業 AI）
+- [Library｜報導・問答圖書館](https://thinkbigtw.com/library/)：Think BIG NEWS 產業報導與問答圖書館（Q&A Library），AI 導入相關正確答案的整理集
 - [員工把公司資料貼進 ChatGPT，會有什麼風險？公司該怎麼管？](https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/)
 - [公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？](https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/)
 - [用 AI 查公司文件，雲端版跟地端版的資料各會送到哪裡？](https://thinkbigtw.com/library/qa/rag-data-flow-cloud-vs-local/)
