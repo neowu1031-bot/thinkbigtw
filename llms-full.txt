@@ -4240,6 +4240,54 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+企業資安 TB19
+
+## [生成式 AI 有哪些資安風險？用 OWASP LLM Top 10（2025）一次看懂](https://thinkbigtw.com/library/qa/owasp-llm-top10-overview/)
+
+OWASP 2025 年版的大型語言模型應用 10 大風險是：LLM01 提示注入、LLM02 敏感資訊揭露、LLM03 供應鏈、LLM04…
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/owasp-llm-top10-overview/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-11-01
+
+親子共讀與客製繪本 Q22
+
+## [孩子說長大想當什麼？職業啟蒙怎麼陪](https://thinkbigtw.com/library/qa/career-awareness-kids/)
+
+不用急著幫孩子決定，先陪他「認識」各種工作。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/career-awareness-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-01
+
+企業資安 TB18
+
+## [AI 系統出資安事件怎麼辦？發現後先做的 5 件事](https://thinkbigtw.com/library/qa/ai-incident-response/)
+
+發現後先做 5 件事：停（暫停受影響的 AI 功能、撤銷外洩的金鑰或權限）、留（保存紀錄和證據，不要急著刪）、查（影響範圍：哪些資料、哪些人、哪段時間）、報（依…
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-incident-response/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-10-31
+
+親子共讀與客製繪本 Q21
+
+## [孩子是恐龍迷？從一本書延伸到博物館](https://thinkbigtw.com/library/qa/dinosaur-loving-kids/)
+
+可以把「書、博物館、回家畫下來」串成一條路：先從書裡認識幾種恐龍，再去博物館找實物和化石，回家讓孩子把看到的畫下來。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/dinosaur-loving-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-10-31
+
 企業資安 TB17
 
 ## [把檔案交給 AI 前，個資要怎麼去識別化？](https://thinkbigtw.com/library/qa/deidentify-before-ai/)
@@ -5237,6 +5285,30 @@ Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
 
+Enterprise AI Security TB19
+
+## [What Are the Security Risks of Generative AI? The OWASP LLM Top 10 (2025) at a Glance](https://thinkbigtw.com/en/qa/owasp-llm-top10-overview/)
+
+The 2025 OWASP Top 10 for LLM applications is: LLM01 Prompt Injection, LLM02…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/owasp-llm-top10-overview/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-11-01
+
+Enterprise AI Security TB18
+
+## [What Should a Company Do When an AI System Has a Security Incident? Five Things to Do First](https://thinkbigtw.com/en/qa/ai-incident-response/)
+
+Do five things first: stop (pause the affected AI feature and revoke leaked…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-incident-response/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-10-31
+
 Enterprise AI Security TB17
 
 ## [How Should Personal Data Be De-Identified Before Files Are Given to AI?](https://thinkbigtw.com/en/qa/deidentify-before-ai/)
@@ -5576,7 +5648,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/
 
-# What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It? | Q&A Library | Think BIG
+# Company Data in ChatGPT: Risks & Policy | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -5830,7 +5902,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/
 
-# What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory? | Q&A Library | Think BIG
+# Local LLM Hardware: GPU Memory Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6066,7 +6138,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/
 
-# When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups? | Q&A Library | Think BIG
+# RAG Data Flow: Cloud vs. On-Premises Comparison | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6274,7 +6346,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/
 
-# What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions? | Q&A Library | Think BIG
+# Prompt Injection in AI Agents: Risks & Defences | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6484,7 +6556,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-permissions/
 
-# How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve? | Q&A Library | Think BIG
+# AI Agent Permissions: Least-Privilege Setup | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6684,7 +6756,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/is-local-llm-good-enough/
 
-# Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company? | Q&A Library | Think BIG
+# Is a Local LLM Smart Enough for Enterprise Use? | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6896,7 +6968,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-pre-delivery-security-review/
 
-# What Does a Pre-Delivery Security Review of an AI Agent Actually Check? | Q&A Library | Think BIG
+# AI Agent Pre-Delivery Security Review Checklist | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7125,7 +7197,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/offline-local-llm-updates/
 
-# Can a Local LLM Work Offline, and How Do You Update Models and Software in an Air-Gapped Environment? | Q&A Library | Think BIG
+# Offline Local LLM: Air-Gap Deployment & Updates | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7333,7 +7405,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-acceptance-testing/
 
-# How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared? | Q&A Library | Think BIG
+# AI Agent Acceptance Testing Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7527,7 +7599,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/rag-access-control-by-department/
 
-# When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data? | Q&A Library | Think BIG
+# RAG Access Control by Department: How-To Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7712,7 +7784,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-api-key-leak/
 
-# What Happens If an AI API Key Leaks, and How Should a Company Store It? | Q&A Library | Think BIG
+# AI API Key Leak: Risks & Secure Storage Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7909,7 +7981,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/open-model-license-checklist/
 
-# Can Open Models Be Used Commercially? Four License Checks Before a Company Adopts One | Q&A Library | Think BIG
+# Open Model Commercial Use: 4 License Checks | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -9179,6 +9251,20 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 013
+
+October 31, 2026 · Local AI Field Notes
+
+## Choosing a Local AI Model: Bigger Isn’t Automatically Better — Test It on Your Own Work
+
+Model size, context length, and concurrency all draw on the same VRAM. A large model that doesn’t fit can run slower than a smaller one fully on the GPU. Four steps: define tasks and metrics, do the memory math, test on your own questions, pick the smallest that passes.](https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/)
 [Issue 012
 
 October 29, 2026 · Enterprise Security Notes
@@ -13370,6 +13456,8 @@ PHP 基金會說明，AI 輔助研究讓回報量大增，AI 也被用來驗證�
 THINK BIG NEWS   ·  企業資安實務
     Think BIG, Make it Real!　大想成業有限公司
 
+---
+
 URL: https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/
 
 # Choosing a Local AI Model: Bigger Isn't Automatically Better — Test It on Your Own Work | Think BIG NEWS
@@ -13601,5 +13689,3 @@ Ollama 建議 Agent 類任務至少 64000 個 token。[2] 這會吃掉不少記�
 
 THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
-
----
