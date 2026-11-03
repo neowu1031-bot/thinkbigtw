@@ -4240,6 +4240,30 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+AI 入門 TB21
+
+## [AI Agent 是什麼？跟聊天機器人差在哪](https://thinkbigtw.com/library/qa/what-is-ai-agent/)
+
+AI Agent 是能運用模型判斷下一步、呼叫工具並依結果繼續工作的系統。聊天機器人通常以對話回覆為主，但聊天介面也能接上 Agent，兩者不能只看畫面區分。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/what-is-ai-agent/)
+
+Think BIG 問答圖書館
+AI 入門
+更新 2026-11-03
+
+親子共讀與客製繪本 Q24
+
+## [環遊世界繪本怎麼讀？陪孩子從故事走進世界地圖](https://thinkbigtw.com/library/qa/world-map-for-kids/)
+
+陪孩子看世界地圖，可以先找自己的家，再找繪本裡的一個地點，把故事和位置連起來。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/world-map-for-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-03
+
 親子共讀與客製繪本 Q23
 
 ## [孩子是交通工具迷？把興趣變成觀察練習的 4 個方法](https://thinkbigtw.com/library/qa/vehicles-loving-kids/)
@@ -5309,6 +5333,18 @@ Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
 
+AI Basics TB21
+
+## [What Is an AI Agent, and How Does It Differ from a Chatbot?](https://thinkbigtw.com/en/qa/what-is-ai-agent/)
+
+An AI Agent uses a model to choose next steps, call tools, and continue based…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/what-is-ai-agent/)
+
+Think BIG Q&A Library
+AI Basics
+Updated 2026-11-03
+
 AI Basics TB20
 
 ## [No Tech Background and Official AI Courses Feel Hard to Follow: How Do You Start Learning to Use AI?](https://thinkbigtw.com/en/qa/learn-ai-without-tech-background/)
@@ -5684,7 +5720,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/
 
-# What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It? | Q&A Library | Think BIG
+# Company Data in ChatGPT: Risks & Policy | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -5938,7 +5974,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/
 
-# What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory? | Q&A Library | Think BIG
+# Local LLM Hardware: GPU Memory Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6174,7 +6210,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/
 
-# When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups? | Q&A Library | Think BIG
+# RAG Data Flow: Cloud vs. On-Premises Comparison | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6382,7 +6418,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/
 
-# What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions? | Q&A Library | Think BIG
+# Prompt Injection in AI Agents: Risks & Defences | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6592,7 +6628,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-permissions/
 
-# How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve? | Q&A Library | Think BIG
+# AI Agent Permissions: Least-Privilege Setup | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6792,7 +6828,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/is-local-llm-good-enough/
 
-# Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company? | Q&A Library | Think BIG
+# Is a Local LLM Smart Enough for Enterprise Use? | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7004,7 +7040,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-pre-delivery-security-review/
 
-# What Does a Pre-Delivery Security Review of an AI Agent Actually Check? | Q&A Library | Think BIG
+# AI Agent Pre-Delivery Security Review Checklist | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7233,7 +7269,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/offline-local-llm-updates/
 
-# Can a Local LLM Work Offline, and How Do You Update Models and Software in an Air-Gapped Environment? | Q&A Library | Think BIG
+# Offline Local LLM: Air-Gap Deployment & Updates | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7441,7 +7477,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-acceptance-testing/
 
-# How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared? | Q&A Library | Think BIG
+# AI Agent Acceptance Testing Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7635,7 +7671,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/rag-access-control-by-department/
 
-# When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data? | Q&A Library | Think BIG
+# RAG Access Control by Department: How-To Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7820,7 +7856,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-api-key-leak/
 
-# What Happens If an AI API Key Leaks, and How Should a Company Store It? | Q&A Library | Think BIG
+# AI API Key Leak: Risks & Secure Storage Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -8017,7 +8053,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/open-model-license-checklist/
 
-# Can Open Models Be Used Commercially? Four License Checks Before a Company Adopts One | Q&A Library | Think BIG
+# Open Model Commercial Use: 4 License Checks | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
