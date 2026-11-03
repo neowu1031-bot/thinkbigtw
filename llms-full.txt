@@ -9709,7 +9709,7 @@ AI 對我們的描述，甚至會錯。  我們曾問某個 AI 聊天工具我�
 
 ## 這套架構實際帶來什麼
 
-我們把 Think BIG 官網當第一個實驗場，先把自己從頭做一遍，再把同一套方法提供給企業：Think BIG 搜尋能見度服務（SEO＋GEO）——被 Google 找到，也被 AI 說出來。
+我們把 Think BIG 官網當第一個實驗場，先把自己從頭做一遍，再把同一套方法提供給企業：Think BIG 搜尋能見度服務（SEO／AEO／GEO）——被 Google 找到，也被 AI 說出來。
 
 一次體檢，兩邊都看：  Google 這邊看收錄、技術地基、關鍵字現況和頁面寫法；AI 這邊看各個 AI 有沒有提到你、怎麼描述你、引用了哪些來源。最後合併成一份「先做哪三件」的清單。
 
@@ -9848,7 +9848,7 @@ Bottom line: SEO lets AI find you. GEO gets AI to say your name.  Same foundatio
 
 (The following reflects Think BIG’s own position and is separate from the neutral reporting above.)
 
-We used our own website as the first test case, working through everything ourselves before offering the same method to businesses: Think BIG Search Visibility (SEO + GEO) — get found on Google, get named by AI.
+We used our own website as the first test case, working through everything ourselves before offering the same method to businesses: Think BIG Search Visibility (SEO, AEO + GEO) — get found on Google, get named by AI.
 
 One audit, both sides:  Google side covers indexing, technical foundation, keyword standing, and on-page writing. AI side covers whether each AI mentions you, how it describes you, and which sources it cites. Both roll up into one “top three things to fix first” list.
 
@@ -10774,7 +10774,7 @@ Perplexity 評測站、官網、論壇與社群、影音 自家具名的社群�
 
 （以下是 Think BIG 自己的立場，與上方中立報導區隔。）
 
-我們的搜尋能見度服務（SEO＋GEO），處方一律按 AI 分開寫：先量再建置 ——先用重複抽樣量出你在每個 AI 上的現況，以及它們各自引用了哪些來源，再決定資源先放哪裡。三個 AI、三套處方 ——ChatGPT 看官網（含英文頁）與機構名錄；Gemini 和 Google AI 模式：官網能被收錄、有獨特的第一手內容、Google 商家檔案資料完整（Google 官方指南建議）；Perplexity 看具名社群與影音。
+我們的搜尋能見度服務（SEO／AEO／GEO），處方一律按 AI 分開寫：先量再建置 ——先用重複抽樣量出你在每個 AI 上的現況，以及它們各自引用了哪些來源，再決定資源先放哪裡。三個 AI、三套處方 ——ChatGPT 看官網（含英文頁）與機構名錄；Gemini 和 Google AI 模式：官網能被收錄、有獨特的第一手內容、Google 商家檔案資料完整（Google 官方指南建議）；Perplexity 看具名社群與影音。
 
 身分一致是地基：  把公司名稱、描述、聯絡資訊在各處對齊，讓 AI 認得出你、講得對你。只用合規渠道：  不在論壇代發文、不做假帳號、不寫假評論；付費合作一律揭露。
 
@@ -10925,7 +10925,7 @@ Bottom line: not every AI reads the same sources.  Find out which AI your custom
 
 (The following reflects Think BIG’s own position and is separate from the neutral reporting above.)
 
-In our search visibility service (SEO + GEO), recommendations are always written separately for each AI: Measure first, then build  — we use repeated sampling to see where you stand on each AI and which sources each one cites, then decide where to invest first. Three AIs, three plans  — ChatGPT: your website (including English pages) and institutional directories. Gemini and Google AI Mode: a site Google can index with distinctive first-hand content and complete Google Business Profile data (per Google’s official guide). Perplexity: named social accounts and video.
+In our search visibility service (SEO, AEO + GEO), recommendations are always written separately for each AI: Measure first, then build  — we use repeated sampling to see where you stand on each AI and which sources each one cites, then decide where to invest first. Three AIs, three plans  — ChatGPT: your website (including English pages) and institutional directories. Gemini and Google AI Mode: a site Google can index with distinctive first-hand content and complete Google Business Profile data (per Google’s official guide). Perplexity: named social accounts and video.
 
 Consistent identity is the foundation.  We align your company name, description, and contact details everywhere, so AI can recognize you and describe you correctly. Compliant channels only  — no paid forum posts, no fake accounts, no fake reviews; paid partnerships are always disclosed.
 
