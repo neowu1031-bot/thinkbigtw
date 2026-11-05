@@ -3,7 +3,7 @@
  *
  * 設計原則：
  *   - 簽章驗證失敗立刻 401，不做任何 AI 呼叫
- *   - 只處理 source.type==='user' 的私訊；群組/room 事件一律略過（LINE_GROUP_PROBE=1 時只回報事件結構，臨時測試）
+ *   - 只處理 source.type==='user' 的私訊；群組/room 事件一律略過
  *   - follow 事件：先做 GIFT 判斷，GIFT 用戶靜默；非 GIFT 才回歡迎文
  *   - userId 一律以 HMAC-SHA256（+ pepper）雜湊，不存明文
  *   - LINE_HASH_PEPPER 必須透過 wrangler secret put 設定，未設定直接 503
@@ -598,27 +598,6 @@ async function generateLineReply(messages, env) {
 // ──────────────────────────────────────────────
 // 核心事件處理（內層，不含 event dedup）
 // ──────────────────────────────────────────────
-export function describeGroupEvent(event) {
-  const m = event.message;
-  const parts = [`type=${event.type}`];
-  if (m) {
-    parts.push(`message=${m.type}`);
-    if (m.imageSet) parts.push(`imageSet=${m.imageSet.index ?? '?'}/${m.imageSet.total ?? '?'}`);
-    if (m.contentProvider?.type) parts.push(`provider=${m.contentProvider.type}`);
-    parts.push(`messageKeys=${Object.keys(m).filter((k) => !['id', 'text', 'quoteToken', 'markAsReadToken', 'emojis', 'mention'].includes(k)).join(',')}`);
-  }
-  parts.push(`eventKeys=${Object.keys(event).filter((k) => !['replyToken', 'source', 'message', 'webhookEventId', 'deliveryContext', 'timestamp', 'joined', 'left', 'unsend'].includes(k)).join(',')}`);
-  return `[測試] ${parts.join(' ')}`;
-}
-
-async function reportGroupEventShape(event, token) {
-  const line = describeGroupEvent(event);
-  console.log('[group-probe]', line);
-  // 只有 join 記下群組 ID，供測試後核對與退出；不進回覆文字
-  if (event.type === 'join') console.log('[group-probe-join]', event.source?.groupId ?? event.source?.roomId ?? 'unknown');
-  if (event.replyToken) await replyToLine(token, event.replyToken, line);
-}
-
 async function processEventInner(event, token, kv, env, ctx) {
   const { type, source, replyToken } = event;
   const userId = source?.userId;
@@ -807,12 +786,6 @@ async function processEventInner(event, token, kv, env, ctx) {
 // #2: 只有 'completed' 才跳過；'processing' 代表前次失敗，允許 LINE 重送
 // ──────────────────────────────────────────────
 async function processEventWithDedup(event, token, kv, env, ctx) {
-  // 臨時測試：回報群組事件的結構，不含 ID 與內容，也不經過 KV；測完移除
-  if (env?.LINE_GROUP_PROBE === '1' && (event.source?.type === 'group' || event.source?.type === 'room')) {
-    await reportGroupEventShape(event, token);
-    return;
-  }
-
   const eventId = event.webhookEventId;
   if (eventId) {
     const dedupKey = 'event:' + eventId;
