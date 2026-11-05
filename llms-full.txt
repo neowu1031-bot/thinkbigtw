@@ -14012,3 +14012,2631 @@ Q4：哪些動作適合等人核准？
 
 THINK BIG NEWS   ·  企業資安實務
     Think BIG, Make it Real!　大想成業有限公司
+
+URL: https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/
+
+# An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 024
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 22, 2026  ·  Sunday
+◆
+AI Deployment Field Notes
+◆
+Issue 024
+
+AI agents · usage limits · scheduling
+
+## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
+
+Think BIG Media  |  November 22, 2026
+
+Start with schedules and retries. Usage alerts, blocking new work, and canceling work already underway are separate controls that need separate tests.
+
+## One. Agent Loops Accumulate Resource Use
+
+An agent may call a model repeatedly for one task. In its June 13, 2025 research-system report, Anthropic describes agents exploring directions in parallel and warns that this architecture consumes tokens rapidly. Those observations belong to that system, not to every business deployment.[1]
+
+OWASP’s 2025 LLM10 entry treats uncontrolled inference consumption as a risk and recommends input limits, rate limits, quotas, timeouts, and monitoring.[2] A task still running deserves a check on its progress and stopping conditions.
+
+Controls also differ by layer. Pydantic AI distinguishes model turns from successful tool executions; a turn count does not cover every underlying transport attempt.[3] AWS warns that a timeout does not establish that a remote action failed to happen, and retries can add load to an overloaded service.[4]
+
+## Two. Room to Explore Needs a Boundary
+
+The case for execution room: exploration takes work.  The research report describes tasks whose direction changes as evidence arrives.[1] Our reading is that forcing every task into a very short run can conflict with the work. Limits should reflect the task.
+
+The caution: distinguish progress from repetition.  OWASP recommends resource monitoring as well as input controls.[2] We suggest tracking completed steps, repeated actions, and stop reasons. Token totals alone do not measure quality, and an unfinished answer does not justify an open-ended run.
+
+More retries do not automatically produce a more reliable service. AWS explains backoff and jitter, while emphasizing the need to consider safe repetition for actions with side effects.[4] We recommend different retry rules for reads and external writes, plus a recoverable state when work stops.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from our always-on agent maintenance notes. They are not industry statistics or an account of any particular client.
+
+1. No chat messages does not mean no model calls.  Heartbeat checks and automatic memory maintenance can continue consuming quota or compute unnoticed. Our inventory includes background work as well as chat activity. This does not imply that every framework has identical defaults.
+
+2. Inventory, disable, then limit.  We list automatic jobs, turn off unnecessary ones, and apply limits. We do not have a universal threshold or a savings percentage, so we make neither claim.
+
+3. Ask who takes over.  Our proposed adoption checklist asks for each job’s purpose, trigger, and owner. Agree in advance whether a stopped task waits for review, restarts later, or ends. This is a recommended control, not an additional deployment anecdote.
+
+## Four. Our Recommendations: Limits and What Happens Next
+
+1. Inventory triggers.  Include timers, incoming events, health checks, and retry queues. Record model calls and external writes. Disable jobs without a clear purpose, then test necessary work.
+
+2. Set several kinds of limits.  Manage model turns, tool executions, elapsed time, input and output, and concurrency separately. Check the framework’s definitions rather than treating a turn limit as a count of all network attempts.[2][3]
+
+3. Bound retries and add waiting.  Set retry counts, backoff, and an execution deadline. Check the earlier result before repeating an action with side effects. A timeout alone does not mean nothing happened.[4]
+
+4. Test stops and notifications.  Deliberately reach a limit. Check whether new work stops, how in-flight work is handled, and who is notified. Include a task identifier, the last completed step, and actions still requiring confirmation.
+
+5. Review background usage.  Compare schedules with purpose and look for duplicate triggers or persistent failures. Assign approval and a reason for limit changes instead of expanding the allowance whenever a task fails.[2]
+
+We suggest testing limits with a deliberately failing job: make a test dependency unavailable, verify that retries end as designed, and check that later schedules do not recreate the same work. Also run a successful job to confirm the limits allow normal operation. Retain both records so maintainers can distinguish an intentional stop from a new fault. For shared resources, test what happens to other authorized work when one job reaches its limit, rather than testing a single conversation alone.
+
+◆ Editor’s Note · How Think BIG Approaches This: Make Automated Work Easy to Hand Off
+
+## Every scheduled job needs an owner and a purpose.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to include schedules, limit scope, stopping procedures, and handoff owners in the operating documentation. A stopping rule belongs in the task design.
+
+Automated work should be inspectable, pausable, and traceable. When work exceeds expectations, preserve progress and unresolved actions so the owner can decide what happens next.
+
+### Frequently Asked Questions
+
+Q1: Why is there usage when nobody is chatting?
+Our maintenance notes include model calls from heartbeat and memory jobs. Inventory automatic schedules.
+Q2: Is a model-turn limit sufficient?
+No. Frameworks can count turns and tool executions separately, and transport retries may fall outside the turn count.[3]
+Q3: Can I retry immediately after a timeout?
+Check the previous outcome first. A remote action with side effects may already have happened.[4]
+Q4: Does a usage alert mean the task stopped?
+Do not assume so. We recommend testing new-work blocking, in-flight work, and the handoff separately.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Anthropic, “How we built our multi-agent research system,” June 13, 2025 (exploration and consumption); accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system) ·
+    [2] OWASP, “LLM10:2025 Unbounded Consumption” (limits and monitoring); accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/) ·
+    [3] Pydantic AI, “Agents,” usage limits (turns and tool counts); accessed 2026-10-26: [pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits) ·
+    [4] AWS, “Timeouts, retries, and backoff with jitter” (timeouts and side effects); accessed 2026-10-26: [aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/ambient-vs-chat-ai-20261114/
+
+# Chat AI or an Ambient Agent? Define Triggers and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 020
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 14, 2026  ·  Saturday
+◆
+AI Deployment Field Notes
+◆
+Issue 020
+
+Ambient AI · Event Triggers · Human Review
+
+## Chat AI or an Ambient Agent? Define Triggers and Stop Conditions
+
+Think BIG Media  |  November 14, 2026
+
+Start with who triggers the work and where it waits for a person. Background operation needs a defined scope, approval gates, and a way to stop.
+
+## One.  What’s Happening: From Waiting for Prompts to Responding to Events
+
+In January 2025, LangChain published “Introducing ambient agents,” describing agents that respond to signals and seek human input when needed, alongside an email-assistant reference implementation.[1] This historical announcement introduces our discussion of interaction and governance; it is not a current product launch report.
+
+Here, “going to AI” means a person initiates a request. “AI coming to you” means an event or schedule starts work and produces a notification or review item. This is an explanatory distinction, not an industry-wide taxonomy. The original article says ambient agents need not be completely autonomous.[1] Background operation does not mean watching every screen or receiving all system permissions.
+
+Waiting for a person can be an explicit program state. LangGraph documents interrupts that pause execution, save state, and resume with external input.[2] OWASP LLM06:2025 recommends limiting tools, permissions, and autonomy, with human approval for high-impact actions.[4] Background execution and approval authority need separate designs.
+
+## Two.  Perspectives: Less Repetition, More Operational Responsibility
+
+The benefit:  The original article distinguishes notification, questions, and review.[1] In our assessment, a well-defined trigger can make preparing a review queue more suitable than repeatedly briefing a tool. Measure that on real work rather than assuming a quantified time saving.
+
+The caution:  Background work also involves scheduling and retries. Kubernetes says its CronJob controller may sometimes create duplicate jobs or miss a job, so jobs should be idempotent: repeating them should not add unintended effects.[3] This is that scheduler’s documented behavior, not a defect attributed to every AI platform.
+
+We recommend turning this into acceptance questions: What happens when an event arrives twice? Is waiting-for-approval state visible? With no reply, does the job keep waiting, expire, or escalate? Decide these conditions before deployment.
+
+Define when a person needs an interruption: missing information, pending approval, or repeated failure. Group related items and identify an owner and deadline where relevant. Repeated reminders need a stop or escalation rule. This is an interaction recommendation, not a measured outcome.
+
+If a task lacks a clear event and completion condition, use conversation to clarify the workflow first. Once a person can describe its start, inputs, and outputs, move a bounded portion into the background. Not every task needs a schedule.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from operating persistent AI agents. They are not industry statistics or an account of any particular organization.
+
+1. Model calls continue without a conversation.  Heartbeat checks and automatic memory organization can consume usage allowances or compute unnoticed. We inventory schedules, disable unnecessary jobs, and set limits.
+
+2. Long conversations create maintenance work.  Old context needs summarization as conversations grow. Local summarization can take minutes and time out, blocking a conversation. We summarize earlier, set timeouts, and separate channels.
+
+3. A healthy service may have just restarted.  A laptop host once lost power overnight after its battery drained, leaving morning jobs unexecuted. The service later appeared healthy because it had just restarted. We check uptime and power alongside service status, and added low-battery alerts.
+
+4. Important memory must be inspectable.  We keep important items in memory files that can be viewed, edited, and deleted. Persistent state should remain understandable to its owner.
+
+## Four.  Our Recommendations: Pilot One Task with a Clear Endpoint
+
+1. Specify triggers.  Define the event or schedule, input data, output, and completion condition. When no work remains, execution should end rather than continually asking a model to find another task.
+
+2. Separate notification from action.  Begin with summaries, drafts, or review queues. Require designated approval for external sending or production changes, showing target and content beforehand.[4] Waiting for approval should be a workflow state.[2]
+
+3. Test duplicates, missed work, and recovery.  Use synthetic events to check duplicate handling and restart behavior.[3] Track last success and outstanding work, beyond process existence.
+
+4. Set usage and stop conditions.  Specify call, duration, and retry limits, with an alert recipient. Test manual shutdown and confirm unfinished work and pending approvals remain readable.
+
+Give background work a beginning, endpoint, and owner before expanding autonomy.
+
+◆ Editor’s Note · How Think BIG Approaches This: Background Work That Can Be Handed Over
+
+## Deliver triggers, state records, approvals, and shutdown instructions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend a visible inventory of schedules, recent actions, and outstanding approvals. New jobs should bring an explicit data scope, resource limits, and shutdown method.
+
+Whether an agent stays active and which actions it may perform are separate questions that both need answers.
+
+### Frequently Asked Questions
+
+Q1: Must ambient agents be fully autonomous?
+No. The original article includes notification, questions, and review.[1]
+Q2: Is adding a schedule enough?
+Test state, retries, duplicate handling, approvals, and shutdown separately.[2][3]
+Q3: Can model usage continue without a user prompt?
+In our operations records, heartbeat and memory jobs continue calling models, so we inventory them and set limits.
+Q4: Should an ambient agent send messages by itself?
+Separate capability from authorization. We recommend a preview and designated approval for outbound sending, applying high-impact-action guidance.[4]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] LangChain, “Introducing ambient agents,” January 14, 2025, accessed 2026-10-26: [blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/) ·
+    [2] LangChain, “Interrupts”, accessed 2026-10-26: [docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts) ·
+    [3] Kubernetes, “CronJob”, accessed 2026-10-26: [kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) ·
+    [4] OWASP, “LLM06:2025 Excessive Agency”, accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/
+
+# What Should You Back Up in a Local AI System? — Beyond Model Files | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 023
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 20, 2026  ·  Friday
+◆
+Local AI Field Notes
+◆
+Issue 023
+
+local AI · system backup · recovery drills
+
+## What Should You Back Up in a Local AI System? — Beyond Model Files
+
+Think BIG Media  |  November 20, 2026
+
+Recovering a model does not reconstruct the working system. A backup plan needs file locations, a consistent recovery point, and work-based acceptance checks.
+
+## One. A File Copy Is Not a Recovery Plan
+
+Model files are conspicuous, but size should not determine backup priority. Ollama’s FAQ describes configurable model storage and service settings managed through the operating system. The default directory may not describe the deployed setup.[1]
+
+Databases also need specific handling. PostgreSQL says a direct file-level copy requires shutdown; an appropriate consistent snapshot can work while running, provided its conditions, logs, and full data scope are covered.[2]
+
+SQLite offers an online backup API for database snapshots and discusses the locking and interruption risks of traditional copying.[3] CISA recommends offline, encrypted backups of critical data and regular availability and integrity tests.[4] These sources focus on recoverability, beyond simply having another copy.
+
+## Two. Offline and Online Methods Have Conditions
+
+The case for stopping writes: a clearer state.  Where maintenance windows are possible, we favor stopping writing services before a documented backup. This is our operational choice. PostgreSQL’s restrictions on direct copying do not mean every database requires an offline backup.[2]
+
+The case for online backup: service continuity.  SQLite’s API and PostgreSQL’s consistent-snapshot guidance offer conditional paths for working systems.[2][3] Our reading is that database and storage architecture should determine the method. A completed copy command is insufficient evidence by itself.
+
+Convenience also needs to be weighed against isolation. CISA notes that ransomware can delete or encrypt accessible backups.[4] We recommend reviewing backup access separately from everyday access while ensuring an authorized recovery owner can obtain what is needed.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These notes come from our local AI deployment and maintenance records. They are not industry statistics or an account of any particular client.
+
+1. The model is one component.  Our checklist includes configuration, schedules, service definitions, database snapshots, knowledge indexes, agent memory files, and conversation records. Where model files can be downloaded again, we still record the exact version rather than an ambiguous name.
+
+2. Make a consistent backup before upgrades.  Our recorded practice is to stop services before packaging the system, giving the backup a defined point with writes stopped. That is our method, not a universal prescription. Online requirements need a method appropriate to the database.[2][3]
+
+3. Use the existing backup process.  We use the established daily backup mechanism rather than adding a separate process without an owner. We consider the job complete after a recovery drill.
+
+## Four. Our Recommendations: From Inventory to Recovery
+
+1. Inventory by purpose.  Mark what must be preserved and what can be rebuilt. Record locations, owners, versions, retention, and rebuild instructions. If an index will be rebuilt, keep its source documents and build procedure.
+
+2. Document consistency.  Identify the services to stop, database order, and how to confirm writing has stopped. For online methods, save options and completion evidence. Do not assume that a copy of a live data directory is a usable snapshot.[2][3]
+
+3. Protect and isolate backups.  Consider offline storage and encryption under CISA’s guidance, and test authorized access to recovery and decryption material.[4] Keep secret retrieval controlled rather than placing complete secrets in general handover notes.
+
+4. Restore in isolation.  Select a backup, record the steps, and use known questions to check retrieval, memory access, and service startup. Disable outbound scheduled actions during the drill to avoid repeating production work. This is our recommended test design.
+
+5. Return results to the owner.  Keep the recovery point, elapsed time, failures, and corrections. Add missing settings to the inventory. Use the revised procedure for the next drill instead of carrying forward an old completion check.
+
+A useful drill can start with one concrete task, such as retrieving a known document. Define the expected answer and authorized account, restore from the instructions, and check the source data, version, and permissions. If an index is rebuilt, confirm that all required originals exist. Compare the drill against the inventory: any file obtained ad hoc during recovery belongs on the next checklist. This is our proposed acceptance method; service startup alone does not establish complete recovery.
+
+◆ Editor’s Note · How Think BIG Approaches This: Deliver the Recovery Procedure
+
+## A completed backup needs a repeatable restoration record.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to deliver backup scope, restoration order, and acceptance questions with a local AI system. Recovery belongs in the maintenance documentation.
+
+Another authorized person should be able to follow the procedure. Changes to configuration, data locations, or schedules should update the recovery instructions so they describe the system actually in use.
+
+### Frequently Asked Questions
+
+Q1: Is backing up model files enough?
+Our inventory also covers settings, schedules, databases, indexes, memory, and records. Model locations can be customized.[1]
+Q2: Can I copy database files directly?
+Use a method appropriate to the database. PostgreSQL requires shutdown for a direct file backup; SQLite offers an online backup API.[2][3]
+Q3: Do daily backups still need a recovery drill?
+Yes. CISA recommends testing availability and integrity regularly.[4]
+Q4: Must every model file be duplicated?
+We first assess whether it can be obtained again and record the exact version. An uncertain rebuild path should not be treated as disposable.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Ollama, “FAQ” (model storage and service configuration); accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/faq) ·
+    [2] PostgreSQL, “File System Level Backup” (copies and consistent snapshots); accessed 2026-10-26: [www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html) ·
+    [3] SQLite, “SQLite Backup API” (online snapshots); accessed 2026-10-26: [www.sqlite.org](https://www.sqlite.org/backup.html) ·
+    [4] CISA, “#StopRansomware Guide” (offline encrypted backups and testing); accessed 2026-10-26: [www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/
+
+# Was This Image Made with AI? — What Content Credentials Can Tell You | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 022
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 18, 2026  ·  Wednesday
+◆
+AI Deployment Field Notes
+◆
+Issue 022
+
+C2PA · Content Credentials · AI disclosure
+
+## Was This Image Made with AI? — What Content Credentials Can Tell You
+
+Think BIG Media  |  November 18, 2026
+
+Read what a credential records and who signed it, then verify the claim made by the image. Missing credentials do not establish AI use. Teams need an intake and publication checklist.
+
+## One. The Shift Toward Provenance
+
+Can appearance alone tell us whether AI was used? Provenance offers another route. C2PA says its conformance program and official trust list launched in mid-2025 to check implementation and security requirements. This article follows that development; it is not a report of a new announcement today.[1]
+
+Content Credentials can record creation, editing, and tools used, with digitally signed provenance data. The C2PA FAQ describes a checkable history rather than a visual clue that readers must interpret from appearance.[2]
+
+Two limits matter. The C2PA 2.2 explainer separates provenance from factual truth. CAI documentation also says missing credentials are not evidence that an image is inauthentic. A valid record and an accurate story answer different questions.[3][4]
+
+## Two. The Case for Transparency, and Its Limits
+
+The benefit: inspectable evidence.  The conformance program evaluates credential implementations and publishes a list of conforming products.[1] In our reading, this gives teams concrete questions to ask about supported workflows instead of accepting a broad claim that AI content is labeled.
+
+The limitation: history may be incomplete.  CAI notes that a normal screenshot does not carry the original image’s C2PA metadata.[4] C2PA describes soft bindings such as watermarking or fingerprinting to help recover credentials, but that does not mean every forwarded image has a complete history.[2]
+
+We support using credentials as one part of verification while retaining editorial checks. Signing information, the depicted claim, the caption, and permission to use the asset need separate review. One successful technical check should not be extended to the entire story.[3]
+
+We suggest three review fields: provenance present in the file, checks actually performed by the validator, and facts independently checked by the editor. Do not let one field stand in for another. A recorded creation time still needs to be compared with the event date in the caption. This design makes the evidence boundary visible instead of adding an unexplained approval badge.[3]
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are questions we would ask during adoption, not a completed C2PA deployment or an account involving a particular client.
+
+1. Do we have the original file?  Ask where the asset came from, whether the team has only a screenshot, and whether the original is available. Keep an identifiable file location so reviewers and publishers inspect the same version.
+
+2. Who interprets the result?  Assign responsibility for checking the signer, verifying the caption, and handling an unverifiable file. Record missing data, unsupported data, and failed validation separately rather than labeling all three as a fabricated image.
+
+3. What will readers see?  Agree on a visible source and AI-use statement if the publication surface does not show credentials. Assign a new check when the file changes. This is a workflow proposal, not a claim that every platform preserves metadata.
+
+## Four. Our Recommendations: Four Checks
+
+1. Record the source at intake.  Keep the provider, acquisition date, original file location, and intended use. Ask whether the delivery is an original or an exported copy. Track permission separately.
+
+2. Match the record to the file.  Use a credential-aware tool and save the date and result. Distinguish signature checks, trust status, and recorded edits. Ask the provider about unclear fields instead of filling gaps with assumptions.[1][2]
+
+3. Verify factual claims separately.  List people, locations, dates, and event claims. Keep checks with the original publisher and caption review even when provenance validates. This is our editorial recommendation based on the specification’s limits.[3]
+
+4. Test the publishing path.  Run a sample through the actual crop, export, and upload process, then download and inspect it. If provenance does not survive, add an understandable explanation and retain the original and review record.[4]
+
+For handover, run one test asset from original-file intake through inspection, editing, export, upload, and download, then have another editor inspect the final file. Record filenames and results. If only a screenshot is available, say the original was unavailable rather than reporting that no AI use was found. This proposed drill checks how the team handles unknowns. Public wording should match available evidence even under publication pressure.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Evidence Before Publication
+
+## Check disclosure, signatures, and facts separately.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to retain the source, AI-use disclosure, and publication review together. The checklist should distinguish confirmed facts from unknowns and identify who can approve use.
+
+We do not treat a badge as a factual verdict. When evidence is incomplete, narrow the wording to what it supports. The next editor should be able to inspect the reasoning behind the decision.
+
+### Frequently Asked Questions
+
+Q1: Does C2PA tell us whether an image is true?
+No. The explainer separates provenance from factual accuracy. Verify the depicted event separately.[3]
+Q2: Does a missing credential prove AI use?
+No. CAI says absence of credentials is not a negative authenticity signal.[4]
+Q3: Does a screenshot preserve the original credential?
+A normal screenshot does not contain the original C2PA metadata. Recovery mechanisms have separate requirements.[4][2]
+Q4: Does a credential grant usage rights?
+No. Provenance differs from DRM and access control. Confirm permission separately.[2]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] C2PA, “Conformance” (2025 program and public list); accessed 2026-10-26: [c2pa.org](https://c2pa.org/conformance/) ·
+    [2] C2PA, “FAQs” (signed provenance and soft bindings); accessed 2026-10-26: [c2pa.org](https://c2pa.org/faqs/) ·
+    [3] C2PA, “C2PA and Content Credentials Explainer,” specification 2.2 (limits); accessed 2026-10-26: [spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html) ·
+    [4] CAI, “Frequently-asked questions” (screenshots and missing credentials); accessed 2026-10-26: [opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/
+
+# A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Enterprise Security Notes · Issue 021
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+November 16, 2026  ·  Monday
+◆
+Enterprise Security Notes
+◆
+Issue 021
+
+Voice Impersonation · Payment Verification · Business Procedures
+
+## A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel
+
+Think BIG Media  |  November 16, 2026
+
+Pause an urgent payment request and verify both identity and purpose through previously confirmed contact details. Follow the approval workflow without first proving the audio is synthetic.
+
+## One.  What’s Happening: A Familiar Voice Still Requires Verification
+
+On May 15, 2025, the FBI warned of a campaign active since April in which actors impersonated senior US officials through texts and AI-generated voice messages to seek personal-account access.[1] This was a specific disclosed campaign, not a measure of victimization among Taiwanese businesses or evidence of a surge in executive payment fraud.
+
+The business lesson is to separate a recognizable voice from verified identity. In an earlier warning, the FTC explained that scammers could use public audio to clone a familiar voice and advised calling a number already known to belong to the person.[3] We do not claim a universal number of seconds needed to clone a voice.
+
+Payment requests already need verification. The FBI’s business email compromise guidance recommends confirming payment and purchase requests in person or by phone, including account-number or payment-procedure changes.[2] We extend that principle to voice requests: retain existing approvals without first needing to identify a particular synthesis technology.
+
+## Two.  Perspectives: Clues Help; Procedures Are More Usable Than a Listening Test
+
+The awareness perspective:  The FBI suggests observing tone, wording, and audiovisual details while acknowledging that AI-generated content can be hard to identify.[1] Training can help people notice anomalies. In our view, detecting an audio flaw should not become the employee’s test for authorizing payment.
+
+The procedural caution:  Publicly available personal facts may be insufficient for identity verification. We recommend independently confirmed contact details and separate checks on the purpose, recipient, documents, and approver. This is a business-control proposal, not an audio-forensics method.
+
+Another FBI announcement describes voice and real-time video impersonation uses.[4] Video may supplement checks, but an executive-looking image should not bypass payment controls. Nor should every unfamiliar recording be labeled fraudulent; apply the same verification procedure when uncertain.
+
+Include executives in the exercise and have them explicitly accept callbacks and review delays. Staff cannot apply verification consistently if they are urged to bypass it. Record missing contacts, outdated directories, and incomplete documents as actions, with owners confirming corrections.
+
+◆ Deployment Checklist
+
+## Three. Our Deployment Checklist
+
+These are proposed preparation questions for businesses, not claims of victimization or successful interception.
+
+1. Where does the contact list come from?  Ask whether payment contacts and executive numbers were previously verified and who can edit them. Calling a number supplied in the suspicious message keeps verification inside the sender’s channel.[1][2]
+
+2. Who may pause the request?  We recommend explicitly allowing staff to wait for verification and naming a backup reviewer. “In a meeting and unable to call” should not create an exception.
+
+3. What can the reviewer inspect?  Give reviewers the payment purpose, original documents, and account-change history. Separate confirming identity from approving the request itself; one callback should not silently stand for both.
+
+4. Where is help after submission?  Prepare bank and internal incident contacts in advance. Limit access to preserved recordings and screenshots rather than spreading personal information through group chats.
+
+## Four.  Our Recommendations: Write Steps People Can Follow
+
+1. Pause and use a trusted channel.  End the suspicious call and contact the person through previously confirmed details, rather than a new number or link in the message. The FBI and FTC advise independent verification.[1][3]
+
+2. Verify account changes separately.  Check changed payment details or procedures through established contacts and record the outcome.[2] We recommend the same procedure even when the voice sounds familiar or the message appears in an existing conversation.
+
+3. Separate processing and review.  Assign a reviewer and record the verification channel and approval basis for urgent requests too. If no reviewer is available, wait rather than treating urgency as an exception.
+
+4. Run a tabletop exercise.  Use a written scenario involving secrecy, urgency, and a new account. Check whether staff can find contacts, pause the request, and escalate. No voice clone is needed to test the process.
+
+5. Contact the bank immediately after a mistaken transfer.  The FBI recommends immediate contact with the financial institution and coordination with the receiving institution.[2] Preserve messages, times, and transaction records and seek appropriate assistance under the incident process. Do not wait for proof of AI use or assume funds will be recovered.
+
+A voice delivers a request; verification and approval authorize a payment.
+
+◆ Editor’s Note · How Think BIG Approaches This: Put Pause Authority in the Procedure
+
+## Let staff verify requests and find the right escalation contact.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend using AI to organize questions or verification tasks while designated people retain payment approval. External-action workflows should preserve verification evidence, review results, and response contacts.
+
+This article provides general fraud-prevention and process information, not legal advice.
+
+### Frequently Asked Questions
+
+Q1: Is a familiar voice enough?
+No. The FBI and FTC recommend independent verification through known contact details.[1][3]
+Q2: Must we prove AI use before pausing?
+We recommend pausing for verification. The FBI’s payment-verification advice does not depend on proving AI use first.[2]
+Q3: Does video make approval safe?
+Do not rely on it alone. The FBI also describes real-time video impersonation.[4]
+Q4: What if funds have already been sent?
+Contact the bank immediately through a known channel, preserve records, and seek assistance under the incident process. The FBI recommends immediate financial-institution contact.[2]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] FBI IC3, “Senior US Officials Impersonated in Malicious Messaging Campaign,” May 15, 2025, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515) ·
+    [2] FBI, “Business Email Compromise”, accessed 2026-10-26: [www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise) ·
+    [3] FTC, “Scammers use AI to enhance their family emergency schemes,” 2023, accessed 2026-10-26: [consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes) ·
+    [4] FBI IC3, “Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud,” December 3, 2024, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/
+
+# What Is ISO/IEC 42001? Documenting How a Business Governs AI | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 016
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 6, 2026  ·  Friday
+◆
+AI Deployment Field Notes
+◆
+Issue 016
+
+ISO/IEC 42001:2023 · AI Governance · Management Systems
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Think BIG Media  |  November 6, 2026
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.
+
+## One.  What’s Happening: AI Governance Is Becoming Subject to Independent Assessment
+
+On September 5, 2025, the UK accreditation body UKAS said it was advancing accreditation work for ISO/IEC 42001 AI management system certification.[1] We use that institutional development to introduce business preparation. We do not present its historical progress as today’s status or rank certification bodies.
+
+ISO describes ISO/IEC 42001:2023 as requirements for establishing, implementing, maintaining, and continually improving an AI management system. It applies to organizations providing or using AI products and services.[2] A business does not need to train its own model to have AI uses worth inventorying.
+
+ISO’s public explainer covers responsibility, risk, data and system management, oversight, and improvement.[3] Our reading is that an organization should be able to explain why a use is allowed and what happens when it goes wrong. This article introduces public guidance; it is not a clause-by-clause treatment of the full standard or a certification checklist.
+
+## Two.  Perspectives: A Common Framework Helps; Certificates Need Context
+
+The case for structure:  UKAS describes accreditation work as supporting consistency and credibility in AI certification.[1] ISO describes a management system in terms of policies, objectives, and processes.[2] In our view, this makes governance accountable rather than leaving each department to interpret it independently.
+
+The limitation:  ISO explains that its framework supports compliance obligations while laws and regulations still apply.[3] A certificate therefore should not be read as evidence that every answer is accurate or every use has received legal review. Management processes and task-specific checks address different questions.
+
+ISO develops standards; external certification bodies conduct certification. Accreditation formally recognizes a certification body’s competence.[4] Keep those roles distinct. Ask about the standard edition, certified organization, covered activities, and verification contact rather than simply asking whether a supplier “has ISO.”
+
+Begin with a bounded use, such as internal document Q&A. Ask which documents are allowed, who maintains versions, what happens without evidence, and who can suspend use. This starts the governance discussion; it does not establish conformity with the whole standard.
+
+For external descriptions, distinguish completed work from plans. Completed checks need records; open items need owners and actions. Planning around a standard should not be worded as completed independent certification. Keep the wording consistent with actual progress.
+
+◆ Deployment Checklist
+
+## Three. Our Deployment Checklist
+
+This section proposes questions for deployment preparation. It does not describe a certification engagement or claim certification experience.
+
+1. Which uses belong in scope?  We would ask whether AI drafts text, retrieves documents, or participates in decisions. Write down inputs, output purposes, and recipients. If the answer is “everyone uses it,” start with one describable task.
+
+2. Who may change the rules?  Identify who approves data uploads, model or plugin changes, and who can suspend use. The point is a clear decision owner, not assigning every responsibility to one engineer.
+
+3. What demonstrates routine execution?  Keep tests, versions, incident handling, and improvement tracking under the relevant use. Records should explain decisions made at the time rather than being reconstructed only before an audit.
+
+4. What needs specialist review?  Turn contract, privacy, and sector-specific questions into explicit requests for qualified advisers. This introduction is informational, not legal advice or a conformity assessment.
+
+## Four.  Our Recommendations: Start with One Use and Traceable Records
+
+1. Inventory AI uses.  Record purpose, owner, sources, users, supplier, and shutdown method. Include services actually used, beyond the purchasing list.
+
+2. Connect risks to responses.  For outdated documents, unsupported answers, or unauthorized retrieval, name the reviewer, response, and retest condition. This is our practical application of the risk-management direction in ISO’s public guidance.[3]
+
+3. Keep change and correction records.  When changing a model, document source, or tool, record the change, approval, and test questions. Track incident outcomes and open actions rather than closing a ticket with “improved.”
+
+4. Confirm certification needs separately.  Discuss scope, procedures, and evidence with the certification body when required. ISO describes certification as voluntary, while some industries may have contractual or legal requirements; assess the specific situation.[3][4]
+
+Build everyday management records that an independent reviewer can follow.
+
+◆ Editor’s Note · How Think BIG Approaches This: Responsibility Before Paperwork
+
+## Connect uses, owners, checks, and improvements.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend deployment records tied to actual work, with an approval, testing, shutdown, and improvement contact for each use. Governance can expand gradually; a written policy alone does not complete the work.
+
+This is Think BIG’s governance position. It is not a claim that Think BIG holds ISO/IEC 42001 certification.
+
+### Frequently Asked Questions
+
+Q1: What does ISO/IEC 42001 cover?
+ISO/IEC 42001:2023 covers AI management systems for organizations providing or using AI.[2]
+Q2: Is it relevant to users of external AI services?
+Yes. ISO’s public description includes organizations using AI systems.[2][3]
+Q3: Does ISO issue the certificate?
+No. ISO develops standards; external certification bodies perform certification.[4]
+Q4: Does certification eliminate answer checks?
+We recommend task acceptance checks. Management-system assessment and the accuracy of an individual output are different questions.[2][3]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] UKAS, “AI accreditation update,” September 5, 2025, accessed 2026-10-26: [www.ukas.com](https://www.ukas.com/resources/latest-news/ai-accreditation-update/) ·
+    [2] ISO, “ISO/IEC 42001:2023,” public description, accessed 2026-10-26: [www.iso.org](https://www.iso.org/standard/42001) ·
+    [3] ISO, “ISO/IEC 42001 explained”, accessed 2026-10-26: [www.iso.org](https://www.iso.org/insights/iso-42001-explained) ·
+    [4] ISO, “Certification”, accessed 2026-10-26: [www.iso.org](https://www.iso.org/certification.html)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/
+
+# Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 015
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 4, 2026  ·  Wednesday
+◆
+Local AI Field Notes
+◆
+Issue 015
+
+Windows · Unicode Paths · Local AI
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+Think BIG Media  |  November 4, 2026
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.
+
+## One.  What’s Happening: Unicode Support Does Not Validate Every Component
+
+A local model running on the CPU can have a problem outside the model itself. Microsoft documents Unicode storage for long filenames and distinguishes ANSI code-page APIs from Unicode APIs.[1][2] A valid Chinese path in Windows does not establish that every package, subprocess, or startup script passes it correctly. That is a diagnostic possibility, not a diagnosis based on someone’s username.
+
+Ollama’s troubleshooting guide recommends inspecting logs and lists Windows log and binary locations.[3] We use that documentation to illustrate an inspection method, without ranking tools or claiming this tool fails on all Chinese accounts.
+
+Our deployment record was specific: the model answered, but used the CPU. Debug logs showed GPU-discovery subprocess failures and corrupted paths. That internal record supports the practice notes below. It cannot tell us how often this happens on other computers.
+
+## Two.  Perspectives: Support Valid Names and Keep Deployment Paths Maintainable
+
+The user perspective:  Chinese names and file paths are legitimate needs, consistent with Microsoft’s Unicode documentation.[1][2] We believe a reproducible tool failure should be documented for maintainers rather than attributed to the user’s choice of name.
+
+The operations perspective:  A simple English program directory can help isolate a variable in a particular environment. This is our deployment trade-off, not a general Windows requirement. Keep the model, tool version, and driver unchanged where possible when comparing paths.
+
+Microsoft documents mklink /j  as creating a Directory Junction.[4] A junction does not repair a tool’s text encoding. Whether to use one, and which way it should point, depends on the file layout and startup method. A single command is not a universal fix.
+
+Use a comparison table: tool and model, startup directory, execution account, and failing step. Changing several variables together makes attribution difficult. If they must change together, say so rather than crediting the entire result to an English path.
+
+If the English-directory test does not help, return to the logs and investigate other causes. Avoid further bulk moves or rebuilding every account because of this case. Preserve unsuccessful tests too so another maintainer can continue.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from one Windows deployment and maintenance record. They are not industry statistics and do not identify any particular organization.
+
+1. It initially looked like a GPU issue.  The program and model were under a user directory containing Chinese characters. The model ran slowly on the CPU. Changes to several GPU-related environment variables did not resolve it.
+
+2. Logs pointed toward the path.  Debug records showed all GPU-discovery subprocesses failing and paths appearing as corrupted text. An OpenSSH startup script on the same machine also mishandled the account path. This does not establish a limitation across remote-access tools.
+
+3. We changed program locations while preserving user data.  We moved the program and model to an English directory, connected the old location through a junction, created an English-named management account, and used Task Scheduler for startup. The model then ran fully on the GPU and became visibly faster. We have no measured multiplier to report.
+
+4. We moved the check earlier.  We now inspect the account name with whoami  and plan an English program path when it contains non-ASCII characters. This is a deployment habit, not a request for people to change their names.
+
+## Four.  Our Recommendations: Keep Evidence Before and After Changes
+
+1. Record the environment.  Save the tool version, program and model directories, startup account, and failure time. Record the display name and actual logged path separately. Remove names and tokens before seeking outside support.
+
+2. Read logs before choosing a fix.  Locate logs using the tool documentation and check whether subprocess failures coincide with corrupted paths.[3] Without that evidence, keep driver, permission, and other causes open.
+
+3. Test a copy in another path.  Use a backup or test environment to compare an English directory. Document service, schedule, and model-path changes. If a junction is used, verify its source and target and document rollback.[4]
+
+4. Repeat the original task.  With the same model and question, compare the execution device and errors, then check service startup after reboot. Acceptance should establish that the original failure is gone, beyond simply opening the application.
+
+Let logs guide the investigation and controlled comparisons guide the change.
+
+◆ Editor’s Note · How Think BIG Approaches This: Document the Paths
+
+## Give the next maintainer a usable map of the installation.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend documenting physical directories, links, startup accounts, and schedules together. Every change should have a reversal plan; do not casually move an entire user profile.
+
+Path checks and execution-device checks belong in the same acceptance checklist.
+
+### Frequently Asked Questions
+
+Q1: Can a Chinese Windows account run local AI?
+Windows supports Unicode. This article describes a specific toolchain problem, not a general prohibition.[1][2]
+Q2: Does CPU-only execution prove a path problem?
+No. Inspect logs and run controlled comparisons rather than diagnosing from speed or a username.[3]
+Q3: What is a junction?
+Microsoft documents mklink /j as creating a Directory Junction. It is not an encoding repair.[4]
+Q4: Should I rename the whole user profile?
+We do not recommend casually moving a whole profile. In this deployment we changed program and model locations while preserving user data.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Microsoft, “Naming Files, Paths, and Namespaces”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file) ·
+    [2] Microsoft, “Unicode in the Windows API”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api) ·
+    [3] Ollama, “Troubleshooting”, accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/troubleshooting) ·
+    [4] Microsoft, “mklink”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/office-ai-server-power-cooling-20261124/
+
+# An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 025
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 24, 2026  ·  Tuesday
+◆
+Local AI Field Notes
+◆
+Issue 025
+
+local AI · host cooling · power management
+
+## An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery
+
+Think BIG Media  |  November 24, 2026
+
+For an always-on AI host, assign its location, power checks, and outage response. Verify boot, service startup, and scheduled work separately.
+
+## One. The Environment Is Part of the System
+
+Office AI plans often start with models, but vendor guidance also addresses physical placement and power. Apple recommends a stable, well-ventilated surface for Mac laptops and avoiding pillows or bedding. That guidance applies to those devices; other machines need their own manuals.[1]
+
+Task conditions matter too. Microsoft documents a Task Scheduler property that prevents work from starting on battery power. A separate WakeToRun setting specifies waking the computer for a task.[2][3] Enabling waking does not remove the need to check battery conditions and the task itself.
+
+Power-on after an outage is another layer. Intel documents a BIOS recovery setting and testing procedure for its applicable server board.[4] We cite it to identify the kind of setting to check, not to suggest that every computer supports it.
+
+## Two. Office Placement Still Needs Conditions
+
+The case for office deployment: assignable local responsibilities.  We consider a defined location, power arrangement, and owner prerequisites for including a local host in routine office operations. That planning judgment is not a certification that a particular machine is suitable for continuous use.
+
+The caution: attended use differs from unattended operation.  Ventilation guidance, task power conditions, and firmware recovery behavior describe different parts of the setup.[1][2][4] Our reading is that continuous operation requires an end-to-end check, beyond a successful test while someone is present.
+
+Noise should be evaluated on site. We recommend checking normal and intensive work at the intended seating distance for interference with calls, meetings, and reading. Do not assign a universal decibel figure or rank vendors. Before moving a host into a cabinet to reduce noise, review ventilation and access.[1]
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These notes come from our local AI host maintenance records. They are not industry statistics or an account of any particular client.
+
+1. Healthy services did not mean a healthy night.  A laptop-based host was left without external power overnight. Its battery ran out, it shut down abruptly, and the morning jobs did not run. When checked remotely, services appeared healthy because the machine had recently restarted.
+
+2. Check boot time and power first.  The diagnostic lesson was to look beyond current service status to when the host booted and its power condition. We later added a low-battery alert.
+
+3. Check always-on conditions explicitly.  Our list includes mains power, evaluating a UPS, cooling and placement, power restoration behavior, and automatic service startup. Verify each against the equipment. A laptop battery should not be treated as a complete recovery plan.
+
+## Four. Our Recommendations: Verify the Site and Recovery
+
+1. Define operating hours.  Identify jobs that need overnight execution and those that can wait. Schedule around actual needs. Assign power checks and exception notifications for continuous operation.
+
+2. Place the machine according to its manual.  Check airflow, support surface, and environmental requirements. Keep the model, manual link, and site photo with maintenance notes. Recheck after a move.[1]
+
+3. Inspect power and task conditions.  Check the connection, then battery, sleep, and wake settings. On Windows Task Scheduler, inspect whether battery conditions prevent startup; use the corresponding documentation for other platforms.[2][3]
+
+4. Plan a controlled recovery drill.  Have a usable backup first. Let an authorized maintainer follow the equipment manual to test power restoration, boot, and service startup. Then check for missed and duplicate tasks rather than stopping at the login screen.[4]
+
+5. Test sound and after-hours conditions.  Run the intended work at its actual location and assess whether people can still make calls. Review the after-hours environment. Have maintainers assess UPS needs against the real load and shutdown process rather than assuming a universal runtime.
+
+For site handover, separate readiness before work from completion after hours. Check boot, connectivity, the model service, and a known task for readiness; check power, schedules, and notifications for overnight operation. Assign rechecks after cleaning, moving equipment, or changing desks. This is a proposed operating procedure, not a request for staff to open hardware or alter wiring. Have maintainers resolve unclear site or power conditions before choosing a location and operating arrangement.
+
+◆ Editor’s Note · How Think BIG Approaches This: Document the Physical Setup
+
+## Assign power checks and verify completed work.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to document placement, power, service startup, and completed work together. A move, new purpose, or different operating hours should prompt another site and recovery check.
+
+The next maintainer needs enough context to diagnose a problem. Service availability is one signal. Boot time, power state, and work results help establish what actually happened.
+
+### Frequently Asked Questions
+
+Q1: Does a laptop battery provide a complete backup arrangement?
+Do not infer that from the battery alone. Our operating records include a depleted battery and missed jobs. Review power and recovery.
+Q2: Does a dark screen mean no task is running?
+Not necessarily. Microsoft notes that the screen may stay off after a task wakes the computer. Check task records.[3]
+Q3: Can every computer power on after an outage?
+This article makes no universal claim. The Intel guidance covers its applicable hardware. Check your own model.[4]
+Q4: Why inspect boot time when services are healthy?
+Our operating records include healthy services after a recent restart but missed earlier jobs. Review completion records too.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Apple, “Keep your Mac laptop within acceptable operating temperatures” (ventilation and surfaces); accessed 2026-10-26: [support.apple.com](https://support.apple.com/en-ie/102336) ·
+    [2] Microsoft, “TaskSettings.DisallowStartIfOnBatteries property” (battery conditions); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries) ·
+    [3] Microsoft, “WakeToRun (settingsType) Element” (waking and screen state); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element) ·
+    [4] Intel, “How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems” (applicable hardware); accessed 2026-10-26: [www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/
+
+# Should AI Tools Update Automatically? Pin Versions and Plan Patches | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 017
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 8, 2026  ·  Sunday
+◆
+Local AI Field Notes
+◆
+Issue 017
+
+Version Management · AI Agents · Update Acceptance
+
+## Should AI Tools Update Automatically? Pin Versions and Plan Patches
+
+Think BIG Media  |  November 8, 2026
+
+A business AI agent needs a known runtime. Pin a reproducible combination, then assign owners for updates, acceptance checks, and recovery.
+
+## One.  What’s Happening: Repeatability and Patching Belong Together
+
+Updates involve more than new features. pip documents version pinning as a way to build repeatable environments, with hashes available to check downloaded packages.[1] npm’s npm ci  requires an existing lockfile and fails if it conflicts with the package declaration rather than rewriting it.[2] Both make the intended installation more explicit.
+
+NIST SP 800-40 Rev. 4, its 2022 enterprise patch-management planning guide, describes identifying, prioritizing, acquiring, installing, and verifying updates.[4] Pinning is therefore no reason to ignore vulnerabilities indefinitely. We recommend recording both the current version combination and the next update review.
+
+Installation methods matter too. Ollama’s Windows documentation distinguishes its installer from a standalone CLI archive that can be integrated as a service.[3] This illustrates why deployment methods should be recorded; it is not a product recommendation or a claim that all AI tools update alike.
+
+## Two.  Perspectives: Automation Helps; Production Changes Need Control
+
+The case for automation:  NIST frames patching as preventive maintenance and calls for an operational enterprise strategy.[4] In our assessment, automation can support inventories, notifications, and agreed procedures. Relying entirely on someone remembering to read announcements is fragile.
+
+The caution:  pip says pinning reduces exposure to bugs or incompatibilities in new releases, but still relies on the package source; hash checking adds another control.[1] A pinned version alone does not establish source trust or successful configuration and data migration.
+
+We distinguish notification from installation. Notifications may be automatic, while production changes need an owner, test results, and recovery preparation. Critical security announcements should trigger a separate exposure assessment rather than waiting for a routine maintenance date. The appropriate cadence depends on the environment.
+
+Add an unchanged-components field to the change record. If packages changed while the model and external connections stayed the same, record that scope. Troubleshooting can then begin with the actual differences rather than reinstalling everything.
+
+Before closing the maintenance window, have a user repeat the ordinary workflow. Engineering checks startup; the user checks data access, tools, and schedules. Record both outcomes and keep unverified items open even after the version number changes.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from AI agent deployment and maintenance records. They are not industry statistics or an account of any particular organization.
+
+1. Major updates can change data too.  We encountered migration conflicts that caused repeated service restarts, and configuration-format changes that cleared existing settings. A successful download did not reveal these later effects.
+
+2. Upstream changes can reach local systems.  A change in an AI service’s streaming format caused package validation failures across AI calls. After adding a fix, we had to check that it remained present after package updates. Local pinning does not freeze external dependencies.
+
+3. Update prompts are not version records.  A diagnostic command once reported a one-version gap that actually crossed several releases with substantial changes. Our practice is to pin versions, review known issues, test, back up settings and data, prepare recovery commands, and schedule the upgrade.
+
+4. Recovery involves state.  Our backup list includes settings, schedules, service definitions, and database snapshots. We stop the service before packaging an upgrade backup and rehearse restoration. Program and data states need to be planned together.
+
+## Four.  Our Recommendations: Set Entry and Exit Conditions for Every Upgrade
+
+1. Record the full combination.  Include the framework, dependencies, runtime, model, installation method, and lockfiles. Use pip and npm documentation for their respective package-management practices.[1][2]
+
+2. Test the change.  Read release and migration notes, then exercise ordinary conversations, tools, retrieval, and schedules in a test environment. Record versions and results, including useful failure evidence.
+
+3. Back up and define stop conditions.  Obtain a consistent backup and identify failures that require stopping and who decides on recovery. If a migration has changed the data structure, verify the recovery method before running old code against new data.
+
+4. Assign patch ownership.  Name the announcement reviewer, routine maintenance window, and accelerated process for critical vulnerabilities. Verify the service, data, and workflows before closing the change, reflecting NIST’s post-installation verification principle.[4]
+
+Pinning establishes a baseline; operations also needs updates, acceptance, and recovery.
+
+◆ Editor’s Note · How Think BIG Approaches This: Comparable Changes
+
+## Keep versions, backups, and acceptance results together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend treating updates as owned changes instead of allowing unattended overnight version changes in long-running services. Routine maintenance and urgent patches need distinct entry points, with repeatable task tests.
+
+Post-installation acceptance belongs in the handover.
+
+### Frequently Asked Questions
+
+Q1: Does pinning mean never updating?
+No. Keep a baseline while continuing to identify, prioritize, install, and verify patches.[4]
+Q2: Is the framework version enough?
+Record runtime and dependencies too. pip’s repeatable-install guidance includes transitive dependencies.[1]
+Q3: Does npm ci update the lockfile?
+No. It reports a mismatch rather than updating the lockfile.[2]
+Q4: Is downgrading the program enough?
+Check whether data and settings migrated, then use a rehearsed restoration plan. Program and state recovery need joint planning.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] pip, “Repeatable Installs”, accessed 2026-10-26: [pip.pypa.io](https://pip.pypa.io/en/stable/topics/repeatable-installs/) ·
+    [2] npm, “npm ci”, accessed 2026-10-26: [docs.npmjs.com](https://docs.npmjs.com/cli/v11/commands/npm-ci) ·
+    [3] Ollama, “Windows”, accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/windows) ·
+    [4] NIST, SP 800-40 Rev. 4 (2022), “Guide to Enterprise Patch Management Planning”, accessed 2026-10-26: [csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/40/r4/final)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/
+
+# AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 019
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 12, 2026  ·  Thursday
+◆
+AI Deployment Field Notes
+◆
+Issue 019
+
+RAG · Chunking · Retrieval Quality
+
+## AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models
+
+Think BIG Media  |  November 12, 2026
+
+Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.
+
+## One.  What’s Happening: Having Documents Does Not Mean Retrieving the Right Evidence
+
+Retrieval-augmented generation, or RAG, retrieves relevant content before asking a model to answer from it. Microsoft’s official overview identifies terminology mismatches, content preparation, and input limits as implementation challenges.[1] Uploading files and answering questions reliably are separate steps.
+
+Chunking is one of those steps. Official documentation describes fixed-size, structural, and semantic approaches, with size and overlap adjusted to the content and use.[2] We would not apply one character count to every Chinese policy, table, or scanned document. Read the resulting chunks to check whether they retain subjects, conditions, and exceptions.
+
+Microsoft’s evaluation guidance separates retrieval-process quality from final-answer quality. One asks whether retrieved material is relevant; the other examines grounding, relevance, and completeness of the answer.[3] We use that distinction as a diagnostic method, without recommending a service or treating an automated score as a business decision.
+
+## Two.  Perspectives: Inspect Retrieval Without Ignoring Model Behavior
+
+The case for checking data first:  The overview ties RAG quality to content preparation and retrieval relevance.[1] If the necessary evidence never reached the model, we would investigate indexing and retrieval first. A larger model does not resolve that missing input.
+
+The model-side caution:  Receiving a passage does not establish that a model uses it correctly. The original 2023 study “Lost in the Middle” found position-dependent performance in its multi-document question-answering and key-value retrieval tasks.[4] It does not establish identical behavior in every newer model. It does challenge adding more context as a universal remedy.
+
+Test both stages: whether the evidence was retrieved and whether the answer used it faithfully. When documents conflict, ask their owner to determine which is valid rather than asking the model to settle company policy.
+
+Add explicit failure definitions: missing exceptions, treating an old version as current, or citing the wrong document. This gives document owners and engineers shared criteria beyond fluency or a retrieval score.
+
+Keep the original phrasing too. Rewriting conversational questions into document titles before every test can hide the terminology mismatch being tested. Save original and rewritten queries with their retrieval results before deciding whether to adopt query rewriting.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from our RAG document and answer-quality work. They are not industry statistics or an account of any particular organization.
+
+1. Inspect retrieved passages first.  When an answer is poor, we check the retrieved material before analyzing generation. Chunks that are too large or small are among the causes we encounter; model capability is not always the problem.
+
+2. A readable original can produce damaged text.  We have seen tables and scanned documents become corrupted during text extraction. We inspect the extracted text instead of repeatedly asking the model to read broken material better.
+
+3. One subject may have two versions.  Retrieving old and new documents together mixes evidence. We remove outdated versions or mark their status so validity can be checked.
+
+4. Keep real questions and reference answers.  We build test sets and watch for differences between conversational questions and formal document terms. Questions should reflect actual phrasing, beyond document titles.
+
+## Four.  Our Recommendations: Diagnose with a Fixed Question Set
+
+1. Inspect extracted text.  Compare tables, scans, and exception clauses against originals. Check whether labels still match values. Correct preprocessing problems before rebuilding the index.
+
+2. Map questions to evidence.  Record expected answers and supporting documents and passages. Include unanswerable questions, outdated material, and terminology differences. Retrieval evaluation needs explicit relevance evidence.[3]
+
+3. Change one class of settings at a time.  Keep the model and questions fixed when comparing segmentation, overlap, or query methods. Save retrieved passages so improvements have an identifiable cause. Validate parameters on your own content.[2][3]
+
+4. Assess evidence and answers separately.  Wrong evidence points toward retrieval; correct evidence with a wrong answer calls for prompt and model checks; conflicting documents go to their owner. This is our recommended triage, beyond one aggregate score.
+
+5. Test missing answers too.  Require an explicit evidence gap when support is insufficient. Independently test access permissions so retrieved content stays within authorization.[1]
+
+Check that the model received the right material before judging its answer.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Failures as Repeatable Tests
+
+## Save questions, passages, answers, and document versions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend rerunning the same questions after knowledge-base changes. Failure records should identify the stage and document owner so future maintenance can build on prior work.
+
+Answer quality and document access each need acceptance checks.
+
+### Frequently Asked Questions
+
+Q1: What is RAG?
+It retrieves relevant content and provides it to the model as evidence for an answer.[1]
+Q2: Are larger chunks always better?
+No. Test size, overlap, and boundaries against your content and use case.[2]
+Q3: Does a citation prove the answer is correct?
+Check whether it supports the claim and whether the answer is relevant and complete. These are separate evaluation dimensions.[3]
+Q4: When should we consider another model?
+First establish that retrieval delivers the right evidence. Then compare model and prompt choices on the same questions if answers still fail.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Microsoft, “RAG and Generative AI”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) ·
+    [2] Microsoft, “Chunk Documents”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) ·
+    [3] Microsoft, “Retrieval-Augmented Generation (RAG) Evaluators”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators) ·
+    [4] Liu et al., “Lost in the Middle: How Language Models Use Long Contexts,” 2023, arXiv:2307.03172, accessed 2026-10-26: [arxiv.org](https://arxiv.org/abs/2307.03172)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/review-ai-generated-code-20261126/
+
+# Can AI-Generated Code Go Straight to Production? — Review Before Release | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 026
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 26, 2026  ·  Thursday
+◆
+AI Deployment Field Notes
+◆
+Issue 026
+
+AI-generated code · code review · secure development
+
+## Can AI-Generated Code Go Straight to Production? — Review Before Release
+
+Think BIG Media  |  November 26, 2026
+
+Running code is the start of review. Before release, check data access, write permissions, failure behavior, and recovery.
+
+## One. Code Generation and Release Approval Are Separate
+
+On May 19, 2025, GitHub introduced a coding agent that accepts assigned work and proposes changes. That announcement provides a concrete starting point for discussing the review that follows a generated change. This article does not rank or recommend tools.[1]
+
+GitHub’s responsible-use documentation also warns that generated code may miss developer intent or introduce security problems, and calls for review and testing before merging.[2] Plausible syntax and an agent’s completion message are insufficient evidence of acceptance.
+
+Established security guidance applies. NIST SP 800-218, Secure Software Development Framework version 1.1, published in 2022, covers code review and analysis in PW.7 and executable testing in PW.8. OWASP’s review guidance covers input validation, authentication, authorization, data flow, and business logic.[3][4]
+
+## Two. Useful Assistance Still Needs Context
+
+The benefit: assistance on clearly scoped work.  GitHub recommends a clear problem statement, acceptance criteria, and context.[2] In our reading, assistance with changes and tests can make discussion more concrete. It does not establish that every output meets requirements.
+
+The caution: security depends on context.  OWASP emphasizes human understanding of business logic and complex permissions.[4] We recommend testing that an unauthorized account is refused, alongside a successful authorized request. Both paths must match the requirement.
+
+Automated checks and human review can work together. NIST PW.7 asks organizations to choose appropriate review or analysis methods and record findings and remediation.[3] Our view is to scale checks to risk, without accepting code simply because AI generated it or imposing identical burdens on every minor change.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are questions we would ask during adoption. They are not an account of an incident involving AI-generated code or any particular client.
+
+1. Who confirms the requirement?  State who may do what, with which input, and what should happen. Narrow a request such as “automate this” until reviewers can recognize behavior outside scope.
+
+2. Where does data go?  Ask about file access, environment variables, keys, outbound connections, and added packages. An explanation accompanying a change does not remove the need to inspect the change itself.
+
+3. Who approves production execution?  Identify the authoring, review, and release roles, and who can pause unclear behavior. For deletions or external writes, establish a test environment and recovery procedure before scheduling the work.
+
+## Four. Our Recommendations: Five Release Checks
+
+1. Define acceptance before implementation.  Include normal input, empty input, denied access, and interruptions. Tests should check the requirement rather than simply reproduce the generated implementation.[2][4]
+
+2. Follow data through the change.  Review input, processing, storage, and external output. Check authentication and authorization at the relevant boundaries, including configuration and deployment files.[4]
+
+3. Inspect dependencies and secrets.  List added packages, sources, licenses, and versions. Check for secrets in code and logs. This is our recommended delivery checklist; a familiar package name is not evidence of review.
+
+4. Run meaningful functional and security tests.  Following the direction of NIST PW.8, test successful, failed, and denied operations, retaining the environment and results.[3] Record unresolved failures and owners rather than a generic “tested” note.
+
+5. Document approval and recovery.  Give the approver the scope, open issues, and evidence. Confirm backups, recovery steps, and stopping conditions before production use. AI explanations can assist reading; an identifiable person still owns the decision.
+
+A handover can demonstrate a denied operation: have an unauthorized test account make the same request, verify rejection, and inspect whether the record explains the outcome without revealing secrets. Keep the scenario repeatable for later changes. If an environment prevents a check, label it untested and explain the possible impact rather than including it among passed checks. We recommend showing the approver passed, failed, and untested items together. The same reporting method applies to human-written code.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Reviewable Evidence
+
+## Keep requirements, changes, and acceptance results together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to make changes, acceptance reasoning, and recovery understandable to the next maintainer. Review records should connect to requirements and test results.
+
+Generation speed is not a release criterion. Work involving secrets, permissions, or actions that are difficult to undo needs explicit approval boundaries and inspectable evidence.
+
+### Frequently Asked Questions
+
+Q1: Is runnable code ready for production?
+It still needs requirement and security checks. GitHub calls for reviewing and testing generated code.[2]
+Q2: Can AI help review AI-generated code?
+It can assist. We recommend retaining human checks of requirements, permissions, and business logic, where OWASP emphasizes context.[4]
+Q3: Does every small change need every test?
+Scale checks to scope and risk. NIST PW.7 asks organizations to choose review and analysis methods.[3]
+Q4: What evidence should we retain?
+We recommend requirements, scope, tests, open issues, approver, and recovery steps. NIST PW.7.2 also calls for recording findings and remediation.[3]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] GitHub, “GitHub Copilot: Meet the new coding agent,” May 19, 2025 (announcement); accessed 2026-10-26: [github.blog](https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/) ·
+    [2] GitHub, “Application card: GitHub Copilot Agents” (limitations and review); accessed 2026-10-26: [docs.github.com](https://docs.github.com/en/copilot/responsible-use/agents) ·
+    [3] NIST, SP 800-218, SSDF version 1.1, 2022 (PW.7 and PW.8); accessed 2026-10-26: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf) ·
+    [4] OWASP, “Secure Code Review Cheat Sheet” (human context and data flow); accessed 2026-10-26: [cheatsheetseries.owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/vet-ai-agent-skills-20261110/
+
+# Should Every AI Skill Be Reviewed? Treat It as Part of the Supply Chain | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Enterprise Security Notes · Issue 018
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+November 10, 2026  ·  Tuesday
+◆
+Enterprise Security Notes
+◆
+Issue 018
+
+AI Skills · Supply Chain · Installation Review
+
+## Should Every AI Skill Be Reviewed? Treat It as Part of the Supply Chain
+
+Think BIG Media  |  November 10, 2026
+
+Before installing a skill, ask what it reads, executes, and sends elsewhere. Written instructions and executable scripts need different evidence.
+
+## One.  What’s Happening: Skills Can Bundle Both Instructions and Code
+
+In October 2025, Anthropic published an engineering article explaining Agent Skills as bundles of instructions and code. It also warned that malicious skills could lead to data exfiltration or unintended actions.[1] We use that article to examine installation practice, without alleging a compromise at any platform or treating popularity as security evidence.
+
+Supply-chain management includes the external components a system depends on. OWASP’s 2025 LLM Top 10 entry LLM03:2025 covers third-party packages, models, and data, and recommends supplier review and component inventories.[2] We apply that principle to a skill’s scripts, dependencies, and download sources.
+
+A skill’s name does not establish its capabilities. The official article recommends reading bundled files, with attention to dependencies, scripts, and instructions to connect to untrusted network sources.[1] For text-only workflows, review instructions and data use. For executable components, review execution identity and file access as well. That is our proposed way to scale review depth.
+
+## Two.  Perspectives: Reuse Knowledge; Verify Trust Separately
+
+The benefit:  The article presents skills as a way to share composable expertise.[1] In our view, clear procedures and scripts can support repeated work and handovers. Writing everything again does not automatically make maintenance easier.
+
+The caution:  Public availability, usable licensing, and safe behavior are separate questions. OWASP identifies licensing and provenance risks.[2] NIST SP 800-218 (2022), the Secure Software Development Framework, offers purchasers and suppliers a common vocabulary for secure-development practices.[3] We recommend recording what was checked, beyond the installation decision.
+
+Hashes have limits too. pip documents checking downloaded packages against locally stored hashes, including dependencies.[4] A match establishes consistency with the approved file; it does not establish harmless behavior. Scanning, reading code, and testing answer different questions.
+
+A review need not end with a bare pass or rejection. It can specify a test directory, draft-only outputs, or unresolved connections, with owners and review triggers. These are examples of approval conditions, not a claim that every skill supports equivalent isolation.
+
+If nobody can review the scripts, narrow the pilot and request inspectable files and behavior explanations. AI can help identify questions, but its favorable judgment alone should not close a review the approver cannot explain.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These points come from our review practice for skills, plugins, and MCP servers. They are not industry statistics or an account of any particular organization.
+
+1. Read before installing.  We check sources, maintainers, licensing, and actual program behavior. We look for environment-variable or key access, outbound connections, and execution of downloaded content. Installation instructions lead us to the files that implement the behavior.
+
+2. Explain requested privileges.  We review permissions and pin versions. Packages that fail review are not installed. We have rejected packages, but do not name them here or present individual decisions as product rankings.
+
+3. Keep unresolved questions visible.  Third-party code retains risk. We record judgments about source, behavior, permissions, and versions. When content changes, those judgments need to be revisited.
+
+## Four.  Our Recommendations: Make Installation a Traceable Decision
+
+1. Inventory purpose and components.  Record the skill’s purpose, source, maintainer, license, scripts, and dependencies. Keep more than an installation command so future updates can be compared with reviewed files.[2]
+
+2. Map access and connections.  List readable directories, writable files, external destinations, and credentials. Withhold production data while those remain unexplained. Require a reason and approval for added capabilities.
+
+3. Test in isolation.  Use synthetic data and minimum necessary privileges. Observe outputs, file changes, and connections. Mark untested behavior as unresolved; a clean test run is not evidence of every future outcome.
+
+4. Pin the reviewed version and schedule review.  Keep version and file-verification records, with an owner for update notices.[4] Compare instructions, dependencies, privileges, and destinations when upgrading.
+
+5. Define shutdown steps.  Document skill removal, schedule shutdown, credential revocation, and log access. This is our exit-planning recommendation so an owner knows where to stop execution.
+
+Review the capabilities a skill receives and how they can be withdrawn.
+
+◆ Editor’s Note · How Think BIG Approaches This: Every Component Needs a History
+
+## Keep purpose, version, access, and shutdown instructions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend written review outcomes that identify permitted scope, open questions, and review triggers. Review depth should reflect capabilities and data access rather than the introduction page alone.
+
+At handover, the owner should be able to find each component’s source and shutdown method.
+
+### Frequently Asked Questions
+
+Q1: Should text-only skills be reviewed?
+Yes. Instructions can also direct unintended actions or external connections.[1]
+Q2: Does open source establish safety?
+No. Review provenance, licensing, behavior, and permissions separately, consistent with OWASP’s supplier and component guidance.[2]
+Q3: Is a hash match enough?
+A hash checks file consistency; review behavior and permissions separately.[4]
+Q4: Must everything be rereviewed after an update?
+Compare changes and review affected instructions, dependencies, privileges, and connections. Without a comparable version, establish a new baseline.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Anthropic, “Equipping agents for the real world with Agent Skills,” October 16, 2025, accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills) ·
+    [2] OWASP, “LLM03:2025 Supply Chain”, accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm032025-supply-chain/) ·
+    [3] NIST, SP 800-218 (2022), “Secure Software Development Framework (SSDF) Version 1.1”, accessed 2026-10-26: [csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/218/final) ·
+    [4] pip, “Secure installs”, accessed 2026-10-26: [pip.pypa.io](https://pip.pypa.io/en/stable/topics/secure-installs/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/
+
+# AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 024 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 22 日　星期日
+◆
+AI 導入實測手記
+◆
+第 024 期
+
+AI Agent · 用量上限 · 排程管理
+
+## AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設
+
+Think BIG 自媒體部  |  2026 年 11 月 22 日
+
+先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。
+
+## 一 現象：工作被拆成迴圈，資源也跟著累積
+
+一個問題交給 AI Agent 後，未必只呼叫模型一次。Anthropic 在 2025 年 6 月 13 日公開的研究系統實作文章，說明多個 Agent 可以平行探索不同方向，同時提醒這類架構會快速消耗 token。這是該團隊的實作報告，不能當成所有企業的用量統計。[1]
+
+OWASP《生成式 AI 應用風險》2025 年版的 LLM10，把不受控的推論消耗列為風險，並提出輸入限制、請求速率、配額、逾時與監控等措施。[2] 所以「還在執行」不等於「仍在產生有用結果」，也值得問是否已有停止條件。
+
+技術上也要分層。Pydantic AI 官方文件區分模型回合限制與成功工具執行次數限制；前者不等於每一筆底層傳輸請求。[3] AWS 的重試文件則提醒，逾時不代表遠端動作沒有發生，重試還可能增加原本已過載服務的負擔。[4]
+
+## 二 各方評價：有空間探索，也要有停止界線
+
+支持較大執行空間的理由：有些工作需要探索。 上述多 Agent 報告描述的研究任務，需要隨中間結果改變方向。[1] 我們的判讀是，把所有工作都壓到很短的單次回合，可能不符合任務本身；限制應依工作種類設計。
+
+保留的理由：有用的探索與空轉要能分辨。 OWASP 建議觀察資源分配與異常用量，而不只限制單一輸入。[2] 我們因此建議，同時看完成項目、重複步驟與停止原因；不能只以總 token 多少判斷品質，也不能因為回答尚未完成就無限放行。
+
+重試也不是越多越穩。AWS 說明退避與隨機延遲可用來分散請求，但有副作用的操作還須考慮能否安全重做。[4] 我們的立場是，對外寫入與單純查詢要有不同的重試規則，停止後也要留下可接手的狀態。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們常駐型 AI Agent 的維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 沒人傳訊息，仍然會呼叫模型。 心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。盤點不能只問誰在聊天，還要逐項看背景工作。這是我們記錄到的現象，不是宣稱所有框架都有相同預設。
+
+2. 先列清單，再關閉不需要的項目。 我們會逐項列出自動排程、關掉用不到的、設定上限。我們沒有一套通用的上限數字，也不估算節省比例。
+
+3. 接下來要問誰能接手。 在導入檢查清單中，我們會要求說明每項工作的目的、觸發來源與負責人；被停止的任務是等待人工、稍後重跑，還是直接結束，也要事先約定。這是我們提出的檢查方式。
+
+## 四 我們的建議：設好上限，也寫好停下來之後
+
+1. 盤點觸發來源。 列出時間排程、訊息事件、健康檢查與重試佇列，記下是否呼叫模型、是否寫入外部系統。先停掉沒有明確用途的工作，再測試必要的工作是否仍能完成。
+
+2. 按任務設多種上限。 分別管理模型回合、工具執行、總時間、輸入輸出與並行工作。對照所用框架的計數定義，別把回合上限誤讀為所有網路呼叫的總數。[2][3]
+
+3. 限制重試並留出等待。 設定重試次數、退避與最晚結束時間；對有副作用的操作，先確認前次結果再決定能否重送。逾時後不要直接假設「沒有執行」。[4]
+
+4. 測試停止與通知。 刻意觸發上限，檢查是否停止新增任務、如何處理已送出的工作，以及誰收到通知。通知文字應包括任務編號、最後完成步驟與待確認動作，方便人工接續。
+
+5. 定期檢查背景用量。 以工作目的對照排程紀錄，尋找重複觸發與持續失敗的項目。上限調整要有人核准並記下理由，避免每次任務失敗都只是把限制放大。[2]
+
+建議用一個刻意失敗的測試工作驗收限制：讓外部測試服務暫時無法回應，觀察重試是否按規則結束，並確認後續排程不會再建立相同工作。接著用成功工作確認正常流程沒有被限制擋住。這兩份紀錄一起交給維護人員，才容易判斷日後的停止究竟是預期控制，還是新故障。若多項工作共用資源，也應確認一項任務達到限制時，其他已獲授權的工作如何處理；別只測單一對話。
+
+◆ 編按 · Think BIG 的做法：讓自動工作可以交接
+
+## 每一項排程，都要有人知道它為何存在。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，常駐 AI Agent 的交接文件應包含排程清單、限制範圍、停止方式與接手人。把「何時停」寫清楚，是任務設計的一部分。
+
+我們希望自動工作能被檢視、暫停與追查。當任務超出預期，先留下目前進度與待確認事項，再由負責人決定下一步；不能讓停止原因消失在背景紀錄裡。
+
+### 常見問題
+
+Q1：沒有人聊天，為什麼還有用量？
+我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。
+Q2：只限制模型回合就夠嗎？
+不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。[3]
+Q3：逾時後可以直接重送嗎？
+先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。[4]
+Q4：用量通知等於停止了嗎？
+不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Anthropic，〈How we built our multi-agent research system〉，2025-06-13（探索與 token 消耗），查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system)　·
+    [2] OWASP，〈LLM10:2025 Unbounded Consumption〉（限制與監控），查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/)　·
+    [3] Pydantic AI，〈Agents〉用量限制章節（回合與工具計數），查閱日期 2026-10-26：[pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits)　·
+    [4] AWS，〈Timeouts, retries, and backoff with jitter〉（逾時與副作用），查閱日期 2026-10-26：[aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/ambient-vs-chat-ai-20261114/
+
+# 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 020 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 14 日　星期六
+◆
+AI 導入實測手記
+◆
+第 020 期
+
+常駐型 AI · 事件觸發 · 人工確認
+
+## 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止
+
+Think BIG 自媒體部  |  2026 年 11 月 14 日
+
+差別先看誰啟動工作，以及執行到哪裡要等人。常駐是一種運作安排，不代表應該持續觀察所有資料或自行完成所有動作。
+
+## 一 現象：從等人提問，走向事件來了就啟動
+
+LangChain 在 2025 年 1 月發表〈Introducing ambient agents〉，描述一種回應事件訊號、需要時才找人介入的設計，也公布電子郵件助理參考實作。[1] 這是本期的原始公告引子；本文談互動方式與管理條件，不把當年的產品發布寫成今日新消息。
+
+我們把「你去找 AI」理解為人發起一次請求；把「AI 來找你」理解為事件或排程先啟動工作，再提出通知或待核准事項。這是本文的說明方式，並非產業統一分類。原始文章也說，ambient agents 不必完全自主。[1] 常駐不等於時時讀取每個畫面，更不等於拿到所有系統權限。
+
+要停下等人，可以做成程式狀態。LangGraph 的官方文件說明，interrupt 可暫停執行，保存狀態並等外部輸入後恢復。[2] OWASP LLM06:2025 則建議限制工具、權限與自主程度，對高影響動作保留人工核准。[4] 因此，能在背景做事與能自行核准事情，要分開設計。
+
+## 二 各方評價：少一點重複提問，也多一份維運責任
+
+支持背景工作的思路： 原始文章區分通知、提問與審閱三種人機互動。[1] 我們的判讀是，若工作有清楚觸發點，先整理待辦再請人判斷，可能比每天重新交代一次更合適；但要用實際工作觀察，而非直接宣稱節省多少時間。
+
+保留的思路： 背景程序還有排程與重試問題。Kubernetes 官方 CronJob 文件提醒，在某些情況可能建立重複工作，或沒有建立工作，因此工作應具備重複執行不造成額外效果的設計。[3] 這是該排程系統的技術限制，不是所有 AI 平台的共同缺陷。
+
+我們建議把這個提醒轉成驗收題：同一事件來兩次，會不會重複通知或寫入？等人核准時，狀態是否清楚？沒人回答時，是持續等待、逾期關閉，還是升級通知？這些選項需要事先決定，不能用「AI 自己會處理」帶過。
+
+我們建議先列出「需要打擾人的條件」，例如資料缺漏、等待核准或連續失敗，再討論通知頻率。把可合併的事項整理成一則待辦，並標明誰要處理、是否有期限；對同一件事反覆提醒，也應有停止或轉交規則。這是互動設計建議，不是已量測的使用成效。
+
+若原本工作沒有明確事件與完成條件，我們建議先用對話工具整理流程。能由人清楚說出起點、輸入與輸出後，再挑一小段改成背景工作；不必為了使用常駐功能，硬把每項工作都排成自動任務。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們維運常駐 AI Agent 的觀察，不是產業統計，也不描述特定對象。
+
+1. 沒人聊天，也可能持續呼叫模型。 我們發現心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。因此會逐項列出自動排程，關閉不需要的項目並設上限。
+
+2. 對話累積後，也有整理工作。 常駐對話超出上下文時要壓縮舊內容；本地模型做摘要可能要好幾分鐘，逾時會讓對話卡住。我們會提早壓縮、設逾時，並把不同通道的對話分開。
+
+3. 服務顯示健康，還要看開機時間。 我們遇過筆電主機整夜沒接電，耗盡電池關機，隔天排程沒跑。遠端看到服務健康，其實只是剛重啟。因此診斷時會一起看開機時間與電源狀態，後來也加上低電量提醒。
+
+4. 重要記憶要可以檢查。 我們把重要事項寫入可檢查的記憶檔，要求能看、能改、能刪。背景工作需要保存狀態，但不應讓狀態變成負責人無法理解的黑盒子。
+
+## 四 我們的建議：先試一個有清楚終點的工作
+
+1. 寫觸發條件。 明定哪個事件或排程會啟動、讀哪些資料、產生什麼輸出，以及怎樣算完成。沒有新的工作時，應能結束，不必每次都讓模型自由找下一件事。
+
+2. 分開通知與執行。 我們建議先從摘要、草稿或待辦試行；對外送出與正式資料變更交指定人核准，並在操作前顯示目標與內容。[4] 等待核准應是流程狀態，不只是聊天裡的一句提醒。[2]
+
+3. 測重複、漏跑與恢復。 用測試事件驗證同一事件重送不會重複處理，並檢查重開機後如何接續。[3] 紀錄最後成功時間與下一個待辦，不能只監控程序是否存在。
+
+4. 設用量與停止條件。 列出呼叫次數、執行時間及重試上限，指定告警接收人。測一次手動停止，確認未完成工作與待核准事項會留下可讀狀態。
+
+一句話：先讓背景工作有起點、終點與負責人，再增加自主程度。
+
+◆ 編按 · Think BIG 的做法：常駐也要可交接
+
+## 觸發表、狀態紀錄、核准與停止方式一起交付。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張把背景工作列成清單，讓負責人看得到有哪些排程、最近做了什麼、接下來在等誰。新增任務時，也同步確認資料範圍、資源上限與停止方式。
+
+延伸閱讀[MCP 權限邊界](https://thinkbigtw.com/library/news/mcp-ai-agent-permissions-20261102/)。是否常駐與能做哪些動作，是兩個都需要回答的問題。
+
+### 常見問題
+
+Q1：常駐型 AI 需要完全自主嗎？
+不需要。原始 ambient agents 文章就保留通知、提問與審閱的人機互動。[1]
+Q2：加一個排程就算導入完成嗎？
+我們建議另驗證狀態、重試、重複處理、人工核准及停止；排程本身不處理所有責任。[2][3]
+Q3：沒有人問，也會用到模型嗎？
+我們的維運紀錄中，心跳與記憶整理等自動排程會持續呼叫模型，因此需要盤點與上限。
+Q4：常駐系統可以自行寄信嗎？
+技術能力與授權要分開。我們建議對外寄送先預覽、再由指定人核准，符合高影響動作的人工作業方向。[4]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] LangChain，〈Introducing ambient agents〉，2025-01-14，查閱日期 2026-10-26：[blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/)　·
+    [2] LangChain，〈Interrupts〉，查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts)　·
+    [3] Kubernetes，〈CronJob〉，查閱日期 2026-10-26：[kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)　·
+    [4] OWASP，〈LLM06:2025 Excessive Agency〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/
+
+# 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 023 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 20 日　星期五
+◆
+本地 AI 實測筆記
+◆
+第 023 期
+
+本地 AI · 系統備份 · 還原演練
+
+## 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄
+
+Think BIG 自媒體部  |  2026 年 11 月 20 日
+
+模型能重新取得，不代表原來的工作環境能重新組回來。備份清單要回答：資料在哪裡、哪個時間點是一致的，以及還原後要用什麼工作驗收。
+
+## 一 現象：複製檔案與可還原的備份，有一段距離
+
+本地 AI 的模型檔很醒目，但備份不能只照檔案大小排順序。以 Ollama 為例，官方 FAQ 說明模型目錄可用環境變數調整，服務設定也可能在作業系統的服務管理中。單看預設目錄，未必就是實際部署的位置。[1]
+
+資料庫更不能一概視為普通文件。PostgreSQL 的檔案層備份文件說，直接複製資料檔的方式需要關閉資料庫；如果使用符合條件的一致性快照，則可在運作時進行，但也要涵蓋相關日誌及完整資料範圍。[2]
+
+SQLite 官方提供線上備份 API，用來建立資料庫快照，並說明傳統複製方式的鎖定與中斷風險。[3] CISA 的防勒索指引則建議保留離線、加密的關鍵資料備份，並定期測試可用性與完整性。[4] 這些文件共同指向的是「如何回復」，而不只是「檔案有沒有多一份」。
+
+## 二 各方評價：停機備份與線上備份各有條件
+
+支持停機備份的理由：狀態比較容易交代。 對能安排維護時段的部署，我們傾向先停止會寫入資料的服務，再依確認過的程序備份。這是我們的操作選擇；PostgreSQL 對直接檔案複製的限制，不能擴大成所有資料庫都只能停機。[2]
+
+支持線上備份的理由：服務仍要運作。 SQLite 的 API 與 PostgreSQL 文件中的一致性快照，提供了不必一律長時間停機的路徑，但各自有條件。[2][3] 我們的判讀是，選哪一種方法要依資料庫與儲存架構，不應只因某個複製指令跑完就算完成。
+
+另一個取捨是方便與隔離。CISA 說明可存取的備份也可能遭勒索程式刪除或加密。[4] 因此我們建議把備份存取權限與日常操作分開考慮，同時確認負責人真的拿得到復原需要的資料。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們本地 AI 系統的部署與維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 模型不是全部。 我們的備份清單包含設定檔、排程、服務設定、資料庫快照、知識庫索引、AI Agent 記憶檔與對話紀錄。模型檔本身可重新下載的情況下，也要記下確切版本；不能只留一個容易混淆的名稱。
+
+2. 升級前先做一致的備份。 我們會先停服務再打包，讓這份備份對應到同一個停止寫入的時間點。這是我們的操作方式，不是要求所有系統照抄；有線上備份需求時，應另依所用資料庫確認方法。[2][3]
+
+3. 接進原有備份機制。 我們使用既有的每日備份流程，不另外建立一套沒人接手的機制；還原要實際演練過，才算完成。
+
+## 四 我們的建議：從清單走到還原驗收
+
+1. 依用途列出清單。 把每一項分成「必須保留」與「可以重建」，並記下位置、負責人、版本、保留期限與重建步驟。知識庫索引若打算重建，也要留下原始文件及建立方式。
+
+2. 明寫一致性方法。 決定停止哪些服務、先備份哪個資料庫、最後如何確認沒有新的寫入。使用線上工具時，保存工具選項與完成紀錄；不要自行把運作中的資料目錄當成可用快照。[2][3]
+
+3. 隔離並保護備份。 按 CISA 指引考慮離線與加密，並測試有權人員能否取得解密與還原所需的資料。[4] 金鑰的取用方式應另受控，不宜把完整機密直接寫在一般交接文件中。
+
+4. 在隔離環境還原。 選定一份備份，記下還原步驟，再用已知問題檢查文件查詢、記憶讀取與服務啟動。測試時停用對外排程，確認不會重複執行正式工作；這是我們的演練建議。
+
+5. 把結果交回負責人。 保留備份時間點、實際用時、失敗項目與修正方式。若還原後仍缺設定，就把缺項補回清單；下一次演練使用更新後的步驟，不能只沿用上次的完成勾選。
+
+演練可以先選一項具體工作，例如查詢一份已知文件。先寫下預期答案與可存取帳號，再依文件還原，確認回覆所用資料、版本與權限都符合原來設定。若索引採重建方式，還要記錄重建所需的原始檔是否齊全。最後把還原結果與備份清單逐項對照：沒有列進備份、卻在還原時臨時找回的檔案，就是下一次要補的項目。這是我們建議的驗收方法，不能把服務能啟動直接寫成全部資料已復原。
+
+◆ 編按 · Think BIG 的做法：把復原方式一起交付
+
+## 備份完成，要有可重做的還原紀錄。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，交付本地 AI 時應一併交付備份範圍、復原順序與驗收題目。備份不是獨立於維運之外的附件，而是維護文件的一部分。
+
+我們重視的是另一位有授權的人能照文件重做。當系統改了設定、資料位置或排程，也應同步更新備份與還原說明，讓紀錄反映實際運作的樣子。
+
+### 常見問題
+
+Q1：只備份模型夠嗎？
+依我們的維運清單，還要納入設定、排程、資料庫、知識庫、記憶與紀錄；模型位置也可能經過調整。[1]
+Q2：資料庫可以直接複製嗎？
+要依資料庫方法。PostgreSQL 的直接檔案層備份要求停機；SQLite 有專用線上備份 API。[2][3]
+Q3：每天有備份，還要演練嗎？
+要確認資料能用。CISA 建議定期測試備份的可用性與完整性。[4]
+Q4：模型都要再留一份嗎？
+我們會先判斷能否重新取得，並記下確切版本。若重建條件不明，就不應把它列為可省略的項目。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Ollama，〈FAQ〉（模型位置與服務環境設定），查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/faq)　·
+    [2] PostgreSQL，〈File System Level Backup〉（直接複製與一致性快照），查閱日期 2026-10-26：[www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html)　·
+    [3] SQLite，〈SQLite Backup API〉（線上快照），查閱日期 2026-10-26：[www.sqlite.org](https://www.sqlite.org/backup.html)　·
+    [4] CISA，〈#StopRansomware Guide〉（離線、加密、定期測試），查閱日期 2026-10-26：[www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/c2pa-content-credentials-20261118/
+
+# 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 022 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 18 日　星期三
+◆
+AI 導入實測手記
+◆
+第 022 期
+
+C2PA · 內容憑證 · AI 生成標示
+
+## 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實
+
+Think BIG 自媒體部  |  2026 年 11 月 18 日
+
+看到內容憑證，先看它記錄了什麼、由誰簽署，再核對影像要表達的事實。沒有憑證也不能直接判定是 AI 圖。企業需要的是收圖與發布檢查流程。
+
+## 一 現象：從辨識外觀走向查閱來源
+
+一張看起來自然的照片，能不能只憑肉眼判斷有沒有用 AI？這期從來源紀錄談起。C2PA 官方說明，符合性計畫與正式信任清單於 2025 年中推出，用來檢查實作是否符合內容憑證規格及安全要求；這是既有進展的延伸解讀，不是本日新公告。[1]
+
+內容憑證可以記錄建立、編輯過程與使用的工具，並用數位簽章連結相關資料。依 C2PA 官方常見問題，這份紀錄的重點是可供檢驗的內容履歷，而不是讓觀眾憑圖示猜測來源。[2]
+
+兩個界線要先說清楚。C2PA 規格 2.2 的解說文件明列：來源資料本身不能決定內容是否符合事實；CAI 開源文件也說，沒有內容憑證不能當成影像不真實的證據。這表示「驗得過」與「報導得對」是不同問題。[3][4]
+
+## 二 各方評價：透明有幫助，判讀有邊界
+
+支持的理由：查核多了可檢驗的線索。 符合性計畫把產生與驗證憑證的實作納入檢查，通過的產品列在公開清單。[1] 我們的判讀是，採購或接收素材時，可以具體詢問支援哪些流程，而不只接受一句「有 AI 標示」。
+
+保留的理由：紀錄可能不完整。 CAI 文件指出，一般截圖不會帶走原圖的 C2PA 中繼資料。[4] C2PA 則說明，可透過浮水印或指紋等軟性綁定協助找回憑證，但不能據此假定每張轉傳圖片都有完整歷程。[2]
+
+因此我們支持把憑證當成證據的一部分，也主張保留人工查核。簽署來源、圖片裡的敘述、刊登文字與素材使用許可，應各自有核對位置；不要把一個驗證結果擴大解讀成整份稿件都已查清。[3]
+
+我們建議審稿表不要只留「有／沒有憑證」的勾選。可以分成三欄：檔案提供了哪些來源資料、驗證工具實際確認了哪些項目、編輯另行核對了哪些事實。三欄之間不能互相代填。例如來源工具記錄了建立時間，仍要核對照片配文所說的事件日期。這樣設計，是為了讓審稿人知道目前證據的範圍，而不是增加一個看似正式、卻沒人理解的合格章。[3]
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們導入時會先問的問題清單，不是已完成 C2PA 部署的案例，也不代表任何特定客戶。
+
+1. 原始檔還在嗎？ 先問素材從哪裡來、是否只剩通訊軟體截圖、能否向提供者索取原檔。收圖時要有一個可回頭查的檔案位置，避免審稿人與發布人看的不是同一份。
+
+2. 誰負責讀懂驗證結果？ 確認誰檢查簽署者、誰核實照片配文、遇到無法驗證時由誰決定如何標示。我們會要求把「沒有資料」「不支援」「驗證失敗」分開記錄，而不是一律寫成假圖。
+
+3. 最終讀者會看到什麼？ 發布前先約定：若平台沒有顯示憑證，是否另外補上來源與 AI 使用說明；若編輯後換檔，誰負責重新檢查。這是流程設計，不是宣稱平台都會保留標記。
+
+## 四 我們的建議：把查核拆成四個動作
+
+1. 收圖時留下來源。 記下提供者、取得日期、原始檔位置及預計用途。與外部素材提供者確認交付的是原檔還是轉存檔，並把授權確認列成獨立欄位。
+
+2. 對照檔案與紀錄。 使用能讀取內容憑證的工具，保留檢查日期與結果；依工具顯示區分簽章、信任狀態及編輯歷程。對於無法判讀的欄位，先請提供者說明，不自行補故事。[1][2]
+
+3. 把關鍵事實另列清單。 人物、地點、時間與事件敘述分別確認。即使來源驗證通過，也保留查詢原始發布者、核對配文的步驟；這是我們依規格限制提出的編輯建議。[3]
+
+4. 測試正式發布流程。 把同一檔案經過實際使用的裁切、匯出與上傳流程，再下載檢查。若資料無法沿途保留，就加上讀者看得懂的說明，並保存原始檔與審稿紀錄。[4]
+
+實際交接時，可以用一份測試素材走完流程：收取原檔、查看憑證、編輯匯出、上傳後下載，再由另一位編輯核對最終檔案。每一步記下檔名與處理結果；若只剩截圖，就明寫「未取得原始檔」，不要寫「未發現 AI」。這是我們建議的演練方式，目的是確認團隊如何處理未知資訊。最後的公開說明，應對應真正拿得到的證據，不因為趕著發布就把未知改成肯定。
+
+◆ 編按 · Think BIG 的做法：發布前留下證據
+
+## 標示、簽章與事實，分開確認。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，影像導入流程要同時保留素材來源、AI 使用說明與發布前核對紀錄。檢查表應寫清楚什麼已確認、什麼還未知，以及誰有權核准使用。
+
+我們不把標記當成真實性的結論。沒有足夠證據時，文案就應收斂到能支持的範圍；讓下一位編輯看得到判斷依據，比留下含糊的「已驗證」更有用。
+
+### 常見問題
+
+Q1：C2PA 能直接判斷圖片是真是假嗎？
+不能。規格解說將來源紀錄與內容是否符合事實分開，仍要核實圖片所描述的事件。[3]
+Q2：沒有內容憑證就是 AI 圖嗎？
+不能這樣判斷。CAI 文件說明，缺少憑證不構成影像不真實的負面證據。[4]
+Q3：截圖會留下原圖憑證嗎？
+一般截圖不會包含原圖的 C2PA 中繼資料；支援的找回機制另有條件。[4][2]
+Q4：憑證是否等於使用授權？
+不是。C2PA 的來源紀錄與 DRM 權限控制不同；素材使用許可應另外確認。[2]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] C2PA，〈Conformance〉（2025 年計畫與公開清單），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/conformance/)　·
+    [2] C2PA，〈FAQs〉（來源履歷、簽章與軟性綁定），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/faqs/)　·
+    [3] C2PA，〈C2PA and Content Credentials Explainer〉，規格 2.2（真實性界線），查閱日期 2026-10-26：[spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html)　·
+    [4] CAI，〈Frequently-asked questions〉（截圖及缺少憑證），查閱日期 2026-10-26：[opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/
+
+# 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+企業資安實務 · 第 021 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+2026 年 11 月 16 日　星期一
+◆
+企業資安實務
+◆
+第 021 期
+
+語音冒名 · 付款核實 · 企業流程
+
+## 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程
+
+Think BIG 自媒體部  |  2026 年 11 月 16 日
+
+遇到緊急付款要求，先暫停，再用事先確認的聯絡方式核實人與事。回到原有核准流程，不必先證明聲音是不是 AI。
+
+## 一 現象：語音可以被模仿，付款還是要查核
+
+FBI 在 2025 年 5 月 15 日警示，自當年 4 月起，有人冒充美國高階官員，透過簡訊與 AI 產生的語音訊息建立信任，試圖取得個人帳號存取權。[1] 這是官方揭露的特定活動，不是台灣企業受害統計，也不應直接改寫成「老闆匯款詐騙暴增」。
+
+這項警示給公司的提醒，是把聲音與身分核實分開。美國 FTC 在較早的防詐文章中指出，詐騙者可能利用公開的聲音片段複製熟人的聲音，並建議用自己知道的電話回撥確認。[3] 本文不提供需要多少秒素材就能成功的數字，因為不同工具、資料與情境不能一概而論。
+
+付款要求本來就需要核實。FBI 的商務電子郵件詐騙（BEC）說明建議，透過當面或電話確認付款與採購要求，也要確認帳號或付款程序的變更。[2] 我們據此延伸：即使要求改從語音傳來，也不應省略原有核准；不必先判定使用了哪種合成技術，才有理由暫停。
+
+## 二 各方評價：辨識線索有幫助，流程比聽力測驗更可執行
+
+技術與警覺的一面： FBI 提醒，語氣、用詞與影音細節可以提供觀察線索，同時也承認 AI 內容常難辨識。[1] 我們的判讀是，教育訓練可以教人注意異常，但不適合把「有沒有聽出破綻」當成員工要承擔的付款判準。
+
+程序面的保留： 只問幾個公開資料能查到的問題，未必足以確認身分。我們建議使用已核實的聯絡資料，並另外確認事情本身：付款目的、收款對象、文件與核准人。這是公司流程建議，不是聲音真偽的鑑定方法。
+
+FBI 另一份生成式 AI 詐騙公告列出語音與即時視訊冒名的可能用法。[4] 因此，換成視訊可以作為補充，但不能讓任何看起來像主管的畫面直接跳過付款控制。我們也不主張每段陌生語音都是詐騙；有疑問時，依相同核實程序處理，避免靠個人感覺決定。
+
+我們也建議讓主管事先參與演練，明確接受經辦回撥與等待覆核。流程若只要求員工提高警覺，卻在真正查證時催促跳過，會讓執行者無所適從。演練後應把找不到窗口、通訊錄過期與文件不齊等缺口列成待辦，再由負責人確認修正結果。
+
+◆ 導入檢查清單
+
+## 三、我們導入時的檢查清單
+
+以下是我們建議公司事先確認的問題清單，不描述受害或攔阻事件。
+
+1. 通訊錄從哪裡來？ 我們會先問，付款聯絡人與主管電話是否有事先確認的紀錄，誰能修改。若回撥號碼直接抄自可疑訊息，核實仍停留在對方控制的管道裡。[1][2]
+
+2. 誰有權說「先停」？ 我們建議明文允許經辦在核實完成前暫停處理，並指定主管不在場時的覆核人。不要讓「正在開會、不能回電」變成略過流程的條件。
+
+3. 核實的人，看得到什麼？ 覆核者應能對照付款目的、原始單據與帳號變更紀錄。我們建議把「確認來電者」和「批准這筆要求」分成兩個問題，避免一通回電同時被當成全部授權。
+
+4. 如果已經送出，怎麼求助？ 先備好銀行與內部事件窗口，讓經辦知道如何聯絡，不必當場從可疑訊息找電話。保存紀錄時也應限制可讀人員，不在群組大量轉傳含個資的錄音或截圖。
+
+## 四 我們的建議：把核實寫成每個人都能照做的步驟
+
+1. 暫停，改走已知管道。 結束可疑通話，用事先確認的電話或其他可信管道聯絡本人；不要沿用來訊附的新電話或連結。FBI 與 FTC 都提出獨立核實方向。[1][3]
+
+2. 帳號變更另行確認。 收款資料或付款程序變更，回到已建立的窗口核對並留紀錄。[2] 我們建議即使聲音熟悉、訊息出現在舊對話，也照同樣程序處理。
+
+3. 讓經辦與覆核分工。 我們建議付款由指定人覆核，緊急件也要記下核實管道與同意依據。找不到覆核人時先等待，不把「對方很急」寫成例外條件。
+
+4. 做一次桌上演練。 用文字情境測試「主管要求保密、立即處理、新帳號」，觀察員工能否找到通訊錄、暫停點與升級窗口。不需要複製任何人的聲音，也能演練程序。
+
+5. 發現誤付就立即聯絡銀行。 FBI 建議立即聯絡金融機構，要求與收款機構聯繫。[2] 同時依公司事件流程保存訊息、時間與交易紀錄，向適當機關求助；不要等到證明是 AI 才通報，也不預期款項必能追回。
+
+一句話：聲音只是訊息來源，付款依據要回到核實與核准。
+
+◆ 編按 · Think BIG 的做法：把停止權寫進流程
+
+## 讓經辦可以查證，也知道該找誰。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張 AI 可以協助整理疑點或待核實事項，付款核准仍由指定人負責。涉及對外動作的流程，應留下核實依據、覆核結果與事件處理窗口。
+
+延伸閱讀[AI 系統事件處理](https://thinkbigtw.com/library/qa/ai-incident-response/)。本文提供一般防詐與流程參考，不構成法律意見。
+
+### 常見問題
+
+Q1：聲音很像主管，就能照做嗎？
+不能只以聲音核實。FBI 與 FTC 建議透過獨立、已知的聯絡方式確認。[1][3]
+Q2：要先證明是 AI 才能暫停嗎？
+我們建議不必。可疑付款或帳號變更先走核實流程；FBI 的付款核對建議也不以先鑑定 AI 為前提。[2]
+Q3：改成視訊就可以直接核准嗎？
+不建議。FBI 也列出即時視訊冒名的可能用法，仍需核實與覆核。[4]
+Q4：已經匯出怎麼辦？
+立即用已知管道聯絡銀行，依公司事件流程保存紀錄並尋求協助；FBI 亦建議立即聯絡金融機構。[2]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] FBI IC3，〈Senior US Officials Impersonated in Malicious Messaging Campaign〉，2025-05-15，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515)　·
+    [2] FBI，〈Business Email Compromise〉，查閱日期 2026-10-26：[www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise)　·
+    [3] FTC，〈Scammers use AI to enhance their family emergency schemes〉，2023，查閱日期 2026-10-26：[consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes)　·
+    [4] FBI IC3，〈Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud〉，2024-12-03，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  企業資安實務
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/iso-42001-ai-management-20261106/
+
+# ISO/IEC 42001 是什麼？——企業管理 AI，要留下哪些決定與證據 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 016 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 6 日　星期五
+◆
+AI 導入實測手記
+◆
+第 016 期
+
+ISO/IEC 42001:2023 · AI 治理 · 管理系統
+
+## ISO/IEC 42001 是什麼？——企業管理 AI，要留下哪些決定與證據
+
+Think BIG 自媒體部  |  2026 年 11 月 6 日
+
+先盤點公司在哪裡用 AI、誰負責、怎麼檢查，再討論驗證。管理制度要能在日常工作中留下證據。
+
+## 一 現象：AI 的治理，也進入第三方查核流程
+
+2025 年 9 月 5 日，英國認可機構 UKAS 公告，正推進 ISO/IEC 42001 AI 管理系統驗證的認可工作。[1] 本文以這項制度發展為引子，解釋企業該準備什麼，不把當年的進度當成今日狀態，也不列驗證機構排名。
+
+依 ISO 公開說明，ISO/IEC 42001:2023 要求組織建立、實施、維持並持續改善 AI 管理系統，對象包括提供或使用 AI 產品、服務的組織。[2] 換句話說，討論範圍不限於自己訓練模型；把外部 AI 用進流程，也值得先盤點。
+
+ISO 的解說把治理內容整理為責任、風險、資料與系統管理、監督及持續改善等面向。[3] 我們的理解是，企業要能解釋「為什麼允許這樣用、出了偏差怎麼處理」。本文只依已公開說明介紹方向，不宣稱逐條涵蓋標準全文，也不把下方清單當成正式驗證準則。
+
+## 二 各方評價：共同框架有價值，證書的解讀要有範圍
+
+支持制度化的一面： UKAS 表示，認可工作要提升 AI 驗證的一致性與可信度。[1] ISO 則把管理系統描述為有關政策、目標與流程的一組安排。[2] 我們的判讀是，這能把「有在管理 AI」轉成可問責的事項，避免每個部門自行理解。
+
+需要保留的一面： ISO 解說明確指出，這套框架協助處理合規義務，但法律與法規仍須另行遵守。[3] 因而不能從一張證書推論每個模型答案都正確，或所有使用情境都已完成法律評估。前者是管理流程，後者仍需要對具體任務查核。
+
+還有兩個容易混淆的角色：ISO 制定標準，驗證由外部驗證機構執行；認可則是對驗證機構能力的正式承認。[4] 本文沿用這個區分。詢問供應商時，與其只問「有沒有 ISO」，我們更建議確認標準年版、組織名稱、涵蓋活動及查證窗口。
+
+實際討論時，我們建議先選一個範圍清楚的用途，例如內部文件問答，請負責人逐一回答：哪些文件准用、誰維護版本、答案沒有依據時怎麼辦、誰決定暫停。這個例子是管理討論的起點，不代表照做這幾項就符合整份標準。
+
+對外描述制度時，我們也建議逐句區分事實與計畫。已執行的檢查要能拿出紀錄，尚未完成的項目要標示負責人與待辦；使用「依標準方向規劃」時，也不要讓讀者誤以為已經通過獨立驗證。文件的用語應和實際進度一致。
+
+◆ 導入檢查清單
+
+## 三、我們導入時的檢查清單
+
+以下是我們導入 AI 前會先跟負責人確認的四個問題，不是 ISO/IEC 42001 驗證或輔導紀錄。
+
+1. 哪些用途要納入管理？ 我們會先問：AI 是協助寫草稿、查文件，還是參與決策？把輸入資料、輸出用途與接收人寫下來。若回答只是「大家都有用」，就先縮小到一項可描述的工作。
+
+2. 誰能改規則？ 我們會問誰核准資料上傳、模型或外掛變更，以及誰有權暫停使用。這份責任表的目的，是讓決定有明確窗口，並非把所有工作都交給同一位工程人員。
+
+3. 怎麼證明日常有照做？ 我們建議把測試紀錄、版本、異常處理與改善追蹤放在同一個用途底下。資料要能說明當時判斷，不要只在稽核前補寫一份看不出執行過程的文件。
+
+4. 哪些問題需要另請專業人員？ 合約、個資及產業規範疑問，應列成明確問題交由相應專業人員確認。本期是管理入門，供參考，不構成法律意見或驗證符合性判定。
+
+## 四 我們的建議：從一個用途開始，留下可追蹤的管理紀錄
+
+1. 建一張 AI 用途表。 每項填用途、負責人、資料來源、使用對象、供應商及停止方式。先把實際在用的服務列出來，再討論管理範圍；不要只盤點採購清單。
+
+2. 對用途寫風險與處置。 例如文件過期、答案無依據或讀到不該看的資料，分別約定檢查人、處置方式與再測條件。這是我們把 ISO 公開風險管理方向轉成日常工作的建議。[3]
+
+3. 保存變更與修正紀錄。 換模型、改文件來源或加工具時，記錄改了什麼、誰核准、測了哪些題目。異常則記錄處理結果與待辦，不要只寫「已改善」就關單。
+
+4. 另行確認驗證需求。 若有契約或管理需求，再向驗證機構確認範圍、程序及所需證據。ISO 說明驗證可以自願選擇，部分產業亦可能有法定或契約要求，應依具體情況確認。[3][4]
+
+一句話：先把管理做成日常紀錄，再讓外部查核看得懂。
+
+◆ 編按 · Think BIG 的做法：先有責任，再談文件
+
+## 用途、負責人、檢查與改善要連在一起。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張 AI 導入文件能對應實際工作，讓每個用途都找到核准、測試、停止與改善的窗口。制度規模可以逐步擴充，但不要把寫完政策當成工作已完成。
+
+可先參考[AI Agent 驗收題組](https://thinkbigtw.com/library/qa/ai-agent-acceptance-testing/)。此處描述的是 Think BIG 的治理主張，不表示本公司取得 ISO/IEC 42001 驗證。
+
+### 常見問題
+
+Q1：ISO/IEC 42001 管的是什麼？
+ISO/IEC 42001:2023 是 AI 管理系統標準，適用於提供或使用 AI 的組織。[2]
+Q2：只買外部 AI 也值得看嗎？
+值得先盤點。ISO 公開說明的適用對象包含使用 AI 系統的組織。[2][3]
+Q3：ISO 會直接發證書嗎？
+不會。ISO 制定標準，外部驗證機構執行驗證。[4]
+Q4：有證書就不用檢查回答嗎？
+我們建議仍做任務驗收。管理系統查核與每次輸出的正確性是不同問題。[2][3]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] UKAS，〈AI accreditation update〉，2025-09-05，查閱日期 2026-10-26：[www.ukas.com](https://www.ukas.com/resources/latest-news/ai-accreditation-update/)　·
+    [2] ISO，〈ISO/IEC 42001:2023〉公開說明，查閱日期 2026-10-26：[www.iso.org](https://www.iso.org/standard/42001)　·
+    [3] ISO，〈ISO/IEC 42001 explained〉，查閱日期 2026-10-26：[www.iso.org](https://www.iso.org/insights/iso-42001-explained)　·
+    [4] ISO，〈Certification〉，查閱日期 2026-10-26：[www.iso.org](https://www.iso.org/certification.html)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/non-ascii-username-local-ai-20261104/
+
+# Windows 使用者名稱是中文，本地 AI 為什麼可能卡住？——先查路徑與日誌 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 015 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 4 日　星期三
+◆
+本地 AI 實測筆記
+◆
+第 015 期
+
+Windows · 中文路徑 · 本地 AI
+
+## Windows 使用者名稱是中文，本地 AI 為什麼可能卡住？——先查路徑與日誌
+
+Think BIG 自媒體部  |  2026 年 11 月 4 日
+
+中文帳號不是錯誤設定。遇到安裝或顯示卡偵測異常，先查工具實際讀到的路徑，再決定是否改用英文目錄。
+
+## 一 現象：系統支援中文，不等於每個環節都處理正確
+
+本地 AI 沒跑上顯示卡，問題可能在模型之外。Microsoft 的檔名文件說明，Windows 檔案系統使用 Unicode 儲存長檔名；Windows API 文件則區分使用字碼頁的 ANSI 版本與 Unicode 版本。[1][2] 這兩件事要一起看：中文路徑在系統中合法，不代表每個套件、子程序與啟動腳本都正確傳遞了文字。後半句是排查方向，不能單憑帳號名稱就下診斷。
+
+以本地模型工具的官方疑難排解文件為例，Ollama 建議先看日誌，並列出 Windows 的日誌與程式目錄。[3] 本文用它說明檢查方式，不評比工具，也不宣稱該工具在所有中文帳號上都有問題。
+
+我們遇到的情況更具體：模型能回答，卻只用 CPU；開啟除錯日誌後，才看到顯示卡偵測子程序失敗，以及路徑出現亂碼。這份內部部署紀錄，是本期第一手段落的依據。它能提示一條線索，不能推估其他電腦出問題的比例。
+
+## 二 各方評價：相容性應該修，部署也需要可維護的路徑
+
+從使用者角度： 中文名稱與中文檔案路徑是正常需求，Microsoft 的 Unicode 文件支持這個基礎。[1][2] 我們的看法是，發現工具處理異常時，應留下可重現證據交給維護者，不該直接把問題歸咎於使用者取名。
+
+從維運角度： 在特定環境中先選用簡單的英文程式目錄，可以作為排除變因的測試。這是我們的實作取捨，不是 Windows 的通用要求。測試時盡量維持模型、工具版本與驅動相同，才看得出更改路徑與結果的關係。
+
+目錄連結也有明確用途：Microsoft 的 mklink  文件把 /j  定義為建立 Directory Junction。[4] 但它不會修正工具的文字編碼；要不要使用、連結方向如何安排，仍需依檔案位置與啟動方式規劃。不要把一行指令當成每台電腦通用的修法。
+
+我們建議把排查紀錄寫成對照表：相同的工具與模型，各在哪個目錄啟動、由哪個帳號執行、哪一步失敗。一次改太多項，就很難知道哪項調整與結果相關；若必須一起更動，報告也應如實註明，避免把多項處置的結果都歸功於英文路徑。
+
+如果英文目錄測試沒有改善，我們建議回到原始日誌，另查其他原因。不要繼續大搬資料，也不要只因為本文案例就要求所有人重建帳號。把成功與失敗的測試都留下來，才方便後續維護者接手。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們的一次 Windows 部署與維運紀錄，不是產業統計，也不描述特定對象。
+
+1. 一開始看起來像顯示卡問題。 程式與模型放在含中文帳號的使用者目錄底下，模型可以跑，但只用 CPU、回應很慢。我們調整多個顯示卡相關環境變數，症狀沒有改善。
+
+2. 日誌把問題指向路徑。 除錯紀錄顯示，顯示卡偵測子程序全部失敗，路徑被寫成亂碼。同一台機器的 OpenSSH 啟動腳本也把帳號路徑寫壞。這些是當次觀察，不能推論所有遠端登入工具都有相同限制。
+
+3. 我們調整程式位置，保留使用者資料。 後來把程式與模型改放英文目錄，用 junction 串接原有位置，另建英文管理帳號，再由工作排程器開機啟動服務。完成後模型完整跑在顯示卡上，速度明顯回升；沒有在這裡提供未量測的倍數。
+
+4. 把線索提前檢查。 此後我們拿到新電腦，先用 whoami  看帳號名稱；遇到非 ASCII 字元，就先規劃英文程式路徑。這是部署習慣，不是要求每個人改掉中文姓名。
+
+## 四 我們的建議：更動前後都留下證據
+
+1. 先記環境。 保存工具版本、程式與模型目錄、啟動帳號，以及錯誤時間。畫面上的顯示名稱與日誌中的實際路徑分別記錄；對外求助前遮去姓名與權杖。
+
+2. 先讀日誌，再試修法。 依工具文件找日誌，對照子程序失敗與路徑亂碼是否同時出現。[3] 沒有這些證據時，仍應保留驅動、權限與其他原因的可能性，避免先把所有故障都歸到中文。
+
+3. 用測試副本驗證路徑。 我們建議先在備份或測試環境比較英文目錄，寫清楚需要調整的服務、排程與模型位置。若使用 junction，先確認來源與目標，另留移除連結與還原設定的步驟。[4]
+
+4. 用原本工作驗收。 同一個模型、同一個問題，在修改前後確認執行裝置、錯誤紀錄與重開機後的服務狀態。驗收不是只看「能開啟」，也要看原先的故障有沒有消失。
+
+一句話：先讓日誌指路，再讓對照測試決定要改哪裡。
+
+◆ 編按 · Think BIG 的做法：把路徑列入部署文件
+
+## 讓下一位維護者知道程式到底放在哪裡。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張交付文件同時記錄實體目錄、連結、啟動帳號與排程，避免只留下桌面捷徑。所有調整都應有還原方式，不直接搬動整個使用者資料夾。
+
+延伸閱讀[GPU 有沒有在動](https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/)。路徑檢查和執行裝置檢查，應該放在同一份驗收清單。
+
+### 常見問題
+
+Q1：中文 Windows 帳號不能跑本地 AI 嗎？
+不能這樣推論。Windows 支援 Unicode；本文只描述一次部署中的工具鏈問題。[1][2]
+Q2：只用 CPU 就是中文路徑造成的嗎？
+不是。要看日誌與對照測試，不能只憑速度或帳號名稱下判斷。[3]
+Q3：junction 是什麼？
+Microsoft 將 mklink 的 /j 參數定義為建立目錄接合點。它不是編碼修正工具。[4]
+Q4：需要把整個使用者資料夾改名嗎？
+我們不建議直接搬動整個使用者資料夾。本次做法是調整程式與模型位置，保留原有使用者資料。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Microsoft，〈Naming Files, Paths, and Namespaces〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file)　·
+    [2] Microsoft，〈Unicode in the Windows API〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api)　·
+    [3] Ollama，〈Troubleshooting〉，查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/troubleshooting)　·
+    [4] Microsoft，〈mklink〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/
+
+# 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 025 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 24 日　星期二
+◆
+本地 AI 實測筆記
+◆
+第 025 期
+
+本地 AI · 主機散熱 · 電源管理
+
+## 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好
+
+Think BIG 自媒體部  |  2026 年 11 月 24 日
+
+要讓 AI 主機常駐，先決定它放哪裡、誰看電源、斷電後誰處理。開機、服務啟動與排程完成，應分別確認。
+
+## 一 現象：主機的環境，也是系統的一部分
+
+辦公室準備一台電腦跑 AI，規劃表常從模型開始。原廠文件提醒，實體擺放與電源設定也需要確認。Apple 的 Mac 筆電說明建議使用可良好通風的穩固工作面，避免放在枕頭或寢具上。這是該設備的使用指引，其他機型應查自己的手冊。[1]
+
+排程也會受到電源條件影響。Microsoft 的工作排程器文件，將「使用電池時不啟動工作」列為可設定屬性；另一項 WakeToRun 則用來指定排程時喚醒電腦。[2][3] 兩者談的是不同條件，不能因為設定了喚醒，就忽略電池與工作本身的限制。
+
+復電後自動開機又是另一層。Intel 的支援文件針對其適用伺服器板，說明 BIOS 電源復原選項及測試步驟。[4] 本文引用它來說明檢查位置，不把特定設備功能推廣成每一台電腦都有。
+
+## 二 各方評價：能放進辦公室，仍要看使用條件
+
+支持辦公室部署的思路：工作與維護可以在現場安排。 我們認為，若有明確的擺放位置、供電與負責人，本地運作便能納入辦公室的日常管理。但這是導入規劃的判斷，不是某種機型適合全天運作的認證。
+
+保留的思路：日常使用與無人值守不同。 筆電的通風指引、工作排程的電源條件，與韌體的復電行為，分屬不同設定。[1][2][4] 我們的判讀是，長期運作要把這些環節接起來驗收，而不只在有人坐在旁邊時測一次。
+
+噪音則應交給現場測試。我們建議在預定座位距離，觀察一般工作及集中處理時是否妨礙通話、會議與閱讀；不要自行給所有機器套用同一個分貝值，也不拿不同公司設備做排名。若想搬進櫃內降低聲音，仍先核對通風與維護空間。[1]
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們本地 AI 主機的維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 服務健康，不代表整晚正常。 我們遇過筆電型 AI 主機整夜沒有接電源，電池耗盡後硬關機，隔天早上的排程沒跑。遠端檢查時，各項服務已顯示健康，實際上機器才剛重新開機。
+
+2. 先看開機時間與電源。 這次留下的診斷心法，是不要只看目前服務狀態，還要看機器何時開機，以及當時的供電狀態。後來加入低電量提醒；
+
+3. 常駐條件要另外確認。 我們的檢查項目包括接市電、評估不斷電系統、確認散熱與擺放位置，以及斷電後自動開機與服務自動啟動。每項都要按設備條件確認，不能把筆電有電池直接視為完整備援。
+
+## 四 我們的建議：把環境與復原一起驗收
+
+1. 先定義運作時段。 寫清楚哪些工作需要夜間執行，哪些可以等上班再跑。若不需要全天運作，就依任務安排時段；需要常駐的，指定檢查電源與異常通知的負責人。
+
+2. 依手冊安排擺放。 確認進出風空間、工作面與環境條件，不讓文件或其他物品遮擋通風位置。將設備型號、手冊連結與現場照片留在維運文件，移位時再檢查。[1]
+
+3. 檢查供電與排程條件。 確認電源是否接妥，並逐項核對電池、睡眠與喚醒設定。使用 Windows 工作排程器時，查看工作是否因電池條件而不能啟動；其他平台另依文件檢查。[2][3]
+
+4. 設計受控的復原演練。 先有可用備份，再由有授權的人依設備手冊測試復電、開機與服務啟動。接著檢查排程是否漏跑、是否重複執行；不能只看登入畫面出現就結束。[4]
+
+5. 把聲音與夜間條件一起試。 在實際使用位置執行預定工作，記錄周邊人員是否能正常通話，並核對下班後的環境安排。評估不斷電設備時，請維護人員依實際負載與關機流程確認，不套用通用續航數字。
+
+現場交接時，可以把檢查拆成「上班前能否開始工作」與「下班後能否持續完成」兩段。前者確認開機、連線、模型服務與一個已知測試工作；後者確認電源、預定排程及異常通知。再約定清潔、移動設備或調整座位後由誰重新檢查。這是我們建議的日常程序，不是要求操作人自行拆機或改接電路。若環境或供電條件不明，交由設備維護人員確認，再決定主機的位置與運作安排。
+
+◆ 編按 · Think BIG 的做法：把現場條件寫進維運文件
+
+## 有人照看電源，也有人確認工作完成。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，把擺放、供電、服務啟動與工作完成紀錄放進同一份交接文件。主機換位置、換用途或改運作時段時，重新檢查環境與復原流程。
+
+我們關心的是下一位維護者能找到原因。服務在線只是其中一項訊號；開機時間、電源狀態與工作結果一起看，才有足夠脈絡決定後續處理。
+
+### 常見問題
+
+Q1：有電池的筆電可以當備援嗎？
+不能只憑有電池下結論。我們的維運紀錄曾記錄電池耗盡後排程未跑，仍需評估供電與復原。
+Q2：螢幕沒亮就是沒有執行嗎？
+未必。Microsoft 文件說明，排程喚醒電腦後螢幕仍可能關閉；要看工作紀錄。[3]
+Q3：每台電腦都能復電自動開機嗎？
+本文沒有這項通用結論。Intel 文件只支持其適用設備的設定，應查自己的機型。[4]
+Q4：服務正常為什麼還要看開機時間？
+我們遇過剛重開機後服務正常，但先前工作已漏跑；要把工作完成紀錄一起看。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Apple，〈Keep your Mac laptop within acceptable operating temperatures〉（通風與工作面），查閱日期 2026-10-26：[support.apple.com](https://support.apple.com/en-ie/102336)　·
+    [2] Microsoft，〈TaskSettings.DisallowStartIfOnBatteries property〉（電池條件），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries)　·
+    [3] Microsoft，〈WakeToRun (settingsType) Element〉（喚醒與螢幕），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element)　·
+    [4] Intel，〈How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems〉（適用設備復電設定），查閱日期 2026-10-26：[www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/
+
+# AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 017 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 8 日　星期日
+◆
+本地 AI 實測筆記
+◆
+第 017 期
+
+版本管理 · AI Agent · 更新驗收
+
+## AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補
+
+Think BIG 自媒體部  |  2026 年 11 月 8 日
+
+正式運作的 AI Agent 不適合在沒人知道時改變執行環境。先固定可重現的組合，再安排有人負責的更新與驗收。
+
+## 一 現象：可重現部署與持續修補，要一起做
+
+套件更新不是只有「新功能」。pip 官方文件把固定版本列為建立可重現環境的方法，也說明可加上雜湊值核對下載檔案。[1] npm 的 npm ci  則要求既有鎖定檔；若鎖定內容與套件宣告不符，會報錯而非自行改寫鎖定檔。[2] 這些設計都把安裝內容變得更明確。
+
+另一方面，美國 NIST《企業修補管理規劃指南》SP 800-40 Rev. 4（2022）把修補管理定義為辨識、排序、取得、安裝並驗證更新的流程。[4] 所以固定版本不能成為長期忽略漏洞的理由。我們主張把「目前跑哪組版本」與「何時評估更新」放在同一份維護紀錄。
+
+不同安裝方式也值得分開看。Ollama 的 Windows 文件區分一般安裝程式與可整合為服務的獨立 CLI 壓縮檔。[3] 本文引用它說明部署方式需要被記錄，不推薦工具，也不假設所有 AI 工具都有相同更新行為。
+
+## 二 各方評價：便利更新有用途，正式環境需要可控的變更
+
+支持自動化的一面： NIST 把修補視為預防性維護，強調企業應建立能日常執行的策略。[4] 我們的判讀是，自動化可以協助盤點、通知與執行既定程序；如果每次都靠人記得看公告，維護容易失去節奏。
+
+需要保留的一面： pip 文件說固定依賴版本可以降低新版錯誤或不相容帶來的影響，但也指出這仍信任套件取得來源；雜湊核對是另一層措施。[1] 因而「版本已固定」不能直接推論來源可信，也不能證明設定或資料遷移會成功。
+
+我們的立場是區分通知與安裝：可以自動提醒有更新，但正式服務何時改動，要有負責人、測試結果與回復準備。對重大安全公告，則另外判斷暴露範圍與暫時處置，不必等例行維護日才開始處理。這是建議流程，不是所有環境都應採用同一頻率。
+
+我們建議在變更單上另留「本次沒有更新什麼」的欄位。例如套件升級了，模型與外部連接仍維持原設定，就清楚記下範圍。若測試出問題，維護者才知道應從哪組差異開始比對，而不是把整個系統重新安裝一次。
+
+維護時段結束前，也可以請實際使用人用原本工作走一遍。工程檢查確認服務能啟動，使用人再確認讀得到資料、工具回應與排程符合預期。兩邊都留下結果，尚未驗證的項目則持續追蹤，不因為版本號已改就結案。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們的 AI Agent 部署與維運紀錄，不是產業統計，也不描述特定對象。
+
+1. 大版本更新可能連資料一起改。 我們遇過升級後舊資料遷移衝突，服務反覆重啟；也遇過新版設定格式改變，舊設定被自動清掉。只確認程式下載完成，看不到這些後續影響。
+
+2. 上游格式改動也會傳到本機。 一次 AI 服務的串流格式改變，使套件驗證失敗，所有 AI 呼叫一起出錯。我們補上修正後，每次套件更新都要再確認修正是否仍存在。固定本機套件，仍要留意外部服務的相依關係。
+
+3. 更新提示不能代替版本紀錄。 我們遇過除錯指令顯示只差一版，實際卻跨過多個版本的大幅變更。後來的做法是固定版本，先看已知問題、測試、備份設定與資料，準備回復指令，再排時間升級。
+
+4. 回復不只是把程式降版。 我們的備份清單也包含設定、排程、服務設定與資料庫快照；升級前先停服務再打包，並演練還原。這些經驗提醒我們，程式與資料狀態要一起規劃。
+
+## 四 我們的建議：讓每次升級都有進場與退場條件
+
+1. 記完整組合。 列出框架、套件依賴、執行環境、模型與安裝方式；有鎖定檔就一起保存。pip 與 npm 文件可作為各自套件管理方式的參考。[1][2]
+
+2. 用測試環境試改。 先讀版本說明與遷移要求，再跑平常的對話、工具、檢索及排程。記下版本與測試結果，失敗時保留錯誤線索，避免只留下「測過了」。
+
+3. 備份並定義停止條件。 我們建議升級前取得一致的備份，寫明哪些錯誤要停止、由誰決定回復。若新版已改資料結構，不要直接用舊程式讀新資料，應先確認回復方式。
+
+4. 設修補責任與追蹤。 指定公告檢查人、例行維護時段及重大漏洞的加速處理窗口。升級後驗證服務、資料與工作流程，再關閉變更單，呼應 NIST 的安裝後驗證原則。[4]
+
+一句話：固定版本是起點，能更新、能驗收、能回復才是維運。
+
+◆ 編按 · Think BIG 的做法：每次變更都能對照
+
+## 把版本表、備份與驗收結果留在一起。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張將更新視為有責任人的變更，不讓長期運作的服務自行在夜間改版。日常維護與緊急修補各有入口，並保留可重跑的工作測試。
+
+延伸閱讀[離線環境怎麼更新](https://thinkbigtw.com/library/qa/offline-local-llm-updates/)。安裝完成後的驗收，同樣是交付的一部分。
+
+### 常見問題
+
+Q1：固定版本等於不更新嗎？
+不是。固定部署基準後，仍要辨識、排序、安裝與驗證修補。[4]
+Q2：只記 AI 框架版本夠嗎？
+我們建議連執行環境與依賴一起記錄。pip 的可重現安裝說明也涵蓋間接依賴。[1]
+Q3：npm ci 會自動改鎖定檔嗎？
+官方文件說不會；宣告與鎖定檔不符時會報錯。[2]
+Q4：升級失敗，只降版就好嗎？
+我們建議先確認資料與設定是否已遷移，再使用經演練的還原方式。程式降版與資料還原要一起規劃。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] pip，〈Repeatable Installs〉，查閱日期 2026-10-26：[pip.pypa.io](https://pip.pypa.io/en/stable/topics/repeatable-installs/)　·
+    [2] npm，〈npm ci〉，查閱日期 2026-10-26：[docs.npmjs.com](https://docs.npmjs.com/cli/v11/commands/npm-ci)　·
+    [3] Ollama，〈Windows〉，查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/windows)　·
+    [4] NIST，SP 800-40 Rev. 4（2022），〈Guide to Enterprise Patch Management Planning〉，查閱日期 2026-10-26：[csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/40/r4/final)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/
+
+# AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 019 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 12 日　星期四
+◆
+AI 導入實測手記
+◆
+第 019 期
+
+RAG · 切塊 · 檢索品質
+
+## AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型
+
+Think BIG 自媒體部  |  2026 年 11 月 12 日
+
+先把問題、檢索段落與回答放在一起看。找到錯誤出在哪個環節，才知道應該改文件、改檢索，還是調整模型。
+
+## 一 現象：有文件，不代表每次都找到對的段落
+
+RAG 是檢索增強生成：先從資料中找出相關內容，再交給模型作為回答依據。Microsoft 的官方概述指出，提問用語與文件術語不一致、文件前處理及輸入長度限制，都是實作挑戰。[1] 這說明「文件已上傳」與「能回答問題」之間，還有值得檢查的流程。
+
+切塊是其中一環。官方文件列出固定長度、依結構或語意分段等方式，也提醒重疊與大小應依文件及用途調整。[2] 因此，我們不建議把某個字數當成所有中文制度、表格或掃描檔都通用的設定。切完的段落是否保留主詞、條件與例外，應拿出來閱讀。
+
+評估也需要分層。Microsoft 的 RAG 評估文件區分檢索流程與最終回答：前者看找回內容是否與問題相關，後者再看回答是否依據內容、切題且完整。[3] 本文引用這個區分說明排查方法，不推薦特定服務，也不把評分工具的分數當成業務判斷。
+
+## 二 各方評價：改善檢索有根據，模型能力也不能忽略
+
+先檢查資料的一面： 官方概述把內容準備與檢索相關性放在 RAG 品質的核心。[1] 我們的判讀是，當標準答案根本沒有出現在模型收到的段落裡，應先查索引與檢索紀錄；直接換更大的模型，沒有處理這個缺口。
+
+保留模型判斷的一面： 找到段落後，模型仍可能沒有正確使用。2023 年原始研究〈Lost in the Middle〉在指定的多文件問答與鍵值檢索任務中，觀察到相關資訊放在長上下文不同位置，表現會改變。[4] 這不代表所有新模型都有同樣結果，但提醒我們不能只用「塞更多資料」當通用答案。
+
+兩種方向可以放進同一份測試：先判定該找到的證據有沒有被找回，再判定模型有沒有忠實回答。若文件本身就互相矛盾，則先交由文件負責人確認，而不是請模型替公司決定哪份規定有效。
+
+我們建議在測試表再加一欄「怎樣算答錯」：漏掉例外、把舊版當現行、引用別份文件，分開記錄。這是為了讓文件維護者與工程人員看同一題時有共同判準，不會一個只看文字流暢、另一個只看檢索分數。
+
+題組也要保留原始問法。若每次測試前都先把口語問題改寫成文件標題，就可能把原本要驗證的用語落差藏起來。我們建議同時保留原問句與改寫版本，分別記錄檢索結果，再決定是否採用查詢改寫。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們處理 RAG 文件與回答問題時的觀察，不是產業統計，也不描述特定對象。
+
+1. 先看檢索回來的段落。 我們遇到答不準時，會先看找回的內容對不對，再看模型如何回答。常見原因包括切塊太大或太小，並非每次都是模型不夠聰明。
+
+2. 原檔看起來正常，轉成文字可能走樣。 我們見過表格、掃描文件轉文字後變成亂碼。處理順序是回頭看文字內容，而不是繼續修改提示詞，要求模型把錯誤資料讀得更準。
+
+3. 同一件事可能有兩個版本。 新舊文件同時被找到，會讓回答依據混在一起。我們的做法是把舊版下架，或標明版本，讓文件的有效狀態能被檢查。
+
+4. 真實問題與標準答案要一起留。 我們會建立題組測試，也留意口語提問與正式名詞之間的落差。題目不是只寫文件標題，而是整理實際會怎麼問，才看得到檢索有沒有接上用語。
+
+## 四 我們的建議：用同一組題目，逐項排查
+
+1. 抽查轉出的文字。 挑表格、掃描頁與有例外條件的段落，對照原檔。把欄位標題與數值是否仍對得上列為檢查點；若前處理錯了，先修內容，再重建索引。
+
+2. 建題目與證據表。 每題記下預期答案、可支持的文件及段落，另外放入找不到答案、文件過期與用語不同的題目。檢索評估需要清楚的相關性依據。[3]
+
+3. 一次改一類設定。 固定模型與題組，再比較分段、重疊或查詢方式。保留每次找回的段落，避免答案變好卻不知道是哪項變動造成；參數應依自己的內容驗證。[2][3]
+
+4. 分開看證據與回答。 證據沒找對，回檢索層；證據正確但回答錯，查提示與模型；文件矛盾，交負責人處理。這是我們建議的分流，不把單一分數當成全部結論。
+
+5. 把找不到也列為驗收。 要求系統在沒有足夠依據時說明缺口，不拼出貌似完整的答案。另測使用者權限，確認能查到的內容都在授權範圍內。[1]
+
+一句話：先確認 AI 讀對材料，再判斷它有沒有答對。
+
+◆ 編按 · Think BIG 的做法：把錯誤留成可重測的題目
+
+## 問題、段落、答案與文件版本一起保存。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張每次調整知識庫，都能用相同題組檢查。錯誤紀錄應指出失敗環節與文件負責人，讓後續維護能沿用，而不是每次重新猜原因。
+
+延伸閱讀[公司文件的部門存取控制](https://thinkbigtw.com/library/qa/rag-access-control-by-department/)。回答品質與資料權限，都需要獨立驗收。
+
+### 常見問題
+
+Q1：RAG 是什麼？
+是先檢索資料，再把相關內容交給模型作為回答依據的方式。[1]
+Q2：切塊越大越好嗎？
+不是通用規則。大小、重疊與分段方式要依內容及用途測試。[2]
+Q3：有引用就表示答對嗎？
+我們建議另外檢查引用是否支持回答，以及回答是否完整切題；這些是不同評估面向。[3]
+Q4：什麼時候再考慮換模型？
+我們建議先確認檢索到正確材料；若材料正確但仍答錯，再用同一組題目比較模型與提示設定。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Microsoft，〈RAG and Generative AI〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)　·
+    [2] Microsoft，〈Chunk Documents〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)　·
+    [3] Microsoft，〈Retrieval-Augmented Generation (RAG) Evaluators〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators)　·
+    [4] Liu 等，〈Lost in the Middle: How Language Models Use Long Contexts〉，2023，arXiv:2307.03172，查閱日期 2026-10-26：[arxiv.org](https://arxiv.org/abs/2307.03172)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/review-ai-generated-code-20261126/
+
+# AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 026 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 26 日　星期四
+◆
+AI 導入實測手記
+◆
+第 026 期
+
+AI 程式碼 · 程式審查 · 安全開發
+
+## AI 寫的程式可以直接上線嗎？——先確認需求、權限、測試與回復方式
+
+Think BIG 自媒體部  |  2026 年 11 月 26 日
+
+程式能執行，是審查的起點。正式使用前，還要知道它能讀哪些資料、能改哪些系統，以及失敗後怎麼恢復。
+
+## 一 現象：AI 能提出修改，核准流程仍需獨立
+
+2025 年 5 月 19 日，GitHub 在官方文章介紹程式 Agent，可接受指派並提出程式修改。這是開發流程自動化的一個具體進展；本文以該公告為引子，討論修改提出之後如何審查，不評比或推薦特定工具。[1]
+
+同一平台的負責任使用文件也提醒，產生的程式可能不符合開發者意圖，甚至有安全問題，合併前應審查及測試。[2] 這項提醒的重要之處，在於不能把語法看似正確、或工具自述已完成，當成符合正式需求的證據。
+
+安全開發原則早有可用依據。NIST SP 800-218《安全軟體開發框架》1.1 版，2022 年的 PW.7 與 PW.8 分別處理程式審查／分析及可執行程式的測試；OWASP 安全程式碼審查指引則涵蓋輸入驗證、身分驗證、授權、資料流與業務邏輯。[3][4]
+
+## 二 各方評價：協助開發與審查，但人要理解後果
+
+支持的理由：明確範圍的工作可以交給工具協助。 GitHub 的文件建議提供清楚的問題描述、驗收條件與相關脈絡。[2] 我們的判讀是，工具協助準備修改與測試，有助於把討論集中到具體變更；這不代表每一份產出都已符合需求。
+
+保留的理由：安全取決於程式所在的環境。 OWASP 指引強調人工審查的情境理解，特別是業務邏輯與複雜權限。[4] 我們因此主張，測試帳號能成功讀到文件之外，還應測試沒有權限的帳號是否被拒絕；正常路徑與拒絕路徑都要對照需求。
+
+自動檢查與人工審查也不必二選一。NIST 的 PW.7 建議組織決定適用的審查或分析方式，記錄發現與修正。[3] 我們認為檢查項目應依風險安排，不能只因為程式由 AI 起草就一律接受，也不需要把所有小改動都套上相同負擔。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們導入時會先問的檢查問題，不是 AI 產生程式碼造成事故的紀錄，也不代表任何特定客戶。
+
+1. 需求由誰確認？ 先用一般語言說明：誰能做什麼、輸入是什麼、完成後應出現什麼結果。若需求只有「幫我自動處理」，就先縮小範圍；審查者要知道哪些行為屬於越界。
+
+2. 程式會把資料帶去哪裡？ 我們會要求交代檔案讀寫、環境變數、金鑰使用、對外連線與新增套件。這些是導入檢查項目，不能因為工具附上解釋，就省略閱讀實際修改內容。
+
+3. 誰有權核准正式執行？ 確認產生修改、審查修改與核准部署的角色，以及遇到不明行為時由誰暫停。對會刪除資料或對外寫入的動作，先問測試環境與復原方式，再討論排程。
+
+## 四 我們的建議：用五個問題決定能否交付
+
+1. 把驗收條件寫在修改前。 列出正常輸入、空白輸入、權限不足與中斷時預期的結果，讓測試對照需求，而不是只照著產生的程式確認它有執行。[2][4]
+
+2. 沿資料流閱讀修改。 從輸入、處理、儲存到對外輸出，檢查身分與權限是否在適當位置執行。涉及設定或部署檔也要一起看，不能只閱讀畫面上的功能程式。[4]
+
+3. 確認套件與機密處理。 列出新增依賴、來源、授權與版本，確認機密是否寫在程式或日誌中。這是我們建議加入的交付清單；不將套件名稱看起來熟悉當成已審查。
+
+4. 跑有意義的功能與安全測試。 依 NIST PW.8 的測試方向，確認成功、失敗與拒絕情境，並保存執行環境及結果。[3] 沒有通過的項目，要記下原因與負責人；不要只留一句「測過了」。
+
+5. 寫明核准與回復。 將修改範圍、未解問題與測試結果交給核准者，確認備份、回復步驟及停止條件，再安排正式使用。AI 對程式的解釋可以協助閱讀，最終決定仍要有具名負責人。
+
+交接時也可以選一個拒絕情境做示範：讓沒有授權的測試帳號提出同一個請求，確認系統拒絕，並查看紀錄是否足以說明原因、又沒有露出機密內容。接著將相同情境留成可重做的測試，供後續修改使用。若某項檢查因環境不足而未執行，就明寫未測與可能影響，不將它混在通過清單裡。我們建議讓核准者同時看到已通過、未通過及未測的項目，才能依完整資訊決定是否交付。這套表達方式同樣適用於人工寫的程式。
+
+◆ 編按 · Think BIG 的做法：讓修改有可核對的依據
+
+## 需求、變更與驗收結果，一起留下來。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，程式交付要讓人看得懂改了什麼、為什麼能接受，以及出問題時如何回復。審查紀錄應連得到需求與驗收結果。
+
+我們不把產生速度當作上線條件。修改越接近機密資料、權限或不可輕易撤回的操作，就越需要把核准邊界與可查證的測試證據寫清楚。
+
+### 常見問題
+
+Q1：程式跑得動就可以上線嗎？
+還要確認需求與安全條件。GitHub 官方文件要求審查與測試產生的程式。[2]
+Q2：AI 可以幫忙審 AI 寫的程式嗎？
+可作輔助，但我們建議保留人工對需求、權限與業務邏輯的核對；OWASP 說明人工情境理解的重要性。[4]
+Q3：小改動也要全部重測嗎？
+應依變更範圍與風險安排。NIST PW.7 要求組織決定審查或分析方式，不是每次採同樣清單。[3]
+Q4：審查要留下哪些紀錄？
+建議保留需求、修改範圍、測試結果、未解問題、核准者與回復步驟；NIST PW.7.2 亦提出記錄發現與修正。[3]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] GitHub，〈GitHub Copilot: Meet the new coding agent〉，2025-05-19（官方公告），查閱日期 2026-10-26：[github.blog](https://github.blog/news-insights/product-news/github-copilot-meet-the-new-coding-agent/)　·
+    [2] GitHub，〈Application card: GitHub Copilot Agents〉（限制與審查），查閱日期 2026-10-26：[docs.github.com](https://docs.github.com/en/copilot/responsible-use/agents)　·
+    [3] NIST，SP 800-218，SSDF 1.1 版，2022 年（PW.7、PW.8），查閱日期 2026-10-26：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf)　·
+    [4] OWASP，〈Secure Code Review Cheat Sheet〉（人工審查與資料流），查閱日期 2026-10-26：[cheatsheetseries.owasp.org](https://cheatsheetseries.owasp.org/cheatsheets/Secure_Code_Review_Cheat_Sheet.html)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/vet-ai-agent-skills-20261110/
+
+# 裝進電腦的 AI 技能，都要先審查嗎？——把技能當成供應鏈的一部分 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+企業資安實務 · 第 018 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+2026 年 11 月 10 日　星期二
+◆
+企業資安實務
+◆
+第 018 期
+
+AI 技能 · 供應鏈 · 安裝審查
+
+## 裝進電腦的 AI 技能，都要先審查嗎？——把技能當成供應鏈的一部分
+
+Think BIG 自媒體部  |  2026 年 11 月 10 日
+
+先問技能會讀什麼、執行什麼、把資料送到哪裡，再決定能不能安裝。純文字說明與可執行腳本，要看不同的證據。
+
+## 一 現象：技能可以是工作說明，也可以帶著程式碼
+
+Anthropic 在 2025 年 10 月發表 Agent Skills 工程文章，說明技能可以封裝指示與程式碼，也提醒惡意技能可能導向資料外傳或非預期動作。[1] 本文從這篇官方文章延伸安裝實務，不指控任何技能或平台已遭入侵，也不以套件流行程度判斷安全。
+
+供應鏈的意思，是把依賴的外部元件一起納入管理。OWASP《大型語言模型應用十大風險》2025 年版的 LLM03:2025，把風險範圍放到第三方套件、模型與資料，也建議審查供應商及維持元件清單。[2] 我們據此主張，技能帶進來的腳本、依賴與下載來源，都應能被追蹤。
+
+技能的名字不決定能力。官方文章建議閱讀隨附檔案，特別注意依賴、腳本，以及連接不受信任外部網路的指示。[1] 若一個技能只提供文字流程，審查重點會是指令與資料使用；若它能執行程式，還要檢查執行身分與檔案存取。這是我們依能力分配審查深度的做法。
+
+## 二 各方評價：知識可以重用，信任仍需逐項確認
+
+支持重用的一面： 官方文章把技能描述為讓 AI 取得可組合專業知識的方式。[1] 我們的判讀是，清楚的流程與腳本有助於重複工作，也方便團隊交接；全部重新手寫，並不自動比較容易維護。
+
+需要保留的一面： 來源公開、授權可用與程式安全，是三個分開的問題。OWASP 列出授權與來源追溯風險；[2] NIST SP 800-218（2022）的安全軟體開發框架，則提供採購方與供應商溝通安全實務的共同用語。[3] 我們建議把「檢查到什麼」留下來，不只記錄同意安裝。
+
+雜湊值也有邊界。pip 安全安裝文件說明，可用事先保存的雜湊核對下載檔案，且需涵蓋依賴。[4] 我們的解讀是，核對成功說明檔案與核准版本一致，仍不能證明內容沒有不當行為。掃描、人工閱讀與測試各自回答不同問題，不宜只靠其中一項結案。
+
+我們建議審查結論不要只剩通過或退件。也可以限定「只能處理測試目錄」「只能產生草稿」「外部連線待確認」等範圍，寫清楚條件、負責人與再看一次的時機。這些是准用條件的範例，不表示任何技能都能靠設定完成相同隔離。
+
+若團隊找不到有能力閱讀腳本的人，我們建議先縮小導入範圍，請維護者提供可檢查的檔案與行為說明。不要把看不懂的程式交給另一個 AI 說安全就結案；AI 可以協助找疑點，核准的人仍要能說明依據。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們的技能、外掛與 MCP 伺服器審查做法，不是產業統計，也不描述特定對象。
+
+1. 裝之前先讀。 我們依序檢查來源與維護者、授權及程式實際行為。尤其看是否讀環境變數或金鑰、是否對外連線、是否執行從網路下載的內容；安裝說明只是入口，還要往實際檔案看。
+
+2. 所需權限要說得清楚。 我們會檢查程式要求的權限，並固定版本。檢查未通過的套件就不裝；我們也確實遇過退件，但不在文章中列名字，以免把單次審查結果寫成對外評比。
+
+3. 通過審查仍要保留疑問。 沒有人能讓第三方程式碼沒有風險。我們的做法是逐關把關，針對來源、行為、權限與版本留下判斷。後續如果變更內容，也應回頭檢查原先依據是否仍成立。
+
+## 四 我們的建議：把安裝變成可追溯的決定
+
+1. 收齊元件與用途。 記下技能目的、來源網址、維護者、授權、腳本與依賴。不要只保存一段安裝指令；更新時要知道哪些檔案是原先審過的。[2]
+
+2. 畫出讀寫與連線範圍。 列出會讀的目錄、可能改的檔案、外部網址與憑證。說不清楚的先不給正式資料；需要新增能力時，再補上理由與核准。
+
+3. 先在隔離環境測試。 我們建議使用假資料與最低所需權限，觀察輸出、檔案變更和對外連線。測不到的行為記為未確認，不要把「這次沒發生」寫成永遠不會發生。
+
+4. 固定核准版本並安排重審。 保留版本與檔案核對資訊，指定更新通知與審查人。[4] 升級時比較指示、依賴、權限與連線目的地，不只看新增功能清單。
+
+5. 先寫停用方法。 列出移除技能、停止排程、撤銷憑證與查看紀錄的步驟。這是我們的退出建議；發生疑慮時，負責人應知道從哪個控制點停止。
+
+一句話：審查的是技能實際拿到的能力，以及日後怎麼收回。
+
+◆ 編按 · Think BIG 的做法：每個元件都要有來歷
+
+## 用途、版本、權限與停止方式一起留檔。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張安裝審查要有書面結論，說明准用範圍、尚未確認的事項與重審時機。審查深度依能力與接觸資料調整，不能只看技能介紹頁。
+
+延伸閱讀[交付前資安審查](https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/)。交付時，負責人應能找到每個元件的來源與停用方式。
+
+### 常見問題
+
+Q1：只有 Markdown 的技能也要看嗎？
+要。官方文章指出，指示本身也可能讓 AI 做非預期動作或連接外部來源。[1]
+Q2：開源就代表安全嗎？
+不能這樣推論。我們建議分別查來源、授權、程式行為與權限；OWASP 也要求審查供應商及元件。[2]
+Q3：雜湊相同就能直接安裝嗎？
+雜湊用來核對核准檔案，不代替內容與權限審查。[4]
+Q4：每次更新都要重看全部嗎？
+我們建議先比較變更，再重審受影響的指示、依賴、權限與連線；沒有可比較版本時，重新建立基準。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Anthropic，〈Equipping agents for the real world with Agent Skills〉，2025-10-16，查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)　·
+    [2] OWASP，〈LLM03:2025 Supply Chain〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm032025-supply-chain/)　·
+    [3] NIST，SP 800-218（2022），〈Secure Software Development Framework (SSDF) Version 1.1〉，查閱日期 2026-10-26：[csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/218/final)　·
+    [4] pip，〈Secure installs〉，查閱日期 2026-10-26：[pip.pypa.io](https://pip.pypa.io/en/stable/topics/secure-installs/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  企業資安實務
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
