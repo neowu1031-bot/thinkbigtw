@@ -29828,3 +29828,777 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
+
+URL: https://thinkbigtw.com/full-agent/
+
+# 全 Agent 串接 | Think BIG!
+
+個人 AI 助理
+
+# 全 Agent 串接
+
+你已經在付 Claude Code／Codex 的訂閱費了——讓它們組成一個團隊。
+
+Multi-Agent Orchestration（多代理協作）：讓 OpenClaw 和你既有的 coding agent（Claude Code／Codex／Antigravity 等）進駐同一個「協作會議室」分工做事。OpenClaw 負責接指令與日常任務，coding agent 負責寫程式、改檔案、跑測試——這是 2026 年 Anthropic、Google、Microsoft 都在推的架構方向。
+
+## 你是不是每天都在——
+
+- 開著 Claude Code、又開著 ChatGPT、又開著別的工具，自己當人肉轉接頭？
+
+- 付了 coding agent 訂閱費，卻只有坐在電腦前打指令的時候用得到？
+
+- 出門在外想派工給 AI，只能等回到電腦前？
+
+## 怎麼運行
+
+1
+
+收到 你打開專屬會議室網址（可加到手機主畫面當 App），下一道指令
+
+2
+
+判斷 OpenClaw 分析任務，決定自己做還是派給 coding agent
+
+3
+
+執行 多個 Agent 在會議室裡分工協作，你可即時看到協作過程
+
+4
+
+回報 最終結果報告自動推播到你指定的通訊軟體
+
+會議室建在你自己免費註冊的 Supabase 專案上，資料與其他客戶天然隔離。
+
+## 你得到什麼
+
+- OpenClaw 官方最新版＋ 60 組全客製技能 （依你的職業量身開發）
+
+- Coding Agent 串接（Claude Code／Codex／Antigravity 等，需自備訂閱）
+
+- 跨 Agent 協作會議室＋結果推播通訊軟體
+
+- 手機下指令、電腦上的 Agent 團隊接力完成——不必人在電腦前
+
+- 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
+
+- 服務費依需求報價，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
+
+想要會學習的第二顆大腦？→ [看「雙 AI Agent」](https://thinkbigtw.com/dual-agent/)。
+
+方案價格
+
+[蝦皮賣場選購](https://shopee.tw/shop/105010395)
+
+[前往蝦皮下單｜下單後預約遠端安裝時間](https://s.shopee.tw/2gAebp9KEB)
+
+※ 本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，皆非本方案服務費所含。coding agent 訂閱費由你自行負擔（Claude Code 需 Pro 以上，門檻以各官網公告為準）。
+
+---
+
+URL: https://thinkbigtw.com/harness/
+
+# 個人 AI 助理搭建與整合｜Think BIG
+
+HARNESS ENGINEERS
+
+# Harness Engineers
+
+從個人安裝、工作流程整合到年度維運，依設備與使用需求搭建自己的 AI 助理。
+
+搭建與串接的平台
+
+- OpenClaw
+
+- Hermes Agent
+
+- Claude Managed Agent
+
+- OpenAI Codex
+
+- n8n
+
+- Dify
+
+- Make
+
+- LINE
+
+- WhatsApp
+
+- Telegram
+
+- Discord
+
+- Slack
+
+- Microsoft Teams
+
+- iMessage
+
+- Google Calendar
+
+- Gmail
+
+- Google Drive
+
+- Notion
+
+- Obsidian
+
+- GitHub
+
+- Zapier
+
+- Browser
+
+- Cron
+
+- Model Context Protocol (MCP)
+
+各商標屬其所有者，僅標示可串接之平台，不代表合作或背書。
+
+PERSONAL AI PLANS
+
+## 依需求選擇個人方案
+
+完整價格、內容與支援期，請以現行個人方案頁為準。
+
+### 本地大模型搭建
+
+把 AI 模型和 OpenClaw 或 Hermes Agent 一起裝在你的電腦上，建立自己的 AI 助理。
+
+[查看人格版方案 ›](https://thinkbigtw.com/pricing/personal/#tier1)
+
+### AI 部門
+
+單或雙 AI Agent，串接技能與協作會議室。
+
+[查看工作流程方案 ›](https://thinkbigtw.com/pricing/personal/#tier2)
+
+### 年約維運
+
+一年維運陪跑，依需求選擇 Agent 組合。
+
+[查看年約方案 ›](https://thinkbigtw.com/pricing/personal/#tier3)
+
+01 — LOCAL AI EXECUTION
+
+## OpenClaw
+
+AI Agent 的作業系統
+
+OPENCLAW — AI AGENT OS
+
+### OpenClaw — AI Agent 的作業系統
+
+OpenClaw 是一個開源的 AI Agent 平台，讓你在本機運行 客製化自動化技能（Skills）。不需要每次都開瀏覽器、不需要手動操作，OpenClaw 能自動執行排程任務、資料分析、檔案處理、API 串接等工作。安裝後透過終端機呼叫，24小時不停機。
+
+客製化 Skills
+本機執行
+24h 不停機
+MCP 支援
+20+ 通訊平台
+
+適合： 想要本機 AI 自動化、重視資安的個人與企業。
+
+HERMES AGENT
+
+## Hermes Agent
+
+Nous Research 開源的自主學習型 AI 助理
+
+我們協助安裝在你的電腦上。Hermes Agent 支援跨對話持久記憶、自我學習與技能累積，可透過 Telegram／Discord 等平台使用。實際功能與串接範圍依方案確認。
+
+它是 Think BIG 提供安裝的產品之一；本站的「Think BIG AI 顧問」則負責回答服務與方案問題。
+
+[查看個人方案（含 Hermes）›](https://thinkbigtw.com/pricing/personal/#tier1)
+
+03 — ADVANCED REASONING
+
+## Claude Managed Agent
+
+Anthropic 官方 AI Agent 框架
+
+CLAUDE MANAGED AGENT — ANTHROPIC
+
+### Claude Managed Agent — Anthropic 官方 AI Agent 框架
+
+Claude Managed Agent 是 Anthropic 官方推出的 Agent 框架，讓 Claude 能夠自主規劃、執行多步驟任務。不只是問答，而是真正的「給任務、自動完成」。透過 Claude 的推理能力，Agent 能分析複雜情境、決定下一步行動、呼叫外部工具。
+
+Anthropic 官方
+多步驟推理
+外部工具呼叫
+MCP 原生支援
+
+適合： 需要高度推理能力、複雜決策自動化的進階用戶。
+
+MCP
+
+04 — THE PROTOCOL
+
+## 任何 AI Agent，都能透過 MCP 串進同一套工作流程
+
+Model Context Protocol — AI 工具的共同語言
+
+MCP 是連接 AI Agent 與工具、資料的開放協議。Anthropic 於 2024 年提出並開源，2025 年 12 月將其捐贈給 Linux Foundation 旗下的 Agentic AI Foundation（AAIF）；協議的技術方向與日常運作仍由 MCP 維護者自主決定。
+
+[2024 開源公告 ↗](https://www.anthropic.com/news/model-context-protocol)[AAIF 官方公告 ↗](https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/)
+
+支援 MCP 的 AI Agent，共用工具與資料
+
+- [OpenClaw MCP 工具串接](https://docs.openclaw.ai/tools/mcp)
+
+- [Hermes Agent MCP 工具串接](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
+
+- [Claude Claude Code](https://code.claude.com/docs/en/mcp)
+
+- [OpenAI Codex CLI／IDE](https://developers.openai.com/codex/mcp/)
+
+- [ChatGPT 開發者模式](https://developers.openai.com/api/docs/guides/developer-mode)
+
+- [Gemini CLI MCP 工具串接](https://geminicli.com/docs/tools/mcp-server/)
+
+- [Cursor MCP 工具串接](https://cursor.com/docs/context/mcp)
+
+- [GitHub Copilot Copilot Chat](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp)
+
+- ＋ 你的 Agent ＋ 支援 MCP 即可加入
+
+MCP 共同串接層
+
+### 工具與資料
+
+- LINE
+
+- Gmail
+
+- Google Drive
+
+- Notion
+
+- GitHub
+
+- Slack
+
+- 資料庫／CRM
+
+AI Agent 經 MCP 伺服器取用已授權的工具與資料。各產品須完成相容設定與個別授權；LINE 使用官方帳號 Messaging API。點選 AI Agent 可查看官方 MCP 文件。
+
+Agent 可替換
+
+用哪個 AI Agent 依需求選；支援 MCP，就能接入既有工作流程。
+
+工具串一次，所有 Agent 共用
+
+把工具接成 MCP 服務，完成相容設定與授權的 AI Agent 就能共用，減少重複串接。
+
+權限與稽核集中在 MCP 這層管
+
+在 MCP 串接層配置存取權限、操作紀錄與人工核准；這些治理能力需另外建置與設定。
+
+這不只是裝幾個工具，而是一套能持續加入新 Agent 的 AI 自動化基礎設施 。
+
+## 個人 AI 助理常見問題
+
+個人 AI 助理如何開始？
+
+先確認設備、帳號與工作需求，再依支援範圍選擇個人方案；價格與服務條件請見個人方案專區。
+
+地端部署代表資料不會離開電腦嗎？
+
+地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
+
+如何確認 AI Agent 的操作權限？
+
+依工作所需配置資料與工具權限；對外發送、花費與正式系統變更，由指定負責人核准。
+
+[查看個人方案與價格](https://thinkbigtw.com/pricing/personal/)
+
+---
+
+URL: https://thinkbigtw.com/tbos/en/
+
+# Think BIG — Your Own Personal AI Assistant, Installed Once
+
+Personal AI assistants
+
+# Your AI assistant.
+On your own computer.
+
+Start with installation, connect your work tools, or choose annual maintenance. Taiwan-based engineers serve customers worldwide.
+
+Explore personal plans [Enterprise enquiries](https://thinkbigtw.com/enterprise/)
+
+## From your needs to a working setup
+
+### Choose a scope
+
+Tell us about your device and the work you want help with. Entry installation includes the original OpenClaw or Hermes Agent setup, not a custom skill bundle.
+
+### Schedule installation
+
+After ordering, book a remote installation session using AnyDesk or DeskIn. You stay present while the engineer operates your computer and checks the setup.
+
+### Understand support
+
+Entry includes 7 days of technical consultation. The single and dual AI Agent plans include a 2-hour online technical walkthrough plus 7 days of technical consultation after installation. Annual plans include a year of maintenance.
+
+## Know what your setup connects to
+
+Local installation does not mean all data stays local. Cloud models and external services receive the requests needed for their features. You provide your own model API key and pay third-party usage charges separately.
+
+During installation, the engineer operates your computer and may see work data or sensitive information on screen. We use the minimum permissions needed for the agreed task. You can close unrelated windows, end the session and remove remote access afterwards. Later access requires separate authorisation.
+
+[Read our data and access commitments (Chinese) ›](https://thinkbigtw.com/trust/#remote-install)
+
+---
+
+URL: https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/
+
+# AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 011 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI DEPLOYMENT NOTES
+
+2026 年 10 月 27 日　星期二
+◆
+本地 AI 實測筆記
+◆
+第 011 期
+
+本地 AI · 上下文長度 · 記憶體管理
+
+## AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓
+
+Think BIG 自媒體部  |  2026 年 10 月 27 日
+
+本地 AI 越用越慢、整台電腦跟著卡，除了顯卡沒用上，另一個常見原因是上下文長度設得太大。打 ollama ps  看 PROCESSOR 和 CONTEXT 兩欄，就能知道模型實際用了多少上下文、有沒有被擠到 CPU。
+
+（本文以開源工具 Ollama 為例，因為它的官方文件把預設值和檢查方式寫得很清楚；其他本地執行工具原理相近，設定名稱不同。）
+
+這篇和本報第 2 期〈本地跑大模型，GPU 真的有在動嗎？〉是一組。第 2 期講「模型根本沒用到顯卡」；這篇講另一種情況：顯卡有在用，但上下文設太大，記憶體被吃光。兩個問題都從同一個指令開始查。
+
+## 一 現象：上下文長度也要佔記憶體
+
+上下文長度，白話說就是 AI 回答時一次能帶著的內容量，單位是 token。Ollama 官方文件的定義是：模型在記憶體中可以取用的最大 token 數。[2]
+
+這個數字不是免費的。官方文件寫明，把上下文長度設大，執行模型所需的記憶體也會增加，調大之前要先確認顯示記憶體（VRAM）夠用。[2] FAQ 也提到，同時處理多個請求時，所需記憶體會隨「並行請求數 × 上下文長度」放大；並行請求數的預設值是 1。[1]
+
+預設值要特別留意。 Ollama 的 FAQ 寫的是預設 4096 個 token。[1] 另一頁〈Context length〉則寫成依顯示記憶體分級：小於 24 GiB 為 4k，24 到 48 GiB 為 32k，48 GiB 以上為 256k。[2] 兩頁寫法不同，我們的做法是不靠記憶推斷，直接用 ollama ps  看 CONTEXT 欄，以機器實際配置的數字為準。[2]
+
+調整方式官方也寫得很清楚：要改整台服務的預設值，用環境變數 OLLAMA_CONTEXT_LENGTH ；只改單一模型或單次對話，在指令列用 /set parameter num_ctx ，或在 API 的 options 裡帶 num_ctx 。[1]
+
+## 二 各方評價：要大，還是要穩？
+
+主張開大的一方 ：Ollama 的〈Context length〉頁建議，網頁搜尋、AI Agent、程式工具這類需要大量上下文的任務，至少設到 64000 個 token；同一頁也說，為了最佳效能，可以用模型支援的最大上下文長度，並避免模型被卸載到 CPU。[2]
+
+提醒成本的一方 ：同樣是官方文件，FAQ 說明可以開 Flash Attention，在上下文變大時明顯降低記憶體用量；也可以把 K/V cache（存放上下文的暫存區）量化，q8_0  約用 f16  一半的記憶體，q4_0  約四分之一，但精度損失在上下文越大時可能越明顯，影響多少要看模型和任務。[1]
+
+兩邊其實不衝突。官方的前提一直是「機器放得下」：上下文可以開大，但要先算記憶體夠不夠，並確認模型沒有被擠到 CPU。[2]
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們部署本地 AI Agent 時的實作觀察，不是產業統計，也不代表任何特定案場。
+
+1. 「AI 越來越慢，是不是顯卡太舊？」是常見的問題，但常見的答案是設定。 我們常遇到的情況是：有人為了讓 AI「記得多一點」，把上下文一口氣拉到很高，結果記憶體放不下，模型部分跑到 CPU，回應時間明顯拉長。
+
+2. 統一記憶體的機器要更小心。 顯示晶片和系統共用同一塊記憶體的電腦，上下文吃掉的不只是「顯卡的份」。我們常見的症狀有三個：回應時間越拉越長、整台電腦操作變遲鈍、硬碟開始大量寫入交換空間（swap）。這時候慢的不只 AI，其他程式也一起被拖住。
+
+3. 先查需求，再定數字。 我們不在一開始就給一個固定數字。比較穩的順序是：先跑幾個真實工作，看每次實際送進去多少 token，再決定上下文要留多少餘裕。Ollama 的 API 回應會附 prompt_eval_count （這次輸入了多少 token），拿來當依據就夠了。[3]
+
+4. 交付前看 CONTEXT 和 PROCESSOR 兩欄。 ollama ps  的 PROCESSOR 欄會顯示 100% GPU、100% CPU，或兩者的比例；[1] CONTEXT 欄顯示實際配置的上下文長度。[2] 我們交付前會把這兩欄截圖留存。
+
+## 四 我們的建議：先做三步
+
+1. 先量，再設。 拿你最常做的三到五種工作（例如回客服信、摘要會議紀錄、查內部文件），各跑幾次，記下 prompt_eval_count 。[3] 最大值再加上回答需要的空間，就是你的起點。
+
+2. 改完馬上看 ollama ps 。 PROCESSOR 欄如果出現 CPU 比例，代表模型加上下文已經超過顯示記憶體能放的量。[1] 先把上下文調回來，或評估 Flash Attention、K/V cache 量化，量化後要用你的真實工作再驗一次品質。[1]
+
+3. 並行數和上下文一起看。 要讓多個人同時用，記憶體需求是兩者相乘。[1] 先決定同時要服務幾個請求，再回頭定上下文。
+
+一句話：上下文可以開大，前提是機器放得下。 放不下的時候，慢下來的會是整台電腦。
+
+◆ 編按 · Think BIG 的做法：讓設定值有根據
+
+## 先量、再設。設定值要能說出「為什麼是這個數字」。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們部署本地 AI Agent 時，上下文長度不是憑感覺填的：依真實工作量定值 ——用客戶自己的工作內容實測輸入量，再決定上下文與並行數；交付時留證據 ——ollama ps  的 PROCESSOR、CONTEXT 兩欄截圖，連同設定值一起交給負責人；改設定要重驗 ——調整上下文、量化或並行數之後，用同一組工作重跑一次，確認速度和回答品質都還在可接受範圍。
+
+我們的立場是：設定值要能說出「為什麼是這個數字」。本報第 13 期將延伸談模型選型，也以同一套邏輯為基礎。
+
+### 常見問題
+
+Q1：上下文長度是什麼？
+AI 回答時一次能帶著的內容量，以 token 計算。Ollama 官方定義為模型在記憶體中可以取用的最大 token 數。[2]
+Q2：Ollama 預設的上下文長度是多少？
+官方 FAQ 寫預設 4096 個 token；〈Context length〉頁則寫依顯示記憶體大小分為 4k、32k、256k 三種。[1][2] 兩頁寫法不同，請用 ollama ps  的 CONTEXT 欄確認你的機器實際配置。[2]
+Q3：怎麼調整上下文長度？
+整台服務的預設值用環境變數 OLLAMA_CONTEXT_LENGTH ；單一模型或單次請求用 num_ctx （指令列 /set parameter num_ctx ，或 API 的 options）。[1]
+Q4：上下文設大一定比較好嗎？
+Ollama 建議 AI Agent、程式工具這類任務至少 64000 個 token，但也說明上下文越大，需要的記憶體越多，要確認顯示記憶體夠用。[2] 我們的建議是先量實際需求，再決定數字。
+Q5：記憶體不夠，又需要較長的上下文，怎麼辦？
+Ollama 文件提到兩個方向：開啟 Flash Attention，以及把 K/V cache 量化（q8_0  約省一半、q4_0  約剩四分之一），但量化對品質的影響依模型與任務而定，需要自己實測。[1]
+Q6：這跟「GPU 沒在動」是同一個問題嗎？
+不完全一樣，但查法相同。本報第 2 期談的是模型沒用到顯卡；這篇談的是上下文太大、記憶體放不下。兩種情況都可以先從 ollama ps  的 PROCESSOR 欄看起。[1]
+
+參考來源
+    查核日期：2026-10-24。
+
+    [1] Ollama，〈FAQ〉（上下文長度設定、ollama ps  的 PROCESSOR 欄、OLLAMA_NUM_PARALLEL 、Flash Attention、K/V cache 量化），查閱日期 2026-10-24：[docs.ollama.com/faq](https://docs.ollama.com/faq)　·
+    [2] Ollama，〈Context length〉（定義、依顯示記憶體的預設值、Agent 任務建議值、ollama ps  的 CONTEXT 欄），查閱日期 2026-10-24：[docs.ollama.com/context-length](https://docs.ollama.com/context-length)　·
+    [3] Ollama，〈Usage〉（API 回應的 prompt_eval_count  等欄位），查閱日期 2026-10-24：[docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/
+
+# Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Deployment Notes · Issue 011
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI DEPLOYMENT NOTES
+
+October 27, 2026   Tuesday
+◆
+Local AI Deployment Notes
+◆
+Issue 011
+
+Local AI · Context Length · Memory Management
+
+## Give Your Local AI Too Much “Memory” and It Can Drag Down the Whole Machine — How to Size the Context Length
+
+Think BIG Content Team  |  October 27, 2026
+
+If a local AI keeps getting slower and the rest of the computer bogs down with it, an unused GPU is one suspect. An oversized context length is another. Run ollama ps  and check two columns, PROCESSOR and CONTEXT, to see how much context is actually allocated and whether the model has spilled onto the CPU.
+
+(We use the open-source tool Ollama as the example because its documentation spells out the defaults and the checks clearly. Other local runtimes work along similar lines under different setting names.)
+
+This piece pairs with our Issue 2, “Running a Model Locally: Is Your GPU Actually Doing Anything?” Issue 2 covered models that never touch the GPU. This one covers the other case: the GPU is in use, but the context is set so large that memory runs out. Both start with the same command.
+
+## One.  What’s Happening: Context Takes Memory Too
+
+Context length is how much material the model can carry while it answers, measured in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]
+
+It isn’t free. Ollama’s documentation states that a larger context length increases the memory needed to run a model, and that you should make sure you have enough VRAM before raising it.[2] The FAQ adds that when a model serves several requests at once, required memory scales with parallel requests multiplied by context length; the default for parallel requests is 1.[1]
+
+Watch the default.  Ollama’s FAQ says the default context window is 4,096 tokens.[1] The separate “Context length” page describes VRAM-based defaults instead: 4k below 24 GiB, 32k from 24 to 48 GiB, and 256k at 48 GiB or more.[2] Because the two pages differ, we don’t rely on either from memory. We read the CONTEXT column in ollama ps  and go by what the machine has actually allocated.[2]
+
+Changing it is documented too. To change the server-wide default, set the OLLAMA_CONTEXT_LENGTH  environment variable. To change it for one model or one session, use /set parameter num_ctx  in the CLI, or pass num_ctx  in the API options.[1]
+
+## Two.  Perspectives: Go Big, or Stay Stable?
+
+The case for larger contexts:  Ollama’s “Context length” page recommends at least 64,000 tokens for context-heavy tasks such as web search, agents, and coding tools. The same page says that for best performance you can use a model’s maximum context length while avoiding offloading the model to the CPU.[2]
+
+The case for counting the cost:  The FAQ explains that Flash Attention can significantly reduce memory use as context grows, and that the K/V cache (where context is held) can be quantized. q8_0  uses roughly half the memory of f16 , and q4_0  roughly a quarter, but precision loss may be more noticeable at larger context sizes, and the impact depends on the model and task.[1]
+
+These views don’t really conflict. The documentation’s assumption throughout is that the model fits: open the context up, but check the memory budget first and confirm nothing has been pushed to the CPU.[2]
+
+◆ First-Hand Notes
+
+## Three. What We’ve Learned in Practice
+
+These are observations from our own local AI agent deployments. They are not industry statistics and don’t describe any specific site.
+
+1. “It’s getting slower — is the GPU too old?” is a common question. The common answer is configuration.  A pattern we see often: someone raises the context sharply so the AI “remembers more,” memory can’t hold it, part of the model ends up on the CPU, and response times stretch out.
+
+2. Be extra careful on unified-memory machines.  When the graphics chip and the system share one pool of memory, context isn’t only eating “the GPU’s share.” The symptoms we commonly see: responses get progressively slower, the whole computer turns sluggish, and the disk starts writing heavily to swap. At that point it isn’t just the AI that’s slow; every other program is being held back too.
+
+3. Measure the need before picking a number.  We don’t start with a fixed figure. The steadier sequence is to run a few real tasks, see how many tokens each actually sends, and then decide how much headroom to leave. Ollama’s API responses include prompt_eval_count , the number of input tokens in that request, which is a good enough basis.[3]
+
+4. Check CONTEXT and PROCESSOR before handover.  In ollama ps , PROCESSOR shows 100% GPU, 100% CPU, or a split between them;[1] CONTEXT shows the allocated context length.[2] We screenshot both columns at handover.
+
+## Four.  Our Recommendations: Three Steps
+
+1. Measure, then set.  Take the three to five tasks you run most often (answering support emails, summarizing meeting notes, searching internal documents), run each a few times, and record prompt_eval_count .[3] Take the highest value, add room for the answer, and start there.
+
+2. Run ollama ps  right after any change.  If PROCESSOR shows any CPU share, the model plus its context no longer fits in VRAM.[1] Bring the context back down, or look at Flash Attention or K/V cache quantization. If you quantize, re-check quality on your real tasks.[1]
+
+3. Size parallelism and context together.  If several people will use it at once, memory needs multiply.[1] Decide how many concurrent requests you need first, then set the context.
+
+In short: a big context is fine if the machine can hold it.  If it can’t, the whole computer slows down with it.
+
+◆ Editor’s Note · How Think BIG Approaches This: Settings With a Reason Behind Them
+
+## Measure first, then set. Every setting should answer “why this number?”
+
+(The following is Think BIG’s own practice, kept separate from the reporting above.)
+
+When we deploy local AI agents, context length isn’t a guess: set from real workloads  — we measure input size on the client’s own tasks before fixing context length and parallelism; leave evidence at handover  — screenshots of the PROCESSOR and CONTEXT columns from ollama ps , handed to the owner with the settings; re-verify after changes  — after adjusting context, quantization, or parallelism, we rerun the same tasks to confirm speed and answer quality are still acceptable.
+
+Our position: every setting should come with an answer to “why this number?” Issue 13 extends this to model selection, using the same logic as a foundation.
+
+### Frequently Asked Questions
+
+Q1: What is context length?
+The amount of material the AI can carry while it answers, counted in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]
+Q2: What is Ollama’s default context length?
+The FAQ says 4,096 tokens; the “Context length” page describes VRAM-based defaults of 4k, 32k, or 256k.[1][2] Because they differ, check the CONTEXT column in ollama ps  for what your machine actually uses.[2]
+Q3: How do I change it?
+Use the OLLAMA_CONTEXT_LENGTH  environment variable for the server-wide default, and num_ctx  for a single model or request (/set parameter num_ctx  in the CLI, or the API options).[1]
+Q4: Is a bigger context always better?
+Ollama recommends at least 64,000 tokens for agents and coding tools, and also notes that larger contexts need more memory, so confirm you have enough VRAM.[2] Our advice is to measure your actual need first.
+Q5: What if memory is tight but I need a longer context?
+Ollama’s documentation points to Flash Attention and K/V cache quantization (q8_0  at roughly half, q4_0  at roughly a quarter of f16  memory). How much quantization affects quality depends on the model and task, so test it yourself.[1]
+Q6: Is this the same problem as “the GPU isn’t being used”?
+Not quite, but you check it the same way. Our Issue 2 covered a model not using the GPU; this article covers a context too large for memory. In both cases, start with the PROCESSOR column in ollama ps .[1]
+
+Sources
+    Fact-checked on October 24, 2026.
+
+    [1] Ollama, “FAQ” (context window settings, the PROCESSOR column in ollama ps , OLLAMA_NUM_PARALLEL , Flash Attention, K/V cache quantization); accessed October 24, 2026: [docs.ollama.com/faq](https://docs.ollama.com/faq)  ·
+    [2] Ollama, “Context length” (definition, VRAM-based defaults, recommendation for agent tasks, the CONTEXT column in ollama ps ); accessed October 24, 2026: [docs.ollama.com/context-length](https://docs.ollama.com/context-length)  ·
+    [3] Ollama, “Usage” (API response fields including prompt_eval_count ); accessed October 24, 2026: [docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)
+
+The first-hand lessons, recommendations, and editor’s note present Think BIG’s practical views and do not constitute industry statistics or evidence of customer outcomes.
+
+THINK BIG NEWS   ·  Local AI Deployment Notes
+    Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/news/ambient-vs-chat-ai-20261114/
+
+# Chat AI or an Ambient Agent? Define Triggers and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 020
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 14, 2026  ·  Saturday
+◆
+AI Deployment Field Notes
+◆
+Issue 020
+
+Ambient AI · Event Triggers · Human Review
+
+## Chat AI or an Ambient Agent? Define Triggers and Stop Conditions
+
+Think BIG Media  |  November 14, 2026
+
+Start with who triggers the work and where it waits for a person. Background operation needs a defined scope, approval gates, and a way to stop.
+
+## One.  What’s Happening: From Waiting for Prompts to Responding to Events
+
+In January 2025, LangChain published “Introducing ambient agents,” describing agents that respond to signals and seek human input when needed, alongside an email-assistant reference implementation.[1] This historical announcement introduces our discussion of interaction and governance; it is not a current product launch report.
+
+Here, “going to AI” means a person initiates a request. “AI coming to you” means an event or schedule starts work and produces a notification or review item. This is an explanatory distinction, not an industry-wide taxonomy. The original article says ambient agents need not be completely autonomous.[1] Background operation does not mean watching every screen or receiving all system permissions.
+
+Waiting for a person can be an explicit program state. LangGraph documents interrupts that pause execution, save state, and resume with external input.[2] OWASP LLM06:2025 recommends limiting tools, permissions, and autonomy, with human approval for high-impact actions.[4] Background execution and approval authority need separate designs.
+
+## Two.  Perspectives: Less Repetition, More Operational Responsibility
+
+The benefit:  The original article distinguishes notification, questions, and review.[1] In our assessment, a well-defined trigger can make preparing a review queue more suitable than repeatedly briefing a tool. Measure that on real work rather than assuming a quantified time saving.
+
+The caution:  Background work also involves scheduling and retries. Kubernetes says its CronJob controller may sometimes create duplicate jobs or miss a job, so jobs should be idempotent: repeating them should not add unintended effects.[3] This is that scheduler’s documented behavior, not a defect attributed to every AI platform.
+
+We recommend turning this into acceptance questions: What happens when an event arrives twice? Is waiting-for-approval state visible? With no reply, does the job keep waiting, expire, or escalate? Decide these conditions before deployment.
+
+Define when a person needs an interruption: missing information, pending approval, or repeated failure. Group related items and identify an owner and deadline where relevant. Repeated reminders need a stop or escalation rule. This is an interaction recommendation, not a measured outcome.
+
+If a task lacks a clear event and completion condition, use conversation to clarify the workflow first. Once a person can describe its start, inputs, and outputs, move a bounded portion into the background. Not every task needs a schedule.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from operating persistent AI agents. They are not industry statistics or an account of any particular organization.
+
+1. Model calls continue without a conversation.  Heartbeat checks and automatic memory organization can consume usage allowances or compute unnoticed. We inventory schedules, disable unnecessary jobs, and set limits.
+
+2. Long conversations create maintenance work.  Old context needs summarization as conversations grow. Local summarization can take minutes and time out, blocking a conversation. We summarize earlier, set timeouts, and separate channels.
+
+3. A healthy service may have just restarted.  A laptop host once lost power overnight after its battery drained, leaving morning jobs unexecuted. The service later appeared healthy because it had just restarted. We check uptime and power alongside service status, and added low-battery alerts.
+
+4. Important memory must be inspectable.  We keep important items in memory files that can be viewed, edited, and deleted. Persistent state should remain understandable to its owner.
+
+## Four.  Our Recommendations: Pilot One Task with a Clear Endpoint
+
+1. Specify triggers.  Define the event or schedule, input data, output, and completion condition. When no work remains, execution should end rather than continually asking a model to find another task.
+
+2. Separate notification from action.  Begin with summaries, drafts, or review queues. Require designated approval for external sending or production changes, showing target and content beforehand.[4] Waiting for approval should be a workflow state.[2]
+
+3. Test duplicates, missed work, and recovery.  Use synthetic events to check duplicate handling and restart behavior.[3] Track last success and outstanding work, beyond process existence.
+
+4. Set usage and stop conditions.  Specify call, duration, and retry limits, with an alert recipient. Test manual shutdown and confirm unfinished work and pending approvals remain readable.
+
+Give background work a beginning, endpoint, and owner before expanding autonomy.
+
+◆ Editor’s Note · How Think BIG Approaches This: Background Work That Can Be Handed Over
+
+## Deliver triggers, state records, approvals, and shutdown instructions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend a visible inventory of schedules, recent actions, and outstanding approvals. New jobs should bring an explicit data scope, resource limits, and shutdown method.
+
+Whether an agent stays active and which actions it may perform are separate questions that both need answers.
+
+### Frequently Asked Questions
+
+Q1: Must ambient agents be fully autonomous?
+No. The original article includes notification, questions, and review.[1]
+Q2: Is adding a schedule enough?
+Test state, retries, duplicate handling, approvals, and shutdown separately.[2][3]
+Q3: Can model usage continue without a user prompt?
+In our operations records, heartbeat and memory jobs continue calling models, so we inventory them and set limits.
+Q4: Should an ambient agent send messages by itself?
+Separate capability from authorization. We recommend a preview and designated approval for outbound sending, applying high-impact-action guidance.[4]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] LangChain, “Introducing ambient agents,” January 14, 2025, accessed 2026-10-26: [blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/) ·
+    [2] LangChain, “Interrupts”, accessed 2026-10-26: [docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts) ·
+    [3] Kubernetes, “CronJob”, accessed 2026-10-26: [kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) ·
+    [4] OWASP, “LLM06:2025 Excessive Agency”, accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/library/news/ambient-vs-chat-ai-20261114/
+
+# 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 020 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 14 日　星期六
+◆
+AI 導入實測手記
+◆
+第 020 期
+
+常駐型 AI · 事件觸發 · 人工確認
+
+## 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止
+
+Think BIG 自媒體部  |  2026 年 11 月 14 日
+
+差別先看誰啟動工作，以及執行到哪裡要等人。常駐是一種運作安排，不代表應該持續觀察所有資料或自行完成所有動作。
+
+## 一 現象：從等人提問，走向事件來了就啟動
+
+LangChain 在 2025 年 1 月發表〈Introducing ambient agents〉，描述一種回應事件訊號、需要時才找人介入的設計，也公布電子郵件助理參考實作。[1] 這是本期的原始公告引子；本文談互動方式與管理條件，不把當年的產品發布寫成今日新消息。
+
+我們把「你去找 AI」理解為人發起一次請求；把「AI 來找你」理解為事件或排程先啟動工作，再提出通知或待核准事項。這是本文的說明方式，並非產業統一分類。原始文章也說，ambient agents 不必完全自主。[1] 常駐不等於時時讀取每個畫面，更不等於拿到所有系統權限。
+
+要停下等人，可以做成程式狀態。LangGraph 的官方文件說明，interrupt 可暫停執行，保存狀態並等外部輸入後恢復。[2] OWASP LLM06:2025 則建議限制工具、權限與自主程度，對高影響動作保留人工核准。[4] 因此，能在背景做事與能自行核准事情，要分開設計。
+
+## 二 各方評價：少一點重複提問，也多一份維運責任
+
+支持背景工作的思路： 原始文章區分通知、提問與審閱三種人機互動。[1] 我們的判讀是，若工作有清楚觸發點，先整理待辦再請人判斷，可能比每天重新交代一次更合適；但要用實際工作觀察，而非直接宣稱節省多少時間。
+
+保留的思路： 背景程序還有排程與重試問題。Kubernetes 官方 CronJob 文件提醒，在某些情況可能建立重複工作，或沒有建立工作，因此工作應具備重複執行不造成額外效果的設計。[3] 這是該排程系統的技術限制，不是所有 AI 平台的共同缺陷。
+
+我們建議把這個提醒轉成驗收題：同一事件來兩次，會不會重複通知或寫入？等人核准時，狀態是否清楚？沒人回答時，是持續等待、逾期關閉，還是升級通知？這些選項需要事先決定，不能用「AI 自己會處理」帶過。
+
+我們建議先列出「需要打擾人的條件」，例如資料缺漏、等待核准或連續失敗，再討論通知頻率。把可合併的事項整理成一則待辦，並標明誰要處理、是否有期限；對同一件事反覆提醒，也應有停止或轉交規則。這是互動設計建議，不是已量測的使用成效。
+
+若原本工作沒有明確事件與完成條件，我們建議先用對話工具整理流程。能由人清楚說出起點、輸入與輸出後，再挑一小段改成背景工作；不必為了使用常駐功能，硬把每項工作都排成自動任務。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們維運常駐 AI Agent 的觀察，不是產業統計，也不描述特定對象。
+
+1. 沒人聊天，也可能持續呼叫模型。 我們發現心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。因此會逐項列出自動排程，關閉不需要的項目並設上限。
+
+2. 對話累積後，也有整理工作。 常駐對話超出上下文時要壓縮舊內容；本地模型做摘要可能要好幾分鐘，逾時會讓對話卡住。我們會提早壓縮、設逾時，並把不同通道的對話分開。
+
+3. 服務顯示健康，還要看開機時間。 我們遇過筆電主機整夜沒接電，耗盡電池關機，隔天排程沒跑。遠端看到服務健康，其實只是剛重啟。因此診斷時會一起看開機時間與電源狀態，後來也加上低電量提醒。
+
+4. 重要記憶要可以檢查。 我們把重要事項寫入可檢查的記憶檔，要求能看、能改、能刪。背景工作需要保存狀態，但不應讓狀態變成負責人無法理解的黑盒子。
+
+## 四 我們的建議：先試一個有清楚終點的工作
+
+1. 寫觸發條件。 明定哪個事件或排程會啟動、讀哪些資料、產生什麼輸出，以及怎樣算完成。沒有新的工作時，應能結束，不必每次都讓模型自由找下一件事。
+
+2. 分開通知與執行。 我們建議先從摘要、草稿或待辦試行；對外送出與正式資料變更交指定人核准，並在操作前顯示目標與內容。[4] 等待核准應是流程狀態，不只是聊天裡的一句提醒。[2]
+
+3. 測重複、漏跑與恢復。 用測試事件驗證同一事件重送不會重複處理，並檢查重開機後如何接續。[3] 紀錄最後成功時間與下一個待辦，不能只監控程序是否存在。
+
+4. 設用量與停止條件。 列出呼叫次數、執行時間及重試上限，指定告警接收人。測一次手動停止，確認未完成工作與待核准事項會留下可讀狀態。
+
+一句話：先讓背景工作有起點、終點與負責人，再增加自主程度。
+
+◆ 編按 · Think BIG 的做法：常駐也要可交接
+
+## 觸發表、狀態紀錄、核准與停止方式一起交付。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張把背景工作列成清單，讓負責人看得到有哪些排程、最近做了什麼、接下來在等誰。新增任務時，也同步確認資料範圍、資源上限與停止方式。
+
+延伸閱讀[MCP 權限邊界](https://thinkbigtw.com/library/news/mcp-ai-agent-permissions-20261102/)。是否常駐與能做哪些動作，是兩個都需要回答的問題。
+
+### 常見問題
+
+Q1：常駐型 AI 需要完全自主嗎？
+不需要。原始 ambient agents 文章就保留通知、提問與審閱的人機互動。[1]
+Q2：加一個排程就算導入完成嗎？
+我們建議另驗證狀態、重試、重複處理、人工核准及停止；排程本身不處理所有責任。[2][3]
+Q3：沒有人問，也會用到模型嗎？
+我們的維運紀錄中，心跳與記憶整理等自動排程會持續呼叫模型，因此需要盤點與上限。
+Q4：常駐系統可以自行寄信嗎？
+技術能力與授權要分開。我們建議對外寄送先預覽、再由指定人核准，符合高影響動作的人工作業方向。[4]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] LangChain，〈Introducing ambient agents〉，2025-01-14，查閱日期 2026-10-26：[blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/)　·
+    [2] LangChain，〈Interrupts〉，查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts)　·
+    [3] Kubernetes，〈CronJob〉，查閱日期 2026-10-26：[kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)　·
+    [4] OWASP，〈LLM06:2025 Excessive Agency〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
