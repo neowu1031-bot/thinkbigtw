@@ -53,6 +53,8 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 
 ## 問答圖書館（企業 AI）
 - [Library｜報導・問答圖書館](https://thinkbigtw.com/library/)：Think BIG NEWS 產業報導與問答圖書館（Q&A Library），AI 導入相關正確答案的整理集
+- [熊好學｜BearSay Mandarin 問答總覽](https://thinkbigtw.com/library/qa/bearsay/)：台灣華語、注音、繁體字的學習問答與品牌資料（中文）
+- [BearSay Mandarin Q&A Overview (English)](https://thinkbigtw.com/en/qa/bearsay/)：Taiwan Mandarin, zhuyin and Traditional characters
 - [員工把公司資料貼進 ChatGPT，會有什麼風險？公司該怎麼管？](https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/)
 - [公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？](https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/)
 - [用 AI 查公司文件，雲端版跟地端版的資料各會送到哪裡？](https://thinkbigtw.com/library/qa/rag-data-flow-cloud-vs-local/)
