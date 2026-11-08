@@ -203,12 +203,12 @@
 <section class="fx-sec" id="register"><div class="fx">
 <h2><span class="n">03</span>Register</h2>
 <p>Leave your name and email; briefing notices will be sent to this address.</p>
-<form class="fx-form" id="bf-form" novalidate>
+<form class="fx-form" id="bf-form" method="post" action="#" novalidate>
 <div class="fx-field"><label for="bf-name">Name <small>(required)</small></label><input id="bf-name" name="name" maxlength="80" autocomplete="name" required></div>
 <div class="fx-field"><label for="bf-email">Email <small>(required)</small></label><input id="bf-email" name="email" type="email" maxlength="254" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
 <div class="fx-field"><label for="bf-org">Company / industry <small>(optional)</small></label><input id="bf-org" name="organization" maxlength="120" autocomplete="organization"></div>
 <div class="fx-field"><label for="bf-problem">What would you like to solve? <small>(optional)</small></label><textarea id="bf-problem" name="problem" maxlength="600"></textarea></div>
-<label class="fx-consent"><input type="checkbox" id="bf-consent" name="consent" required><span>I agree that Think BIG (大想成業有限公司) may keep the information above under its <a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">privacy policy</a> and send me notices about this briefing by email.</span></label>
+<label class="fx-consent"><input type="checkbox" id="bf-consent" name="consent" required><span>I agree that Think BIG (大想成業有限公司) may keep the information above under its <a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener">privacy policy (Chinese)</a> and send me notices about this briefing by email.</span></label>
 <button class="fx-btn fx-btn-primary" id="bf-submit" type="submit">Register</button>
 <p class="fx-status" id="bf-status" role="status" aria-live="polite"></p>
 </form>
@@ -250,6 +250,7 @@
     if (started) return; started = true;
     try { if (typeof gtag === 'function') gtag('event', 'form_start', { form_id: 'briefing_1122' }); } catch (_) {}
   });
+  function tbUid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(_){}return 'f-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12);}
   function say(msg, cls){ status.textContent = msg; status.className = 'fx-status' + (cls ? ' ' + cls : ''); }
   form.addEventListener('submit', async function(e){
     e.preventDefault();
@@ -263,7 +264,7 @@
     var src = new URLSearchParams(location.search).get('utm_source') || new URLSearchParams(location.search).get('src') || '';
     var need = T.needPrefix + (problem ? '\n' + T.needProblem + problem : '') + '\nsource=briefing-1122' + (src ? '\nutm/src=' + src : '');
     var payload = {
-      id: crypto.randomUUID(), consent: true,
+      id: tbUid(), consent: true,
       name: name.slice(0, 80), organization: org.slice(0, 120),
       need: need.slice(0, 1200), scale: 'source=briefing-1122',
       contactMethod: 'email', contact: email

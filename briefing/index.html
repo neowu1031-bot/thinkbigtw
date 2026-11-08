@@ -211,7 +211,7 @@
 <section class="fx-sec" id="register"><div class="fx">
 <h2><span class="n">04</span>報名</h2>
 <p>留下稱呼與 Email，說明會相關通知會寄到這個信箱。</p>
-<form class="fx-form" id="bf-form" novalidate>
+<form class="fx-form" id="bf-form" method="post" action="#" novalidate>
 <div class="fx-field"><label for="bf-name">稱呼 <small>（必填）</small></label><input id="bf-name" name="name" maxlength="80" autocomplete="name" placeholder="例如：王先生" required></div>
 <div class="fx-field"><label for="bf-email">Email <small>（必填）</small></label><input id="bf-email" name="email" type="email" maxlength="254" autocomplete="email" inputmode="email" placeholder="you@example.com" required></div>
 <div class="fx-field"><label for="bf-org">公司／產業 <small>（選填）</small></label><input id="bf-org" name="organization" maxlength="120" autocomplete="organization" placeholder="例如：餐飲業、20 人"></div>
@@ -259,6 +259,7 @@
     if (started) return; started = true;
     try { if (typeof gtag === 'function') gtag('event', 'form_start', { form_id: 'briefing_1122' }); } catch (_) {}
   });
+  function tbUid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(_){}return 'f-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12);}
   function say(msg, cls){ status.textContent = msg; status.className = 'fx-status' + (cls ? ' ' + cls : ''); }
   form.addEventListener('submit', async function(e){
     e.preventDefault();
@@ -272,7 +273,7 @@
     var src = new URLSearchParams(location.search).get('utm_source') || new URLSearchParams(location.search).get('src') || '';
     var need = T.needPrefix + (problem ? '\n' + T.needProblem + problem : '') + '\nsource=briefing-1122' + (src ? '\nutm/src=' + src : '');
     var payload = {
-      id: crypto.randomUUID(), consent: true,
+      id: tbUid(), consent: true,
       name: name.slice(0, 80), organization: org.slice(0, 120),
       need: need.slice(0, 1200), scale: 'source=briefing-1122',
       contactMethod: 'email', contact: email

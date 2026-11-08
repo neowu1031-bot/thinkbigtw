@@ -250,7 +250,7 @@
 <p class="eyebrow">QUICK REQUEST / 只留聯絡方式</p>
 <h2>先留一句需求，我們回覆評估方向</h2>
 <p class="intro">只要 3 欄。想要更完整的建議，再往下填 12 題問卷。資料不送入 AI，由真人處理。</p>
-<form id="quick-form" novalidate>
+<form id="quick-form" method="post" action="#" novalidate>
 <div class="field">
 <label for="qf-name">稱呼 <span style="color:var(--rose)">*</span></label>
 <input type="text" id="qf-name" name="name" maxlength="80" placeholder="例如：王小姐" autocomplete="name" required/>
@@ -298,7 +298,7 @@
 <!-- bars injected by JS -->
 </div>
 
-<form id="quiz-form" novalidate>
+<form id="quiz-form" method="post" action="#" novalidate>
 <div class="quiz-group">
 
 <!-- Q1 用途 -->
@@ -592,6 +592,7 @@
 <script>
 (function(){
 'use strict';
+function tbUid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(_){}return 'f-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12);}
 
 // ── URL source parameter ──────────────────────────────────────────────
 const urlSrc = new URLSearchParams(location.search).get('src') || '';
@@ -947,7 +948,7 @@ document.getElementById('cf-submit').addEventListener('click', async function(){
   const needText = (window._quizAnswers || '（問卷未完成）') + (urlSrc ? '\n來源標記：' + urlSrc : '');
 
   const payload = {
-    id: crypto.randomUUID(),
+    id: tbUid(),
     consent: true,
     name: nameEl.value.trim(),
     organization: orgEl.value.trim(),
@@ -1007,6 +1008,7 @@ checkSubmitEligible();
     if(/^[a-zA-Z0-9._-]{2,64}$/.test(id)) return {method:'line',contact:id.toLowerCase()};
     return null;
   }
+  function tbUid(){try{if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();}catch(_){}return 'f-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12);}
   form.addEventListener('submit',async function(e){
     e.preventDefault();
     var name=form.elements.name.value.trim(), raw=form.elements.contact.value.trim(), need=form.elements.need.value.trim();
@@ -1015,7 +1017,7 @@ checkSubmitEligible();
     if(!c||(c.method==='email'&&!/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(c.contact))){ say('聯絡方式請填 Email、手機號碼或 LINE ID 其中一種。','error'); return; }
     if(!document.getElementById('qf-consent').checked){ say('請勾選個資同意後再送出。','error'); return; }
     var src=new URLSearchParams(location.search).get('src')||'';
-    var payload={id:crypto.randomUUID(),consent:true,name:name,organization:'',
+    var payload={id:tbUid(),consent:true,name:name,organization:'',
       need:(need+'\nsource=quick-form'+(src?'\n來源標記：'+src:'')).slice(0,1200),
       scale:'source=quick-form',contactMethod:c.method,contact:c.contact};
     btn.disabled=true; say('送出中…','');
