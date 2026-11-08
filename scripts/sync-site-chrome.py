@@ -24,6 +24,8 @@ ZH_BACK={
  'en/news/local-llm-gpu-check-20261005/':'/library/news/local-llm-gpu-check-20261005/',
  'en/news/':'/library/news/',
  'en/services/seo-geo/':'/services/ai-visibility/',
+ 'en/services/ai-agent-setup/':'/services/ai-agent-setup/',
+ 'en/briefing/':'/briefing/',
  'en/':'/','portfolio/en/':'/portfolio/',
 }
 def get_zh_dest(rel):

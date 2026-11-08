@@ -190,6 +190,13 @@
   .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-soft)}
   .colophon b{font-family:var(--serif);color:var(--ink);letter-spacing:.06em}
   .colophon .sig{display:block;margin-top:8px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.06em;font-size:13px}
+  .check-cta{margin:30px 0 0;padding:20px 22px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;background:var(--card)}
+  .check-cta .lede{margin-bottom:6px}
+  .check-cta h2{font-family:var(--serif);font-weight:900;font-size:19px;line-height:1.45;margin:0 0 8px}
+  .check-cta p{font-size:15px;margin:0 0 14px;color:var(--ink-soft)}
+  .check-cta a.btn{display:inline-flex;align-items:center;min-height:44px;padding:10px 18px;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;font-size:15px;text-decoration:none}
+  .check-cta .more{display:block;margin-top:10px;font-size:13.5px}
+  .check-cta .more a{color:var(--accent)}
   a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
 <link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
@@ -295,6 +302,14 @@
   <section class="faq" aria-label="常見問題">
     <h2>常見問題</h2>
     <dl><dt>Q1：跑本地大模型，CPU 重要還是顯示卡重要？</dt><dd>先看顯示卡的記憶體。模型能整個放進顯示記憶體時由 GPU 計算，放不下的部分會分到 CPU，速度明顯變慢。用 Ollama 的話，`ollama ps` 的 PROCESSOR 欄可以看到分配比例。</dd><dt>Q2：16GB 顯示記憶體可以跑什麼模型？</dt><dd>以 Ollama 官方模型庫的大小來看，8B 級（約 5.2GB）和 14B 級（約 9.3GB）都放得進去；OpenAI 官方也寫明 gpt-oss-20b 可在 16GB 記憶體內執行。實際還要留空間給上下文。</dd><dt>Q3：公司很多人同時用，要多大的記憶體？</dt><dd>要另外算。Ollama 官方 FAQ 寫明，所需記憶體會隨同時請求數乘上上下文長度增加；記憶體不夠時，新的請求會排隊等待。</dd><dt>Q4：本地模型的電腦可以直接開放到網路上嗎？</dt><dd>不建議。Ollama 預設只綁定本機 127.0.0.1；需要讓公司內其他設備使用時，用防火牆只開放給指定設備，不要直接開放到網際網路。</dd></dl>
+  </section>
+
+  <section class="check-cta" aria-label="免費設備檢查" data-cta="qa_hw_check">
+    <span class="lede">免費設備檢查</span>
+    <h2>不確定你的電腦能不能跑？</h2>
+    <p>用 LINE 傳顯示卡型號與記憶體容量，工程師幫你看能跑哪種大小的模型，不夠時也會說明雲端輔助版的做法。</p>
+    <a class="btn" href="https://lin.ee/n5KW430" target="_blank" rel="noopener noreferrer">LINE 傳規格，免費檢查 →</a>
+    <span class="more">想先了解安裝怎麼進行、費用怎麼組成：<a href="/services/ai-agent-setup/">AI Agent 搭建服務</a></span>
   </section>
 
   <nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul><li><a href="/library/qa/is-local-llm-good-enough/">本地模型夠不夠聰明？</a></li><li><a href="/library/qa/offline-local-llm-updates/">本地模型斷網可以用嗎？</a></li></ul></nav>
