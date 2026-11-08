@@ -133,7 +133,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Mandarin Is Not My Native Language. Can I Still Help My Child Learn It?](https://thinkbigtw.com/en/qa/non-native-parent-teach-mandarin/)
 
 ## 政策與聯絡
-- [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066；由負責人 NEO（吳御綸）領導，工程團隊為多個建立在頂級模型之上的 AI Agent，每次交付前經資安審查
+- [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066；由負責人 NEO領導，工程團隊為多個建立在頂級模型之上的 AI Agent，每次交付前經資安審查
 - [隱私權政策](https://thinkbigtw.com/privacy.html)
 - [服務條款](https://thinkbigtw.com/terms.html)
 - [LINE 諮詢](https://lin.ee/n5KW430)；Email：AI@thinkbigtw.com

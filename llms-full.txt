@@ -16,7 +16,7 @@ Think BIG 的公司全名為大想成業有限公司，統一編號 62136066，�
 
 ## 負責人與團隊
 
-Think BIG 由負責人 NEO（吳御綸）領導。我們的工程團隊由多個建立在頂級模型之上的 AI Agent 組成，每一項交付在上線前都會經過資安審查。
+Think BIG 由負責人 NEO領導。我們的工程團隊由多個建立在頂級模型之上的 AI Agent 組成，每一項交付在上線前都會經過資安審查。
 
 AI Agent 負責建置、測試與維運的執行工作；範圍、核准與責任由人負責。
 
@@ -54,7 +54,7 @@ Think BIG (Think BIG Make it Real Co., Ltd.) is a Taiwan-based enterprise AI age
 
 ## Leadership and team
 
-Think BIG is led by NEO (Wu Yu-Lun), the company's founder. Our engineering team is a group of AI agents built on frontier models, and every delivery goes through a security review before it goes live.
+Think BIG is led by NEO, the company's founder. Our engineering team is a group of AI agents built on frontier models, and every delivery goes through a security review before it goes live.
 
 The agents carry out building, testing and operations; scope, approvals and accountability stay with people.
 
