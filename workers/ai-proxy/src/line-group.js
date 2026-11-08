@@ -18,7 +18,7 @@ import { writeInquiry } from './thinkbig.js';
 const LINE_API = 'https://api.line.me/v2/bot';
 export const GROUP_SOURCE = 'line-group-accountant';
 export const GROUP_DISCLOSURE =
-  '大家好，我是 Think BIG 的 AI 助理，代表公司處理行政與帳務的聯繫協調。這個群組裡的訊息會轉給公司的 AI 總經理處理；如需真人，請直接告知，我們會安排專人回覆。';
+  '大家好，我是 Think BIG 的 AI 助理，代表公司處理行政與帳務的聯繫協調。這個群組裡的訊息會轉給公司的 AI 總經理處理；如需真人，請直接告知，我們會安排專人回覆。請勿在群組傳送身分證或銀行帳號全碼。';
 export const DEFAULT_MONTHLY_CAP = 60;   // 以「則數單位」計，可由 GROUP_PUSH_MONTHLY_CAP 覆寫
 export const MAX_PUSH_TEXT = 500;
 const SIG_WINDOW_MS = 5 * 60 * 1000;
@@ -119,6 +119,7 @@ export async function handleGroupEvent(event, token, kv, env, ctx) {
     if (env.LINE_GROUP_LEAVE_UNKNOWN === '1' && parseAllowlist(env).size > 0) await leaveSource(token, source);
     return; // 非白名單：不回、不存
   }
+  if (!(await groupRateOk(kv, gid, ms, env))) return; // M6：每群每分鐘上限，超過直接丟（軟上限）
   const m = event.message || {};
   const text = m.type === 'text' ? m.text : `（${NON_TEXT_LABEL[m.type] || m.type || '其他'}訊息，未轉存內容）`;
   const name = await getMemberName(token, source, source.userId);
@@ -127,6 +128,16 @@ export async function handleGroupEvent(event, token, kv, env, ctx) {
   await sendDisclosureOnce(token, kv, gid, replyToken);
 }
 
+export const GROUP_RATE_PER_MIN = 20;
+/** 每群每分鐘最多入列 N 則（KV 計數，軟上限）。超過的訊息丟棄並只留一行 log。 */
+export async function groupRateOk(kv, gid, ms, env = {}) {
+  const lim = parseInt(env.LINE_GROUP_RATE_PER_MIN || String(GROUP_RATE_PER_MIN), 10) || GROUP_RATE_PER_MIN;
+  const key = 'grprate:' + (await sha256Hex(gid)).slice(0, 16) + ':' + Math.floor(ms / 60000);
+  const n = parseInt((await kv.get(key)) || '0', 10);
+  if (n >= lim) { if (n === lim) console.error(JSON.stringify({ event: 'line_group_rate_limited' })); await kv.put(key, String(n + 1), { expirationTtl: 120 }); return false; }
+  await kv.put(key, String(n + 1), { expirationTtl: 120 });
+  return true;
+}
 async function disclosed(kv, gid) { return !!(await kv.get('grpdisc:' + await sha256Hex(gid))); }
 async function markDisclosed(kv, gid) { await kv.put('grpdisc:' + await sha256Hex(gid), '1'); }
 async function sendDisclosureOnce(token, kv, gid, replyToken) {

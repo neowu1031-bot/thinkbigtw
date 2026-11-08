@@ -174,3 +174,10 @@ test('push: LINE failure -> 502', async () => {
   mockFetch({ pushStatus: 500 });
   assert.equal((await pushReq(mkEnv({ LINE_GROUP_ALLOWLIST: GID }), good())).status, 502);
 });
+
+test('M6: per-group per-minute rate limit drops excess rows', async () => {
+  const calls = mockFetch(); const env = mkEnv({ LINE_GROUP_ALLOWLIST: GID, LINE_GROUP_RATE_PER_MIN: '3' });
+  const now = Date.now();
+  for (let i = 0; i < 6; i++) await post(env, [grpMsg(GID, 'm' + i, { timestamp: now })]);
+  assert.equal(rpc(calls).length, 3);
+});
