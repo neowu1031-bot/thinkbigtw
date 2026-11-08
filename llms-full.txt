@@ -4267,6 +4267,126 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+台灣華語學習 BS10
+
+## [我的華語不是母語，能陪孩子學華語嗎？](https://thinkbigtw.com/library/qa/non-native-parent-teach-mandarin/)
+
+可以。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/non-native-parent-teach-mandarin/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS09
+
+## [幫孩子選語言學習 App，下載前要檢查哪 5 件事？](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)
+
+替孩子選語言學習 App，下載前先檢查 5 件事：它蒐集孩子的哪些資料、是否需要家長同意、資料會交給誰、保存多久，以及怎麼申請刪除。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS08
+
+## [家裡華語、台語、英語混著講，孩子會搞混嗎？](https://thinkbigtw.com/library/qa/mixing-languages-at-home/)
+
+目前沒有一致的研究結論說「家裡混著講，孩子一定會搞混」。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/mixing-languages-at-home/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS07
+
+## [海外的孩子在家學華語，有哪些官方資源？](https://thinkbigtw.com/library/qa/overseas-kids-learn-mandarin-resources/)
+
+海外的孩子在家學華語，可以先看僑務委員會（中華民國臺灣）的「全球華文網」。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/overseas-kids-learn-mandarin-resources/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS06
+
+## [孩子學華語，先學注音還是拼音？](https://thinkbigtw.com/library/qa/zhuyin-or-pinyin-for-kids/)
+
+看孩子在哪裡學華語。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/zhuyin-or-pinyin-for-kids/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS05
+
+## [孩子同時學兩種語言，會不會講話比較慢？](https://thinkbigtw.com/library/qa/bilingual-children-language-delay/)
+
+同時學兩種語言，在單一語言上起步可能看起來比較慢，但不代表整體語言發展落後。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/bilingual-children-language-delay/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS04
+
+## [看影片學華語有沒有用？研究怎麼說，家長怎麼搭配](https://thinkbigtw.com/library/qa/learn-language-from-video/)
+
+看影片可以學到東西，但效果取決於孩子的年齡和有沒有真人互動。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/learn-language-from-video/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS03
+
+## [在家怎麼陪孩子練口說？「對話來回」比「多說幾句」重要](https://thinkbigtw.com/library/qa/practice-speaking-at-home/)
+
+在家練口說，重點是讓孩子「有來有往」地說，而不是單向地灌輸更多句子。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/practice-speaking-at-home/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS02
+
+## [孩子學華語每天要練多久？一次學很久，還是每天學一點](https://thinkbigtw.com/library/qa/daily-practice-spaced-review/)
+
+目前沒有可靠的研究規定「孩子每天華語該練幾分鐘」，所以不必追求固定的長度。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/daily-practice-spaced-review/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
+台灣華語學習 BS01
+
+## [孩子幾歲開始學第二語言最好？研究怎麼說](https://thinkbigtw.com/library/qa/when-to-start-second-language/)
+
+沒有一個「超過幾歲就來不及」的單一答案。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/when-to-start-second-language/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-09
+
 本地大模型 TB26
 
 ## [地端、私有雲、公有雲差在哪？怎麼確認 AI 的資料流向？](https://thinkbigtw.com/library/qa/on-prem-private-public-cloud/)
@@ -4933,6 +5053,174 @@ Think BIG 　·　大想成業有限公司　·　[Library 首頁](https://think
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/bearsay/
+
+# BearSay Mandarin Q&A Overview: Taiwan Mandarin, Zhuyin, Traditional Characters | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+Q & A Library · Learning Taiwan Mandarin [中文](https://thinkbigtw.com/library/qa/bearsay/)
+
+# BearSay Mandarin (熊好學): Q&A Overview
+
+Short answer
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram (@bearsaymandarin), written in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters. The app is being prepared for release.
+
+## Brand facts
+
+Name BearSay Mandarin (Chinese name: 熊好學)
+
+What it teaches Everyday Taiwan Mandarin vocabulary
+
+Script and phonetics Traditional characters, with zhuyin (bopomofo) and pinyin
+
+Format One word a day as a short video and carousel post, with multilingual subtitles
+
+Characters BUBU, MIBO, HUBO, GUIBO and LANBO
+
+Where it is today Instagram @bearsaymandarin; the app is being prepared for release
+
+## Published Q&A
+
+- [What Age Is Best to Start a Second Language? What the Research Says](https://thinkbigtw.com/en/qa/when-to-start-second-language/)
+
+There is no single age after which it is too late.
+
+- [How Long Should a Child Practice Mandarin Each Day? One Long Session or a Little Every Day](https://thinkbigtw.com/en/qa/daily-practice-spaced-review/)
+
+No reliable study sets a number of minutes per day that a child should practice Mandarin, so there is no fixed length to aim for.
+
+- [How Can I Help My Child Practice Speaking at Home? Back-and-Forth Talk Matters More Than Saying More](https://thinkbigtw.com/en/qa/practice-speaking-at-home/)
+
+Practising speaking at home works best as back-and-forth talk, not as a one-way flow of more sentences.
+
+- [Can Children Learn Mandarin from Videos? What the Research Says and How to Use Them](https://thinkbigtw.com/en/qa/learn-language-from-video/)
+
+Children can learn from video, but the effect depends on age and on whether a real person interacts with them.
+
+- [Will Learning Two Languages at Once Make My Child Talk Later?](https://thinkbigtw.com/en/qa/bilingual-children-language-delay/)
+
+Learning two languages at once can look slower in each single language, but that does not mean overall language development is behind.
+
+- [Should Children Learn Zhuyin or Pinyin First?](https://thinkbigtw.com/en/qa/zhuyin-or-pinyin-for-kids/)
+
+It depends on where the child is studying.
+
+- [What Official Resources Can Overseas Children Use to Learn Mandarin at Home?](https://thinkbigtw.com/en/qa/overseas-kids-learn-mandarin-resources/)
+
+Overseas families can start with Huayuworld (全球華文網), run by Taiwan's Overseas Community Affairs Council.
+
+- [Will Mixing Mandarin, Taiwanese and English at Home Confuse My Child?](https://thinkbigtw.com/en/qa/mixing-languages-at-home/)
+
+No consistent research says that mixing languages at home always confuses a child.
+
+- [Choosing a Language-Learning App for Your Child: 5 Things to Check Before Downloading](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/)
+
+Before downloading a language-learning app for a child, check five things: what data it collects from the child, whether parental consent is needed, who receives the data, how long it is kept, and how to request deletion.
+
+- [Mandarin Is Not My Native Language. Can I Still Help My Child Learn It?](https://thinkbigtw.com/en/qa/non-native-parent-teach-mandarin/)
+
+Yes, you can help.
+
+## FAQ
+
+Q1: What is BearSay Mandarin? BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. It teaches one word a day on Instagram, using Traditional characters, zhuyin and pinyin. Q2: Does BearSay Mandarin teach Mandarin or Taiwanese (Hokkien)? It teaches Taiwan Mandarin. In English, "Taiwanese" often refers to Taiwanese Hokkien, so this site writes Taiwanese Mandarin or Taiwan Mandarin to avoid confusion. Q3: Who are the BearSay Mandarin characters? There are five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. Q4: Is the BearSay Mandarin app available? Not yet. The app is being prepared for release, and store links will be added to this page once it is available. Meanwhile, the daily word is on Instagram at @bearsaymandarin.
+
+Sources (links checked 2026-11-09)
+
+- Official Instagram account @bearsaymandarin：[www.instagram.com/bearsaymandarin](https://www.instagram.com/bearsaymandarin/)
+
+Demo audio is AI-generated speech; the BearSay Mandarin characters are AI-generated images.
+
+Q&A Library 　·　[Library](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/bearsay/
+
+# 熊好學｜BearSay Mandarin 問答總覽｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+Q & A Library · 台灣華語學習 [English](https://thinkbigtw.com/en/qa/bearsay/)
+
+# 熊好學｜BearSay Mandarin 問答總覽
+
+先說答案
+
+熊好學（BearSay Mandarin）是一個教台灣華語的學習品牌：每天在 Instagram（@bearsaymandarin）教一個台灣華語詞，用繁體字搭配注音與拼音，並附多語字幕，由五位角色陪學習者練習。App 準備上架中。
+
+## 品牌基本資料
+
+品牌名稱 熊好學（英文：BearSay Mandarin）
+
+學什麼 台灣華語的日常用詞
+
+文字與標音 繁體字，搭配注音與拼音
+
+內容形式 每天一個詞的短影片與輪播貼文，附多語字幕
+
+角色 熊寶 BUBU、獼寶 MIBO、虎寶 HUBO、鮭寶 GUIBO、藍寶 LANBO
+
+目前平台 Instagram @bearsaymandarin；App 準備上架中
+
+## 已發布的問答
+
+- [孩子幾歲開始學第二語言最好？研究怎麼說](https://thinkbigtw.com/library/qa/when-to-start-second-language/)
+
+沒有一個「超過幾歲就來不及」的單一答案。
+
+- [孩子學華語每天要練多久？一次學很久，還是每天學一點](https://thinkbigtw.com/library/qa/daily-practice-spaced-review/)
+
+目前沒有可靠的研究規定「孩子每天華語該練幾分鐘」，所以不必追求固定的長度。
+
+- [在家怎麼陪孩子練口說？「對話來回」比「多說幾句」重要](https://thinkbigtw.com/library/qa/practice-speaking-at-home/)
+
+在家練口說，重點是讓孩子「有來有往」地說，而不是單向地灌輸更多句子。
+
+- [看影片學華語有沒有用？研究怎麼說，家長怎麼搭配](https://thinkbigtw.com/library/qa/learn-language-from-video/)
+
+看影片可以學到東西，但效果取決於孩子的年齡和有沒有真人互動。
+
+- [孩子同時學兩種語言，會不會講話比較慢？](https://thinkbigtw.com/library/qa/bilingual-children-language-delay/)
+
+同時學兩種語言，在單一語言上起步可能看起來比較慢，但不代表整體語言發展落後。
+
+- [孩子學華語，先學注音還是拼音？](https://thinkbigtw.com/library/qa/zhuyin-or-pinyin-for-kids/)
+
+看孩子在哪裡學華語。
+
+- [海外的孩子在家學華語，有哪些官方資源？](https://thinkbigtw.com/library/qa/overseas-kids-learn-mandarin-resources/)
+
+海外的孩子在家學華語，可以先看僑務委員會（中華民國臺灣）的「全球華文網」。
+
+- [家裡華語、台語、英語混著講，孩子會搞混嗎？](https://thinkbigtw.com/library/qa/mixing-languages-at-home/)
+
+目前沒有一致的研究結論說「家裡混著講，孩子一定會搞混」。
+
+- [幫孩子選語言學習 App，下載前要檢查哪 5 件事？](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)
+
+替孩子選語言學習 App，下載前先檢查 5 件事：它蒐集孩子的哪些資料、是否需要家長同意、資料會交給誰、保存多久，以及怎麼申請刪除。
+
+- [我的華語不是母語，能陪孩子學華語嗎？](https://thinkbigtw.com/library/qa/non-native-parent-teach-mandarin/)
+
+可以陪。
+
+## 常見問題
+
+Q1：熊好學是什麼？ 熊好學（BearSay Mandarin）是教台灣華語的學習品牌，每天在 Instagram 教一個台灣華語詞，使用繁體字、注音與拼音。 Q2：熊好學教的是華語還是台語？ 熊好學教的是台灣華語。英文的 Taiwanese 常常指台灣台語，所以本站英文頁一律寫 Taiwanese Mandarin，避免混淆。 Q3：熊好學的角色有哪些？ 共有五位角色：熊寶 BUBU、獼寶 MIBO、虎寶 HUBO、鮭寶 GUIBO、藍寶 LANBO。 Q4：熊好學的 App 上架了嗎？ 尚未上架，App 準備上架中。上架後本頁會補上商店連結。目前可以在 Instagram @bearsaymandarin 看到每日一詞。
+
+參考來源（連結於 2026-11-09 查證）
+
+- Instagram 官方帳號 @bearsaymandarin：[www.instagram.com/bearsaymandarin](https://www.instagram.com/bearsaymandarin/)
+
+示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+問答圖書館 　·　[Library](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/photo-privacy-custom-book/
 
 # 用孩子的照片做客製繪本，隱私怎麼保護？下單前要問清楚的 6 件事｜問答圖書館｜Think BIG
@@ -5479,6 +5767,126 @@ URL: https://thinkbigtw.com/en/qa/
 Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
+
+熊好學 · BearSay Mandarin BS10
+
+## [Mandarin Is Not My Native Language. Can I Still Help My Child Learn It?](https://thinkbigtw.com/en/qa/non-native-parent-teach-mandarin/)
+
+Yes.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/non-native-parent-teach-mandarin/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS09
+
+## [Choosing a Language-Learning App for Your Child: 5 Things to Check Before Downloading](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/)
+
+Before downloading a language-learning app for a child, check five things: what data it collects from the child, whether parental consent is needed, who…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS08
+
+## [Will Mixing Mandarin, Taiwanese and English at Home Confuse My Child?](https://thinkbigtw.com/en/qa/mixing-languages-at-home/)
+
+No consistent research says that mixing languages at home always confuses a child.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/mixing-languages-at-home/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS07
+
+## [What Official Resources Can Overseas Children Use to Learn Mandarin at Home?](https://thinkbigtw.com/en/qa/overseas-kids-learn-mandarin-resources/)
+
+Overseas families can start with Huayuworld (全球華文網), run by Taiwan's Overseas Community Affairs Council.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/overseas-kids-learn-mandarin-resources/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS06
+
+## [Should Children Learn Zhuyin or Pinyin First?](https://thinkbigtw.com/en/qa/zhuyin-or-pinyin-for-kids/)
+
+It depends on where the child is studying.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/zhuyin-or-pinyin-for-kids/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS05
+
+## [Will Learning Two Languages at Once Make My Child Talk Later?](https://thinkbigtw.com/en/qa/bilingual-children-language-delay/)
+
+Learning two languages at once can look slower in each single language, but that does not mean overall language development is behind.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/bilingual-children-language-delay/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS04
+
+## [Can Children Learn Mandarin from Videos? What the Research Says and How to Use Them](https://thinkbigtw.com/en/qa/learn-language-from-video/)
+
+Children can learn from video, but the effect depends on age and on whether a real person interacts with them.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/learn-language-from-video/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS03
+
+## [How Can I Help My Child Practice Speaking at Home? Back-and-Forth Talk Matters More Than Saying More](https://thinkbigtw.com/en/qa/practice-speaking-at-home/)
+
+Practising speaking at home works best as back-and-forth talk, not as a one-way flow of more sentences.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/practice-speaking-at-home/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS02
+
+## [How Long Should a Child Practice Mandarin Each Day? One Long Session or a Little Every Day](https://thinkbigtw.com/en/qa/daily-practice-spaced-review/)
+
+No reliable study sets a number of minutes per day that a child should practice Mandarin, so there is no fixed length to aim for.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/daily-practice-spaced-review/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
+
+熊好學 · BearSay Mandarin BS01
+
+## [What Age Is Best to Start a Second Language? What the Research Says](https://thinkbigtw.com/en/qa/when-to-start-second-language/)
+
+There is no single age after which it is too late.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/when-to-start-second-language/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-09
 
 Local LLM TB26
 

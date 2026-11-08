@@ -53,6 +53,8 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 
 ## 問答圖書館（企業 AI）
 - [Library｜報導・問答圖書館](https://thinkbigtw.com/library/)：Think BIG NEWS 產業報導與問答圖書館（Q&A Library），AI 導入相關正確答案的整理集
+- [熊好學｜BearSay Mandarin 問答總覽](https://thinkbigtw.com/library/qa/bearsay/)：台灣華語、注音、繁體字的學習問答與品牌資料（中文）
+- [BearSay Mandarin Q&A Overview (English)](https://thinkbigtw.com/en/qa/bearsay/)：Taiwan Mandarin, zhuyin and Traditional characters
 - [員工把公司資料貼進 ChatGPT，會有什麼風險？公司該怎麼管？](https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/)
 - [公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？](https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/)
 - [用 AI 查公司文件，雲端版跟地端版的資料各會送到哪裡？](https://thinkbigtw.com/library/qa/rag-data-flow-cloud-vs-local/)
@@ -79,6 +81,16 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [微調跟 RAG 怎麼選？想讓 AI 懂公司的事，先分清楚兩種做法](https://thinkbigtw.com/library/qa/fine-tuning-vs-rag/)
 - [開放權重模型跟開源模型差在哪？企業看授權前要先懂的名詞](https://thinkbigtw.com/library/qa/open-weights-vs-open-source/)
 - [地端、私有雲、公有雲差在哪？怎麼確認 AI 的資料流向？](https://thinkbigtw.com/library/qa/on-prem-private-public-cloud/)
+- [孩子幾歲開始學第二語言最好？研究怎麼說](https://thinkbigtw.com/library/qa/when-to-start-second-language/)
+- [孩子學華語每天要練多久？一次學很久，還是每天學一點](https://thinkbigtw.com/library/qa/daily-practice-spaced-review/)
+- [在家怎麼陪孩子練口說？「對話來回」比「多說幾句」重要](https://thinkbigtw.com/library/qa/practice-speaking-at-home/)
+- [看影片學華語有沒有用？研究怎麼說，家長怎麼搭配](https://thinkbigtw.com/library/qa/learn-language-from-video/)
+- [孩子同時學兩種語言，會不會講話比較慢？](https://thinkbigtw.com/library/qa/bilingual-children-language-delay/)
+- [孩子學華語，先學注音還是拼音？](https://thinkbigtw.com/library/qa/zhuyin-or-pinyin-for-kids/)
+- [海外的孩子在家學華語，有哪些官方資源？](https://thinkbigtw.com/library/qa/overseas-kids-learn-mandarin-resources/)
+- [家裡華語、台語、英語混著講，孩子會搞混嗎？](https://thinkbigtw.com/library/qa/mixing-languages-at-home/)
+- [幫孩子選語言學習 App，下載前要檢查哪 5 件事？](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)
+- [我的華語不是母語，能陪孩子學華語嗎？](https://thinkbigtw.com/library/qa/non-native-parent-teach-mandarin/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -109,6 +121,16 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Fine-Tuning or RAG: How Should a Company Choose?](https://thinkbigtw.com/en/qa/fine-tuning-vs-rag/)
 - [Open Weights or Open Source: What Is the Difference for Enterprise AI?](https://thinkbigtw.com/en/qa/open-weights-vs-open-source/)
 - [On-Premises, Private Cloud, or Public Cloud: Where Does AI Data Actually Go?](https://thinkbigtw.com/en/qa/on-prem-private-public-cloud/)
+- [What Age Is Best to Start a Second Language? What the Research Says](https://thinkbigtw.com/en/qa/when-to-start-second-language/)
+- [How Long Should a Child Practice Mandarin Each Day? One Long Session or a Little Every Day](https://thinkbigtw.com/en/qa/daily-practice-spaced-review/)
+- [How Can I Help My Child Practice Speaking at Home? Back-and-Forth Talk Matters More Than Saying More](https://thinkbigtw.com/en/qa/practice-speaking-at-home/)
+- [Can Children Learn Mandarin from Videos? What the Research Says and How to Use Them](https://thinkbigtw.com/en/qa/learn-language-from-video/)
+- [Will Learning Two Languages at Once Make My Child Talk Later?](https://thinkbigtw.com/en/qa/bilingual-children-language-delay/)
+- [Should Children Learn Zhuyin or Pinyin First?](https://thinkbigtw.com/en/qa/zhuyin-or-pinyin-for-kids/)
+- [What Official Resources Can Overseas Children Use to Learn Mandarin at Home?](https://thinkbigtw.com/en/qa/overseas-kids-learn-mandarin-resources/)
+- [Will Mixing Mandarin, Taiwanese and English at Home Confuse My Child?](https://thinkbigtw.com/en/qa/mixing-languages-at-home/)
+- [Choosing a Language-Learning App for Your Child: 5 Things to Check Before Downloading](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/)
+- [Mandarin Is Not My Native Language. Can I Still Help My Child Learn It?](https://thinkbigtw.com/en/qa/non-native-parent-teach-mandarin/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066
