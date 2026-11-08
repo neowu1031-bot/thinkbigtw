@@ -51,3 +51,31 @@ img.project-cover{object-fit:contain;object-position:center;background:#ece9e3}
   .portfolio-page .project-card,.portfolio-page .project-enter span:last-child{transition:none}
   .portfolio-page .project-card[href]:hover,.portfolio-page .project-card[href]:hover .project-enter span:last-child{transform:none}
 }
+
+/* Portfolio sections: enterprise / own products / video (plain-language items). */
+.portfolio-page .pf-note{margin-top:14px;font-size:14px;color:var(--muted)}
+.portfolio-page .pf-jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.portfolio-page .pf-jump a{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1px solid var(--line);border-radius:999px;font-size:14px;text-decoration:none;background:#fffefa}
+.portfolio-page .pf-jump a:hover{border-color:#b798a3}
+.portfolio-page .pf-section{margin-top:72px;scroll-margin-top:84px}
+.portfolio-page .pf-head{max-width:760px;margin-bottom:32px;padding-top:28px;border-top:1px solid var(--line)}
+.portfolio-page .pf-head h2{font-size:clamp(28px,3.2vw,40px);font-weight:500;letter-spacing:-.03em;line-height:1.2;margin-bottom:14px}
+.portfolio-page .pf-head p{color:var(--muted);line-height:1.8}
+.portfolio-page .pf-sub{font-size:19px;font-weight:600;letter-spacing:-.01em;margin:44px 0 18px}
+.portfolio-page .pf-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+.portfolio-page .pf-item{min-width:0;border:1px solid var(--line);border-radius:12px;background:#fffefa;padding:28px;box-shadow:0 2px 4px #25252903,0 12px 32px #25252906}
+.portfolio-page .pf-item h3{font-size:21px;font-weight:600;line-height:1.5;letter-spacing:-.015em;margin:16px 0 18px;overflow-wrap:anywhere}
+.portfolio-page .pf-tag{display:inline-block;font-size:11px;font-weight:500;color:#76344a;background:#f5edf0;border:1px solid #e1cfd5;border-radius:999px;padding:4px 10px}
+.portfolio-page .pf-fields>div+div{margin-top:16px}
+.portfolio-page .pf-fields dt{font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted);margin-bottom:4px}
+.portfolio-page .pf-fields dd{margin:0;font-size:15px;line-height:1.85;overflow-wrap:anywhere}
+.portfolio-page .pf-fields ul{margin:8px 0 0;padding-left:1.2em}
+.portfolio-page .pf-fields li{margin-top:6px}
+.portfolio-page .pf-link{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:18px;font-size:14px;font-weight:600}
+.portfolio-page .pf-cta{margin-top:80px;padding:48px 32px;border-radius:16px;background:#1d1d1f;color:#fff;text-align:center}
+.portfolio-page .pf-cta h2{font-size:clamp(26px,3vw,36px);font-weight:500;letter-spacing:-.03em;margin-bottom:12px}
+.portfolio-page .pf-cta p{color:#c9c9cc;margin:0 auto 26px;max-width:46ch;line-height:1.8}
+.portfolio-page .pf-btn{display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 28px;border-radius:999px;background:#fff;color:#1d1d1f;font-weight:600;text-decoration:none}
+.portfolio-page .pf-btn:hover{background:#ece9e3}
+@media(max-width:900px){.portfolio-page .pf-list{grid-template-columns:1fr}}
+@media(max-width:700px){.portfolio-page .pf-section{margin-top:56px}.portfolio-page .pf-item{padding:22px}.portfolio-page .pf-cta{padding:40px 22px;margin-top:64px}}

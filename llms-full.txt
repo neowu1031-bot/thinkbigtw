@@ -3883,7 +3883,163 @@ URL: https://thinkbigtw.com/portfolio/
 
 # 作品集
 
-從互動體驗到建置簡報，看看工作流程如何落地。
+Think BIG 由負責人 NEO 帶領，工程由 AI Agent（會自己動手做事的 AI 助理）團隊以最新一代大模型執行，每次交付前都先過資安審查。
+
+第一區為真實交付，已去識別化；第二區為自家專案，開發中者已標示；第三區為影片製作。
+
+## 企業導入
+
+真實交付的客戶情境，已去識別化。每個情境都從客戶原本的問題寫起。
+
+真實交付・已去識別化
+
+### 一家營造公司，把 AI 放在自己公司的電腦裡，工地一有危險就自動打電話叫人。
+
+原本的問題 工地的安全提醒、通知和天氣警報，都要靠人一個一個轉給工班。辦公室同事要找公司文件，得自己翻資料夾。公司資料很敏感，負責人不想把資料放到網路上的 AI 服務。
+
+我們設計的功能 AI 裝在公司自己的電腦上，資料不會離開公司。每個部門都有自己的 AI 助理，例如工安、品管、排程、行政、財務、人事，同事直接在 LINE 上問就好，答案會附上公司裡的真實文件。另外設了保命警報：天氣太熱、空氣太差、河水快到警戒線時，系統會自動打電話給現場負責人。工地照片也會自動整理成查驗報告。
+
+AI 助理每天在做的事 工作時段定時查看天氣、空氣品質和河川水位；推播工地通知給工班，而且可以用工班看得懂的語言；回答各部門同事的問題；需要時把工地照片整理成報告。
+
+真實交付・已去識別化
+
+### 一家多品牌餐飲公司，讓 AI 每天早上把各店營收整理好，員工打開一個網頁就看得到。
+
+原本的問題 負責人每天要看各家店的營收、訂位和排班，但資料分散在不同地方，常常要人工整理。
+
+我們設計的功能 我們把營收日報做成一個固定網頁，營收、天氣、本週班表、工作日誌都放在同一頁。員工用自己的帳號登入，店長決定誰可以看哪家店、哪些功能。我們也做了一組分工的 AI 助理，處理財務、營運和檔案提醒。花錢、刪除、對外發送這類高風險動作，AI 都會先請示，不會自己做。
+
+AI 助理每天在做的事 每天早上送營運簡報給負責人；定時把各店營收更新到網頁上；提醒該處理的檔案；每晚自動備份。
+
+真實交付・已去識別化
+
+### 一位房仲業務，讓 AI 幫忙回 LINE 客人、排看屋、寫貼文，一個人也顧得過來。
+
+原本的問題 一個人要回 LINE 客人、排看屋預約、寫社群貼文、做物件報告，常常顧不過來。
+
+我們設計的功能 在對方自己的電腦上裝一組分工的 AI 助理。一位負責 LINE 客服、登記預約、起草文件；另一位負責寫 FB、IG、Threads 的貼文草稿，真的要發文前一定會再問一次。我們也加了「數字不能改」規則，AI 不會擅自改動圖片裡的房價。
+
+AI 助理每天在做的事 先接住客人的 LINE 訊息；提醒隔天的看屋預約；準備貼文草稿；訊息額度快不夠時提醒；每晚自動備份。
+
+真實交付・已去識別化
+
+### 一位室內設計師，讓 AI 把平面圖變成立體示意圖，也把累積的專業資料整理成隨時可以問的知識庫。
+
+原本的問題 跟客戶溝通設計時，平面圖不容易讓人想像完成的樣子。累積的專業資料越來越多，要找某段內容很花時間。
+
+我們設計的功能 在設計師自己的電腦上裝 AI 助理，可以用通訊軟體直接下指令。平面圖丟給 AI，它會產出鳥瞰圖和室內透視的示意圖。累積的專業資料會自動整理進知識庫，想找哪段內容直接問就好。
+
+AI 助理每天在做的事 把新的資料同步進知識庫並回報；回答資料相關的問題；收到平面圖時產出示意圖；定時自動備份。
+
+真實交付・已去識別化
+
+### 一位企業主管的辦公室，讓 AI 把收到的公文整理成總表，快到期的會自動提醒。
+
+原本的問題 主管辦公室常收到外部單位寄來的正式公文，承辦人要一份一份登記到總表，還要自己盯哪些快到期。
+
+我們設計的功能 我們在主管自己的電腦上裝了 AI 助理，接上大家平常用的 LINE。承辦人把一批公文丟進群組，AI 會整理成 Excel 總表並回傳連結。快到期的公文 AI 會主動提醒；處理好的公文，主管說一句話就能結案。
+
+AI 助理每天在做的事 把收到的公文整理進總表；提醒快到期的公文；早上送上當天行程；每晚自動備份公司系統。
+
+真實交付・已去識別化
+
+### 一家行銷顧問工作室，把 AI 大腦裝在自己的筆電裡，做分析、寫報告都不用把資料送上網。
+
+原本的問題 顧問工作要處理客戶的市場資料，做產業分析、寫報告、追專案進度。資料不能隨便送到網路上的 AI 服務，但人工做又很花時間。
+
+我們設計的功能 AI 模型直接跑在顧問自己的筆電上，看得懂文字也看得懂圖片。我們針對行銷顧問的工作設計了一整套技能：產業結構分析、產品生命週期和市場定位判斷、數據趨勢計算、專案追蹤表和主管報告。資料留在自己的電腦上，需要上網查資料時只送出必要的關鍵字。也可以用語音直接下指令。
+
+AI 助理每天在做的事 顧問開機就能用，隨時接下分析、寫報告、整理專案進度的工作；需要時幫忙查公開資料並附上來源網址。
+
+## 自有產品
+
+這是我們自己的專案，不是客戶案例。尚未上架的專案都標示「開發中／即將上架」，只寫已經做出來的功能。
+
+### 自家 App
+
+開發中／即將上架
+
+### 一款讓孩子跟著可愛角色、一天學一個字詞的華語學習 App。
+
+要解決的問題 海外家庭想讓孩子學華語，但課本枯燥，家長也不一定會教。市面上的內容常常發音不一致、太難，不然就是不適合孩子。
+
+我們設計的功能 課程內容照官方辭典讀音審過，附注音，由一組固定造型的卡通角色帶著學。網頁版已經可以登入，學習紀錄會同步。AI 情境對話功能還在開發，上線前會先加上家長把關和兒童安全過濾，目前尚未開放。
+
+AI 每天在做的事 每天產出一支「每日一詞」短片，同一支影片配上多種語言字幕，讓不同國家的家長和孩子都看得懂。
+
+開發中／即將上架
+
+### 一款旅途中一路陪著你的 App：現在該做什麼、還剩多少時間、接下來去哪裡，一看就知道。
+
+要解決的問題 旅行時常常看著行程表也不知道還能待多久，什麼時候該出發，下一站怎麼去。跟朋友分頭行動後，集合和分帳也很麻煩。
+
+我們設計的功能 行程可以直接貼上匯入。App 會判斷你到了哪一站、還能停留多久，該出發時提醒你。會依天氣給穿搭建議，用公開資料推薦附近的地點，緊急資訊在沒有網路時也查得到。同行人可以分帳；經過審核把關的旅伴配對和聊天，預計隨上架推出。介面支援多種語言，網頁版可以同步行程。目前還在上架前的測試階段。
+
+AI 每天在做的事 讀懂使用者貼上的行程並整理成清單；依時間和位置算出何時該出發；依當地天氣給出穿搭和行前提醒。
+
+### 自家 AI 系統
+
+自家專案
+
+### 一家公司把業務、行銷、資安、維運都交給一支分工明確的 AI 團隊，負責人只做決定。
+
+要解決的問題 小團隊要同時顧接案、行銷、客服、客戶維運和資安，事情多到做不完，也很容易漏。
+
+我們設計的功能 依部門設 AI 專責成員，例如提案、自媒體、資安審查、客戶維運、財務帳本、知識庫。工作照路由表自動派給對應的部門，每件事都要附上證據才算完成。所有對外交付都要先過資安審查關卡；花錢這類決定一律交給人。
+
+AI 每天在做的事 例行巡檢各項服務；替客戶機器做維護檢查並寫成白話報告；整理待辦清單和進度；把新學到的做法寫成技能和知識庫。
+
+自家專案
+
+### 從腳本到上架，一支影片同步發到各大社群平台，人只要按下「可以發」。
+
+要解決的問題 每個平台的格式、文案、上傳方式都不一樣。人工一個一個發很花時間，也容易出錯，例如發錯平台或漏了說明。
+
+我們設計的功能 影片做好、負責人核准之後，系統會自動排程，同步發到短影音、社群和影音平台，各平台的文案和置頂留言分開準備。發布前會自動檢查音量和靜音片段、浮水印和禁用字詞，發完後回報各平台的連結，失敗就告警。
+
+AI 每天在做的事 依排程發布當天的內容；確認每個平台都真的發出去了；整理發布紀錄；備份成片。
+
+自家專案
+
+### 網站和 LINE 共用同一位 AI 顧問，訪客問什麼都答得出來，真的有需求時再整理好交給人。
+
+要解決的問題 訪客半夜來問問題沒人回，詢問的內容也散在各處，很難追蹤。
+
+我們設計的功能 官網和 LINE 共用同一個知識庫，內容涵蓋網站上的每一頁、每項服務實際交付什麼、用到哪些技術。和業務無關的問題會婉轉帶回主題；真的有需求時，訪客確認摘要並同意後，AI 才把詢問整理好轉給負責人。給負責人的通知不帶個資。
+
+AI 每天在做的事 全天候回答官網和 LINE 的訪客問題；把確認過的詢問整理成摘要送進內部收件匣；遇到答不出來的題目就提報，讓知識庫持續補強。
+
+### 數位行銷
+
+自家專案
+
+### 把官網做成 AI 讀得懂、願意引用的網站，讓人在 AI 搜尋裡也找得到。
+
+要解決的問題 越來越多人改問 AI 而不是自己搜尋。網站如果 AI 讀不懂，就算內容再好，也不會出現在 AI 的回答裡。
+
+我們設計的功能 - 中英雙語問答圖書館 ：每個問題一個獨立頁面，第一句就直接回答。內容不靠程式載入，多個品牌可以分類放在一起。
+
+- 結構化資料 ：網頁標上問答格式的標記，讓搜尋引擎和 AI 一看就知道哪裡是問題、哪裡是答案。
+
+- 給 AI 看的網站導覽檔（llms.txt） ：整理全站重點，方便 AI 快速讀懂整個網站。
+
+- AI 搜尋可見度健檢（GEO，讓品牌出現在 AI 回答裡的優化） ：用固定題目在不同的 AI 上重複測試，因為 AI 每次回答都不一樣，所以看長期趨勢、不看單次結果。我們整理了一套方法，也有範例報告。
+
+AI 每天在做的事 依排程把新的問答頁上線；更新網站導覽檔和網站地圖；問答內容同時提供給官網 AI 顧問使用。
+
+### 示範系統
+
+示範系統
+
+### 一套能用滑鼠點、也能直接用講的進銷存系統示範，讓企業先親手試過，再決定要不要導入 AI。
+
+要解決的問題 企業想知道「AI 助理接上公司系統」實際是什麼樣子，但只聽介紹很難想像，也擔心 AI 會亂改資料。
+
+我們設計的功能 同一套系統有兩種用法。手動版跟一般系統一樣點選操作；AI 助理版直接用講的下指令，AI 會先跳出確認卡，等你確認後才執行，做錯了也能復原。另外還有快捷指令面板、單據從建立到完成的狀態流程，以及深色和淺色兩種畫面。這是示範系統，資料都是虛構的。
+
+AI 在示範裡做的事 聽懂口語指令，換算成對應的操作；執行前先整理成確認卡讓人核對；把每一步留下紀錄，需要時可以復原。 [線上試用 ERP 示範 ↗](https://thinkbigtw.com/portfolio/erp-demo/)
+
+### 其他互動體驗
 
 [FIG. 01 分派工作
 
@@ -3895,8 +4051,7 @@ URL: https://thinkbigtw.com/portfolio/
 
 從對話體驗到建置成果，認識 AI Agent 的實際應用。
 
-進入 ↗](https://thinkbigtw.com/portfolio/ai-agent/)
-[FIG. 02 進出有序
+進入 ↗](https://thinkbigtw.com/portfolio/ai-agent/)[FIG. 02 進出有序
 
 進貨 +1 ／ 出貨 −1 · 示意
 
@@ -3908,17 +4063,73 @@ URL: https://thinkbigtw.com/portfolio/
 
 進入 ↗](https://thinkbigtw.com/portfolio/erp-demo/)
 
-FIG. 03 預留下一件
+## 影片製作
 
-下一個實際應用，準備中。
+AI 寫劇本和分鏡，生成畫面，配音配樂，經後製後多平台同步發布。以下以文字說明各類型做法與成品。
 
-準備中
+影片製作
 
-## 更多作品陸續上架
+### 品牌短影音與廣告
 
-持續整理新的建置與應用場景。
+要解決的問題 品牌需要穩定產出短影音，但每支都找拍攝團隊，成本太高、速度太慢。
 
-敬請期待
+我們怎麼做 AI 依爆款節奏寫腳本，生成畫面並加上固定角色，配上旁白和片尾的行動呼籲，再依各平台的比例輸出成不同版本。
+
+成品長什麼樣 直式和方形的品牌短片與廣告片，有完整版和限時動態短版，畫面風格維持一致。
+
+影片製作
+
+### 搞笑短劇與寵物短片
+
+要解決的問題 想用輕鬆的內容吸引新觀眾，但搞笑片很難做好，鏡頭一不連貫就不好笑了。
+
+我們怎麼做 AI 寫情境短劇和職場梗。寵物片會逐鏡檢查動物的比例和動作是否自然，例如體型不能像怪獸、不能咬東西咬到嘴巴融化。搞笑片不上字幕，好讓笑點直接出現。
+
+成品長什麼樣 一分鐘的直式短劇，以及更長的橫式完整版，附中英字幕檔可以選擇開啟。
+
+影片製作
+
+### 兒童繪本動畫與多語單字影片
+
+要解決的問題 兒童內容要可愛、安全、角色前後一致，還要讓不同語言的孩子都看得懂。
+
+我們怎麼做 角色定稿之後鎖住造型，每支影片都比對臉和服裝是否一致。單字影片用同一支母片換上不同語言的字幕，做成可以往右滑的多語輪播。繪本動畫採無旁白的電影敘事手法。
+
+成品長什麼樣 卡通角色每天教一個字詞的多語短片，以及溫馨的繪本故事短片。繪本動畫涉及兒童肖像，作品集只用文字描述，不放畫面。
+
+影片製作
+
+### ASMR 療癒系列
+
+要解決的問題 想做能長時間播放、讓人放鬆的內容，但題材容易重複，聲音也必須真實。
+
+我們怎麼做 用一本題材帳管理，確保題材不重複，AI 生成材質細節清楚的近景畫面並配上聲音。單支短片累積到一定長度後，再剪成長片。
+
+成品長什麼樣 沙、石、木頭、金屬、液體等材質的近景療癒短片和合輯長片。
+
+影片製作
+
+### 教學影片
+
+要解決的問題 AI 工具更新得很快，一般人看不懂，也不知道從哪裡開始用。
+
+我們怎麼做 週末做實作教學，例如修復老照片、把自己變成盒裝公仔，附上可以直接複製的提示詞；平日用輕鬆的方式講解觀念，必要的術語第一次出現時會解釋；也有新聞插播和劇情版課程。
+
+成品長什麼樣 直式教學短片，畫面一步一步示範，提示詞放在置頂留言，讓觀眾跟著做。
+
+製作中
+
+### App 宣傳片與說明會
+
+App 宣傳片 已經做好角色卡司和分鏡片段，一部影片介紹一個功能，以劇情方式呈現。完整成片製作中。
+
+說明會 已經有企劃、逐字稿和會後追蹤信草稿，尚未錄製成片。
+
+## 想要類似的系統？
+
+告訴我們你現在的工作卡在哪裡，我們先聽，再回覆適合的做法。
+
+[LINE 諮詢 ↗](https://lin.ee/n5KW430)
 
 ---
 
@@ -3926,7 +4137,163 @@ URL: https://thinkbigtw.com/portfolio/en/
 
 # Portfolio
 
-Explore working demos and the thinking behind our builds.
+Think BIG is led by NEO. Our engineering is done by a team of AI agents running on frontier models, and every delivery passes a security review first.
+
+Section one is real client delivery, de-identified. Section two is our own projects, with anything still in development marked. Section three is video production.
+
+## Enterprise deployments
+
+Real client situations, de-identified. Each one starts from the problem the client had.
+
+Real delivery · de-identified
+
+### A construction company runs AI on its own in-house computers, and the system phones the site leads the moment conditions turn dangerous.
+
+The problem Site safety reminders, notices and weather warnings had to be passed to field crews by hand, one by one. Office staff had to dig through folders to find company documents. The data is sensitive, and the person in charge did not want it in an online AI service.
+
+What we designed The AI runs on the company's own computers, so data never leaves the building. Each department (safety, quality control, scheduling, admin, finance, HR) has its own AI assistant. Staff just ask in LINE, and the answers cite the company's actual documents. Life-safety alerts are built in: when it gets too hot, the air gets too dirty, or the river nears its warning line, the system automatically phones the on-site leads. Site photos are also turned into inspection reports automatically.
+
+What the AI does every day During work hours it keeps an eye on weather, air quality and river levels. It sends site notices to crews, including in the languages they read. It answers questions from every department and turns site photos into reports when needed.
+
+Real delivery · de-identified
+
+### A multi-brand restaurant group has AI compile every store's revenue each morning, and staff see it all on one web page.
+
+The problem The person in charge needed each store's revenue, bookings and staffing every day, but the data sat in several places and was often pulled together by hand.
+
+What we designed We turned the daily revenue report into a single web page with revenue, weather, the weekly roster and work logs. Staff log in with their own accounts, and the manager decides who can see which store and which features. A team of AI assistants handles finance, operations and file reminders. For high-risk actions, such as spending money, deleting things or sending anything outside, the AI always asks first.
+
+What the AI does every day It sends the morning operations briefing, keeps store revenue on the page up to date, reminds staff about files to handle, and backs up every night.
+
+Real delivery · de-identified
+
+### A solo real estate agent lets AI answer LINE inquiries, book viewings and draft social posts, so one person can keep up.
+
+The problem One person was handling LINE inquiries, viewing appointments, social posts and property reports at the same time, and couldn't always keep up.
+
+What we designed A small team of AI assistants on the client's own computer. One handles LINE customer service, bookings and document drafts. The other drafts posts for Facebook, Instagram and Threads and always asks before anything goes live. A "never change the numbers" rule keeps the AI from altering prices it reads in images.
+
+What the AI does every day It replies to customer messages first, reminds the agent about the next day's viewings, prepares post drafts, flags when the message quota is running low, and backs up every night.
+
+Real delivery · de-identified
+
+### An interior designer uses AI to turn floor plans into 3D concept images and to keep accumulated professional materials in a knowledge base they can ask anytime.
+
+The problem When presenting designs, it's hard for clients to picture the finished space from a floor plan. The designer's professional materials kept piling up, and finding a specific section took time.
+
+What we designed An AI assistant on the designer's own computer that takes instructions through a messaging app. Send it a floor plan, and it produces aerial and interior perspective concept images. Professional materials are organized into a knowledge base automatically, so any section can be found just by asking.
+
+What the AI does every day It syncs new materials into the knowledge base and reports back, answers questions about them, creates concept images when a floor plan comes in, and runs scheduled backups.
+
+Real delivery · de-identified
+
+### An executive's office has AI turn incoming official documents into one master spreadsheet and send reminders as deadlines approach.
+
+The problem The executive's office regularly receives formal documents from outside organizations. Staff logged each one into a master list by hand and had to track deadlines themselves.
+
+What we designed We installed an AI assistant on the executive's own computer and connected it to the LINE chats everyone already uses. Staff drop a batch of documents into the group chat, and the AI files them into an Excel master list and sends back the link. It reminds people when a deadline is coming up, and the executive can close a finished item with one sentence.
+
+What the AI does every day It files incoming documents into the master list, flags deadlines that are coming up, sends the day's schedule in the morning, and backs up the company systems every night.
+
+Real delivery · de-identified
+
+### A marketing consultancy runs its AI brain on its own laptop, so analysis and reports never require sending data online.
+
+The problem Consulting work means handling clients' market data, running industry analyses, writing reports and tracking projects. The data can't simply go to an online AI service, but doing it all by hand takes a lot of time.
+
+What we designed The AI model runs directly on the consultant's own laptop and can read both text and images. We built a full skill set for marketing consulting: industry structure analysis, product life-cycle and market-position assessment, data trend calculations, project trackers and executive reports. The data stays on the consultant's own computer, and when it needs to look something up online, it sends only the keywords it needs. The consultant can also give instructions by voice.
+
+What the AI does every day It's ready as soon as the laptop is on, takes on analysis, report writing and project updates on request, and looks up public information with source links when needed.
+
+## Our own products
+
+These are our own projects, not client cases. Anything not yet launched is marked "in development / coming soon", and we describe only what has already been built.
+
+### Our apps
+
+In development / coming soon
+
+### A Mandarin learning app where kids learn one word a day alongside friendly cartoon characters.
+
+The problem Families abroad want their kids to learn Mandarin, but textbooks are dry and parents can't always teach it. Much of what's available has inconsistent pronunciation, is too hard, or isn't made for children.
+
+What we designed Lessons are checked against official dictionary pronunciations, include phonetic guides, and are led by a cast of cartoon characters with consistent looks. The web version already supports sign-in and syncs learning progress. An AI role-play conversation feature is still in development. It will get parental controls and child-safety filters before launch and is not available yet.
+
+What the AI does every day It produces a daily "word of the day" short video, with the same video subtitled in several languages so families in different countries can follow along.
+
+In development / coming soon
+
+### A travel companion app that tells you what to do now, how much time you have left, and where to go next.
+
+The problem Even with an itinerary, travelers often don't know how long they can stay, when to leave, or how to get to the next stop. After splitting up with friends, meeting back up and splitting costs is a hassle.
+
+What we designed Paste in an itinerary to import it. The app works out which stop you've reached and how long you can stay, then reminds you when it's time to go. It suggests what to wear based on the weather, recommends nearby places from open data, and keeps emergency information available offline. Companions can split expenses, and moderated buddy matching and chat are planned for launch. The interface supports multiple languages, and the web version syncs trips. It is currently in pre-launch testing.
+
+What the AI does every day It reads the itineraries users paste in and organizes them into a list, works out from time and location when to leave, and gives outfit and pre-trip reminders based on local weather.
+
+### Our AI systems
+
+Our own project
+
+### A company runs sales, marketing, security and operations with a team of specialized AI agents, while the person in charge just makes the decisions.
+
+The problem A small team has to handle bids, marketing, customer service, client maintenance and security all at once. There's too much to do, and things slip through.
+
+What we designed Each department has a dedicated AI agent, for example for proposals, social media, security review, client maintenance, the financial ledger and the knowledge base. Work is routed automatically to the right department, and nothing counts as done without evidence. Every outbound delivery passes a security review gate first, and decisions about spending always go to a person.
+
+What the AI does every day It runs routine checks on services, performs maintenance checks on client machines and writes plain-language reports, keeps the to-do list and progress up to date, and turns new lessons into skills and knowledge-base entries.
+
+Our own project
+
+### From script to upload, one video goes out to every major social platform, and a person only has to say "go."
+
+The problem Every platform has its own formats, captions and upload steps. Posting by hand, one by one, takes time and invites mistakes, like posting to the wrong place or forgetting a caption.
+
+What we designed Once a video is finished and the person in charge approves it, the system schedules it and publishes it across short-video, social and video platforms, with separate captions and pinned comments for each. Before publishing, it automatically checks audio levels and silent gaps, watermarks and banned words. Afterward it reports each platform's link and raises an alert if anything fails.
+
+What the AI does every day It publishes the day's scheduled content, confirms it actually went live on every platform, keeps the publishing log, and backs up finished videos.
+
+Our own project
+
+### The website and LINE share one AI advisor that can answer visitors' questions and hand real inquiries to a person, already summarized.
+
+The problem Visitors who ask questions late at night get no answer, and inquiries end up scattered and hard to track.
+
+What we designed The website and LINE share one knowledge base that covers every page of the site, what each service actually delivers, and the technology behind it. Off-topic questions are gently steered back. When there's a real need, the AI summarizes the inquiry and forwards it to the person in charge, but only after the visitor confirms the summary and agrees. Notifications to the person in charge contain no personal data.
+
+What the AI does every day It answers website and LINE visitors around the clock, files confirmed inquiries as summaries in an internal inbox, and flags questions it can't answer so the knowledge base keeps improving.
+
+### Digital marketing
+
+Our own project
+
+### A website built so AI systems can read it and cite it, which makes it findable in AI search too.
+
+The problem More and more people ask AI instead of searching themselves. If AI can't read a website, even great content won't show up in its answers.
+
+What we designed - Bilingual Q&A library (Chinese and English) : every question has its own page, and the first sentence answers it directly. Content doesn't depend on scripts to load, and several brands can be grouped in one library.
+
+- Structured data : pages carry Q&A markup, so search engines and AI can tell at a glance which part is the question and which is the answer.
+
+- A site guide written for AI (llms.txt) : it summarizes the whole site so AI can understand it quickly.
+
+- AI search visibility check-up (GEO, optimizing for appearing in AI answers) : fixed questions are tested repeatedly across different AI systems. Because AI answers vary every time, we look at trends rather than single results. We have a written method and a sample report.
+
+What the AI does every day It publishes new Q&A pages on schedule, updates the AI site guide and the sitemap, and makes the same Q&A content available to the website's AI advisor.
+
+### Demo systems
+
+Demo system
+
+### An interactive inventory and sales system demo you can click through or simply talk to, so businesses can try AI hands-on before adopting it.
+
+The problem Businesses want to see what "an AI assistant connected to our systems" actually looks like. A description alone is hard to picture, and they worry the AI might change data on its own.
+
+What we designed One system with two modes. The manual mode works like any business software you click through. In the AI assistant mode you just say what you want: the AI shows a confirmation card, acts only after you approve, and lets you undo mistakes. It also has a quick command palette, a document workflow that tracks each record from creation to completion, and light and dark themes. It is a demo, and all data is fictional.
+
+What the AI does in the demo It understands spoken-style instructions and maps them to the right actions, summarizes each action on a confirmation card for review before running it, and logs every step so it can be undone. [Try the ERP demo online ↗](https://thinkbigtw.com/portfolio/erp-demo/en/)
+
+### More interactive work
 
 [FIG. 01 Dispatch
 
@@ -3938,8 +4305,7 @@ Interactive Deck
 
 Try an AI conversation and explore real deployment work.
 
-Explore ↗](https://thinkbigtw.com/portfolio/ai-agent/en/)
-[FIG. 02 Stock in motion
+Explore ↗](https://thinkbigtw.com/portfolio/ai-agent/en/)[FIG. 02 Stock in motion
 
 Receive +1 / Ship −1 · Illustration
 
@@ -3951,17 +4317,73 @@ Add a product, receive stock, and ship an order yourself.
 
 Explore ↗](https://thinkbigtw.com/portfolio/erp-demo/en/)
 
-FIG. 03 Up next
+## Video production
 
-Making room for what comes next.
+AI writes the script and storyboard, generates the visuals, adds voice and music, and after post-production the video goes out to every platform. Below, each type is described in text.
 
-In progress
+Video production
 
-## More work on the way
+### Brand shorts and ads
 
-We’re preparing more builds and practical examples.
+The problem Brands need a steady flow of short videos, but hiring a film crew for every one is too slow and too costly.
 
-Coming soon
+How we do it AI writes scripts in a proven viral rhythm, generates scenes with recurring characters, adds voiceover and a closing call to action, and exports versions sized for each platform.
+
+What the result looks like Vertical and square brand videos and ads, in full-length and story-length cuts, with a consistent look.
+
+Video production
+
+### Comedy sketches and pet films
+
+The problem Light-hearted content draws new viewers, but comedy is hard to get right: once the shots stop flowing, the joke dies.
+
+How we do it AI writes situational sketches and workplace gags. Pet films are checked shot by shot for natural animal proportions and movement. Comedy runs without burned-in subtitles so the jokes land directly.
+
+What the result looks like One-minute vertical shorts plus longer horizontal cuts, with optional Chinese and English subtitle files.
+
+Video production
+
+### Children's storybook animation and multilingual word videos
+
+The problem Children's content has to be cute, safe and consistent, and understandable to kids who speak different languages.
+
+How we do it Once characters are finalized their designs are locked, and every video is checked for consistent faces and costumes. Word videos reuse one master with subtitles swapped per language, posted as swipeable multilingual carousels. Storybook animations use a narration-free cinematic style.
+
+What the result looks like Daily cartoon word lessons and warm storybook shorts. Because the storybook animations involve children's likenesses, this portfolio describes them in text only.
+
+Video production
+
+### ASMR series
+
+The problem Relaxing content that can play for a long time is popular, but subjects repeat easily and the sound has to feel real.
+
+How we do it A topic ledger keeps subjects from repeating, and AI generates detailed close-ups of materials with matching sound. Shorts are later compiled into long-form videos.
+
+What the result looks like Calming close-up shorts and compilations featuring sand, stone, wood, metal and liquids.
+
+Video production
+
+### Tutorials
+
+The problem AI tools change fast, and most people can't follow them or don't know where to start.
+
+How we do it Weekend hands-on lessons, such as restoring old photos or turning yourself into a boxed figure, come with copy-ready prompts. Weekday videos explain concepts simply and define necessary terms the first time they appear. There are also news inserts and story-based lessons.
+
+What the result looks like Vertical tutorials with step-by-step visuals and prompts in the pinned comment so viewers can follow along.
+
+In production
+
+### App promo films and info sessions
+
+App promo films Character casts and storyboard segments are done. Each video introduces one feature as a short story. The finished films are in production.
+
+Info sessions A plan, a full script and a draft follow-up email are ready. No session has been recorded yet.
+
+## Want something similar?
+
+Tell us where your work gets stuck. We listen first, then suggest an approach that fits.
+
+[Chat on WhatsApp ↗](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
 ---
 
