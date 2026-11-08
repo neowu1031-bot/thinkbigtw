@@ -4265,6 +4265,42 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+親子共讀與客製繪本 Q29
+
+## [想送朋友的孩子客製繪本，照片要怎麼拿？要先問誰？](https://thinkbigtw.com/library/qa/custom-book-gift-for-friends-kid/)
+
+想送朋友的孩子客製繪本，先問孩子的父母或法定監護人是否願意，再由對方了解照片用途及下單規則。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/custom-book-gift-for-friends-kid/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-08
+
+本地大模型 TB25
+
+## [開放權重模型跟開源模型差在哪？企業看授權前要先懂的名詞](https://thinkbigtw.com/library/qa/open-weights-vs-open-source/)
+
+「開放權重」一般指可取得模型學習後的參數；「開源」還涉及取得哪些修改所需資料，以及允許怎樣使用、修改與分享。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/open-weights-vs-open-source/)
+
+Think BIG 問答圖書館
+本地大模型
+更新 2026-11-07
+
+親子共讀與客製繪本 Q28
+
+## [孩子的照片可以放上網嗎？分享前想一想的 4 件事](https://thinkbigtw.com/library/qa/sharing-kids-photos-online/)
+
+孩子照片要不要放上網，建議先看孩子是否願意、誰能看到、畫面透露哪些資訊，以及日後想刪除時怎麼處理，再決定是否分享。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/sharing-kids-photos-online/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-07
+
 本地大模型 TB24
 
 ## [微調跟 RAG 怎麼選？想讓 AI 懂公司的事，先分清楚兩種做法](https://thinkbigtw.com/library/qa/fine-tuning-vs-rag/)
@@ -5429,6 +5465,18 @@ URL: https://thinkbigtw.com/en/qa/
 Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
+
+Local LLM TB25
+
+## [Open Weights or Open Source: What Is the Difference for Enterprise AI?](https://thinkbigtw.com/en/qa/open-weights-vs-open-source/)
+
+“Open weights” generally describes access to learned model parameters.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/open-weights-vs-open-source/)
+
+Think BIG Q&A Library
+Local LLM
+Updated 2026-11-07
 
 Local LLM TB24
 
