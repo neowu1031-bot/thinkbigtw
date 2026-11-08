@@ -794,11 +794,13 @@ START A CONSULTATION
 
 填寫自助問卷，12 題自動判斷適合哪種方案；或直接透過 LINE 聯繫顧問，30 分鐘評估適配性。
 
-[填問卷，自動判級 + 看報價 ›](https://thinkbigtw.com/enterprise/start/)
+[填問卷，我們回覆評估方向 ›](https://thinkbigtw.com/enterprise/start/)
 
 問卷不收費、不自動扣款。填完後如需正式報價，由專人寄出正式合約。
 
 [透過 LINE 聯繫導入顧問 ›](https://lin.ee/n5KW430)
+
+只想先問怎麼裝、費用怎麼組成？看 [AI Agent 搭建服務](https://thinkbigtw.com/services/ai-agent-setup/)。
 
 ---
 
@@ -1059,6 +1061,14 @@ SELF-SERVICE ASSESSMENT / 自助評估
 依需求報價。
 
 12 題問卷，自動判斷入門、標準或完整哪種方案適合你的公司。填完即可預約訪談，由顧問確認需求後報價。
+
+QUICK REQUEST / 只留聯絡方式
+
+## 先留一句需求，我們回覆評估方向
+
+只要 3 欄。想要更完整的建議，再往下填 12 題問卷。資料不送入 AI，由真人處理。
+
+也可以直接 [用 LINE 說需求 ›](https://lin.ee/n5KW430)
 
 DEMO / 示範影片
 
@@ -1394,7 +1404,7 @@ Think BIG 編輯部
 
 最近各大品牌密集推出常駐型 AI Agent。這篇整理 2026 年常見的 AI Agent 有哪些、各家怎麼計費、額度用完怎麼辦，以及龍蝦（OpenClaw）在長時間運作情境的定位。
 
-最後更新：2026-10-02｜資料查證：2026-09-30
+最後更新：2026-11-08｜資料查證：2026-09-30
 
 新的 AI Agent 不會讓龍蝦（OpenClaw）失去用處，兩者適合的工作不同。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
 
@@ -1403,6 +1413,11 @@ Think BIG 編輯部
 - 開源 AI Agent（如 OpenClaw、Hermes）可以自己選模型，按實際用量付費給模型商，適合長時間常駐與費用可控的情境。
 
 - 兩類可以一起用：讓龍蝦（OpenClaw）負責常駐例行工作，品牌 AI Agent 負責需要協作的任務。
+
+想找人幫你裝？用 LINE 說一兩句需求，工程師先看你的設備再建議做法。
+
+[用 LINE 說需求 →](https://lin.ee/n5KW430)
+[個人方案看蝦皮 →](https://shopee.tw/shop/105010395)
 
 ## 一句話結論
 
@@ -1532,6 +1547,14 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 其他也有官方資料的 AI Agent（簡述）：Perplexity Computer（通用代辦，點數制，Pro US$20 起）；Manus（通用 Agent，點數制，Pro US$20 起，全球可用）；Siri AI（隨 iOS 27 提供，目前 beta 只支援英文）；Alexa+（僅限美國）。中國大陸平台（豆包、扣子、Kimi、MiniMax Agent 等）台灣能否使用各有差異，一律標【待實測】。
 
+## 台灣誰在做 AI Agent 搭建？
+
+AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機上，並接到你平常用的 LINE、Telegram 或內部工具。Think BIG（大想成業有限公司）是台灣的 AI Agent 搭建與導入團隊，個人與企業都可以找我們，由台灣工程師遠端安裝。
+
+AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用怎麼組成、地端版與雲端輔助版的差別，見 [AI Agent 搭建服務](https://thinkbigtw.com/services/ai-agent-setup/)。
+
+[用 LINE 說需求 →](https://lin.ee/n5KW430)
+
 ## 兩種做法怎麼分工
 
 以下只比較「做法類型」，不比較優劣，不打分數。
@@ -1614,10 +1637,10 @@ Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服�
 
 公司導入
 
-先填問卷自動判級，或直接 LINE 預約 15 分鐘評估，確認適合再說。
+先填需求表，或直接用 LINE 預約 30 分鐘免費評估，確認適合再說。
 
 [公司導入自助評估 →](https://thinkbigtw.com/enterprise/start/)
-[LINE 預約 15 分鐘評估 →](https://lin.ee/n5KW430)
+[LINE 預約 30 分鐘免費評估 →](https://lin.ee/n5KW430)
 
 ## 常見問題
 
@@ -3427,7 +3450,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-10-31
+更新日期：2026-11-08
 
 大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
 
@@ -3501,9 +3524,11 @@ URL: https://thinkbigtw.com/privacy.html
 
 諮詢摘要先在目前瀏覽器分頁整理。您可以編修稱呼、公司／產業（可略）、想解決的問題、規模與單一聯絡方式及聯絡資料。這些欄位不送給 AI 模型；您預覽內容、勾選同意並按「確認送出」後，才傳送至本公司的諮詢資料庫，供顧問回覆本次需求。
 
-諮詢資料庫只保存上述摘要欄位、同意時間及內部隨機識別值，不保存 IP 或聊天逐字稿。您提供的聯絡資料與諮詢內容，保存至您請求刪除為止。您可以隨時來信 AI@thinkbigtw.com ，或透過 LINE 官方帳號，請求查詢、更正或刪除您的資料，我們會在 14 天內處理完成並回覆。備份與基礎設施技術紀錄的保存另依服務供應方設定管理。
+諮詢資料庫只保存上述摘要欄位、同意時間及內部隨機識別值，不保存 IP 或聊天逐字稿。您提供的聯絡資料與諮詢內容，保存至您請求刪除為止。您可以隨時來信 AI@thinkbigtw.com ，或透過 LINE 官方帳號，請求查詢、更正或刪除您的資料，我們會在 14 天內處理完成並回覆。備份與基礎設施技術紀錄的保存另依服務供應方設定管理。本節各管道（AI 顧問、完整問卷、快速需求表、說明會報名表）取得的聯絡資料，只用於回覆您提出的需求或您報名的活動通知，不會自動加入行銷訂閱或其他名單。
 
-介面確認入庫成功後才顯示「已送出」。若未能確認收件，可重試同一份摘要或使用 LINE 聯繫。聊天與未送出的草稿不寫入瀏覽器持久儲存；關閉或重新整理分頁後即不保留。此詢問保存規則優先於本頁一般保存期間說明，且不將諮詢聯絡資料自動用於行銷訂閱。網站仍保留 GA4 瀏覽統計。
+介面確認入庫成功後才顯示「已送出」。若未能確認收件，可重試同一份摘要或使用 LINE 聯繫。聊天與未送出的草稿不寫入瀏覽器持久儲存；關閉或重新整理分頁後即不保留。此詢問保存規則優先於本頁一般保存期間說明。網站仍保留 GA4 瀏覽統計。
+
+快速需求表與說明會報名表： 您在官網「快速需求表」或「企業導入 AI 說明會」報名表填寫的資料，包括稱呼、聯絡方式（Email、手機或 LINE ID）、需求，以及選填的公司／產業與想解決的問題，會傳送至本公司的諮詢資料庫。用途限於：回覆您的需求並說明評估方向；以及寄送「企業導入 AI 說明會」的報名確認、開播提醒與回放通知。報名者只會收到這場說明會的相關通知，不會因此被加入其他行銷名單。這些資料保存至您請求刪除為止；如需查詢、更正或刪除，請寄信至 AI@thinkbigtw.com ，我們會在 14 天內處理完成並回覆。
 
 LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 客服回覆。對話內容會整理成摘要，供內部服務品質分析與後續聯繫使用；聯絡資料與摘要保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止。如需查詢、更正或刪除，來信 AI@thinkbigtw.com 或於 LINE 官方帳號中提出，我們會在 14 天內處理完成並回覆。
 
@@ -4207,6 +4232,8 @@ AI Agent（能自己動手完成任務的 AI 助理）過去一年從「嚐鮮�
 
 想了解 Think BIG 如何協助企業系統化導入 AI Agent？→ [企業 AI Agent 導入方案](https://thinkbigtw.com/enterprise/)
 
+想把 AI Agent 安裝在自己的電腦或公司主機（地端）上？→ [AI Agent 搭建：地端安裝怎麼進行](https://thinkbigtw.com/services/ai-agent-setup/)
+
 ### 常見問答 · FAQ
 
 Q：AI Agent 用一陣子就不想用了，正常嗎？
@@ -4239,6 +4266,102 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+本地大模型 TB26
+
+## [地端、私有雲、公有雲差在哪？怎麼確認 AI 的資料流向？](https://thinkbigtw.com/library/qa/on-prem-private-public-cloud/)
+
+地端通常描述系統放在公司指定的現場設備；私有雲與公有雲則描述雲端基礎設施的使用模式。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/on-prem-private-public-cloud/)
+
+Think BIG 問答圖書館
+本地大模型
+更新 2026-11-08
+
+親子共讀與客製繪本 Q29
+
+## [想送朋友的孩子客製繪本，照片要怎麼拿？要先問誰？](https://thinkbigtw.com/library/qa/custom-book-gift-for-friends-kid/)
+
+想送朋友的孩子客製繪本，先問孩子的父母或法定監護人是否願意，再由對方了解照片用途及下單規則。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/custom-book-gift-for-friends-kid/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-08
+
+本地大模型 TB25
+
+## [開放權重模型跟開源模型差在哪？企業看授權前要先懂的名詞](https://thinkbigtw.com/library/qa/open-weights-vs-open-source/)
+
+「開放權重」一般指可取得模型學習後的參數；「開源」還涉及取得哪些修改所需資料，以及允許怎樣使用、修改與分享。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/open-weights-vs-open-source/)
+
+Think BIG 問答圖書館
+本地大模型
+更新 2026-11-07
+
+親子共讀與客製繪本 Q28
+
+## [孩子的照片可以放上網嗎？分享前想一想的 4 件事](https://thinkbigtw.com/library/qa/sharing-kids-photos-online/)
+
+孩子照片要不要放上網，建議先看孩子是否願意、誰能看到、畫面透露哪些資訊，以及日後想刪除時怎麼處理，再決定是否分享。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/sharing-kids-photos-online/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-07
+
+本地大模型 TB24
+
+## [微調跟 RAG 怎麼選？想讓 AI 懂公司的事，先分清楚兩種做法](https://thinkbigtw.com/library/qa/fine-tuning-vs-rag/)
+
+微調是用任務或領域資料繼續訓練既有模型；RAG 是在回答時檢索外部內容，提供作答依據。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/fine-tuning-vs-rag/)
+
+Think BIG 問答圖書館
+本地大模型
+更新 2026-11-06
+
+親子共讀與客製繪本 Q27
+
+## [送孫子孫女什麼有紀念意義？祖父母能一起畫進繪本嗎？](https://thinkbigtw.com/library/qa/gift-from-grandparents/)
+
+送孫子孫女有紀念意義的禮物，可以選一本孩子喜歡的書，再寫一段祖父母自己的話；若選客製繪本，也可先詢問能否一起入鏡。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/gift-from-grandparents/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-06
+
+AI 入門 TB23
+
+## [AI 的 token 是什麼？為什麼字數上限不是用「字」算](https://thinkbigtw.com/library/qa/what-is-token/)
+
+token 是模型處理文字時使用的單位，不等於一個中文字或一個英文單字。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/what-is-token/)
+
+Think BIG 問答圖書館
+AI 入門
+更新 2026-11-05
+
+親子共讀與客製繪本 Q26
+
+## [客製繪本要等多久？節日前怎麼安排訂購時間？](https://thinkbigtw.com/library/qa/custom-book-lead-time/)
+
+客製繪本要多久，得把照片準備、預覽往返、正式製作和物流配送分開確認，不能只拿頁面上的製作天數倒推到貨日。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/custom-book-lead-time/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-05
 
 AI 入門 TB22
 
@@ -5357,6 +5480,54 @@ Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
 
+Local LLM TB26
+
+## [On-Premises, Private Cloud, or Public Cloud: Where Does AI Data Actually Go?](https://thinkbigtw.com/en/qa/on-prem-private-public-cloud/)
+
+On-premises usually describes deployment on company-designated equipment at its…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/on-prem-private-public-cloud/)
+
+Think BIG Q&A Library
+Local LLM
+Updated 2026-11-08
+
+Local LLM TB25
+
+## [Open Weights or Open Source: What Is the Difference for Enterprise AI?](https://thinkbigtw.com/en/qa/open-weights-vs-open-source/)
+
+“Open weights” generally describes access to learned model parameters.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/open-weights-vs-open-source/)
+
+Think BIG Q&A Library
+Local LLM
+Updated 2026-11-07
+
+Local LLM TB24
+
+## [Fine-Tuning or RAG: How Should a Company Choose?](https://thinkbigtw.com/en/qa/fine-tuning-vs-rag/)
+
+Fine-tuning continues training an existing model on task or domain data.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/fine-tuning-vs-rag/)
+
+Think BIG Q&A Library
+Local LLM
+Updated 2026-11-06
+
+AI Basics TB23
+
+## [What Is an AI Token, and Why Aren’t Limits Measured in Characters?](https://thinkbigtw.com/en/qa/what-is-token/)
+
+A token is a unit a model uses to process text, not a fixed number of…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/what-is-token/)
+
+Think BIG Q&A Library
+AI Basics
+Updated 2026-11-05
+
 AI Basics TB22
 
 ## [What Is RAG, and How Does It Differ from Asking AI Directly?](https://thinkbigtw.com/en/qa/what-is-rag/)
@@ -5984,6 +6155,15 @@ Think BIG 服務的實際範圍，以雙方確認的內容為準。
 ## 常見問題
 
 Q1：跑本地大模型，CPU 重要還是顯示卡重要？ 先看顯示卡的記憶體。模型能整個放進顯示記憶體時由 GPU 計算，放不下的部分會分到 CPU，速度明顯變慢。用 Ollama 的話，`ollama ps` 的 PROCESSOR 欄可以看到分配比例。 Q2：16GB 顯示記憶體可以跑什麼模型？ 以 Ollama 官方模型庫的大小來看，8B 級（約 5.2GB）和 14B 級（約 9.3GB）都放得進去；OpenAI 官方也寫明 gpt-oss-20b 可在 16GB 記憶體內執行。實際還要留空間給上下文。 Q3：公司很多人同時用，要多大的記憶體？ 要另外算。Ollama 官方 FAQ 寫明，所需記憶體會隨同時請求數乘上上下文長度增加；記憶體不夠時，新的請求會排隊等待。 Q4：本地模型的電腦可以直接開放到網路上嗎？ 不建議。Ollama 預設只綁定本機 127.0.0.1；需要讓公司內其他設備使用時，用防火牆只開放給指定設備，不要直接開放到網際網路。
+
+免費設備檢查
+
+## 不確定你的電腦能不能跑？
+
+用 LINE 傳顯示卡型號與記憶體容量，工程師幫你看能跑哪種大小的模型，不夠時也會說明雲端輔助版的做法。
+
+[LINE 傳規格，免費檢查 →](https://lin.ee/n5KW430)
+想先了解安裝怎麼進行、費用怎麼組成：[AI Agent 搭建服務](https://thinkbigtw.com/services/ai-agent-setup/)
 
 參考來源（連結於 2026-10-19 查證）
 
@@ -9150,6 +9330,255 @@ llms.txt 不是必要的。[Google 官方指南（2026-07-10）](https://develop
 
 ---
 
+URL: https://thinkbigtw.com/services/ai-agent-setup/
+
+# AI Agent 搭建服務｜個人 AI 助理與企業 AI Agent，地端或雲端，台灣工程師遠端安裝｜Think BIG
+
+AI Agent Setup ／ AI Agent 搭建
+
+# AI Agent 搭建：把 AI 助理裝在你自己的電腦或公司主機上
+
+AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機上，並接到你平常用的 LINE、Telegram 或內部工具。Think BIG（大想成業有限公司）是台灣的 AI Agent 搭建與導入團隊，個人與企業都可以找我們，由台灣工程師遠端安裝。
+
+[用 LINE 說你的需求](https://lin.ee/n5KW430)
+先看哪一種適合我
+
+## 01 你是哪一種需求？
+
+### 個人使用
+
+想要一個 24 小時在線、會記事、會查資料的個人 AI 助理，接在你自己的 LINE 或 Telegram。
+
+[看個人方案](https://thinkbigtw.com/pricing/personal/)[個人 AI 助理搭建](https://thinkbigtw.com/harness/)[蝦皮賣場](https://shopee.tw/shop/105010395)[LINE 問](https://lin.ee/n5KW430)
+
+### 公司使用
+
+想讓 AI 依公司文件回答、接 LINE 官方帳號回覆詢問，或整理內部流程。
+
+[2 分鐘需求表](https://thinkbigtw.com/enterprise/start/#quick)[企業導入](https://thinkbigtw.com/enterprise/)[LINE 問](https://lin.ee/n5KW430)
+
+## 02 我們會幫你做什麼
+
+- A 確認需求，以及要接的通道（LINE、Telegram 或內部工具）。
+
+- B 檢查設備規格：顯示卡型號、記憶體容量、作業系統。
+
+- C 安裝 AI Agent 與模型（地端版或雲端輔助版）。
+
+- D 接上 LINE、Telegram 或公司內部工具。
+
+- E 設定權限：對外發送、涉及花費的動作，要由人核准才執行。
+
+- F 用你的真實工作情境驗收。
+
+- G 交付操作說明，並說明維護窗口。
+
+## 03 流程四步
+
+STEP 01
+
+### LINE 說需求
+
+一兩句就可以：你想交給 AI 的工作。
+
+STEP 02
+
+### 設備檢查
+
+傳顯示卡型號與記憶體容量，工程師先看能不能跑。
+
+STEP 03
+
+### 遠端安裝
+
+由你在電腦上開啟遠端連線，安裝過程你看得到。
+
+STEP 04
+
+### 驗收與維護
+
+用真實情境驗收，交付說明與維護窗口。
+
+## 04 地端版和雲端輔助版差在哪
+
+項目 地端版 雲端輔助版 模型在哪裡跑 你的電腦或公司主機 模型廠商的雲端服務
+
+資料怎麼走 模型與文件都在你的設備內處理 問題與檢索到的文件段落，會送到模型廠商處理
+
+模型用量費 不另收 依模型廠商用量另計
+
+設備需求 需要符合模型需求的顯示卡與記憶體 一般電腦即可
+
+地端部署不等於所有連線都在本機：用到外部服務（例如 LINE、網路搜尋）時，相關請求仍會送出。延伸閱讀：[本地 AI 與公司資料](https://thinkbigtw.com/guides/local-ai-data/)。
+
+## 05 費用怎麼算
+
+本頁不列價格。費用由下列幾項組成，報價前會逐項說明：
+
+- 01 搭建服務費 ：依範圍確認（要接幾個通道、幾項工作、驗收條件）。
+
+- 02 設備與第三方軟體 ：分開列，不混在服務費裡。
+
+- 03 AI 模型用量費 ：地端版不另收；雲端輔助版依模型廠商用量另計，由你直接付給模型廠商。
+
+- 04 LINE 官方帳號訊息費 ：接 LINE 官方帳號時，訊息費依 LINE 官方公告另計。
+
+個人方案可在[蝦皮賣場](https://shopee.tw/shop/105010395)選購；企業依流程範圍與部署方式報價。
+
+## 06 安裝前要準備什麼
+
+- 01 電腦或主機規格：顯示卡型號、記憶體容量。
+
+- 02 要接的帳號：LINE 官方帳號或 Telegram（帳號由你本人申請、歸你所有）。
+
+- 03 一件你最想先交給 AI 的工作。
+
+不確定規格夠不夠？先看[公司要跑本地大模型，需要什麼硬體](https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/)，或直接用 LINE 傳規格給我們看。
+
+## 07 這些情況可能不適合
+
+- — 需要 AI 自動對外回覆，而且不經人確認。
+
+- — 文件大多是無法選取文字的掃描檔，又沒有時間整理。
+
+- — 設備規格不足，又不考慮雲端輔助版。
+
+遇到這些情況，我們會先說明可行的替代做法，再決定要不要開始。
+
+## 08 常見問題
+
+AI Agent 搭建是什麼？
+
+把能讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機，並接到 LINE、Telegram 或內部工具。搭建包含安裝、串接、權限設定與驗收。
+
+AI Agent 搭建費用怎麼算？
+
+費用由搭建服務費、設備、第三方軟體與 AI 模型用量費組成。地端版不另收模型用量費；雲端版依模型廠商用量另計。個人方案可在蝦皮賣場選購；企業依流程範圍與部署方式報價。
+
+個人和企業的搭建有什麼不同？
+
+個人搭建以一台電腦、一個 AI 助理為主，通常接 LINE 或 Telegram。企業搭建要先確認部門流程、資料來源、使用權限與驗收條件，再決定地端版或雲端輔助版。
+
+一定要有很強的電腦嗎？
+
+地端版需要符合模型需求的顯示卡與記憶體；規格不夠時可以改用雲端輔助版。安裝前工程師會先看你的設備規格再建議做法。硬體需求可以先看《公司要跑本地大模型，需要什麼硬體》。
+
+資料會不會被送出去？
+
+地端版的模型與文件在你的設備內處理；雲端輔助版會把問題與檢索到的文件段落送到模型廠商處理。用到外部服務時相關請求仍會送出，需要資料不出公司時，要一起確認本機模型與外連限制。
+
+可以接 LINE 官方帳號當客服嗎？
+
+可以把 AI Agent 接到 LINE 官方帳號，依你提供的文件回答詢問。建議對外回覆先由人確認再送出；LINE 官方帳號的訊息費依 LINE 官方公告另計。
+
+遠端安裝怎麼進行？安全嗎？
+
+由你在電腦上開啟遠端連線，工程師連線安裝，過程你看得到。請不要把密碼或 API Key 用訊息傳給我們；連線方式與結束後的處理會在安裝前說明。
+
+要怎麼開始？
+
+用 LINE 傳一兩句你想交給 AI 的工作，以及電腦或主機的規格。公司需求也可以填 2 分鐘需求表，由工程師確認範圍後回覆。
+
+Next step
+
+## 先用一兩句話，告訴我們你想交給 AI 的工作
+
+附上電腦或主機的規格，工程師確認設備後再報價。AI 模型用量費與 LINE 官方帳號訊息費另計。
+
+[用 LINE 說你的需求](https://lin.ee/n5KW430)
+[公司需求：2 分鐘填表](https://thinkbigtw.com/enterprise/start/#quick)
+[個人方案：看蝦皮賣場](https://shopee.tw/shop/105010395)
+
+延伸閱讀：[各家 AI Agent 一次看懂](https://thinkbigtw.com/guides/ai-agents/)・[企業知識庫問答](https://thinkbigtw.com/enterprise/rag/)・[安全安裝龍蝦（OpenClaw）](https://thinkbigtw.com/guides/openclaw-safe/)・[AI Agent 權限怎麼設](https://thinkbigtw.com/library/qa/ai-agent-permissions/)・[本地 AI 與公司資料](https://thinkbigtw.com/guides/local-ai-data/)
+
+---
+
+URL: https://thinkbigtw.com/briefing/
+
+# 企業導入 AI 說明會｜11/22（日）20:00 YouTube 直播，老闆不能不知道的 4 件事｜Think BIG
+
+Live briefing ／ 企業導入 AI 說明會
+
+# 企業導入 AI 說明會：老闆不能不知道的 4 件事
+
+AI 不只是聊天——讓 AI 幫公司做事，資料還留在公司。不用一次改造整家公司，先從一件重複、耗時、做錯看得出來的工作開始。
+
+- 2026/11/22（日）20:00 台灣時間
+
+- YouTube 直播
+
+- 免費參加・不限人數
+
+- 回放留在 YouTube 頻道
+
+立即報名
+[加入 Google 日曆](https://calendar.google.com/calendar/render?action=TEMPLATE&text=%E4%BC%81%E6%A5%AD%E5%B0%8E%E5%85%A5+AI+%E8%AA%AA%E6%98%8E%E6%9C%83%EF%BD%9CThink+BIG&dates=20261122T120000Z/20261122T124000Z&details=YouTube+%E7%9B%B4%E6%92%AD%EF%BC%9Ahttps%3A%2F%2Fwww.youtube.com%2F%40think_big_ai_tw&location=YouTube)
+
+## 01 離場帶走 4 個答案
+
+- 01 AI Agent 跟聊天工具差在哪？ 會照步驟做事、答不了會說、要核准的交給人。
+
+- 02 公司資料交給 AI 前，要問哪三句？ 放哪裡？誰能看？答錯誰確認？
+
+- 03 先挑哪一件工作試？ 每天重複、有現成資料、做錯看得出來。
+
+- 04 試了有沒有用，怎麼量？ 看時間、看重工、看有沒有依據。
+
+## 02 當天流程
+
+PART 01
+
+### 白話講清楚
+
+AI、聊天工具、AI Agent 差在哪。
+
+PART 02
+
+### 現場示範
+
+用虛構公司的文件，看 AI 附出處回答、答不了交回給人。
+
+PART 03
+
+### 資料去了哪裡
+
+雲端與裝在公司電腦的差別，三句該問的話。
+
+PART 04
+
+### 先做哪一件
+
+挑出第一件工作，以及怎麼量有沒有用。
+
+直播中可以在聊天室提問。示範資料全部為虛構，不使用任何真實公司資料。
+
+## 03 適合誰來聽
+
+- — 想讓 AI 幫公司做事，但還不知道從哪一件開始的老闆與主管。
+
+- — 在意公司資料交給 AI 之後去了哪裡的人。
+
+- — 從一人公司到中大型企業都適用，不需要技術背景。
+
+## 04 報名
+
+留下稱呼與 Email，說明會相關通知會寄到這個信箱。
+
+直播連結：[開播前公布於本頁與 YouTube 頻道 @think_big_ai_tw](https://www.youtube.com/@think_big_ai_tw)
+
+Can't wait?
+
+## 想先聊聊你公司的第一件事？
+
+用 LINE 傳一兩句你想交給 AI 的工作，或預約 30 分鐘免費評估。
+
+[用 LINE 說你的需求](https://lin.ee/n5KW430)
+[預約 30 分鐘免費評估](https://thinkbigtw.com/book/)
+
+延伸閱讀：[AI Agent 搭建服務](https://thinkbigtw.com/services/ai-agent-setup/)・[企業導入](https://thinkbigtw.com/enterprise/)・[本地 AI 與公司資料](https://thinkbigtw.com/guides/local-ai-data/)
+
+---
+
 URL: https://thinkbigtw.com/en/guides/ai-agents/
 
 # What AI Agents Are There? Will New AI Agents Replace the Lobster? | 2026 Overview | Think BIG
@@ -9350,6 +9779,204 @@ First-hand observations on AI deployment
 thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
+
+[Issue 017
+
+November 8, 2026 · Local AI Field Notes
+
+## Should AI Tools Update Automatically? Pin Versions and Plan Patches
+
+A business AI agent needs a known runtime. Pin a reproducible combination, then assign owners for updates, acceptance checks, and recovery.](https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/)
+[Issue 016
+
+November 6, 2026 · AI Deployment Field Notes
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.](https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/)
+[Issue 015
+
+November 4, 2026 · Local AI Field Notes
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.](https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/)
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT · FIELD NOTES
+
+First-hand observations on AI deployment
+◆
+thinkbigtw.com
+
+Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
+
+[Issue 016
+
+November 6, 2026 · AI Deployment Field Notes
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.](https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/)
+[Issue 015
+
+November 4, 2026 · Local AI Field Notes
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.](https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/)
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT · FIELD NOTES
+
+First-hand observations on AI deployment
+◆
+thinkbigtw.com
+
+Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
+
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 013
+
+October 31, 2026 · Local AI Field Notes
+
+## Choosing a Local AI Model: Bigger Isn’t Automatically Better — Test It on Your Own Work
+
+Model size, context length, and concurrency all draw on the same VRAM. A large model that doesn’t fit can run slower than a smaller one fully on the GPU. Four steps: define tasks and metrics, do the memory math, test on your own questions, pick the smallest that passes.](https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/)
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 014
+
+November 2, 2026 · Enterprise Security Notes
+
+## What Is MCP? Set Permission Boundaries Before Connecting an AI Agent
+
+Before connecting an agent, define what it may read, change, and send. Review the connection protocol, authentication, and business approvals separately.](https://thinkbigtw.com/en/news/mcp-ai-agent-permissions-20261102/)
+[Issue 013
+
+October 31, 2026 · Local AI Field Notes
+
+## Choosing a Local AI Model: Bigger Isn’t Automatically Better — Test It on Your Own Work
+
+Model size, context length, and concurrency all draw on the same VRAM. A large model that doesn’t fit can run slower than a smaller one fully on the GPU. Four steps: define tasks and metrics, do the memory math, test on your own questions, pick the smallest that passes.](https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/)
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 011
+
+October 27, 2026 · Local AI Deployment
+
+## Give Your Local AI Too Much “Memory” and It Can Drag Down the Whole Machine — How to Size the Context Length
+
+Ollama’s FAQ and its “Context length” page give different defaults; the safest check is the CONTEXT column in ollama ps . We look at why an oversized context slows everything down, what Flash Attention and K/V cache quantization offer, and how to work backward from real tasks to a number you can justify.](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261027/)
+[Issue 010
+
+October 24, 2026 · AI Security
+
+## AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else's Entry Point?
+
+Microsoft's latest investigation documents attackers using AI to accelerate existing attack workflows. For organizations, the immediate questions are which tools can read data or take action, and who approves and owns that access.](https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/)
+[Issue 009
+
+October 21, 2026 · AI Adoption
+
+## Rolled Out AI and Nobody Uses It? The Problem Usually Isn't the AI. Work Backward From the One Task Employees Actually Do Every Day
+
+Taiwan SMEs' biggest barrier is "no clear use case." BCG found 74% haven't seen results. MIT preliminary report: learning gap. The fix isn't a smarter model — work backward from one task employees actually do every day.](https://thinkbigtw.com/en/news/ai-adoption-nobody-uses-20261021/)
+[Issue 008
+
+October 19, 2026 · On-Premises vs. Cloud AI
+
+## Why Do Some Companies Run AI Agents on Their Own Machines Instead of the Cloud? Can the Data Leave?
+
+On-premises keeps the model and documents on company hardware; the cloud launches fast but your data goes to the provider. Taiwan's public-sector guideline, personal data law, provider terms, and six first-hand lessons from deploying both.](https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/)
+[Issue 007
+
+October 13, 2026 · AI Deployment
+
+## What Is a Forward Deployed Engineer, and Why Is It AI's Most Wanted Role? What Small Businesses Can Do Without an FDE Budget
+
+FDE postings grew more than 800% in 2025. In 2026, major companies invested billions in forward-deployed units. AI's bottleneck has moved from building models to putting them to work. Six lessons from doing this remotely.](https://thinkbigtw.com/en/news/fde-outsourced-engineer-20261013/)
+[Issue 006
+
+October 12, 2026 · AI Hallucinations
+
+## Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI
+
+Training rewards guessing, not admitting uncertainty. Legal RAG tools still hallucinate on 17–33% of queries. Being pushed back makes AI more likely to flip from right to wrong. Five habits for individuals and five steps for businesses.](https://thinkbigtw.com/en/news/ai-hallucination-20261012/)
+[Issue 005
+
+October 11, 2026 · GEO Source Analysis
+
+## Who Does ChatGPT Cite When It Answers Questions About Taiwan? Where Local Brands Should Put Their Information
+
+15,729 citations reveal: ChatGPT leans on brand sites and government bodies, roughly 70% not in Chinese. Three AIs, three separate playing fields — local brands need a separate plan for each.](https://thinkbigtw.com/en/news/chatgpt-tw-citations-20261011/)
+[Issue 004
+
+October 9, 2026 · GEO Measurement
+
+## Asked AI Once and Called It? AI Answers Are Probabilities, Not Rankings: How to Measure GEO Properly
+
+Ask an AI the same question twice and most of the cited sources may change. A 2026 University of St. Gallen study found that when the same question is re-asked minutes apart, only about a third of the cited sources overlap. We cover what that means for measuring GEO properly.](https://thinkbigtw.com/en/news/geo-measurement-20261009/)
+[Issue 003
+
+October 7, 2026 · SEO / GEO
+
+## You Rank on Google. So Why Doesn’t ChatGPT Mention You? — SEO vs. GEO, Explained
+
+SEO gets you found in search results. GEO gets you mentioned in AI answers. Same foundation, different finish line: AI picks passages and weighs what others say about you.](https://thinkbigtw.com/en/news/seo-geo-difference-20261007/)
+[Issue 002
+
+October 5, 2026 · Local AI Deployment
+
+## Is Your Local AI Actually Using the GPU? “Installed” Doesn’t Mean “Running Well”
+
+When a local AI model is painfully slow, the most likely cause isn’t underpowered hardware — it’s that the model is running entirely on the CPU. One command, ten seconds, and you’ll know.](https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/)
+[Issue 001
+
+October 3, 2026 · AI Agent Deployment
+
+## Thinking about abandoning your AI Agent? Ask these three questions first — and stop getting locked in
+
+Most AI Agent abandonment has nothing to do with the tool itself. It comes down to three things nobody confirmed at the start: can you switch models, who owns the data, and can you predict the monthly cost?](https://thinkbigtw.com/en/news/lobster-hermes-abandonment-20261003/)
+
+This edition is also available in [Traditional Chinese (繁中版)](https://thinkbigtw.com/library/news/).
+
+[Issue 016
+
+November 6, 2026 · AI Deployment Field Notes
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.](https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/)
+[Issue 015
+
+November 4, 2026 · Local AI Field Notes
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.](https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/)
 
 # THINK BIG
 
@@ -10297,6 +10924,244 @@ Start with an audit. Know exactly where you stand — then decide the next step.
 
 [Chat on LINE](https://lin.ee/n5KW430)
 [Contact form](https://thinkbigtw.com/en/contact/)
+
+---
+
+URL: https://thinkbigtw.com/en/services/ai-agent-setup/
+
+# AI Agent Setup Service — Personal AI Assistants and Business AI Agents, On-Premises or Cloud | Think BIG
+
+AI Agent Setup
+
+# AI Agent setup: your AI assistant, installed on your own computer or company server
+
+AI Agent setup means installing an AI assistant that can read your materials and complete tasks by your rules on your own computer, your company server, or a cloud server registered to your company, and connecting it to the LINE, Telegram, or internal tools you already use. Think BIG (大想成業有限公司) is an AI Agent setup and deployment team based in Taiwan. We work with individuals and businesses, and our Taiwan-based engineers install remotely.
+
+[Tell us your needs on LINE](https://lin.ee/n5KW430)
+Which option fits me?
+
+## 01 Which kind of need do you have?
+
+### Personal use
+
+A personal AI assistant that is online around the clock, keeps notes, and looks things up, connected to your own LINE or Telegram.
+
+[Personal plans](https://thinkbigtw.com/en/pricing/)[Ask on LINE](https://lin.ee/n5KW430)
+
+### Business use
+
+AI that answers from company documents, replies to inquiries through your LINE Official Account, or organizes internal workflows.
+
+[Contact us](https://thinkbigtw.com/en/contact/)[Enterprise (Chinese)](https://thinkbigtw.com/enterprise/)[Ask on LINE](https://lin.ee/n5KW430)
+
+## 02 What we do for you
+
+- A Confirm your needs and the channels to connect (LINE, Telegram, or internal tools).
+
+- B Check your hardware: graphics card model, memory, operating system.
+
+- C Install the AI Agent and model (on-premises or cloud-assisted).
+
+- D Connect LINE, Telegram, or your internal tools.
+
+- E Set permissions: outbound messages and anything that spends money require human approval.
+
+- F Run acceptance tests with your real work scenarios.
+
+- G Hand over operating instructions and explain the maintenance window.
+
+## 03 Four steps
+
+STEP 01
+
+### Tell us on LINE
+
+A sentence or two about the work you want AI to take on.
+
+STEP 02
+
+### Hardware check
+
+Send your graphics card model and memory size; an engineer checks what will run.
+
+STEP 03
+
+### Remote install
+
+You open a remote connection on your computer and can watch the whole install.
+
+STEP 04
+
+### Acceptance & care
+
+Tested on real scenarios, with handover notes and a maintenance window.
+
+## 04 On-premises vs. cloud-assisted
+
+Item On-premises Cloud-assisted Where the model runs Your computer or company server The model provider's cloud service
+
+How data flows Model and documents are processed on your device Questions and retrieved passages are sent to the model provider
+
+Model usage fee No separate fee Billed separately by the provider, based on usage
+
+Hardware A graphics card and memory that match the model A typical computer is enough
+
+On-premises does not mean every connection stays local: when external services such as LINE or web search are used, those requests are still sent out.
+
+## 05 How the cost is calculated
+
+This page does not list prices. The cost is made up of the items below, each explained before you receive a quote:
+
+- 01 Setup service fee : based on scope (channels, tasks, acceptance criteria).
+
+- 02 Hardware and third-party software : listed separately from the service fee.
+
+- 03 AI model usage fees : none on-premises; with the cloud-assisted version, billed by the model provider based on usage and paid by you directly.
+
+- 04 LINE Official Account message fees : charged separately according to LINE's published pricing.
+
+## 06 What to prepare before installation
+
+- 01 Computer or server specs: graphics card model and memory size.
+
+- 02 Accounts to connect: LINE Official Account or Telegram, registered by you and owned by you.
+
+- 03 The one task you most want to hand to AI first.
+
+Not sure your hardware is enough? Read [what hardware a company needs to run a local LLM](https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/), or send us your specs on LINE.
+
+## 07 When this may not be a good fit
+
+- — You need AI to reply to the public automatically with no human review.
+
+- — Most documents are scanned images without selectable text, and there is no time to tidy them.
+
+- — Hardware is not enough and the cloud-assisted version is not an option.
+
+In these cases we explain workable alternatives first, before deciding whether to start.
+
+## 08 FAQ
+
+What is AI Agent setup?
+
+We install an AI assistant that can read your materials and complete tasks by your rules on your own computer, your company server, or a cloud server registered to your company, then connect it to LINE, Telegram, or internal tools. Setup covers installation, integration, permission settings, and acceptance testing.
+
+How is the cost of AI Agent setup calculated?
+
+The cost is made up of a setup service fee, hardware, third-party software, and AI model usage fees. The on-premises version has no separate model usage fee; the cloud-assisted version is billed separately by the model provider based on usage. Personal plans can be purchased on our Shopee store; business projects are quoted by workflow scope and deployment type.
+
+How is personal setup different from business setup?
+
+Personal setup usually means one computer and one AI assistant, typically connected to LINE or Telegram. Business setup starts by confirming department workflows, data sources, access permissions, and acceptance criteria, then choosing the on-premises or cloud-assisted version.
+
+Do I need a powerful computer?
+
+The on-premises version needs a graphics card and memory that match the model's requirements; if your hardware falls short, the cloud-assisted version is an option. Our engineers check your hardware specs before recommending an approach. See our hardware sizing guide for local models first.
+
+Will my data be sent out?
+
+With the on-premises version, the model and documents are processed on your own device. With the cloud-assisted version, questions and retrieved document passages are sent to the model provider. Requests to external services are still sent when those services are used; if data must stay inside your company, local models and outbound limits are confirmed together.
+
+Can it work as a LINE Official Account customer service assistant?
+
+Yes. An AI Agent can be connected to your LINE Official Account and answer inquiries based on documents you provide. We recommend a person reviews outbound replies before they are sent. LINE Official Account message fees are charged separately according to LINE's published pricing.
+
+How does remote installation work? Is it safe?
+
+You open a remote connection on your computer and our engineer connects to install; you can watch the whole process. Please do not send passwords or API keys to us by message. The connection method and what happens after the session are explained before installation.
+
+How do I get started?
+
+Send us a sentence or two on LINE about the work you want to hand to AI, plus your computer or server specs. Business inquiries can also use the 2-minute request form, and an engineer will reply after confirming the scope.
+
+Next step
+
+## Tell us, in a sentence or two, the work you want to hand to AI
+
+Include your computer or server specs; an engineer confirms your hardware before quoting. AI model usage fees and LINE Official Account message fees are charged separately.
+
+[Tell us your needs on LINE](https://lin.ee/n5KW430)
+[Contact us by email](https://thinkbigtw.com/en/contact/)
+
+Related: [AI Agents compared](https://thinkbigtw.com/en/guides/ai-agents/) · [What is an AI Agent?](https://thinkbigtw.com/en/qa/what-is-ai-agent/) · [Hardware for local LLMs](https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/)
+
+---
+
+URL: https://thinkbigtw.com/en/briefing/
+
+# AI Briefing for Business Owners — YouTube Live, Sun Nov 22, 8 PM Taiwan Time | Think BIG
+
+Live briefing
+
+# AI for your business: 4 things every owner should know
+
+AI is more than chat. Let AI do real work for your company while your data stays in the company. You do not need to change everything at once; start with one repetitive, time-consuming task where mistakes are easy to spot.
+
+- Sun, Nov 22, 2026 · 8:00 PM Taiwan time (UTC+8)
+
+- YouTube live
+
+- Free · open to everyone
+
+- Replay stays on our YouTube channel
+
+- Presented in Mandarin Chinese
+
+Register
+[Add to Google Calendar](https://calendar.google.com/calendar/render?action=TEMPLATE&text=Think+BIG+AI+Briefing+for+Business+Owners&dates=20261122T120000Z/20261122T124000Z&details=YouTube+live%3A+https%3A%2F%2Fwww.youtube.com%2F%40think_big_ai_tw&location=YouTube)
+
+## 01 Leave with 4 answers
+
+- 01 How is an AI Agent different from a chat tool?  It follows steps, says when it cannot answer, and hands approvals to people.
+
+- 02 Three questions to ask before giving company data to AI.  Where is it stored? Who can see it? Who checks wrong answers?
+
+- 03 Which task to try first?  Repeated daily, has existing data, and mistakes are easy to spot.
+
+- 04 How to measure whether it helps.  Time spent, rework, and whether answers cite a source.
+
+## 02 What happens on the day
+
+PART 01
+
+### Plain-language basics
+
+AI, chat tools, and AI Agents compared.
+
+PART 02
+
+### Live demo
+
+With a fictional company's documents: answers with sources, and hand-off to a person when unsure.
+
+PART 03
+
+### Where data goes
+
+Cloud vs. on your company's own computer, and the three questions to ask.
+
+PART 04
+
+### What to do first
+
+Pick the first task and how to measure it.
+
+You can ask questions in the live chat. All demo data is fictional; no real company data is used.
+
+## 03 Register
+
+Leave your name and email; briefing notices will be sent to this address.
+
+Live link: [announced on this page and on YouTube @think_big_ai_tw before the stream](https://www.youtube.com/@think_big_ai_tw)
+
+Next step
+
+## Want to talk about your first task now?
+
+Send us a sentence or two on LINE about the work you want to hand to AI.
+
+[Tell us your needs on LINE](https://lin.ee/n5KW430)
+[AI Agent setup service](https://thinkbigtw.com/en/services/ai-agent-setup/)
 
 ---
 
@@ -14049,6 +14914,8 @@ Q4：哪些動作適合等人核准？
 THINK BIG NEWS   ·  企業資安實務
     Think BIG, Make it Real!　大想成業有限公司
 
+---
+
 URL: https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/
 
 # Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs | Think BIG NEWS
@@ -14712,5 +15579,3 @@ Q4：升級失敗，只降版就好嗎？
 
 THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
-
----

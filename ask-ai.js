@@ -251,10 +251,12 @@
   window.visualViewport?.addEventListener('scroll', viewport); viewport();
   window.toggleChat = () => dialog.open ? dialog.close() : open(document.activeElement);
   window.askQuick = text => { open(document.activeElement); input.value = text; resize(); };
-  // GA4: track clicks on LINE links (lin.ee) across the whole page
+  // GA4: LINE clicks report as `line_click` (same name as nav.js). nav.js already
+  // tracks every LINE link, so only fall back here on pages that do not load it.
   document.addEventListener('click', e => {
+    if (window.__tbNavLoaded) return;
     const a = e.target.closest('a[href*="lin.ee"]');
     if (!a) return;
-    try { if (typeof gtag === 'function') gtag('event', 'click_line', { link_url: a.href }); } catch (_) {}
+    try { if (typeof gtag === 'function') gtag('event', 'line_click', { page_location: location.href, page_path: location.pathname, link_url: a.href, cta: 'inline' }); } catch (_) {}
   }, { passive: true });
 })();
