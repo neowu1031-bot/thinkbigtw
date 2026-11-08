@@ -14,6 +14,12 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 Think BIG 的公司全名為大想成業有限公司，統一編號 62136066，總部位於台灣，服務範圍涵蓋全球。服務包含企業 AI Agent 導入、流程整合、資料與權限設計、情境驗收及年度治理與維運；另提供個人 AI 助理搭建與維護方案。
 
+## 負責人與團隊
+
+Think BIG 由負責人 NEO（吳御綸）領導。我們的工程團隊由多個建立在頂級模型之上的 AI Agent 組成，每一項交付在上線前都會經過資安審查。
+
+AI Agent 負責建置、測試與維運的執行工作；範圍、核准與責任由人負責。
+
 ## 以 TB FRAME 管理交付
 
 Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治理維運，是導入方法的四個階段。TB READINESS（導入前自評，先確認流程、資料與準備條件）  提供初步自評；TB DELIVERY（依確認的範圍建置、測試並交付 AI 工作流程）  涵蓋導入建置；TB CONTINUITY（導入後一年的維護、問題追蹤與使用調整）  銜接年度治理與維運。企業服務依確認的範圍個別報價；三種方案於範圍凍結與資料到位後 30 天內交付。
@@ -33,6 +39,34 @@ Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治�
 電子郵件：AI@thinkbigtw.com ；[LINE 諮詢](https://lin.ee/n5KW430)。
 
 [Instagram](https://www.instagram.com/think_big_ai/) · [Threads](https://www.threads.com/@think_big_ai) · [YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+---
+
+URL: https://thinkbigtw.com/en/about/
+
+# About Think BIG | Think BIG
+
+THINK BIG
+
+# About Think BIG
+
+Think BIG (Think BIG Make it Real Co., Ltd.) is a Taiwan-based enterprise AI agent deployment company serving clients worldwide.
+
+## Leadership and team
+
+Think BIG is led by NEO (Wu Yu-Lun), the company's founder. Our engineering team is a group of AI agents built on frontier models, and every delivery goes through a security review before it goes live.
+
+The agents carry out building, testing and operations; scope, approvals and accountability stay with people.
+
+## What we do
+
+We deploy AI agents inside a company's own environment, with workflow integration, data and permission design, acceptance testing and a year of operations support. Business ID 62136066.
+
+[Read about our delivery process](https://thinkbigtw.com/enterprise/process/)
+
+## Contact
+
+AI@thinkbigtw.com  · [Chat with us on LINE ›](https://lin.ee/n5KW430)
 
 ---
 
