@@ -1,0 +1,5 @@
+{
+  "_note": "SINGLE SOURCE for the WhatsApp number. Put the E.164 digits only (no +, spaces or dashes), e.g. 886912345678. Then run: python3 scripts/sync-whatsapp.py && python3 scripts/sync-site-chrome.py (chrome) && python3 scripts/build-llms-full.py && node scripts/build-agent-kb.mjs. CI runs sync-whatsapp.py --strict and fails while the placeholder remains.",
+  "number": "886908898903",
+  "label": "Think BIG on WhatsApp"
+}
