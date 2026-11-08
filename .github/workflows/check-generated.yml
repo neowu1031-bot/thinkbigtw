@@ -33,6 +33,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: WhatsApp number ship gate (fails while placeholder; links must match data/whatsapp.json)
+        run: python3 scripts/sync-whatsapp.py --strict
+
       - name: Check llms-full.txt is up to date
         run: python3 scripts/build-llms-full.py --check
 
