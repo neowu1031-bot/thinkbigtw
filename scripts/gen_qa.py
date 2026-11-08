@@ -31,6 +31,22 @@ def brand_of(a):
 def by_slug(slug):
     return next(a for a in ARTICLES if a["slug"] == slug)
 
+def related_item(repo, slug, lang="zh"):
+    """延伸閱讀的 (網址, 標題)：先找 ARTICLES，找不到就讀倉庫裡已存在頁面的 <h1>。英文頁只連有英文版的頁。"""
+    a = next((x for x in ARTICLES if x["slug"] == slug), None)
+    if lang == "en":
+        if a and a.get("en"):
+            return f"/en/qa/{slug}/", a["en"]["title"]
+        return None
+    if a:
+        return f"/library/qa/{slug}/", a["title"]
+    fp = os.path.join(repo, "library/qa", slug, "index.html")
+    if os.path.exists(fp):
+        m = re.search(r'<h1[^>]*>(.*?)</h1>', open(fp, encoding="utf-8").read(), re.S)
+        if m:
+            return f"/library/qa/{slug}/", html.unescape(strip(m.group(1)))
+    return None
+
 def chrome(repo, lang="zh"):
     idx = open(os.path.join(repo, "en/qa/index.html" if lang == "en" else "library/qa/index.html"), encoding="utf-8").read()
     nav = re.search(r"<!-- TB:NAV:START -->.*?<!-- TB:NAV:END -->", idx, re.S).group(0)
@@ -120,11 +136,15 @@ def page(repo, a):
     sec = re.sub(r"<table>.*?</table>", _label, sec, flags=re.S)
     faq_html = "".join(f"<dt>Q{i}：{esc(q)}</dt><dd>{esc(ans)}</dd>" for i, (q, ans) in enumerate(a["faq"], 1))
     src_html = "".join(f'<li>{esc(label)}：<a href="{u}" target="_blank" rel="noopener">{esc(u.split("//")[1].split("/")[0])}</a></li>' for label, u in a["sources"])
-    rel = [by_slug(s) for s in a.get("related", [])]
+    rel = [x for x in (related_item(repo, s) for s in a.get("related", [])) if x]
     rel_html = ""
     if rel:
         rel_html = '<nav class="related" aria-label="延伸閱讀"><b>延伸閱讀</b><ul>' + "".join(
-            f'<li><a href="/library/qa/{r["slug"]}/">{esc(r["title"])}</a></li>' for r in rel) + "</ul></nav>"
+            f'<li><a href="{u}">{esc(t)}</a></li>' for u, t in rel) + "</ul></nav>"
+    hl_zh = ""
+    if a.get("en"):
+        hl_zh = (f'<link rel="alternate" hreflang="zh-Hant-TW" href="{url}">\n<link rel="alternate" hreflang="en" href="{BASE}/en/qa/{a["slug"]}/">\n'
+                 f'<link rel="alternate" hreflang="x-default" href="{url}">\n')
     return f"""<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -134,7 +154,7 @@ def page(repo, a):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(a['desc'])}">
 <link rel="canonical" href="{url}">
-<meta property="og:type" content="article">
+{hl_zh}<meta property="og:type" content="article">
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(og_desc)}">
@@ -425,11 +445,215 @@ def run_overview(repo, brand):
     add_llms(repo, brand)
     print("ok overview", brand)
 
+
+# ---------------------------------------------------------------- 英文單篇（a["en"]）與疊加用的 sitemap-qa / llms
+EN_MONTH = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+
+def en_date(d):
+    import datetime
+    dt = datetime.date.fromisoformat(d)
+    return f"{EN_MONTH[dt.month - 1]} {dt.day}, {dt.year}"
+
+def page_en(repo, a):
+    e = a["en"]
+    nav, foot, css, askai, gtag = chrome(repo, "en")
+    url = f"{BASE}/en/qa/{a['slug']}/"
+    zh_url = f"{BASE}/library/qa/{a['slug']}/"
+    iso = f"{a['date']}T16:00:00+08:00"
+    answer_txt = strip(e["answer"])
+    faq = [(e["title"], answer_txt)] + e["faq"]
+    ld = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "@id": url + "#article", "headline": e["title"], "description": e["desc"], "keywords": e["keywords"],
+         "author": {"@type": "Organization", "name": "Think BIG Q&A Library", "url": BASE + "/en/qa/"},
+         "publisher": {"@type": "Organization", "@id": BASE + "/#organization", "name": "Think BIG Make it Real Co., Ltd.", "url": BASE + "/",
+                       "logo": {"@type": "ImageObject", "url": BASE + "/assets/brand/thinkbig-dark.png"}},
+         "datePublished": iso, "dateModified": iso, "url": url, "mainEntityOfPage": url, "inLanguage": "en",
+         "isPartOf": {"@type": "CollectionPage", "name": "Q&A Library", "url": BASE + "/en/qa/"},
+         "mentions": [brand_of(a)["mention"]],
+         "citation": [u for _, u in e["sources"]]},
+        {"@type": "FAQPage", "@id": url + "#faq", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": ans}} for q, ans in faq]},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": BASE + "/en/"},
+            {"@type": "ListItem", "position": 2, "name": "Library", "item": BASE + "/library/"},
+            {"@type": "ListItem", "position": 3, "name": "Q&A Library", "item": BASE + "/en/qa/"},
+            {"@type": "ListItem", "position": 4, "name": e["short"], "item": url}]}]}
+    title = f"{e['title']} | Q&A Library | Think BIG"
+    sec = re.sub(r"(<table>.*?</table>)", r'<div class="tbl">\1</div>', e["sections"], flags=re.S)
+    def _label(m):
+        heads = re.findall(r"<th>(.*?)</th>", m.group(0))
+        def _row(r):
+            cells = iter(heads)
+            return re.sub(r"<td>", lambda _: f'<td data-label="{esc(strip(next(cells, "")))}">', r.group(0))
+        return re.sub(r"<tr><td>.*?</tr>", _row, m.group(0), flags=re.S)
+    sec = re.sub(r"<table>.*?</table>", _label, sec, flags=re.S)
+    faq_html = "".join(f"<dt>Q{i}: {esc(q)}</dt><dd>{esc(ans)}</dd>" for i, (q, ans) in enumerate(e["faq"], 1))
+    src_html = "".join(f'<li>{esc(label)}: <a href="{u}" target="_blank" rel="noopener">{esc(u.split("//")[1].split("/")[0])}</a></li>' for label, u in e["sources"])
+    rel = [x for x in (related_item(repo, s, "en") for s in a.get("related", [])) if x]
+    rel_html = ""
+    if rel:
+        rel_html = '<nav class="related" aria-label="Related"><b>Related</b><ul>' + "".join(
+            f'<li><a href="{u}">{esc(t)}</a></li>' for u, t in rel) + "</ul></nav>"
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+{gtag}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{esc(title)}</title>
+<meta name="description" content="{esc(e['desc'])}">
+<link rel="canonical" href="{url}">
+<link rel="alternate" hreflang="en" href="{url}">
+<link rel="alternate" hreflang="zh-Hant-TW" href="{zh_url}">
+<link rel="alternate" hreflang="x-default" href="{zh_url}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="{url}">
+<meta property="og:title" content="{esc(title)}">
+<meta property="og:description" content="{esc(e['desc'])}">
+<meta property="og:image" content="{BASE}/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="{iso}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{esc(title)}">
+<meta name="twitter:description" content="{esc(e['desc'])}">
+<meta name="twitter:image" content="{BASE}/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{json.dumps(ld, ensure_ascii=False, indent=1)}
+</script>
+{STYLE}
+{css}
+</head>
+<body>
+{nav}<main>
+<article class="wrap">
+  <a class="back-link" href="/en/qa/">&larr; Q&amp;A Library</a>
+  <div class="qa-top"><span class="cat">{esc(brand_of(a)["name"])} · BearSay Mandarin</span><span class="no">{a['no']}</span></div>
+  <h1 class="q">{esc(e['title'])}</h1>
+  <p class="byline">Think BIG Q&amp;A Library　·　<time datetime="{iso}">{en_date(a['date'])}</time>　·　<a href="/library/qa/{a['slug']}/" hreflang="zh-Hant-TW" lang="zh-Hant-TW">中文版</a></p>
+
+  <section class="answer" aria-label="Short answer">
+    <span class="lede">Short answer</span>
+    <p>{e['answer']}</p>
+  </section>
+
+  <div class="body">{sec}</div>
+
+  <section class="brand" aria-label="Brand information">
+    <span class="lede">Brand information | BearSay Mandarin</span>
+    <h2>{esc(e['brand_title'])}</h2>
+    {e['brand']}
+  </section>
+
+  <section class="faq" aria-label="FAQ">
+    <h2>Frequently asked questions</h2>
+    <dl>{faq_html}</dl>
+  </section>
+
+  {rel_html}
+
+  <div class="sources"><span class="lede">Sources (links checked {a.get("checked", "2026-11-09")})</span><ol>{src_html}</ol></div>
+  <p class="disclaimer">This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.</p>
+
+  <div class="colophon"><b>Q&amp;A Library</b>　·　<a href="/library/" style="color:inherit">Library home</a><span class="sig">Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.</span></div>
+</article>
+</main><script src="/nav.js" defer></script>
+{askai}{foot}
+</body>
+</html>
+"""
+
+def card_en(a):
+    e = a["en"]
+    first = strip(e["answer"]).split(". ")[0].rstrip(".") + "."
+    if len(first) > 160:
+        first = first[:157].rsplit(" ", 1)[0] + "…"
+    return f"""    <article class="qa">
+      <div class="qa-top"><span class="cat">{esc(brand_of(a)["name"])} · BearSay Mandarin</span><span class="no">{a['no']}</span></div>
+      <h2 class="q"><a href="/en/qa/{a['slug']}/" style="color:inherit;text-decoration:none">{esc(e['title'])}</a></h2>
+      <div class="a">
+        <div>
+          <p>{esc(first)}</p>
+          <p><a href="/en/qa/{a['slug']}/" style="color:var(--accent);font-weight:700">Read full answer →</a></p>
+        </div>
+      </div>
+      <div class="qa-foot">
+        <span class="by">Think BIG Q&amp;A Library</span>
+        <span class="tag">BearSay Mandarin</span>
+        <span class="meta">Updated {a['date']}</span>
+      </div>
+    </article>
+"""
+
+def update_index_en(repo, a):
+    p = os.path.join(repo, "en/qa/index.html")
+    s = open(p, encoding="utf-8").read()
+    if f'/en/qa/{a["slug"]}/' in s:
+        return
+    assert '<div class="cards">\n' in s
+    s = s.replace('<div class="cards">\n', '<div class="cards">\n' + card_en(a), 1)
+    open(p, "w", encoding="utf-8").write(s)
+
+def add_sitemap_qa(repo, path, date):
+    """問答新頁寫進獨立的 /sitemap-qa.xml（同 qa-twy-20261025/qa_sitemap.py；NEWS 分支會整份重寫 sitemap.xml，避免衝突）。"""
+    p = os.path.join(repo, "sitemap-qa.xml")
+    head = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    tail = "</urlset>\n"
+    s = open(p, encoding="utf-8").read() if os.path.exists(p) else head + tail
+    loc = BASE + path
+    if f"<loc>{loc}</loc>" not in s:
+        s = s.replace(tail, f"  <url><loc>{loc}</loc><lastmod>{date}</lastmod></url>\n" + tail)
+        open(p, "w", encoding="utf-8").write(s)
+    r = os.path.join(repo, "robots.txt")
+    rs = open(r, encoding="utf-8").read()
+    line = f"Sitemap: {BASE}/sitemap-qa.xml"
+    if line not in rs:
+        open(r, "w", encoding="utf-8").write(rs.rstrip("\n") + "\n" + line + "\n")
+
+def _append_to_list(s, header, line):
+    i = s.index(header); end = i + len(header)
+    while True:
+        nl = s.find("\n", end + 1)
+        nxt = s[end + 1: nl if nl >= 0 else len(s)]
+        if nxt.startswith("- ["):
+            end = nl if nl >= 0 else len(s)
+        else:
+            break
+    return s[:end] + "\n" + line + s[end:]
+
+def add_llms_article(repo, a):
+    p = os.path.join(repo, "llms.txt")
+    s = open(p, encoding="utf-8").read()
+    zu, eu = f"{BASE}/library/qa/{a['slug']}/", f"{BASE}/en/qa/{a['slug']}/"
+    if zu not in s:
+        s = _append_to_list(s, "## 問答圖書館（企業 AI）", f"- [{a['title']}]({zu})")
+    if a.get("en") and eu not in s:
+        s = _append_to_list(s, "## Q&A Library (Enterprise AI)", f"- [{a['en']['title']}]({eu})")
+    open(p, "w", encoding="utf-8").write(s)
+
+def run_article_multi(repo, a):
+    """非 twy 品牌單篇：中文頁＋英文頁＋兩個列表＋sitemap-qa＋llms。"""
+    out = os.path.join(repo, "library/qa", a["slug"], "index.html")
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    open(out, "w", encoding="utf-8").write(page(repo, a))
+    update_index(repo, a)
+    add_sitemap_qa(repo, f"/library/qa/{a['slug']}/", a["date"])
+    if a.get("en"):
+        oe = os.path.join(repo, "en/qa", a["slug"], "index.html")
+        os.makedirs(os.path.dirname(oe), exist_ok=True)
+        open(oe, "w", encoding="utf-8").write(page_en(repo, a))
+        update_index_en(repo, a)
+        add_sitemap_qa(repo, f"/en/qa/{a['slug']}/", a["date"])
+    add_llms_article(repo, a)
+    print("ok", a["slug"], "zh+en" if a.get("en") else "zh")
+
 if __name__ == "__main__":
     if len(sys.argv) == 4 and sys.argv[2] == "--overview":
         run_overview(sys.argv[1], sys.argv[3]); sys.exit(0)
     repo, slug = sys.argv[1], sys.argv[2]
     a = by_slug(slug)
+    if a.get("brand_key", "twy") != "twy":
+        run_article_multi(repo, a); sys.exit(0)
     out = os.path.join(repo, "library/qa", slug, "index.html")
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, "w", encoding="utf-8").write(page(repo, a))
