@@ -134,8 +134,8 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066；由負責人 NEO 領導，工程團隊為多個建立在頂級模型之上的 AI Agent，每次交付前經資安審查
-- [隱私權政策](https://thinkbigtw.com/privacy.html)
-- [服務條款](https://thinkbigtw.com/terms.html)
+- [隱私權政策](https://thinkbigtw.com/privacy.html)（English: https://thinkbigtw.com/en/privacy/）
+- [服務條款](https://thinkbigtw.com/terms.html)（English: https://thinkbigtw.com/en/terms/）
 - [LINE 諮詢](https://lin.ee/n5KW430)；Email：AI@thinkbigtw.com
 - [Instagram](https://www.instagram.com/think_big_ai/)、[Threads](https://www.threads.com/@think_big_ai)、[YouTube](https://www.youtube.com/@think_big_ai)
 - [全站內容全文](https://thinkbigtw.com/llms-full.txt)
@@ -163,6 +163,9 @@ English summary: Think BIG (Think BIG Co., Ltd.) is a Taiwan-based enterprise AI
 - [About Think BIG (English)](https://thinkbigtw.com/en/about/)：Who we are, the company and scope of service, leadership and team, TB FRAME delivery and governance principles
 - [Contact Think BIG (English)](https://thinkbigtw.com/en/contact/)：Email and WhatsApp
 - [Briefing (English)](https://thinkbigtw.com/en/briefing/)
+- [Terms of Service (English)](https://thinkbigtw.com/en/terms/)：Services, delivery with AI tools, cancellation and refunds, liability, governing law
+- [Privacy Policy (English)](https://thinkbigtw.com/en/privacy/)：Data we collect, AI tools used in remote work, retention, your rights
+- [FAQ (English)](https://thinkbigtw.com/en/faq/)：Pricing, delivery with AI tools, tax and invoices, refunds, data and security
 - [Plans overview (English)](https://thinkbigtw.com/en/pricing/)：Enterprise Cloud-Assisted and On-Premises, personal plans, device requirements, add-ons
 - [AI Agent Setup Service (English)](https://thinkbigtw.com/en/services/ai-agent-setup/)：Personal and business AI Agent setup on your own computer or company server
 - [Which AI Agents Are Out There? (English)](https://thinkbigtw.com/en/guides/ai-agents/)
