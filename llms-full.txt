@@ -64,7 +64,7 @@ Legal name: Think BIG Make it Real CO., LTD. (in Chinese, 大想成業有限公�
 
 ## Leadership and team
 
-Think BIG is led by NEO, the company's Managing Director (the company's registered responsible person). Our engineering team is a group of AI agents built on frontier models, and every delivery goes through a security review before it goes live.
+Think BIG is led by NEO, the company's Founder. Our engineering team is a group of AI agents built on frontier models, and every delivery goes through a security review before it goes live.
 
 The agents carry out building, testing and operations; scope, approvals and accountability stay with people.
 
