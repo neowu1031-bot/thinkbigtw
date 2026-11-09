@@ -3693,7 +3693,7 @@ AI 工具與服務商 Anthropic Claude Code(Anthropic PBC,美國)、OpenAI Codex
 
 利用地區 中華民國,以及上述服務商所在的美國(國際傳輸,個人資料保護法第 21 條)。
 
-利用期間 施作與維護期間;本公司端遮蔽後的作業紀錄,於維護期屆滿後 30 日內刪除,客戶可要求提前刪除。服務商端依其公布的資料政策保存。
+利用期間 施作與維護期間;本公司端作業紀錄於服務完成後依實際需要保存，您可隨時來信要求刪除。服務商端依其公布的資料政策保存。
 
 您的權利 查詢、閱覽、複製、補充或更正、停止蒐集處理利用、刪除,本公司於 14 日內處理。
 
@@ -14704,7 +14704,7 @@ After the job
 
 ## What happens to my data and my machine when the job ends?
 
-At the end of the support period we remove our remote access. If you cancel or get a refund, we remove what we installed, free of charge. We do not delete your own files. Our masked work logs are deleted within 30 days after the support period ends, or earlier on request.
+At the end of the support period we remove our remote access. If you cancel or get a refund, we remove what we installed, free of charge. We do not delete your own files. Work logs are kept only as long as the service requires; you can ask us to delete them at any time.
 
 EU and UK
 
@@ -14786,7 +14786,7 @@ Our safeguards We mask account names, email addresses, phone numbers, street add
 
 Where it goes The providers’ servers in the United States, under their published data policies.
 
-Retention Provider side: under the providers’ policies. Our side: masked work logs are deleted within 30 days after the support period ends; you can ask for earlier deletion.
+Retention Provider side: under the providers’ policies. Our side: Work logs are kept only as long as the service requires; you can ask us to delete them at any time.
 
 Your choice AI tools are how we deliver the Services, so we cannot offer a version without them. If you do not accept this, please do not order.
 
