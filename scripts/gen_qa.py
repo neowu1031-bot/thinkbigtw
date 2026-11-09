@@ -465,7 +465,7 @@ def page_en(repo, a):
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Article", "@id": url + "#article", "headline": e["title"], "description": e["desc"], "keywords": e["keywords"],
          "author": {"@type": "Organization", "name": "Think BIG Q&A Library", "url": BASE + "/en/qa/"},
-         "publisher": {"@type": "Organization", "@id": BASE + "/#organization", "name": "Think BIG Make it Real Co., Ltd.", "url": BASE + "/",
+         "publisher": {"@type": "Organization", "@id": BASE + "/#organization", "name": "Think BIG Make it Real CO., LTD.", "url": BASE + "/",
                        "logo": {"@type": "ImageObject", "url": BASE + "/assets/brand/thinkbig-dark.png"}},
          "datePublished": iso, "dateModified": iso, "url": url, "mainEntityOfPage": url, "inLanguage": "en",
          "isPartOf": {"@type": "CollectionPage", "name": "Q&A Library", "url": BASE + "/en/qa/"},
@@ -555,7 +555,7 @@ def page_en(repo, a):
   <div class="sources"><span class="lede">Sources (links checked {a.get("checked", "2026-11-09")})</span><ol>{src_html}</ol></div>
   <p class="disclaimer">This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.</p>
 
-  <div class="colophon"><b>Q&amp;A Library</b>　·　<a href="/library/" style="color:inherit">Library home</a><span class="sig">Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.</span></div>
+  <div class="colophon"><b>Q&amp;A Library</b>　·　<a href="/library/" style="color:inherit">Library home</a><span class="sig">Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.</span></div>
 </article>
 </main><script src="/nav.js" defer></script>
 {askai}{foot}

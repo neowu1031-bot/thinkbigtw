@@ -50,23 +50,41 @@ THINK BIG
 
 # About Think BIG
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is a Taiwan-based enterprise AI agent deployment company serving clients worldwide.
+Think BIG (Think BIG Make it Real CO., LTD.) is a Taiwan-based enterprise AI agent deployment company serving clients worldwide.
+
+## Who we are
+
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan and serving clients worldwide. We start from keeping company data secure and build AI Agents inside the company's own environment (company equipment, or a cloud host registered to the company) with TB FRAME, our four-phase deployment method (assess, build, validate, operate), plus one year of hands-on maintenance. With the on-premises option, models and documents are processed on company equipment; with the cloud-assisted option, questions and retrieved document passages are sent to the model provider. We act as a remote FDE (Forward Deployed Engineer) team for the company: from understanding the need, building the knowledge base and AI Agents, and going live, to ongoing operations, handled end to end. Personal AI assistant setup plans are also available.
+
+On-premises does not mean every connection stays on the machine.  If cloud models or external services are used, those requests still leave the device. When data must stay inside the company, local models, outbound restrictions and available features need to be confirmed first.
+
+## Company and scope of service
+
+Legal name: Think BIG Make it Real CO., LTD. (in Chinese, 大想成業有限公司), Taiwan Business ID 62136066, headquartered in Taiwan and serving clients worldwide. Services include enterprise AI Agent deployment, workflow integration, data and permission design, scenario acceptance, and annual governance and operations. Personal AI assistant setup and maintenance plans are also offered.
 
 ## Leadership and team
 
-Think BIG is led by NEO, the company's founder. Our engineering team is a group of AI agents built on frontier models, and every delivery goes through a security review before it goes live.
+Think BIG is led by NEO, the company's Managing Director (the company's registered responsible person). Our engineering team is a group of AI agents built on frontier models, and every delivery goes through a security review before it goes live.
 
 The agents carry out building, testing and operations; scope, approvals and accountability stay with people.
 
-## What we do
+## Delivery managed with TB FRAME
 
-We deploy AI agents inside a company's own environment, with workflow integration, data and permission design, acceptance testing and a year of operations support. Business ID 62136066.
+Assess (define), Build (architecture and build), Validate (acceptance and handover) and Operate (governance and operations) are the four phases of our method. TB READINESS (a pre-deployment self-assessment that confirms workflows, data and preparation) gives a first read; TB DELIVERY (building, testing and delivering the AI workflow within the confirmed scope) covers the build; TB CONTINUITY (one year of maintenance, issue tracking and usage adjustments after deployment) carries on into annual governance and operations. Enterprise services are quoted individually for the confirmed scope; all three plans are delivered within 30 days once scope is frozen and data is in place.
 
-[Read about our delivery process](https://thinkbigtw.com/enterprise/process/)
+[Read about phase deliverables and review responsibilities (Chinese)](https://thinkbigtw.com/enterprise/process/)
 
-## Contact
+## Governance principles
 
-AI@thinkbigtw.com  · [Chat with us on LINE ›](https://lin.ee/n5KW430)
+Data and operations are scoped by least privilege. Outbound sending, spending and changes to production systems are approved by a named owner, and every change records its reason, scope, rollback method and verification. We do not publish client names, logos, screenshots or descriptions that could identify a client. Capability statements reflect how the Think BIG team actually operates and governs its work, and do not represent third-party security certification.
+
+[Read our governance and security commitments (Chinese)](https://thinkbigtw.com/trust/)
+
+## Contact Think BIG
+
+AI@thinkbigtw.com  · [Chat with us on WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+[Instagram](https://www.instagram.com/think_big_ai/) · [Threads](https://www.threads.net/@think_big_ai) · [YouTube](https://www.youtube.com/@think_big_ai_tw)
 
 ---
 
@@ -6970,7 +6988,7 @@ Brand information | Think BIG
 
 ## How Think BIG handles "can this data leave the company?"
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Map the data flow before building : which data enters the AI, where it is stored, and whether anything leaves the company, listed item by item for the client to confirm.
 
@@ -7005,7 +7023,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -7227,7 +7245,7 @@ Brand information | Think BIG
 
 ## How Think BIG helps companies choose hardware for local models
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Check existing equipment first : we look at whether current computers can do the job before suggesting any purchase.
 
@@ -7262,7 +7280,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -7455,7 +7473,7 @@ Brand information | Think BIG
 
 ## Think BIG's two deployment options
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - External channels confirmed one by one : on-premises does not mean every connection stays local. If an external channel such as LINE is added, messages through that channel pass through that service; we list this for the client before building.
 
@@ -7486,7 +7504,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -7651,7 +7669,7 @@ Brand information | Think BIG
 
 ## How Think BIG reduces the impact of prompt injection
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Least privilege : for each AI Agent we confirm data sources, read/write scope, and access roles under the principle of least privilege.
 
@@ -7678,7 +7696,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -7879,7 +7897,7 @@ Brand information | Think BIG
 
 ## How Think BIG sets AI Agent permissions
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Least privilege : for each AI Agent we confirm data sources, processing location, read/write scope, and access roles according to the work required.
 
@@ -7906,7 +7924,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -8049,7 +8067,7 @@ Brand information | Think BIG
 
 ## How Think BIG decides whether a model is good enough
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Acceptance by test questions, not demos : people who know the business write test questions, correct sources, and acceptable answer ranges; each retrieved passage and final answer is checked, including cases the AI cannot answer and permission boundaries.
 
@@ -8078,7 +8096,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -8297,7 +8315,7 @@ Brand information | Think BIG
 
 ## Think BIG's pre-delivery security review
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Pre-delivery security review : before each system is delivered, its code and configuration go through a security review: comparing the exact version to be delivered, checking outbound connections and permissions, and confirming keys are not exposed. If it does not pass, it is not delivered.
 
@@ -8330,7 +8348,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -8509,7 +8527,7 @@ Brand information | Think BIG
 
 ## How Think BIG's on-premises version handles connectivity and updates
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - External connections confirmed one by one : on-premises does not mean every connection stays local; if cloud models, messaging apps, or other external services are used, those requests still go to that service, and we confirm each one before building.
 
@@ -8536,7 +8554,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -8715,7 +8733,7 @@ Brand information | Think BIG
 
 ## How Think BIG accepts an AI Agent
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Business goals turned into acceptance criteria : work goals become checkable output specifications, including format, required fields, data sources, and reviewer roles.
 
@@ -8746,7 +8764,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -8895,7 +8913,7 @@ Brand information | Think BIG
 
 ## How Think BIG handles knowledge base permissions
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Readable scope checked before retrieval : the asker's identity and document permissions are checked first, then relevant passages are retrieved from approved documents. Permissions are enforced at retrieval, not only by telling the prompt "don't reveal".
 
@@ -8924,7 +8942,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -9087,7 +9105,7 @@ Brand information | Think BIG
 
 ## How Think BIG handles keys
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Clients apply for their own keys : AI model fees are paid by the client directly; the client applies for the API key with our engineers' guidance, and cloud accounts are opened under the client's name.
 
@@ -9116,7 +9134,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -9293,7 +9311,7 @@ Brand information | Think BIG
 
 ## How Think BIG handles model and component licenses
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan. Starting from protecting company data, we build AI Agents inside the client's own environment (company hardware, or a cloud server under the company's account). There are two deployment options: with the on-premises version, models and documents are processed on company hardware; with the cloud-assisted version, employees' questions and the document passages the system retrieves are sent to the model provider for processing.
 
 - Third-party components reviewed for source and license : third-party packages are reviewed for source and license, pinned, and not auto-updated.
 
@@ -9318,7 +9336,7 @@ Sources (checked 2026-10-19)
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
-Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -11265,7 +11283,7 @@ Sources
 This article is a Think BIG field notes publication, based on first-hand deployment experience. The views expressed do not represent any specific vendor or product. All named sources are linked inline.
 
 THINK BIG NEWS  · First-Hand Observations on AI Deployment
-    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -11541,7 +11559,7 @@ Sources
 This article combines industry reporting with Think BIG’s first-hand work on its own website. All cited official documents and studies are linked; platform rules and features follow the latest official documentation. Data about our own site is shown only as relative figures and trends. The AI chatbot mentioned is not named, and nothing here is directed at any company or product.
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
-    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -11556,7 +11574,7 @@ Cited by AI.
 
 SEO, AEO, and GEO share the same foundation — one service, no duplicated effort. Let Google find you in search results and let ChatGPT, Perplexity, and Google AI mention you when answering questions. Works for businesses without a website too.
 
-[Chat on LINE](https://lin.ee/n5KW430)
+[Chat on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 [Think BIG on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20SEO%20%2F%20GEO.)
 [Contact us](https://thinkbigtw.com/en/contact/)
 
@@ -11878,7 +11896,7 @@ and cited by AI?
 
 Start with an audit. Know exactly where you stand — then decide the next step.
 
-[Chat on LINE](https://lin.ee/n5KW430)
+[Chat on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 [Think BIG on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20SEO%20%2F%20GEO.)
 [Contact form](https://thinkbigtw.com/en/contact/)
 
@@ -11894,7 +11912,7 @@ AI Agent Setup
 
 AI Agent setup means installing an AI assistant that can read your materials and complete tasks by your rules on your own computer, your company server, or a cloud server registered to your company, and connecting it to the LINE, Telegram, or internal tools you already use. Think BIG (大想成業有限公司) is an AI Agent setup and deployment team based in Taiwan. We work with individuals and businesses, and our Taiwan-based engineers install remotely.
 
-[Tell us your needs on LINE](https://lin.ee/n5KW430)
+[Tell us your needs on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 [Think BIG on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 Which option fits me?
 
@@ -11904,13 +11922,13 @@ Which option fits me?
 
 A personal AI assistant that is online around the clock, keeps notes, and looks things up, connected to your own LINE or Telegram.
 
-[Personal plans](https://thinkbigtw.com/en/pricing/)[Ask on LINE](https://lin.ee/n5KW430)[Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+[Personal plans](https://thinkbigtw.com/en/pricing/)[Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
 ### Business use
 
 AI that answers from company documents, replies to inquiries through your LINE Official Account, or organizes internal workflows.
 
-[Contact us](https://thinkbigtw.com/en/contact/)[Enterprise (Chinese)](https://thinkbigtw.com/enterprise/)[Ask on LINE](https://lin.ee/n5KW430)[Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+[Contact us](https://thinkbigtw.com/en/contact/)[Enterprise (Chinese)](https://thinkbigtw.com/enterprise/)[Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
 ## 02 What we do for you
 
@@ -11932,7 +11950,7 @@ AI that answers from company documents, replies to inquiries through your LINE O
 
 STEP 01
 
-### Tell us on LINE
+### Tell us on WhatsApp
 
 A sentence or two about the work you want AI to take on.
 
@@ -11986,7 +12004,7 @@ This page does not list prices. The cost is made up of the items below, each exp
 
 - 03 The one task you most want to hand to AI first.
 
-Not sure your hardware is enough? Read [what hardware a company needs to run a local LLM](https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/), or send us your specs on LINE.
+Not sure your hardware is enough? Read [what hardware a company needs to run a local LLM](https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/), or send us your specs on WhatsApp.
 
 ## 07 When this may not be a good fit
 
@@ -12030,7 +12048,7 @@ You open a remote connection on your computer and our engineer connects to insta
 
 How do I get started?
 
-Send us a sentence or two on LINE about the work you want to hand to AI, plus your computer or server specs. Business inquiries can also use the 2-minute request form, and an engineer will reply after confirming the scope.
+Send us a sentence or two on WhatsApp about the work you want to hand to AI, plus your computer or server specs. Business inquiries can also use the 2-minute request form, and an engineer will reply after confirming the scope.
 
 Next step
 
@@ -12038,7 +12056,7 @@ Next step
 
 Include your computer or server specs; an engineer confirms your hardware before quoting. AI model usage fees and LINE Official Account message fees are charged separately.
 
-[Tell us your needs on LINE](https://lin.ee/n5KW430)
+[Tell us your needs on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 [Think BIG on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 [Contact us by email](https://thinkbigtw.com/en/contact/)
 
@@ -12117,9 +12135,9 @@ Next step
 
 ## Want to talk about your first task now?
 
-Send us a sentence or two on LINE about the work you want to hand to AI.
+Send us a sentence or two on WhatsApp about the work you want to hand to AI.
 
-[Tell us your needs on LINE](https://lin.ee/n5KW430)
+[Tell us your needs on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 [Think BIG on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20AI%20briefing.)
 [AI Agent setup service](https://thinkbigtw.com/en/services/ai-agent-setup/)
 
@@ -12250,7 +12268,7 @@ Sources
 This article is a Think BIG field notes publication, based on first-hand deployment experience. The views expressed do not represent any specific vendor or product. All named sources are linked inline; commands and default values are based on the official Ollama documentation current at time of publication.
 
 THINK BIG NEWS  · First-Hand Observations on AI Deployment
-    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -12553,7 +12571,7 @@ Sources
 This article combines industry reporting with Think BIG’s first-hand measurement experience. All cited research and official documents are linked; figures follow the original papers’ stated conditions, platforms, and time windows. Data about our own site is shown only as relative observations. AI tools are not named, and nothing here is directed at any company or product.
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
-    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -12855,7 +12873,7 @@ Sources
 This article combines research reporting with Think BIG’s first-hand practice. All cited studies and official documents are linked; research figures reflect the time period, platforms, question types, and test conditions stated in each source. Our own changes are described only in terms of direction and relative progress; no absolute figures are disclosed. Nothing here is directed at any company or product.
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
-    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -13061,7 +13079,7 @@ There is good news.  The OpenAI paper argues hallucinations aren’t inevitable,
 
 On October 4, 2026, we asked an AI chatbot: “Which companies in Taiwan are deploying AI agents?” It listed a few. We weren’t on the list.
 
-Then we asked about our own company. It answered with complete confidence: Think BIG Make it Real Co., Ltd. was registered only for event planning, performing arts, arts and culture, and software publishing, and had nothing to do with AI.
+Then we asked about our own company. It answered with complete confidence: Think BIG Make it Real CO., LTD. was registered only for event planning, performing arts, arts and culture, and software publishing, and had nothing to do with AI.
 
 In fact, our registration with Taiwan’s Ministry of Economic Affairs lists 20 business activities, including I301010 Information Software Services and I301020 Data Processing Services. The items the chatbot named are on our registration, but they’re only part of it. The words “only” and “nothing to do with AI” were wrong.
 
@@ -13131,7 +13149,7 @@ Sources
 This article combines industry research with Think BIG’s first-hand experience. All cited studies and official documents are linked; figures reflect the year and test conditions stated in each source, and model evaluation results change as versions are updated. The AI chatbot mentioned is not named, and nothing here is directed at any company or product.
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
-    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -13381,7 +13399,7 @@ Sources
 This article combines industry reporting with Think BIG’s first-hand practice. All cited official documents and reports are linked; hiring figures reflect each source’s published analysis, and we don’t cite unverified salary figures. Companies are described rather than named in the text, with links in the sources; nothing here evaluates any company or product. Our first-hand experience is shared without client details.
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
-    Think BIG, Make it Real!   Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -13643,7 +13661,7 @@ Sources
 This article combines industry reporting with Think BIG's first-hand practice. All cited laws, official documents, and provider terms are linked; terms reflect each source's latest published version. Companies are described rather than named in the text, with links in the sources; nothing here evaluates any company or product. This article is not legal advice; consult a professional on personal data and contract questions. Our first-hand experience is shared without client details.
 
 THINK BIG NEWS   ·  First-hand AI deployment notes
-    Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -13897,7 +13915,7 @@ Sources
 This article combines industry reporting with Think BIG's first-hand practice. All cited surveys and reports are linked; figures reflect each source's published results, and the MIT research is a preliminary report cited through press coverage with its limitations noted. Companies are described rather than named in the text, with links in the sources; nothing here evaluates any company or product. Our first-hand experience is shared without client details.
 
 THINK BIG NEWS   ·  First-hand AI deployment notes
-    Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -14376,7 +14394,7 @@ Sources
 The first-hand lessons, recommendations, and editor’s note present Think BIG’s practical views and do not constitute industry statistics or evidence of customer outcomes.
 
 THINK BIG NEWS   ·  Local AI Deployment Notes
-    Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -14539,9 +14557,7 @@ AI@thinkbigtw.com
 
 [Think BIG on WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.) (preferred for clients outside Taiwan)
 
-[Chat with us on LINE ›](https://lin.ee/n5KW430)
-
-Think BIG (Think BIG Make it Real Co., Ltd.), Taiwan Business ID 62136066. Headquartered in Taiwan, serving clients worldwide.
+Think BIG (Think BIG Make it Real CO., LTD.), Taiwan Business ID 62136066. Headquartered in Taiwan, serving clients worldwide.
 
 ## Start from your needs
 
@@ -14558,248 +14574,141 @@ Learn about fees, installation and data permissions first.](https://thinkbigtw.c
 
 URL: https://thinkbigtw.com/en/
 
-# Enterprise AI Agent Deployment and Governance | Think BIG
+# Enterprise AI Agent Deployment and Governance in Taiwan | Think BIG
 
-ENTERPRISE AI AGENTS
+AI THAT WORKS. FOR YOUR BUSINESS.
 
-# Make AI a lasting operational capability.
+# Put AI to work.
+Free your team
+for what matters.
 
-Deploy AI Agents on your own equipment — from assessment to a full year of operation, handled end to end.
+Starting from security,
+we build AI Agents inside your company's own environment.
 
-[Artificial Intelligence ›](https://thinkbigtw.com/enterprise/)[Book a consultation ›](https://thinkbigtw.com/enterprise/#consult)
+[Book a free 30-minute assessment →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20assessment.)
+[See how setup works →](https://thinkbigtw.com/en/services/ai-agent-setup/)
 
-Deploy AI Agents on your own equipment — from assessment to a full year of operation, handled end to end.
+Delivered within 30 days once scope is frozen and data is in place. Enterprise pages are currently in Chinese; ask us on WhatsApp for an English walkthrough.
 
-[Artificial Intelligence ›](https://thinkbigtw.com/enterprise/)[Book a consultation ›](https://thinkbigtw.com/enterprise/#consult)
+Workflow integration
+Permissions and review
+Ongoing operations
 
-Think independently, work together.
+ABOUT THINK BIG
 
-[Explore enterprise deployment ›](https://thinkbigtw.com/enterprise/)[Book a consultation ›](https://thinkbigtw.com/en/contact/)[Personal plans ›](https://thinkbigtw.com/en/pricing/)
+## An enterprise AI Agent deployment team, based in Taiwan.
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan and serving clients worldwide. With TB FRAME, our four-phase deployment methodology (Assess, Build, Validate, Operate), we help companies run AI Agents on their own hardware, keep data inside the company, and provide one year of hands-on maintenance. We also offer personal AI assistant setup plans.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan and serving clients worldwide. Starting from security, we build AI Agents inside the company's own environment (company equipment, or a cloud host registered to the company) with TB FRAME, our four-phase deployment method (assess, build, validate, operate), and provide one year of hands-on maintenance. With the on-premises option, models and documents are processed on company equipment; with the cloud-assisted option, questions and retrieved document passages are sent to the model provider. We act as a remote FDE (Forward Deployed Engineer) team for the company: from understanding the need, building the knowledge base and AI Agents, and going live, to ongoing operations, handled end to end. Personal AI assistant setup plans are also available.
 
-On-premises deployment does not mean every connection stays on the machine. If cloud models or external services are used, those requests still leave the device. When data must stay inside the company, local models, outbound restrictions and available features need to be confirmed first.
+On-premises does not mean every connection stays on the machine.  If cloud models or external services are used, those requests still leave the device. When data must stay inside the company, local models, outbound restrictions and available features need to be confirmed first.
 
-TB READINESS(a pre-deployment self-assessment of your workflows, data and preparation)
+[About Think BIG →](https://thinkbigtw.com/en/about/)
 
-## Know your conditions.
-Set the next step.
+01 / WHAT WE DO
 
-TB READINESS is a six-question deployment readiness self-assessment from Think BIG. Answers are calculated in your browser only — nothing is sent or stored.
+## Start by changing one repetitive task.
 
-Build a controllable, testable AI Agent team through on-premises deployment, workflow integration and ongoing governance. From assessment to annual operations, data, permissions and delivery responsibilities are clearly defined.
+### Enterprise knowledge assistant
 
-TB READINESS
+Bring internal knowledge together so teams find the right information faster and make better decisions.
 
-Six-point readiness self-assessment
+[Enterprise knowledge use cases (Chinese) →](https://thinkbigtw.com/enterprise/rag/)
 
-## AI Agent deployment readiness assessment
+### Sales and operations
 
-Answers are calculated on this page only. Nothing is sent or stored, and no personal data is required.
+From market and customer to operating data, help teams see what matters and act on it.
 
-01 Which business function should be assessed first?
+[Explore AI departments (Chinese) →](https://thinkbigtw.com/enterprise/departments/)
 
-Customer service | repetitive answers and lookups Sales | enquiry summaries and follow-ups Marketing | content drafts and publishing prep Finance | data consolidation and items to reconcile Operations | routine checks and incident tracking 02 How standardized is the target workflow?
+### Workflow automation
 
-Standard operating procedures already exist Mostly consistent, not yet documented Varies widely, still to be defined 03 What is the state of your data and permissions?
+Connect tools and workflows, cut repetitive work, and let people focus on higher-value work.
 
-Documents or data are ready and cleared for use Data is scattered and needs organizing Usable data and permissions still to be confirmed 04 Has acceptance responsibility been assigned?
+[See the deployment process (Chinese) →](https://thinkbigtw.com/enterprise/process/)
 
-A named owner is in place A user department exists; no acceptance owner yet No acceptance owner assigned 05 What policy limits apply to data handling?
+02 / TRY IT YOURSELF
 
-Company hardware only; nothing may leave Approved external services can be assessed Data handling policy still to be confirmed 06 Are outcomes and operating boundaries defined?
+## Imagine less.
+Try it once.
 
-Expected outputs and prohibited actions are defined Goals are set; acceptance criteria still to be confirmed Use cases still being explored
+### AI hands-on experience
 
-ASSESSMENT / Recommendations
+See how one job gets done, using demo data.
+Read the numbers first, then discuss the next step with AI.
 
-###
+[Open the experience area (Chinese) ↗](https://thinkbigtw.com/experience/)
 
-- Map workflow steps and exception cases.
+### AI store manager
 
-- List usable data, sources and who authorizes their use.
+Demo data
 
-- Name an acceptance owner and a change approver.
+Missing the target for the same reason? The cause may be entirely different.
 
-- Define where data is processed and what may be sent externally.
+Projected revenue this period
+NT$ 720,000
 
-- Specify output formats, prohibited actions and acceptance scenarios.
+Target achieved
+72%
 
-- Prepare cleared work samples and set the pilot scope using normal and exception cases.
+Foot traffic change
+−20%
 
-- Assume a fully on-premises setup and check whether hardware and workflows can keep data inside.
+Conversion rate
+Flat
 
-- Confirm each field sent to external services and its purpose; add them to the workflow only after approval.
+Average order value
+Flat
 
-This is a conditional, preliminary self-assessment. It is not a benefit forecast, a certification or a formal advisory assessment.
+✦ Check foot traffic and operating conditions first, then decide on the fix.
 
-[Start a consultation for this function ›](https://thinkbigtw.com/en/contact/)
+[Try this case (Chinese) →](https://thinkbigtw.com/experience/retail/)
 
-Method and scope
+03 / HOW WE WORK
 
-Preliminary recommendations are based on your priority function and five readiness conditions. This self-assessment uses no scores, industry rankings or benefit estimates, and is not a readiness certification.
+## Every step,
+with a reason.
 
-#### Suggested stage: needs inventory and governance definition
-
-Workflows, data, acceptance ownership or data handling policy still need to be confirmed. Complete the pre-deployment baseline first.
-
-#### Suggested stage: data preparation and acceptance planning
-
-A direction exists; fill in data documentation, ownership assignments and acceptance criteria before confirming the pilot scope.
-
-#### Suggested stage: pilot scope and architecture assessment
-
-Based on your answers, workflows, data and acceptance ownership have a foundation. A formal deployment still requires checking actual hardware, permissions and requirements.
-
-Answers are not sent. Standard site analytics remain in place. Results are not carried into a consultation automatically.
-
-OPERATIONAL PRIORITIES
-
-## Find the bottlenecks. Set the priorities.
-
-Repetitive enquiries take up team capacity. Data is scattered; consolidation and handovers rely on manual work. AI tools are not yet part of core workflows. Deployments lack permission controls and ongoing maintenance.
-
-Checkboxes are for your own notes only. Nothing is sent or stored.
-
-FUNCTIONAL AI AGENTS
-
-## Organize AI collaboration by function.
-
-AI Agent sets are configured per department function, with defined inputs, outputs and review responsibility. Through human-in-the-loop review, people keep approval over key decisions and external actions.
-
-[01
-
-### Customer service
-
-Knowledge lookup, reply drafts
-
-↗](https://thinkbigtw.com/enterprise/departments/#service)[02
-
-### Sales
-
-Enquiry summaries, follow-up tasks
-
-↗](https://thinkbigtw.com/enterprise/departments/#sales)[03
-
-### Marketing
-
-Content drafts, pre-publish checks
-
-↗](https://thinkbigtw.com/enterprise/departments/#marketing)[04
-
-### Finance
-
-Data consolidation, reconciliation lists
-
-↗](https://thinkbigtw.com/enterprise/departments/#finance)[05
-
-### Operations and security
-
-Inspection logs, incident tracking
-
-↗](https://thinkbigtw.com/enterprise/departments/#operations)
-
-GOVERNANCE IN PRACTICE
-
-## Build operational trust on auditable records.
-
-Think BIG's own AI team covers marketing, customer service, sales and operations. Change registration, daily inspections and guard checks bring outputs, ownership and verification records under one management method.
-
-[View our AI governance commitments ›](https://thinkbigtw.com/trust/)
-
-- Deliver
-
-Verifiable deliverables: outputs, data sources and review responsibility are recorded.
-
-- Register
-
-Traceable changes: scope, impact, authorization and rollback are registered.
-
-- Check
-
-Evidence-based acceptance: completion is confirmed against test results and incident records.
-
-TB FRAME / DELIVERY METHODOLOGY
-
-## From assessment to operations, driven by deliverables.
-
-[View the TB FRAME methodology ›](https://thinkbigtw.com/enterprise/process/)
-
-TB FRAME | AI Agent deployment methodology Assess → Build → Validate → Operate
+[Meet TB FRAME (Chinese) →](https://thinkbigtw.com/enterprise/process/)
 
 - 01
 
-ASSESS
-
 ### Assess
 
-Deliverables Workflow map, data inventory, priorities and acceptance baseline.
+Clarify goals and the current state, and find the most valuable place to start.
 
 - 02
 
-BUILD
-
 ### Build
 
-Deliverables Deployment configuration, role permissions and working AI Agent workflows.
+Design the solution and connect data, tools and workflows.
 
 - 03
 
-VALIDATE
-
 ### Validate
 
-Deliverables Scenario tests, exception-handling records and operating handover documents.
+Test in real scenarios and confirm the results meet the need.
 
 - 04
 
-OPERATE
-
 ### Operate
 
-Deliverables One year of hands-on support, maintenance records, change verification and an improvement backlog.
+Keep improving and supporting, so AI creates value over the long term.
 
-ENTERPRISE ADVISORY
+GOVERNANCE
 
-## Clarify procurement criteria. Ground the decision.
+## Least privilege, human approval, no named clients.
 
-Choosing a deployment partner? Start with our [vendor selection guide](https://thinkbigtw.com/guides/choose-ai-partner/).
+Data and operations are scoped by least privilege. Outbound sending, spending and changes to production systems are approved by a named owner, and every change records its reason, scope, rollback method and verification. We do not publish client names, logos, screenshots or descriptions that could identify a client. Capability statements reflect how the Think BIG team actually operates and governs its work, and do not represent third-party security certification.
 
-What does a company need before deployment?
+[Read our governance and security commitments (Chinese) →](https://thinkbigtw.com/trust/)
 
-No in-house AI development capability is required. The assessment starts from workflows, data cleared for use, an acceptance owner and expected outputs, then confirms where AI Agents fit and what preparation is needed.
+THINK BIG. MAKE IT REAL.
 
-How does on-premises deployment define the data processing scope?
+## Your next step starts with a conversation.
 
-In a fully on-premises setup, models and designated data are processed on company hardware. If a workflow needs external models or services, the fields sent, their purpose and authorization are confirmed first. On-premises deployment does not mean no integration ever goes online.
+Bring one work problem and we will find an actionable starting point together.
 
-How are operations and governance maintained after deployment?
-
-TB CONTINUITY(one year of post-deployment maintenance, issue tracking and usage adjustments)  provides annual governance and operations: one year of hands-on support with issue tracking, maintenance checks and change verification within the agreed scope. Hardware, model usage, third-party services and new requirements are scoped separately.
-
-[Start an enterprise consultation ›](https://thinkbigtw.com/en/contact/)
-
-PERSONAL AI / Personal plans
-
-## The right AI assistant for your own work.
-
-Personal plans are for solo professionals, freelancers and anyone who wants a personal AI assistant. The personal section brings together local AI model setup, AI Agent sets, skill add-ons and annual maintenance, with options matched to your hardware, workflow and support needs.
-
-[Find your personal plan ›](https://thinkbigtw.com/en/pricing/)
-
-### Local AI model setup
-
-We install both a local AI model and an AI Agent (OpenClaw or Hermes) on your own computer, using your GPU for inference — no API key required. If your device does not meet the spec, we switch to a cloud model at no extra charge.
-
-### Personal workflow integration
-
-Dual Agent and skill packs support personal workflows such as organizing information, preparing content and work reminders. The personal section lists the full scope of each plan so you can compare by workload and support needed.
-
-### Annual maintenance and support
-
-Annual plans continue maintenance and usage support after installation. Each plan's service commitments, renewal terms and scope are kept on its own page to help you weigh ongoing use, maintenance and future expansion.
-
-The personal section also includes tool comparisons, security guides and related service information. If your needs involve shared company data, cross-department collaboration, role permissions or integration with production systems, they are assessed under enterprise deployment terms.
+[Tell us what you need ↗](https://thinkbigtw.com/en/contact/)
 
 ---
 
@@ -14913,7 +14822,7 @@ Sources
 The first-hand lessons, recommendations, and editor’s note present Think BIG’s practical views and do not constitute industry statistics or evidence of customer outcomes.
 
 THINK BIG NEWS   ·  Local AI Deployment Notes
-    Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.
+    Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -14922,7 +14831,7 @@ URL: https://thinkbigtw.com/en/pricing/
 # Start from your company's work.
 Then choose how to deploy.
 
-Think BIG (Think BIG Make it Real Co., Ltd.) is an enterprise AI Agent deployment provider headquartered in Taiwan and serving clients worldwide. With TB FRAME, our four-phase deployment methodology (Assess, Build, Validate, Operate), we help companies run AI Agents on their own hardware, keep data inside the company, and provide one year of hands-on maintenance. We also offer personal AI assistant installation plans.
+Think BIG (Think BIG Make it Real CO., LTD.) is an enterprise AI Agent deployment provider headquartered in Taiwan and serving clients worldwide. With TB FRAME, our four-phase deployment methodology (Assess, Build, Validate, Operate), we help companies run AI Agents on their own hardware, keep data inside the company, and provide one year of hands-on maintenance. We also offer personal AI assistant installation plans.
 
 On-premises deployment does not mean every connection stays on the machine. If cloud models or external services are used, those requests still leave the device. When data must stay inside the company, local models, outbound restrictions and available features need to be confirmed first.
 
@@ -14936,9 +14845,9 @@ For companies with employees, multiple departments using AI at once, data that c
 
 Pricing on request  · On-premises or cloud
 
-- Enterprise Plan 1 | Cloud Launch: low barrier to entry, multiple departments up and running quickly
+- Cloud-Assisted: low barrier to entry, multiple departments up and running quickly
 
-- Enterprise Plan 2 | On-Premises Sovereignty: data stays inside the company
+- On-Premises: data stays on company equipment
 
 - Process: requirements interview → quote → contract → deployment
 
@@ -14950,7 +14859,7 @@ Personal plans
 
 For one person: a one-person company, freelancer, side business, or a manager who wants to try a setup for themselves first. Installed on your own computer with local GPU inference (no API key required). If your device does not meet the spec, we can switch to a cloud model at no extra charge.
 
-Three plan tiers · Pricing on request
+Three plans · Pricing on request
 
 - Personal Plan 1 | Single AI Agent Setup: OpenClaw or Hermes, full skill pack, 7 days of support
 
@@ -14986,21 +14895,21 @@ The most common way an AI assistant fails: installed, used for a month, then lef
 
 Names and plan scope only. For a detailed comparison, open each path's comparison table.
 
-### Business use → [View plans](https://thinkbigtw.com/enterprise/)
+### Business use → [View plans (Chinese)](https://thinkbigtw.com/enterprise/)
 
-- Enterprise Plan 1 | Cloud Launch
+- Cloud-Assisted
 
               Enterprise cloud model API deployment · by contract
 
 PRICING ON REQUEST
 
-- Enterprise Plan 2 | On-Premises Sovereignty
+- On-Premises
 
-              On-premises deployment, data stays inside the company · by contract
+              On-premises deployment, data stays on company equipment · by contract
 
 PRICING ON REQUEST
 
-### Personal use → [View comparison table](https://thinkbigtw.com/pricing/personal/)
+### Personal use → [View comparison table (Chinese)](https://thinkbigtw.com/pricing/personal/)
 
 - Personal Plan 1 | Single AI Agent Setup
 
@@ -15020,27 +14929,49 @@ PRICING ON REQUEST
 
 [Request a quote](https://thinkbigtw.com/en/contact/)
 
+## Which computer can run a local model?
+
+Personal plans install the AI model and the AI Agent on your own computer. Apple M-series Macs, Windows (or Linux) with an NVIDIA GPU, and AMD Ryzen AI Max unified-memory machines can all be assessed. Only entries marked as tested are ones we have actually run; the rest are estimates, so please send a screenshot of your specs before ordering. If the specs fall short, we switch to a cloud model on the same plan.
+
+Device Memory What to expect
+Apple M-series Mac  (macOS 14 or later) 16 GB Minimum, tested. Usable but slow: everyday Q&A, short text, simple tasks, about 25–35 seconds per question (tested on a Mac mini M4 with 16 GB). For multi-step work, images, long documents or coding, a cloud model is recommended.
+
+24 GB or more Recommended (estimate). Steadier than 16 GB and can hold a larger model.
+
+32 GB or more Estimate. Suited to Dual AI Agent or Hermes.
+
+8 GB, or Intel Mac Use a cloud model (8 GB was too slow in testing).
+
+Windows (or Linux) with an NVIDIA GPU  (Windows 10 22H2 or later) GPU 8 GB / system 16 GB Minimum (usable but slow).
+
+GPU 12 GB or more / system 32 GB Recommended.
+
+GPU 16 GB or more / system 32 GB Suited to Dual AI Agent or Hermes. With no discrete GPU, or under 8 GB of GPU memory, use a cloud model.
+
+AMD Ryzen AI Max unified-memory machine Ryzen AI Max+ 395, 64 GB (Windows) We have installed this setup: about 32–40 seconds per plain-chat question with a single AI Agent, and about 3–4 minutes per question when searching the web. Other AMD GPUs, AMD machines under 64 GB, and AMD on Linux are assessed case by case.
+
+NVIDIA tiers are estimates; send a screenshot of your specs before ordering. Common requirements: at least 40 GB of free disk space (60 GB or more for machines with 64 GB or more memory that run a mid-size model), and a stable network on installation day because the model download is about 7–20 GB. Keep the computer on and awake. Timings come from a single machine; real speed depends on question length, number of skills and other programs running. The final decision between local and cloud rests on an engineer's review of your screenshots. With a cloud model, your questions and data are processed on the model provider's servers, and usage fees are paid from your own account.
+
 ## Add-ons (under personal use; not part of the plan tiers)
 
 Item
 Who it's for / rules
-Where to buy
+How to order
 Skill pack: 10 / 20 / 40 skills
 For people who already have OpenClaw or Hermes installed. Added skills carry no monthly fee. Discuss your needs before ordering.
-[Skill pack page](https://thinkbigtw.com/skill-pack/)
+[Skill pack page (Chinese)](https://thinkbigtw.com/skill-pack/)
 
 Skill pack: 120 skills
 Top skill pack tier, for OpenClaw or Hermes. Excludes the collaboration room and coding agent integration.
-[Skill pack page](https://thinkbigtw.com/skill-pack/)
+[Skill pack page (Chinese)](https://thinkbigtw.com/skill-pack/)
 
 System health check & repair
-per quarter / per six months
 After-sales maintenance for non-annual customers (Personal Plan 1 / 2). Annual plan customers already have maintenance included.
-Shopee
+[Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
 OpenClaw uninstall service
 After-sales
-Shopee
+[Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
 ### Your responsibilities (all personal plans)
 
