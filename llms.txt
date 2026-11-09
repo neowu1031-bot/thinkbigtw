@@ -158,6 +158,55 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 
 English summary: Think BIG (Think BIG Co., Ltd.) is a Taiwan-based enterprise AI Agent integrator serving clients worldwide. Its TB FRAME methodology covers assessment, implementation, validation and ongoing governance, with a one-year operations retainer. Personal AI-assistant installation plans are also available. Local deployment can still send requests to approved external models or services; fully local processing requires local models and outbound network controls.
 
+## English pages
+- [Think BIG (English home)](https://thinkbigtw.com/en/)：Enterprise AI Agent deployment and governance, Taiwan-based, serving clients worldwide
+- [About Think BIG (English)](https://thinkbigtw.com/en/about/)：Who we are, the company and scope of service, leadership and team, TB FRAME delivery and governance principles
+- [Contact Think BIG (English)](https://thinkbigtw.com/en/contact/)：Email and WhatsApp
+- [Briefing (English)](https://thinkbigtw.com/en/briefing/)
+- [Plans overview (English)](https://thinkbigtw.com/en/pricing/)：Enterprise Cloud-Assisted and On-Premises, personal plans, device requirements, add-ons
+- [AI Agent Setup Service (English)](https://thinkbigtw.com/en/services/ai-agent-setup/)：Personal and business AI Agent setup on your own computer or company server
+- [Which AI Agents Are Out There? (English)](https://thinkbigtw.com/en/guides/ai-agents/)
+- [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
+- [AI Agent 搭建服務](https://thinkbigtw.com/services/ai-agent-setup/)：個人與企業的 AI Agent 搭建，裝在自己的電腦或公司主機
+
+## Think BIG NEWS（報導索引・Index）
+- [Think BIG NEWS 報導總覽](https://thinkbigtw.com/library/news/)
+- [Think BIG NEWS (English index)](https://thinkbigtw.com/en/news/)
+- [AI 導入後沒人用？問題多半不在 AI——從員工每天真的會做的那一件事反推](https://thinkbigtw.com/library/news/ai-adoption-nobody-uses-20261021/)
+- [AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓](https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/)
+- [AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓](https://thinkbigtw.com/library/news/ai-context-length-too-large-20261027/)
+- [AI 講錯還很有自信，怎麼辦？——我們被 AI 說成「跟 AI 無關的公司」之後學到的事](https://thinkbigtw.com/library/news/ai-hallucination-20261012/)
+- [ChatGPT 回答台灣問題時，引用的都是誰？——在地品牌該把資訊放哪裡](https://thinkbigtw.com/library/news/chatgpt-tw-citations-20261011/)
+- [FDE 是什麼？為什麼 AI 落地最缺的是「派駐工程師」——中小企業沒有預算養 FDE 怎麼辦](https://thinkbigtw.com/library/news/fde-outsourced-engineer-20261013/)
+- [問 AI 一次就下結論？AI 的回答是機率，不是名次——GEO 該怎麼量才算數｜Think BIG NEWS](https://thinkbigtw.com/library/news/geo-measurement-20261009/)
+- [ISO/IEC 42001 是什麼？——企業管理 AI，要留下哪些決定與證據](https://thinkbigtw.com/library/news/iso-42001-ai-management-20261106/)
+- [AI Agent 怎麼導入才不會被綁死？先問清楚三件事｜Think BIG NEWS](https://thinkbigtw.com/library/news/lobster-hermes-abandonment-20261003/)
+- [本地 AI 模型怎麼選？參數量不是越大越好——用自己的工作實測再決定](https://thinkbigtw.com/library/news/local-ai-model-selection-20261031/)
+- [本地跑大模型，GPU 真的有在動嗎？——「裝得起來」不等於「跑得好」｜Think BIG NEWS](https://thinkbigtw.com/library/news/local-llm-gpu-check-20261005/)
+- [為什麼有人把 AI Agent 放在自己的電腦，而不是雲端？——地端與雲端怎麼選，先問資料能不能出門](https://thinkbigtw.com/library/news/local-vs-cloud-ai-agent-20261019/)
+- [MCP 是什麼？AI Agent 接上公司系統前，先看清楚權限邊界](https://thinkbigtw.com/library/news/mcp-ai-agent-permissions-20261102/)
+- [Windows 使用者名稱是中文，本地 AI 為什麼可能卡住？——先查路徑與日誌](https://thinkbigtw.com/library/news/non-ascii-username-local-ai-20261104/)
+- [AI 加入找漏洞的行列，修補時間跟著被壓縮——PHP2Shell 給企業 IT 的功課](https://thinkbigtw.com/library/news/php2shell-patch-window-20261029/)
+- [AI 工具自動更新是方便還是風險？——常駐服務要固定版本，也要安排修補](https://thinkbigtw.com/library/news/pin-versions-ai-tools-20261108/)
+- [Google 排得上去，為什麼 ChatGPT 還是不提你？SEO 和 GEO 差在哪｜Think BIG NEWS](https://thinkbigtw.com/library/news/seo-geo-difference-20261007/)
+- [Rolled Out AI and Nobody Uses It? The Problem Usually Isn't the AI. Work Backward From the One Task Employees Actually Do Every Day](https://thinkbigtw.com/en/news/ai-adoption-nobody-uses-20261021/)
+- [Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/)
+- [Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261027/)
+- [Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI](https://thinkbigtw.com/en/news/ai-hallucination-20261012/)
+- [Who Does ChatGPT Cite When It Answers Questions About Taiwan? Where Local Brands Should Put Their Information](https://thinkbigtw.com/en/news/chatgpt-tw-citations-20261011/)
+- [What Is a Forward Deployed Engineer, and Why Is It AI's Most Wanted Role? What Small Businesses Can Do Without an FDE Budget](https://thinkbigtw.com/en/news/fde-outsourced-engineer-20261013/)
+- [Asked AI Once and Called It? AI Answers Are Probabilities, Not Rankings: How to Measure GEO Properly](https://thinkbigtw.com/en/news/geo-measurement-20261009/)
+- [What Is ISO/IEC 42001? Documenting How a Business Governs AI](https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/)
+- [Thinking about abandoning your AI Agent? Ask these three questions first](https://thinkbigtw.com/en/news/lobster-hermes-abandonment-20261003/)
+- [Choosing a Local AI Model: Bigger Isn't Automatically Better — Test It on Your Own Work](https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/)
+- [Is Your Local AI Actually Using the GPU? "Installed" Doesn't Mean "Running Well"](https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/)
+- [Why Do Some Companies Run AI Agents on Their Own Machines Instead of the Cloud? Start With One Question: Can the Data Leave?](https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/)
+- [What Is MCP? Set Permission Boundaries Before Connecting an AI Agent](https://thinkbigtw.com/en/news/mcp-ai-agent-permissions-20261102/)
+- [Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs](https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/)
+- [AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+- [Should AI Tools Update Automatically? Pin Versions and Plan Patches](https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/)
+- [You Rank on Google. So Why Doesn’t ChatGPT Mention You? SEO vs. GEO, Explained](https://thinkbigtw.com/en/news/seo-geo-difference-20261007/)
+
 ## Think BIG NEWS — Issue 010（2026-10-24）
 - [AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？](https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/)
 - [AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else's Entry Point?](https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/)
