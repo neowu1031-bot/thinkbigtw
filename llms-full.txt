@@ -1225,6 +1225,764 @@ LINE ID
 
 ---
 
+URL: https://thinkbigtw.com/en/enterprise/
+
+# Enterprise AI Agent Deployment | On-Premises, Security-First | Think BIG
+
+ENTERPRISE AI AGENT DEPLOYMENT
+
+# AI Agents for your business,
+built around your workflows.
+
+Starter plan
+Standard plan
+Complete plan
+
+AI Agents answer from your company documents with cited sources. Unlimited users. All three plans include first-year maintenance. On-premises or cloud-assisted deployment options available.
+
+[Self-assessment: find the right plan›](https://thinkbigtw.com/en/enterprise/start/)
+[Request a 30-minute assessment via WhatsApp›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
+
+ABOUT THINK BIG
+
+Think BIG (大想成業有限公司) is a Taiwan-based enterprise AI Agent deployment provider serving clients worldwide. Starting from enterprise data security, we use TB FRAME — our four-phase deployment methodology: Assess, Build, Validate, Operate — to build AI Agents inside your own environment (your hardware, or a cloud host registered to your account). We provide one year of run-alongside operations support. With on-premises deployment, the model and your documents are processed on your company hardware. With cloud-assisted deployment, questions and retrieved document passages are sent to the model provider under their terms of service. We act as your outsourced FDE (Forward Deployed Engineer) team: from understanding requirements, building the knowledge base and AI Agents, and going live, through to ongoing operations.
+
+On-premises deployment does not mean all connections are local. If a cloud model or external service is used, related requests are still sent out. If data must not leave your premises, local model support, outbound restrictions, logging and backup configuration must each be confirmed.
+
+OPERATING MODEL AI Agent Governance Architecture
+
+DECISION AUTHORITY
+
+## Enterprise Decision & Authorisation
+
+Goal definition · Permission approval · Output review
+
+01 / KNOWLEDGE
+
+### Knowledge & Data
+
+Authorised sources
+Access scope
+
+02 / EXECUTION
+
+### AI Agent Collaboration
+
+Task allocation
+Output handover
+
+03 / CONTROL
+
+### Governance & Validation
+
+Change registration
+Exception handling
+
+GOVERNANCE FOUNDATION
+
+### Governance Foundation
+
+Data sovereignty · Human approval · Auditable records
+
+Responsibility relationship diagram for deployment design. Actual configuration is confirmed per process, data policy and authorisation scope.
+
+[What is RAG? Learn how AI answers from your company documents ›](https://thinkbigtw.com/en/enterprise/rag/)
+
+ADOPTION CRITERIA
+
+## Deployment viability
+defined by process maturity.
+
+Assessment covers business requirements, data availability and organisational accountability. Confirm what can be implemented first, then select the deployment and service configuration.
+
+### Applicable situations
+
+- Repetitive look-ups, data consolidation and progress tracking are consuming management resources.
+
+- Documents and operating rules are in place; you need to integrate AI into day-to-day workflows.
+
+- Data sovereignty, access control and ongoing maintenance after deployment are priorities.
+
+### Assessment prerequisites
+
+- The process has describable steps, inputs and expected outputs.
+
+- Data sources, processing locations and authorisation responsibilities can be confirmed.
+
+- An acceptance owner is designated, and required human approvals are defined.
+
+[Personal use: see personal plans ↗](https://thinkbigtw.com/en/pricing/)
+
+[See deliverables and permissions per AI department ›](https://thinkbigtw.com/en/enterprise/departments/)
+
+FUNCTIONAL CAPABILITIES
+
+## Turn department requirements
+into verifiable capabilities.
+
+Break business requirements down into describable inputs, execution steps and deliverables, with human approval built into the workflow design.
+
+MARKETING
+
+### Content production lacks a consistent knowledge foundation.
+
+AI AGENT CAPABILITY
+
+### Compile approved materials into editable content drafts.
+
+Deliverables and acceptance: content drafts and items to confirm. External actions require approval from the designated responsible person.
+
+CUSTOMER SERVICE
+
+### Repetitive enquiries increase the customer service workload.
+
+AI AGENT CAPABILITY
+
+### Prepare replies from the knowledge base; route exceptions to a person.
+
+Deliverables and acceptance: reply drafts and a list of items for human handling. External actions require approval from the designated responsible person.
+
+SALES OPERATIONS
+
+### Enquiry records and follow-up tracking are not integrated.
+
+AI AGENT CAPABILITY
+
+### Consolidate requirement context and create a trackable sales to-do list.
+
+Deliverables and acceptance: enquiry summaries and tracking list. External actions require approval from the designated responsible person.
+
+FINANCE OPERATIONS
+
+### Report consolidation and variance reconciliation depend on manual effort.
+
+AI AGENT CAPABILITY
+
+### Consolidate authorised data and produce sourced variance checklists.
+
+Deliverables and acceptance: consolidated reports and variance list. External actions require approval from the designated responsible person.
+
+ENTERPRISE PLANS
+
+## AI Agents for your business,
+priced per the quotation.
+
+Three plans with clearly defined scope and delivery timelines. All plans include first-year maintenance. AI model costs are borne by the client. Actual content and pricing are confirmed in a requirements consultation.
+
+STARTER
+
+Starter plan
+
+Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
+
+Staff ask questions about company SOPs and policies. The knowledge base holds up to 30 documents. AI answers from documents with cited sources; unanswered questions are routed to a person for confirmation.
+
+BEST FOR
+Teams of 5–20 at shops, studios or service locations with a few dozen documents, wanting staff or customers to query SOPs, pricing or FAQs.
+
+- Knowledge base: 1, up to 30 documents, 300 pages, 50 MB
+
+- Channel: messaging channel or web embed (choose one)
+
+- Unlimited users
+
+- Tutorial videos (1–2) and quick-start guide
+
+- Year-1 maintenance: incident response, bug fixes, security patches, monitoring
+
+- Response time: 1 business day human response
+
+- Year-1 document update: once (up to 20 documents)
+
+- Delivery: within 30 days of scope freeze and data handover
+
+Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
+
+STANDARD
+STANDARD
+
+Standard plan
+
+Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
+
+Answers questions and helps draft content. Up to 100 documents including spreadsheets, plus one work-draft task (enquiry summary, reply draft or form summary — choose one).
+
+BEST FOR
+Companies of 10–50 people with hundreds of documents and daily repetitive paperwork to organise or draft.
+
+- Knowledge base: 1, up to 100 documents, 1,000 pages, 200 MB + spreadsheets
+
+- Work-draft task: 1 (choose one of three)
+
+- Channel: messaging, web embed or internal communications tool (choose one)
+
+- Unlimited users
+
+- Tutorial videos (2–3) and operator guide
+
+- Year-1 maintenance: fully covered (same as Starter)
+
+- Response time: 1 business day human response
+
+- Year-1 document updates: twice (up to 50 documents each time)
+
+- Delivery: within 30 days of scope freeze and data handover
+
+Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
+
+COMPLETE
+
+Complete plan
+
+Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
+
+Answers questions, drafts content and keeps documents in sync automatically. Includes one read-only integration (e.g. automatic cloud drive folder sync) and optional add-on packs.
+
+BEST FOR
+Teams of 20–100 with frequently updated documents in cloud drives who want AI to sync automatically, without manual uploads, and may add large knowledge bases or table lookups later.
+
+- Knowledge base: 1, up to 100 documents, 1,000 pages, 200 MB + spreadsheets
+
+- Work-draft task: 1 (choose one of three)
+
+- Read-only integration: 1 (e.g. automatic cloud drive sync)
+
+- Channel: messaging, web embed or internal communications tool (choose one)
+
+- Unlimited users
+
+- Tutorial videos (3–5) and full operator guide
+
+- Year-1 maintenance: fully covered; 1 hour operations consultation per month
+
+- Year-1 document updates: quarterly, 4 times (up to 50 documents each time)
+
+- Delivery: within 30 days of scope freeze and data handover
+
+- Optional add-on packs available
+
+Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
+
+### COMMON CONDITIONS — ALL THREE PLANS
+
+- Unlimited users (performance depends on client hardware specifications)
+
+- AI model costs are borne by the client; Think BIG does not advance or resell model fees. Choose on-premises (model runs on your hardware, data processed on-site) or cloud-assisted (use your own account to access the model provider's API; questions and retrieved passages are sent to the provider)
+
+- Client provides one computer that can run 24 hours a day; for the cloud-assisted option a cloud host may be used instead
+
+- A remote device pre-check is conducted before contract signing — if the system cannot be installed, no contract is signed and no payment is made
+
+- All three plans can be upgraded within Year 1 by paying the price difference: request a consultation for upgrade conditions
+
+Upgrade within Year 1 by paying the difference — money already paid is not wasted. Add-on packs (advanced features) are only available for the Complete plan.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+[Request a 30-minute assessment via WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
+
+DATA SOVEREIGNTY
+
+## Choose your deployment architecture
+based on your data policy.
+
+Data sovereignty (Data Sovereignty) is enforced through processing location, access permissions and outbound transmission rules. Select the configuration based on your enterprise policy and hardware conditions, then verify connector compatibility item by item.
+
+### On-premises
+
+The model and designated data are processed on your company hardware. If data must not leave your premises, logging, backup and all outbound connections must also be verified.
+
+### Cloud-assisted
+
+When a cloud model is used, questions and retrieved document passages are sent to the model provider for processing under their terms of service. Before deployment, list the fields sent, purposes, account permissions and costs, then confirm authorisation before including in the workflow.
+
+Supported technologies: OpenClaw, Claude, MCP, RAG. Integration and model changes require compatibility confirmation and re-testing of work results.
+
+[View full methodology and deliverables ›](https://thinkbigtw.com/en/enterprise/process/)
+
+TB FRAME / DELIVERY METHODOLOGY
+
+## Phase deliverables
+as the basis for deployment decisions.
+
+TB FRAME divides deployment into Assess, Build, Validate and Operate. Each phase lists clear outputs and review responsibilities; progress is confirmed jointly based on scope and readiness.
+
+- 01
+
+ASSESS
+
+### Assess & Define
+
+Deliverables Workflow inventory, data catalogue, priority order and acceptance criteria.
+
+- 02
+
+BUILD
+
+### Build & Configure
+
+Deliverables Deployment configuration, role permissions and working AI Agent workflows.
+
+- 03
+
+VALIDATE
+
+### Validate & Deliver
+
+Deliverables Scenario tests, exception records and operations handover documentation.
+
+- 04
+
+OPERATE
+
+### Govern & Operate
+
+Deliverables One-year run-alongside support, maintenance records, change verification and improvement backlog.
+
+OPERATING MODEL
+
+## Beyond tool capability,
+clearly define operational responsibility.
+
+An operating model defines who configures the tools, who approves changes, how outputs are accepted and who tracks incidents.
+
+"Self-managed AI tools" refers to the common practice of a business subscribing to and configuring a tool independently. Product capabilities vary by plan.
+Comparison Self-managed AI tools Think BIG enterprise deployment
+Workflow Business configures prompts and integrations independently. Scope, deliverables and acceptance criteria are jointly defined.
+
+Data location Per tool deployment and terms of service. On-premises first; external services and data flows confirmed item by item.
+
+Permissions and changes Business establishes permissions and change management independently. Least-privilege, human approval and change records are planned from the start.
+
+Ongoing operations Business handles configuration and incidents independently. One-year run-alongside maintenance; tracked and adjusted per contract scope.
+
+Changing tools or models Business assesses compatibility independently. Assisted inventory and re-testing; reusable workflows confirmed.
+
+Acceptance responsibility Using team verifies outputs independently. Acceptance testing per agreed scenarios; test and handover records retained.
+
+PROCUREMENT FAQ
+
+## Clarify deployment conditions
+to support enterprise purchasing decisions.
+
+From data handling and service boundaries to operations responsibility — the foundational information needed for deployment assessment and procurement discussions.
+
+How should we evaluate an enterprise AI deployment provider?
+
+Evaluation should cover workflow fit, data governance, delivery acceptance and ongoing operations. Ask providers to list scope, access permissions, acceptance criteria and incident responsibility. Think BIG demonstrates capability through a live AI team governance process; no client identities or data are shown.
+
+How does on-premises deployment enforce data sovereignty?
+
+On-premises configuration deploys work data and the execution environment to the client's designated hardware. When cloud models or external services are used, the fields sent, purposes and authorisation must be confirmed separately. Requiring data to stay on-site still needs verification of local model support, outbound restrictions, logging and backup configuration. With the cloud-assisted option, questions and retrieved document passages are sent to the model provider under their terms of service.
+
+Does deployment suitability depend on company size?
+
+Suitability depends primarily on how well-defined the target process is, data availability and acceptance responsibility. A single workflow can be scoped for assessment first, then expanded based on validated results. Personal-use requirements are covered by the personal plans.
+
+How is deployment progress planned and managed?
+
+TB FRAME manages deployment in four phases: Assess, Build, Validate and Operate. Progress is confirmed jointly based on scope, data readiness, system access and acceptance criteria, tracked through phase deliverables. All three plans deliver within 30 days of scope freeze and data handover.
+
+What plans are available for enterprise deployment?
+
+Enterprise plans are priced per the quotation. Please [request a requirements consultation](https://thinkbigtw.com/en/contact/) to receive a formal quote. All three plans (Starter, Standard, Complete) include build, tutorial videos and first-year maintenance. Any plan can be upgraded within Year 1 by paying the price difference. Year-2 renewal is optional — decided by the client, with no automatic billing.
+
+How is enterprise service scope defined for quotation?
+
+All three plans have clearly defined scopes and are not individually re-priced. Requirements outside plan scope (e.g. auto-outbound replies to customers, ERP write-back, large-scale integrations) are handled as separate engagements. Deployment service and AI model costs are itemised separately for client purchasing clarity.
+
+What operations responsibilities does TB CONTINUITY cover?
+
+TB CONTINUITY | AI Agent Annual Governance and Operations provides one year of run-alongside support, covering incident tracking, maintenance checks, change records and usage adjustments within the agreed scope. Service contact, responsibility boundaries and new-requirement handling are confirmed in the contract.
+
+How is the AI Agent's autonomous operation scope controlled?
+
+Data and operation scope are configured following least-privilege principles. Outbound sends, spend and formal system changes require approval by the designated responsible person. The AI Agent produces work products and execution evidence; people retain final decision authority.
+
+Can existing tools and models continue to be used?
+
+Existing system interfaces, account permissions and compatibility are inventoried before integration scope is assessed. Changing models requires re-testing workflows and output quality; whether existing configurations can be reused is confirmed through actual testing.
+
+START A CONSULTATION
+
+## Define your business requirements
+and start the assessment.
+
+Fill in the 12-question self-assessment and we will suggest the right plan automatically. Or contact a deployment consultant directly on WhatsApp for a 30-minute fit assessment.
+
+[Self-assessment: we reply with an assessment direction ›](https://thinkbigtw.com/en/enterprise/start/)
+
+The assessment is free and there is no automatic billing. If a formal quotation is needed after the assessment, a formal contract will be sent separately.
+
+[Contact a deployment consultant on WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/departments/
+
+# AI Agent Functional Roles | Enterprise Collaboration Model | Think BIG
+
+FUNCTIONAL AI AGENTS
+
+# Collaborate by function.
+Reshape your workflows.
+
+Configure AI Agents by customer service, sales, marketing, finance and operations function, integrating data inputs, deliverables and human decision points into a clear operating model. The capability ranges below are examples for assessment, not client case studies.
+
+CUSTOMER SERVICE AI AGENT SET
+
+## Support customer service with a knowledge foundation.
+
+Capability scope Research questions and prepare replies based on approved knowledge sources.
+
+Deliverables Reply drafts with cited sources; list of questions that cannot be answered.
+
+Human decisions and authorization Escalate to staff when no source applies; commitments, refunds and disputes are decided by the responsible person.
+
+How is knowledge prepared for enterprise Q&A? [Learn about RAG, document permissions and acceptance testing ›](https://thinkbigtw.com/en/enterprise/rag/)
+
+SALES AND OUTREACH AI AGENT SET
+
+## Integrate enquiry records and outreach tracking.
+
+Capability scope Organize enquiries, contact reasons and follow-up tasks; prepare outreach drafts following agreed workflows.
+
+Deliverables Enquiry summaries, pending contact lists and status per item.
+
+Human decisions and authorization Confirm outreach authorization, channel rules and opt-out mechanisms before sending; no auto-dial or auto-send is assumed.
+
+MARKETING AI AGENT SET
+
+## Build a consistent content production and review workflow.
+
+Capability scope Compile approved brand materials into drafts; check content and flag items to be filled in.
+
+Deliverables Editable content drafts, sources and a pre-publish checklist.
+
+Human decisions and authorization Publishing, ad placements and any spend require human approval.
+
+FINANCE AI AGENT SET
+
+## Strengthen data consolidation and variance reconciliation.
+
+Capability scope Organize data to agreed formats; flag missing items and entries that need manual review.
+
+Deliverables Consolidated tables, variance notes and traceable data sources.
+
+Human decisions and authorization Payments, tax filings and financial judgements are made by the designated person; AI output is not executed directly.
+
+OPERATIONS AND SECURITY AI AGENT SET
+
+## Build a traceable operations management workflow.
+
+Capability scope Run routine checks within the approved scope; link anomalies, changes and verification results into a pending queue.
+
+Deliverables Inspection summaries, change logs, anomaly and recovery checklists.
+
+Human decisions and authorization Register formal system changes in advance; open permissions only as needed; the guard verifies evidence before confirming completion.
+
+VALIDATE BEFORE SCALE
+
+## Assess scale-up based on validated results.
+
+Start by defining data inputs, deliverable specifications, review responsibility and prohibited operations; then confirm scope through scenario-based acceptance testing. Cross-department scale-up builds on validated results and operational capacity from existing workflows.
+
+[View phase deliverables ›](https://thinkbigtw.com/en/enterprise/process/)
+
+## Start your AI deployment planning with clear business requirements.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/process/
+
+# AI Agent Deployment Methodology | TB FRAME | Think BIG
+
+TB FRAME METHODOLOGY
+
+# Four phases.
+Defined deliverables.
+Verifiable results.
+
+TB FRAME is Think BIG's structured approach to enterprise AI Agent deployment. Every phase produces a written record of deliverables, acceptance criteria and the conditions for hand-over — so you know exactly what was built and when it is ready to operate.
+
+PHASE 1
+
+## Assess
+
+Define the scope and confirm that deployment is viable before writing a line of code.
+
+Deliverables Workflow map of target processes; data inventory (sources, formats, access conditions); risk and dependency register; a proposed scope document signed off by both sides.
+
+Acceptance criteria Client confirms the scope document accurately reflects the target workflows; data sources are accessible for integration scoping; no blocking dependency is unresolved.
+
+Hand-over condition Written scope approval by the client's designated contact before any build work begins.
+
+PHASE 2
+
+## Build
+
+Develop the AI Agents and integration layer against the agreed scope.
+
+Deliverables Configured AI Agents; knowledge base or retrieval setup; integration connectors; operator guide; test scenario list prepared for Validate phase.
+
+Acceptance criteria Agents respond to test scenarios within the agreed knowledge boundary; integration connectors return expected data; operator guide reviewed by client.
+
+Hand-over condition Client confirms readiness for structured acceptance testing before Validate begins.
+
+PHASE 3
+
+## Validate
+
+Run structured acceptance tests against agreed scenarios, document results and resolve gaps before go-live.
+
+Deliverables Acceptance test results (pass/fail per scenario); gap resolution log; signed acceptance record; go-live checklist.
+
+Acceptance criteria All agreed test scenarios pass or gaps are resolved and re-tested; client's designated contact signs the acceptance record.
+
+Hand-over condition Signed acceptance record and completed go-live checklist before the system is opened to end users.
+
+PHASE 4
+
+## Operate
+
+Support stable operations, monitor for anomalies and manage knowledge updates during the service period.
+
+Deliverables Scheduled maintenance reports; anomaly and resolution log; knowledge base update records; scope-change requests (for items outside the original scope).
+
+Acceptance criteria Maintenance reports are delivered within the agreed schedule; anomalies are responded to within the agreed SLA; scope-change items are logged and priced before work begins.
+
+Hand-over condition Handover only occurs after a formal transition review when the service period ends or a new scope agreement is in place.
+
+PLAN SCOPE AND TIMELINE
+
+## See which plan includes which TB FRAME phases.
+
+Plans range from a focused single-department deployment to a full multi-department rollout with annual operations. Each plan listing shows which phases are included, the number of AI Agents covered and the support period.
+
+[View plan details ›](https://thinkbigtw.com/en/enterprise/#packages)
+
+## Start with a self-assessment to identify the right plan for your business.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/rag/
+
+# How Enterprise AI Knowledge Bases Work | RAG Explained | Think BIG
+
+ENTERPRISE KNOWLEDGE BASES
+
+# How AI Agents answer questions from your own documents.
+
+RAG (Retrieval-Augmented Generation) enables AI Agents to answer questions from approved documents at retrieval time — no model training required. This article explains the key concepts, the data preparation process, permission controls and how acceptance testing verifies results.
+
+## How RAG differs from general chat AI
+
+General chat AI answers from patterns learned during training. When you ask a question it has not seen before — or one that depends on your internal documentation — it may generate a plausible-sounding but incorrect answer (hallucination).
+
+RAG works differently. At query time the system retrieves the most relevant passages from your approved document set, then passes those passages together with the question to the AI model to compose a reply. The answer is grounded in your documents, not in the model's training data.
+
+This matters for enterprise use: answers about your products, policies and processes must come from sources your business controls, not from whatever a general model has absorbed from the internet.
+
+## RAG vs. fine-tuning: what to choose
+
+Fine-tuning adjusts the weights of a model by training it on examples. It is expensive, requires labelled data, may expose your content to a model provider's training pipeline, and the model still risks hallucinating facts it has not seen. When your documents change, the model must be retrained.
+
+RAG, by contrast, stores documents in a retrieval index you control. Update a document and the new content is immediately available at the next query. No retraining. No provider training risk (documents stay on your infrastructure). The source of every answer can be traced back to the retrieved passage.
+
+For most enterprise knowledge-base applications — product documentation, policy Q&A, support SOP — RAG is the correct architecture.
+
+## Data preparation
+
+RAG quality depends heavily on data preparation. Documents that are inconsistent, out of date or poorly structured produce unreliable retrieval. The preparation steps we follow:
+
+- Content audit.  Identify which documents are authoritative, which are drafts and which are superseded. Prioritise the authoritative set.
+
+- Cleaning and formatting.  Remove formatting artefacts (headers repeated on every page, watermarks, page numbers that interrupt sentences) that confuse the retrieval index.
+
+- Chunking strategy.  Decide how documents are split into retrievable segments. Chunk size and overlap affect recall — too large and irrelevant passages dilute the answer; too small and context is lost.
+
+- Metadata tagging.  Tag each chunk with document source, version and category so retrieval can be filtered by permission or relevance scope.
+
+- Embedding and indexing.  Convert text chunks into vector embeddings and store them in a retrieval index. The index is searchable by semantic similarity.
+
+Data preparation is an ongoing activity. Documents are updated, rescinded and added. The maintenance plan defines how updates flow from source documents to the retrieval index.
+
+## Privacy and permission controls
+
+Not all documents should be available to all users. A customer-facing support agent should not retrieve from internal HR policy documents, and a finance agent should not expose board-level materials to a general assistant.
+
+Permission controls are implemented at the retrieval layer — each query is filtered against the user's permission scope before retrieval results are assembled. At deployment we define:
+
+- Which document collections each AI Agent may retrieve from
+
+- Which user roles or channels may query which agents
+
+- Whether any collections are excluded from external channels entirely
+
+For on-premises deployments, documents and the retrieval index remain within your infrastructure. The AI model processes only the retrieved passages relevant to the query — it does not have persistent access to the full document set.
+
+## Acceptance testing for knowledge bases
+
+Building a knowledge base without a formal acceptance test is building without verification. Our acceptance process uses a prepared scenario set that includes:
+
+- In-scope questions  — questions the system should answer correctly from the indexed documents
+
+- Boundary questions  — questions at the edge of the indexed scope; the system should indicate when it cannot find a source rather than guessing
+
+- Out-of-scope questions  — questions outside the indexed scope; the system must decline clearly
+
+Results are logged per scenario (pass/fail, source passage retrieved, response quality) and reviewed with the client. Gaps are fixed and re-tested before go-live sign-off.
+
+## Common failure modes
+
+Retrieval misses The correct passage exists but is not retrieved. Usually caused by poor chunking, inconsistent terminology between documents and queries, or an inadequate embedding model for the domain language.
+
+Incorrect citation The retrieved passage is plausible but from a superseded or draft version. Prevented by strict content audit and version tagging in the metadata layer.
+
+Over-retrieval Too many passages are retrieved; the model averages across them and produces a vague answer. Prevented by tightening the retrieval filter and reducing chunk overlap.
+
+Confident hallucination The model fills in details not in the retrieved passage. Monitored through acceptance testing and by reviewing system prompt guardrails that require citation of source text.
+
+Stale knowledge base Source documents are updated but the index is not. Prevented by the maintenance plan, which specifies a review cycle and an update trigger whenever source documents change.
+
+## Think BIG's approach
+
+We deploy RAG using on-premises or private-cloud vector stores that remain within your infrastructure. No document content is sent to a public indexing service. The retrieval index is owned by you and can be migrated or audited at any time.
+
+Our scope documents specify the document collections to be indexed, the chunking and metadata strategy, the permission filters per agent and channel, and the acceptance scenario set before build begins. This means you can verify what was agreed and what was delivered.
+
+Have questions about how a specific document type or business process would be handled? Use the self-assessment below to describe your situation and we'll respond with a proposed scope.
+
+## Start with a self-assessment to describe your business requirements.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/start/
+
+# Enterprise AI Self-Assessment | Find the Right Plan | Think BIG
+
+ENTERPRISE AI SELF-ASSESSMENT
+
+# Find the right plan
+for your business.
+
+12 questions, around 3 minutes. The questionnaire automatically suggests whether Starter, Standard or Complete best fits your situation. When you are done, request a consultation and we will follow up with a formal quotation.
+
+QUICK REQUEST — JUST LEAVE YOUR DETAILS
+
+## Tell us your requirement in one line
+
+Only 3 fields. For a fuller recommendation, fill in the 12-question assessment below. Enquiries are handled by a person, not by AI.
+
+Or reach us directly on [WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+DEMO
+
+## See how an AI knowledge base works
+
+Staff ask questions about company documents. The AI answers with cited sources. When no source applies, the question is routed to a person.
+
+SELF-ASSESSMENT QUESTIONNAIRE
+
+## Complete the questionnaire to find the best plan
+
+12 questions, around 3 minutes. Any single answer that exceeds the Starter ceiling automatically steps up to the next tier.
+
+Recommended tier
+
+##
+
+Payment per the quotation. Enterprise plans are priced individually — request a consultation to receive a formal quotation.
+
+This tier includes:
+
+### Estimate your time savings
+
+Hand repetitive look-ups to the AI and reduce the time your team spends searching for information.
+
+Reference monthly salary (USD)
+
+Model cost (USD / month)
+
+Staff cost
+(annual estimate)
+
+—
+
+Different scope — for comparison only
+
+AI Agent
+(Year 1)
+
+—
+
+AI Agent
+(Year 2+)
+
+—
+
+Illustrative only. AI handles repetitive look-ups, document retrieval and drafting; judgement and external commitments remain with your team. Salary and model costs vary.
+
+Work-hours savings calculator (supplementary)
+
+Number of users (scenario)
+
+Average hourly rate (USD)
+
+Minutes per person per day spent searching or answering repetitive questions 20  min
+
+0
+
+Hours saved per year
+
+0
+
+Conservative savings (USD/yr)
+
+Formula: Hours = users (10 ) × minutes (20 ) ÷ 60 × 250 days = 0  hours.
+Conservative saving = hours × hourly rate (25 ) × 50% = USD 0 .
+Illustrative only; actual results depend on usage. AI can still make errors — important content should be reviewed by a person.
+
+NEXT STEP
+
+## Request a remote pre-assessment
+
+Fill in your contact details and Think BIG will reach out within 1 business day to arrange a 30-minute remote session for requirements confirmation.
+
+## Your contact details
+
+Enquiries are handled by a person, not by AI.
+
+Name *
+
+Company name *
+
+Contact method *
+
+Email
+Phone
+
+Enter your email and we will send you a confirmation with next steps.
+
+Company size / department *
+
+I have read the [Privacy Policy](https://thinkbigtw.com/en/privacy/) and consent to Think BIG (大想成業有限公司) collecting and using the information provided above for the purpose of this enquiry and service consultation.
+
+Contract and payment:  A formal contract will be sent to you separately — it is not completed on this page. The contract includes a scope freeze list, an acceptance test set, first-year service details and a renewal option for Year 2. Payment is per the quotation.
+
+## Your requirements are outside the standard plan scope
+
+Your answers (for example: auto-outbound replies, ERP integration, more than 100 documents, or documents that are mainly scanned images) fall outside the standard plan definitions. Please request a 30-minute assessment so a consultant can explain the right approach for your situation.
+
+[Request a 30-minute assessment via WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
+
+---
+
 URL: https://thinkbigtw.com/faq/
 
 # 常見問題｜Think BIG
