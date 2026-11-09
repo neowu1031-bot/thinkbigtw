@@ -4240,6 +4240,54 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+企業資安 TB19
+
+## [生成式 AI 有哪些資安風險？用 OWASP LLM Top 10（2025）一次看懂](https://thinkbigtw.com/library/qa/owasp-llm-top10-overview/)
+
+OWASP 2025 年版的大型語言模型應用 10 大風險是：LLM01 提示注入、LLM02 敏感資訊揭露、LLM03 供應鏈、LLM04…
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/owasp-llm-top10-overview/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-11-01
+
+親子共讀與客製繪本 Q22
+
+## [孩子說長大想當什麼？職業啟蒙怎麼陪](https://thinkbigtw.com/library/qa/career-awareness-kids/)
+
+不用急著幫孩子決定，先陪他「認識」各種工作。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/career-awareness-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-01
+
+企業資安 TB18
+
+## [AI 系統出資安事件怎麼辦？發現後先做的 5 件事](https://thinkbigtw.com/library/qa/ai-incident-response/)
+
+發現後先做 5 件事：停（暫停受影響的 AI 功能、撤銷外洩的金鑰或權限）、留（保存紀錄和證據，不要急著刪）、查（影響範圍：哪些資料、哪些人、哪段時間）、報（依…
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-incident-response/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-10-31
+
+親子共讀與客製繪本 Q21
+
+## [孩子是恐龍迷？從一本書延伸到博物館](https://thinkbigtw.com/library/qa/dinosaur-loving-kids/)
+
+可以把「書、博物館、回家畫下來」串成一條路：先從書裡認識幾種恐龍，再去博物館找實物和化石，回家讓孩子把看到的畫下來。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/dinosaur-loving-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-10-31
+
 企業資安 TB17
 
 ## [把檔案交給 AI 前，個資要怎麼去識別化？](https://thinkbigtw.com/library/qa/deidentify-before-ai/)
@@ -5237,6 +5285,30 @@ Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
 
+Enterprise AI Security TB19
+
+## [What Are the Security Risks of Generative AI? The OWASP LLM Top 10 (2025) at a Glance](https://thinkbigtw.com/en/qa/owasp-llm-top10-overview/)
+
+The 2025 OWASP Top 10 for LLM applications is: LLM01 Prompt Injection, LLM02…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/owasp-llm-top10-overview/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-11-01
+
+Enterprise AI Security TB18
+
+## [What Should a Company Do When an AI System Has a Security Incident? Five Things to Do First](https://thinkbigtw.com/en/qa/ai-incident-response/)
+
+Do five things first: stop (pause the affected AI feature and revoke leaked…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-incident-response/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-10-31
+
 Enterprise AI Security TB17
 
 ## [How Should Personal Data Be De-Identified Before Files Are Given to AI?](https://thinkbigtw.com/en/qa/deidentify-before-ai/)
@@ -5576,7 +5648,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/employees-chatgpt-company-data/
 
-# What Are the Risks When Employees Paste Company Data into ChatGPT, and How Should a Company Manage It? | Q&A Library | Think BIG
+# Company Data in ChatGPT: Risks & Policy | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -5830,7 +5902,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/
 
-# What Hardware Does a Company Need to Run a Local LLM, and How Much GPU Memory? | Q&A Library | Think BIG
+# Local LLM Hardware: GPU Memory Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6066,7 +6138,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/rag-data-flow-cloud-vs-local/
 
-# When AI Searches Company Documents, Where Does the Data Go in Cloud vs. On-Premises Setups? | Q&A Library | Think BIG
+# RAG Data Flow: Cloud vs. On-Premises Comparison | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6274,7 +6346,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/prompt-injection-ai-agent/
 
-# What Is Prompt Injection, and Can Documents or Web Pages an AI Agent Reads Give It Instructions? | Q&A Library | Think BIG
+# Prompt Injection in AI Agents: Risks & Defences | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6484,7 +6556,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-permissions/
 
-# How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve? | Q&A Library | Think BIG
+# AI Agent Permissions: Least-Privilege Setup | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6684,7 +6756,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/is-local-llm-good-enough/
 
-# Is a Local LLM Smart Enough, and How Do You Tell Whether It Works for Your Company? | Q&A Library | Think BIG
+# Is a Local LLM Smart Enough for Enterprise Use? | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6896,7 +6968,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-pre-delivery-security-review/
 
-# What Does a Pre-Delivery Security Review of an AI Agent Actually Check? | Q&A Library | Think BIG
+# AI Agent Pre-Delivery Security Review Checklist | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7125,7 +7197,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/offline-local-llm-updates/
 
-# Can a Local LLM Work Offline, and How Do You Update Models and Software in an Air-Gapped Environment? | Q&A Library | Think BIG
+# Offline Local LLM: Air-Gap Deployment & Updates | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7333,7 +7405,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-acceptance-testing/
 
-# How Do You Run Acceptance Testing for an AI Agent, and How Should Test Questions Be Prepared? | Q&A Library | Think BIG
+# AI Agent Acceptance Testing Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7527,7 +7599,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/rag-access-control-by-department/
 
-# When AI Searches Company Documents, How Do You Make Sure Each Department Sees Only Its Own Data? | Q&A Library | Think BIG
+# RAG Access Control by Department: How-To Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7712,7 +7784,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/ai-api-key-leak/
 
-# What Happens If an AI API Key Leaks, and How Should a Company Store It? | Q&A Library | Think BIG
+# AI API Key Leak: Risks & Secure Storage Guide | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -7909,7 +7981,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/en/qa/open-model-license-checklist/
 
-# Can Open Models Be Used Commercially? Four License Checks Before a Company Adopts One | Q&A Library | Think BIG
+# Open Model Commercial Use: 4 License Checks | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -9179,6 +9251,20 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 013
+
+October 31, 2026 · Local AI Field Notes
+
+## Choosing a Local AI Model: Bigger Isn’t Automatically Better — Test It on Your Own Work
+
+Model size, context length, and concurrency all draw on the same VRAM. A large model that doesn’t fit can run slower than a smaller one fully on the GPU. Four steps: define tasks and metrics, do the memory math, test on your own questions, pick the smallest that passes.](https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/)
 [Issue 012
 
 October 29, 2026 · Enterprise Security Notes
@@ -13370,6 +13456,8 @@ PHP 基金會說明，AI 輔助研究讓回報量大增，AI 也被用來驗證�
 THINK BIG NEWS   ·  企業資安實務
     Think BIG, Make it Real!　大想成業有限公司
 
+---
+
 URL: https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/
 
 # Choosing a Local AI Model: Bigger Isn't Automatically Better — Test It on Your Own Work | Think BIG NEWS
@@ -13603,3 +13691,1002 @@ THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
+
+URL: https://thinkbigtw.com/en/guides/
+
+# AI Implementation Decision and Governance Guides | Think BIG
+
+INSIGHTS & ADVISORY
+
+# AI Implementation Decisions
+Start with a Clear Evaluation Framework.
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment firm serving clients globally. We start from enterprise data security and deploy AI Agents inside your company's own environment — using TB FRAME (our four-stage deployment methodology: Assess, Build, Validate, Operate) on company equipment or company-owned cloud infrastructure — with one year of ongoing operations support. On-premises option: models and documents are processed entirely on company equipment. Cloud-assisted option: queries and retrieved document segments are sent to the model provider for processing. We act as your company's remote FDE (Forward Deployed Engineer) team: from understanding requirements, building knowledge bases and AI Agents, and going live, to ongoing operations — end to end. Personal AI assistant installation plans are also available.
+
+On-premises deployment does not mean all connections are local. When cloud models or external services are used, relevant requests are still transmitted. When data must stay entirely in-house, confirm local model selection, outbound restrictions, and available functionality.
+
+Enterprise Deployment
+
+[## Evaluating an AI Deployment Partner: Capability, Delivery & Governance Accountability
+
+Assess AI deployment services across four dimensions: workflow fit, data governance, acceptance testing, and ongoing operations — to verify whether execution and accountability scope are clearly defined.
+
+Read the guide ↗](https://thinkbigtw.com/en/guides/choose-ai-partner/)[## On-Premises AI and Data Sovereignty: From Deployment Location to Data Governance
+
+Extending from deployment location to external services, access permissions, logs, and exit handover — clarifying the actual control scope of data sovereignty.
+
+Read the guide ↗](https://thinkbigtw.com/en/guides/local-ai-data/)[## AI Agent Acceptance Framework: Deliverables, Exceptions & Authorization
+
+Build an acceptance framework using input conditions, deliverable specifications, exception handling, and approval mechanisms — with verification records incorporated into subsequent change management.
+
+Read the guide ↗](https://thinkbigtw.com/en/guides/ai-acceptance/)
+
+Personal Use & Installation
+
+[## What AI Agents Are Out There? A Complete Overview
+
+2026 AI Agent use cases and billing models across major providers, and where OpenClaw fits for long-running workflow scenarios.](https://thinkbigtw.com/en/guides/ai-agents/)[## OpenClaw Installation Service
+
+Understand what the starter installation includes.](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)[## Remote Installation Service Evaluation
+
+Assess installation process, security, and preparation requirements.](https://thinkbigtw.com/en/guides/yuanduan-daizhuang/)[## Hermes vs OpenClaw Comparison
+
+Choose based on your specific usage needs.](https://thinkbigtw.com/en/guides/hermes-vs-openclaw/)[## OpenClaw Security Guide
+
+Understand risks and permissions before installing.](https://thinkbigtw.com/en/guides/openclaw-safe/)
+
+[Go to personal plans ›](https://thinkbigtw.com/en/pricing/)
+
+## Build a shared vocabulary first
+
+[AI Agent Implementation Glossary](https://thinkbigtw.com/en/guides/glossary/): foundational definitions for data sovereignty, permissions, and acceptance.
+
+---
+
+URL: https://thinkbigtw.com/en/guides/ai-acceptance/
+
+# AI Agent Acceptance Framework: Deliverables, Exceptions & Approvals | Think BIG
+
+ENTERPRISE INSIGHTS
+
+# AI Agent Acceptance Framework: Deliverables, Exceptions and Approvals
+
+Use input conditions, deliverable specifications, exception handling, and approval mechanisms to build an acceptance framework — and carry verification records into ongoing change management.
+
+IN THIS ARTICLE
+
+## Convert Business Goals into Acceptance Conditions
+
+Translate work objectives into verifiable deliverable specifications: output format, required fields, data sources, and review roles. For example, reply drafts should include cited references; summary tables should list missing data. Replace broad benefit statements with checkable conditions.
+
+## Cover Normal, Anomalous, and Unauthorized Scenarios
+
+Prepare scenarios for complete data, unverifiable data, missing fields, service interruptions, and insufficient permissions. Verify that the AI reports accurately, stops unauthorized operations, and routes issues to the designated handler per the agreed procedure.
+
+## Build Traceable Test Evidence
+
+Record test conditions, configurations, input ranges, expected results, and actual results so acceptance conclusions can be re-traced. Retention and access rules for sensitive data must be agreed separately — test records should not arbitrarily copy complete raw data.
+
+## Include Human Approval in the Acceptance Scope
+
+Human-in-the-loop requires verifiable control points. For steps that require approval, confirm the system stops execution before authorization is granted. Technical automation capability does not equal business authorization.
+
+## Perform Impact Validation on Every Change
+
+Model, data, and permission adjustments can all affect outputs. Per the governance-operations phase of TB FRAME (our four-stage deployment method: Assess, Build, Validate, Operate) , register the change scope, impact, and rollback method before re-validating with relevant scenarios, extending acceptance into ongoing operations.
+
+Think BIG Editorial · 26 September 2026
+
+[Use the AI Deployment Planning Worksheet ›](https://thinkbigtw.com/enterprise/process/worksheet/)
+
+## Start your AI deployment planning
+with a clear set of business requirements.
+
+[Start Enterprise Deployment Consultation ›](https://thinkbigtw.com/enterprise/#consult)
+
+---
+
+URL: https://thinkbigtw.com/en/guides/choose-ai-partner/
+
+# Evaluating an AI Implementation Partner: Capability, Delivery & Governance | Think BIG
+
+ENTERPRISE INSIGHTS
+
+# Evaluating an AI Implementation Partner: Capability, Delivery and Governance
+
+Use process fit, data governance, acceptance testing, and ongoing operations as four dimensions to evaluate whether an AI deployment service has clear execution and accountability scope.
+
+IN THIS ARTICLE
+
+## Define Technical Requirements Through Business Processes
+
+Evaluate deployment capability through actual business workflows: where data comes from, which steps the AI handles, who receives the deliverables, and who is responsible for review. Models and demo interfaces can illustrate tool capability, but procurement evaluation must also cover process integration and execution accountability.
+
+## Confirm Service Boundaries Through Deliverables
+
+Request an explicit list of process diagrams, data inventories, permission configurations, test records, and operating procedures — along with acceptance conditions for each item. Evaluating clearly scoped work makes it easier to compare the accountability and inclusions of different deployment services.
+
+## Trace Data Governance to Transmitted Fields
+
+Confirm the deployment environment, external model, log and backup locations, access roles, and transmitted fields item by item. On-premises configurations still require evaluation of external integrations. Data governance cannot be determined by host location alone.
+
+## Confirm Exception Handling and Human Handoff
+
+Include missing data, unverifiable responses, service interruptions, and unauthorized operations in the acceptance scope. Confirm how the system stops, reports, and routes issues to a human handler, and designate a responsible person with decision authority.
+
+## Establish Clear Maintenance and Exit Responsibilities
+
+Confirm service fees, equipment, model usage costs, and third-party services item by item, then define issue reporting, change approval, configuration handover, and service termination procedures. ROI assessment should be based on the company's own process baseline and actual costs — not generic multipliers.
+
+## Think BIG's Delivery and Governance Basis
+
+Think BIG organizes assessment, build, validation, and operations through TB FRAME (our four-stage deployment method: Assess, Build, Validate, Operate) , with a year of continuity support through TB CONTINUITY (one year of maintenance, issue tracking, and usage adjustments after deployment) . Capability statements are grounded in actual change logs, daily check runs, and evidence verification. Client identities, data, and screenshots are not used as external marketing material.
+
+Think BIG Editorial · 26 September 2026
+
+[Use the AI Deployment Planning Worksheet ›](https://thinkbigtw.com/enterprise/process/worksheet/)
+
+## Start your AI deployment planning
+with a clear set of business requirements.
+
+[Start Enterprise Deployment Consultation ›](https://thinkbigtw.com/enterprise/#consult)
+
+---
+
+URL: https://thinkbigtw.com/en/guides/local-ai-data/
+
+# On-Premises AI and Data Sovereignty: From Deployment Location to Data Governance | Think BIG
+
+ENTERPRISE INSIGHTS
+
+# On-Premises AI and Data Sovereignty: From Deployment Location to Data Governance
+
+From deployment location to external services, access permissions, logs, and exit handover — clarify the actual control scope of data sovereignty.
+
+IN THIS ARTICLE
+
+## Evaluate Deployment Location and External Integrations Separately
+
+A fully on-premises configuration lets models and designated data run on company equipment. If your workflow connects to external models, communication services, or other integrations, you still need to confirm what is actually transmitted, the account terms, and the purpose. Deployment location and data flow are separate evaluation items.
+
+## Build a Complete Data Flow Inventory
+
+List data sources, AI processing environments, output recipients, logs, and backups — annotating purpose, access roles, retention method, and external services at each stage. The data flow inventory serves as the shared basis for permission configuration and future change evaluation.
+
+## Distinguish Model Training from Service Data Use Terms
+
+How a vendor uses your input data depends on the specific product, account, and contract settings. Before deploying, separately confirm the service processing terms, retention policies, and model training use — avoid inferring individual plan conditions from the vendor's general brand statements.
+
+## Configure Access Scope Using the Least-Privilege Principle
+
+Grant only the data and operational permissions required by the work. Outbound sending, spending, and formal system changes should require approval from a designated person. Any permission additions or adjustments must leave a change record.
+
+## Plan Data and Configuration Exit Handover
+
+Define in advance the custodianship responsibilities for accounts, configurations, data, and records, as well as the transfer, retention, and deletion procedures when the service ends. Data ownership and ongoing use conditions should be included in the agreed service scope.
+
+Think BIG Editorial · 26 September 2026
+
+[Use the AI Deployment Planning Worksheet ›](https://thinkbigtw.com/enterprise/process/worksheet/)
+
+## Start your AI deployment planning
+with a clear set of business requirements.
+
+[Start Enterprise Deployment Consultation ›](https://thinkbigtw.com/enterprise/#consult)
+
+---
+
+URL: https://thinkbigtw.com/en/guides/glossary/
+
+# AI Implementation Glossary | Think BIG
+
+THINK BIG
+
+# AI Implementation Glossary
+
+From on-premises deployment and data sovereignty to scenario acceptance — consistent definitions for evaluating AI Agent deployment scope.
+
+This glossary is organized around our deployment process, governance documentation, and personal plans — use it to align terms when evaluating services.
+
+Further reading: [TB FRAME (our four-stage deployment method: Assess, Build, Validate, Operate)  deployment process](https://thinkbigtw.com/enterprise/process/), [data governance](https://thinkbigtw.com/trust/), [acceptance framework](https://thinkbigtw.com/en/guides/ai-acceptance/), [personal plans](https://thinkbigtw.com/en/pricing/).
+
+## AI and Collaboration
+
+### AI Agent
+
+An AI assistant that executes workflows within approved data, tools, and operational scope; deliverables and significant actions still require review by a designated person.
+
+In a Think BIG deployment, work is defined by approved knowledge, expected deliverables, and prohibited operations.
+
+### Agentic AI
+
+The practice of using AI Agents to execute processes, use tools, and produce reviewable outcomes.
+
+In a Think BIG deployment, we first confirm data, tools, and human decision boundaries before evaluating suitable workflows.
+
+### Human-in-the-loop
+
+Having AI support work products and process execution under designated human approval and review control points.
+
+In a Think BIG deployment, outbound sending, spending, and formal system changes require approval from a designated person.
+
+## Deployment and Delivery
+
+### TB FRAME
+
+Think BIG's AI Agent deployment methodology, divided into four phases: Assess, Build, Validate, Operate.
+
+In a Think BIG deployment, each phase has defined deliverables and review responsibilities.
+
+### TB READINESS (pre-deployment self-assessment: confirm process, data, and readiness conditions)
+
+A six-question deployment readiness self-assessment. Answers are computed only in the browser — nothing is transmitted or stored. Results do not constitute certification or a formal consulting evaluation.
+
+On the Think BIG website, you can use the self-assessment to organize pre-deployment prerequisites before confirming details with a consultant.
+
+### TB DELIVERY (build, test, and deliver AI workflows per confirmed scope)
+
+An AI Agent deployment build service covering process inventory, data and permission design, AI Agent configuration, acceptance testing, and operational handover.
+
+In a Think BIG deployment, build scope and acceptance responsibilities are confirmed before work begins.
+
+### TB CONTINUITY (one year of maintenance, issue tracking, and usage adjustments after deployment)
+
+An annual AI Agent governance and operations service providing one year of continuity, issue tracking, maintenance checks, and change records within the agreed scope.
+
+In a Think BIG deployment, the service contact, maintenance scope, and expansion handling are written into the agreement.
+
+### Scenario Acceptance
+
+Verifying deliverable specifications, exception handling, and human approval mechanisms using normal, missing-data, service-interruption, and unauthorized scenarios.
+
+In a Think BIG deployment, test records and outcomes are reviewed by a designated person.
+
+## Data and Governance
+
+### On-Premises Deployment
+
+Deploying work data and execution environments on company-designated equipment. If external models or services are used, transmitted fields and authorizations must still be confirmed.
+
+In a Think BIG deployment, equipment, models, and external connection scope are all confirmed together.
+
+### Data Sovereignty
+
+The company confirms data sources, processing locations, access roles, and external transmission scope, while retaining authorization and decision-making responsibility.
+
+In a Think BIG deployment, the data and permissions inventory must be traceable with clearly listed approval responsibilities.
+
+### Least Privilege
+
+Opening data and operational scope only as required by the work, confirmed by a designated person.
+
+In a Think BIG deployment, the fact that a tool is capable of an operation does not mean it is authorized by default.
+
+### Human Approval
+
+Critical operations such as outbound sending, spending, and formal system changes are decided by a designated person before execution.
+
+In a Think BIG deployment, acceptance also includes verifying that operations stop when not approved.
+
+### Auditability
+
+Retaining source, operation, and verification records so that processes and conclusions can be re-traced.
+
+In a Think BIG deployment, accountability is confirmed through data and permissions inventories, change records, and acceptance records.
+
+### Change Log
+
+Before adjusting configurations or processes, record the reason, scope, responsible person, and rollback method.
+
+In a Think BIG deployment, changes require prior approval, then validation with relevant scenarios to confirm impact.
+
+## Tools and Usage Costs
+
+### MCP
+
+Model Context Protocol — an open protocol for connecting AI tools to data and functions. The actual accessible scope is still determined by account permissions and configuration.
+
+In Think BIG services, MCP integrations still require verification of tools, accounts, and actual permissions.
+
+### Model Usage Fee
+
+The cost paid to a model provider based on AI model usage. The local personal plan does not incur this separately; cloud-based usage is billed per use and is not included in the service fee.
+
+In Think BIG personal services, the local plan does not incur model usage fees. When using cloud-based large models, usage fees are paid directly to the model provider based on actual use.
+
+### Zero-Token Priority
+
+Preferring fixed rules or code — which require no model inference — to handle suitable tasks.
+
+This design principle is used in the Think BIG personal skill package. The local plan incurs no model usage fees; cloud-based usage may still generate model usage fees depending on use.
+
+### RAG
+
+Retrieval-Augmented Generation: first retrieving relevant knowledge, then providing it to the model as the basis for its response.
+
+When evaluating enterprise knowledge Q&A, Think BIG first confirms data sources, authorization, and answer traceability. The actual architecture is confirmed per requirements. [Learn more about RAG data preparation and acceptance](https://thinkbigtw.com/enterprise/rag/).
+
+### Skill
+
+Instructions and tool configurations that enable an AI Agent to execute specific tasks.
+
+In Think BIG personal services, skill items and scope are confirmed based on the selected plan and an interview.
+
+### OpenClaw
+
+An AI Agent platform that can be configured with skills and tools in a designated environment.
+
+Think BIG personal starter services offer an OpenClaw installation option. Equipment and account requirements must be confirmed first.
+
+### Hermes Agent
+
+An AI Agent tool for configuring AI assistants and workflows.
+
+Think BIG personal plans offer Hermes installation and configuration options. Feature scope is confirmed per the corresponding plan page.
+
+Think BIG Editorial
+
+---
+
+URL: https://thinkbigtw.com/en/guides/hermes-vs-openclaw/
+
+# Hermes vs OpenClaw: Which Personal AI Agent Should You Choose? | Think BIG
+
+[Guides](https://thinkbigtw.com/en/guides/) / Hermes vs OpenClaw
+
+Tool Comparison · Starter Guide
+
+# Hermes vs OpenClaw: Which Personal AI Agent Should You Choose?
+
+Think BIG Editorial
+
+What actually separates OpenClaw from Hermes Agent? For one person, one company, different work scenarios — which should you choose? Plain-English breakdown of both tools' positioning, memory models, skill ecosystems, and who each suits best — plus a plan chart showing which Think BIG personal plan includes which tool.
+
+Published: 2026-09-13
+
+Both OpenClaw and Hermes Agent are AI assistants you can install on your own computer. Hermes Agent is open-sourced by Nous Research and is one of the products Think BIG provides installation services for. When choosing, start by confirming your workflow and what features you need.
+
+- OpenClaw is an assistant installed on your computer that gets things done  — checking messages, organizing files, running fixed workflows, connecting the tools you already use.
+
+- Hermes Agent supports cross-conversation memory and self-learning, turning task experience into skills; it can be installed standalone or chained with OpenClaw for a split-role setup.
+
+The following organizes use cases, support scope, and pricing by personal installation plan.
+
+## One-sentence summary: what's the difference
+
+OpenClaw is like an assistant who can run errands for you; Hermes Agent is like an assistant who organizes information and thinks things through for you . One is action-oriented, the other is thought-oriented. Both run on your computer and help you do work — just different kinds of work. You can install both if you want; it depends on what your work looks like.
+
+## Four angles of comparison
+
+### 1. Positioning: getting things done vs. thinking things through
+
+OpenClaw excels at "you give it an action and it runs it and shows you the result": fixed workflows, scheduled reminders, replying to messages, organizing files, connecting tools. You give it commands more than you chat with it.
+
+Hermes excels at "you want to clarify something and it helps you work it out": long conversations, document rewriting, research synthesis, drafting, problem solving. You'll have more back-and-forth dialogue with it; its value shows in how fast you produce written work.
+
+### 2. Memory model: action context vs. conversation context
+
+OpenClaw's memory leans toward "what this task did": task and state continuity, remembering results when each task ends for next time's reference.
+
+Hermes's memory leans toward "what we've discussed and what conclusions we reached": cross-conversation, cross-topic accumulation — more like a notebook and thought thread.
+
+### 3. Skill ecosystem: workflow skills vs. document and knowledge skills
+
+OpenClaw's skills are built around "letting it take action": communication (messaging platforms), files, scheduling, browser, custom scripts.
+
+Hermes's skills are built around "letting it think more deeply and write faster": long-document summarization, research synthesis, knowledge-base comparison, writing-style adaptation.
+
+### 4. Suitable scenarios: one person's daily life vs. multi-person collaboration
+
+OpenClaw is best suited for a single person who wants to automate daily chores.
+
+Hermes is especially useful for solo operators, people who write a lot every day (proposals, documents, emails), or those who want to have ongoing dialogue with their work content.
+
+## Full comparison at a glance
+
+Dimension OpenClaw Hermes Agent
+Strength Getting things done (messages, workflows, files) Thinking things through and writing (synthesis, rewriting, research)
+
+Interaction style Give commands, execute Dialogue, accumulate
+
+Memory focus Tasks and state Conversation context and notes
+
+Skill ecosystem Messaging, scheduling, files, browser Documents, knowledge base, writing, research
+
+Installation fee (Persona edition, one-time) Priced on request Priced on request
+
+Both tools (each running independently, no shared memory) Dual AI Agent Co-existence Edition (two AI Agents operating independently, no memory sync or collaboration room, 7-day technical support)
+
+Both tools (with collaboration room) Dual AI Agent (with cross-Agent collaboration room, MCP memory sync, 2-hour online tech walkthrough + 7-day post-installation support)
+
+Runs on Your local computer Your local computer
+
+Not included Local plan: no model usage fees. Cloud-based large model usage fees are paid directly to the model provider based on actual use.
+
+## How to choose? Ask yourself three questions
+
+- Do you more often "tell AI to do something" or "discuss things with AI"?  Former: OpenClaw. Latter: Hermes.
+
+- Is your work mostly chores, or mostly writing?  Lots of chores: OpenClaw. Lots of writing: Hermes.
+
+- Do you want one or two assistants working separately?  One: start with the Persona edition. Two but independent: Co-existence edition. Two with memory sync and collaboration: Dual AI Agent (with collaboration room).
+
+If you're unsure: install OpenClaw first and run it for a week or two. You'll learn what you're still missing. Then decide whether to add Hermes. Most people start with OpenClaw.
+
+## What is Hermes Agent?
+
+Hermes Agent is an open-source self-learning AI assistant from Nous Research. Think BIG assists with installation, configuration, and guidance. The Persona edition plan includes a choice of supportive or challenging personality.
+
+## Think BIG personal plan — which tool is included?
+
+Plan Fee Tool included Suited for
+Persona Edition AI Assistant Priced on request, one-time OpenClaw or Hermes (choose one), supportive or challenging personality, full personal skill package + 1 custom helper First installation, want a personalized AI, personal use
+
+Dual AI Agent Co-existence Edition Priced on request OpenClaw + Hermes operating independently, independent memory, personality combo of your choice, no memory sync or collaboration room, 7-day support Low-barrier entry to running both AI Agents simultaneously
+
+Dual AI Agent Priced on request OpenClaw + Hermes with memory sync, cross-Agent collaboration room (this plan only), skills per interview, includes 2-hour online tech walkthrough + 7-day post-installation support Work spans both "executing" and "thinking" types, want two AIs with shared memory
+
+Premium Annual Priced on request Single main system annual plan, weekly maintenance and skill additions, 48-hour failure repair Want year-round support, don't want to handle maintenance yourself
+
+Annual Flagship Priced on request OpenClaw + Hermes dual-system annual plan with memory sync, full-year maintenance, 48-hour failure repair Already know you want both, want full-year care
+
+Enterprise Deployment Contact us Local or cloud, evaluated per requirements Company, team, data needs to stay on company infrastructure
+
+Local plan: no additional model usage fees. Cloud-based large model API usage fees are billed per your chosen provider and usage.
+
+## FAQ
+
+Q: What is the relationship between OpenClaw and Hermes?
+
+OpenClaw is a local AI assistant that runs on your computer and executes tasks; Hermes Agent is an open-source self-learning AI assistant from Nous Research. You can install either one independently or chain them together as a dual-assistant setup. Which to start with depends on your workflow.
+
+Q: Is one enough, or should I install both?
+
+If you have one person and one clear use case, one is enough. If you want two assistants with different styles dividing work, or want to separate workflow execution from daily messaging, install both.
+
+Q: Does having both installed cost a lot?
+
+If you want two assistants running independently without shared memory, choose the Co-existence edition. If you want shared memory and a collaboration room, choose the Dual AI Agent (with cross-Agent collaboration room, 2-hour online tech walkthrough + 7-day post-installation support).
+
+Q: Is the Hermes on Think BIG the same as Hermes Agent online?
+
+Yes. Hermes Agent is an open-source self-learning AI assistant from Nous Research. Think BIG's service assists with installation, configuration, and guidance on your computer.
+
+Q: Can I maintain both on an annual plan?
+
+Yes. Annual Flagship is the plan for both assistants with shared memory plus full-year maintenance. Premium Annual is the single-system annual plan. Decide how many assistants you want before looking at annual plans — it'll save you a roundabout route.
+
+Want to see a broader comparison of AI Agents, including billing across major providers and where OpenClaw fits? → [What AI Agents are out there? A complete overview](https://thinkbigtw.com/en/guides/ai-agents/)
+
+## Conclusion: how to decide
+
+If you just want to offload daily repetitive chores to your computer — install OpenClaw first, run it for a week or two, find out what you're still missing.
+
+If your work constantly involves writing, researching, synthesizing — install Hermes first, start accelerating with writing.
+
+If you want both but no shared memory — Co-existence edition. If you want both AIs with shared memory and collaboration — Dual AI Agent. If you want year-round support — Annual Flagship plan.
+
+If you're still not sure, just start with the Persona edition. OpenClaw or Hermes — pick one, give it personality, get it running. You can add the second one or switch to Dual AI Agent later.
+
+### Tell us which one you want and we'll get it running
+
+Start with the Persona edition — OpenClaw or Hermes, your choice. Taiwan-based engineers install it remotely, supportive or challenging personality available. Larger budget? Let's discuss the Dual AI Agent or annual plans directly.
+
+[Contact us on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+What does the Persona edition install? → [OpenClaw Installation Explained](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)
+
+Want both and have them work together? → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
+
+---
+
+URL: https://thinkbigtw.com/en/guides/openclaw-daizhuang/
+
+# OpenClaw Installation Explained: What the Persona Edition Actually Sets Up | Think BIG
+
+[Guides](https://thinkbigtw.com/en/guides/) / OpenClaw Installation
+
+Installation Service · Persona Edition AI
+
+# OpenClaw Installation Explained: What the Persona Edition Actually Sets Up
+
+Think BIG Editorial
+
+Stuck on the OpenClaw install? This guide breaks down the installation service clearly: what the Persona Edition sets up, how to choose between the supportive or challenging personality, what the installation process looks like, and how pricing works. Read it and you'll know whether it's worth it for you.
+
+Updated: 2026-08-31
+
+You probably arrived here like this: you saw someone using an AI assistant like OpenClaw to offload their repetitive daily tasks — and it looked effortless. Then you opened a tutorial, got stuck on step one — terminal, environment variables, a wall of commands you didn't understand. Three minutes later you closed the tab, thinking "forget it, I'm not an engineer."
+
+This guide is here to explain it plainly. What does the OpenClaw installation service  actually do — what does the service fee cover (including personality selection!) — and what do you still need to handle yourself. After reading, you can judge for yourself: is this worth paying for?
+
+We're not here to sell you anxiety, and we won't tell you "you'll fall behind if you don't do this." It's just a tool — only use it if it's worth using.
+
+## What is OpenClaw? What is "OpenClaw installation"?
+
+OpenClaw is an AI Agent framework that runs on your own computer. Unlike regular chatbots, it doesn't just reply to you — it can actually "take action": organizing files, replying to messages, running fixed workflows, connecting to tools you use.
+
+That sounds great, but the problem is installation . Getting it running involves a setup process that isn't very user-friendly for non-engineers: the environment needs to be right, permissions need to be opened, various services need to be connected. Get one step wrong and it won't run — and the error messages are in English.
+
+That's why the OpenClaw installation service  exists: you don't need to touch those commands. Engineers connect remotely and set everything up, get it running, verify it works — you just watch. AI assistant installation  was never meant to be something you wrestle with alone.
+
+## What does the Persona Edition set up? Item by item
+
+This is what everyone wants to know. Here's the Persona Edition broken down so you can see each piece:
+
+### 1. Official OpenClaw, one Agent
+
+What's installed is the official OpenClaw release — not a modified or counterfeit version. "One Agent" means you have one dedicated AI assistant instance running on your own machine.
+
+### 2. Local deployment — data stays on your computer
+
+The Persona Edition AI Assistant is installed on your own computer, not sent to some cloud somewhere. For many people, "my stuff is in my own hands" is itself valuable.
+
+### 3. Remote installation by Taiwan-based engineers
+
+Taiwan-based engineers connect remotely via AnyDesk or DeskIn to do the installation. Full communication in English is available. You can see everything the engineer does. The installation is complete only when it's running and verified working.
+
+### 4. Full personal skill package + personality selection + Coding Agent
+
+The Persona Edition includes a full personal skill package + 1 custom helper, tailored more closely to your work scenarios than a bare-bones install. You can also choose a supportive  (warm, affirming without being sycophantic) or challenging  (direct and sharp, without personal attacks) personality, plus 1–2 Coding Agent connections.
+
+One-sentence summary:  The service fee covers an OpenClaw AI assistant that's installed, running, with the personality you chose, on your own computer — plus the service of Taiwan-based engineers installing it remotely until it works. It is not a tutorial document for you to follow yourself.
+
+## What does the installation process look like? Your part is actually minimal
+
+Many people think the installation process is complicated, but your part is light:
+
+- Place order:  Complete your Persona Edition order.
+
+- Schedule a time:  The engineer contacts you based on the order and arranges a mutually convenient installation slot.
+
+- Remote connection:  At the scheduled time, the engineer connects to your computer via AnyDesk/DeskIn.
+
+- Have a coffee and watch:  This part is almost entirely the engineer operating. You just need to be nearby — when they need you to confirm an account or authorize something, you click.
+
+- Verify it works:  When done, together you confirm the AI assistant can run and respond before the session ends.
+
+Really — your workload is roughly "turn on computer, allow remote access, watch." That's the point of the installation service: leave the hard parts to the people who know how.
+
+## Honest section: what do you still need to prepare?
+
+This section we always state clearly, because finding out "there were other things to handle" after installation is a bad feeling. Here's what the Persona Edition doesn't include and what you need to have ready:
+
+- Equipment check:  Before installation, please take a screenshot and send to the engineer (Mac: check if RAM is 16 GB or more, whether you have an Apple M chip; Windows: check NVIDIA GPU and whether GPU memory is 8 GB or more). If specs qualify, a local model is installed; if not, a cloud-based large model is used instead — same plan, same price.
+
+- Cloud version only — API Key:  When switching to a cloud-based large model, you need to register for that model's account (API Key) yourself. The engineer will guide you through it but won't do it on your behalf.
+
+- Cloud version model usage fees:  When using cloud-based large models, the AI model is billed per use — you pay that directly based on actual usage. It's not included in the service fee. Local version: no model usage fees.
+
+- Messaging integrations require official accounts:  If you want to connect the AI assistant to a messaging platform, only official accounts with Messaging API access are supported — personal accounts cannot be connected. Official accounts can typically be registered for free; the engineer will guide you through it.
+
+- Some third-party services require free registration:  Certain advanced integrations use third-party services (such as free database services) that require you to register a free account yourself.
+
+We'd rather tell you upfront than have you feel ambushed later. Service fee is a one-time payment. Local version: no additional model fees. Cloud version model usage fees are separate.  Those two sentences are the entire fee structure.
+
+## What can you do with it once it's set up?
+
+Installation is just the starting point. The Persona Edition gives you an AI assistant that can take action. What you actually use it for depends on your work — common examples:
+
+- Hand off daily repetitive, mindless but time-consuming tasks.
+
+- Have it follow the workflows you set up and do fixed things at fixed times.
+
+- Speak to it in plain language and it moves things forward — rather than giving you a wall of information you still have to process yourself.
+
+To make it understand your work better and know more "moves," you add skill packages. The Persona Edition already includes the full personal skill package + 1 custom helper; additional packs can be added later.
+
+## Want to upgrade? What comes after the Persona Edition
+
+The Persona Edition AI Assistant is the first tier of personal plans, intentionally made easy to get started. After using it, you can scale up as needed:
+
+- Skill package add-ons:  Want more skills? Add-on skill packages are available in three tiers: 10, 20, or 40 packs (priced on request). These follow a "minimal model calls" design philosophy so each call is more cost-efficient.
+
+- Multi-Agent collaboration:  If you need multiple AI assistants dividing work and connecting more tools, there are more comprehensive plans available. These are custom-scoped — we discuss your needs first, then quote.
+
+No need to get everything at once. Get the Persona Edition running first, find out what you actually need, then add. That's the clearest way to spend your money.
+
+## What if you decide you don't want it anymore?
+
+Worth mentioning. If you later no longer want OpenClaw, there's a corresponding uninstall service (priced on request) where the engineer remotely removes everything cleanly — no residual files left on your computer. Using it comfortably is your right; having it cleaned up properly when you're done is our responsibility.
+
+## FAQ
+
+Q: I have no programming knowledge. Can I still get OpenClaw installed?
+
+Yes. That's exactly why the installation service exists. The engineer does the entire installation remotely via AnyDesk/DeskIn. You just turn on your computer, allow the connection, and watch. When authorization is needed, you click.
+
+Q: How much does the OpenClaw installation cost?
+
+The Persona Edition AI Assistant service fee is priced on request, one-time payment, including supportive or challenging personality selection, full personal skill package + 1 custom helper + Coding Agent connection. Important note: the AI model API usage fee is billed separately based on your actual usage — you pay that directly. Local version: no model usage fees. These are two separate costs; we'll explain them clearly upfront.
+
+Q: What's the difference between the Persona Edition and higher-tier plans?
+
+The Persona Edition is a full personal skill package + personality selection + Coding Agent connection, single AI Agent locally deployed, no ongoing maintenance. Higher plans include: Dual AI Agent Co-existence Edition (two running independently, no memory sync), Dual AI Agent (with memory sync and collaboration room), or annual plans (a full year of engineer support). Simply put: Persona Edition is "get it installed with personality and running"; higher tiers are "run more complexity, with someone maintaining it long-term."
+
+Q: Will my data get uploaded to the cloud?
+
+The Persona Edition is locally deployed — the AI assistant runs on your own computer. Which AI model it connects to and how data flows depends on your model choice and configuration. This will be explained during installation — no exaggeration and no vagueness.
+
+Q: How long does installation take? Do I need to watch the whole time?
+
+A typical Persona Edition remote installation completes within one session. The engineer handles most of it. You don't need to stare at the screen the whole time, but it's recommended to be nearby so you can handle authorization or confirmations when needed.
+
+Q: If it doesn't work after installation, is there a refund?
+
+If the installation cannot be completed due to an issue on our side, we provide a full refund. Services are handled in accordance with applicable consumer protection regulations.
+
+Q: Is AnyDesk remote access safe?
+
+AnyDesk/DeskIn are remote desktop tools — the connection is only established with your permission, and you can disconnect at any time. You can see everything the engineer does throughout the installation. We will not and do not need to ask you for any account passwords — API keys and passwords are never transmitted via chat.
+
+## Conclusion: is the service fee worth it?
+
+If your situation is "I want to use OpenClaw, but the moment I see the installation steps I give up — and I want an AI with some personality" — the Persona Edition installation service is designed for you. What you're paying for isn't just getting the software installed; it's trading in the time you'd spend fumbling through it (and possibly still failing) for an AI assistant with personality that works from day one, right on your computer.
+
+If you already know how to install it yourself, you probably don't need this service — and that's fine. We're not going to tell you that you must spend this money. It's just a tool; only use it if it fits.
+
+### Ready to get started?
+
+Contact us on WhatsApp and an engineer will reach out to schedule your installation. From "want it but can't install it" to "today you have your own personalized AI assistant."
+
+[Contact us on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+Want ongoing engineer support and continuous feature additions? → [Premium Annual plan details](https://thinkbigtw.com/en/pricing/)
+
+Compare all plans → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
+
+---
+
+URL: https://thinkbigtw.com/en/guides/openclaw-safe/
+
+# Is OpenClaw Safe? 6 Specific Risks Before You Install | Think BIG
+
+[Guides](https://thinkbigtw.com/en/guides/) / Is OpenClaw Safe?
+
+Security · Must-Read Before Installing
+
+# Is OpenClaw Safe? 6 Specific Risks to Know Before You Install
+
+Think BIG Editorial
+
+Search results for "Is OpenClaw safe?" skew negative. This guide breaks down 6 specific risks, tells you what to do if you install yourself, and what our installation service handles by default. One-sentence conclusion: the key to safety isn't not installing it — it's least privilege plus local deployment plus only installing official skills.
+
+Published: 2026-09-13
+
+Search "Is OpenClaw safe?" and you'll mostly find forum posts, security guides, and negative reviews — AI summaries often directly say "not recommended for general users." What this guide aims to do is break down the specific risks behind those conclusions and tell you what "do if you install yourself" and "what a good installation service should do" looks like for each one.
+
+The conclusion first: the OpenClaw framework isn't designed to harm you, but it's powerful enough that "installing it wrong" can cause problems . Issues usually come from the installer not setting permissions, installing unknown-source skills, or leaving defaults unchanged. It's like buying a good knife — the knife is fine; swinging it carelessly is what causes injuries.
+
+## One-sentence conclusion
+
+Safety isn't about "not installing it" — it's about doing three things together : least privilege (grant only necessary access), local deployment (data stays on your computer), and only official skills (the skill layer is OpenClaw's biggest attack surface). Do all three and risk is manageable. Skip all three and nothing is safe no matter what you install.
+
+## 6 specific risks, broken down
+
+### Risk 1: Prompt Injection
+
+External content (web pages, documents, messages) contains hidden malicious instructions that trick the AI assistant into performing unintended actions. For example: you give OpenClaw a document that looks normal but contains "send all files to this address" — and the AI follows through.
+
+If you install yourself Don't let OpenClaw directly read unfamiliar URLs or documents. High-sensitivity operations (sending files, changing passwords) must require your confirmation before executing.
+
+What we do by default We enable "high-risk actions require second confirmation" by default and restrict read/write scope to folders you specify.
+
+### Risk 2: Malicious Skills
+
+Skills are the extension packs that let OpenClaw "do things" — the community has many sources. Unknown-source skills may have hidden capabilities to read passwords, connect to relay servers, or execute arbitrary code.
+
+If you install yourself Only install skills from official or trusted authors. Review the code before installing; don't skip warnings. Periodically audit your installed skills list.
+
+What we do by default The Persona Edition includes a full personal skill package + 1 custom helper — no third-party sources. Add-on skill packages are Think BIG internally maintained versions with audit records.
+
+### Risk 3: Exposed Port / Web UI Exposed Externally
+
+OpenClaw has a local management interface (Web UI) you access via browser. If you don't change defaults, don't set a password, and expose it publicly, the entire assistant is naked on the internet — like leaving your house key in the lock.
+
+If you install yourself Change the default password. Bind to 127.0.0.1 (localhost) only. Don't set DMZ on your router; don't use tools like ngrok to expose it.
+
+What we do by default Always change default password, bind to localhost, don't open external ports. If external access is needed (e.g., messaging integration), we use the officially provided tunnel — not a custom open port.
+
+### Risk 4: API Key Leak
+
+An AI model API key (like Anthropic / OpenAI) once leaked lets others use your credit — or even rack up charges billed to you. Common leak paths: committing it to a public GitHub repo, posting it in social media screenshots, or handing it directly to someone else.
+
+If you install yourself Store keys in local environment variables — never commit them. Don't push .env files to public repos. Regularly check usage in the model provider's dashboard.
+
+What we do by default Local version: no API key needed. Cloud version: you apply for and keep your own key. The engineer only guides the process, doesn't apply on your behalf and doesn't retain your key. Deleted from connection cache in front of you after installation.
+
+### Risk 5: Accidental Deletion or Overwrite
+
+OpenClaw takes action — and "taking action" includes deleting files, editing files, sending emails, sending messages. Without protection, the AI might misread a situation and delete an entire folder, or send a draft message to someone it shouldn't.
+
+If you install yourself Set second confirmation for high-risk actions (deleting files, sending external messages). Keep a change log. Back up important data before granting permissions.
+
+What we do by default Default: writable scope restricted to folders you specify. External message sending requires phone push notification confirmation. 90-day change record kept.
+
+### Risk 6: Outdated Version / Unpatched Vulnerabilities
+
+Every software has vulnerabilities — OpenClaw included. Install it and don't update, and six months later you may hit a vulnerability that's been patched but you haven't applied.
+
+If you install yourself Subscribe to official update announcements. Manually update every 1–3 months.
+
+What we do by default Persona Edition: installed until it runs — you decide when to update. Premium Annual and Annual Flagship include weekly maintenance; we handle updates.
+
+## Comparison: self-install vs. professional installation
+
+The real value of professional installation isn't "installing it for you" — it's getting all these defaults right the first time.  The six items below are what we handle by default during installation; if you install yourself, you need to do each of these manually.
+
+Item Self-install effort Professional install default
+Change default password Find config file, change, restart Already changed at completion
+
+Bind localhost, no external exposure Check default binding IP Default 127.0.0.1
+
+Second confirmation for high-risk actions Modify policy settings Enabled by default
+
+Skills whitelist Maintain list yourself Official only
+
+API key security Local version: no key needed. Cloud: set env variables yourself, don't commit Local version: no key needed. Cloud: guide you to apply yourself; engineer doesn't retain it
+
+Updates and maintenance Every 1–3 months manually Annual plans include weekly maintenance
+
+## Who should install it? Who shouldn't?
+
+### Suitable candidates
+
+- Regular workers who want to automate repetitive tasks and are willing to spend an hour on basic configuration.
+
+- Solo operators who want multiple AI assistants dividing up daily workload.
+
+- People mentally prepared for "you install it, you maintain it" — and don't want to be held hostage by their tools.
+
+### Who we'd advise against installing it
+
+- Work computers or company-issued equipment: IT policy usually doesn't permit this kind of tool in a corporate environment. Check with your IT department first.
+
+- People completely unwilling to learn basic configuration (even changing passwords): even with professional installation, you need to learn to check logs and change passwords.
+
+- People expecting "install and everything defaults to working, zero maintenance": any tool that can take action carries configuration responsibility — you can't outsource that to the tool itself.
+
+## If you decide to install it, do these three defaults first
+
+- Change the default password  — not doing this is like not locking the door.
+
+- Bind to localhost  — don't expose the Web UI externally.
+
+- Only install official skills  — don't touch unknown community skill packages.
+
+Doing these three things substantially reduces risks from permissions, skill sources, and access configuration. The remaining risks come from genuinely targeted attacks — which still require ongoing monitoring, updates, and anomaly handling.
+
+## Why this article exists on Think BIG's website
+
+Because search results on this topic are almost entirely negative — forums, security guides, media coverage, and no commercial service page at all. We're a team that provides OpenClaw installation services and deals with these risks every day  — how to set permissions, how to explain risks to clients, how to make it actually usable after installation without hitting landmines. We have first-hand experience.
+
+This article isn't here to tell you to "go ahead and install it without worry." It's to help you see the risks clearly, understand how to handle them, and then make your own decision .
+
+## FAQ
+
+Q: Is OpenClaw safe?
+
+It depends on how you install it. Most security risks come from "no permissions set after installation," "unknown-source skills installed," or "default account not password-changed" — not from the framework itself being unsafe. Least privilege, local deployment, and only installing official skills are the three basic things.
+
+Q: Will OpenClaw steal my data?
+
+OpenClaw in local deployment runs on your own computer and doesn't actively upload any data anywhere by default. Data leaves through only two paths: calling an external AI model API (necessary for cloud version; local version processes on your machine — questions don't go to the model provider; messages via messaging platforms do pass through that platform), and external services you connect to. If you haven't connected those, OpenClaw only runs on your computer.
+
+Q: Can OpenClaw be hacked?
+
+The framework is actively updated with patches for known vulnerabilities. But if you've opened external ports with default passwords, or installed unknown-source skills, the hacking risk is real. We always change default passwords, don't open external ports, and restrict skill sources during installation.
+
+Q: Couldn't the engineer tamper with things during remote installation?
+
+We use AnyDesk/DeskIn for the remote session — you can see everything the engineer does throughout. We won't ask you for any account passwords. Keys and passwords are never transmitted via chat. After the session ends, no remote access is retained.
+
+Q: Who should not install OpenClaw?
+
+Three types of people: (1) work computers or company-issued equipment — IT policy usually disallows this kind of tool; (2) people completely unwilling to spend any time learning basic configuration; (3) people who expect "install and everything runs on defaults, zero maintenance."
+
+Q: How often do I need to update after installation?
+
+The OpenClaw framework typically releases an official update every 1–3 months. After installation we recommend subscribing to official announcements. Annual plans (Premium Annual, Annual Flagship) include weekly maintenance and 48-hour failure repair — we handle updates. The Persona Edition is installed once to run; you decide when to update.
+
+## Conclusion
+
+Whether OpenClaw is safe depends on whether you got the basic configuration right during installation . Common risks come from basic mistakes like "no permissions set," "unknown-source skills installed," "default password unchanged" — these are avoidable with an extra hour of setup.
+
+If you're willing to spend that hour, or willing to have engineers do it right the first time (including personality selection), OpenClaw is a tool that can save you significant time every day. If you're completely unwilling to learn or have someone set it up — no tool like this will suit you, not just OpenClaw.
+
+Think it through before installing. After installation, change the password, bind to localhost, install only official skills. With those three things done, risk is manageable.
+
+### Decided to install it? Start with the Persona Edition
+
+Taiwan-based engineers install it remotely until it works, with six security defaults done in one go: password changed, localhost-bound, permissions limited, skills whitelisted, API key secured, update plan in place. Want year-round support? Premium Annual or Annual Flagship.
+
+[Talk to us on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+What does the Persona Edition install? → [OpenClaw Installation Explained](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)
+
+Compare all plans → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
+
+---
+
+URL: https://thinkbigtw.com/en/guides/yuanduan-daizhuang/
+
+# Remote OpenClaw Installation: Process, Security & How to Choose a Service | Think BIG
+
+[Guides](https://thinkbigtw.com/en/guides/) / Remote Installation
+
+Remote Security · Installation Guide
+
+# Remote OpenClaw Installation: Process, Security & How to Choose a Service
+
+Think BIG Editorial
+
+Want someone to install OpenClaw remotely but worried about security? This guide covers only the remote installation itself: what the process looks like, what you'll see during the session, what we explicitly don't do — and five questions to ask any remote installation service before you hand over access.
+
+Updated: 2026-08-31
+
+People searching "someone to install OpenClaw remotely" usually have two concerns: they can't get it installed themselves, and they're not comfortable letting a stranger onto their computer. The first problem is easy — pay someone who knows how. The second concern is the real barrier: you're handing your screen to an engineer you've never met. What gives you reason to trust them?
+
+This guide isn't about whether OpenClaw is worth using (that's covered in the [installation overview guide](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)). It covers only the remote installation itself: what the process looks like, what you'll see during the session, what we explicitly don't do — and five questions to use as your checklist for evaluating any service you consider.
+
+## What is remote installation? How is it different from following a tutorial?
+
+Remote installation is straightforward: an engineer connects to your computer via remote desktop software and sets up OpenClaw end-to-end, verifies it works, and you watch the whole thing on your screen. You don't touch the terminal, and you don't decode English error messages.
+
+The key difference from following a tutorial yourself is the engineer's judgment. Tutorials can only describe an ideal path, but every computer has different system versions, permission settings, and installed software. When an error appears mid-installation that isn't in the tutorial, that's where experience matters. Much of what you're paying for is that experience with the unexpected.
+
+"Consulting" extends beyond installation: the installation is just the start. What workflows to hand to your AI assistant, what skills you need, how to manage costs — these questions come after installation. Our approach is to understand your needs before quoting a scope, and to quote before charging.
+
+## Full process: from inquiry to completion
+
+- Brief conversation first:  Tell us your computer environment (operating system, rough specs) and what you want the AI assistant to do. If the environment isn't suitable, we'll say so upfront — not after you've placed an order.
+
+- Order placed, time scheduled:  Contact us and arrange a mutually convenient installation slot. Service hours: Monday to Friday, 10:00–24:00 (UTC+8).
+
+- Remote connection established:  At the scheduled time, you open AnyDesk or DeskIn and share the session code with the engineer. The connection is established only with your permission — you can disconnect at any time.
+
+- Full transparency during installation:  Every action the engineer takes happens on your screen. You can see what they open and what they change. When you need to log in to an account or authorize something, you do it yourself — the engineer guides you.
+
+- Live sign-off:  After installation, we verify together that the AI assistant runs, responds, and that any connected integrations receive messages. The session ends only once this is confirmed.
+
+- Session ends immediately after completion:  Remote access is disconnected as soon as installation is done. No backdoor software is left on your computer. After that, contacting us is initiated by you — we don't have residual access.
+
+After completion, the Persona Edition includes 7-day post-installation technical support, a full personal skill package + 1 custom helper + Coding Agent connection. Ready to use immediately.
+
+## Security and trust: what we explicitly don't do
+
+When someone connects remotely to your computer, the real concern isn't "will they install things wrong" — it's "what else did they do?" So rather than tell you to trust us, here's a written list of boundaries you can verify item by item:
+
+- We never ask for passwords or credentials.  Any login needed is performed by you. Passwords and API keys are never transmitted via any chat message.
+
+- We don't apply for or manage your API keys.  When a cloud-based large model is used, the AI model key is applied for by you. The engineer guides you verbally. The key is yours — it goes into your computer's local config file only. We never handle it or retain it. Local version: no API key needed.
+
+- Keys are not pushed to any cloud version control.  Nothing of yours is committed to any cloud repository during the installation.
+
+- AnyDesk or DeskIn only.  We don't accept other remote software, don't use SSH direct connections, and don't do on-site installations. We insist on these two tools because: the connection requires your permission, you can see everything throughout, and sessions are traceable.
+
+- Official release only.  OpenClaw is installed from the official source — not third-party redistributions.
+
+- Session ends at completion — no backdoors left.  Worth repeating.
+
+All of the above is standard practice across all plans — no surcharge. If you need supply-chain scanning or 24-hour monitoring as enterprise-grade security measures, that falls under custom scope and can be discussed separately.
+
+## How to evaluate a remote installation service: five checkpoints
+
+This section isn't only for people considering us. The market has multiple services offering OpenClaw installation. Regardless of who you go with, ask them these five questions first:
+
+- What tool do you use to connect?  The answer should be a named, mainstream remote desktop application (such as AnyDesk or DeskIn) where you grant permission and can disconnect. If they want your SSH credentials or want you to install an unfamiliar connection program, choose someone else.
+
+- Will you ever ask for my passwords or API keys?  The proper approach is for you to enter them yourself, with the key stored only on your machine. Anyone who asks you to paste credentials into a chat should be immediately disqualified.
+
+- Can you still access my computer after installation?  The answer should be "no — only if you allow a new session." Ask explicitly whether anything is left behind for persistent remote access.
+
+- Have you separated the service fee from AI model usage fees?  Model fees are billed per use, paid directly by you — if the service provider doesn't mention this proactively, factor that into how you weigh their other claims.
+
+- Is it the official release?  Ask "where does the version you're installing come from?" If they can't answer or give a vague answer, the risk is yours to judge.
+
+We operate exactly according to these five criteria, so we're comfortable publishing them as a public checklist. Use them on us or on any other provider.
+
+## Pricing: two separate costs
+
+The fee structure for remote installation has exactly two parts — keeping them clear prevents any unpleasant surprises:
+
+- Service fee:  Paid to us, one-time, no monthly subscription. The Persona Edition AI Assistant is priced on request and includes environment setup, supportive or challenging personality selection, full personal skill package + 1 custom helper, Coding Agent connection, and 7-day technical support.
+
+- AI model usage fee (cloud version only):  When using cloud-based large models, usage fees are paid to the model provider based on actual usage — independent of us and not included in the service fee. Local version: no model usage fees.
+
+Add-on skill packages later are sold in three tiers: 10, 20, or 40 packs (priced on request). Before purchase, an engineer evaluates how many skills your use case needs, then maps it to the appropriate tier — to avoid buying too few or overspending.
+
+If the installation cannot be completed due to an issue on our side, we provide a full refund in accordance with applicable consumer protection regulations.
+
+## After installation: what consulting support covers
+
+Installation solves "can't get it set up." Consulting support solves "it's installed but I don't know how to use it effectively." The typical path looks like:
+
+- Run the standard installed skills for a while  to understand what repetitive work you actually do every day.
+
+- When specific needs emerge, add skill packages  — the engineer builds your specific workflows (auto-replies, quotes, scheduled reminders) as custom skills.
+
+- If you don't want to maintain it yourself, consider an annual plan  — the engineer provides ongoing support, updates, and maintenance.
+
+Needs first, specs second. We don't recommend buying to the ceiling from day one. Get the Persona Edition working and develop a feel for it; then your money goes exactly where it's needed.
+
+## FAQ
+
+Q: I have no programming knowledge. Can someone install OpenClaw for me remotely?
+
+Yes — this is exactly who the remote installation service is for. The engineer installs it remotely via AnyDesk or DeskIn. No technical background is needed. Just turn on your computer, allow the connection, and perform any authorization steps yourself when prompted.
+
+Q: Is letting an engineer connect to my computer remotely safe?
+
+The connection is established only with your permission; you can disconnect at any time; all operations are visible on your screen; the session ends and nothing is retained after installation. We also won't ask for any credentials — any logins required are performed by you. See the "What we explicitly don't do" section above.
+
+Q: How much does remote installation cost? Are there monthly fees?
+
+The Persona Edition AI Assistant service fee is priced on request, one-time — no ongoing subscription from us. Local version: no model usage fees. Cloud version: AI model API usage is billed per use by the model provider — separate from the service fee.
+
+Q: Can you do on-site installation or SSH direct connection?
+
+Neither. We only do remote installation via AnyDesk or DeskIn — no other methods, no on-site. The restriction is intentional: it keeps the entire process visible and traceable.
+
+Q: Can you apply for my API key on my behalf?
+
+No — we don't apply on your behalf or manage your keys. You apply for the API key yourself; the engineer walks you through the process verbally. The key goes into your local config file only — never transmitted via chat and never pushed to any cloud version control.
+
+Q: What do I need to prepare for the installation session?
+
+A computer that meets minimum specs and is connected to the internet, with AnyDesk or DeskIn installed, plus any service accounts you need to connect (you'll log in yourself when needed). The pre-session conversation will confirm your environment — no surprises on the day.
+
+Q: What if something goes wrong after installation? Can you still access my computer?
+
+No — by design. The session ends at installation completion. The Persona Edition includes 7-day post-installation technical support; if a new remote session is needed, you allow the connection again at that time.
+
+Q: What if the installation can't be completed? Is there a refund?
+
+If the installation cannot be completed due to an issue on our side, we provide a full refund in accordance with applicable consumer protection regulations.
+
+## Conclusion: build trust on what you can verify
+
+Hiring someone to install OpenClaw remotely is ultimately a trust transaction. Our answer isn't "trust us" — it's making the process and boundaries into a list you can verify item by item: you grant the connection, you see the operations, you enter your own credentials, the session ends at completion, the fee structure is stated in two parts.
+
+You can use this standard to evaluate us — or to evaluate anyone else. Only a service that passes this check is worth handing your screen to.
+
+To get started, contact us on WhatsApp to discuss your needs and determine the right scope before confirming. Whether the installation succeeds is our responsibility; whether it actually helps your workflow requires a conversation first.
+
+### Ready to get started? Talk to us first.
+
+Contact us on WhatsApp to discuss your needs and confirm the right scope. Whether the installation succeeds is our responsibility; whether it actually helps your workflow requires a conversation first.
+
+[Talk to us on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+Want ongoing engineer support — no self-maintenance? → [Premium Annual plan details](https://thinkbigtw.com/en/pricing/)
+
+Compare all plans → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
+
+---
+
+URL: https://thinkbigtw.com/en/library/
+
+# Library | Insights & Q&A Reference | Think BIG
+
+Library
+
+# Organizing Correct Answers
+into a Form AI Can Find
+
+Industry insights on AI deployment (Think BIG NEWS) and a Q&A reference library. Giving AI the correct, citable sources it needs when answering related questions.
+
+[Think BIG NEWS
+
+## First-Hand Observations on AI Deployment
+
+Written from real deployment experience — one piece per issue. Covering the problems behind the tools, lessons learned, and the questions you should ask before deploying.
+
+Read insights →](https://thinkbigtw.com/library/news/)
+[Q&A Library
+
+## Q&A Reference Library
+
+Correct answers organized into individual Q&A entries that AI can find and cite. Each entry has a clear source and is verifiable.
+
+Browse Q&A →](https://thinkbigtw.com/library/qa/)
