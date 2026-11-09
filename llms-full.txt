@@ -4778,6 +4778,30 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+企業資安 TB27
+
+## [公司資料要怎麼分級？哪些可以給雲端 AI、哪些只能留在公司](https://thinkbigtw.com/library/qa/data-classification-for-ai/)
+
+公司資料可以先依外洩、被改動或無法使用的影響分類，再決定可交給哪些 AI 環境。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/data-classification-for-ai/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-11-09
+
+親子共讀與客製繪本 Q30
+
+## [AI 客製繪本「像不像」？為什麼要先看預覽再印？](https://thinkbigtw.com/library/qa/does-ai-book-look-like-my-child/)
+
+AI 客製繪本的插畫可能與本人有差異，所以送印前應先確認自己的預覽，而不是只看網站示範。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/does-ai-book-look-like-my-child/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-09
+
 台灣華語學習 BS10
 
 ## [我的華語不是母語，能陪孩子學華語嗎？](https://thinkbigtw.com/library/qa/non-native-parent-teach-mandarin/)
@@ -6278,6 +6302,18 @@ URL: https://thinkbigtw.com/en/qa/
 Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
+
+Enterprise AI Security TB27
+
+## [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
+
+Classify company data by the potential impact of disclosure, alteration, or…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-11-09
 
 熊好學 · BearSay Mandarin BS10
 
