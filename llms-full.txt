@@ -14989,6 +14989,731 @@ Note: fees shown are Think BIG service fees and exclude third-party AI model usa
 
 ---
 
+URL: https://thinkbigtw.com/en/pricing/personal/
+
+# Personal Plans | Single AI Agent Setup / Dual AI Agent / Annual | Think BIG
+
+Personal use
+
+# Personal AI Agent Plans
+Single AI Agent Setup, Dual AI Agent, and Annual
+
+Personal plans are for one person: sole traders, freelancers, side-project founders, or executives who want to try it for themselves first. The AI model and AI Agent are installed on your own computer (Apple M-series Mac, Windows + NVIDIA, or AMD Ryzen AI Max all supported — see hardware requirements ), then connected to your LINE Business Account or Telegram. Remote installation by Taiwan-based engineers. If your hardware doesn't meet requirements, you can switch to a cloud model at the same plan price. Choose based on your needs: Single AI Agent Setup includes a full skill pack + 7 days of tech support; Dual AI Agent includes a collaboration meeting room + 2-hour online tech walkthrough; Annual plan includes full-year operations.
+
+View full personal plan directory ↓
+
+Personal plan directory
+
+## Choose your personal plan based on workflow and support level.
+
+### Single AI Agent Setup
+
+[AI Agent Setup overview ↗](https://thinkbigtw.com/en/services/ai-agent-setup/)
+
+### Workflow bundles
+
+[Full Agent Bundle ↗](https://thinkbigtw.com/en/full-agent/)
+[Dual Agent Bundle ↗](https://thinkbigtw.com/en/dual-agent/)
+[Skill Pack ↗](https://thinkbigtw.com/en/skill-pack/)
+
+### Full-year operations
+
+[Annual overview ↗](https://thinkbigtw.com/en/annual/)
+[Annual Plan — Premier ↗](https://thinkbigtw.com/en/annual-pro/)
+[Annual Plan — Flagship ↗](https://thinkbigtw.com/en/annual-flagship/)
+
+## Find your personal plan
+
+## Three plans
+
+Tier 1 · Single AI Agent Setup · 7-day support
+
+### Tier 1 | Single AI Agent Setup
+
+Tier 1 is a local AI model + AI Agent setup service installed on your own computer. Includes OpenClaw or Hermes (your choice), a full personal skill pack + 1 custom helper, and 7-day tech support. Coding Agent integration is an optional add-on. For individual use only. If your hardware doesn't meet requirements, switch to a cloud model at the same price.
+
+Who it's for: Anyone installing their first personal AI Agent on their own computer. Solves "I want an AI Agent but don't know how to install it, and don't want all my data on the cloud."
+
+Single AI Agent Setup | OpenClaw
+Variant A · Full skill pack + custom helper
+Pricing on request
+Full personal skill pack + 1 custom helper; Coding Agent integration optional
+[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup%20%28OpenClaw%29.)
+
+Single AI Agent Setup | Hermes
+Variant B · Cross-session persistent memory, gets smarter over time
+Pricing on request
+Cross-session persistent memory + full personal skill pack; same price, choose one
+[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup%20%28Hermes%29.)
+
+No monthly fee. No maintenance commitment. For individual use only — may not be used for business operations or serving third-party clients. Full refund if installation cannot be completed due to a technical issue on our side.
+
+Tier 2 · Dual AI Agent · Two variants
+
+### Tier 2 | Dual AI Agent
+
+Tier 2 provides two Dual AI Agent options. Co-existence Edition: OpenClaw + Hermes installed separately, each with their own memory and settings, standard skill pack, no memory sync or collaboration meeting room, 7-day tech support. Dual AI Agent (full): MCP memory sync between both Agents, cross-Agent collaboration meeting room (exclusive to this edition), custom skill count based on consultation, includes 2-hour online tech walkthrough + 7-day post-installation tech support.
+
+Who it's for: Anyone who wants two AI Agents working together. Start with the Co-existence Edition to establish how the two Agents divide responsibilities, or go straight to the full Dual AI Agent with memory sync and collaboration meeting room.
+
+Dual AI Agent Co-existence Edition
+Two Agents operating independently with separate memory
+Pricing on request
+OpenClaw + Hermes installed separately, each with own settings; standard personal skill pack; 7-day tech support; no memory sync or collaboration meeting room
+[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20Co-existence%20Edition.)
+
+Dual AI Agent
+MCP memory sync + cross-Agent collaboration meeting room
+Pricing on request
+OpenClaw + Hermes MCP memory sync; cross-Agent collaboration meeting room (exclusive to this edition); custom skill count based on consultation; 2-hour online tech walkthrough + 7-day post-installation support
+[See Dual AI Agent page →](https://thinkbigtw.com/en/dual-agent/)
+
+AnyDesk / DeskIn remote installation. No annual operations commitment. If you want someone to maintain it long-term after setup, see Tier 3 or add the System Health Check & Repair service.
+
+Tier 3 · Full-year operations · Most popular
+
+### Tier 3 | Annual Plan
+
+Tier 3 is an annual plan with a dedicated engineer looking after your system for the full year. Includes full-year dedicated operations (proactive fault detection) and 48-hour repair SLA. Renewal is optional in subsequent years. Pricing on request.
+
+Who it's for: Individuals who don't want to maintain it themselves and need someone looking after it all year. The top tier is for solo operators who want to hand off the equivalent of seven departments. Solves "set it up for a month, then it sat there unused — and when it broke, nobody cared."
+
+Single AI Agent
+Subtitle: Annual Plan — Premier
+Pricing on request
+Hermes or OpenClaw (your choice), fully custom, multi-Agent MCP sync; weekly maintenance + skill additions
+[See Annual Plan — Premier →](https://thinkbigtw.com/en/annual-pro/)
+
+Dual AI Agent
+Subtitle: Annual Plan — Flagship
+Pricing on request
+Hermes × OpenClaw × Claude Code multi-Agent architecture, multi-department coverage, CRM / cloud storage / Google Workspace integration
+[See Annual Plan — Flagship →](https://thinkbigtw.com/en/annual-flagship/)
+
+Neither tier is discounted. Process: place inquiry → requirements interview → remote installation → annual plan starts. Renewal is optional in subsequent years; pricing is based on requirements and includes weekly maintenance + 48-hour repair SLA.
+
+## Three-plan comparison
+
+Item
+Tier 1 | Single AI Agent Setup
+Tier 2 | Dual AI Agent
+Tier 3 | Annual Plan
+Who it's for Anyone installing their first AI Agent Anyone who wants two AI Agents working together Individuals / solo operators who want someone looking after it all year
+
+Delivery AnyDesk / DeskIn remote installation AnyDesk / DeskIn remote installation Interview → setup → annual plan starts
+
+AI Agent configuration OpenClaw or Hermes (your choice) OpenClaw + Hermes dual AI Agent Single AI Agent / OpenClaw + Hermes dual AI Agent
+
+Skills Full personal skill pack + 1 custom helper Based on consultation Fully custom / based on consultation
+
+Support period 7-day tech support 2-hour online walkthrough + 7-day post-installation support Full-year dedicated operations
+
+SLA — — 48-hour repair SLA
+
+Renewal — — Optional in subsequent years (pricing on request)
+
+Price Pricing on request Pricing on request Pricing on request
+
+CTA [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup.) [Dual AI Agent page](https://thinkbigtw.com/en/dual-agent/) [Annual Plan — Premier](https://thinkbigtw.com/en/annual-pro/) / [Annual Plan — Flagship](https://thinkbigtw.com/en/annual-flagship/)
+
+## Can my computer run a local AI model?
+
+Apple M-series Mac, Windows (or Linux) + NVIDIA dedicated GPU, and AMD Ryzen AI Max unified-memory machines can all be evaluated. Only hardware marked "tested" or "confirmed installation experience" reflects machines we have worked on; others are estimates. Send a screenshot of your hardware specs before proceeding. If your hardware doesn't meet requirements, switch to a cloud model at the same plan price.
+
+### Apple M-series Mac (macOS 14 or later)
+
+Memory What it can handle
+16 GB
+minimum · tested Usable but slow: basic Q&A, short text tasks, simple instructions — approx. 25–35 seconds per response (tested on Mac mini M4 16 GB). Multi-step tasks, image analysis, long documents, and coding are better handled on a cloud model.
+
+24 GB+
+recommended · estimated More stable than 16 GB; can run a slightly larger model.
+
+32 GB+
+estimated Dual AI Agent setup or Hermes.
+
+8 GB / Intel Mac Switch to cloud model (8 GB is too slow in testing).
+
+### Windows (or Linux) + NVIDIA dedicated GPU (Windows 10 22H2 or later)
+
+Tier GPU memory / System RAM
+Minimum (usable but slow) 8 GB / 16 GB
+
+Recommended 12 GB+ / 32 GB
+
+Dual AI Agent or Hermes 16 GB+ / 32 GB
+
+Switch to cloud model No dedicated GPU, integrated graphics only, or GPU with less than 8 GB VRAM
+
+NVIDIA tiers above are estimates. Send a hardware screenshot before proceeding.
+
+### AMD Ryzen AI Max series (unified memory)
+
+- Ryzen AI Max+ 395, 64 GB (Windows): confirmed installation experience. Single AI Agent, chat-only: approx. 32–40 seconds per response; web search: approx. 3–4 minutes per response.
+
+- Other AMD GPUs, AMD machines under 64 GB, or AMD on Linux: evaluated case by case.
+
+### Common requirements
+
+- 40 GB+ free disk space; 60 GB+ recommended for machines with 64 GB+ RAM (larger models)
+
+- Stable internet on installation day (model download is approx. 7–20 GB); keep the computer on and prevent sleep mode
+
+- How to screenshot your specs — Mac: Apple menu → "About This Mac". Windows: Ctrl + Shift + Esc → "Performance" tab; take one screenshot each of CPU, Memory, GPU, and remaining disk space.
+
+Response times above are measured on a single machine. Actual speed varies with question length, number of skills, and open applications. Local vs. cloud will be recommended by the engineer after reviewing your hardware screenshots. With a cloud model, your questions and data are sent to the model provider's servers; usage fees are billed by the provider to your own account.
+
+## Add-ons (available for any tier)
+
+Item Price Who it's for / rules How to order
+Skill Pack 10 / 20 / 40 sets Pricing on request Anyone already running OpenClaw or Hermes who wants to add skills without a monthly fee. Discuss requirements first; 0-Token-first design. [Skill Pack page](https://thinkbigtw.com/en/skill-pack/)
+
+Skill Pack 120 sets Pricing on request Top-tier skill pack. OpenClaw or Hermes (choose one). Does not include collaboration meeting room or Coding Agent integration (those are Tier 2 features). [Skill Pack page](https://thinkbigtw.com/en/skill-pack/)
+
+System Health Check & Repair Pricing on request Post-setup maintenance for non-annual clients (Tier 1 / 2). Annual clients already have operations included — no need to add this. [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20a%20System%20Health%20Check.)
+
+OpenClaw uninstall service Pricing on request Post-setup service [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20OpenClaw%20uninstall%20service.)
+
+### Client responsibilities
+
+- Local model computation carries no per-usage fee. If you opt for a cloud model, your own API Key is required (we guide you through the process but do not apply on your behalf). Usage fees are billed directly by the model provider.
+
+- LINE integration requires a Business Account (Messaging API only). Personal LINE accounts are not supported.
+
+- Optional: clients with an existing Claude Code or Codex subscription can add Coding Agent integration (subscription is your own; we handle the integration setup only).
+
+- Supabase free account required (self-register) for plans that include the cross-Agent collaboration meeting room.
+
+### Refund policy
+
+Full refund if installation cannot be completed due to a technical issue on our side. Service cancellation is handled in accordance with consumer protection law.
+
+Prices listed are service fees only. Local model computation carries no per-usage fee. Cloud model usage fees are billed by the provider to your own account and are not included in the service fee.
+
+← [Back to Plans and Pricing](https://thinkbigtw.com/en/pricing/)  ·  [Have teammates who also need it? See Enterprise use →](https://thinkbigtw.com/en/pricing/enterprise/)
+
+---
+
+URL: https://thinkbigtw.com/en/pricing/enterprise/
+
+# Enterprise AI Deployment Architecture | Cloud-Assisted and On-Premises | Think BIG
+
+Enterprise use
+
+# Enterprise Deployment: On-Premises and Cloud-Assisted
+
+Enterprise deployment architecture is chosen based on your data handling policy, team collaboration needs, and maintenance responsibilities. Both cloud-assisted and on-premises options use a requirements-first, contract-based approach — data flow, access boundaries, acceptance testing, and SLA are all confirmed upfront.
+
+## Initial deployment assessment
+
+## Enterprise deployment options
+
+Enterprise 1 · Cloud
+
+### Cloud-Assisted
+
+All three tiers (Starter / Standard / Full) are available with either deployment option.
+
+Integrates cloud model APIs using your corporate accounts and authorisation policies, establishing a managed AI Agent environment for each department. Data fields transmitted, service terms, and access roles are confirmed before deployment — bringing distributed AI use under a managed framework.
+
+- Dedicated custom Agent per department; departments are isolated, usage monitored independently
+
+- Employee allowlist channels (Slack / Teams / LINE Business Account etc.)
+
+- Deployment process: requirements interview → quote → contract → deployment
+
+- Support period and SLA: per contract
+
+Quote on request
+
+[Schedule a requirements interview on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20schedule%20a%20requirements%20interview%20for%20enterprise%20AI%20deployment.)
+[See enterprise deployment details →](https://thinkbigtw.com/enterprise/)
+
+Enterprise 2 · On-Premises
+
+### On-Premises
+
+Deploys local AI models and AI Agents on company-designated hardware, with access scope configured according to your data policy. External integrations, logs, and backups are confirmed separately — maintaining full data sovereignty and operational boundaries.
+
+- Local deployment: model and data stay on company machines
+
+- Pre-change backups with rollback; ongoing maintenance and technical support per contract
+
+- Deployment process: requirements interview → quote → contract → deployment
+
+- Support period and SLA: per contract
+
+Quote on request
+
+[Schedule a requirements interview on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20schedule%20a%20requirements%20interview%20for%20enterprise%20AI%20deployment.)
+[See enterprise deployment details →](https://thinkbigtw.com/enterprise/)
+
+Enterprise plans are contract-based. Final quotes are issued after a requirements interview. Pricing is not listed publicly. Full RAG knowledge-base builds are project-quoted separately and also go through the enterprise inquiry process.
+
+## Architecture and service scope comparison
+
+Item
+Cloud-Assisted
+On-Premises
+Who it's for Organisations whose data policy permits approved cloud services Organisations whose data must remain on-premises
+
+Delivery Cloud API deployment: interview → quote → contract Local LLM deployment: interview → quote → contract
+
+AI Agent configuration / skills Based on requirements Based on requirements
+
+Support period / SLA Per contract Per contract
+
+Price Quote on request Quote on request
+
+CTA [Schedule interview](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20schedule%20a%20requirements%20interview.) [Schedule interview](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20schedule%20a%20requirements%20interview.)
+
+## Deployment decision and delivery process
+
+1
+
+Requirements interview and department audit Audit applicable workflows, process bottlenecks, data conditions, and authorisation scope
+
+2
+
+Recommendation and quote Based on the interview, we propose a cloud or on-premises architecture recommendation and issue a quote. Implementation timeline is communicated after requirements assessment.
+
+3
+
+Contract Support period, maintenance commitments, and SLA are written into the contract
+
+4
+
+Deployment and acceptance Department-specific custom Agent development, security framework implementation, acceptance testing — then ongoing maintenance per contract
+
+Only need a personal AI Agent with ongoing maintenance?
+Personal plans are listed separately with installation options, AI Agent configurations, and annual operations details. If your use case involves shared company data, role-based access control, or formal system integration, it should be evaluated under the enterprise deployment criteria.
+
+[See Personal Tier 3 →](https://thinkbigtw.com/en/pricing/personal/#tier3)
+
+← [Back to Plans and Pricing](https://thinkbigtw.com/en/pricing/)  ·  [Enterprise AI deployment overview (Chinese)](https://thinkbigtw.com/enterprise/)
+
+---
+
+URL: https://thinkbigtw.com/en/dual-agent/
+
+# Dual AI Agent | Think BIG
+
+Personal AI Assistant
+
+# Dual AI Agent
+
+Installed separately they are two islands. After our setup they are one team.
+
+OpenClaw (action-focused) + Hermes (learning-focused): two systems on the same machine, connected through MCP (Model Context Protocol) so their memory layers and skill libraries are genuinely bridged. What one learns, the other knows. OpenClaw is ready to work from day one; Hermes continuously turns successful outcomes into new skills — a dual AI assistant system that improves the more you use it.
+
+## Does this sound familiar?
+
+- You want an AI that is "ready right now" and one that "gets smarter over time" — but you can only pick one?
+
+- You have several AI tools installed, each remembering things separately and doing their own thing, with no connection between them?
+
+- You teach tool A something, then switch to tool B and have to teach it all over again?
+
+## How it works
+
+1
+
+Receive You send a command from your messaging app or the collaboration room.
+
+2
+
+Route The task enters the shared memory layer — OpenClaw checks "what is the fastest way to do this now"; Hermes checks "what has been learned before".
+
+3
+
+Execute OpenClaw takes action; Hermes converts the successful approach into a new skill and writes it back to the shared skill library.
+
+4
+
+Report Results are pushed to your messaging app. Next time a similar task comes in, both agents are faster.
+
+Optionally connect your coding agent (Claude Code / Codex / etc.) to enable the cross-agent collaboration room.
+
+## What you get
+
+- Both systems installed and deployed with MCP memory sync (genuinely bridged, not two separate installs)
+
+- Skill configuration: OpenClaw + Hermes dual AI Agent, number of skills set during your intake call  (discuss your needs before ordering)
+
+- Coding agent integration + cross-agent collaboration room (enabled when two or more agents are connected)
+
+- A system that keeps improving: today's task result becomes tomorrow's built-in capability
+
+- 2-hour online technical walkthrough + 7 days  of post-installation technical support
+
+- Service fee on request, no monthly fee  (this refers to our service fee)
+
+Want someone to look after the system for a full year? → [Annual plan — Premier](https://thinkbigtw.com/en/annual-pro/) or [Annual plan — Flagship](https://thinkbigtw.com/en/annual-flagship/).
+
+Plan price
+
+Pricing on request
+
+[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20plan.)
+
+Note: local model inference has no usage fee. If you switch to a cloud model, you apply for your own API key (we guide you; we do not apply on your behalf) and pay usage fees directly to the model provider.
+
+## Dual AI Agent vs. the Co-existence Edition
+
+Feature Co-existence Edition Dual AI Agent
+Both AI Agents installed ✓ ✓
+
+Each configured separately ✓ ✓
+
+Cross-agent memory sync (MCP) — ✓
+
+Cross-agent collaboration room — ✓ (exclusive to this plan)
+
+Skill configuration Standard skill pack per agent Custom-configured during intake call
+
+Support period 7 days of technical consultation 2-hour online walkthrough + 7 days post-installation support
+
+Contact [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20Co-existence%20Edition.) [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20plan.)
+
+The Co-existence Edition is for people who want to try running two AI Agents side by side with low friction. The Dual AI Agent plan is for those who want both agents to collaborate and share memory. Both plans are listed on the [Personal Plans page](https://thinkbigtw.com/en/pricing/personal/).
+
+---
+
+URL: https://thinkbigtw.com/en/full-agent/
+
+# Full Agent Integration | Multi-Agent Orchestration | Think BIG
+
+Personal AI Assistant
+
+# Full Agent Integration
+
+You are already paying for a Claude Code / Codex subscription — let them work as a team.
+
+Multi-Agent Orchestration: OpenClaw and your existing coding agent (Claude Code / Codex / Antigravity, etc.) share one collaboration room and divide the work. OpenClaw handles commands and day-to-day tasks; the coding agent handles writing code, editing files and running tests. This is the architecture direction being pushed by Anthropic, Google and Microsoft in 2026.
+
+## Does this sound familiar?
+
+- You have Claude Code open, ChatGPT open and other tools open — and you are the human router passing things between them?
+
+- You pay for a coding agent subscription but can only use it when you are sitting at the computer typing commands?
+
+- You want to delegate work to an AI while you are away from your desk, but you have to wait until you get back?
+
+## How it works
+
+1
+
+Receive Open the dedicated collaboration room URL (can be added to your phone's home screen as an app) and issue a command.
+
+2
+
+Route OpenClaw analyses the task and decides whether to handle it directly or delegate to the coding agent.
+
+3
+
+Execute Multiple agents collaborate in the room, dividing the work. You can watch the collaboration in real time.
+
+4
+
+Report The final result report is pushed automatically to your designated messaging app.
+
+The collaboration room is built on a free Supabase project you register yourself, so your data is naturally isolated from other clients.
+
+## What you get
+
+- Latest official OpenClaw + 60 fully custom skills  (tailored to your profession)
+
+- Coding agent integration (Claude Code / Codex / Antigravity, etc. — your own subscription required)
+
+- Cross-agent collaboration room + result push to your messaging app
+
+- Issue commands from your phone; the agent team on your computer picks them up — no need to be at the desk
+
+- 2-hour online technical walkthrough + 7 days  of post-installation technical support
+
+- Service fee on request, no monthly fee  (this refers to our service fee)
+
+Want a second brain that also learns? → [Dual AI Agent](https://thinkbigtw.com/en/dual-agent/).
+
+Plan price
+
+Pricing on request
+
+[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Full%20Agent%20Integration%20plan.)
+
+Note: local model inference has no usage fee. If you switch to a cloud model, you apply for your own API key and pay usage fees directly to the model provider. Coding agent subscriptions (Claude Code requires Pro or above; check each provider's current terms) are your own responsibility.
+
+---
+
+URL: https://thinkbigtw.com/en/skill-pack/
+
+# Skill Pack Add-on | Custom AI Agent Skills | Think BIG
+
+Personal AI Assistant
+
+# Skill Pack
+
+The AI Agent is the brain. Skills are the hands.
+
+Skill Packs are custom skills added to an existing OpenClaw or Hermes installation: auto-reply, quote generation, competitor monitoring, scheduled reminders — developed to match your profession and workload. Four tiers (10 / 20 / 40 / 120 skills), pricing on request, discuss your needs before ordering.
+
+Most skills use a 0-Token-first design  — if the AI model does not need to be called, it is not. Most skills run day-to-day without burning model credits.
+
+## Does this sound familiar?
+
+- You manually sort the same data and send the same type of email every morning — the steps never change?
+
+- You installed an AI assistant but feel like it "knows a bit of everything and nothing about your actual job"?
+
+- You want automation but are afraid of buying a bundle you will never use?
+
+## How it works
+
+1
+
+Discuss Before ordering, chat with an engineer about your needs (rule: discuss first, estimate the number of skills needed, then order).
+
+2
+
+Plan The engineer breaks down your daily workflows, mapping out which steps become skills and which can run without token calls.
+
+3
+
+Install Skills are loaded into your existing OpenClaw or Hermes. From then on, a single phrase triggers the entire workflow.
+
+4
+
+Report Each execution result is pushed back to your messaging app — success or failure, always accounted for.
+
+## What you get
+
+- Fully custom skills aimed at your professional context — not generic templates
+
+- Repetitive tasks become a single command
+
+- 0-Token-first design: most skills do not add AI model costs
+
+- Add as many as you need: starts at 10 skills, expandable at any time
+
+Already using Claude Code or Codex? → [Full Agent Integration](https://thinkbigtw.com/en/full-agent/) — connect them as a team.
+
+Plan price
+
+Pricing on request
+
+The 120-skill tier is the flagship option — includes 7 days of technical support, OpenClaw or Hermes (your choice), 0-Token-first design.
+
+[Discuss your needs on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20discuss%20a%20Skill%20Pack%20for%20my%20AI%20Agent.)
+
+Note: local model inference has no usage fee. With a cloud model, if a skill calls the AI model, usage fees are billed by the provider to your own account.
+
+---
+
+URL: https://thinkbigtw.com/en/annual/
+
+# Annual Plans Updated | Think BIG
+
+Plans updated
+
+# Annual Plans — Dedicated Engineer for a Full Year
+
+The annual plans have been split into two separate options. Please choose the one that fits your needs.
+The old URL is no longer active; the links below go directly to each plan page.
+
+Annual Plan — Premier
+
+Pricing on request
+
+Single primary system (OpenClaw or Hermes), fully custom. Weekly maintenance and skill additions, 48-hour fault repair, unlimited consultation for the full year.
+
+[View Annual Plan — Premier](https://thinkbigtw.com/en/annual-pro/)
+
+Annual Plan — Flagship
+
+Pricing on request
+
+Hermes × OpenClaw dual-system MCP sync, unlimited skills, Claude Code multi-agent architecture, 48-hour fault repair.
+
+[View Annual Plan — Flagship](https://thinkbigtw.com/en/annual-flagship/)
+
+Not sure which one fits? [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20annual%20plans.) — connect directly with an engineer.
+
+---
+
+URL: https://thinkbigtw.com/en/annual-pro/
+
+# Annual Plan — Premier | Your Dedicated Engineer for the Full Year | Think BIG
+
+Personal AI Assistant · Annual Plan — Premier
+
+# Annual Plan — Premier
+
+Your dedicated engineer for the full year.
+
+Annual plan includes operations: proactive fault detection + 48-hour repair SLA
+Renewal option available for continued year-over-year maintenance
+
+From setup to long-term operations — one plan covers everything. Fully custom AI Agent architecture (OpenClaw or Hermes, or dual-system MCP sync) with a dedicated engineer for the full year. No need to learn maintenance yourself, and no extra charge every time something breaks — it's already included in the annual plan.
+
+## Does any of this sound familiar?
+
+- Your AI tools were set up, then sat unused after the first month — nobody kept adding features
+
+- When something breaks, you're stuck — and finding someone to fix it costs extra
+
+- You know AI should help you, but you're not sure which part of your work to automate first
+
+- You don't want to re-research tools every quarter — you want someone to keep you up to date
+
+The Annual Plan — Premier is designed around the two most common problems: "can't get it working" and "broke, and nobody cares" — both included in one annual fee.
+
+## How it works
+
+1
+
+Requirements interview Before you start, we discuss your workflow, confirm the architecture specs, and choose the primary system (OpenClaw or Hermes)
+
+2
+
+Setup and delivery Your engineer completes the fully custom setup. The annual plan starts only after you confirm it's working
+
+3
+
+Weekly maintenance + skill additions Routine weekly maintenance and upgrades. Your engineer proactively collects requirements and continuously adds custom skills
+
+4
+
+Proactive fault repair Issues are detected and reported to you first. Faults are repaired within 48 hours — we don't wait for you to discover them
+
+Supports Coding Agent integration, cross-Agent collaboration meeting room (activated when 2+ Agents are connected), and multi-channel messaging platform integration.
+
+## What you get
+
+- Fully custom AI Agent architecture (including multi-Agent MCP collaboration setup)
+
+- Full-year dedicated operations : proactive fault detection + 48-hour repair SLA
+
+- Weekly routine maintenance + weekly custom skill additions on request
+
+- Coding Agent integration + cross-Agent collaboration meeting room
+
+- Unlimited consultation throughout the year — direct access to your engineer
+
+- Annual Plan — Premier; pricing on request; annual contract
+
+Need dual AI Agent systems + quarterly AI strategy planning? → [See Annual Plan — Flagship](https://thinkbigtw.com/en/annual-flagship/).
+
+Plan price
+
+Pricing on request (annual contract — please discuss requirements before proceeding)
+
+[Ask on WhatsApp — confirm requirements first](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Annual%20Plan%20%E2%80%94%20Premier.)
+
+A requirements interview to confirm your workflow and primary system must be completed before the plan starts. Local model computation carries no per-usage fee. If you opt for a cloud model instead, your own API Key is required; model usage fees are billed directly by the model provider and are not included in this plan. Renewal pricing is quoted separately based on requirements.
+
+---
+
+URL: https://thinkbigtw.com/en/annual-flagship/
+
+# Annual Plan — Flagship | Hermes × OpenClaw Dual AI Agent, Full-Year Deployment | Think BIG
+
+Personal AI Assistant · Annual Plan — Flagship
+
+# Annual Plan — Flagship
+
+Dual Agent, full system online, the entire year.
+
+Flagship operations commitment: proactive fault detection + 48-hour repair SLA
+Dual-system MCP sync + multi-department coverage + quarterly AI strategy planning
+
+When one Agent isn't enough, the Annual Plan — Flagship gives you a complete AI operating system: OpenClaw handles assistant functions, Hermes manages cross-platform communications and scheduling, and both systems work together through MCP sync — maintained and upgraded by a dedicated engineer for the full year. It's not just "having an AI assistant" — it's AI actually running your day-to-day operations.
+
+## Annual Plan — Premier vs Flagship
+
+Both plans include full-year operations. The difference is scale and depth.
+
+Annual Plan — Premier (entry)
+
+- Single Agent system
+
+- OpenClaw or Hermes, your choice
+
+- 48-hour repair SLA
+
+- Weekly maintenance + skill additions
+
+- Unlimited consultation
+
+Annual Plan — Flagship (advanced)
+
+- Dual Agent MCP sync
+
+- OpenClaw + Hermes deployed simultaneously
+
+- 48-hour repair SLA
+
+- Weekly maintenance + multi-department skills
+
+- Unlimited consultation + quarterly AI strategy planning ★
+
+- Google Workspace integration ★
+
+Already on Annual Plan — Premier and want to upgrade? Contact us — the difference can be credited.
+
+## How it works
+
+1
+
+Business workflow interview Before you start, we do an in-depth review of your workflows and department needs to plan the dual-system division of responsibilities
+
+2
+
+Dual-system setup and delivery OpenClaw and Hermes are deployed in parallel, connected to all your messaging platforms and work tools. The annual plan starts only after you confirm everything is live
+
+3
+
+Weekly maintenance + multi-department expansion Routine weekly maintenance on both systems. Your engineer continuously adds custom skills by department, covering more workflows over time
+
+4
+
+48-hour repair SLA If either system shows any issue, we notify you first and repair it within 48 hours — we don't wait for you to discover it
+
+5
+
+Quarterly AI strategy planning One in-depth planning session each quarter to review AI coverage, propose next-quarter expansion plans, and keep the system growing with your business
+
+Includes Coding Agent integration, cross-Agent collaboration meeting room, enterprise integrations (CRM / spreadsheets / cloud storage), and Google Workspace connectivity.
+
+## What you get
+
+- Dual Agent system : OpenClaw handles assistant functions + Hermes manages cross-platform communications — both systems sync via MCP
+
+- Full-year dedicated operations : proactive fault detection + 48-hour repair SLA
+
+- Weekly routine maintenance + multi-department custom skills continuously expanded
+
+- Coding Agent integration + cross-Agent collaboration meeting room + Google Workspace integration
+
+- Unlimited consultation throughout the year — direct access to your engineer
+
+- Quarterly AI strategy planning meetings (1 per quarter, 4 total) ★
+
+- Annual Plan — Flagship; pricing on request; annual contract
+
+The scope of quarterly planning and other advanced services should be confirmed with a consultant before purchase.
+
+Budget-conscious and want to start with one system? → [See Annual Plan — Premier](https://thinkbigtw.com/en/annual-pro/).
+
+Plan price
+
+Pricing on request (annual contract — please discuss requirements before proceeding)
+
+[Ask on WhatsApp — confirm requirements first](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Annual%20Plan%20%E2%80%94%20Flagship.)
+
+A business workflow interview to confirm the dual-system architecture must be completed before the plan starts. Local model computation carries no per-usage fee. If you opt for a cloud model instead, your own API Key is required; model usage fees are billed directly by the model provider and are not included in this plan. Renewal pricing is quoted separately based on requirements.
+
+---
+
 URL: https://thinkbigtw.com/library/news/ai-context-length-too-large-20261027/
 
 # AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓 | Think BIG NEWS
