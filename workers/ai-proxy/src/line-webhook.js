@@ -3,7 +3,7 @@
  *
  * 設計原則：
  *   - 簽章驗證失敗立刻 401，不做任何 AI 呼叫
- *   - 只處理 source.type==='user' 的私訊；群組/room 事件一律略過
+ *   - 一對一只處理 source.type==='user'；群組/room 事件走 line-group.js（不呼叫 AI，僅白名單群組轉進詢問管線）
  *   - follow 事件：先做 GIFT 判斷，GIFT 用戶靜默；非 GIFT 才回歡迎文
  *   - userId 一律以 HMAC-SHA256（+ pepper）雜湊，不存明文
  *   - LINE_HASH_PEPPER 必須透過 wrangler secret put 設定，未設定直接 503
@@ -22,6 +22,7 @@
 
 import { createBookingToken } from './booking.js';
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
+import { handleGroupEvent } from './line-group.js';
 import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 
 // ──────────────────────────────────────────────
@@ -602,7 +603,9 @@ async function processEventInner(event, token, kv, env, ctx) {
   const { type, source, replyToken } = event;
   const userId = source?.userId;
 
-  // #1: 只處理 source.type==='user'；群組/room 事件一律略過
+  // 群組/room 事件：絕不呼叫 AI 顧問；交給 line-group.js（白名單轉進詢問管線）
+  if (source?.type === 'group' || source?.type === 'room') return handleGroupEvent(event, token, kv, env, ctx);
+  // #1: 其餘非 user 來源一律略過
   if (source?.type !== 'user') return;
 
   // follow 事件：先做 GIFT 判斷，再決定是否回歡迎文
@@ -852,7 +855,7 @@ export async function handleLineWebhook(request, env, ctx) {
   // #3: 同一 userId 的事件序列化處理，不同用戶可並行
   const byUser = new Map();
   for (const event of events) {
-    const uid = event.source?.userId ?? '_anon_';
+    const uid = event.source?.groupId ?? event.source?.roomId ?? event.source?.userId ?? '_anon_';
     if (!byUser.has(uid)) byUser.set(uid, []);
     byUser.get(uid).push(event);
   }

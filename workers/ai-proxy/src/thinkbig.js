@@ -283,7 +283,7 @@ export function validateInquiry(body) {
   } else throw new Error('invalid_contact');
   return result;
 }
-async function writeInquiry(data, env) {
+export async function writeInquiry(data, env) {
   if (!env.INQUIRY_SUPABASE_URL || !env.INQUIRY_SUPABASE_SERVICE_ROLE_KEY) return { ok: false, status: 503, body: { error: 'inquiry_unavailable', fallback: LINE } };
   let url;
   try {

@@ -1,5 +1,6 @@
 import { handleThinkBig } from './thinkbig.js';
 import { handleLineWebhook, handleLinePushAnswer, handleLineScheduled } from './line-webhook.js';
+import { handleLineGroupPush } from './line-group.js';
 
 /**
  * MoneyRadar™ AI Proxy v3
@@ -1733,6 +1734,7 @@ export default {
   async fetch(request, env, ctx) {
     const thinkBigPath = new URL(request.url).pathname;
     if (thinkBigPath === '/line-webhook') return handleLineWebhook(request, env, ctx);
+    if (thinkBigPath === '/line-group-push') return handleLineGroupPush(request, env);
     if (thinkBigPath === '/line-push-answer') return handleLinePushAnswer(request, env);
     if (['/thinkbig-chat', '/thinkbig-inquiry', '/thinkbig-booking', '/thinkbig-booking-slots', '/thinkbig-end-chat', '/thinkbig-retail', '/thinkbig-experience'].includes(thinkBigPath)) return handleThinkBig(request, env);
     // === V279_EARLY_INTERCEPT ===
