@@ -211,7 +211,23 @@ async function chat(body, env) {
   const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
   return json({ reply, model, inquirySuggested });
 }
-function filterReply(reply, context = 'chat') {
+export function filterReply(reply, context = 'chat') {
+  // 英文回覆（11/9 起英文提問用英文答）的假送出／假預約／假收件說法。只看一句之內；條件句（if/once/after/when）是在說明流程，不攔。
+  const EN_RECEIPT_CLAIM = [
+    /\b(?:I|we)(?:'ve|\u2019ve| have)?\s+(?:just\s+|already\s+)?(?:submitted|sent|forwarded|passed on|passed along|booked|scheduled|reserved|registered|logged|filed)\b[^.!?\n]{0,40}\b(?:your|the|this)\s+(?:request|inquiry|enquiry|details|information|info|question|message|appointment|booking|consultation|assessment|summary|meeting|call|demo)\b/i,
+    /\b(?:I|we)(?:'ve|\u2019ve| have)?\s+(?:just\s+|already\s+)?(?:received|got)\s+(?:your|the)\s+(?:request|inquiry|enquiry|details|information|info|message|booking|contact)/i,
+    /\byour\s+(?:request|inquiry|enquiry|booking|appointment|consultation|assessment|meeting|call|demo|details|information)\s+(?:is|has been|was|have been)\s+(?:now\s+)?(?:confirmed|received|submitted|sent|booked|scheduled|forwarded|recorded|registered)\b/i,
+    /\b(?:you(?:'re|\u2019re| are)\s+(?:all\s+)?(?:booked|scheduled|set)\b)/i,
+  ];
+  const EN_FOLLOW_UP = /\b(?:consultant|advis[oe]r|team|specialist|colleague|someone|representative|we)\s+(?:will|'ll|\u2019ll)\s+(?:proactively\s+|soon\s+|shortly\s+)?(?:contact|reach out to|email|call|get back to|follow up with)\s+you\b/i;
+  const EN_CONDITIONAL = /\b(?:if|once|after|when|whenever|as soon as)\b/i;
+  function englishReceiptClaim(reply) {
+    return reply.split(/(?<=[.!?\n])\s*/).some(sentence => EN_RECEIPT_CLAIM.some(re => re.test(sentence)) || (EN_FOLLOW_UP.test(sentence) && !EN_CONDITIONAL.test(sentence)));
+  }
+  const RECEIPT_GUARD = {
+    zh: { chat: '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。', experience: '這裡只能幫你擬草稿，不會送出訊息、接收資料或完成預約。要不要先一起確認草稿內容？', retail: '這個體驗不會替你送出或預約任何事情。若想討論正式導入，請按頁面下方「討論我的門市需求」。' },
+    en: { chat: 'I can\'t send, book or receive anything here. If you\'d like a consultant to contact you, tap 「整理諮詢摘要」 (inquiry summary), check your needs and contact details, then confirm to send. Only the result shown in the window means it was received.', experience: 'I can only help you draft here. I don\'t send messages, receive data or complete bookings. Shall we check the draft together first?', retail: 'This demo doesn\'t send or book anything for you. To discuss a real rollout, tap 「討論我的門市需求」 at the bottom of the page.' },
+  };
   // Models sometimes answer in Simplified Chinese; normalise to Taiwan Traditional (OpenCC cn→twp).
   reply = toTraditionalTW(reply).replace(/臺/g, '台').replace(/客制/g, '客製').replace(/匯入/g, '導入');
   // The widget renders plain text (textContent), so strip Markdown the model may emit.
@@ -231,8 +247,10 @@ function filterReply(reply, context = 'chat') {
     /已收到(?!的)|(?:已|經|我).{0,6}(?:寄|發送|傳送|送達|通知|排入|排進|加入行事曆|訂位)|(?:預約|訂位|寄送|發送)(?:完成|成功)|寄出了/.test(reply.replace(/\s+/gu, ''))
     || experienceCompletion.test(reply.replace(/\s+/gu, ''))
   );
-  if (receiptClaim || demoCompletion || /已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
-    reply = context === 'experience' ? '這裡只能幫你擬草稿，不會送出訊息、接收資料或完成預約。要不要先一起確認草稿內容？' : context === 'retail' ? '這個體驗不會替你送出或預約任何事情。若想討論正式導入，請按頁面下方「討論我的門市需求」。' : '如需顧問聯繫，請點「整理諮詢摘要」，核對需求及聯絡方式後再確認送出。是否收件以介面顯示的送出結果為準。';
+  const englishClaim = englishReceiptClaim(reply);
+  if (receiptClaim || demoCompletion || englishClaim || /已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
+    const lang = /[\u4e00-\u9fff]/.test(reply) ? 'zh' : 'en';
+    reply = RECEIPT_GUARD[lang][context === 'experience' || context === 'retail' ? context : 'chat'];
   }
   return reply;
 }
