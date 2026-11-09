@@ -1225,6 +1225,764 @@ LINE ID
 
 ---
 
+URL: https://thinkbigtw.com/en/enterprise/
+
+# Enterprise AI Agent Deployment | On-Premises, Security-First | Think BIG
+
+ENTERPRISE AI AGENT DEPLOYMENT
+
+# AI Agents for your business,
+built around your workflows.
+
+Starter plan
+Standard plan
+Complete plan
+
+AI Agents answer from your company documents with cited sources. Unlimited users. All three plans include first-year maintenance. On-premises or cloud-assisted deployment options available.
+
+[Self-assessment: find the right plan›](https://thinkbigtw.com/en/enterprise/start/)
+[Request a 30-minute assessment via WhatsApp›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
+
+ABOUT THINK BIG
+
+Think BIG (大想成業有限公司) is a Taiwan-based enterprise AI Agent deployment provider serving clients worldwide. Starting from enterprise data security, we use TB FRAME — our four-phase deployment methodology: Assess, Build, Validate, Operate — to build AI Agents inside your own environment (your hardware, or a cloud host registered to your account). We provide one year of run-alongside operations support. With on-premises deployment, the model and your documents are processed on your company hardware. With cloud-assisted deployment, questions and retrieved document passages are sent to the model provider under their terms of service. We act as your outsourced FDE (Forward Deployed Engineer) team: from understanding requirements, building the knowledge base and AI Agents, and going live, through to ongoing operations.
+
+On-premises deployment does not mean all connections are local. If a cloud model or external service is used, related requests are still sent out. If data must not leave your premises, local model support, outbound restrictions, logging and backup configuration must each be confirmed.
+
+OPERATING MODEL AI Agent Governance Architecture
+
+DECISION AUTHORITY
+
+## Enterprise Decision & Authorisation
+
+Goal definition · Permission approval · Output review
+
+01 / KNOWLEDGE
+
+### Knowledge & Data
+
+Authorised sources
+Access scope
+
+02 / EXECUTION
+
+### AI Agent Collaboration
+
+Task allocation
+Output handover
+
+03 / CONTROL
+
+### Governance & Validation
+
+Change registration
+Exception handling
+
+GOVERNANCE FOUNDATION
+
+### Governance Foundation
+
+Data sovereignty · Human approval · Auditable records
+
+Responsibility relationship diagram for deployment design. Actual configuration is confirmed per process, data policy and authorisation scope.
+
+[What is RAG? Learn how AI answers from your company documents ›](https://thinkbigtw.com/en/enterprise/rag/)
+
+ADOPTION CRITERIA
+
+## Deployment viability
+defined by process maturity.
+
+Assessment covers business requirements, data availability and organisational accountability. Confirm what can be implemented first, then select the deployment and service configuration.
+
+### Applicable situations
+
+- Repetitive look-ups, data consolidation and progress tracking are consuming management resources.
+
+- Documents and operating rules are in place; you need to integrate AI into day-to-day workflows.
+
+- Data sovereignty, access control and ongoing maintenance after deployment are priorities.
+
+### Assessment prerequisites
+
+- The process has describable steps, inputs and expected outputs.
+
+- Data sources, processing locations and authorisation responsibilities can be confirmed.
+
+- An acceptance owner is designated, and required human approvals are defined.
+
+[Personal use: see personal plans ↗](https://thinkbigtw.com/en/pricing/)
+
+[See deliverables and permissions per AI department ›](https://thinkbigtw.com/en/enterprise/departments/)
+
+FUNCTIONAL CAPABILITIES
+
+## Turn department requirements
+into verifiable capabilities.
+
+Break business requirements down into describable inputs, execution steps and deliverables, with human approval built into the workflow design.
+
+MARKETING
+
+### Content production lacks a consistent knowledge foundation.
+
+AI AGENT CAPABILITY
+
+### Compile approved materials into editable content drafts.
+
+Deliverables and acceptance: content drafts and items to confirm. External actions require approval from the designated responsible person.
+
+CUSTOMER SERVICE
+
+### Repetitive enquiries increase the customer service workload.
+
+AI AGENT CAPABILITY
+
+### Prepare replies from the knowledge base; route exceptions to a person.
+
+Deliverables and acceptance: reply drafts and a list of items for human handling. External actions require approval from the designated responsible person.
+
+SALES OPERATIONS
+
+### Enquiry records and follow-up tracking are not integrated.
+
+AI AGENT CAPABILITY
+
+### Consolidate requirement context and create a trackable sales to-do list.
+
+Deliverables and acceptance: enquiry summaries and tracking list. External actions require approval from the designated responsible person.
+
+FINANCE OPERATIONS
+
+### Report consolidation and variance reconciliation depend on manual effort.
+
+AI AGENT CAPABILITY
+
+### Consolidate authorised data and produce sourced variance checklists.
+
+Deliverables and acceptance: consolidated reports and variance list. External actions require approval from the designated responsible person.
+
+ENTERPRISE PLANS
+
+## AI Agents for your business,
+priced per the quotation.
+
+Three plans with clearly defined scope and delivery timelines. All plans include first-year maintenance. AI model costs are borne by the client. Actual content and pricing are confirmed in a requirements consultation.
+
+STARTER
+
+Starter plan
+
+Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
+
+Staff ask questions about company SOPs and policies. The knowledge base holds up to 30 documents. AI answers from documents with cited sources; unanswered questions are routed to a person for confirmation.
+
+BEST FOR
+Teams of 5–20 at shops, studios or service locations with a few dozen documents, wanting staff or customers to query SOPs, pricing or FAQs.
+
+- Knowledge base: 1, up to 30 documents, 300 pages, 50 MB
+
+- Channel: messaging channel or web embed (choose one)
+
+- Unlimited users
+
+- Tutorial videos (1–2) and quick-start guide
+
+- Year-1 maintenance: incident response, bug fixes, security patches, monitoring
+
+- Response time: 1 business day human response
+
+- Year-1 document update: once (up to 20 documents)
+
+- Delivery: within 30 days of scope freeze and data handover
+
+Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
+
+STANDARD
+STANDARD
+
+Standard plan
+
+Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
+
+Answers questions and helps draft content. Up to 100 documents including spreadsheets, plus one work-draft task (enquiry summary, reply draft or form summary — choose one).
+
+BEST FOR
+Companies of 10–50 people with hundreds of documents and daily repetitive paperwork to organise or draft.
+
+- Knowledge base: 1, up to 100 documents, 1,000 pages, 200 MB + spreadsheets
+
+- Work-draft task: 1 (choose one of three)
+
+- Channel: messaging, web embed or internal communications tool (choose one)
+
+- Unlimited users
+
+- Tutorial videos (2–3) and operator guide
+
+- Year-1 maintenance: fully covered (same as Starter)
+
+- Response time: 1 business day human response
+
+- Year-1 document updates: twice (up to 50 documents each time)
+
+- Delivery: within 30 days of scope freeze and data handover
+
+Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
+
+COMPLETE
+
+Complete plan
+
+Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
+
+Answers questions, drafts content and keeps documents in sync automatically. Includes one read-only integration (e.g. automatic cloud drive folder sync) and optional add-on packs.
+
+BEST FOR
+Teams of 20–100 with frequently updated documents in cloud drives who want AI to sync automatically, without manual uploads, and may add large knowledge bases or table lookups later.
+
+- Knowledge base: 1, up to 100 documents, 1,000 pages, 200 MB + spreadsheets
+
+- Work-draft task: 1 (choose one of three)
+
+- Read-only integration: 1 (e.g. automatic cloud drive sync)
+
+- Channel: messaging, web embed or internal communications tool (choose one)
+
+- Unlimited users
+
+- Tutorial videos (3–5) and full operator guide
+
+- Year-1 maintenance: fully covered; 1 hour operations consultation per month
+
+- Year-1 document updates: quarterly, 4 times (up to 50 documents each time)
+
+- Delivery: within 30 days of scope freeze and data handover
+
+- Optional add-on packs available
+
+Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
+
+### COMMON CONDITIONS — ALL THREE PLANS
+
+- Unlimited users (performance depends on client hardware specifications)
+
+- AI model costs are borne by the client; Think BIG does not advance or resell model fees. Choose on-premises (model runs on your hardware, data processed on-site) or cloud-assisted (use your own account to access the model provider's API; questions and retrieved passages are sent to the provider)
+
+- Client provides one computer that can run 24 hours a day; for the cloud-assisted option a cloud host may be used instead
+
+- A remote device pre-check is conducted before contract signing — if the system cannot be installed, no contract is signed and no payment is made
+
+- All three plans can be upgraded within Year 1 by paying the price difference: request a consultation for upgrade conditions
+
+Upgrade within Year 1 by paying the difference — money already paid is not wasted. Add-on packs (advanced features) are only available for the Complete plan.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+[Request a 30-minute assessment via WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
+
+DATA SOVEREIGNTY
+
+## Choose your deployment architecture
+based on your data policy.
+
+Data sovereignty (Data Sovereignty) is enforced through processing location, access permissions and outbound transmission rules. Select the configuration based on your enterprise policy and hardware conditions, then verify connector compatibility item by item.
+
+### On-premises
+
+The model and designated data are processed on your company hardware. If data must not leave your premises, logging, backup and all outbound connections must also be verified.
+
+### Cloud-assisted
+
+When a cloud model is used, questions and retrieved document passages are sent to the model provider for processing under their terms of service. Before deployment, list the fields sent, purposes, account permissions and costs, then confirm authorisation before including in the workflow.
+
+Supported technologies: OpenClaw, Claude, MCP, RAG. Integration and model changes require compatibility confirmation and re-testing of work results.
+
+[View full methodology and deliverables ›](https://thinkbigtw.com/en/enterprise/process/)
+
+TB FRAME / DELIVERY METHODOLOGY
+
+## Phase deliverables
+as the basis for deployment decisions.
+
+TB FRAME divides deployment into Assess, Build, Validate and Operate. Each phase lists clear outputs and review responsibilities; progress is confirmed jointly based on scope and readiness.
+
+- 01
+
+ASSESS
+
+### Assess & Define
+
+Deliverables Workflow inventory, data catalogue, priority order and acceptance criteria.
+
+- 02
+
+BUILD
+
+### Build & Configure
+
+Deliverables Deployment configuration, role permissions and working AI Agent workflows.
+
+- 03
+
+VALIDATE
+
+### Validate & Deliver
+
+Deliverables Scenario tests, exception records and operations handover documentation.
+
+- 04
+
+OPERATE
+
+### Govern & Operate
+
+Deliverables One-year run-alongside support, maintenance records, change verification and improvement backlog.
+
+OPERATING MODEL
+
+## Beyond tool capability,
+clearly define operational responsibility.
+
+An operating model defines who configures the tools, who approves changes, how outputs are accepted and who tracks incidents.
+
+"Self-managed AI tools" refers to the common practice of a business subscribing to and configuring a tool independently. Product capabilities vary by plan.
+Comparison Self-managed AI tools Think BIG enterprise deployment
+Workflow Business configures prompts and integrations independently. Scope, deliverables and acceptance criteria are jointly defined.
+
+Data location Per tool deployment and terms of service. On-premises first; external services and data flows confirmed item by item.
+
+Permissions and changes Business establishes permissions and change management independently. Least-privilege, human approval and change records are planned from the start.
+
+Ongoing operations Business handles configuration and incidents independently. One-year run-alongside maintenance; tracked and adjusted per contract scope.
+
+Changing tools or models Business assesses compatibility independently. Assisted inventory and re-testing; reusable workflows confirmed.
+
+Acceptance responsibility Using team verifies outputs independently. Acceptance testing per agreed scenarios; test and handover records retained.
+
+PROCUREMENT FAQ
+
+## Clarify deployment conditions
+to support enterprise purchasing decisions.
+
+From data handling and service boundaries to operations responsibility — the foundational information needed for deployment assessment and procurement discussions.
+
+How should we evaluate an enterprise AI deployment provider?
+
+Evaluation should cover workflow fit, data governance, delivery acceptance and ongoing operations. Ask providers to list scope, access permissions, acceptance criteria and incident responsibility. Think BIG demonstrates capability through a live AI team governance process; no client identities or data are shown.
+
+How does on-premises deployment enforce data sovereignty?
+
+On-premises configuration deploys work data and the execution environment to the client's designated hardware. When cloud models or external services are used, the fields sent, purposes and authorisation must be confirmed separately. Requiring data to stay on-site still needs verification of local model support, outbound restrictions, logging and backup configuration. With the cloud-assisted option, questions and retrieved document passages are sent to the model provider under their terms of service.
+
+Does deployment suitability depend on company size?
+
+Suitability depends primarily on how well-defined the target process is, data availability and acceptance responsibility. A single workflow can be scoped for assessment first, then expanded based on validated results. Personal-use requirements are covered by the personal plans.
+
+How is deployment progress planned and managed?
+
+TB FRAME manages deployment in four phases: Assess, Build, Validate and Operate. Progress is confirmed jointly based on scope, data readiness, system access and acceptance criteria, tracked through phase deliverables. All three plans deliver within 30 days of scope freeze and data handover.
+
+What plans are available for enterprise deployment?
+
+Enterprise plans are priced per the quotation. Please [request a requirements consultation](https://thinkbigtw.com/en/contact/) to receive a formal quote. All three plans (Starter, Standard, Complete) include build, tutorial videos and first-year maintenance. Any plan can be upgraded within Year 1 by paying the price difference. Year-2 renewal is optional — decided by the client, with no automatic billing.
+
+How is enterprise service scope defined for quotation?
+
+All three plans have clearly defined scopes and are not individually re-priced. Requirements outside plan scope (e.g. auto-outbound replies to customers, ERP write-back, large-scale integrations) are handled as separate engagements. Deployment service and AI model costs are itemised separately for client purchasing clarity.
+
+What operations responsibilities does TB CONTINUITY cover?
+
+TB CONTINUITY | AI Agent Annual Governance and Operations provides one year of run-alongside support, covering incident tracking, maintenance checks, change records and usage adjustments within the agreed scope. Service contact, responsibility boundaries and new-requirement handling are confirmed in the contract.
+
+How is the AI Agent's autonomous operation scope controlled?
+
+Data and operation scope are configured following least-privilege principles. Outbound sends, spend and formal system changes require approval by the designated responsible person. The AI Agent produces work products and execution evidence; people retain final decision authority.
+
+Can existing tools and models continue to be used?
+
+Existing system interfaces, account permissions and compatibility are inventoried before integration scope is assessed. Changing models requires re-testing workflows and output quality; whether existing configurations can be reused is confirmed through actual testing.
+
+START A CONSULTATION
+
+## Define your business requirements
+and start the assessment.
+
+Fill in the 12-question self-assessment and we will suggest the right plan automatically. Or contact a deployment consultant directly on WhatsApp for a 30-minute fit assessment.
+
+[Self-assessment: we reply with an assessment direction ›](https://thinkbigtw.com/en/enterprise/start/)
+
+The assessment is free and there is no automatic billing. If a formal quotation is needed after the assessment, a formal contract will be sent separately.
+
+[Contact a deployment consultant on WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/departments/
+
+# AI Agent Functional Roles | Enterprise Collaboration Model | Think BIG
+
+FUNCTIONAL AI AGENTS
+
+# Collaborate by function.
+Reshape your workflows.
+
+Configure AI Agents by customer service, sales, marketing, finance and operations function, integrating data inputs, deliverables and human decision points into a clear operating model. The capability ranges below are examples for assessment, not client case studies.
+
+CUSTOMER SERVICE AI AGENT SET
+
+## Support customer service with a knowledge foundation.
+
+Capability scope Research questions and prepare replies based on approved knowledge sources.
+
+Deliverables Reply drafts with cited sources; list of questions that cannot be answered.
+
+Human decisions and authorization Escalate to staff when no source applies; commitments, refunds and disputes are decided by the responsible person.
+
+How is knowledge prepared for enterprise Q&A? [Learn about RAG, document permissions and acceptance testing ›](https://thinkbigtw.com/en/enterprise/rag/)
+
+SALES AND OUTREACH AI AGENT SET
+
+## Integrate enquiry records and outreach tracking.
+
+Capability scope Organize enquiries, contact reasons and follow-up tasks; prepare outreach drafts following agreed workflows.
+
+Deliverables Enquiry summaries, pending contact lists and status per item.
+
+Human decisions and authorization Confirm outreach authorization, channel rules and opt-out mechanisms before sending; no auto-dial or auto-send is assumed.
+
+MARKETING AI AGENT SET
+
+## Build a consistent content production and review workflow.
+
+Capability scope Compile approved brand materials into drafts; check content and flag items to be filled in.
+
+Deliverables Editable content drafts, sources and a pre-publish checklist.
+
+Human decisions and authorization Publishing, ad placements and any spend require human approval.
+
+FINANCE AI AGENT SET
+
+## Strengthen data consolidation and variance reconciliation.
+
+Capability scope Organize data to agreed formats; flag missing items and entries that need manual review.
+
+Deliverables Consolidated tables, variance notes and traceable data sources.
+
+Human decisions and authorization Payments, tax filings and financial judgements are made by the designated person; AI output is not executed directly.
+
+OPERATIONS AND SECURITY AI AGENT SET
+
+## Build a traceable operations management workflow.
+
+Capability scope Run routine checks within the approved scope; link anomalies, changes and verification results into a pending queue.
+
+Deliverables Inspection summaries, change logs, anomaly and recovery checklists.
+
+Human decisions and authorization Register formal system changes in advance; open permissions only as needed; the guard verifies evidence before confirming completion.
+
+VALIDATE BEFORE SCALE
+
+## Assess scale-up based on validated results.
+
+Start by defining data inputs, deliverable specifications, review responsibility and prohibited operations; then confirm scope through scenario-based acceptance testing. Cross-department scale-up builds on validated results and operational capacity from existing workflows.
+
+[View phase deliverables ›](https://thinkbigtw.com/en/enterprise/process/)
+
+## Start your AI deployment planning with clear business requirements.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/process/
+
+# AI Agent Deployment Methodology | TB FRAME | Think BIG
+
+TB FRAME METHODOLOGY
+
+# Four phases.
+Defined deliverables.
+Verifiable results.
+
+TB FRAME is Think BIG's structured approach to enterprise AI Agent deployment. Every phase produces a written record of deliverables, acceptance criteria and the conditions for hand-over — so you know exactly what was built and when it is ready to operate.
+
+PHASE 1
+
+## Assess
+
+Define the scope and confirm that deployment is viable before writing a line of code.
+
+Deliverables Workflow map of target processes; data inventory (sources, formats, access conditions); risk and dependency register; a proposed scope document signed off by both sides.
+
+Acceptance criteria Client confirms the scope document accurately reflects the target workflows; data sources are accessible for integration scoping; no blocking dependency is unresolved.
+
+Hand-over condition Written scope approval by the client's designated contact before any build work begins.
+
+PHASE 2
+
+## Build
+
+Develop the AI Agents and integration layer against the agreed scope.
+
+Deliverables Configured AI Agents; knowledge base or retrieval setup; integration connectors; operator guide; test scenario list prepared for Validate phase.
+
+Acceptance criteria Agents respond to test scenarios within the agreed knowledge boundary; integration connectors return expected data; operator guide reviewed by client.
+
+Hand-over condition Client confirms readiness for structured acceptance testing before Validate begins.
+
+PHASE 3
+
+## Validate
+
+Run structured acceptance tests against agreed scenarios, document results and resolve gaps before go-live.
+
+Deliverables Acceptance test results (pass/fail per scenario); gap resolution log; signed acceptance record; go-live checklist.
+
+Acceptance criteria All agreed test scenarios pass or gaps are resolved and re-tested; client's designated contact signs the acceptance record.
+
+Hand-over condition Signed acceptance record and completed go-live checklist before the system is opened to end users.
+
+PHASE 4
+
+## Operate
+
+Support stable operations, monitor for anomalies and manage knowledge updates during the service period.
+
+Deliverables Scheduled maintenance reports; anomaly and resolution log; knowledge base update records; scope-change requests (for items outside the original scope).
+
+Acceptance criteria Maintenance reports are delivered within the agreed schedule; anomalies are responded to within the agreed SLA; scope-change items are logged and priced before work begins.
+
+Hand-over condition Handover only occurs after a formal transition review when the service period ends or a new scope agreement is in place.
+
+PLAN SCOPE AND TIMELINE
+
+## See which plan includes which TB FRAME phases.
+
+Plans range from a focused single-department deployment to a full multi-department rollout with annual operations. Each plan listing shows which phases are included, the number of AI Agents covered and the support period.
+
+[View plan details ›](https://thinkbigtw.com/en/enterprise/#packages)
+
+## Start with a self-assessment to identify the right plan for your business.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/rag/
+
+# How Enterprise AI Knowledge Bases Work | RAG Explained | Think BIG
+
+ENTERPRISE KNOWLEDGE BASES
+
+# How AI Agents answer questions from your own documents.
+
+RAG (Retrieval-Augmented Generation) enables AI Agents to answer questions from approved documents at retrieval time — no model training required. This article explains the key concepts, the data preparation process, permission controls and how acceptance testing verifies results.
+
+## How RAG differs from general chat AI
+
+General chat AI answers from patterns learned during training. When you ask a question it has not seen before — or one that depends on your internal documentation — it may generate a plausible-sounding but incorrect answer (hallucination).
+
+RAG works differently. At query time the system retrieves the most relevant passages from your approved document set, then passes those passages together with the question to the AI model to compose a reply. The answer is grounded in your documents, not in the model's training data.
+
+This matters for enterprise use: answers about your products, policies and processes must come from sources your business controls, not from whatever a general model has absorbed from the internet.
+
+## RAG vs. fine-tuning: what to choose
+
+Fine-tuning adjusts the weights of a model by training it on examples. It is expensive, requires labelled data, may expose your content to a model provider's training pipeline, and the model still risks hallucinating facts it has not seen. When your documents change, the model must be retrained.
+
+RAG, by contrast, stores documents in a retrieval index you control. Update a document and the new content is immediately available at the next query. No retraining. No provider training risk (documents stay on your infrastructure). The source of every answer can be traced back to the retrieved passage.
+
+For most enterprise knowledge-base applications — product documentation, policy Q&A, support SOP — RAG is the correct architecture.
+
+## Data preparation
+
+RAG quality depends heavily on data preparation. Documents that are inconsistent, out of date or poorly structured produce unreliable retrieval. The preparation steps we follow:
+
+- Content audit.  Identify which documents are authoritative, which are drafts and which are superseded. Prioritise the authoritative set.
+
+- Cleaning and formatting.  Remove formatting artefacts (headers repeated on every page, watermarks, page numbers that interrupt sentences) that confuse the retrieval index.
+
+- Chunking strategy.  Decide how documents are split into retrievable segments. Chunk size and overlap affect recall — too large and irrelevant passages dilute the answer; too small and context is lost.
+
+- Metadata tagging.  Tag each chunk with document source, version and category so retrieval can be filtered by permission or relevance scope.
+
+- Embedding and indexing.  Convert text chunks into vector embeddings and store them in a retrieval index. The index is searchable by semantic similarity.
+
+Data preparation is an ongoing activity. Documents are updated, rescinded and added. The maintenance plan defines how updates flow from source documents to the retrieval index.
+
+## Privacy and permission controls
+
+Not all documents should be available to all users. A customer-facing support agent should not retrieve from internal HR policy documents, and a finance agent should not expose board-level materials to a general assistant.
+
+Permission controls are implemented at the retrieval layer — each query is filtered against the user's permission scope before retrieval results are assembled. At deployment we define:
+
+- Which document collections each AI Agent may retrieve from
+
+- Which user roles or channels may query which agents
+
+- Whether any collections are excluded from external channels entirely
+
+For on-premises deployments, documents and the retrieval index remain within your infrastructure. The AI model processes only the retrieved passages relevant to the query — it does not have persistent access to the full document set.
+
+## Acceptance testing for knowledge bases
+
+Building a knowledge base without a formal acceptance test is building without verification. Our acceptance process uses a prepared scenario set that includes:
+
+- In-scope questions  — questions the system should answer correctly from the indexed documents
+
+- Boundary questions  — questions at the edge of the indexed scope; the system should indicate when it cannot find a source rather than guessing
+
+- Out-of-scope questions  — questions outside the indexed scope; the system must decline clearly
+
+Results are logged per scenario (pass/fail, source passage retrieved, response quality) and reviewed with the client. Gaps are fixed and re-tested before go-live sign-off.
+
+## Common failure modes
+
+Retrieval misses The correct passage exists but is not retrieved. Usually caused by poor chunking, inconsistent terminology between documents and queries, or an inadequate embedding model for the domain language.
+
+Incorrect citation The retrieved passage is plausible but from a superseded or draft version. Prevented by strict content audit and version tagging in the metadata layer.
+
+Over-retrieval Too many passages are retrieved; the model averages across them and produces a vague answer. Prevented by tightening the retrieval filter and reducing chunk overlap.
+
+Confident hallucination The model fills in details not in the retrieved passage. Monitored through acceptance testing and by reviewing system prompt guardrails that require citation of source text.
+
+Stale knowledge base Source documents are updated but the index is not. Prevented by the maintenance plan, which specifies a review cycle and an update trigger whenever source documents change.
+
+## Think BIG's approach
+
+We deploy RAG using on-premises or private-cloud vector stores that remain within your infrastructure. No document content is sent to a public indexing service. The retrieval index is owned by you and can be migrated or audited at any time.
+
+Our scope documents specify the document collections to be indexed, the chunking and metadata strategy, the permission filters per agent and channel, and the acceptance scenario set before build begins. This means you can verify what was agreed and what was delivered.
+
+Have questions about how a specific document type or business process would be handled? Use the self-assessment below to describe your situation and we'll respond with a proposed scope.
+
+## Start with a self-assessment to describe your business requirements.
+
+[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
+
+---
+
+URL: https://thinkbigtw.com/en/enterprise/start/
+
+# Enterprise AI Self-Assessment | Find the Right Plan | Think BIG
+
+ENTERPRISE AI SELF-ASSESSMENT
+
+# Find the right plan
+for your business.
+
+12 questions, around 3 minutes. The questionnaire automatically suggests whether Starter, Standard or Complete best fits your situation. When you are done, request a consultation and we will follow up with a formal quotation.
+
+QUICK REQUEST — JUST LEAVE YOUR DETAILS
+
+## Tell us your requirement in one line
+
+Only 3 fields. For a fuller recommendation, fill in the 12-question assessment below. Enquiries are handled by a person, not by AI.
+
+Or reach us directly on [WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+DEMO
+
+## See how an AI knowledge base works
+
+Staff ask questions about company documents. The AI answers with cited sources. When no source applies, the question is routed to a person.
+
+SELF-ASSESSMENT QUESTIONNAIRE
+
+## Complete the questionnaire to find the best plan
+
+12 questions, around 3 minutes. Any single answer that exceeds the Starter ceiling automatically steps up to the next tier.
+
+Recommended tier
+
+##
+
+Payment per the quotation. Enterprise plans are priced individually — request a consultation to receive a formal quotation.
+
+This tier includes:
+
+### Estimate your time savings
+
+Hand repetitive look-ups to the AI and reduce the time your team spends searching for information.
+
+Reference monthly salary (USD)
+
+Model cost (USD / month)
+
+Staff cost
+(annual estimate)
+
+—
+
+Different scope — for comparison only
+
+AI Agent
+(Year 1)
+
+—
+
+AI Agent
+(Year 2+)
+
+—
+
+Illustrative only. AI handles repetitive look-ups, document retrieval and drafting; judgement and external commitments remain with your team. Salary and model costs vary.
+
+Work-hours savings calculator (supplementary)
+
+Number of users (scenario)
+
+Average hourly rate (USD)
+
+Minutes per person per day spent searching or answering repetitive questions 20  min
+
+0
+
+Hours saved per year
+
+0
+
+Conservative savings (USD/yr)
+
+Formula: Hours = users (10 ) × minutes (20 ) ÷ 60 × 250 days = 0  hours.
+Conservative saving = hours × hourly rate (25 ) × 50% = USD 0 .
+Illustrative only; actual results depend on usage. AI can still make errors — important content should be reviewed by a person.
+
+NEXT STEP
+
+## Request a remote pre-assessment
+
+Fill in your contact details and Think BIG will reach out within 1 business day to arrange a 30-minute remote session for requirements confirmation.
+
+## Your contact details
+
+Enquiries are handled by a person, not by AI.
+
+Name *
+
+Company name *
+
+Contact method *
+
+Email
+Phone
+
+Enter your email and we will send you a confirmation with next steps.
+
+Company size / department *
+
+I have read the [Privacy Policy](https://thinkbigtw.com/en/privacy/) and consent to Think BIG (大想成業有限公司) collecting and using the information provided above for the purpose of this enquiry and service consultation.
+
+Contract and payment:  A formal contract will be sent to you separately — it is not completed on this page. The contract includes a scope freeze list, an acceptance test set, first-year service details and a renewal option for Year 2. Payment is per the quotation.
+
+## Your requirements are outside the standard plan scope
+
+Your answers (for example: auto-outbound replies, ERP integration, more than 100 documents, or documents that are mainly scanned images) fall outside the standard plan definitions. Please request a 30-minute assessment so a consultant can explain the right approach for your situation.
+
+[Request a 30-minute assessment via WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
+
+---
+
 URL: https://thinkbigtw.com/faq/
 
 # 常見問題｜Think BIG
@@ -1239,7 +1997,7 @@ THINK BIG
 
 ## 企業如何報價？
 
-企業方案依需求報價。三種方案（入門／標準／完整）都含建置、教學影片與第一年維護服務。付款分三期：簽約 40%、中期交付 30%、驗收通過 30%。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。請[預約需求訪談取得報價](https://thinkbigtw.com/contact/)。
+企業方案依需求報價。三種方案（入門／標準／完整）都含建置、教學影片與第一年維護服務。付款方式與分期以報價單為準。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。請[預約需求訪談取得報價](https://thinkbigtw.com/contact/)。
 
 [查看方案比較 ›](https://thinkbigtw.com/enterprise/#packages)
 
@@ -1283,11 +2041,27 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
 
+服務方式
+
+## 你們是怎麼做安裝的？用什麼工具？
+
+Think BIG 的工程團隊是 AI Agent：我們以 AI 工具（Anthropic Claude Code、OpenAI Codex）遠端施作，由人員操作並負責成果。安裝指令與執行結果會傳給這些服務商處理，傳送前先遮蔽帳號、電子郵件、電話、地址與 IP；您的文件、對話、照片、密碼與金鑰不會傳送。這是我們唯一的服務方式，不接受請不要下單。完整告知見隱私權政策。
+
+[查看隱私權政策第十二節 ›](https://thinkbigtw.com/privacy.html#remote-ai)
+
 資料權限
 
 ## 遠端安裝會看到我的資料嗎？
 
-工程師會操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。依最小權限與確認範圍操作，客戶在場，可先關閉無關文件；安裝後可中止連線並移除遠端權限。
+工程師會操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。依最小權限與確認範圍操作，客戶在場，可先關閉無關文件；安裝後可中止連線並移除遠端權限。施作所用的 AI 工具只接觸指令與執行結果，不接觸您的文件內容。
+
+[查看完整說明 ›](https://thinkbigtw.com/trust/#remote-install)
+
+資料
+
+## 客戶電腦上的檔案會被 AI 看到嗎？
+
+不會被送出。我們只處理安裝與設定的指令與結果，不開啟、不傳送您的文件內容、對話與照片。密碼與金鑰由您本人在自己的電腦輸入。
 
 [查看完整說明 ›](https://thinkbigtw.com/trust/#remote-install)
 
@@ -1303,9 +2077,9 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 ## 安裝失敗怎麼辦？
 
-單 AI Agent 搭建若因我方技術問題無法完成安裝，全額退費；其他服務的退款、驗收與變更依服務條款及雙方確認內容辦理。
+下單後、開工前，您可以隨時取消，全額退款，不扣費用。開工前我們會傳「服務規格表」請您確認並逐字回覆同意，之後才開始遠端施作；開工後要終止，依已完成步驟的比例退款。因我們的技術問題裝不起來，全額退費。蝦皮成交者依蝦皮退款流程。詳見服務條款第四條。
 
-[查看完整說明 ›](https://thinkbigtw.com/pricing/personal/#tier1)
+[查看服務條款第四條 ›](https://thinkbigtw.com/terms.html#refund)
 
 資料流向
 
@@ -3557,7 +4331,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-11-08
+更新日期：2026-11-10　[English version](https://thinkbigtw.com/en/privacy/)
 
 大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
 
@@ -3575,11 +4349,11 @@ URL: https://thinkbigtw.com/privacy.html
 
 ## 三、利用期間、地區、對象與方式
 
-- 期間:自蒐集之日起至蒐集目的消失或您請求刪除為止;法令另有保存規定者,依其規定。
+- 期間:自蒐集之日起至蒐集目的消失或您請求刪除為止;法令另有保存規定者,依其規定。個案另有約定者,從其約定。本公司依個人資料保護法第 11 條,於蒐集目的消失或期限屆滿時,主動或依請求刪除、停止處理或利用,但因執行業務所必須或經您書面同意者不在此限。
 
-- 地區:台灣,以及本公司所使用雲端服務之伺服器所在地。
+- 地區:台灣,以及本公司所使用雲端服務與 AI 工具服務商之伺服器所在地(包括美國)。
 
-- 對象:本公司,以及為完成服務所必要之受託處理者,包括綠界科技股份有限公司(金流與電子發票)、Google LLC(分析與雲端服務)、Cloudflare, Inc.(網站與資安服務)、Supabase Inc.(資料庫服務)、Meta Platforms, Inc.(廣告成效追蹤，投放期間適用)。除法令要求或前述必要範圍外,本公司不會將您的個人資料提供予第三人。
+- 對象:本公司,以及為完成服務所必要之受託處理者,包括綠界科技股份有限公司(金流與電子發票)、Google LLC(分析與雲端服務)、Cloudflare, Inc.(網站與資安服務)、Supabase Inc.(資料庫服務)、Meta Platforms, Inc.(廣告成效追蹤，投放期間適用)、Anthropic PBC 與 OpenAI(遠端安裝施作所用 AI 工具,見第十二節 )。除法令要求或前述必要範圍外,本公司不會將您的個人資料提供予第三人。
 
 - 方式:以自動化系統或其他合於法令之方式蒐集、處理及利用。
 
@@ -3605,7 +4379,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 ## 七、未成年人保護
 
-本網站服務以成年人為對象。未成年人使用本服務,應由法定代理人同意。
+本網站服務以成年人為對象。未成年人使用本服務,應由法定代理人同意。涉及兒童照片的服務(例如客製童書)另有專屬的個人資料告知與同意書,於訂購前提供,不適用本政策取代。
 
 ## 八、政策修訂
 
@@ -3659,27 +4433,31 @@ LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 
 
 - 刪除請求 ：若您希望本公司刪除與您的 Threads 帳號或貼文相關的紀錄，請來信 AI@thinkbigtw.com ，註明您的 Threads 帳號名稱。本公司將於 14 天內刪除並回覆確認。您也可以在 Threads 帳號設定的「網站權限」中移除本 App 的授權。
 
-### 12. Threads / Instagram social engagement tool (Meta Platform data)
+English version of this section: [Threads / Instagram social engagement tool (Meta Platform data)](https://thinkbigtw.com/en/privacy/#threads).
 
-Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: ThinkBIG Social Monitor), to manage how our official account @think_big_ai takes part in conversations on Threads.
+## 十二、遠端安裝與 AI 工具施作之個人資料告知
 
-- Purpose : We search public Threads posts about using AI at work by keyword. Our staff draft replies, and a human reviewer approves each reply before it is published from our account. We publish at most 10 replies per 24 hours. We do not automatically like, follow, repost or send direct messages.
+項目 內容
 
-- Data we process :
+蒐集者 大想成業有限公司(代表人吳御綸),AI@thinkbigtw.com
 
-- Search results (public post text, the author's public username, the post link and the time) are shown only on our staff's screen. We do not store them.
+目的與依據 履行服務契約(遠端安裝、設定、驗收、維護);個人資料保護法第 19 條第 1 項第 2 款。
 
-- If we decide to reply, we keep only the post ID, the post link, the author's public username and our reply text, as a review record.
+AI 工具與服務商 Anthropic Claude Code(Anthropic PBC,美國)、OpenAI Codex(OpenAI,美國)。新增或更換服務商時,事先以文字通知客戶。
 
-- Comments on our own posts and posts that mention our account: we read the comment text and the commenter's public username to notify our staff for follow-up replies. These are retained in our internal work records; you may request deletion under the Deletion requests section below.
+會處理的資料 本公司輸入的安裝與設定指令,以及執行結果:軟體版本、錯誤訊息、設定欄位名稱、資料夾路徑、服務狀態;其中可能出現您的電腦使用者名稱、裝置名稱。
 
-- Retention : Review records are deleted automatically 30 days after they are created. We do not build profiles of the people whose posts appear in searches. Reply notifications are sent to the messaging apps used by our staff and remain on their devices; these are outside the automatic deletion described above. If you submit a deletion request, we will handle the portions we are able to delete. Links to public posts may be cited in internal research reports to understand market discussion trends; such citations are for internal reference only.
+保護措施 傳送前遮蔽帳號名稱、電子郵件、電話、地址、IP 位址;密碼、驗證碼、金鑰、信用卡資料由客戶本人輸入,不經 AI 工具處理;本公司不開啟、不傳送客戶的文件內容、對話紀錄、照片及電腦中第三人的個人資料。
 
-- No sharing : We do not sell this data, share it with third parties or use it for advertising. We handle it in line with Meta's Platform Terms and Developer Policies.
+利用地區 中華民國,以及上述服務商所在的美國(國際傳輸,個人資料保護法第 21 條)。
 
-- Deletion requests : To ask us to delete records related to your Threads account or posts, email AI@thinkbigtw.com  with your Threads username. We will delete the records and confirm within 14 days. You can also remove this app's access in your Threads account settings, under Website permissions.
+利用期間 施作與維護期間;本公司端作業紀錄於服務完成後依實際需要保存，您可隨時來信要求刪除。服務商端依其公布的資料政策保存。
 
-## 十二、聯絡我們
+您的權利 查詢、閱覽、複製、補充或更正、停止蒐集處理利用、刪除,本公司於 14 日內處理。
+
+不提供的影響 本服務必須以 AI 工具施作;不接受者,訂購不成立(訂購前)或依[服務條款第四條](https://thinkbigtw.com/terms.html#refund)取消(開工前)。
+
+## 十三、聯絡我們
 
 大想成業有限公司(統一編號 62136066)
 
@@ -3767,43 +4545,55 @@ URL: https://thinkbigtw.com/terms.html
 
 # 服務條款
 
-生效日期:2026-07-02
+生效日期:2026-11-10
+
+修訂紀錄:2026-11-10 新增第二之一條、改寫第四條。[English version](https://thinkbigtw.com/en/terms/)
 
 ## 一、契約當事人與適用範圍
 
-本條款由大想成業有限公司(統一編號 62136066,以下稱「本公司」)訂定,適用於您使用 thinkbigtw.com 網站及本公司提供之各項服務。您完成訂購或開始使用服務,即視為同意本條款。
+本條款由大想成業有限公司(統一編號 62136066;代表人 吳御綸;營業所:臺中市南區五權南路 167 號地下一層之 6;電子郵件 AI@thinkbigtw.com ;以下稱「本公司」)訂定,適用於您使用 thinkbigtw.com 網站及本公司提供之各項服務。個人方案經蝦皮平台成交者,付款、取消與退款另依蝦皮平台規則辦理,本條款補充之。您完成訂購或開始使用服務,即視為同意本條款。
+
+本條款區分兩類客戶:「消費者」(為個人生活目的購買者,適用消費者保護法)與「企業客戶」(為營業目的購買者,依雙方合約或報價單)。
 
 ## 二、服務內容
 
 - 企業 AI 導入:企業 AI 代理系統之規劃、建置、部署與維運顧問服務。
 
-- 個人 AI 助理:個人與工作室等級 AI 助理系統之建置與教學服務。
+- 個人 AI 助理:個人 AI 助理系統之遠端建置與教學服務。
+
+- SEO／AEO／GEO 等數位服務:依報價單所載範圍提供。
+
+## 二之一、服務方式:以 AI 工具提供服務
+
+本公司以 AI 工具提供本服務,目前使用 Anthropic Claude Code(Anthropic PBC,美國)及 OpenAI Codex(OpenAI,美國),由本公司人員操作並負責成果。施作時,安裝與設定指令及其執行結果會傳送至上述服務商處理;您的文件內容、對話紀錄、照片、密碼、驗證碼、金鑰與付款資料不會傳送。處理的資料、去向與保護措施,詳見[隱私權政策第十二節](https://thinkbigtw.com/privacy.html#remote-ai)。
+
+以 AI 工具施作是本服務唯一的提供方式,本公司不提供不使用 AI 工具的版本。本公司已於您訂購前在本條款及商品頁告知,您完成訂購即表示接受此服務方式。不接受者請勿訂購;已訂購但尚未開工者,得依第四條 第 2 項取消並全額退款。
 
 ## 三、訂購、付款與發票
 
-線上付款透過綠界科技股份有限公司之金流服務完成(信用卡等),本公司不經手亦不儲存您的完整卡號。本公司依法開立電子統一發票,以電子郵件寄送或提供載具歸戶。專案型服務之付款期程依雙方合約或報價單辦理。
+- 線上付款透過綠界科技股份有限公司之金流服務完成(信用卡等),本公司不經手亦不儲存您的完整卡號。蝦皮成交者依蝦皮付款流程。
 
-## 四、退款政策
+- 本公司依法開立電子統一發票,以電子郵件寄送或提供載具歸戶。專案型服務之付款期程依雙方合約或報價單辦理。
 
-### 4.1 數位訂閱服務
+- 價格以訂購當時頁面或報價單載明為準,已含稅或另列營業稅者,依該頁載明。
 
-本類服務屬「非以有形媒介提供之數位內容及一經提供即為完成之線上服務」。本公司依消費者保護法第 19 條第 1 項但書及行政院「通訊交易解除權合理例外情事適用準則」第 2 條第 5 款,於此告知:您於結帳時同意服務在付款完成後立即開通,即排除七日解除權之適用。已開通之當期訂閱費用恕不退還;您得隨時取消訂閱,取消自次一扣款週期生效,取消後不再扣款。
+## 四、取消與退款
 
-### 4.2 專案型服務(企業 AI 導入、個人 AI 助理建置等)
+1. 適用對象: 本條第 2 至 5 項適用於消費者。企業客戶之取消、驗收、退款與終止,依雙方簽署之合約、報價單或工作說明書;未約定者,開始提供服務前得申請全額退款,開始後依已完成之工作比例結算。
 
-退款、驗收、變更與終止,依雙方簽署之合約、報價單或工作說明書辦理;未約定者,於本公司開始提供服務前得申請全額退款,開始提供後依已完成之工作比例結算費用。
+2. 開工前取消,全額退款: 消費者於本公司開始施作前,得隨時取消訂單,本公司全額退款,不扣任何費用。
 
-### 4.3 教育訓練與一次性服務
+3. 客製化服務之開工同意: 個人 AI 助理建置,係依您的電腦規格及您指定的技能、通訊管道與設定所為之客製化服務。本公司將於施作前以文字傳送「服務規格表」供您確認,並請您逐字回覆開工同意。經您事先以文字同意並由本公司開始遠端施作後,依「通訊交易解除權合理例外情事適用準則」第 2 條第 2 款,該服務不適用消費者保護法第 19 條第 1 項之七日解除權;例外自本公司於您同意後第一次遠端連線施作時起算。您未回覆開工同意前,本公司不開工。開工後您要求終止者,依已完成步驟之比例退還其餘款項。
 
-於服務提供日 7 日前取消者,全額退款;服務一經提供,視為履行完畢,恕不退款。
+4. 本公司技術問題: 因本公司技術因素無法完成安裝或交付者,全額退款。因可歸責於本公司之事由致服務無法提供者,退還未提供部分之費用。
 
-### 4.4 不可歸責於您之事由
+5. 其他服務: 非屬第 3 項客製化服務之消費者訂單,仍享消費者保護法第 19 條之七日解除權;解除時本公司不收任何費用。
 
-因可歸責於本公司之事由致服務無法提供者,本公司退還未提供部分之費用。
+6. 解除、終止時之系統移除: 依第 2、3 項取消或終止時,本公司免費以遠端方式移除本公司所安裝之軟體、排程、帳號串接與遠端存取權限,不刪除您自己的檔案與資料。您配合移除為協力事項,不是退費條件。
 
-### 4.5 退款方式
+7. 退款方式與期限: 退款申請請來信 AI@thinkbigtw.com  或透過蝦皮聊聊。本公司於收到您的解除或取消通知之次日起 15 日內,以原付款方式退回;蝦皮成交者依蝦皮退款流程。
 
-退款申請請來信 AI@thinkbigtw.com ,經確認後於 14 個工作日內以原付款方式退回。
+8. 教育訓練與一次性服務: 於服務提供日 7 日前取消者,全額退款;服務已依約提供者,不另退款,但不影響消費者依法享有之權利。
 
 ## 五、智慧財產權
 
@@ -3819,7 +4609,7 @@ URL: https://thinkbigtw.com/terms.html
 
 ## 八、責任限制
 
-於法令允許之最大範圍內,本公司就任何間接、衍生或懲罰性損害不負賠償責任;就單一服務之賠償總額,以您就該服務已支付之費用為上限。
+於法令允許之最大範圍內,本公司就任何間接、衍生或懲罰性損害不負賠償責任;就單一服務之賠償總額,以您就該服務已支付之費用為上限。但本公司有故意或重大過失,或法律另有強制規定(含消費者保護法)者,不在此限。
 
 ## 九、個人資料保護
 
@@ -3827,13 +4617,17 @@ URL: https://thinkbigtw.com/terms.html
 
 ## 十、準據法與管轄法院
 
-本條款以中華民國法律為準據法,因本條款所生之爭議,雙方同意以臺灣新北地方法院為第一審管轄法院,但不排除消費者保護法等法令有關管轄之強制規定。
+本條款以中華民國法律為準據法。因本條款所生之爭議,雙方同意以臺灣臺中地方法院為第一審管轄法院,但消費者依消費者保護法或民事訴訟法得向其他法院起訴者,依其規定。
 
-## 十一、聯絡我們
+## 十一、聯絡我們與消費申訴
 
-大想成業有限公司(統一編號 62136066)
+大想成業有限公司(統一編號 62136066;代表人 吳御綸)
+
+營業所:臺中市南區五權南路 167 號地下一層之 6
 
 電子郵件:AI@thinkbigtw.com
+
+消費申訴請先寄上述電子郵件,本公司於 3 個工作日內回覆;亦得依消費者保護法第 43 條向本公司提出申訴,或向直轄市、縣(市)政府消費者服務中心或消費者保護官申訴。
 
 大想成業有限公司 Think BIG Make it Real CO., LTD.|統一編號 62136066
 
@@ -10717,7 +11511,7 @@ Yes. A common setup: OpenClaw handles 24/7 routine tasks; brand AI Agents handle
 
 Q: Does Think BIG's pricing include AI model fees?
 
-No. Think BIG's service fee covers installation and setup only. Third-party AI model usage fees are calculated based on your actual usage and paid directly to the model provider. See [FAQ](https://thinkbigtw.com/faq/).
+No. Think BIG's service fee covers installation and setup only. Third-party AI model usage fees are calculated based on your actual usage and paid directly to the model provider. See [FAQ](https://thinkbigtw.com/en/faq/).
 
 ## Sources and Update History
 
@@ -14568,7 +15362,329 @@ Outline your needs and discuss workflows and governance.](https://thinkbigtw.com
 [Personal plans
 Compare installation scope and support.](https://thinkbigtw.com/en/pricing/)
 [FAQ
-Learn about fees, installation and data permissions first.](https://thinkbigtw.com/faq/)
+Learn about fees, installation and data permissions first.](https://thinkbigtw.com/en/faq/)
+
+---
+
+URL: https://thinkbigtw.com/en/faq/
+
+# FAQ | Think BIG
+
+THINK BIG
+
+# Frequently asked questions
+
+Answers on pricing, delivery with AI tools, your files, tax, refunds and data.
+
+Pricing
+
+## How are enterprise projects priced?
+
+Enterprise projects are quoted to your needs. Book a needs call for a quote. Payment methods and installments are as stated in your quote. AI model usage fees are paid by you directly to the model provider.
+
+Fixed-price services
+
+## What is on the fixed-price menu for overseas clients?
+
+Current fixed-price services are the GEO (AI search visibility) Health Check and the FAQ / RAG Support Bot. Packages and what each includes are listed on the pricing page. Anything else is quoted individually.
+
+[See the pricing page ›](https://thinkbigtw.com/en/pricing/)
+
+Contact
+
+## How do I contact you?
+
+WhatsApp +886 908 898 903, or email AI@thinkbigtw.com. We reply within 3 working days, usually sooner. We do not use LINE for overseas clients.
+
+[Contact us ›](https://thinkbigtw.com/en/contact/)
+
+Working hours
+
+## What time zone do you work in?
+
+Taiwan Standard Time (UTC+8). Work is done remotely and in writing; we do not offer on-site visits, video or phone support.
+
+How we deliver
+
+## How do you deliver? Do you use AI?
+
+Yes. Our engineering team is AI agents. We deliver with AI tools (Anthropic Claude Code and OpenAI Codex), operated by our staff, who are responsible for the results. Commands and their output are sent to these providers; your documents, conversations, photos, passwords and keys are not. Masking is applied before sending. This is the only way we deliver, so please do not order if you do not accept it.
+
+[See the Privacy Policy, Section 8 ›](https://thinkbigtw.com/en/privacy/#remote-ai)
+
+Your files
+
+## Will the AI see my files?
+
+No. We work with installation and configuration commands and their results. We do not open or send your documents, chats or photos. You type your own passwords and keys on your own machine.
+
+Local AI
+
+## Can I run it on my own computer (local AI)?
+
+Often yes. Apple Silicon Macs, Windows or Linux with an NVIDIA GPU, and AMD Ryzen AI Max machines can be assessed; send your specs before ordering. If your machine is too small, we use a cloud model instead, under the same plan. Local does not mean "nothing leaves the machine": cloud models, messaging apps and external services still send requests.
+
+Costs
+
+## Who pays for AI model usage and third-party accounts?
+
+You. Cloud-model API keys and other third-party accounts (hosting, messaging and similar) are opened by you in your own name; we only guide you. Local models carry no usage fee from us.
+
+Delivery time
+
+## How long does delivery take?
+
+For standard packages, within 30 days of receiving everything we need from you. Larger projects follow the timeline in the quote.
+
+Marketplaces
+
+## What if my project goes through Upwork or Fiverr?
+
+Payment, escrow, refunds and disputes stay on the platform. We never invoice or accept payment outside it.
+
+Tax and invoices
+
+## Do you charge tax? What invoice do I get?
+
+If the service is used outside Taiwan, it is zero-rated for Taiwan business tax (0%) and you receive an English commercial invoice. If it is used in Taiwan, 5% business tax applies. Taxes in your own country are yours.
+
+[See the Terms, Section 4 ›](https://thinkbigtw.com/en/terms/)
+
+Refunds
+
+## What is your refund policy?
+
+Before work starts, you can cancel for a full refund with no deduction. For personal setup, we send a written specification and start only after you confirm in writing. After work starts, we refund in proportion to the steps not completed. If we cannot finish because of our own technical problem, you get a full refund. Refunds are paid within 15 days of your request.
+
+[See the Terms, Section 6 ›](https://thinkbigtw.com/en/terms/#refund)
+
+After the job
+
+## What happens to my data and my machine when the job ends?
+
+At the end of the support period we remove our remote access. If you cancel or get a refund, we remove what we installed, free of charge. We do not delete your own files. Work logs are kept only as long as the service requires; you can ask us to delete them at any time.
+
+EU and UK
+
+## I am in the EU or UK. Can you work with me?
+
+Yes, with limits. Personal data in your systems is processed only on your own machine and is never sent to a cloud AI service; only masked commands and output with no personal data may use AI tools. A data processing agreement is available on request before signing.
+
+Your data
+
+## How do I ask you to delete my data?
+
+Email AI@thinkbigtw.com or WhatsApp +886 908 898 903. We reply within 14 days.
+
+[See the Privacy Policy, Section 10 ›](https://thinkbigtw.com/en/privacy/#rights)
+
+Security
+
+## How do you handle security?
+
+We scan skills before installing them, pin versions with no auto-updates, run a security review before go-live, and keep keys in system configuration files and never in chat. No one can guarantee security; we say so plainly.
+
+---
+
+URL: https://thinkbigtw.com/en/privacy/
+
+# Privacy Policy | Think BIG
+
+[Back to Think BIG home](https://thinkbigtw.com/en/)
+
+# Think BIG Privacy Policy
+
+Last updated: November 10, 2026
+
+[中文版](https://thinkbigtw.com/privacy.html)
+
+## 1. Who is responsible
+
+Think BIG Make it Real CO., LTD. (大想成業有限公司), Taiwan (R.O.C.), Unified Business No. 62136066, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan; AI@thinkbigtw.com  (“we”). This Policy covers thinkbigtw.com and our Services. We comply with Taiwan’s Personal Data Protection Act and, where it applies to you, the EU/UK GDPR (see Section 10).
+
+## 2. Data we collect
+
+Identity and contact: name, email, phone / WhatsApp handle, company name and business ID. Billing: order and invoice records; card details are handled by our payment provider and we do not store full card numbers. Technical: IP address, browser type, cookies, pages viewed. Enquiry data: what you type into our enquiry forms and AI assistant.
+
+## 3. Why we use it
+
+To deliver the Services and support you; to reply to enquiries; to process payments and issue invoices; to send you information you asked for (you can opt out at any time); to measure website traffic and improve our services; and to meet legal obligations. Our legal basis under GDPR, where it applies, is mainly performance of a contract (Art. 6(1)(b)), plus legitimate interests for site analytics and security, and consent where we ask for it.
+
+## 4. Who receives it, and where
+
+We use these service providers: ECPay (payments and e-invoices, Taiwan), Google LLC (analytics, cloud), Cloudflare, Inc. (website, security, Workers AI), Supabase Inc. (database), Meta Platforms, Inc. (ad measurement, only while ads run), and Anthropic PBC and OpenAI (AI tools used for remote work, Section 8 ), plus Upwork, Fiverr, Wise, PayPal, Payoneer or your bank when you pay or are hired through them. Data may be processed in Taiwan and in the United States and other countries where these providers operate. We do not sell your personal data and do not share it with others except as described here or as required by law.
+
+## 5. Cookies and analytics
+
+We use Google Analytics 4 to count visits, pages, time on page and conversions (for example, an enquiry form sent). You can opt out with the [Google Analytics opt-out browser add-on](https://tools.google.com/dlpage/gaoptout) or by blocking third-party cookies. While we run ads, we use the Meta Pixel to measure ad clicks and conversions; you can manage this in [Meta ad preferences](https://www.facebook.com/help/568137493302217). The Pixel does not load when no ads are running.
+
+## 6. Our website AI assistant and enquiry summaries
+
+Our website chat and the “AI Experience” demo send what you type to a third-party cloud AI model (for the demo, Cloudflare Workers AI, after you tick consent) to generate a reply. Please do not enter passwords, API keys, payment details, confidential information or contact details in the chat. We do not store chat transcripts or IP addresses in our enquiry database. After a conversation, an anonymous summary (no name or direct contact data) may be sent to our internal system to improve service. If you choose to send an enquiry, you first review and edit the summary and contact details, tick consent and press Send; only then is it saved in our enquiry database. We keep enquiry summaries and the contact details you gave until you ask us to delete them. We never add you to marketing lists automatically. Messaging apps temporarily hold recent conversation context to keep replies coherent, then clear it after about 30 minutes of inactivity (at most 2 hours).
+
+## 7. Security
+
+We use TLS encryption in transit, access controls and least-privilege permissions. No system is perfectly secure, and we cannot guarantee absolute security.
+
+## 8. Remote work and AI tools: how your data is handled
+
+Item Detail
+
+Controller / collector Think BIG Make it Real CO., LTD., AI@thinkbigtw.com
+
+Why To perform your Services contract (remote installation, configuration, acceptance, support).
+
+AI tools and providers Claude Code (Anthropic PBC, United States); Codex (OpenAI, United States). We tell you in writing before adding or changing a provider.
+
+What is processed Commands we type and their output: software versions, error messages, setting names, folder paths, service status. Output may show your machine’s user name or device name.
+
+What is never sent Your documents and their content, conversation logs, photos, personal data of your staff or customers, passwords, one-time codes, keys, payment details.
+
+Our safeguards We mask account names, email addresses, phone numbers, street addresses and IP addresses before sending; you type your own secrets; least-privilege access; masked work logs.
+
+Where it goes The providers’ servers in the United States, under their published data policies.
+
+Retention Provider side: under the providers’ policies. Our side: Work logs are kept only as long as the service requires; you can ask us to delete them at any time.
+
+Your choice AI tools are how we deliver the Services, so we cannot offer a version without them. If you do not accept this, please do not order.
+
+Services use AI tools as described. For clients in the EU/EEA or the UK, personal data in your own systems is processed only on your own machine and is not sent to any cloud AI service; see Section 10.
+
+## 9. How long we keep data
+
+Contact data, enquiry summaries and project records: until you ask us to delete them, or until the purpose ends, whichever is earlier; invoices and accounting records are kept as Taiwan law requires. Deletion requests are handled within 14 days.
+
+## 10. Your rights
+
+You can ask to access, copy, correct, restrict or delete your personal data, or to stop our use of it, by emailing AI@thinkbigtw.com  or via [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.). We reply within 14 days. If the GDPR applies to you, you also have the right to data portability and to complain to your local data protection authority. For personal data in your own systems that we work on, you are the controller and we act as processor; a data processing agreement is available on request before the statement of work is signed.
+
+## 11. Threads / Instagram social engagement tool (Meta Platform data)
+
+Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: ThinkBIG Social Monitor), to manage how our official account @think_big_ai takes part in conversations on Threads.
+
+- Purpose : We search public Threads posts about using AI at work by keyword. Our staff draft replies, and a human reviewer approves each reply before it is published from our account. We publish at most 10 replies per 24 hours. We do not automatically like, follow, repost or send direct messages.
+
+- Data we process :
+
+- Search results (public post text, the author's public username, the post link and the time) are shown only on our staff's screen. We do not store them.
+
+- If we decide to reply, we keep only the post ID, the post link, the author's public username and our reply text, as a review record.
+
+- Comments on our own posts and posts that mention our account: we read the comment text and the commenter's public username to notify our staff for follow-up replies. These are retained in our internal work records; you may request deletion under the Deletion requests section below.
+
+- Retention : Review records are deleted automatically 30 days after they are created. We do not build profiles of the people whose posts appear in searches. Reply notifications are sent to the messaging apps used by our staff and remain on their devices; these are outside the automatic deletion described above. If you submit a deletion request, we will handle the portions we are able to delete. Links to public posts may be cited in internal research reports to understand market discussion trends; such citations are for internal reference only.
+
+- No sharing : We do not sell this data, share it with third parties or use it for advertising. We handle it in line with Meta's Platform Terms and Developer Policies.
+
+- Deletion requests : To ask us to delete records related to your Threads account or posts, email AI@thinkbigtw.com  with your Threads username. We will delete the records and confirm within 14 days. You can also remove this app's access in your Threads account settings, under Website permissions.
+
+## 12. Children
+
+Our website is for adults. Use by minors requires a parent or guardian’s consent. Services involving children’s photos (such as custom storybooks) have a separate privacy notice and consent form provided before ordering.
+
+## 13. Changes
+
+We may update this Policy and will post the new date on this page.
+
+## 14. Contact
+
+Think BIG Make it Real CO., LTD. | Unified Business No. 62136066 | AI@thinkbigtw.com  | [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+---
+
+URL: https://thinkbigtw.com/en/terms/
+
+# Terms of Service | Think BIG
+
+[Back to Think BIG home](https://thinkbigtw.com/en/)
+
+# Think BIG Terms of Service
+
+Effective date: November 10, 2026
+
+[中文版](https://thinkbigtw.com/terms.html)
+
+## 1. Who we are and who these Terms apply to
+
+These Terms are issued by Think BIG Make it Real CO., LTD. (大想成業有限公司), a company registered in Taiwan (R.O.C.), Unified Business No. 62136066, registered address: No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan (R.O.C.), represented by its Founder, Wu Yu-Lun (NEO). Contact: AI@thinkbigtw.com , [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.) (“Think BIG”, “we”). They apply when you use thinkbigtw.com and the services we sell directly to you (“Services”).
+
+If you hired us through Upwork, Fiverr or another marketplace, that marketplace’s terms govern payment, escrow, refunds and disputes, and prevail over these Terms where they conflict. If you sign a separate written agreement or statement of work with us, it prevails over these Terms.
+
+## 2. Services
+
+Enterprise AI deployment and consulting (planning, building, deploying and supporting AI agent systems); personal AI assistant setup (remote installation and training); SEO / AEO / GEO visibility services; and related work described in a written proposal, quote or statement of work. What is included is only what the quote or statement of work lists.
+
+## 3. How we deliver: AI tools are our service method
+
+We deliver the Services using AI tools, currently Anthropic Claude Code (Anthropic PBC, United States) and OpenAI Codex (OpenAI, United States), operated by our staff, who remain responsible for the results. During remote work, the commands we run and their output are sent to these providers for processing. Your documents, conversation logs, photos, passwords, one-time codes, keys and payment details are not sent. Details are in our [Privacy Policy, Section 8](https://thinkbigtw.com/en/privacy/#remote-ai).
+
+Delivering with AI tools is the only way we provide the Services. We do not offer a version without AI tools. We tell you this before you order; by placing an order or signing, you accept this service method. If you do not accept it, please do not order. If you ordered but we have not started work, you may cancel for a full refund under Section 6 .
+
+## 4. Ordering, prices, taxes and invoices
+
+4.1 Prices are as stated in your written quote or on the order page. Prices are in the currency stated there.
+
+4.2 Taxes.  Where the Services are provided from Taiwan and used outside Taiwan, they are generally zero-rated for Taiwan business tax (0%) and we issue an English commercial invoice. Where the Services are used in Taiwan (for example, for a Taiwan office, machine or users), Taiwan business tax of 5% applies and we issue a Taiwan uniform invoice. We decide which applies from the facts you give us and will tell you on the quote. You are responsible for any taxes, duties or withholding imposed in your own country; bank and transfer fees on your side are yours.
+
+4.3 Payment is due as stated in the invoice or quote (default: within 7 days of invoice). Payment methods are stated on the invoice. For marketplace orders, payment goes only through the marketplace; we never ask you to pay outside it.
+
+4.4 If a payment is more than 15 days late, we may pause the Services after written notice until paid; timelines move accordingly.
+
+## 5. Delivery time
+
+For standard packages, we aim to deliver within 30 days of receiving everything we need from you (accounts, access and materials). Time during which we are waiting for you or for third-party services is not counted. Larger or custom projects use the timeline in the quote.
+
+## 6. Cancellation and refunds
+
+6.1 Before work starts:  you may cancel at any time and we refund in full, with no deduction.
+
+6.2 Personal setup services:  before we begin, we send you a written service specification to confirm. We start remote work only after you confirm in writing. Once work has started and you ask to stop, we refund the unused part in proportion to the steps not yet completed.
+
+6.3 Our technical failure:  if we cannot complete the installation or delivery because of a problem on our side, we refund in full. If we fail to provide part of the Services for a reason attributable to us, we refund that part.
+
+6.4 Business customers:  cancellation, acceptance and termination follow your signed agreement or statement of work; if none says otherwise, you may cancel before work starts for a full refund, and after it starts we bill the work completed.
+
+6.5 Removal:  on cancellation, termination or refund, we remove, free of charge and remotely, the software, scheduled jobs and account connections we installed, and our own access. We do not delete your own files or data. Your help with removal is cooperation and is not a condition of any refund.
+
+6.6 How and when:  email AI@thinkbigtw.com  or message us on WhatsApp. We refund to the original payment method within 15 days of receiving your request, subject to your payment provider’s processing time. Marketplace orders follow the marketplace’s refund process.
+
+6.7 Nothing in these Terms removes rights you have as a consumer under the mandatory laws of your country or Taiwan.
+
+## 7. What we need from you
+
+You provide accurate information; you open and pay for the third-party accounts the Services need (AI-model provider, hosting, messaging and similar), in your own name; you type your own passwords, codes and keys on your own machine (we never ask you to send them to us); you back up important files before we begin; and you reply within 2 working days to questions we need answered.
+
+## 8. Intellectual property
+
+Our website and materials remain ours or our licensors’. Configurations, knowledge-base content and documents we create specifically for you belong to you once paid. Our general tools, templates, frameworks and skill libraries remain ours; we license them to you for your own use but you may not resell or redistribute them. Open-source components stay under their own licenses. Your data stays yours.
+
+## 9. Confidentiality
+
+Each side keeps the other’s non-public information confidential, except where the law requires disclosure. We do not publish your identity as a customer.
+
+## 10. Acceptable use
+
+Do not use the Services for unlawful activity, to interfere with or gain unauthorized access to systems, or to reverse engineer our tools.
+
+## 11. Changes and interruptions
+
+We may pause part of the Services for maintenance, upgrades or events beyond our control and will give notice where practicable.
+
+## 12. Disclaimers and liability
+
+To the extent permitted by law, the Services and deliverables are provided “as is”; we are not liable for indirect, consequential or punitive damages, data loss where you did not back up, third-party service outages or price changes, or changes you make yourself. Our total liability for any Service is limited to the fees you paid for it, except where we act with intent or gross negligence or where the law does not allow the limit. AI systems can make mistakes; deliverables are checked against the agreed acceptance checklist, and you should review them before relying on them.
+
+## 13. Privacy
+
+We handle personal data under our [Privacy Policy](https://thinkbigtw.com/en/privacy/).
+
+## 14. Governing law and disputes
+
+These Terms are governed by the laws of Taiwan (R.O.C.). The Taichung District Court, Taiwan, has jurisdiction at first instance, without excluding mandatory consumer-protection rules that allow you to sue elsewhere.
+
+## 15. Contact and complaints
+
+Think BIG Make it Real CO., LTD. | Unified Business No. 62136066 | AI@thinkbigtw.com  | [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.). We reply within 3 working days.
 
 ---
 

@@ -24,6 +24,9 @@ EN_IG_SVG=re.sub(r'<a href="https://lin\.ee/[^"]*"[^>]*>.*?</a>','',IG_SVG,count
 # English page relative-path prefix → corresponding Chinese page URL for 中文 toggle
 ZH_BACK={
  'en/contact/':'/contact/',
+ 'en/terms/':'/terms.html',
+ 'en/privacy/':'/privacy.html',
+ 'en/faq/':'/faq/',
  'en/pricing/':'/pricing/',
  'en/guides/ai-agents/':'/guides/ai-agents/',
  'en/news/lobster-hermes-abandonment-20261003/':'/library/news/lobster-hermes-abandonment-20261003/',
@@ -59,7 +62,7 @@ def en_chrome(zh_url):
 <nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home">{LOGO}</a><div class="tb-links">{nav_links}{zh}</div><details class="tb-menu"><summary>Menu</summary><div class="tb-links">{nav_links}{zh}</div></details></nav>
 <!-- TB:NAV:END -->'''
  footer=f'''<!-- TB:FOOTER:START -->
-<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home">{LOGO}</a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p>{EN_IG_SVG[:-6]}<a href="{WA_URL}" target="_blank" rel="noopener noreferrer" aria-label="Think BIG on WhatsApp">{WA_SVG}</a></div></div><div class="tb-f-links">{footer_links}<a href="{WA_URL}" target="_blank" rel="noopener noreferrer">Think BIG on WhatsApp &#x2197;</a><!-- TB:TELEGRAM:RESERVED --></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/en/about/">About Think BIG</a><a href="/guides/glossary/">Glossary (Chinese)</a><a href="/privacy.html">Privacy Policy (Chinese)</a><a href="/terms.html">Terms of Service (Chinese)</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ (Chinese)</a><a href="{zh_url}" lang="zh-Hant">中文</a></div></div></footer>
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home">{LOGO}</a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p>{EN_IG_SVG[:-6]}<a href="{WA_URL}" target="_blank" rel="noopener noreferrer" aria-label="Think BIG on WhatsApp">{WA_SVG}</a></div></div><div class="tb-f-links">{footer_links}<a href="{WA_URL}" target="_blank" rel="noopener noreferrer">Think BIG on WhatsApp &#x2197;</a><!-- TB:TELEGRAM:RESERVED --></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/en/about/">About Think BIG</a><a href="/guides/glossary/">Glossary (Chinese)</a><a href="/en/privacy/">Privacy Policy</a><a href="/en/terms/">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/en/faq/">FAQ</a><a href="{zh_url}" lang="zh-Hant">中文</a></div></div></footer>
 <!-- TB:FOOTER:END -->'''
  return nav,footer
 
