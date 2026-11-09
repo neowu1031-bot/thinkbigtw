@@ -1239,7 +1239,7 @@ THINK BIG
 
 ## 企業如何報價？
 
-企業方案依需求報價。三種方案（入門／標準／完整）都含建置、教學影片與第一年維護服務。付款分三期：簽約 40%、中期交付 30%、驗收通過 30%。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。請[預約需求訪談取得報價](https://thinkbigtw.com/contact/)。
+企業方案依需求報價。三種方案（入門／標準／完整）都含建置、教學影片與第一年維護服務。付款方式與分期以報價單為準。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。請[預約需求訪談取得報價](https://thinkbigtw.com/contact/)。
 
 [查看方案比較 ›](https://thinkbigtw.com/enterprise/#packages)
 
@@ -1283,11 +1283,27 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
 
+服務方式
+
+## 你們是怎麼做安裝的？用什麼工具？
+
+Think BIG 的工程團隊是 AI Agent：我們以 AI 工具（Anthropic Claude Code、OpenAI Codex）遠端施作，由人員操作並負責成果。安裝指令與執行結果會傳給這些服務商處理，傳送前先遮蔽帳號、電子郵件、電話、地址與 IP；您的文件、對話、照片、密碼與金鑰不會傳送。這是我們唯一的服務方式，不接受請不要下單。完整告知見隱私權政策。
+
+[查看隱私權政策第十二節 ›](https://thinkbigtw.com/privacy.html#remote-ai)
+
 資料權限
 
 ## 遠端安裝會看到我的資料嗎？
 
-工程師會操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。依最小權限與確認範圍操作，客戶在場，可先關閉無關文件；安裝後可中止連線並移除遠端權限。
+工程師會操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。依最小權限與確認範圍操作，客戶在場，可先關閉無關文件；安裝後可中止連線並移除遠端權限。施作所用的 AI 工具只接觸指令與執行結果，不接觸您的文件內容。
+
+[查看完整說明 ›](https://thinkbigtw.com/trust/#remote-install)
+
+資料
+
+## 客戶電腦上的檔案會被 AI 看到嗎？
+
+不會被送出。我們只處理安裝與設定的指令與結果，不開啟、不傳送您的文件內容、對話與照片。密碼與金鑰由您本人在自己的電腦輸入。
 
 [查看完整說明 ›](https://thinkbigtw.com/trust/#remote-install)
 
@@ -1303,9 +1319,9 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 ## 安裝失敗怎麼辦？
 
-單 AI Agent 搭建若因我方技術問題無法完成安裝，全額退費；其他服務的退款、驗收與變更依服務條款及雙方確認內容辦理。
+下單後、開工前，您可以隨時取消，全額退款，不扣費用。開工前我們會傳「服務規格表」請您確認並逐字回覆同意，之後才開始遠端施作；開工後要終止，依已完成步驟的比例退款。因我們的技術問題裝不起來，全額退費。蝦皮成交者依蝦皮退款流程。詳見服務條款第四條。
 
-[查看完整說明 ›](https://thinkbigtw.com/pricing/personal/#tier1)
+[查看服務條款第四條 ›](https://thinkbigtw.com/terms.html#refund)
 
 資料流向
 
@@ -3557,7 +3573,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-11-08
+更新日期：2026-11-10　[English version](https://thinkbigtw.com/en/privacy/)
 
 大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
 
@@ -3575,11 +3591,11 @@ URL: https://thinkbigtw.com/privacy.html
 
 ## 三、利用期間、地區、對象與方式
 
-- 期間:自蒐集之日起至蒐集目的消失或您請求刪除為止;法令另有保存規定者,依其規定。
+- 期間:自蒐集之日起至蒐集目的消失或您請求刪除為止;法令另有保存規定者,依其規定。個案另有約定者,從其約定。本公司依個人資料保護法第 11 條,於蒐集目的消失或期限屆滿時,主動或依請求刪除、停止處理或利用,但因執行業務所必須或經您書面同意者不在此限。
 
-- 地區:台灣,以及本公司所使用雲端服務之伺服器所在地。
+- 地區:台灣,以及本公司所使用雲端服務與 AI 工具服務商之伺服器所在地(包括美國)。
 
-- 對象:本公司,以及為完成服務所必要之受託處理者,包括綠界科技股份有限公司(金流與電子發票)、Google LLC(分析與雲端服務)、Cloudflare, Inc.(網站與資安服務)、Supabase Inc.(資料庫服務)、Meta Platforms, Inc.(廣告成效追蹤，投放期間適用)。除法令要求或前述必要範圍外,本公司不會將您的個人資料提供予第三人。
+- 對象:本公司,以及為完成服務所必要之受託處理者,包括綠界科技股份有限公司(金流與電子發票)、Google LLC(分析與雲端服務)、Cloudflare, Inc.(網站與資安服務)、Supabase Inc.(資料庫服務)、Meta Platforms, Inc.(廣告成效追蹤，投放期間適用)、Anthropic PBC 與 OpenAI(遠端安裝施作所用 AI 工具,見第十二節 )。除法令要求或前述必要範圍外,本公司不會將您的個人資料提供予第三人。
 
 - 方式:以自動化系統或其他合於法令之方式蒐集、處理及利用。
 
@@ -3605,7 +3621,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 ## 七、未成年人保護
 
-本網站服務以成年人為對象。未成年人使用本服務,應由法定代理人同意。
+本網站服務以成年人為對象。未成年人使用本服務,應由法定代理人同意。涉及兒童照片的服務(例如客製童書)另有專屬的個人資料告知與同意書,於訂購前提供,不適用本政策取代。
 
 ## 八、政策修訂
 
@@ -3659,27 +3675,31 @@ LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 
 
 - 刪除請求 ：若您希望本公司刪除與您的 Threads 帳號或貼文相關的紀錄，請來信 AI@thinkbigtw.com ，註明您的 Threads 帳號名稱。本公司將於 14 天內刪除並回覆確認。您也可以在 Threads 帳號設定的「網站權限」中移除本 App 的授權。
 
-### 12. Threads / Instagram social engagement tool (Meta Platform data)
+English version of this section: [Threads / Instagram social engagement tool (Meta Platform data)](https://thinkbigtw.com/en/privacy/#threads).
 
-Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: ThinkBIG Social Monitor), to manage how our official account @think_big_ai takes part in conversations on Threads.
+## 十二、遠端安裝與 AI 工具施作之個人資料告知
 
-- Purpose : We search public Threads posts about using AI at work by keyword. Our staff draft replies, and a human reviewer approves each reply before it is published from our account. We publish at most 10 replies per 24 hours. We do not automatically like, follow, repost or send direct messages.
+項目 內容
 
-- Data we process :
+蒐集者 大想成業有限公司(代表人吳御綸),AI@thinkbigtw.com
 
-- Search results (public post text, the author's public username, the post link and the time) are shown only on our staff's screen. We do not store them.
+目的與依據 履行服務契約(遠端安裝、設定、驗收、維護);個人資料保護法第 19 條第 1 項第 2 款。
 
-- If we decide to reply, we keep only the post ID, the post link, the author's public username and our reply text, as a review record.
+AI 工具與服務商 Anthropic Claude Code(Anthropic PBC,美國)、OpenAI Codex(OpenAI,美國)。新增或更換服務商時,事先以文字通知客戶。
 
-- Comments on our own posts and posts that mention our account: we read the comment text and the commenter's public username to notify our staff for follow-up replies. These are retained in our internal work records; you may request deletion under the Deletion requests section below.
+會處理的資料 本公司輸入的安裝與設定指令,以及執行結果:軟體版本、錯誤訊息、設定欄位名稱、資料夾路徑、服務狀態;其中可能出現您的電腦使用者名稱、裝置名稱。
 
-- Retention : Review records are deleted automatically 30 days after they are created. We do not build profiles of the people whose posts appear in searches. Reply notifications are sent to the messaging apps used by our staff and remain on their devices; these are outside the automatic deletion described above. If you submit a deletion request, we will handle the portions we are able to delete. Links to public posts may be cited in internal research reports to understand market discussion trends; such citations are for internal reference only.
+保護措施 傳送前遮蔽帳號名稱、電子郵件、電話、地址、IP 位址;密碼、驗證碼、金鑰、信用卡資料由客戶本人輸入,不經 AI 工具處理;本公司不開啟、不傳送客戶的文件內容、對話紀錄、照片及電腦中第三人的個人資料。
 
-- No sharing : We do not sell this data, share it with third parties or use it for advertising. We handle it in line with Meta's Platform Terms and Developer Policies.
+利用地區 中華民國,以及上述服務商所在的美國(國際傳輸,個人資料保護法第 21 條)。
 
-- Deletion requests : To ask us to delete records related to your Threads account or posts, email AI@thinkbigtw.com  with your Threads username. We will delete the records and confirm within 14 days. You can also remove this app's access in your Threads account settings, under Website permissions.
+利用期間 施作與維護期間;本公司端遮蔽後的作業紀錄,於維護期屆滿後 30 日內刪除,客戶可要求提前刪除。服務商端依其公布的資料政策保存。
 
-## 十二、聯絡我們
+您的權利 查詢、閱覽、複製、補充或更正、停止蒐集處理利用、刪除,本公司於 14 日內處理。
+
+不提供的影響 本服務必須以 AI 工具施作;不接受者,訂購不成立(訂購前)或依[服務條款第四條](https://thinkbigtw.com/terms.html#refund)取消(開工前)。
+
+## 十三、聯絡我們
 
 大想成業有限公司(統一編號 62136066)
 
@@ -3767,43 +3787,55 @@ URL: https://thinkbigtw.com/terms.html
 
 # 服務條款
 
-生效日期:2026-07-02
+生效日期:2026-11-10
+
+修訂紀錄:2026-11-10 新增第二之一條、改寫第四條。[English version](https://thinkbigtw.com/en/terms/)
 
 ## 一、契約當事人與適用範圍
 
-本條款由大想成業有限公司(統一編號 62136066,以下稱「本公司」)訂定,適用於您使用 thinkbigtw.com 網站及本公司提供之各項服務。您完成訂購或開始使用服務,即視為同意本條款。
+本條款由大想成業有限公司(統一編號 62136066;代表人 吳御綸;營業所:臺中市南區五權南路 167 號地下一層之 6;電子郵件 AI@thinkbigtw.com ;以下稱「本公司」)訂定,適用於您使用 thinkbigtw.com 網站及本公司提供之各項服務。個人方案經蝦皮平台成交者,付款、取消與退款另依蝦皮平台規則辦理,本條款補充之。您完成訂購或開始使用服務,即視為同意本條款。
+
+本條款區分兩類客戶:「消費者」(為個人生活目的購買者,適用消費者保護法)與「企業客戶」(為營業目的購買者,依雙方合約或報價單)。
 
 ## 二、服務內容
 
 - 企業 AI 導入:企業 AI 代理系統之規劃、建置、部署與維運顧問服務。
 
-- 個人 AI 助理:個人與工作室等級 AI 助理系統之建置與教學服務。
+- 個人 AI 助理:個人 AI 助理系統之遠端建置與教學服務。
+
+- SEO／AEO／GEO 等數位服務:依報價單所載範圍提供。
+
+## 二之一、服務方式:以 AI 工具提供服務
+
+本公司以 AI 工具提供本服務,目前使用 Anthropic Claude Code(Anthropic PBC,美國)及 OpenAI Codex(OpenAI,美國),由本公司人員操作並負責成果。施作時,安裝與設定指令及其執行結果會傳送至上述服務商處理;您的文件內容、對話紀錄、照片、密碼、驗證碼、金鑰與付款資料不會傳送。處理的資料、去向與保護措施,詳見[隱私權政策第十二節](https://thinkbigtw.com/privacy.html#remote-ai)。
+
+以 AI 工具施作是本服務唯一的提供方式,本公司不提供不使用 AI 工具的版本。本公司已於您訂購前在本條款及商品頁告知,您完成訂購即表示接受此服務方式。不接受者請勿訂購;已訂購但尚未開工者,得依第四條 第 2 項取消並全額退款。
 
 ## 三、訂購、付款與發票
 
-線上付款透過綠界科技股份有限公司之金流服務完成(信用卡等),本公司不經手亦不儲存您的完整卡號。本公司依法開立電子統一發票,以電子郵件寄送或提供載具歸戶。專案型服務之付款期程依雙方合約或報價單辦理。
+- 線上付款透過綠界科技股份有限公司之金流服務完成(信用卡等),本公司不經手亦不儲存您的完整卡號。蝦皮成交者依蝦皮付款流程。
 
-## 四、退款政策
+- 本公司依法開立電子統一發票,以電子郵件寄送或提供載具歸戶。專案型服務之付款期程依雙方合約或報價單辦理。
 
-### 4.1 數位訂閱服務
+- 價格以訂購當時頁面或報價單載明為準,已含稅或另列營業稅者,依該頁載明。
 
-本類服務屬「非以有形媒介提供之數位內容及一經提供即為完成之線上服務」。本公司依消費者保護法第 19 條第 1 項但書及行政院「通訊交易解除權合理例外情事適用準則」第 2 條第 5 款,於此告知:您於結帳時同意服務在付款完成後立即開通,即排除七日解除權之適用。已開通之當期訂閱費用恕不退還;您得隨時取消訂閱,取消自次一扣款週期生效,取消後不再扣款。
+## 四、取消與退款
 
-### 4.2 專案型服務(企業 AI 導入、個人 AI 助理建置等)
+1. 適用對象: 本條第 2 至 5 項適用於消費者。企業客戶之取消、驗收、退款與終止,依雙方簽署之合約、報價單或工作說明書;未約定者,開始提供服務前得申請全額退款,開始後依已完成之工作比例結算。
 
-退款、驗收、變更與終止,依雙方簽署之合約、報價單或工作說明書辦理;未約定者,於本公司開始提供服務前得申請全額退款,開始提供後依已完成之工作比例結算費用。
+2. 開工前取消,全額退款: 消費者於本公司開始施作前,得隨時取消訂單,本公司全額退款,不扣任何費用。
 
-### 4.3 教育訓練與一次性服務
+3. 客製化服務之開工同意: 個人 AI 助理建置,係依您的電腦規格及您指定的技能、通訊管道與設定所為之客製化服務。本公司將於施作前以文字傳送「服務規格表」供您確認,並請您逐字回覆開工同意。經您事先以文字同意並由本公司開始遠端施作後,依「通訊交易解除權合理例外情事適用準則」第 2 條第 2 款,該服務不適用消費者保護法第 19 條第 1 項之七日解除權;例外自本公司於您同意後第一次遠端連線施作時起算。您未回覆開工同意前,本公司不開工。開工後您要求終止者,依已完成步驟之比例退還其餘款項。
 
-於服務提供日 7 日前取消者,全額退款;服務一經提供,視為履行完畢,恕不退款。
+4. 本公司技術問題: 因本公司技術因素無法完成安裝或交付者,全額退款。因可歸責於本公司之事由致服務無法提供者,退還未提供部分之費用。
 
-### 4.4 不可歸責於您之事由
+5. 其他服務: 非屬第 3 項客製化服務之消費者訂單,仍享消費者保護法第 19 條之七日解除權;解除時本公司不收任何費用。
 
-因可歸責於本公司之事由致服務無法提供者,本公司退還未提供部分之費用。
+6. 解除、終止時之系統移除: 依第 2、3 項取消或終止時,本公司免費以遠端方式移除本公司所安裝之軟體、排程、帳號串接與遠端存取權限,不刪除您自己的檔案與資料。您配合移除為協力事項,不是退費條件。
 
-### 4.5 退款方式
+7. 退款方式與期限: 退款申請請來信 AI@thinkbigtw.com  或透過蝦皮聊聊。本公司於收到您的解除或取消通知之次日起 15 日內,以原付款方式退回;蝦皮成交者依蝦皮退款流程。
 
-退款申請請來信 AI@thinkbigtw.com ,經確認後於 14 個工作日內以原付款方式退回。
+8. 教育訓練與一次性服務: 於服務提供日 7 日前取消者,全額退款;服務已依約提供者,不另退款,但不影響消費者依法享有之權利。
 
 ## 五、智慧財產權
 
@@ -3819,7 +3851,7 @@ URL: https://thinkbigtw.com/terms.html
 
 ## 八、責任限制
 
-於法令允許之最大範圍內,本公司就任何間接、衍生或懲罰性損害不負賠償責任;就單一服務之賠償總額,以您就該服務已支付之費用為上限。
+於法令允許之最大範圍內,本公司就任何間接、衍生或懲罰性損害不負賠償責任;就單一服務之賠償總額,以您就該服務已支付之費用為上限。但本公司有故意或重大過失,或法律另有強制規定(含消費者保護法)者,不在此限。
 
 ## 九、個人資料保護
 
@@ -3827,13 +3859,17 @@ URL: https://thinkbigtw.com/terms.html
 
 ## 十、準據法與管轄法院
 
-本條款以中華民國法律為準據法,因本條款所生之爭議,雙方同意以臺灣新北地方法院為第一審管轄法院,但不排除消費者保護法等法令有關管轄之強制規定。
+本條款以中華民國法律為準據法。因本條款所生之爭議,雙方同意以臺灣臺中地方法院為第一審管轄法院,但消費者依消費者保護法或民事訴訟法得向其他法院起訴者,依其規定。
 
-## 十一、聯絡我們
+## 十一、聯絡我們與消費申訴
 
-大想成業有限公司(統一編號 62136066)
+大想成業有限公司(統一編號 62136066;代表人 吳御綸)
+
+營業所:臺中市南區五權南路 167 號地下一層之 6
 
 電子郵件:AI@thinkbigtw.com
+
+消費申訴請先寄上述電子郵件,本公司於 3 個工作日內回覆;亦得依消費者保護法第 43 條向本公司提出申訴,或向直轄市、縣(市)政府消費者服務中心或消費者保護官申訴。
 
 大想成業有限公司 Think BIG Make it Real CO., LTD.|統一編號 62136066
 
@@ -10717,7 +10753,7 @@ Yes. A common setup: OpenClaw handles 24/7 routine tasks; brand AI Agents handle
 
 Q: Does Think BIG's pricing include AI model fees?
 
-No. Think BIG's service fee covers installation and setup only. Third-party AI model usage fees are calculated based on your actual usage and paid directly to the model provider. See [FAQ](https://thinkbigtw.com/faq/).
+No. Think BIG's service fee covers installation and setup only. Third-party AI model usage fees are calculated based on your actual usage and paid directly to the model provider. See [FAQ](https://thinkbigtw.com/en/faq/).
 
 ## Sources and Update History
 
@@ -14568,7 +14604,329 @@ Outline your needs and discuss workflows and governance.](https://thinkbigtw.com
 [Personal plans
 Compare installation scope and support.](https://thinkbigtw.com/en/pricing/)
 [FAQ
-Learn about fees, installation and data permissions first.](https://thinkbigtw.com/faq/)
+Learn about fees, installation and data permissions first.](https://thinkbigtw.com/en/faq/)
+
+---
+
+URL: https://thinkbigtw.com/en/faq/
+
+# FAQ | Think BIG
+
+THINK BIG
+
+# Frequently asked questions
+
+Answers on pricing, delivery with AI tools, your files, tax, refunds and data.
+
+Pricing
+
+## How are enterprise projects priced?
+
+Enterprise projects are quoted to your needs. Book a needs call for a quote. Payment methods and installments are as stated in your quote. AI model usage fees are paid by you directly to the model provider.
+
+Fixed-price services
+
+## What is on the fixed-price menu for overseas clients?
+
+Current fixed-price services are the GEO (AI search visibility) Health Check and the FAQ / RAG Support Bot. Packages and what each includes are listed on the pricing page. Anything else is quoted individually.
+
+[See the pricing page ›](https://thinkbigtw.com/en/pricing/)
+
+Contact
+
+## How do I contact you?
+
+WhatsApp +886 908 898 903, or email AI@thinkbigtw.com. We reply within 3 working days, usually sooner. We do not use LINE for overseas clients.
+
+[Contact us ›](https://thinkbigtw.com/en/contact/)
+
+Working hours
+
+## What time zone do you work in?
+
+Taiwan Standard Time (UTC+8). Work is done remotely and in writing; we do not offer on-site visits, video or phone support.
+
+How we deliver
+
+## How do you deliver? Do you use AI?
+
+Yes. Our engineering team is AI agents. We deliver with AI tools (Anthropic Claude Code and OpenAI Codex), operated by our staff, who are responsible for the results. Commands and their output are sent to these providers; your documents, conversations, photos, passwords and keys are not. Masking is applied before sending. This is the only way we deliver, so please do not order if you do not accept it.
+
+[See the Privacy Policy, Section 8 ›](https://thinkbigtw.com/en/privacy/#remote-ai)
+
+Your files
+
+## Will the AI see my files?
+
+No. We work with installation and configuration commands and their results. We do not open or send your documents, chats or photos. You type your own passwords and keys on your own machine.
+
+Local AI
+
+## Can I run it on my own computer (local AI)?
+
+Often yes. Apple Silicon Macs, Windows or Linux with an NVIDIA GPU, and AMD Ryzen AI Max machines can be assessed; send your specs before ordering. If your machine is too small, we use a cloud model instead, under the same plan. Local does not mean "nothing leaves the machine": cloud models, messaging apps and external services still send requests.
+
+Costs
+
+## Who pays for AI model usage and third-party accounts?
+
+You. Cloud-model API keys and other third-party accounts (hosting, messaging and similar) are opened by you in your own name; we only guide you. Local models carry no usage fee from us.
+
+Delivery time
+
+## How long does delivery take?
+
+For standard packages, within 30 days of receiving everything we need from you. Larger projects follow the timeline in the quote.
+
+Marketplaces
+
+## What if my project goes through Upwork or Fiverr?
+
+Payment, escrow, refunds and disputes stay on the platform. We never invoice or accept payment outside it.
+
+Tax and invoices
+
+## Do you charge tax? What invoice do I get?
+
+If the service is used outside Taiwan, it is zero-rated for Taiwan business tax (0%) and you receive an English commercial invoice. If it is used in Taiwan, 5% business tax applies. Taxes in your own country are yours.
+
+[See the Terms, Section 4 ›](https://thinkbigtw.com/en/terms/)
+
+Refunds
+
+## What is your refund policy?
+
+Before work starts, you can cancel for a full refund with no deduction. For personal setup, we send a written specification and start only after you confirm in writing. After work starts, we refund in proportion to the steps not completed. If we cannot finish because of our own technical problem, you get a full refund. Refunds are paid within 15 days of your request.
+
+[See the Terms, Section 6 ›](https://thinkbigtw.com/en/terms/#refund)
+
+After the job
+
+## What happens to my data and my machine when the job ends?
+
+At the end of the support period we remove our remote access. If you cancel or get a refund, we remove what we installed, free of charge. We do not delete your own files. Our masked work logs are deleted within 30 days after the support period ends, or earlier on request.
+
+EU and UK
+
+## I am in the EU or UK. Can you work with me?
+
+Yes, with limits. Personal data in your systems is processed only on your own machine and is never sent to a cloud AI service; only masked commands and output with no personal data may use AI tools. A data processing agreement is available on request before signing.
+
+Your data
+
+## How do I ask you to delete my data?
+
+Email AI@thinkbigtw.com or WhatsApp +886 908 898 903. We reply within 14 days.
+
+[See the Privacy Policy, Section 10 ›](https://thinkbigtw.com/en/privacy/#rights)
+
+Security
+
+## How do you handle security?
+
+We scan skills before installing them, pin versions with no auto-updates, run a security review before go-live, and keep keys in system configuration files and never in chat. No one can guarantee security; we say so plainly.
+
+---
+
+URL: https://thinkbigtw.com/en/privacy/
+
+# Privacy Policy | Think BIG
+
+[Back to Think BIG home](https://thinkbigtw.com/en/)
+
+# Think BIG Privacy Policy
+
+Last updated: November 10, 2026
+
+[中文版](https://thinkbigtw.com/privacy.html)
+
+## 1. Who is responsible
+
+Think BIG Make it Real CO., LTD. (大想成業有限公司), Taiwan (R.O.C.), Unified Business No. 62136066, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan; AI@thinkbigtw.com  (“we”). This Policy covers thinkbigtw.com and our Services. We comply with Taiwan’s Personal Data Protection Act and, where it applies to you, the EU/UK GDPR (see Section 10).
+
+## 2. Data we collect
+
+Identity and contact: name, email, phone / WhatsApp handle, company name and business ID. Billing: order and invoice records; card details are handled by our payment provider and we do not store full card numbers. Technical: IP address, browser type, cookies, pages viewed. Enquiry data: what you type into our enquiry forms and AI assistant.
+
+## 3. Why we use it
+
+To deliver the Services and support you; to reply to enquiries; to process payments and issue invoices; to send you information you asked for (you can opt out at any time); to measure website traffic and improve our services; and to meet legal obligations. Our legal basis under GDPR, where it applies, is mainly performance of a contract (Art. 6(1)(b)), plus legitimate interests for site analytics and security, and consent where we ask for it.
+
+## 4. Who receives it, and where
+
+We use these service providers: ECPay (payments and e-invoices, Taiwan), Google LLC (analytics, cloud), Cloudflare, Inc. (website, security, Workers AI), Supabase Inc. (database), Meta Platforms, Inc. (ad measurement, only while ads run), and Anthropic PBC and OpenAI (AI tools used for remote work, Section 8 ), plus Upwork, Fiverr, Wise, PayPal, Payoneer or your bank when you pay or are hired through them. Data may be processed in Taiwan and in the United States and other countries where these providers operate. We do not sell your personal data and do not share it with others except as described here or as required by law.
+
+## 5. Cookies and analytics
+
+We use Google Analytics 4 to count visits, pages, time on page and conversions (for example, an enquiry form sent). You can opt out with the [Google Analytics opt-out browser add-on](https://tools.google.com/dlpage/gaoptout) or by blocking third-party cookies. While we run ads, we use the Meta Pixel to measure ad clicks and conversions; you can manage this in [Meta ad preferences](https://www.facebook.com/help/568137493302217). The Pixel does not load when no ads are running.
+
+## 6. Our website AI assistant and enquiry summaries
+
+Our website chat and the “AI Experience” demo send what you type to a third-party cloud AI model (for the demo, Cloudflare Workers AI, after you tick consent) to generate a reply. Please do not enter passwords, API keys, payment details, confidential information or contact details in the chat. We do not store chat transcripts or IP addresses in our enquiry database. After a conversation, an anonymous summary (no name or direct contact data) may be sent to our internal system to improve service. If you choose to send an enquiry, you first review and edit the summary and contact details, tick consent and press Send; only then is it saved in our enquiry database. We keep enquiry summaries and the contact details you gave until you ask us to delete them. We never add you to marketing lists automatically. Messaging apps temporarily hold recent conversation context to keep replies coherent, then clear it after about 30 minutes of inactivity (at most 2 hours).
+
+## 7. Security
+
+We use TLS encryption in transit, access controls and least-privilege permissions. No system is perfectly secure, and we cannot guarantee absolute security.
+
+## 8. Remote work and AI tools: how your data is handled
+
+Item Detail
+
+Controller / collector Think BIG Make it Real CO., LTD., AI@thinkbigtw.com
+
+Why To perform your Services contract (remote installation, configuration, acceptance, support).
+
+AI tools and providers Claude Code (Anthropic PBC, United States); Codex (OpenAI, United States). We tell you in writing before adding or changing a provider.
+
+What is processed Commands we type and their output: software versions, error messages, setting names, folder paths, service status. Output may show your machine’s user name or device name.
+
+What is never sent Your documents and their content, conversation logs, photos, personal data of your staff or customers, passwords, one-time codes, keys, payment details.
+
+Our safeguards We mask account names, email addresses, phone numbers, street addresses and IP addresses before sending; you type your own secrets; least-privilege access; masked work logs.
+
+Where it goes The providers’ servers in the United States, under their published data policies.
+
+Retention Provider side: under the providers’ policies. Our side: masked work logs are deleted within 30 days after the support period ends; you can ask for earlier deletion.
+
+Your choice AI tools are how we deliver the Services, so we cannot offer a version without them. If you do not accept this, please do not order.
+
+Services use AI tools as described. For clients in the EU/EEA or the UK, personal data in your own systems is processed only on your own machine and is not sent to any cloud AI service; see Section 10.
+
+## 9. How long we keep data
+
+Contact data, enquiry summaries and project records: until you ask us to delete them, or until the purpose ends, whichever is earlier; invoices and accounting records are kept as Taiwan law requires. Deletion requests are handled within 14 days.
+
+## 10. Your rights
+
+You can ask to access, copy, correct, restrict or delete your personal data, or to stop our use of it, by emailing AI@thinkbigtw.com  or via [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.). We reply within 14 days. If the GDPR applies to you, you also have the right to data portability and to complain to your local data protection authority. For personal data in your own systems that we work on, you are the controller and we act as processor; a data processing agreement is available on request before the statement of work is signed.
+
+## 11. Threads / Instagram social engagement tool (Meta Platform data)
+
+Think BIG uses an internal tool, the ThinkBIG Threads Reply Console (Meta app: ThinkBIG Social Monitor), to manage how our official account @think_big_ai takes part in conversations on Threads.
+
+- Purpose : We search public Threads posts about using AI at work by keyword. Our staff draft replies, and a human reviewer approves each reply before it is published from our account. We publish at most 10 replies per 24 hours. We do not automatically like, follow, repost or send direct messages.
+
+- Data we process :
+
+- Search results (public post text, the author's public username, the post link and the time) are shown only on our staff's screen. We do not store them.
+
+- If we decide to reply, we keep only the post ID, the post link, the author's public username and our reply text, as a review record.
+
+- Comments on our own posts and posts that mention our account: we read the comment text and the commenter's public username to notify our staff for follow-up replies. These are retained in our internal work records; you may request deletion under the Deletion requests section below.
+
+- Retention : Review records are deleted automatically 30 days after they are created. We do not build profiles of the people whose posts appear in searches. Reply notifications are sent to the messaging apps used by our staff and remain on their devices; these are outside the automatic deletion described above. If you submit a deletion request, we will handle the portions we are able to delete. Links to public posts may be cited in internal research reports to understand market discussion trends; such citations are for internal reference only.
+
+- No sharing : We do not sell this data, share it with third parties or use it for advertising. We handle it in line with Meta's Platform Terms and Developer Policies.
+
+- Deletion requests : To ask us to delete records related to your Threads account or posts, email AI@thinkbigtw.com  with your Threads username. We will delete the records and confirm within 14 days. You can also remove this app's access in your Threads account settings, under Website permissions.
+
+## 12. Children
+
+Our website is for adults. Use by minors requires a parent or guardian’s consent. Services involving children’s photos (such as custom storybooks) have a separate privacy notice and consent form provided before ordering.
+
+## 13. Changes
+
+We may update this Policy and will post the new date on this page.
+
+## 14. Contact
+
+Think BIG Make it Real CO., LTD. | Unified Business No. 62136066 | AI@thinkbigtw.com  | [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+---
+
+URL: https://thinkbigtw.com/en/terms/
+
+# Terms of Service | Think BIG
+
+[Back to Think BIG home](https://thinkbigtw.com/en/)
+
+# Think BIG Terms of Service
+
+Effective date: November 10, 2026
+
+[中文版](https://thinkbigtw.com/terms.html)
+
+## 1. Who we are and who these Terms apply to
+
+These Terms are issued by Think BIG Make it Real CO., LTD. (大想成業有限公司), a company registered in Taiwan (R.O.C.), Unified Business No. 62136066, registered address: No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan (R.O.C.), represented by its Founder, Wu Yu-Lun (NEO). Contact: AI@thinkbigtw.com , [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.) (“Think BIG”, “we”). They apply when you use thinkbigtw.com and the services we sell directly to you (“Services”).
+
+If you hired us through Upwork, Fiverr or another marketplace, that marketplace’s terms govern payment, escrow, refunds and disputes, and prevail over these Terms where they conflict. If you sign a separate written agreement or statement of work with us, it prevails over these Terms.
+
+## 2. Services
+
+Enterprise AI deployment and consulting (planning, building, deploying and supporting AI agent systems); personal AI assistant setup (remote installation and training); SEO / AEO / GEO visibility services; and related work described in a written proposal, quote or statement of work. What is included is only what the quote or statement of work lists.
+
+## 3. How we deliver: AI tools are our service method
+
+We deliver the Services using AI tools, currently Anthropic Claude Code (Anthropic PBC, United States) and OpenAI Codex (OpenAI, United States), operated by our staff, who remain responsible for the results. During remote work, the commands we run and their output are sent to these providers for processing. Your documents, conversation logs, photos, passwords, one-time codes, keys and payment details are not sent. Details are in our [Privacy Policy, Section 8](https://thinkbigtw.com/en/privacy/#remote-ai).
+
+Delivering with AI tools is the only way we provide the Services. We do not offer a version without AI tools. We tell you this before you order; by placing an order or signing, you accept this service method. If you do not accept it, please do not order. If you ordered but we have not started work, you may cancel for a full refund under Section 6 .
+
+## 4. Ordering, prices, taxes and invoices
+
+4.1 Prices are as stated in your written quote or on the order page. Prices are in the currency stated there.
+
+4.2 Taxes.  Where the Services are provided from Taiwan and used outside Taiwan, they are generally zero-rated for Taiwan business tax (0%) and we issue an English commercial invoice. Where the Services are used in Taiwan (for example, for a Taiwan office, machine or users), Taiwan business tax of 5% applies and we issue a Taiwan uniform invoice. We decide which applies from the facts you give us and will tell you on the quote. You are responsible for any taxes, duties or withholding imposed in your own country; bank and transfer fees on your side are yours.
+
+4.3 Payment is due as stated in the invoice or quote (default: within 7 days of invoice). Payment methods are stated on the invoice. For marketplace orders, payment goes only through the marketplace; we never ask you to pay outside it.
+
+4.4 If a payment is more than 15 days late, we may pause the Services after written notice until paid; timelines move accordingly.
+
+## 5. Delivery time
+
+For standard packages, we aim to deliver within 30 days of receiving everything we need from you (accounts, access and materials). Time during which we are waiting for you or for third-party services is not counted. Larger or custom projects use the timeline in the quote.
+
+## 6. Cancellation and refunds
+
+6.1 Before work starts:  you may cancel at any time and we refund in full, with no deduction.
+
+6.2 Personal setup services:  before we begin, we send you a written service specification to confirm. We start remote work only after you confirm in writing. Once work has started and you ask to stop, we refund the unused part in proportion to the steps not yet completed.
+
+6.3 Our technical failure:  if we cannot complete the installation or delivery because of a problem on our side, we refund in full. If we fail to provide part of the Services for a reason attributable to us, we refund that part.
+
+6.4 Business customers:  cancellation, acceptance and termination follow your signed agreement or statement of work; if none says otherwise, you may cancel before work starts for a full refund, and after it starts we bill the work completed.
+
+6.5 Removal:  on cancellation, termination or refund, we remove, free of charge and remotely, the software, scheduled jobs and account connections we installed, and our own access. We do not delete your own files or data. Your help with removal is cooperation and is not a condition of any refund.
+
+6.6 How and when:  email AI@thinkbigtw.com  or message us on WhatsApp. We refund to the original payment method within 15 days of receiving your request, subject to your payment provider’s processing time. Marketplace orders follow the marketplace’s refund process.
+
+6.7 Nothing in these Terms removes rights you have as a consumer under the mandatory laws of your country or Taiwan.
+
+## 7. What we need from you
+
+You provide accurate information; you open and pay for the third-party accounts the Services need (AI-model provider, hosting, messaging and similar), in your own name; you type your own passwords, codes and keys on your own machine (we never ask you to send them to us); you back up important files before we begin; and you reply within 2 working days to questions we need answered.
+
+## 8. Intellectual property
+
+Our website and materials remain ours or our licensors’. Configurations, knowledge-base content and documents we create specifically for you belong to you once paid. Our general tools, templates, frameworks and skill libraries remain ours; we license them to you for your own use but you may not resell or redistribute them. Open-source components stay under their own licenses. Your data stays yours.
+
+## 9. Confidentiality
+
+Each side keeps the other’s non-public information confidential, except where the law requires disclosure. We do not publish your identity as a customer.
+
+## 10. Acceptable use
+
+Do not use the Services for unlawful activity, to interfere with or gain unauthorized access to systems, or to reverse engineer our tools.
+
+## 11. Changes and interruptions
+
+We may pause part of the Services for maintenance, upgrades or events beyond our control and will give notice where practicable.
+
+## 12. Disclaimers and liability
+
+To the extent permitted by law, the Services and deliverables are provided “as is”; we are not liable for indirect, consequential or punitive damages, data loss where you did not back up, third-party service outages or price changes, or changes you make yourself. Our total liability for any Service is limited to the fees you paid for it, except where we act with intent or gross negligence or where the law does not allow the limit. AI systems can make mistakes; deliverables are checked against the agreed acceptance checklist, and you should review them before relying on them.
+
+## 13. Privacy
+
+We handle personal data under our [Privacy Policy](https://thinkbigtw.com/en/privacy/).
+
+## 14. Governing law and disputes
+
+These Terms are governed by the laws of Taiwan (R.O.C.). The Taichung District Court, Taiwan, has jurisdiction at first instance, without excluding mandatory consumer-protection rules that allow you to sue elsewhere.
+
+## 15. Contact and complaints
+
+Think BIG Make it Real CO., LTD. | Unified Business No. 62136066 | AI@thinkbigtw.com  | [WhatsApp +886 908 898 903](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.). We reply within 3 working days.
 
 ---
 
