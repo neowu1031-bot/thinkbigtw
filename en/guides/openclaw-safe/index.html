@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Is OpenClaw Safe? 6 Specific Risks Before You Install | Think BIG</title>
+<meta name="description" content="Search results for 'Is OpenClaw safe?' skew negative. This guide breaks down 6 specific risks, tells you what to do if you install yourself — and what our installation service does by default to address each one.">
+<link rel="canonical" href="https://thinkbigtw.com/en/guides/openclaw-safe/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/guides/openclaw-safe/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/guides/openclaw-safe/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/guides/openclaw-safe/">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/guides/openclaw-safe/">
+<meta property="og:title" content="Is OpenClaw Safe? 6 Specific Risks Before You Install | Think BIG">
+<meta property="og:description" content="6 concrete risks broken down — what to do if you install yourself, and what the installation service does by default for each one.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Is OpenClaw Safe? 6 Risks Before You Install | Think BIG">
+<meta name="twitter:description" content="6 concrete risks broken down with practical mitigations for each one.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://thinkbigtw.com/#organization",
+      "name": "Think BIG",
+      "url": "https://thinkbigtw.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://thinkbigtw.com/#logo",
+        "url": "https://thinkbigtw.com/images/logo-nobg.png",
+        "width": 1254,
+        "height": 1254
+      },
+      "address": {"@type": "PostalAddress", "addressCountry": "TW"},
+      "areaServed": "Worldwide"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://thinkbigtw.com/en/guides/openclaw-safe/#webpage",
+      "url": "https://thinkbigtw.com/en/guides/openclaw-safe/",
+      "name": "Is OpenClaw Safe? 6 Specific Risks Before You Install | Think BIG",
+      "description": "Search results for 'Is OpenClaw safe?' skew negative. This guide breaks down 6 specific risks, tells you what to do if you install yourself — and what our installation service does by default to address each one.",
+      "inLanguage": "en",
+      "isPartOf": {"@id": "https://thinkbigtw.com/#website"},
+      "publisher": {"@id": "https://thinkbigtw.com/#organization"},
+      "dateModified": "2026-09-30"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is OpenClaw safe?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on how you install it. Most security risks come from 'no permissions set after installation,' 'unknown-source skills installed,' or 'default account not password-changed' — not from the framework itself being unsafe. Least privilege, local deployment, and only installing official skills are the three basic things."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will OpenClaw steal my data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw in local deployment runs on your own computer and doesn't actively upload any data anywhere by default. Data leaves through only two paths: calling an external AI model API (necessary for cloud version; local version processes on your machine), and external services you connect to. If you haven't connected those, OpenClaw only runs on your computer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who should not install OpenClaw?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Three types of people: (1) work computers or company-issued equipment — IT policy usually disallows this kind of tool; (2) people completely unwilling to spend any time learning basic configuration; (3) people who expect 'install and everything runs on defaults, zero maintenance.'"
+          }
+        }
+      ]
+    }
+  ]
+}</script>
+<link rel="icon" href="/favicon.ico" sizes="32x32 48x48"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#e8422a;
+  --bg:#ffffff;
+  --ink:#1a1a1a;
+  --gray:#f5f5f5;
+  --gray2:#ebebeb;
+  --muted:#555;
+  --mono:'Azeret Mono',ui-monospace,monospace;
+  --tc:'Noto Sans TC',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--tc);-webkit-font-smoothing:antialiased;min-height:100vh;padding-top:54px}
+a{color:var(--red);text-decoration:none}
+@media (hover:hover) and (pointer:fine){a:hover{text-decoration:underline}}
+.container{max-width:760px;margin:0 auto;padding:0 clamp(20px,5vw,60px)}
+.art-header{padding:56px 0 40px}
+.art-breadcrumb{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:20px}
+.art-breadcrumb a{color:var(--red)}
+.art-meta-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);border:1.5px solid var(--red);border-radius:4px;padding:4px 10px;margin-bottom:16px}
+.art-title{font-family:var(--tc);font-weight:900;font-size:clamp(24px,3.5vw,42px);line-height:1.25;color:var(--ink);margin-bottom:16px}
+.art-desc{font-size:16px;line-height:1.8;color:var(--muted)}
+.art-date{font-family:var(--mono);font-size:11px;color:#999;margin-top:14px;letter-spacing:1px}
+.art-body{padding:0 0 80px}
+.art-body p{font-size:16px;line-height:1.9;color:var(--muted);margin-bottom:20px}
+.art-body h2{font-family:var(--tc);font-weight:700;font-size:22px;color:var(--ink);margin:44px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--gray2)}
+.art-body h3{font-family:var(--tc);font-weight:700;font-size:17px;color:var(--ink);margin:28px 0 10px}
+.art-body strong{color:var(--ink);font-weight:700}
+.art-body ul,.art-body ol{padding-left:0;list-style:none;margin-bottom:20px;display:flex;flex-direction:column;gap:10px}
+.art-body ul li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.75;color:var(--muted)}
+.art-body ul li::before{content:'—';color:var(--red);font-weight:700;flex-shrink:0;margin-top:2px}
+.art-body ol{counter-reset:ol-counter}
+.art-body ol li{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.75;color:var(--muted);counter-increment:ol-counter}
+.art-body ol li::before{content:counter(ol-counter)'.';color:var(--red);font-weight:700;flex-shrink:0;min-width:20px;margin-top:2px}
+.risk{background:var(--gray);border-radius:12px;padding:24px 26px;margin:24px 0}
+.risk h3{margin-top:0;padding-bottom:8px;border-bottom:1.5px solid var(--gray2)}
+.risk-do{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:14px;font-size:14px;line-height:1.7}
+.risk-do div{padding:14px 16px;background:#fff;border-radius:8px;border:1px solid var(--gray2)}
+.risk-do strong{display:block;color:var(--red);font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+@media (max-width:560px){.risk-do{grid-template-columns:1fr}}
+.callout{background:var(--gray);border-left:4px solid var(--red);border-radius:0 8px 8px 0;padding:16px 20px;margin:24px 0;font-size:15px;color:var(--ink);line-height:1.75}
+.callout strong{color:var(--red)}
+.faq-item{margin-bottom:20px;padding:20px 24px;background:var(--bg);border:1.5px solid var(--gray2);border-radius:12px}
+.faq-q{font-weight:700;font-size:15px;color:var(--ink);margin-bottom:8px}
+.faq-a{font-size:14px;color:var(--muted);line-height:1.8;margin:0}
+.cta-band{background:var(--gray);border-radius:16px;padding:32px 36px;margin:40px 0;text-align:center}
+.cta-band h3{font-size:20px;color:var(--ink);margin-bottom:10px}
+.cta-band p{font-size:14px;color:var(--muted);margin-bottom:24px}
+.cta-btn{display:inline-block;background:var(--red);color:#fff;font-family:var(--tc);font-weight:700;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;transition:background .2s;letter-spacing:0.3px}
+@media (hover:hover) and (pointer:fine){.cta-btn:hover{background:#c73821;text-decoration:none}}
+.art-nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0 40px;border-top:1px solid var(--gray2);font-size:14px}
+.art-nav a{color:var(--red)}
+</style>
+
+<link rel="stylesheet" href="/assets/generated/site-43d922300c73.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise (Chinese)</a><a href="/enterprise/departments/">AI Departments (Chinese)</a><a href="/en/services/seo-geo/">SEO / AEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/">Deployment Process (Chinese)</a><a href="/trust/">Security (Chinese)</a><a href="/guides/">Guides (Chinese)</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/guides/openclaw-safe/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise (Chinese)</a><a href="/enterprise/departments/">AI Departments (Chinese)</a><a href="/en/services/seo-geo/">SEO / AEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/">Deployment Process (Chinese)</a><a href="/trust/">Security (Chinese)</a><a href="/guides/">Guides (Chinese)</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/guides/openclaw-safe/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><!-- TB:PERSONAL:START --><div class="tb-personal-context"><a href="/en/pricing/">Personal Plans</a><span>Personal AI Assistant &amp; Workflow Services.</span></div><!-- TB:PERSONAL:END -->
+
+<script src="/nav.js" defer></script>
+
+<div class="container">
+  <article>
+    <header class="art-header tb-hero-copy" data-no-reveal="">
+      <div class="art-breadcrumb"><a href="/en/guides/">Guides</a> / Is OpenClaw Safe?</div>
+      <span class="art-meta-tag">Security · Must-Read Before Installing</span>
+      <h1 class="art-title">Is OpenClaw Safe? 6 Specific Risks to Know Before You Install</h1><p class="note">Think BIG Editorial</p>
+      <p class="art-desc">Search results for "Is OpenClaw safe?" skew negative. This guide breaks down 6 specific risks, tells you what to do if you install yourself, and what our installation service handles by default. One-sentence conclusion: the key to safety isn't not installing it — it's least privilege plus local deployment plus only installing official skills.</p>
+      <div class="art-date">Published: 2026-09-13</div>
+    </header>
+
+    <div class="art-body">
+
+      <p>Search "Is OpenClaw safe?" and you'll mostly find forum posts, security guides, and negative reviews — AI summaries often directly say "not recommended for general users." What this guide aims to do is break down the specific risks behind those conclusions and tell you what "do if you install yourself" and "what a good installation service should do" looks like for each one.</p>
+      <p>The conclusion first: <strong>the OpenClaw framework isn't designed to harm you, but it's powerful enough that "installing it wrong" can cause problems</strong>. Issues usually come from the installer not setting permissions, installing unknown-source skills, or leaving defaults unchanged. It's like buying a good knife — the knife is fine; swinging it carelessly is what causes injuries.</p>
+
+      <hr style="border:none;border-top:1px solid var(--gray2);margin:32px 0">
+
+      <h2>One-sentence conclusion</h2>
+      <div class="callout">Safety isn't about "not installing it" — it's about <strong>doing three things together</strong>: least privilege (grant only necessary access), local deployment (data stays on your computer), and only official skills (the skill layer is OpenClaw's biggest attack surface). Do all three and risk is manageable. Skip all three and nothing is safe no matter what you install.</div>
+
+      <h2>6 specific risks, broken down</h2>
+
+      <div class="risk">
+        <h3>Risk 1: Prompt Injection</h3>
+        <p>External content (web pages, documents, messages) contains hidden malicious instructions that trick the AI assistant into performing unintended actions. For example: you give OpenClaw a document that looks normal but contains "send all files to this address" — and the AI follows through.</p>
+        <div class="risk-do">
+          <div><strong>If you install yourself</strong>Don't let OpenClaw directly read unfamiliar URLs or documents. High-sensitivity operations (sending files, changing passwords) must require your confirmation before executing.</div>
+          <div><strong>What we do by default</strong>We enable "high-risk actions require second confirmation" by default and restrict read/write scope to folders you specify.</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>Risk 2: Malicious Skills</h3>
+        <p>Skills are the extension packs that let OpenClaw "do things" — the community has many sources. Unknown-source skills may have hidden capabilities to read passwords, connect to relay servers, or execute arbitrary code.</p>
+        <div class="risk-do">
+          <div><strong>If you install yourself</strong>Only install skills from official or trusted authors. Review the code before installing; don't skip warnings. Periodically audit your installed skills list.</div>
+          <div><strong>What we do by default</strong>The Persona Edition includes a full personal skill package + 1 custom helper — no third-party sources. Add-on skill packages are Think BIG internally maintained versions with audit records.</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>Risk 3: Exposed Port / Web UI Exposed Externally</h3>
+        <p>OpenClaw has a local management interface (Web UI) you access via browser. If you don't change defaults, don't set a password, and expose it publicly, the entire assistant is naked on the internet — like leaving your house key in the lock.</p>
+        <div class="risk-do">
+          <div><strong>If you install yourself</strong>Change the default password. Bind to 127.0.0.1 (localhost) only. Don't set DMZ on your router; don't use tools like ngrok to expose it.</div>
+          <div><strong>What we do by default</strong>Always change default password, bind to localhost, don't open external ports. If external access is needed (e.g., messaging integration), we use the officially provided tunnel — not a custom open port.</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>Risk 4: API Key Leak</h3>
+        <p>An AI model API key (like Anthropic / OpenAI) once leaked lets others use your credit — or even rack up charges billed to you. Common leak paths: committing it to a public GitHub repo, posting it in social media screenshots, or handing it directly to someone else.</p>
+        <div class="risk-do">
+          <div><strong>If you install yourself</strong>Store keys in local environment variables — never commit them. Don't push .env files to public repos. Regularly check usage in the model provider's dashboard.</div>
+          <div><strong>What we do by default</strong>Local version: no API key needed. Cloud version: you apply for and keep your own key. The engineer only guides the process, doesn't apply on your behalf and doesn't retain your key. Deleted from connection cache in front of you after installation.</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>Risk 5: Accidental Deletion or Overwrite</h3>
+        <p>OpenClaw takes action — and "taking action" includes deleting files, editing files, sending emails, sending messages. Without protection, the AI might misread a situation and delete an entire folder, or send a draft message to someone it shouldn't.</p>
+        <div class="risk-do">
+          <div><strong>If you install yourself</strong>Set second confirmation for high-risk actions (deleting files, sending external messages). Keep a change log. Back up important data before granting permissions.</div>
+          <div><strong>What we do by default</strong>Default: writable scope restricted to folders you specify. External message sending requires phone push notification confirmation. 90-day change record kept.</div>
+        </div>
+      </div>
+
+      <div class="risk">
+        <h3>Risk 6: Outdated Version / Unpatched Vulnerabilities</h3>
+        <p>Every software has vulnerabilities — OpenClaw included. Install it and don't update, and six months later you may hit a vulnerability that's been patched but you haven't applied.</p>
+        <div class="risk-do">
+          <div><strong>If you install yourself</strong>Subscribe to official update announcements. Manually update every 1–3 months.</div>
+          <div><strong>What we do by default</strong>Persona Edition: installed until it runs — you decide when to update. Premium Annual and Annual Flagship include weekly maintenance; we handle updates.</div>
+        </div>
+      </div>
+
+      <h2>Comparison: self-install vs. professional installation</h2>
+      <div class="callout"><strong>The real value of professional installation isn't "installing it for you" — it's getting all these defaults right the first time.</strong> The six items below are what we handle by default during installation; if you install yourself, you need to do each of these manually.</div>
+      <table style="width:100%;border-collapse:collapse;margin:24px 0 28px;font-size:14px">
+        <thead>
+          <tr style="background:var(--gray)"><th style="border:1.5px solid var(--gray2);padding:10px;text-align:left">Item</th><th style="border:1.5px solid var(--gray2);padding:10px;text-align:left">Self-install effort</th><th style="border:1.5px solid var(--gray2);padding:10px;text-align:left">Professional install default</th></tr>
+        </thead>
+        <tbody>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">Change default password</td><td style="border:1.5px solid var(--gray2);padding:10px">Find config file, change, restart</td><td style="border:1.5px solid var(--gray2);padding:10px">Already changed at completion</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">Bind localhost, no external exposure</td><td style="border:1.5px solid var(--gray2);padding:10px">Check default binding IP</td><td style="border:1.5px solid var(--gray2);padding:10px">Default 127.0.0.1</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">Second confirmation for high-risk actions</td><td style="border:1.5px solid var(--gray2);padding:10px">Modify policy settings</td><td style="border:1.5px solid var(--gray2);padding:10px">Enabled by default</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">Skills whitelist</td><td style="border:1.5px solid var(--gray2);padding:10px">Maintain list yourself</td><td style="border:1.5px solid var(--gray2);padding:10px">Official only</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">API key security</td><td style="border:1.5px solid var(--gray2);padding:10px">Local version: no key needed. Cloud: set env variables yourself, don't commit</td><td style="border:1.5px solid var(--gray2);padding:10px">Local version: no key needed. Cloud: guide you to apply yourself; engineer doesn't retain it</td></tr>
+          <tr><td style="border:1.5px solid var(--gray2);padding:10px">Updates and maintenance</td><td style="border:1.5px solid var(--gray2);padding:10px">Every 1–3 months manually</td><td style="border:1.5px solid var(--gray2);padding:10px">Annual plans include weekly maintenance</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Who should install it? Who shouldn't?</h2>
+      <h3>Suitable candidates</h3>
+      <ul>
+        <li>Regular workers who want to automate repetitive tasks and are willing to spend an hour on basic configuration.</li>
+        <li>Solo operators who want multiple AI assistants dividing up daily workload.</li>
+        <li>People mentally prepared for "you install it, you maintain it" — and don't want to be held hostage by their tools.</li>
+      </ul>
+      <h3>Who we'd advise against installing it</h3>
+      <ul>
+        <li>Work computers or company-issued equipment: IT policy usually doesn't permit this kind of tool in a corporate environment. Check with your IT department first.</li>
+        <li>People completely unwilling to learn basic configuration (even changing passwords): even with professional installation, you need to learn to check logs and change passwords.</li>
+        <li>People expecting "install and everything defaults to working, zero maintenance": any tool that can take action carries configuration responsibility — you can't outsource that to the tool itself.</li>
+      </ul>
+
+      <h2>If you decide to install it, do these three defaults first</h2>
+      <ol>
+        <li><strong>Change the default password</strong> — not doing this is like not locking the door.</li>
+        <li><strong>Bind to localhost</strong> — don't expose the Web UI externally.</li>
+        <li><strong>Only install official skills</strong> — don't touch unknown community skill packages.</li>
+      </ol>
+      <div class="callout">Doing these three things substantially reduces risks from permissions, skill sources, and access configuration. The remaining risks come from genuinely targeted attacks — which still require ongoing monitoring, updates, and anomaly handling.</div>
+
+      <h2>Why this article exists on Think BIG's website</h2>
+      <p>Because search results on this topic are almost entirely negative — forums, security guides, media coverage, and no commercial service page at all. We're a team that provides OpenClaw installation services and <strong>deals with these risks every day</strong> — how to set permissions, how to explain risks to clients, how to make it actually usable after installation without hitting landmines. We have first-hand experience.</p>
+      <p>This article isn't here to tell you to "go ahead and install it without worry." It's to <strong>help you see the risks clearly, understand how to handle them, and then make your own decision</strong>.</p>
+
+      <h2>FAQ</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Is OpenClaw safe?</div>
+        <p class="faq-a">It depends on how you install it. Most security risks come from "no permissions set after installation," "unknown-source skills installed," or "default account not password-changed" — not from the framework itself being unsafe. Least privilege, local deployment, and only installing official skills are the three basic things.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Will OpenClaw steal my data?</div>
+        <p class="faq-a">OpenClaw in local deployment runs on your own computer and doesn't actively upload any data anywhere by default. Data leaves through only two paths: calling an external AI model API (necessary for cloud version; local version processes on your machine — questions don't go to the model provider; messages via messaging platforms do pass through that platform), and external services you connect to. If you haven't connected those, OpenClaw only runs on your computer.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Can OpenClaw be hacked?</div>
+        <p class="faq-a">The framework is actively updated with patches for known vulnerabilities. But if you've opened external ports with default passwords, or installed unknown-source skills, the hacking risk is real. We always change default passwords, don't open external ports, and restrict skill sources during installation.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Couldn't the engineer tamper with things during remote installation?</div>
+        <p class="faq-a">We use AnyDesk/DeskIn for the remote session — you can see everything the engineer does throughout. We won't ask you for any account passwords. Keys and passwords are never transmitted via chat. After the session ends, no remote access is retained.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: Who should not install OpenClaw?</div>
+        <p class="faq-a">Three types of people: (1) work computers or company-issued equipment — IT policy usually disallows this kind of tool; (2) people completely unwilling to spend any time learning basic configuration; (3) people who expect "install and everything runs on defaults, zero maintenance."</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Q: How often do I need to update after installation?</div>
+        <p class="faq-a">The OpenClaw framework typically releases an official update every 1–3 months. After installation we recommend subscribing to official announcements. Annual plans (Premium Annual, Annual Flagship) include weekly maintenance and 48-hour failure repair — we handle updates. The Persona Edition is installed once to run; you decide when to update.</p>
+      </div>
+
+      <h2>Conclusion</h2>
+      <p>Whether OpenClaw is safe <strong>depends on whether you got the basic configuration right during installation</strong>. Common risks come from basic mistakes like "no permissions set," "unknown-source skills installed," "default password unchanged" — these are avoidable with an extra hour of setup.</p>
+      <p>If you're willing to spend that hour, or willing to have engineers do it right the first time (including personality selection), OpenClaw is a tool that can save you significant time every day. If you're completely unwilling to learn or have someone set it up — no tool like this will suit you, not just OpenClaw.</p>
+      <p>Think it through before installing. After installation, change the password, bind to localhost, install only official skills. With those three things done, risk is manageable.</p>
+
+      <div class="cta-band">
+        <h3>Decided to install it? Start with the Persona Edition</h3>
+        <p>Taiwan-based engineers install it remotely until it works, with six security defaults done in one go: password changed, localhost-bound, permissions limited, skills whitelisted, API key secured, update plan in place. Want year-round support? Premium Annual or Annual Flagship.</p>
+        <a href="https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services." class="cta-btn" target="_blank" rel="noopener noreferrer">Talk to us on WhatsApp</a>
+        <p style="margin-top:18px;font-size:13px;color:var(--muted)">What does the Persona Edition install? → <a href="/en/guides/openclaw-daizhuang/" style="color:var(--red)">OpenClaw Installation Explained</a></p>
+        <p style="margin-top:8px;font-size:13px;color:var(--muted)">Compare all plans → <a href="/en/pricing/" style="color:var(--red)">Personal plans overview</a></p>
+      </div>
+
+      <nav class="art-nav">
+        <a href="/en/guides/hermes-vs-openclaw/">← Previous: Hermes vs OpenClaw Comparison</a>
+        <a href="/en/guides/">Back to Guides</a>
+      </nav>
+    </div>
+  </article>
+</div>
+
+<script src="/ask-ai.js?v=202609280928" defer></script><script defer src="/assets/homesplit/interactions.js?v=20260927v8"></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a><a href="https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services." target="_blank" rel="noopener noreferrer" aria-label="Think BIG on WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise (Chinese)</a><a href="/enterprise/departments/">AI Departments (Chinese)</a><a href="/en/services/seo-geo/">SEO / AEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/">Deployment Process (Chinese)</a><a href="/trust/">Security (Chinese)</a><a href="/guides/">Guides (Chinese)</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services." target="_blank" rel="noopener noreferrer">Think BIG on WhatsApp &#x2197;</a><!-- TB:TELEGRAM:RESERVED --></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/en/about/">About Think BIG</a><a href="/en/guides/glossary/">Glossary</a><a href="/privacy.html">Privacy Policy (Chinese)</a><a href="/terms.html">Terms of Service (Chinese)</a><a href="/en/contact/">Contact Us</a><a href="/faq/">FAQ (Chinese)</a><a href="/guides/openclaw-safe/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>
