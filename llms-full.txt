@@ -18386,8 +18386,6 @@ Using Tale With You (童話有你), the AI-customized picture book starring your
 
 - How to request:  Via the official LINE account (@974mhgtb) or Email (AI@thinkbigtw.com); for inquiries and review, 15 days; for correction, stopping processing, or deletion, 30 days. Adults who appear in photos may apply directly.
 
-Contact for English-language inquiries: [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or Email (AI@thinkbigtw.com ).
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-11. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
@@ -18396,13 +18394,13 @@ Q1: Is it safe to use my child's photo for a custom picture book? Whether it is 
 
 Sources (checked 2026-10-11)
 
-- Personal Data Protection Act (Articles 2, 3, 4, 5, 8, 11, 20-1), Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+- Personal Data Protection Act (Arts. 2, 3, 4, 5, 8, 11, 20-1) | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
 
-- Basic Act on Artificial Intelligence (Article 4, promulgated January 14, 2026), Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0160093)
+- Basic Act on Artificial Intelligence (Art. 4; promulgated 2026-01-14) | Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0160093)
 
-- Tale With You Privacy Policy v1.3: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
+- Tale With You | Privacy Policy v1.3: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
 
-- Tale With You FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -18472,13 +18470,15 @@ Q1: What are the benefits of a picture book starring your child? Research found 
 
 Sources (checked 2026-10-11)
 
-- Kucirkova, Messer & Sheehy (2014). Reading personalized books with preschool children enhances their word acquisition. First Language, 34(3), 227–243 (in Chinese): [doi.org](https://doi.org/10.1177/0142723714534221)
+- Kucirkova, Messer & Sheehy (2014). Reading personalized books with preschool children enhances their word acquisition. First Language , 34(3), 227–243: [doi.org](https://doi.org/10.1177/0142723714534221)
 
-- 同上，作者公開版本（UCL Discovery） (in Chinese): [discovery.ucl.ac.uk](https://discovery.ucl.ac.uk/1536711/1/Kucirkova_FL%20Main_document_1%204%2013.pdf)
+- Same article, author's open-access version (UCL Discovery): [discovery.ucl.ac.uk](https://discovery.ucl.ac.uk/1536711/1/Kucirkova_FL%20Main_document_1%204%2013.pdf)
 
-- Kucirkova, Messer & Whitelock (2013). Parents reading with their toddlers: The role of personalization in book engagement. Journal of Early Childhood Literacy, 13(4), 445–470 (in Chinese): [doi.org](https://doi.org/10.1177/1468798412438068)
+- Kucirkova, Messer & Whitelock (2013). Parents reading with their toddlers: The role of personalization in book engagement. Journal of Early Childhood Literacy , 13(4), 445–470: [doi.org](https://doi.org/10.1177/1468798412438068)
 
-- American Academy of Pediatrics (2014). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice. Pediatrics, 134(2), 404–409:: [doi.org](https://doi.org/10.1542/peds.2014-1384)
+- American Academy of Pediatrics (2014). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice. Pediatrics , 134(2), 404–409: [doi.org](https://doi.org/10.1542/peds.2014-1384)
+
+- Tale With You | Themes & Samples: [talewithyoutw.com](https://talewithyoutw.com/themes.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -18549,9 +18549,13 @@ Q1: Is there a Taiwan-themed picture book where the child is the main character?
 
 Sources (checked 2026-10-11)
 
-- 行政院 國情簡介：國家公園 (in Chinese): [www.ey.gov.tw](https://www.ey.gov.tw/state/4447F4A951A1EC45/dc08391a-c57c-4cf7-af9a-cc0d9e4ebb1c)
+- Executive Yuan | National Fact Sheet: National Parks: [www.ey.gov.tw](https://www.ey.gov.tw/state/4447F4A951A1EC45/dc08391a-c57c-4cf7-af9a-cc0d9e4ebb1c)
 
-- 農業部林業及自然保育署 阿里山林業鐵路及文化資產管理處〈驛圓復駛：一圓全線通車之夢〉（2024 年 8 月） (in Chinese): [www.forest.gov.tw](https://www.forest.gov.tw/MagazineFile/7277)
+- Forestry and Nature Conservation Agency, Ministry of Agriculture | "Full-Line Service Restored: A Dream of Complete-Line Service" (Alishan Forest Railway article, August 2024): [www.forest.gov.tw](https://www.forest.gov.tw/MagazineFile/7277)
+
+- Tale With You | Taiwan Island Tour theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/taiwan-island.html)
+
+- Tale With You | Taiwan Festival Fun theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/taiwan-festivals.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -18618,9 +18622,11 @@ Q1: When do children in Taiwan start learning zhuyin? Formally in Year 1 of prim
 
 Sources (checked 2026-10-11)
 
-- 教育部教師專業發展平台：〈標音符號與運用〉（國立屏東大學附設實驗國民小學 黃碧智；整理十二年國教國語文課綱的注音教學規範） (in Chinese): [teachernet.admin.moe.edu.tw](https://teachernet.admin.moe.edu.tw/storage/files/3LEWLaXHdUtBAAAnryhhloGzEUUlKTDbKmLFzukt.pdf)
+- Ministry of Education Teacher Professional Development Platform: "Phonetic Symbols and Their Use" (National Pingtung University of Education Affiliated Experimental Elementary School; citing the 12-year National Curriculum Mandarin Language Guidelines on phonetic instruction): [teachernet.admin.moe.edu.tw](https://teachernet.admin.moe.edu.tw/storage/files/3LEWLaXHdUtBAAAnryhhloGzEUUlKTDbKmLFzukt.pdf)
 
-- Kucirkova, Messer & Sheehy (2014). First Language, 34(3), 227–243 (in Chinese): [doi.org](https://doi.org/10.1177/0142723714534221)
+- Kucirkova, Messer & Sheehy (2014). Reading personalized books with preschool children enhances their word acquisition. First Language , 34(3), 227–243: [doi.org](https://doi.org/10.1177/0142723714534221)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -18685,19 +18691,19 @@ In the [Child's name]'s Big Sibling Adventure  theme, the main character (the ol
 
 The book is 21 × 21 cm, 26 interior pages, Chinese text with phonetic notation (zhuyin), optional English rhyming line per page. The main character is drawn from 1–3 frontal photos of the older child. NT$1,500 per book, including domestic Taiwan shipping; approximately 4 working days to produce after the preview is confirmed, then shipped. Orders are placed on Shopee.
 
-Contact: [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-13. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: When is the right time to tell an older child about a new sibling? There is no fixed week. The American Academy of Pediatrics recommends choosing a natural moment and using language the child can relate to in perceivable terms—such as 'when it gets cold outside'—rather than months. Tell the child before extended family discusses the news widely. Q2: Is regression normal after a new sibling arrives? Yes. The AAP notes that regression in sleep, toileting, or behavior is common and normal. Avoid saying 'you are big now.' Provide daily one-on-one time, small meaningful tasks, and natural praise for mature behavior. Q3: Can a picture book about becoming a big sibling help? Yes. A book where the older child is the main character helps them rehearse the transition before it happens. Reading it multiple times before the birth gives children both a script and a sense they are prepared.
 
-Sources (checked 2026-10-13)
+Sources (checked 2026-10-11)
 
-- American Academy of Pediatrics, HealthyChildren.org: Preparing Your Family for a New Baby（2026-02-10 更新） (in Chinese): [healthychildren.org](https://healthychildren.org/English/ages-stages/prenatal/Pages/Preparing-Your-Family-for-a-New-Baby.aspx)
+- American Academy of Pediatrics, HealthyChildren.org: Preparing Your Family for a New Baby (updated 2026-02-10): [healthychildren.org](https://healthychildren.org/English/ages-stages/prenatal/Pages/Preparing-Your-Family-for-a-New-Baby.aspx)
 
-- U.S. National Library of Medicine, MedlinePlus: Preparing children for pregnancy and a new baby (in Chinese): [medlineplus.gov](https://medlineplus.gov/ency/patientinstructions/000635.htm)
+- U.S. National Library of Medicine, MedlinePlus: Preparing children for pregnancy and a new baby: [medlineplus.gov](https://medlineplus.gov/ency/patientinstructions/000635.htm)
+
+- Tale With You | "Becoming a Big Sibling" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/big-sibling.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -18762,23 +18768,23 @@ Tale With You Terms of Service v1.3 clearly notifies consumers of the customized
 
 - Defect reprint:  If the delivered book has a qualifying defect—broken binding, missing pages, blurry printing, colors clearly different from the confirmed preview, or pages that differ from what was confirmed—the brand provides a free reprint. The defect must be reported within 7 days of confirmed delivery with photos.
 
-Contact: [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-13. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: Can I return a custom picture book under Taiwan's 7-day return rule? Custom goods made to a consumer's specification are an exception under the Regulations on Reasonable Exceptions to Right to Cancel Distance Transactions, Article 2(2)—but only if the seller notified you of this exception before the order was placed. If proper notice was given, the 7-day return right does not apply after production starts. Q2: When can I still cancel a custom picture book order? Any time before printing begins (before you confirm the preview). After confirmation, production starts and content changes are no longer possible. Q3: What if the book is defective? Defects are handled separately from the 7-day return right under Civil Code seller warranty provisions. Tale With You provides a free reprint for qualifying defects (broken binding, missing pages, blurry printing, colors clearly different from the confirmed preview) reported within 7 days of delivery with photos. Q4: What is the difference between cancelling and reporting a defect? Cancellation (before printing): full refund. Defect remedy (after delivery): free reprint. The 7-day cooling-off return for change of mind does not apply to validly notified customized goods. The defect remedy exists independently and is not affected by the customized-goods exception.
 
-Sources (checked 2026-10-13)
+Sources (checked 2026-10-11)
 
-- Taiwan Consumer Protection Act (Articles 19, 22), Laws & Regulations Database:: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+- Consumer Protection Act (Arts. 19, 22) | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
 
-- 通訊交易解除權合理例外情事適用準則（第 2 條）｜全國法規資料庫 (in Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)
+- Distance Trading Rescission Right Reasonable Exceptions Regulations (Art. 2) | Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)
 
-- Civil Code (Articles 354, 359): Seller's warranty against defects, Laws & Regulations Database:: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
+- Civil Code (Arts. 354, 359) | Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
 
-- 行政院消費者保護會 (in Chinese): [cpc.ey.gov.tw](https://cpc.ey.gov.tw)
+- Executive Yuan Consumer Protection Commission: [cpc.ey.gov.tw](https://cpc.ey.gov.tw/)
+
+- Tale With You | Terms of Service v1.3: [talewithyoutw.com](https://talewithyoutw.com/terms.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -18851,21 +18857,21 @@ Brand information | Tale With You
 
 - Demo images:  All characters shown on the Tale With You website and in promotional materials are AI-generated illustrations; they are not real children and are not based on any real person's photos.
 
-Contact: [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-15. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: Are AI-generated illustrations in picture books safe? Physical safety is the same as traditionally illustrated books. The important questions are informational: is the book labeled as AI-generated, how are the child's photos handled, is a preview provided, is the book human-checked, and are demo images on the website real children? Taiwan's AI Basic Law Article 4 (Jan 2026) requires transparency and explainability including disclosure of AI-generated output. Q2: Does Taiwan's AI Basic Law require AI picture books to be labeled? Taiwan's Basic Act on Artificial Intelligence Article 4 (promulgated January 14, 2026) requires transparency including appropriate disclosure of AI-generated output. This is a principle-based rule, not a criminal penalty; responsible providers follow it by labeling their books. Q3: How do I know the AI illustration will look like my child? AI drawing from photos captures general likeness (face shape, hair, skin tone) but may not be exact. This is why a preview before printing is essential. Tale With You provides a preview and one free full regeneration per order. See the preview carefully—compare it with the original photo—before confirming. Q4: Are the children shown on the Tale With You website real children? No. All characters on the Tale With You website and in promotional materials are AI-generated illustrations, not based on any real person's photos.
 
-Sources (checked 2026-10-15)
+Sources (checked 2026-10-11)
 
-- Basic Act on Artificial Intelligence (Articles 4, 5, promulgated January 14, 2026), Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0160093)
+- Basic Act on Artificial Intelligence (Arts. 2, 4, 5; promulgated 2026-01-14) | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=H0160093)
 
-- Tale With You Privacy Policy v1.3: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
 
-- Tale With You FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+- Tale With You | Terms of Service v1.3 (Arts. 4, 10): [talewithyoutw.com](https://talewithyoutw.com/terms.html)
+
+- Tale With You | Privacy Policy v1.3: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -18949,8 +18955,6 @@ Tale With You is operated by 大想成業有限公司 (Think BIG Make it Real CO
 
 Shopee store: [shopee.tw/talewithyoutw](https://shopee.tw/talewithyoutw)
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-15. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
@@ -18959,7 +18963,17 @@ Q1: What is Tale With You? Tale With You is an AI-customized picture book where 
 
 Sources (checked 2026-10-15)
 
-- 經濟部商工登記公示資料（GCIS 開放資料）：大想成業有限公司 (in Chinese): [data.gcis.nat.gov.tw](https://data.gcis.nat.gov.tw/od/data/api/6BBA2268-1367-4B42-9CCA-BC17499EBE8C?%24format=json&%24filter=Company_Name%20like%20%E5%A4%A7%E6%83%B3%E6%88%90%E6%A5%AD%20and%20Company_Status%20eq%2001&%24skip=0&%24top=50)
+- Tale With You | Home: [talewithyoutw.com](https://talewithyoutw.com/)
+
+- Tale With You | About: [talewithyoutw.com](https://talewithyoutw.com/about.html)
+
+- Tale With You | How to Order: [talewithyoutw.com](https://talewithyoutw.com/order.html)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- Tale With You | How It Works: [talewithyoutw.com](https://talewithyoutw.com/how-it-works.html)
+
+- Ministry of Economic Affairs, Company Registration Open Data (GCIS): 大想成業有限公司 (Think BIG Make it Real CO., LTD.): [data.gcis.nat.gov.tw](https://data.gcis.nat.gov.tw/od/data/api/6BBA2268-1367-4B42-9CCA-BC17499EBE8C?%24format=json&%24filter=Company_Name%20like%20%E5%A4%A7%E6%83%B3%E6%88%90%E6%A5%AD%20and%20Company_Status%20eq%2001&%24skip=0&%24top=50)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19016,21 +19030,23 @@ In the [Child's name]'s Birthday Adventure  theme, the main character (the child
 
 The book is 21 × 21 cm, 26 interior pages, Chinese with phonetic notation, optional English rhyming lines, two illustration styles. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce after the preview is confirmed, then shipped. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-17. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: What should I look for when choosing a birthday picture book as a gift? Match the child's current interests; check the binding is durable enough for repeated reading; and make sure there is an adult willing to sit and read it together. The AAP's 2024 policy emphasizes reading together as the key to language and literacy development. Q2: Do BSMI toy safety rules apply to picture books? Plain picture books with no attached physical components are not classified as toys; the BSMI commodity inspection mark requirement applies to toys. If the book is bundled with stuffed animals or figurines, those components must meet BSMI standards. Q3: Can I order a custom picture book as a birthday gift for someone else's child? Yes, but the child's parent or legal guardian must be the one who submits the child's photos. You can propose and pay for the gift; the parent handles the photos and reviews the preview. See the full guide in 'Giving a Custom Book to a Friend's Child.'
 
-Sources (checked 2026-10-17)
+Sources (checked 2026-10-15)
 
-- 經濟部標準檢驗局 新聞資料（2023 年 9 月 28 日）：「玩具」選購重點及使用安全 (in Chinese): [safety.bsmi.gov.tw](https://safety.bsmi.gov.tw/wSite/public/Attachment/f1695861288403.pdf)
+- Bureau of Standards, Metrology and Inspection, Ministry of Economic Affairs | News Release (2023-09-28): “Toys” – Key Points for Selection and Safe Use: [safety.bsmi.gov.tw](https://safety.bsmi.gov.tw/wSite/public/Attachment/f1695861288403.pdf)
 
-- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics, 154(6) (in Chinese): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414)
+- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics , 154(6): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414/)
 
-- 教育部 閱讀起步走閱讀手冊（110 年，國立臺灣圖書館編著） (in Chinese): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
+- Ministry of Education | Bookstart Reading Handbook (2021 edition, compiled by National Taiwan Library): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
+
+- Tale With You | Birthday theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/birthday.html)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19087,21 +19103,21 @@ In the [Child's name]'s Goodnight Sleepwalk  theme, the main character discovers
 
 Reading this book is itself part of the bedtime sequence: when you reach the last page, the child knows sleep is next. The 21 × 21 cm, 26-page book has Chinese text with phonetic notation on every character; optional English rhyming lines. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-18. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: How do I build a bedtime reading routine for my child? Four steps: set a consistent bedtime, create a fixed quiet pre-sleep sequence (bath, teeth, pajamas, water, bed, story), read the story in bed with the child already lying down, and end with the same closing phrase every night. Consistency matters more than duration. Q2: What if my child wants the same bedtime book every night? This is normal for children aged 2–3. Repetition consolidates language and story structure. Keep 3–5 books in rotation and let the child choose; introduce a new book alongside an old favorite once the current favorite has been read many times. Q3: What is 'brush, book, bed'? It is the American Academy of Pediatrics' simplified label for a consistent pre-sleep routine: brush teeth, read a book, go to bed—in that order, every night from infancy onward. Q4: How long should bedtime reading last? Five to ten minutes is enough if it happens every night. A consistent short routine is more effective than occasional long sessions. The goal is predictability, not duration.
 
-Sources (checked 2026-10-18)
+Sources (checked 2026-10-15)
 
-- 衛生福利部國民健康署 孕產兒關懷網站：生活小常識——培養良好的睡眠習慣、嬰兒猝死症預防有訣竅 (in Chinese): [mammy.hpa.gov.tw](https://mammy.hpa.gov.tw/Home/NewsKBContent?id=3626&type=01)
+- Ministry of Health and Welfare, National Health Administration | Maternal and Child Care Website: “Everyday Tips — Establishing Good Sleep Habits; Prevention Tips for Sudden Infant Death Syndrome”: [mammy.hpa.gov.tw](https://mammy.hpa.gov.tw/Home/NewsKBContent?id=3626&type=01)
 
-- American Academy of Pediatrics, HealthyChildren.org：Healthy Sleep Habits: How Many Hours Does Your Child Need? (in Chinese): [www.healthychildren.org](https://www.healthychildren.org/English/healthy-living/sleep/Pages/Healthy-Sleep-Habits-How-Many-Hours-Does-Your-Child-Need.aspx)
+- American Academy of Pediatrics, HealthyChildren.org: Healthy Sleep Habits: How Many Hours Does Your Child Need?: [www.healthychildren.org](https://www.healthychildren.org/English/healthy-living/sleep/Pages/Healthy-Sleep-Habits-How-Many-Hours-Does-Your-Child-Need.aspx)
 
-- 教育部 閱讀起步走閱讀手冊（110 年，國立臺灣圖書館編著） (in Chinese): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
+- Ministry of Education | Bookstart Reading Handbook (2021 edition, compiled by National Taiwan Library): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
+
+- Tale With You | "Goodnight Dreamland" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/goodnight.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19154,9 +19170,7 @@ Brand information | Tale With You
 
 ## Tale With You: name in title and throughout the story
 
-In every Tale With You book, the child’s name appears in the book's title (e.g., [Child's name]'s Birthday Adventure ) and in the narrative at key moments in the story. Nicknames are accepted. The 21 × 21 cm, 26-page book has Chinese text with phonetic notation on every character, so the child can see their name written with both characters and phonetic symbols—making it one of the first "words" they encounter in print. NT$1,500 including domestic Taiwan shipping.
-
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
+In every Tale With You book, the child’s name appears in the book's title (e.g., [Child's name]'s Birthday Adventure ) and in the narrative at key moments in the story. Nicknames are accepted. The 21 × 21 cm, 26-page book has Chinese text with phonetic notation on every character, so the child can see their name written with both characters and phonetic symbols—making it one of the first "words" they encounter in print. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
 Content in this section is taken from the Tale With You website and verified on 2026-10-19. Illustrations and characters in the book and videos are AI-generated.
 
@@ -19164,13 +19178,17 @@ Content in this section is taken from the Tale With You website and verified on 
 
 Q1: Does putting a child's name in a story book make a difference? Research shows infants recognize their own name by around 4.5 months and use it as an attention cue by 5 months. Seeing their name in a book catches a child's attention in a way that another name does not. The specific long-term reading benefit from personalized books is less established, but attention is where learning begins. Q2: Is it better to use a child's nickname or formal name in a custom book? The name the child actually hears and identifies with every day—usually the nickname—is more powerful than a formal name they rarely hear. Tale With You accepts nicknames. Q3: What age does name recognition develop? Research found infants show preference for their own name as early as 4.5 months (auditory recognition). By 5 months, hearing their name increases attention to subsequent stimuli. Character recognition for their written name typically develops as part of early literacy learning around age 5–7.
 
-Sources (checked 2026-10-19)
+Sources (checked 2026-10-15)
 
-- Mandel, D. R., Jusczyk, P. W., & Pisoni, D. B. (1995). Infants' recognition of the sound patterns of their own names. Psychological Science, 6(5), 314–317（期刊頁面） (in Chinese): [www.psychologicalscience.org](https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.1995.tb00517.x)
+- Mandel, D. R., Jusczyk, P. W., & Pisoni, D. B. (1995). Infants’ recognition of the sound patterns of their own names. Psychological Science , 6(5), 314–317 (journal page): [www.psychologicalscience.org](https://www.psychologicalscience.org/journals/psychological-science/j.1467-9280.1995.tb00517.x/)
 
-- University at Buffalo 新聞稿（1994）：Infants as young as 4½ months recognize their name (in Chinese): [www.buffalo.edu](https://www.buffalo.edu/news/releases/1994/06/3135.html)
+- University at Buffalo News Release (1994): “Infants as young as 4½ months recognize their name”: [www.buffalo.edu](https://www.buffalo.edu/news/releases/1994/06/3135.html)
 
-- Parise, E., Friederici, A. D., & Striano, T. (2010). "Did You Call Me?" 5-month-old infants own name guides their attention. PLoS ONE, 5(12), e14208 (in Chinese): [pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC2997051)
+- Parise, E., Friederici, A. D., & Striano, T. (2010). “Did You Call Me?” 5-month-old infants’ own name guides their attention. PLoS ONE , 5(12), e14208: [pmc.ncbi.nlm.nih.gov](https://pmc.ncbi.nlm.nih.gov/articles/PMC2997051/)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- Tale With You | How It Works: [talewithyoutw.com](https://talewithyoutw.com/how-it-works.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19242,23 +19260,23 @@ A book where the child is the main character offers natural entry points for CRO
 
 Every Tale With You book is 21 × 21 cm, 26 interior pages, Chinese with phonetic notation on every character. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-20. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: What is dialogic reading? Dialogic reading is a structured way of reading picture books where the adult asks questions and responds to the child's answers, turning shared reading into a conversation. Research found positive effects on oral language for preschoolers. Q2: What are CROWD prompts? CROWD stands for: Completion (fill-the-blank), Recall (what happened before), Open-ended (no single right answer), Wh-questions (who/what/where/when/why), and Distancing (connecting to the child's own experience). One or two per page spread is enough. Q3: What are PEER steps? PEER: Prompt (ask a CROWD-type question), Evaluate (listen to the actual answer), Expand (add one richer word or connecting idea), Repeat (ask the child to say the expanded version back). One PEER exchange takes about 20–30 seconds. Q4: How quickly does dialogic reading show results? The original Whitehurst et al. 1988 study found children's expressive vocabulary was 8–9 months ahead of a control group after one month. Taiwan's Bookstart handbook reports similar improvement in expressive language in one month of regular practice.
 
-Sources (checked 2026-10-20)
+Sources (checked 2026-10-15)
 
-- What Works Clearinghouse (2007, revised). Dialogic Reading. Early Childhood Education Intervention Report. U.S. Department of Education (in Chinese): [ies.ed.gov](https://ies.ed.gov/ncee/WWC/Docs/InterventionReports/WWC_Dialogic_Reading_020807.pdf)
+- What Works Clearinghouse (2007, revised). Dialogic Reading. Early Childhood Education Intervention Report. U.S. Department of Education: [ies.ed.gov](https://ies.ed.gov/ncee/WWC/Docs/InterventionReports/WWC_Dialogic_Reading_020807.pdf)
 
-- Whitehurst et al. (1988). Accelerating language development through picture book reading. Developmental Psychology, 24(4), 552–559:: [doi.org](https://doi.org/10.1037/0012-1649.24.4.552)
+- Whitehurst, G. J., Falco, F. L., Lonigan, C. J., et al. (1988). Accelerating language development through picture book reading. Developmental Psychology , 24(4), 552–559: [doi.org](https://doi.org/10.1037/0012-1649.24.4.552)
 
-- 教育部 閱讀起步走閱讀手冊（110 年，國立臺灣圖書館編著） (in Chinese): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
+- Ministry of Education | Bookstart Reading Handbook (2021 edition, compiled by National Taiwan Library): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
 
-- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics, 154(6) (in Chinese): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414)
+- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics , 154(6): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414/)
+
+- Tale With You | Themes & Samples: [talewithyoutw.com](https://talewithyoutw.com/themes.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19286,6 +19304,8 @@ The short answer
 Taiwan's Ministry of Education Bookstart handbook (2021 edition) describes six developmental stages for picture-book selection from birth through age 5. The stages are guides, not gates: a 4-year-old who loves board books they can operate independently is doing fine; a 2-year-old who wants the same 1-year-old book re-read is learning through repetition. The most important factor at any age is whether there is an adult willing to read together.
 
 ## 1. Stage-by-stage guidance
+
+Since 2009 (ROC Year 98), the Ministry of Education has promoted the Bookstart program, encouraging shared reading for children aged 0–5 and commissioning the National Taiwan Library each year to curate recommended titles and compile a reading handbook. The annual reading lists and handbooks are available on the [National Taiwan Library’s Bookstart page](https://wwwacc.ntl.edu.tw/np.asp?ctNode=1399&mp=14). The table below is adapted from the “Infant and Toddler Developmental Characteristics and Shared Reading Strategies Reference Table” in the Appendix to the 2021 edition of the handbook ([Bookstart Reading Handbook](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)).
 
 Age Developmental focus Book characteristics
 0–6 months Visual tracking, high-contrast perception, sensory exploration High-contrast black-and-white patterns; bright primary colors; simple shapes; cloth books, soft books, board books that survive mouthing
@@ -19322,9 +19342,7 @@ Brand information | Tale With You
 
 Tale With You books are most naturally matched to the 2–5 age range: they have a simple plot with a beginning, middle, and end (suitable from age 2), include zhuyin phonetic notation on every character (useful from age 3–4 when children start tracking text), and 10 themes cover topics children in that range find engaging (birthdays, dinosaurs, vehicles, emotions, Taiwan's landmarks).
 
-Parents who have used the book with 1-year-olds report the child responds to seeing their own face on the pages even before they can follow the story. The 21 × 21 cm, 26-page format is handled comfortably by children aged 2 and up. NT$1,500 including domestic Taiwan shipping.
-
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
+Parents who have used the book with 1-year-olds report the child responds to seeing their own face on the pages even before they can follow the story. The 21 × 21 cm, 26-page format is handled comfortably by children aged 2 and up. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
 Content in this section is taken from the Tale With You website and verified on 2026-10-21. Illustrations and characters in the book and videos are AI-generated.
 
@@ -19332,13 +19350,17 @@ Content in this section is taken from the Tale With You website and verified on 
 
 Q1: What picture books are right for a 1-year-old? Board books on daily-life topics (bath, meals, animals) with big images and few words. At this stage children understand words the caregiver names while pointing, and they enjoy physically turning pages. Q2: What picture books are right for a 3-year-old? Simple stories with repeated sentence patterns, books about daily routines and emotions, and anything the child is currently passionate about. At 3, re-reading the same book many times is normal and developmentally beneficial. Q3: At what age can a child start using a custom picture book with zhuyin? The story and pictures can be enjoyed from infancy. The zhuyin notation becomes actively useful from around age 5–7 when children start learning to read independently. Before that age, zhuyin gives parents a text to read aloud easily and sets up familiarity for when school instruction begins. Q4: Should I keep reading picture books after my child turns 5? Yes. The Bookstart program focuses on 0–5 as a target, but shared reading is valuable well beyond that age. The AAP recommends continuing read-alouds into elementary school.
 
-Sources (checked 2026-10-21)
+Sources (checked 2026-10-15)
 
-- 教育部 閱讀起步走閱讀手冊（110 年，國立臺灣圖書館編著），附錄：嬰幼兒發展特徵與共讀策略參考表 (in Chinese): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
+- Ministry of Education | Bookstart Reading Handbook (2021 edition, compiled by National Taiwan Library) – Appendix: Reference Table of Infant/Toddler Developmental Characteristics and Shared Reading Strategies: [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/public/Attachment/16715141325.pdf)
 
-- 國立臺灣圖書館 閱讀推廣與館藏充實計畫：閱讀起步走 (in Chinese): [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/np.asp?ctNode=1399&mp=14)
+- National Taiwan Library | "Bookstart" Reading Promotion and Collection Enhancement Program: [wwwacc.ntl.edu.tw](https://wwwacc.ntl.edu.tw/np.asp?ctNode=1399&mp=14)
 
-- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics, 154(6) (in Chinese): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414)
+- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics , 154(6): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414/)
+
+- Tale With You | Themes & Samples: [talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19401,21 +19423,23 @@ Every Tale With You book is primarily in Chinese (Mandarin) with phonetic notati
 
 The 21 × 21 cm, 26-page book; NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-22. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: Do bilingual picture books help children learn a second language? Research found that using native-language explanations during English picture-book reading improved vocabulary learning compared to English-only explanations (Lugo-Neris et al., 2010, LSHSS). The study involved 22 Spanish-English children; the finding is promising but limited in scope. The AAP recommends reading in the family's preferred language. Q2: Do I need to read in English to help my child with English? No. The AAP recommends reading in the language you are most comfortable and expressive in. If you are more expressive in Chinese, an energetic Chinese reading is more beneficial than a flat English one. Bridging—reading one sentence in each language—is an option when you are comfortable in both. Q3: Does Taiwan's 2030 Bilingual Policy require preschools to teach in English? No. The 2030 Bilingual Nation Policy focuses on government services and higher education. As of 2026, there is no specific mandate for preschool bilingual instruction for all children. Parents make their own decisions about language exposure for preschoolers.
 
-Sources (checked 2026-10-22)
+Sources (checked 2026-10-15)
 
-- Lugo-Neris, M. J., Jackson, C. W., & Goldstein, H. (2010). Facilitating vocabulary acquisition of young English language learners. Language, Speech, and Hearing Services in Schools, 41(3), 314–327（PubMed 摘要） (in Chinese): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/20421611)
+- Lugo-Neris, M. J., Jackson, C. W., & Goldstein, H. (2010). Facilitating vocabulary acquisition of young English language learners. Language, Speech, and Hearing Services in Schools , 41(3), 314–327 (PubMed abstract): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/20421611/)
 
-- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics, 154(6) (in Chinese): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414)
+- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics , 154(6): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414/)
 
-- 行政院 政策櫥窗：2030 雙語國家政策發展藍圖 (in Chinese): [www.ey.gov.tw](https://www.ey.gov.tw/Page/5B2FC62D288F4DB7/db9d6590-58c1-4c85-8194-1740802320cb)
+- Executive Yuan | Policy Showcase: "2030 Bilingual Nation Policy Development Blueprint": [www.ey.gov.tw](https://www.ey.gov.tw/Page/5B2FC62D288F4DB7/db9d6590-58c1-4c85-8194-1740802320cb)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- Tale With You | Themes & Samples: [talewithyoutw.com](https://talewithyoutw.com/themes.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19482,19 +19506,19 @@ In the [Child's name]'s Emotion Planet  theme, the main character (the child) vi
 
 21 × 21 cm, 26 interior pages, Chinese with zhuyin phonetic notation. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-23. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: What are the four emotional abilities in Taiwan's preschool curriculum? Taiwan's Ministry of Education Preschool Curriculum Guidelines define four abilities: awareness and identification (noticing the emotion), understanding (connecting it to a cause), expression (finding words or actions for it), and regulation (managing it). Picture books support all four. Q2: Should I read about negative emotions too? Yes. Taiwan's Preschool Curriculum Guidelines explicitly state that positive and negative emotions both have causes worth exploring, and that an important outcome is children learning to accept rather than deny emotions. Skipping or minimizing negative emotions in books misses the main developmental purpose. Q3: How do feelings books help children? By providing examples outside the child's own emotional state—seeing a character feel something in a book is lower-stakes than feeling it yourself. This gives children vocabulary (knowing the word 'frustrated') and understanding (connecting the emotion to a cause) before they need to apply those skills in real situations.
 
-Sources (checked 2026-10-23)
+Sources (checked 2026-10-24)
 
-- 教育部 幼兒園教保活動課程大綱（105 年 12 月 1 日發布），情緒領域：領域目標、領域內涵與課程目標｜教育部主管法規共用系統 (in Chinese): [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+- Ministry of Education | Preschool Curriculum Framework (issued 2016-12-01), Emotional Domain: Domain Goals and Learning Indicators | MOE Statutes Database: [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
 
-- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics, 154(6) (in Chinese): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414)
+- American Academy of Pediatrics (2024). Literacy Promotion: An Essential Component of Primary Care Pediatric Practice: Policy Statement. Pediatrics , 154(6): [pubmed.ncbi.nlm.nih.gov](https://pubmed.ncbi.nlm.nih.gov/39342414/)
+
+- Tale With You | "Feelings Planet" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/feelings.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19642,8 +19666,6 @@ Under Terms of Service v1.3:
 
 - An adult may directly request data deletion at any time. If before printing: the photo is removed and the adult's face no longer appears; the ordering parent may cancel for a full refund. If after printing: the physical book cannot be recalled, but all digital files will be deleted within the same timeline as the child’s files (3 days after confirmed delivery).
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-24. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
@@ -19652,11 +19674,13 @@ Q1: Can parents appear in a custom picture book? Yes. Tale With You allows 1–2
 
 Sources (checked 2026-10-24)
 
-- Personal Data Protection Act (Articles 2, 3, 7, 8, 19), Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+- Personal Data Protection Act (Arts. 2, 3, 8, 19) | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
 
-- Tale With You Terms of Service v1.3: [talewithyoutw.com](https://talewithyoutw.com/terms.html)
+- Tale With You | Privacy Policy v1.3 (adult photos, rights): [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
 
-- Tale With You FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+- Tale With You | Terms of Service v1.3 (Art. 4: Preview Confirmation and Free Regeneration; Art. 12: Your Declarations): [talewithyoutw.com](https://talewithyoutw.com/terms.html)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19799,7 +19823,7 @@ Tale With You accepts 1–3 frontal photos of the child. Phone camera quality is
 
 Photos are used only to produce this book, stored with AES-256 encryption, and deleted within 3 days of confirmed delivery. Full details: [Privacy Policy](https://talewithyoutw.com/privacy.html).
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
+Specifications and price: 21 × 21 cm, 26 pages, Chinese text with phonetic notation on every character (English rhyming lines optional); choose style A (watercolor album) or B (character diorama) at checkout; Tangyuan the puppy appears on every page. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
 Content in this section is taken from the Tale With You website and verified on 2026-10-25. Illustrations and characters in the book and videos are AI-generated.
 
@@ -19807,9 +19831,15 @@ Content in this section is taken from the Tale With You website and verified on 
 
 Q1: What is the most important thing in a photo for a custom picture book? A clear, front-facing view of the face with good even lighting and no beauty filters. AI face-capture tools work from actual facial features; blurry, side-on, or heavily filtered photos produce less accurate illustrations. Q2: Should I use the front or rear camera? Rear camera. Taiwan's BOCA passport photo specifications note that the front (selfie) camera may cause mirror-image reversal or wide-angle distortion—both reduce face-capture accuracy. Q3: How many photos should I send for a custom book? Tale With You accepts 1–3 frontal photos. Sending 2–3 photos from slightly different angles gives the AI more information to work from, which often improves likeness consistency across the 26 pages. Q4: What if I don't like how the AI drew my child? One free full regeneration is included per order. For best results, send a different photo with the regeneration request—different lighting or a more neutral expression—so the second attempt has better input.
 
-Sources (checked 2026-10-25)
+Sources (checked 2026-10-24)
 
-- 外交部領事事務局 晶片護照照片規格（2025-08-29 更新） (in Chinese): [www.boca.gov.tw](https://www.boca.gov.tw/cp-16-4123-c2932-1.html)
+- Ministry of Foreign Affairs, Bureau of Consular Affairs | Chip Passport Photo Specifications (updated 2025-08-29): [www.boca.gov.tw](https://www.boca.gov.tw/cp-16-4123-c2932-1.html)
+
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- Tale With You | How It Works: [talewithyoutw.com](https://talewithyoutw.com/how-it-works.html)
+
+- Tale With You | Terms of Service v1.3 (Art. 4: Preview Confirmation and Free Regeneration): [talewithyoutw.com](https://talewithyoutw.com/terms.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -19960,19 +19990,19 @@ In the [Child's name]'s Year of Festival Fun  theme, the main character joins th
 
 Reading the book the week before an upcoming festival turns shared reading into festival preparation. 21 × 21 cm, 26 interior pages, Chinese with phonetic notation. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-26. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: What are Taiwan's official festivals? Under the Commemorative Days and Festivals Implementation Act (published May 28, 2025), the official festivals include Spring Festival, Lantern Festival, Tomb Sweeping, Dragon Boat Festival, Mid-Autumn Festival, National Day, and others. Winter Solstice is widely observed but not listed as an official festival under the Act. Q2: How do I explain Taiwan's festivals to a preschooler? Start with their memories, look at the calendar together, begin with food and activities rather than history, and let them explain it to someone else. Taiwan's Preschool Curriculum Guidelines recommend an experiential, dialogue-based approach—not lecture. Q3: Is Winter Solstice an official holiday in Taiwan? No. Winter Solstice (Dongzhi) is not listed as an official festival in the Commemorative Days and Festivals Implementation Act and is not a national holiday. It is widely observed as a traditional family occasion.
 
-Sources (checked 2026-10-26)
+Sources (checked 2026-10-24)
 
-- 紀念日及節日實施條例（第 3、4、5、6、8 條，2025 年 5 月 28 日公布）｜全國法規資料庫 (in Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0020095)
+- Commemorative Days and Holidays Implementation Act (Arts. 3, 4, 5, 6, 8; published 2025-05-28) | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0020095)
 
-- 教育部 幼兒園教保活動課程大綱（105 年 12 月 1 日發布），社會領域：領域內涵與課程目標｜教育部主管法規共用系統 (in Chinese): [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+- Ministry of Education | Preschool Curriculum Framework (issued 2016-12-01), Social Domain: Domain Content and Learning Indicators | MOE Statutes Database: [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+
+- Tale With You | "Taiwan Festival Fun" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/taiwan-festivals.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -20123,21 +20153,21 @@ Tale With You is a physical, printed, sewn-bound picture book that arrives at yo
 
 21 × 21 cm, 26 interior pages, Chinese with phonetic notation, optional English rhyming lines per page. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-27. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: How much screen time is recommended for children under 5? WHO (2019): none under 1 year; none sedentary at 1 year; max 1 hour/day for 2–4 year olds. Taiwan HPA: none under 2; max 1 hour/day at 2+, in 30-minute sessions with 10-minute breaks. Q2: Does reading a picture book count as screen time? No. A physical printed picture book is not a screen. It counts as zero screen time under WHO and Taiwan HPA guidelines and represents the kind of interactive, language-rich activity both organizations recommend as a replacement for sedentary screen use. Q3: Can screens replace picture books for language learning? High-quality educational video watched together with an adult can support language learning. However, passive solo screen viewing—particularly before age 2—is not equivalent. Physical books require face-to-face conversation, which is what young children's developing language systems need most.
 
-Sources (checked 2026-10-27)
+Sources (checked 2026-10-24)
 
-- World Health Organization (2019-04-24). To grow up healthy, children need to sit less and play more（新聞稿，含各年齡建議） (in Chinese): [www.who.int](https://www.who.int/news/item/24-04-2019-to-grow-up-healthy-children-need-to-sit-less-and-play-more)
+- World Health Organization (2019-04-24). To grow up healthy, children need to sit less and play more (news release, includes age-specific guidelines): [www.who.int](https://www.who.int/news/item/24-04-2019-to-grow-up-healthy-children-need-to-sit-less-and-play-more)
 
-- World Health Organization (2019). Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age:: [www.who.int](https://www.who.int/publications/i/item/9789241550536)
+- World Health Organization (2019). Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age (ISBN 9789241550536): [www.who.int](https://www.who.int/publications/i/item/9789241550536)
 
-- 衛生福利部：搶救幼兒惡視力 3C產品加警語（資料來源：國民健康署） (in Chinese): [mohw.gov.tw](https://mohw.gov.tw/cp-16-21201-1.html)
+- Ministry of Health and Welfare | "Save Young Children's Eyesight: 3C Products to Carry Warning Labels" (source: National Health Administration): [mohw.gov.tw](https://mohw.gov.tw/cp-16-21201-1.html)
+
+- Tale With You | How It Works: [talewithyoutw.com](https://talewithyoutw.com/how-it-works.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -20301,23 +20331,23 @@ In the [Child's name]'s Dinosaur Age Expedition  theme, the main character disco
 
 21 × 21 cm, 26 interior pages, Chinese with phonetic notation, optional English. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-28. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: Where can I take my dinosaur-loving child in Taiwan? National Museum of Natural Science in Taichung (Life Science Hall 1F: animatronic T. rex, Velociraptors, Ankylosaur, Oviraptor nest, Tarbosaurus skull; atrium: pterosaurs) and National Taiwan Museum in Taipei (Ancient Life hall: Huanghe Titan, Tarbosaurus, Velociraptor, pterosaurs, ichthyosaurs, plesiosaurs, mosasaurs). Q2: Are there real dinosaur fossils from Taiwan? No. Taiwan's fossil sites at Penghu Channel and Zuozhen (Tainan) have Pleistocene land vertebrate fossils from mammals and other animals—these are significant prehistoric finds, but not dinosaur fossils. Q3: How do I use a dinosaur picture book with a museum visit? Before: find the book's dinosaurs and set a museum goal. During: find them in real life and take a photo. After: re-read the book and compare it with what you saw—what was the same, what was different. This builds critical reading alongside the science interest.
 
-Sources (checked 2026-10-28)
+Sources (checked 2026-10-24)
 
-- 國立自然科學博物館 生命科學廳（恐龍展示區更新、樓層展區） (in Chinese): [www.nmns.edu.tw](https://www.nmns.edu.tw/ch/exhibitions/galleries/life-science-hall)
+- National Museum of Natural Sciences | Life Science Hall (Dinosaur Display Zone updates, floor exhibitions): [www.nmns.edu.tw](https://www.nmns.edu.tw/ch/exhibitions/galleries/life-science-hall/)
 
-- 文化部藝文活動平台：國立臺灣博物館「古生物大展－生命的史詩與演化共舞」常設展介紹 (in Chinese): [event.culture.tw](https://event.culture.tw/mocweb/reg/NTM/Detail.init.ctr?actId=90081)
+- Ministry of Culture Arts & Culture Events Platform: National Taiwan Museum "Ancient Life — Epic of Life and Evolution and Dance" permanent exhibition: [event.culture.tw](https://event.culture.tw/mocweb/reg/NTM/Detail.init.ctr?actId=90081)
 
-- 國立臺灣博物館 古生物館（館址） (in Chinese): [www.ntm.gov.tw](https://www.ntm.gov.tw/cp.aspx?n=5438)
+- National Taiwan Museum | Paleontology Museum (address): [www.ntm.gov.tw](https://www.ntm.gov.tw/cp.aspx?n=5438)
 
-- 國立臺灣博物館 古生物館展覽資訊（活動類型：常設展） (in Chinese): [www.ntm.gov.tw](https://www.ntm.gov.tw/News_actives.aspx?n=5473&sms=13389&_CSN=2446)
+- National Taiwan Museum | Paleontology Museum exhibition information (type: permanent exhibition): [www.ntm.gov.tw](https://www.ntm.gov.tw/News_actives.aspx?n=5473&sms=13389&_CSN=2446)
+
+- Tale With You | "Dinosaur Age" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/dinosaur.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -20455,19 +20485,19 @@ In the [Child's name]'s Dream Careers  theme, the main character tries on three 
 
 21 × 21 cm, 26 interior pages, Chinese with phonetic notation, optional English. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-29. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: When should children start thinking about careers? In Taiwan's curriculum framework, elementary school focuses on awareness and curiosity—not career selection. Preschool age is about understanding that community helpers and different kinds of workers exist. Career decision-making only begins formally in junior high. Q2: How should I respond when my child says they want to be an astronaut? Ask open-ended questions ('what do you think astronauts do every day?'), add one real detail you look up together, and connect it to something they can do now. Treat career dreams at this age as windows into current interests and values, not binding decisions. Q3: Is it normal for children to change their career dreams? Yes. Research on career development finds that early career interests are weakly predictive of adult career choice. Frequent changes are developmentally normal—each one reflects the child's current interests and imagination.
 
-Sources (checked 2026-10-29)
+Sources (checked 2026-10-24)
 
-- 國家教育研究院（2020）十二年國教課程綱要國民中小學暨普通型高中議題融入說明手冊，4.15 生涯規劃教育 (in Chinese): [www.naer.edu.tw](https://www.naer.edu.tw/upload/1/16/doc/2027/%E8%AD%B0%E9%A1%8C%E8%9E%8D%E5%85%A5%E8%AA%AA%E6%98%8E%E6%89%8B%E5%86%8A(%E5%AE%9A%E7%A8%BF%E7%89%88).pdf)
+- National Academy for Educational Research (2020). 12-year National Curriculum Issue Integration Handbook, 4.15 Career Planning Education: [www.naer.edu.tw](https://www.naer.edu.tw/upload/1/16/doc/2027/%E8%AD%B0%E9%A1%8C%E8%9E%8D%E5%85%A5%E8%AA%AA%E6%98%8E%E6%89%8B%E5%86%8A(%E5%AE%9A%E7%A8%BF%E7%89%88).pdf)
 
-- 教育部 幼兒園教保活動課程大綱（105 年 12 月 1 日發布），社會領域：領域內涵與課程目標｜教育部主管法規共用系統 (in Chinese): [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+- Ministry of Education | Preschool Curriculum Framework (issued 2016-12-01), Social Domain: Domain Content and Learning Indicators | MOE Statutes Database: [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+
+- Tale With You | "Dream Jobs" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/dream-jobs.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -20604,19 +20634,19 @@ In the [Child's name]'s Vehicles Extravaganza  theme, the main character spends 
 
 Both illustration styles are available: Watercolor Edition A and Figurine Edition B. 21 × 21 cm, 26 interior pages, Chinese with phonetic notation, optional English. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-30. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: What activities can I do with a vehicle-obsessed child beyond reading the book? Four activities: spot-the-detail (find specific parts in the book then in real life), compare-by-use (which vehicle for which problem), draw-a-route (a simple map with toy vehicles), and tell-a-story (the child narrates what the vehicle does that day). Q2: At what age do children typically develop vehicle obsessions? Vehicle interest often peaks between ages 2 and 5. This aligns with a broader developmental stage of categorizing the world by function and purpose—vehicles are especially compelling because they move purposefully and produce sound. Q3: How do I make vehicle observation safe? Always observe from a safe position on a sidewalk or behind a fence, away from traffic, with an adult present. Watching vehicles from a pedestrian bridge or a designated viewing area is ideal.
 
-Sources (checked 2026-10-30)
+Sources (checked 2026-10-26)
 
-- AAP｜陪孩子享受朗讀 (in Chinese): [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)
+- AAP, HealthyChildren.org | Help Your Child Enjoy Reading Aloud: [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)
 
-- AAP｜把閱讀放進家庭生活的建議 (in Chinese): [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/10-Tips-to-Help-Your-Child-Fall-in-Love-with-Reading.aspx)
+- AAP, HealthyChildren.org | 10 Tips to Help Your Child Fall in Love with Reading: [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/10-Tips-to-Help-Your-Child-Fall-in-Love-with-Reading.aspx)
+
+- Tale With You | "Vehicles" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/vehicles.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -20751,19 +20781,19 @@ In the [Child's name]'s World Tour Adventure  theme, the main character (the chi
 
 21 × 21 cm, 26 interior pages, Chinese with phonetic notation, optional English. NT$1,500 including domestic Taiwan shipping; approximately 4 working days to produce. Orders are placed on Shopee.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-10-31. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: How do I use a world-travel picture book as a geography activity? Four steps: pick one destination per session, find it on a world map together, draw the route on paper, and write one question about the place. No geographic accuracy required—the act of searching and drawing builds spatial intuition. Q2: What is the right age to start world geography with a picture book? Any age where the child is interested. At 2–3, the focus is on recognizing visual differences and naming the place. At 4–5, children can search the map and draw routes. At 6+, the written question step becomes meaningful. Q3: Do I need to teach children facts about other countries? Not primarily. The goal at this age is building curiosity and a sense that interesting places exist beyond Taiwan. One real-world touch per destination (a food to taste, a word to learn) is more effective than reciting facts.
 
-Sources (checked 2026-10-31)
+Sources (checked 2026-10-26)
 
-- 教育部｜幼兒園教保活動課程大綱，認知領域 (in Chinese): [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+- Ministry of Education | Preschool Curriculum Framework, Cognitive Domain | MOE Statutes Database: [edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
 
-- AAP｜陪孩子享受朗讀 (in Chinese): [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)
+- AAP, HealthyChildren.org | Help Your Child Enjoy Reading Aloud: [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)
+
+- Tale With You | "World Tour" theme & samples: [talewithyoutw.com](https://talewithyoutw.com/themes/world-tour.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -20908,19 +20938,21 @@ Brand information | Tale With You
 
 - Cancellation and defects:  Free cancellation before the preview is confirmed. Customized-goods exception properly notified via checkbox. Free reprint for qualifying defects (broken binding, missing pages, blurry print, colors clearly different from preview) reported within 7 days of delivery.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-11-01. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: What should I check before buying a custom picture book? Seven things: customization scope (does the child appear visually throughout), story content (can you read it before ordering), physical specs (size, page count, binding), photo handling (who handles them, how stored, when deleted), preview and revision rules (what can you change, how many times), production timeline (when does the clock start), and cancellation/defect policy. Q2: What is the difference between 'name in text' and 'face in illustrations'? Name-only customization adds the child's name to fixed template text; the child does not appear in the illustrations. Face-in-illustrations means the AI draws the child's actual appearance into each scene. These are very different products at potentially similar prices. Q3: Is a preview always provided before printing for a custom book? Not by all providers. Some send the preview only after full payment; some provide only a cover preview, not interior pages. With Tale With You, the preview is provided before printing begins and you can request text edits (unlimited) and one free full regeneration before confirming.
 
-Sources (checked 2026-11-01)
+Sources (checked 2026-10-26)
 
-- Personal Data Protection Act (Articles 2, 8), Laws & Regulations Database:: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+- Personal Data Protection Act | Art. 8 | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
 
-- 通訊交易解除權合理例外情事適用準則｜第 2 條 (in Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)
+- Distance Trading Rescission Right Reasonable Exceptions Regulations | Art. 2 | Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)
+
+- Tale With You | Terms of Service: [talewithyoutw.com](https://talewithyoutw.com/terms.html)
+
+- Tale With You | How to Order: [talewithyoutw.com](https://talewithyoutw.com/order.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -21068,19 +21100,19 @@ Approximately 4 working days after the preview is confirmed and payment is compl
 
 If you need the book by a specific date, contact the team first—especially for high-demand periods.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Tale%20With%20You%20production%20timeline.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-11-02. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: How long does a Tale With You custom picture book take? Approximately 4 working days after you confirm the preview and payment is complete, excluding Saturday, Sunday, and public holidays. This does not include photo submission time, preview exchange time, or logistics delivery. Q2: When should I order a custom book if I need it for a birthday? Work backward: logistics delivery (2–3 days) + 4 working days production + 2 days preview exchange + 1 day submission + 1 day preparation = at least 10 calendar days minimum. For safety, order at least 2 weeks before the birthday, or 3–4 weeks around major holidays. Q3: When does the 4-working-day production clock start? From the moment you confirm the preview AND payment is complete—not from the order date. Photo submission and the preview exchange period happen first, before the 4-day clock starts. Q4: What can delay a custom book order? Requesting a full regeneration (extra round of preview exchange), public holidays in the production period, and high-demand periods around major holidays.
 
-Sources (checked 2026-11-02)
+Sources (checked 2026-10-26)
 
-- Tale With You Terms of Service v1.3 (Article 6: Production timeline): [talewithyoutw.com](https://talewithyoutw.com/terms.html)
+- Tale With You | How to Order: [talewithyoutw.com](https://talewithyoutw.com/order.html)
 
-- Tale With You FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+- Tale With You | Terms of Service, Art. 6: [talewithyoutw.com](https://talewithyoutw.com/terms.html)
+
+- Tale With You | How It Works: [talewithyoutw.com](https://talewithyoutw.com/how-it-works.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -21223,7 +21255,7 @@ Grandparents can participate in two ways:
 
 - As a character in the book:  Provide 1–2 personal frontal photos and personally confirm consent via the official channel. The grandparent's character appears in selected spreads alongside the child (and optionally the parent). No extra charge.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20including%20grandparents%20in%20a%20Tale%20With%20You%20book.) or AI@thinkbigtw.com .
+Per the Privacy Policy, all order files (photos, production files, preview images, finished PDF) stored by the brand are deleted within 3 days of confirmed delivery. Data retained by third-party platforms (Shopee chat, LINE messages) and by OpenAI is subject to those services’ own policies.
 
 Content in this section is taken from the Tale With You website and verified on 2026-11-03. Illustrations and characters in the book and videos are AI-generated.
 
@@ -21231,9 +21263,13 @@ Content in this section is taken from the Tale With You website and verified on 
 
 Q1: Can grandparents order a Tale With You book as a gift? Grandparents can pay for and give the book as a gift—but the parent (or legal guardian) must be the one who submits the child's photos and places the order, as only the legal representative can consent to the child's photos being used. Q2: Can grandparents appear in the book? Yes. Each adult who appears must personally provide their own photos and consent. The ordering parent cannot consent on the grandparent's behalf. Q3: What if grandparents want to give the book as a surprise without telling the parents? This is not possible if grandparents are acting as the ordering party, because the parent must be the one who submits the child's photos. Grandparents can propose and fund the gift; the parent does the actual ordering. A complete surprise is not feasible for a custom book that uses the child's photos.
 
-Sources (checked 2026-11-03)
+Sources (checked 2026-10-26)
 
-- AAP｜送書並留下親友訊息的建議 (in Chinese): [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/10-Tips-to-Help-Your-Child-Fall-in-Love-with-Reading.aspx)
+- AAP, HealthyChildren.org | 10 Tips to Help Your Child Fall in Love with Reading (book gifts from friends and family): [www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/10-Tips-to-Help-Your-Child-Fall-in-Love-with-Reading.aspx)
+
+- Tale With You | Privacy Policy: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
+
+- Tale With You | How It Works: [talewithyoutw.com](https://talewithyoutw.com/how-it-works.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -21384,7 +21420,7 @@ Tale With You explicitly states in its privacy policy (v1.3) and terms of servic
 
 The photo goes to: OpenAI (AI generation, US), Cloudflare (encrypted temporary storage, US), the printing partner (print file only, no original photos), and the logistics provider (address label only). Platform-side data (Shopee chat, LINE messages) is subject to those platforms' own terms.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20Tale%20With%20You%20photo%20handling.) or AI@thinkbigtw.com .
+Deletion timelines: the brand deletes its own copies of photos, production files, preview images, and the finished PDF within 3 days of confirmed delivery. The printing partner deletes production files within 30 days of print completion under the production contract. Data retained by Shopee or LINE platforms, and by OpenAI under its own policy, is not within the brand’s deletion scope.
 
 Content in this section is taken from the Tale With You website and verified on 2026-11-04. Illustrations and characters in the book and videos are AI-generated.
 
@@ -21392,11 +21428,13 @@ Content in this section is taken from the Tale With You website and verified on 
 
 Q1: Is posting children's photos online safe? It cannot be made completely risk-free. UNICEF recommends considering four things: would the child be okay with this later, who actually sees it (check account settings), what information it reveals beyond the image (school uniforms, locations, full name), and whether you can delete it if you change your mind. Q2: What information can a child's photo reveal beyond their face? School name from uniforms or signs, home location from house numbers/street signs or GPS metadata in the file, full name on artwork or sports jerseys, and regular routines inferred from repeated location tags. Q3: Is providing photos to a custom book service the same as posting them publicly? No. Providing photos to a reputable service with a stated purpose, named recipients, stated deletion timeline, and enforceable PDPA rights is a different accountability framework from posting publicly where control is effectively lost. The service may still carry risks—evaluate each one individually.
 
-Sources (checked 2026-11-04)
+Sources (checked 2026-10-26)
 
-- UNICEF｜親職分享與兒童隱私 (in Chinese): [www.unicef.org](https://www.unicef.org/parenting/child-care/sharenting)
+- UNICEF | Sharenting and children's privacy: [www.unicef.org](https://www.unicef.org/parenting/child-care/sharenting)
 
-- Personal Data Protection Act (Articles 2, 3, 8), Laws & Regulations Database:: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+- Personal Data Protection Act | Arts. 3, 8 | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Tale With You | Privacy Policy: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -21539,19 +21577,19 @@ Gift orders work best when the gift giver and the child's parent coordinate:
 
 - Tale With You's Terms of Service Article 12 requires the submitting person to confirm they are the parent or legal guardian of the child in the photos; the brand may refuse production if there is reasonable doubt.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20give%20a%20Tale%20With%20You%20book%20as%20a%20gift.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-11-05. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: Can I order a custom picture book as a gift for a friend's child? Yes, but you cannot submit the child's photos yourself. The child's parent or legal guardian must submit the photos—and must be informed of the purpose and consent before doing so. You can pay for the gift; the parent handles the photo steps. Q2: Can I use photos of my friend's child that they posted on social media? No. Using a photo from social media submits it to a third-party AI and cloud processor without the parent's informed consent for that specific purpose—different from why they originally shared it. Tale With You's terms require the submitter to declare they are the parent or legal guardian; the brand may refuse if there is reasonable doubt. Q3: What if I want it to be a surprise for the parent too? A complete surprise is not feasible for a custom book using a child's photos. The parent must actively submit the photos and review the preview. The gift can still be meaningful if framed as 'I want to give your child this, and I'd like your help making it—I'll pay for it.'
 
-Sources (checked 2026-11-05)
+Sources (checked 2026-10-26)
 
-- 民法｜第 1086 條 (in Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=1086)
+- Civil Code | Art. 1086 | Laws & Regulations Database of the ROC: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=1086)
 
-- Personal Data Protection Act (Articles 2, 7, 8), Laws & Regulations Database:: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+- Personal Data Protection Act | Arts. 7, 8 | Laws & Regulations Database: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Tale With You | Terms of Service: [talewithyoutw.com](https://talewithyoutw.com/terms.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
@@ -21706,21 +21744,19 @@ Every Tale With You order includes:
 
 After you confirm the preview, printing begins. No content changes are possible. Free reprint applies for qualifying defects only.
 
-Contact (English): [WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Tale%20With%20You%20preview%20process.) or AI@thinkbigtw.com .
-
 Content in this section is taken from the Tale With You website and verified on 2026-11-06. Illustrations and characters in the book and videos are AI-generated.
 
 ## FAQ
 
 Q1: Will an AI custom picture book look exactly like my child? AI illustration captures general likeness (face shape, hair color, skin tone, eye shape) but cannot guarantee exact accuracy across all 26 pages. The preview is your opportunity to review and request changes before anything is printed. Q2: What does 'one free regeneration' mean? One full-book redo of all 26 pages of illustrations, done once per order. It is not page-by-page adjustments. To make the most of it, tell the production team what was wrong and provide a better photo if possible. Q3: What can I change after seeing the preview? Before confirming: unlimited text edits; one free full regeneration for the illustrations. After confirming: nothing—printing begins and content changes are not possible. Q4: What happens if the printed book has errors I did not catch in the preview? Errors that were present in the confirmed preview cannot be remedied after printing—you confirmed them. Errors that differ from the confirmed preview qualify as defects; Tale With You provides a free reprint for defects (broken binding, blurry print, missing pages, colors clearly different from confirmed preview) reported within 7 days of delivery.
 
-Sources (checked 2026-11-06)
+Sources (checked 2026-10-26)
 
-- Tale With You Terms of Service v1.3 (Articles 4, 7): [talewithyoutw.com](https://talewithyoutw.com/terms.html)
+- Tale With You | Terms of Service, Art. 4: [talewithyoutw.com](https://talewithyoutw.com/terms.html)
 
-- Tale With You FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
+- Tale With You | Privacy Policy: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
 
-- Tale With You Privacy Policy v1.3: [talewithyoutw.com](https://talewithyoutw.com/privacy.html)
+- Tale With You | FAQ: [talewithyoutw.com](https://talewithyoutw.com/faq.html)
 
 This article summarizes public official documents, laws, and research to help parents evaluate shared reading and custom picture books. It is not legal, medical, or parenting advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. Brand information is taken from the brand’s own website and follows the latest version published there.
 
