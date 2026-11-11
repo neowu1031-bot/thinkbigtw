@@ -30,7 +30,7 @@ T = {
   ai='本頁提示詞與圖卡為 AI 輔助製作。', ai_foot='AI 輔助製作',
   sub_h='想收到新玩法？', sub_p='有新的實作提示詞時，我們會通知你。可以只加 LINE，也可以留 Email。',
   line_btn='加 LINE 官方帳號好友', email_l='Email', email_ph='you@example.com',
-  consent='我同意 Think BIG（大想成業有限公司）依<a href="/privacy.html#ai-inquiry" target="_blank" rel="noopener noreferrer">隱私權政策</a>保存我的 Email，只用來寄送新的實作提示詞，可隨時來信 AI@thinkbigtw.com 要求取消或刪除。',
+  consent='我同意 Think BIG 依<a href="/privacy.html#free-resources-subscribe" target="_blank" rel="noopener noreferrer">隱私權政策</a>保存我的 Email，用於寄新玩法通知。',
   submit='訂閱新玩法', sending='送出中…', ok='已收到，之後有新玩法會寄到這個信箱。', errEmail='請輸入正確的 Email。', errConsent='請先勾選同意。',
   errRate='送出次數較多，請稍後再試。', errFail='尚未確認收件，請稍後再試，或', errFailLink='改加 LINE 好友',
   vid_note='示範影片在 Think BIG 的 Instagram 與 YouTube 頻道。',
@@ -50,7 +50,7 @@ T = {
   ai='Prompts and cards on this page are AI-assisted.', ai_foot='AI-assisted production',
   sub_h='Want new ideas as they come?', sub_p='We will let you know when new prompts are added. Add us on WhatsApp or leave an email.',
   line_btn='Message us on WhatsApp', email_l='Email', email_ph='you@example.com',
-  consent='I agree that Think BIG (Da Xiang Cheng Ye Co., Ltd.) keeps my email under the <a href="/en/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and uses it only to send new prompts. I can ask to cancel or delete it any time at AI@thinkbigtw.com.',
+  consent='I agree that Think BIG may keep my email under the <a href="/en/privacy/#free-resources-subscribe" target="_blank" rel="noopener noreferrer">Privacy Policy</a> to send new-ideas notices.',
   submit='Subscribe', sending='Sending…', ok='Received. New ideas will be sent to this address.', errEmail='Please enter a valid email.', errConsent='Please tick the consent box first.',
   errRate='Too many attempts. Please try again later.', errFail='We could not confirm receipt. Please try again later, or', errFailLink='message us on WhatsApp',
   vid_note='Demo videos are on the Think BIG Instagram and YouTube channels.',
@@ -146,8 +146,8 @@ def card_html(c, lang, t):
         if notes:
             h.append('<ul class="fr-notes">' + ''.join(f'<li>{escape(n)}</li>' for n in notes) + '</ul>')
     h.append(f'<p class="fr-links"><span>{escape(t["video"])}:</span>'
-             f'<a href="{IG}" target="_blank" rel="noopener noreferrer" data-video-link="ig" data-card-id="{cid}">{t["ig"]}</a>'
-             f'<a href="{YT}" target="_blank" rel="noopener noreferrer" data-video-link="yt" data-card-id="{cid}">{t["yt"]}</a></p>')
+             f'<a href="{c.get("video", {}).get("ig", IG)}" target="_blank" rel="noopener noreferrer" data-video-link="ig" data-card-id="{cid}">{t["ig"]}</a>'
+             f'<a href="{c.get("video", {}).get("yt", YT)}" target="_blank" rel="noopener noreferrer" data-video-link="yt" data-card-id="{cid}">{t["yt"]}</a></p>')
     h.append('</div></article>')
     return '\n'.join(h)
 
