@@ -127,7 +127,7 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 - 每季 AI 戰略規劃會議（1 次 / 季，共 4 次）★
 
-- 年度旗艦方案，依需求報價，預約訪談了解費用
+- 年度旗艦方案 NT$48,000，年約制，續約 NT$43,000
 
 季度規劃等進階服務的內容與範圍，請於購買前與顧問確認。
 
@@ -135,11 +135,11 @@ URL: https://thinkbigtw.com/annual-flagship/
 
 方案價格
 
-依需求報價（年約制，下單前請先聊聊確認需求）
+NT$48,000（續約 NT$43,000）
 
 [前往蝦皮下單｜確認需求再付款](https://shopee.tw/shop/105010395)
 
-※ 下單前需完成業務盤點訪談並確認雙系統架構。本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，非本方案年費所含。次年可選配續約，費用依需求報價。
+※ 下單前需完成業務盤點訪談並確認雙系統架構。本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，非本方案年費所含。次年可選配續約，續約價 NT$43,000。
 
 ---
 
@@ -202,17 +202,17 @@ URL: https://thinkbigtw.com/annual-pro/
 
 - 全年無限次諮詢，專屬工程師直達
 
-- 尊榮年約方案，依需求報價，年約制
+- 尊榮年約方案 NT$40,000，年約制，續約 NT$36,000
 
 需要雙 AI Agent 系統＋季度 AI 戰略規劃？→ [看「年度旗艦」](https://thinkbigtw.com/annual-flagship/)。
 
 方案價格
 
-依需求報價（年約制，下單前請先聊聊確認需求）
+NT$40,000（續約 NT$36,000）
 
 [前往蝦皮下單｜確認需求再付款](https://shopee.tw/product/105010395/48258528741)
 
-※ 下單前需完成需求訪談並選定主系統。本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，非本方案年費所含。次年可選配續約，費用依需求報價。
+※ 下單前需完成需求訪談並選定主系統。本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，非本方案年費所含。次年可選配續約，續約價 NT$36,000。
 
 ---
 
@@ -380,13 +380,13 @@ OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透�
 
 - 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
 
-- 服務費依需求報價，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
+- 服務費 NT$18,000 ，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
 
 不想自己維護？→ [看「尊榮年約」](https://thinkbigtw.com/annual-pro/)或[「年度旗艦」](https://thinkbigtw.com/annual-flagship/)，全年有工程師陪跑。
 
 方案價格
 
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
+NT$18,000
 
 [前往蝦皮下單｜下單後預約遠端安裝時間](https://s.shopee.tw/19tR2HgG4)
 
@@ -549,7 +549,7 @@ Budget-conscious and want to start with one system? → [See Annual Plan — Pre
 
 Plan price
 
-Pricing on request (annual contract — please discuss requirements before proceeding)
+NT$48,000 (renewal NT$43,000)
 
 [Ask on WhatsApp — confirm requirements first](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Annual%20Plan%20%E2%80%94%20Flagship.)
 
@@ -622,7 +622,7 @@ Need dual AI Agent systems + quarterly AI strategy planning? → [See Annual Pla
 
 Plan price
 
-Pricing on request (annual contract — please discuss requirements before proceeding)
+NT$40,000 (renewal NT$36,000)
 
 [Ask on WhatsApp — confirm requirements first](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Annual%20Plan%20%E2%80%94%20Premier.)
 
@@ -798,7 +798,7 @@ Want someone to look after the system for a full year? → [Annual plan — Prem
 
 Plan price
 
-Pricing on request
+NT$18,000
 
 [Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20plan.)
 
@@ -2935,17 +2935,29 @@ URL: https://thinkbigtw.com/en/
 
 AI THAT WORKS. FOR YOUR BUSINESS.
 
-# Put AI to work.
-Free your team
-for what matters.
+# Replies, lookups, reports:
+hand them to your AI assistant.
 
 Starting from security,
 we build AI Agents inside your company's own environment.
 
+[Personal, from NT$8,000](https://thinkbigtw.com/en/pricing/personal/)
+[Business, from NT$60,000](https://thinkbigtw.com/en/pricing/enterprise/)
 [Book a free 30-minute assessment →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20assessment.)
-[See how setup works →](https://thinkbigtw.com/en/services/ai-agent-setup/)
 
 Delivered within 30 days once scope is frozen and data is in place. Enterprise pages are currently in Chinese; ask us on WhatsApp for an English walkthrough.
+
+Plans and pricing
+
+- [Single Agent NT$8,000 Your first personal AI assistant, on your own computer](https://thinkbigtw.com/en/pricing/personal/#tier1)
+
+- [Dual Agent NT$18,000 Two assistants that share memory and split the work](https://thinkbigtw.com/en/dual-agent/)
+
+- [Premier Annual NT$40,000 One person who wants an engineer on call all year](https://thinkbigtw.com/en/annual-pro/)
+
+- [Flagship Annual NT$48,000 Solo operators handing several departments to AI](https://thinkbigtw.com/en/annual-flagship/)
+
+- [Business plan from NT$60,000 Companies with several users and a knowledge base](https://thinkbigtw.com/en/pricing/enterprise/)
 
 Workflow integration
 Permissions and review
@@ -6094,6 +6106,12 @@ Enterprise use
 
 Enterprise deployment architecture is chosen based on your data handling policy, team collaboration needs, and maintenance responsibilities. Both cloud-assisted and on-premises options use a requirements-first, contract-based approach — data flow, access boundaries, acceptance testing, and SLA are all confirmed upfront.
 
+Business plan: from NT$60,000
+
+How it differs from the personal annual plan: used by multiple people in a company, a knowledge base built from company data, local-model deployment and a security review. Hardware not included.
+
+The business plan includes an AI readiness check: with your company's written consent, we take stock of software usage time and file types on the computers, without reading contents or recording passwords, to find the first thing AI is best placed to do.
+
 ## Initial deployment assessment
 
 ## Enterprise deployment options
@@ -6394,15 +6412,17 @@ Who it's for: Anyone installing their first personal AI Agent on their own compu
 
 Single AI Agent Setup | OpenClaw
 Variant A · Full skill pack + custom helper
-Pricing on request
+NT$8,000
 Full personal skill pack + 1 custom helper; Coding Agent integration optional
 [Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup%20%28OpenClaw%29.)
 
 Single AI Agent Setup | Hermes
 Variant B · Cross-session persistent memory, gets smarter over time
-Pricing on request
+NT$8,000
 Cross-session persistent memory + full personal skill pack; same price, choose one
 [Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup%20%28Hermes%29.)
+
+[Buy on Shopee | Single AI Agent NT$8,000](https://shopee.tw/product/105010395/45107951008)
 
 No monthly fee. No maintenance commitment. For individual use only — may not be used for business operations or serving third-party clients. Full refund if installation cannot be completed due to a technical issue on our side.
 
@@ -6422,9 +6442,11 @@ OpenClaw + Hermes installed separately, each with own settings; standard persona
 
 Dual AI Agent
 MCP memory sync + cross-Agent collaboration meeting room
-Pricing on request
+NT$18,000
 OpenClaw + Hermes MCP memory sync; cross-Agent collaboration meeting room (exclusive to this edition); custom skill count based on consultation; 2-hour online tech walkthrough + 7-day post-installation support
 [See Dual AI Agent page →](https://thinkbigtw.com/en/dual-agent/)
+
+[Buy on Shopee | Dual AI Agent NT$18,000](https://s.shopee.tw/19tR2HgG4)
 
 AnyDesk / DeskIn remote installation. No annual operations commitment. If you want someone to maintain it long-term after setup, see Tier 3 or add the System Health Check & Repair service.
 
@@ -6438,15 +6460,17 @@ Who it's for: Individuals who don't want to maintain it themselves and need some
 
 Single AI Agent
 Subtitle: Annual Plan — Premier
-Pricing on request
+NT$40,000(renewal 36,000)
 Hermes or OpenClaw (your choice), fully custom, multi-Agent MCP sync; weekly maintenance + skill additions
 [See Annual Plan — Premier →](https://thinkbigtw.com/en/annual-pro/)
 
 Dual AI Agent
 Subtitle: Annual Plan — Flagship
-Pricing on request
+NT$48,000(renewal 43,000)
 Hermes × OpenClaw × Claude Code multi-Agent architecture, multi-department coverage, CRM / cloud storage / Google Workspace integration
 [See Annual Plan — Flagship →](https://thinkbigtw.com/en/annual-flagship/)
+
+[Buy on Shopee | Premier NT$40,000](https://shopee.tw/product/105010395/48258528741)[Buy on Shopee | Flagship NT$48,000](https://shopee.tw/product/105010395/47108617097)
 
 Neither tier is discounted. Process: place inquiry → requirements interview → remote installation → annual plan starts. Renewal is optional in subsequent years; pricing is based on requirements and includes weekly maintenance + 48-hour repair SLA.
 
@@ -6470,7 +6494,8 @@ SLA — — 48-hour repair SLA
 
 Renewal — — Optional in subsequent years (pricing on request)
 
-Price Pricing on request Pricing on request Pricing on request
+Price NT$8,000 NT$18,000  (Dual AI Agent) Premier NT$40,000 (renewal 36,000)
+Flagship NT$48,000 (renewal 43,000)
 
 CTA [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup.) [Dual AI Agent page](https://thinkbigtw.com/en/dual-agent/) [Annual Plan — Premier](https://thinkbigtw.com/en/annual-pro/) / [Annual Plan — Flagship](https://thinkbigtw.com/en/annual-flagship/)
 
@@ -13849,7 +13874,13 @@ AI AGENT / 能力範圍
 PRICING / 方案定價
 
 ## 公司導入 AI，
-依需求報價
+NT$60,000 起
+
+公司方案　NT$60,000 起
+
+跟個人年約的差別：公司多人使用、用公司資料建知識庫、本地模型部署與資安審查。不含硬體。
+
+企業方案包含 AI 導入健檢：經貴公司書面同意，盤點電腦上的軟體使用時間與檔案類型，不讀內容、不記錄密碼，找出 AI 最值得先做的事。
 
 三種方案，清楚定義範圍與交付天數，都含第一年維護服務；AI 模型費用由客戶自備。實際內容與報價依需求訪談確認。
 
@@ -13857,7 +13888,7 @@ STARTER / 入門級
 
 入門方案
 
-依需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
+依實際需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
 
 員工直接問公司的 SOP 和規章。知識庫最多 30 份文件，AI 依文件回答、附出處；沒有依據就交回人確認。
 
@@ -13887,7 +13918,7 @@ STANDARD / 標準級
 
 標準方案
 
-依需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
+依實際需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
 
 回答問題，也幫忙打草稿。文件最多 100 份，還能處理試算表，並新增一項工作草稿任務（詢問摘要、回覆草稿或表單摘要三選一）。
 
@@ -13918,7 +13949,7 @@ COMPLETE / 完整級
 
 完整方案
 
-依需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
+依實際需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
 
 回答、打草稿，文件還會自動同步。額外包含一個唯讀串接（例如雲端硬碟資料夾自動同步），以及可加購擴充包。
 
@@ -14082,7 +14113,7 @@ TB FRAME 以評估定義、架構建置、驗證交付與治理維運四階段�
 
 企業方案有哪些級距？
 
-企業方案依需求報價，請[預約需求訪談](https://thinkbigtw.com/contact/)取得正式報價。三種方案（入門／標準／完整）均含建置、教學影片與第一年維護服務。首年內均可補差價升級。第二年選配續約，由客戶自己決定是否續約，不自動扣款。
+公司方案 NT$60,000 起（不含硬體），實際依需求報價，請[預約需求訪談](https://thinkbigtw.com/contact/)取得正式報價。三種方案（入門／標準／完整）均含建置、教學影片與第一年維護服務。首年內均可補差價升級。第二年選配續約，由客戶自己決定是否續約，不自動扣款。
 
 企業服務如何界定報價範圍？
 
@@ -16328,20 +16359,31 @@ URL: https://thinkbigtw.com/
 
 AI THAT WORKS. FOR YOUR BUSINESS.
 
-# 讓 AI 上工。
-讓團隊專注，
-真正重要的事。
+# 回訊息、找資料、整理報表，
+交給你的 AI 助理。
 
 從守護企業資安出發，
 把 AI Agent 建在你公司自己的環境裡。
 
-[探索 AI 實戰體驗 ↗](https://thinkbigtw.com/experience/)[了解企業導入 →](https://thinkbigtw.com/enterprise/)
+[個人方案　NT$8,000 起](https://thinkbigtw.com/pricing/personal/)[公司方案　NT$60,000 起](https://thinkbigtw.com/enterprise/)
 
 🔊 點一下開聲音
 
 AI 生成虛擬人物廣告・主持人為 AI 生成非真實存在
 
 [預約 30 分鐘免費評估 →](https://thinkbigtw.com/enterprise/start/)
+
+方案與價格
+
+- [單 Agent 個人助理 NT$8,000 第一次想要一個裝在自己電腦上的 AI 助理](https://thinkbigtw.com/pricing/personal/#tier1)
+
+- [雙 Agent NT$18,000 想讓兩個 AI 助理分工、記憶互通](https://thinkbigtw.com/dual-agent/)
+
+- [尊榮年約 NT$40,000 想要有人顧一整年的個人](https://thinkbigtw.com/annual-pro/)
+
+- [旗艦年約 NT$48,000 一人公司，想把多個部門的事交出去](https://thinkbigtw.com/annual-flagship/)
+
+- [公司方案 NT$60,000 起 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
 
 流程整合 權限與覆核 持續維運
 
@@ -26773,6 +26815,12 @@ URL: https://thinkbigtw.com/pricing/enterprise/
 
 企業部署依資料處理政策、部門協作與維護責任選擇架構。雲端整合與地端配置均採需求評估及合約制，逐項確認資料流向、權限邊界、驗收與 SLA。
 
+公司方案　NT$60,000 起
+
+跟個人年約的差別：公司多人使用、用公司資料建知識庫、本地模型部署與資安審查。不含硬體。
+
+企業方案包含 AI 導入健檢：經貴公司書面同意，盤點電腦上的軟體使用時間與檔案類型，不讀內容、不記錄密碼，找出 AI 最值得先做的事。
+
 ## 部署條件初步評估
 
 ## 企業部署選項
@@ -26881,9 +26929,9 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ### 企業使用
 
-有員工、要多部門同時用、資料不能出公司，或需要合約 SLA 的公司。走需求訪談＋合約制，官網不顯示固定價。
+有員工、要多部門同時用、資料不能出公司，或需要合約 SLA 的公司。公司方案 NT$60,000 起（不含硬體），走需求訪談＋合約制，實際依需求報價。
 
-洽詢報價 · 本地或雲端
+NT$60,000 起 · 本地或雲端
 
 - 雲端輔助版：低門檻、多部門快速用起來
 
@@ -26899,7 +26947,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 一個人在用：一人公司、自由工作者、個人副業，或公司主管想先給自己裝一套。把 AI 模型裝在自己的電腦上，電腦規格不夠可改搭雲端大模型，同方案、同價格。
 
-個人方案請至蝦皮賣場選購，或預約需求訪談取得報價
+NT$8,000 起 · 蝦皮賣場選購
 
 - 個人方案 1｜單 AI Agent 搭建：OpenClaw 或 Hermes 擇一，完整技能包，支援 7 天
 
@@ -26913,7 +26961,7 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ## 個人方案 3｜年約與維護
 
-裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。兩檔：尊榮年約（單 AI Agent）與年度旗艦（雙 AI Agent），依需求報價。
+裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。兩檔：尊榮年約（單 AI Agent）NT$40,000（續約 36,000）與年度旗艦（雙 AI Agent）NT$48,000（續約 43,000）。
 
 [看年約三檔 →](https://thinkbigtw.com/pricing/personal/#tier3)
 
@@ -26933,19 +26981,19 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ### 企業使用 → [看方案](https://thinkbigtw.com/pricing/enterprise/)
 
-- 雲端輔助版企業雲端大模型 API 部署 · 依合約 洽詢報價
+- 雲端輔助版企業雲端大模型 API 部署 · 依合約 NT$60,000 起
 
-- 地端版本地部署，資料不出公司 · 依合約 洽詢報價
+- 地端版本地部署，資料不出公司 · 依合約 NT$60,000 起
 
 ### 個人使用 → [看比較表](https://thinkbigtw.com/pricing/personal/)
 
-- 個人方案 1｜單 AI Agent 搭建OpenClaw 或 Hermes 擇一 · 支援 7 天 [蝦皮賣場](https://shopee.tw/shop/105010395)
+- 個人方案 1｜單 AI Agent 搭建OpenClaw 或 Hermes 擇一 · 支援 7 天 NT$8,000
 
 - 個人方案 2｜雙 AI Agent 共存版OpenClaw＋Hermes 各自運作 · 7 天技術諮詢 [LINE 諮詢](https://lin.ee/n5KW430)
 
-- 個人方案 2｜雙 AI Agent[OpenClaw＋Hermes](https://thinkbigtw.com/dual-agent/) · 記憶互通 · 協作會議室 · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 [蝦皮賣場](https://shopee.tw/shop/105010395)
+- 個人方案 2｜雙 AI Agent[OpenClaw＋Hermes](https://thinkbigtw.com/dual-agent/) · 記憶互通 · 協作會議室 · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 NT$18,000
 
-- 個人方案 3｜年約單 AI Agent／雙 AI Agent · 顧一整年 依需求報價
+- 個人方案 3｜年約單 AI Agent／雙 AI Agent · 顧一整年 尊榮 NT$40,000／旗艦 NT$48,000
 
 ## 加購區（掛在個人門下，不算方案階梯）
 
@@ -26970,7 +27018,7 @@ OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/
 
 - 安裝方式：AnyDesk／DeskIn 遠端連線；若因我方技術問題無法完成安裝，全額退費
 
-※ 價格為我方服務費，不含第三方 AI 模型用量費。企業方案一律依需求訪談後報價，官網不顯示固定數字。
+※ 價格為我方服務費，不含第三方 AI 模型用量費。公司方案 NT$60,000 起，實際依需求訪談報價。
 
 ---
 
@@ -27021,14 +27069,16 @@ Tier 1 · 單 AI Agent 搭建 · 支援 7 天
 
 [單 AI Agent 搭建｜OpenClaw
 變體 A · 完整技能包＋客製小幫手
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
+NT$8,000
 完整個人技能包＋1 客製小幫手；Coding Agent 串接為選配
 前往蝦皮下單 →](https://shopee.tw/product/105010395/45107951008)
 [單 AI Agent 搭建｜Hermes
 變體 B · 跨對話持久記憶，越用越懂你
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
+NT$8,000
 跨對話持久記憶＋完整個人技能包；同價，擇一即可
 前往蝦皮下單 →](https://shopee.tw/product/105010395/45107951008)
+
+[蝦皮購買｜單 AI Agent NT$8,000](https://shopee.tw/product/105010395/45107951008)
 
 無月費、無維運承諾；僅供個人使用，不得用於營業或替客戶服務；若因我方技術問題無法完成安裝，全額退費。
 
@@ -27047,9 +27097,11 @@ OpenClaw＋Hermes 各自安裝、各自設定；標準個人技能包；7 天技
 LINE 諮詢此方案 →](https://lin.ee/n5KW430)
 [雙 AI Agent
 記憶互通＋跨 Agent 協作會議室
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
+NT$18,000
 OpenClaw＋Hermes MCP 記憶互通；跨 Agent 協作會議室（此版本專屬）；技能數依訪談；2 小時線上技術導覽＋安裝後 7 天技術諮詢
 看雙 AI Agent 頁 →](https://thinkbigtw.com/dual-agent/)
+
+[蝦皮購買｜雙 AI Agent NT$18,000](https://s.shopee.tw/19tR2HgG4)
 
 AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧，看個人方案 3 或加購「系統健檢故障修復」。
 
@@ -27063,14 +27115,16 @@ Tier 3 · 顧一整年 · 主打
 
 [單 AI Agent
 副標：尊榮年約
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
+NT$40,000（續約 36,000）
 Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能
 看尊榮年約頁 →](https://thinkbigtw.com/annual-pro/)
 [雙 AI Agent
 副標：年度旗艦
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
+NT$48,000（續約 43,000）
 Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合
 看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
+
+[蝦皮購買｜尊榮年約 NT$40,000](https://shopee.tw/product/105010395/48258528741)[蝦皮購買｜年度旗艦 NT$48,000](https://shopee.tw/product/105010395/47108617097)
 
 兩檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年可選配續約，費用依需求報價，含每週維護＋48 小時故障修復。
 
@@ -27094,7 +27148,8 @@ SLA — — 48 小時故障修復
 
 續約 — — 次年可選配續約（依需求報價）
 
-價格 [蝦皮賣場選購](https://shopee.tw/shop/105010395) [蝦皮賣場選購](https://shopee.tw/shop/105010395) [蝦皮賣場選購](https://shopee.tw/shop/105010395)
+價格 NT$8,000 NT$18,000 尊榮 NT$40,000（續約 36,000）
+旗艦 NT$48,000（續約 43,000）
 
 CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 AI Agent](https://thinkbigtw.com/dual-agent/) [尊榮年約](https://thinkbigtw.com/annual-pro/)／[年度旗艦](https://thinkbigtw.com/annual-flagship/)
 
