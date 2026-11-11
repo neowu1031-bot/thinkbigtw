@@ -164,6 +164,22 @@ async function deadline(promise, ms) {
   try { return await Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('timeout')), ms); })]); }
   finally { clearTimeout(timer); }
 }
+// 11/9：英文訪客。知識庫整份是中文、規則句也偏中文，備援 Llama 常被帶回中文（「I'll respond in Traditional Chinese」）。
+// 最新一句沒有中文字、且有英文字 → 系統提示最後一段加英文語言指示；備援回覆仍不是英文就重試一次。
+const CJK_CHAR = /[\u3400-\u9fff\uf900-\ufaff]/u;
+const CJK_ALL = /[\u3400-\u9fff\uf900-\ufaff]/gu;
+export const LANGUAGE_RULE_EN = `
+
+[Language] The visitor wrote in English. Reply entirely in natural English. Do not reply in Chinese and do not say you will switch to Chinese. Keep the button name 「整理諮詢摘要」 as written when you mention it.`;
+export function wantsEnglish(text) {
+  return !CJK_CHAR.test(text) && (text.match(/[A-Za-z]/g) || []).length >= 3;
+}
+export function replyNotEnglish(reply) {
+  const cjk = (reply.match(CJK_ALL) || []).length;
+  const latin = (reply.match(/[A-Za-z]/g) || []).length;
+  return latin < cjk * 2 || /\b(?:respond|reply|answer|communicate|continue|switch)\w*\b[^.!?\n]{0,60}\b(?:in|to)\s+(?:Traditional\s+|Mandarin\s+)?Chinese\b/i.test(reply);
+}
+export const TOTAL_BUDGET_MS = 22000;
 async function chat(body, env) {
   const messages = body?.messages;
   if (!Array.isArray(messages) || !messages.length || messages.length > 20 || messages.at(-1)?.role !== 'user' ||
@@ -172,15 +188,19 @@ async function chat(body, env) {
   }
   const knowledgeFallback = selectKnowledge(messages);
   const knowledgePrimary = selectKnowledgePrimary(messages);
-  const primaryContext = [{ role: 'system', content: knowledgePrimary.text + SCOPE_RULE }, ...trimHistory(messages)];
-  const fallbackContext = [{ role: 'system', content: knowledgeFallback.text + SCOPE_RULE }, ...trimHistory(messages)];
+  const started = Date.now();
+  const english = wantsEnglish(messages.at(-1).content);
+  const languageRule = english ? LANGUAGE_RULE_EN : '';
+  const primaryContext = [{ role: 'system', content: knowledgePrimary.text + SCOPE_RULE + languageRule }, ...trimHistory(messages)];
+  const fallbackContext = [{ role: 'system', content: knowledgeFallback.text + SCOPE_RULE + languageRule }, ...trimHistory(messages)];
   let reply = ''; let model = '';
   if (env.MINIMAX_API_KEY) {
     try {
       const response = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
-        method: 'POST', signal: AbortSignal.timeout(8000),
+        // 11/9：M3 預設會先推理，600 個 token 常全被推理吃光 → content 空 → 每題都掉備援。關推理＋逾時 8→12 秒（中文 300 字實測約 9 秒）。
+        method: 'POST', signal: AbortSignal.timeout(12000),
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.MINIMAX_API_KEY}` },
-        body: JSON.stringify({ model: 'MiniMax-M3', messages: primaryContext, max_tokens: 600, temperature: 0.2 }),
+        body: JSON.stringify({ model: 'MiniMax-M3', messages: primaryContext, max_tokens: 600, temperature: 0.2, thinking: { type: 'disabled' } }),
       });
       if (response.ok) {
         const data = await readJSON(response.body, 50000);
@@ -200,12 +220,25 @@ async function chat(body, env) {
       }
     } catch { /* Fall back without logging the prompt or upstream response. */ }
   }
+  // AEGIS r3 C1：整題總時間上限 22 秒（Telegram bot 等 25 秒）。每個備援最多 10 秒且不超過剩餘時間；剩不到 2 秒就不再試。
+  const remaining = () => TOTAL_BUDGET_MS - (Date.now() - started);
   for (const candidate of ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-3-8b-instruct']) {
-    if (reply) break;
+    if (reply || remaining() < 2000) break;
     try {
-      const result = await deadline(env.AI.run(candidate, { messages: fallbackContext, max_tokens: 600, temperature: 0.2 }), 10000);
+      const result = await deadline(env.AI.run(candidate, { messages: fallbackContext, max_tokens: 600, temperature: 0.2 }), Math.min(10000, remaining()));
       reply = cleanReply(result?.response); model = candidate;
     } catch { /* Try the next configured model; no transcript persistence. */ }
+  }
+  // 英文訪客拿到中文（或「我會用中文回答」）→ 同一備援模型重試一次，語言指示同時放在訊息最前。重試失敗就保留原回覆。
+  // 重試也在同一個 22 秒總上限內（最多 7 秒；剩不到 2 秒就不重試）。
+  if (reply && english && model.startsWith('@cf/') && remaining() >= 2000 && replyNotEnglish(reply)) {
+    const history = trimHistory(messages);
+    const last = history.at(-1);
+    const retryContext = [fallbackContext[0], ...history.slice(0, -1), { role: 'user', content: `(Please answer in English.) ${last.content}` }];
+    try {
+      const retry = cleanReply((await deadline(env.AI.run(model, { messages: retryContext, max_tokens: 600, temperature: 0.2 }), Math.min(7000, remaining())))?.response);
+      if (retry && !replyNotEnglish(retry)) reply = retry;
+    } catch { /* Keep the first reply. */ }
   }
   if (!reply) return json({ error: 'ai_unavailable', fallback: LINE }, 503);
   reply = filterReply(reply);
