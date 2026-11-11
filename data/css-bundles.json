@@ -125,5 +125,41 @@
   "/assets/generated/site-38f3dfda8781.css": [
     "/tbos/en/style.css",
     "/assets/homesplit/interactions.css"
+  ],
+  "/assets/generated/site-d5a62380e147.css": [
+    "/assets/brand/chrome.css",
+    "/assets/brand/assistant.css",
+    "/assets/brand/home-2026.css",
+    "/assets/homesplit/apple.css"
+  ],
+  "/assets/generated/site-3b7d132b3c31.css": [
+    "/assets/homesplit/site.css",
+    "/assets/homesplit/editorial.css",
+    "/assets/brand/chrome.css",
+    "/assets/homesplit/consulting.css",
+    "/assets/homesplit/apple.css",
+    "/assets/homesplit/interactions.css",
+    "/portfolio/portfolio.css"
+  ],
+  "/assets/generated/site-f13745f27a85.css": [
+    "/assets/homesplit/site.css",
+    "/assets/homesplit/editorial.css",
+    "/assets/brand/chrome.css",
+    "/assets/homesplit/consulting.css",
+    "/assets/homesplit/apple.css",
+    "/assets/homesplit/interactions.css",
+    "/portfolio/portfolio.css",
+    "/assets/portfolio/anatomy/anatomy.css"
+  ],
+  "/assets/generated/site-2841b08b500d.css": [
+    "/assets/homesplit/site.css",
+    "/assets/homesplit/editorial.css",
+    "/assets/brand/chrome.css",
+    "/assets/homesplit/consulting.css",
+    "/assets/homesplit/apple.css",
+    "/assets/homesplit/interactions.css",
+    "/portfolio/portfolio.css",
+    "/portfolio/erp-demo/erp.css",
+    "/assets/portfolio/anatomy/anatomy.css"
   ]
 }
