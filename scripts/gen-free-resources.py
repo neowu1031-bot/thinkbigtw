@@ -175,9 +175,7 @@ JS = """<script>
       else done(fallbackCopy(text));
     });
   });
-  // line_click / click_whatsapp
-  document.querySelectorAll('[data-line-btn]').forEach(function(a){ a.addEventListener('click', function(){ ev('line_click', { placement: a.getAttribute('data-line-btn'), page: 'free_resources', language: T.lang }); ev('click_line', { placement: a.getAttribute('data-line-btn'), page: 'free_resources' }); }); });
-  document.querySelectorAll('[data-wa-btn]').forEach(function(a){ a.addEventListener('click', function(){ ev('click_whatsapp', { placement: a.getAttribute('data-wa-btn'), page: 'free_resources' }); }); });
+  // LINE / WhatsApp clicks are reported by the shared listener in /nav.js (cta = data-cta on the button)
   // email subscription -> existing inquiry endpoint (same as /briefing/), email only
   var form = document.getElementById('fr-form'); if (!form) return;
   var status = document.getElementById('fr-status'), btn = document.getElementById('fr-submit');
@@ -212,10 +210,10 @@ def build(lang):
     url = 'https://thinkbigtw.com' + t['url']
     zh_url, en_url = 'https://thinkbigtw.com/free-resources/', 'https://thinkbigtw.com/en/free-resources/'
     if lang == 'zh':
-        chan = f'<a class="fr-btn" href="{LINE}" target="_blank" rel="noopener noreferrer" data-line-btn="@@">{t["line_btn"]}</a>'
+        chan = f'<a class="fr-btn" href="{LINE}" target="_blank" rel="noopener noreferrer" data-cta="free_resources_@@">{t["line_btn"]}</a>'
         fallback = LINE; chan_attr = 'data-line-btn'
     else:
-        chan = f'<a class="fr-btn" href="{WA_URL}" target="_blank" rel="noopener noreferrer" data-wa-btn="@@">{t["line_btn"]}</a>'
+        chan = f'<a class="fr-btn" href="{WA_URL}" target="_blank" rel="noopener noreferrer" data-cta="free_resources_@@">{t["line_btn"]}</a>'
         fallback = WA_URL
     jsT = json.dumps(dict(lang=t['lang'], copied=t['copied'], copyfail=t['copyfail'], ok=t['ok'], errEmail=t['errEmail'], errConsent=t['errConsent'],
         errRate=t['errRate'], errFail=t['errFail'], errFailLink=t['errFailLink'], sending=t['sending'], fallback=fallback,
