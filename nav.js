@@ -23,7 +23,8 @@
     '/library/news/local-llm-gpu-check-20261005/': '/en/news/local-llm-gpu-check-20261005/',
     '/services/ai-visibility/': '/en/services/seo-geo/',
     '/services/ai-agent-setup/': '/en/services/ai-agent-setup/',
-    '/briefing/': '/en/briefing/'
+    '/briefing/': '/en/briefing/',
+    '/free-resources/': '/en/free-resources/'
   };
 
   function getEnDest(path) {
