@@ -164,7 +164,7 @@
       var h3 = a.closest('[data-cta]');
       tbEvent('click_telegram', { page_location: location.href, page_path: location.pathname, link_url: href, cta: h3 ? h3.getAttribute('data-cta') : 'inline' });
     } else if (href.indexOf('shopee.tw') !== -1) {
-      tbEvent('shopee_click', { page_location: location.href, link_url: href });
+      tbEvent('shopee_click', { page_location: location.pathname, link_url: href });
     }
   }, true);
 })();
