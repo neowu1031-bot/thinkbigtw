@@ -27,7 +27,7 @@
   const video = document.getElementById('brand-hero-video');
   if (!video) return;
   const frame = video.parentElement;
-  // NEO 9/27: no visible pause control; reduced-motion users still get the poster only.
+  // 2026-09-27 adjustment: no visible pause control; reduced-motion users still get the poster only.
   const button = document.getElementById('hero-motion-toggle') || { hidden: true, textContent: '', addEventListener() {} };
   const source = video.querySelector('source');
   const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
