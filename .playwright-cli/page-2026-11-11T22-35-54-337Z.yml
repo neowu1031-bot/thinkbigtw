@@ -1,0 +1,636 @@
+- generic [active] [ref=e1]:
+  - navigation "主要導覽" [ref=e2]:
+    - link "Think BIG 首頁" [ref=e3] [cursor=pointer]:
+      - /url: /
+      - img "Think BIG" [ref=e4]
+    - generic [ref=e5]:
+      - link "企業導入" [ref=e6] [cursor=pointer]:
+        - /url: /enterprise/
+      - link "AI 部門" [ref=e7] [cursor=pointer]:
+        - /url: /enterprise/departments/
+      - link "SEO／AEO／GEO" [ref=e8] [cursor=pointer]:
+        - /url: /services/ai-visibility/
+      - link "個人方案" [ref=e9] [cursor=pointer]:
+        - /url: /pricing/personal/
+      - link "導入流程" [ref=e10] [cursor=pointer]:
+        - /url: /enterprise/process/
+      - link "資安與治理" [ref=e11] [cursor=pointer]:
+        - /url: /trust/
+      - link "指南" [ref=e12] [cursor=pointer]:
+        - /url: /guides/
+      - link "作品集" [ref=e13] [cursor=pointer]:
+        - /url: /portfolio/
+      - link "Library" [ref=e14] [cursor=pointer]:
+        - /url: /library/
+      - link "Switch to English" [ref=e15] [cursor=pointer]:
+        - /url: /en/
+        - text: EN
+  - article [ref=e17]:
+    - generic [ref=e18]:
+      - generic [ref=e19]:
+        - link "Guides" [ref=e20] [cursor=pointer]:
+          - /url: /guides/
+        - text: / AI Agents
+      - generic [ref=e21]: AI Agent 總覽 · 2026
+      - heading "新的 AI Agent 出來了，還需要龍蝦嗎？各家 AI Agent 一次看懂" [level=1] [ref=e22]
+      - paragraph [ref=e23]: Think BIG 編輯部
+      - paragraph [ref=e24]: 最近各大品牌密集推出常駐型 AI Agent。這篇整理 2026 年常見的 AI Agent 有哪些、各家怎麼計費、額度用完怎麼辦，以及龍蝦（OpenClaw）在長時間運作情境的定位。
+      - generic [ref=e25]: 最後更新：2026-11-08｜資料查證：2026-09-30
+    - generic [ref=e26]:
+      - paragraph [ref=e27]: 新的 AI Agent 不會讓龍蝦（OpenClaw）失去用處，兩者適合的工作不同。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+      - list [ref=e28]:
+        - listitem [ref=e29]: — 大模型品牌推出的 AI Agent，費用綁訂閱方案的額度，適合有品牌生態綁定需求的協作任務。
+        - listitem [ref=e30]: — 開源 AI Agent（如 OpenClaw、Hermes）可以自己選模型，按實際用量付費給模型商，適合長時間常駐與費用可控的情境。
+        - listitem [ref=e31]: — 兩類可以一起用：讓龍蝦（OpenClaw）負責常駐例行工作，品牌 AI Agent 負責需要協作的任務。
+      - generic [ref=e32]:
+        - paragraph [ref=e33]:
+          - text: 想找人幫你裝？
+          - generic [ref=e34]: 用 LINE 說一兩句需求，工程師先看你的設備再建議做法。
+        - generic [ref=e35]:
+          - link "用 LINE 說需求" [ref=e36] [cursor=pointer]:
+            - /url: https://lin.ee/n5KW430
+            - text: 用 LINE 說需求
+            - generic [aria-hidden] [ref=e37]: →
+          - link "個人方案看蝦皮" [ref=e38] [cursor=pointer]:
+            - /url: https://shopee.tw/shop/105010395
+            - text: 個人方案看蝦皮
+            - generic [aria-hidden] [ref=e39]: →
+      - separator [ref=e40]
+      - heading "一句話結論" [level=2] [ref=e41]
+      - generic [ref=e42]: 每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+      - list [ref=e43]:
+        - listitem [ref=e44]:
+          - text: —
+          - strong [ref=e45]: 費用結構不同
+          - text: ：訂閱型 AI Agent 費用固定含額度，額度用完就停；開源 AI Agent 依實際用量付費，可以預算導向地控制。
+        - listitem [ref=e46]:
+          - text: —
+          - strong [ref=e47]: 適合的工作不同
+          - text: ：訂閱型適合短時間協作、需要品牌生態（Gmail、Teams、WhatsApp）串接的任務；開源型適合 24 小時常駐、例行流程、費用可控的工作。
+        - listitem [ref=e48]:
+          - text: —
+          - strong [ref=e49]: 可以一起用
+          - text: ：常見做法是讓龍蝦（OpenClaw）或 Hermes 跑長時間例行任務，品牌 AI Agent 用來協作或做需要特定生態的任務。
+      - heading "先說清楚：AI Agent 是什麼" [level=2] [ref=e50]
+      - paragraph [ref=e51]:
+        - text: AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI 助理；產物與重要操作仍需指定人員覆核。（
+        - link "完整術語表" [ref=e52] [cursor=pointer]:
+          - /url: /guides/glossary/
+        - text: ）
+      - paragraph [ref=e53]: 換句話說，AI Agent 不只是聊天機器人——它可以自己開瀏覽器、操作 App、在背景持續工作、依照排程執行任務。但「能不能幫你做事」，取決於它被賦予的工具範圍、模型能力，以及你的設定。
+      - heading "2026 年常見的 AI Agent 有哪些" [level=2] [ref=e54]
+      - generic [ref=e55]: 資料查證日期：2026-09-30，價格以各家官網為準。原幣價格不自行換算台幣；需換算時已附換算基準。標記說明：【官方】來自品牌官網或官方部落格；【第三方】只有媒體資料；【待實測】官方未揭露。
+      - heading "兩大類型" [level=3] [ref=e56]
+      - paragraph [ref=e57]: 目前市面上的 AI Agent 可分成兩類：
+      - list [ref=e58]:
+        - listitem [ref=e59]:
+          - text: —
+          - strong [ref=e60]: 大模型品牌推出的 AI Agent
+          - text: ：以訂閱方案使用，費用固定，額度用完需等重置或加購。例如 Claude、ChatGPT Agent、Gemini Spark、Grok Bot、Muse。
+        - listitem [ref=e61]:
+          - text: —
+          - strong [ref=e62]: 開源 AI Agent（可自選模型）
+          - text: ：軟體開源免費，模型費用依實際用量付給自選的模型商，或接本地大模型零模型費。例如 OpenClaw（龍蝦）、Hermes。
+      - paragraph [ref=e63]: 以下依推出者英文字母排序，各家各一段條列介紹：
+      - generic [ref=e64]:
+        - heading "Claude（Anthropic）" [level=3] [ref=e65]
+        - list [ref=e66]:
+          - listitem [ref=e67]:
+            - text: —
+            - strong [ref=e68]: 是什麼
+            - text: ：Claude 是 Anthropic 的 AI 助理，2026 年 9 月起整合原 Cowork 功能，可在關閉電腦後繼續背景完成報告、簡報、研究任務。【官方】
+          - listitem [ref=e69]:
+            - text: —
+            - strong [ref=e70]: 怎麼用
+            - text: ：網頁版、桌面版、App、Claude Code（程式碼助理）；網頁、App、Claude Code 共用同一個用量上限。【官方】
+          - listitem [ref=e71]:
+            - text: —
+            - strong [ref=e72]: 怎麼計費
+            - text: ：Free（有限制）；Pro US$20／月（年繳每月 US$17）；Max US$100 起（約 Pro 5 倍用量）。【官方】額度分 5 小時區段上限與每週上限；用完可購買 usage credits。
+          - listitem [ref=e73]:
+            - text: —
+            - strong [ref=e74]: 台灣可用
+            - text: ：可以（台灣在支援國家名單內）。【官方】
+          - listitem [ref=e75]:
+            - text: —
+            - strong [ref=e76]: 出處
+            - text: ：
+            - link "claude.com/pricing" [ref=e77] [cursor=pointer]:
+              - /url: https://claude.com/pricing
+            - text: 、
+            - link "用量上限說明" [ref=e78] [cursor=pointer]:
+              - /url: https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work
+            - text: ，查證於 2026-09-30。
+      - generic [ref=e79]:
+        - heading "ChatGPT Agent 與 dots（OpenAI）" [level=3] [ref=e80]
+        - list [ref=e81]:
+          - listitem [ref=e82]:
+            - text: —
+            - strong [ref=e83]: 是什麼
+            - text: ：ChatGPT Agent 是 OpenAI 整合進 ChatGPT 的 agent 模式，用虛擬瀏覽器與連接的 App 完成多步驟任務；dots（2026 年 9 月 29 日推出）是 24 小時常駐的 AI Agent，有自己的雲端電腦，可串接超過 4,000 個 App。【官方】
+          - listitem [ref=e84]:
+            - text: —
+            - strong [ref=e85]: 怎麼用
+            - text: ：ChatGPT 工具選單選「agent」或輸入 /agent 啟用；dots 可在 ChatGPT、Slack、Teams 裡傳訊息使用。【官方】
+          - listitem [ref=e86]:
+            - text: —
+            - strong [ref=e87]: 怎麼計費
+            - text: ：ChatGPT Agent 模式：Plus US$20（約 640 TWD，1 USD=31.9，2026-09-30 台銀牌告）每月 40 則；Pro US$100 起每月 400 則。【官方】ChatGPT Agent 與 Codex、Work 共用 agentic 額度，額度用完可加購 credits。dots 第一個內含在 Pro 與 Business Premium 方案裡，不另收費；和 dots 對話不算 ChatGPT 額度。【官方】
+          - listitem [ref=e88]:
+            - text: —
+            - strong [ref=e89]: 台灣可用
+            - text: ：ChatGPT Agent 可以（台灣在支援名單內）；dots 官方未列排除名單，台灣可否開通【待實測】。【官方】
+          - listitem [ref=e90]:
+            - text: —
+            - strong [ref=e91]: 出處
+            - text: ：
+            - link "ChatGPT agent 說明" [ref=e92] [cursor=pointer]:
+              - /url: https://help.openai.com/en/articles/11752874-chatgpt-agent
+            - text: 、
+            - link "dots 發表" [ref=e93] [cursor=pointer]:
+              - /url: https://openai.com/index/introducing-dots/
+            - text: ，查證於 2026-09-30。
+      - generic [ref=e94]:
+        - heading "Gemini Spark（Google）" [level=3] [ref=e95]
+        - list [ref=e96]:
+          - listitem [ref=e97]:
+            - text: —
+            - strong [ref=e98]: 是什麼
+            - text: ：Gemini Spark 是 Google 推出的 24 小時個人 AI Agent，手機和電腦關機時也會在背景工作，重大動作前會先問你，連接 Gmail、日曆、雲端硬碟等 Google 服務。【官方】
+          - listitem [ref=e99]:
+            - text: —
+            - strong [ref=e100]: 怎麼用
+            - text: ：需訂閱 Google AI Pro 或 Ultra，年滿 18 歲、用個人 Google 帳號。【官方】
+          - listitem [ref=e101]:
+            - text: —
+            - strong [ref=e102]: 怎麼計費
+            - text: ：AI Pro US$19.99；AI Ultra US$99.99（約 3,190 TWD）或 US$199.99。用量依運算量計算，每 5 小時恢復一次，直到每週上限。Pro 與 Ultra 可加購 AI credits。【官方】
+          - listitem [ref=e103]:
+            - text: —
+            - strong [ref=e104]: 台灣可用
+            - text: ：官方排除名單不含台灣；台灣帳號是否可啟用【待實測】。
+          - listitem [ref=e105]:
+            - text: —
+            - strong [ref=e106]: 出處
+            - text: ：
+            - link "gemini.google/subscriptions" [ref=e107] [cursor=pointer]:
+              - /url: https://gemini.google/subscriptions/
+            - text: 、
+            - link "Gemini Spark 產品頁" [ref=e108] [cursor=pointer]:
+              - /url: https://gemini.google/overview/agent/
+            - text: ，查證於 2026-09-30。
+      - generic [ref=e109]:
+        - heading "Grok Bot（xAI）" [level=3] [ref=e110]
+        - list [ref=e111]:
+          - listitem [ref=e112]:
+            - text: —
+            - strong [ref=e113]: 是什麼
+            - text: ：Grok Bot 是 xAI 於 2026 年 8 月推出的常駐 AI 隊友，有自己的雲端電腦、瀏覽器、終端機，可以多個同時工作，需要你判斷的事才回頭問你。xAI 服務 2026 年 6 月起各功能共用每週額度池。【官方】
+          - listitem [ref=e114]:
+            - text: —
+            - strong [ref=e115]: 怎麼用
+            - text: ：支援 macOS、Windows、Linux 桌面版及 iOS、Android。帳號驗證沿用 Cursor 帳號。【官方】
+          - listitem [ref=e116]:
+            - text: —
+            - strong [ref=e117]: 怎麼計費
+            - text: ：SuperGrok US$30（約 960 TWD）、SuperGrok Plus US$100 含 Grok Bot。Grok Bot 有自己的每週額度，和 Grok 聊天分開計算；影片與長任務特別耗額度，用完等每週重置。【官方】xAI 訂閱者可購買 Extra Usage Credits 補充額度（US$5 起，網頁購買，效期一年）。【官方】
+          - listitem [ref=e118]:
+            - text: —
+            - strong [ref=e119]: 台灣可用
+            - text: ：官方未列國家清單【待實測】。
+          - listitem [ref=e120]:
+            - text: —
+            - strong [ref=e121]: 出處
+            - text: ：
+            - link "x.ai/pricing" [ref=e122] [cursor=pointer]:
+              - /url: https://x.ai/pricing
+            - text: 、
+            - link "Grok Bot 發表" [ref=e123] [cursor=pointer]:
+              - /url: https://x.ai/news/introducing-grok-bot
+            - text: ，查證於 2026-09-30。
+      - generic [ref=e124]:
+        - heading "Muse（Meta）" [level=3] [ref=e125]
+        - list [ref=e126]:
+          - listitem [ref=e127]:
+            - text: —
+            - strong [ref=e128]: 是什麼
+            - text: ：Muse 是 Meta 於 2026 年 9 月 8 日推出的個人 AI Agent，跑在專屬的虛擬機上，可開瀏覽器、填表、寄信、訂位，寄信或付款前會先問你，可在 Muse App 或 WhatsApp 使用。【官方】
+          - listitem [ref=e129]:
+            - text: —
+            - strong [ref=e130]: 怎麼用
+            - text: ：iOS、Android App 及 muse.ai 網頁。【官方】
+          - listitem [ref=e131]:
+            - text: —
+            - strong [ref=e132]: 怎麼計費
+            - text: ：免費版有額度上限；Power US$20／月（每週 5 億 Muse tokens）；Maximum US$100／月（每週 30 億 Muse tokens）。官方說明訂閱在有限測試中，不是每個地區都能用。【官方】
+          - listitem [ref=e133]:
+            - text: —
+            - strong [ref=e134]: 台灣可用
+            - text: ：目前官方只在美國上線；加拿大 2026 年 9 月開放【第三方】；台灣尚未開放。【官方：not available in all locations】
+          - listitem [ref=e135]:
+            - text: —
+            - strong [ref=e136]: 出處
+            - text: ：
+            - link "Meta Newsroom 發表" [ref=e137] [cursor=pointer]:
+              - /url: https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/
+            - text: 、
+            - link "Muse 訂閱說明" [ref=e138] [cursor=pointer]:
+              - /url: https://www.meta.com/help/subscriptions/1021145227643680/
+            - text: ，查證於 2026-09-30。
+      - generic [ref=e139]:
+        - heading "Microsoft Copilot（個人版）" [level=3] [ref=e140]
+        - list [ref=e141]:
+          - listitem [ref=e142]:
+            - text: —
+            - strong [ref=e143]: 是什麼
+            - text: ：Microsoft 365 內的 agentic AI，可在 Word、Excel、PowerPoint、Outlook 裡代辦任務；Copilot Autopilot 是 2026 年 9 月 25 日推出的常駐企業版，目前為私人預覽。【官方】
+          - listitem [ref=e144]:
+            - text: —
+            - strong [ref=e145]: 怎麼用
+            - text: ：Microsoft 365 訂閱方案；個人版透過網頁或 M365 應用程式使用。【官方】
+          - listitem [ref=e146]:
+            - text: —
+            - strong [ref=e147]: 怎麼計費
+            - text: ：M365 Personal US$9.99；Premium US$19.99（含有限 agentic AI）；Pro US$99.99（含最高用量 agentic AI）。官方只寫「usage limits apply」，確切數字【待實測】。【官方】
+          - listitem [ref=e148]:
+            - text: —
+            - strong [ref=e149]: 台灣可用
+            - text: ：台灣有販售 Microsoft 365；agentic 功能台灣可用性【待實測】。
+          - listitem [ref=e150]:
+            - text: —
+            - strong [ref=e151]: 出處
+            - text: ：
+            - link "Copilot 個人定價" [ref=e152] [cursor=pointer]:
+              - /url: https://www.microsoft.com/en-us/copilot/pricing/individuals
+            - text: ，查證於 2026-09-30。
+      - generic [ref=e153]:
+        - heading "龍蝦 OpenClaw（開源）" [level=3] [ref=e154]
+        - list [ref=e155]:
+          - listitem [ref=e156]:
+            - text: —
+            - strong [ref=e157]: 是什麼
+            - text: ：OpenClaw 是開源個人 AI 助理，台灣使用者常稱「龍蝦」。裝在自己的電腦上，透過 WhatsApp、Telegram 等聊天 App 使用，支援本機與雲端模型。【官方】
+          - listitem [ref=e158]:
+            - text: —
+            - strong [ref=e159]: 怎麼用
+            - text: ：安裝在 Windows、macOS 上，需要你的電腦保持開機。
+          - listitem [ref=e160]:
+            - text: —
+            - strong [ref=e161]: 怎麼計費
+            - text: ：軟體開源免費；費用看你接哪個模型商，依實際用量計費，由你直接付給模型商。你可以選 MiniMax、Claude API、OpenAI API 等，或接本地模型零用量費。【官方】
+          - listitem [ref=e162]:
+            - text: —
+            - strong [ref=e163]: 台灣可用
+            - text: ：可以（自行安裝）。【官方】
+          - listitem [ref=e164]:
+            - text: —
+            - strong [ref=e165]: 出處
+            - text: ：OpenClaw 官方文件，查證於 2026-09-30。→
+            - link "OpenClaw 代裝指南" [ref=e166] [cursor=pointer]:
+              - /url: /guides/openclaw-daizhuang/
+      - generic [ref=e167]:
+        - heading "Hermes Agent（開源）" [level=3] [ref=e168]
+        - list [ref=e169]:
+          - listitem [ref=e170]:
+            - text: —
+            - strong [ref=e171]: 是什麼
+            - text: ：Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理，支援跨對話記憶與自我學習，可將任務經驗轉化為技能，可排程執行。Think BIG 提供的服務是協助安裝在你的電腦上、配置與教學；與 OpenClaw 可串接分工。【官方】
+          - listitem [ref=e172]:
+            - text: —
+            - strong [ref=e173]: 怎麼用
+            - text: ：安裝在 Windows、macOS 上；可單獨使用，也可與 OpenClaw 串接建立雙 AI Agent 協作。
+          - listitem [ref=e174]:
+            - text: —
+            - strong [ref=e175]: 怎麼計費
+            - text: ：軟體開源免費（MIT 授權）；模型費用自選，和 OpenClaw 一樣依實際用量付給模型商。【官方】
+          - listitem [ref=e176]:
+            - text: —
+            - strong [ref=e177]: 台灣可用
+            - text: ：可以（自行安裝）。【官方】
+          - listitem [ref=e178]:
+            - text: —
+            - strong [ref=e179]: 出處
+            - text: ：Nous Research 官方，查證於 2026-09-30。→
+            - link "OpenClaw 和 Hermes 差在哪" [ref=e180] [cursor=pointer]:
+              - /url: /guides/hermes-vs-openclaw/
+      - paragraph [ref=e181]: 其他也有官方資料的 AI Agent（簡述）：Perplexity Computer（通用代辦，點數制，Pro US$20 起）；Manus（通用 Agent，點數制，Pro US$20 起，全球可用）；Siri AI（隨 iOS 27 提供，目前 beta 只支援英文）；Alexa+（僅限美國）。中國大陸平台（豆包、扣子、Kimi、MiniMax Agent 等）台灣能否使用各有差異，一律標【待實測】。
+      - heading "台灣誰在做 AI Agent 搭建？" [level=2] [ref=e182]
+      - generic [ref=e183]:
+        - paragraph [ref=e184]: AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機上，並接到你平常用的 LINE、Telegram 或內部工具。Think BIG（大想成業有限公司）是台灣的 AI Agent 搭建與導入團隊，個人與企業都可以找我們，由台灣工程師遠端安裝。
+        - paragraph [ref=e185]:
+          - text: AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用怎麼組成、地端版與雲端輔助版的差別，見
+          - link "AI Agent 搭建服務" [ref=e186] [cursor=pointer]:
+            - /url: /services/ai-agent-setup/
+          - text: 。
+        - link "用 LINE 說需求" [ref=e187] [cursor=pointer]:
+          - /url: https://lin.ee/n5KW430
+          - text: 用 LINE 說需求
+          - generic [aria-hidden] [ref=e188]: →
+      - heading "兩種做法怎麼分工" [level=2] [ref=e189]
+      - paragraph [ref=e190]: 以下只比較「做法類型」，不比較優劣，不打分數。
+      - table [ref=e192]:
+        - rowgroup [ref=e193]:
+          - row [ref=e194]:
+            - columnheader "面向" [ref=e195]
+            - columnheader "大模型品牌推出的 AI Agent" [ref=e196]
+            - columnheader "開源 AI Agent（如 OpenClaw、Hermes）" [ref=e197]
+        - rowgroup [ref=e198]:
+          - row [ref=e199]:
+            - cell "計費方式" [ref=e200]
+            - cell "固定月費，含方案額度" [ref=e201]
+            - cell "依實際用量付費給自選的模型商；軟體本身免費" [ref=e202]
+          - row [ref=e203]:
+            - cell "額度用完時" [ref=e204]
+            - cell "等重置、升級方案或加購 credits" [ref=e205]
+            - cell "模型用量費直接計費，沒有額度上限概念；預算導向自行控制" [ref=e206]
+          - row [ref=e207]:
+            - cell "能不能 24 小時常駐" [ref=e208]
+            - cell "依方案而定；部分可在你的電腦關機後繼續跑" [ref=e209]
+            - cell "需要你的電腦保持開機（本機部署）；或用雲端模型 API 遠端跑" [ref=e210]
+          - row [ref=e211]:
+            - cell "模型能不能換" [ref=e212]
+            - cell "通常綁定品牌自家模型" [ref=e213]
+            - cell "可以自選：訂閱制模型方案、API，或本地大模型" [ref=e214]
+          - row [ref=e215]:
+            - cell "資料和設定放哪裡" [ref=e216]
+            - cell "依各家隱私政策；通常在品牌雲端" [ref=e217]
+            - cell "本機部署，資料在你的電腦上；使用雲端模型時訊息仍傳至模型商" [ref=e218]
+          - row [ref=e219]:
+            - cell "適合的工作" [ref=e220]
+            - cell "品牌生態協作（Gmail、Teams、WhatsApp）、短時間高強度任務" [ref=e221]
+            - cell "長時間常駐、例行排程、費用可控、需要自選模型" [ref=e222]
+      - generic [ref=e223]: 每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+      - generic [ref=e224]:
+        - paragraph [ref=e225]: 看到這裡，想自己動手還是想有人帶？
+        - generic [ref=e226]:
+          - link "看個人方案" [ref=e227] [cursor=pointer]:
+            - /url: /pricing/personal/
+            - text: 看個人方案
+            - generic [aria-hidden] [ref=e228]: →
+          - link "預約 30 分鐘諮詢" [ref=e229] [cursor=pointer]:
+            - /url: /book/
+          - link "用 LINE 說需求" [ref=e230] [cursor=pointer]:
+            - /url: https://lin.ee/n5KW430
+      - heading "訂閱額度用完怎麼辦" [level=2] [ref=e231]
+      - paragraph [ref=e232]: 各家品牌 AI Agent 的額度重置機制：
+      - list [ref=e233]:
+        - listitem [ref=e234]:
+          - text: —
+          - strong [ref=e235]: Claude（Anthropic）
+          - text: ：5 小時區段上限加每週上限；付費方案可購買 usage credits。（查證於 2026-09-30，來源：
+          - link "官方說明" [ref=e236] [cursor=pointer]:
+            - /url: https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work
+          - text: ）
+        - listitem [ref=e237]:
+          - text: —
+          - strong [ref=e238]: ChatGPT Agent / dots（OpenAI）
+          - text: ：ChatGPT Agent 每月額度（Plus 40 則、Pro 400 則）；額度用完可加購 credits，或等月重置。（查證於 2026-09-30，來源：
+          - link "官方說明" [ref=e239] [cursor=pointer]:
+            - /url: https://help.openai.com/en/articles/12642688
+          - text: ）
+        - listitem [ref=e240]:
+          - text: —
+          - strong [ref=e241]: Grok Bot（xAI）
+          - text: ：每週額度池重置；可購買 Extra Usage Credits（US$5 起，效期一年）。（查證於 2026-09-30，來源：
+          - link "官方 FAQ" [ref=e242] [cursor=pointer]:
+            - /url: https://docs.x.ai/grok/faq
+          - text: ）
+        - listitem [ref=e243]:
+          - text: —
+          - strong [ref=e244]: Gemini Spark（Google）
+          - text: ：用量依運算量計算，每 5 小時恢復一次，直到每週上限；Pro 與 Ultra 可加購 AI credits。（查證於 2026-09-30，來源：
+          - link "官方說明" [ref=e245] [cursor=pointer]:
+            - /url: https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/
+          - text: ）
+        - listitem [ref=e246]:
+          - text: —
+          - strong [ref=e247]: Muse（Meta）
+          - text: ：免費額度用完可升級，或等免費額度恢復；Power 每週 5 億 tokens，Maximum 每週 30 億 tokens。（查證於 2026-09-30，來源：
+          - link "官方說明" [ref=e248] [cursor=pointer]:
+            - /url: https://www.meta.com/help/subscriptions/1021145227643680/
+          - text: ）
+      - paragraph [ref=e249]:
+        - text: 通用做法：把長時間常駐的工作交給可自選模型的 AI Agent（如 OpenClaw、Hermes），品牌 AI Agent 留給需要協作的時段。這就是核心句說的「很適合拿來協作」。→
+        - link "OpenClaw＋coding agent 協作方案" [ref=e250] [cursor=pointer]:
+          - /url: /full-agent/
+      - heading "想長時間運作又控制費用，怎麼搭" [level=2] [ref=e251]
+      - paragraph [ref=e252]: 三種常見情境，按你的工作性質選擇：
+      - list [ref=e253]:
+        - listitem [ref=e254]:
+          - strong [ref=e255]: 一個常駐 AI Agent 搭配你原本的訂閱
+          - text: ：用 OpenClaw 或 Hermes 跑每天的例行工作（回訊息、整理、排程），你原本的品牌訂閱（Claude Pro、ChatGPT Plus 等）用來做需要協作或需要品牌生態的任務，不佔 24 小時額度。
+        - listitem [ref=e256]:
+          - strong [ref=e257]: 兩個 AI Agent 分工
+          - text: ：OpenClaw 和 Hermes 裝在同一台電腦，一個跑行動派工作（回訊息、流程），一個跑思考派工作（彙整、研究、寫稿）。→
+          - link "雙 AI Agent 方案" [ref=e258] [cursor=pointer]:
+            - /url: /dual-agent/
+        - listitem [ref=e259]:
+          - strong [ref=e260]: 常駐 AI Agent 加上 coding agent 協作
+          - text: ：龍蝦（OpenClaw）常駐跑例行任務，Claude Code 或 Codex 用來做程式、自動化腳本，透過協作會議室溝通。
+      - paragraph [ref=e261]:
+        - text: Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模型用量費；模型用量費依實際使用量計算，由你直接付給模型商。詳見
+        - link "常見問題" [ref=e262] [cursor=pointer]:
+          - /url: /faq/
+        - text: 。
+      - generic [ref=e263]:
+        - paragraph [ref=e264]: 想知道哪一種適合你？
+        - generic [ref=e265]:
+          - link "個人使用 → 蝦皮選購單 AI Agent 搭建" [ref=e266] [cursor=pointer]:
+            - /url: https://shopee.tw/shop/105010395
+            - text: 個人使用 → 蝦皮選購單 AI Agent 搭建
+            - generic [aria-hidden] [ref=e267]: →
+          - link "公司導入 → 2 分鐘自助評估" [ref=e268] [cursor=pointer]:
+            - /url: /enterprise/start/
+            - text: 公司導入 → 2 分鐘自助評估
+            - generic [aria-hidden] [ref=e269]: →
+      - heading "龍蝦會被淘汰嗎" [level=2] [ref=e270]
+      - paragraph [ref=e271]: 不必二選一。品牌 AI Agent 和龍蝦（OpenClaw）擅長的工作不同：品牌 AI Agent 有品牌生態綁定，額度用完就停，適合需要協作或短時間高強度的任務；龍蝦可以自選模型、24 小時常駐、費用可控，適合長時間例行運作。
+      - paragraph [ref=e272]: 每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
+      - heading "Think BIG 可以怎麼幫你" [level=2] [ref=e273]
+      - paragraph [ref=e274]: Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服務商。
+      - list [ref=e275]:
+        - listitem [ref=e276]:
+          - text: —
+          - strong [ref=e277]: 單 AI Agent 搭建
+          - text: ：OpenClaw 或 Hermes 擇一，含完整個人技能包＋1 個客製小幫手、7 天技術諮詢；Coding Agent 串接為選配（已有 Claude Code 或 Codex 訂閱者）。
+        - listitem [ref=e278]:
+          - text: —
+          - strong [ref=e279]: 雙 AI Agent 共存版
+          - text: ：OpenClaw＋Hermes 各自運作、各自記憶，不含記憶互通與協作會議室，7 天技術諮詢。
+        - listitem [ref=e280]:
+          - text: —
+          - strong [ref=e281]: 雙 AI Agent
+          - text: ：含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談、2 小時線上技術導覽＋安裝後 7 天技術諮詢。
+        - listitem [ref=e282]:
+          - text: —
+          - strong [ref=e283]: 年約方案
+          - text: ：尊榮年約（單 AI Agent）或年度旗艦（雙 AI Agent）年維護陪跑，48 小時故障修復，次年可選配續約。
+      - paragraph [ref=e284]:
+        - text: 本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請，模型使用費依用量向模型廠商計費，我方引導不代辦。詳見
+        - link "個人方案頁" [ref=e285] [cursor=pointer]:
+          - /url: /pricing/personal/
+        - text: 。
+      - generic [ref=e286]:
+        - generic [ref=e287]:
+          - paragraph [ref=e288]: 個人使用
+          - paragraph [ref=e289]: 蝦皮賣場選購，台灣工程師遠端裝到好。
+          - link "前往蝦皮賣場選購" [ref=e290] [cursor=pointer]:
+            - /url: https://shopee.tw/shop/105010395
+            - text: 前往蝦皮賣場選購
+            - generic [aria-hidden] [ref=e291]: →
+        - generic [ref=e292]:
+          - paragraph [ref=e293]: 公司導入
+          - paragraph [ref=e294]: 先填需求表，或直接用 LINE 預約 30 分鐘免費評估，確認適合再說。
+          - link "公司導入自助評估" [ref=e295] [cursor=pointer]:
+            - /url: /enterprise/start/
+            - text: 公司導入自助評估
+            - generic [aria-hidden] [ref=e296]: →
+          - link "LINE 預約 30 分鐘免費評估" [ref=e297] [cursor=pointer]:
+            - /url: https://lin.ee/n5KW430
+            - text: LINE 預約 30 分鐘免費評估
+            - generic [aria-hidden] [ref=e298]: →
+      - heading "常見問題" [level=2] [ref=e299]
+      - generic [ref=e300]:
+        - generic [ref=e301]: Q：2026 年常見的 AI Agent 有哪些？
+        - paragraph [ref=e302]: 分成兩類：大模型品牌推出、以訂閱方案使用的 AI Agent；以及開源、可自選模型的 AI Agent（如龍蝦）。各家介紹見本頁「2026 年常見的 AI Agent 有哪些」。
+      - generic [ref=e303]:
+        - generic [ref=e304]: Q：新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？
+        - paragraph [ref=e305]: 兩者擅長的工作不同，可以一起用。2026 年常見的大模型品牌 AI Agent 包括：Grok Bot（xAI）、Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Muse（Meta）、Copilot Autopilot（Microsoft）、Manus 等。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。龍蝦（OpenClaw）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作情境。
+      - generic [ref=e306]:
+        - generic [ref=e307]: Q：龍蝦 AI 是什麼？要錢嗎？
+        - paragraph [ref=e308]:
+          - text: 龍蝦是台灣使用者對開源 AI Agent 的暱稱。軟體本身開源免費；使用時要付 AI 模型用量費，依用量計算，由使用者直接付給模型商；找人安裝另外收服務費。→
+          - link "龍蝦代裝服務說明" [ref=e309] [cursor=pointer]:
+            - /url: /guides/openclaw-daizhuang/
+      - generic [ref=e310]:
+        - generic [ref=e311]: Q：訂閱制 AI 的額度用完怎麼辦？
+        - paragraph [ref=e312]: 等官方額度重置、升級方案、改用依用量計費的 API，或把常駐工作交給自選模型的 AI Agent（如龍蝦），品牌 AI Agent 留給需要協作的時段。
+      - generic [ref=e313]:
+        - generic [ref=e314]: Q：想讓 AI Agent 長時間運作，費用怎麼控制？
+        - paragraph [ref=e315]: 選能自己換模型、依用量付費的做法，並設定用量上限；需要協作的時段再搭配訂閱型 AI Agent。龍蝦等開源 AI Agent 都支援自選模型。
+      - generic [ref=e316]:
+        - generic [ref=e317]: Q：品牌 AI Agent 和龍蝦可以一起用嗎？
+        - paragraph [ref=e318]:
+          - text: 可以。常見做法是龍蝦負責常駐和例行工作，品牌 AI Agent 負責需要協作的任務。→
+          - link "龍蝦＋coding agent 協作" [ref=e319] [cursor=pointer]:
+            - /url: /full-agent/
+          - text: /
+          - link "雙 AI Agent 方案" [ref=e320] [cursor=pointer]:
+            - /url: /dual-agent/
+      - generic [ref=e321]:
+        - generic [ref=e322]: Q：自己安裝 AI Agent 安全嗎？
+        - paragraph [ref=e323]:
+          - text: 關鍵在最小權限、本機部署，以及不裝來路不明的技能。詳細說明→
+          - link "龍蝦安全指南" [ref=e324] [cursor=pointer]:
+            - /url: /guides/openclaw-safe/
+      - generic [ref=e325]:
+        - generic [ref=e326]: Q：Think BIG 的方案包含 AI 模型費用嗎？
+        - paragraph [ref=e327]:
+          - text: 本地版不含，模型運算不另收用量費。改搭雲端大模型時，方案價格是安裝與設定的服務費，模型用量費依實際用量計算，由你自行負擔。詳見
+          - link "常見問題" [ref=e328] [cursor=pointer]:
+            - /url: /faq/
+          - text: 。
+      - generic [ref=e329]:
+        - generic [ref=e330]: Q：你們裝的 AI Agent 跟大品牌的有什麼不一樣？資安怎麼顧？
+        - paragraph [ref=e331]: 資安沒有人能打包票。我們做的，就是一道一道的審查。技能裝進去之前先掃描；固定版本、不自動更新；上線前先過資安審查；金鑰只放系統設定檔、不在聊天裡傳。
+      - heading "資料來源與更新紀錄" [level=2] [ref=e332]
+      - paragraph [ref=e333]: 本頁各家 AI Agent 資料依 2026-09-30 各品牌官方網站整理，未附官方出處的數字不列入。
+      - list [ref=e334]:
+        - listitem [ref=e335]:
+          - text: — Claude：
+          - link "claude.com/pricing" [ref=e336] [cursor=pointer]:
+            - /url: https://claude.com/pricing
+        - listitem [ref=e337]:
+          - text: — ChatGPT Agent：
+          - link "OpenAI Help Center" [ref=e338] [cursor=pointer]:
+            - /url: https://help.openai.com/en/articles/11752874-chatgpt-agent
+        - listitem [ref=e339]:
+          - text: — dots：
+          - link "openai.com/index/introducing-dots" [ref=e340] [cursor=pointer]:
+            - /url: https://openai.com/index/introducing-dots/
+        - listitem [ref=e341]:
+          - text: — Gemini Spark：
+          - link "gemini.google/overview/agent" [ref=e342] [cursor=pointer]:
+            - /url: https://gemini.google/overview/agent/
+        - listitem [ref=e343]:
+          - text: — Grok Bot：
+          - link "x.ai/news/introducing-grok-bot" [ref=e344] [cursor=pointer]:
+            - /url: https://x.ai/news/introducing-grok-bot
+        - listitem [ref=e345]:
+          - text: — Muse：
+          - link "Meta Newsroom" [ref=e346] [cursor=pointer]:
+            - /url: https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/
+        - listitem [ref=e347]:
+          - text: — Microsoft Copilot：
+          - link "microsoft.com/copilot/pricing" [ref=e348] [cursor=pointer]:
+            - /url: https://www.microsoft.com/en-us/copilot/pricing/individuals
+      - paragraph [ref=e349]: 資料查證日期：2026-09-30，價格以各家官網為準。更新紀錄：2026-10-01 初版上線；2026-10-02 加入「新的 AI Agent 出來了，還需要龍蝦？」FAQ。
+      - generic [ref=e350]:
+        - paragraph [ref=e351]: 想讓 AI Agent 裝在自己的電腦上用？
+        - generic [ref=e352]:
+          - link "看個人方案" [ref=e353] [cursor=pointer]:
+            - /url: /pricing/personal/
+            - text: 看個人方案
+            - generic [aria-hidden] [ref=e354]: →
+          - link "預約 30 分鐘諮詢" [ref=e355] [cursor=pointer]:
+            - /url: /book/
+          - link "用 LINE 說需求" [ref=e356] [cursor=pointer]:
+            - /url: https://lin.ee/n5KW430
+      - navigation [ref=e357]:
+        - link "← 回指南首頁" [ref=e358] [cursor=pointer]:
+          - /url: /guides/
+        - link "OpenClaw 和 Hermes 差在哪 →" [ref=e359] [cursor=pointer]:
+          - /url: /guides/hermes-vs-openclaw/
+  - contentinfo [ref=e360]:
+    - generic [ref=e361]:
+      - link "Think BIG 首頁" [ref=e362] [cursor=pointer]:
+        - /url: /
+        - img "Think BIG" [ref=e363]
+      - paragraph [ref=e364]: 企業 AI Agent 導入與治理。地端部署・流程整合・年度維運
+      - generic [ref=e365]:
+        - link "Instagram @think_big_ai" [ref=e366] [cursor=pointer]:
+          - /url: https://www.instagram.com/think_big_ai/
+        - link "LINE 官方帳號" [ref=e369] [cursor=pointer]:
+          - /url: https://lin.ee/n5KW430
+        - link "YouTube @think_big_ai_tw" [ref=e372] [cursor=pointer]:
+          - /url: https://www.youtube.com/@think_big_ai_tw
+    - generic [ref=e375]:
+      - link "企業導入" [ref=e376] [cursor=pointer]:
+        - /url: /enterprise/
+      - link "AI 部門" [ref=e377] [cursor=pointer]:
+        - /url: /enterprise/departments/
+      - link "SEO／AEO／GEO" [ref=e378] [cursor=pointer]:
+        - /url: /services/ai-visibility/
+      - link "個人方案" [ref=e379] [cursor=pointer]:
+        - /url: /pricing/personal/
+      - link "導入流程" [ref=e380] [cursor=pointer]:
+        - /url: /enterprise/process/
+      - link "資安與治理" [ref=e381] [cursor=pointer]:
+        - /url: /trust/
+      - link "指南" [ref=e382] [cursor=pointer]:
+        - /url: /guides/
+      - link "作品集" [ref=e383] [cursor=pointer]:
+        - /url: /portfolio/
+      - link "Library" [ref=e384] [cursor=pointer]:
+        - /url: /library/
+      - link "LINE 洽詢 ↗" [ref=e385] [cursor=pointer]:
+        - /url: https://lin.ee/n5KW430
+    - generic [ref=e386]:
+      - generic [ref=e387]: © 2026 Think BIG・台灣
+      - generic [ref=e388]:
+        - link "關於 Think BIG" [ref=e389] [cursor=pointer]:
+          - /url: /about/
+        - link "術語表" [ref=e390] [cursor=pointer]:
+          - /url: /guides/glossary/
+        - link "隱私權政策" [ref=e391] [cursor=pointer]:
+          - /url: /privacy.html
+        - link "服務條款" [ref=e392] [cursor=pointer]:
+          - /url: /terms.html
+        - link "聯絡我們" [ref=e393] [cursor=pointer]:
+          - /url: /contact/
+        - link "常見問題" [ref=e394] [cursor=pointer]:
+          - /url: /faq/
+        - link "English" [ref=e395] [cursor=pointer]:
+          - /url: /tbos/en/
+  - button "開啟 Think BIG AI 顧問" [ref=e396] [cursor=pointer]:
+    - generic [ref=e399]: AI 顧問

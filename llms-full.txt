@@ -15021,6 +15021,12 @@ AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用�
 
 每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
 
+看到這裡，想自己動手還是想有人帶？
+
+[看個人方案 →](https://thinkbigtw.com/pricing/personal/)
+[預約 30 分鐘諮詢](https://thinkbigtw.com/book/)
+[用 LINE 說需求](https://lin.ee/n5KW430)
+
 ## 訂閱額度用完怎麼辦
 
 各家品牌 AI Agent 的額度重置機制：
@@ -15144,6 +15150,12 @@ Q：你們裝的 AI Agent 跟大品牌的有什麼不一樣？資安怎麼顧？
 - Microsoft Copilot：[microsoft.com/copilot/pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals)
 
 資料查證日期：2026-09-30，價格以各家官網為準。更新紀錄：2026-10-01 初版上線；2026-10-02 加入「新的 AI Agent 出來了，還需要龍蝦？」FAQ。
+
+想讓 AI Agent 裝在自己的電腦上用？
+
+[看個人方案 →](https://thinkbigtw.com/pricing/personal/)
+[預約 30 分鐘諮詢](https://thinkbigtw.com/book/)
+[用 LINE 說需求](https://lin.ee/n5KW430)
 
 ---
 
