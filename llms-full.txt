@@ -2942,7 +2942,7 @@ Starting from security,
 we build AI Agents inside your company's own environment.
 
 [Personal, from NT$8,000](https://thinkbigtw.com/en/pricing/personal/)
-[Business, from NT$60,000](https://thinkbigtw.com/en/pricing/enterprise/)
+[Business, from NT$52,600 (excl. tax)](https://thinkbigtw.com/en/pricing/enterprise/)
 [Book a free 30-minute assessment →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20assessment.)
 
 Delivered within 30 days once scope is frozen and data is in place. Enterprise pages are currently in Chinese; ask us on WhatsApp for an English walkthrough.
@@ -2957,7 +2957,7 @@ Plans and pricing
 
 - [Flagship Annual NT$48,000 Solo operators handing several departments to AI](https://thinkbigtw.com/en/annual-flagship/)
 
-- [Business plan from NT$60,000 Companies with several users and a knowledge base](https://thinkbigtw.com/en/pricing/enterprise/)
+- [Business plan from NT$52,600(excl. tax) Companies with several users and a knowledge base](https://thinkbigtw.com/en/pricing/enterprise/)
 
 Workflow integration
 Permissions and review
@@ -6106,7 +6106,7 @@ Enterprise use
 
 Enterprise deployment architecture is chosen based on your data handling policy, team collaboration needs, and maintenance responsibilities. Both cloud-assisted and on-premises options use a requirements-first, contract-based approach — data flow, access boundaries, acceptance testing, and SLA are all confirmed upfront.
 
-Business plan: from NT$60,000
+Business plan: from NT$52,600 (excl. 5% tax; NT$55,230 incl. tax)
 
 How it differs from the personal annual plan: used by multiple people in a company, a knowledge base built from company data, local-model deployment and a security review. Hardware not included.
 
@@ -13874,9 +13874,9 @@ AI AGENT / 能力範圍
 PRICING / 方案定價
 
 ## 公司導入 AI，
-NT$60,000 起
+NT$52,600 起（未稅）
 
-公司方案　NT$60,000 起
+公司方案　NT$52,600 起（未稅，含稅 NT$55,230）
 
 跟個人年約的差別：公司多人使用、用公司資料建知識庫、本地模型部署與資安審查。不含硬體。
 
@@ -14113,7 +14113,7 @@ TB FRAME 以評估定義、架構建置、驗證交付與治理維運四階段�
 
 企業方案有哪些級距？
 
-公司方案 NT$60,000 起（不含硬體），實際依需求報價，請[預約需求訪談](https://thinkbigtw.com/contact/)取得正式報價。三種方案（入門／標準／完整）均含建置、教學影片與第一年維護服務。首年內均可補差價升級。第二年選配續約，由客戶自己決定是否續約，不自動扣款。
+公司方案 NT$52,600 起（未稅，含稅 NT$55,230）（不含硬體），實際依需求報價，請[預約需求訪談](https://thinkbigtw.com/contact/)取得正式報價。三種方案（入門／標準／完整）均含建置、教學影片與第一年維護服務。首年內均可補差價升級。第二年選配續約，由客戶自己決定是否續約，不自動扣款。
 
 企業服務如何界定報價範圍？
 
@@ -16365,7 +16365,7 @@ AI THAT WORKS. FOR YOUR BUSINESS.
 從守護企業資安出發，
 把 AI Agent 建在你公司自己的環境裡。
 
-[個人方案　NT$8,000 起](https://thinkbigtw.com/pricing/personal/)[公司方案　NT$60,000 起](https://thinkbigtw.com/enterprise/)
+[個人方案　NT$8,000 起](https://thinkbigtw.com/pricing/personal/)[公司方案　NT$52,600 起（未稅）](https://thinkbigtw.com/enterprise/)
 
 🔊 點一下開聲音
 
@@ -16383,7 +16383,7 @@ AI 生成虛擬人物廣告・主持人為 AI 生成非真實存在
 
 - [旗艦年約 NT$48,000 一人公司，想把多個部門的事交出去](https://thinkbigtw.com/annual-flagship/)
 
-- [公司方案 NT$60,000 起 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
+- [公司方案 NT$52,600 起（未稅） 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
 
 流程整合 權限與覆核 持續維運
 
@@ -26815,7 +26815,7 @@ URL: https://thinkbigtw.com/pricing/enterprise/
 
 企業部署依資料處理政策、部門協作與維護責任選擇架構。雲端整合與地端配置均採需求評估及合約制，逐項確認資料流向、權限邊界、驗收與 SLA。
 
-公司方案　NT$60,000 起
+公司方案　NT$52,600 起（未稅，含稅 NT$55,230）
 
 跟個人年約的差別：公司多人使用、用公司資料建知識庫、本地模型部署與資安審查。不含硬體。
 
@@ -26929,9 +26929,9 @@ Think BIG（大想成業有限公司）是總部位於台灣、服務全球的�
 
 ### 企業使用
 
-有員工、要多部門同時用、資料不能出公司，或需要合約 SLA 的公司。公司方案 NT$60,000 起（不含硬體），走需求訪談＋合約制，實際依需求報價。
+有員工、要多部門同時用、資料不能出公司，或需要合約 SLA 的公司。公司方案 NT$52,600 起（未稅，含稅 NT$55,230）（不含硬體），走需求訪談＋合約制，實際依需求報價。
 
-NT$60,000 起 · 本地或雲端
+NT$52,600 起（未稅） · 本地或雲端
 
 - 雲端輔助版：低門檻、多部門快速用起來
 
@@ -26981,9 +26981,9 @@ NT$8,000 起 · 蝦皮賣場選購
 
 ### 企業使用 → [看方案](https://thinkbigtw.com/pricing/enterprise/)
 
-- 雲端輔助版企業雲端大模型 API 部署 · 依合約 NT$60,000 起
+- 雲端輔助版企業雲端大模型 API 部署 · 依合約 NT$52,600 起（未稅）
 
-- 地端版本地部署，資料不出公司 · 依合約 NT$60,000 起
+- 地端版本地部署，資料不出公司 · 依合約 NT$52,600 起（未稅）
 
 ### 個人使用 → [看比較表](https://thinkbigtw.com/pricing/personal/)
 
@@ -27018,7 +27018,7 @@ OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/
 
 - 安裝方式：AnyDesk／DeskIn 遠端連線；若因我方技術問題無法完成安裝，全額退費
 
-※ 價格為我方服務費，不含第三方 AI 模型用量費。公司方案 NT$60,000 起，實際依需求訪談報價。
+※ 價格為我方服務費，不含第三方 AI 模型用量費。公司方案 NT$52,600 起（未稅，含稅 NT$55,230），實際依需求訪談報價。
 
 ---
 
