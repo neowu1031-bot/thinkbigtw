@@ -1703,6 +1703,242 @@ We scan skills before installing them, pin versions with no auto-updates, run a 
 
 ---
 
+URL: https://thinkbigtw.com/en/free-resources/
+
+# Free AI Prompts: Photo Restore, Funny Edits, Animate a Photo, GIFs, Songs | Think BIG
+
+FREE RESOURCES / WEEKEND HOW-TOS
+
+# Free AI how-to prompts
+
+Every prompt from our weekend how-to videos is here. Read it, copy it with one tap, no details required.
+
+- Works on a phone
+
+- Copy directly
+
+- No sign-up
+
+Tool: ChatGPT
+
+## Restore an old photo with AI
+
+Clean up a yellowed, creased old photo, and add colour if you like.
+
+How to  Open the ChatGPT app, tap "+", pick an old photo from your album (upload it first) and paste prompt 1. Once you are happy with it, paste prompts 2 and 3 in the same chat.
+
+### 1 | Restore
+
+Please restore this old photo so it is clear: remove scratches, stains and yellowing, keep every person's face, expression, clothes and the background, and keep it a black-and-white photo.
+
+### 2 | Colourise
+
+Please add natural, soft colour to this restored black-and-white photo: healthy skin tones, plain clothing, a warm wood colour on the wooden door, keeping every person's face, expression and the original scene.
+
+### 3 | Photo-studio print finish
+
+Please keep every person's face, expression, clothes and the background in this colour photo and give it the look of a photo-studio print. The photo should be clean and sharp with natural colour and a fine photo-paper gloss, with no scratches, creases, yellowing or damaged borders.
+
+- Use only photos of your own family or people who agreed. If the photo is very faded or blurry, retake a clear photo of it first for steadier results.
+
+- Free accounts have daily upload and editing limits; the app shows when it resets. Label what you post as AI-generated.
+
+Watch the demo: [Instagram](https://www.instagram.com/reel/DfcPoetjAnR/)[YouTube](https://www.youtube.com/shorts/MpTVkX71xcg)
+
+Tool: ChatGPT
+
+## Funny photo edits: meme face, shocked face, museum portrait
+
+Upload one photo, paste one prompt: exaggerate the expression and keep the face recognisable.
+
+How to  Open the ChatGPT app, tap "+", pick a photo of yourself or your own pet, then paste one prompt. Start a new chat for each new photo.
+
+### 1 | Meme face
+
+Turn this photo into a funny meme. Keep the subject's original face, hairstyle, clothes and background so they are instantly recognisable as the same person; change only the expression to an exaggerated one: eyes wide open, one eyebrow high and one low, mouth twisted to one side as if holding back a laugh, like a chat-app sticker. Do not change body shape, skin tone or physical features. No text. Vertical 4:5.
+
+### 2 | Shocked face
+
+Keep the subject of the photo, instantly recognisable as the same person or the same pet, and change the expression to an exaggerated shocked face: eyes as wide as possible, mouth in an O shape, hair or ears sticking up, as if a snack just fell on the floor. Make it funny, not scary, and never injured or sad. Do not change body shape, skin tone, fur colour or physical features. No text. Vertical 4:5.
+
+### 3 | Museum-portrait parody
+
+Paint this photo as a classical oil portrait, like one hanging on a museum wall: fine brushwork, dark background, gold frame. Keep the subject's face, hairstyle or fur colour so they are instantly recognisable; an overly solemn pose with a deadpan expression that is funny: side-eye, a hint of a suppressed smile. Do not change body shape, skin tone or physical features. No text. Do not imitate any specific famous painting. Vertical 4:5.
+
+- Only edit photos of yourself or your own pet; ask friends first. The joke is the expression and the style, never anyone's looks, body or skin tone.
+
+- Label what you post as AI-generated. Free accounts have daily upload and editing limits; the app shows when it resets.
+
+Watch the demo: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+Tool: Grok
+
+## Bring a photo to life: a small smile from someone you miss
+
+Use video mode in the Grok app to make a photo blink and smile, or make a pet turn to look at you.
+
+How to  Open the Grok app, tap the input box, choose "Video" mode, switch sound off, tap "+" at the bottom left to add the photo, paste one prompt and tap the arrow at the bottom right. Photo-to-video is a paid-plan feature; what free accounts can do is whatever the app shows.
+
+### 1 | Natural blink and smile (portrait)
+
+Make the person in the photo move naturally: blink once slowly, a gentle smile at the corners of the mouth, head turning very slightly. Keep the movement small, slow and natural, and keep the original face, hairstyle, clothes and background. Camera stays still. No speaking, the mouth does not open or close. No text.
+
+### 2 | Pet turns its head (pet)
+
+Make the pet in the photo move naturally: slowly turn its head toward the camera, move its ears gently once, blink once; if the tail is visible, wag it softly twice. Keep the original breed, fur colour, markings and body shape. Keep the movement slow, like at home. Camera stays still. No text.
+
+### 3 | A light breeze (portrait)
+
+Let a light breeze blow through the photo: hair and clothing edges move gently, leaves or curtains in the background sway slightly; the person keeps the original expression and only blinks once slowly. Keep the original face, clothes, background and lighting. Camera stays still. No speaking. No text.
+
+- The smaller the movement, the more natural it looks. We only animate the photo: no sound, and no speaking.
+
+- Before uploading family photos, go to Grok Settings, Data Controls and turn off "Improve the model". That only covers training; the photo is still uploaded to the cloud.
+
+Watch the demo: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+Tool: ChatGPT
+
+## ChatGPT image styles: felt, clay, model kit, bobblehead
+
+Upload a character or object photo. Try the short prompt first; paste the long one if it is not close enough.
+
+How to  Open ChatGPT, go to Images in the sidebar, tap "+" to upload a character or object photo, and paste a prompt. If it is not right, say "fluffier" or "rounder" in the same chat.
+
+### Felt | short
+
+Turn this image into a needle-felted wool style.
+
+### Felt | long
+
+Turn the character I uploaded into a handmade needle-felted style: a plush toy made by poking wool with a felting needle, with fine wool fibres and slightly fuzzy edges visible on the surface, soft colours, two small black bead eyes. Place it on a light wooden table, soft natural light, macro photography, shallow depth of field in the background. Keep the original design, colours and features. No text anywhere in the image.
+
+### Clay animation | short
+
+Turn this image into a clay stop-motion style.
+
+### Clay animation | long
+
+Turn the character I uploaded into a clay stop-motion style: a character shaped bit by bit from clay, with fingerprint marks and the imperfection of hand-moulding, rounded edges, saturated warm colours. Place it in a miniature handmade photo-studio set, soft studio light, macro lens, shallow depth of field. Keep the original design and features. No text anywhere in the image.
+
+### Model kit | short
+
+Turn this character into a full plastic model-kit sprue.
+
+### Model kit | long
+
+Turn the character I uploaded into a full plastic model-kit sprue: grey-white plastic, the character split into parts such as head, body, limbs and accessories, held to the frame by small gates, with a simple assembly sheet beside it. Place it on a white table, shot from directly above, product-photography quality, even lighting. Only Arabic-numeral part numbers may appear on the parts; no other text and no brand logos. Keep the original design and colour features.
+
+### Bobblehead | short
+
+Turn this character into a car dashboard bobblehead.
+
+### Bobblehead | long
+
+Turn the character I uploaded into a car dashboard bobblehead: an extra-large head attached to a small body by a spring, head tilted slightly to one side, plastic toy material with a glossy reflective surface. Place it on a car dashboard with soft daylight outside the window, shallow depth of field. Keep the original facial features and colours. No text anywhere in the image.
+
+- Three things to include: material, detail, and what to keep.
+
+- For portraits, use only your own photo or one the person agreed to; do not use other people's characters or brand IP. Free accounts have image limits; ChatGPT will tell you when you reach them.
+
+Watch the demo: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+Tool: ChatGPT
+
+## Make GIFs in ChatGPT: 6 ideas
+
+Ask ChatGPT for a looping GIF and say what should move.
+
+How to  Open ChatGPT and paste a prompt; to use your own picture, tap "+" and upload it first. When it is done, open the GIF to change speed, save or share. If it is off, say "make the movement smaller" in the same chat.
+
+### 1 | Photo to anime sticker
+
+Turn the photo I uploaded into a looping GIF sticker in Japanese anime style: the person keeps their hairstyle, clothes and general look, blinks once, then waves hello, and finally returns to the starting pose so it loops seamlessly. Change the background to a plain pastel colour. No text and no effect symbols anywhere.
+
+### 2 | Pet shakes head and claps
+
+Use the pet photo I uploaded to make a looping GIF: it first shakes its head from side to side, then lifts its front paws as if clapping, at a light rhythm, and finally returns to the starting pose so it loops seamlessly. Keep the original fur colour, markings and face shape. Leave the background unchanged. No text and no effect symbols anywhere.
+
+### 3 | Doodle monster dances
+
+Turn the hand-drawn doodle I uploaded into a moving little monster: keep my lines and colours, like a 5-year-old's scribble with wobbly lines, and have it wiggle its bottom from side to side in a dance, looping seamlessly. Keep the background as white paper. No text and no effect symbols anywhere.
+
+### 4 | Famous painting parody (public domain only)
+
+I do not have the original image. Redraw an oil-painting version based on the composition of the Mona Lisa (Leonardo da Vinci), then make it a looping GIF: the figure suddenly picks up a cup of bubble tea, takes a sip, looks satisfied, then puts the cup down, looping seamlessly. Keep the oil-painting look. No text and no effect symbols anywhere.
+
+### 5 | Chibi character sticker
+
+Use the character image I uploaded to make a looping GIF sticker of a chibi version: he makes an OK sign, then nods three times, and finally returns to the starting pose so it loops seamlessly. Full body in frame, plain single-colour background. No text and no effect symbols anywhere.
+
+### 6 | Old photo smiles again
+
+Turn the old photo I uploaded into a looping GIF: the person slowly blinks once, a gentle smile at the corners of the mouth, then returns to the starting expression, looping seamlessly. Keep the original face, clothes and the grain of the old photo. Camera stays still. No text and no effect symbols anywhere.
+
+- Use only photos of yourself, your own pet, or people who agreed. For painting parodies pick only public-domain works such as the Mona Lisa, The Starry Night or The Great Wave, never real-person portraits.
+
+- Three things to state: what moves, what must not change, and no text. OpenAI says the GIF feature is rolling out gradually, so it depends on what you see in your account.
+
+- Idea inspired by a Xiaohongshu post by Sun Xiang; the images and prompts are Think BIG's own rewrite.
+
+Watch the demo: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+Tool: Suno
+
+## Make your own song with Suno: a song for a pet you miss
+
+Advanced mode: title, style and lyrics all written in advance. Every press of Create gives a different result.
+
+How to  Log in at suno.com, go to Create and choose Advanced. Paste Title, Style and Lyrics into the matching fields. If you do not like it, press Create again.
+
+### A song for a pet you miss (Advanced)
+
+Title: 屁屁，我還記得 (replace 屁屁 with your pet's name)
+Style: gentle acoustic ballad, warm fingerpicked guitar, soft piano, female Mandarin vocals, tender and nostalgic, slow tempo, heartfelt, 80 BPM, no heavy drums, no electronic, no rap
+Lyrics (Mandarin, replace 屁屁 with your pet's name):
+[Verse]
+門口的那雙拖鞋 還是被你咬過的樣子
+沙發左邊那個位置 到現在我還留著
+早上打開門的時候 好像還會聽見
+你短短的尾巴 拍著地板說早安
+
+[Chorus]
+屁屁 我還記得 你歪著頭看我的樣子
+屁屁 我還記得 你打呼比我還大聲
+你說好要陪我 一起把夢想做大
+現在換你 在每一個畫面裡陪著我
+
+[Bridge]
+你去了比較遠的地方 那裡一定有很多零食
+等我們再見面的那天 換我先跑向你
+
+[Outro]
+屁屁 晚安 謝謝你一直都在
+
+- Replace the pet's name with your own. Three tips: in Simple mode write one sentence (theme, style, voice); in Advanced mark sections with [Verse] and [Chorus]; keep lines short and avoid hard-to-sing words.
+
+- Commercial-use rules (check Suno's official pages; they may change): songs made on the free plan are non-commercial only and Suno owns them; shops, ads and music platforms need a paid plan, with songs made during the subscription and downloaded officially. AI-made songs may not be protected by copyright. You must be 13 or older, and under 18 needs a parent's consent.
+
+Watch the demo: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+Demo videos are on the Think BIG Instagram and YouTube channels. Prompts and cards on this page are AI-assisted.
+
+## Want new ideas as they come?
+
+We will let you know when new prompts are added. Add us on WhatsApp or leave an email.
+
+[Message us on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+
+## Want to put AI to work in your own job?
+
+Send us a line or two about what you would like AI to handle and we will look at it together.
+
+[Message us on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)[See personal plans](https://thinkbigtw.com/en/pricing/)
+
+AI-assisted production
+
+---
+
 URL: https://thinkbigtw.com/en/full-agent/
 
 # Full Agent Integration | Multi-Agent Orchestration | Think BIG
@@ -6560,7 +6796,7 @@ URL: https://thinkbigtw.com/en/privacy/
 
 # Think BIG Privacy Policy
 
-Last updated: November 10, 2026
+Last updated: November 13, 2026
 
 [中文版](https://thinkbigtw.com/privacy.html)
 
@@ -6586,7 +6822,21 @@ We use Google Analytics 4 to count visits, pages, time on page and conversions (
 
 ## 6. Our website AI assistant and enquiry summaries
 
-Our website chat and the “AI Experience” demo send what you type to a third-party cloud AI model (for the demo, Cloudflare Workers AI, after you tick consent) to generate a reply. Please do not enter passwords, API keys, payment details, confidential information or contact details in the chat. We do not store chat transcripts or IP addresses in our enquiry database. After a conversation, an anonymous summary (no name or direct contact data) may be sent to our internal system to improve service. If you choose to send an enquiry, you first review and edit the summary and contact details, tick consent and press Send; only then is it saved in our enquiry database. We keep enquiry summaries and the contact details you gave until you ask us to delete them. We never add you to marketing lists automatically. Messaging apps temporarily hold recent conversation context to keep replies coherent, then clear it after about 30 minutes of inactivity (at most 2 hours).
+Our website chat and the “AI Experience” demo send what you type to a third-party cloud AI model (for the demo, Cloudflare Workers AI, after you tick consent) to generate a reply. Please do not enter passwords, API keys, payment details, confidential information or contact details in the chat. We do not store chat transcripts or IP addresses in our enquiry database. After a conversation, an anonymous summary (no name or direct contact data) may be sent to our internal system to improve service. If you choose to send an enquiry, you first review and edit the summary and contact details, tick consent and press Send; only then is it saved in our enquiry database. We keep enquiry summaries and the contact details you gave until you ask us to delete them. We never add you to marketing lists automatically; the only exception is the new-ideas email subscription you choose to enter and tick consent for on our Free resources page (see below). Messaging apps temporarily hold recent conversation context to keep replies coherent, then clear it after about 30 minutes of inactivity (at most 2 hours).
+
+Free resources page: “Want new ideas?” email subscription.  Think BIG Make it Real CO., LTD. offers an optional email subscription on the Free resources page.
+
+What we collect:  your email address only, plus the time you ticked consent and a source tag (free_resources_1113) that identifies which page it came from. We do not ask for your name, phone number or anything else.
+
+Purpose:  only to send you new practical prompts and new ideas (this is marketing / informational email). You must tick the consent box yourself before anything is sent. If you leave the field empty or do not tick it, you can still use every free resource on the page; you just will not receive our notices.
+
+Storage:  the address is saved in our existing enquiry database (Supabase), sent over an encrypted connection with access restricted, and we do not store your IP address. We keep it until you unsubscribe or ask us to delete it.
+
+How to unsubscribe, and how fast:  email AI@thinkbigtw.com  at any time to unsubscribe, or to access, correct or delete your data. We complete and confirm the request within 14 days, and will make reasonable efforts to stop sending to you in the meantime.
+
+No other use:  we do not sell this list or give it to third parties (other than processors listed in section 4), and we do not merge it with data from webinar sign-ups, quick enquiry forms or consultations for other marketing.
+
+Your rights:  see section 10.
 
 ## 7. Security
 
@@ -14723,6 +14973,242 @@ AI Agent 市場
 我們用一道一道的審查來顧資安：技能裝進去之前先掃描；固定版本、不自動更新；上線前先過資安審查；金鑰只放系統設定檔、不在聊天裡傳。不過，資安沒有人能打包票。
 
 [查看資安承諾 ›](https://thinkbigtw.com/trust/)
+
+---
+
+URL: https://thinkbigtw.com/free-resources/
+
+# 免費 AI 實作提示詞｜修老照片、搞笑修圖、照片動起來、做 GIF、做歌｜Think BIG
+
+FREE RESOURCES ／ 學堂週末實作
+
+# 免費 AI 實作提示詞
+
+Think BIG 學堂週末實作每一集的完整提示詞都放在這裡。直接看、一鍵複製，不需要留任何資料。
+
+- 手機就能做
+
+- 直接複製
+
+- 不需留資料
+
+使用工具: ChatGPT
+
+## AI 修復老照片
+
+把泛黃、有折痕的老照片修乾淨，還能上色。
+
+怎麼做  手機打開 ChatGPT App，按「＋」從相簿挑一張老照片（先上傳），貼上第 1 招。滿意了，在同一個對話接著貼第 2 招、第 3 招。
+
+### 第 1 招｜修復
+
+請幫我把這張老照片修復清楚，去掉刮痕、污點和泛黃，保留原來每個人的長相、表情、衣服和背景，維持黑白照片的樣子。
+
+### 第 2 招｜上色
+
+請幫這張修好的黑白照片加上自然柔和的顏色，膚色健康、衣服樸素、木門有溫暖的木頭色，保留每個人的長相、表情和原來的畫面。
+
+### 第 3 招｜照相館沖洗質感
+
+請保留這張彩色照片裡每個人的長相、表情、衣服和背景，變成照相館沖洗的質感。照片要乾淨清晰、色彩自然，有細緻的相紙光澤，不要刮痕、摺痕、泛黃或破損邊框。
+
+- 只用自己家人或對方同意的照片。照片太舊太糊時，先拍清楚再上傳，結果會更穩。
+
+- 免費帳號每天上傳與修圖都有次數上限，用完 App 會顯示多久後恢復。發出去記得標「AI 生成」。
+
+看示範影片: [Instagram](https://www.instagram.com/reel/DfcPoetjAnR/)[YouTube](https://www.youtube.com/shorts/MpTVkX71xcg)
+
+使用工具: ChatGPT
+
+## AI 搞笑修圖：表情包臉、驚嚇臉、名畫風
+
+丟一張照片、貼一段提示詞，把表情變誇張，臉還認得出是同一個。
+
+怎麼做  手機打開 ChatGPT App，按「＋」從相簿挑一張自己或自家寵物的照片，再貼一段。換照片就開新對話。
+
+### 第 1 招｜表情包臉
+
+把這張照片改成搞笑表情包。保留主角原本的臉、髮型、衣服和背景，讓人一眼認得是同一個人；只把表情變誇張：眼睛瞪大、眉毛一高一低、嘴巴歪一邊憋笑，像聊天室會傳的那種貼圖。不要改變胖瘦、膚色和身體特徵，不加文字，直式 4:5。
+
+### 第 2 招｜誇張驚嚇臉
+
+保留照片裡的主角，讓人一眼認得是同一個人或同一隻寵物，把表情改成誇張的驚嚇臉：眼睛睜到最大、嘴巴張成 O 字、頭髮或耳朵往上翹，像看到零食掉在地上。要好笑不要恐怖，不要受傷或難過的樣子；不要改變胖瘦、膚色、毛色和身體特徵，不加文字，直式 4:5。
+
+### 第 3 招｜名畫風搞笑版
+
+把這張照片畫成古典油畫肖像，像博物館牆上掛的那種，細膩油彩、深色背景、金色畫框。保留主角的臉、髮型或毛色，讓人一眼認得；姿勢過度莊重，但表情一本正經得很好笑：斜眼、嘴角憋笑。不要改變胖瘦、膚色和身體特徵，不加文字，不要模仿特定名畫，直式 4:5。
+
+- 只修自己或自家寵物的照片，朋友的照片要先問過。搞笑的是表情和風格，不拿任何人的長相、身材、膚色開玩笑。
+
+- 發出去記得標「AI 生成」。免費帳號每天上傳與修圖都有次數上限，用完 App 會顯示多久後恢復。
+
+看示範影片: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+使用工具: Grok
+
+## 照片動起來：讓想念的人在照片裡對你笑一下
+
+用手機 Grok 的影片模式，讓照片眨眼、微笑，或讓毛孩轉頭看你。
+
+怎麼做  手機打開 Grok App，點下面的輸入框，模式選「影片」，上面的聲音關掉，按左下「＋」放照片，貼一段，按右下「↑」送出。照片變影片是付費方案的功能，免費能不能用以 App 顯示為準。
+
+### 第 1 招｜自然眨眼微笑（人像）
+
+讓照片裡的人自然地動起來：慢慢眨一次眼，嘴角輕輕微笑，頭稍微轉一點點。動作要小、要慢、要自然，保留原本的長相、髮型、衣服和背景。鏡頭不動，不要說話，嘴巴不要開合，不要加字。
+
+### 第 2 招｜寵物轉頭（寵物）
+
+讓照片裡的寵物自然地動起來：慢慢轉頭看向鏡頭，耳朵輕輕動一下，眨一次眼；看得到尾巴的話，就輕輕搖兩下。保留原本的品種、毛色、花紋和體型，動作要慢，像平常在家的樣子。鏡頭不動，不要加字。
+
+### 第 3 招｜微風吹頭髮（人像）
+
+讓照片裡吹來一陣微風：頭髮和衣角被風輕輕吹動，背景的樹葉或窗簾也微微晃動；人物保持原本的表情，只慢慢眨一次眼。保留原本的長相、衣服、背景和光線。鏡頭不動，不要說話，不要加字。
+
+- 動作越小越自然，大笑、揮手反而讓人不舒服。只讓照片動，不配聲音，也不讓照片說話。
+
+- 家人的照片上傳前，先到 Grok 設定 → 資料控制 → 關掉「改善模型」。這只管訓練，照片還是會上傳到雲端。
+
+看示範影片: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+使用工具: ChatGPT
+
+## ChatGPT 圖像 4 種風格：羊毛氈、黏土、模型套件、搖頭公仔
+
+上傳角色圖或物件照，先打短版，不夠像再貼長版。
+
+怎麼做  打開 ChatGPT，側邊欄 Images，點「＋」上傳角色圖或物件照，貼上提示詞。不滿意，在同一個對話裡說「毛再蓬一點」「再圓一點」。
+
+### 羊毛氈｜短版
+
+把這張圖改成羊毛氈風格。
+
+### 羊毛氈｜長版
+
+請把我上傳的這個角色，改成羊毛氈手作風格：像用羊毛氈針一戳一戳做出來的毛絨玩偶，表面看得到細細的羊毛纖維和微微的毛邊，顏色柔和，眼睛是兩顆小黑珠子。放在淺色木桌上，柔和的自然光，微距攝影，背景淺景深。保留原本的造型、配色和特徵，畫面不要有任何文字。
+
+### 黏土動畫｜短版
+
+把這張圖改成黏土動畫風格。
+
+### 黏土動畫｜長版
+
+請把我上傳的這個角色，改成黏土定格動畫風格：像用黏土一點一點捏出來的角色，表面有指紋壓痕和手捏的不完美感，邊緣圓潤，顏色飽和溫暖。放在縮小版的手作攝影棚場景裡，柔和的棚燈，微距鏡頭，淺景深。保留原本的造型和特徵，畫面不要有任何文字。
+
+### 模型套件｜短版
+
+把這個角色做成一整片塑膠模型套件的零件框。
+
+### 模型套件｜長版
+
+請把我上傳的這個角色，做成一整片塑膠模型套件的零件框：灰白色塑膠，角色拆成頭、身體、手腳和配件等零件，用細小的連接柱固定在框上，旁邊附一張簡單的組裝說明書。擺在白色桌面，從正上方俯拍，產品攝影質感，光線均勻。零件上只可以出現阿拉伯數字編號，不要有其他文字，也不要出現任何品牌標誌。保留原本的造型和配色特徵。
+
+### 搖頭公仔｜短版
+
+把這個角色做成車上的搖頭公仔。
+
+### 搖頭公仔｜長版
+
+請把我上傳的這個角色，做成車上擺飾用的搖頭公仔：頭特別大，用一根彈簧接在小小的身體上，頭微微歪向一邊，塑膠玩具材質，表面有亮面反光。放在汽車儀表板上，窗外是柔和的日光，淺景深。保留原本的臉部特徵和配色，畫面不要有任何文字。
+
+- 寫法三重點：材質、細節、保留特徵。
+
+- 人像只用自己或對方同意的照片，不拿別人的角色或品牌 IP。免費版圖像有用量上限，到了 ChatGPT 會通知。
+
+看示範影片: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+使用工具: ChatGPT
+
+## ChatGPT 做 GIF：6 種玩法
+
+對 ChatGPT 說「做一張循環 GIF」，再講哪裡要動。
+
+怎麼做  打開 ChatGPT，貼上提示詞；要用自己的圖，先點「＋」上傳照片。做好點開 GIF，可以調播放速度、存檔、分享。不滿意就在同一個對話裡說「動作再小一點」。
+
+### 第 1 招｜照片變動漫動態貼圖
+
+請把我上傳的這張照片，改成日系動漫風的循環 GIF 貼圖：人物維持原本的髮型、服裝和大致長相，先眨一次眼，再揮手打招呼，最後回到起始姿勢，可無縫循環。背景換成單色粉彩底，畫面不要有任何文字，不要加任何特效符號。
+
+### 第 2 招｜寵物搖頭鼓掌
+
+請用我上傳的寵物照片做一張循環 GIF：牠先左右搖頭晃腦，再抬起前腳像在拍手，節奏輕快，最後回到起始姿勢，可無縫循環。保留原本的毛色、花紋和臉型，背景不變，不要加任何文字，不要加任何特效符號。
+
+### 第 3 招｜塗鴉變小怪獸跳舞
+
+請把我上傳的手繪塗鴉變成會動的小怪獸：保留我畫的線條、顏色，像 5 歲小孩亂畫、線條抖動，讓牠左右扭屁股跳舞，可無縫循環。背景維持白紙，不要加任何文字，不要加任何特效符號。
+
+### 第 4 招｜名畫惡搞（只用公共領域）
+
+我沒有原圖，請依《蒙娜麗莎》（達文西）的構圖直接重繪一張油畫質感版本，再做成循環 GIF：畫中的人物突然拿起一杯珍珠奶茶，喝一口，露出滿意的表情，再把杯子放下，可無縫循環。保持油畫質感，不要加任何文字，不要加任何特效符號。
+
+### 第 5 招｜Q 版小人貼圖
+
+請用我上傳的角色圖，做一張 Q 版小人的循環 GIF 貼圖：他比出 OK 手勢，再點頭三下，最後回到起始姿勢，可無縫循環。全身都在畫面內，背景用單一純色，不要加任何文字，不要加任何特效符號。
+
+### 第 6 招｜懷舊照片再次微笑
+
+請把我上傳的老照片做成循環 GIF：照片裡的人慢慢眨一次眼，嘴角輕輕微笑，再回到起始表情，可無縫循環。保留原本的長相、衣服和老照片的顆粒質感，鏡頭不動，不要加任何文字，不要加任何特效符號。
+
+- 只用自己、自家寵物或已同意的人的照片；名畫只選公共領域作品，例如《蒙娜麗莎》《星夜》《神奈川沖浪裏》，不用真人肖像。
+
+- 寫法三重點：哪裡動、什麼不能變、不要加字。GIF 功能官方寫「陸續開放」，各帳號時間可能不同，以你畫面上看到的為準。
+
+- 玩法靈感：小紅書孫祥；圖片與提示詞為 Think BIG 自製重寫。
+
+看示範影片: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+使用工具: Suno
+
+## 用 Suno 做自己的歌：想念寵物的歌
+
+Advanced 進階模式：標題、曲風、歌詞都先寫好，每次按 Create 結果都不同。
+
+怎麼做  登入 suno.com，進 Create，選 Advanced 進階模式。Title、Style、Lyrics 各貼進對應欄位。不喜歡就再按一次 Create。
+
+### 想念寵物的歌（Advanced）
+
+Title：屁屁，我還記得
+Style：gentle acoustic ballad, warm fingerpicked guitar, soft piano, female Mandarin vocals, tender and nostalgic, slow tempo, heartfelt, 80 BPM, no heavy drums, no electronic, no rap
+Lyrics：
+[Verse]
+門口的那雙拖鞋 還是被你咬過的樣子
+沙發左邊那個位置 到現在我還留著
+早上打開門的時候 好像還會聽見
+你短短的尾巴 拍著地板說早安
+
+[Chorus]
+屁屁 我還記得 你歪著頭看我的樣子
+屁屁 我還記得 你打呼比我還大聲
+你說好要陪我 一起把夢想做大
+現在換你 在每一個畫面裡陪著我
+
+[Bridge]
+你去了比較遠的地方 那裡一定有很多零食
+等我們再見面的那天 換我先跑向你
+
+[Outro]
+屁屁 晚安 謝謝你一直都在
+
+- 把「屁屁」換成你家寵物的名字。寫法三重點：Simple 打一句話（主題＋曲風＋人聲）；Advanced 的 Lyrics 欄用 [Verse]、[Chorus] 標段落；句子短、少用難唱字。
+
+- 商用規則（以 Suno 官方頁為準，可能調整）：免費版做的歌只能非商業使用，版權歸 Suno；開店、廣告、上架音樂平台要付費方案，並在訂閱期間做、再用官方下載。AI 做的歌不一定受著作權保護。滿 13 歲才能用，未滿 18 要家長同意。
+
+看示範影片: [Instagram](https://www.instagram.com/think_big_ai/)[YouTube](https://www.youtube.com/@think_big_ai_tw)
+
+示範影片在 Think BIG 的 Instagram 與 YouTube 頻道。 本頁提示詞與圖卡為 AI 輔助製作。
+
+## 想收到新玩法？
+
+有新的實作提示詞時，我們會通知你。可以只加 LINE，也可以留 Email。
+
+[加 LINE 官方帳號好友](https://lin.ee/n5KW430)
+
+## 想把 AI 用在自己的工作上？
+
+用 LINE 傳一兩句你想交給 AI 的事，我們一起看怎麼做。
+
+[加 LINE 官方帳號好友](https://lin.ee/n5KW430)[看個人方案](https://thinkbigtw.com/pricing/personal/)
+
+AI 輔助製作
 
 ---
 
@@ -27265,7 +27751,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-11-10　[English version](https://thinkbigtw.com/en/privacy/)
+更新日期：2026-11-13　[English version](https://thinkbigtw.com/en/privacy/)
 
 大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
 
@@ -27339,11 +27825,25 @@ URL: https://thinkbigtw.com/privacy.html
 
 諮詢摘要先在目前瀏覽器分頁整理。您可以編修稱呼、公司／產業（可略）、想解決的問題、規模與單一聯絡方式及聯絡資料。這些欄位不送給 AI 模型；您預覽內容、勾選同意並按「確認送出」後，才傳送至本公司的諮詢資料庫，供顧問回覆本次需求。
 
-諮詢資料庫只保存上述摘要欄位、同意時間及內部隨機識別值，不保存 IP 或聊天逐字稿。您提供的聯絡資料與諮詢內容，保存至您請求刪除為止。您可以隨時來信 AI@thinkbigtw.com ，或透過 LINE 官方帳號，請求查詢、更正或刪除您的資料，我們會在 14 天內處理完成並回覆。備份與基礎設施技術紀錄的保存另依服務供應方設定管理。本節各管道（AI 顧問、完整問卷、快速需求表、說明會報名表）取得的聯絡資料，只用於回覆您提出的需求或您報名的活動通知，不會自動加入行銷訂閱或其他名單。
+諮詢資料庫只保存上述摘要欄位、同意時間及內部隨機識別值，不保存 IP 或聊天逐字稿。您提供的聯絡資料與諮詢內容，保存至您請求刪除為止。您可以隨時來信 AI@thinkbigtw.com ，或透過 LINE 官方帳號，請求查詢、更正或刪除您的資料，我們會在 14 天內處理完成並回覆。備份與基礎設施技術紀錄的保存另依服務供應方設定管理。本節各管道（AI 顧問、完整問卷、快速需求表、說明會報名表）取得的聯絡資料，只用於回覆您提出的需求或您報名的活動通知，不會自動加入行銷訂閱或其他名單；唯一例外是您在「免費資源」頁自行填寫 Email 並勾選同意的新玩法訂閱，見下方「免費資源頁訂閱」說明。
 
 介面確認入庫成功後才顯示「已送出」。若未能確認收件，可重試同一份摘要或使用 LINE 聯繫。聊天與未送出的草稿不寫入瀏覽器持久儲存；關閉或重新整理分頁後即不保留。此詢問保存規則優先於本頁一般保存期間說明。網站仍保留 GA4 瀏覽統計。
 
 快速需求表與說明會報名表： 您在官網「快速需求表」或「企業導入 AI 說明會」報名表填寫的資料，包括稱呼、聯絡方式（Email、手機或 LINE ID）、需求，以及選填的公司／產業與想解決的問題，會傳送至本公司的諮詢資料庫。用途限於：回覆您的需求並說明評估方向；以及寄送「企業導入 AI 說明會」的報名確認、開播提醒與回放通知。報名者只會收到這場說明會的相關通知，不會因此被加入其他行銷名單。這些資料保存至您請求刪除為止；如需查詢、更正或刪除，請寄信至 AI@thinkbigtw.com ，我們會在 14 天內處理完成並回覆。
+
+免費資源頁訂閱（「想收到新玩法？」）： 本公司（大想成業有限公司）於官網「免費資源」頁提供選填的 Email 訂閱。
+
+一、蒐集項目：僅 Email，以及您勾選同意的時間與來源標記（free_resources_1113，用來辨識此資料來自該頁）；不蒐集姓名、電話等其他資料。
+
+二、特定目的：僅用於寄送新的實作提示詞與新玩法通知（屬行銷／資訊通知）。您必須自行勾選同意才會送出；不勾選或不填寫，不影響您瀏覽與使用該頁的所有免費資源，只是無法收到我們的通知。
+
+三、保存與處理：資料傳送並保存於本公司既有的諮詢資料庫（Supabase），以加密傳輸、限制權限的方式存放，不保存 IP 位址。保存至您取消訂閱或請求刪除為止。
+
+四、取消方式與期限：隨時來信 AI@thinkbigtw.com  表示取消訂閱，或請求查詢、更正、刪除；我們會在 14 天內處理完成並回覆，處理期間內本公司將盡力不再寄送。
+
+五、不轉作他用：這份訂閱名單不出售、不提供第三人（受託處理者除外，見第三節），也不會與您報名說明會、快速需求表或諮詢的資料合併後另作行銷。
+
+六、您的權利：依個人資料保護法第 3 條，您可行使查詢、閱覽、製給複製本、補充或更正、停止蒐集處理利用、刪除等權利，方式同第六節。
 
 LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 客服回覆。對話內容會整理成摘要，供內部服務品質分析與後續聯繫使用；聯絡資料與摘要保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止。如需查詢、更正或刪除，來信 AI@thinkbigtw.com 或於 LINE 官方帳號中提出，我們會在 14 天內處理完成並回覆。
 
