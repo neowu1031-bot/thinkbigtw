@@ -257,6 +257,6 @@
     if (window.__tbNavLoaded) return;
     const a = e.target.closest('a[href*="lin.ee"]');
     if (!a) return;
-    try { if (typeof gtag === 'function') gtag('event', 'line_click', { page_location: location.href, page_path: location.pathname, link_url: a.href, cta: 'inline' }); } catch (_) {}
+    try { if (typeof gtag === 'function') { const lp = { page_location: location.href, page_path: location.pathname, link_url: a.href, cta: 'inline' }; gtag('event', 'click_line', lp); gtag('event', 'line_click', lp); } } catch (_) {}
   }, { passive: true });
 })();

@@ -144,7 +144,7 @@
     if (typeof gtag === 'function') gtag('event', name, params || {});
   }
 
-  /* Track outbound link clicks. Every LINE link on the site reports as `line_click`;
+  /* Track outbound link clicks. LINE links report `click_line` (+ legacy `line_click`), WhatsApp `click_whatsapp` (+ legacy `whatsapp_click`), Telegram `click_telegram`;
      `cta` comes from the nearest data-cta attribute so each entry point can be compared. */
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href]');
@@ -152,15 +152,17 @@
     var href = a.href || '';
     if (href.indexOf('lin.ee') !== -1 || href.indexOf('line.me') !== -1) {
       var holder = a.closest('[data-cta]');
-      tbEvent('line_click', {
-        page_location: location.href,
-        page_path: location.pathname,
-        link_url: href,
-        cta: holder ? holder.getAttribute('data-cta') : 'inline'
-      });
-    } else if (href.indexOf('wa.me/') !== -1) {
+      var lp = { page_location: location.href, page_path: location.pathname, link_url: href, cta: holder ? holder.getAttribute('data-cta') : 'inline' };
+      tbEvent('click_line', lp);
+      tbEvent('line_click', lp); /* legacy name, kept so existing reports keep working */
+    } else if (href.indexOf('wa.me/') !== -1 || href.indexOf('api.whatsapp.com') !== -1) {
       var h2 = a.closest('[data-cta]');
-      tbEvent('whatsapp_click', { page_location: location.href, page_path: location.pathname, link_url: href, cta: h2 ? h2.getAttribute('data-cta') : 'inline' });
+      var wp = { page_location: location.href, page_path: location.pathname, link_url: href, cta: h2 ? h2.getAttribute('data-cta') : 'inline' };
+      tbEvent('click_whatsapp', wp);
+      tbEvent('whatsapp_click', wp); /* legacy name */
+    } else if (href.indexOf('t.me/') !== -1 || href.indexOf('telegram.me/') !== -1) {
+      var h3 = a.closest('[data-cta]');
+      tbEvent('click_telegram', { page_location: location.href, page_path: location.pathname, link_url: href, cta: h3 ? h3.getAttribute('data-cta') : 'inline' });
     } else if (href.indexOf('shopee.tw') !== -1) {
       tbEvent('shopee_click', { page_location: location.href, link_url: href });
     }

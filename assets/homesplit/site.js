@@ -30,6 +30,7 @@
       status.textContent = '瀏覽器無法自動複製，已選取摘要，請手動複製後到 LINE 貼上。';
     }
     if (typeof gtag === 'function') gtag('event', 'consult_summary', { page_location: location.href });
+    if (typeof gtag === 'function') { const lp = { page_location: location.href, page_path: location.pathname, link_url: LINE_URL, cta: 'consult_form' }; gtag('event', 'click_line', lp); gtag('event', 'line_click', lp); }
     window.open(LINE_URL, '_blank', 'noopener,noreferrer');
   }
   form.addEventListener('submit', function (event) {
