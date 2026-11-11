@@ -2938,11 +2938,11 @@ AI THAT WORKS. FOR YOUR BUSINESS.
 # Replies, lookups, reports:
 hand them to your AI assistant.
 
-Local AI models, running on your own computers.
-Your data doesn't have to go to the cloud.
+Cloud or local AI models — your choice.
+Go local and your data doesn't have to leave your computers.
 
-[Personal plan from NT$7,840](https://thinkbigtw.com/en/pricing/personal/)
-[Local LLM Business plan from NT$52,600 (excl. tax)](https://thinkbigtw.com/en/pricing/enterprise/)
+[Cloud / Local LLM Personal plan from NT$7,840](https://thinkbigtw.com/en/pricing/personal/)
+[Cloud / Local LLM Business plan from NT$52,600 (excl. tax)](https://thinkbigtw.com/en/pricing/enterprise/)
 
 [Book a free 30-minute assessment →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20assessment.)
 
@@ -2950,15 +2950,15 @@ Delivered within 30 days once scope is frozen and data is in place. Enterprise p
 
 Plans and pricing
 
-- [Single Agent NT$7,840 Your first personal AI assistant, on your own computer](https://thinkbigtw.com/en/pricing/personal/#tier1)
+- [Cloud / Local LLM Single Agent NT$7,840 Your first personal AI assistant, on your own computer](https://thinkbigtw.com/en/pricing/personal/#tier1)
 
-- [Dual Agent NT$17,920 Two assistants that share memory and split the work](https://thinkbigtw.com/en/dual-agent/)
+- [Cloud / Local LLM Dual Agent NT$17,920 Two assistants that share memory and split the work](https://thinkbigtw.com/en/dual-agent/)
 
-- [Premier Annual NT$39,910 One person who wants an engineer on call all year](https://thinkbigtw.com/en/annual-pro/)
+- [Cloud / Local LLM Premier Annual NT$39,910 One person who wants an engineer on call all year](https://thinkbigtw.com/en/annual-pro/)
 
-- [Flagship Annual NT$48,010 Solo operators handing several departments to AI](https://thinkbigtw.com/en/annual-flagship/)
+- [Cloud / Local LLM Flagship Annual NT$48,010 Solo operators handing several departments to AI](https://thinkbigtw.com/en/annual-flagship/)
 
-- [Local LLM Business plan from NT$52,600(excl. tax) Companies with several users and a knowledge base](https://thinkbigtw.com/en/pricing/enterprise/)
+- [Cloud / Local LLM Business plan from NT$52,600(excl. tax) Companies with several users and a knowledge base](https://thinkbigtw.com/en/pricing/enterprise/)
 
 Workflow integration
 Permissions and review
@@ -6113,6 +6113,8 @@ How it differs from the personal annual plan: used by multiple people in a compa
 
 The business plan includes an AI readiness check: with your company's written consent and after your company has informed its employees, we take stock of software usage time and file types on the computers, without reading contents or recording passwords, to find the first thing AI is best placed to do.
 
+With a cloud model, conversations are processed by the model provider; we'll tell you which provider and its data terms before you sign. With a local model, your data stays on your own computers.
+
 ## Initial deployment assessment
 
 ## Enterprise deployment options
@@ -6402,6 +6404,8 @@ Personal plan directory
 ## Find your personal plan
 
 ## Three plans
+
+With a cloud model, conversations are processed by the model provider; we'll tell you which provider and its data terms before you sign. With a local model, your data stays on your own computers.
 
 Tier 1 · Single AI Agent Setup · 7-day support
 
@@ -13883,6 +13887,8 @@ NT$52,600 起（未稅）
 
 企業方案包含 AI 導入健檢：經貴公司書面同意並由貴公司告知員工，盤點電腦上的軟體使用時間與檔案類型，不讀內容、不記錄密碼，找出 AI 最值得先做的事。
 
+選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
 三種方案，清楚定義範圍與交付天數，都含第一年維護服務；AI 模型費用由客戶自備。實際內容與報價依需求訪談確認。
 
 STARTER / 入門級
@@ -16363,10 +16369,10 @@ AI THAT WORKS. FOR YOUR BUSINESS.
 # 回訊息、找資料、整理報表，
 交給你的 AI 助理。
 
-本地大模型，裝在你公司自己的電腦裡。
-資料不必上傳雲端，AI 一樣幫你做事。
+雲端或本地大模型，依你的需求選。
+選本地，資料不必上傳雲端。
 
-[個人方案 NT$7,840 起](https://thinkbigtw.com/pricing/personal/)[本地大模型 公司方案 NT$52,600 起（未稅）](https://thinkbigtw.com/enterprise/)
+[雲端／本地大模型 個人方案 NT$7,840 起](https://thinkbigtw.com/pricing/personal/)[雲端／本地大模型 公司方案 NT$52,600 起（未稅）](https://thinkbigtw.com/enterprise/)
 
 🔊 點一下開聲音
 
@@ -16376,15 +16382,15 @@ AI 生成虛擬人物廣告・主持人為 AI 生成非真實存在
 
 方案與價格
 
-- [單 Agent 個人助理 NT$7,840 第一次想要一個裝在自己電腦上的 AI 助理](https://thinkbigtw.com/pricing/personal/#tier1)
+- [雲端／本地大模型 單 Agent 個人助理 NT$7,840 第一次想要一個裝在自己電腦上的 AI 助理](https://thinkbigtw.com/pricing/personal/#tier1)
 
-- [雙 Agent NT$17,920 想讓兩個 AI 助理分工、記憶互通](https://thinkbigtw.com/dual-agent/)
+- [雲端／本地大模型 雙 Agent NT$17,920 想讓兩個 AI 助理分工、記憶互通](https://thinkbigtw.com/dual-agent/)
 
-- [尊榮年約 NT$39,910 想要有人顧一整年的個人](https://thinkbigtw.com/annual-pro/)
+- [雲端／本地大模型 尊榮年約 NT$39,910 想要有人顧一整年的個人](https://thinkbigtw.com/annual-pro/)
 
-- [旗艦年約 NT$48,010 一人公司，想把多個部門的事交出去](https://thinkbigtw.com/annual-flagship/)
+- [雲端／本地大模型 旗艦年約 NT$48,010 一人公司，想把多個部門的事交出去](https://thinkbigtw.com/annual-flagship/)
 
-- [本地大模型 公司方案 NT$52,600 起（未稅） 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
+- [雲端／本地大模型 公司方案 NT$52,600 起（未稅） 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
 
 流程整合 權限與覆核 持續維運
 
@@ -26822,6 +26828,8 @@ URL: https://thinkbigtw.com/pricing/enterprise/
 
 企業方案包含 AI 導入健檢：經貴公司書面同意並由貴公司告知員工，盤點電腦上的軟體使用時間與檔案類型，不讀內容、不記錄密碼，找出 AI 最值得先做的事。
 
+選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
 ## 部署條件初步評估
 
 ## 企業部署選項
@@ -27059,6 +27067,8 @@ URL: https://thinkbigtw.com/pricing/personal/
 ## 個人方案需求評估
 
 ## 三種方案
+
+選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
 
 Tier 1 · 單 AI Agent 搭建 · 支援 7 天
 
