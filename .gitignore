@@ -29,3 +29,4 @@ _site/
 # Backup files
 *.bak
 *.bak-*
+.playwright-cli/
