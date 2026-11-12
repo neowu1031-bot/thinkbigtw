@@ -1,0 +1,103 @@
+{
+  "label": "demo",
+  "maxSubmissions": 3,
+  "retentionDays": 180,
+  "content": {
+    "title": "示範需求確認",
+    "intro": {
+      "title": "示範",
+      "lead": "這是範本測試用的設定。",
+      "sections": []
+    },
+    "video": {
+      "src": null
+    },
+    "groups": [
+      {
+        "id": "g1",
+        "title": "第一組"
+      }
+    ],
+    "questions": [
+      {
+        "id": "pick",
+        "group": "g1",
+        "type": "single",
+        "title": "選一個",
+        "why": "測試",
+        "options": [
+          {
+            "value": "a",
+            "label": "A"
+          },
+          {
+            "value": "b",
+            "label": "B",
+            "other": true
+          }
+        ]
+      },
+      {
+        "id": "many",
+        "group": "g1",
+        "type": "multi",
+        "title": "選多個",
+        "options": [
+          {
+            "value": "x",
+            "label": "X"
+          },
+          {
+            "value": "y",
+            "label": "Y"
+          }
+        ]
+      },
+      {
+        "id": "free",
+        "group": "g1",
+        "type": "textarea",
+        "title": "自由填",
+        "maxLength": 500
+      },
+      {
+        "id": "table",
+        "group": "g1",
+        "type": "fields",
+        "title": "表格",
+        "fields": [
+          {
+            "id": "price",
+            "label": "價格",
+            "type": "text"
+          },
+          {
+            "id": "when",
+            "label": "時段",
+            "type": "single",
+            "options": [
+              {
+                "value": "am",
+                "label": "上午"
+              }
+            ]
+          },
+          {
+            "id": "id",
+            "label": "編號",
+            "type": "text",
+            "pattern": "^[0-9 \\-]{6,20}$"
+          }
+        ]
+      }
+    ],
+    "thanks": {
+      "title": "謝謝",
+      "steps": [
+        "一",
+        "二"
+      ]
+    }
+  },
+  "expiresAt": "2099-12-31T15:59:59Z"
+}
