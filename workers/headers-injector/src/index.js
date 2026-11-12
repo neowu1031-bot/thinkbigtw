@@ -93,6 +93,8 @@ const MOVED_PAGES = {
   '/annual': '/annual-pro/',
   '/solo-pro': '/single-agent/',
   '/harness': '/single-agent/',
+  '/en/full-agent': '/en/dual-agent/',
+  '/en/annual': '/en/annual-pro/',
   '/tbos': '/en/',
   '/tbos/en': '/en/',
   '/tbos/en/index.html': '/en/',
