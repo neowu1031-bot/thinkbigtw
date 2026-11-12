@@ -276,6 +276,12 @@ export function validateInquiry(body) {
     if (key !== 'organization' && !result[key]) throw new Error('invalid_inquiry');
   }
   if (result.scale === '預約評估') throw new Error('invalid_inquiry'); // 保留給 /thinkbig-booking（AEGIS M2）
+  // AEGIS D4-20261113 G1：LINE 會計群組列只能由 line-group.js（writeGroupRow 直接寫入）產生。
+  // 官網表單送來「規模=line-group-accountant」或稱呼「LINE OA 系統」一律拒收，免得偽造群組列／系統事件
+  // 讓 inquiry_relay 把真詢問吞掉、或把訪客文字貼進會議室。比對前先 NFKC、去空白、轉小寫，擋全形與大小寫變體。
+  const norm = v => v.normalize('NFKC').replace(/\s+/g, '').toLowerCase();
+  if (norm(result.scale).includes('line-group-accountant') || norm(result.organization).includes('source=line-group-accountant') ||
+      norm(result.name) === 'lineoa系統') throw new Error('invalid_inquiry');
   if (body.contactMethod === 'email') {
     if (!/^[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+$/.test(result.contact)) throw new Error('invalid_contact');
     result.contact = result.contact.toLowerCase();
