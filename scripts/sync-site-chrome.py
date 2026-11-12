@@ -38,10 +38,41 @@ ZH_BACK={
  'en/':'/','portfolio/en/':'/portfolio/',
 }
 def get_zh_dest(rel):
- # Sort by length descending so longer (more specific) prefixes match first
+ rr=rel[:-10] if rel.endswith('index.html') else rel
+ # Longest explicit mapping first (skip the catch-all roots handled below).
  for prefix in sorted(ZH_BACK,key=len,reverse=True):
-  if rel.startswith(prefix) or rel==prefix.rstrip('/'):return ZH_BACK[prefix]
- return '/'
+  if prefix in ('en/','portfolio/en/'):continue
+  if rr==prefix:return ZH_BACK[prefix]
+  if rr.startswith(prefix):return _zh_counterpart(rel) or ZH_BACK[prefix]
+ if rr in ('en/','portfolio/en/'):return ZH_BACK[rr]
+ return _zh_counterpart(rel) or '/'
+
+def _zh_counterpart(rel):
+ """en/X/index.html -> /X/ (or /library/X/ for qa/news) when that Chinese page exists."""
+ if not rel.startswith('en/'):return None
+ x=rel[3:]
+ if x.endswith('index.html'):x=x[:-10]
+ x=x.strip('/')
+ if not x:return '/'
+ for cand in (x,'library/'+x):
+  if (ROOT/cand/'index.html').exists():return '/'+cand+'/'
+ return None
+
+def get_en_dest(rel):
+ """Chinese page -> its English counterpart; falls back to the English home page."""
+ if rel=='index.html':return '/en/'
+ if rel in ('privacy.html','terms.html'):return '/en/'+rel[:-5]+'/'
+ if rel.startswith('portfolio/') and (ROOT/'portfolio/en/index.html').exists() and rel=='portfolio/index.html':return '/portfolio/en/'
+ d=rel[:-10] if rel.endswith('index.html') else None
+ if d is None:return '/en/'
+ d=d.strip('/')
+ if d=='services/ai-visibility':return '/en/services/seo-geo/'
+ if (ROOT/d/'en/index.html').exists():return '/'+d+'/en/'
+ cands=[d]
+ if d.startswith('library/'):cands.append(d[len('library/'):])
+ for c in cands:
+  if (ROOT/'en'/c/'index.html').exists():return '/en/'+c+'/'
+ return '/en/'
 
 def chrome():
  nav_links=''.join(f'<a href="{url}"'+(' class="tb-info-start"' if name=='導入流程' else '')+f'>{name}</a>' for name,url in LINKS)
@@ -83,6 +114,7 @@ for p in ROOT.rglob('*.html'):
  original=p.read_text()
  s=original
  if '<body' not in s:continue
+ if 'http-equiv="refresh"' in s:continue  # redirect stubs keep no site chrome
  # Remove existing chrome blocks
  s=re.sub(r'\n?<!-- TB:NAV:START -->.*?<!-- TB:NAV:END -->\s*','',s,flags=re.S)
  s=re.sub(r'\n?<!-- TB:FOOTER:START -->.*?<!-- TB:FOOTER:END -->\s*','',s,flags=re.S)
@@ -104,7 +136,7 @@ for p in ROOT.rglob('*.html'):
   # Chinese pages: standard chrome
   s=re.sub(r'<!-- TB:PERSONAL:START -->.*?<!-- TB:PERSONAL:END -->','',s,flags=re.S)
   s=re.sub(r'(<body\b[^>]*>)',lambda m:m[1]+'\n'+nav,s,count=1)
-  s=s.replace('</body>',footer+'\n</body>')
+  s=s.replace('</body>',footer.replace('href="/tbos/en/" lang="en"','href="'+get_en_dest(rel)+'" lang="en"')+'\n</body>')
   if rel.startswith(PERSONAL):
    personal='<div class="tb-personal-context"><a href="/pricing/personal/">個人方案專區</a><span>個人 AI 助理與工作流程服務。</span></div>'
    s=s.replace('<!-- TB:NAV:END -->','<!-- TB:NAV:END --><!-- TB:PERSONAL:START -->'+personal+'<!-- TB:PERSONAL:END -->')

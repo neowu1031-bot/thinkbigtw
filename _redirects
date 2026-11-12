@@ -3,6 +3,15 @@
 # i18n: /en/ sub-path aliases for existing English pages
 /en/portfolio/    /portfolio/en/    301
 /en/portfolio/en/ /portfolio/en/    301
-/en/tbos/         /tbos/en/         301
+/en/tbos/         /en/              301
 
 # i18n: Phase 2 — real /en/ pages now exist, no redirect needed for /en/, /en/contact/, /en/pricing/
+
+# Retired pages (301 enforced by the headers worker; static stubs use meta refresh as fallback)
+/full-agent/   /dual-agent/    301
+/annual/       /annual-pro/    301
+/solo-pro/     /single-agent/  301
+/harness/      /single-agent/  301
+/en/full-agent/ /en/dual-agent/ 301
+/en/annual/    /en/annual-pro/ 301
+/tbos/en/      /en/            301
