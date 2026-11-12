@@ -9139,6 +9139,18 @@ Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
 
+AI Governance & Regulation TB30
+
+## [Do AI-Generated Articles and Images Have Copyright in Taiwan?](https://thinkbigtw.com/en/qa/ai-output-copyright/)
+
+Taiwan’s Intellectual Property Office says copyright in AI-assisted text and…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-output-copyright/)
+
+Think BIG Q&A Library
+AI Governance & Regulation
+Updated 2026-11-12
+
 Enterprise AI Security TB27
 
 ## [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
@@ -21264,6 +21276,30 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+法規與治理 TB30
+
+## [AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事](https://thinkbigtw.com/library/qa/ai-output-copyright/)
+
+依台灣智慧財產局的說明，AI 文章與圖片能否受著作權保護，關鍵在有沒有人類實際的創意投入。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-output-copyright/)
+
+Think BIG 問答圖書館
+法規與治理
+更新 2026-11-12
+
+親子共讀與客製繪本 Q33
+
+## [上幼兒園哭著不想去？分離焦慮可以怎麼陪？](https://thinkbigtw.com/library/qa/separation-anxiety-preschool/)
+
+上幼兒園告別時孩子哭，可以先承認他捨不得，再用簡短、固定的告別方式，把接回時間說清楚，並和老師合作觀察後續。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/separation-anxiety-preschool/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-12
 
 企業資安 TB27
 
