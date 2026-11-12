@@ -6525,6 +6525,8 @@ We use Google Analytics 4 to count visits, pages, time on page and conversions (
 
 Our website chat and the “AI Experience” demo send what you type to a third-party cloud AI model (for the demo, Cloudflare Workers AI, after you tick consent) to generate a reply. Please do not enter passwords, API keys, payment details, confidential information or contact details in the chat. We do not store chat transcripts or IP addresses in our enquiry database. After a conversation, an anonymous summary (no name or direct contact data) may be sent to our internal system to improve service. If you choose to send an enquiry, you first review and edit the summary and contact details, tick consent and press Send; only then is it saved in our enquiry database. We keep enquiry summaries and the contact details you gave until you ask us to delete them. We never add you to marketing lists automatically. Messaging apps temporarily hold recent conversation context to keep replies coherent, then clear it after about 30 minutes of inactivity (at most 2 hours).
 
+Enquiry form submissions are processed with AI assistance; the AI service provider for enquiry handling is Anthropic PBC (USA). MiniMax and OpenAI services are used for internal notifications and collaboration. Please do not include passwords, keys, payment details or confidential documents in your submission.
+
 ## 7. Security
 
 We use TLS encryption in transit, access controls and least-privilege permissions. No system is perfectly secure, and we cannot guarantee absolute security.
@@ -27574,7 +27576,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 介面確認入庫成功後才顯示「已送出」。若未能確認收件，可重試同一份摘要或使用 LINE 聯繫。聊天與未送出的草稿不寫入瀏覽器持久儲存；關閉或重新整理分頁後即不保留。此詢問保存規則優先於本頁一般保存期間說明。網站仍保留 GA4 瀏覽統計。
 
-快速需求表與說明會報名表： 您在官網「快速需求表」或「企業導入 AI 說明會」報名表填寫的資料，包括稱呼、聯絡方式（Email、手機或 LINE ID）、需求，以及選填的公司／產業與想解決的問題，會傳送至本公司的諮詢資料庫。用途限於：回覆您的需求並說明評估方向；以及寄送「企業導入 AI 說明會」的報名確認、開播提醒與回放通知。報名者只會收到這場說明會的相關通知，不會因此被加入其他行銷名單。這些資料保存至您請求刪除為止；如需查詢、更正或刪除，請寄信至 AI@thinkbigtw.com ，我們會在 14 天內處理完成並回覆。我們處理與回覆詢問時會使用 AI 工具，您填寫的內容會因此傳送至本公司使用的 AI 服務商處理；請勿在表單填寫密碼、金鑰、付款資料或機密文件內容。
+快速需求表與說明會報名表： 您在官網「快速需求表」或「企業導入 AI 說明會」報名表填寫的資料，包括稱呼、聯絡方式（Email、手機或 LINE ID）、需求，以及選填的公司／產業與想解決的問題，會傳送至本公司的諮詢資料庫。用途限於：回覆您的需求並說明評估方向；以及寄送「企業導入 AI 說明會」的報名確認、開播提醒與回放通知。報名者只會收到這場說明會的相關通知，不會因此被加入其他行銷名單。這些資料保存至您請求刪除為止；如需查詢、更正或刪除，請寄信至 AI@thinkbigtw.com ，我們會在 14 天內處理完成並回覆。我們處理與回覆詢問時會使用 AI 工具，您填寫的內容會因此傳送至 AI 服務商處理（目前為 Anthropic PBC（美國）；內部通知與協作另使用 MiniMax 與 OpenAI 的服務）；請勿在表單填寫密碼、金鑰、付款資料或機密文件內容。
 
 LINE 官方帳號： 透過 Think BIG LINE 官方帳號發送的私訊，由 AI 客服回覆。對話內容會整理成摘要，供內部服務品質分析與後續聯繫使用；聯絡資料與摘要保存於本公司受控設備，以加密、限制權限的方式存放，保存至您請求刪除為止。如需查詢、更正或刪除，來信 AI@thinkbigtw.com 或於 LINE 官方帳號中提出，我們會在 14 天內處理完成並回覆。
 
