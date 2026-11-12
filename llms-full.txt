@@ -118,9 +118,15 @@ NT$48,010（續約 NT$43,010）
 
 - 多部門 Agent 分工
 
+## 交付內容
+
+- 客戶專屬教學影片（含旁白） ：依你的實際設定錄製，教你日常怎麼用。
+
+- PDF 使用手冊 ：操作步驟與常見問題，最後一頁附「追蹤我們」頁（LINE、Instagram、Facebook、官網）。
+
 ## 交付方式
 
-- 由工程師遠端安裝，另附教學影片；每週維護兩套系統。
+- 由工程師遠端安裝；每週維護兩套系統。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -208,11 +214,17 @@ NT$39,910（續約 NT$35,910）
 
 - 客服回覆草稿與模板（依環境評估）
 
+## 交付內容
+
+- 客戶專屬教學影片（含旁白） ：依你的實際設定錄製，教你日常怎麼用。
+
+- PDF 使用手冊 ：操作步驟與常見問題，最後一頁附「追蹤我們」頁（LINE、Instagram、Facebook、官網）。
+
 ## 交付方式
 
 - 下單前先做需求訪談，確認可用才啟動年約。
 
-- 由工程師遠端安裝，另附教學影片；年度內可技術諮詢。
+- 由工程師遠端安裝；年度內可技術諮詢。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -412,9 +424,15 @@ NT$17,920
 
 - 社群文案與多平台同步發文（需你本人授權帳號）
 
+## 交付內容
+
+- 客戶專屬教學影片（含旁白） ：依你的實際設定錄製，教你日常怎麼用。
+
+- PDF 使用手冊 ：操作步驟與常見問題，最後一頁附「追蹤我們」頁（LINE、Instagram、Facebook、官網）。
+
 ## 交付方式
 
-- 由工程師遠端安裝，另附教學影片。
+- 由工程師遠端安裝。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -554,9 +572,15 @@ Everything in the Premier Annual Plan and the Dual Agent can be set up to your n
 
 - Multi-department Agent division of labor
 
+## What you receive
+
+- A tutorial video made for your setup, with narration : recorded around your actual configuration, showing you how to use it day to day.
+
+- A PDF user manual : step-by-step operation and common questions, with a "Follow us" page at the end (LINE, Instagram, Facebook, website).
+
 ## How it is delivered
 
-- Installed remotely by an engineer, with tutorial videos included; both systems are maintained weekly.
+- Installed remotely by an engineer; both systems are maintained weekly.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -644,11 +668,17 @@ Everything in the Single Agent can be set up to your needs , and we can also bui
 
 - Customer service reply drafts and templates (subject to environment check)
 
+## What you receive
+
+- A tutorial video made for your setup, with narration : recorded around your actual configuration, showing you how to use it day to day.
+
+- A PDF user manual : step-by-step operation and common questions, with a "Follow us" page at the end (LINE, Instagram, Facebook, website).
+
 ## How it is delivered
 
 - We interview you about your needs before you order, and start the annual plan only once we confirm it will work for you.
 
-- Installed remotely by an engineer, with tutorial videos included; technical consulting is available during the year.
+- Installed remotely by an engineer; technical consulting is available during the year.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -846,9 +876,15 @@ Everything in the Single Agent can be set up to your needs  (date calculation, r
 
 - Social posts and multi-platform publishing (needs accounts you personally authorize)
 
+## What you receive
+
+- A tutorial video made for your setup, with narration : recorded around your actual configuration, showing you how to use it day to day.
+
+- A PDF user manual : step-by-step operation and common questions, with a "Follow us" page at the end (LINE, Instagram, Facebook, website).
+
 ## How it is delivered
 
-- Installed remotely by an engineer, with tutorial videos included.
+- Installed remotely by an engineer.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -1091,9 +1127,15 @@ These are example features. What you get is decided after an interview and an as
 
 The Business Plan includes an AI readiness check: with your company's written consent, and after your company has informed its employees, we take stock of software usage time and file types on computers, without reading content or recording passwords, to find where AI is worth starting. Raw data is analyzed locally on your computers and never uploaded to the cloud; reports are aggregated by department with no individual names; employees may opt out.
 
+## What you receive
+
+- A tutorial video made for your setup, with narration : recorded around your actual configuration, showing you how to use it day to day.
+
+- A PDF user manual : step-by-step operation and common questions, with a "Follow us" page at the end (LINE, Instagram, Facebook, website).
+
 ## How it is delivered
 
-- Installed remotely by an engineer, with tutorial videos and an operating manual included.
+- Installed remotely by an engineer.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -6331,6 +6373,8 @@ Flagship NT$48,010 (renewal 43,010)
 
 CTA [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup.) [Dual AI Agent page](https://thinkbigtw.com/en/dual-agent/) [Annual Plan — Premier](https://thinkbigtw.com/en/annual-pro/) / [Annual Plan — Flagship](https://thinkbigtw.com/en/annual-flagship/)
 
+Every plan includes a narrated tutorial video made for your setup and a PDF user manual, with a "Follow us" page at the end.
+
 ## Can my computer run a local AI model?
 
 Apple M-series Mac, Windows (or Linux) + NVIDIA dedicated GPU, and AMD Ryzen AI Max unified-memory machines can all be evaluated. Only hardware marked "tested" or "confirmed installation experience" reflects machines we have worked on; others are estimates. Send a screenshot of your hardware specs before proceeding. If your hardware doesn't meet requirements, switch to a cloud model at the same plan price.
@@ -9094,6 +9138,18 @@ URL: https://thinkbigtw.com/en/qa/
 Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
+
+AI Governance & Regulation TB30
+
+## [Do AI-Generated Articles and Images Have Copyright in Taiwan?](https://thinkbigtw.com/en/qa/ai-output-copyright/)
+
+Taiwan’s Intellectual Property Office says copyright in AI-assisted text and…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-output-copyright/)
+
+Think BIG Q&A Library
+AI Governance & Regulation
+Updated 2026-11-12
 
 Enterprise AI Security TB27
 
@@ -13420,11 +13476,17 @@ These are example features. What you get is decided after an interview and an as
 
 - Local model host setup (subject to hardware check)
 
+## What you receive
+
+- A tutorial video made for your setup, with narration : recorded around your actual configuration, showing you how to use it day to day.
+
+- A PDF user manual : step-by-step operation and common questions, with a "Follow us" page at the end (LINE, Instagram, Facebook, website).
+
 ## How it is delivered
 
 - Built mainly on OpenClaw; others can be assessed.
 
-- Installed remotely by an engineer, with tutorial videos included.
+- Installed remotely by an engineer.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -13828,9 +13890,15 @@ NT$52,600 起（未稅，含稅 NT$55,230；不含硬體）
 
 企業方案包含 AI 導入健檢：經貴公司書面同意並由貴公司告知員工，盤點電腦上的軟體使用時間與檔案類型，不讀內容、不記錄密碼，找出 AI 最值得先做的事。原始資料只在貴公司電腦本地分析、不上傳雲端；報告以部門彙整、不列個人姓名；員工可選擇不參加。
 
+## 交付內容
+
+- 客戶專屬教學影片（含旁白） ：依你的實際設定錄製，教你日常怎麼用。
+
+- PDF 使用手冊 ：操作步驟與常見問題，最後一頁附「追蹤我們」頁（LINE、Instagram、Facebook、官網）。
+
 ## 交付方式
 
-- 由工程師遠端安裝，另附教學影片與操作手冊。
+- 由工程師遠端安裝。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -21209,6 +21277,30 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+法規與治理 TB30
+
+## [AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事](https://thinkbigtw.com/library/qa/ai-output-copyright/)
+
+依台灣智慧財產局的說明，AI 文章與圖片能否受著作權保護，關鍵在有沒有人類實際的創意投入。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-output-copyright/)
+
+Think BIG 問答圖書館
+法規與治理
+更新 2026-11-12
+
+親子共讀與客製繪本 Q33
+
+## [上幼兒園哭著不想去？分離焦慮可以怎麼陪？](https://thinkbigtw.com/library/qa/separation-anxiety-preschool/)
+
+上幼兒園告別時孩子哭，可以先承認他捨不得，再用簡短、固定的告別方式，把接回時間說清楚，並和老師合作觀察後續。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/separation-anxiety-preschool/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-12
+
 企業資安 TB27
 
 ## [公司資料要怎麼分級？哪些可以給雲端 AI、哪些只能留在公司](https://thinkbigtw.com/library/qa/data-classification-for-ai/)
@@ -26867,6 +26959,8 @@ SLA — — 48 小時故障修復
 
 CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 AI Agent](https://thinkbigtw.com/dual-agent/) [尊榮年約](https://thinkbigtw.com/annual-pro/)／[年度旗艦](https://thinkbigtw.com/annual-flagship/)
 
+每個方案都附：客戶專屬教學影片（含旁白）與 PDF 使用手冊，手冊最後一頁附「追蹤我們」頁。
+
 個人服務・買家回饋
 
 ## 蝦皮賣場 AI 服務評價全數 5 星
@@ -27827,11 +27921,17 @@ NT$7,840
 
 - 本地大模型主機建置（依硬體評估）
 
+## 交付內容
+
+- 客戶專屬教學影片（含旁白） ：依你的實際設定錄製，教你日常怎麼用。
+
+- PDF 使用手冊 ：操作步驟與常見問題，最後一頁附「追蹤我們」頁（LINE、Instagram、Facebook、官網）。
+
 ## 交付方式
 
 - 以 OpenClaw 為主，其他可評估。
 
-- 由工程師遠端安裝，另附教學影片。
+- 由工程師遠端安裝。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
