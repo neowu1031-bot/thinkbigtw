@@ -62,7 +62,7 @@ test('filterReply 中文行為不變', () => {
   assert.equal(filterReply('填完摘要後，1 個工作日內由真人聯繫。'), '填完摘要後，1 個工作日內由真人聯繫。');
 });
 
-// 11/9 r3：MiniMax 恢復主力＋英文在 Llama 備援下也穩定。
+// 11/9 r3：英文在 Workers AI 模型下也穩定（11/13 起主力改 gpt-oss-120b，MiniMax 移除）。
 import { handleThinkBig, wantsEnglish, replyNotEnglish, LANGUAGE_RULE_EN } from './thinkbig.js';
 const ask = (content, env) => handleThinkBig(new Request('https://x.invalid/thinkbig-chat', {
   method: 'POST', headers: { Origin: 'https://thinkbigtw.com', 'content-type': 'application/json' },
@@ -109,61 +109,68 @@ test('備援：重試仍不是英文就保留第一次回覆；中文提問不�
   assert.ok(!calls[0].messages[0].content.includes('[Language]'));
 });
 
-test('MiniMax 主力：關推理（thinking disabled）、英文指示在系統提示最後；有內容就不走備援', async () => {
-  const saved = globalThis.fetch; const sent = [];
-  globalThis.fetch = async (url, options) => { sent.push({ url, body: JSON.parse(options.body) }); return new Response(JSON.stringify({ base_resp: { status_code: 0 }, choices: [{ message: { content: 'Yes, I can.' } }] })); };
+// TB 政策 2026-11-13：客戶資料不送中國公司模型。主力 Llama 3.3 70B、備援 Mistral Small 3.1，都在 Workers AI；不再有任何外部模型 API 呼叫。
+import { PRIMARY_MODEL, FALLBACK_MODEL } from './ai-models.js';
+const OPENAI_SHAPE = content => ({ choices: [{ message: { role: 'assistant', content, reasoning_content: 'internal reasoning must not leak' }, finish_reason: 'stop' }], usage: { prompt_tokens: 10, completion_tokens: 5, neurons: 1 } });
+test('主力 Llama：英文指示在系統提示最後；只有 choices 格式也讀得到；有內容就不走備援；不打任何外部 API（即使還留著 MINIMAX_API_KEY）', async () => {
+  const saved = globalThis.fetch; let fetched = 0;
+  globalThis.fetch = async () => { fetched++; throw new Error('no external model API allowed'); };
   try {
-    let fallback = 0;
-    const r = await ask('Can you speak English?', { MINIMAX_API_KEY: 'test-only', AI: { run: async () => { fallback++; return { response: 'x' }; } } });
+    const calls = [];
+    const r = await ask('Can you speak English?', { MINIMAX_API_KEY: 'leftover-secret', AI: { run: async (model, body) => { calls.push({ model, body }); return OPENAI_SHAPE('Yes, I can.'); } } });
     const d = await r.json();
-    assert.equal(d.model, 'MiniMax-M3'); assert.equal(d.reply, 'Yes, I can.'); assert.equal(fallback, 0);
-    assert.deepEqual(sent[0].body.thinking, { type: 'disabled' });
-    assert.equal(sent[0].body.max_tokens, 600);
-    assert.ok(sent[0].body.messages[0].content.endsWith(LANGUAGE_RULE_EN));
+    assert.equal(d.model, PRIMARY_MODEL); assert.equal(d.reply, 'Yes, I can.');
+    assert.equal(calls.length, 1); assert.equal(fetched, 0);
+    assert.equal(calls[0].body.reasoning, undefined); assert.equal(calls[0].body.max_tokens, 600);
+    assert.ok(calls[0].body.messages[0].content.endsWith(LANGUAGE_RULE_EN));
   } finally { globalThis.fetch = saved; }
 });
 
-test('MiniMax 主力：內容空（推理吃光額度）仍掉備援，不回空字串', async () => {
-  const saved = globalThis.fetch;
-  globalThis.fetch = async () => new Response(JSON.stringify({ base_resp: { status_code: 0 }, choices: [{ message: { content: '' }, finish_reason: 'length' }] }));
-  try {
-    const r = await ask('你們有哪些方案？', { MINIMAX_API_KEY: 'test-only', AI: { run: async () => ({ response: '我們有企業方案。' }) } });
-    const d = await r.json();
-    assert.equal(d.reply, '我們有企業方案。'); assert.ok(d.model.startsWith('@cf/'));
-  } finally { globalThis.fetch = saved; }
+test('主力 Llama 讀整份核心知識庫（同以前 MiniMax）、備援 Mistral 讀精簡版', async () => {
+  const calls = [];
+  await ask('你們有哪些方案？', { AI: { run: async (model, body) => { calls.push({ model, len: body.messages[0].content.length }); return model === PRIMARY_MODEL ? OPENAI_SHAPE('') : { response: '我們有企業方案。' }; } } });
+  assert.deepEqual(calls.map(c => c.model), [PRIMARY_MODEL, FALLBACK_MODEL]);
+  assert.ok(calls[0].len > calls[1].len, `primary ${calls[0].len} vs fallback ${calls[1].len}`);
 });
 
-// AEGIS r3 C1：慢 MiniMax（12 秒逾時）＋備援卡住，整題總時間不超過 22 秒（bot 等 25 秒）。
+test('主力內容空仍掉備援，不回空字串；推理內容不外洩', async () => {
+  const r = await ask('你們有哪些方案？', { AI: { run: async model => model === PRIMARY_MODEL ? { choices: [{ message: { content: '', reasoning_content: '秘密推理' }, finish_reason: 'length' }] } : { response: '我們有企業方案。' } } });
+  const d = await r.json();
+  assert.equal(d.reply, '我們有企業方案。'); assert.equal(d.model, FALLBACK_MODEL);
+  assert.ok(!JSON.stringify(d).includes('秘密推理'));
+});
+
+// AEGIS r3 C1：主力卡住（12 秒逾時）＋備援卡住，整題總時間不超過 22 秒（bot 等 25 秒）。
 import { mock } from 'node:test';
 import { TOTAL_BUDGET_MS } from './thinkbig.js';
-test('總時間上限：MiniMax 逾時＋70b 卡住＋8b 卡住，22 秒內回 503，剩不到 2 秒不再試', async () => {
+test('總時間上限：主力 Llama 卡住 12 秒＋備援 Mistral 卡住，22 秒內回 503，剩不到 2 秒不再試', async () => {
   mock.timers.enable({ apis: ['setTimeout', 'Date'], now: 0 });
-  const saved = globalThis.fetch; const runs = [];
-  globalThis.fetch = async () => { await new Promise(r => setTimeout(r, 12000)); throw new Error('timeout'); };
+  const runs = [];
   try {
     const AI = { run: (model) => { runs.push({ model, at: Date.now() }); return new Promise(() => {}); } };
     let done = null;
-    const p = ask('Can you speak English?', { MINIMAX_API_KEY: 'test-only', AI }).then(r => { done = { status: r.status, at: Date.now() }; });
+    const p = ask('Can you speak English?', { AI }).then(r => { done = { status: r.status, at: Date.now() }; });
     for (let i = 0; i < 3000 && !done; i++) { mock.timers.tick(10); for (let k = 0; k < 10; k++) await new Promise(r => setImmediate(r)); }
     await p;
     assert.equal(done.status, 503);
     assert.ok(done.at <= TOTAL_BUDGET_MS + 50, `total ${done.at} ms`); // +50：假時鐘每格 10 ms，回應串流要多一格才讀完
-    assert.ok(runs[0].at >= 12000 && runs[0].at <= 12050, `70b start ${runs[0].at}`);
-    assert.equal(runs.length, 1, '70b 用掉 10 秒後只剩不到 2 秒以外的時間才試 8b');
-  } finally { globalThis.fetch = saved; mock.timers.reset(); }
+    assert.equal(runs[0].model, PRIMARY_MODEL); assert.ok(runs[0].at <= 50, `primary start ${runs[0].at}`);
+    assert.equal(runs[1].model, FALLBACK_MODEL);
+    assert.ok(runs[1].at - runs[0].at >= 12000 && runs[1].at - runs[0].at <= 12050, `fallback start ${runs[1].at}`);
+    assert.equal(runs.length, 2, '備援用掉 10 秒後只剩不到 2 秒，不再試');
+  } finally { mock.timers.reset(); }
 });
-test('總時間上限：MiniMax 逾時後 70b 秒回中文、英文重試卡住 → 重試只給剩餘時間，22 秒內回第一次回覆', async () => {
+test('總時間上限：主力逾時後備援 6 秒回中文、英文重試卡住 → 重試只給剩餘時間，22 秒內回第一次回覆', async () => {
   mock.timers.enable({ apis: ['setTimeout', 'Date'], now: 0 });
-  const saved = globalThis.fetch; let n = 0;
-  globalThis.fetch = async () => { await new Promise(r => setTimeout(r, 12000)); throw new Error('timeout'); };
+  let n = 0;
   try {
-    const AI = { run: () => (++n === 1 ? new Promise(r => setTimeout(() => r({ response: '我們提供企業 AI Agent 導入。' }), 6000)) : new Promise(() => {})) };
+    const AI = { run: () => { n++; if (n === 2) return new Promise(r => setTimeout(() => r({ response: '我們提供企業 AI Agent 導入。' }), 6000)); return new Promise(() => {}); } };
     let done = null;
-    const p = ask('What services does Think BIG offer?', { MINIMAX_API_KEY: 'test-only', AI }).then(async r => { done = { body: await r.json(), at: Date.now() }; });
+    const p = ask('What services does Think BIG offer?', { AI }).then(async r => { done = { body: await r.json(), at: Date.now() }; });
     for (let i = 0; i < 3000 && !done; i++) { mock.timers.tick(10); for (let k = 0; k < 10; k++) await new Promise(r => setImmediate(r)); }
     await p;
     assert.equal(done.body.reply, '我們提供企業 AI Agent 導入。');
-    assert.equal(n, 2);
+    assert.equal(n, 3);
     assert.ok(done.at <= TOTAL_BUDGET_MS + 50, `total ${done.at} ms`); // +50：假時鐘每格 10 ms，回應串流要多一格才讀完
-  } finally { globalThis.fetch = saved; mock.timers.reset(); }
+  } finally { mock.timers.reset(); }
 });

@@ -23,9 +23,9 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler@4
 
-      # MINIMAX_API_KEY 已存在 Worker secret 中；輪替金鑰時手動執行
-      # `wrangler secret put MINIMAX_API_KEY`，不在 CI 內做——GitHub secret
-      # 未設時這步會把空值蓋掉線上金鑰
+      # 2026-11-13 起 AI 只走 Workers AI 非中國模型（workers/ai-proxy/src/ai-models.js），
+      # 程式已不讀 MINIMAX_API_KEY；線上舊 secret 於上線確認後手動
+      # `wrangler secret delete MINIMAX_API_KEY` 移除，不在 CI 內做
       - name: Deploy Worker
         working-directory: ./workers/ai-proxy
         env:

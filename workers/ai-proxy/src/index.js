@@ -1,4 +1,5 @@
 import { handleThinkBig } from './thinkbig.js';
+import { PRIMARY_MODEL, FALLBACK_MODEL, runModel } from './ai-models.js';
 import { handleLineWebhook, handleLinePushAnswer, handleLineScheduled } from './line-webhook.js';
 import { handleLineGroupPush } from './line-group.js';
 
@@ -285,7 +286,7 @@ async function handleChat(request, env) {
 
 // ============== Think BIG! 官網 AI 客服助理 ==============
 // 知識庫：完整服務、方案、定價、技術細節（T11 Phase 1 知識補強 2026-08-23）
-// ============== ERP 助理 (規格 4 ｜ MiniMax-M2 + RAG) ==============
+// ============== ERP 助理 (規格 4 ｜ Workers AI Llama 3.3 70B／Mistral Small 3.1 + RAG；2026-11-13 起不用 MiniMax) ==============
 const ERP_KNOWLEDGE = `你是 Think BIG AI ERP 內建的智慧助理。
 
 【你的能力】
@@ -341,60 +342,26 @@ async function handleErpChat(request, env) {
   }
 
   let reply = '';
-  let modelUsed = 'MiniMax-M3';
+  let modelUsed = '';
 
-  // Primary: MiniMax-M2
-  const MINIMAX_KEY = env.MINIMAX_API_KEY;
-  if (MINIMAX_KEY) {
+  // TB 政策 2026-11-13：使用者貼進來的資料不送中國公司模型 → 只走 Workers AI 非中國模型（見 ai-models.js），MiniMax 已移除。
+  // ERP 即時資料最多 50,000 字，Llama 3.3 70B（24k 上下文）放不下 → 資料超過 12,000 字時先用 Mistral Small 3.1（128k）讀全文，
+  // 再用 Llama 讀前 12,000 字；資料不長時照一般順序（主力 Llama、備援 Mistral）。
+  const ERP_LLAMA_MAX = 12000;
+  const clipped = systemPrompt.length > ERP_LLAMA_MAX ? systemPrompt.slice(0, ERP_LLAMA_MAX) + '...(截斷)' : systemPrompt;
+  const erpPlan = systemPrompt.length > ERP_LLAMA_MAX
+    ? [[FALLBACK_MODEL, systemPrompt], [PRIMARY_MODEL, clipped]]
+    : [[PRIMARY_MODEL, systemPrompt], [FALLBACK_MODEL, systemPrompt]];
+  for (const [model, state] of erpPlan) {
+    if (reply) break;
     try {
-      const mxRes = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${MINIMAX_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'MiniMax-M3',
-          messages: [{ role: 'system', content: systemPrompt }, ...messages],
-          max_tokens: 800,
-          temperature: 0.3,
-        }),
-      });
-      if (mxRes.ok) {
-        const data = await mxRes.json();
-        if (data.base_resp && data.base_resp.status_code === 0 && data.choices && data.choices[0]) {
-          reply = (data.choices[0].message?.content || '').trim();
-          reply = reply.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-        }
-      }
+      reply = await runModel(env, model, [{ role: 'system', content: state }, ...messages], { max_tokens: 800, temperature: 0.3, timeoutMs: 20000, kind: 'erp' });
+      if (reply) modelUsed = model === PRIMARY_MODEL ? 'llama-3.3-70b' : 'mistral-small-3.1';
     } catch (err) {
-      console.error('ERP MiniMax error:', err);
+      console.error('ERP AI error:', model, err?.message);
     }
   }
-
-  // Fallback: Llama 3.3 70B → Llama 3 8B
-  if (!reply) {
-    try {
-      const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
-        messages: [{ role: 'system', content: systemPrompt }, ...messages],
-        max_tokens: 700,
-        temperature: 0.3,
-      });
-      reply = (aiRes.response || '').trim();
-      modelUsed = 'llama-3.3-70b-fallback';
-    } catch (err) {
-      try {
-        const aiRes = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
-          messages: [{ role: 'system', content: systemPrompt }, ...messages],
-          max_tokens: 600,
-        });
-        reply = (aiRes.response || '').trim();
-        modelUsed = 'llama-3-8b-fallback';
-      } catch (err2) {
-        return jsonResponse({ reply: '助理暫時無法回應,請稍後再試。', model: 'fallback-error' });
-      }
-    }
-  }
+  if (!reply) return jsonResponse({ reply: '助理暫時無法回應,請稍後再試。', model: 'fallback-error' });
 
   // 嚴格去除 emoji(規格 1 ERP 鐵律)
   reply = reply.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F000}-\u{1F02F}\u{1F0A0}-\u{1F0FF}\u{1F100}-\u{1F64F}\u{1F910}-\u{1F96B}]/gu, '');

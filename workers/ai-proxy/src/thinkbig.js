@@ -1,5 +1,6 @@
 import { retailExperience, employeeExperience } from './retail-experience.js';
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
+import { PRIMARY_MODEL, FALLBACK_MODEL, MODEL_CHAIN, runModel } from './ai-models.js';
 // 話題範圍（官網＋LINE 共用，不計入 KB token budget）
 export const SCOPE_RULE = `
 
@@ -68,7 +69,7 @@ const ENTERPRISE_OVERRIDE = /企業|(?<!一人)公司|導入|團隊|員工|地�
 // 資安意圖：最新一句含資安/安全時，ch06 在備援路由中置頂（同分時優先於所有其他章節）
 const SECURITY_ANCHOR = /資安|安全/;
 // 主力路徑預算：核心章節（01–12）全文＋命中的補充章節，總量在此限內
-// 設 16000 以確保 KB ＋ SCOPE_RULE（~1.5k）＋最大對話（2.5k）仍遠低於 MiniMax 上下文長度
+// 設 16000 以確保 KB ＋ SCOPE_RULE（~1.5k）＋最大對話（2.5k）仍遠低於主力模型 Llama 3.3 70B 的上下文長度（24k；實測整份核心約 7–8k token）
 export const KB_FULL_LIMIT = 16000;
 export const fullKBText = chapters.map(c => c.text).join('\n\n');
 // 主力路徑：01–12 核心章節全文＋最新提問命中的補充章節（13 起），總量不超過 KB_FULL_LIMIT。
@@ -159,11 +160,6 @@ async function readJSON(stream, limit = 18000) {
   for (const chunk of chunks) { bytes.set(chunk, offset); offset += chunk.byteLength; }
   try { return JSON.parse(new TextDecoder().decode(bytes)); } catch { throw new Error('invalid_json'); }
 }
-async function deadline(promise, ms) {
-  let timer;
-  try { return await Promise.race([promise, new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('timeout')), ms); })]); }
-  finally { clearTimeout(timer); }
-}
 // 11/9：英文訪客。知識庫整份是中文、規則句也偏中文，備援 Llama 常被帶回中文（「I'll respond in Traditional Chinese」）。
 // 最新一句沒有中文字、且有英文字 → 系統提示最後一段加英文語言指示；備援回覆仍不是英文就重試一次。
 const CJK_CHAR = /[\u3400-\u9fff\uf900-\ufaff]/u;
@@ -193,50 +189,26 @@ async function chat(body, env) {
   const languageRule = english ? LANGUAGE_RULE_EN : '';
   const primaryContext = [{ role: 'system', content: knowledgePrimary.text + SCOPE_RULE + languageRule }, ...trimHistory(messages)];
   const fallbackContext = [{ role: 'system', content: knowledgeFallback.text + SCOPE_RULE + languageRule }, ...trimHistory(messages)];
-  let reply = ''; let model = '';
-  if (env.MINIMAX_API_KEY) {
-    try {
-      const response = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
-        // 11/9：M3 預設會先推理，600 個 token 常全被推理吃光 → content 空 → 每題都掉備援。關推理＋逾時 8→12 秒（中文 300 字實測約 9 秒）。
-        method: 'POST', signal: AbortSignal.timeout(12000),
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.MINIMAX_API_KEY}` },
-        body: JSON.stringify({ model: 'MiniMax-M3', messages: primaryContext, max_tokens: 600, temperature: 0.2, thinking: { type: 'disabled' } }),
-      });
-      if (response.ok) {
-        const data = await readJSON(response.body, 50000);
-        if (data.base_resp?.status_code === 0) {
-          reply = cleanReply(data.choices?.[0]?.message?.content);
-          // Log token usage (numbers only, no conversation content)
-          const u = data.usage;
-          if (u) console.log(JSON.stringify({ type: 'minimax_usage', ts: new Date().toISOString(), kb_tier: knowledgePrimary.tier, prompt_tokens: u.prompt_tokens ?? u.input_tokens, completion_tokens: u.completion_tokens ?? u.output_tokens, total_tokens: u.total_tokens }));
-        } else if ([1002, 1008, 1027].includes(data.base_resp?.status_code)) {
-          // 1002=rate_limit, 1008=insufficient_balance, 1027=output_content_error — log alert, fall through to CF AI
-          console.log(JSON.stringify({ type: 'minimax_quota_alert', ts: new Date().toISOString(), status_code: data.base_resp.status_code }));
-        }
-        model = 'MiniMax-M3';
-      } else {
-        if (response.status === 429) console.log(JSON.stringify({ type: 'minimax_quota_alert', ts: new Date().toISOString(), status: 429 }));
-        await response.body?.cancel();
-      }
-    } catch { /* Fall back without logging the prompt or upstream response. */ }
-  }
-  // AEGIS r3 C1：整題總時間上限 22 秒（Telegram bot 等 25 秒）。每個備援最多 10 秒且不超過剩餘時間；剩不到 2 秒就不再試。
+  let reply = ''; let model = ''; let usedContext = fallbackContext;
+  // TB 政策 2026-11-13：客戶資料不送中國公司模型 → 只走 Workers AI 非中國模型（見 ai-models.js），MiniMax 已移除。
+  // 主力 Llama 3.3 70B 讀官網主力路徑的整份核心知識庫（同以前 MiniMax）；備援 Mistral Small 3.1 讀精簡版（較快）。
+  // AEGIS r3 C1：整題總時間上限 22 秒（Telegram bot 等 25 秒）。主力最多 12 秒、備援最多 10 秒，且都不超過剩餘時間；剩不到 2 秒就不再試。
   const remaining = () => TOTAL_BUDGET_MS - (Date.now() - started);
-  for (const candidate of ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-3-8b-instruct']) {
+  for (const [candidate, context, cap] of [[PRIMARY_MODEL, primaryContext, 12000], [FALLBACK_MODEL, fallbackContext, 10000]]) {
     if (reply || remaining() < 2000) break;
     try {
-      const result = await deadline(env.AI.run(candidate, { messages: fallbackContext, max_tokens: 600, temperature: 0.2 }), Math.min(10000, remaining()));
-      reply = cleanReply(result?.response); model = candidate;
+      reply = cleanReply(await runModel(env, candidate, context, { max_tokens: 600, temperature: 0.2, timeoutMs: Math.min(cap, remaining()), kind: 'chat' }));
+      if (reply) { model = candidate; usedContext = context; }
     } catch { /* Try the next configured model; no transcript persistence. */ }
   }
-  // 英文訪客拿到中文（或「我會用中文回答」）→ 同一備援模型重試一次，語言指示同時放在訊息最前。重試失敗就保留原回覆。
+  // 英文訪客拿到中文（或「我會用中文回答」）→ 同一模型重試一次，語言指示同時放在訊息最前。重試失敗就保留原回覆。
   // 重試也在同一個 22 秒總上限內（最多 7 秒；剩不到 2 秒就不重試）。
-  if (reply && english && model.startsWith('@cf/') && remaining() >= 2000 && replyNotEnglish(reply)) {
+  if (reply && english && remaining() >= 2000 && replyNotEnglish(reply)) {
     const history = trimHistory(messages);
     const last = history.at(-1);
-    const retryContext = [fallbackContext[0], ...history.slice(0, -1), { role: 'user', content: `(Please answer in English.) ${last.content}` }];
+    const retryContext = [usedContext[0], ...history.slice(0, -1), { role: 'user', content: `(Please answer in English.) ${last.content}` }];
     try {
-      const retry = cleanReply((await deadline(env.AI.run(model, { messages: retryContext, max_tokens: 600, temperature: 0.2 }), Math.min(7000, remaining())))?.response);
+      const retry = cleanReply(await runModel(env, model, retryContext, { max_tokens: 600, temperature: 0.2, timeoutMs: Math.min(7000, remaining()), kind: 'chat_retry' }));
       if (retry && !replyNotEnglish(retry)) reply = retry;
     } catch { /* Keep the first reply. */ }
   }
@@ -385,24 +357,12 @@ export async function generateChatSummary(messages, env) {
   const userPrompt = `以下是一段客服 AI 對話，請依格式產出摘要：\n\n<CONVERSATION_DATA>\n${convoText}\n</CONVERSATION_DATA>`;
 
   let raw = '';
-  if (env.MINIMAX_API_KEY) {
-    try {
-      const res = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
-        method: 'POST', signal: AbortSignal.timeout(10000),
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.MINIMAX_API_KEY}` },
-        body: JSON.stringify({ model: 'MiniMax-M3', messages: [{ role: 'system', content: SUMMARY_SYSTEM }, { role: 'user', content: userPrompt }], max_tokens: 500, temperature: 0.1 }),
-      });
-      if (res.ok) {
-        const data = await readJSON(res.body, 50000);
-        if (data.base_resp?.status_code === 0) raw = cleanReply(data.choices?.[0]?.message?.content);
-      } else await res.body?.cancel();
-    } catch { /* fall through */ }
-  }
-  for (const model of ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-3-8b-instruct']) {
+  // TB 政策 2026-11-13：摘要同樣只走 Workers AI 非中國模型（MiniMax 已移除）。
+  const summaryContext = [{ role: 'system', content: SUMMARY_SYSTEM }, { role: 'user', content: userPrompt }];
+  for (const model of MODEL_CHAIN) {
     if (raw) break;
     try {
-      const r = await deadline(env.AI.run(model, { messages: [{ role: 'system', content: SUMMARY_SYSTEM }, { role: 'user', content: userPrompt }], max_tokens: 500, temperature: 0.1 }), 12000);
-      raw = cleanReply(r?.response);
+      raw = cleanReply(await runModel(env, model, summaryContext, { max_tokens: 500, temperature: 0.1, timeoutMs: 12000, kind: 'summary' }));
     } catch { /* try next */ }
   }
   if (!raw) return null;
