@@ -50,7 +50,7 @@
     try { v = v.normalize('NFKC'); } catch (e) { /* old browsers */ }
     return v.toUpperCase().replace(/[^ABCDEFGHJKMNPQRSTUVWXYZ23456789]/g, '');
   }
-  function clear() { toastEl.hidden = true; while (app.firstChild) app.removeChild(app.firstChild); }
+  function clear() { toastEl.hidden = true; if (VIDEO && !VIDEO.paused) VIDEO.pause(); while (app.firstChild) app.removeChild(app.firstChild); }
   function toast(msg) {
     toastEl.textContent = msg; toastEl.hidden = false;
     clearTimeout(toast._t); toast._t = setTimeout(function () { toastEl.hidden = true; }, 2600);
@@ -100,6 +100,7 @@
       var code = normCode(input.value);
       if (code.length !== 8) { err.textContent = '請輸入 8 個字的存取碼（英文字母和數字）'; input.focus(); return; }
       btn.disabled = true; btn.textContent = '確認中…'; err.textContent = '';
+      primeVideo(); // still inside the user's tap: lets the video play with sound later (Safari/iOS)
       api('unlock', { method: 'POST', body: { code: code } }).then(function (j) {
         btn.disabled = false; btn.textContent = '進入';
         if (j._status === 200) {
@@ -128,13 +129,105 @@
   }
 
   /* ---------- intro ---------- */
+  /* ---------- video: one element for the whole visit ----------
+     Same idea as the homepage: try to play WITH sound; if the browser refuses,
+     play muted and show "點一下開聲音". The element is created once and play() is
+     first called inside the tap on "進入", which is what Safari/iOS need to allow
+     sound later. */
+  var VIDEO = null;
+  var V = { autoMuted: false, userMuted: false, hint: null, muteBtn: null, playBtn: null };
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function getVideo() {
+    if (VIDEO) return VIDEO;
+    VIDEO = h('video', { controls: true, playsinline: true, 'webkit-playsinline': true, preload: 'metadata', controlslist: 'nodownload noplaybackrate', disablepictureinpicture: true });
+    VIDEO.addEventListener('play', syncButtons);
+    VIDEO.addEventListener('pause', syncButtons);
+    VIDEO.addEventListener('volumechange', function () {
+      if (!VIDEO.muted && V.autoMuted) { V.autoMuted = false; hideHint(); }
+      syncButtons();
+    });
+    return VIDEO;
+  }
+
+  function primeVideo() {
+    var v = getVideo();
+    try {
+      v.muted = false;
+      var p = v.play(); // no source yet: this only records the gesture on this element
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) { /* ignore */ }
+  }
+
+  function syncButtons() {
+    if (!VIDEO) return;
+    if (V.muteBtn) {
+      V.muteBtn.textContent = VIDEO.muted ? '開聲音' : '關聲音';
+      V.muteBtn.setAttribute('aria-label', VIDEO.muted ? '開啟聲音' : '關閉聲音');
+      V.muteBtn.classList.toggle('is-attn', VIDEO.muted && V.autoMuted);
+    }
+    if (V.playBtn) {
+      var playing = !VIDEO.paused;
+      V.playBtn.textContent = playing ? '暫停' : '播放';
+      V.playBtn.setAttribute('aria-label', playing ? '暫停影片' : '播放影片');
+      V.playBtn.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    }
+  }
+  function showHint() { if (V.hint) V.hint.hidden = false; }
+  function hideHint() { if (V.hint) V.hint.hidden = true; }
+
+  function unmute() {
+    VIDEO.muted = false; V.userMuted = false; V.autoMuted = false; hideHint();
+    if (VIDEO.paused) { var p = VIDEO.play(); if (p && p.catch) p.catch(function () {}); }
+    syncButtons();
+  }
+
+  function startPlayback() {
+    var v = VIDEO;
+    if (!v || reduceMotion) { syncButtons(); return; }
+    v.muted = false;
+    var p;
+    try { p = v.play(); } catch (e) { p = null; }
+    if (!p || !p.then) { syncButtons(); return; }
+    p.then(function () {
+      if (v.muted) { V.autoMuted = true; showHint(); }
+      syncButtons();
+    }).catch(function () {
+      // Sound blocked (typical on iOS when the tap is too far back): play muted instead.
+      v.muted = true; V.autoMuted = true;
+      var p2 = v.play();
+      if (p2 && p2.catch) p2.catch(function () {});
+      showHint(); syncButtons();
+    });
+  }
+
   function renderVideo(v) {
     v = v || {};
     var portrait = v.orientation === 'portrait';
     var box = h('div', { class: 'ci-video' + (portrait ? ' is-portrait' : '') });
     if (v.src) {
-      box.appendChild(h('video', { src: v.src, poster: v.poster || null, controls: true, playsinline: true, preload: 'metadata', controlslist: 'nodownload', 'aria-label': v.label || '說明影片' }));
-    } else if (v.poster) {
+      var el = getVideo();
+      var abs = new URL(v.src, location.href).href;
+      if (el.src !== abs) el.src = abs;
+      if (v.poster) el.poster = v.poster;
+      el.setAttribute('aria-label', v.label || '說明影片');
+      box.appendChild(el);
+      // Covers the picture but not the native control bar; any tap on it turns sound on.
+      V.hint = h('button', { class: 'ci-sound-hint', type: 'button', hidden: true, 'aria-label': '點一下開聲音', onclick: unmute },
+        h('span', { class: 'ci-sound-pill' }, h('span', { class: 'ci-sound-ico', 'aria-hidden': 'true' }), '點一下開聲音'));
+      box.appendChild(V.hint);
+      V.muteBtn = h('button', { type: 'button', class: 'ci-vbtn', onclick: function () {
+        if (VIDEO.muted) unmute(); else { VIDEO.muted = true; V.userMuted = true; V.autoMuted = false; hideHint(); syncButtons(); }
+      } });
+      V.playBtn = h('button', { type: 'button', class: 'ci-vbtn', onclick: function () {
+        if (VIDEO.paused) { var p = VIDEO.play(); if (p && p.catch) p.catch(function () {}); } else VIDEO.pause();
+      } });
+      var bar = h('div', { class: 'ci-vbtns' }, V.muteBtn, V.playBtn);
+      setTimeout(startPlayback, 0);
+      syncButtons();
+      return [box, bar];
+    }
+    if (v.poster) {
       box.appendChild(h('img', { src: v.poster, alt: v.posterAlt || '說明影片封面' }));
     } else {
       box.appendChild(h('div', { class: 'ci-poster', role: 'img', 'aria-label': '說明影片製作中' },

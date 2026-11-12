@@ -68,9 +68,25 @@ h3.ci-h3{font-size:17px;line-height:1.5;font-weight:700;margin:0 0 6px}
 .ci-video video,.ci-video img{width:100%;height:100%;object-fit:cover}
 .ci-video.is-portrait{aspect-ratio:9/16;margin-left:auto;margin-right:auto;
   /* whole video + the start button fit the first screen: header ~58px, paddings, 52px button */
-  height:min(calc(100svh - 190px),calc((100vw - 40px) * 16 / 9));width:auto;max-width:100%}
+  height:min(calc(100svh - 236px),calc((100vw - 40px) * 16 / 9));width:auto;max-width:100%}
 .ci-intro{display:flex;flex-direction:column}
-.ci-intro .ci-video{margin-bottom:12px}
+.ci-intro .ci-video{margin-bottom:8px;position:relative}
+/* sound hint + buttons: same look as the homepage video (dark translucent pills) */
+.ci-sound-hint{position:absolute;left:0;right:0;top:0;bottom:64px;z-index:3;display:flex;align-items:flex-start;justify-content:center;
+  padding-top:18px;background:transparent;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.ci-sound-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.60);color:#fff;padding:10px 20px;border-radius:24px;
+  font-size:15px;font-weight:650;letter-spacing:.04em;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.ci-sound-ico{position:relative;width:16px;height:14px;flex:0 0 16px}
+.ci-sound-ico::before{content:"";position:absolute;left:0;top:4px;width:5px;height:6px;background:#fff;border-radius:1px}
+.ci-sound-ico::after{content:"";position:absolute;left:3px;top:0;border-style:solid;border-width:7px 7px 7px 0;border-color:transparent #fff transparent transparent}
+.ci-sound-hint:focus-visible .ci-sound-pill{outline:3px solid #EEA4BB;outline-offset:2px}
+.ci-vbtns{display:flex;justify-content:center;gap:8px;margin:0 auto 12px}
+.ci-vbtn{background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:20px;min-height:36px;padding:6px 16px;font-size:13px;font-weight:650;
+  letter-spacing:.04em;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:transparent}
+@media (hover:hover){.ci-vbtn:hover{background:rgba(0,0,0,.75)}}
+.ci-vbtn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.ci-vbtn.is-attn{background:var(--accent)}
+@media (hover:hover){.ci-vbtn.is-attn:hover{background:var(--accent-hover)}}
 .ci-intro .ci-video-cap{display:none}
 .ci-intro-cta{max-width:420px;width:100%;margin:0 auto 18px}
 .ci-more{border-top:1px solid var(--line);padding-top:10px}
