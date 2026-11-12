@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /clawland/
+Disallow: /c/
 
 User-agent: OAI-SearchBot
 User-agent: GPTBot
@@ -24,6 +25,7 @@ User-agent: YouBot
 User-agent: CCBot
 Allow: /
 Disallow: /clawland/
+Disallow: /c/
 
 Sitemap: https://thinkbigtw.com/sitemap.xml
 Sitemap: https://thinkbigtw.com/sitemap-qa.xml

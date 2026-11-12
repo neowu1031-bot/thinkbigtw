@@ -1,0 +1,49 @@
+# Client intake worker: private, per-client requirement confirmation pages.
+# Serves only thinkbigtw.com/c/* . Independent from the AI chat worker.
+# Deploy manually (no CI workflow on purpose): see docs/README.md.
+name = "thinkbigtw-client-intake"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+workers_dev = false
+
+# The most specific route wins over the site-wide headers worker (thinkbigtw.com/*).
+[[routes]]
+pattern = "thinkbigtw.com/c/*"
+zone_name = "thinkbigtw.com"
+
+# Static UI shell (template only, no client data). Served from /c/_a/*.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+html_handling = "none"
+not_found_handling = "none"
+
+# Client configs, submissions, attempt counters. All keys expire (see src/store.js).
+# Replace the id after: wrangler kv namespace create CLIENT_INTAKE
+[[kv_namespaces]]
+binding = "INTAKE_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Per-IP request limit (all API calls).
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1102"
+simple = { limit = 20, period = 60 }
+
+# Notification mail to the internal inbox (Cloudflare Email Routing, verified destination only).
+# Uncomment after the destination address is verified in Email Routing.
+# [[send_email]]
+# name = "NOTIFY_EMAIL"
+# destination_address = "AI@thinkbigtw.com"
+
+[vars]
+NOTIFY_FROM = "intake-noreply@thinkbigtw.com"
+NOTIFY_TO = "AI@thinkbigtw.com"
+PUBLIC_ORIGIN = "https://thinkbigtw.com"
+
+# Secrets (wrangler secret put ...), never in this file:
+#   INTAKE_SECRET       pepper for access-code hashes + HMAC key for session tokens
+#   INTAKE_ADMIN_TOKEN  bearer token for the internal retrieval endpoint (optional;
+#                       endpoint is disabled when unset)
