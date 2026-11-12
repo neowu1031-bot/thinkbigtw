@@ -3273,120 +3273,6 @@ THINK BIG NEWS   ·  First-hand AI deployment notes
 
 ---
 
-URL: https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/
-
-# Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Local AI Deployment Notes · Issue 011
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI DEPLOYMENT NOTES
-
-October 27, 2026   Tuesday
-◆
-Local AI Deployment Notes
-◆
-Issue 011
-
-Local AI · Context Length · Memory Management
-
-## Give Your Local AI Too Much “Memory” and It Can Drag Down the Whole Machine — How to Size the Context Length
-
-Think BIG Content Team  |  October 27, 2026
-
-If a local AI keeps getting slower and the rest of the computer bogs down with it, an unused GPU is one suspect. An oversized context length is another. Run ollama ps  and check two columns, PROCESSOR and CONTEXT, to see how much context is actually allocated and whether the model has spilled onto the CPU.
-
-(We use the open-source tool Ollama as the example because its documentation spells out the defaults and the checks clearly. Other local runtimes work along similar lines under different setting names.)
-
-This piece pairs with our Issue 2, “Running a Model Locally: Is Your GPU Actually Doing Anything?” Issue 2 covered models that never touch the GPU. This one covers the other case: the GPU is in use, but the context is set so large that memory runs out. Both start with the same command.
-
-## One.  What’s Happening: Context Takes Memory Too
-
-Context length is how much material the model can carry while it answers, measured in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]
-
-It isn’t free. Ollama’s documentation states that a larger context length increases the memory needed to run a model, and that you should make sure you have enough VRAM before raising it.[2] The FAQ adds that when a model serves several requests at once, required memory scales with parallel requests multiplied by context length; the default for parallel requests is 1.[1]
-
-Watch the default.  Ollama’s FAQ says the default context window is 4,096 tokens.[1] The separate “Context length” page describes VRAM-based defaults instead: 4k below 24 GiB, 32k from 24 to 48 GiB, and 256k at 48 GiB or more.[2] Because the two pages differ, we don’t rely on either from memory. We read the CONTEXT column in ollama ps  and go by what the machine has actually allocated.[2]
-
-Changing it is documented too. To change the server-wide default, set the OLLAMA_CONTEXT_LENGTH  environment variable. To change it for one model or one session, use /set parameter num_ctx  in the CLI, or pass num_ctx  in the API options.[1]
-
-## Two.  Perspectives: Go Big, or Stay Stable?
-
-The case for larger contexts:  Ollama’s “Context length” page recommends at least 64,000 tokens for context-heavy tasks such as web search, agents, and coding tools. The same page says that for best performance you can use a model’s maximum context length while avoiding offloading the model to the CPU.[2]
-
-The case for counting the cost:  The FAQ explains that Flash Attention can significantly reduce memory use as context grows, and that the K/V cache (where context is held) can be quantized. q8_0  uses roughly half the memory of f16 , and q4_0  roughly a quarter, but precision loss may be more noticeable at larger context sizes, and the impact depends on the model and task.[1]
-
-These views don’t really conflict. The documentation’s assumption throughout is that the model fits: open the context up, but check the memory budget first and confirm nothing has been pushed to the CPU.[2]
-
-◆ First-Hand Notes
-
-## Three. What We’ve Learned in Practice
-
-These are observations from our own local AI agent deployments. They are not industry statistics and don’t describe any specific site.
-
-1. “It’s getting slower — is the GPU too old?” is a common question. The common answer is configuration.  A pattern we see often: someone raises the context sharply so the AI “remembers more,” memory can’t hold it, part of the model ends up on the CPU, and response times stretch out.
-
-2. Be extra careful on unified-memory machines.  When the graphics chip and the system share one pool of memory, context isn’t only eating “the GPU’s share.” The symptoms we commonly see: responses get progressively slower, the whole computer turns sluggish, and the disk starts writing heavily to swap. At that point it isn’t just the AI that’s slow; every other program is being held back too.
-
-3. Measure the need before picking a number.  We don’t start with a fixed figure. The steadier sequence is to run a few real tasks, see how many tokens each actually sends, and then decide how much headroom to leave. Ollama’s API responses include prompt_eval_count , the number of input tokens in that request, which is a good enough basis.[3]
-
-4. Check CONTEXT and PROCESSOR before handover.  In ollama ps , PROCESSOR shows 100% GPU, 100% CPU, or a split between them;[1] CONTEXT shows the allocated context length.[2] We screenshot both columns at handover.
-
-## Four.  Our Recommendations: Three Steps
-
-1. Measure, then set.  Take the three to five tasks you run most often (answering support emails, summarizing meeting notes, searching internal documents), run each a few times, and record prompt_eval_count .[3] Take the highest value, add room for the answer, and start there.
-
-2. Run ollama ps  right after any change.  If PROCESSOR shows any CPU share, the model plus its context no longer fits in VRAM.[1] Bring the context back down, or look at Flash Attention or K/V cache quantization. If you quantize, re-check quality on your real tasks.[1]
-
-3. Size parallelism and context together.  If several people will use it at once, memory needs multiply.[1] Decide how many concurrent requests you need first, then set the context.
-
-In short: a big context is fine if the machine can hold it.  If it can’t, the whole computer slows down with it.
-
-◆ Editor’s Note · How Think BIG Approaches This: Settings With a Reason Behind Them
-
-## Measure first, then set. Every setting should answer “why this number?”
-
-(The following is Think BIG’s own practice, kept separate from the reporting above.)
-
-When we deploy local AI agents, context length isn’t a guess: set from real workloads  — we measure input size on the client’s own tasks before fixing context length and parallelism; leave evidence at handover  — screenshots of the PROCESSOR and CONTEXT columns from ollama ps , handed to the owner with the settings; re-verify after changes  — after adjusting context, quantization, or parallelism, we rerun the same tasks to confirm speed and answer quality are still acceptable.
-
-Our position: every setting should come with an answer to “why this number?” Issue 13 extends this to model selection, using the same logic as a foundation.
-
-### Frequently Asked Questions
-
-Q1: What is context length?
-The amount of material the AI can carry while it answers, counted in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]
-Q2: What is Ollama’s default context length?
-The FAQ says 4,096 tokens; the “Context length” page describes VRAM-based defaults of 4k, 32k, or 256k.[1][2] Because they differ, check the CONTEXT column in ollama ps  for what your machine actually uses.[2]
-Q3: How do I change it?
-Use the OLLAMA_CONTEXT_LENGTH  environment variable for the server-wide default, and num_ctx  for a single model or request (/set parameter num_ctx  in the CLI, or the API options).[1]
-Q4: Is a bigger context always better?
-Ollama recommends at least 64,000 tokens for agents and coding tools, and also notes that larger contexts need more memory, so confirm you have enough VRAM.[2] Our advice is to measure your actual need first.
-Q5: What if memory is tight but I need a longer context?
-Ollama’s documentation points to Flash Attention and K/V cache quantization (q8_0  at roughly half, q4_0  at roughly a quarter of f16  memory). How much quantization affects quality depends on the model and task, so test it yourself.[1]
-Q6: Is this the same problem as “the GPU isn’t being used”?
-Not quite, but you check it the same way. Our Issue 2 covered a model not using the GPU; this article covers a context too large for memory. In both cases, start with the PROCESSOR column in ollama ps .[1]
-
-Sources
-    Fact-checked on October 24, 2026.
-
-    [1] Ollama, “FAQ” (context window settings, the PROCESSOR column in ollama ps , OLLAMA_NUM_PARALLEL , Flash Attention, K/V cache quantization); accessed October 24, 2026: [docs.ollama.com/faq](https://docs.ollama.com/faq)  ·
-    [2] Ollama, “Context length” (definition, VRAM-based defaults, recommendation for agent tasks, the CONTEXT column in ollama ps ); accessed October 24, 2026: [docs.ollama.com/context-length](https://docs.ollama.com/context-length)  ·
-    [3] Ollama, “Usage” (API response fields including prompt_eval_count ); accessed October 24, 2026: [docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)
-
-The first-hand lessons, recommendations, and editor’s note present Think BIG’s practical views and do not constitute industry statistics or evidence of customer outcomes.
-
-THINK BIG NEWS   ·  Local AI Deployment Notes
-    Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
-
----
-
 URL: https://thinkbigtw.com/en/news/ai-context-length-too-large-20261027/
 
 # Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length | Think BIG NEWS
@@ -4635,13 +4521,6 @@ October 27, 2026 · Local AI Deployment
 ## Give Your Local AI Too Much “Memory” and It Can Drag Down the Whole Machine — How to Size the Context Length
 
 Ollama’s FAQ and its “Context length” page give different defaults; the safest check is the CONTEXT column in ollama ps . We look at why an oversized context slows everything down, what Flash Attention and K/V cache quantization offer, and how to work backward from real tasks to a number you can justify.](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261027/)
-[Issue 011
-
-October 25, 2026 · Local AI Deployment
-
-## Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length
-
-When a local AI model is given too much context, memory runs short and the whole machine slows down. Ollama's official docs define defaults by VRAM tier, and two of its pages state the default differently — read the CONTEXT and PROCESSOR columns of ollama ps  and pick a sensible value in three steps.](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/)
 [Issue 010
 
 October 24, 2026 · AI Security
@@ -5772,6 +5651,119 @@ Sources
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
 THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/
+
+# AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 019
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 12, 2026  ·  Thursday
+◆
+AI Deployment Field Notes
+◆
+Issue 019
+
+RAG · Chunking · Retrieval Quality
+
+## AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models
+
+Think BIG Media  |  November 12, 2026
+
+Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.
+
+## One.  What’s Happening: Having Documents Does Not Mean Retrieving the Right Evidence
+
+Retrieval-augmented generation, or RAG, retrieves relevant content before asking a model to answer from it. Microsoft’s official overview identifies terminology mismatches, content preparation, and input limits as implementation challenges.[1] Uploading files and answering questions reliably are separate steps.
+
+Chunking is one of those steps. Official documentation describes fixed-size, structural, and semantic approaches, with size and overlap adjusted to the content and use.[2] We would not apply one character count to every Chinese policy, table, or scanned document. Read the resulting chunks to check whether they retain subjects, conditions, and exceptions.
+
+Microsoft’s evaluation guidance separates retrieval-process quality from final-answer quality. One asks whether retrieved material is relevant; the other examines grounding, relevance, and completeness of the answer.[3] We use that distinction as a diagnostic method, without recommending a service or treating an automated score as a business decision.
+
+## Two.  Perspectives: Inspect Retrieval Without Ignoring Model Behavior
+
+The case for checking data first:  The overview ties RAG quality to content preparation and retrieval relevance.[1] If the necessary evidence never reached the model, we would investigate indexing and retrieval first. A larger model does not resolve that missing input.
+
+The model-side caution:  Receiving a passage does not establish that a model uses it correctly. The original 2023 study “Lost in the Middle” found position-dependent performance in its multi-document question-answering and key-value retrieval tasks.[4] It does not establish identical behavior in every newer model. It does challenge adding more context as a universal remedy.
+
+Test both stages: whether the evidence was retrieved and whether the answer used it faithfully. When documents conflict, ask their owner to determine which is valid rather than asking the model to settle company policy.
+
+Add explicit failure definitions: missing exceptions, treating an old version as current, or citing the wrong document. This gives document owners and engineers shared criteria beyond fluency or a retrieval score.
+
+Keep the original phrasing too. Rewriting conversational questions into document titles before every test can hide the terminology mismatch being tested. Save original and rewritten queries with their retrieval results before deciding whether to adopt query rewriting.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from our RAG document and answer-quality work. They are not industry statistics or an account of any particular organization.
+
+1. Inspect retrieved passages first.  When an answer is poor, we check the retrieved material before analyzing generation. Chunks that are too large or small are among the causes we encounter; model capability is not always the problem.
+
+2. A readable original can produce damaged text.  We have seen tables and scanned documents become corrupted during text extraction. We inspect the extracted text instead of repeatedly asking the model to read broken material better.
+
+3. One subject may have two versions.  Retrieving old and new documents together mixes evidence. We remove outdated versions or mark their status so validity can be checked.
+
+4. Keep real questions and reference answers.  We build test sets and watch for differences between conversational questions and formal document terms. Questions should reflect actual phrasing, beyond document titles.
+
+## Four.  Our Recommendations: Diagnose with a Fixed Question Set
+
+1. Inspect extracted text.  Compare tables, scans, and exception clauses against originals. Check whether labels still match values. Correct preprocessing problems before rebuilding the index.
+
+2. Map questions to evidence.  Record expected answers and supporting documents and passages. Include unanswerable questions, outdated material, and terminology differences. Retrieval evaluation needs explicit relevance evidence.[3]
+
+3. Change one class of settings at a time.  Keep the model and questions fixed when comparing segmentation, overlap, or query methods. Save retrieved passages so improvements have an identifiable cause. Validate parameters on your own content.[2][3]
+
+4. Assess evidence and answers separately.  Wrong evidence points toward retrieval; correct evidence with a wrong answer calls for prompt and model checks; conflicting documents go to their owner. This is our recommended triage, beyond one aggregate score.
+
+5. Test missing answers too.  Require an explicit evidence gap when support is insufficient. Independently test access permissions so retrieved content stays within authorization.[1]
+
+Check that the model received the right material before judging its answer.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Failures as Repeatable Tests
+
+## Save questions, passages, answers, and document versions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend rerunning the same questions after knowledge-base changes. Failure records should identify the stage and document owner so future maintenance can build on prior work.
+
+Answer quality and document access each need acceptance checks.
+
+### Frequently Asked Questions
+
+Q1: What is RAG?
+It retrieves relevant content and provides it to the model as evidence for an answer.[1]
+Q2: Are larger chunks always better?
+No. Test size, overlap, and boundaries against your content and use case.[2]
+Q3: Does a citation prove the answer is correct?
+Check whether it supports the claim and whether the answer is relevant and complete. These are separate evaluation dimensions.[3]
+Q4: When should we consider another model?
+First establish that retrieval delivers the right evidence. Then compare model and prompt choices on the same questions if answers still fail.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Microsoft, “RAG and Generative AI”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) ·
+    [2] Microsoft, “Chunk Documents”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) ·
+    [3] Microsoft, “Retrieval-Augmented Generation (RAG) Evaluators”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators) ·
+    [4] Liu et al., “Lost in the Middle: How Language Models Use Long Contexts,” 2023, arXiv:2307.03172, accessed 2026-10-26: [arxiv.org](https://arxiv.org/abs/2307.03172)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
     Think BIG, Make it Real!
 
 ---
@@ -7345,6 +7337,160 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/ai-output-copyright/
+
+# Do AI-Generated Articles and Images Have Copyright in Taiwan? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Governance & Regulation
+TB30
+
+# Do AI-Generated Articles and Images Have Copyright in Taiwan?
+
+Think BIG Q&A Library  ·  2026-11-12
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-output-copyright/)
+
+The short answer
+
+Taiwan’s Intellectual Property Office says copyright in AI-assisted text and images depends on actual human creative contribution. Output independently generated by AI without such contribution generally lacks copyright protection; work made with AI as a tool requires a case-specific assessment. Protection, infringement, and company usage rights are separate questions. This is general information, not legal advice.
+
+## 1. Examine the creative process
+
+Article 10 of Taiwan’s Copyright Act provides for copyright upon completion, subject to other provisions. TIPO’s email interpretation 1140522c distinguishes human creativity assisted by AI from independent AI generation.
+
+TIPO’s interpretation 1150724 explains that human contributions to an AI-assisted presentation may qualify if they meet originality and creativity requirements. Entering a prompt or making a few edits does not by itself settle protection for the entire output. This article provides no prompt-length or editing-percentage threshold.
+
+We suggest keeping concepts, material sources, drafts, and revisions to document the process. Keeping records alone does not establish copyright.
+
+## 2. Lack of protection does not settle infringement
+
+TIPO’s interpretation 1140625 warns that generated or rewritten articles may still be substantially similar to existing works. Courts determine disputed infringement on the facts. It also recommends clarifying the provider’s authorization concerning third-party works.
+
+Question
+Material to examine
+Are human contributions protected?
+Creative process, expression, revisions, originality
+
+Are third-party works involved?
+Input sources, output, similarities
+
+Does the service permit the intended use?
+Product, account, and actual terms
+
+What rights does the company hold?
+Employment or commissioning terms and facts
+
+A service’s permission for commercial use does not settle every rights issue. Review content and sources before publication; refer unclear authorization or similarities for legal review rather than asking the model to clear them.
+
+## 3. Review employment and commissioned work separately
+
+Articles 11 and 12 address employment and commissioned works, with rules affected by agreements. TIPO’s presentation interpretation also distinguishes whether human contributions qualify from whether the work is an employment work.
+
+We suggest agreeing on input sources, permitted tools, reviewers, editable deliverables, process records, and rights before work begins. Local inference does not remove copyright questions.
+
+Brand information | Think BIG
+
+## Third-party terms and work records at Think BIG
+
+Think BIG helps companies deploy AI Agents in their own environments. Running on company hardware does not keep every connection local: cloud models, messaging platforms, and other external services can still receive requests.
+
+- Review third-party components : Third-party packages are reviewed for source and licensing, pinned, and kept off automatic updates. Keys are stored in access-protected configuration files and are not shared in chat.
+
+- Verify work with evidence : Completion criteria require corresponding change records and verification results, with maintenance and handover responsibilities defined.
+
+See [Trust](https://thinkbigtw.com/trust/) and [Local AI and data sovereignty](https://thinkbigtw.com/guides/local-ai-data/).
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does using AI eliminate copyright? No blanket conclusion follows. Examine human creative contributions and the requirements for protection. Q2: Do prompts establish ownership of an entire image? Not automatically. The actual process and contribution require assessment. Q3: Does permission for commercial use rule out infringement? No. Review input rights, output similarities, and actual authorization separately. Q4: Does the company own every AI-assisted employee presentation? First assess protected human contributions, then employment facts, agreements, and Article 11.
+
+Sources (checked 2026-10-26)
+
+- Laws & Regulations Database of Taiwan, Copyright Act, Articles 10–12: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0070017)
+
+- Taiwan Intellectual Property Office, Email Interpretation 1140522c: [www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-34252.html)
+
+- Taiwan Intellectual Property Office, Email Interpretation 1140625: [www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-34651.html)
+
+- Taiwan Intellectual Property Office, Email Interpretation 1150724: [www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-93359.html)
+
+- Think BIG, Trust and AI Governance: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/ai-speaking-practice-safe-for-kids/
+
+# Is AI Speaking Practice Safe for Children? 4 Questions Parents Can Ask First | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS11
+
+# Is AI Speaking Practice Safe for Children? 4 Questions Parents Can Ask First
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/ai-speaking-practice-safe-for-kids/)
+
+Short answer
+
+Whether AI speaking practice is safe depends on how the service handles a child's voice and data, and whether an adult is involved, so no blanket answer is possible. The US COPPA Rule treats audio files containing a child's voice as personal information, and UNESCO's 2023 guidance mentioned considering an age limit of 13 for generative AI in classrooms. Parents can first ask: is the voice kept, who gets it, how is it deleted, and can I join in.
+
+## 1. Why voice needs a special question
+
+Speaking practice necessarily captures a child's voice. The US Federal Trade Commission's COPPA FAQ states that photos, videos and audio recordings containing a child's image or voice are personal information and generally need verifiable parental consent. The FTC also describes a conditional non-enforcement policy for audio used only as a replacement for typing: the operator may not use voice to ask for information that is itself personal (such as a name) and must post a clear notice of how the recordings are collected, used and deleted. ([FTC: COPPA FAQ F.1 and F.6](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions))
+
+## 2. Age thresholds: what reference exists
+
+In September 2023 UNESCO issued guidance on generative AI in education, called for regulation, and mentioned considering an age limit of 13 for classroom use. ([UN News, 7 Sep 2023](https://news.un.org/en/story/2023/09/1140477)) It concerns generative AI in school classrooms, not language-learning apps specifically, so treat it as a reference only.
+
+## 3. Four questions to ask
+
+Question Why ask
+1. Is my child's voice stored? Stored recordings may be personal information (see above).
+
+2. Who processes the voice or conversation? Taiwan's Personal Data Protection Act, Article 8, requires disclosure of the recipients, area and manner of use. ([Laws and Regulations Database (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021))
+
+3. How can I view and delete it? Article 3 protects the rights to inquire, access and request deletion; they cannot be waived in advance.
+
+4. Can I join in? Practising together makes problems easier to notice than leaving a child alone with a tool (a parenting practice, not a legal requirement).
+
+This page does not assess any specific product. Legal points follow the official texts; for a specific case consult a professional. For speaking practice at home, see [practising speaking at home](https://thinkbigtw.com/en/qa/practice-speaking-at-home/).
+
+Brand information | BearSay Mandarin
+
+## Where the BearSay Mandarin app stands
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: Is AI speaking practice safe for children? It depends on how the service handles the child's voice and data and whether an adult is involved. Ask: is the voice kept, who processes it, how can it be viewed and deleted, and can a parent join in. Q2: Is a child's voice recording personal information? Under the US COPPA Rule, audio files containing a child's voice are personal information (FTC FAQ F.6). Under Taiwan's Personal Data Protection Act, the test is whether the data can directly or indirectly identify a person. Q3: What age is suitable for AI tools? There is no single legal answer. UNESCO's 2023 guidance mentioned considering an age limit of 13 for generative AI in classrooms. That is a school reference, not a rule for language apps. Q4: Does the BearSay Mandarin app have AI speaking practice? The app is in development and has not been released, so this page says nothing about its features or data handling.
+
+Sources (links checked 2026-11-12)
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions (A.3, F.1, F.6): [www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+- UN News (2023-09-07): UNESCO calls for regulation of generative AI in education (age limit of 13 mentioned): [news.un.org](https://news.un.org/en/story/2023/09/1140477)
+
+- Personal Data Protection Act (Articles 3 and 8), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/ai-vendor-data-terms/
 
 # Before Adopting an AI Service, Which Points in the Vendor's Data Terms Should You Check? | Q&A Library | Think BIG
@@ -7448,6 +7594,193 @@ This article summarizes public official documents, laws, and security standards 
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
 Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/ai-voice-vs-live-conversation/
+
+# AI Voice vs Live Conversation for Children Learning Mandarin: What the Research Says | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS13
+
+# AI Voice vs Live Conversation for Children Learning Mandarin: What the Research Says
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/ai-voice-vs-live-conversation/)
+
+Short answer
+
+The studies cited here did not test AI tutors directly, so this page cannot say AI is better or worse than a person. What is known: 9-month-old infants kept Mandarin sound discrimination after live exposure, while recordings had no effect (Kuhl et al., 2003); children aged 4 to 6 with more conversational turns with adults showed stronger language-region responses (Romeo et al., 2018, correlational). A safer approach is to use AI as a supplement and keep time for talking with real people.
+
+## 1. What each study measured
+
+Study Participants and finding Limits
+Kuhl et al. (2003) 9-month-old American infants kept Mandarin sound discrimination after live Mandarin exposure; the same content as recorded audio or video had no effect. ([PNAS](https://doi.org/10.1073/pnas.1532872100)) Measured sound discrimination only, in infants; AI was not tested.
+
+Romeo et al. (2018) Children aged 4 to 6 with more conversational turns with adults showed stronger language-region responses. ([Psychological Science](https://doi.org/10.1177/0956797617742725)) Correlational, so it cannot prove cause; the partner was an adult, not an AI.
+
+## 2. What these studies do not say
+
+They did not compare AI with people.  Both predate today's AI voice tutors and did not include them.
+
+They guarantee nothing.  They are laboratory and correlational results, not guarantees of learning outcomes.
+
+## 3. What parents can do
+
+1. Keep real conversation.  Pick a regular time each day and talk back and forth in the Mandarin you can speak (see [practising speaking at home](https://thinkbigtw.com/en/qa/practice-speaking-at-home/)).
+
+2. Treat tools as a supplement.  Videos, apps or AI voice can add exposure but do not replace live interaction (see [can children learn Mandarin from videos](https://thinkbigtw.com/en/qa/learn-language-from-video/)).
+
+3. Use it together and talk about it.  Afterwards ask what your child heard, bringing the content back into conversation (a parenting practice, not a conclusion of the studies).
+
+Brand information | BearSay Mandarin
+
+## How BearSay Mandarin sees tools and real people
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+BearSay Mandarin's daily word is a short video and carousel post with AI-synthesized demo audio. It does not replace talking with real people and does not guarantee any learning result.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: Is there a difference between AI voice and live conversation? The studies cited here did not test AI tutors, so no comparison can be made. In an infant experiment live interaction worked and recordings did not; children aged 4 to 6 with more back-and-forth with adults showed stronger language-region responses. Q2: Can an AI tutor replace a teacher or parent? The studies cited here do not support that conclusion. A safer approach is to use AI as a supplement and keep time for talking with real people. Q3: Can babies learn foreign speech sounds from recordings? In Kuhl and colleagues' 2003 experiment, 9-month-old infants kept Mandarin sound discrimination after live exposure, while recordings of the same content had no effect. It measured sound discrimination only. Q4: What are conversational turns? Adult and child taking turns to speak. Romeo and colleagues (2018) found that children aged 4 to 6 with more such turns showed stronger language-region responses; this is correlational.
+
+Sources (links checked 2026-11-12)
+
+- Kuhl, Tsao & Liu (2003). Foreign-language experience in infancy. PNAS, 100(15), 9096–9101: [doi.org](https://doi.org/10.1073/pnas.1532872100)
+
+- Romeo et al. (2018). Beyond the 30-million-word gap. Psychological Science, 29(5), 700–710: [doi.org](https://doi.org/10.1177/0956797617742725)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/app-guarantee-claims-parents-check/
+
+# Are 'Guaranteed to Learn' and 'Results in Weeks' Claims Credible? How Parents Can Read Learning App Ads | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS20
+
+# Are 'Guaranteed to Learn' and 'Results in Weeks' Claims Credible? How Parents Can Read Learning App Ads
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/app-guarantee-claims-parents-check/)
+
+Short answer
+
+Learning results depend on each child, the amount of exposure and how the app is used, so no app can guarantee a result for every child. Article 22 of Taiwan's Consumer Protection Act requires businesses to ensure that advertising is truthful and their obligations may not be lower than the advertising; Article 21 of the Fair Trade Act prohibits false or misleading representations on matters affecting a purchase decision. When you see 'guaranteed to learn' or 'results in weeks', check the basis, the target child, the conditions and the refund terms.
+
+## 1. How Taiwan's rules treat advertising
+
+Law Key point
+Consumer Protection Act, Article 22 Businesses must ensure the truthfulness of advertising; their obligations to consumers may not be lower than the advertising; after a contract is formed, advertised content must be fulfilled. [Laws and Regulations Database (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+Fair Trade Act, Article 21 Businesses may not make false or misleading representations, on goods or in advertising, about matters relevant to goods that affect a transaction decision (including quality, content and use); it applies to services too. [Laws and Regulations Database (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0150002)
+
+## 2. Four things parents can check
+
+1. What is the basis?  Does "results in weeks" state how it was measured and for whom, or is it only a slogan?
+
+2. Who is it for?  Which age and level does the claim apply to? Individual differences are large, and one claim rarely fits every child.
+
+3. Where are the conditions?  How many minutes a day and combined with what? Promises without stated conditions deserve a discount.
+
+4. What do the refund and cancellation terms say?  Read them before paying; for the legal points see [child in-app purchases and refunds](https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/).
+
+Research conclusions on language development are mostly "correlational" or "under specific conditions", for example [the research on AI voice versus live conversation](https://thinkbigtw.com/en/qa/ai-voice-vs-live-conversation/); none can be read as a result guarantee for any product. This page summarises rules; it is not legal advice and does not assess any specific product.
+
+Brand information | BearSay Mandarin
+
+## BearSay Mandarin does not guarantee learning results
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+BearSay Mandarin does not guarantee any learning result; the daily word is one way to meet Taiwan Mandarin and does not replace talking with real people. The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: Is a 'guaranteed to learn' claim credible? Results depend on each child, the amount of exposure and how the app is used, so no app can guarantee a result for every child. Check the basis, target, conditions and refund terms. Q2: What does the law say about truthful advertising? Article 22 of the Consumer Protection Act requires businesses to ensure advertising is truthful, with obligations not lower than the advertising; Article 21 of the Fair Trade Act prohibits false or misleading representations. Q3: What should I check when I see 'results in weeks'? The basis (how it was measured), the target (which kind of child), the conditions (how long each day) and the refund and cancellation terms. Q4: Does BearSay Mandarin guarantee learning results? BearSay Mandarin does not guarantee any learning result and does not replace talking with real people.
+
+Sources (links checked 2026-11-12)
+
+- Consumer Protection Act (Article 22), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- Fair Trade Act (Article 21), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0150002)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/app-time-and-screen-time-for-kids/
+
+# How Long Can a Child Use a Learning App Each Day? Start With Screen-Time Limits | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS19
+
+# How Long Can a Child Use a Learning App Each Day? Start With Screen-Time Limits
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/app-time-and-screen-time-for-kids/)
+
+Short answer
+
+Start with screen-time limits, and count learning apps in them. The WHO's 2019 guidelines for children under 5 do not recommend screen time under age 1 or at age 1, and say sedentary screen time should be no more than 1 hour a day at ages 2 to 4, with less being better. The guidelines do not cover children 5 and older, and give no minutes for learning apps specifically. Count the app within total daily screen time and use it together with a parent.
+
+## 1. The WHO limits (under 5)
+
+Age WHO 2019 recommendation on screen time
+Under 1 Not recommended
+
+1 year Sedentary screen time not recommended
+
+2 to 4 years No more than 1 hour of sedentary screen time a day; less is better
+
+Source: [WHO: Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age, 2019](https://www.who.int/publications/i/item/9789241550536). The guidelines address physical activity, sedentary behaviour and sleep for children under 5; they do not cover children 5 and older and give no minutes for learning apps.
+
+## 2. How learning apps count
+
+Count it within total daily screen time.  A learning app is screen time; count it together with videos and games (this is this page's reading of the guidelines, which do not list app types individually).
+
+## 3. How parents can plan
+
+1. Use it together and talk about it.  Afterwards ask what your child learned, bringing it back into conversation (see [practising speaking at home](https://thinkbigtw.com/en/qa/practice-speaking-at-home/)).
+
+2. Short, regular sessions.  For how long to practise each day see [how long should children practise Mandarin daily](https://thinkbigtw.com/en/qa/daily-practice-spaced-review/); for screen time under 5 see [screen time under 5 (Chinese)](https://thinkbigtw.com/library/qa/screen-time-under-5/).
+
+3. For ages 5 and up, parents decide based on the child.  Schedule a learning app after the child has had sleep, activity and face-to-face time. If you are concerned about your child's development, consult a child-development professional.
+
+Brand information | BearSay Mandarin
+
+## Where the BearSay Mandarin app stands
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling. The daily word is a short video and carousel post, which is also screen time; it does not guarantee any learning result.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: How long can a child use a learning app each day? The WHO's 2019 guidelines for children under 5 say no more than 1 hour of sedentary screen time a day at ages 2 to 4, with less being better, and do not recommend screen time under 2. They give no minutes for learning apps, so count the app within total daily screen time. Q2: Does a learning app count as screen time? It is advisable to count it. This page applies the WHO's sedentary screen-time concept to learning apps. Q3: Is there a limit for children 5 and older? This WHO guideline covers only children under 5 and gives no figures for older children; parents can decide based on sleep, activity and face-to-face time. Q4: Does BearSay Mandarin's daily word count as screen time? The daily word is a short video and carousel post, which is screen time; count it within total daily screen time.
+
+Sources (links checked 2026-11-12)
+
+- World Health Organization (2019). Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age: [www.who.int](https://www.who.int/publications/i/item/9789241550536)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -7963,6 +8296,195 @@ This article summarizes public official documents, laws, and research to help pa
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
 Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/check-pronunciation-with-moe-dictionary/
+
+# Unsure About a Pronunciation or Word Taught by AI or a Video? Check the Ministry of Education Dictionary | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS18
+
+# Unsure About a Pronunciation or Word Taught by AI or a Video? Check the Ministry of Education Dictionary
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/check-pronunciation-with-moe-dictionary/)
+
+Short answer
+
+AI and videos, like any source, can contain errors in pronunciation or meaning and should not be the only reference. When you are unsure of a sound or word, check the Ministry of Education's Revised Mandarin Dictionary: enter the word and see whether the pronunciation and meaning match. If your child is learning Taiwan Mandarin, treat this dictionary as the reference. Parents do not need to know every character; they only need the habit of looking it up when unsure.
+
+## 1. Why check
+
+AI-generated content, videos and books can all contain errors in pronunciation or meaning, and AI-synthesized demo audio can sound unnatural. When unsure, check an authoritative source rather than trusting any single one.
+
+## 2. A 3-step check
+
+Step What to do
+1. Look up the sound Enter the word in the Ministry of Education's Revised Mandarin Dictionary ([dict.revised.moe.edu.tw](https://dict.revised.moe.edu.tw/)) and read the zhuyin and pinyin.
+
+2. Read the meaning and examples Confirm the meaning matches how the video or app used it.
+
+3. Note any difference Follow the dictionary and tell your child about the difference; if the issue is in an app or video, report it to the provider.
+
+## 3. What parents can do
+
+1. Build the habit of looking it up.  Seeing a parent use a dictionary teaches the child how to verify.
+
+2. Choose the dictionary by learning goal.  This page describes Taiwan's Ministry of Education dictionary, which suits learning Taiwan Mandarin.
+
+3. Pair it with real people.  After checking, read the word aloud to your child or ask a Mandarin-speaking relative or friend to demonstrate. Parents whose Mandarin is not native can see [can I help my child learn Mandarin if it is not my native language](https://thinkbigtw.com/en/qa/non-native-parent-teach-mandarin/).
+
+Brand information | BearSay Mandarin
+
+## BearSay Mandarin's demo audio
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+BearSay Mandarin's daily word shows zhuyin and pinyin; the demo audio is AI-synthesized speech, and parents can check pronunciations against the Ministry of Education dictionary. It does not replace a live demonstration and does not guarantee any learning result.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: What if I am unsure about a pronunciation taught by AI? Check the Ministry of Education's Revised Mandarin Dictionary: enter the word and see whether pronunciation and meaning match. Neither AI nor videos should be the only reference. Q2: What is the address of the Ministry of Education dictionary? The Revised Mandarin Dictionary is at dict.revised.moe.edu.tw. Q3: Can I check even if my own Mandarin is limited? Yes. The dictionary gives pronunciation and meaning; you do not need to know every character, only to look it up when unsure. Q4: Is BearSay Mandarin's demo audio a real person? BearSay Mandarin's demo audio is AI-synthesized speech; parents can check pronunciations against the Ministry of Education dictionary.
+
+Sources (links checked 2026-11-12)
+
+- Ministry of Education: Revised Mandarin Dictionary: [dict.revised.moe.edu.tw](https://dict.revised.moe.edu.tw/)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/child-own-account-or-parent-account/
+
+# Can a Child Register a Learning App Account Alone? Setting Up a Parent Account | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS15
+
+# Can a Child Register a Learning App Account Alone? Setting Up a Parent Account
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/child-own-account-or-parent-account/)
+
+Short answer
+
+A safer approach is for a parent to create and manage the account. Taiwan's Civil Code requires the legal representative's permission for declarations of intent by minors aged seven to under eighteen (Article 77), which generally covers registering and accepting terms; the Personal Data Protection Act requires consent to follow the legally required notice (Article 7). The US COPPA Rule requires verifiable parental consent before collecting personal information from children under 13. Parents should read the terms themselves and register with a nickname rather than the child's real name.
+
+## 1. Three sources
+
+Source Key point
+Taiwan Civil Code Under seven: no capacity; seven or older and still a minor: limited capacity, so declarations of intent need the legal representative's permission, except for matters that purely benefit the minor or are necessary for daily life (Articles 13 and 77). [Laws and Regulations Database (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
+
+Taiwan Personal Data Protection Act Consent means permission given after the collector has provided the legally required notice; the collector bears the burden of proving consent (Article 7). [Laws and Regulations Database (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+US COPPA Rule For online services directed to children under 13, notice to parents and verifiable parental consent are required before collecting personal information. [FTC: COPPA FAQ](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+## 2. Setting up a parent account
+
+1. The parent creates the account, then adds a learner profile for the child.  The person accepting the terms is then the parent.
+
+2. Read the notice first.  Article 8 of the Personal Data Protection Act requires disclosure of the collector's name, purpose, data categories, period, area, recipients and manner of use, the data subject's rights and the effect of not providing data. If a service lacks this, consider not registering yet.
+
+3. Use a nickname and no child's photo.  Do not provide data you can avoid providing.
+
+4. Note how to delete the account.  When you stop using it, apply for deletion under the policy and remove the app.
+
+For more checks see [5 checks before choosing a children's learning app](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/); for in-app purchases see [child in-app purchases and refunds](https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/). This page summarises rules; it is not legal advice.
+
+Brand information | BearSay Mandarin
+
+## Where the BearSay Mandarin app stands
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: Can a child register a learning app account alone? A safer approach is for a parent to create and manage the account. Taiwan's Civil Code requires the legal representative's permission for minors aged seven to under eighteen; the US COPPA Rule requires verifiable parental consent for children under 13. Q2: When is consent valid under the Personal Data Protection Act? Article 7: consent is permission given after the collector has provided the legally required notice, and the collector bears the burden of proving it. Q3: Should I register with my child's real name? Do not provide data you can avoid providing. Use a nickname and do not upload your child's photo. Q4: How do I register for the BearSay Mandarin app? The app is in development and has not been released, so this page says nothing about registration or data handling.
+
+Sources (links checked 2026-11-12)
+
+- Civil Code (Articles 13 and 77), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
+
+- Personal Data Protection Act (Articles 7 and 8), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions: [www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/child-voice-recording-personal-data/
+
+# Is a Child's Voice Recording Personal Data? US and Taiwan Rules | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS12
+
+# Is a Child's Voice Recording Personal Data? US and Taiwan Rules
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/child-voice-recording-personal-data/)
+
+Short answer
+
+In the US, yes: the FTC's COPPA FAQ states that audio files containing a child's voice are personal information and need verifiable parental consent. Taiwan's Personal Data Protection Act, Article 2, does not list voice separately; it asks whether data can directly or indirectly identify a person, so a recording that identifies a particular child may count. Parents can ask providers whether recordings are kept and how to delete them.
+
+## 1. The two rules side by side
+
+Region How a child's recording is treated Basis
+United States (under 13) Photos, videos and audio files containing a child's image or voice are personal information; verifiable parental consent is generally required. [FTC: COPPA FAQ A.3, F.1, F.6](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+Taiwan The definition lists name, date of birth, characteristics, contact details and more, with a catch-all for other data that can directly or indirectly identify a person. Voice is not listed separately; whether a recording identifies a person depends on the case. [PDPA Article 2 (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+## 2. Rights and limits in Taiwan
+
+Article 3 protects the rights to inquire, access, obtain copies, correct, stop collection, processing or use, and request deletion; they cannot be waived in advance. Article 5 requires collection, processing and use to stay within what the specific purpose needs. For a child, a parent (legal representative) usually exercises these rights.
+
+## 3. What parents can do
+
+1. Ask whether recordings are kept.  Processing in real time without keeping is different from storing and reusing.
+
+2. Ask how to listen and delete.  Is there a clear channel and reply time?
+
+3. Do not post your child's recordings publicly.  A voice together with a name or school is easier to identify.
+
+For other app checks see [5 checks before choosing a children's learning app](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/). This page summarises rules; it is not legal advice.
+
+Brand information | BearSay Mandarin
+
+## Where the BearSay Mandarin app stands
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: Is a child's voice recording personal data? In the US, audio files containing a child's voice are personal information (FTC FAQ F.6). In Taiwan the test is whether data can directly or indirectly identify a person; voice is not listed separately. Q2: Does Taiwan's law mention voice? Article 2 of the Personal Data Protection Act lists items such as characteristics and uses a catch-all for other data that can directly or indirectly identify a person. Voice is not listed separately; it depends on whether the recording identifies someone. Q3: Can I ask a provider to delete my child's recordings? Article 3 protects the right to request deletion and it cannot be waived in advance. In practice a parent applies as the legal representative. Q4: Will the BearSay Mandarin app keep my child's recordings? The app is in development and has not been released, so this page says nothing about its data handling.
+
+Sources (links checked 2026-11-12)
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions (A.3, F.1, F.6): [www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+- Personal Data Protection Act (Articles 2, 3 and 5), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -9811,6 +10333,60 @@ Updated 2026-10-19
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/instagram-age-13-kids-daily-word/
+
+# Can a Child Use Instagram Alone to Watch the Daily Word? The Age-13 Rule | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS16
+
+# Can a Child Use Instagram Alone to Watch the Daily Word? The Age-13 Rule
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/)
+
+Short answer
+
+According to Instagram's Help Center (checked 2026-11-12), most countries and regions require users to be at least 13 to use Instagram, and some regions set a different minimum age. So for a child under 13, it is better for a parent to watch the daily word on the parent's own account than for the child to open one.
+
+## 1. Instagram's age rule
+
+Instagram's Help Center says most countries and regions require users to be at least 13 to use Instagram, and some countries and regions set a different minimum age. ([Instagram Help Center](https://help.instagram.com/517920941588885), checked 2026-11-12) The rules in each region follow the platform's current notice, so check the latest version.
+
+## 2. How children under 13 can watch the daily word
+
+1. Watch on the parent's account.  Watching, repeating and talking together is easier to control, in both content and time, than letting a child scroll alone.
+
+2. Do not misstate a child's age to open an account.  It breaks the platform's rules and the account may be deleted.
+
+3. Count it as screen time.  Short videos are screen time; for limits see [screen time under 5 (Chinese)](https://thinkbigtw.com/library/qa/screen-time-under-5/), and for pairing videos with other practice see [can children learn Mandarin from videos](https://thinkbigtw.com/en/qa/learn-language-from-video/).
+
+The daily word is one way to meet Taiwan Mandarin. It does not replace talking with real people and does not guarantee any learning result.
+
+Brand information | BearSay Mandarin
+
+## BearSay Mandarin's daily word
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+BearSay Mandarin's daily word is posted on Instagram, and the age rules are Instagram's own; the content suits parents watching together with their children. The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: What is the minimum age for Instagram? According to Instagram's Help Center, most countries and regions require users to be at least 13, and some regions set a different minimum age. Q2: My child is under 13. Can they open their own account? Most regions require users to be at least 13. It is better for a parent to watch together on the parent's own account, and not to misstate a child's age to open one. Q3: My child wants to watch the BearSay Mandarin daily word. What should I do? It is better for a parent to watch together on the parent's own account, and not to misstate a child's age to open one. Q4: How can I meet BearSay Mandarin before the app is released? The daily word is currently on Instagram; the app is in development and has not been released.
+
+Sources (links checked 2026-11-12)
+
+- Instagram 說明中心：使用 Instagram 的最低年齡（2026-11-12 查閱）: [help.instagram.com](https://help.instagram.com/517920941588885)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/is-local-llm-good-enough/
 
 # Is a Local LLM Smart Enough for Enterprise Use? | Think BIG
@@ -9893,6 +10469,77 @@ This article summarizes public official documents, laws, and security standards 
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
 Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/
+
+# Can You Get a Refund When a Child Buys In-App Items? Costs and Free Features (Taiwan) | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS14
+
+# Can You Get a Refund When a Child Buys In-App Items? Costs and Free Features (Taiwan)
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/)
+
+Short answer
+
+Possibly, depending on the case. Under Taiwan's Civil Code, a contract made by a person aged seven to under eighteen without the legal representative's permission takes effect only if the representative approves it, except for matters necessary for daily life given the person's age and status. The 7-day cancellation right in the Consumer Protection Act also has an exception for digital content not supplied on a tangible medium, or online services completed once provided, where the consumer agreed in advance. Actual refunds also depend on store rules and the facts.
+
+## 1. Contracts made by minors
+
+Situation Civil Code
+Under seven No capacity (Article 13)
+
+Seven or older, still a minor Limited capacity (Article 13); a declaration of intent needs the legal representative's permission, except for matters that purely benefit the minor or are necessary for daily life given age and status (Article 77)
+
+Contract made without permission Takes effect only if the legal representative approves it (Article 79)
+
+See the [Civil Code in the Laws and Regulations Database (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001). Whether a purchase is "necessary for daily life" depends on the amount, purpose and the child's age and status; there is no fixed answer.
+
+## 2. The 7-day cancellation right and the digital-content exception
+
+A consumer in a distance (communication) transaction can generally cancel within seven days of receiving goods or services without giving a reason (Consumer Protection Act, Article 19). Article 2 of the rules on reasonable exceptions lists exceptions, including digital content not supplied on a tangible medium, or online services completed once provided, supplied only with the consumer's prior consent, where the business has told the consumer that the right is excluded. ([Consumer Protection Act (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001); [exceptions rules (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)) Whether an in-app purchase falls within the exception depends on whether the purchase page gave that notice and obtained consent beforehand.
+
+## 3. What parents can do before and after paying
+
+1. Check the store page for "includes in-app purchases" and subscription terms.  See which features are free, which are paid and whether renewal is automatic.
+
+2. Manage purchases in device settings.  Apple's Ask to Buy lets a parent approve a child's purchases and downloads ([Apple Support](https://support.apple.com/en-us/105055)); Google Play lets a family manager require purchase approvals, which cover purchases made through Google Play billing ([Google Play Help](https://support.google.com/googleplay/answer/7039872)). Check the actual settings on your own device.
+
+3. If a purchase was a mistake, contact the store and the provider first.  Keep the order and payment notices; for disputes you can then approach the consumer protection authority. This page summarises rules; it is not legal advice.
+
+Brand information | BearSay Mandarin
+
+## Where the BearSay Mandarin app stands
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling. Pricing and the scope of free features will follow the official store page and website once released.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: Can I get a refund if my child buys in-app items? Possibly, depending on the case. Under Article 79 of the Civil Code a contract made by a person with limited capacity without the representative's permission takes effect only if approved, except for matters necessary for daily life (Article 77). Store rules also apply. Q2: Is there a 7-day cancellation right for digital content? The Consumer Protection Act gives a 7-day right, but Article 2 of the exceptions rules excludes digital content not on a tangible medium, or online services completed once provided, supplied with the consumer's prior consent and after the business has given notice. Q3: At what age does a child have limited capacity? Under Article 13 of the Civil Code, minors aged seven or older have limited capacity; those under seven have no capacity. Q4: Does the BearSay Mandarin app cost money? The app is in development and has not been released, so this page says nothing about pricing or free features.
+
+Sources (links checked 2026-11-12)
+
+- Civil Code (Articles 13, 77 and 79), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
+
+- Consumer Protection Act (Article 19), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- Rules on Reasonable Exceptions to the Right of Rescission in Distance Transactions (Article 2) (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)
+
+- Approve what your child can purchase and download with Ask to Buy, Apple Support: [support.apple.com](https://support.apple.com/en-us/105055)
+
+- Purchase approvals on Google Play, Google Play Help: [support.google.com](https://support.google.com/googleplay/answer/7039872)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -11153,6 +11800,71 @@ This article summarizes public official documents, laws, and security standards 
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
 Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/overseas-family-data-across-borders/
+
+# Does My Child's Data Leave the Country When an Overseas Family Uses a Taiwan-Based Learning App? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+熊好學 · BearSay Mandarin BS17
+
+# Does My Child's Data Leave the Country When an Overseas Family Uses a Taiwan-Based Learning App?
+
+Think BIG Q&A Library　·　November 12, 2026 　·　[中文版](https://thinkbigtw.com/library/qa/overseas-family-data-across-borders/)
+
+Short answer
+
+It may, depending on where the app processes data, which you can find in the privacy policy. Taiwan's Personal Data Protection Act calls cross-border processing or use of personal data 'international transfer' and Article 8 requires disclosure of the area of use. The law where your child lives may also apply: the US COPPA Rule covers children under 13, and GDPR Article 8 sets 16 by default, which member states may lower to no less than 13. Check the policy for the processing area, recipients and deletion channel.
+
+## 1. Three rules to tell apart
+
+Region Rule relevant to children's data
+Taiwan Article 2 of the Personal Data Protection Act: "international transfer" means cross-border processing or use of personal data; Article 8: at collection, the period, area, recipients and manner of use must be disclosed. [Laws and Regulations Database (Chinese)](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+United States For online services directed to children under 13, the COPPA Rule requires notice to parents and verifiable parental consent before collecting personal information. [FTC: COPPA FAQ](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+European Union GDPR Article 8: where consent is the basis for offering information society services directly to a child, the child may consent alone from age 16; below 16 the holder of parental responsibility must consent or authorise; member states may lower the age, but not below 13. [EUR-Lex: GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+
+Other countries have their own rules and are not covered here. Which country's law applies depends on who the service is directed to and how it operates; there is no one-size answer.
+
+## 2. What overseas parents can check
+
+1. Does the privacy policy name the processing area?  Does it say in which countries or regions data is processed and who receives it?
+
+2. Is there a parental consent flow for children?  Does it match the age threshold where your child lives?
+
+3. Is there a workable deletion channel?  Are the contact method and reply time clear?
+
+For more checks see [5 checks before choosing a children's learning app](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/); for official resources for overseas children see [official resources for overseas children learning Mandarin](https://thinkbigtw.com/en/qa/overseas-kids-learn-mandarin-resources/). This page summarises rules; it is not legal advice.
+
+Brand information | BearSay Mandarin
+
+## Where the BearSay Mandarin app stands
+
+BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. Every day it teaches one Taiwan Mandarin word on Instagram ([@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)), in Traditional characters with zhuyin and pinyin and multilingual subtitles, guided by five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. The app is in development and has not been released. Release information will appear on the [BearSay Mandarin Q&A overview](https://thinkbigtw.com/en/qa/bearsay/).
+
+The BearSay Mandarin app is in development and has not been released. This page says nothing about its features, pricing or data handling.
+
+Source: the public Instagram account and this site's brand overview, updated 2026-11-12. Demo audio is AI-synthesized speech; BearSay Mandarin characters are AI-generated.
+
+## Frequently asked questions
+
+Q1: Does my child's data leave the country if we use a Taiwan-based app overseas? It depends on where the app processes data; check the privacy policy. Taiwan's law requires disclosure of the area of use, and the law where your child lives (such as US COPPA or EU GDPR) may also apply. Q2: What is 'international transfer' under Taiwan's law? Article 2 of the Personal Data Protection Act: cross-border processing or use of personal data. Q3: What is the EU age of consent for children? GDPR Article 8 sets 16 by default; member states may lower it to no less than 13. Below the age, the holder of parental responsibility must consent or authorise. Q4: Where will the BearSay Mandarin app process data? The app is in development and has not been released, so this page says nothing about its data handling.
+
+Sources (links checked 2026-11-12)
+
+- Personal Data Protection Act (Articles 2 and 8), Laws and Regulations Database of the Republic of China (Chinese): [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions: [www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+- Regulation (EU) 2016/679 (GDPR), Article 8, EUR-Lex: [eur-lex.europa.eu](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+
+This page summarises public research and official materials for parents. It is not medical or legal advice and does not promise any learning result. Brand information comes from the brand's public pages and may change.
+
+Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Make it Real!　Think BIG Make it Real CO., LTD.
 
 ---
 
@@ -16502,120 +17214,6 @@ THINK BIG NEWS   ·  AI 導入第一手手記
 
 ---
 
-URL: https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/
-
-# AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-本地 AI 實測筆記 · 第 011 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI DEPLOYMENT NOTES
-
-2026 年 10 月 27 日　星期二
-◆
-本地 AI 實測筆記
-◆
-第 011 期
-
-本地 AI · 上下文長度 · 記憶體管理
-
-## AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓
-
-Think BIG 自媒體部  |  2026 年 10 月 27 日
-
-本地 AI 越用越慢、整台電腦跟著卡，除了顯卡沒用上，另一個常見原因是上下文長度設得太大。打 ollama ps  看 PROCESSOR 和 CONTEXT 兩欄，就能知道模型實際用了多少上下文、有沒有被擠到 CPU。
-
-（本文以開源工具 Ollama 為例，因為它的官方文件把預設值和檢查方式寫得很清楚；其他本地執行工具原理相近，設定名稱不同。）
-
-這篇和本報第 2 期〈本地跑大模型，GPU 真的有在動嗎？〉是一組。第 2 期講「模型根本沒用到顯卡」；這篇講另一種情況：顯卡有在用，但上下文設太大，記憶體被吃光。兩個問題都從同一個指令開始查。
-
-## 一 現象：上下文長度也要佔記憶體
-
-上下文長度，白話說就是 AI 回答時一次能帶著的內容量，單位是 token。Ollama 官方文件的定義是：模型在記憶體中可以取用的最大 token 數。[2]
-
-這個數字不是免費的。官方文件寫明，把上下文長度設大，執行模型所需的記憶體也會增加，調大之前要先確認顯示記憶體（VRAM）夠用。[2] FAQ 也提到，同時處理多個請求時，所需記憶體會隨「並行請求數 × 上下文長度」放大；並行請求數的預設值是 1。[1]
-
-預設值要特別留意。 Ollama 的 FAQ 寫的是預設 4096 個 token。[1] 另一頁〈Context length〉則寫成依顯示記憶體分級：小於 24 GiB 為 4k，24 到 48 GiB 為 32k，48 GiB 以上為 256k。[2] 兩頁寫法不同，我們的做法是不靠記憶推斷，直接用 ollama ps  看 CONTEXT 欄，以機器實際配置的數字為準。[2]
-
-調整方式官方也寫得很清楚：要改整台服務的預設值，用環境變數 OLLAMA_CONTEXT_LENGTH ；只改單一模型或單次對話，在指令列用 /set parameter num_ctx ，或在 API 的 options 裡帶 num_ctx 。[1]
-
-## 二 各方評價：要大，還是要穩？
-
-主張開大的一方 ：Ollama 的〈Context length〉頁建議，網頁搜尋、AI Agent、程式工具這類需要大量上下文的任務，至少設到 64000 個 token；同一頁也說，為了最佳效能，可以用模型支援的最大上下文長度，並避免模型被卸載到 CPU。[2]
-
-提醒成本的一方 ：同樣是官方文件，FAQ 說明可以開 Flash Attention，在上下文變大時明顯降低記憶體用量；也可以把 K/V cache（存放上下文的暫存區）量化，q8_0  約用 f16  一半的記憶體，q4_0  約四分之一，但精度損失在上下文越大時可能越明顯，影響多少要看模型和任務。[1]
-
-兩邊其實不衝突。官方的前提一直是「機器放得下」：上下文可以開大，但要先算記憶體夠不夠，並確認模型沒有被擠到 CPU。[2]
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下是我們部署本地 AI Agent 時的實作觀察，不是產業統計，也不代表任何特定案場。
-
-1. 「AI 越來越慢，是不是顯卡太舊？」是常見的問題，但常見的答案是設定。 我們常遇到的情況是：有人為了讓 AI「記得多一點」，把上下文一口氣拉到很高，結果記憶體放不下，模型部分跑到 CPU，回應時間明顯拉長。
-
-2. 統一記憶體的機器要更小心。 顯示晶片和系統共用同一塊記憶體的電腦，上下文吃掉的不只是「顯卡的份」。我們常見的症狀有三個：回應時間越拉越長、整台電腦操作變遲鈍、硬碟開始大量寫入交換空間（swap）。這時候慢的不只 AI，其他程式也一起被拖住。
-
-3. 先查需求，再定數字。 我們不在一開始就給一個固定數字。比較穩的順序是：先跑幾個真實工作，看每次實際送進去多少 token，再決定上下文要留多少餘裕。Ollama 的 API 回應會附 prompt_eval_count （這次輸入了多少 token），拿來當依據就夠了。[3]
-
-4. 交付前看 CONTEXT 和 PROCESSOR 兩欄。 ollama ps  的 PROCESSOR 欄會顯示 100% GPU、100% CPU，或兩者的比例；[1] CONTEXT 欄顯示實際配置的上下文長度。[2] 我們交付前會把這兩欄截圖留存。
-
-## 四 我們的建議：先做三步
-
-1. 先量，再設。 拿你最常做的三到五種工作（例如回客服信、摘要會議紀錄、查內部文件），各跑幾次，記下 prompt_eval_count 。[3] 最大值再加上回答需要的空間，就是你的起點。
-
-2. 改完馬上看 ollama ps 。 PROCESSOR 欄如果出現 CPU 比例，代表模型加上下文已經超過顯示記憶體能放的量。[1] 先把上下文調回來，或評估 Flash Attention、K/V cache 量化，量化後要用你的真實工作再驗一次品質。[1]
-
-3. 並行數和上下文一起看。 要讓多個人同時用，記憶體需求是兩者相乘。[1] 先決定同時要服務幾個請求，再回頭定上下文。
-
-一句話：上下文可以開大，前提是機器放得下。 放不下的時候，慢下來的會是整台電腦。
-
-◆ 編按 · Think BIG 的做法：讓設定值有根據
-
-## 先量、再設。設定值要能說出「為什麼是這個數字」。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們部署本地 AI Agent 時，上下文長度不是憑感覺填的：依真實工作量定值 ——用客戶自己的工作內容實測輸入量，再決定上下文與並行數；交付時留證據 ——ollama ps  的 PROCESSOR、CONTEXT 兩欄截圖，連同設定值一起交給負責人；改設定要重驗 ——調整上下文、量化或並行數之後，用同一組工作重跑一次，確認速度和回答品質都還在可接受範圍。
-
-我們的立場是：設定值要能說出「為什麼是這個數字」。本報第 13 期將延伸談模型選型，也以同一套邏輯為基礎。
-
-### 常見問題
-
-Q1：上下文長度是什麼？
-AI 回答時一次能帶著的內容量，以 token 計算。Ollama 官方定義為模型在記憶體中可以取用的最大 token 數。[2]
-Q2：Ollama 預設的上下文長度是多少？
-官方 FAQ 寫預設 4096 個 token；〈Context length〉頁則寫依顯示記憶體大小分為 4k、32k、256k 三種。[1][2] 兩頁寫法不同，請用 ollama ps  的 CONTEXT 欄確認你的機器實際配置。[2]
-Q3：怎麼調整上下文長度？
-整台服務的預設值用環境變數 OLLAMA_CONTEXT_LENGTH ；單一模型或單次請求用 num_ctx （指令列 /set parameter num_ctx ，或 API 的 options）。[1]
-Q4：上下文設大一定比較好嗎？
-Ollama 建議 AI Agent、程式工具這類任務至少 64000 個 token，但也說明上下文越大，需要的記憶體越多，要確認顯示記憶體夠用。[2] 我們的建議是先量實際需求，再決定數字。
-Q5：記憶體不夠，又需要較長的上下文，怎麼辦？
-Ollama 文件提到兩個方向：開啟 Flash Attention，以及把 K/V cache 量化（q8_0  約省一半、q4_0  約剩四分之一），但量化對品質的影響依模型與任務而定，需要自己實測。[1]
-Q6：這跟「GPU 沒在動」是同一個問題嗎？
-不完全一樣，但查法相同。本報第 2 期談的是模型沒用到顯卡；這篇談的是上下文太大、記憶體放不下。兩種情況都可以先從 ollama ps  的 PROCESSOR 欄看起。[1]
-
-參考來源
-    查核日期：2026-10-24。
-
-    [1] Ollama，〈FAQ〉（上下文長度設定、ollama ps  的 PROCESSOR 欄、OLLAMA_NUM_PARALLEL 、Flash Attention、K/V cache 量化），查閱日期 2026-10-24：[docs.ollama.com/faq](https://docs.ollama.com/faq)　·
-    [2] Ollama，〈Context length〉（定義、依顯示記憶體的預設值、Agent 任務建議值、ollama ps  的 CONTEXT 欄），查閱日期 2026-10-24：[docs.ollama.com/context-length](https://docs.ollama.com/context-length)　·
-    [3] Ollama，〈Usage〉（API 回應的 prompt_eval_count  等欄位），查閱日期 2026-10-24：[docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  本地 AI 實測筆記
-    Think BIG, Make it Real!　大想成業有限公司
-
----
-
 URL: https://thinkbigtw.com/library/news/ai-context-length-too-large-20261027/
 
 # AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓 | Think BIG NEWS
@@ -18375,6 +18973,119 @@ THINK BIG NEWS   ·  本地 AI 實測筆記
 
 ---
 
+URL: https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/
+
+# AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 019 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 12 日　星期四
+◆
+AI 導入實測手記
+◆
+第 019 期
+
+RAG · 切塊 · 檢索品質
+
+## AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型
+
+Think BIG 自媒體部  |  2026 年 11 月 12 日
+
+先把問題、檢索段落與回答放在一起看。找到錯誤出在哪個環節，才知道應該改文件、改檢索，還是調整模型。
+
+## 一 現象：有文件，不代表每次都找到對的段落
+
+RAG 是檢索增強生成：先從資料中找出相關內容，再交給模型作為回答依據。Microsoft 的官方概述指出，提問用語與文件術語不一致、文件前處理及輸入長度限制，都是實作挑戰。[1] 這說明「文件已上傳」與「能回答問題」之間，還有值得檢查的流程。
+
+切塊是其中一環。官方文件列出固定長度、依結構或語意分段等方式，也提醒重疊與大小應依文件及用途調整。[2] 因此，我們不建議把某個字數當成所有中文制度、表格或掃描檔都通用的設定。切完的段落是否保留主詞、條件與例外，應拿出來閱讀。
+
+評估也需要分層。Microsoft 的 RAG 評估文件區分檢索流程與最終回答：前者看找回內容是否與問題相關，後者再看回答是否依據內容、切題且完整。[3] 本文引用這個區分說明排查方法，不推薦特定服務，也不把評分工具的分數當成業務判斷。
+
+## 二 各方評價：改善檢索有根據，模型能力也不能忽略
+
+先檢查資料的一面： 官方概述把內容準備與檢索相關性放在 RAG 品質的核心。[1] 我們的判讀是，當標準答案根本沒有出現在模型收到的段落裡，應先查索引與檢索紀錄；直接換更大的模型，沒有處理這個缺口。
+
+保留模型判斷的一面： 找到段落後，模型仍可能沒有正確使用。2023 年原始研究〈Lost in the Middle〉在指定的多文件問答與鍵值檢索任務中，觀察到相關資訊放在長上下文不同位置，表現會改變。[4] 這不代表所有新模型都有同樣結果，但提醒我們不能只用「塞更多資料」當通用答案。
+
+兩種方向可以放進同一份測試：先判定該找到的證據有沒有被找回，再判定模型有沒有忠實回答。若文件本身就互相矛盾，則先交由文件負責人確認，而不是請模型替公司決定哪份規定有效。
+
+我們建議在測試表再加一欄「怎樣算答錯」：漏掉例外、把舊版當現行、引用別份文件，分開記錄。這是為了讓文件維護者與工程人員看同一題時有共同判準，不會一個只看文字流暢、另一個只看檢索分數。
+
+題組也要保留原始問法。若每次測試前都先把口語問題改寫成文件標題，就可能把原本要驗證的用語落差藏起來。我們建議同時保留原問句與改寫版本，分別記錄檢索結果，再決定是否採用查詢改寫。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們處理 RAG 文件與回答問題時的觀察，不是產業統計，也不描述特定對象。
+
+1. 先看檢索回來的段落。 我們遇到答不準時，會先看找回的內容對不對，再看模型如何回答。常見原因包括切塊太大或太小，並非每次都是模型不夠聰明。
+
+2. 原檔看起來正常，轉成文字可能走樣。 我們見過表格、掃描文件轉文字後變成亂碼。處理順序是回頭看文字內容，而不是繼續修改提示詞，要求模型把錯誤資料讀得更準。
+
+3. 同一件事可能有兩個版本。 新舊文件同時被找到，會讓回答依據混在一起。我們的做法是把舊版下架，或標明版本，讓文件的有效狀態能被檢查。
+
+4. 真實問題與標準答案要一起留。 我們會建立題組測試，也留意口語提問與正式名詞之間的落差。題目不是只寫文件標題，而是整理實際會怎麼問，才看得到檢索有沒有接上用語。
+
+## 四 我們的建議：用同一組題目，逐項排查
+
+1. 抽查轉出的文字。 挑表格、掃描頁與有例外條件的段落，對照原檔。把欄位標題與數值是否仍對得上列為檢查點；若前處理錯了，先修內容，再重建索引。
+
+2. 建題目與證據表。 每題記下預期答案、可支持的文件及段落，另外放入找不到答案、文件過期與用語不同的題目。檢索評估需要清楚的相關性依據。[3]
+
+3. 一次改一類設定。 固定模型與題組，再比較分段、重疊或查詢方式。保留每次找回的段落，避免答案變好卻不知道是哪項變動造成；參數應依自己的內容驗證。[2][3]
+
+4. 分開看證據與回答。 證據沒找對，回檢索層；證據正確但回答錯，查提示與模型；文件矛盾，交負責人處理。這是我們建議的分流，不把單一分數當成全部結論。
+
+5. 把找不到也列為驗收。 要求系統在沒有足夠依據時說明缺口，不拼出貌似完整的答案。另測使用者權限，確認能查到的內容都在授權範圍內。[1]
+
+一句話：先確認 AI 讀對材料，再判斷它有沒有答對。
+
+◆ 編按 · Think BIG 的做法：把錯誤留成可重測的題目
+
+## 問題、段落、答案與文件版本一起保存。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張每次調整知識庫，都能用相同題組檢查。錯誤紀錄應指出失敗環節與文件負責人，讓後續維護能沿用，而不是每次重新猜原因。
+
+延伸閱讀[公司文件的部門存取控制](https://thinkbigtw.com/library/qa/rag-access-control-by-department/)。回答品質與資料權限，都需要獨立驗收。
+
+### 常見問題
+
+Q1：RAG 是什麼？
+是先檢索資料，再把相關內容交給模型作為回答依據的方式。[1]
+Q2：切塊越大越好嗎？
+不是通用規則。大小、重疊與分段方式要依內容及用途測試。[2]
+Q3：有引用就表示答對嗎？
+我們建議另外檢查引用是否支持回答，以及回答是否完整切題；這些是不同評估面向。[3]
+Q4：什麼時候再考慮換模型？
+我們建議先確認檢索到正確材料；若材料正確但仍答錯，再用同一組題目比較模型與提示設定。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Microsoft，〈RAG and Generative AI〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)　·
+    [2] Microsoft，〈Chunk Documents〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)　·
+    [3] Microsoft，〈Retrieval-Augmented Generation (RAG) Evaluators〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators)　·
+    [4] Liu 等，〈Lost in the Middle: How Language Models Use Long Contexts〉，2023，arXiv:2307.03172，查閱日期 2026-10-26：[arxiv.org](https://arxiv.org/abs/2307.03172)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/seo-geo-difference-20261007/
 
 # Google 排得上去，為什麼 ChatGPT 還是不提你？SEO 和 GEO 差在哪｜Think BIG NEWS
@@ -19364,6 +20075,160 @@ Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/ai-output-copyright/
+
+# AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+法規與治理
+TB30
+
+# AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+    ·　[English](https://thinkbigtw.com/en/qa/ai-output-copyright/)
+
+先說答案
+
+依台灣智慧財產局的說明，AI 文章與圖片能否受著作權保護，關鍵在有沒有人類實際的創意投入。完全由 AI 獨立完成、沒有人類創意投入的成果，原則上無法享有著作權；把 AI 當輔助工具的創作，則須看具體投入及保護要件。能否受保護、是否侵害他人權利、公司能否使用，是不同問題；本文供參考，不構成法律意見。
+
+## 一、 看創作過程，不只看成品像不像作品
+
+《著作權法》第 10 條規定，著作人於著作完成時享有著作權，但本法另有規定者從其規定。智慧財產局電子郵件 1140522c 進一步說明 AI 圖畫的兩種情形：有人類實際創意投入、以 AI 為輔助工具，與完全由 AI 演算獨立完成，判斷不同。
+
+智慧局電子郵件 1150724 也指出，AI 輔助簡報中實際投入創意的部分，若符合原創性與創作性，可能受保護。因此，不能用「輸入提示詞」「改過幾個字」直接推定整份成果已有著作權，也沒有本頁可提供的固定提示長度或修改比例門檻。
+
+本文建議保留人工構思、素材來源、草稿與修改紀錄，說明實際創作歷程。這是證據保存建議，不表示保留紀錄本身就足以成立權利。
+
+## 二、 不受保護，不代表使用時沒有侵權風險
+
+智慧局電子郵件 1140625 提醒，AI 生成或改寫的文章仍可能與原始著作構成實質近似；是否侵權有爭議時，須由司法機關依具體事實認定。該說明也建議釐清模型提供者對生成結果涉及他人著作的授權情況。
+
+要回答的問題
+要查看的材料
+人工創意部分能否受保護
+構思、表達、修改與原創性事實
+
+是否涉及別人的著作
+輸入素材來源、生成內容及相似處
+
+服務是否允許預計用途
+實際產品、帳號與使用條款
+
+公司取得哪些權利
+僱傭或委外契約與工作事實
+
+建議不要把「工具允許商業使用」當成所有權利都已清楚的結論。上架前仍應檢查來源與內容；有明顯相似、授權不清或權利爭議時，先交由法務或權利人確認，不由模型自行判定可以發布。
+
+## 三、 職務與委外成果，要另外確認歸屬
+
+《著作權法》第 11 條處理受雇人職務上完成的著作，第 12 條處理出資聘請他人完成的著作，規則與契約約定有關。智慧局 1150724 的 AI 簡報說明也要求先看實際創意部分是否受保護，再判斷是否屬職務成果與雙方約定。
+
+本文建議企業在委託或內部作業前寫清楚：輸入素材由誰提供、哪些 AI 工具可用、人工審核由誰完成、應交付哪些可編輯檔與創作紀錄，以及權利如何約定。採用本地模型也不能省略這些檢查；地端是處理環境的選擇，不能據此推定生成內容沒有權利疑慮。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的第三方條款與工作紀錄
+
+Think BIG（大想成業有限公司）協助企業把 AI Agent 建在公司自己的環境裡。地端部署不等於所有連線都在本機；若使用雲端模型、通訊軟體或外部服務，相關請求仍會送出。
+
+- 第三方元件先審查 ：使用的第三方套件先審查來源與授權、固定版本、不自動更新；金鑰放在受權限保護的設定檔，不在對話裡傳。
+
+- 以證據驗證工作 ：工作完成條件須有對應的變更紀錄與驗證結果，並確認維護與交接責任。
+
+詳見[資安與治理](https://thinkbigtw.com/trust/)與[地端 AI 與資料主權](https://thinkbigtw.com/guides/local-ai-data/)。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：只要用 AI 就沒有著作權嗎？ 依智慧局說明，仍須看人類實際創意投入及相關保護要件，不能一概而論。 Q2：自己下提示詞，就擁有整張圖嗎？ 不能直接推定。要看具體創作過程與實際投入，爭議依個案認定。 Q3：工具允許商用，就不會侵權嗎？ 仍要檢查輸入素材與生成內容是否涉及他人著作，並核對實際授權。 Q4：員工做的 AI 簡報都歸公司嗎？ 先確認受保護的人類創作部分，再依著作權法第 11 條、工作事實與契約判斷，不能只看工具。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 全國法規資料庫｜著作權法第 10、11、12 條：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0070017)
+
+- 經濟部智慧財產局｜電子郵件 1140522c：[www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-34252.html)
+
+- 經濟部智慧財產局｜電子郵件 1140625：[www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-34651.html)
+
+- 經濟部智慧財產局｜電子郵件 1150724：[www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-93359.html)
+
+- Think BIG｜資安與治理：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/ai-speaking-practice-safe-for-kids/
+
+# 孩子用 AI 口說陪練安全嗎？家長先問 4 件事｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS11
+
+# 孩子用 AI 口說陪練安全嗎？家長先問 4 件事
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+AI 口說陪練是否安全，要看服務怎麼處理孩子的聲音與資料，以及有沒有大人把關，不能一概而論。美國 COPPA 把含兒童聲音的錄音檔視為個人資料；聯合國教科文組織 2023 年指引提到，可考慮把課堂使用生成式 AI 的年齡限制定為 13 歲。家長可先問：聲音是否留存、交給誰、怎麼刪除、能否陪同使用。
+
+## 一、 為什麼「聲音」要特別問
+
+口說陪練必然會收到孩子的聲音。美國聯邦貿易委員會（FTC）的 COPPA 常見問題寫明，含兒童影像或聲音的照片、影片與錄音檔，屬於個人資料，原則上需要可驗證的家長同意；FTC 另有一項有條件的不執法政策，適用於「聲音只是用來取代打字」的情形：業者不能藉語音詢問姓名這類本身就是個資的資訊，且須公告如何蒐集、使用與刪除這些錄音。（[FTC：COPPA 常見問題 F.1、F.6](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)）
+
+## 二、 年齡門檻：目前有什麼參考
+
+聯合國教科文組織（UNESCO）2023 年 9 月發布生成式 AI 教育指引，呼籲各國規範其在教育中的使用，並提到可考慮把課堂使用的年齡限制定為 13 歲。（[UN News，2023-09-07](https://news.un.org/en/story/2023/09/1140477)）這份指引談的是學校課堂的生成式 AI，不是專為語言學習 App 訂的規則，只能當作參考。
+
+## 三、 家長可先問的 4 件事
+
+要問的事 為什麼問
+1. 孩子的聲音有沒有被存下來？ 存下來的錄音可能屬於個人資料（見上）。
+
+2. 聲音或對話交給誰處理？ 台灣個資法第 8 條要求告知利用的對象、地區與方式。（[全國法規資料庫](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)）
+
+3. 怎麼查看與刪除？ 個資法第 3 條：查詢、閱覽、請求刪除等權利，不得預先拋棄。
+
+4. 家長能不能陪同？ 一起練、一起聽，比交給孩子獨自對話更容易發現問題（這是家長做法，不是法規要求）。
+
+本頁不評價任何特定產品的安全性；法規內容以官方條文為準，個案請洽專業人員。孩子在家說話練習的方法，另見[在家怎麼陪孩子練口說](https://thinkbigtw.com/library/qa/practice-speaking-at-home/)。
+
+品牌資訊｜熊好學
+
+## 熊好學 App 的現況
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：孩子用 AI 口說陪練安全嗎？ 要看服務如何處理孩子的聲音與資料，以及有沒有大人把關，無法一概而論。可先問：聲音是否留存、交給誰處理、怎麼查看與刪除、家長能否陪同。 Q2：孩子的聲音錄音算個人資料嗎？ 依美國 COPPA 規則，含兒童聲音的錄音檔屬個人資料（FTC 常見問題 F.6）。台灣個資法的判斷看該資料能否直接或間接識別特定的人。 Q3：幾歲以上才適合用 AI 工具？ 沒有單一的法定答案。聯合國教科文組織 2023 年指引提到可考慮把課堂使用生成式 AI 的年齡限制定為 13 歲，這是學校場景的參考，不是語言學習 App 的規定。 Q4：熊好學 App 有 AI 口說功能嗎？ 熊好學 App 正在開發中，尚未上架，本頁不對其功能或資料處理作說明。
+
+參考來源（連結於 2026-11-12 查證）
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions（A.3、F.1、F.6）：[www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+- UN News (2023-09-07): UNESCO calls for regulation of generative AI in education（年齡限制 13 歲之建議）：[news.un.org](https://news.un.org/en/story/2023/09/1140477)
+
+- 個人資料保護法（第 3、8 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-vendor-data-terms/
 
 # 導入 AI 服務前，供應商的資料條款要看哪幾點？｜問答圖書館｜Think BIG
@@ -19469,6 +20334,193 @@ Q1：導入 AI 服務前，合約要看哪些資料條款？ 至少 6 點：資�
 
 問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
 Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/ai-voice-vs-live-conversation/
+
+# 孩子練華語，AI 語音和真人對話有差嗎？研究怎麼說｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS13
+
+# 孩子練華語，AI 語音和真人對話有差嗎？研究怎麼說
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+本頁引用的研究沒有直接測試 AI 陪練，所以無法說 AI 比真人好或差。已知的是：9 個月嬰兒接觸真人說的華語能保住語音辨別，錄製影音則沒有效果（Kuhl 等人，2003）；4–6 歲孩子與大人對話來回越多，語言腦區反應越強（Romeo 等人，2018，相關研究）。較穩妥的做法，是把 AI 當補充，保留與真人說話的時間。
+
+## 一、 兩項研究各測了什麼
+
+研究 對象與發現 限制
+Kuhl 等人（2003） 9 個月大的美國嬰兒，接觸真人說的華語後保住了華語語音辨別能力；只聽同樣內容的錄製影音則沒有效果。（[PNAS](https://doi.org/10.1073/pnas.1532872100)） 只測語音辨別，對象是嬰兒；沒有測 AI。
+
+Romeo 等人（2018） 4–6 歲孩子，與大人對話來回次數越多，語言相關腦區反應越強。（[Psychological Science](https://doi.org/10.1177/0956797617742725)） 相關研究，不能證明因果；對話對象是大人，不是 AI。
+
+## 二、 這些研究沒有說什麼
+
+沒有比較 AI 與真人。 兩項研究都早於現在的 AI 語音陪練，沒有把它納入實驗。
+
+不保證成效。 它們是實驗室與相關結果，不是學習成果的保證。
+
+## 三、 家長可以怎麼安排
+
+1. 保留真人對話。 每天固定時間，用你能說的華語跟孩子來回說話，作法見[在家怎麼陪孩子練口說](https://thinkbigtw.com/library/qa/practice-speaking-at-home/)。
+
+2. 把工具當補充。 影片、App 或 AI 語音可以增加接觸機會，但不取代真人互動，另見[看影片學華語有沒有用](https://thinkbigtw.com/library/qa/learn-language-from-video/)。
+
+3. 陪著用，邊用邊聊。 用完問孩子剛剛聽到什麼，把工具的內容帶回對話（這是家長做法，不是上述研究的結論）。
+
+品牌資訊｜熊好學
+
+## 熊好學對工具與真人的看法
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學的每日一詞是短影片與圖文，示範音為 AI 合成語音；它不取代跟真人說話，也不保證任何學習成效。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：AI 語音和真人對話有差嗎？ 本頁引用的研究沒有直接測試 AI 陪練，無法說誰好誰差。已知嬰兒實驗中真人互動有效、錄製影音無效；4–6 歲孩子與大人對話來回越多，語言腦區反應越強。 Q2：AI 陪練可以取代老師或家長嗎？ 本頁引用的研究不支持這個結論。較穩妥的做法，是把 AI 當補充，保留與真人說話的時間。 Q3：嬰兒聽錄音也能學外語語音嗎？ Kuhl 等人 2003 年的實驗中，9 個月嬰兒接觸真人說的華語後保住語音辨別，只聽同樣內容的錄製影音則沒有效果。實驗只測語音辨別。 Q4：什麼叫「對話來回」？ 指大人與孩子你一句、我一句輪流說話。Romeo 等人 2018 年發現，這種來回次數較多的 4–6 歲孩子，語言相關腦區反應較強；這是相關研究。
+
+參考來源（連結於 2026-11-12 查證）
+
+- Kuhl, Tsao & Liu (2003). Foreign-language experience in infancy. PNAS, 100(15), 9096–9101：[doi.org](https://doi.org/10.1073/pnas.1532872100)
+
+- Romeo et al. (2018). Beyond the 30-million-word gap. Psychological Science, 29(5), 700–710：[doi.org](https://doi.org/10.1177/0956797617742725)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/app-guarantee-claims-parents-check/
+
+# 學習 App 說「保證學會」「幾週見效」可信嗎？家長怎麼看廣告｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS20
+
+# 學習 App 說「保證學會」「幾週見效」可信嗎？家長怎麼看廣告
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+學習成效受孩子個別狀況、接觸量與使用方式影響，沒有任何 App 能替每個孩子保證結果。台灣消保法第 22 條要求企業經營者確保廣告內容真實，所負義務不得低於廣告內容；公平交易法第 21 條禁止對足以影響交易決定的事項作虛偽不實或引人錯誤的表示。看到「保證學會」「幾週見效」這類說法，家長可查：依據是什麼、對象是誰、退費條件為何。
+
+## 一、 台灣法規怎麼規範廣告
+
+法規 重點
+消費者保護法第 22 條 企業經營者應確保廣告內容之真實，其對消費者所負之義務不得低於廣告之內容；契約成立後，廣告內容應確實履行。[全國法規資料庫](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+公平交易法第 21 條 事業不得在商品或廣告上，對與商品相關而足以影響交易決定之事項（包括品質、內容、用途等），為虛偽不實或引人錯誤之表示；服務準用。[全國法規資料庫](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0150002)
+
+## 二、 家長看廣告可以查的 4 件事
+
+1. 依據是什麼。 「幾週見效」有沒有寫出測量方式與對象，還是只有一句口號。
+
+2. 對象是誰。 說法適用哪個年齡與程度的孩子；個別差異很大，一種說法很難適用所有孩子。
+
+3. 條件寫在哪。 需要每天用多久、搭配什麼；前提沒寫清楚的承諾，要打折看待。
+
+4. 退費與取消怎麼寫。 付費前先看清楚；相關法律問題見[孩子 App 內購買可以退嗎](https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/)。
+
+研究對語言發展的結論多半是「相關」或「在特定條件下」，例如[AI 語音與真人對話的研究](https://thinkbigtw.com/library/qa/ai-voice-vs-live-conversation/)；它們都不能直接當成任何產品的成效保證。本頁是法規資訊整理，不是法律意見，也不評價任何特定產品。
+
+品牌資訊｜熊好學
+
+## 熊好學不保證學習成效
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學不保證任何學習成效；每日一詞是接觸台灣華語的一個管道，不取代跟真人說話。熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：學習 App 說「保證學會」可信嗎？ 學習成效受孩子個別狀況、接觸量與使用方式影響，沒有 App 能替每個孩子保證結果。可查依據、對象、條件與退費規定。 Q2：廣告內容要真實，法律怎麼規定？ 消保法第 22 條要求企業經營者確保廣告內容真實，所負義務不得低於廣告內容；公平交易法第 21 條禁止虛偽不實或引人錯誤的表示。 Q3：看到「幾週見效」要查什麼？ 查依據（怎麼測量）、對象（哪種孩子）、條件（每天用多久）與退費取消規定。 Q4：熊好學保證學習成效嗎？ 熊好學不保證任何學習成效，也不取代跟真人說話。
+
+參考來源（連結於 2026-11-12 查證）
+
+- 消費者保護法（第 22 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- 公平交易法（第 21 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0150002)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/app-time-and-screen-time-for-kids/
+
+# 孩子每天用學習 App 可以多久？先看螢幕時間上限｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS19
+
+# 孩子每天用學習 App 可以多久？先看螢幕時間上限
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+先看螢幕時間上限，學習 App 也算在內。世界衛生組織 2019 年指引針對未滿 5 歲兒童：未滿 1 歲與 1 歲不建議看螢幕，2 至 4 歲每天靜態螢幕時間不超過 1 小時，越少越好。這份指引沒有涵蓋 5 歲以上，也沒有給「學習 App 該用幾分鐘」的數字。建議把 App 併入全天螢幕時間，並與家長一起使用。
+
+## 一、 WHO 的上限（未滿 5 歲）
+
+年齡 WHO 2019 年指引對螢幕時間的建議
+未滿 1 歲 不建議看螢幕
+
+1 歲 不建議看靜態螢幕
+
+2 至 4 歲 每天靜態螢幕時間不超過 1 小時，越少越好
+
+出處：[WHO：Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age, 2019](https://www.who.int/publications/i/item/9789241550536)。這份指引處理的是未滿 5 歲兒童的活動、久坐與睡眠，沒有涵蓋 5 歲以上，也沒有針對「學習 App」給出分鐘數。
+
+## 二、 學習 App 怎麼算
+
+併入全天螢幕時間。 學習 App 屬於螢幕時間，建議與影片、遊戲一起計算（這是本頁依指引做的解讀，指引本身沒有逐一列出 App 類型）。
+
+## 三、 家長可以怎麼安排
+
+1. 一起用，邊用邊聊。 用完問孩子剛剛學到什麼，把內容帶回對話，作法見[在家怎麼陪孩子練口說](https://thinkbigtw.com/library/qa/practice-speaking-at-home/)。
+
+2. 短時間、固定時段。 每天練多久比較合適，另見[孩子學華語每天要練多久](https://thinkbigtw.com/library/qa/daily-practice-spaced-review/)；5 歲以下螢幕時間，另見[5 歲以下螢幕時間怎麼抓](https://thinkbigtw.com/library/qa/screen-time-under-5/)。
+
+3. 5 歲以上由家長視孩子狀況決定。 孩子有睡眠、運動與面對面互動的時間後，再安排學習 App。若對孩子的發展有疑慮，建議洽兒童發展專業人員。
+
+品牌資訊｜熊好學
+
+## 熊好學 App 的現況
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。每日一詞是短影片與圖文，也屬於螢幕時間，不保證任何學習成效。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：孩子每天用學習 App 可以多久？ 本頁引用的 WHO 2019 年指引針對未滿 5 歲：2 至 4 歲每天靜態螢幕時間不超過 1 小時，越少越好；1 歲以下不建議看螢幕。指引沒有針對學習 App 給分鐘數，建議把 App 併入全天螢幕時間。 Q2：學習 App 算螢幕時間嗎？ 建議算。本頁依 WHO 指引的靜態螢幕時間概念，把學習 App 併入全天螢幕時間計算。 Q3：5 歲以上的孩子有上限嗎？ WHO 這份指引只涵蓋未滿 5 歲兒童，沒有給 5 歲以上的數字；建議由家長視孩子的睡眠、運動與面對面互動狀況決定。 Q4：熊好學的每日一詞算螢幕時間嗎？ 每日一詞是短影片與圖文，屬於螢幕時間，建議併入全天計算。
+
+參考來源（連結於 2026-11-12 查證）
+
+- World Health Organization (2019). Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age：[www.who.int](https://www.who.int/publications/i/item/9789241550536)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
@@ -19986,6 +21038,195 @@ Q1：孩子幾歲開始可以認識職業？ 幼兒園階段就可以從身邊�
 - 教育部 幼兒園教保活動課程大綱（105 年 12 月 1 日發布），社會領域：領域內涵與課程目標｜教育部主管法規共用系統：[edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
 
 - 童話有你 夢想職業主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes/dream-jobs.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/check-pronunciation-with-moe-dictionary/
+
+# AI 或影片教的字音、詞語不確定，怎麼核對？用教育部辭典查｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS18
+
+# AI 或影片教的字音、詞語不確定，怎麼核對？用教育部辭典查
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+AI、影片和其他來源一樣，都可能有字音或詞義的差錯，不宜當唯一依據。遇到不確定的字音或詞語，可到教育部《重編國語辭典修訂本》核對：輸入詞語，看讀音與釋義是否相符。若孩子學的是台灣華語，就以這部辭典為準。家長不必每個字都會，只要養成「不確定就查」的習慣。
+
+## 一、 為什麼要核對
+
+AI 生成的內容、影片與書本都可能出現字音或詞義的差錯；AI 合成的示範音也可能念得不自然。因此不確定時，要用權威來源核對，而不是只信其中一個來源。
+
+## 二、 3 步核對方法
+
+步驟 做法
+1. 查讀音 到教育部《重編國語辭典修訂本》（[dict.revised.moe.edu.tw](https://dict.revised.moe.edu.tw/)）輸入詞語，看注音與拼音。
+
+2. 看釋義與例句 確認詞義與影片或 App 的用法相符。
+
+3. 有出入就記下來 以辭典為準，並把差異告訴孩子；若是 App 或影片的問題，可回報給提供者。
+
+## 三、 家長可以做的事
+
+1. 養成「不確定就查」的習慣。 孩子看到家長查辭典，也學到查證的方法。
+
+2. 以學習目標選辭典。 本頁介紹的是台灣教育部的辭典，適合以台灣華語為目標的學習。
+
+3. 搭配真人。 查完後念給孩子聽，或請會說華語的親友示範。非母語家長可參考[我的華語不是母語能陪孩子學嗎](https://thinkbigtw.com/library/qa/non-native-parent-teach-mandarin/)。
+
+品牌資訊｜熊好學
+
+## 熊好學的示範音
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學的每日一詞標示注音與拼音，示範音為 AI 合成語音，家長可用教育部辭典核對；它不取代真人示範，也不保證任何學習成效。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：AI 教的字音不確定怎麼辦？ 到教育部《重編國語辭典修訂本》核對：輸入詞語，看讀音與釋義是否相符。AI 與影片都不宜當唯一依據。 Q2：教育部辭典網址是什麼？ 教育部《重編國語辭典修訂本》的網址是 dict.revised.moe.edu.tw。 Q3：家長華語不好也能核對嗎？ 可以。辭典提供讀音與釋義，家長不必每個字都會，只要不確定就查。 Q4：熊好學的示範音是真人嗎？ 熊好學的示範音為 AI 合成語音；家長可用教育部辭典核對讀音。
+
+參考來源（連結於 2026-11-12 查證）
+
+- 教育部《重編國語辭典修訂本》：[dict.revised.moe.edu.tw](https://dict.revised.moe.edu.tw/)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/child-own-account-or-parent-account/
+
+# 孩子可以自己註冊學習 App 帳號嗎？家長帳號怎麼設｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS15
+
+# 孩子可以自己註冊學習 App 帳號嗎？家長帳號怎麼設
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+較穩妥的做法是由家長建立並管理帳號。台灣民法規定，滿七歲未滿十八歲者的意思表示須得法定代理人允許（第 77 條），註冊與同意條款通常屬此類；個資法規定「同意」須在經告知法定事項後作出（第 7 條）。美國 COPPA 針對 13 歲以下兒童，要求蒐集個資前取得可驗證的家長同意。建議家長親自閱讀條款，並用暱稱而非孩子真名註冊。
+
+## 一、 三個依據
+
+依據 重點
+台灣民法 未滿七歲無行為能力；滿七歲以上未成年人有限制行為能力，意思表示須得法定代理人允許，但純獲法律上利益或依年齡身分、日常生活所必需者除外（第 13、77 條）。[全國法規資料庫](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
+
+台灣個資法 「同意」指當事人經蒐集者告知應告知事項後所為允許之意思表示；蒐集者對「經同意」之事實負舉證責任（第 7 條）。[全國法規資料庫](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+美國 COPPA 13 歲以下兒童的線上服務，蒐集個資前須通知家長並取得可驗證的家長同意。[FTC：COPPA 常見問題](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+## 二、 家長帳號怎麼設
+
+1. 家長自己建立帳號，再替孩子建立學習檔案。 這樣同意條款的人是家長。
+
+2. 先讀「告知事項」。 個資法第 8 條要求告知蒐集者名稱、目的、資料類別、利用期間地區對象方式、當事人權利，以及不提供的影響；缺少這些資訊的服務，建議先不要註冊。
+
+3. 用暱稱、不放孩子照片。 能不提供的資料就不提供。
+
+4. 記下怎麼刪帳號。 用不到時，依政策申請刪除，並移除 App。
+
+更多檢查項目見[選兒童學習 App 的 5 項檢查](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)；孩子在 App 內購買的法律問題見[孩子 App 內購買可以退嗎](https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/)。本頁是法規資訊整理，不是法律意見。
+
+品牌資訊｜熊好學
+
+## 熊好學 App 的現況
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：孩子可以自己註冊學習 App 帳號嗎？ 較穩妥的做法是由家長建立並管理帳號。台灣民法規定滿七歲未滿十八歲者的意思表示須得法定代理人允許；美國 COPPA 針對 13 歲以下兒童要求可驗證的家長同意。 Q2：個資法的「同意」要怎麼才有效？ 個資法第 7 條：同意是指當事人經蒐集者告知本法所定應告知事項後所為允許之意思表示，蒐集者對經同意的事實負舉證責任。 Q3：註冊時要用孩子的真名嗎？ 能不提供的資料就不提供，建議使用暱稱，也不要上傳孩子的照片。 Q4：熊好學 App 怎麼註冊？ 熊好學 App 正在開發中，尚未上架，本頁不對其註冊或資料處理作說明。
+
+參考來源（連結於 2026-11-12 查證）
+
+- 民法（第 13、77 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
+
+- 個人資料保護法（第 7、8 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions：[www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/child-voice-recording-personal-data/
+
+# 孩子的錄音算個人資料嗎？美國與台灣怎麼規定｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS12
+
+# 孩子的錄音算個人資料嗎？美國與台灣怎麼規定
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+在美國，孩子的錄音算個人資料：FTC 的 COPPA 常見問題明載，含兒童聲音的錄音檔屬個人資料，需要可驗證的家長同意。台灣《個人資料保護法》第 2 條沒有單獨列出「聲音」，而是以「能否直接或間接識別特定的人」判斷，所以能認出是哪個孩子的錄音，就可能是個資。家長可請業者說明錄音是否保存、如何刪除。
+
+## 一、 兩邊的規定對照
+
+地區 怎麼看孩子的錄音 依據
+美國（13 歲以下） 含兒童影像或聲音的照片、影片、錄音檔，屬個人資料；原則上需可驗證的家長同意。 [FTC：COPPA 常見問題 A.3、F.1、F.6](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+台灣 個資定義列出姓名、出生年月日、特徵、聯絡方式等，並以「其他得以直接或間接方式識別該個人之資料」概括；條文未單獨列「聲音」，錄音能否識別特定的人要看個案。 [個資法第 2 條](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+## 二、 台灣的權利與限制
+
+個資法第 3 條保障當事人查詢、閱覽、複製、更正、停止蒐集處理利用與請求刪除的權利，不得預先拋棄；第 5 條要求蒐集、處理、利用不得逾越特定目的的必要範圍。孩子是當事人時，行使權利通常由家長（法定代理人）代為處理。
+
+## 三、 家長可以做的事
+
+1. 問清楚錄音是否保存。 只即時處理、不留存，與保存後再利用，風險不同。
+
+2. 問怎麼聽、怎麼刪。 有沒有明確的刪除管道與回覆期限。
+
+3. 不要公開分享孩子的錄音。 聲音加上名字、學校等資訊，更容易識別孩子。
+
+其他 App 檢查項目見[選兒童學習 App 的 5 項檢查](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)。本頁是法規資訊整理，不是法律意見。
+
+品牌資訊｜熊好學
+
+## 熊好學 App 的現況
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：孩子的錄音算個人資料嗎？ 在美國，含兒童聲音的錄音檔屬個人資料（FTC 常見問題 F.6）。在台灣，個資法以「能否直接或間接識別特定的人」判斷，條文未單獨列出聲音。 Q2：台灣個資法有沒有提到聲音？ 個資法第 2 條的列舉包括「特徵」，並以「其他得以直接或間接方式識別該個人之資料」概括，沒有單獨列出聲音；錄音是否屬個資，要看能否識別特定的人。 Q3：可以要求業者刪除孩子的錄音嗎？ 個資法第 3 條保障請求刪除的權利，不得預先拋棄。實務上由家長以法定代理人身分向業者申請。 Q4：熊好學 App 會保存孩子的錄音嗎？ 熊好學 App 正在開發中，尚未上架，本頁不對其資料處理作說明。
+
+參考來源（連結於 2026-11-12 查證）
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions（A.3、F.1、F.6）：[www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+- 個人資料保護法（第 2、3、5 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
 
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
@@ -22214,6 +23455,60 @@ Think BIG 　·　大想成業有限公司　·　[Library 首頁](https://think
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/
+
+# 孩子可以自己用 Instagram 看每日一詞嗎？13 歲規定怎麼看｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS16
+
+# 孩子可以自己用 Instagram 看每日一詞嗎？13 歲規定怎麼看
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+依 Instagram 說明中心（2026-11-12 查閱），多數國家與地區要求年滿 13 歲才能使用 Instagram，部分地區的最低年齡不同。所以 13 歲以下的孩子，較適合由家長的帳號陪著看每日一詞，而不是自己開帳號。
+
+## 一、 Instagram 的年齡規定
+
+Instagram 說明中心寫明：多數國家與地區要求年滿 13 歲才能使用 Instagram，部分國家與地區的最低年齡要求不同。（[Instagram 說明中心](https://help.instagram.com/517920941588885)，2026-11-12 查閱）各地區的規定以平台當時公告為準，建議家長查看最新版。
+
+## 二、 13 歲以下的孩子怎麼看每日一詞
+
+1. 用家長的帳號陪看。 一起看、一起念，邊看邊聊，比讓孩子自己滑更容易控制內容與時間。
+
+2. 不要幫孩子謊報年齡開帳號。 這違反平台規定，帳號可能被刪除。
+
+3. 計入螢幕時間。 短影片也是螢幕時間，上限見[5 歲以下螢幕時間怎麼抓](https://thinkbigtw.com/library/qa/screen-time-under-5/)；看影片怎麼搭配，見[看影片學華語有沒有用](https://thinkbigtw.com/library/qa/learn-language-from-video/)。
+
+每日一詞只是接觸台灣華語的管道之一，不取代跟真人說話，也不保證任何學習成效。
+
+品牌資訊｜熊好學
+
+## 熊好學的每日一詞
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學的每日一詞發布在 Instagram，使用年齡以 Instagram 的規定為準；內容適合由家長陪孩子一起看。熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：Instagram 幾歲可以用？ 依 Instagram 說明中心，多數國家與地區要求年滿 13 歲才能使用，部分地區的最低年齡不同。 Q2：孩子還沒滿 13 歲，可以自己開帳號嗎？ 依說明中心，多數地區要求年滿 13 歲才能使用。建議由家長用自己的帳號陪孩子看，不要謊報年齡開帳號。 Q3：孩子想看熊好學每日一詞怎麼辦？ 較適合由家長用自己的帳號陪孩子一起看，不要幫孩子謊報年齡開帳號。 Q4：熊好學 App 尚未上架前，怎麼接觸熊好學？ 目前可在 Instagram 看到每日一詞；熊好學 App 正在開發中，尚未上架。
+
+參考來源（連結於 2026-11-12 查證）
+
+- Instagram 說明中心：使用 Instagram 的最低年齡（2026-11-12 查閱）：[help.instagram.com](https://help.instagram.com/517920941588885)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/is-local-llm-good-enough/
 
 # 本地模型夠不夠聰明？怎麼判斷能不能用在公司？｜問答圖書館｜Think BIG
@@ -22298,6 +23593,77 @@ Q1：本地模型和 ChatGPT 這類雲端模型差多少？ 要看任務，公�
 
 問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
 Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/
+
+# 孩子在 App 內亂買東西，可以退嗎？費用與免費功能怎麼看（台灣）｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS14
+
+# 孩子在 App 內亂買東西，可以退嗎？費用與免費功能怎麼看（台灣）
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+可能可以，但要看個案。台灣民法規定，滿七歲未滿十八歲者未經法定代理人允許所訂立的契約，須經法定代理人承認才生效，但「依年齡及身分、日常生活所必需」等情形除外。另外，消保法七天解除權有例外：非以有形媒介提供的數位內容或一經提供即完成的線上服務，經消費者事先同意者，可排除解除權。實際退款還要看商店規則與個案。
+
+## 一、 未成年人的契約
+
+情形 民法規定
+未滿七歲 無行為能力（第 13 條）
+
+滿七歲以上、未成年 限制行為能力（第 13 條）；意思表示須得法定代理人允許，但純獲法律上利益，或依年齡及身分、日常生活所必需者除外（第 77 條）
+
+未得允許所訂立的契約 須經法定代理人承認，始生效力（第 79 條）
+
+條文見[全國法規資料庫：民法](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)。孩子買的東西是否屬「日常生活所必需」，要看金額、用途與孩子的年齡與身分，沒有固定答案。
+
+## 二、 消保法的七天解除權與數位內容例外
+
+通訊交易的消費者，原則上可在收受商品或接受服務後七日內解除契約，不須說明理由（消費者保護法第 19 條）。但「通訊交易解除權合理例外情事適用準則」第 2 條列有例外，包括「非以有形媒介提供之數位內容或一經提供即為完成之線上服務，經消費者事先同意始提供」，且須經企業經營者告知消費者排除解除權。（[消費者保護法](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)；[適用準則](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)）App 內購買是否落入例外，取決於購買頁面有沒有事先告知與取得同意。
+
+## 三、 家長付費前後可以做的事
+
+1. 先看商店頁有沒有「內含 App 內購買」與訂閱說明。 確認哪些功能免費、哪些要付費，以及是否自動續訂。
+
+2. 在裝置設定中管理購買。 Apple 裝置的「Ask to Buy」可讓孩子的購買與下載須經家長核准（[Apple 支援](https://support.apple.com/en-us/105055)）；Google Play 可在家庭群組中設定「購買核准」，要求家庭成員購買前先取得家長同意，只涵蓋透過 Google Play 付款的購買（[Google Play 說明](https://support.google.com/googleplay/answer/7039872)）。實際設定請在自己的裝置上查看。
+
+3. 發生誤購時，先找商店與業者。 保留訂單與付款通知；爭議可再洽消費者保護主管機關。本頁是法規資訊整理，不是法律意見。
+
+品牌資訊｜熊好學
+
+## 熊好學 App 的現況
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。上架時的費用與免費功能範圍，以官方公布的商店頁與官網為準。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：孩子在 App 內亂買東西可以退嗎？ 可能可以，要看個案。民法第 79 條：限制行為能力人未經法定代理人允許所訂立的契約，須經承認才生效；但依年齡及身分、日常生活所必需者除外（第 77 條）。實際退款還要看商店規則。 Q2：數位內容有七天鑑賞期嗎？ 消保法有七天解除權，但適用準則第 2 條列有例外：非以有形媒介提供之數位內容或一經提供即完成之線上服務，經消費者事先同意始提供，且經企業經營者告知，可排除解除權。 Q3：幾歲算限制行為能力人？ 民法第 13 條：滿七歲以上之未成年人，有限制行為能力；未滿七歲無行為能力。 Q4：熊好學 App 要付費嗎？ 熊好學 App 正在開發中，尚未上架，本頁不對其費用或免費功能作說明。
+
+參考來源（連結於 2026-11-12 查證）
+
+- 民法（第 13、77、79 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=B0000001)
+
+- 消費者保護法（第 19 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- 通訊交易解除權合理例外情事適用準則（第 2 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170012)
+
+- Approve what your child can purchase and download with Ask to Buy｜Apple Support：[support.apple.com](https://support.apple.com/en-us/105055)
+
+- Purchase approvals on Google Play｜Google Play Help：[support.google.com](https://support.google.com/googleplay/answer/7039872)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
@@ -23576,6 +24942,71 @@ Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/overseas-family-data-across-borders/
+
+# 海外家庭用台灣業者的學習 App，孩子的資料會出境嗎？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+台灣華語學習 BS17
+
+# 海外家庭用台灣業者的學習 App，孩子的資料會出境嗎？
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+可能會，要看 App 的處理地點，這要從隱私政策查。台灣個資法把跨國處理或利用個資稱為「國際傳輸」，第 8 條要求告知利用的地區。孩子所在地的法律也可能適用：美國 COPPA 針對 13 歲以下兒童，歐盟 GDPR 第 8 條以 16 歲為預設，成員國可降至不低於 13 歲。建議家長查隱私政策裡的處理地區、對象與刪除管道。
+
+## 一、 三個要分清楚的規定
+
+地區 與兒童資料相關的規定
+台灣 個資法第 2 條：「國際傳輸」指將個人資料作跨國（境）之處理或利用；第 8 條：蒐集時應告知利用的期間、地區、對象及方式。[全國法規資料庫](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+美國 COPPA 針對 13 歲以下兒童的線上服務，蒐集個資前須通知家長並取得可驗證的家長同意。[FTC：COPPA 常見問題](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+歐盟 GDPR 第 8 條：向兒童直接提供資訊社會服務並以同意為基礎時，兒童年滿 16 歲方可自行同意；未滿 16 歲須經家長或監護人同意或授權；成員國可立法降低，但不得低於 13 歲。[EUR-Lex：GDPR](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+
+其他國家另有規定，本頁不一一涵蓋。哪一國的法律適用，取決於服務對象與營運方式，沒有一體適用的答案。
+
+## 二、 海外家長可以查的事
+
+1. 隱私政策有沒有寫處理地區。 是否說明資料在哪些國家或地區處理、交給誰。
+
+2. 有沒有針對兒童的家長同意流程。 是否與孩子所在地的年齡門檻相符。
+
+3. 有沒有可操作的刪除管道。 聯絡方式與回覆期限是否明確。
+
+更多檢查項目見[選兒童學習 App 的 5 項檢查](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)；海外孩子學華語的官方資源見[海外的孩子在家學華語有哪些官方資源](https://thinkbigtw.com/library/qa/overseas-kids-learn-mandarin-resources/)。本頁是法規資訊整理，不是法律意見。
+
+品牌資訊｜熊好學
+
+## 熊好學 App 的現況
+
+熊好學（BearSay Mandarin）是以台灣華語為主的學習品牌：每天在 Instagram（[@bearsaymandarin](https://www.instagram.com/bearsaymandarin/)）教一個台灣華語詞，使用繁體字搭配注音與拼音，附多語字幕，由熊寶、獼寶、虎寶、鮭寶、藍寶五位角色陪伴。App 正在開發中，尚未上架；上架資訊以官網的[熊好學問答總覽](https://thinkbigtw.com/library/qa/bearsay/)為準。
+
+熊好學 App 正在開發中，尚未上架。本頁不對 App 的功能、費用或資料處理作任何說明。
+
+本段內容取自熊好學 Instagram 公開頁面與本站品牌總覽，更新日期 2026-11-12。示範音為 AI 合成語音；熊好學角色形象為 AI 生成。
+
+## 常見問題
+
+Q1：海外家庭用台灣業者的 App，孩子資料會出境嗎？ 要看 App 的處理地點，須查隱私政策。台灣個資法第 8 條要求告知利用的地區；孩子所在地的法律（如美國 COPPA、歐盟 GDPR）也可能適用。 Q2：什麼是個資法的「國際傳輸」？ 個資法第 2 條：指將個人資料作跨國（境）之處理或利用。 Q3：歐盟的兒童同意年齡是幾歲？ GDPR 第 8 條預設為 16 歲，成員國可立法降低，但不得低於 13 歲；未達年齡須經家長或監護人同意或授權。 Q4：熊好學 App 的資料會在哪裡處理？ 熊好學 App 正在開發中，尚未上架，本頁不對其資料處理作說明。
+
+參考來源（連結於 2026-11-12 查證）
+
+- 個人資料保護法（第 2、8 條）｜全國法規資料庫：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Federal Trade Commission: Complying with COPPA: Frequently Asked Questions：[www.ftc.gov](https://www.ftc.gov/business-guidance/resources/complying-coppa-frequently-asked-questions)
+
+- Regulation (EU) 2016/679 (GDPR), Article 8｜EUR-Lex：[eur-lex.europa.eu](https://eur-lex.europa.eu/eli/reg/2016/679/oj)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/overseas-kids-learn-mandarin-resources/
 
 # 海外的孩子在家學華語，有哪些官方資源？｜問答圖書館｜Think BIG
@@ -24549,6 +25980,76 @@ Q1：2 歲以下的孩子可以看螢幕嗎？ WHO 2019 年指引不建議 1 歲
 - 衛生福利部：搶救幼兒惡視力 3C產品加警語（資料來源：國民健康署）：[mohw.gov.tw](https://mohw.gov.tw/cp-16-21201-1.html)
 
 - 童話有你 怎麼做：[talewithyoutw.com](https://talewithyoutw.com/how-it-works.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/separation-anxiety-preschool/
+
+# 上幼兒園哭著不想去？分離焦慮可以怎麼陪？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q33
+
+# 上幼兒園哭著不想去？分離焦慮可以怎麼陪？
+
+Think BIG 問答圖書館　·　2026 年 11 月 12 日　星期四
+
+先說答案
+
+上幼兒園告別時孩子哭，可以先承認他捨不得，再用簡短、固定的告別方式，把接回時間說清楚，並和老師合作觀察後續。分離時的反應有個別差異，不宜只憑門口哭多久就判斷孩子適應得好不好。若持續擔心孩子無法適應，或孩子狀況特殊，請諮詢小兒科醫師。
+
+## 一、 先聽孩子在怕哪一段
+
+[AAP 的分離焦慮說明](https://www.healthychildren.org/English/ages-stages/toddler/Pages/soothing-your-childs-separation-anxiety.aspx)指出，孩子的分離反應差異很大，也建議在分開前先練習，建立一致的接送與告別方式。可以在平靜時問「早上哪一段最不喜歡」，聽他是捨不得家人、擔心找不到人，還是有其他在園裡的困擾，不先替他下診斷。
+
+建議把孩子原話記下來，再和老師確認告別後的吃飯、遊戲及互動情形；這是合作觀察的提案，不是要求老師每天提供能力評分。若孩子提到受傷、害怕某人或特定事件，先把事情問清楚，不把所有不想上學都歸到分離焦慮。
+
+## 二、 在家練習簡短又具體的告別
+
+- 先說今天的流程。 例如「到教室放書包、抱一下、跟老師揮手」，用家中熟悉的詞說明。
+
+- 承認捨不得。 可以說「你想跟我一起，我知道」，再接「老師會陪你，我會來接你」。不用要求孩子先不哭才算完成。
+
+- 選一個小動作。 抱一下、碰掌或揮手，先約好一種，當天照約定完成，不把告別拉成反覆協商。
+
+- 說接回的生活節點。 若符合實際安排，可以說「午睡後，我會來接你」，比只說抽象時間更貼近當天生活。
+
+這些示例依 AAP 的短告別、一致性與具體接回說明整理；家長仍要按實際作息說話，做不到的接送安排先不要答應。若當天換接送者，也先說明誰會來，並和園所核對交接方式。
+
+## 三、 繪本可以陪談感受，不拿來要求不哭
+
+可以挑一頁角色和家人分開的畫面，問「他現在想什麼」，再說說你們早上的情形。孩子不想談自己，就只談角色。教育部《幼兒園教保活動課程大綱》情緒領域列有表達自己情緒、理解情緒出現原因等目標（[教育部課綱附檔](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)）；這不表示某一本故事可以處理所有入園困擾。
+
+讀完可用玩偶演一次「去教室、有人陪、家人來接」的順序。這是家庭練習建議，孩子想停就停，不把玩偶演得順利當成隔天不哭的指標。也不需要反覆問「你現在知道不能哭了吧」。
+
+AAP 建議家長若擔心孩子未能適應與自己分開，可找小兒科醫師討論。陪伴過程有疑問，就帶著觀察紀錄求助，不必等達到某個自行設定的天數。想繼續聊情緒，可讀[情緒繪本的共讀問法](https://thinkbigtw.com/library/qa/feelings-picture-books/)；在家維持熟悉時段，可參考[睡前共讀安排](https://thinkbigtw.com/library/qa/bedtime-reading-routine/)。
+
+品牌資訊｜童話有你
+
+## 童話有你的情緒與睡前主題範例
+
+童話有你的[主題與範例頁](https://talewithyoutw.com/themes.html)列有情緒小星球、晚安睡前與當哥哥姊姊等主題。每本是孩子當主角的客製繪本，正式書頁依提供的照片繪製。
+
+各主題可看 A 水彩畫冊版、B 公仔立體版範例，小狗湯圓每頁作伴。範例主角為 AI 生成形象；規格為 21 × 21 公分、26 面內頁、中文加注音。
+
+本段內容取自童話有你官網主題與範例頁，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：孩子在門口哭，就表示不適合幼兒園嗎？ 不能只依這一段反應判斷。可和老師一起觀察告別後的生活情形，並聽孩子具體在擔心什麼。 Q2：告別時應該怎麼說？ 先承認捨不得，再說今天的簡短告別動作和實際接回安排，盡量保持一致。 Q3：要讀哪本書才能讓孩子不哭？ 不把不哭當成選書成效。可用故事聊感受、練習流程，仍需觀察孩子真正的困擾。 Q4：什麼時候找醫師討論？ 若持續擔心孩子無法適應與家人分開，或影響日常生活，可帶觀察紀錄諮詢；孩子狀況特殊請諮詢小兒科醫師。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜陪孩子面對分離焦慮：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/toddler/Pages/soothing-your-childs-separation-anxiety.aspx)
+
+- 教育部｜幼兒園教保活動課程大綱，情緒領域：[edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
 
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
@@ -28325,266 +29826,3 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
-
----
-
-URL: https://thinkbigtw.com/tbos/en/
-
-# Think BIG — Your Own Personal AI Assistant, Installed Once
-
-Personal AI assistants
-
-# Your AI assistant.
-On your own computer.
-
-Start with installation, connect your work tools, or choose annual maintenance. Taiwan-based engineers serve customers worldwide.
-
-Explore personal plans [Enterprise enquiries](https://thinkbigtw.com/enterprise/)
-
-## From your needs to a working setup
-
-### Choose a scope
-
-Tell us about your device and the work you want help with. Entry installation includes the original OpenClaw or Hermes Agent setup, not a custom skill bundle.
-
-### Schedule installation
-
-After ordering, book a remote installation session using AnyDesk or DeskIn. You stay present while the engineer operates your computer and checks the setup.
-
-### Understand support
-
-Entry includes 7 days of technical consultation. The single and dual AI Agent plans include a 2-hour online technical walkthrough plus 7 days of technical consultation after installation. Annual plans include a year of maintenance.
-
-## Know what your setup connects to
-
-Local installation does not mean all data stays local. Cloud models and external services receive the requests needed for their features. You provide your own model API key and pay third-party usage charges separately.
-
-During installation, the engineer operates your computer and may see work data or sensitive information on screen. We use the minimum permissions needed for the agreed task. You can close unrelated windows, end the session and remove remote access afterwards. Later access requires separate authorisation.
-
-[Read our data and access commitments (Chinese) ›](https://thinkbigtw.com/trust/#remote-install)
-
----
-
-URL: https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/
-
-# AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-AI Deployment Field Notes · Issue 019
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-November 12, 2026  ·  Thursday
-◆
-AI Deployment Field Notes
-◆
-Issue 019
-
-RAG · Chunking · Retrieval Quality
-
-## AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models
-
-Think BIG Media  |  November 12, 2026
-
-Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.
-
-## One.  What’s Happening: Having Documents Does Not Mean Retrieving the Right Evidence
-
-Retrieval-augmented generation, or RAG, retrieves relevant content before asking a model to answer from it. Microsoft’s official overview identifies terminology mismatches, content preparation, and input limits as implementation challenges.[1] Uploading files and answering questions reliably are separate steps.
-
-Chunking is one of those steps. Official documentation describes fixed-size, structural, and semantic approaches, with size and overlap adjusted to the content and use.[2] We would not apply one character count to every Chinese policy, table, or scanned document. Read the resulting chunks to check whether they retain subjects, conditions, and exceptions.
-
-Microsoft’s evaluation guidance separates retrieval-process quality from final-answer quality. One asks whether retrieved material is relevant; the other examines grounding, relevance, and completeness of the answer.[3] We use that distinction as a diagnostic method, without recommending a service or treating an automated score as a business decision.
-
-## Two.  Perspectives: Inspect Retrieval Without Ignoring Model Behavior
-
-The case for checking data first:  The overview ties RAG quality to content preparation and retrieval relevance.[1] If the necessary evidence never reached the model, we would investigate indexing and retrieval first. A larger model does not resolve that missing input.
-
-The model-side caution:  Receiving a passage does not establish that a model uses it correctly. The original 2023 study “Lost in the Middle” found position-dependent performance in its multi-document question-answering and key-value retrieval tasks.[4] It does not establish identical behavior in every newer model. It does challenge adding more context as a universal remedy.
-
-Test both stages: whether the evidence was retrieved and whether the answer used it faithfully. When documents conflict, ask their owner to determine which is valid rather than asking the model to settle company policy.
-
-Add explicit failure definitions: missing exceptions, treating an old version as current, or citing the wrong document. This gives document owners and engineers shared criteria beyond fluency or a retrieval score.
-
-Keep the original phrasing too. Rewriting conversational questions into document titles before every test can hide the terminology mismatch being tested. Save original and rewritten queries with their retrieval results before deciding whether to adopt query rewriting.
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These observations come from our RAG document and answer-quality work. They are not industry statistics or an account of any particular organization.
-
-1. Inspect retrieved passages first.  When an answer is poor, we check the retrieved material before analyzing generation. Chunks that are too large or small are among the causes we encounter; model capability is not always the problem.
-
-2. A readable original can produce damaged text.  We have seen tables and scanned documents become corrupted during text extraction. We inspect the extracted text instead of repeatedly asking the model to read broken material better.
-
-3. One subject may have two versions.  Retrieving old and new documents together mixes evidence. We remove outdated versions or mark their status so validity can be checked.
-
-4. Keep real questions and reference answers.  We build test sets and watch for differences between conversational questions and formal document terms. Questions should reflect actual phrasing, beyond document titles.
-
-## Four.  Our Recommendations: Diagnose with a Fixed Question Set
-
-1. Inspect extracted text.  Compare tables, scans, and exception clauses against originals. Check whether labels still match values. Correct preprocessing problems before rebuilding the index.
-
-2. Map questions to evidence.  Record expected answers and supporting documents and passages. Include unanswerable questions, outdated material, and terminology differences. Retrieval evaluation needs explicit relevance evidence.[3]
-
-3. Change one class of settings at a time.  Keep the model and questions fixed when comparing segmentation, overlap, or query methods. Save retrieved passages so improvements have an identifiable cause. Validate parameters on your own content.[2][3]
-
-4. Assess evidence and answers separately.  Wrong evidence points toward retrieval; correct evidence with a wrong answer calls for prompt and model checks; conflicting documents go to their owner. This is our recommended triage, beyond one aggregate score.
-
-5. Test missing answers too.  Require an explicit evidence gap when support is insufficient. Independently test access permissions so retrieved content stays within authorization.[1]
-
-Check that the model received the right material before judging its answer.
-
-◆ Editor’s Note · How Think BIG Approaches This: Keep Failures as Repeatable Tests
-
-## Save questions, passages, answers, and document versions together.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-We recommend rerunning the same questions after knowledge-base changes. Failure records should identify the stage and document owner so future maintenance can build on prior work.
-
-Answer quality and document access each need acceptance checks.
-
-### Frequently Asked Questions
-
-Q1: What is RAG?
-It retrieves relevant content and provides it to the model as evidence for an answer.[1]
-Q2: Are larger chunks always better?
-No. Test size, overlap, and boundaries against your content and use case.[2]
-Q3: Does a citation prove the answer is correct?
-Check whether it supports the claim and whether the answer is relevant and complete. These are separate evaluation dimensions.[3]
-Q4: When should we consider another model?
-First establish that retrieval delivers the right evidence. Then compare model and prompt choices on the same questions if answers still fail.
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] Microsoft, “RAG and Generative AI”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview) ·
-    [2] Microsoft, “Chunk Documents”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents) ·
-    [3] Microsoft, “Retrieval-Augmented Generation (RAG) Evaluators”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators) ·
-    [4] Liu et al., “Lost in the Middle: How Language Models Use Long Contexts,” 2023, arXiv:2307.03172, accessed 2026-10-26: [arxiv.org](https://arxiv.org/abs/2307.03172)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  AI Deployment Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/rag-retrieval-quality-20261112/
-
-# AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-AI 導入實測手記 · 第 019 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-2026 年 11 月 12 日　星期四
-◆
-AI 導入實測手記
-◆
-第 019 期
-
-RAG · 切塊 · 檢索品質
-
-## AI 查公司文件總是答非所問？——先檢查切塊與檢索，不急著換模型
-
-Think BIG 自媒體部  |  2026 年 11 月 12 日
-
-先把問題、檢索段落與回答放在一起看。找到錯誤出在哪個環節，才知道應該改文件、改檢索，還是調整模型。
-
-## 一 現象：有文件，不代表每次都找到對的段落
-
-RAG 是檢索增強生成：先從資料中找出相關內容，再交給模型作為回答依據。Microsoft 的官方概述指出，提問用語與文件術語不一致、文件前處理及輸入長度限制，都是實作挑戰。[1] 這說明「文件已上傳」與「能回答問題」之間，還有值得檢查的流程。
-
-切塊是其中一環。官方文件列出固定長度、依結構或語意分段等方式，也提醒重疊與大小應依文件及用途調整。[2] 因此，我們不建議把某個字數當成所有中文制度、表格或掃描檔都通用的設定。切完的段落是否保留主詞、條件與例外，應拿出來閱讀。
-
-評估也需要分層。Microsoft 的 RAG 評估文件區分檢索流程與最終回答：前者看找回內容是否與問題相關，後者再看回答是否依據內容、切題且完整。[3] 本文引用這個區分說明排查方法，不推薦特定服務，也不把評分工具的分數當成業務判斷。
-
-## 二 各方評價：改善檢索有根據，模型能力也不能忽略
-
-先檢查資料的一面： 官方概述把內容準備與檢索相關性放在 RAG 品質的核心。[1] 我們的判讀是，當標準答案根本沒有出現在模型收到的段落裡，應先查索引與檢索紀錄；直接換更大的模型，沒有處理這個缺口。
-
-保留模型判斷的一面： 找到段落後，模型仍可能沒有正確使用。2023 年原始研究〈Lost in the Middle〉在指定的多文件問答與鍵值檢索任務中，觀察到相關資訊放在長上下文不同位置，表現會改變。[4] 這不代表所有新模型都有同樣結果，但提醒我們不能只用「塞更多資料」當通用答案。
-
-兩種方向可以放進同一份測試：先判定該找到的證據有沒有被找回，再判定模型有沒有忠實回答。若文件本身就互相矛盾，則先交由文件負責人確認，而不是請模型替公司決定哪份規定有效。
-
-我們建議在測試表再加一欄「怎樣算答錯」：漏掉例外、把舊版當現行、引用別份文件，分開記錄。這是為了讓文件維護者與工程人員看同一題時有共同判準，不會一個只看文字流暢、另一個只看檢索分數。
-
-題組也要保留原始問法。若每次測試前都先把口語問題改寫成文件標題，就可能把原本要驗證的用語落差藏起來。我們建議同時保留原問句與改寫版本，分別記錄檢索結果，再決定是否採用查詢改寫。
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下取自我們處理 RAG 文件與回答問題時的觀察，不是產業統計，也不描述特定對象。
-
-1. 先看檢索回來的段落。 我們遇到答不準時，會先看找回的內容對不對，再看模型如何回答。常見原因包括切塊太大或太小，並非每次都是模型不夠聰明。
-
-2. 原檔看起來正常，轉成文字可能走樣。 我們見過表格、掃描文件轉文字後變成亂碼。處理順序是回頭看文字內容，而不是繼續修改提示詞，要求模型把錯誤資料讀得更準。
-
-3. 同一件事可能有兩個版本。 新舊文件同時被找到，會讓回答依據混在一起。我們的做法是把舊版下架，或標明版本，讓文件的有效狀態能被檢查。
-
-4. 真實問題與標準答案要一起留。 我們會建立題組測試，也留意口語提問與正式名詞之間的落差。題目不是只寫文件標題，而是整理實際會怎麼問，才看得到檢索有沒有接上用語。
-
-## 四 我們的建議：用同一組題目，逐項排查
-
-1. 抽查轉出的文字。 挑表格、掃描頁與有例外條件的段落，對照原檔。把欄位標題與數值是否仍對得上列為檢查點；若前處理錯了，先修內容，再重建索引。
-
-2. 建題目與證據表。 每題記下預期答案、可支持的文件及段落，另外放入找不到答案、文件過期與用語不同的題目。檢索評估需要清楚的相關性依據。[3]
-
-3. 一次改一類設定。 固定模型與題組，再比較分段、重疊或查詢方式。保留每次找回的段落，避免答案變好卻不知道是哪項變動造成；參數應依自己的內容驗證。[2][3]
-
-4. 分開看證據與回答。 證據沒找對，回檢索層；證據正確但回答錯，查提示與模型；文件矛盾，交負責人處理。這是我們建議的分流，不把單一分數當成全部結論。
-
-5. 把找不到也列為驗收。 要求系統在沒有足夠依據時說明缺口，不拼出貌似完整的答案。另測使用者權限，確認能查到的內容都在授權範圍內。[1]
-
-一句話：先確認 AI 讀對材料，再判斷它有沒有答對。
-
-◆ 編按 · Think BIG 的做法：把錯誤留成可重測的題目
-
-## 問題、段落、答案與文件版本一起保存。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們主張每次調整知識庫，都能用相同題組檢查。錯誤紀錄應指出失敗環節與文件負責人，讓後續維護能沿用，而不是每次重新猜原因。
-
-延伸閱讀[公司文件的部門存取控制](https://thinkbigtw.com/library/qa/rag-access-control-by-department/)。回答品質與資料權限，都需要獨立驗收。
-
-### 常見問題
-
-Q1：RAG 是什麼？
-是先檢索資料，再把相關內容交給模型作為回答依據的方式。[1]
-Q2：切塊越大越好嗎？
-不是通用規則。大小、重疊與分段方式要依內容及用途測試。[2]
-Q3：有引用就表示答對嗎？
-我們建議另外檢查引用是否支持回答，以及回答是否完整切題；這些是不同評估面向。[3]
-Q4：什麼時候再考慮換模型？
-我們建議先確認檢索到正確材料；若材料正確但仍答錯，再用同一組題目比較模型與提示設定。
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] Microsoft，〈RAG and Generative AI〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)　·
-    [2] Microsoft，〈Chunk Documents〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)　·
-    [3] Microsoft，〈Retrieval-Augmented Generation (RAG) Evaluators〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-evaluators/rag-evaluators)　·
-    [4] Liu 等，〈Lost in the Middle: How Language Models Use Long Contexts〉，2023，arXiv:2307.03172，查閱日期 2026-10-26：[arxiv.org](https://arxiv.org/abs/2307.03172)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  AI 導入實測手記
-    Think BIG, Make it Real!　大想成業有限公司
