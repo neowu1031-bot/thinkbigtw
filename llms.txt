@@ -150,10 +150,12 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 個人方案以本地大模型 AI Agent 搭建為主，依需求報價；電腦規格不夠可改搭雲端大模型，同方案同價格。本地版不另收模型用量費；雲端版依用量另計。可至蝦皮賣場（https://shopee.tw/shop/105010395）選購，共存版請透過 LINE 諮詢，或預約需求訪談（/contact/）。服務費、支援期與續約條件以對應頁面為準；企業服務另行評估。
 - [個人方案專區](https://thinkbigtw.com/pricing/personal/)：單 Agent NT$7,840、雙 Agent NT$17,920、尊榮年約 NT$39,910（續約 35,910）、年度旗艦 NT$48,010（續約 43,010）
 - [全 Agent 串接](https://thinkbigtw.com/full-agent/)
+- [單 AI Agent](https://thinkbigtw.com/single-agent/)
 - [雙 AI Agent](https://thinkbigtw.com/dual-agent/)
 - [技能包](https://thinkbigtw.com/skill-pack/)
 - [尊榮年約](https://thinkbigtw.com/annual-pro/)
 - [年度旗艦](https://thinkbigtw.com/annual-flagship/)
+- [企業方案](https://thinkbigtw.com/enterprise/)
 - [個人 AI 助理搭建](https://thinkbigtw.com/harness/)
 
 English summary: Think BIG (Think BIG Co., Ltd.) is a Taiwan-based enterprise AI Agent integrator serving clients worldwide. Its TB FRAME methodology covers assessment, implementation, validation and ongoing governance, with a one-year operations retainer. Personal AI-assistant installation plans are also available. Local deployment can still send requests to approved external models or services; fully local processing requires local models and outbound network controls.

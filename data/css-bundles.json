@@ -161,5 +161,10 @@
     "/portfolio/portfolio.css",
     "/portfolio/erp-demo/erp.css",
     "/assets/portfolio/anatomy/anatomy.css"
+  ],
+  "/assets/generated/site-45e62e36ea94.css": [
+    "/assets/brand/personal.css",
+    "/assets/brand/chrome.css",
+    "/assets/homesplit/apple.css"
   ]
 }
