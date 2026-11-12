@@ -17,21 +17,20 @@ function b64Body(s) {
 
 export function buildNotice(env, cfg, slug, rec) {
   const origin = env.PUBLIC_ORIGIN || 'https://thinkbigtw.com';
-  const subject = `[需求確認頁] ${cfg.label || 'client'} 已送出（第 ${rec.n} 次）`;
+  const subject = `[需求確認頁] ${cfg.label || 'client'} 已送出（第 ${rec.seq} 次）`;
   const text = [
     `${cfg.label || 'client'} 已在需求確認頁送出答案。`,
     '',
-    `第 ${rec.n} 次送出（上限 ${cfg.maxSubmissions || 5} 次）`,
+    `送出編號：${rec.id}`,
+    `第 ${rec.seq} 次送出（上限 ${cfg.maxSubmissions || 5} 次）`,
     `時間：${rec.submittedAt}`,
-    `內容摘要碼：${rec.digest}`,
     '',
-    '答案不放在這封信裡，請用下面任一方式取回：',
+    '答案不放在這封信裡。取回方式（在 workers/client-intake/ 目錄）：',
     '',
-    `1) 受保護端點（需要 INTAKE_ADMIN_TOKEN）：`,
+    `   npx --no-install wrangler kv key get --binding INTAKE_KV --remote "sub:${slug}:${rec.id}"`,
+    '',
+    '有開取回端點時（需要 INTAKE_ADMIN_TOKEN）：',
     `   curl -H "Authorization: Bearer $INTAKE_ADMIN_TOKEN" "${origin}/c/_admin/${slug}?format=md"`,
-    '',
-    '2) wrangler（在 workers/client-intake/ 目錄）：',
-    `   npx wrangler kv key get --binding INTAKE_KV --remote "sub:${slug}:${rec.n}"`,
     '',
     `保存期限：${cfg.retentionDays || 180} 天後自動刪除。`,
   ].join('\n');

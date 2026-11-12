@@ -44,6 +44,12 @@
     if (Array.isArray(x)) { x.forEach(function (y) { appendKid(el, y); }); return; }
     el.appendChild(typeof x === 'string' ? document.createTextNode(x) : x);
   }
+  // Same alphabet as the server: no 0/O, 1/I/L. Full-width input is folded first.
+  function normCode(v) {
+    v = String(v || '');
+    try { v = v.normalize('NFKC'); } catch (e) { /* old browsers */ }
+    return v.toUpperCase().replace(/[^ABCDEFGHJKMNPQRSTUVWXYZ23456789]/g, '');
+  }
   function clear() { toastEl.hidden = true; while (app.firstChild) app.removeChild(app.firstChild); }
   function toast(msg) {
     toastEl.textContent = msg; toastEl.hidden = false;
@@ -86,13 +92,13 @@
   /* ---------- gate ---------- */
   function renderGate(msg) {
     S.view = 'gate'; progress.hidden = true; clear();
-    var input = h('input', { class: 'ci-code', id: 'code', inputmode: 'numeric', autocomplete: 'one-time-code', maxlength: '6', pattern: '[0-9]*', 'aria-describedby': 'code-err', placeholder: '••••••' });
+    var input = h('input', { class: 'ci-code', id: 'code', type: 'text', inputmode: 'text', autocomplete: 'off', autocapitalize: 'characters', autocorrect: 'off', spellcheck: 'false', maxlength: '9', 'aria-describedby': 'code-err', placeholder: 'XXXX-XXXX' });
     var err = h('p', { class: 'ci-err', id: 'code-err', role: 'alert', text: msg || '' });
     var btn = h('button', { class: 'ci-btn ci-btn-block', type: 'submit', text: '進入' });
     var form = h('form', { class: 'ci-card', novalidate: true, onsubmit: function (e) {
       e.preventDefault();
-      var code = (input.value || '').replace(/\D/g, '');
-      if (code.length !== 6) { err.textContent = '請輸入 6 位數字的存取碼'; input.focus(); return; }
+      var code = normCode(input.value);
+      if (code.length !== 8) { err.textContent = '請輸入 8 個字的存取碼（英文字母和數字）'; input.focus(); return; }
       btn.disabled = true; btn.textContent = '確認中…'; err.textContent = '';
       api('unlock', { method: 'POST', body: { code: code } }).then(function (j) {
         btn.disabled = false; btn.textContent = '進入';
@@ -100,16 +106,19 @@
           S.token = j.token; S.content = j.content; S.status = j.status;
           try { sessionStorage.setItem(TOKEN_KEY, j.token); } catch (e2) { /* ignore */ }
           start();
-        } else if (j._status === 401) { err.textContent = '存取碼不對，請再確認一次 LINE 上收到的 6 位數字。'; input.select(); }
+        } else if (j._status === 401) { err.textContent = '存取碼不對，請再對照一次 LINE 上收到的 8 個字。'; input.select(); }
         else if (j._status === 429) { err.textContent = '嘗試太多次了，請稍後再試，或直接 LINE 我們。'; }
         else { err.textContent = '連線有點問題，請稍後再試。'; }
       }).catch(function () { btn.disabled = false; btn.textContent = '進入'; err.textContent = '連線有點問題，請稍後再試。'; });
     } },
-      h('label', { for: 'code', class: 'ci-flabel', text: '存取碼（6 位數字）' }),
+      h('label', { for: 'code', class: 'ci-flabel', text: '存取碼（8 個字，英文字母和數字）' }),
       input, err, btn,
-      h('p', { class: 'ci-small ci-muted', style: 'margin:14px 0 0', text: '存取碼會另外用 LINE 傳給您。' })
+      h('p', { class: 'ci-small ci-muted', style: 'margin:14px 0 0', text: '存取碼會另外用 LINE 傳給您。大小寫都可以，中間的橫線打不打都行。' })
     );
-    input.addEventListener('input', function () { input.value = input.value.replace(/\D/g, '').slice(0, 6); });
+    input.addEventListener('input', function () {
+      var c = normCode(input.value).slice(0, 8);
+      input.value = c.length > 4 ? c.slice(0, 4) + '-' + c.slice(4) : c;
+    });
     app.appendChild(h('section', { class: 'ci-gate' },
       h('p', { class: 'ci-eyebrow', text: 'Private' }),
       h('h1', { class: 'ci-h1', text: '專屬需求確認' }),
@@ -121,9 +130,10 @@
   /* ---------- intro ---------- */
   function renderVideo(v) {
     v = v || {};
-    var box = h('div', { class: 'ci-video' });
+    var portrait = v.orientation === 'portrait';
+    var box = h('div', { class: 'ci-video' + (portrait ? ' is-portrait' : '') });
     if (v.src) {
-      box.appendChild(h('video', { src: v.src, poster: v.poster || null, controls: true, playsinline: true, preload: 'metadata' }));
+      box.appendChild(h('video', { src: v.src, poster: v.poster || null, controls: true, playsinline: true, preload: 'metadata', controlslist: 'nodownload', 'aria-label': v.label || '說明影片' }));
     } else if (v.poster) {
       box.appendChild(h('img', { src: v.poster, alt: v.posterAlt || '說明影片封面' }));
     } else {
@@ -335,25 +345,108 @@
     if (missing) app.appendChild(h('p', { class: 'ci-small ci-muted', text: '還有 ' + missing + ' 題沒回答。可以先送出，沒答的我們遠端時再一起確認。' }));
 
     var remaining = S.status ? S.status.remaining : 1;
-    var errLine = h('p', { class: 'ci-err', role: 'alert' });
+    var statusBox = h('div', { class: 'ci-sendstate', role: 'alert', hidden: true });
     var send = h('button', { class: 'ci-btn ci-btn-block', type: 'button', text: '送出', disabled: remaining <= 0 });
-    send.addEventListener('click', function () {
-      send.disabled = true; send.textContent = '送出中…'; errLine.textContent = '';
-      api('submit', { method: 'POST', body: { answers: S.answers, note: S.note } }).then(function (j) {
-        send.disabled = false; send.textContent = '送出';
-        if (j._status === 200) { S.submittedN = j.n; S.status = j.status; saveDraft(false); renderDone(j); return; }
-        if (j._status === 401) { renderGate('頁面閒置太久，請重新輸入存取碼。答案都還在。'); return; }
-        if (j._status === 409) { errLine.textContent = '已經送出 ' + (j.status && j.status.maxSubmissions) + ' 次了。還想修改的話，直接 LINE 我們就好。'; return; }
-        if (j._status === 422) { renderReview(mapErrors(j.errors || [])); toast('有幾題需要調整，已標成紅色'); return; }
-        if (j._status === 429) { errLine.textContent = '操作太快了，請等一分鐘再按一次。'; return; }
-        errLine.textContent = '送出時連線有點問題，答案都還在，請稍後再按一次。';
-      }).catch(function () { send.disabled = false; send.textContent = '送出'; errLine.textContent = '送出時連線有點問題，答案都還在，請稍後再按一次。'; });
-    });
-    app.appendChild(errLine);
+    send.addEventListener('click', function () { submitWithRetry(send, statusBox); });
+    app.appendChild(statusBox);
     app.appendChild(h('div', { class: 'ci-nav' },
       h('button', { class: 'ci-btn-ghost', type: 'button', text: '上一題', onclick: function () { renderQuestion(q().length - 1); } }),
       send));
     if (remaining <= 0) app.appendChild(h('p', { class: 'ci-small ci-muted', text: '已達送出次數上限。還想修改的話，直接 LINE 我們就好。' }));
+    app.appendChild(h('div', { class: 'ci-dl' },
+      h('span', { class: 'ci-small ci-muted', text: '想自己留一份底？' }),
+      downloadButton('下載我的答案（.txt）')));
+  }
+
+  /* ---------- submit: confirmed-write only, retries, never lose the draft ---------- */
+  var RETRY_DELAYS = [2000, 5000, 12000];
+
+  function submitWithRetry(send, box) {
+    saveDraft(false); // the draft stays on this device until the server confirms
+    var attempt = 0;
+    send.disabled = true; send.textContent = '送出中…';
+    box.hidden = true;
+
+    function fail(msg, canRetry) {
+      send.disabled = false; send.textContent = '送出';
+      showSendProblem(box, msg, canRetry ? function () { submitWithRetry(send, box); } : null);
+    }
+
+    function once() {
+      api('submit', { method: 'POST', body: { answers: S.answers, note: S.note } }).then(function (j) {
+        if (j._status === 200 && j.ok && j.id) {
+          S.submittedN = (S.submittedN || 0) + 1; S.status = j.status;
+          S.lastSubmission = { id: j.id, at: j.submittedAt };
+          saveDraft(false);
+          renderDone(j);
+          return;
+        }
+        if (j._status === 401) { renderGate('頁面閒置太久，請重新輸入存取碼。答案都還在這支裝置上。'); return; }
+        if (j._status === 409) { fail('已經送出 ' + (j.status && j.status.maxSubmissions) + ' 次了。還想修改的話，直接 LINE 我們就好。答案都還在，也可以先下載留底。', false); return; }
+        if (j._status === 410) { fail('這個頁面已經關閉。答案都還在，請先下載，再用 LINE 傳給我們。', false); return; }
+        if (j._status === 422) { send.disabled = false; send.textContent = '送出'; renderReview(mapErrors(j.errors || [])); toast('有幾題需要調整，已標成紅色'); return; }
+        retryOrFail(j._status === 429 ? '送出的次數有點密集，' : '');
+      }).catch(function () { retryOrFail(''); });
+    }
+
+    function retryOrFail(prefix) {
+      if (attempt < RETRY_DELAYS.length) {
+        var wait = RETRY_DELAYS[attempt++];
+        showSendProblem(box, prefix + '網路有點問題，答案都還在。' + Math.round(wait / 1000) + ' 秒後自動再試一次（第 ' + attempt + ' / ' + RETRY_DELAYS.length + ' 次）。', null);
+        setTimeout(once, wait);
+        return;
+      }
+      fail(prefix + '網路有點問題，答案都還在這支裝置上，請按「重試」。也可以先下載答案留底。', true);
+    }
+
+    once();
+  }
+
+  function showSendProblem(box, msg, onRetry) {
+    while (box.firstChild) box.removeChild(box.firstChild);
+    box.hidden = false;
+    box.appendChild(h('p', { class: 'ci-sendmsg', text: msg }));
+    var row = h('div', { class: 'ci-sendrow' });
+    if (onRetry) row.appendChild(h('button', { class: 'ci-btn', type: 'button', text: '重試', onclick: onRetry }));
+    row.appendChild(downloadButton('下載我的答案'));
+    box.appendChild(row);
+    box.scrollIntoView({ block: 'center' });
+  }
+
+  /* ---------- download a plain-text copy (stays on the device) ---------- */
+  function answersAsText() {
+    var lines = [];
+    lines.push((S.content.title || '需求確認') + '｜我的答案');
+    lines.push('存檔時間：' + new Date().toLocaleString('zh-TW'));
+    if (S.lastSubmission) lines.push('送出編號：' + S.lastSubmission.id);
+    lines.push('');
+    var lastGroup = null;
+    q().forEach(function (def, i) {
+      if (def.group !== lastGroup) { lastGroup = def.group; lines.push('【' + groupTitle(def.group) + '】'); }
+      lines.push((i + 1) + '. ' + def.title);
+      var v = S.answers[def.id];
+      if (def.type === 'fields') {
+        var any = false;
+        (def.fields || []).forEach(function (f) { var t = leafText(f, v && v[f.id]); if (t) { any = true; lines.push('   ' + f.label + '：' + t); } });
+        if (!any) lines.push('   （未回答）');
+      } else {
+        lines.push('   ' + (leafText(def, v) || '（未回答）'));
+      }
+      lines.push('');
+    });
+    if (S.note) { lines.push('其他補充：'); lines.push(S.note); }
+    return '﻿' + lines.join('\r\n');
+  }
+
+  function downloadButton(label) {
+    return h('button', { class: 'ci-btn-ghost', type: 'button', text: label, onclick: function () {
+      var d = new Date();
+      var stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0') + '-' + String(d.getHours()).padStart(2, '0') + String(d.getMinutes()).padStart(2, '0');
+      var url = URL.createObjectURL(new Blob([answersAsText()], { type: 'text/plain;charset=utf-8' }));
+      var a = h('a', { href: url, download: '需求確認-我的答案-' + stamp + '.txt' });
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+    } });
   }
 
   function mapErrors(list) {
@@ -361,6 +454,7 @@
     list.forEach(function (e) {
       var msg = e.reason === 'looks_like_secret' ? '這題的內容看起來像密碼、金鑰或卡號，請拿掉後再送出。'
         : e.reason === 'too_long' ? '這題字數太多了，請精簡一點。'
+        : e.reason === 'pattern' ? '這一格只能填數字（例如 AnyDesk 號碼），請不要寫其他內容。'
         : '這題的格式有問題，請重新選一次。';
       out[e.q] = msg;
     });
@@ -374,11 +468,25 @@
     var wrap = h('section', { class: 'ci-done' }, h('div', { class: 'ci-check', 'aria-hidden': 'true' }),
       h('h1', { class: 'ci-h1', text: t.title || '收到了，謝謝您！' }),
       t.lead ? h('p', { class: 'ci-lead', text: t.lead }) : null);
+    wrap.appendChild(h('div', { class: 'ci-receipt' },
+      h('span', { class: 'ci-receipt-l', text: '送出編號' }),
+      h('span', { class: 'ci-receipt-v', text: j.id }),
+      h('span', { class: 'ci-small ci-muted', text: '要跟我們核對時，報這組編號就可以。' })));
     if (t.steps && t.steps.length) wrap.appendChild(h('section', { class: 'ci-card ci-card-accent' }, h('h2', { class: 'ci-h2', text: t.stepsTitle || '接下來' }), h('ol', { class: 'ci-steps' }, t.steps.map(function (s) { return h('li', { text: s }); }))));
+    var row = h('div', { class: 'ci-sendrow' }, downloadButton('下載我的答案（.txt）'));
+    if (S.status && S.status.remaining > 0) row.appendChild(h('button', { class: 'ci-btn-ghost', type: 'button', text: '回去修改答案', onclick: function () { renderReview(); } }));
+    wrap.appendChild(row);
     if (S.status && S.status.remaining > 0) {
-      wrap.appendChild(h('p', { class: 'ci-small ci-muted', text: '想改答案？可以回去修改後再送出（還可以送 ' + S.status.remaining + ' 次，以最後一次為準）。' }));
-      wrap.appendChild(h('button', { class: 'ci-btn-ghost', type: 'button', text: '回去修改答案', onclick: function () { renderReview(); } }));
+      wrap.appendChild(h('p', { class: 'ci-small ci-muted', text: '想改答案的話，可以修改後再送出（還可以送 ' + S.status.remaining + ' 次，以最後一次為準）。' }));
     }
+    wrap.appendChild(h('p', { class: 'ci-small ci-muted', style: 'margin-top:18px' },
+      '用的是共用的電腦或手機？ ',
+      h('button', { class: 'ci-link', type: 'button', text: '清除這台裝置上的答案', onclick: function () {
+        if (!window.confirm('確定要清除這台裝置上暫存的答案嗎？我們這邊收到的不受影響。')) return;
+        clearDraftAnswers(); S.answers = {}; S.note = ''; S.idx = 0;
+        try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) { /* ignore */ }
+        toast('已清除這台裝置上的答案');
+      } })));
     app.appendChild(wrap);
   }
 

@@ -26,7 +26,12 @@ const SECRET_PATTERNS = [
   { id: 'stripe_key', re: /\b(sk|rk)_(live|test)_[A-Za-z0-9]{16,}/ },
   { id: 'telegram_bot_token', re: /\b\d{8,10}:[A-Za-z0-9_-]{35}\b/ },
   { id: 'jwt', re: /\beyJ[A-Za-z0-9_-]{10,}\.eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}/ },
-  { id: 'password_label', re: /(密碼|密码|password|passwd|pwd|驗證碼|验证码|PIN\s*碼?)\s*(是|為|:|：|=)\s*\S{4,}/i },
+  // Chinese keywords may run straight into the value ("密碼abc12345"); English ones need a word
+  // boundary so words like "passport" do not trip it. The value must contain ASCII letters/digits
+  // (text is NFKC-normalised first, so full-width characters count), which keeps ordinary
+  // sentences such as "密碼我現場輸入" from being flagged.
+  { id: 'password_label', re: /(密碼|密码|口令|驗證碼|验证码|登入碼|開機碼|解鎖碼)\s*(是|為|为|:|=|-)?\s*[A-Za-z0-9!@#$%^&*()_+=.?~-]{4,}/i },
+  { id: 'password_label_en', re: /\b(password|passwd|passcode|pass|pwd|pw|pin)\b\s*(is|:|=|-)?\s*[A-Za-z0-9!@#$%^&*()_+=.?~-]{4,}/i },
   { id: 'long_secret', re: /\b[A-Za-z0-9+/_-]{48,}={0,2}\b/ },
 ];
 
@@ -42,8 +47,9 @@ function luhn(digits) {
   return sum % 10 === 0;
 }
 
-export function findSecret(text) {
-  if (typeof text !== 'string' || !text) return null;
+export function findSecret(raw) {
+  if (typeof raw !== 'string' || !raw) return null;
+  const text = raw.normalize('NFKC');
   for (const p of SECRET_PATTERNS) if (p.re.test(text)) return p.id;
   // Card numbers: 13-19 digits, optional spaces/dashes, Luhn-valid.
   const cards = text.match(/\b(?:\d[ -]?){12,18}\d\b/g) || [];
@@ -94,7 +100,11 @@ function validateLeaf(def, val) {
     case 'multi': return validateChoice(def, val, true);
     case 'text': {
       const r = cleanText(val, Math.min(def.maxLength || LIMITS.text, LIMITS.text));
-      return r.ok ? { ok: true, value: r.value || null } : r;
+      if (!r.ok) return r;
+      // Optional per-field format, e.g. an AnyDesk ID field that only accepts digits,
+      // so a password typed next to the ID is rejected instead of stored.
+      if (r.value && def.pattern && !new RegExp(def.pattern).test(r.value.normalize('NFKC'))) return { ok: false, reason: 'pattern' };
+      return { ok: true, value: r.value || null };
     }
     case 'textarea': {
       const r = cleanText(val, Math.min(def.maxLength || LIMITS.textarea, LIMITS.textarea));

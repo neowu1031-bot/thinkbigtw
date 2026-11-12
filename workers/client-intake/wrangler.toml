@@ -11,7 +11,7 @@ workers_dev = false
 pattern = "thinkbigtw.com/c/*"
 zone_name = "thinkbigtw.com"
 
-# Static UI shell (template only, no client data). Served from /c/_a/*.
+# Static UI shell (template only, no client data). Only app.js, app.css, logo.png are served directly.
 [assets]
 directory = "./public"
 binding = "ASSETS"
@@ -25,12 +25,25 @@ not_found_handling = "none"
 binding = "INTAKE_KV"
 id = "REPLACE_WITH_KV_NAMESPACE_ID"
 
-# Per-IP request limit (all API calls).
+# Per-IP request limit for page + API calls (checked before any KV read).
 [[unsafe.bindings]]
 name = "RATE_LIMITER"
 type = "ratelimit"
 namespace_id = "1102"
 simple = { limit = 20, period = 60 }
+
+# Per-IP limit for video/poster requests (players fetch many byte ranges while seeking).
+[[unsafe.bindings]]
+name = "MEDIA_LIMITER"
+type = "ratelimit"
+namespace_id = "1103"
+simple = { limit = 300, period = 60 }
+
+# Optional private R2 bucket for videos. Without it, media is stored in INTAKE_KV
+# (KV values are capped at 25 MiB, so keep web videos small). R2 must be enabled on the account first.
+# [[r2_buckets]]
+# binding = "INTAKE_MEDIA"
+# bucket_name = "tb-client-intake-media"
 
 # Notification mail to the internal inbox (Cloudflare Email Routing, verified destination only).
 # Uncomment after the destination address is verified in Email Routing.
@@ -45,5 +58,6 @@ PUBLIC_ORIGIN = "https://thinkbigtw.com"
 
 # Secrets (wrangler secret put ...), never in this file:
 #   INTAKE_SECRET       pepper for access-code hashes + HMAC key for session tokens
-#   INTAKE_ADMIN_TOKEN  bearer token for the internal retrieval endpoint (optional;
-#                       endpoint is disabled when unset)
+#   INTAKE_ADMIN_TOKEN  bearer token for the internal retrieval endpoint. Leave it UNSET on
+#                       first deploy: the endpoint then answers 404 and answers are read with
+#                       `npx --no-install wrangler kv key get`.
