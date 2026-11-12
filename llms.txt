@@ -1,6 +1,6 @@
 # Think BIG｜企業 AI Agent 導入（總部台灣・服務全球）
 
-> Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，從守護企業資安出發，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機），並提供一年陪跑維運。選地端版時，模型與文件都在公司設備內處理；選雲端輔助版時，問題與檢索到的文件段落會送到模型廠商處理；我們扮演企業的遠端 FDE（Forward Deployed Engineer，前沿部署工程師）團隊：從聽懂需求、建置知識庫與 AI Agent、上線，到後續維運，一手包辦；另有個人 AI 助理搭建方案。更新：2026-10-19。
+> Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商，從守護企業資安出發，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機），並提供一年陪跑維運。選地端版時，模型與文件都在公司設備內處理；選雲端輔助版時，問題與檢索到的文件段落會送到模型廠商處理；我們扮演企業的遠端 FDE（Forward Deployed Engineer，前沿部署工程師）團隊：從聽懂需求、建置知識庫與 AI Agent、上線，到後續維運，一手包辦；另有個人 AI 助理搭建方案。更新：2026-11-12。
 
 地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
 
@@ -14,7 +14,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [服務總覽](https://thinkbigtw.com/services/)：Think BIG 服務一覽，含企業 AI Agent 導入與 SEO＋GEO 搜尋能見度服務
 - [SEO＋GEO 搜尋能見度服務](https://thinkbigtw.com/services/ai-visibility/)：讓 Google 找得到你、讓 ChatGPT 與 Perplexity 在回答時提到你；體檢、建置地基、每月監測報告
 - [Search Visibility Service (SEO + GEO)](https://thinkbigtw.com/en/services/seo-geo/)：Found on Google and cited by AI — one shared foundation, monthly monitoring reports
-- [方案與價格總覽](https://thinkbigtw.com/pricing/)：個人方案 NT$7,840 起（單 Agent 7,840、雙 Agent 17,920、尊榮年約 39,910、年度旗艦 48,010）與公司方案 NT$52,600 起（未稅，含稅 NT$55,230）（不含硬體），台灣工程師遠端安裝。兩種方案都可選雲端或本地大模型：選雲端大模型時，對話內容會傳給模型服務商處理，簽約前會說明使用哪一家服務與其資料條款；選本地大模型，資料留在你自己的電腦
+- [方案與價格總覽](https://thinkbigtw.com/pricing/)：個人方案 NT$7,840 起（單 Agent 7,840、雙 Agent 17,920、尊榮年約 39,910、旗艦年約 48,010）與公司方案 NT$52,600 起（未稅，含稅 NT$55,230）（不含硬體），台灣工程師遠端安裝。兩種方案都可選雲端或本地大模型：選雲端大模型時，對話內容會傳給模型服務商處理，簽約前會說明使用哪一家服務與其資料條款；選本地大模型，資料留在你自己的電腦
 
 ## 企業導入（優先閱讀）
 - [什麼是 RAG？讓 AI 依公司文件回答](https://thinkbigtw.com/enterprise/rag/)：檢索增強生成、資料準備、權限與引用驗收
@@ -34,7 +34,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 
 ## 個人使用指南
 - [AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)：2026 年常見 AI Agent 的用途與計費方式；每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
-- [AI Agent 工具選擇](https://thinkbigtw.com/guides/hermes-vs-openclaw/)：OpenClaw 和 Hermes 差在哪、三種個人方案對照
+- [AI Agent 工具選擇](https://thinkbigtw.com/guides/hermes-vs-openclaw/)：OpenClaw 和 Hermes 差在哪、個人方案對照
 - [OpenClaw 安全指南](https://thinkbigtw.com/guides/openclaw-safe/)：安裝前的風險與權限
 - [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)：代裝服務說明
 - [遠端代裝指南](https://thinkbigtw.com/guides/yuanduan-daizhuang/)：評估安裝流程與準備條件
@@ -140,23 +140,21 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Instagram](https://www.instagram.com/think_big_ai/)、[Threads](https://www.threads.com/@think_big_ai)、[YouTube](https://www.youtube.com/@think_big_ai)
 - [全站內容全文](https://thinkbigtw.com/llms-full.txt)
 
-個人 AI 部門：本地大模型 AI Agent 搭建（單 AI Agent 搭建、雙 AI Agent 共存版或含記憶互通、年約方案）；電腦規格不夠可改搭雲端大模型，同方案同價格；共存版請透過 LINE 諮詢，其他方案可至蝦皮賣場（https://shopee.tw/shop/105010395）選購，或預約需求訪談（/contact/）取得報價。
+個人 AI 部門：本地大模型 AI Agent 搭建，共 4 個方案（年約 2 個）：單 Agent、雙 Agent（含記憶互通）、尊榮年約、旗艦年約；電腦規格不夠可改搭雲端大模型，同方案同價格；可至蝦皮賣場（https://shopee.tw/shop/105010395）選購，或預約需求訪談（/contact/）。
 
 - [聯絡我們](https://thinkbigtw.com/contact/)
 - [常見問題](https://thinkbigtw.com/faq/)
-- [English personal plans](https://thinkbigtw.com/tbos/en/pricing.html)
+- [English personal plans](https://thinkbigtw.com/en/pricing/personal/)
 
 ## Optional
-個人方案以本地大模型 AI Agent 搭建為主，依需求報價；電腦規格不夠可改搭雲端大模型，同方案同價格。本地版不另收模型用量費；雲端版依用量另計。可至蝦皮賣場（https://shopee.tw/shop/105010395）選購，共存版請透過 LINE 諮詢，或預約需求訪談（/contact/）。服務費、支援期與續約條件以對應頁面為準；企業服務另行評估。
-- [個人方案專區](https://thinkbigtw.com/pricing/personal/)：單 Agent NT$7,840、雙 Agent NT$17,920、尊榮年約 NT$39,910（續約 35,910）、年度旗艦 NT$48,010（續約 43,010）
-- [全 Agent 串接](https://thinkbigtw.com/full-agent/)
-- [單 AI Agent](https://thinkbigtw.com/single-agent/)
-- [雙 AI Agent](https://thinkbigtw.com/dual-agent/)
+個人方案以本地大模型 AI Agent 搭建為主，共 4 個方案：單 Agent NT$7,840、雙 Agent NT$17,920、尊榮年約 NT$39,910（續約 NT$35,910）、旗艦年約 NT$48,010（續約 NT$43,010）；企業方案 NT$52,600 起（未稅，含稅 NT$55,230；不含硬體）。電腦規格不夠可改搭雲端大模型，同方案同價格。本地版不另收模型用量費；雲端版依用量另計。可至蝦皮賣場（https://shopee.tw/shop/105010395）選購，或預約需求訪談（/contact/）。支援期與續約條件以對應頁面為準。
+- [個人方案專區](https://thinkbigtw.com/pricing/personal/)：單 Agent NT$7,840、雙 Agent NT$17,920、尊榮年約 NT$39,910（續約 NT$35,910）、旗艦年約 NT$48,010（續約 NT$43,010）
+- [單 Agent](https://thinkbigtw.com/single-agent/)
+- [雙 Agent](https://thinkbigtw.com/dual-agent/)
 - [技能包](https://thinkbigtw.com/skill-pack/)
 - [尊榮年約](https://thinkbigtw.com/annual-pro/)
-- [年度旗艦](https://thinkbigtw.com/annual-flagship/)
+- [旗艦年約](https://thinkbigtw.com/annual-flagship/)
 - [企業方案](https://thinkbigtw.com/enterprise/)
-- [個人 AI 助理搭建](https://thinkbigtw.com/harness/)
 
 English summary: Think BIG (Think BIG Co., Ltd.) is a Taiwan-based enterprise AI Agent integrator serving clients worldwide. Its TB FRAME methodology covers assessment, implementation, validation and ongoing governance, with a one-year operations retainer. Personal AI-assistant installation plans are also available. Local deployment can still send requests to approved external models or services; fully local processing requires local models and outbound network controls.
 
