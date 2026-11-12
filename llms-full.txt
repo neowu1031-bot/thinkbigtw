@@ -44,175 +44,193 @@ Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治�
 
 URL: https://thinkbigtw.com/annual-flagship/
 
-# 年度旗艦：Hermes × OpenClaw 雙 AI Agent 全年部署與維護 | Think BIG
+# 年度旗艦（雙 Agent）｜Think BIG!
 
-個人 AI 助理 · 年度旗艦
+-
 
-# 年度旗艦
+-
 
-雙 Agent，全系統上線，顧一整年。
+-
 
-旗艦維運承諾：發現即修復＋48 小時故障修復承諾
-雙系統互通＋多部門覆蓋＋季度 AI 戰略規劃
+-
 
-當一個 Agent 不夠用的時候，年度旗艦給你的是一套完整的 AI 作業系統：OpenClaw 主理助理功能、Hermes 負責跨平台通訊與排程，兩套系統互通協作，再由專屬工程師整年度維護升級。不只是「有一個 AI 助理」，而是讓 AI 真的跑起你的日常運作。
+-
 
-## 尊榮年約 vs 年度旗艦
+-
 
-兩個方案都包含全年維運，差別在於規模和深度。
+-
 
-尊榮年約（入門）
+-
 
-- 單 Agent 系統
+-
 
-- OpenClaw 或 Hermes，擇一
+雲端／本地大模型
 
-- 48 小時故障修復承諾
+# 每天的報表自己出，一整年有人幫你顧兩套系統
 
-- 每週維護＋技能新增
-
-- 無限次諮詢
-
-年度旗艦（進階）
-
-- 雙 Agent 系統互通
-
-- OpenClaw＋Hermes 同時部署
-
-- 48 小時故障修復承諾
-
-- 每週維護＋多部門技能
-
-- 無限次諮詢＋季度 AI 戰略規劃★
-
-- Google Workspace 整合★
-
-已有尊榮年約、想升級？聯絡我們，差額可折抵。
-
-## 怎麼運行
-
-1
-
-業務盤點訪談 下單前深度盤點你的工作場景與部門需求，規劃雙系統分工架構
-
-2
-
-雙系統架設交付 OpenClaw＋Hermes 同步架設，串接你使用的所有通訊平台與工作工具，確認全線可用才啟動年約
-
-3
-
-週維護＋多部門擴充 每週例行維護兩套系統；工程師依部門需求持續新增客製技能，覆蓋更多工作場景
-
-4
-
-48 小時故障修復承諾 雙系統任一出現異常，主動通知並於 48 小時內修復，不等你發現才動
-
-5
-
-季度 AI 戰略規劃 每季一次深度規劃會議，盤點 AI 覆蓋率、提出下季擴充計畫，讓系統持續跟上你的業務成長
-
-含 Coding Agent 串接、跨 Agent 協作會議室、企業整合（CRM / 試算表 / 雲端硬碟）、Google Workspace 串接。
-
-## 你得到什麼
-
-- 雙 Agent 系統 ：OpenClaw 主理助理功能＋Hermes 跨平台通訊，兩套互通協作
-
-- 一年維運陪跑 ：發現即修復＋48 小時故障修復承諾
-
-- 每週例行維護＋多部門客製技能持續擴充
-
-- Coding Agent 串接＋跨 Agent 協作會議室＋Google Workspace 整合
-
-- 全年無限次諮詢，專屬工程師直達
-
-- 每季 AI 戰略規劃會議（1 次 / 季，共 4 次）★
-
-- 年度旗艦方案 NT$48,010，年約制，續約 NT$43,010
-
-季度規劃等進階服務的內容與範圍，請於購買前與顧問確認。
-
-預算有限、先試單系統？→ [看「尊榮年約」](https://thinkbigtw.com/annual-pro/)。
-
-方案價格
+老闆或主理人每天要看的數字、要寫的報告、要發的內容，交給兩個 Agent 分工，每週有人維護。
 
 NT$48,010（續約 NT$43,010）
 
-[前往蝦皮下單｜確認需求再付款](https://shopee.tw/shop/105010395)
+[到蝦皮下單](https://shopee.tw/product/105010395/47108617097)
 
-※ 下單前需完成業務盤點訪談並確認雙系統架構。本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，非本方案年費所含。次年可選配續約，續約價 NT$43,010。
+## 最多人用 AI 做的事
+
+- 資料彙整（34.4%）、工作處理（55.0%） 。來源：行政院公平會問卷，2026 年 5 月，n=1,079，複選。
+
+我們可以幫你設定成：每日、每週、每月報表自動產出，數字特別高或低的地方先標出來。
+
+- 決策與解題 。OpenAI 與哈佛研究（NBER w34255）中，職場訊息裡「決策與解題」占 14.9%、「記錄與整理資訊」占 18.4%。
+
+我們可以幫你設定成：市場分析、專案管理（WBS、甘特、RACI）與圖表報告，速度依硬體而定。
+
+- 營運效率與成本檢視 。AIF 與鄧白氏 2026「Top 1000 中小企業 AI 決策力調查」，營運效率與成本控管為 AI 投資第一優先（39%）。
+
+我們可以幫你設定成：把散在各處的資料一鍵整理成 Excel，標出期間與統計。
+
+- 文件類用途 。同上 OpenAI 研究。
+
+我們可以幫你設定成：照片貼進 Word 或 Excel 報告、各種格式互轉（依環境評估）。
+
+## 可依需求設定的功能範例
+
+以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。
+
+尊榮年約與雙 Agent 各項皆可依需求設定 （詳見該兩頁）
+
+### 報表與資料
+
+- 營業日報、週報、月報自動產出與守衛告警
+
+- 報表網頁（登入保護，網域與雲端帳號歸你自己）
+
+- 資料一鍵整理成 Excel（期間、統計、特高特低標示）
+
+### 文件
+
+- 照片貼進 Word／Excel 報告、全格式轉檔（依環境評估）
+
+- 教育訓練教材一次生成
+
+### 工作：分析與專案
+
+- 市場分析、專案管理（WBS、甘特、RACI）、報告與圖表套件（本地模型，速度依硬體）
+
+### 團隊
+
+- 多部門 Agent 分工
+
+## 交付方式
+
+- 由工程師遠端安裝，另附教學影片；每週維護兩套系統。
+
+- 設備以 Apple 晶片 Mac 為主，其他設備可評估。
+
+- 限制：電腦要開著、不能睡眠。報表排程與告警靠電腦在線才會運作。
+
+- 範圍與整合項目（如 Google Workspace、試算表、雲端硬碟、CRM）於購買前確認，依需求評估。
+
+- 兩套系統任一出現異常，皆提供 48 小時內故障修復。次年可選配續約 NT$43,010。
+
+## 資料說明
+
+選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+你想得到的、合法的，我們都會盡力幫你做到。
+
+[到蝦皮下單](https://shopee.tw/product/105010395/47108617097)
 
 ---
 
 URL: https://thinkbigtw.com/annual-pro/
 
-# 尊榮年約 — 你的專屬工程師，顧一整年 | Think BIG!
+# 尊榮年約（單 Agent）｜Think BIG!
 
-個人 AI 助理 · 尊榮年約
+-
 
-# 尊榮年約
+-
 
-你的專屬工程師，顧一整年。
+-
 
-年約含維運：發現即修復＋48 小時故障修復承諾
-次年可選配續約，持續提供年度維護
+-
 
-從架設到長期陪跑，一個方案全包。全客製 AI Agent 架構（OpenClaw 或 Hermes，或雙系統互通）＋專屬工程師整年度維護。你不用學怎麼維護，也不用每次出問題再付一次救火費——年費裡已經包含。
+-
 
-## 這些情況你中了幾個？
+-
 
-- AI 工具裝好後用一個月就晾著，沒人繼續加功能
+-
 
-- 系統一出錯就束手無策，找人修還要另外付費
+-
 
-- 知道 AI 應該對你有用，但不確定從哪個工作開始自動化
+-
 
-- 不想每季都重新研究工具，希望有人持續幫你跟上
+雲端／本地大模型
 
-尊榮年約的設計邏輯就是：把「用不起來」和「用壞了沒人理」這兩個最常見的問題，都包在年費裡。
+# 一整年有人幫你顧著，壞了先修、你不用盯
 
-## 怎麼運行
-
-1
-
-需求訪談 下單前先聊你的工作場景，確認架構規格與主系統選擇
-
-2
-
-架設交付 工程師完成全客製架設，確認可用才正式啟動年約
-
-3
-
-週維護＋加技能 每週例行維護升級；工程師主動收集需求，持續新增客製技能
-
-4
-
-故障即修 發現問題主動通知；故障 48 小時內修復，不等你發現才動
-
-支援 Coding Agent 串接、跨 Agent 協作會議室（串 2 個以上 Agent 時啟用）、通訊平台多通路串接。
-
-## 你得到什麼
-
-- 全客製 AI Agent 架構（含多 Agent 協作架構設定）
-
-- 一年維運陪跑 ：發現即修復＋48 小時故障修復承諾
-
-- 每週例行維護升級＋每週依需求新增客製技能
-
-- Coding Agent 串接＋跨 Agent 協作會議室
-
-- 全年無限次諮詢，專屬工程師直達
-
-- 尊榮年約方案 NT$39,910，年約制，續約 NT$35,910
-
-需要雙 AI Agent 系統＋季度 AI 戰略規劃？→ [看「年度旗艦」](https://thinkbigtw.com/annual-flagship/)。
-
-方案價格
+你只管用，每週有人檢查、有人整理報告，缺什麼功能，看使用情形再補。
 
 NT$39,910（續約 NT$35,910）
 
-[前往蝦皮下單｜確認需求再付款](https://shopee.tw/product/105010395/48258528741)
+[到蝦皮下單](https://shopee.tw/product/105010395/48258528741)
 
-※ 下單前需完成需求訪談並選定主系統。本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，非本方案年費所含。次年可選配續約，續約價 NT$35,910。
+## 最多人用 AI 做的事
+
+- 工作處理（55.0%） 。來源：行政院公平會問卷，2026 年 5 月，n=1,079，複選。
+
+我們可以幫你設定成：每週依你實際怎麼用，新增最需要的小幫手。
+
+- 獲取或學習知識（56.5%）、資料彙整（34.4%） 。同上來源。
+
+我們可以幫你設定成：把 Agent 的記憶與維護紀錄做成你自己打得開的筆記本，看得見它記了什麼。
+
+- 客服類用途 。全球企業決策者調查中，客服部門導入 AI 的比例為 59%（Kore.ai × Paradoxes，2025；全球樣本，非台灣）。
+
+我們可以幫你設定成：客服回覆草稿與模板，由你確認後再送出（依環境評估）。
+
+## 可依需求設定的功能範例
+
+以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。
+
+單 Agent 各項皆可依需求設定 ，另可每週依使用情形客製新增技能（日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 AI Agent 頁）
+
+### 維運：每週例行
+
+- 每週健康檢查、發現即修復、白話週報
+
+- 斷線自癒、AI 帳號額度警衛、排程送達哨兵、通訊登出偵測
+
+- 備份完整性與清理、硬碟與電源趨勢提醒
+
+- 版本升級評估與回滾、使用情形稽核
+
+### 文件與記憶
+
+- 看得見的記憶筆記本（Agent 記憶與維護紀錄可自己開啟）
+
+### 溝通
+
+- 客服回覆草稿與模板（依環境評估）
+
+## 交付方式
+
+- 下單前先做需求訪談，確認可用才啟動年約。
+
+- 由工程師遠端安裝，另附教學影片；年度內可技術諮詢。
+
+- 設備以 Apple 晶片 Mac 為主，其他設備可評估。
+
+- 限制：電腦要開著、不能睡眠。健康檢查、備份與提醒都靠電腦在線才能執行。
+
+- 故障提供 48 小時內修復。次年可選配續約 NT$35,910。
+
+## 資料說明
+
+選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+你想得到的、合法的，我們都會盡力幫你做到。
+
+[到蝦皮下單](https://shopee.tw/product/105010395/48258528741)
 
 ---
 
@@ -330,83 +348,93 @@ Think BIG（大想成業有限公司），統一編號 62136066。總部位於�
 
 URL: https://thinkbigtw.com/dual-agent/
 
-# 雙 AI Agent | Think BIG!
+# 雙 AI Agent｜Think BIG!
 
-個人 AI 助理
+-
 
-# 雙 AI Agent
+-
 
-單獨裝是兩個孤島，我們裝完是一個團隊。
+-
 
-OpenClaw（執行型）＋ Hermes（學習型）雙系統同機部署，並透過 MCP（Model Context Protocol）把兩者的記憶層與技能庫實際打通 ：一邊學到的東西，另一邊也知道。OpenClaw 第一天即戰力，Hermes 持續把成功經驗變成新技能——一套會越用越強的雙 AI 助理系統。
+-
 
-## 你是不是每天都在——
+-
 
-- 想要 AI「馬上能用」，又想要它「越用越聰明」，卻只能二選一？
+-
 
-- 裝了好幾個 AI 工具，各記各的、各做各的，彼此完全不通？
+-
 
-- 教會了 A 工具的事，換到 B 工具又要全部重教一次？
+-
 
-## 怎麼運行
+-
 
-1
+雲端／本地大模型
 
-收到 你從通訊軟體或協作會議室下指令
+# 一個替你動手，一個替你記住
 
-2
-
-判斷 任務進到共享記憶層——OpenClaw 查「現在怎麼做最快」，Hermes 查「以前學過什麼」
-
-3
-
-執行 OpenClaw 出手執行；Hermes 把成功方法轉成新技能，寫回共享技能庫
-
-4
-
-回報 結果推播到你的通訊軟體；下次同類任務，兩邊都變快
-
-支援再串接你的 coding agent（Claude Code／Codex 等），啟用跨 Agent 協作會議室。
-
-## 你得到什麼
-
-- 雙系統安裝部署＋ MCP 記憶互通（實際打通，非兩套各跑各的）
-
-- 技能配置 OpenClaw＋Hermes 雙 AI Agent，技能數依訪談配置 （下單前先聊需求）
-
-- Coding Agent 串接＋跨 Agent 協作會議室（串 2 個以上 Agent 時啟用）
-
-- 一套持續進化的系統：今天的任務成果，變成明天的內建能力
-
-- 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
-
-- 服務費 NT$17,920 ，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
-
-不想自己維護？→ [看「尊榮年約」](https://thinkbigtw.com/annual-pro/)或[「年度旗艦」](https://thinkbigtw.com/annual-flagship/)，全年有工程師陪跑。
-
-方案價格
+你睡前交代的事，早上已經有結果；你的習慣與做事方式，它隔天還記得。
 
 NT$17,920
 
-[前往蝦皮下單｜下單後預約遠端安裝時間](https://shopee.tw/product/105010395/54908601707)
+[到蝦皮下單](https://shopee.tw/product/105010395/54908601707)
 
-※ 本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，非本方案服務費所含。
+## 最多人用 AI 做的事
 
-## 與「雙 AI Agent 共存版」的差異
+- 工作處理（55.0%）、資料彙整（34.4%） 。來源：行政院公平會問卷，2026 年 5 月，n=1,079，複選。
 
-項目 共存版 雙 AI Agent 兩個 AI Agent 各自安裝 ✓ ✓
+我們可以幫你設定成：每天固定時間把早報與任務結果直接傳給你。
 
-各自設定 ✓ ✓
+- 創意發想（17.1%） 。同上來源。
 
-兩邊記憶互通（MCP） — ✓
+我們可以幫你設定成：一個 Agent 草擬社群文案，經你授權的帳號再同步到多個平台。
 
-跨 Agent 協作會議室 — ✓（此方案專屬）
+- 獲取或學習知識（56.5%） 。同上來源。
 
-技能配置方式 各自標準技能包 依訪談量身配置
+我們可以幫你設定成：把你常問的事與偏好記進長期記憶，下次不必重教。
 
-支援期 7 天技術諮詢 2 小時線上技術導覽＋安裝後 7 天技術諮詢
+- 寫作類用途 。OpenAI 與哈佛研究（NBER w34255）指出，職場對話中寫作占 40%。
 
-共存版適合想先以低門檻同時用兩個 AI Agent 的人；本方案適合想讓兩個 Agent 協作、共享記憶的人。兩個方案都在[個人方案頁](https://thinkbigtw.com/pricing/personal/)。
+我們可以幫你設定成：貼稿子，改語氣、找錯字、整理成 Word。
+
+## 可依需求設定的功能範例
+
+以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。
+
+單 Agent 各項皆可依需求設定 （日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 AI Agent 頁）
+
+### 工作：分工與排程
+
+- 排程自動推播：每日早報、任務結果通知（不耗模型費的直送）
+
+- 兩個 Agent 分工：一個動手執行、一個累積經驗並轉成新技能
+
+- 風控提示：花錢、不可逆、對外發送前先請示你
+
+### 生活：記憶
+
+- 個人長期記憶（跨對話記住你的習慣）
+
+### 溝通：對外內容
+
+- 社群文案與多平台同步發文（需你本人授權帳號）
+
+## 交付方式
+
+- 由工程師遠端安裝，另附教學影片。
+
+- 設備以 Apple 晶片 Mac 為主，其他設備可評估。
+
+- 限制：電腦要開著、不能睡眠。排程推播要電腦在線才會準時送出。
+
+- 技能內容依訪談設定，下單前先聊需求。
+
+## 資料說明
+
+選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+你想得到的、合法的，我們都會盡力幫你做到。
+
+[到蝦皮下單](https://shopee.tw/product/105010395/54908601707)
 
 ---
 
@@ -458,175 +486,193 @@ AI@thinkbigtw.com  · [Chat with us on WhatsApp ›](https://wa.me/886908898903?
 
 URL: https://thinkbigtw.com/en/annual-flagship/
 
-# Annual Plan — Flagship | Hermes × OpenClaw Dual AI Agent, Full-Year Deployment | Think BIG
+# Flagship Annual Plan (Dual Agent) | Think BIG!
 
-Personal AI Assistant · Annual Plan — Flagship
+-
 
-# Annual Plan — Flagship
+-
 
-Dual Agent, full system online, the entire year.
+-
 
-Flagship operations commitment: proactive fault detection + 48-hour repair SLA
-Dual-system MCP sync + multi-department coverage + quarterly AI strategy planning
+-
 
-When one Agent isn't enough, the Annual Plan — Flagship gives you a complete AI operating system: OpenClaw handles assistant functions, Hermes manages cross-platform communications and scheduling, and both systems work together through MCP sync — maintained and upgraded by a dedicated engineer for the full year. It's not just "having an AI assistant" — it's AI actually running your day-to-day operations.
+-
 
-## Annual Plan — Premier vs Flagship
+-
 
-Both plans include full-year operations. The difference is scale and depth.
+-
 
-Annual Plan — Premier (entry)
+-
 
-- Single Agent system
+-
 
-- OpenClaw or Hermes, your choice
+Cloud or local model
 
-- 48-hour repair SLA
+# Reports produce themselves every day, and someone looks after both systems for a full year
 
-- Weekly maintenance + skill additions
-
-- Unlimited consultation
-
-Annual Plan — Flagship (advanced)
-
-- Dual Agent MCP sync
-
-- OpenClaw + Hermes deployed simultaneously
-
-- 48-hour repair SLA
-
-- Weekly maintenance + multi-department skills
-
-- Unlimited consultation + quarterly AI strategy planning ★
-
-- Google Workspace integration ★
-
-Already on Annual Plan — Premier and want to upgrade? Contact us — the difference can be credited.
-
-## How it works
-
-1
-
-Business workflow interview Before you start, we do an in-depth review of your workflows and department needs to plan the dual-system division of responsibilities
-
-2
-
-Dual-system setup and delivery OpenClaw and Hermes are deployed in parallel, connected to all your messaging platforms and work tools. The annual plan starts only after you confirm everything is live
-
-3
-
-Weekly maintenance + multi-department expansion Routine weekly maintenance on both systems. Your engineer continuously adds custom skills by department, covering more workflows over time
-
-4
-
-48-hour repair SLA If either system shows any issue, we notify you first and repair it within 48 hours — we don't wait for you to discover it
-
-5
-
-Quarterly AI strategy planning One in-depth planning session each quarter to review AI coverage, propose next-quarter expansion plans, and keep the system growing with your business
-
-Includes Coding Agent integration, cross-Agent collaboration meeting room, enterprise integrations (CRM / spreadsheets / cloud storage), and Google Workspace connectivity.
-
-## What you get
-
-- Dual Agent system : OpenClaw handles assistant functions + Hermes manages cross-platform communications — both systems sync via MCP
-
-- Full-year dedicated operations : proactive fault detection + 48-hour repair SLA
-
-- Weekly routine maintenance + multi-department custom skills continuously expanded
-
-- Coding Agent integration + cross-Agent collaboration meeting room + Google Workspace integration
-
-- Unlimited consultation throughout the year — direct access to your engineer
-
-- Quarterly AI strategy planning meetings (1 per quarter, 4 total) ★
-
-- Annual Plan — Flagship; NT$48,010; annual contract
-
-The scope of quarterly planning and other advanced services should be confirmed with a consultant before purchase.
-
-Budget-conscious and want to start with one system? → [See Annual Plan — Premier](https://thinkbigtw.com/en/annual-pro/).
-
-Plan price
+The numbers an owner or principal needs to see each day, the reports to write and the content to publish are shared between two Agents, with weekly maintenance.
 
 NT$48,010 (renewal NT$43,010)
 
-[Ask on WhatsApp — confirm requirements first](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Annual%20Plan%20%E2%80%94%20Flagship.)
+[Order on Shopee](https://shopee.tw/product/105010395/47108617097)
 
-A business workflow interview to confirm the dual-system architecture must be completed before the plan starts. Local model computation carries no per-usage fee. If you opt for a cloud model instead, your own API Key is required; model usage fees are billed directly by the model provider and are not included in this plan. Renewal price is NT$43,010.
+## What people use AI for most
+
+- Compiling information (34.4%), getting work done (55.0%) . Source: 行政院公平會問卷 (Taiwan Fair Trade Commission survey), May 2026, n=1,079, multiple answers allowed.
+
+We can set it up so that: daily, weekly and monthly reports are produced automatically, with unusually high or low numbers flagged first.
+
+- Decisions and problem solving . In the OpenAI and Harvard study (NBER w34255), "decision-making and problem solving" makes up 14.9% of work messages and "recording and organizing information" 18.4%.
+
+We can set it up so that: market analysis, project management (WBS, Gantt, RACI) and charted reports, with speed depending on hardware.
+
+- Operating efficiency and cost review . AIF and Dun & Bradstreet, 2026 "Top 1000 SME AI decision-making survey": operating efficiency and cost control is the top AI investment priority (39%).
+
+We can set it up so that: data scattered in many places is collected into one Excel file, with periods and statistics marked.
+
+- Documents . Same OpenAI study.
+
+We can set it up so that: photos placed into Word or Excel reports, and conversion between formats (subject to environment check).
+
+## Example features, set up to your needs
+
+These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature.
+
+Everything in the Premier Annual Plan and the Dual Agent can be set up to your needs  (see those two pages)
+
+### Reports and data
+
+- Daily, weekly and monthly sales reports produced automatically, with guard alerts
+
+- Report web page (login-protected; the domain and cloud account belong to you)
+
+- Data collected into Excel in one step (periods, statistics, unusually high and low values marked)
+
+### Documents
+
+- Photos placed into Word/Excel reports, conversion between all formats (subject to environment check)
+
+- Training materials generated in one go
+
+### Work: analysis and projects
+
+- Market analysis, project management (WBS, Gantt, RACI), report and chart kit (local model; speed depends on hardware)
+
+### Team
+
+- Multi-department Agent division of labor
+
+## How it is delivered
+
+- Installed remotely by an engineer, with tutorial videos included; both systems are maintained weekly.
+
+- Built mainly for Apple silicon Macs; other devices can be assessed.
+
+- Limitation: your computer must stay on and not go to sleep. Report schedules and alerts only work while the computer is online.
+
+- Scope and integrations (such as Google Workspace, spreadsheets, cloud drives and CRM) are confirmed before purchase and assessed to your needs.
+
+- If either of the two systems has a problem, it is repaired within 48 hours. In the second year you can choose to renew at NT$43,010.
+
+## About your data
+
+With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
+
+If it is legal and you can think of it, we will do our best to build it for you.
+
+[Order on Shopee](https://shopee.tw/product/105010395/47108617097)
 
 ---
 
 URL: https://thinkbigtw.com/en/annual-pro/
 
-# Annual Plan — Premier | Your Dedicated Engineer for the Full Year | Think BIG
+# Premier Annual Plan (Single Agent) | Think BIG!
 
-Personal AI Assistant · Annual Plan — Premier
+-
 
-# Annual Plan — Premier
+-
 
-Your dedicated engineer for the full year.
+-
 
-Annual plan includes operations: proactive fault detection + 48-hour repair SLA
-Renewal option available for continued year-over-year maintenance
+-
 
-From setup to long-term operations — one plan covers everything. Fully custom AI Agent architecture (OpenClaw or Hermes, or dual-system MCP sync) with a dedicated engineer for the full year. No need to learn maintenance yourself, and no extra charge every time something breaks — it's already included in the annual plan.
+-
 
-## Does any of this sound familiar?
+-
 
-- Your AI tools were set up, then sat unused after the first month — nobody kept adding features
+-
 
-- When something breaks, you're stuck — and finding someone to fix it costs extra
+-
 
-- You know AI should help you, but you're not sure which part of your work to automate first
+-
 
-- You don't want to re-research tools every quarter — you want someone to keep you up to date
+Cloud or local model
 
-The Annual Plan — Premier is designed around the two most common problems: "can't get it working" and "broke, and nobody cares" — both included in one annual fee.
+# A full year of care: if something breaks, it gets fixed first, and you do not have to watch it
 
-## How it works
-
-1
-
-Requirements interview Before you start, we discuss your workflow, confirm the architecture specs, and choose the primary system (OpenClaw or Hermes)
-
-2
-
-Setup and delivery Your engineer completes the fully custom setup. The annual plan starts only after you confirm it's working
-
-3
-
-Weekly maintenance + skill additions Routine weekly maintenance and upgrades. Your engineer proactively collects requirements and continuously adds custom skills
-
-4
-
-Proactive fault repair Issues are detected and reported to you first. Faults are repaired within 48 hours — we don't wait for you to discover them
-
-Supports Coding Agent integration, cross-Agent collaboration meeting room (activated when 2+ Agents are connected), and multi-channel messaging platform integration.
-
-## What you get
-
-- Fully custom AI Agent architecture (including multi-Agent MCP collaboration setup)
-
-- Full-year dedicated operations : proactive fault detection + 48-hour repair SLA
-
-- Weekly routine maintenance + weekly custom skill additions on request
-
-- Coding Agent integration + cross-Agent collaboration meeting room
-
-- Unlimited consultation throughout the year — direct access to your engineer
-
-- Annual Plan — Premier; NT$39,910; annual contract
-
-Need dual AI Agent systems + quarterly AI strategy planning? → [See Annual Plan — Flagship](https://thinkbigtw.com/en/annual-flagship/).
-
-Plan price
+You just use it. Every week someone checks it and prepares a report, and if a feature is missing, we add it based on how you use it.
 
 NT$39,910 (renewal NT$35,910)
 
-[Ask on WhatsApp — confirm requirements first](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Annual%20Plan%20%E2%80%94%20Premier.)
+[Order on Shopee](https://shopee.tw/product/105010395/48258528741)
 
-A requirements interview to confirm your workflow and primary system must be completed before the plan starts. Local model computation carries no per-usage fee. If you opt for a cloud model instead, your own API Key is required; model usage fees are billed directly by the model provider and are not included in this plan. Renewal price is NT$35,910.
+## What people use AI for most
+
+- Getting work done (55.0%) . Source: 行政院公平會問卷 (Taiwan Fair Trade Commission survey), May 2026, n=1,079, multiple answers allowed.
+
+We can set it up so that: each week we add the small helper you need most, based on how you actually use it.
+
+- Getting or learning knowledge (56.5%), compiling information (34.4%) . Same source.
+
+We can set it up so that: the Agent's memory and maintenance records become a notebook you can open yourself, so you can see what it remembers.
+
+- Customer service . In a global survey of business decision makers, 59% of customer service departments have adopted AI (Kore.ai × Paradoxes, 2025; global sample, not Taiwan).
+
+We can set it up so that: reply drafts and templates for customer service, sent only after you confirm them (subject to environment check).
+
+## Example features, set up to your needs
+
+These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature.
+
+Everything in the Single Agent can be set up to your needs , and we can also build new skills each week based on how you use it (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single AI Agent page)
+
+### Maintenance: weekly routine
+
+- Weekly health check, fixes as soon as problems are found, plain-language weekly report
+
+- Self-recovery after disconnection, AI account quota guard, scheduled-delivery sentinel, messaging sign-out detection
+
+- Backup integrity checks and cleanup, disk and power trend alerts
+
+- Version upgrade assessment and rollback, usage review
+
+### Documents and memory
+
+- A memory notebook you can see (the Agent's memory and maintenance records can be opened by you)
+
+### Communication
+
+- Customer service reply drafts and templates (subject to environment check)
+
+## How it is delivered
+
+- We interview you about your needs before you order, and start the annual plan only once we confirm it will work for you.
+
+- Installed remotely by an engineer, with tutorial videos included; technical consulting is available during the year.
+
+- Built mainly for Apple silicon Macs; other devices can be assessed.
+
+- Limitation: your computer must stay on and not go to sleep. Health checks, backups and reminders only run while the computer is online.
+
+- Faults are repaired within 48 hours. In the second year you can choose to renew at NT$35,910.
+
+## About your data
+
+With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
+
+If it is legal and you can think of it, we will do our best to build it for you.
+
+[Order on Shopee](https://shopee.tw/product/105010395/48258528741)
 
 ---
 
@@ -742,86 +788,93 @@ Learn about fees, installation and data permissions first.](https://thinkbigtw.c
 
 URL: https://thinkbigtw.com/en/dual-agent/
 
-# Dual AI Agent | Think BIG
+# Dual AI Agent | Think BIG!
 
-Personal AI Assistant
+-
 
-# Dual AI Agent
+-
 
-Installed separately they are two islands. After our setup they are one team.
+-
 
-OpenClaw (action-focused) + Hermes (learning-focused): two systems on the same machine, connected through MCP (Model Context Protocol) so their memory layers and skill libraries are genuinely bridged. What one learns, the other knows. OpenClaw is ready to work from day one; Hermes continuously turns successful outcomes into new skills — a dual AI assistant system that improves the more you use it.
+-
 
-## Does this sound familiar?
+-
 
-- You want an AI that is "ready right now" and one that "gets smarter over time" — but you can only pick one?
+-
 
-- You have several AI tools installed, each remembering things separately and doing their own thing, with no connection between them?
+-
 
-- You teach tool A something, then switch to tool B and have to teach it all over again?
+-
 
-## How it works
+-
 
-1
+Cloud or local model
 
-Receive You send a command from your messaging app or the collaboration room.
+# One does the work for you, one remembers for you
 
-2
-
-Route The task enters the shared memory layer — OpenClaw checks "what is the fastest way to do this now"; Hermes checks "what has been learned before".
-
-3
-
-Execute OpenClaw takes action; Hermes converts the successful approach into a new skill and writes it back to the shared skill library.
-
-4
-
-Report Results are pushed to your messaging app. Next time a similar task comes in, both agents are faster.
-
-Optionally connect your coding agent (Claude Code / Codex / etc.) to enable the cross-agent collaboration room.
-
-## What you get
-
-- Both systems installed and deployed with MCP memory sync (genuinely bridged, not two separate installs)
-
-- Skill configuration: OpenClaw + Hermes dual AI Agent, number of skills set during your intake call  (discuss your needs before ordering)
-
-- Coding agent integration + cross-agent collaboration room (enabled when two or more agents are connected)
-
-- A system that keeps improving: today's task result becomes tomorrow's built-in capability
-
-- 2-hour online technical walkthrough + 7 days  of post-installation technical support
-
-- Service fee on request, no monthly fee  (this refers to our service fee)
-
-Want someone to look after the system for a full year? → [Annual plan — Premier](https://thinkbigtw.com/en/annual-pro/) or [Annual plan — Flagship](https://thinkbigtw.com/en/annual-flagship/).
-
-Plan price
+What you hand off at bedtime already has a result by morning; your habits and way of working are still remembered the next day.
 
 NT$17,920
 
-[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20plan.)
+[Order on Shopee](https://shopee.tw/product/105010395/54908601707)
 
-Note: local model inference has no usage fee. If you switch to a cloud model, you apply for your own API key (we guide you; we do not apply on your behalf) and pay usage fees directly to the model provider.
+## What people use AI for most
 
-## Dual AI Agent vs. the Co-existence Edition
+- Getting work done (55.0%), compiling information (34.4%) . Source: 行政院公平會問卷 (Taiwan Fair Trade Commission survey), May 2026, n=1,079, multiple answers allowed.
 
-Feature Co-existence Edition Dual AI Agent
-Both AI Agents installed ✓ ✓
+We can set it up so that: the morning briefing and task results are sent straight to you at a fixed time every day.
 
-Each configured separately ✓ ✓
+- Creative ideas (17.1%) . Same source.
 
-Cross-agent memory sync (MCP) — ✓
+We can set it up so that: one Agent drafts social posts, then publishes to several platforms through accounts you have authorized.
 
-Cross-agent collaboration room — ✓ (exclusive to this plan)
+- Getting or learning knowledge (56.5%) . Same source.
 
-Skill configuration Standard skill pack per agent Custom-configured during intake call
+We can set it up so that: what you often ask and what you prefer goes into long-term memory, so you do not have to teach it again.
 
-Support period 7 days of technical consultation 2-hour online walkthrough + 7 days post-installation support
+- Writing . An OpenAI and Harvard study (NBER w34255) found that writing makes up 40% of work conversations.
 
-Contact [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20Co-existence%20Edition.) [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20plan.)
+We can set it up so that: paste in a draft, change the tone, catch typos and turn it into a Word file.
 
-The Co-existence Edition is for people who want to try running two AI Agents side by side with low friction. The Dual AI Agent plan is for those who want both agents to collaborate and share memory. Both plans are listed on the [Personal Plans page](https://thinkbigtw.com/en/pricing/personal/).
+## Example features, set up to your needs
+
+These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature.
+
+Everything in the Single Agent can be set up to your needs  (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single AI Agent page)
+
+### Work: division of labor and schedules
+
+- Scheduled push messages: daily morning briefing, task result notices (sent directly, no model cost)
+
+- Two Agents share the work: one carries out tasks, the other builds experience and turns it into new skills
+
+- Risk prompts: it asks you first before spending money, doing anything irreversible, or sending anything outside
+
+### Daily life: memory
+
+- Personal long-term memory (remembers your habits across conversations)
+
+### Communication: outward-facing content
+
+- Social posts and multi-platform publishing (needs accounts you personally authorize)
+
+## How it is delivered
+
+- Installed remotely by an engineer, with tutorial videos included.
+
+- Built mainly for Apple silicon Macs; other devices can be assessed.
+
+- Limitation: your computer must stay on and not go to sleep. Scheduled pushes only arrive on time while the computer is online.
+
+- Skill content is set up from an interview; we talk through your needs before you order.
+
+## About your data
+
+With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
+
+If it is legal and you can think of it, we will do our best to build it for you.
+
+[Order on Shopee](https://shopee.tw/product/105010395/54908601707)
 
 ---
 
@@ -904,393 +957,169 @@ Start by defining data inputs, deliverable specifications, review responsibility
 
 URL: https://thinkbigtw.com/en/enterprise/
 
-# Enterprise AI Agent Deployment | On-Premises, Security-First | Think BIG
+# Business Plan | Think BIG!
 
-ENTERPRISE AI AGENT DEPLOYMENT
+-
 
-# AI Agents for your business,
-built around your workflows.
+-
 
-Starter plan
-Standard plan
-Complete plan
+-
 
-AI Agents answer from your company documents with cited sources. Unlimited users. All three plans include first-year maintenance. On-premises or cloud-assisted deployment options available.
+-
 
-[Self-assessment: find the right plan›](https://thinkbigtw.com/en/enterprise/start/)
-[Request a 30-minute assessment via WhatsApp›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
+-
 
-ABOUT THINK BIG
+-
 
-Think BIG (大想成業有限公司) is a Taiwan-based enterprise AI Agent deployment provider serving clients worldwide. Starting from enterprise data security, we use TB FRAME — our four-phase deployment methodology: Assess, Build, Validate, Operate — to build AI Agents inside your own environment (your hardware, or a cloud host registered to your account). We provide one year of run-alongside operations support. With on-premises deployment, the model and your documents are processed on your company hardware. With cloud-assisted deployment, questions and retrieved document passages are sent to the model provider under their terms of service. We act as your outsourced FDE (Forward Deployed Engineer) team: from understanding requirements, building the knowledge base and AI Agents, and going live, through to ongoing operations.
+-
 
-On-premises deployment does not mean all connections are local. If a cloud model or external service is used, related requests are still sent out. If data must not leave your premises, local model support, outbound restrictions, logging and backup configuration must each be confirmed.
+-
 
-OPERATING MODEL AI Agent Governance Architecture
+-
 
-DECISION AUTHORITY
+Cloud or local model
 
-## Enterprise Decision & Authorisation
+# No more digging through folders: colleagues just ask, and the AI answers from company documents
 
-Goal definition · Permission approval · Output review
+New hires ask about policies, customer service looks up price lists, managers check reports. Answers come with sources; if nothing is found, it hands the question back to a person to confirm instead of guessing.
 
-01 / KNOWLEDGE
+From NT$52,600 (excl. tax; NT$55,230 incl. tax; hardware not included)
 
-### Knowledge & Data
+[Book on LINE](https://lin.ee/n5KW430)
 
-Authorised sources
-Access scope
+## What each department uses AI for most
 
-02 / EXECUTION
+Unless noted, the figures below are from global or large-enterprise samples, not Taiwan SME figures.
 
-### AI Agent Collaboration
+- Owner / manager : AIF and Dun & Bradstreet 2026 survey, priority areas for AI investment among Taiwan SMEs: operating efficiency and cost control 39%, customer acquisition and sales conversion 26%.
 
-Task allocation
-Output handover
+We can set it up so that: company documents are built into a knowledge base (RAG), managers ask directly, and answers come with sources.
 
-03 / CONTROL
+- Customer service : 59% of customer service departments have adopted AI (Kore.ai × Paradoxes, 2025, global survey of decision makers).
 
-### Governance & Validation
+We can set it up so that: reply drafts and a list of items for people to handle, sent only after a person confirms.
 
-Change registration
-Exception handling
+- Finance : Gartner, November 2025, survey of 183 finance leaders: knowledge management 49%, error and anomaly detection 34%.
 
-GOVERNANCE FOUNDATION
+We can set it up so that: lookups of regulations and internal policies with sources; if nothing is found, it hands back to a person to confirm.
 
-### Governance Foundation
+- Administration and field work : OpenAI and Harvard study (NBER w34255): "recording and organizing information" makes up 18.4% of work messages.
 
-Data sovereignty · Human approval · Auditable records
+We can set it up so that: official documents and files organized into Excel, plus receipt checking and progress lookups.
 
-Responsibility relationship diagram for deployment design. Actual configuration is confirmed per process, data policy and authorisation scope.
+## Which AI departments you can set up
 
-[What is RAG? Learn how AI answers from your company documents ›](https://thinkbigtw.com/en/enterprise/rag/)
+One AI colleague per department, each handling its own work, and able to hand off to one another. Pick a few to start with, depending on what your company needs:
 
-ADOPTION CRITERIA
+- ### Owner's office
 
-## Deployment viability
-defined by process maturity.
+Daily morning briefing, daily/weekly/monthly sales reports, risks flagged for your approval first
 
-Assessment covers business requirements, data availability and organisational accountability. Confirm what can be implemented first, then select the deployment and service configuration.
+- ### Administration / HR
 
-### Applicable situations
+Q&A on company policies and SOPs, official document organizing, receipt checking and progress lookups
 
-- Repetitive look-ups, data consolidation and progress tracking are consuming management resources.
+- ### Sales
 
-- Documents and operating rules are in place; you need to integrate AI into day-to-day workflows.
+Customer inquiry organizing, quote and follow-up drafts, nearby customer and place lookups
 
-- Data sovereignty, access control and ongoing maintenance after deployment are priorities.
+- ### Customer service
 
-### Assessment prerequisites
+Reply drafts, a list of items for people to handle, no missed messages
 
-- The process has describable steps, inputs and expected outputs.
+- ### Finance
 
-- Data sources, processing locations and authorisation responsibilities can be confirmed.
+Sales details organized into Excel, daily finance report, daily AI cost report
 
-- An acceptance owner is designated, and required human approvals are defined.
+- ### Quality / safety
 
-[Personal use: see personal plans ↗](https://thinkbigtw.com/en/pricing/)
+Photos sorted into reports automatically, quality-control forms, field alarms and pre-shift briefings
 
-[See deliverables and permissions per AI department ›](https://thinkbigtw.com/en/enterprise/departments/)
+- ### Projects / schedule
 
-FUNCTIONAL CAPABILITIES
+Progress lookups, daily gap reminders
 
-## Turn department requirements
-into verifiable capabilities.
+- ### Marketing
 
-Break business requirements down into describable inputs, execution steps and deliverables, with human approval built into the workflow design.
+Copy drafts, AI image generation (subject to environment check)
 
-MARKETING
+- ### Purchasing / warehouse
 
-### Content production lacks a consistent knowledge foundation.
+Can be assessed to your needs
 
-AI AGENT CAPABILITY
+## Example features, set up to your needs
 
-### Compile approved materials into editable content drafts.
+These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature. Items marked "subject to environment check" depend on your device, network or third-party services.
 
-Deliverables and acceptance: content drafts and items to confirm. External actions require approval from the designated responsible person.
+### Administration, HR and company-wide
 
-CUSTOMER SERVICE
+- Company knowledge base Q&A (RAG (retrieval-augmented generation): answers from your own documents, with sources; if nothing is found it hands back to a person to confirm), automatic fact-checking when unsure, glossary of company terms
 
-### Repetitive enquiries increase the customer service workload.
+- The knowledge base can hold policies, SOPs, product information, contract templates and past quotes; after documents change, just refresh it
 
-AI AGENT CAPABILITY
+- Official documents and files organized into Excel, receipt checking, progress lookups
 
-### Prepare replies from the knowledge base; route exceptions to a person.
+- Multi-department Agent division of labor, daily gap sentinel
 
-Deliverables and acceptance: reply drafts and a list of items for human handling. External actions require approval from the designated responsible person.
+- Groundwork for quality-control forms and incoming-document registers
 
-SALES OPERATIONS
+### Customer service and sales
 
-### Enquiry records and follow-up tracking are not integrated.
+- Customer service reply drafts, list of items for people to handle
 
-AI AGENT CAPABILITY
+- No missed replies: queuing and resend mechanism
 
-### Consolidate requirement context and create a trackable sales to-do list.
+### Field work and quality control
 
-Deliverables and acceptance: enquiry summaries and tracking list. External actions require approval from the designated responsible person.
+- Photos automatically sorted into reports, text transcription from photos (subject to environment check)
 
-FINANCE OPERATIONS
+- Field alarm voice calls, daily pre-shift briefings (subject to environment check); needs your company's own telecom and messaging accounts
 
-### Report consolidation and variance reconciliation depend on manual effort.
+### Marketing
 
-AI AGENT CAPABILITY
+- AI image generation (subject to environment check; needs a local GPU)
 
-### Consolidate authorised data and produce sourced variance checklists.
+### Finance and the owner's office
 
-Deliverables and acceptance: consolidated reports and variance list. External actions require approval from the designated responsible person.
+- Sales and detail data collected into Excel in one step (periods, weekdays, weekly statistics, unusually high and low days marked)
 
-ENTERPRISE PLANS
+- Daily, weekly and monthly sales reports produced and delivered automatically, with missing data filled back in automatically
 
-## AI Agents for your business,
-priced per the quotation.
+- Daily finance report web page (login-protected, updated every day)
 
-Three plans with clearly defined scope and delivery timelines. All plans include first-year maintenance. AI model costs are borne by the client. Actual content and pricing are confirmed in a requirements consultation.
+- Daily morning briefing sent straight to your phone, daily AI usage cost report
 
-STARTER
+- Risk rules: before spending money, sending anything outside or taking an irreversible action, it flags the risk first and asks you to confirm
 
-Starter plan
+### Purchasing and warehouse
 
-Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
+- Can be assessed to your needs
 
-Staff ask questions about company SOPs and policies. The knowledge base holds up to 30 documents. AI answers from documents with cited sources; unanswered questions are routed to a person for confirmation.
+### Host machine and maintenance
 
-BEST FOR
-Teams of 5–20 at shops, studios or service locations with a few dozen documents, wanting staff or customers to query SOPs, pricing or FAQs.
+- Local model host setup, backup and maintenance
 
-- Knowledge base: 1, up to 30 documents, 300 pages, 50 MB
+## AI readiness check
 
-- Channel: messaging channel or web embed (choose one)
+The Business Plan includes an AI readiness check: with your company's written consent, and after your company has informed its employees, we take stock of software usage time and file types on computers, without reading content or recording passwords, to find where AI is worth starting.
 
-- Unlimited users
+## How it is delivered
 
-- Tutorial videos (1–2) and quick-start guide
+- Installed remotely by an engineer, with tutorial videos and an operating manual included.
 
-- Year-1 maintenance: incident response, bug fixes, security patches, monitoring
+- Built mainly for Apple silicon Macs; other devices can be assessed.
 
-- Response time: 1 business day human response
+- Limitation: the host machine must stay on and not go to sleep; schedules, sentinels and push messages only work while the host is online.
 
-- Year-1 document update: once (up to 20 documents)
+- Scope and starting price are confirmed in a needs interview; you are welcome to book one first.
 
-- Delivery: within 30 days of scope freeze and data handover
+## About your data
 
-Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
+With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
 
-STANDARD
-STANDARD
+If it is legal and you can think of it, we will do our best to build it for you.
 
-Standard plan
-
-Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
-
-Answers questions and helps draft content. Up to 100 documents including spreadsheets, plus one work-draft task (enquiry summary, reply draft or form summary — choose one).
-
-BEST FOR
-Companies of 10–50 people with hundreds of documents and daily repetitive paperwork to organise or draft.
-
-- Knowledge base: 1, up to 100 documents, 1,000 pages, 200 MB + spreadsheets
-
-- Work-draft task: 1 (choose one of three)
-
-- Channel: messaging, web embed or internal communications tool (choose one)
-
-- Unlimited users
-
-- Tutorial videos (2–3) and operator guide
-
-- Year-1 maintenance: fully covered (same as Starter)
-
-- Response time: 1 business day human response
-
-- Year-1 document updates: twice (up to 50 documents each time)
-
-- Delivery: within 30 days of scope freeze and data handover
-
-Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
-
-COMPLETE
-
-Complete plan
-
-Per the quotation — payment in three milestones: 40% at signing, 30% at mid-delivery, 30% at acceptance
-
-Answers questions, drafts content and keeps documents in sync automatically. Includes one read-only integration (e.g. automatic cloud drive folder sync) and optional add-on packs.
-
-BEST FOR
-Teams of 20–100 with frequently updated documents in cloud drives who want AI to sync automatically, without manual uploads, and may add large knowledge bases or table lookups later.
-
-- Knowledge base: 1, up to 100 documents, 1,000 pages, 200 MB + spreadsheets
-
-- Work-draft task: 1 (choose one of three)
-
-- Read-only integration: 1 (e.g. automatic cloud drive sync)
-
-- Channel: messaging, web embed or internal communications tool (choose one)
-
-- Unlimited users
-
-- Tutorial videos (3–5) and full operator guide
-
-- Year-1 maintenance: fully covered; 1 hour operations consultation per month
-
-- Year-1 document updates: quarterly, 4 times (up to 50 documents each time)
-
-- Delivery: within 30 days of scope freeze and data handover
-
-- Optional add-on packs available
-
-Year-2 renewal per the quotation. Client decides whether to renew; no automatic billing.
-
-### COMMON CONDITIONS — ALL THREE PLANS
-
-- Unlimited users (performance depends on client hardware specifications)
-
-- AI model costs are borne by the client; Think BIG does not advance or resell model fees. Choose on-premises (model runs on your hardware, data processed on-site) or cloud-assisted (use your own account to access the model provider's API; questions and retrieved passages are sent to the provider)
-
-- Client provides one computer that can run 24 hours a day; for the cloud-assisted option a cloud host may be used instead
-
-- A remote device pre-check is conducted before contract signing — if the system cannot be installed, no contract is signed and no payment is made
-
-- All three plans can be upgraded within Year 1 by paying the price difference: request a consultation for upgrade conditions
-
-Upgrade within Year 1 by paying the difference — money already paid is not wasted. Add-on packs (advanced features) are only available for the Complete plan.
-
-[Self-assessment: find the right plan ›](https://thinkbigtw.com/en/enterprise/start/)
-[Request a 30-minute assessment via WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20request%20a%2030-minute%20enterprise%20assessment.)
-
-DATA SOVEREIGNTY
-
-## Choose your deployment architecture
-based on your data policy.
-
-Data sovereignty (Data Sovereignty) is enforced through processing location, access permissions and outbound transmission rules. Select the configuration based on your enterprise policy and hardware conditions, then verify connector compatibility item by item.
-
-### On-premises
-
-The model and designated data are processed on your company hardware. If data must not leave your premises, logging, backup and all outbound connections must also be verified.
-
-### Cloud-assisted
-
-When a cloud model is used, questions and retrieved document passages are sent to the model provider for processing under their terms of service. Before deployment, list the fields sent, purposes, account permissions and costs, then confirm authorisation before including in the workflow.
-
-Supported technologies: OpenClaw, Claude, MCP, RAG. Integration and model changes require compatibility confirmation and re-testing of work results.
-
-[View full methodology and deliverables ›](https://thinkbigtw.com/en/enterprise/process/)
-
-TB FRAME / DELIVERY METHODOLOGY
-
-## Phase deliverables
-as the basis for deployment decisions.
-
-TB FRAME divides deployment into Assess, Build, Validate and Operate. Each phase lists clear outputs and review responsibilities; progress is confirmed jointly based on scope and readiness.
-
-- 01
-
-ASSESS
-
-### Assess & Define
-
-Deliverables Workflow inventory, data catalogue, priority order and acceptance criteria.
-
-- 02
-
-BUILD
-
-### Build & Configure
-
-Deliverables Deployment configuration, role permissions and working AI Agent workflows.
-
-- 03
-
-VALIDATE
-
-### Validate & Deliver
-
-Deliverables Scenario tests, exception records and operations handover documentation.
-
-- 04
-
-OPERATE
-
-### Govern & Operate
-
-Deliverables One-year run-alongside support, maintenance records, change verification and improvement backlog.
-
-OPERATING MODEL
-
-## Beyond tool capability,
-clearly define operational responsibility.
-
-An operating model defines who configures the tools, who approves changes, how outputs are accepted and who tracks incidents.
-
-"Self-managed AI tools" refers to the common practice of a business subscribing to and configuring a tool independently. Product capabilities vary by plan.
-Comparison Self-managed AI tools Think BIG enterprise deployment
-Workflow Business configures prompts and integrations independently. Scope, deliverables and acceptance criteria are jointly defined.
-
-Data location Per tool deployment and terms of service. On-premises first; external services and data flows confirmed item by item.
-
-Permissions and changes Business establishes permissions and change management independently. Least-privilege, human approval and change records are planned from the start.
-
-Ongoing operations Business handles configuration and incidents independently. One-year run-alongside maintenance; tracked and adjusted per contract scope.
-
-Changing tools or models Business assesses compatibility independently. Assisted inventory and re-testing; reusable workflows confirmed.
-
-Acceptance responsibility Using team verifies outputs independently. Acceptance testing per agreed scenarios; test and handover records retained.
-
-PROCUREMENT FAQ
-
-## Clarify deployment conditions
-to support enterprise purchasing decisions.
-
-From data handling and service boundaries to operations responsibility — the foundational information needed for deployment assessment and procurement discussions.
-
-How should we evaluate an enterprise AI deployment provider?
-
-Evaluation should cover workflow fit, data governance, delivery acceptance and ongoing operations. Ask providers to list scope, access permissions, acceptance criteria and incident responsibility. Think BIG demonstrates capability through a live AI team governance process; no client identities or data are shown.
-
-How does on-premises deployment enforce data sovereignty?
-
-On-premises configuration deploys work data and the execution environment to the client's designated hardware. When cloud models or external services are used, the fields sent, purposes and authorisation must be confirmed separately. Requiring data to stay on-site still needs verification of local model support, outbound restrictions, logging and backup configuration. With the cloud-assisted option, questions and retrieved document passages are sent to the model provider under their terms of service.
-
-Does deployment suitability depend on company size?
-
-Suitability depends primarily on how well-defined the target process is, data availability and acceptance responsibility. A single workflow can be scoped for assessment first, then expanded based on validated results. Personal-use requirements are covered by the personal plans.
-
-How is deployment progress planned and managed?
-
-TB FRAME manages deployment in four phases: Assess, Build, Validate and Operate. Progress is confirmed jointly based on scope, data readiness, system access and acceptance criteria, tracked through phase deliverables. All three plans deliver within 30 days of scope freeze and data handover.
-
-What plans are available for enterprise deployment?
-
-Enterprise plans are priced per the quotation. Please [request a requirements consultation](https://thinkbigtw.com/en/contact/) to receive a formal quote. All three plans (Starter, Standard, Complete) include build, tutorial videos and first-year maintenance. Any plan can be upgraded within Year 1 by paying the price difference. Year-2 renewal is optional — decided by the client, with no automatic billing.
-
-How is enterprise service scope defined for quotation?
-
-All three plans have clearly defined scopes and are not individually re-priced. Requirements outside plan scope (e.g. auto-outbound replies to customers, ERP write-back, large-scale integrations) are handled as separate engagements. Deployment service and AI model costs are itemised separately for client purchasing clarity.
-
-What operations responsibilities does TB CONTINUITY cover?
-
-TB CONTINUITY | AI Agent Annual Governance and Operations provides one year of run-alongside support, covering incident tracking, maintenance checks, change records and usage adjustments within the agreed scope. Service contact, responsibility boundaries and new-requirement handling are confirmed in the contract.
-
-How is the AI Agent's autonomous operation scope controlled?
-
-Data and operation scope are configured following least-privilege principles. Outbound sends, spend and formal system changes require approval by the designated responsible person. The AI Agent produces work products and execution evidence; people retain final decision authority.
-
-Can existing tools and models continue to be used?
-
-Existing system interfaces, account permissions and compatibility are inventoried before integration scope is assessed. Changing models requires re-testing workflows and output quality; whether existing configurations can be reused is confirmed through actual testing.
-
-START A CONSULTATION
-
-## Define your business requirements
-and start the assessment.
-
-Fill in the 12-question self-assessment and we will suggest the right plan automatically. Or contact a deployment consultant directly on WhatsApp for a 30-minute fit assessment.
-
-[Self-assessment: we reply with an assessment direction ›](https://thinkbigtw.com/en/enterprise/start/)
-
-The assessment is free and there is no automatic billing. If a formal quotation is needed after the assessment, a formal contract will be sent separately.
-
-[Contact a deployment consultant on WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+[Book on LINE](https://lin.ee/n5KW430)
 
 ---
 
@@ -2941,8 +2770,8 @@ hand them to your AI assistant.
 Cloud or local AI models — your choice.
 Go local and your data doesn't have to leave your computers.
 
-[Cloud / Local LLM Personal plan from NT$7,840](https://thinkbigtw.com/en/pricing/personal/)
-[Cloud / Local LLM Business plan from NT$52,600 (excl. tax)](https://thinkbigtw.com/en/pricing/enterprise/)
+[Cloud / Local LLM Personal plan from NT$7,840](https://thinkbigtw.com/en/single-agent/)
+[Cloud / Local LLM Business plan from NT$52,600 (excl. tax)](https://thinkbigtw.com/en/enterprise/)
 
 [Book a free 30-minute assessment →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20book%20a%20free%2030-minute%20assessment.)
 
@@ -2950,7 +2779,7 @@ Delivered within 30 days once scope is frozen and data is in place. Enterprise p
 
 Plans and pricing
 
-- [Cloud / Local LLM Single Agent NT$7,840 Your first personal AI assistant, on your own computer](https://thinkbigtw.com/en/pricing/personal/#tier1)
+- [Cloud / Local LLM Single Agent NT$7,840 Your first personal AI assistant, on your own computer](https://thinkbigtw.com/en/single-agent/)
 
 - [Cloud / Local LLM Dual Agent NT$17,920 Two assistants that share memory and split the work](https://thinkbigtw.com/en/dual-agent/)
 
@@ -2958,7 +2787,7 @@ Plans and pricing
 
 - [Cloud / Local LLM Flagship Annual NT$48,010 Solo operators handing several departments to AI](https://thinkbigtw.com/en/annual-flagship/)
 
-- [Cloud / Local LLM Business plan from NT$52,600(excl. tax) Companies with several users and a knowledge base](https://thinkbigtw.com/en/pricing/enterprise/)
+- [Cloud / Local LLM Business plan from NT$52,600(excl. tax) Companies with several users and a knowledge base](https://thinkbigtw.com/en/enterprise/)
 
 Workflow integration
 Permissions and review
@@ -13501,6 +13330,124 @@ Start with an audit. Know exactly where you stand — then decide the next step.
 
 ---
 
+URL: https://thinkbigtw.com/en/single-agent/
+
+# Single AI Agent | Think BIG!
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+Cloud or local model
+
+# Send one sentence, and someone takes over the day's small tasks
+
+Your day is planned for you each morning, meeting recordings are turned into text, and things you forget are reminded automatically when the time comes.
+
+NT$7,840
+
+[Order on Shopee](https://shopee.tw/product/105010395/45107951008)
+
+## What people use AI for most
+
+- Getting or learning knowledge (56.5%), compiling information (34.4%) . Source: 行政院公平會「消費者使用生成式 AI 工具之行為問卷調查」(Taiwan Fair Trade Commission consumer survey on generative AI use), May 2026, n=1,079, multiple answers allowed.
+
+We can set it up so that: send it a document and get the key points and to-dos; when it looks something up, it shows you the source.
+
+- Getting work done (55.0%) . Same source.
+
+We can set it up so that: it sends one to-do summary each morning, and stays quiet when there is nothing to do.
+
+- Life planning and management (25.6%) . Same source.
+
+We can set it up so that: hand off a note in one sentence, and it messages you when the time comes.
+
+- Writing . In an OpenAI and Harvard study (NBER w34255) of about 1.1 million ChatGPT conversations, roughly two thirds of writing conversations were about editing text the user supplied.
+
+We can set it up so that: paste in a passage, change its tone, smooth it out, and catch typos.
+
+## Example features, set up to your needs
+
+These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature. Items marked "subject to environment check" depend on your device, network or third-party services.
+
+### Work
+
+- Date and day-count calculation (including ROC calendar years), Taiwan working days and holidays
+
+- Note reminders and due-date messages
+
+- Daily to-do summary
+
+### Documents
+
+- Summarize key points of documents (Word, Excel, PDF, slides, plain text)
+
+- Audio to transcript (Traditional Chinese)
+
+- Text file to Word
+
+- Proofreading: paste text or send a document to check
+
+- Text recognition in images (subject to environment check)
+
+- Video summaries (subject to environment check)
+
+### Daily life
+
+- Web lookups (with sources)
+
+- Nearby places (subject to environment check)
+
+- Describing images (subject to environment check)
+
+### Communication
+
+- Rewriting and polishing text, simple Q&A
+
+- Web chat page on your computer (subject to environment check)
+
+### Safety and host machine
+
+- For your own use only, never added to group chats, with safeguards against suspicious instructions hidden in documents
+
+- Local model host setup (subject to hardware check)
+
+## How it is delivered
+
+- Built mainly on OpenClaw; others can be assessed.
+
+- Installed remotely by an engineer, with tutorial videos included.
+
+- Built mainly for Apple silicon Macs; other devices can be assessed.
+
+- Limitation: your computer must stay on and not go to sleep. Reminders and the daily summary only arrive on time while the computer is online.
+
+- If your computer does not meet the specs, we switch to a cloud model at the same plan and the same price.
+
+## About your data
+
+With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
+
+If it is legal and you can think of it, we will do our best to build it for you.
+
+[Order on Shopee](https://shopee.tw/product/105010395/45107951008)
+
+---
+
 URL: https://thinkbigtw.com/en/skill-pack/
 
 # Skill Pack Add-on | Custom AI Agent Skills | Think BIG
@@ -13741,417 +13688,169 @@ VALIDATE BEFORE SCALE
 
 URL: https://thinkbigtw.com/enterprise/
 
-# 企業 AI Agent 導入｜從資安出發的地端部署與治理｜Think BIG
+# 企業方案｜Think BIG!
 
-ENTERPRISE AI / 企業導入
+-
 
-# 公司導入 AI，
-依你的流程量身規劃。
+-
 
-入門方案
-標準方案
-完整方案
+-
 
-照公司文件回答、附出處，不限使用人數。三種方案都含第一年維護服務。三種方案都可以選地端版（資料留在公司設備）或雲端輔助版（經模型廠商處理）。
+-
 
-[自助評估，看看哪種方案適合›](https://thinkbigtw.com/enterprise/start/)
-[預約 30 分鐘免費評估›](https://lin.ee/n5KW430)
+-
 
-ABOUT THINK BIG
+-
 
-Think BIG（大想成業有限公司）是總部位於台灣、服務全球的企業 AI Agent 導入商。我們從守護企業資安出發，以 TB FRAME（我們的四階段導入方法：評估、建置、驗證、維運）把 AI Agent 建在公司自己的環境裡（公司設備，或公司名下的雲端主機），並提供一年陪跑維運。選地端版時，模型與文件都在公司設備內處理；選雲端輔助版時，問題與檢索到的文件段落會送到模型廠商處理。我們扮演企業的遠端 FDE（Forward Deployed Engineer，前沿部署工程師）團隊：從聽懂需求、建置知識庫與 AI Agent、上線，到後續維運，一手包辦；另有個人 AI 助理安裝方案。
+-
 
-地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
+-
 
-OPERATING MODEL AI Agent 治理架構示意
+-
 
-DECISION AUTHORITY
+雲端／本地大模型
 
-## 企業決策與授權
+# 同事不用再翻資料夾，直接問，AI 照公司文件回答
 
-目標定義 · 權限核准 · 成果覆核
+新人問規章、客服查價目、主管看報表，答案附出處；查不到就交回給人確認，不亂猜。
 
-01 / KNOWLEDGE
+NT$52,600 起（未稅，含稅 NT$55,230；不含硬體）
 
-### 知識與資料
+[LINE 預約](https://lin.ee/n5KW430)
 
-授權來源
-存取範圍
+## 各部門最常拿 AI 做的事
 
-02 / EXECUTION
+以下除註明外為全球或大型企業樣本，非台灣中小企業數字。
 
-### AI Agent 協作
+- 老闆／主管 ：AIF 與鄧白氏 2026 調查，台灣中小企業 AI 投資優先領域，營運效率與成本控管 39%、客戶開發與銷售轉換 26%。
 
-任務分工
-產物交接
+我們可以幫你設定成：把公司文件建成知識庫（RAG），主管直接問，答案附出處。
 
-03 / CONTROL
+- 客服 ：客服部門導入 AI 的比例 59%（Kore.ai × Paradoxes，2025，全球決策者調查）。
 
-### 治理與驗證
+我們可以幫你設定成：客服回覆草稿與待人工處理清單，由人確認後才送出。
 
-變更登記
-例外處理
+- 財務 ：Gartner 2025/11 對 183 位財務主管的調查，知識管理 49%、錯誤與異常偵測 34%。
 
-GOVERNANCE FOUNDATION
+我們可以幫你設定成：法規與內部規定查詢，附出處；查不到交回人確認。
 
-### 治理基礎
+- 行政與現場 ：OpenAI 與哈佛研究（NBER w34255），職場訊息中「記錄與整理資訊」占 18.4%。
 
-資料主權 · 人工核准 · 可稽核紀錄
+我們可以幫你設定成：公文與文件整理成 Excel、收件點收與進度查詢。
 
-導入設計的責任關係示意；實際配置依流程、資料政策與授權範圍確認。
+## 可以設哪些 AI 部門
 
-[什麼是 RAG？了解 AI 如何依公司文件回答 ›](https://thinkbigtw.com/enterprise/rag/)
+一個部門一位 AI 同事，各管各的事，彼此可以交接。依公司需要挑幾個開始：
 
-ADOPTION CRITERIA
+- ### 老闆室
 
-## 以流程成熟度，
-界定導入可行性。
+每日早報、營業日報週報月報、風險先請示
 
-評估同時涵蓋業務需求、資料可用性與組織責任。先確認可實施的範圍，再選擇部署與服務配置。
+- ### 行政／人資
 
-### 適用情境
+公司規章與 SOP 問答、公文整理、收件點收與進度查詢
 
-- 重複性查詢、資料彙整與進度追蹤占用管理資源。
+- ### 業務
 
-- 已有文件與作業規則，需要將 AI 整合至日常流程。
+客戶詢問整理、報價與跟進草稿、查附近客戶與地點
 
-- 重視資料主權、存取控管與部署後的持續維護。
+- ### 客服
 
-### 評估前提
+回覆草稿、待人工處理清單、訊息不漏接
 
-- 流程具備可描述的步驟、輸入與預期產物。
+- ### 財務
 
-- 資料來源、處理位置與授權責任可確認。
+業績明細整理成 Excel、財務日報、AI 費用日報
 
-- 已指定驗收負責人，並定義必要的人工核准。
+- ### 品管／工安
 
-[個人使用需求：參閱個人方案 ↗](https://thinkbigtw.com/pricing/personal/)
+照片自動分類貼報告、品管聯單、現場警報與勤前告知
 
-[查看各 AI 部門的產物與權限 ›](https://thinkbigtw.com/enterprise/departments/)
+- ### 專案／工期
 
-FUNCTIONAL CAPABILITIES
+進度查詢、缺口每日提醒
 
-## 將部門需求，
-轉化為可驗收的能力。
+- ### 行銷
 
-將工作需求拆解為可描述的輸入、執行步驟與產物，並將人工核准納入流程設計。
+文案草稿、AI 生圖（依環境評估）
 
-MARKETING / 行銷
+- ### 採購／倉管
 
-### 內容製作缺乏一致的知識基礎。
+可依需求評估
 
-AI AGENT / 能力範圍
+## 可依需求設定的功能範例
 
-### 整合核准素材，產出可編修的內容草稿。
+以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。標「依環境評估」者，需視設備、網路或第三方服務而定。
 
-交付與驗收：內容草稿與待確認項目。對外行動須經指定負責人核准。
+### 行政、人資與全公司
 
-CUSTOMER SERVICE / 客服
+- 公司知識庫問答（RAG：先查公司自己的文件再回答，答案附出處；查不到交回人確認）、不確定時自動查證、專有名詞辭典
 
-### 重複查詢增加客服處理負擔。
+- 知識庫可放規章、SOP、產品資料、合約範本、過往報價，文件更新後重新整理即可
 
-AI AGENT / 能力範圍
+- 公文／文件整理成 Excel、收件點收、進度查詢
 
-### 依知識依據準備回覆，例外情境交由人工處理。
+- 多部門 Agent 分工、每日缺口哨兵
 
-交付與驗收：回覆草稿與待人工處理清單。對外行動須經指定負責人核准。
+- 品管聯單與收文簿前置
 
-SALES OPERATIONS / 業務
+### 客服與業務
 
-### 詢問紀錄與後續追蹤缺乏整合。
+- 客服回覆草稿、待人工處理清單
 
-AI AGENT / 能力範圍
+- 回覆不漏接：排隊與重送機制
 
-### 彙整需求脈絡，建立可追蹤的業務待辦。
+### 現場與品管
 
-交付與驗收：詢問摘要與追蹤清單。對外行動須經指定負責人核准。
+- 照片自動分類貼報告、照片文字抄寫（依環境評估）
 
-FINANCE OPERATIONS / 財務
+- 現場警報語音電話、每日勤前告知（依環境評估，需貴公司自有電信與通訊帳號）
 
-### 報表彙整與差異核對依賴人工。
+### 行銷
 
-AI AGENT / 能力範圍
+- AI 生圖（依環境評估，需本地 GPU）
 
-### 依授權彙整資料，提供來源與差異核對清單。
+### 財務與老闆室
 
-交付與驗收：彙整報表與差異清單。對外行動須經指定負責人核准。
+- 業績／明細資料一鍵整理成 Excel（期間、星期、週統計，標出特高特低日）
 
-PRICING / 方案定價
+- 營業日報、週報、月報自動產出並送達，缺漏自動回補
 
-## 公司導入 AI，
-NT$52,600 起（未稅）
+- 財務日報網頁（登入保護、每日更新）
 
-公司方案　NT$52,600 起（未稅，含稅 NT$55,230）
+- 每日早報直送手機、AI 用量成本日報
 
-跟個人年約的差別：公司多人使用、用公司資料建知識庫、本地模型部署與資安審查。不含硬體。
+- 風控規則：花錢、對外發送、不可逆的動作，先標風險再請你確認
+
+### 採購、倉管
+
+- 可依需求評估
+
+### 主機與維運
+
+- 本地大模型主機建置與備份、維運
+
+## AI 導入健檢
 
 企業方案包含 AI 導入健檢：經貴公司書面同意並由貴公司告知員工，盤點電腦上的軟體使用時間與檔案類型，不讀內容、不記錄密碼，找出 AI 最值得先做的事。
 
+## 交付方式
+
+- 由工程師遠端安裝，另附教學影片與操作手冊。
+
+- 設備以 Apple 晶片 Mac 為主，其他設備可評估。
+
+- 限制：主機要開著、不能睡眠，排程、哨兵與推播都靠主機在線才會運作。
+
+- 範圍與起價以需求訪談確認，歡迎先預約。
+
+## 資料說明
+
 選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
 
-三種方案，清楚定義範圍與交付天數，都含第一年維護服務；AI 模型費用由客戶自備。實際內容與報價依需求訪談確認。
+你想得到的、合法的，我們都會盡力幫你做到。
 
-STARTER / 入門級
-
-入門方案
-
-依實際需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
-
-員工直接問公司的 SOP 和規章。知識庫最多 30 份文件，AI 依文件回答、附出處；沒有依據就交回人確認。
-
-BEST FOR
-5–20 人的店家、工作室、門市，文件幾十份，讓員工或客人查 SOP、價目、常見問題。（醫療院所請改評估標準方案以上）
-
-- 知識庫：1 個，≤30 份、≤300 頁、≤50 MB
-
-- 通路：LINE 官方帳號或網頁嵌入，二選一
-
-- 使用人數：不限
-
-- 教學影片 1–2 支 + 快速手冊
-
-- 首年維護：異常排查、缺陷修正、安全修補、監控
-
-- 回覆時效：工作日 1 個工作日內真人回覆
-
-- 首年文件更新：1 次（≤20 份）
-
-- 交付天數：範圍凍結與資料到位後 30 天內
-
-第二年選配續約費用依報價（含稅）。由客戶決定是否續約，不自動扣款。
-
-STANDARD
-STANDARD / 標準級
-
-標準方案
-
-依實際需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
-
-回答問題，也幫忙打草稿。文件最多 100 份，還能處理試算表，並新增一項工作草稿任務（詢問摘要、回覆草稿或表單摘要三選一）。
-
-BEST FOR
-10–50 人的中小公司，文件上百份，每天有重複的文書工作要整理或擬稿。
-
-- 知識庫：1 個，≤100 份、≤1,000 頁、≤200 MB + 試算表
-
-- 工作草稿任務：1 項（三選一）
-
-- 通路：LINE、網頁或內部通訊工具，三選一
-
-- 使用人數：不限
-
-- 教學影片 2–3 支 + 操作手冊
-
-- 首年維護：全含（同入門級）
-
-- 回覆時效：工作日 1 個工作日內真人回覆
-
-- 首年文件更新：每半年 1 次，共 2 次（每次 ≤50 份）
-
-- 交付天數：範圍凍結與資料到位後 30 天內
-
-第二年選配續約費用依報價（含稅）。由客戶決定是否續約，不自動扣款。
-
-COMPLETE / 完整級
-
-完整方案
-
-依實際需求報價｜付款分三期：簽約 40%、中期交付 30%、驗收通過 30%
-
-回答、打草稿，文件還會自動同步。額外包含一個唯讀串接（例如雲端硬碟資料夾自動同步），以及可加購擴充包。
-
-BEST FOR
-20–100 人，文件常更新且放在雲端硬碟，希望 AI 自動同步、不用人工上傳，之後可能加購大量知識庫或表格查詢。
-
-- 知識庫：1 個，≤100 份、≤1,000 頁、≤200 MB + 試算表
-
-- 工作草稿任務：1 項（三選一）
-
-- 唯讀串接：1 個（例如雲端硬碟自動同步）
-
-- 通路：LINE、網頁或內部通訊工具，三選一
-
-- 使用人數：不限
-
-- 教學影片 3–5 支 + 完整操作手冊
-
-- 首年維護：全含，每月 1 小時操作諮詢
-
-- 首年文件更新：每季 1 次，共 4 次（每次 ≤50 份）
-
-- 交付天數：範圍凍結與資料到位後 30 天內
-
-- 可加購擴充包
-
-第二年選配續約費用依報價（含稅）。由客戶決定是否續約，不自動扣款。
-
-### 三種方案共同條件
-
-- 使用人數不限（效能取決於客戶設備規格）
-
-- AI 模型費用由客戶自備，TB 不代墊、不轉售。可選地端版（模型裝在公司設備，資料在公司內處理）或雲端輔助版（用公司自己的帳號向模型廠商申請 API，問題與檢索到的文件段落會送到模型廠商處理）
-
-- 客戶自備一台 24 小時開機的電腦；選雲端輔助版時也可用雲端主機
-
-- 簽約前先做遠端設備預檢，裝不起來就不簽，客戶不會付到錢
-
-- 三種方案首年內均可補差價升級：預約訪談了解升級條件
-
-首年內補差價升級，前面付過的錢不會浪費。擴充包（進階功能）僅限完整級加購。
-
-[填問卷，看看哪種方案適合我 ›](https://thinkbigtw.com/enterprise/start/)
-[預約 30 分鐘免費評估 ›](https://lin.ee/n5KW430)
-
-DATA SOVEREIGNTY
-
-## 以資料政策，
-決定部署架構。
-
-資料主權（Data Sovereignty）落實於處理位置、存取權限與外部傳送規則。依企業政策與設備條件選擇配置，並逐項驗證串接相容性。
-
-### 地端版
-
-模型與指定資料在公司設備內處理。若要求資料不外傳，也要一起核對日誌、備份及外部串接。
-
-### 雲端輔助版
-
-使用雲端模型時，問題與檢索到的文件段落會送到模型廠商處理，適用該廠商的服務條款。導入前先列出傳送欄位、用途、帳號權限與費用，確認授權後才納入流程。
-
-支援技術：OpenClaw、Claude、MCP、RAG。串接與更換模型需確認相容性，並重新驗證工作結果。
-
-[查看完整流程與可列印工作表 ›](https://thinkbigtw.com/enterprise/process/)
-
-TB FRAME / DELIVERY METHODOLOGY
-
-## 以階段交付物，
-建立導入決策依據。
-
-TB FRAME 將導入劃分為評估、建置、驗證與維運。各階段明確列出成果與覆核責任，進度依範圍及準備條件共同確認。
-
-- 01
-
-ASSESS
-
-### 評估定義
-
-交付物 流程盤點、資料清單、優先序與驗收基準。
-
-- 02
-
-BUILD
-
-### 架構建置
-
-交付物 部署配置、角色權限與可操作的 AI Agent 流程。
-
-- 03
-
-VALIDATE
-
-### 驗證交付
-
-交付物 情境測試、例外處理紀錄與操作交接文件。
-
-- 04
-
-OPERATE
-
-### 治理維運
-
-交付物 一年陪跑、維護紀錄、變更驗證與改善待辦。
-
-OPERATING MODEL
-
-## 工具能力之外，
-明確界定營運責任。
-
-營運模型（Operating Model）定義工具由誰配置、變更由誰核准、產物如何驗收，以及問題由誰追蹤。
-
-「一般 AI 工具」指自行訂閱、由企業自行設定與維護的常見使用方式；各產品能力依實際方案而異。
-比較項目
-自行使用 AI 工具
-TB 企業導入
-工作流程
-由企業自行配置提示與串接。
-共同定義流程範圍、產物及驗收條件。
-
-資料位置
-依工具部署與使用條款。
-地端優先，逐項確認外部服務與資料流向。
-
-權限與變更
-由企業自行建立權限與變更管理。
-規劃最小權限、人工核准與變更紀錄。
-
-持續營運
-自行處理設定與問題。
-一年陪跑維護，依合約範圍追蹤與調整。
-
-換工具或模型
-自行評估相容性。
-協助盤點與重新測試，確認可沿用的流程。
-
-驗收責任
-由使用單位自行核對產物。
-依約定情境驗收，保留測試與交接紀錄。
-
-PROCUREMENT FAQ
-
-## 釐清導入條件，
-支持企業採購決策。
-
-從資料處理、服務邊界到維運責任，提供導入評估與採購討論所需的基本依據。
-
-如何評選 AI 導入服務商？
-
-評選應涵蓋流程適配、資料治理、交付驗收及持續維運。要求服務商明列工作範圍、存取權限、驗收條件與問題處理責任。Think BIG 以實際運作的 AI 團隊治理流程說明能力，不展示客戶身分或資料。
-
-地端部署如何落實資料主權？
-
-地端配置將工作資料與執行環境部署於企業指定設備。使用雲端模型或外部服務時，須另行確認傳送欄位、用途與授權。要求資料不出公司，仍需核對本機模型、外連限制、日誌及備份配置。選雲端輔助版時，問題與檢索到的文件段落會送到模型廠商處理，適用該廠商的服務條款。
-
-導入適用性是否取決於企業規模？
-
-適用性主要取決於流程可定義程度、資料可用性與驗收責任。可先界定單一工作流程進行評估，再依驗證結果規劃擴充；僅需個人助理的需求另有個人方案。
-
-導入進度如何規劃與管理？
-
-TB FRAME 以評估定義、架構建置、驗證交付與治理維運四階段管理導入。進度依工作範圍、資料整備、系統權限及驗收條件共同確認，以階段交付物追蹤；三種方案於範圍凍結與資料到位後 30 天內交付。
-
-企業方案有哪些級距？
-
-公司方案 NT$52,600 起（未稅，含稅 NT$55,230）（不含硬體），實際依需求報價，請[預約需求訪談](https://thinkbigtw.com/contact/)取得正式報價。三種方案（入門／標準／完整）均含建置、教學影片與第一年維護服務。首年內均可補差價升級。第二年選配續約，由客戶自己決定是否續約，不自動扣款。
-
-企業服務如何界定報價範圍？
-
-三種方案都是清楚定義的範圍，不另外個別報價。超出方案範圍的需求（例如自動對客人回覆、寫回 ERP、大量串接）另案洽詢。導入服務、AI 模型費用由客戶自備分項說明，供企業確認採購範圍與後續成本。
-
-TB CONTINUITY（AI Agent 年度治理與維運）包含哪些維運責任？
-
-TB CONTINUITY｜AI Agent 年度治理與維運，提供一年陪跑，涵蓋約定範圍內的問題追蹤、維護檢查、變更紀錄與使用調整。服務窗口、責任邊界及新增需求處理方式於合約中確認。
-
-AI Agent 的自主操作權限如何控管？
-
-依最小權限原則配置資料與操作範圍。對外發送、花費及正式系統異動須經指定負責人核准；AI Agent 提供工作產物與執行證據，人員保留關鍵決策權。
-
-既有工具與模型能否持續沿用？
-
-先盤點既有系統介面、帳號權限與相容性，再評估整合範圍。更換模型時須重新驗證流程與輸出品質，既有配置能否沿用依實際測試結果確認。
-
-START A CONSULTATION
-
-## 定義業務需求，
-啟動導入評估。
-
-填寫自助問卷，12 題自動判斷適合哪種方案；或直接透過 LINE 聯繫顧問，30 分鐘評估適配性。
-
-[填問卷，我們回覆評估方向 ›](https://thinkbigtw.com/enterprise/start/)
-
-問卷不收費、不自動扣款。填完後如需正式報價，由專人寄出正式合約。
-
-[透過 LINE 聯繫導入顧問 ›](https://lin.ee/n5KW430)
-
-只想先問怎麼裝、費用怎麼組成？看 [AI Agent 搭建服務](https://thinkbigtw.com/services/ai-agent-setup/)。
+[LINE 預約](https://lin.ee/n5KW430)
 
 ---
 
@@ -16372,7 +16071,7 @@ AI THAT WORKS. FOR YOUR BUSINESS.
 雲端或本地大模型，依你的需求選。
 選本地，資料不必上傳雲端。
 
-[雲端／本地大模型 個人方案 NT$7,840 起](https://thinkbigtw.com/pricing/personal/)[雲端／本地大模型 公司方案 NT$52,600 起（未稅）](https://thinkbigtw.com/enterprise/)
+[雲端／本地大模型 個人方案 NT$7,840 起](https://thinkbigtw.com/single-agent/)[雲端／本地大模型 公司方案 NT$52,600 起（未稅）](https://thinkbigtw.com/enterprise/)
 
 🔊 點一下開聲音
 
@@ -16382,7 +16081,7 @@ AI 生成虛擬人物廣告・主持人為 AI 生成非真實存在
 
 方案與價格
 
-- [雲端／本地大模型 單 Agent 個人助理 NT$7,840 第一次想要一個裝在自己電腦上的 AI 助理](https://thinkbigtw.com/pricing/personal/#tier1)
+- [雲端／本地大模型 單 Agent 個人助理 NT$7,840 第一次想要一個裝在自己電腦上的 AI 助理](https://thinkbigtw.com/single-agent/)
 
 - [雲端／本地大模型 雙 Agent NT$17,920 想讓兩個 AI 助理分工、記憶互通](https://thinkbigtw.com/dual-agent/)
 
@@ -28029,6 +27728,124 @@ URL: https://thinkbigtw.com/services/
 # 服務｜Think BIG
 
 正在為您轉址……[SEO／AEO／GEO 搜尋能見度服務](https://thinkbigtw.com/services/ai-visibility/)
+
+---
+
+URL: https://thinkbigtw.com/single-agent/
+
+# 單 AI Agent｜Think BIG!
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+雲端／本地大模型
+
+# 傳一句話，今天的雜事就有人接手
+
+早上有人幫你排好今天要做什麼，開會錄音有人整理成文字，忘記的事到時間自動提醒你。
+
+NT$7,840
+
+[到蝦皮下單](https://shopee.tw/product/105010395/45107951008)
+
+## 最多人用 AI 做的事
+
+- 獲取或學習知識（56.5%）、資料彙整（34.4%） 。來源：行政院公平會「消費者使用生成式 AI 工具之行為問卷調查」，2026 年 5 月，n=1,079，複選。
+
+我們可以幫你設定成：傳文件給它，整理出重點與待辦；需要查資料時，附上來源給你看。
+
+- 工作處理（55.0%） 。同上來源。
+
+我們可以幫你設定成：每天早上傳一則待辦摘要，沒有待辦就不打擾你。
+
+- 生活規劃管理（25.6%） 。同上來源。
+
+我們可以幫你設定成：一句話交辦記事，時間到了主動傳訊息提醒你。
+
+- 寫作類用途 。OpenAI 與哈佛研究（NBER w34255）分析約 110 萬筆 ChatGPT 對話，寫作對話中約三分之二是修改使用者自己提供的文字。
+
+我們可以幫你設定成：貼一段文字，換語氣、改順、找錯字。
+
+## 可依需求設定的功能範例
+
+以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。標「依環境評估」者，需視設備、網路或第三方服務而定。
+
+### 工作
+
+- 日期與天數計算（含民國年）、台灣工作天與假日計算
+
+- 記事提醒與到期傳訊
+
+- 每日待辦摘要
+
+### 文件
+
+- 整理文件重點（Word、Excel、PDF、簡報、純文字）
+
+- 錄音轉逐字稿（繁體）
+
+- 文字檔轉 Word
+
+- 找錯字：貼文字或傳文件校對
+
+- 圖片文字辨識（依環境評估）
+
+- 影片摘要（依環境評估）
+
+### 生活
+
+- 上網查資料（附來源）
+
+- 查附近地點（依環境評估）
+
+- 看圖說話（依環境評估）
+
+### 溝通
+
+- 文字潤飾與改寫、簡單問答
+
+- 電腦網頁聊天頁（依環境評估）
+
+### 安全與主機
+
+- 只限本人使用、不進群組，對文件裡夾帶的可疑指令設有防護
+
+- 本地大模型主機建置（依硬體評估）
+
+## 交付方式
+
+- 以 OpenClaw 為主，其他可評估。
+
+- 由工程師遠端安裝，另附教學影片。
+
+- 設備以 Apple 晶片 Mac 為主，其他設備可評估。
+
+- 限制：電腦要開著、不能睡眠。提醒與每日摘要都靠電腦在線才會準時送出。
+
+- 電腦規格不足時，改搭雲端大模型，同方案、同價格。
+
+## 資料說明
+
+選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+你想得到的、合法的，我們都會盡力幫你做到。
+
+[到蝦皮下單](https://shopee.tw/product/105010395/45107951008)
 
 ---
 
