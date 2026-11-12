@@ -44,7 +44,7 @@ Assess 評估定義、Build 架構建置、Validate 驗證交付、Operate 治�
 
 URL: https://thinkbigtw.com/annual-flagship/
 
-# 年度旗艦（雙 Agent）｜Think BIG!
+# 旗艦年約（雙 Agent）｜Think BIG!
 
 -
 
@@ -69,6 +69,14 @@ URL: https://thinkbigtw.com/annual-flagship/
 老闆或主理人每天要看的數字、要寫的報告、要發的內容，交給兩個 Agent 分工，每週有人維護。
 
 NT$48,010（續約 NT$43,010）
+
+## 購買保障
+
+- 支援： 一年維護，故障 48 小時內修復。
+
+- 退費： 若因我方技術問題無法完成安裝，全額退費；服務終止依消費者保護法辦理。
+
+- 不包含： 硬體、雲端大模型用量費（選雲端時由服務商另計）。
 
 [到蝦皮下單](https://shopee.tw/product/105010395/47108617097)
 
@@ -126,7 +134,7 @@ NT$48,010（續約 NT$43,010）
 
 ## 交付方式
 
-- 由工程師遠端安裝；每週維護兩套系統。
+- 遠端安裝＋教學影片＋安裝後 7 天技術諮詢；每週維護兩套系統。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -139,6 +147,8 @@ NT$48,010（續約 NT$43,010）
 ## 資料說明
 
 選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+遠端安裝時，工程師可能會看到你畫面上的資料；我們只做安裝與設定，不複製、不保存。
 
 你想得到的、合法的，我們都會盡力幫你做到。超出方案範圍的需求，訪談時會先說明可行性與費用。
 
@@ -174,6 +184,14 @@ URL: https://thinkbigtw.com/annual-pro/
 
 NT$39,910（續約 NT$35,910）
 
+## 購買保障
+
+- 支援： 一年維護，故障 48 小時內修復。
+
+- 退費： 若因我方技術問題無法完成安裝，全額退費；服務終止依消費者保護法辦理。
+
+- 不包含： 硬體、雲端大模型用量費（選雲端時由服務商另計）。
+
 [到蝦皮下單](https://shopee.tw/product/105010395/48258528741)
 
 ## 最多人用 AI 做的事
@@ -194,7 +212,7 @@ NT$39,910（續約 NT$35,910）
 
 以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。
 
-單 Agent 各項皆可依需求設定 ，另可每週依使用情形客製新增技能（日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 AI Agent 頁）
+單 Agent 各項皆可依需求設定 ，另可每週依使用情形客製新增技能（日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 Agent 頁）
 
 ### 維運：每週例行
 
@@ -224,7 +242,7 @@ NT$39,910（續約 NT$35,910）
 
 - 下單前先做需求訪談，確認可用才啟動年約。
 
-- 由工程師遠端安裝；年度內可技術諮詢。
+- 遠端安裝＋教學影片＋安裝後 7 天技術諮詢，之後由一年維護接手。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -235,6 +253,8 @@ NT$39,910（續約 NT$35,910）
 ## 資料說明
 
 選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+遠端安裝時，工程師可能會看到你畫面上的資料；我們只做安裝與設定，不複製、不保存。
 
 你想得到的、合法的，我們都會盡力幫你做到。超出方案範圍的需求，訪談時會先說明可行性與費用。
 
@@ -356,7 +376,7 @@ Think BIG（大想成業有限公司），統一編號 62136066。總部位於�
 
 URL: https://thinkbigtw.com/dual-agent/
 
-# 雙 AI Agent｜Think BIG!
+# 雙 Agent｜Think BIG!
 
 -
 
@@ -382,6 +402,24 @@ URL: https://thinkbigtw.com/dual-agent/
 
 NT$17,920
 
+## 跟單 Agent 差在哪
+
+- 兩個 Agent 分工：一個動手執行，一個累積經驗並轉成新技能。
+
+- 記憶互通：兩邊 MCP 記憶互通，習慣與做事方式跨 Agent 記得。
+
+- 協作會議室：跨 Agent 協作會議室（此版本專屬），分工、回報，結果推播到通訊軟體。
+
+- 排程自動推播：每日早報、任務結果直送，不耗模型費。
+
+## 購買保障
+
+- 支援： 安裝後 7 天技術諮詢。
+
+- 退費： 若因我方技術問題無法完成安裝，全額退費；服務終止依消費者保護法辦理。
+
+- 不包含： 硬體、雲端大模型用量費（選雲端時由服務商另計）。
+
 [到蝦皮下單](https://shopee.tw/product/105010395/54908601707)
 
 ## 最多人用 AI 做的事
@@ -406,7 +444,7 @@ NT$17,920
 
 以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。
 
-單 Agent 各項皆可依需求設定 （日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 AI Agent 頁）
+單 Agent 各項皆可依需求設定 （日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 Agent 頁）
 
 ### 工作：分工與排程
 
@@ -432,7 +470,9 @@ NT$17,920
 
 ## 交付方式
 
-- 由工程師遠端安裝。
+- 遠端安裝＋教學影片＋安裝後 7 天技術諮詢。
+
+- 雙 Agent 共存版請 [LINE](https://lin.ee/n5KW430) 洽詢。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -443,6 +483,8 @@ NT$17,920
 ## 資料說明
 
 選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+遠端安裝時，工程師可能會看到你畫面上的資料；我們只做安裝與設定，不複製、不保存。
 
 你想得到的、合法的，我們都會盡力幫你做到。超出方案範圍的需求，訪談時會先說明可行性與費用。
 
@@ -498,7 +540,7 @@ AI@thinkbigtw.com  · [Chat with us on WhatsApp ›](https://wa.me/886908898903?
 
 URL: https://thinkbigtw.com/en/annual-flagship/
 
-# Flagship Annual Plan (Dual Agent) | Think BIG!
+# Flagship Annual (Dual Agent) | Think BIG!
 
 -
 
@@ -524,6 +566,14 @@ The numbers an owner or principal needs to see each day, the reports to write an
 
 NT$48,010 (renewal NT$43,010)
 
+## Purchase protection
+
+- Support: One year of maintenance; faults repaired within 48 hours.
+
+- Refund: Full refund if installation cannot be completed due to a technical issue on our side. Service cancellation is handled in accordance with consumer protection law.
+
+- Not included: Hardware and cloud model usage fees (billed separately by the provider when you choose a cloud model).
+
 [Order on Shopee](https://shopee.tw/product/105010395/47108617097)
 
 ## What people use AI for most
@@ -548,7 +598,7 @@ We can set it up so that: photos placed into Word or Excel reports, and conversi
 
 These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature.
 
-Everything in the Premier Annual Plan and the Dual Agent can be set up to your needs  (see those two pages)
+Everything in the Premier Annual and the Dual Agent can be set up to your needs  (see those two pages)
 
 ### Reports and data
 
@@ -580,7 +630,7 @@ Everything in the Premier Annual Plan and the Dual Agent can be set up to your n
 
 ## How it is delivered
 
-- Installed remotely by an engineer; both systems are maintained weekly.
+- Remote installation + tutorial videos + 7-day technical consultation after installation; both systems are maintained weekly.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -594,6 +644,8 @@ Everything in the Premier Annual Plan and the Dual Agent can be set up to your n
 
 With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
 
+During remote installation, the engineer may see data on your screen; we only install and configure, and we do not copy or keep it.
+
 If it's legal and you can think of it, we'll do our best to build it. For anything beyond the plan's scope, we'll walk you through feasibility and cost during the consultation.
 
 [Order on Shopee](https://shopee.tw/product/105010395/47108617097)
@@ -602,7 +654,7 @@ If it's legal and you can think of it, we'll do our best to build it. For anythi
 
 URL: https://thinkbigtw.com/en/annual-pro/
 
-# Premier Annual Plan (Single Agent) | Think BIG!
+# Premier Annual (Single Agent) | Think BIG!
 
 -
 
@@ -628,6 +680,14 @@ You just use it. Every week someone checks it and prepares a report, and if a fe
 
 NT$39,910 (renewal NT$35,910)
 
+## Purchase protection
+
+- Support: One year of maintenance; faults repaired within 48 hours.
+
+- Refund: Full refund if installation cannot be completed due to a technical issue on our side. Service cancellation is handled in accordance with consumer protection law.
+
+- Not included: Hardware and cloud model usage fees (billed separately by the provider when you choose a cloud model).
+
 [Order on Shopee](https://shopee.tw/product/105010395/48258528741)
 
 ## What people use AI for most
@@ -648,7 +708,7 @@ We can set it up so that: reply drafts and templates for customer service, sent 
 
 These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature.
 
-Everything in the Single Agent can be set up to your needs , and we can also build new skills each week based on how you use it (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single AI Agent page)
+Everything in the Single Agent can be set up to your needs , and we can also build new skills each week based on how you use it (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single Agent page)
 
 ### Maintenance: weekly routine
 
@@ -678,7 +738,7 @@ Everything in the Single Agent can be set up to your needs , and we can also bui
 
 - We interview you about your needs before you order, and start the annual plan only once we confirm it will work for you.
 
-- Installed remotely by an engineer; technical consulting is available during the year.
+- Remote installation + tutorial videos + 7-day technical consultation after installation, followed by one year of maintenance.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -689,6 +749,8 @@ Everything in the Single Agent can be set up to your needs , and we can also bui
 ## About your data
 
 With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
+
+During remote installation, the engineer may see data on your screen; we only install and configure, and we do not copy or keep it.
 
 If it's legal and you can think of it, we'll do our best to build it. For anything beyond the plan's scope, we'll walk you through feasibility and cost during the consultation.
 
@@ -808,7 +870,7 @@ Learn about fees, installation and data permissions first.](https://thinkbigtw.c
 
 URL: https://thinkbigtw.com/en/dual-agent/
 
-# Dual AI Agent | Think BIG!
+# Dual Agent | Think BIG!
 
 -
 
@@ -834,6 +896,24 @@ What you hand off at bedtime already has a result by morning; your habits and wa
 
 NT$17,920
 
+## How it differs from the Single Agent
+
+- Two Agents share the work: one carries out tasks, the other builds experience and turns it into new skills.
+
+- Shared memory: the two sides share memory over MCP, so your habits and way of working carry across Agents.
+
+- Collaboration meeting room (exclusive to this plan): division of labor and reports, with results pushed to your messaging app.
+
+- Scheduled pushes: the daily morning briefing and task results are sent directly, with no model cost.
+
+## Purchase protection
+
+- Support: 7-day technical consultation after installation.
+
+- Refund: Full refund if installation cannot be completed due to a technical issue on our side. Service cancellation is handled in accordance with consumer protection law.
+
+- Not included: Hardware and cloud model usage fees (billed separately by the provider when you choose a cloud model).
+
 [Order on Shopee](https://shopee.tw/product/105010395/54908601707)
 
 ## What people use AI for most
@@ -858,7 +938,7 @@ We can set it up so that: paste in a draft, change the tone, catch typos and tur
 
 These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature.
 
-Everything in the Single Agent can be set up to your needs  (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single AI Agent page)
+Everything in the Single Agent can be set up to your needs  (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single Agent page)
 
 ### Work: division of labor and schedules
 
@@ -884,7 +964,9 @@ Everything in the Single Agent can be set up to your needs  (date calculation, r
 
 ## How it is delivered
 
-- Installed remotely by an engineer.
+- Remote installation + tutorial videos + 7-day technical consultation after installation.
+
+- For the Dual Agent co-existence edition, please ask us on WhatsApp.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -895,6 +977,8 @@ Everything in the Single Agent can be set up to your needs  (date calculation, r
 ## About your data
 
 With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
+
+During remote installation, the engineer may see data on your screen; we only install and configure, and we do not copy or keep it.
 
 If it's legal and you can think of it, we'll do our best to build it. For anything beyond the plan's scope, we'll walk you through feasibility and cost during the consultation.
 
@@ -981,7 +1065,7 @@ Start by defining data inputs, deliverable specifications, review responsibility
 
 URL: https://thinkbigtw.com/en/enterprise/
 
-# Business Plan | Think BIG!
+# Business | Think BIG!
 
 -
 
@@ -1009,7 +1093,15 @@ New hires ask about policies, customer service looks up price lists, managers ch
 
 From NT$52,600 (excl. tax; NT$55,230 incl. tax; hardware not included)
 
-[Book on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+## Purchase protection
+
+- Price: Starting price excludes tax and hardware.
+
+- Process: We assess first, then quote.
+
+- Delivery and operations: Four-phase TB FRAME delivery (assess, build, validate, operate) and one year of maintenance. Delivered within 30 days once scope is frozen and data is in place.
+
+[Book a free 30-minute assessment](https://thinkbigtw.com/en/enterprise/start/)[WhatsApp us](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
 ## What each department uses AI for most
 
@@ -1125,7 +1217,7 @@ These are example features. What you get is decided after an interview and an as
 
 ## AI readiness check
 
-The Business Plan includes an AI readiness check: with your company's written consent, and after your company has informed its employees, we take stock of software usage time and file types on computers, without reading content or recording passwords, to find where AI is worth starting. Raw data is analyzed locally on your computers and never uploaded to the cloud; reports are aggregated by department with no individual names; employees may opt out.
+Business includes an AI readiness check: with your company's written consent, and after your company has informed its employees, we take stock of software usage time and file types on computers, without reading content or recording passwords, to find where AI is worth starting. Raw data is analyzed locally on your computers and never uploaded to the cloud; reports are aggregated by department with no individual names; employees may opt out.
 
 ## What you receive
 
@@ -1135,7 +1227,7 @@ The Business Plan includes an AI readiness check: with your company's written co
 
 ## How it is delivered
 
-- Installed remotely by an engineer.
+- Remote installation + tutorial videos (operating manual included).
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -1147,9 +1239,11 @@ The Business Plan includes an AI readiness check: with your company's written co
 
 With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
 
+During remote installation, the engineer may see data on your screen; we only install and configure, and we do not copy or keep it.
+
 If it's legal and you can think of it, we'll do our best to build it. For anything beyond the plan's scope, we'll walk you through feasibility and cost during the consultation.
 
-[Book on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
+[Book a free 30-minute assessment](https://thinkbigtw.com/en/enterprise/start/)[WhatsApp us](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
 ## Learn more
 
@@ -1824,7 +1918,7 @@ Each one is excellent. But for long-running tasks where cost control matters, br
 
 - Muse (Meta) : Upgrade or wait for free quota to recover. Power: 5B tokens/week; Maximum: 30B tokens/week. (Source: [official](https://www.meta.com/help/subscriptions/1021145227643680/), verified 2026-09-30)
 
-General approach: route long-running background work to an open-source AI Agent (like OpenClaw, Hermes) — use brand AI Agents for collaboration tasks when needed. → [OpenClaw + coding agent collaboration](https://thinkbigtw.com/full-agent/)
+General approach: route long-running background work to an open-source AI Agent (like OpenClaw, Hermes) — use brand AI Agents for collaboration tasks when needed. → [Dual Agent collaboration](https://thinkbigtw.com/en/dual-agent/)
 
 ## Frequently Asked Questions
 
@@ -1842,7 +1936,7 @@ Common options: wait for quota reset, upgrade your plan, purchase additional cre
 
 Q: Can brand AI Agents and OpenClaw be used together?
 
-Yes. A common setup: OpenClaw handles 24/7 routine tasks; brand AI Agents handle collaboration tasks or ecosystem-specific work. → [OpenClaw + coding agent](https://thinkbigtw.com/full-agent/) / [Dual AI Agent plan](https://thinkbigtw.com/dual-agent/)
+Yes. A common setup: OpenClaw handles 24/7 routine tasks; brand AI Agents handle collaboration tasks or ecosystem-specific work. → [Dual Agent plan](https://thinkbigtw.com/en/dual-agent/)
 
 Q: Does Think BIG's pricing include AI model fees?
 
@@ -2119,7 +2213,7 @@ Hermes's skills are built around "letting it think more deeply and write faster"
 
 OpenClaw is best suited for a single person who wants to automate daily chores.
 
-Hermes is especially useful for solo operators, people who write a lot every day (proposals, documents, emails), or those who want to have ongoing dialogue with their work content.
+Hermes is especially useful for people who write a lot every day (proposals, documents, emails), or those who want to have ongoing dialogue with their work content.
 
 ## Full comparison at a glance
 
@@ -2134,9 +2228,7 @@ Skill ecosystem Messaging, scheduling, files, browser Documents, knowledge base,
 
 Installation fee (Persona edition, one-time) Priced on request Priced on request
 
-Both tools (each running independently, no shared memory) Dual AI Agent Co-existence Edition (two AI Agents operating independently, no memory sync or collaboration room, 7-day technical support)
-
-Both tools (with collaboration room) Dual AI Agent (with cross-Agent collaboration room, MCP memory sync, 2-hour online tech walkthrough + 7-day post-installation support)
+Both tools (with collaboration room) Dual Agent (with cross-Agent collaboration room, MCP memory sync, remote installation + tutorial videos + 7-day technical consultation after installation)
 
 Runs on Your local computer Your local computer
 
@@ -2148,7 +2240,7 @@ Not included Local plan: no model usage fees. Cloud-based large model usage fees
 
 - Is your work mostly chores, or mostly writing?  Lots of chores: OpenClaw. Lots of writing: Hermes.
 
-- Do you want one or two assistants working separately?  One: start with the Persona edition. Two but independent: Co-existence edition. Two with memory sync and collaboration: Dual AI Agent (with collaboration room).
+- Do you want one or two assistants working separately?  One: start with the Persona edition. Two with memory sync and collaboration: Dual Agent (with collaboration room).
 
 If you're unsure: install OpenClaw first and run it for a week or two. You'll learn what you're still missing. Then decide whether to add Hermes. Most people start with OpenClaw.
 
@@ -2161,9 +2253,7 @@ Hermes Agent is an open-source self-learning AI assistant from Nous Research. Th
 Plan Fee Tool included Suited for
 Persona Edition AI Assistant Priced on request, one-time OpenClaw or Hermes (choose one), supportive or challenging personality, full personal skill package + 1 custom helper First installation, want a personalized AI, personal use
 
-Dual AI Agent Co-existence Edition Priced on request OpenClaw + Hermes operating independently, independent memory, personality combo of your choice, no memory sync or collaboration room, 7-day support Low-barrier entry to running both AI Agents simultaneously
-
-Dual AI Agent Priced on request OpenClaw + Hermes with memory sync, cross-Agent collaboration room (this plan only), skills per interview, includes 2-hour online tech walkthrough + 7-day post-installation support Work spans both "executing" and "thinking" types, want two AIs with shared memory
+Dual Agent Priced on request OpenClaw + Hermes with memory sync, cross-Agent collaboration room (this plan only), skills per interview, includes remote installation + tutorial videos + 7-day technical consultation after installation Work spans both "executing" and "thinking" types, want two AIs with shared memory
 
 Premium Annual Priced on request Single main system annual plan, weekly maintenance and skill additions, 48-hour failure repair Want year-round support, don't want to handle maintenance yourself
 
@@ -2185,7 +2275,7 @@ If you have one person and one clear use case, one is enough. If you want two as
 
 Q: Does having both installed cost a lot?
 
-If you want two assistants running independently without shared memory, choose the Co-existence edition. If you want shared memory and a collaboration room, choose the Dual AI Agent (with cross-Agent collaboration room, 2-hour online tech walkthrough + 7-day post-installation support).
+If you want two assistants with shared memory and a collaboration room, choose the Dual Agent (with cross-Agent collaboration room, remote installation + tutorial videos + 7-day technical consultation after installation).
 
 Q: Is the Hermes on Think BIG the same as Hermes Agent online?
 
@@ -2203,13 +2293,13 @@ If you just want to offload daily repetitive chores to your computer — install
 
 If your work constantly involves writing, researching, synthesizing — install Hermes first, start accelerating with writing.
 
-If you want both but no shared memory — Co-existence edition. If you want both AIs with shared memory and collaboration — Dual AI Agent. If you want year-round support — Annual Flagship plan.
+If you want both AIs with shared memory and collaboration — Dual Agent. If you want year-round support — Annual Flagship plan.
 
-If you're still not sure, just start with the Persona edition. OpenClaw or Hermes — pick one, give it personality, get it running. You can add the second one or switch to Dual AI Agent later.
+If you're still not sure, just start with the Persona edition. OpenClaw or Hermes — pick one, give it personality, get it running. You can add the second one or switch to Dual Agent later.
 
 ### Tell us which one you want and we'll get it running
 
-Start with the Persona edition — OpenClaw or Hermes, your choice. Taiwan-based engineers install it remotely, supportive or challenging personality available. Larger budget? Let's discuss the Dual AI Agent or annual plans directly.
+Start with the Persona edition — OpenClaw or Hermes, your choice. Taiwan-based engineers install it remotely, supportive or challenging personality available. Larger budget? Let's discuss the Dual Agent or annual plans directly.
 
 [Contact us on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
@@ -2435,7 +2525,7 @@ The Persona Edition AI Assistant service fee is priced on request, one-time paym
 
 Q: What's the difference between the Persona Edition and higher-tier plans?
 
-The Persona Edition is a full personal skill package + personality selection + Coding Agent connection, single AI Agent locally deployed, no ongoing maintenance. Higher plans include: Dual AI Agent Co-existence Edition (two running independently, no memory sync), Dual AI Agent (with memory sync and collaboration room), or annual plans (a full year of engineer support). Simply put: Persona Edition is "get it installed with personality and running"; higher tiers are "run more complexity, with someone maintaining it long-term."
+The Persona Edition is a full personal skill package + personality selection + Coding Agent connection, single Agent locally deployed, no ongoing maintenance. Higher plans include: Dual Agent (with memory sync and collaboration room), or annual plans (a full year of engineer support). Simply put: Persona Edition is "get it installed with personality and running"; higher tiers are "run more complexity, with someone maintaining it long-term."
 
 Q: Will my data get uploaded to the cloud?
 
@@ -6104,7 +6194,7 @@ Deployment and acceptance Department-specific custom Agent development, security
 Only need a personal AI Agent with ongoing maintenance?
 Personal plans are listed separately with installation options, AI Agent configurations, and annual operations details. If your use case involves shared company data, role-based access control, or formal system integration, it should be evaluated under the enterprise deployment criteria.
 
-[See Personal Tier 3 →](https://thinkbigtw.com/en/pricing/personal/#tier3)
+[See the annual plans →](https://thinkbigtw.com/en/pricing/personal/#tier3)
 
 ← [Back to Plans and Pricing](https://thinkbigtw.com/en/pricing/)  ·  [Enterprise AI deployment overview (Chinese)](https://thinkbigtw.com/enterprise/)
 
@@ -6125,9 +6215,9 @@ Enterprise deployment
 
 ### Business use
 
-For companies with employees, multiple departments using AI at once, data that cannot leave the company, or a need for a contractual SLA. Requirements interview plus contract.
+For companies with employees, multiple departments using AI at once, data that cannot leave the company, or a need for a contractual SLA. Requirements interview plus contract. The Business plan starts from NT$52,600 (excl. tax; NT$55,230 incl. tax; hardware not included), with the final quote based on your requirements.
 
-Pricing on request  · On-premises or cloud
+From NT$52,600 (excl. tax)  · On-premises or cloud
 
 - Cloud-Assisted: low barrier to entry, multiple departments up and running quickly
 
@@ -6135,23 +6225,23 @@ Pricing on request  · On-premises or cloud
 
 - Process: requirements interview → quote → contract → deployment
 
-[Request a quote →](https://thinkbigtw.com/en/contact/)
+[Book an interview →](https://thinkbigtw.com/en/enterprise/start/)
 
 Personal plans
 
 ### Personal use
 
-For one person: a one-person company, freelancer, side business, or a manager who wants to try a setup for themselves first. Installed on your own computer with local GPU inference (no API key required). If your device does not meet the spec, we can switch to a cloud model at no extra charge.
+For one person: personal work, a side business, or a manager who wants to try a setup for themselves first. Installed on your own computer with local GPU inference (no API key required). If your device does not meet the spec, we can switch to a cloud model at no extra charge.
 
-Three plans · Pricing on request
+From NT$7,840 · 4 plans, 2 of them annual
 
-- Personal Plan 1 | Single AI Agent Setup: OpenClaw or Hermes, full skill pack, 7 days of support
+- Personal Plan 1 | Single Agent: OpenClaw or Hermes, choose one at the same price; full skill pack, 7-day technical consultation after installation
 
-- Personal Plan 2 | Dual AI Agent: OpenClaw + Hermes working together, 2-hour online technical walkthrough plus 7 days of support
+- Personal Plan 2 | Dual Agent: OpenClaw + Hermes working together; remote installation + tutorial videos + 7-day technical consultation after installation
 
-- Personal Plan 3 | Annual plan: a dedicated engineer for a full year, 48-hour fault repair
+- Personal Plan 3 | Annual plans (Premier Annual and Flagship Annual): a dedicated engineer for a full year, 48-hour fault repair
 
-[Request a quote →](https://thinkbigtw.com/en/contact/)
+[See the plans →](https://thinkbigtw.com/en/pricing/personal/)
 
 ## Not sure which path? Three questions will tell you.
 
@@ -6173,7 +6263,7 @@ Answer all three questions — your recommended path will appear below.
 
 ## Personal Plan 3 | Annual plan and maintenance
 
-The most common way an AI assistant fails: installed, used for a month, then left alone with no one to fix it when it breaks. The annual plan builds a full year of care into the service: proactive repairs, 48-hour fault repair and weekly maintenance. Two options: one AI Agent or two AI Agents. [Contact us for pricing →](https://thinkbigtw.com/en/contact/)
+The most common way an AI assistant fails: installed, used for a month, then left alone with no one to fix it when it breaks. The annual plan builds a full year of care into the service: proactive repairs, 48-hour fault repair and weekly maintenance. Two annual plans: Premier Annual (Single Agent) NT$39,910 first year / NT$35,910 renewal, and Flagship Annual (Dual Agent) NT$48,010 first year / NT$43,010 renewal. We interview you first and place the order only once we confirm it will work. [See the annual plans →](https://thinkbigtw.com/en/pricing/personal/#tier3)
 
 ## All plans at a glance
 
@@ -6185,33 +6275,35 @@ Names and plan scope only. For a detailed comparison, open each path's compariso
 
               Enterprise cloud model API deployment · by contract
 
-PRICING ON REQUEST
+From NT$52,600 (excl. tax)
 
 - On-Premises
 
               On-premises deployment, data stays on company equipment · by contract
 
-PRICING ON REQUEST
+From NT$52,600 (excl. tax)
 
 ### Personal use → [View comparison table (Chinese)](https://thinkbigtw.com/pricing/personal/)
 
-- Personal Plan 1 | Single AI Agent Setup
+- Personal Plan 1 | Single Agent
 
-              OpenClaw or Hermes · 7 days of support
+              OpenClaw or Hermes · 7-day technical consultation
 
-- Personal Plan 2 | Dual AI Agent
+NT$7,840
 
-              OpenClaw + Hermes working independently · 7 days of technical consultation
+- Personal Plan 2 | Dual Agent
 
-- Personal Plan 2 | Dual AI Agent (memory sync)
+              OpenClaw + Hermes · memory sync · collaboration room · remote installation + tutorial videos + 7-day technical consultation
 
-              OpenClaw + Hermes · memory sync · collaboration room · 2-hour technical walkthrough + 7 days support
+NT$17,920
 
-- Personal Plan 3 | Annual plan
+- Personal Plan 3 | Annual plans
 
-              Single AI Agent / Dual AI Agent · a full year of care
+              Premier Annual (Single Agent) / Flagship Annual (Dual Agent) · a full year of care
 
-[Request a quote](https://thinkbigtw.com/en/contact/)
+Premier NT$39,910 / Flagship NT$48,010
+
+[Contact us](https://thinkbigtw.com/en/contact/)
 
 ## Which computer can run a local model?
 
@@ -6222,7 +6314,7 @@ Apple M-series Mac  (macOS 14 or later) 16 GB Minimum, tested. Usable but slow: 
 
 24 GB or more Recommended (estimate). Steadier than 16 GB and can hold a larger model.
 
-32 GB or more Estimate. Suited to Dual AI Agent or Hermes.
+32 GB or more Estimate. Suited to Dual Agent or Hermes.
 
 8 GB, or Intel Mac Use a cloud model (8 GB was too slow in testing).
 
@@ -6230,9 +6322,9 @@ Windows (or Linux) with an NVIDIA GPU  (Windows 10 22H2 or later) GPU 8 GB / sys
 
 GPU 12 GB or more / system 32 GB Recommended.
 
-GPU 16 GB or more / system 32 GB Suited to Dual AI Agent or Hermes. With no discrete GPU, or under 8 GB of GPU memory, use a cloud model.
+GPU 16 GB or more / system 32 GB Suited to Dual Agent or Hermes. With no discrete GPU, or under 8 GB of GPU memory, use a cloud model.
 
-AMD Ryzen AI Max unified-memory machine Ryzen AI Max+ 395, 64 GB (Windows) We have installed this setup: about 32–40 seconds per plain-chat question with a single AI Agent, and about 3–4 minutes per question when searching the web. Other AMD GPUs, AMD machines under 64 GB, and AMD on Linux are assessed case by case.
+AMD Ryzen AI Max unified-memory machine Ryzen AI Max+ 395, 64 GB (Windows) We have installed this setup: about 32–40 seconds per plain-chat question with a single Agent, and about 3–4 minutes per question when searching the web. Other AMD GPUs, AMD machines under 64 GB, and AMD on Linux are assessed case by case.
 
 NVIDIA tiers are estimates; send a screenshot of your specs before ordering. Common requirements: at least 40 GB of free disk space (60 GB or more for machines with 64 GB or more memory that run a mid-size model), and a stable network on installation day because the model download is about 7–20 GB. Keep the computer on and awake. Timings come from a single machine; real speed depends on question length, number of skills and other programs running. The final decision between local and cloud rests on an engineer's review of your screenshots. With a cloud model, your questions and data are processed on the model provider's servers, and usage fees are paid from your own account.
 
@@ -6275,14 +6367,14 @@ Note: fees shown are Think BIG service fees and exclude third-party AI model usa
 
 URL: https://thinkbigtw.com/en/pricing/personal/
 
-# Personal Plans | Single AI Agent Setup / Dual AI Agent / Annual | Think BIG
+# Personal Plans | Single Agent / Dual Agent / Annual | Think BIG
 
 Personal use
 
 # Personal AI Agent Plans
-Single AI Agent Setup, Dual AI Agent, and Annual
+Single Agent, Dual Agent, and Annual
 
-Personal plans are for one person: sole traders, freelancers, side-project founders, or executives who want to try it for themselves first. The AI model and AI Agent are installed on your own computer (Apple M-series Mac, Windows + NVIDIA, or AMD Ryzen AI Max all supported — see hardware requirements ), then connected to your LINE Business Account or Telegram. Remote installation by Taiwan-based engineers. If your hardware doesn't meet requirements, you can switch to a cloud model at the same plan price. Choose based on your needs: Single AI Agent Setup includes a full skill pack + 7 days of tech support; Dual AI Agent includes a collaboration meeting room + 2-hour online tech walkthrough; Annual plan includes full-year operations.
+Personal plans are for one person: personal work, side projects, or executives who want to try it for themselves first. The AI model and AI Agent are installed on your own computer (Apple M-series Mac, Windows + NVIDIA, or AMD Ryzen AI Max all supported — see hardware requirements ), then connected to your LINE Business Account or Telegram. Remote installation by Taiwan-based engineers. If your hardware doesn't meet requirements, you can switch to a cloud model at the same plan price. Choose based on your needs: Single Agent includes a full skill pack + 7 days of technical consultation; Dual Agent includes a collaboration meeting room; the annual plans include full-year operations. Every plan comes with remote installation + tutorial videos + 7-day technical consultation after installation.
 
 View full personal plan directory ↓
 
@@ -6290,7 +6382,7 @@ Personal plan directory
 
 ## Choose your personal plan based on workflow and support level.
 
-### Single AI Agent Setup
+### Single Agent
 
 [AI Agent Setup overview ↗](https://thinkbigtw.com/en/services/ai-agent-setup/)
 
@@ -6303,111 +6395,105 @@ Personal plan directory
 ### Full-year operations
 
 [Annual overview ↗](https://thinkbigtw.com/en/annual/)
-[Annual Plan — Premier ↗](https://thinkbigtw.com/en/annual-pro/)
-[Annual Plan — Flagship ↗](https://thinkbigtw.com/en/annual-flagship/)
+[Premier Annual ↗](https://thinkbigtw.com/en/annual-pro/)
+[Flagship Annual ↗](https://thinkbigtw.com/en/annual-flagship/)
 
 ## Find your personal plan
 
-## Three plans
+## Four personal plans (two of them annual)
 
 With a cloud model, conversations are processed by the model provider; we'll tell you which provider and its data terms before you sign. With a local model, your data stays on your own computers.
 
-Tier 1 · Single AI Agent Setup · 7-day support
+Single Agent · 7-day technical consultation after installation
 
-### Tier 1 | Single AI Agent Setup
+### Plan 1 | Single Agent
 
-Tier 1 is a local AI model + AI Agent setup service installed on your own computer. Includes OpenClaw or Hermes (your choice), a full personal skill pack + 1 custom helper, and 7-day tech support. Coding Agent integration is an optional add-on. For individual use only. If your hardware doesn't meet requirements, switch to a cloud model at the same price.
+Plan 1 is a local AI model + AI Agent setup service installed on your own computer. Includes OpenClaw or Hermes (your choice), a full personal skill pack + 1 custom helper, and 7-day tech support. Coding Agent integration is an optional add-on. Both individuals and businesses may use it for their own work; for shared use by several people, building a knowledge base from company data, or installing for third parties or reselling, please choose the Business plan. If your hardware doesn't meet requirements, switch to a cloud model at the same price.
 
 Who it's for: Anyone installing their first personal AI Agent on their own computer. Solves "I want an AI Agent but don't know how to install it, and don't want all my data on the cloud."
 
-Single AI Agent Setup | OpenClaw
+Single Agent | OpenClaw
 Variant A · Full skill pack + custom helper
 NT$7,840
 Full personal skill pack + 1 custom helper; Coding Agent integration optional
-[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup%20%28OpenClaw%29.)
+[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20Agent%20%28OpenClaw%29.)
 
-Single AI Agent Setup | Hermes
+Single Agent | Hermes
 Variant B · Cross-session persistent memory, gets smarter over time
 NT$7,840
 Cross-session persistent memory + full personal skill pack; same price, choose one
-[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup%20%28Hermes%29.)
+[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20Agent%20%28Hermes%29.)
 
-[Buy on Shopee | Single AI Agent NT$7,840](https://shopee.tw/product/105010395/45107951008)
+[Buy on Shopee | Single Agent NT$7,840](https://shopee.tw/product/105010395/45107951008)
 
-No monthly fee. No maintenance commitment. For individual use only — may not be used for business operations or serving third-party clients. Full refund if installation cannot be completed due to a technical issue on our side.
+No monthly fee. No maintenance commitment. Both individuals and businesses may use it for their own work; for shared use by several people, building a knowledge base from company data, or installing for third parties or reselling, please choose the Business plan. Full refund if installation cannot be completed due to a technical issue on our side.
 
-Tier 2 · Dual AI Agent · Two variants
+Dual Agent · memory sync + collaboration meeting room
 
-### Tier 2 | Dual AI Agent
+### Plan 2 | Dual Agent
 
-Tier 2 provides two Dual AI Agent options. Co-existence Edition: OpenClaw + Hermes installed separately, each with their own memory and settings, standard skill pack, no memory sync or collaboration meeting room, 7-day tech support. Dual AI Agent (full): MCP memory sync between both Agents, cross-Agent collaboration meeting room (exclusive to this edition), custom skill count based on consultation, includes 2-hour online tech walkthrough + 7-day post-installation tech support.
+Plan 2 is the Dual Agent: MCP memory sync between both Agents, a cross-Agent collaboration meeting room (exclusive to this plan), custom skill count based on consultation, with remote installation + tutorial videos + 7-day technical consultation after installation.
 
-Who it's for: Anyone who wants two AI Agents working together. Start with the Co-existence Edition to establish how the two Agents divide responsibilities, or go straight to the full Dual AI Agent with memory sync and collaboration meeting room.
+Who it's for: Anyone who wants two AI Agents that share the work.
 
-Dual AI Agent Co-existence Edition
-Two Agents operating independently with separate memory
-Pricing on request
-OpenClaw + Hermes installed separately, each with own settings; standard personal skill pack; 7-day tech support; no memory sync or collaboration meeting room
-[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Dual%20AI%20Agent%20Co-existence%20Edition.)
-
-Dual AI Agent
+Dual Agent
 MCP memory sync + cross-Agent collaboration meeting room
 NT$17,920
-OpenClaw + Hermes MCP memory sync; cross-Agent collaboration meeting room (exclusive to this edition); custom skill count based on consultation; 2-hour online tech walkthrough + 7-day post-installation support
-[See Dual AI Agent page →](https://thinkbigtw.com/en/dual-agent/)
+OpenClaw + Hermes MCP memory sync; cross-Agent collaboration meeting room (exclusive to this plan); custom skill count based on consultation; remote installation + tutorial videos + 7-day technical consultation after installation
+[See Dual Agent page →](https://thinkbigtw.com/en/dual-agent/)
 
-[Buy on Shopee | Dual AI Agent NT$17,920](https://shopee.tw/product/105010395/54908601707)
+[Buy on Shopee | Dual Agent NT$17,920](https://shopee.tw/product/105010395/54908601707)
 
-AnyDesk / DeskIn remote installation. No annual operations commitment. If you want someone to maintain it long-term after setup, see Tier 3 or add the System Health Check & Repair service.
+AnyDesk / DeskIn remote installation. No annual operations commitment. If you want someone to maintain it long-term after setup, see Plan 3 or add the System Health Check & Repair service.
 
-Tier 3 · Full-year operations · Most popular
+Two annual plans · Full-year operations · Most popular
 
-### Tier 3 | Annual Plan
+### Plan 3 | Annual plans
 
-Tier 3 is an annual plan with a dedicated engineer looking after your system for the full year. Includes full-year dedicated operations (proactive fault detection) and 48-hour repair SLA. Renewal is optional in subsequent years: Premier NT$35,910, Flagship NT$43,010.
+Plan 3 is two annual plans (Premier Annual and Flagship Annual) with a dedicated engineer looking after your system for the full year. Includes full-year dedicated operations (proactive fault detection) and 48-hour repair SLA. Renewal is optional in subsequent years: Premier NT$35,910, Flagship NT$43,010.
 
-Who it's for: Individuals who don't want to maintain it themselves and need someone looking after it all year. The top tier is for solo operators who want to hand off the equivalent of seven departments. Solves "set it up for a month, then it sat there unused — and when it broke, nobody cared."
+Who it's for: Individuals who don't want to maintain it themselves and need someone looking after it all year. The top plan is for people who want to hand off the equivalent of seven departments. Solves "set it up for a month, then it sat there unused — and when it broke, nobody cared."
 
-Single AI Agent
-Subtitle: Annual Plan — Premier
+Single Agent
+Subtitle: Premier Annual
 NT$39,910(renewal 35,910)
-Hermes or OpenClaw (your choice), fully custom, multi-Agent MCP sync; weekly maintenance + skill additions
-[See Annual Plan — Premier →](https://thinkbigtw.com/en/annual-pro/)
+OpenClaw or Hermes (your choice), fully custom; weekly maintenance + skill additions
+[See Premier Annual →](https://thinkbigtw.com/en/annual-pro/)
 
-Dual AI Agent
-Subtitle: Annual Plan — Flagship
+Dual Agent
+Subtitle: Flagship Annual
 NT$48,010(renewal 43,010)
 Hermes × OpenClaw × Claude Code multi-Agent architecture, multi-department coverage, CRM / cloud storage / Google Workspace integration
-[See Annual Plan — Flagship →](https://thinkbigtw.com/en/annual-flagship/)
+[See Flagship Annual →](https://thinkbigtw.com/en/annual-flagship/)
 
 [Buy on Shopee | Premier NT$39,910](https://shopee.tw/product/105010395/48258528741)[Buy on Shopee | Flagship NT$48,010](https://shopee.tw/product/105010395/47108617097)
 
 Neither tier is discounted. Process: place inquiry → requirements interview → remote installation → annual plan starts. Renewal is optional in subsequent years (Premier NT$35,910, Flagship NT$43,010) and includes weekly maintenance + 48-hour repair SLA.
 
-## Three-plan comparison
+## Plan comparison
 
 Item
-Tier 1 | Single AI Agent Setup
-Tier 2 | Dual AI Agent
-Tier 3 | Annual Plan
-Who it's for Anyone installing their first AI Agent Anyone who wants two AI Agents working together Individuals / solo operators who want someone looking after it all year
+Plan 1 | Single Agent
+Plan 2 | Dual Agent
+Plan 3 | Annual plans
+Who it's for Anyone installing their first AI Agent Anyone who wants two AI Agents working together Individuals who want someone looking after it all year
 
-Delivery AnyDesk / DeskIn remote installation AnyDesk / DeskIn remote installation Interview → setup → annual plan starts
+Delivery Remote installation + tutorial videos + 7-day technical consultation after installation Remote installation + tutorial videos + 7-day technical consultation after installation Interview first, order only once we confirm it will work → remote installation + tutorial videos → annual plan starts
 
-AI Agent configuration OpenClaw or Hermes (your choice) OpenClaw + Hermes dual AI Agent Single AI Agent / OpenClaw + Hermes dual AI Agent
+AI Agent configuration OpenClaw or Hermes (your choice) OpenClaw + Hermes dual Agent Premier Annual: Single Agent; Flagship Annual: Dual Agent
 
 Skills Full personal skill pack + 1 custom helper Based on consultation Fully custom / based on consultation
 
-Support period 7-day tech support 2-hour online walkthrough + 7-day post-installation support Full-year dedicated operations
+Support period 7-day tech support 7-day technical consultation after installation Full-year maintenance
 
 SLA — — 48-hour repair SLA
 
 Renewal — — Optional in subsequent years (Premier NT$35,910 / Flagship NT$43,010)
 
-Price NT$7,840 NT$17,920  (Dual AI Agent) Premier NT$39,910 (renewal 35,910)
-Flagship NT$48,010 (renewal 43,010)
+Price NT$7,840 NT$17,920  (Dual Agent) Premier Annual: NT$39,910 first year / NT$35,910 renewal
+Flagship Annual: NT$48,010 first year / NT$43,010 renewal
 
-CTA [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20AI%20Agent%20Setup.) [Dual AI Agent page](https://thinkbigtw.com/en/dual-agent/) [Annual Plan — Premier](https://thinkbigtw.com/en/annual-pro/) / [Annual Plan — Flagship](https://thinkbigtw.com/en/annual-flagship/)
+CTA [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Single%20Agent.) [Dual Agent page](https://thinkbigtw.com/en/dual-agent/) [Premier Annual](https://thinkbigtw.com/en/annual-pro/) / [Flagship Annual](https://thinkbigtw.com/en/annual-flagship/)
 
 Every plan includes a narrated tutorial video made for your setup and a PDF user manual, with a "Follow us" page at the end.
 
@@ -6425,7 +6511,7 @@ minimum · tested Usable but slow: basic Q&A, short text tasks, simple instructi
 recommended · estimated More stable than 16 GB; can run a slightly larger model.
 
 32 GB+
-estimated Dual AI Agent setup or Hermes.
+estimated Dual Agent setup or Hermes.
 
 8 GB / Intel Mac Switch to cloud model (8 GB is too slow in testing).
 
@@ -6436,7 +6522,7 @@ Minimum (usable but slow) 8 GB / 16 GB
 
 Recommended 12 GB+ / 32 GB
 
-Dual AI Agent or Hermes 16 GB+ / 32 GB
+Dual Agent or Hermes 16 GB+ / 32 GB
 
 Switch to cloud model No dedicated GPU, integrated graphics only, or GPU with less than 8 GB VRAM
 
@@ -6444,7 +6530,7 @@ NVIDIA tiers above are estimates. Send a hardware screenshot before proceeding.
 
 ### AMD Ryzen AI Max series (unified memory)
 
-- Ryzen AI Max+ 395, 64 GB (Windows): confirmed installation experience. Single AI Agent, chat-only: approx. 32–40 seconds per response; web search: approx. 3–4 minutes per response.
+- Ryzen AI Max+ 395, 64 GB (Windows): confirmed installation experience. Single Agent, chat-only: approx. 32–40 seconds per response; web search: approx. 3–4 minutes per response.
 
 - Other AMD GPUs, AMD machines under 64 GB, or AMD on Linux: evaluated case by case.
 
@@ -6463,9 +6549,9 @@ Response times above are measured on a single machine. Actual speed varies with 
 Item Price Who it's for / rules How to order
 Skill Pack 10 / 20 / 40 sets Pricing on request Anyone already running OpenClaw or Hermes who wants to add skills without a monthly fee. Discuss requirements first; 0-Token-first design. [Skill Pack page](https://thinkbigtw.com/en/skill-pack/)
 
-Skill Pack 120 sets Pricing on request Top-tier skill pack. OpenClaw or Hermes (choose one). Does not include collaboration meeting room or Coding Agent integration (those are Tier 2 features). [Skill Pack page](https://thinkbigtw.com/en/skill-pack/)
+Skill Pack 120 sets Pricing on request Top-tier skill pack. OpenClaw or Hermes (choose one). Does not include collaboration meeting room or Coding Agent integration (those are Plan 2 features). [Skill Pack page](https://thinkbigtw.com/en/skill-pack/)
 
-System Health Check & Repair Pricing on request Post-setup maintenance for non-annual clients (Tier 1 / 2). Annual clients already have operations included — no need to add this. [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20a%20System%20Health%20Check.)
+System Health Check & Repair Pricing on request Post-setup maintenance for non-annual clients (Plan 1 / 2). Annual clients already have operations included — no need to add this. [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20a%20System%20Health%20Check.)
 
 OpenClaw uninstall service Pricing on request Post-setup service [Ask on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20OpenClaw%20uninstall%20service.)
 
@@ -13582,7 +13668,7 @@ Start with an audit. Know exactly where you stand — then decide the next step.
 
 URL: https://thinkbigtw.com/en/single-agent/
 
-# Single AI Agent | Think BIG!
+# Single Agent | Think BIG!
 
 -
 
@@ -13605,6 +13691,16 @@ Cloud or local model
 Your day is planned for you each morning, meeting recordings are turned into text, and things you forget are reminded automatically when the time comes.
 
 NT$7,840
+
+## Purchase protection
+
+- Support: 7-day technical consultation after installation.
+
+- Refund: Full refund if installation cannot be completed due to a technical issue on our side. Service cancellation is handled in accordance with consumer protection law.
+
+- Not included: Hardware and cloud model usage fees (billed separately by the provider when you choose a cloud model).
+
+[Need two Agents that share the work? See the Dual Agent](https://thinkbigtw.com/en/dual-agent/)
 
 [Order on Shopee](https://shopee.tw/product/105010395/45107951008)
 
@@ -13680,9 +13776,9 @@ These are example features. What you get is decided after an interview and an as
 
 ## How it is delivered
 
-- Built mainly on OpenClaw; others can be assessed.
+- OpenClaw or Hermes, choose one, same price; if you are not sure which, we can talk it through before you order.
 
-- Installed remotely by an engineer.
+- Remote installation + tutorial videos + 7-day technical consultation after installation.
 
 - Built mainly for Apple silicon Macs; other devices can be assessed.
 
@@ -13693,6 +13789,8 @@ These are example features. What you get is decided after an interview and an as
 ## About your data
 
 With a cloud model, your conversations are sent to the model provider for processing; before signing we tell you which provider is used and its data terms. With a local model, your data stays on your own computer.
+
+During remote installation, the engineer may see data on your screen; we only install and configure, and we do not copy or keep it.
 
 If it's legal and you can think of it, we'll do our best to build it. For anything beyond the plan's scope, we'll walk you through feasibility and cost during the consultation.
 
@@ -13968,7 +14066,15 @@ URL: https://thinkbigtw.com/enterprise/
 
 NT$52,600 起（未稅，含稅 NT$55,230；不含硬體）
 
-[LINE 預約](https://lin.ee/n5KW430)
+## 購買保障
+
+- 價格： 起價未稅、不含硬體。
+
+- 流程： 先評估再報價。
+
+- 交付與維運： 以 TB FRAME 四階段完成評估、建置、驗收與一年維運，範圍凍結與資料到位後 30 天內交付。
+
+[預約 30 分鐘免費評估](https://thinkbigtw.com/enterprise/start/)[LINE 洽詢](https://lin.ee/n5KW430)
 
 ## 各部門最常拿 AI 做的事
 
@@ -14094,7 +14200,7 @@ NT$52,600 起（未稅，含稅 NT$55,230；不含硬體）
 
 ## 交付方式
 
-- 由工程師遠端安裝。
+- 遠端安裝＋教學影片（另附操作手冊）。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -14106,9 +14212,11 @@ NT$52,600 起（未稅，含稅 NT$55,230；不含硬體）
 
 選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
 
+遠端安裝時，工程師可能會看到你畫面上的資料；我們只做安裝與設定，不複製、不保存。
+
 你想得到的、合法的，我們都會盡力幫你做到。超出方案範圍的需求，訪談時會先說明可行性與費用。
 
-[LINE 預約](https://lin.ee/n5KW430)
+[預約 30 分鐘免費評估](https://thinkbigtw.com/enterprise/start/)[LINE 洽詢](https://lin.ee/n5KW430)
 
 ## 更多了解
 
@@ -14621,7 +14729,7 @@ THINK BIG
 
 ## 個人安裝有哪些選擇？
 
-個人方案有三種選擇：單 AI Agent 搭建、雙 AI Agent（共存版或含記憶互通）、年約。三種都主打本地大模型 AI Agent 搭建，把 AI 模型和 AI Agent 一起裝在你的電腦上；電腦規格不夠可改搭雲端大模型，同方案、同價格。個人方案請至蝦皮賣場選購（[thinkbigtw 蝦皮賣場](https://shopee.tw/shop/105010395)），或預約需求訪談取得報價。
+個人方案有 4 個（年約佔 2 個）：單 Agent 搭建、雙 Agent（含記憶互通）、尊榮年約、旗艦年約。都主打本地大模型 AI Agent 搭建，把 AI 模型和 AI Agent 一起裝在你的電腦上；電腦規格不夠可改搭雲端大模型，同方案、同價格。個人方案請至蝦皮賣場選購（[thinkbigtw 蝦皮賣場](https://shopee.tw/shop/105010395)），或預約需求訪談取得報價。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/)
 
@@ -14635,9 +14743,9 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 支援期
 
-## 單 AI Agent 搭建與雙 AI Agent 方案包含多久支援？
+## 單 Agent 搭建與雙 Agent 方案包含多久支援？
 
-單 AI Agent 搭建含 7 天技術諮詢；雙 AI Agent 共存版含 7 天技術諮詢；雙 AI Agent（含記憶互通）含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。兩者均無年度維運承諾，需要長期顧請看年約。
+單 Agent 搭建與雙 Agent（含記憶互通）都是遠端安裝＋教學影片＋安裝後 7 天技術諮詢。兩者均無年度維運承諾，需要長期顧請看年約。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/#tier2)
 
@@ -14728,72 +14836,6 @@ AI Agent 市場
 我們用一道一道的審查來顧資安：技能裝進去之前先掃描；固定版本、不自動更新；上線前先過資安審查；金鑰只放系統設定檔、不在聊天裡傳。不過，資安沒有人能打包票。
 
 [查看資安承諾 ›](https://thinkbigtw.com/trust/)
-
----
-
-URL: https://thinkbigtw.com/full-agent/
-
-# 全 Agent 串接 | Think BIG!
-
-個人 AI 助理
-
-# 全 Agent 串接
-
-你已經在付 Claude Code／Codex 的訂閱費了——讓它們組成一個團隊。
-
-Multi-Agent Orchestration（多代理協作）：讓 OpenClaw 和你既有的 coding agent（Claude Code／Codex／Antigravity 等）進駐同一個「協作會議室」分工做事。OpenClaw 負責接指令與日常任務，coding agent 負責寫程式、改檔案、跑測試——這是 2026 年 Anthropic、Google、Microsoft 都在推的架構方向。
-
-## 你是不是每天都在——
-
-- 開著 Claude Code、又開著 ChatGPT、又開著別的工具，自己當人肉轉接頭？
-
-- 付了 coding agent 訂閱費，卻只有坐在電腦前打指令的時候用得到？
-
-- 出門在外想派工給 AI，只能等回到電腦前？
-
-## 怎麼運行
-
-1
-
-收到 你打開專屬會議室網址（可加到手機主畫面當 App），下一道指令
-
-2
-
-判斷 OpenClaw 分析任務，決定自己做還是派給 coding agent
-
-3
-
-執行 多個 Agent 在會議室裡分工協作，你可即時看到協作過程
-
-4
-
-回報 最終結果報告自動推播到你指定的通訊軟體
-
-會議室建在你自己免費註冊的 Supabase 專案上，資料與其他客戶天然隔離。
-
-## 你得到什麼
-
-- OpenClaw 官方最新版＋ 60 組全客製技能 （依你的職業量身開發）
-
-- Coding Agent 串接（Claude Code／Codex／Antigravity 等，需自備訂閱）
-
-- 跨 Agent 協作會議室＋結果推播通訊軟體
-
-- 手機下指令、電腦上的 Agent 團隊接力完成——不必人在電腦前
-
-- 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
-
-- 服務費依需求報價，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
-
-想要會學習的第二顆大腦？→ [看「雙 AI Agent」](https://thinkbigtw.com/dual-agent/)。
-
-方案價格
-
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
-
-[前往蝦皮下單｜下單後預約遠端安裝時間](https://s.shopee.tw/2gAebp9KEB)
-
-※ 本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，皆非本方案服務費所含。coding agent 訂閱費由你自行負擔（Claude Code 需 Pro 以上，門檻以各官網公告為準）。
 
 ---
 
@@ -14987,7 +15029,7 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 - 是什麼 ：Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理，支援跨對話記憶與自我學習，可將任務經驗轉化為技能，可排程執行。Think BIG 提供的服務是協助安裝在你的電腦上、配置與教學；與 OpenClaw 可串接分工。【官方】
 
-- 怎麼用 ：安裝在 Windows、macOS 上；可單獨使用，也可與 OpenClaw 串接建立雙 AI Agent 協作。
+- 怎麼用 ：安裝在 Windows、macOS 上；可單獨使用，也可與 OpenClaw 串接建立雙 Agent 協作。
 
 - 怎麼計費 ：軟體開源免費（MIT 授權）；模型費用自選，和 OpenClaw 一樣依實際用量付給模型商。【官方】
 
@@ -15046,7 +15088,7 @@ AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用�
 
 - Muse（Meta） ：免費額度用完可升級，或等免費額度恢復；Power 每週 5 億 tokens，Maximum 每週 30 億 tokens。（查證於 2026-09-30，來源：[官方說明](https://www.meta.com/help/subscriptions/1021145227643680/)）
 
-通用做法：把長時間常駐的工作交給可自選模型的 AI Agent（如 OpenClaw、Hermes），品牌 AI Agent 留給需要協作的時段。這就是核心句說的「很適合拿來協作」。→ [OpenClaw＋coding agent 協作方案](https://thinkbigtw.com/full-agent/)
+通用做法：把長時間常駐的工作交給可自選模型的 AI Agent（如 OpenClaw、Hermes），品牌 AI Agent 留給需要協作的時段。這就是核心句說的「很適合拿來協作」。→ [雙 Agent 協作方案](https://thinkbigtw.com/dual-agent/)
 
 ## 想長時間運作又控制費用，怎麼搭
 
@@ -15054,7 +15096,7 @@ AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用�
 
 - 一個常駐 AI Agent 搭配你原本的訂閱 ：用 OpenClaw 或 Hermes 跑每天的例行工作（回訊息、整理、排程），你原本的品牌訂閱（Claude Pro、ChatGPT Plus 等）用來做需要協作或需要品牌生態的任務，不佔 24 小時額度。
 
-- 兩個 AI Agent 分工 ：OpenClaw 和 Hermes 裝在同一台電腦，一個跑行動派工作（回訊息、流程），一個跑思考派工作（彙整、研究、寫稿）。→ [雙 AI Agent 方案](https://thinkbigtw.com/dual-agent/)
+- 兩個 AI Agent 分工 ：OpenClaw 和 Hermes 裝在同一台電腦，一個跑行動派工作（回訊息、流程），一個跑思考派工作（彙整、研究、寫稿）。→ [雙 Agent 方案](https://thinkbigtw.com/dual-agent/)
 
 - 常駐 AI Agent 加上 coding agent 協作 ：龍蝦（OpenClaw）常駐跑例行任務，Claude Code 或 Codex 用來做程式、自動化腳本，透過協作會議室溝通。
 
@@ -15062,7 +15104,7 @@ Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模
 
 想知道哪一種適合你？
 
-[個人使用 → 蝦皮選購單 AI Agent 搭建→](https://shopee.tw/shop/105010395)
+[個人使用 → 蝦皮選購單 Agent 搭建→](https://shopee.tw/shop/105010395)
 [公司導入 → 2 分鐘自助評估 →](https://thinkbigtw.com/enterprise/start/)
 
 ## 龍蝦會被淘汰嗎
@@ -15075,13 +15117,11 @@ Think BIG 的方案價格是安裝與設定的服務費，不含第三方 AI 模
 
 Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服務商。
 
-- 單 AI Agent 搭建 ：OpenClaw 或 Hermes 擇一，含完整個人技能包＋1 個客製小幫手、7 天技術諮詢；Coding Agent 串接為選配（已有 Claude Code 或 Codex 訂閱者）。
+- 單 Agent 搭建 ：OpenClaw 或 Hermes 擇一，含完整個人技能包＋1 個客製小幫手、7 天技術諮詢；Coding Agent 串接為選配（已有 Claude Code 或 Codex 訂閱者）。
 
-- 雙 AI Agent 共存版 ：OpenClaw＋Hermes 各自運作、各自記憶，不含記憶互通與協作會議室，7 天技術諮詢。
+- 雙 Agent ：含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談、遠端安裝＋教學影片＋安裝後 7 天技術諮詢。
 
-- 雙 AI Agent ：含跨 Agent 協作會議室（此方案專屬）、MCP 記憶互通、技能數依訪談、2 小時線上技術導覽＋安裝後 7 天技術諮詢。
-
-- 年約方案 ：尊榮年約（單 AI Agent）或年度旗艦（雙 AI Agent）年維護陪跑，48 小時故障修復，次年可選配續約。
+- 年約方案 ：尊榮年約（單 Agent）或旗艦年約（雙 Agent）年維護陪跑，48 小時故障修復，次年可選配續約。
 
 本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請，模型使用費依用量向模型廠商計費，我方引導不代辦。詳見 [個人方案頁](https://thinkbigtw.com/pricing/personal/)。
 
@@ -15122,7 +15162,7 @@ Q：想讓 AI Agent 長時間運作，費用怎麼控制？
 
 Q：品牌 AI Agent 和龍蝦可以一起用嗎？
 
-可以。常見做法是龍蝦負責常駐和例行工作，品牌 AI Agent 負責需要協作的任務。→ [龍蝦＋coding agent 協作](https://thinkbigtw.com/full-agent/) / [雙 AI Agent 方案](https://thinkbigtw.com/dual-agent/)
+可以。常見做法是龍蝦負責常駐和例行工作，品牌 AI Agent 負責需要協作的任務。→ [雙 Agent 方案](https://thinkbigtw.com/dual-agent/)
 
 Q：自己安裝 AI Agent 安全嗎？
 
@@ -15415,7 +15455,7 @@ Hermes 的技能圍繞在「讓它想得更深、寫得更快」：長文摘要�
 
 OpenClaw 對一個人、想讓生活雜事自動跑的人最對味。
 
-Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信）、或想跟工作內容長期對話的人特別好用。
+Hermes 對需要每天寫很多東西（企劃、文件、回信）、或想跟工作內容長期對話的人特別好用。
 
 ## 一張表看完差別
 
@@ -15428,11 +15468,9 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 技能生態 通訊、排程、檔案、瀏覽器 文件、知識庫、寫作、研究
 
-安裝費（單 AI Agent 搭建，一次付清） 依需求報價 依需求報價
+安裝費（單 Agent 搭建，一次付清） 依需求報價 依需求報價
 
-兩個都要（各自運作，不含協作） 雙 AI Agent 共存版（兩個 AI Agent 各自運作，不含記憶互通與協作會議室，7 天技術諮詢）
-
-兩個都要（含協作會議室） 雙 AI Agent（含跨 Agent 協作會議室、MCP 記憶互通、2 小時線上技術導覽＋安裝後 7 天技術諮詢）
+兩個都要（含協作會議室） 雙 Agent（含跨 Agent 協作會議室、MCP 記憶互通、遠端安裝＋教學影片＋安裝後 7 天技術諮詢）
 
 裝在哪 你電腦本機 你電腦本機
 
@@ -15444,30 +15482,28 @@ Hermes 對一人公司、需要每天寫很多東西（企劃、文件、回信�
 
 - 你的工作比較雜事多，還是寫東西多？ 雜事多 OpenClaw；寫東西多 Hermes。
 
-- 你想要一個還是要兩個分工？ 一個就從單 AI Agent 搭建開始；要兩個但各自運作選共存版；要兩個且想記憶互通、協作，選雙 AI Agent（含協作會議室）。
+- 你想要一個還是要兩個分工？ 一個就從單 Agent 搭建開始；要兩個且想記憶互通、協作，選雙 Agent（含協作會議室）。
 
 不確定的話：先裝 OpenClaw 跑一兩週，知道自己「還少什麼」，再決定要不要加 Hermes。多數人會從 OpenClaw 開始。
 
 ## Hermes Agent 是什麼？
 
-Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理。Think BIG 協助安裝、配置與教學；單 AI Agent 搭建方案可擇一安裝 OpenClaw 或 Hermes。
+Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理。Think BIG 協助安裝、配置與教學；單 Agent 搭建方案可擇一安裝 OpenClaw 或 Hermes。
 
 ## Think BIG 個人方案帶哪一個？一張對照表
 
 方案 費用 帶的工具 適合誰
-單 AI Agent 搭建 依需求報價 一次付清 OpenClaw 或 Hermes 擇一，完整個人技能包＋1 個客製小幫手 第一次裝、先用一個 AI Agent、個人使用
+單 Agent 搭建 依需求報價 一次付清 OpenClaw 或 Hermes 擇一，完整個人技能包＋1 個客製小幫手 第一次裝、先用一個 AI Agent、個人使用
 
-雙 AI Agent 共存版 依需求報價 OpenClaw + Hermes 各自運作，各自記憶，各自設定，不含記憶互通與協作會議室，7 天技術諮詢 想先以低門檻同時用兩個 AI Agent
-
-雙 AI Agent 依需求報價 OpenClaw + Hermes 記憶互通，跨 Agent 協作會議室（此方案專屬），技能依訪談，含 2 小時線上技術導覽＋安裝後 7 天技術諮詢 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 記憶互通協作
+雙 Agent 依需求報價 OpenClaw + Hermes 記憶互通，跨 Agent 協作會議室（此方案專屬），技能依訪談，含遠端安裝＋教學影片＋安裝後 7 天技術諮詢 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 記憶互通協作
 
 尊榮年約 依需求報價 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
 
-年度旗艦 依需求報價 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
+旗艦年約 依需求報價 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
 
 企業部署 洽詢 本地或雲端，依需求評估 公司、團隊、資料需在企業內部
 
-這張表依 Think BIG 個人方案（單 AI Agent 搭建、共存版、雙 AI Agent、年約）整理，金額對齊官方頁。本地版模型運算不另收用量費；改搭雲端大模型時，API 用量費依你選的供應商與用量計費。
+這張表依 Think BIG 個人方案（單 Agent 搭建、雙 Agent、尊榮年約、旗艦年約）整理，金額對齊官方頁。本地版模型運算不另收用量費；改搭雲端大模型時，API 用量費依你選的供應商與用量計費。
 
 ## 常見問題 FAQ
 
@@ -15481,7 +15517,7 @@ Q：一個就夠還是兩個都要裝？
 
 Q：裝兩個會不會很貴？
 
-想讓兩個助理各自運作但不需記憶互通，選共存版；想讓兩個助理記憶互通並有協作會議室，選雙 AI Agent（含跨 Agent 協作會議室、2 小時線上技術導覽＋安裝後 7 天技術諮詢）。若分開下單兩個單 AI Agent 搭建各 依需求報價，共 依需求報價，但不含記憶互通與協作會議室。
+想讓兩個助理記憶互通並有協作會議室，選雙 Agent（含跨 Agent 協作會議室、遠端安裝＋教學影片＋安裝後 7 天技術諮詢）。若分開下單兩個單 Agent 搭建各 依需求報價，共 依需求報價，但不含記憶互通與協作會議室。
 
 Q：Think BIG 的 Hermes 跟網路上的 Hermes Agent 是同一個嗎？
 
@@ -15489,7 +15525,7 @@ Q：Think BIG 的 Hermes 跟網路上的 Hermes Agent 是同一個嗎？
 
 Q：可以用年約方式同時養兩個嗎？
 
-可以。年度旗艦 依需求報價 就是兩個助理互通加全年維護的方案；尊榮年約 依需求報價 是單系統年約。想清楚「要幾個助理」再看年約會比較不繞路。
+可以。旗艦年約 依需求報價 就是兩個助理互通加全年維護的方案；尊榮年約 依需求報價 是單系統年約。想清楚「要幾個助理」再看年約會比較不繞路。
 
 想看其他 AI Agent 的整理，包括各大品牌的計費與龍蝦（OpenClaw）的定位？→ [AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)
 
@@ -15499,23 +15535,23 @@ Q：可以用年約方式同時養兩個嗎？
 
 如果你的工作常常要寫、要研究、要彙整——Hermes 先裝，從寫東西這件事開始加速。
 
-如果你兩種都要、不需記憶互通——共存版；想讓兩個 AI 記憶互通協作——雙 AI Agent；想全年有人顧——[年度旗艦方案](https://thinkbigtw.com/annual-flagship/)。
+如果你兩種都要——想讓兩個 AI 記憶互通協作，選雙 Agent；想全年有人顧——[旗艦年約方案](https://thinkbigtw.com/annual-flagship/)。
 
-如果還是不確定，先裝單 AI Agent 搭建就好。OpenClaw 或 Hermes 擇一，先裝起來用，之後想要兩個協作或改選雙 AI Agent。
+如果還是不確定，先裝單 Agent 搭建就好。OpenClaw 或 Hermes 擇一，先裝起來用，之後想要兩個協作或改選雙 Agent。
 
 ### 想要哪一個，告訴我們就出貨
 
-從單 AI Agent 搭建開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好。預算更高的，直接約時間聊雙 AI Agent 或年約。
+從單 Agent 搭建開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好。預算更高的，直接約時間聊雙 Agent 或年約。
 
-[前往蝦皮下單單 AI Agent 搭建→](https://shopee.tw/shop/105010395)
+[前往蝦皮下單單 Agent 搭建→](https://shopee.tw/shop/105010395)
 
-單 AI Agent 搭建裝什麼？→ [OpenClaw 代裝拆解](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+單 Agent 搭建裝什麼？→ [OpenClaw 代裝拆解](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 
-兩個都想要、讓它們互通？→ [雙 AI Agent（OpenClaw＋Hermes）](https://thinkbigtw.com/dual-agent/)
+兩個都想要、讓它們互通？→ [雙 Agent（OpenClaw＋Hermes）](https://thinkbigtw.com/dual-agent/)
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
 
-想讓兩個 AI Agent 全年有人維護？→ [年度旗艦方案（含全年部署與 48hr 修復承諾）](https://thinkbigtw.com/annual-flagship/)
+想讓兩個 AI Agent 全年有人維護？→ [旗艦年約方案（含全年部署與 48hr 修復承諾）](https://thinkbigtw.com/annual-flagship/)
 
 ---
 
@@ -15615,17 +15651,17 @@ Think BIG 編輯部 · 2026 年 9 月 26 日
 
 URL: https://thinkbigtw.com/guides/openclaw-daizhuang/
 
-# OpenClaw 代裝拆解——單 AI Agent 搭建到底幫你裝什麼 | Think BIG!
+# OpenClaw 代裝拆解——單 Agent 搭建到底幫你裝什麼 | Think BIG!
 
 [Guides](https://thinkbigtw.com/guides/) / OpenClaw 代裝
 
-代裝服務 · 單 AI Agent 搭建
+代裝服務 · 單 Agent 搭建
 
-# OpenClaw 代裝拆解——單 AI Agent 搭建到底幫你裝什麼
+# OpenClaw 代裝拆解——單 Agent 搭建到底幫你裝什麼
 
 Think BIG 編輯部
 
-想用 OpenClaw 但卡在安裝？這篇把「OpenClaw 代裝」一次講清楚：單 AI Agent 搭建幫你裝什麼、技能包含哪些、安裝流程長怎樣、費用怎麼算。看完你就知道值不值得找人代裝。
+想用 OpenClaw 但卡在安裝？這篇把「OpenClaw 代裝」一次講清楚：單 Agent 搭建幫你裝什麼、技能包含哪些、安裝流程長怎樣、費用怎麼算。看完你就知道值不值得找人代裝。
 
 更新：2026-08-31
 
@@ -15643,9 +15679,9 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 所以就有了 OpenClaw 安裝服務 ，也就是俗稱的「代裝」：你不用碰那些指令，由工程師遠端幫你把整套裝好、跑起來、確認能用，你只要在旁邊看著。AI 助理安裝 這件事，本來就不該是你一個人對著螢幕硬扛。
 
-## 單 AI Agent 搭建到底幫你裝什麼？逐項拆解
+## 單 Agent 搭建到底幫你裝什麼？逐項拆解
 
-這是大家最想知道的一段。我們把單 AI Agent 搭建拆開，讓你看清楚每一塊：
+這是大家最想知道的一段。我們把單 Agent 搭建拆開，讓你看清楚每一塊：
 
 ### 1. OpenClaw 官方原裝，一個 Agent
 
@@ -15653,7 +15689,7 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 ### 2. 本機部署，資料在你自己電腦
 
-單 AI Agent 搭建裝在你自己的電腦裡，不是丟到不知道哪裡的雲端。對很多人來說，「東西在自己手上」這件事本身就值得。
+單 Agent 搭建裝在你自己的電腦裡，不是丟到不知道哪裡的雲端。對很多人來說，「東西在自己手上」這件事本身就值得。
 
 ### 3. 台灣工程師遠端安裝
 
@@ -15661,7 +15697,7 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 ### 4. 完整個人技能包＋Coding Agent
 
-單 AI Agent 搭建帶的是完整個人技能包＋1 個客製小幫手，比官方原裝更貼你的工作場景；已有 Claude Code 或 Codex 訂閱的人，另可選配 Coding Agent 串接（訂閱自備）。
+單 Agent 搭建帶的是完整個人技能包＋1 個客製小幫手，比官方原裝更貼你的工作場景；已有 Claude Code 或 Codex 訂閱的人，另可選配 Coding Agent 串接（訂閱自備）。
 
 一句話總結： 依需求報價 買的是一個裝好、能跑、在你自己電腦上的 OpenClaw AI 助理，加上台灣工程師遠端幫你裝到好的服務。它不是一份要你自己照著做的教學文件。
 
@@ -15669,7 +15705,7 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 很多人以為代裝很麻煩，實際上你的部分很輕鬆：
 
-- 下單 ：在蝦皮完成單 AI Agent 搭建下單。
+- 下單 ：在蝦皮完成單 Agent 搭建下單。
 
 - 約時間 ：工程師依訂單跟你聯繫，約一個雙方方便的安裝時段。
 
@@ -15683,7 +15719,7 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 ## 誠實時間：哪些要你自己準備？
 
-這段我們一定講清楚，因為看到有人裝完才發現「還要另外弄這些」，那種感覺很差。以下是單 AI Agent 搭建不含、需要你這邊配合的部分：
+這段我們一定講清楚，因為看到有人裝完才發現「還要另外弄這些」，那種感覺很差。以下是單 Agent 搭建不含、需要你這邊配合的部分：
 
 - 電腦規格確認 ：安裝前請截圖傳給工程師（Mac 看記憶體是否 16GB 以上、有無 Apple M 晶片；Windows 看 NVIDIA 顯卡與 GPU 記憶體是否 8GB 以上）。規格夠就裝本地大模型；規格不夠改搭雲端大模型，同方案、同價格。
 
@@ -15707,17 +15743,17 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 - 你講人話，它幫你把事情往前推，而不是丟一串你還要自己消化的資訊。
 
-想要它更懂你的工作、會的招式更多，就是靠加購技能包，單 AI Agent 搭建已含完整個人技能包＋1 個客製小幫手，後續可再加購擴充。
+想要它更懂你的工作、會的招式更多，就是靠加購技能包，單 Agent 搭建已含完整個人技能包＋1 個客製小幫手，後續可再加購擴充。
 
-## 想升級？單 AI Agent 搭建之後的路
+## 想升級？單 Agent 搭建之後的路
 
-單 AI Agent 搭建是個人方案的第一階，刻意做得好進入。之後你可以視需求往上：
+單 Agent 搭建是個人方案的第一階，刻意做得好進入。之後你可以視需求往上：
 
 - 技能包加購 ：想要更多技能，可以加購技能包，分成 10 組、20 組、40 組三個級距（依需求報價）。這些技能走「省 Token」的設計思路，讓每次呼叫更划算。
 
 - 多 Agent 協作 ：如果你要的是多個 AI 助理分工、串接更多工具的架構，上面還有更完整的方案。這些屬於客製範圍，會依你的需求先聊再報。
 
-不用一次到位。先把單 AI Agent 搭建用起來，知道自己真正需要什麼，再加。這樣的錢花得最清楚。
+不用一次到位。先把單 Agent 搭建用起來，知道自己真正需要什麼，再加。這樣的錢花得最清楚。
 
 ## 不想用了怎麼辦？
 
@@ -15731,19 +15767,19 @@ Q：完全不懂程式，也能裝 OpenClaw 嗎？
 
 Q：OpenClaw 代裝要多少錢？
 
-單 AI Agent 搭建服務費依需求報價，一次付清，含完整個人技能包＋1 個客製小幫手（Coding Agent 串接為選配）。要特別注意的是：AI 模型的 API 使用費是依你的實際用量另計、由你自付，不含在 依需求報價 裡。這是兩筆不同的錢，我們會事先講清楚。
+單 Agent 搭建服務費依需求報價，一次付清，含完整個人技能包＋1 個客製小幫手（Coding Agent 串接為選配）。要特別注意的是：AI 模型的 API 使用費是依你的實際用量另計、由你自付，不含在 依需求報價 裡。這是兩筆不同的錢，我們會事先講清楚。
 
-Q：單 AI Agent 搭建和更高階的方案差在哪？
+Q：單 Agent 搭建和更高階的方案差在哪？
 
-單 AI Agent 搭建是完整個人技能包＋Coding Agent 串接（選配），單一 AI Agent 本機部署，無維運。更高階的方案有：雙 AI Agent 共存版（兩個各自運作，不含記憶互通）、雙 AI Agent（含記憶互通與協作會議室）或年約 依需求報價（一整年有工程師顧）。簡單說：單 AI Agent 搭建是「先裝起來能跑」，高階是「跑得更複雜、有人長期維護」。
+單 Agent 搭建是完整個人技能包＋Coding Agent 串接（選配），單一 AI Agent 本機部署，無維運。更高階的方案有：雙 Agent（含記憶互通與協作會議室）或年約 依需求報價（一整年有工程師顧）。簡單說：單 Agent 搭建是「先裝起來能跑」，高階是「跑得更複雜、有人長期維護」。
 
 Q：資料會不會被上傳到雲端？
 
-單 AI Agent 搭建是本機部署，AI 助理跑在你自己的電腦上。至於接哪個 AI 模型、資料怎麼流動，會依你選的模型與設定而定，這部分安裝時會跟你說明，不誇大也不含糊。
+單 Agent 搭建是本機部署，AI 助理跑在你自己的電腦上。至於接哪個 AI 模型、資料怎麼流動，會依你選的模型與設定而定，這部分安裝時會跟你說明，不誇大也不含糊。
 
 Q：安裝要花多久？我要一直守著嗎？
 
-一般單 AI Agent 搭建的遠端安裝就是一個時段內完成，中間主要是工程師在操作。你不用全程盯著螢幕，但建議人在旁邊，方便在需要授權或確認時處理一下。
+一般單 Agent 搭建的遠端安裝就是一個時段內完成，中間主要是工程師在操作。你不用全程盯著螢幕，但建議人在旁邊，方便在需要授權或確認時處理一下。
 
 Q：可以接到我的 LINE 嗎？
 
@@ -15759,13 +15795,13 @@ AnyDesk／DeskIn 是遠端桌面工具，連線由你這端允許才建立、你
 
 ## 結論：這 依需求報價 到底該不該花？
 
-如果你的情況是「想用 OpenClaw、但一看到安裝步驟就投降」，那單 AI Agent 搭建代裝服務就是為你設計的。你付的不只是把軟體裝起來，更是省下自己摸索半天還不一定成功的時間，換一個當場能用的 AI 助理。
+如果你的情況是「想用 OpenClaw、但一看到安裝步驟就投降」，那單 Agent 搭建代裝服務就是為你設計的。你付的不只是把軟體裝起來，更是省下自己摸索半天還不一定成功的時間，換一個當場能用的 AI 助理。
 
 如果你本來就會自己裝，那你可能不需要這個服務——這也沒關係，我們不會硬跟你說一定要花這筆錢。工具而已，適合才用。
 
 ### 準備好了嗎？
 
-單 AI Agent 搭建在蝦皮直接下單，工程師依訂單聯繫約安裝時間。從「想用但不會裝」到「今天就有自己的 AI 助理」。
+單 Agent 搭建在蝦皮直接下單，工程師依訂單聯繫約安裝時間。從「想用但不會裝」到「今天就有自己的 AI 助理」。
 
 [前往蝦皮下單 依需求報價 →](https://shopee.tw/shop/105010395)
 
@@ -15815,7 +15851,7 @@ Think BIG 編輯部
 
 自己裝要做什麼 只裝官方或信任作者發出的技能；裝之前看程式碼、不要跳過警告；定期審查已裝的技能清單。
 
-我們代裝預設做什麼 單 AI Agent 搭建含完整個人技能包＋1 個客製小幫手，沒有任何第三方來源；技能包加購（依需求報價）為 Think BIG 內部維護的版本，附審查紀錄。
+我們代裝預設做什麼 單 Agent 搭建含完整個人技能包＋1 個客製小幫手，沒有任何第三方來源；技能包加購（依需求報價）為 Think BIG 內部維護的版本，附審查紀錄。
 
 ### 風險 3：對外連接埠開著（Open Port / Web UI 暴露）
 
@@ -15847,7 +15883,7 @@ OpenClaw 會動手做事，動手就包含「刪檔、改檔、寄信、發訊�
 
 自己裝要做什麼 訂閱官方更新公告；每 1–3 個月手動更新一次。
 
-我們代裝預設做什麼 單 AI Agent 搭建是一次裝到能跑，更新由你自己決定時機；尊榮年約 與年度旗艦 含每週維護，由我們處理更新。
+我們代裝預設做什麼 單 Agent 搭建是一次裝到能跑，更新由你自己決定時機；尊榮年約 與旗艦年約 含每週維護，由我們處理更新。
 
 ## 一張對照表：自己裝 vs 代裝
 
@@ -15872,7 +15908,7 @@ OpenClaw 會動手做事，動手就包含「刪檔、改檔、寄信、發訊�
 
 - 想讓雜事自動跑、願意花一小時學基礎設定的一般工作者。
 
-- 一人公司、想讓多個助理分工幫忙處理日常。
+- 想讓多個助理分工幫忙處理日常的人。
 
 - 對「裝了就要自己顧」有心理準備、不想被工具綁架的人。
 
@@ -15924,7 +15960,7 @@ Q：什麼人不適合裝 OpenClaw？
 
 Q：裝完之後多久要更新一次？
 
-OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 依需求報價、年度旗艦）含每週維護與 48 小時故障修復，更新這件事就交給我們；單 AI Agent 搭建是一次裝到能跑，更新由你決定時機。
+OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 依需求報價、旗艦年約）含每週維護與 48 小時故障修復，更新這件事就交給我們；單 Agent 搭建是一次裝到能跑，更新由你決定時機。
 
 ## 結論
 
@@ -15934,13 +15970,13 @@ OpenClaw 安不安全，看你裝的時候有沒有把基礎設定做好 。常�
 
 想清楚再裝，裝完記得改密碼、綁本機、只裝官方技能。三件事做完，風險已經可控。
 
-### 決定要裝？單 AI Agent 搭建
+### 決定要裝？單 Agent 搭建
 
-台灣工程師遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 或年度旗艦。
+台灣工程師遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 或旗艦年約。
 
 [先聊聊需求](https://lin.ee/n5KW430)
 
-單 AI Agent 搭建到底裝什麼？→ [OpenClaw 代裝拆解](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+單 Agent 搭建到底裝什麼？→ [OpenClaw 代裝拆解](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
 
@@ -15978,7 +16014,7 @@ Think BIG 編輯部
 
 - 下單前先聊 ：告訴我們你的電腦環境（作業系統、大概的規格）跟你想拿 AI 助理做什麼。環境不合適，我們會先講，不會讓你下了單才發現裝不了。
 
-- 下單、約時間 ：單 AI Agent 搭建在蝦皮下單，工程師依訂單聯繫，約一個雙方都方便的時段。服務時間是週一至週五 10:00–00:00。
+- 下單、約時間 ：單 Agent 搭建在蝦皮下單，工程師依訂單聯繫，約一個雙方都方便的時段。服務時間是週一至週五 10:00–00:00。
 
 - 建立遠端連線 ：時間到了，你開啟 AnyDesk 或 DeskIn，把連線代碼給工程師。連線是由你這端允許才建立的，你隨時可以中斷。
 
@@ -15988,7 +16024,7 @@ Think BIG 編輯部
 
 - 裝完立即斷線 ：安裝完成後遠端連線立即斷開，電腦裡不留任何遠端存取的後門程式。之後有問題，是你主動聯繫我們，不是我們還連得進來。
 
-裝完後有安裝後 7 天技術諮詢，單 AI Agent 搭建含完整個人技能包＋1 個客製小幫手，裝好即可使用；Coding Agent 串接為選配。
+裝完後有安裝後 7 天技術諮詢，單 Agent 搭建含完整個人技能包＋1 個客製小幫手，裝好即可使用；Coding Agent 串接為選配。
 
 ## 資安與信任：我們明確不做的事
 
@@ -16028,7 +16064,7 @@ Think BIG 編輯部
 
 遠端代裝的費用結構就兩筆，講清楚就不會有事後的不愉快：
 
-- 服務費 ：付給我們的錢，一次付清，不收月租或訂閱費。單 AI Agent 搭建 依需求報價，含環境建置、完整個人技能包＋1 個客製小幫手、7 天技術諮詢；Coding Agent 串接為選配（訂閱自備）。
+- 服務費 ：付給我們的錢，一次付清，不收月租或訂閱費。單 Agent 搭建 依需求報價，含環境建置、完整個人技能包＋1 個客製小幫手、7 天技術諮詢；Coding Agent 串接為選配（訂閱自備）。
 
 - AI 模型用量費（僅雲端版適用） ：改搭雲端大模型時，付給模型廠商的費用依你的實際用量計費、由你自行負擔，跟我們無關，也不含在服務費裡。本地版模型運算不另收用量費。
 
@@ -16046,7 +16082,7 @@ Think BIG 編輯部
 
 - 不想自己維護的，再考慮年約方案 ，由工程師持續陪跑、更新與維護。
 
-順序是需求先、規格後。我們不建議一開始就買到頂，先把單 AI Agent 搭建用出心得，錢才花在刀口上。
+順序是需求先、規格後。我們不建議一開始就買到頂，先把單 Agent 搭建用出心得，錢才花在刀口上。
 
 ## 常見問題 FAQ
 
@@ -16060,7 +16096,7 @@ A：連線由你這端允許才建立、你隨時可中斷、全程操作都在�
 
 Q：遠端代裝要多少錢？之後還有月費嗎？
 
-A：單 AI Agent 搭建服務費依需求報價，一次付清，我方不收月租。本地版不另收模型用量費；改搭雲端版時，AI 模型 API 用量費依實際使用量由你自付，付給模型廠商，跟服務費是兩回事。
+A：單 Agent 搭建服務費依需求報價，一次付清，我方不收月租。本地版不另收模型用量費；改搭雲端版時，AI 模型 API 用量費依實際使用量由你自付，付給模型廠商，跟服務費是兩回事。
 
 Q：可以到府安裝或用 SSH 讓你們直接連嗎？
 
@@ -16092,238 +16128,17 @@ A：若因我方技術問題無法完成安裝，全額退費。服務依消費�
 
 你可以拿這套標準來檢查我們，也可以拿去檢查任何一家。通過檢查的服務才值得把螢幕交出去。
 
-想開始的話，單 AI Agent 搭建在蝦皮下單，或先跟我們聊你的需求再決定規格。裝不裝得起來是我們的事，裝完能不能幫上你的忙，聊過才知道。
+想開始的話，單 Agent 搭建在蝦皮下單，或先跟我們聊你的需求再決定規格。裝不裝得起來是我們的事，裝完能不能幫上你的忙，聊過才知道。
 
 ### 想開始？先聊聊需求
 
-單 AI Agent 搭建在蝦皮下單，或先跟我們聊你的需求再決定規格。裝不裝得起來是我們的事，裝完能不能幫上你的忙，聊過才知道。
+單 Agent 搭建在蝦皮下單，或先跟我們聊你的需求再決定規格。裝不裝得起來是我們的事，裝完能不能幫上你的忙，聊過才知道。
 
 [LINE 諮詢](https://lin.ee/n5KW430)
 
 想省去自己維護的麻煩、讓工程師長期顧你的 AI 助理？→ [了解尊榮年約方案](https://thinkbigtw.com/annual-pro/)
 
 所有方案一次比較：→ [方案與定價](https://thinkbigtw.com/pricing/)（個人使用／企業使用兩扇門）
-
----
-
-URL: https://thinkbigtw.com/harness/
-
-# 個人 AI 助理搭建與整合｜Think BIG
-
-HARNESS ENGINEERS
-
-# Harness Engineers
-
-從個人安裝、工作流程整合到年度維運，依設備與使用需求搭建自己的 AI 助理。
-
-搭建與串接的平台
-
-- OpenClaw
-
-- Hermes Agent
-
-- Claude Managed Agent
-
-- OpenAI Codex
-
-- n8n
-
-- Dify
-
-- Make
-
-- LINE
-
-- WhatsApp
-
-- Telegram
-
-- Discord
-
-- Slack
-
-- Microsoft Teams
-
-- iMessage
-
-- Google Calendar
-
-- Gmail
-
-- Google Drive
-
-- Notion
-
-- Obsidian
-
-- GitHub
-
-- Zapier
-
-- Browser
-
-- Cron
-
-- Model Context Protocol (MCP)
-
-各商標屬其所有者，僅標示可串接之平台，不代表合作或背書。
-
-PERSONAL AI PLANS
-
-## 依需求選擇個人方案
-
-完整價格、內容與支援期，請以現行個人方案頁為準。
-
-### 本地大模型搭建
-
-把 AI 模型和 OpenClaw 或 Hermes Agent 一起裝在你的電腦上，建立自己的 AI 助理。
-
-[查看單 AI Agent 搭建方案 ›](https://thinkbigtw.com/pricing/personal/#tier1)
-
-### AI 部門
-
-單或雙 AI Agent，串接技能與協作會議室。
-
-[查看工作流程方案 ›](https://thinkbigtw.com/pricing/personal/#tier2)
-
-### 年約維運
-
-一年維運陪跑，依需求選擇 Agent 組合。
-
-[查看年約方案 ›](https://thinkbigtw.com/pricing/personal/#tier3)
-
-01 — LOCAL AI EXECUTION
-
-## OpenClaw
-
-AI Agent 的作業系統
-
-OPENCLAW — AI AGENT OS
-
-### OpenClaw — AI Agent 的作業系統
-
-OpenClaw 是一個開源的 AI Agent 平台，讓你在本機運行 客製化自動化技能（Skills）。不需要每次都開瀏覽器、不需要手動操作，OpenClaw 能自動執行排程任務、資料分析、檔案處理、API 串接等工作。安裝後透過終端機呼叫，24小時不停機。
-
-客製化 Skills
-本機執行
-24h 不停機
-MCP 支援
-20+ 通訊平台
-
-適合： 想要本機 AI 自動化、重視資安的個人與企業。
-
-HERMES AGENT
-
-## Hermes Agent
-
-Nous Research 開源的自主學習型 AI 助理
-
-我們協助安裝在你的電腦上。Hermes Agent 支援跨對話持久記憶、自我學習與技能累積，可透過 Telegram／Discord 等平台使用。實際功能與串接範圍依方案確認。
-
-它是 Think BIG 提供安裝的產品之一；本站的「Think BIG AI 顧問」則負責回答服務與方案問題。
-
-[查看個人方案（含 Hermes）›](https://thinkbigtw.com/pricing/personal/#tier1)
-
-03 — ADVANCED REASONING
-
-## Claude Managed Agent
-
-Anthropic 官方 AI Agent 框架
-
-CLAUDE MANAGED AGENT — ANTHROPIC
-
-### Claude Managed Agent — Anthropic 官方 AI Agent 框架
-
-Claude Managed Agent 是 Anthropic 官方推出的 Agent 框架，讓 Claude 能夠自主規劃、執行多步驟任務。不只是問答，而是真正的「給任務、自動完成」。透過 Claude 的推理能力，Agent 能分析複雜情境、決定下一步行動、呼叫外部工具。
-
-Anthropic 官方
-多步驟推理
-外部工具呼叫
-MCP 原生支援
-
-適合： 需要高度推理能力、複雜決策自動化的進階用戶。
-
-MCP
-
-04 — THE PROTOCOL
-
-## 任何 AI Agent，都能透過 MCP 串進同一套工作流程
-
-Model Context Protocol — AI 工具的共同語言
-
-MCP 是連接 AI Agent 與工具、資料的開放協議。Anthropic 於 2024 年提出並開源，2025 年 12 月將其捐贈給 Linux Foundation 旗下的 Agentic AI Foundation（AAIF）；協議的技術方向與日常運作仍由 MCP 維護者自主決定。
-
-[2024 開源公告 ↗](https://www.anthropic.com/news/model-context-protocol)[AAIF 官方公告 ↗](https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/)
-
-支援 MCP 的 AI Agent，共用工具與資料
-
-- [OpenClaw MCP 工具串接](https://docs.openclaw.ai/tools/mcp)
-
-- [Hermes Agent MCP 工具串接](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
-
-- [Claude Claude Code](https://code.claude.com/docs/en/mcp)
-
-- [OpenAI Codex CLI／IDE](https://developers.openai.com/codex/mcp/)
-
-- [ChatGPT 開發者模式](https://developers.openai.com/api/docs/guides/developer-mode)
-
-- [Gemini CLI MCP 工具串接](https://geminicli.com/docs/tools/mcp-server/)
-
-- [Cursor MCP 工具串接](https://cursor.com/docs/context/mcp)
-
-- [GitHub Copilot Copilot Chat](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp)
-
-- ＋ 你的 Agent ＋ 支援 MCP 即可加入
-
-MCP 共同串接層
-
-### 工具與資料
-
-- LINE
-
-- Gmail
-
-- Google Drive
-
-- Notion
-
-- GitHub
-
-- Slack
-
-- 資料庫／CRM
-
-AI Agent 經 MCP 伺服器取用已授權的工具與資料。各產品須完成相容設定與個別授權；LINE 使用官方帳號 Messaging API。點選 AI Agent 可查看官方 MCP 文件。
-
-Agent 可替換
-
-用哪個 AI Agent 依需求選；支援 MCP，就能接入既有工作流程。
-
-工具串一次，所有 Agent 共用
-
-把工具接成 MCP 服務，完成相容設定與授權的 AI Agent 就能共用，減少重複串接。
-
-權限與稽核集中在 MCP 這層管
-
-在 MCP 串接層配置存取權限、操作紀錄與人工核准；這些治理能力需另外建置與設定。
-
-這不只是裝幾個工具，而是一套能持續加入新 Agent 的 AI 自動化基礎設施 。
-
-## 個人 AI 助理常見問題
-
-個人 AI 助理如何開始？
-
-先確認設備、帳號與工作需求，再依支援範圍選擇個人方案；價格與服務條件請見個人方案專區。
-
-地端部署代表資料不會離開電腦嗎？
-
-地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
-
-如何確認 AI Agent 的操作權限？
-
-依工作所需配置資料與工具權限；對外發送、花費與正式系統變更，由指定負責人核准。
-
-[查看個人方案與價格](https://thinkbigtw.com/pricing/personal/)
 
 ---
 
@@ -16355,7 +16170,7 @@ AI 生成虛擬人物廣告・主持人為 AI 生成非真實存在
 
 - [雲端／本地大模型 尊榮年約 NT$39,910 想要有人顧一整年的個人](https://thinkbigtw.com/annual-pro/)
 
-- [雲端／本地大模型 旗艦年約 NT$48,010 一人公司，想把多個部門的事交出去](https://thinkbigtw.com/annual-flagship/)
+- [雲端／本地大模型 旗艦年約 NT$48,010 想把多個部門的事交出去](https://thinkbigtw.com/annual-flagship/)
 
 - [雲端／本地大模型 公司方案 NT$52,600 起（未稅） 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
 
@@ -27105,13 +26920,13 @@ NT$52,600 起（未稅） · 本地或雲端
 
 ### 個人使用
 
-一個人在用：一人公司、自由工作者、個人副業，或公司主管想先給自己裝一套。把 AI 模型裝在自己的電腦上，電腦規格不夠可改搭雲端大模型，同方案、同價格。
+一個人在用：個人工作、個人副業，或公司主管想先給自己裝一套。把 AI 模型裝在自己的電腦上，電腦規格不夠可改搭雲端大模型，同方案、同價格。
 
 NT$7,840 起 · 蝦皮賣場選購
 
-- 個人方案 1｜單 AI Agent 搭建：OpenClaw 或 Hermes 擇一，完整技能包，支援 7 天
+- 個人方案 1｜單 Agent 搭建：OpenClaw 或 Hermes 擇一，完整技能包，支援 7 天
 
-- 個人方案 2｜雙 AI Agent：OpenClaw＋Hermes 協作，2 小時線上技術導覽＋安裝後 7 天技術諮詢
+- 個人方案 2｜雙 Agent：OpenClaw＋Hermes 協作，遠端安裝＋教學影片＋安裝後 7 天技術諮詢
 
 - 個人方案 3｜年約：專屬工程師顧一整年，48 小時故障修復
 
@@ -27121,9 +26936,9 @@ NT$7,840 起 · 蝦皮賣場選購
 
 ## 個人方案 3｜年約與維護
 
-裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。兩檔：尊榮年約（單 AI Agent）NT$39,910（續約 35,910）與年度旗艦（雙 AI Agent）NT$48,010（續約 43,010）。
+裝好一個月就晾著、壞了沒人理，是 AI 助理最常見的死法。年約把「有人顧一整年」內建進去：發現即修復、48 小時故障修復、每週維護。兩個年約方案：尊榮年約（單 Agent）首年 NT$39,910／續約 NT$35,910，旗艦年約（雙 Agent）首年 NT$48,010／續約 NT$43,010。流程是先訪談、確認做得到再下單。
 
-[看年約三檔 →](https://thinkbigtw.com/pricing/personal/#tier3)
+[看年約方案 →](https://thinkbigtw.com/pricing/personal/#tier3)
 
 個人年約維護
 
@@ -27147,13 +26962,11 @@ NT$7,840 起 · 蝦皮賣場選購
 
 ### 個人使用 → [看比較表](https://thinkbigtw.com/pricing/personal/)
 
-- 個人方案 1｜單 AI Agent 搭建OpenClaw 或 Hermes 擇一 · 支援 7 天 NT$7,840
+- 個人方案 1｜單 Agent 搭建OpenClaw 或 Hermes 擇一 · 支援 7 天 NT$7,840
 
-- 個人方案 2｜雙 AI Agent 共存版OpenClaw＋Hermes 各自運作 · 7 天技術諮詢 [LINE 諮詢](https://lin.ee/n5KW430)
+- 個人方案 2｜雙 Agent[OpenClaw＋Hermes](https://thinkbigtw.com/dual-agent/) · 記憶互通 · 協作會議室 · 遠端安裝＋教學影片＋安裝後 7 天技術諮詢 NT$17,920
 
-- 個人方案 2｜雙 AI Agent[OpenClaw＋Hermes](https://thinkbigtw.com/dual-agent/) · 記憶互通 · 協作會議室 · 2 小時線上技術導覽＋安裝後 7 天技術諮詢 NT$17,920
-
-- 個人方案 3｜年約單 AI Agent／雙 AI Agent · 顧一整年 尊榮 NT$39,910／旗艦 NT$48,010
+- 個人方案 3｜年約單 Agent／雙 Agent · 顧一整年 尊榮 NT$39,910／旗艦 NT$48,010
 
 ## 加購區（掛在個人門下，不算方案階梯）
 
@@ -27184,14 +26997,14 @@ OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/
 
 URL: https://thinkbigtw.com/pricing/personal/
 
-# 個人方案｜單 AI Agent 搭建／雙 AI Agent／年約｜Think BIG! 台灣
+# 個人方案｜單 Agent 搭建／雙 Agent／年約｜Think BIG! 台灣
 
 個人使用
 
 # 個人 AI 助理方案
-單 AI Agent 搭建、雙 AI Agent 與年約
+單 Agent 搭建、雙 Agent 與年約
 
-個人使用是給一個人在用的人：一人公司、自由工作者、個人副業，或想先給自己裝一套的主管。把 AI 模型和 AI Agent 裝在你自己的電腦上運算（Mac、Windows＋NVIDIA、AMD 統一記憶體機都可評估，看設備條件 ），再接到你的 LINE 官方帳號或 Telegram，由台灣工程師遠端安裝。電腦規格不夠可改搭雲端大模型，同方案、同價格。依使用需求選擇：單 AI Agent 搭建含完整技能包＋7 天技術諮詢；雙 AI Agent 含協作會議室＋2 小時線上技術導覽；年約含一年維運。
+個人使用是給一個人在用的人：個人工作、個人副業，或想先給自己裝一套的主管。把 AI 模型和 AI Agent 裝在你自己的電腦上運算（Mac、Windows＋NVIDIA、AMD 統一記憶體機都可評估，看設備條件 ），再接到你的 LINE 官方帳號或 Telegram，由台灣工程師遠端安裝。電腦規格不夠可改搭雲端大模型，同方案、同價格。依使用需求選擇：單 Agent 搭建含完整技能包＋7 天技術諮詢；雙 Agent 含協作會議室；年約含一年維運。遠端安裝＋教學影片＋安裝後 7 天技術諮詢。
 
 查看個人方案完整目錄 ↓
 
@@ -27199,17 +27012,17 @@ URL: https://thinkbigtw.com/pricing/personal/
 
 ## 依工作需求與支援範圍，選擇個人方案。
 
-### 單 AI Agent 搭建
+### 單 Agent 搭建
 
-[單 AI Agent 搭建方案說明 ↗](https://thinkbigtw.com/pricing/personal/#tier1)[個人 AI 搭建 ↗](https://thinkbigtw.com/harness/)
+[單 Agent 搭建方案說明 ↗](https://thinkbigtw.com/pricing/personal/#tier1)
 
 ### 工作組合
 
-[全 Agent 串接 ↗](https://thinkbigtw.com/full-agent/)[雙 Agent 組合 ↗](https://thinkbigtw.com/dual-agent/)[技能包 ↗](https://thinkbigtw.com/skill-pack/)
+[雙 Agent 組合 ↗](https://thinkbigtw.com/dual-agent/)[技能包 ↗](https://thinkbigtw.com/skill-pack/)
 
 ### 一年陪跑
 
-年約總覽 ↗ [尊榮年約 ↗](https://thinkbigtw.com/annual-pro/)[年度旗艦 ↗](https://thinkbigtw.com/annual-flagship/)
+年約總覽 ↗ [尊榮年約 ↗](https://thinkbigtw.com/annual-pro/)[旗艦年約 ↗](https://thinkbigtw.com/annual-flagship/)
 
 ### USB AGENT
 
@@ -27217,103 +27030,98 @@ URL: https://thinkbigtw.com/pricing/personal/
 
 ## 個人方案需求評估
 
-## 三種方案
+## 個人 4 個方案（年約 2 個）
 
 選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
 
-Tier 1 · 單 AI Agent 搭建 · 支援 7 天
+單 Agent 搭建 · 安裝後 7 天技術諮詢
 
-### 個人方案 1｜單 AI Agent 搭建
+### 個人方案 1｜單 Agent 搭建
 
-個人方案 1 是本地大模型 AI Agent 搭建服務，把 AI 模型和 AI Agent 一起裝在你的電腦上，含 OpenClaw 或 Hermes 擇一、完整個人技能包＋1 個客製小幫手、7 天技術諮詢（Coding Agent 串接為選配），僅供個人使用。電腦規格不夠改搭雲端大模型，同方案、同價格。
+個人方案 1 是本地大模型 AI Agent 搭建服務，把 AI 模型和 AI Agent 一起裝在你的電腦上，含 OpenClaw 或 Hermes 擇一、完整個人技能包＋1 個客製小幫手、7 天技術諮詢（Coding Agent 串接為選配）。個人和企業都可以用在自己的工作上；多人共用、以公司資料建知識庫，或替第三方代裝、轉售，請選公司方案。電腦規格不夠改搭雲端大模型，同方案、同價格。
 
 給誰：第一次要一個裝在自己電腦上的個人 AI 助理的人。解決的是「想用 AI Agent，但不會裝、也不想把資料都放雲端」。
 
-[單 AI Agent 搭建｜OpenClaw
+[單 Agent 搭建｜OpenClaw
 變體 A · 完整技能包＋客製小幫手
 NT$7,840
 完整個人技能包＋1 客製小幫手；Coding Agent 串接為選配
 前往蝦皮下單 →](https://shopee.tw/product/105010395/45107951008)
-[單 AI Agent 搭建｜Hermes
+[單 Agent 搭建｜Hermes
 變體 B · 跨對話持久記憶，越用越懂你
 NT$7,840
 跨對話持久記憶＋完整個人技能包；同價，擇一即可
 前往蝦皮下單 →](https://shopee.tw/product/105010395/45107951008)
 
-[蝦皮購買｜單 AI Agent NT$7,840](https://shopee.tw/product/105010395/45107951008)
+[蝦皮購買｜單 Agent NT$7,840](https://shopee.tw/product/105010395/45107951008)
 
-無月費、無維運承諾；僅供個人使用，不得用於營業或替客戶服務；若因我方技術問題無法完成安裝，全額退費。
+無月費、無維運承諾；個人和企業都可以用在自己的工作上；多人共用、以公司資料建知識庫，或替第三方代裝、轉售，請選公司方案。若因我方技術問題無法完成安裝，全額退費。
 
-Tier 2 · 雙 AI Agent · 兩種版本
+雙 Agent · 記憶互通＋協作會議室
 
-### 個人方案 2｜雙 AI Agent
+### 個人方案 2｜雙 Agent
 
-個人方案 2 提供兩種雙 AI Agent 選擇。共存版：OpenClaw＋Hermes 各自運作、各自記憶，各自設定，標準技能包，不含記憶互通與協作會議室，含 7 天技術諮詢。雙 AI Agent：兩邊 MCP 記憶互通、跨 Agent 協作會議室（此版本專屬）、技能數依訪談，含 2 小時線上技術導覽＋安裝後 7 天技術諮詢。
+個人方案 2 是雙 Agent：兩邊 MCP 記憶互通、跨 Agent 協作會議室（此方案專屬）、技能數依訪談，含遠端安裝＋教學影片＋安裝後 7 天技術諮詢。
 
-給誰：想同時裝兩個 AI 助理的人。先用共存版確認兩個 Agent 的分工，或直接上有記憶互通與協作會議室的雙 AI Agent 方案。
+給誰：想同時裝兩個 AI 助理、讓它們分工的人。
 
-[雙 AI Agent 共存版
-兩個 Agent 各自運作、各自記憶
-LINE 諮詢
-OpenClaw＋Hermes 各自安裝、各自設定；標準個人技能包；7 天技術諮詢；不含記憶互通與協作會議室
-LINE 諮詢此方案 →](https://lin.ee/n5KW430)
-[雙 AI Agent
+[雙 Agent
 記憶互通＋跨 Agent 協作會議室
 NT$17,920
-OpenClaw＋Hermes MCP 記憶互通；跨 Agent 協作會議室（此版本專屬）；技能數依訪談；2 小時線上技術導覽＋安裝後 7 天技術諮詢
-看雙 AI Agent 頁 →](https://thinkbigtw.com/dual-agent/)
+OpenClaw＋Hermes MCP 記憶互通；跨 Agent 協作會議室（此方案專屬）；技能數依訪談；遠端安裝＋教學影片＋安裝後 7 天技術諮詢
+看雙 Agent 頁 →](https://thinkbigtw.com/dual-agent/)
 
-[蝦皮購買｜雙 AI Agent NT$17,920](https://shopee.tw/product/105010395/54908601707)
+[蝦皮購買｜雙 Agent NT$17,920](https://shopee.tw/product/105010395/54908601707)
 
 AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧，看個人方案 3 或加購「系統健檢故障修復」。
 
-Tier 3 · 顧一整年 · 主打
+年約 2 個方案 · 顧一整年 · 主打
 
 ### 個人方案 3｜年約
 
 個人方案 3 是有專屬工程師顧一整年的年約服務，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年可選配續約含每週維護。個人年約方案請至蝦皮賣場選購。
 
-給誰：不想自己維護、要有人顧一整年的個人；頂規檔給一人公司想把七個部門交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
+給誰：不想自己維護、要有人顧一整年的個人；頂規檔給想把七個部門的事交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
 
-[單 AI Agent
+[單 Agent
 副標：尊榮年約
 NT$39,910（續約 35,910）
-Hermes 或 OpenClaw 擇一、全客製、多 AI Agent MCP 互通；每週維護＋新增技能
+OpenClaw 或 Hermes 擇一、全客製；每週維護＋新增技能
 看尊榮年約頁 →](https://thinkbigtw.com/annual-pro/)
-[雙 AI Agent
-副標：年度旗艦
+[雙 Agent
+副標：旗艦年約
 NT$48,010（續約 43,010）
 Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲端硬碟／Google Workspace 整合
-看年度旗艦頁 →](https://thinkbigtw.com/annual-flagship/)
+看旗艦年約頁 →](https://thinkbigtw.com/annual-flagship/)
 
-[蝦皮購買｜尊榮年約 NT$39,910](https://shopee.tw/product/105010395/48258528741)[蝦皮購買｜年度旗艦 NT$48,010](https://shopee.tw/product/105010395/47108617097)
+[蝦皮購買｜尊榮年約 NT$39,910](https://shopee.tw/product/105010395/48258528741)[蝦皮購買｜旗艦年約 NT$48,010](https://shopee.tw/product/105010395/47108617097)
 
-兩檔皆不打折。流程：下單後先訪談確認需求與架構 → 安排遠端安裝 → 啟動年約。次年可選配續約：尊榮年約 NT$35,910、年度旗艦 NT$43,010，含每週維護＋48 小時故障修復。
+流程：先訪談、確認做得到再下單 → 安排遠端安裝 → 啟動年約。首年價／續約價：尊榮年約 NT$39,910／NT$35,910、旗艦年約 NT$48,010／NT$43,010；次年可選配續約，含每週維護＋48 小時故障修復。
 
-## 三種方案比較表
+## 方案比較表
 
 欄位
-個人方案 1｜單 AI Agent 搭建
-個人方案 2｜雙 AI Agent
+個人方案 1｜單 Agent 搭建
+個人方案 2｜雙 Agent
 個人方案 3｜年約
-給誰 第一次要一個 AI 助理的人 要兩個 AI 協作的人 要有人顧一整年的個人／一人公司
+給誰 第一次要一個 AI 助理的人 要兩個 AI 協作的人 要有人顧一整年的個人
 
-交付 AnyDesk／DeskIn 遠端安裝 AnyDesk／DeskIn 遠端安裝 訪談 → 建置 → 啟動年約
+交付 遠端安裝＋教學影片＋安裝後 7 天技術諮詢 遠端安裝＋教學影片＋安裝後 7 天技術諮詢 先訪談、確認做得到再下單 → 遠端安裝＋教學影片 → 啟動年約
 
-AI Agent 組合 OpenClaw 或 Hermes 擇一 OpenClaw＋Hermes 雙 AI Agent 單 AI Agent／OpenClaw＋Hermes 雙 AI Agent
+AI Agent 組合 OpenClaw 或 Hermes 擇一 OpenClaw＋Hermes 雙 Agent 尊榮年約：單 Agent；旗艦年約：雙 Agent
 
 技能數 完整個人技能包＋1 客製小幫手 依訪談 全客製／依訪談
 
-支援期 7 天技術諮詢 2 小時線上技術導覽＋安裝後 7 天技術諮詢 一整年維運陪跑
+支援期 7 天技術諮詢 安裝後 7 天技術諮詢 一整年維護
 
 SLA — — 48 小時故障修復
 
 續約 — — 次年可選配續約（尊榮 NT$35,910／旗艦 NT$43,010）
 
-價格 NT$7,840 NT$17,920 尊榮 NT$39,910（續約 35,910）
-旗艦 NT$48,010（續約 43,010）
+價格 NT$7,840 NT$17,920 尊榮年約　首年 NT$39,910／續約 NT$35,910
+旗艦年約　首年 NT$48,010／續約 NT$43,010
 
-CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 AI Agent](https://thinkbigtw.com/dual-agent/) [尊榮年約](https://thinkbigtw.com/annual-pro/)／[年度旗艦](https://thinkbigtw.com/annual-flagship/)
+CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 Agent](https://thinkbigtw.com/dual-agent/) [尊榮年約](https://thinkbigtw.com/annual-pro/)／[旗艦年約](https://thinkbigtw.com/annual-flagship/)
 
 每個方案都附：客戶專屬教學影片（含旁白）與 PDF 使用手冊，手冊最後一頁附「追蹤我們」頁。
 
@@ -27424,7 +27232,7 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 建議・推估 比 16GB 穩，可放大一點的模型
 
 32GB 以上
-推估 雙 AI Agent 或選 Hermes
+推估 雙 Agent 或選 Hermes
 
 8GB、Intel 晶片 Mac 改用雲端大模型（8GB 實測太慢）
 
@@ -27435,7 +27243,7 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 建議 12GB 以上／32GB
 
-雙 AI Agent 或選 Hermes 16GB 以上／32GB
+雙 Agent 或選 Hermes 16GB 以上／32GB
 
 改用雲端大模型 沒有獨立顯卡、只有內建顯示，或顯示卡記憶體不到 8GB
 
@@ -27484,7 +27292,7 @@ OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/
 
 ※ 價格為我方服務費；本地版模型運算不另收用量費，雲端版模型使用費依用量向模型廠商支付，非服務費所含。
 
-← [回方案總覽（兩扇門）](https://thinkbigtw.com/pricing/)　·　[有同事要一起用？看企業使用 →](https://thinkbigtw.com/pricing/enterprise/)　·　[個人 AI 搭建服務總覽](https://thinkbigtw.com/harness/)
+← [回方案總覽（兩扇門）](https://thinkbigtw.com/pricing/)　·　[有同事要一起用？看企業使用 →](https://thinkbigtw.com/pricing/enterprise/)　·　[單 Agent 方案頁](https://thinkbigtw.com/single-agent/)
 
 ---
 
@@ -27657,7 +27465,7 @@ AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理�
 
 想要一個 24 小時在線、會記事、會查資料的個人 AI 助理，接在你自己的 LINE 或 Telegram。
 
-[看個人方案](https://thinkbigtw.com/pricing/personal/)[個人 AI 助理搭建](https://thinkbigtw.com/harness/)[蝦皮賣場](https://shopee.tw/shop/105010395)[LINE 問](https://lin.ee/n5KW430)
+[看個人方案](https://thinkbigtw.com/pricing/personal/)[單 Agent](https://thinkbigtw.com/single-agent/)[蝦皮賣場](https://shopee.tw/shop/105010395)[LINE 問](https://lin.ee/n5KW430)
 
 ### 公司使用
 
@@ -28187,7 +27995,7 @@ URL: https://thinkbigtw.com/services/
 
 URL: https://thinkbigtw.com/single-agent/
 
-# 單 AI Agent｜Think BIG!
+# 單 Agent｜Think BIG!
 
 -
 
@@ -28210,6 +28018,16 @@ URL: https://thinkbigtw.com/single-agent/
 早上有人幫你排好今天要做什麼，開會錄音有人整理成文字，忘記的事到時間自動提醒你。
 
 NT$7,840
+
+## 購買保障
+
+- 支援： 安裝後 7 天技術諮詢。
+
+- 退費： 若因我方技術問題無法完成安裝，全額退費；服務終止依消費者保護法辦理。
+
+- 不包含： 硬體、雲端大模型用量費（選雲端時由服務商另計）。
+
+[需要兩個 Agent 分工？看雙 Agent](https://thinkbigtw.com/dual-agent/)
 
 [到蝦皮下單](https://shopee.tw/product/105010395/45107951008)
 
@@ -28285,9 +28103,9 @@ NT$7,840
 
 ## 交付方式
 
-- 以 OpenClaw 為主，其他可評估。
+- OpenClaw 或 Hermes 擇一，同價；不確定選哪個，下單前可以先聊。
 
-- 由工程師遠端安裝。
+- 遠端安裝＋教學影片＋安裝後 7 天技術諮詢。
 
 - 設備以 Apple 晶片 Mac 為主，其他設備可評估。
 
@@ -28298,6 +28116,8 @@ NT$7,840
 ## 資料說明
 
 選雲端大模型時，對話內容會傳給模型服務商處理；簽約前會說明使用哪一家服務與其資料條款。選本地大模型，資料留在你自己的電腦。
+
+遠端安裝時，工程師可能會看到你畫面上的資料；我們只做安裝與設定，不複製、不保存。
 
 你想得到的、合法的，我們都會盡力幫你做到。超出方案範圍的需求，訪談時會先說明可行性與費用。
 
@@ -28355,7 +28175,7 @@ AI Agent 是會聊天的大腦，技能才是手腳。
 
 - 需要多少加多少：10 組起跳，之後隨時追加
 
-有在用 Claude Code／Codex？→ [看「全 Agent 串接」](https://thinkbigtw.com/full-agent/)，讓它們協作。
+有在用 Claude Code／Codex？→ [看雙 Agent](https://thinkbigtw.com/dual-agent/)，讓它們協作。
 
 方案價格
 

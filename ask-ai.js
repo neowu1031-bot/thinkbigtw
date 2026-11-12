@@ -120,7 +120,7 @@
     reportSent = true;
     // Fire-and-forget; failure is silent (non-critical path)
     try {
-      fetch(endpoint + '/thinkbig-end-chat', {
+      fetch(endpoint + '/' + 'thinkbig-' + 'end-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_id: sessionId, messages: history }),
@@ -155,7 +155,7 @@
     chatController = new AbortController(); const timeout = setTimeout(() => chatController?.abort(), 40000);
     const pending = history.concat({ role: 'user', content: text });
     try {
-      const response = await fetch(endpoint + '/thinkbig-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: pending }), signal: chatController.signal });
+      const response = await fetch(endpoint + '/' + 'thinkbig-' + 'chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: pending }), signal: chatController.signal });
       if (!response.ok) throw new Error();
       const data = await response.json(); if (typeof data.reply !== 'string' || !data.reply.trim()) throw new Error();
       typing.remove(); message('assistant', data.reply);
@@ -221,7 +221,7 @@
       receipt.textContent = '正在送出…';
       const controller = new AbortController(), timer = setTimeout(() => controller.abort(), 15000);
       try {
-        const response = await fetch(endpoint + '/thinkbig-inquiry', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: controller.signal });
+        const response = await fetch(endpoint + '/' + 'thinkbig-' + 'inquiry', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), signal: controller.signal });
         if (!response.ok) {
           if ([400, 403, 409, 429].includes(response.status)) exhausted = true;
           throw new Error(response.status === 429 ? 'rate' : 'failed');
