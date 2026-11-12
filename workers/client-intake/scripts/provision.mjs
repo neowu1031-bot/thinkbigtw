@@ -81,7 +81,8 @@ for (const q of client.content.questions) {
   if (!q.id || ids.has(q.id)) die(`duplicate or missing question id: ${q.id}`);
   ids.add(q.id);
 }
-if (client.expiresAt && !(Date.parse(client.expiresAt) > Date.now())) die('expiresAt is missing a valid future date');
+// Every link must close on its own: refuse to provision without a future expiresAt.
+if (!client.expiresAt || !(Date.parse(client.expiresAt) > Date.now())) die('expiresAt is required and must be a valid future date (ISO 8601)');
 
 const slug = arg('slug') || b64url(randomBytes(32));
 if (!/^[A-Za-z0-9_-]{32,64}$/.test(slug)) die('slug must be 32-64 chars [A-Za-z0-9_-]');
@@ -98,7 +99,7 @@ for (const [name, m] of Object.entries(client.media || {})) {
   const file = resolve(m.file);
   if (file.startsWith(repoRoot + '/')) die(`media ${name} is inside the public repo`);
   const size = statSync(file).size;
-  if (size > KV_MAX) die(`media ${name} is ${size} bytes; KV values max 25 MiB — re-encode smaller or bind R2`);
+  if (size > KV_MAX) die(`media ${name} is ${size} bytes; KV values max 25 MiB — re-encode it smaller`);
   const kvKey = `media:${slug}:${name}`;
   media[name] = { kvKey, type: m.type || 'application/octet-stream', size };
   uploads.push({ kvKey, file });
@@ -109,7 +110,7 @@ const record = {
   label: client.label || 'client',
   status: 'open',
   createdAt: new Date().toISOString(),
-  expiresAt: client.expiresAt || null,
+  expiresAt: client.expiresAt,
   maxSubmissions: client.maxSubmissions || 5,
   retentionDays,
   code: { salt, hash, iter: PBKDF2_ITER },
@@ -126,7 +127,7 @@ const pretty = `${code.slice(0, 4)}-${code.slice(4)}`;
 console.log(`link: ${origin}/c/${slug}/`);
 console.log(`access code: ${pretty}`);
 console.log(`record: ${resolve(outPath)} (mode 600)`);
-if (record.expiresAt) console.log(`closes: ${record.expiresAt}`);
+console.log(`closes: ${record.expiresAt}`);
 
 const mode = arg('apply');
 if (mode === 'local' || mode === 'remote') {

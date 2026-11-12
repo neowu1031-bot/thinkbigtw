@@ -195,24 +195,12 @@ async function handleMedia(request, env, slug, cfg, name) {
     'Content-Disposition': 'inline',
   };
 
-  let size;
-  let readRange;
-  if (entry.r2Key && env.INTAKE_MEDIA) {
-    const head = await env.INTAKE_MEDIA.head(entry.r2Key);
-    if (!head) return notFound();
-    size = head.size;
-    readRange = async (r) => {
-      const obj = await env.INTAKE_MEDIA.get(entry.r2Key, r ? { range: { offset: r.start, length: r.end - r.start + 1 } } : undefined);
-      return obj ? obj.body : null;
-    };
-  } else if (entry.kvKey) {
-    const buf = await env.INTAKE_KV.get(entry.kvKey, { type: 'arrayBuffer' });
-    if (!buf) return notFound();
-    size = buf.byteLength;
-    readRange = async (r) => (r ? buf.slice(r.start, r.end + 1) : buf);
-  } else {
-    return notFound();
-  }
+  // Media bytes live in KV (media:<slug>:<name>, max 25 MiB per value).
+  if (!entry.kvKey) return notFound();
+  const buf = await env.INTAKE_KV.get(entry.kvKey, { type: 'arrayBuffer' });
+  if (!buf) return notFound();
+  const size = buf.byteLength;
+  const readRange = async (r) => (r ? buf.slice(r.start, r.end + 1) : buf);
 
   const range = parseRange(request.headers.get('Range'), size);
   if (range === 'invalid') {

@@ -11,6 +11,14 @@ const SECRET = 'x'.repeat(40);
 const ADMIN = 'a'.repeat(40);
 const ORIGIN = 'https://thinkbigtw.com';
 const CODE = 'K7MP3XQ9';
+// Fake credentials for detector tests, assembled at run time so no complete
+// key-shaped string appears in the source (keeps secret scanners quiet).
+const FAKE = {
+  google: 'AI' + 'za' + 'Sy' + 'A1234567890' + 'abcdefghijklmnopqrstuv',
+  anthropic: 'sk-' + 'ant-' + 'api03-' + 'abcdefghijklmnopqrstuvwxyz',
+  github: 'gh' + 'p_' + 'abcdefghijklmnopqrstuvwxyz' + '0123456789',
+  card: ['4111', '1111', '1111', '1111'].join(' '),
+};
 const demo = JSON.parse(readFileSync(new URL('./fixtures/demo-config.json', import.meta.url)));
 
 function memKV({ dropWrites = false, corrupt = false } = {}) {
@@ -226,7 +234,7 @@ test('server validation: options, unknown keys, length, field pattern, secrets',
   assert.equal(validateSubmission(c, { answers: { pick: { v: 'zzz' } } }).ok, false);
   assert.equal(validateSubmission(c, { answers: { nope: 'x' } }).ok, false);
   assert.equal(validateSubmission(c, { answers: { free: 'x'.repeat(501) } }).ok, false);
-  const sec = validateSubmission(c, { answers: { free: '金鑰 AIzaSyA1234567890abcdefghijklmnopqrstuv' } });
+  const sec = validateSubmission(c, { answers: { free: '金鑰 ' + FAKE.google } });
   assert.equal(sec.errors[0].reason, 'looks_like_secret');
   assert.equal(validateSubmission(c, { answers: { table: { price: '密碼：abcd1234' } } }).ok, false);
   assert.equal(validateSubmission(c, { answers: { table: { id: '123 456 789' } } }).ok, true);
@@ -237,7 +245,7 @@ test('server validation: options, unknown keys, length, field pattern, secrets',
 });
 
 test('secret detector: hits and non-hits', () => {
-  for (const hit of ['4111 1111 1111 1111', 'sk-ant-api03-abcdefghijklmnopqrstuvwxyz', 'ghp_abcdefghijklmnopqrstuvwxyz0123456789',
+  for (const hit of [FAKE.card, FAKE.anthropic, FAKE.github,
     '密碼 abc12345', '密碼abc12345', '密碼：abcd1234', 'pw: hunter22', 'ＰＡＳＳＷＯＲＤ：abcd1234', 'AnyDesk 123456789 密碼abc12345', 'password is hunter22']) {
     assert.notEqual(findSecret(hit), null, hit);
   }

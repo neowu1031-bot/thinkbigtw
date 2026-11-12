@@ -22,7 +22,7 @@ button,input,textarea{font:inherit;color:inherit}
 .ci-progress{height:3px;background:var(--line)}
 .ci-progress-bar{height:100%;width:0;background:var(--accent);transition:width .3s ease}
 
-.ci-main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:28px 20px 40px}
+.ci-main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:16px 20px 40px}
 .ci-foot{max-width:760px;margin:0 auto;padding:24px 20px calc(28px + env(safe-area-inset-bottom));color:var(--muted);font-size:12.5px;text-align:center}
 .ci-foot p{margin:2px 0}
 
@@ -66,7 +66,20 @@ h3.ci-h3{font-size:17px;line-height:1.5;font-weight:700;margin:0 0 6px}
 /* video */
 .ci-video{position:relative;border-radius:12px;overflow:hidden;background:#191A1D;aspect-ratio:16/9;margin:0 0 10px}
 .ci-video video,.ci-video img{width:100%;height:100%;object-fit:cover}
-.ci-video.is-portrait{aspect-ratio:9/16;max-width:360px;margin-left:auto;margin-right:auto}
+.ci-video.is-portrait{aspect-ratio:9/16;margin-left:auto;margin-right:auto;
+  /* whole video + the start button fit the first screen: header ~58px, paddings, 52px button */
+  height:min(calc(100svh - 190px),calc((100vw - 40px) * 16 / 9));width:auto;max-width:100%}
+.ci-intro{display:flex;flex-direction:column}
+.ci-intro .ci-video{margin-bottom:12px}
+.ci-intro .ci-video-cap{display:none}
+.ci-intro-cta{max-width:420px;width:100%;margin:0 auto 18px}
+.ci-more{border-top:1px solid var(--line);padding-top:10px}
+.ci-more>summary{cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;
+  font-size:15px;font-weight:650;color:var(--accent-text)}
+.ci-more>summary::-webkit-details-marker{display:none}
+.ci-more>summary::after{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .15s}
+.ci-more[open]>summary::after{transform:rotate(-135deg) translateY(-2px)}
+.ci-more[open]>summary{margin-bottom:14px}
 .ci-video video{background:#191A1D}
 .ci-video-cap{font-size:13px;color:var(--muted);margin:0 0 22px}
 .ci-poster{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
@@ -168,7 +181,7 @@ h3.ci-h3{font-size:17px;line-height:1.5;font-weight:700;margin:0 0 6px}
   font-size:14px;padding:10px 18px;border-radius:999px;z-index:30;max-width:calc(100% - 40px);text-align:center}
 
 @media (min-width:768px){
-  .ci-main{padding:48px 32px 56px}
+  .ci-main{padding:24px 32px 56px}
   .ci-top-in{padding:16px 32px}
   .ci-logo{height:28px}
   h1.ci-h1{font-size:34px}

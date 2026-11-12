@@ -1,6 +1,6 @@
 // KV layout (namespace INTAKE_KV). Every key carries an expiration.
 //   cfg:<slug>                      client config (code hash, content, media map). scripts/provision.mjs
-//   media:<slug>:<name>             video/poster bytes (when no R2 bucket is bound)         scripts/provision.mjs
+//   media:<slug>:<name>             video/poster bytes (KV value, max 25 MiB)               scripts/provision.mjs
 //   fail:<slug>:<hour>              failed access-code attempts in that hour     (TTL 2h)
 //   faild:<slug>:<day>              failed attempts that day                     (TTL 2d)
 //   sub:<slug>:<id>                 one submission; id = <UTC timestamp>-<hash8> (TTL = retention)

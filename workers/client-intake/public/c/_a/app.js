@@ -168,24 +168,34 @@
     var c = S.content, it = c.intro || {};
     var draft = loadDraft();
     var answered = countAnswered();
-    var resume = draft && answered > 0 && S.view !== 'done';
-    app.appendChild(h('p', { class: 'ci-eyebrow', text: it.eyebrow || '開始之前' }));
-    app.appendChild(h('h1', { class: 'ci-h1', text: it.title || c.title }));
-    if (it.lead) app.appendChild(h('p', { class: 'ci-lead', text: it.lead }));
-    renderVideo(c.video).forEach(function (x) { if (x) app.appendChild(x); });
-    if (it.meta) app.appendChild(h('div', { class: 'ci-meta' }, it.meta.map(function (t) { return h('span', { class: 'ci-chip', text: t }); })));
+    var resume = draft && answered > 0;
+    var startAt = resume ? Math.min(S.idx, q().length - 1) : 0;
+    var page = h('section', { class: 'ci-intro' });
+
+    // 1) The video comes first and fits the first screen. No autoplay: the client presses play.
+    renderVideo(c.video).forEach(function (x) { if (x) page.appendChild(x); });
+
+    // 2) One button under the video.
+    page.appendChild(h('div', { class: 'ci-intro-cta' },
+      h('button', { class: 'ci-btn ci-btn-block', type: 'button', text: resume ? '接著回答（第 ' + (startAt + 1) + ' 題）' : '開始回答', onclick: function () { renderQuestion(startAt); } })));
+
+    // 3) Everything else is folded away.
+    var more = h('details', { class: 'ci-more' }, h('summary', { text: it.moreLabel || '看文字說明：這次我們怎麼做' }));
+    more.appendChild(h('h1', { class: 'ci-h1', text: it.title || c.title }));
+    if (it.lead) more.appendChild(h('p', { class: 'ci-lead', text: it.lead }));
+    if (it.meta) more.appendChild(h('div', { class: 'ci-meta' }, it.meta.map(function (t) { return h('span', { class: 'ci-chip', text: t }); })));
     if (resume) {
-      app.appendChild(h('div', { class: 'ci-note' },
+      more.appendChild(h('div', { class: 'ci-note' },
         h('strong', { text: '上次已經答了 ' + answered + ' 題。' }),
-        ' 存在這支裝置 ' + fmtTime(draft.savedAt) + '，按下面的按鈕會接著答。'));
+        ' 存在這支裝置 ' + fmtTime(draft.savedAt) + '。'));
     }
-    (it.sections || []).forEach(function (s) { app.appendChild(renderSection(s)); });
-    app.appendChild(h('div', { class: 'ci-note' }, h('strong', { text: '提醒：' }), c.safetyNote || '請勿填寫任何密碼、金鑰、信用卡資料。需要登入的地方，我們開遠端時由您本人輸入。'));
+    (it.sections || []).forEach(function (sec) { more.appendChild(renderSection(sec)); });
+    more.appendChild(h('div', { class: 'ci-note' }, h('strong', { text: '提醒：' }), c.safetyNote || '請勿填寫任何密碼、金鑰、信用卡資料。需要登入的地方，我們開遠端時由您本人輸入。'));
     if (S.status && S.status.submitted > 0) {
-      app.appendChild(h('p', { class: 'ci-small ci-muted', text: '您已經送出過 ' + S.status.submitted + ' 次，還可以修改後再送 ' + S.status.remaining + ' 次（以最後一次為準）。' }));
+      more.appendChild(h('p', { class: 'ci-small ci-muted', text: '您已經送出過 ' + S.status.submitted + ' 次，還可以修改後再送 ' + S.status.remaining + ' 次（以最後一次為準）。' }));
     }
-    app.appendChild(h('div', { class: 'ci-nav single' },
-      h('button', { class: 'ci-btn ci-btn-block', type: 'button', text: resume ? '接著答（第 ' + (Math.min(S.idx, q().length - 1) + 1) + ' 題）' : '下一步：開始回答', onclick: function () { renderQuestion(resume ? Math.min(S.idx, q().length - 1) : 0); } })));
+    page.appendChild(more);
+    app.appendChild(page);
   }
 
   /* ---------- questions ---------- */

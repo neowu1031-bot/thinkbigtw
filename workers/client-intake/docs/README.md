@@ -32,7 +32,7 @@ This directory is the reusable template. Client text, videos and codes never go 
 | Wrong codes | 8 per hour and 30 per day per link, then locked until the window passes |
 | Request rate | page + API: 20/min per IP; video/poster: 300/min per IP. Checked before any KV read |
 | Body size | 64 KB; short answers 300 chars, long answers 2000 chars; optional per-field `pattern` |
-| Media | served only with a valid token, `Range` supported, `Cache-Control: private, no-store`. Stored in KV (max 25 MiB per file) or, if bound, a private R2 bucket |
+| Media | served only with a valid token, `Range` supported, `Cache-Control: private, no-store`. Stored in KV under `media:<slug>:<name>` (max 25 MiB per file, so keep web videos small) |
 | Indexing | `X-Robots-Tag: noindex, nofollow`, robots meta, `robots.txt` disallows `/c/`, not in sitemap or llms.txt |
 
 ## Tooling
@@ -57,8 +57,8 @@ There is no CI workflow for this worker on purpose; deploys are manual.
 
 ## Add a client
 
-1. Write the client config JSON **outside this repo** with mode 600 (shape: `test/fixtures/demo-config.json`;
-   add `expiresAt`, and `media` entries pointing at local files if there is a video).
+1. Write the client config JSON **outside this repo** with mode 600 (shape: `test/fixtures/demo-config.json`).
+   `expiresAt` (a future ISO date) is required; add `media` entries pointing at local files if there is a video.
 2. Create the link and code and upload everything:
 
    ```bash
