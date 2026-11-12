@@ -315,7 +315,7 @@ PART 04
 
 - — 在意公司資料交給 AI 之後去了哪裡的人。
 
-- — 從一人公司到中大型企業都適用，不需要技術背景。
+- — 從個人到中大型企業都適用，不需要技術背景。
 
 ## 04 報名
 
@@ -1518,7 +1518,7 @@ Pricing
 
 ## How are enterprise projects priced?
 
-Enterprise projects are quoted to your needs. Book a needs call for a quote. Payment methods and installments are as stated in your quote. AI model usage fees are paid by you directly to the model provider.
+The Business plan starts from NT$52,600 (excl. tax; NT$55,230 incl. tax; hardware not included) and is quoted to your needs. Book a needs call for a quote. Payment methods and installments are as stated in your quote. AI model usage fees are paid by you directly to the model provider.
 
 Fixed-price services
 
@@ -1621,72 +1621,6 @@ Security
 ## How do you handle security?
 
 We scan skills before installing them, pin versions with no auto-updates, run a security review before go-live, and keep keys in system configuration files and never in chat. No one can guarantee security; we say so plainly.
-
----
-
-URL: https://thinkbigtw.com/en/full-agent/
-
-# Full Agent Integration | Multi-Agent Orchestration | Think BIG
-
-Personal AI Assistant
-
-# Full Agent Integration
-
-You are already paying for a Claude Code / Codex subscription — let them work as a team.
-
-Multi-Agent Orchestration: OpenClaw and your existing coding agent (Claude Code / Codex / Antigravity, etc.) share one collaboration room and divide the work. OpenClaw handles commands and day-to-day tasks; the coding agent handles writing code, editing files and running tests. This is the architecture direction being pushed by Anthropic, Google and Microsoft in 2026.
-
-## Does this sound familiar?
-
-- You have Claude Code open, ChatGPT open and other tools open — and you are the human router passing things between them?
-
-- You pay for a coding agent subscription but can only use it when you are sitting at the computer typing commands?
-
-- You want to delegate work to an AI while you are away from your desk, but you have to wait until you get back?
-
-## How it works
-
-1
-
-Receive Open the dedicated collaboration room URL (can be added to your phone's home screen as an app) and issue a command.
-
-2
-
-Route OpenClaw analyses the task and decides whether to handle it directly or delegate to the coding agent.
-
-3
-
-Execute Multiple agents collaborate in the room, dividing the work. You can watch the collaboration in real time.
-
-4
-
-Report The final result report is pushed automatically to your designated messaging app.
-
-The collaboration room is built on a free Supabase project you register yourself, so your data is naturally isolated from other clients.
-
-## What you get
-
-- Latest official OpenClaw + 60 fully custom skills  (tailored to your profession)
-
-- Coding agent integration (Claude Code / Codex / Antigravity, etc. — your own subscription required)
-
-- Cross-agent collaboration room + result push to your messaging app
-
-- Issue commands from your phone; the agent team on your computer picks them up — no need to be at the desk
-
-- 2-hour online technical walkthrough + 7 days  of post-installation technical support
-
-- Service fee on request, no monthly fee  (this refers to our service fee)
-
-Want a second brain that also learns? → [Dual AI Agent](https://thinkbigtw.com/en/dual-agent/).
-
-Plan price
-
-Pricing on request
-
-[Ask on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20the%20Full%20Agent%20Integration%20plan.)
-
-Note: local model inference has no usage fee. If you switch to a cloud model, you apply for your own API key and pay usage fees directly to the model provider. Coding agent subscriptions (Claude Code requires Pro or above; check each provider's current terms) are your own responsibility.
 
 ---
 
@@ -2184,7 +2118,7 @@ Memory focus Tasks and state Conversation context and notes
 
 Skill ecosystem Messaging, scheduling, files, browser Documents, knowledge base, writing, research
 
-Installation fee (Persona edition, one-time) Priced on request Priced on request
+Installation fee (Single Agent, one-time) NT$7,840 NT$7,840
 
 Both tools (with collaboration room) Dual Agent (with cross-Agent collaboration room, MCP memory sync, remote installation + tutorial videos + 7-day technical consultation after installation)
 
@@ -2198,24 +2132,24 @@ Not included Local plan: no model usage fees. Cloud-based large model usage fees
 
 - Is your work mostly chores, or mostly writing?  Lots of chores: OpenClaw. Lots of writing: Hermes.
 
-- Do you want one or two assistants working separately?  One: start with the Persona edition. Two with memory sync and collaboration: Dual Agent (with collaboration room).
+- Do you want one or two assistants working separately?  One: start with the Single Agent. Two with memory sync and collaboration: Dual Agent (with collaboration room).
 
 If you're unsure: install OpenClaw first and run it for a week or two. You'll learn what you're still missing. Then decide whether to add Hermes. Most people start with OpenClaw.
 
 ## What is Hermes Agent?
 
-Hermes Agent is an open-source self-learning AI assistant from Nous Research. Think BIG assists with installation, configuration, and guidance. The Persona edition plan includes a choice of supportive or challenging personality.
+Hermes Agent is an open-source self-learning AI assistant from Nous Research. Think BIG assists with installation, configuration, and guidance.
 
 ## Think BIG personal plan — which tool is included?
 
 Plan Fee Tool included Suited for
-Persona Edition AI Assistant Priced on request, one-time OpenClaw or Hermes (choose one), supportive or challenging personality, full personal skill package + 1 custom helper First installation, want a personalized AI, personal use
+Single Agent NT$7,840, one-time OpenClaw or Hermes (choose one), full personal skill package + 1 custom helper First installation, personal use
 
-Dual Agent Priced on request OpenClaw + Hermes with memory sync, cross-Agent collaboration room (this plan only), skills per interview, includes remote installation + tutorial videos + 7-day technical consultation after installation Work spans both "executing" and "thinking" types, want two AIs with shared memory
+Dual Agent NT$17,920 OpenClaw + Hermes with memory sync, cross-Agent collaboration room (this plan only), skills per interview, includes remote installation + tutorial videos + 7-day technical consultation after installation Work spans both "executing" and "thinking" types, want two AIs with shared memory
 
-Premium Annual Priced on request Single main system annual plan, weekly maintenance and skill additions, 48-hour failure repair Want year-round support, don't want to handle maintenance yourself
+Premier Annual NT$39,910 first year / NT$35,910 renewal Single main system annual plan, weekly maintenance and skill additions, 48-hour failure repair Want year-round support, don't want to handle maintenance yourself
 
-Annual Flagship Priced on request OpenClaw + Hermes dual-system annual plan with memory sync, full-year maintenance, 48-hour failure repair Already know you want both, want full-year care
+Flagship Annual NT$48,010 first year / NT$43,010 renewal OpenClaw + Hermes dual-system annual plan with memory sync, full-year maintenance, 48-hour failure repair Already know you want both, want full-year care
 
 Enterprise Deployment Contact us Local or cloud, evaluated per requirements Company, team, data needs to stay on company infrastructure
 
@@ -2241,7 +2175,7 @@ Yes. Hermes Agent is an open-source self-learning AI assistant from Nous Researc
 
 Q: Can I maintain both on an annual plan?
 
-Yes. Annual Flagship is the plan for both assistants with shared memory plus full-year maintenance. Premium Annual is the single-system annual plan. Decide how many assistants you want before looking at annual plans — it'll save you a roundabout route.
+Yes. Flagship Annual is the plan for both assistants with shared memory plus full-year maintenance. Premier Annual is the single-system annual plan. Decide how many assistants you want before looking at annual plans — it'll save you a roundabout route.
 
 Want to see a broader comparison of AI Agents, including billing across major providers and where OpenClaw fits? → [What AI Agents are out there? A complete overview](https://thinkbigtw.com/en/guides/ai-agents/)
 
@@ -2251,17 +2185,17 @@ If you just want to offload daily repetitive chores to your computer — install
 
 If your work constantly involves writing, researching, synthesizing — install Hermes first, start accelerating with writing.
 
-If you want both AIs with shared memory and collaboration — Dual Agent. If you want year-round support — Annual Flagship plan.
+If you want both AIs with shared memory and collaboration — Dual Agent. If you want year-round support — Flagship Annual plan.
 
-If you're still not sure, just start with the Persona edition. OpenClaw or Hermes — pick one, give it personality, get it running. You can add the second one or switch to Dual Agent later.
+If you're still not sure, just start with the Single Agent. OpenClaw or Hermes — pick one, get it running. You can add the second one or switch to Dual Agent later.
 
 ### Tell us which one you want and we'll get it running
 
-Start with the Persona edition — OpenClaw or Hermes, your choice. Taiwan-based engineers install it remotely, supportive or challenging personality available. Larger budget? Let's discuss the Dual Agent or annual plans directly.
+Start with the Single Agent — OpenClaw or Hermes, your choice. Taiwan-based engineers install it remotely. Larger budget? Let's discuss the Dual Agent or annual plans directly.
 
 [Contact us on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
-What does the Persona edition install? → [OpenClaw Installation Explained](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)
+What does the Single Agent install? → [OpenClaw Installation Explained](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)
 
 Want both and have them work together? → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
 
@@ -2363,23 +2297,23 @@ with a clear set of business requirements.
 
 URL: https://thinkbigtw.com/en/guides/openclaw-daizhuang/
 
-# OpenClaw Installation Explained: What the Persona Edition Actually Sets Up | Think BIG
+# OpenClaw Installation Explained: What the Single Agent Plan Actually Sets Up | Think BIG
 
 [Guides](https://thinkbigtw.com/en/guides/) / OpenClaw Installation
 
-Installation Service · Persona Edition AI
+Installation Service · Single Agent AI
 
-# OpenClaw Installation Explained: What the Persona Edition Actually Sets Up
+# OpenClaw Installation Explained: What the Single Agent Plan Actually Sets Up
 
 Think BIG Editorial
 
-Stuck on the OpenClaw install? This guide breaks down the installation service clearly: what the Persona Edition sets up, how to choose between the supportive or challenging personality, what the installation process looks like, and how pricing works. Read it and you'll know whether it's worth it for you.
+Stuck on the OpenClaw install? This guide breaks down the installation service clearly: what the Single Agent plan sets up, what the installation process looks like, and how pricing works. Read it and you'll know whether it's worth it for you.
 
 Updated: 2026-08-31
 
 You probably arrived here like this: you saw someone using an AI assistant like OpenClaw to offload their repetitive daily tasks — and it looked effortless. Then you opened a tutorial, got stuck on step one — terminal, environment variables, a wall of commands you didn't understand. Three minutes later you closed the tab, thinking "forget it, I'm not an engineer."
 
-This guide is here to explain it plainly. What does the OpenClaw installation service  actually do — what does the service fee cover (including personality selection!) — and what do you still need to handle yourself. After reading, you can judge for yourself: is this worth paying for?
+This guide is here to explain it plainly. What does the OpenClaw installation service  actually do — what does the service fee cover — and what do you still need to handle yourself. After reading, you can judge for yourself: is this worth paying for?
 
 We're not here to sell you anxiety, and we won't tell you "you'll fall behind if you don't do this." It's just a tool — only use it if it's worth using.
 
@@ -2391,9 +2325,9 @@ That sounds great, but the problem is installation . Getting it running involves
 
 That's why the OpenClaw installation service  exists: you don't need to touch those commands. Engineers connect remotely and set everything up, get it running, verify it works — you just watch. AI assistant installation  was never meant to be something you wrestle with alone.
 
-## What does the Persona Edition set up? Item by item
+## What does the Single Agent set up? Item by item
 
-This is what everyone wants to know. Here's the Persona Edition broken down so you can see each piece:
+This is what everyone wants to know. Here's the Single Agent broken down so you can see each piece:
 
 ### 1. Official OpenClaw, one Agent
 
@@ -2401,23 +2335,23 @@ What's installed is the official OpenClaw release — not a modified or counterf
 
 ### 2. Local deployment — data stays on your computer
 
-The Persona Edition AI Assistant is installed on your own computer, not sent to some cloud somewhere. For many people, "my stuff is in my own hands" is itself valuable.
+The Single Agent is installed on your own computer, not sent to some cloud somewhere. For many people, "my stuff is in my own hands" is itself valuable.
 
 ### 3. Remote installation by Taiwan-based engineers
 
 Taiwan-based engineers connect remotely via AnyDesk or DeskIn to do the installation. Full communication in English is available. You can see everything the engineer does. The installation is complete only when it's running and verified working.
 
-### 4. Full personal skill package + personality selection + Coding Agent
+### 4. Full personal skill package + Coding Agent
 
-The Persona Edition includes a full personal skill package + 1 custom helper, tailored more closely to your work scenarios than a bare-bones install. You can also choose a supportive  (warm, affirming without being sycophantic) or challenging  (direct and sharp, without personal attacks) personality, plus 1–2 Coding Agent connections.
+The Single Agent includes a full personal skill package + 1 custom helper, tailored more closely to your work scenarios than a bare-bones install. Optional: 1–2 Coding Agent connections for people who already have a Claude Code or Codex subscription.
 
-One-sentence summary:  The service fee covers an OpenClaw AI assistant that's installed, running, with the personality you chose, on your own computer — plus the service of Taiwan-based engineers installing it remotely until it works. It is not a tutorial document for you to follow yourself.
+One-sentence summary:  The service fee covers an OpenClaw AI assistant that's installed, running, on your own computer — plus the service of Taiwan-based engineers installing it remotely until it works. It is not a tutorial document for you to follow yourself.
 
 ## What does the installation process look like? Your part is actually minimal
 
 Many people think the installation process is complicated, but your part is light:
 
-- Place order:  Complete your Persona Edition order.
+- Place order:  Complete your Single Agent order.
 
 - Schedule a time:  The engineer contacts you based on the order and arranges a mutually convenient installation slot.
 
@@ -2431,7 +2365,7 @@ Really — your workload is roughly "turn on computer, allow remote access, watc
 
 ## Honest section: what do you still need to prepare?
 
-This section we always state clearly, because finding out "there were other things to handle" after installation is a bad feeling. Here's what the Persona Edition doesn't include and what you need to have ready:
+This section we always state clearly, because finding out "there were other things to handle" after installation is a bad feeling. Here's what the Single Agent doesn't include and what you need to have ready:
 
 - Equipment check:  Before installation, please take a screenshot and send to the engineer (Mac: check if RAM is 16 GB or more, whether you have an Apple M chip; Windows: check NVIDIA GPU and whether GPU memory is 8 GB or more). If specs qualify, a local model is installed; if not, a cloud-based large model is used instead — same plan, same price.
 
@@ -2447,7 +2381,7 @@ We'd rather tell you upfront than have you feel ambushed later. Service fee is a
 
 ## What can you do with it once it's set up?
 
-Installation is just the starting point. The Persona Edition gives you an AI assistant that can take action. What you actually use it for depends on your work — common examples:
+Installation is just the starting point. The Single Agent gives you an AI assistant that can take action. What you actually use it for depends on your work — common examples:
 
 - Hand off daily repetitive, mindless but time-consuming tasks.
 
@@ -2455,17 +2389,17 @@ Installation is just the starting point. The Persona Edition gives you an AI ass
 
 - Speak to it in plain language and it moves things forward — rather than giving you a wall of information you still have to process yourself.
 
-To make it understand your work better and know more "moves," you add skill packages. The Persona Edition already includes the full personal skill package + 1 custom helper; additional packs can be added later.
+To make it understand your work better and know more "moves," you add skill packages. The Single Agent already includes the full personal skill package + 1 custom helper; additional packs can be added later.
 
-## Want to upgrade? What comes after the Persona Edition
+## Want to upgrade? What comes after the Single Agent
 
-The Persona Edition AI Assistant is the first tier of personal plans, intentionally made easy to get started. After using it, you can scale up as needed:
+The Single Agent is the first tier of personal plans, intentionally made easy to get started. After using it, you can scale up as needed:
 
 - Skill package add-ons:  Want more skills? Add-on skill packages are available in three tiers: 10, 20, or 40 packs (priced on request). These follow a "minimal model calls" design philosophy so each call is more cost-efficient.
 
 - Multi-Agent collaboration:  If you need multiple AI assistants dividing work and connecting more tools, there are more comprehensive plans available. These are custom-scoped — we discuss your needs first, then quote.
 
-No need to get everything at once. Get the Persona Edition running first, find out what you actually need, then add. That's the clearest way to spend your money.
+No need to get everything at once. Get the Single Agent running first, find out what you actually need, then add. That's the clearest way to spend your money.
 
 ## What if you decide you don't want it anymore?
 
@@ -2479,19 +2413,19 @@ Yes. That's exactly why the installation service exists. The engineer does the e
 
 Q: How much does the OpenClaw installation cost?
 
-The Persona Edition AI Assistant service fee is priced on request, one-time payment, including supportive or challenging personality selection, full personal skill package + 1 custom helper + Coding Agent connection. Important note: the AI model API usage fee is billed separately based on your actual usage — you pay that directly. Local version: no model usage fees. These are two separate costs; we'll explain them clearly upfront.
+The Single Agent service fee is NT$7,840, one-time payment, full personal skill package + 1 custom helper + Coding Agent connection. Important note: the AI model API usage fee is billed separately based on your actual usage — you pay that directly. Local version: no model usage fees. These are two separate costs; we'll explain them clearly upfront.
 
-Q: What's the difference between the Persona Edition and higher-tier plans?
+Q: What's the difference between the Single Agent and higher-tier plans?
 
-The Persona Edition is a full personal skill package + personality selection + Coding Agent connection, single Agent locally deployed, no ongoing maintenance. Higher plans include: Dual Agent (with memory sync and collaboration room), or annual plans (a full year of engineer support). Simply put: Persona Edition is "get it installed with personality and running"; higher tiers are "run more complexity, with someone maintaining it long-term."
+The Single Agent plan is a full personal skill package + optional Coding Agent connection, single Agent locally deployed, no ongoing maintenance. Higher plans include: Dual Agent (with memory sync and collaboration room), or annual plans (a full year of engineer support). Simply put: Single Agent is "get it installed and running"; higher tiers are "run more complexity, with someone maintaining it long-term."
 
 Q: Will my data get uploaded to the cloud?
 
-The Persona Edition is locally deployed — the AI assistant runs on your own computer. Which AI model it connects to and how data flows depends on your model choice and configuration. This will be explained during installation — no exaggeration and no vagueness.
+The Single Agent is locally deployed — the AI assistant runs on your own computer. Which AI model it connects to and how data flows depends on your model choice and configuration. This will be explained during installation — no exaggeration and no vagueness.
 
 Q: How long does installation take? Do I need to watch the whole time?
 
-A typical Persona Edition remote installation completes within one session. The engineer handles most of it. You don't need to stare at the screen the whole time, but it's recommended to be nearby so you can handle authorization or confirmations when needed.
+A typical Single Agent remote installation completes within one session. The engineer handles most of it. You don't need to stare at the screen the whole time, but it's recommended to be nearby so you can handle authorization or confirmations when needed.
 
 Q: If it doesn't work after installation, is there a refund?
 
@@ -2503,17 +2437,17 @@ AnyDesk/DeskIn are remote desktop tools — the connection is only established w
 
 ## Conclusion: is the service fee worth it?
 
-If your situation is "I want to use OpenClaw, but the moment I see the installation steps I give up — and I want an AI with some personality" — the Persona Edition installation service is designed for you. What you're paying for isn't just getting the software installed; it's trading in the time you'd spend fumbling through it (and possibly still failing) for an AI assistant with personality that works from day one, right on your computer.
+If your situation is "I want to use OpenClaw, but the moment I see the installation steps I give up" — the Single Agent installation service is designed for you. What you're paying for isn't just getting the software installed; it's trading in the time you'd spend fumbling through it (and possibly still failing) for an AI assistant that works from day one, right on your computer.
 
 If you already know how to install it yourself, you probably don't need this service — and that's fine. We're not going to tell you that you must spend this money. It's just a tool; only use it if it fits.
 
 ### Ready to get started?
 
-Contact us on WhatsApp and an engineer will reach out to schedule your installation. From "want it but can't install it" to "today you have your own personalized AI assistant."
+Contact us on WhatsApp and an engineer will reach out to schedule your installation. From "want it but can't install it" to "today you have your own AI assistant."
 
 [Contact us on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
-Want ongoing engineer support and continuous feature additions? → [Premium Annual plan details](https://thinkbigtw.com/en/pricing/)
+Want ongoing engineer support and continuous feature additions? → [Premier Annual plan details](https://thinkbigtw.com/en/pricing/)
 
 Compare all plans → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
 
@@ -2559,7 +2493,7 @@ Skills are the extension packs that let OpenClaw "do things" — the community h
 
 If you install yourself Only install skills from official or trusted authors. Review the code before installing; don't skip warnings. Periodically audit your installed skills list.
 
-What we do by default The Persona Edition includes a full personal skill package + 1 custom helper — no third-party sources. Add-on skill packages are Think BIG internally maintained versions with audit records.
+What we do by default The Single Agent includes a full personal skill package + 1 custom helper — no third-party sources. Add-on skill packages are Think BIG internally maintained versions with audit records.
 
 ### Risk 3: Exposed Port / Web UI Exposed Externally
 
@@ -2591,7 +2525,7 @@ Every software has vulnerabilities — OpenClaw included. Install it and don't u
 
 If you install yourself Subscribe to official update announcements. Manually update every 1–3 months.
 
-What we do by default Persona Edition: installed until it runs — you decide when to update. Premium Annual and Annual Flagship include weekly maintenance; we handle updates.
+What we do by default Single Agent: installed until it runs — you decide when to update. Premier Annual and Flagship Annual include weekly maintenance; we handle updates.
 
 ## Comparison: self-install vs. professional installation
 
@@ -2668,23 +2602,23 @@ Three types of people: (1) work computers or company-issued equipment — IT pol
 
 Q: How often do I need to update after installation?
 
-The OpenClaw framework typically releases an official update every 1–3 months. After installation we recommend subscribing to official announcements. Annual plans (Premium Annual, Annual Flagship) include weekly maintenance and 48-hour failure repair — we handle updates. The Persona Edition is installed once to run; you decide when to update.
+The OpenClaw framework typically releases an official update every 1–3 months. After installation we recommend subscribing to official announcements. Annual plans (Premier Annual, Flagship Annual) include weekly maintenance and 48-hour failure repair — we handle updates. The Single Agent is installed once to run; you decide when to update.
 
 ## Conclusion
 
 Whether OpenClaw is safe depends on whether you got the basic configuration right during installation . Common risks come from basic mistakes like "no permissions set," "unknown-source skills installed," "default password unchanged" — these are avoidable with an extra hour of setup.
 
-If you're willing to spend that hour, or willing to have engineers do it right the first time (including personality selection), OpenClaw is a tool that can save you significant time every day. If you're completely unwilling to learn or have someone set it up — no tool like this will suit you, not just OpenClaw.
+If you're willing to spend that hour, or willing to have engineers do it right the first time, OpenClaw is a tool that can save you significant time every day. If you're completely unwilling to learn or have someone set it up — no tool like this will suit you, not just OpenClaw.
 
 Think it through before installing. After installation, change the password, bind to localhost, install only official skills. With those three things done, risk is manageable.
 
-### Decided to install it? Start with the Persona Edition
+### Decided to install it? Start with the Single Agent
 
-Taiwan-based engineers install it remotely until it works, with six security defaults done in one go: password changed, localhost-bound, permissions limited, skills whitelisted, API key secured, update plan in place. Want year-round support? Premium Annual or Annual Flagship.
+Taiwan-based engineers install it remotely until it works, with six security defaults done in one go: password changed, localhost-bound, permissions limited, skills whitelisted, API key secured, update plan in place. Want year-round support? Premier Annual or Flagship Annual.
 
 [Talk to us on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
-What does the Persona Edition install? → [OpenClaw Installation Explained](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)
+What does the Single Agent install? → [OpenClaw Installation Explained](https://thinkbigtw.com/en/guides/openclaw-daizhuang/)
 
 Compare all plans → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
 
@@ -2732,7 +2666,7 @@ The key difference from following a tutorial yourself is the engineer's judgment
 
 - Session ends immediately after completion:  Remote access is disconnected as soon as installation is done. No backdoor software is left on your computer. After that, contacting us is initiated by you — we don't have residual access.
 
-After completion, the Persona Edition includes 7-day post-installation technical support, a full personal skill package + 1 custom helper + Coding Agent connection. Ready to use immediately.
+After completion, the Single Agent includes 7-day post-installation technical support, a full personal skill package + 1 custom helper + Coding Agent connection. Ready to use immediately.
 
 ## Security and trust: what we explicitly don't do
 
@@ -2772,7 +2706,7 @@ We operate exactly according to these five criteria, so we're comfortable publis
 
 The fee structure for remote installation has exactly two parts — keeping them clear prevents any unpleasant surprises:
 
-- Service fee:  Paid to us, one-time, no monthly subscription. The Persona Edition AI Assistant is priced on request and includes environment setup, supportive or challenging personality selection, full personal skill package + 1 custom helper, Coding Agent connection, and 7-day technical support.
+- Service fee:  Paid to us, one-time, no monthly subscription. The Single Agent costs NT$7,840 and includes environment setup, full personal skill package + 1 custom helper, Coding Agent connection, and 7-day technical support.
 
 - AI model usage fee (cloud version only):  When using cloud-based large models, usage fees are paid to the model provider based on actual usage — independent of us and not included in the service fee. Local version: no model usage fees.
 
@@ -2790,7 +2724,7 @@ Installation solves "can't get it set up." Consulting support solves "it's insta
 
 - If you don't want to maintain it yourself, consider an annual plan  — the engineer provides ongoing support, updates, and maintenance.
 
-Needs first, specs second. We don't recommend buying to the ceiling from day one. Get the Persona Edition working and develop a feel for it; then your money goes exactly where it's needed.
+Needs first, specs second. We don't recommend buying to the ceiling from day one. Get the Single Agent working and develop a feel for it; then your money goes exactly where it's needed.
 
 ## FAQ
 
@@ -2804,7 +2738,7 @@ The connection is established only with your permission; you can disconnect at a
 
 Q: How much does remote installation cost? Are there monthly fees?
 
-The Persona Edition AI Assistant service fee is priced on request, one-time — no ongoing subscription from us. Local version: no model usage fees. Cloud version: AI model API usage is billed per use by the model provider — separate from the service fee.
+The Single Agent service fee is NT$7,840, one-time — no ongoing subscription from us. Local version: no model usage fees. Cloud version: AI model API usage is billed per use by the model provider — separate from the service fee.
 
 Q: Can you do on-site installation or SSH direct connection?
 
@@ -2820,7 +2754,7 @@ A computer that meets minimum specs and is connected to the internet, with AnyDe
 
 Q: What if something goes wrong after installation? Can you still access my computer?
 
-No — by design. The session ends at installation completion. The Persona Edition includes 7-day post-installation technical support; if a new remote session is needed, you allow the connection again at that time.
+No — by design. The session ends at installation completion. The Single Agent includes 7-day post-installation technical support; if a new remote session is needed, you allow the connection again at that time.
 
 Q: What if the installation can't be completed? Is there a refund?
 
@@ -2840,7 +2774,7 @@ Contact us on WhatsApp to discuss your needs and confirm the right scope. Whethe
 
 [Talk to us on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
-Want ongoing engineer support — no self-maintenance? → [Premium Annual plan details](https://thinkbigtw.com/en/pricing/)
+Want ongoing engineer support — no self-maintenance? → [Premier Annual plan details](https://thinkbigtw.com/en/pricing/)
 
 Compare all plans → [Personal plans overview](https://thinkbigtw.com/en/pricing/)
 
@@ -6310,13 +6244,11 @@ Personal plan directory
 
 ### Workflow bundles
 
-[Full Agent Bundle ↗](https://thinkbigtw.com/en/full-agent/)
 [Dual Agent Bundle ↗](https://thinkbigtw.com/en/dual-agent/)
 [Skill Pack ↗](https://thinkbigtw.com/en/skill-pack/)
 
 ### Full-year operations
 
-[Annual overview ↗](https://thinkbigtw.com/en/annual/)
 [Premier Annual ↗](https://thinkbigtw.com/en/annual-pro/)
 [Flagship Annual ↗](https://thinkbigtw.com/en/annual-flagship/)
 
@@ -13590,7 +13522,7 @@ Report Each execution result is pushed back to your messaging app — success or
 
 - Add as many as you need: starts at 10 skills, expandable at any time
 
-Already using Claude Code or Codex? → [Full Agent Integration](https://thinkbigtw.com/en/full-agent/) — connect them as a team.
+Already using Claude Code or Codex? → [Dual Agent](https://thinkbigtw.com/en/dual-agent/) — connect them as a team.
 
 Plan price
 
@@ -14457,7 +14389,7 @@ THINK BIG
 
 ## 企業如何報價？
 
-企業方案依需求報價。三種方案（入門／標準／完整）都含建置、教學影片與第一年維護服務。付款方式與分期以報價單為準。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。請[預約需求訪談取得報價](https://thinkbigtw.com/contact/)。
+企業方案 NT$52,600 起（未稅，含稅 NT$55,230；不含硬體），實際依需求報價。三種方案（入門／標準／完整）都含建置、教學影片與第一年維護服務。付款方式與分期以報價單為準。第二年選配續約，由客戶決定是否續約，不自動扣款。AI 模型費用由客戶自備。請[預約需求訪談取得報價](https://thinkbigtw.com/contact/)。
 
 [查看方案比較 ›](https://thinkbigtw.com/enterprise/#packages)
 
@@ -14489,7 +14421,7 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 ## 年約如何續約？
 
-個人年約次年可選配續約，含每週維護。年約的 48 小時故障修復承諾僅適用個人年約約定範圍。續約費用依需求報價，請見個人方案頁。
+個人年約次年可選配續約，含每週維護。年約的 48 小時故障修復承諾僅適用個人年約約定範圍。續約價為尊榮年約 NT$35,910、旗艦年約 NT$43,010，請見個人方案頁。
 
 [查看完整說明 ›](https://thinkbigtw.com/pricing/personal/#tier3)
 
@@ -15204,7 +15136,7 @@ Hermes 對需要每天寫很多東西（企劃、文件、回信）、或想跟�
 
 技能生態 通訊、排程、檔案、瀏覽器 文件、知識庫、寫作、研究
 
-安裝費（單 Agent 搭建，一次付清） 依需求報價 依需求報價
+安裝費（單 Agent 搭建，一次付清） NT$7,840 NT$7,840
 
 兩個都要（含協作會議室） 雙 Agent（含跨 Agent 協作會議室、MCP 記憶互通、遠端安裝＋教學影片＋安裝後 7 天技術諮詢）
 
@@ -15229,13 +15161,13 @@ Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理。Think BIG �
 ## Think BIG 個人方案帶哪一個？一張對照表
 
 方案 費用 帶的工具 適合誰
-單 Agent 搭建 依需求報價 一次付清 OpenClaw 或 Hermes 擇一，完整個人技能包＋1 個客製小幫手 第一次裝、先用一個 AI Agent、個人使用
+單 Agent 搭建 NT$7,840，一次付清 OpenClaw 或 Hermes 擇一，完整個人技能包＋1 個客製小幫手 第一次裝、先用一個 AI Agent、個人使用
 
-雙 Agent 依需求報價 OpenClaw + Hermes 記憶互通，跨 Agent 協作會議室（此方案專屬），技能依訪談，含遠端安裝＋教學影片＋安裝後 7 天技術諮詢 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 記憶互通協作
+雙 Agent NT$17,920 OpenClaw + Hermes 記憶互通，跨 Agent 協作會議室（此方案專屬），技能依訪談，含遠端安裝＋教學影片＋安裝後 7 天技術諮詢 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 記憶互通協作
 
-尊榮年約 依需求報價 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
+尊榮年約 首年 NT$39,910／續約 NT$35,910 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
 
-旗艦年約 依需求報價 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
+旗艦年約 首年 NT$48,010／續約 NT$43,010 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
 
 企業部署 洽詢 本地或雲端，依需求評估 公司、團隊、資料需在企業內部
 
@@ -15253,7 +15185,7 @@ Q：一個就夠還是兩個都要裝？
 
 Q：裝兩個會不會很貴？
 
-想讓兩個助理記憶互通並有協作會議室，選雙 Agent（含跨 Agent 協作會議室、遠端安裝＋教學影片＋安裝後 7 天技術諮詢）。若分開下單兩個單 Agent 搭建各 依需求報價，共 依需求報價，但不含記憶互通與協作會議室。
+想讓兩個助理記憶互通並有協作會議室，選雙 Agent（含跨 Agent 協作會議室、遠端安裝＋教學影片＋安裝後 7 天技術諮詢）。若分開下單兩個單 Agent 搭建（各 NT$7,840），則不含記憶互通與協作會議室。
 
 Q：Think BIG 的 Hermes 跟網路上的 Hermes Agent 是同一個嗎？
 
@@ -15261,7 +15193,7 @@ Q：Think BIG 的 Hermes 跟網路上的 Hermes Agent 是同一個嗎？
 
 Q：可以用年約方式同時養兩個嗎？
 
-可以。旗艦年約 依需求報價 就是兩個助理互通加全年維護的方案；尊榮年約 依需求報價 是單系統年約。想清楚「要幾個助理」再看年約會比較不繞路。
+可以。旗艦年約（NT$48,010）就是兩個助理互通加全年維護的方案；尊榮年約（NT$39,910）是單系統年約。想清楚「要幾個助理」再看年約會比較不繞路。
 
 想看其他 AI Agent 的整理，包括各大品牌的計費與龍蝦（OpenClaw）的定位？→ [AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)
 
@@ -15403,7 +15335,7 @@ Think BIG 編輯部
 
 你大概是這樣進來的：滑到有人用 OpenClaw 這類 AI 助理，把重複的雜事丟給它做，看起來很爽。然後你打開教學，第一步就卡住——終端機、環境變數、一堆看不懂的指令。三分鐘後你關掉分頁，心想「算了，我又不是工程師」。
 
-這篇就是要把這件事講白。OpenClaw 代裝 到底在裝什麼、你付的 依需求報價 買到的是什麼、哪些事情還是得你自己來。看完你能自己判斷：這錢該不該花。
+這篇就是要把這件事講白。OpenClaw 代裝 到底在裝什麼、你付的 NT$7,840 買到的是什麼、哪些事情還是得你自己來。看完你能自己判斷：這錢該不該花。
 
 我們不賣你焦慮，也不會跟你說「不會就落伍了」。工具而已，值得用才用。
 
@@ -15435,7 +15367,7 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 單 Agent 搭建帶的是完整個人技能包＋1 個客製小幫手，比官方原裝更貼你的工作場景；已有 Claude Code 或 Codex 訂閱的人，另可選配 Coding Agent 串接（訂閱自備）。
 
-一句話總結： 依需求報價 買的是一個裝好、能跑、在你自己電腦上的 OpenClaw AI 助理，加上台灣工程師遠端幫你裝到好的服務。它不是一份要你自己照著做的教學文件。
+一句話總結： NT$7,840 買的是一個裝好、能跑、在你自己電腦上的 OpenClaw AI 助理，加上台灣工程師遠端幫你裝到好的服務。它不是一份要你自己照著做的教學文件。
 
 ## 代裝流程長怎樣？你要做的其實很少
 
@@ -15503,11 +15435,11 @@ Q：完全不懂程式，也能裝 OpenClaw 嗎？
 
 Q：OpenClaw 代裝要多少錢？
 
-單 Agent 搭建服務費依需求報價，一次付清，含完整個人技能包＋1 個客製小幫手（Coding Agent 串接為選配）。要特別注意的是：AI 模型的 API 使用費是依你的實際用量另計、由你自付，不含在 依需求報價 裡。這是兩筆不同的錢，我們會事先講清楚。
+單 Agent 搭建服務費 NT$7,840，一次付清，含完整個人技能包＋1 個客製小幫手（Coding Agent 串接為選配）。要特別注意的是：AI 模型的 API 使用費是依你的實際用量另計、由你自付，不含在 NT$7,840 裡。這是兩筆不同的錢，我們會事先講清楚。
 
 Q：單 Agent 搭建和更高階的方案差在哪？
 
-單 Agent 搭建是完整個人技能包＋Coding Agent 串接（選配），單一 AI Agent 本機部署，無維運。更高階的方案有：雙 Agent（含記憶互通與協作會議室）或年約 依需求報價（一整年有工程師顧）。簡單說：單 Agent 搭建是「先裝起來能跑」，高階是「跑得更複雜、有人長期維護」。
+單 Agent 搭建是完整個人技能包＋Coding Agent 串接（選配），單一 AI Agent 本機部署，無維運。更高階的方案有：雙 Agent（含記憶互通與協作會議室）或年約（尊榮年約 NT$39,910、旗艦年約 NT$48,010，一整年有工程師顧）。簡單說：單 Agent 搭建是「先裝起來能跑」，高階是「跑得更複雜、有人長期維護」。
 
 Q：資料會不會被上傳到雲端？
 
@@ -15529,7 +15461,7 @@ Q：AnyDesk 遠端安全嗎？
 
 AnyDesk／DeskIn 是遠端桌面工具，連線由你這端允許才建立、你也能隨時中斷。整個安裝過程你都看得到工程師在做什麼。我們不會、也不需要向你索取任何帳號密碼——金鑰、密碼一律不透過聊天傳遞。
 
-## 結論：這 依需求報價 到底該不該花？
+## 結論：這 NT$7,840 到底該不該花？
 
 如果你的情況是「想用 OpenClaw、但一看到安裝步驟就投降」，那單 Agent 搭建代裝服務就是為你設計的。你付的不只是把軟體裝起來，更是省下自己摸索半天還不一定成功的時間，換一個當場能用的 AI 助理。
 
@@ -15539,7 +15471,7 @@ AnyDesk／DeskIn 是遠端桌面工具，連線由你這端允許才建立、你
 
 單 Agent 搭建在蝦皮直接下單，工程師依訂單聯繫約安裝時間。從「想用但不會裝」到「今天就有自己的 AI 助理」。
 
-[前往蝦皮下單 依需求報價 →](https://shopee.tw/shop/105010395)
+[前往蝦皮下單 NT$7,840 →](https://shopee.tw/shop/105010395)
 
 想要工程師長期陪跑、持續加功能？→ [了解尊榮年約方案](https://thinkbigtw.com/annual-pro/)
 
@@ -15696,13 +15628,13 @@ Q：什麼人不適合裝 OpenClaw？
 
 Q：裝完之後多久要更新一次？
 
-OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮 依需求報價、旗艦年約）含每週維護與 48 小時故障修復，更新這件事就交給我們；單 Agent 搭建是一次裝到能跑，更新由你決定時機。
+OpenClaw 框架大約 1–3 個月會有一次官方更新；裝完之後我們會建議訂閱官方公告。年約方案（尊榮年約、旗艦年約）含每週維護與 48 小時故障修復，更新這件事就交給我們；單 Agent 搭建是一次裝到能跑，更新由你決定時機。
 
 ## 結論
 
 OpenClaw 安不安全，看你裝的時候有沒有把基礎設定做好 。常見的風險包括「裝的人沒設權限」、「裝了來路不明的技能」、「用預設密碼沒換」這種基本錯誤——這些是可以避免的，裝的人多花一小時就能避開。
 
-如果你願意花那一小時、或者你願意花 依需求報價 讓工程師幫你一次設好，那 OpenClaw 是一個能讓你每天省下不少時間的工具。如果你完全不想學、也不想找人代，那任何這類工具都不適合你，不只是 OpenClaw。
+如果你願意花那一小時、或者你願意花 NT$7,840 讓工程師幫你一次設好，那 OpenClaw 是一個能讓你每天省下不少時間的工具。如果你完全不想學、也不想找人代，那任何這類工具都不適合你，不只是 OpenClaw。
 
 想清楚再裝，裝完記得改密碼、綁本機、只裝官方技能。三件事做完，風險已經可控。
 
@@ -15800,7 +15732,7 @@ Think BIG 編輯部
 
 遠端代裝的費用結構就兩筆，講清楚就不會有事後的不愉快：
 
-- 服務費 ：付給我們的錢，一次付清，不收月租或訂閱費。單 Agent 搭建 依需求報價，含環境建置、完整個人技能包＋1 個客製小幫手、7 天技術諮詢；Coding Agent 串接為選配（訂閱自備）。
+- 服務費 ：付給我們的錢，一次付清，不收月租或訂閱費。單 Agent 搭建 NT$7,840，含環境建置、完整個人技能包＋1 個客製小幫手、7 天技術諮詢；Coding Agent 串接為選配（訂閱自備）。
 
 - AI 模型用量費（僅雲端版適用） ：改搭雲端大模型時，付給模型廠商的費用依你的實際用量計費、由你自行負擔，跟我們無關，也不含在服務費裡。本地版模型運算不另收用量費。
 
@@ -15832,7 +15764,7 @@ A：連線由你這端允許才建立、你隨時可中斷、全程操作都在�
 
 Q：遠端代裝要多少錢？之後還有月費嗎？
 
-A：單 Agent 搭建服務費依需求報價，一次付清，我方不收月租。本地版不另收模型用量費；改搭雲端版時，AI 模型 API 用量費依實際使用量由你自付，付給模型廠商，跟服務費是兩回事。
+A：單 Agent 搭建服務費 NT$7,840，一次付清，我方不收月租。本地版不另收模型用量費；改搭雲端版時，AI 模型 API 用量費依實際使用量由你自付，付給模型廠商，跟服務費是兩回事。
 
 Q：可以到府安裝或用 SSH 讓你們直接連嗎？
 

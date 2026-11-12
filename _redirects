@@ -12,4 +12,6 @@
 /annual/       /annual-pro/    301
 /solo-pro/     /single-agent/  301
 /harness/      /single-agent/  301
+/en/full-agent/ /en/dual-agent/ 301
+/en/annual/    /en/annual-pro/ 301
 /tbos/en/      /en/            301

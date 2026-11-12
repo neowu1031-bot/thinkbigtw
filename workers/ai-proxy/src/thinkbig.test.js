@@ -11,11 +11,11 @@
  * 2026-10-01（remove-prices-1001）：KB 改依需求報價，移除具體金額；
  * 測試改驗路由正確性與「依需求報價」關鍵字，不再驗具體金額。
  * 覆蓋六題：
- *   Q1：雙 AI Agent 多少錢？ → ch07（個人方案）
+ *   Q1：雙 Agent 多少錢？ → ch07（個人方案）
  *   Q2：共存版多少錢？       → ch07
  *   Q3：共存版有協作會議室嗎？ → ch07，答案應含「不含」
- *   Q4：雙 AI Agent 包含什麼？ → ch07
- *   Q5：單 AI Agent 搭建多少錢？       → ch07
+ *   Q4：雙 Agent 包含什麼？ → ch07
+ *   Q5：單 Agent 搭建多少錢？       → ch07
  *   Q6：企業方案多少錢？     → ch11（企業方案）
  */
 
@@ -28,9 +28,9 @@ function msg(content) {
   return [{ role: 'user', content }];
 }
 
-// ── Q1：雙 AI Agent 多少錢 ─────────────────────────────────────────
-test('Q1 雙 AI Agent 多少錢 → 選到 ch07（個人方案）', () => {
-  const { selected, text } = selectKnowledge(msg('雙 AI Agent 多少錢？'));
+// ── Q1：雙 Agent 多少錢 ─────────────────────────────────────────
+test('Q1 雙 Agent 多少錢 → 選到 ch07（個人方案）', () => {
+  const { selected, text } = selectKnowledge(msg('雙 Agent 多少錢？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
   // ch07 說依需求報價（remove-prices-1001 後不含具體金額）
   assert.ok(text.includes('依需求報價') || text.includes('蝦皮'), '文字應含「依需求報價」或「蝦皮」');
@@ -54,17 +54,17 @@ test('Q3 共存版有沒有協作會議室 → 選到 ch07，文字含「不含�
   assert.ok(text.includes('協作'), '文字應提到協作會議室');
 });
 
-// ── Q4：雙 AI Agent 包含什麼 ──────────────────────────────────────
-test('Q4 雙 AI Agent 包含什麼 → 選到 ch07，文字含協作會議室說明', () => {
-  const { selected, text } = selectKnowledge(msg('雙 AI Agent 方案包含什麼？'));
+// ── Q4：雙 Agent 包含什麼 ──────────────────────────────────────
+test('Q4 雙 Agent 包含什麼 → 選到 ch07，文字含協作會議室說明', () => {
+  const { selected, text } = selectKnowledge(msg('雙 Agent 方案包含什麼？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
   assert.ok(text.includes('協作'), '文字應提到協作會議室');
   assert.ok(text.includes('記憶互通'), '文字應提到記憶互通');
 });
 
-// ── Q5：單 AI Agent 搭建多少錢 ───────────────────────────────────────────────
-test('Q5 單 AI Agent 搭建多少錢 → 選到 ch07，文字含依需求報價說明', () => {
-  const { selected, text } = selectKnowledge(msg('單 AI Agent 搭建多少錢？'));
+// ── Q5：單 Agent 搭建多少錢 ───────────────────────────────────────────────
+test('Q5 單 Agent 搭建多少錢 → 選到 ch07，文字含依需求報價說明', () => {
+  const { selected, text } = selectKnowledge(msg('單 Agent 搭建多少錢？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
   assert.ok(text.includes('依需求報價') || text.includes('蝦皮'), '文字應含依需求報價或蝦皮說明');
 });
@@ -77,8 +77,8 @@ test('Q6 企業方案多少錢 → 選到 ch11（企業方案）', () => {
 });
 
 // ── 防退化：ch07 和 ch11 同分時，個人關鍵字讓 ch07 優先 ─────────────
-test('防退化：雙 AI Agent + 多少錢 同時出現時 ch07 排在 ch11 前', () => {
-  const { selected } = selectKnowledge(msg('雙 AI Agent 多少錢？'));
+test('防退化：雙 Agent + 多少錢 同時出現時 ch07 排在 ch11 前', () => {
+  const { selected } = selectKnowledge(msg('雙 Agent 多少錢？'));
   const i07 = selected.indexOf('07');
   const i11 = selected.indexOf('11');
   // If both selected, ch07 should appear before ch11 (or ch11 not selected at all)
@@ -89,12 +89,12 @@ test('防退化：雙 AI Agent + 多少錢 同時出現時 ch07 排在 ch11 前'
   }
 });
 
-// ── ch07 含共存版和雙 AI Agent 描述 ──────────────────────────────────
-test('ch07 文字同時有共存版和雙 AI Agent 兩個方案', () => {
+// ── ch07 含共存版和雙 Agent 描述 ──────────────────────────────────
+test('ch07 文字同時有共存版和雙 Agent 兩個方案', () => {
   const { selected, text } = selectKnowledge(msg('個人方案有哪些？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
   assert.ok(text.includes('共存版'), '共存版說明應在 ch07');
-  assert.ok(text.includes('雙 AI Agent'), '雙 AI Agent 說明應在 ch07');
+  assert.ok(text.includes('雙 Agent'), '雙 Agent 說明應在 ch07');
 });
 
 // ── Q9：企業續約完整級每月多少 → 選到 ch11 ────────────────────────
@@ -148,7 +148,7 @@ test('Q14 多輪：「個人方案有哪些？」→「差在哪？」第二問�
   ];
   const { selected, text } = selectKnowledge(messages);
   assert.ok(selected.includes('07'), `expected ch07 from context carry-over, got ${selected}`);
-  assert.ok(text.includes('共存版') || text.includes('雙 AI Agent'), '文字應含個人方案說明（ch07 內容）');
+  assert.ok(text.includes('共存版') || text.includes('雙 Agent'), '文字應含個人方案說明（ch07 內容）');
 });
 
 // ── Q15：企業版資安怎麼做 → 備援路徑 ch06 優先（資安觸發詞），含八層框架 ──
@@ -169,7 +169,7 @@ test('Q16 主力路徑 selectKnowledgePrimary → 全本 KB 在預算內，返�
   assert.ok(r.estimatedTokens <= KB_FULL_LIMIT, `full KB ${r.estimatedTokens} should be ≤ ${KB_FULL_LIMIT}`);
   // 所有章節都在 text 中（以 ch06 的八層框架為代表）
   assert.ok(r.text.includes('八層') || r.text.includes('八道'), '全本 KB 應含八層資安框架');
-  assert.ok(r.text.includes('共存版') && r.text.includes('雙 AI Agent'), '全本 KB 應含個人方案說明');
+  assert.ok(r.text.includes('共存版') && r.text.includes('雙 Agent'), '全本 KB 應含個人方案說明');
 });
 
 // ── Q17：備援路徑行為不變——企業方案問題選到 ch11 ──────────────────────
@@ -202,8 +202,8 @@ test('Q20 本地版多少錢 → 選到 ch07（個人方案）', () => {
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
 });
 
-test('Q21 一人公司想用單 AI Agent 搭建多少錢 → 選到 ch07（一人公司屬個人方案）', () => {
-  const { selected } = selectKnowledge(msg('一人公司想用單 AI Agent 搭建多少錢？'));
+test('Q21 一人公司想用單 Agent 搭建多少錢 → 選到 ch07（一人公司屬個人方案）', () => {
+  const { selected } = selectKnowledge(msg('一人公司想用單 Agent 搭建多少錢？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
 });
 
@@ -228,8 +228,8 @@ test('KB13 技術題沒點名個人方案：本地大模型要什麼顯卡 → c
   const { selected } = selectKnowledge(msg('本地大模型要什麼顯卡？'));
   assert.strictEqual(selected[2], '17', `expected ch17 first, got ${selected}`);
 });
-test('KB13 點名個人方案的技術題仍走 ch07：單 AI Agent 搭建需要什麼顯卡', () => {
-  const { selected } = selectKnowledge(msg('單 AI Agent 搭建需要什麼顯卡？'));
+test('KB13 點名個人方案的技術題仍走 ch07：單 Agent 搭建需要什麼顯卡', () => {
+  const { selected } = selectKnowledge(msg('單 Agent 搭建需要什麼顯卡？'));
   assert.ok(selected.includes('07'), `expected ch07, got ${selected}`);
 });
 test('KB13 Ollama／vLLM／Dify → ch18；資料外洩 → ch20；回答很慢 → ch21', () => {
@@ -273,7 +273,7 @@ test('KB13 企業意圖會延續：前一句說公司導入，下一句問維護
   assert.ok(selected.includes('15') && !selected.includes('07'), `got ${selected}`);
 });
 test('KB13 主力路徑個人意圖不加企業補充章', () => {
-  const r = selectKnowledgePrimary(msg('我是個人，想裝 OpenClaw 單 AI Agent 搭建，壞了怎麼維護？'));
+  const r = selectKnowledgePrimary(msg('我是個人，想裝 OpenClaw 單 Agent 搭建，壞了怎麼維護？'));
   assert.ok(!r.selected.includes('15') && !r.selected.includes('17'), `got ${r.selected}`);
   assert.ok(['core', 'core+supplement'].includes(r.tier) && Array.isArray(r.omitted));
 });
@@ -307,7 +307,7 @@ test('KB22 Windows 有 NVIDIA 8GB 可以嗎 → ch22，標推估', () => {
   assert.ok(/推估/.test(r.text));
 });
 test('KB22 個人意圖下仍可載入 ch22（個人安全補充章）', () => {
-  const r = selectKnowledgePrimary(msg('我想買單 AI Agent 搭建，我的電腦可以裝嗎？'));
+  const r = selectKnowledgePrimary(msg('我想買單 Agent 搭建，我的電腦可以裝嗎？'));
   assert.ok(r.selected.includes('22'), `selected=${r.selected}`);
 });
 test('新方案名稱：尊榮年約多少錢 → 個人年約章（07 或 16），知識庫不含舊年約價與企業專屬價', () => {
