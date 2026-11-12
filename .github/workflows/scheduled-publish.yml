@@ -53,6 +53,22 @@ jobs:
               echo "- wait \`${b}\`（排定 ${when}）" >> "$GITHUB_STEP_SUMMARY"
               continue
             fi
+            # Duplicate-slug guard: check if an article with the same base slug
+            # already exists in library/news/ or en/news/
+            slug_part="${name#*-}"
+            base_slug=$(echo "$slug_part" | sed 's/-[0-9]\{8\}$//')
+            existing=$(find library/news/ en/news/ -maxdepth 1 -type d -name "${base_slug}-*" 2>/dev/null | tr '\n' ' ')
+            if [ -n "$existing" ]; then
+              dup_title="Scheduled publish duplicate slug: ${b}"
+              if ! gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -qxF "${dup_title}"; then
+                gh issue create \
+                  --title "${dup_title}" \
+                  --body "分支 \`${b}\` 的文章 base slug \`${base_slug}\` 疑似已有同名文章（\`${existing}\`），未發布。請確認是否重複，若為勘誤版請先刪除舊頁。" || true
+              fi
+              echo "- skip \`${b}\`：疑似重複 slug \`${base_slug}\`（${existing}），已開 issue" >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+
             git checkout -q -B work "origin/${b}"
 
             REBASE_OK=false
@@ -118,10 +134,30 @@ jobs:
           echo "published=$published" >> "$GITHUB_OUTPUT"
 
       # GITHUB_TOKEN 推的 commit 不會觸發 push 事件，但可以觸發 workflow_dispatch
-      - name: Trigger Pages deploy
+      - name: Trigger Pages deploy and watch for failure
         if: steps.merge.outputs.published != '0'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh workflow run pages.yml --ref main
           echo "Pages deploy triggered" >> "$GITHUB_STEP_SUMMARY"
+          # Wait for run to register, then watch it
+          sleep 15
+          run_id=$(gh run list --workflow=pages.yml --branch=main --limit=1 --json databaseId --jq '.[0].databaseId' 2>/dev/null || echo "")
+          if [ -n "$run_id" ] && [ "$run_id" != "null" ]; then
+            gh run watch "$run_id" --interval 15 2>/dev/null || true
+            conclusion=$(gh run view "$run_id" --json conclusion --jq '.conclusion' 2>/dev/null || echo "unknown")
+            if [ "$conclusion" != "success" ]; then
+              deploy_title="Pages deploy failed after scheduled publish"
+              if ! gh issue list --state open --limit 100 --json title --jq '.[].title' | grep -qxF "${deploy_title}"; then
+                gh issue create \
+                  --title "${deploy_title}" \
+                  --body "Pages 部署失敗，由排程發布觸發。Run ID: \`${run_id}\`，結論：\`${conclusion}\`。請前往 Actions 確認。" || true
+              fi
+              echo "- Pages deploy FAILED (run ${run_id}, conclusion: ${conclusion})，已開 issue" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "- Pages deploy succeeded (run ${run_id})" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          else
+            echo "- Pages deploy triggered；無法取得 run ID，跳過監控" >> "$GITHUB_STEP_SUMMARY"
+          fi
