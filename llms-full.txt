@@ -4054,6 +4054,42 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 019
+
+November 12, 2026 · AI Deployment Field Notes
+
+## AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models
+
+Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.](https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/)
+[Issue 018
+
+November 10, 2026 · Enterprise Security Notes
+
+## Should Every AI Skill Be Reviewed? Treat It as Part of the Supply Chain
+
+Before installing a skill, ask what it reads, executes, and sends elsewhere. Written instructions and executable scripts need different evidence.](https://thinkbigtw.com/en/news/vet-ai-agent-skills-20261110/)
+[Issue 017
+
+November 8, 2026 · Local AI Field Notes
+
+## Should AI Tools Update Automatically? Pin Versions and Plan Patches
+
+A business AI agent needs a known runtime. Pin a reproducible combination, then assign owners for updates, acceptance checks, and recovery.](https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/)
+[Issue 016
+
+November 6, 2026 · AI Deployment Field Notes
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.](https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/)
+[Issue 015
+
+November 4, 2026 · Local AI Field Notes
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.](https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/)
+
 # THINK BIG
 
 NEWS
@@ -7467,6 +7503,46 @@ Before downloading a language-learning app for a child, check five things: what 
 
 Yes, you can help.
 
+- [Is AI Speaking Practice Safe for Children? 4 Questions Parents Can Ask First](https://thinkbigtw.com/en/qa/ai-speaking-practice-safe-for-kids/)
+
+Whether AI speaking practice is safe depends on how the service handles a child's voice and data, and whether an adult is involved, so no blanket answer is possible.
+
+- [Is a Child's Voice Recording Personal Data? US and Taiwan Rules](https://thinkbigtw.com/en/qa/child-voice-recording-personal-data/)
+
+In the US, yes: the FTC's COPPA FAQ states that audio files containing a child's voice are personal information and need verifiable parental consent.
+
+- [AI Voice vs Live Conversation for Children Learning Mandarin: What the Research Says](https://thinkbigtw.com/en/qa/ai-voice-vs-live-conversation/)
+
+The studies cited here did not test AI tutors directly, so this page cannot say AI is better or worse than a person.
+
+- [Can You Get a Refund When a Child Buys In-App Items? Costs and Free Features (Taiwan)](https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/)
+
+Possibly, depending on the case.
+
+- [Can a Child Register a Learning App Account Alone? Setting Up a Parent Account](https://thinkbigtw.com/en/qa/child-own-account-or-parent-account/)
+
+A safer approach is for a parent to create and manage the account.
+
+- [Can a Child Use Instagram Alone to Watch the Daily Word? The Age-13 Rule](https://thinkbigtw.com/en/qa/instagram-age-13-kids-daily-word/)
+
+According to Instagram's Help Center (checked 2026-11-12), most countries and regions require users to be at least 13 to use Instagram, and some regions set a different minimum age.
+
+- [Does My Child's Data Leave the Country When an Overseas Family Uses a Taiwan-Based Learning App?](https://thinkbigtw.com/en/qa/overseas-family-data-across-borders/)
+
+It may, depending on where the app processes data, which you can find in the privacy policy.
+
+- [Unsure About a Pronunciation or Word Taught by AI or a Video? Check the Ministry of Education Dictionary](https://thinkbigtw.com/en/qa/check-pronunciation-with-moe-dictionary/)
+
+AI and videos, like any source, can contain errors in pronunciation or meaning and should not be the only reference.
+
+- [How Long Can a Child Use a Learning App Each Day? Start With Screen-Time Limits](https://thinkbigtw.com/en/qa/app-time-and-screen-time-for-kids/)
+
+Start with screen-time limits, and count learning apps in them.
+
+- [Are 'Guaranteed to Learn' and 'Results in Weeks' Claims Credible? How Parents Can Read Learning App Ads](https://thinkbigtw.com/en/qa/app-guarantee-claims-parents-check/)
+
+Learning results depend on each child, the amount of exposure and how the app is used, so no app can guarantee a result for every child.
+
 ## FAQ
 
 Q1: What is BearSay Mandarin? BearSay Mandarin (熊好學) is a learning brand for Taiwan Mandarin. It teaches one word a day on Instagram, using Traditional characters, zhuyin and pinyin. Q2: Does BearSay Mandarin teach Mandarin or Taiwanese (Hokkien)? It teaches Taiwan Mandarin. In English, "Taiwanese" often refers to Taiwanese Hokkien, so this site writes Taiwanese Mandarin or Taiwan Mandarin to avoid confusion. Q3: Who are the BearSay Mandarin characters? There are five characters: BUBU, MIBO, HUBO, GUIBO and LANBO. Q4: Is the BearSay Mandarin app available? Not yet. The app is being prepared for release, and store links will be added to this page once it is available. Meanwhile, the daily word is on Instagram at @bearsaymandarin.
@@ -9138,6 +9214,126 @@ URL: https://thinkbigtw.com/en/qa/
 Enterprise AI Security · Local LLMs · Building AI Agents
 
 [中文版問答圖書館](https://thinkbigtw.com/library/qa/)
+
+熊好學 · BearSay Mandarin BS20
+
+## [Are 'Guaranteed to Learn' and 'Results in Weeks' Claims Credible? How Parents Can Read Learning App Ads](https://thinkbigtw.com/en/qa/app-guarantee-claims-parents-check/)
+
+Learning results depend on each child, the amount of exposure and how the app is used, so no app can guarantee a result for every child.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/app-guarantee-claims-parents-check/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS19
+
+## [How Long Can a Child Use a Learning App Each Day? Start With Screen-Time Limits](https://thinkbigtw.com/en/qa/app-time-and-screen-time-for-kids/)
+
+Start with screen-time limits, and count learning apps in them.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/app-time-and-screen-time-for-kids/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS18
+
+## [Unsure About a Pronunciation or Word Taught by AI or a Video? Check the Ministry of Education Dictionary](https://thinkbigtw.com/en/qa/check-pronunciation-with-moe-dictionary/)
+
+AI and videos, like any source, can contain errors in pronunciation or meaning and should not be the only reference.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/check-pronunciation-with-moe-dictionary/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS17
+
+## [Does My Child's Data Leave the Country When an Overseas Family Uses a Taiwan-Based Learning App?](https://thinkbigtw.com/en/qa/overseas-family-data-across-borders/)
+
+It may, depending on where the app processes data, which you can find in the privacy policy.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/overseas-family-data-across-borders/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS16
+
+## [Can a Child Use Instagram Alone to Watch the Daily Word? The Age-13 Rule](https://thinkbigtw.com/en/qa/instagram-age-13-kids-daily-word/)
+
+According to Instagram's Help Center (checked 2026-11-12), most countries and regions require users to be at least 13 to use Instagram, and some regions set…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/instagram-age-13-kids-daily-word/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS15
+
+## [Can a Child Register a Learning App Account Alone? Setting Up a Parent Account](https://thinkbigtw.com/en/qa/child-own-account-or-parent-account/)
+
+A safer approach is for a parent to create and manage the account.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/child-own-account-or-parent-account/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS14
+
+## [Can You Get a Refund When a Child Buys In-App Items? Costs and Free Features (Taiwan)](https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/)
+
+Possibly, depending on the case.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS13
+
+## [AI Voice vs Live Conversation for Children Learning Mandarin: What the Research Says](https://thinkbigtw.com/en/qa/ai-voice-vs-live-conversation/)
+
+The studies cited here did not test AI tutors directly, so this page cannot say AI is better or worse than a person.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-voice-vs-live-conversation/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS12
+
+## [Is a Child's Voice Recording Personal Data? US and Taiwan Rules](https://thinkbigtw.com/en/qa/child-voice-recording-personal-data/)
+
+In the US, yes: the FTC's COPPA FAQ states that audio files containing a child's voice are personal information and need verifiable parental consent.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/child-voice-recording-personal-data/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
+
+熊好學 · BearSay Mandarin BS11
+
+## [Is AI Speaking Practice Safe for Children? 4 Questions Parents Can Ask First](https://thinkbigtw.com/en/qa/ai-speaking-practice-safe-for-kids/)
+
+Whether AI speaking practice is safe depends on how the service handles a child's voice and data, and whether an adult is involved, so no blanket answer is…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-speaking-practice-safe-for-kids/)
+
+Think BIG Q&A Library
+BearSay Mandarin
+Updated 2026-11-12
 
 AI Governance & Regulation TB30
 
@@ -19599,6 +19795,46 @@ Q & A Library · 台灣華語學習 [English](https://thinkbigtw.com/en/qa/bears
 
 可以陪。
 
+- [孩子用 AI 口說陪練安全嗎？家長先問 4 件事](https://thinkbigtw.com/library/qa/ai-speaking-practice-safe-for-kids/)
+
+AI 口說陪練是否安全，要看服務怎麼處理孩子的聲音與資料，以及有沒有大人把關，不能一概而論。
+
+- [孩子的錄音算個人資料嗎？美國與台灣怎麼規定](https://thinkbigtw.com/library/qa/child-voice-recording-personal-data/)
+
+在美國，孩子的錄音算個人資料：FTC 的 COPPA 常見問題明載，含兒童聲音的錄音檔屬個人資料，需要可驗證的家長同意。
+
+- [孩子練華語，AI 語音和真人對話有差嗎？研究怎麼說](https://thinkbigtw.com/library/qa/ai-voice-vs-live-conversation/)
+
+本頁引用的研究沒有直接測試 AI 陪練，所以無法說 AI 比真人好或差。
+
+- [孩子在 App 內亂買東西，可以退嗎？費用與免費功能怎麼看（台灣）](https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/)
+
+可能可以，但要看個案。
+
+- [孩子可以自己註冊學習 App 帳號嗎？家長帳號怎麼設](https://thinkbigtw.com/library/qa/child-own-account-or-parent-account/)
+
+較穩妥的做法是由家長建立並管理帳號。
+
+- [孩子可以自己用 Instagram 看每日一詞嗎？13 歲規定怎麼看](https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/)
+
+依 Instagram 說明中心（2026-11-12 查閱），多數國家與地區要求年滿 13 歲才能使用 Instagram，部分地區的最低年齡不同。
+
+- [海外家庭用台灣業者的學習 App，孩子的資料會出境嗎？](https://thinkbigtw.com/library/qa/overseas-family-data-across-borders/)
+
+可能會，要看 App 的處理地點，這要從隱私政策查。
+
+- [AI 或影片教的字音、詞語不確定，怎麼核對？用教育部辭典查](https://thinkbigtw.com/library/qa/check-pronunciation-with-moe-dictionary/)
+
+AI、影片和其他來源一樣，都可能有字音或詞義的差錯，不宜當唯一依據。
+
+- [孩子每天用學習 App 可以多久？先看螢幕時間上限](https://thinkbigtw.com/library/qa/app-time-and-screen-time-for-kids/)
+
+先看螢幕時間上限，學習 App 也算在內。
+
+- [學習 App 說「保證學會」「幾週見效」可信嗎？家長怎麼看廣告](https://thinkbigtw.com/library/qa/app-guarantee-claims-parents-check/)
+
+學習成效受孩子個別狀況、接觸量與使用方式影響，沒有任何 App 能替每個孩子保證結果。
+
 ## 常見問題
 
 Q1：熊好學是什麼？ 熊好學（BearSay Mandarin）是教台灣華語的學習品牌，每天在 Instagram 教一個台灣華語詞，使用繁體字、注音與拼音。 Q2：熊好學教的是華語還是台語？ 熊好學教的是台灣華語。英文的 Taiwanese 常常指台灣台語，所以本站英文頁一律寫 Taiwanese Mandarin，避免混淆。 Q3：熊好學的角色有哪些？ 共有五位角色：熊寶 BUBU、獼寶 MIBO、虎寶 HUBO、鮭寶 GUIBO、藍寶 LANBO。 Q4：熊好學的 App 上架了嗎？ 尚未上架，App 準備上架中。上架後本頁會補上商店連結。目前可以在 Instagram @bearsaymandarin 看到每日一詞。
@@ -21276,6 +21512,126 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+台灣華語學習 BS20
+
+## [學習 App 說「保證學會」「幾週見效」可信嗎？家長怎麼看廣告](https://thinkbigtw.com/library/qa/app-guarantee-claims-parents-check/)
+
+學習成效受孩子個別狀況、接觸量與使用方式影響，沒有任何 App 能替每個孩子保證結果。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/app-guarantee-claims-parents-check/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS19
+
+## [孩子每天用學習 App 可以多久？先看螢幕時間上限](https://thinkbigtw.com/library/qa/app-time-and-screen-time-for-kids/)
+
+先看螢幕時間上限，學習 App 也算在內。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/app-time-and-screen-time-for-kids/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS18
+
+## [AI 或影片教的字音、詞語不確定，怎麼核對？用教育部辭典查](https://thinkbigtw.com/library/qa/check-pronunciation-with-moe-dictionary/)
+
+AI、影片和其他來源一樣，都可能有字音或詞義的差錯，不宜當唯一依據。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/check-pronunciation-with-moe-dictionary/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS17
+
+## [海外家庭用台灣業者的學習 App，孩子的資料會出境嗎？](https://thinkbigtw.com/library/qa/overseas-family-data-across-borders/)
+
+可能會，要看 App 的處理地點，這要從隱私政策查。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/overseas-family-data-across-borders/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS16
+
+## [孩子可以自己用 Instagram 看每日一詞嗎？13 歲規定怎麼看](https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/)
+
+依 Instagram 說明中心（2026-11-12 查閱），多數國家與地區要求年滿 13 歲才能使用 Instagram，部分地區的最低年齡不同。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS15
+
+## [孩子可以自己註冊學習 App 帳號嗎？家長帳號怎麼設](https://thinkbigtw.com/library/qa/child-own-account-or-parent-account/)
+
+較穩妥的做法是由家長建立並管理帳號。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/child-own-account-or-parent-account/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS14
+
+## [孩子在 App 內亂買東西，可以退嗎？費用與免費功能怎麼看（台灣）](https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/)
+
+可能可以，但要看個案。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS13
+
+## [孩子練華語，AI 語音和真人對話有差嗎？研究怎麼說](https://thinkbigtw.com/library/qa/ai-voice-vs-live-conversation/)
+
+本頁引用的研究沒有直接測試 AI 陪練，所以無法說 AI 比真人好或差。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-voice-vs-live-conversation/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS12
+
+## [孩子的錄音算個人資料嗎？美國與台灣怎麼規定](https://thinkbigtw.com/library/qa/child-voice-recording-personal-data/)
+
+在美國，孩子的錄音算個人資料：FTC 的 COPPA 常見問題明載，含兒童聲音的錄音檔屬個人資料，需要可驗證的家長同意。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/child-voice-recording-personal-data/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
+
+台灣華語學習 BS11
+
+## [孩子用 AI 口說陪練安全嗎？家長先問 4 件事](https://thinkbigtw.com/library/qa/ai-speaking-practice-safe-for-kids/)
+
+AI 口說陪練是否安全，要看服務怎麼處理孩子的聲音與資料，以及有沒有大人把關，不能一概而論。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-speaking-practice-safe-for-kids/)
+
+Think BIG 問答圖書館
+熊好學
+更新 2026-11-12
 
 法規與治理 TB30
 
@@ -28218,6 +28574,8 @@ GOVERNANCE ADVISORY
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
 
+---
+
 URL: https://thinkbigtw.com/tbos/en/
 
 # Think BIG — Your Own Personal AI Assistant, Installed Once
@@ -28478,5 +28836,3 @@ Q4：什麼時候再考慮換模型？
 
 THINK BIG NEWS   ·  AI 導入實測手記
     Think BIG, Make it Real!　大想成業有限公司
-
----

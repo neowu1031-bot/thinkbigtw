@@ -92,6 +92,16 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [幫孩子選語言學習 App，下載前要檢查哪 5 件事？](https://thinkbigtw.com/library/qa/kids-learning-app-privacy-checklist/)
 - [我的華語不是母語，能陪孩子學華語嗎？](https://thinkbigtw.com/library/qa/non-native-parent-teach-mandarin/)
 - [AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事](https://thinkbigtw.com/library/qa/ai-output-copyright/)
+- [孩子用 AI 口說陪練安全嗎？家長先問 4 件事](https://thinkbigtw.com/library/qa/ai-speaking-practice-safe-for-kids/)
+- [孩子的錄音算個人資料嗎？美國與台灣怎麼規定](https://thinkbigtw.com/library/qa/child-voice-recording-personal-data/)
+- [孩子練華語，AI 語音和真人對話有差嗎？研究怎麼說](https://thinkbigtw.com/library/qa/ai-voice-vs-live-conversation/)
+- [孩子在 App 內亂買東西，可以退嗎？費用與免費功能怎麼看（台灣）](https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/)
+- [孩子可以自己註冊學習 App 帳號嗎？家長帳號怎麼設](https://thinkbigtw.com/library/qa/child-own-account-or-parent-account/)
+- [孩子可以自己用 Instagram 看每日一詞嗎？13 歲規定怎麼看](https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/)
+- [海外家庭用台灣業者的學習 App，孩子的資料會出境嗎？](https://thinkbigtw.com/library/qa/overseas-family-data-across-borders/)
+- [AI 或影片教的字音、詞語不確定，怎麼核對？用教育部辭典查](https://thinkbigtw.com/library/qa/check-pronunciation-with-moe-dictionary/)
+- [孩子每天用學習 App 可以多久？先看螢幕時間上限](https://thinkbigtw.com/library/qa/app-time-and-screen-time-for-kids/)
+- [學習 App 說「保證學會」「幾週見效」可信嗎？家長怎麼看廣告](https://thinkbigtw.com/library/qa/app-guarantee-claims-parents-check/)
 
 
 ## Q&A Library (Enterprise AI)
@@ -133,6 +143,16 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [Choosing a Language-Learning App for Your Child: 5 Things to Check Before Downloading](https://thinkbigtw.com/en/qa/kids-learning-app-privacy-checklist/)
 - [Mandarin Is Not My Native Language. Can I Still Help My Child Learn It?](https://thinkbigtw.com/en/qa/non-native-parent-teach-mandarin/)
 - [Do AI-Generated Articles and Images Have Copyright in Taiwan?](https://thinkbigtw.com/en/qa/ai-output-copyright/)
+- [Is AI Speaking Practice Safe for Children? 4 Questions Parents Can Ask First](https://thinkbigtw.com/en/qa/ai-speaking-practice-safe-for-kids/)
+- [Is a Child's Voice Recording Personal Data? US and Taiwan Rules](https://thinkbigtw.com/en/qa/child-voice-recording-personal-data/)
+- [AI Voice vs Live Conversation for Children Learning Mandarin: What the Research Says](https://thinkbigtw.com/en/qa/ai-voice-vs-live-conversation/)
+- [Can You Get a Refund When a Child Buys In-App Items? Costs and Free Features (Taiwan)](https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/)
+- [Can a Child Register a Learning App Account Alone? Setting Up a Parent Account](https://thinkbigtw.com/en/qa/child-own-account-or-parent-account/)
+- [Can a Child Use Instagram Alone to Watch the Daily Word? The Age-13 Rule](https://thinkbigtw.com/en/qa/instagram-age-13-kids-daily-word/)
+- [Does My Child's Data Leave the Country When an Overseas Family Uses a Taiwan-Based Learning App?](https://thinkbigtw.com/en/qa/overseas-family-data-across-borders/)
+- [Unsure About a Pronunciation or Word Taught by AI or a Video? Check the Ministry of Education Dictionary](https://thinkbigtw.com/en/qa/check-pronunciation-with-moe-dictionary/)
+- [How Long Can a Child Use a Learning App Each Day? Start With Screen-Time Limits](https://thinkbigtw.com/en/qa/app-time-and-screen-time-for-kids/)
+- [Are 'Guaranteed to Learn' and 'Results in Weeks' Claims Credible? How Parents Can Read Learning App Ads](https://thinkbigtw.com/en/qa/app-guarantee-claims-parents-check/)
 
 ## 政策與聯絡
 - [關於 Think BIG](https://thinkbigtw.com/about/)：大想成業有限公司，總部位於台灣、服務全球，統一編號 62136066；由負責人 NEO 領導，工程團隊為多個建立在頂級模型之上的 AI Agent，每次交付前經資安審查
