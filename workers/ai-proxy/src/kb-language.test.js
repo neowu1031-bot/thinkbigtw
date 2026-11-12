@@ -62,7 +62,7 @@ test('filterReply 中文行為不變', () => {
   assert.equal(filterReply('填完摘要後，1 個工作日內由真人聯繫。'), '填完摘要後，1 個工作日內由真人聯繫。');
 });
 
-// 11/9 r3：英文在 Workers AI 模型下也穩定（11/13 起主力改 gpt-oss-120b，MiniMax 移除）。
+// 11/9 r3：英文在 Workers AI 模型下也穩定（11/13 起主力 Llama 3.3 70B、備援 Mistral Small 3.1，MiniMax 移除）。
 import { handleThinkBig, wantsEnglish, replyNotEnglish, LANGUAGE_RULE_EN } from './thinkbig.js';
 const ask = (content, env) => handleThinkBig(new Request('https://x.invalid/thinkbig-chat', {
   method: 'POST', headers: { Origin: 'https://thinkbigtw.com', 'content-type': 'application/json' },

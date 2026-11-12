@@ -1,5 +1,4 @@
 import { handleThinkBig } from './thinkbig.js';
-import { PRIMARY_MODEL, FALLBACK_MODEL, runModel } from './ai-models.js';
 import { handleLineWebhook, handleLinePushAnswer, handleLineScheduled } from './line-webhook.js';
 import { handleLineGroupPush } from './line-group.js';
 
@@ -286,94 +285,12 @@ async function handleChat(request, env) {
 
 // ============== Think BIG! 官網 AI 客服助理 ==============
 // 知識庫：完整服務、方案、定價、技術細節（T11 Phase 1 知識補強 2026-08-23）
-// ============== ERP 助理 (規格 4 ｜ Workers AI Llama 3.3 70B／Mistral Small 3.1 + RAG；2026-11-13 起不用 MiniMax) ==============
-const ERP_KNOWLEDGE = `你是 Think BIG AI ERP 內建的智慧助理。
-
-【你的能力】
-使用者每次提問,前端會把「目前 ERP 系統的完整即時資料」(JSON)附在訊息裡。
-你要做的是:
-1. 讀懂這份 JSON 資料(營收、庫存、供應商、訂單、員工出勤、加班等所有模組)
-2. 針對問題做真的計算(加總、排序、找極值、跨表比對)
-3. 不只給數字,還要給「顧問式洞察」——像一位懂經營的營運顧問
-
-【回答風格】
-- 繁體中文,純文字,完全不使用 emoji(這是 ERP 內部介面)
-- 先給結論數字,再給一句經營建議
-- 數據裡查不到的,直接說「目前系統數據中沒有這項資料」,絕不編造
-
-【範例】
-問:「誰加班最多?」
-答:「李明德這個月加班 32 小時最多,其次是王雅婷 21 小時。建議留意李明德的工時負荷。」
-
-問:「庫存有沒有快缺貨的?」
-答:「目前低於安全庫存的有 3 項:A 料剩 12、C 料剩 8、F 料剩 5。建議優先補 F 料。」
-
-【禁止】
-- 不報不存在於 JSON 內的數字
-- 不用 emoji、不下投資/財務/法律建議
-- 與 ERP 無關的問題禮貌引導回正題`;
-
-async function handleErpChat(request, env) {
-  let body;
-  try { body = await request.json(); }
-  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
-
-  const { messages, erpState } = body;
-  if (!Array.isArray(messages) || messages.length === 0) {
-    return jsonResponse({ error: 'messages 必填' }, 400);
-  }
-  if (messages.length > 20) {
-    return jsonResponse({ error: '對話過長' }, 400);
-  }
-  for (const m of messages) {
-    if (typeof m.content !== 'string' || m.content.length > 2000) {
-      return jsonResponse({ error: '訊息過長(上限 2000 字)' }, 400);
-    }
-    if (!['user', 'assistant'].includes(m.role)) {
-      return jsonResponse({ error: 'role 必須是 user 或 assistant' }, 400);
-    }
-  }
-
-  let systemPrompt = ERP_KNOWLEDGE;
-  if (erpState && typeof erpState === 'object') {
-    const knowledge = JSON.stringify(erpState);
-    const trimmed = knowledge.length > 50000 ? knowledge.slice(0, 50000) + '...(截斷)' : knowledge;
-    systemPrompt += `\n\n【目前 ERP 系統即時資料(JSON)】\n${trimmed}`;
-  }
-
-  let reply = '';
-  let modelUsed = '';
-
-  // TB 政策 2026-11-13：使用者貼進來的資料不送中國公司模型 → 只走 Workers AI 非中國模型（見 ai-models.js），MiniMax 已移除。
-  // ERP 即時資料最多 50,000 字，Llama 3.3 70B（24k 上下文）放不下 → 資料超過 12,000 字時先用 Mistral Small 3.1（128k）讀全文，
-  // 再用 Llama 讀前 12,000 字；資料不長時照一般順序（主力 Llama、備援 Mistral）。
-  const ERP_LLAMA_MAX = 12000;
-  const clipped = systemPrompt.length > ERP_LLAMA_MAX ? systemPrompt.slice(0, ERP_LLAMA_MAX) + '...(截斷)' : systemPrompt;
-  const erpPlan = systemPrompt.length > ERP_LLAMA_MAX
-    ? [[FALLBACK_MODEL, systemPrompt], [PRIMARY_MODEL, clipped]]
-    : [[PRIMARY_MODEL, systemPrompt], [FALLBACK_MODEL, systemPrompt]];
-  for (const [model, state] of erpPlan) {
-    if (reply) break;
-    try {
-      reply = await runModel(env, model, [{ role: 'system', content: state }, ...messages], { max_tokens: 800, temperature: 0.3, timeoutMs: 20000, kind: 'erp' });
-      if (reply) modelUsed = model === PRIMARY_MODEL ? 'llama-3.3-70b' : 'mistral-small-3.1';
-    } catch (err) {
-      console.error('ERP AI error:', model, err?.message);
-    }
-  }
-  if (!reply) return jsonResponse({ reply: '助理暫時無法回應,請稍後再試。', model: 'fallback-error' });
-
-  // 嚴格去除 emoji(規格 1 ERP 鐵律)
-  reply = reply.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F000}-\u{1F02F}\u{1F0A0}-\u{1F0FF}\u{1F100}-\u{1F64F}\u{1F910}-\u{1F96B}]/gu, '');
-
-  return jsonResponse({
-    reply,
-    model: modelUsed,
-    engine: 'Think BIG AI ERP Assistant',
-    updated: new Date().toISOString(),
-  });
+// ============== /erp-chat：ERP 示範已停止提供（AEGIS D4-20261113 C1）==============
+// 官網改版後沒有前端在用；匿名可呼叫又能塞 50k 字資料，會吃掉全帳號共用的 Workers AI 額度。
+// 直接回 410，不呼叫任何模型。
+function handleErpGone() {
+  return jsonResponse({ error: 'gone', message: 'ERP 示範已停止提供。' }, 410);
 }
-// ============== /erp-chat endpoint 結束 ==============
 
 // ============== 盤前快報情緒判讀 (NEW v3.1 - 規則式 + AI 輔助) ==============
 async function handleBriefing(request, env) {
@@ -2873,7 +2790,7 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
     try {
       if (url.pathname === '/chat') return await handleChat(request, env);
       if (url.pathname === '/industry-design') return await handleIndustryDesign(request, env);
-      if (url.pathname === '/erp-chat') return await handleErpChat(request, env);
+      if (url.pathname === '/erp-chat') return handleErpGone();
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
       if (url.pathname === '/heatmap') return await handleHeatmap(request, env);
       if (url.pathname === '/analysis') return await handleAnalysis(request, env);

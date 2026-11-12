@@ -21,9 +21,9 @@
  */
 
 import { createBookingToken } from './booking.js';
-import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
+import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE, maskSummaryPII } from './thinkbig.js';
 import { handleGroupEvent } from './line-group.js';
-import { PRIMARY_MODEL, FALLBACK_MODEL, runModel } from './ai-models.js';
+import { PRIMARY_MODEL, FALLBACK_MODEL, runModel, logUnavailable } from './ai-models.js';
 import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 
 // ──────────────────────────────────────────────
@@ -445,13 +445,7 @@ async function submitLineReport(env, sessionId, messages, needsHuman) {
   const heat = ['high', 'medium', 'low'].includes(summaryJson.heat) ? summaryJson.heat : 'low';
   const tierGuess = typeof summaryJson.tier_guess === 'string' ? summaryJson.tier_guess.slice(0, 60) : '';
 
-  const safeSummary = JSON.parse(JSON.stringify(summaryJson, (_, v) => {
-    if (typeof v !== 'string') return v;
-    return v
-      .replace(/[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+/g, '[email]')
-      .replace(/\+?\d[\d ()-]{8,}/g, '[phone]')
-      .replace(/[A-Za-z][12]\d{8}/g, '[id]');
-  }));
+  const safeSummary = JSON.parse(JSON.stringify(summaryJson, (_, v) => typeof v === 'string' ? maskSummaryPII(v) : v));
 
   const response = await fetch(url.origin + '/rest/v1/rpc/submit_thinkbig_chat_report', {
     method: 'POST', signal: AbortSignal.timeout(10000),
@@ -550,7 +544,7 @@ async function generateLineReply(messages, env) {
     } catch { /* try next */ }
   }
 
-  if (!reply) return null;
+  if (!reply) { logUnavailable('line'); return null; }
 
   // P7: OpenCC 簡體 → 繁體台灣
   if (typeof toTraditionalTW === 'function') {

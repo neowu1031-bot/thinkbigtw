@@ -16,7 +16,6 @@ export const MODEL_CHAIN = [PRIMARY_MODEL, FALLBACK_MODEL];
 
 // 各模型可放進提示的上限（token）。官網主力路徑整份核心知識庫上限 KB_FULL_LIMIT（估算 16000）實測約 7–8k token，Llama 24k 放得下。
 export const MODEL_CONTEXT = {
-  '@cf/openai/gpt-oss-120b': 128000,
   '@cf/meta/llama-3.3-70b-instruct-fp8-fast': 24000,
   '@cf/mistralai/mistral-small-3.1-24b-instruct': 128000,
 };
@@ -63,16 +62,43 @@ export function logUsage(kind, model, result) {
   console.log(JSON.stringify({ type: 'ai_usage', kind, model, ts: new Date().toISOString(), prompt_tokens: u.prompt_tokens, completion_tokens: u.completion_tokens, neurons: u.neurons }));
 }
 
-// 單次呼叫，逾時就丟錯（呼叫端決定要不要換下一個模型）。
+// AEGIS D4-20261113 C2：模型失敗要留紀錄（舊版 MiniMax 有 minimax_quota_alert，換模型後不能變成看不到）。
+// 只記管道、模型、錯誤碼，不記任何對話內容或錯誤訊息全文。
+// Workers AI 錯誤訊息開頭常是數字代碼（例如額度用完、帳號受限）；抓不到代碼就歸類成 timeout／empty／error。
+export function errorCode(err) {
+  const msg = String(err?.message ?? err ?? '');
+  if (msg === 'timeout') return 'timeout';
+  if (msg === 'empty') return 'empty';
+  if (msg === 'blocked_model') return 'blocked_model';
+  const code = msg.match(/\b(\d{4,5})\b/);
+  return code ? code[1] : (err?.name && err.name !== 'Error' ? String(err.name).slice(0, 40) : 'error');
+}
+export function logModelError(kind, model, err) {
+  console.log(JSON.stringify({ type: 'ai_error', kind, model, code: errorCode(err), ts: new Date().toISOString() }));
+}
+// 整條模型鏈都沒有回覆（訪客會看到「暫時無法回覆」）。給 70%／90% 額度告警之外的第二個訊號。
+export function logUnavailable(kind) {
+  console.log(JSON.stringify({ type: 'ai_unavailable', kind, ts: new Date().toISOString() }));
+}
+
+// 單次呼叫，逾時就丟錯（呼叫端決定要不要換下一個模型）。失敗與空白回覆都記一行 ai_error。
+// AEGIS L1：逾時時也對 binding 送中止訊號（workers-ai-provider 會把 abortSignal 傳給 binding.run；
+// Workers AI 是否因此停止計算未經官方文件確認，所以仍以 Promise.race 為準）。
 export async function runModel(env, model, messages, { max_tokens, temperature, timeoutMs, kind = 'chat' }) {
-  if (CHINA_VENDOR.test(model)) throw new Error('blocked_model');
   let timer;
+  const controller = new AbortController();
   try {
+    if (CHINA_VENDOR.test(model)) throw new Error('blocked_model');
     const result = await Promise.race([
-      env.AI.run(model, buildRequest(model, messages, { max_tokens, temperature })),
-      new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('timeout')), timeoutMs); }),
+      env.AI.run(model, buildRequest(model, messages, { max_tokens, temperature }), { signal: controller.signal }),
+      new Promise((_, reject) => { timer = setTimeout(() => { controller.abort(); reject(new Error('timeout')); }, timeoutMs); }),
     ]);
     logUsage(kind, model, result);
-    return modelText(result);
+    const text = modelText(result);
+    if (!text) logModelError(kind, model, new Error('empty'));
+    return text;
+  } catch (err) {
+    logModelError(kind, model, err);
+    throw err;
   } finally { clearTimeout(timer); }
 }

@@ -2,8 +2,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
-import { PRIMARY_MODEL, FALLBACK_MODEL, MODEL_CHAIN, MODEL_CONTEXT, CHINA_VENDOR, buildRequest, modelText, runModel } from './ai-models.js';
-import { generateChatSummary } from './thinkbig.js';
+import { PRIMARY_MODEL, FALLBACK_MODEL, MODEL_CHAIN, MODEL_CONTEXT, CHINA_VENDOR, buildRequest, modelText, runModel, errorCode } from './ai-models.js';
+import { generateChatSummary, maskSummaryPII } from './thinkbig.js';
 
 test('模型清單：主力與備援都是 Workers AI（@cf/）、不同模型、都不是中國公司模型', () => {
   assert.notEqual(PRIMARY_MODEL, FALLBACK_MODEL);
@@ -72,18 +72,68 @@ test('對話摘要：主力失敗就換備援；兩個都失敗回 null', async 
   assert.equal(await generateChatSummary([{ role: 'user', content: 'x' }], { AI: { run: async () => { throw new Error('down'); } } }), null);
 });
 
-test('ERP 助理：資料短走主力 Llama；資料超過 12,000 字先給 Mistral 讀全文，Llama 只拿截斷版', async () => {
+test('/erp-chat 已停止提供：直接回 410，不呼叫任何模型（AEGIS C1）', async () => {
   const { default: worker } = await import('./index.js');
-  const call = async erpState => {
-    const seen = [];
-    const env = { AI: { run: async (model, body) => { seen.push({ model, len: body.messages[0].content.length }); return { response: '回答' }; } } };
-    const req = new Request('https://x.invalid/erp-chat', { method: 'POST', headers: { 'content-type': 'application/json', Origin: 'https://thinkbigtw.com' }, body: JSON.stringify({ messages: [{ role: 'user', content: '誰加班最多？' }], erpState }) });
-    const res = await worker.fetch(req, env, { waitUntil() {} });
-    return { seen, body: await res.json() };
-  };
-  const small = await call({ a: 1 });
-  assert.equal(small.seen[0].model, PRIMARY_MODEL); assert.equal(small.body.model, 'llama-3.3-70b');
-  const big = await call({ rows: 'x'.repeat(20000) });
-  assert.equal(big.seen[0].model, FALLBACK_MODEL); assert.ok(big.seen[0].len > 20000);
-  assert.equal(big.body.model, 'mistral-small-3.1');
+  let called = 0;
+  const env = { AI: { run: async () => { called++; return { response: 'x' }; } } };
+  const req = new Request('https://x.invalid/erp-chat', { method: 'POST', headers: { 'content-type': 'application/json', Origin: 'https://thinkbigtw.com' }, body: JSON.stringify({ messages: [{ role: 'user', content: '誰加班最多？' }], erpState: { rows: 'x'.repeat(50000) } }) });
+  const res = await worker.fetch(req, env, { waitUntil() {} });
+  assert.equal(res.status, 410);
+  assert.equal((await res.json()).error, 'gone');
+  assert.equal(called, 0);
+});
+
+// AEGIS C2：失敗要留紀錄，只記管道／模型／錯誤碼，不記內容。
+function captureLogs(fn) {
+  const saved = console.log; const lines = [];
+  console.log = (...a) => lines.push(a.join(' '));
+  return Promise.resolve().then(fn).finally(() => { console.log = saved; }).then(() => lines.map(l => { try { return JSON.parse(l); } catch { return { raw: l }; } }));
+}
+test('errorCode：抓 Workers AI 數字代碼；逾時／空白／其他各有固定代碼；不帶訊息全文', () => {
+  assert.equal(errorCode(new Error('3036: Account limited: you have used up your daily free allocation of 10,000 neurons')), '3036');
+  assert.equal(errorCode(new Error('timeout')), 'timeout');
+  assert.equal(errorCode(new Error('empty')), 'empty');
+  assert.equal(errorCode(new Error('客戶說了一段秘密內容')), 'error');
+  assert.equal(errorCode(Object.assign(new Error('x'), { name: 'InferenceUpstreamError' })), 'InferenceUpstreamError');
+});
+test('runModel 失敗記 ai_error（不含對話與錯誤全文）；空白回覆也記', async () => {
+  const secret = '王小明 0912-345-678';
+  const logs = await captureLogs(async () => {
+    await assert.rejects(runModel({ AI: { run: async () => { throw new Error(`3036: quota ${secret}`); } } }, PRIMARY_MODEL, [{ role: 'user', content: secret }], { max_tokens: 10, temperature: 0, timeoutMs: 1000, kind: 'line' }));
+    assert.equal(await runModel({ AI: { run: async () => ({ response: '' }) } }, FALLBACK_MODEL, [], { max_tokens: 10, temperature: 0, timeoutMs: 1000, kind: 'summary' }), '');
+  });
+  const errs = logs.filter(l => l.type === 'ai_error');
+  assert.deepEqual(errs.map(e => [e.kind, e.model, e.code]), [['line', PRIMARY_MODEL, '3036'], ['summary', FALLBACK_MODEL, 'empty']]);
+  assert.ok(!JSON.stringify(logs).includes('王小明') && !JSON.stringify(logs).includes('0912'));
+});
+test('runModel 逾時：記 timeout，並對 binding 送出中止訊號', async () => {
+  let signal;
+  const logs = await captureLogs(async () => {
+    await assert.rejects(runModel({ AI: { run: (m, b, opts) => { signal = opts?.signal; return new Promise(() => {}); } } }, PRIMARY_MODEL, [], { max_tokens: 10, temperature: 0, timeoutMs: 20, kind: 'chat' }), /timeout/);
+  });
+  assert.equal(signal?.aborted, true);
+  assert.equal(logs.find(l => l.type === 'ai_error').code, 'timeout');
+});
+test('整條模型鏈都失敗：官網、摘要各記一行 ai_unavailable', async () => {
+  const { handleThinkBig } = await import('./thinkbig.js');
+  const env = { RATE_LIMITER: { limit: async () => ({ success: true }) }, AI: { run: async () => { throw new Error('3036: limit'); } } };
+  const logs = await captureLogs(async () => {
+    const r = await handleThinkBig(new Request('https://x.invalid/thinkbig-chat', { method: 'POST', headers: { Origin: 'https://thinkbigtw.com', 'content-type': 'application/json' }, body: JSON.stringify({ messages: [{ role: 'user', content: '你們有哪些方案？' }] }) }), env, { waitUntil() {} });
+    assert.equal(r.status, 503);
+    assert.equal(await generateChatSummary([{ role: 'user', content: 'x' }], env), null);
+  });
+  assert.deepEqual(logs.filter(l => l.type === 'ai_unavailable').map(l => l.kind), ['chat', 'summary']);
+  assert.equal(logs.filter(l => l.type === 'ai_error').length, 4);
+});
+
+// AEGIS L4：摘要寫進 Supabase 前的程式遮罩
+test('maskSummaryPII：email、電話、身分證、LINE ID、@帳號、自報姓名都遮；一般用語不誤傷', () => {
+  const cases = [
+    ['我叫王小明，LINE ID: abc_123，email a@b.co 電話 0912-345-678', '我叫[name]，LINE ID: [line]，email [email] 電話 [phone]'],
+    ['陳先生想導入，聯絡 LINE：wang.xm 或 @wangxm88', '[name]先生想導入，聯絡 LINE：[line] 或 [line]'],
+    ['身分證 A123456789 市話 02-2345-6789', '身分證 [id] 市話 [phone]'],
+    ['敝姓林，想問企業方案', '敝姓[name]，想問企業方案'],
+  ];
+  for (const [input, want] of cases) assert.equal(maskSummaryPII(input), want, input);
+  for (const keep of ['用 LINE 官方帳號 和 LINE OA', '我是個人用戶', '想用 LINE Messaging API', '30 人的貿易公司']) assert.equal(maskSummaryPII(keep), keep);
 });

@@ -1,6 +1,6 @@
 import { retailExperience, employeeExperience } from './retail-experience.js';
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
-import { PRIMARY_MODEL, FALLBACK_MODEL, MODEL_CHAIN, runModel } from './ai-models.js';
+import { PRIMARY_MODEL, FALLBACK_MODEL, MODEL_CHAIN, runModel, logUnavailable } from './ai-models.js';
 // 話題範圍（官網＋LINE 共用，不計入 KB token budget）
 export const SCOPE_RULE = `
 
@@ -212,7 +212,7 @@ async function chat(body, env) {
       if (retry && !replyNotEnglish(retry)) reply = retry;
     } catch { /* Keep the first reply. */ }
   }
-  if (!reply) return json({ error: 'ai_unavailable', fallback: LINE }, 503);
+  if (!reply) { logUnavailable('chat'); return json({ error: 'ai_unavailable', fallback: LINE }, 503); }
   reply = filterReply(reply);
   const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
   return json({ reply, model, inquirySuggested });
@@ -351,6 +351,19 @@ const SUMMARY_SYSTEM = `你是 Think BIG 內部對話品質審查助理。
 - 摘要欄位不得包含：真實姓名、電話號碼、電子郵件、LINE ID、身分證字號，或任何可單獨辨識個人的資料。
 - 若對話提到上述資料，請以「（已略）」替代，不得照抄原文。`;
 
+// 摘要寫進 Supabase 前的程式遮罩（F6；官網與 LINE 共用）。不靠模型自律。
+// AEGIS D4-20261113 L4：除 email／電話／身分證外，補 LINE ID 與自報姓名（「我叫王小明」「陳先生」）。
+export function maskSummaryPII(v) {
+  return v
+    .replace(/[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+/g, '[email]')                       // email
+    .replace(/[A-Za-z][12]\d{8}/g, '[id]')                                        // Taiwan ID card（要在電話之前，否則數字段會先被當電話）
+    .replace(/\+?\d[\d ()-]{8,}/g, '[phone]')                                      // phone
+    .replace(/(LINE\s*ID\s*[:：]?\s*|LINE\s*[:：]\s*)@?[\w.\-]{3,}/gi, '$1[line]')   // LINE ID：xxx / LINE: xxx
+    .replace(/(^|[^\w])@[A-Za-z0-9][\w.\-]{3,}/g, '$1[line]')                         // @xxxx（email 已先換掉）
+    .replace(/(我叫|我姓|敝姓|本人姓|我的名字是|名字是|名字叫|稱呼我|叫我)\s*[\u4e00-\u9fff]{1,3}/g, '$1[name]')
+    .replace(/[\u4e00-\u9fff]{1,2}(先生|小姐|女士)/g, '[name]$1');
+}
+
 export async function generateChatSummary(messages, env) {
   // Wrap raw conversation as opaque data block to prevent prompt injection.
   const convoText = messages.map(m => `[${m.role === 'user' ? '客人' : 'AI'}] ${m.content}`).join('\n');
@@ -365,7 +378,7 @@ export async function generateChatSummary(messages, env) {
       raw = cleanReply(await runModel(env, model, summaryContext, { max_tokens: 500, temperature: 0.1, timeoutMs: 12000, kind: 'summary' }));
     } catch { /* try next */ }
   }
-  if (!raw) return null;
+  if (!raw) { logUnavailable('summary'); return null; }
   // Extract JSON from model output (may wrap in code fences)
   const match = raw.match(/\{[\s\S]*\}/);
   if (!match) return null;
@@ -404,13 +417,7 @@ async function endChat(body, env) {
   const tierGuess = typeof summaryJson.tier_guess === 'string' ? summaryJson.tier_guess.slice(0, 60) : '';
 
   // Strip any PII-like strings from summary JSON before storing (belt-and-suspenders; F6)
-  const safeSummary = JSON.parse(JSON.stringify(summaryJson, (_, v) => {
-    if (typeof v !== 'string') return v;
-    return v
-      .replace(/[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+/g, '[email]')   // email
-      .replace(/\+?\d[\d ()-]{8,}/g, '[phone]')                  // phone
-      .replace(/[A-Za-z][12]\d{8}/g, '[id]');                    // F6: Taiwan ID card
-  }));
+  const safeSummary = JSON.parse(JSON.stringify(summaryJson, (_, v) => typeof v === 'string' ? maskSummaryPII(v) : v));
 
   if (!env.INQUIRY_SUPABASE_URL || !env.INQUIRY_SUPABASE_SERVICE_ROLE_KEY) {
     return json({ error: 'report_unavailable' }, 503);
