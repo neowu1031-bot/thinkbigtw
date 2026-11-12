@@ -1,4 +1,6 @@
 import { handleThinkBig } from './thinkbig.js';
+import { withAiBudget } from './ai-budget.js';
+export { AiBudget } from './ai-budget.js';
 import { handleLineWebhook, handleLinePushAnswer, handleLineScheduled } from './line-webhook.js';
 import { handleLineGroupPush } from './line-group.js';
 
@@ -1614,7 +1616,7 @@ async function handleIndustryDesign(request, env){
 }
 // ============== /industry-design 結束 ==============
 
-export default {
+const app = {
   async fetch(request, env, ctx) {
     const thinkBigPath = new URL(request.url).pathname;
     if (thinkBigPath === '/line-webhook') return handleLineWebhook(request, env, ctx);
@@ -2808,4 +2810,11 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
   async scheduled(event, env, ctx) {
     ctx.waitUntil(handleLineScheduled(env));
   },
+};
+
+// NEO 2026-11-13「不要超過額度」：這支 Worker 所有 AI 呼叫（官網、LINE、摘要、AI 實戰體驗、股市端點）
+// 都經過同一份每日 neurons 硬上限（ai-budget.js，9,000／UTC 日）。超過就不呼叫模型，走各端點既有的降級回覆。
+export default {
+  fetch(request, env, ctx) { return app.fetch(request, withAiBudget(env), ctx); },
+  scheduled(event, env, ctx) { return app.scheduled(event, withAiBudget(env), ctx); },
 };

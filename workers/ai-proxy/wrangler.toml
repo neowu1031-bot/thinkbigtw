@@ -9,6 +9,16 @@ crons = ["*/10 * * * *"]
 [ai]
 binding = "AI"
 
+# NEO 2026-11-13「不要超過額度」：Workers AI 每日 neurons 硬上限計數器（src/ai-budget.js）。
+# 單一 SQLite Durable Object；每個 AI 呼叫最多 2 次 DO 請求，遠低於 Workers Paid 內含 100 萬次／月。
+[[durable_objects.bindings]]
+name = "AI_BUDGET"
+class_name = "AiBudget"
+
+[[migrations]]
+tag = "v1-ai-budget"
+new_sqlite_classes = ["AiBudget"]
+
 # C3: 6 次/分鐘（per-user atomic CF rate limit）
 [[unsafe.bindings]]
 name = "RATE_LIMITER"
