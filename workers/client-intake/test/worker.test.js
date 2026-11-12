@@ -260,7 +260,11 @@ test('notification text has no answers and tells how to retrieve', () => {
   assert.match(subject, /第 2 次/);
   assert.equal(text.includes('SECRET-ANSWER'), false);
   assert.match(text, /20261112T050000910Z-ab12cd34/);
-  assert.match(text, /npx --no-install wrangler kv key get/);
+  assert.match(text, /答案已安全存好，由 GM 用後台指令取回，不用點任何連結。/);
+  assert.match(text, /第 2 次送出/);
+  assert.match(text, /時間：t/);
+  assert.doesNotMatch(text, /https?:\/\/|_admin|wrangler|curl/);
+  assert.equal(text.includes('S'.repeat(43)), false, 'slug must not be in the mail');
 });
 
 test('oversized body rejected', async () => {

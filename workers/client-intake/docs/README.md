@@ -17,7 +17,8 @@ This directory is the reusable template. Client text, videos and codes never go 
    hash**, and only then answers 200 with a receipt id (`<UTC timestamp>-<hash8>`). Anything else
    is a 5xx, and the page keeps the draft, retries 3 times (2 s, 5 s, 12 s), then offers
    "重試" and "下載我的答案".
-6. A short notice (no answers) goes to the team inbox. If it cannot be sent, the submission is
+6. A short notice goes to the team inbox: client label, receipt id, submission number and time only.
+   No answers, no links, no slug and no retrieval commands (those live in this README). If it cannot be sent, the submission is
    still kept and `notify_failed:<slug>:<id>` is written for the daily check.
 
 ## Data and limits
@@ -73,7 +74,10 @@ There is no CI workflow for this worker on purpose; deploys are manual.
 
 ## Retrieve answers
 
+The notice mail only carries the receipt id. Find the full key from it, then read it:
+
 ```bash
+npx --no-install wrangler kv key list --binding INTAKE_KV --remote --prefix "sub:" | grep "<receipt id>"
 npx --no-install wrangler kv key list --binding INTAKE_KV --remote --prefix "sub:<slug>:"
 npx --no-install wrangler kv key get  --binding INTAKE_KV --remote "sub:<slug>:<id>"
 ```
@@ -102,7 +106,7 @@ Use a throw-away test config (no client data) and a test slug.
    Open the video URL (`/c/<slug>/media/<name>`) in a private window without logging in: it must be 404.
 4. Answer every question, use "先存起來", reload, continue, then submit. Write down the 送出編號.
 5. `wrangler kv key get … "sub:<slug>:<送出編號>"`: the id matches and every answer matches what was entered, question by question.
-6. AI@thinkbigtw.com received the notice; it has the 送出編號 and retrieval command, and no answers.
+6. AI@thinkbigtw.com received the notice; it has the 送出編號, number and time, and no answers, links or commands.
 7. `node scripts/check-submissions.mjs` lists the test slug with the right time and `notify_failed=0`.
 8. Turn the network off (airplane mode / DevTools offline), press 送出: the page says the answers are still
    there, retries automatically, then shows 重試 and 下載我的答案. Download the .txt, check it, turn the network
