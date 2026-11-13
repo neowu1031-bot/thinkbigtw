@@ -1,5 +1,5 @@
 import { handleThinkBig } from './thinkbig.js';
-import { withAiBudget } from './ai-budget.js';
+import { withAiBudget, laneForPath, LANE_CUSTOMER } from './ai-budget.js';
 export { AiBudget } from './ai-budget.js';
 import { handleLineWebhook, handleLinePushAnswer, handleLineScheduled } from './line-webhook.js';
 import { handleLineGroupPush } from './line-group.js';
@@ -2813,8 +2813,12 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
 };
 
 // NEO 2026-11-13「不要超過額度」：這支 Worker 所有 AI 呼叫（官網、LINE、摘要、AI 實戰體驗、股市端點）
-// 都經過同一份每日 neurons 硬上限（ai-budget.js，5,000／UTC 日）。超過就不呼叫模型，走各端點既有的降級回覆。
+// 都經過同一份每日 neurons 硬上限（ai-budget.js，5,000／UTC 日；其他車道子上限 1,500）。超過就不呼叫模型，走各端點既有的降級回覆。
+// AEGIS R2 M1：分車道。客服車道（/thinkbig-*、/line-*、排程）可用到 5,000；其他 AI 路徑合計 ≤1,500 且先過每 IP 限流。
 export default {
-  fetch(request, env, ctx) { return app.fetch(request, withAiBudget(env), ctx); },
-  scheduled(event, env, ctx) { return app.scheduled(event, withAiBudget(env), ctx); },
+  fetch(request, env, ctx) {
+    const lane = laneForPath(new URL(request.url).pathname);
+    return app.fetch(request, withAiBudget(env, { lane, ip: request.headers.get('CF-Connecting-IP') || '' }), ctx);
+  },
+  scheduled(event, env, ctx) { return app.scheduled(event, withAiBudget(env, { lane: LANE_CUSTOMER }), ctx); },
 };

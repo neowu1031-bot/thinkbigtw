@@ -70,7 +70,7 @@ export function errorCode(err) {
   if (msg === 'timeout') return 'timeout';
   if (msg === 'empty') return 'empty';
   if (msg === 'blocked_model') return 'blocked_model';
-  if (msg === 'ai_budget_exceeded' || msg === 'ai_budget_unavailable') return msg;   // 每日硬上限（ai-budget.js）
+  if (['ai_budget_exceeded', 'ai_budget_unavailable', 'ai_rate_limited'].includes(msg)) return msg;   // 每日硬上限（ai-budget.js）
   const code = msg.match(/\b(\d{4,5})\b/);
   return code ? code[1] : (err?.name && err.name !== 'Error' ? String(err.name).slice(0, 40) : 'error');
 }

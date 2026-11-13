@@ -1,17 +1,19 @@
 // NEO 2026-11-13「不要超過額度」：Workers AI 每日 neurons 硬上限（ai-budget.js）測試。不連網。
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AiBudget, guardAI, withAiBudget, estimateNeurons, actualNeurons, crossedLevel, utcDay, DAILY_NEURON_CAP, _resetBudgetCacheForTest } from './ai-budget.js';
+import { AiBudget, guardAI, withAiBudget, estimateNeurons, actualNeurons, crossedLevel, utcDay, DAILY_NEURON_CAP, OTHER_LANE_CAP, LANE_OTHER, LANE_CUSTOMER, laneForPath, _resetBudgetCacheForTest } from './ai-budget.js';
 
 function fakeStorage(init) {
   const m = new Map(init ? [['day', init]] : []);
   return { get: async k => m.get(k), put: async (k, v) => { m.set(k, structuredClone(v)); }, _m: m };
 }
 // 假 DO namespace：所有名稱都導到同一個 AiBudget 實例，記錄 DO 請求數。
-function fakeNamespace(initUsed = 0, date = utcDay()) {
-  const storage = fakeStorage({ date, used: initUsed });
+function fakeNamespace(initUsed = 0, date = utcDay(), initOther = 0) {
+  const storage = fakeStorage({ date, used: initUsed, other: initOther });
   const obj = new AiBudget({ storage });
-  const ns = { requests: 0, storage, idFromName: n => n, get: () => ({ fetch: async (url, init) => { ns.requests++; return obj.fetch(new Request(url, init)); } }) };
+  // 依序處理（模擬 DO input gate）
+  let chain = Promise.resolve();
+  const ns = { requests: 0, storage, idFromName: n => n, get: () => ({ fetch: (url, init) => { ns.requests++; const p = chain.then(() => obj.fetch(new Request(url, init))); chain = p.catch(() => {}); return p; } }) };
   return ns;
 }
 function captureLogs() {
@@ -158,4 +160,103 @@ test('withAiBudget：其他 binding 照常取得，只換掉 AI；股市端點�
   try { await assert.rejects(ai.run('@cf/meta/llama-3-8b-instruct', small), /ai_budget_exceeded/); } finally { log.restore(); }
   assert.equal(called, 0);
   _resetBudgetCacheForTest();
+});
+
+// ───────── AEGIS D4-20261113 R2 M1：分車道 ─────────
+const okLimiter = () => ({ calls: 0, async limit() { this.calls++; return { success: true }; } });
+
+test('車道判定只看網址：/thinkbig-*、/line-* 是客服，其他（股市 /ai-10k、/coach、/translate、/chat…）都是其他車道', () => {
+  for (const p of ['/thinkbig-chat', '/thinkbig-end-chat', '/thinkbig-retail', '/thinkbig-experience', '/line-webhook', '/line-push-answer']) assert.equal(laneForPath(p), LANE_CUSTOMER, p);
+  for (const p of ['/ai-10k', '/ai-moat', '/ai-competition', '/ai-blackswan', '/ai-pattern', '/coach', '/translate', '/article', '/news-summary', '/chat', '/industry-design', '/', '/thinkbig-chat/../ai-10k', '/thinkbigX', '/line-webhookX']) assert.equal(laneForPath(p), LANE_OTHER, p);
+  assert.equal(OTHER_LANE_CAP, 1500);
+});
+
+test('其他車道用滿 1,500 後被擋，但客服車道仍能預扣（客服至少保有 3,500）', async () => {
+  _resetBudgetCacheForTest();
+  const ns = fakeNamespace(OTHER_LANE_CAP, utcDay(), OTHER_LANE_CAP);
+  let called = 0;
+  const run = async () => { called++; return { response: 'x', usage: { neurons: 10 } }; };
+  const log = captureLogs();
+  try {
+    await assert.rejects(guardAI({ AI: { run }, AI_BUDGET: ns, RATE_LIMITER: okLimiter() }, { lane: LANE_OTHER, ip: '9.9.9.9' }).run(LLAMA, small), /ai_budget_exceeded/);
+    assert.equal(called, 0);
+    await guardAI({ AI: { run }, AI_BUDGET: ns }, { lane: LANE_CUSTOMER }).run(LLAMA, small);
+    assert.equal(called, 1);
+    // 同一 isolate：其他車道被擋的快取不影響客服
+    await assert.rejects(guardAI({ AI: { run }, AI_BUDGET: ns, RATE_LIMITER: okLimiter() }, { lane: LANE_OTHER }).run(LLAMA, small), /ai_budget_exceeded/);
+    await guardAI({ AI: { run }, AI_BUDGET: ns }, { lane: LANE_CUSTOMER }).run(LLAMA, small);
+    assert.equal(called, 2);
+  } finally { log.restore(); }
+  assert.ok(log.lines.some(l => l.type === 'ai_budget_block' && l.reason === 'other_lane_cap'));
+  const rec = await ns.storage.get('day');
+  assert.equal(rec.other, OTHER_LANE_CAP); assert.equal(rec.used, OTHER_LANE_CAP + 20);
+  // 客服可以一路用到總上限 5,000
+  _resetBudgetCacheForTest();
+  const est = estimateNeurons(LLAMA, small);
+  ns.storage._m.set('day', { date: utcDay(), used: DAILY_NEURON_CAP - est, other: OTHER_LANE_CAP });
+  await guardAI({ AI: { run: async () => ({ response: 'x', usage: { neurons: est } }) }, AI_BUDGET: ns }, { lane: LANE_CUSTOMER }).run(LLAMA, small);
+  assert.equal((await ns.storage.get('day')).used, DAILY_NEURON_CAP);
+  _resetBudgetCacheForTest();
+});
+
+test('總上限用完時兩條車道都擋；其他車道的用量也算進總量', async () => {
+  _resetBudgetCacheForTest();
+  const ns = fakeNamespace(DAILY_NEURON_CAP, utcDay(), 100);
+  const log = captureLogs();
+  try {
+    await assert.rejects(guardAI({ AI: { run: async () => ({ response: 'x' }) }, AI_BUDGET: ns }, { lane: LANE_CUSTOMER }).run(LLAMA, small), /ai_budget_exceeded/);
+    await assert.rejects(guardAI({ AI: { run: async () => ({ response: 'x' }) }, AI_BUDGET: ns, RATE_LIMITER: okLimiter() }, { lane: LANE_OTHER }).run(LLAMA, small), /ai_budget_exceeded/);
+  } finally { log.restore(); }
+  assert.equal(ns.requests, 1, '總上限被擋後，同 isolate 兩條車道都不再問 DO');
+  _resetBudgetCacheForTest();
+});
+
+test('其他車道先過限流：被限流、沒有限流器或限流器出錯都不呼叫模型、不扣額度', async () => {
+  for (const limiter of [{ limit: async () => ({ success: false }) }, undefined, { limit: async () => { throw new Error('down'); } }]) {
+    _resetBudgetCacheForTest();
+    const ns = fakeNamespace(0);
+    let called = 0;
+    const log = captureLogs();
+    try { await assert.rejects(guardAI({ AI: { run: async () => { called++; return { response: 'x' }; } }, AI_BUDGET: ns, RATE_LIMITER: limiter }, { lane: LANE_OTHER, ip: '1.1.1.1' }).run(LLAMA, small), /ai_rate_limited/); } finally { log.restore(); }
+    assert.equal(called, 0); assert.equal(ns.requests, 0);
+  }
+  // 限流 key 與官網聊天分開
+  const keys = [];
+  await guardAI({ AI: { run: async () => ({ response: 'x', usage: { neurons: 1 } }) }, AI_BUDGET: fakeNamespace(0), RATE_LIMITER: { limit: async ({ key }) => { keys.push(key); return { success: true }; } } }, { lane: LANE_OTHER, ip: '1.2.3.4' }).run(LLAMA, small);
+  assert.deepEqual(keys, ['ai-other:1.2.3.4']);
+  _resetBudgetCacheForTest();
+});
+
+// AEGIS dos.mjs 情境：匿名 GET /ai-10k 連打、7 個並發，之後官網 AI 顧問仍要正常回覆。
+async function dosScenario({ concurrent }) {
+  _resetBudgetCacheForTest();
+  const { default: worker } = await import('./index.js');
+  const ns = fakeNamespace(0);
+  let aiCalls = 0;
+  const AI = { async run() { aiCalls++; return { response: '測試回覆內容。', usage: { prompt_tokens: 120, completion_tokens: 1500 } }; } };
+  const env = { AI, AI_BUDGET: ns, RATE_LIMITER: { limit: async () => ({ success: true }) } };   // 限流全放行＝最壞情況（多 IP）
+  const ctx = { waitUntil() {} };
+  const savedFetch = globalThis.fetch; globalThis.fetch = async () => { throw new Error('no network in test'); };
+  const log = captureLogs(); const savedErr = console.error; console.error = () => {};
+  let chat;
+  try {
+    const get = n => worker.fetch(new Request('https://x/ai-10k?symbol=S' + n), env, ctx);
+    if (concurrent) await Promise.all(Array.from({ length: 7 }, (_, i) => get(i)));
+    else for (let n = 0; n < 40; n++) await get(n);
+    chat = await worker.fetch(new Request('https://x/thinkbig-chat', { method: 'POST', headers: { 'content-type': 'application/json', Origin: 'https://thinkbigtw.com', 'CF-Connecting-IP': '1.2.3.4' }, body: JSON.stringify({ messages: [{ role: 'user', content: '你們有哪些方案？' }] }) }), env, ctx);
+  } finally { globalThis.fetch = savedFetch; log.restore(); console.error = savedErr; }
+  const rec = await ns.storage.get('day');
+  _resetBudgetCacheForTest();
+  return { chat, rec, aiCalls };
+}
+test('dos 情境 1：匿名 GET /ai-10k 連打 40 次後，官網 /thinkbig-chat 仍回 200', async () => {
+  const { chat, rec, aiCalls } = await dosScenario({ concurrent: false });
+  assert.equal(chat.status, 200);
+  assert.ok(rec.other <= OTHER_LANE_CAP, `other ${rec.other}`);
+  assert.ok(aiCalls >= 2, '股市端點在子上限內仍可用');
+});
+test('dos 情境 2：7 個並發 GET /ai-10k 後，官網 /thinkbig-chat 仍回 200', async () => {
+  const { chat, rec } = await dosScenario({ concurrent: true });
+  assert.equal(chat.status, 200);
+  assert.ok(rec.other <= OTHER_LANE_CAP && rec.used <= DAILY_NEURON_CAP);
 });
