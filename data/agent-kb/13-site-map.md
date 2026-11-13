@@ -5,7 +5,7 @@
 官網 https://thinkbigtw.com 主要頁面：
 ・首頁：企業 AI Agent 導入介紹、AI 實戰體驗入口。首頁廣告的主持人是 AI 生成的虛擬人物，不是真人，有標示。
 ・企業導入 /enterprise/：三種方案範圍、地端版與雲端輔助版、採購常見問題。
-・自助評估 /enterprise/start/：12 題問卷、約 3 分鐘，自動建議適合哪種方案；留聯絡資料後，1 個工作日內由真人聯繫，安排 30 分鐘遠端設備預檢與需求確認。問卷不收費；聯絡資料不送進 AI。
+・自助評估 /enterprise/start/：12 題問卷、約 3 分鐘，自動建議適合哪種方案；留下聯絡資料後，必要時由負責人親自聯絡；詢問內容會由 AI 工具協助整理，詳見隱私權政策。問卷不收費。
 ・AI 部門 /enterprise/departments/：各部門 AI Agent 的產物與權限。TB FRAME /enterprise/process/：四階段方法與導入工作表。RAG 說明 /enterprise/rag/：AI 依公司文件回答並附出處、資料流向與驗收。
 ・方案總覽 /pricing/：企業使用與個人使用兩扇門；個人方案 /pricing/personal/。
 ・作品集 /portfolio/（英文 /portfolio/en/）：企業導入（已去識別化情境）、自有產品與示範系統（含 ERP 進銷存互動 Demo）、影片製作。

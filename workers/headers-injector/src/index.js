@@ -85,6 +85,32 @@ function isBlockedCrawler(userAgent) {
   return BLOCKED_CRAWLER_SIGNATURES.some(sig => ua.includes(sig.toLowerCase()));
 }
 
+/**
+ * 已下架舊頁面 → 新頁面（301）。靜態 HTML 內另有 meta refresh + canonical + noindex 作為備援。
+ */
+const MOVED_PAGES = {
+  '/full-agent': '/dual-agent/',
+  '/annual': '/annual-pro/',
+  '/solo-pro': '/single-agent/',
+  '/harness': '/single-agent/',
+  '/en/full-agent': '/en/dual-agent/',
+  '/en/annual': '/en/annual-pro/',
+  '/tbos': '/en/',
+  '/tbos/en': '/en/',
+  '/tbos/en/index.html': '/en/',
+  '/tbos/en/pricing.html': '/en/pricing/',
+  '/tbos/en/privacy.html': '/en/privacy/',
+  '/tbos/en/terms.html': '/en/terms/',
+  '/tbos/en/services.html': '/en/services/ai-agent-setup/',
+};
+
+function movedTarget(pathname) {
+  const key = pathname.length > 1 ? pathname.replace(/\/+$/, '') : pathname;
+  if (Object.prototype.hasOwnProperty.call(MOVED_PAGES, key)) return MOVED_PAGES[key];
+  if (key.startsWith('/tbos/en/') && !key.endsWith('.css')) return '/en/';
+  return null;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -96,6 +122,12 @@ export default {
     if (url.protocol === 'http:') {
       const httpsUrl = request.url.replace(/^http:/, 'https:');
       return Response.redirect(httpsUrl, 301);
+    }
+
+    // ── 舊頁面 301 ───────────────────────────────────────────────────────────
+    if (request.method === 'GET' || request.method === 'HEAD') {
+      const target = movedTarget(pathname);
+      if (target) return Response.redirect(url.origin + target, 301);
     }
 
     // ── Early exit: webhook 路徑 ─────────────────────────────────────────────
