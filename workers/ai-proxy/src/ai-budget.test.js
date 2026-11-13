@@ -22,7 +22,14 @@ function captureLogs() {
 const LLAMA = '@cf/meta/llama-3.3-70b-instruct-fp8-fast';
 const small = { messages: [{ role: 'user', content: 'hi' }], max_tokens: 10, temperature: 0 };
 
-test('已用 9,000：第 9,001 個 neuron 起不呼叫模型，丟 ai_budget_exceeded 並記 ai_budget_block', async () => {
+test('上限是 5,000；70%／90% 門檻換算成 3,500／4,500', () => {
+  assert.equal(DAILY_NEURON_CAP, 5000);
+  assert.equal(crossedLevel(3499, 3500), 70);
+  assert.equal(crossedLevel(4499, 4500), 90);
+  assert.equal(crossedLevel(3400, 3499), null);
+});
+
+test('已用 5,000：第 5,001 個 neuron 起不呼叫模型，丟 ai_budget_exceeded 並記 ai_budget_block', async () => {
   _resetBudgetCacheForTest();
   const ns = fakeNamespace(DAILY_NEURON_CAP);
   let called = 0;
@@ -34,7 +41,7 @@ test('已用 9,000：第 9,001 個 neuron 起不呼叫模型，丟 ai_budget_exc
   assert.equal((await ns.storage.get('day')).used, DAILY_NEURON_CAP, '被擋的呼叫不加計數');
 });
 
-test('剛好用到 9,000 可以；超過 1 個 neuron 就擋（預扣是估計值，偏高估）', async () => {
+test('剛好用到 5,000 可以；超過 1 個 neuron 就擋（預扣是估計值，偏高估）', async () => {
   _resetBudgetCacheForTest();
   const est = estimateNeurons(LLAMA, small);
   let called = 0;
@@ -87,7 +94,7 @@ test('跨過 70%／90% 各寫一行 ai_budget log', async () => {
 });
 
 test('換 UTC 日就歸零', async () => {
-  const storage = fakeStorage({ date: '2000-01-01', used: 9000 });
+  const storage = fakeStorage({ date: '2000-01-01', used: DAILY_NEURON_CAP });
   const r = await (await new AiBudget({ storage }).fetch(new Request('https://x/', { method: 'POST', body: JSON.stringify({ op: 'reserve', est: 50 }) }))).json();
   assert.equal(r.ok, true); assert.equal(r.used, 50); assert.equal(r.date, utcDay());
 });

@@ -2,16 +2,18 @@
 //
 // 帳號是 Workers Paid：超過每天 10,000 neurons 的免費額度會照量計費，Cloudflare 本身沒有花費上限。
 // 這支 Worker 的每一個 AI 呼叫（官網 AI 顧問、摘要、LINE 客服、AI 實戰體驗、股市網站約 25 處）都經過
-// withAiBudget() 包過的 env.AI：呼叫前先向 Durable Object 預扣估計值，超過 9,000（留 10% 緩衝）就不呼叫模型、
+// withAiBudget() 包過的 env.AI：呼叫前先向 Durable Object 預扣估計值，超過 5,000 就不呼叫模型、
 // 直接丟 ai_budget_exceeded，由各呼叫端既有的降級流程接手（官網引導 LINE、LINE 附 ai@ 信箱、摘要寫無法生成）。
 // 呼叫完成後用實際 neurons 校正。
 //
 // 計數按 UTC 日（免費額度 00:00 UTC＝台灣 08:00 重置）。只算這支 Worker；同帳號其他 Worker 或手動 REST 呼叫
 // 也吃同一份免費額度，這裡看不到（用 tools/ai-usage.mjs 查全帳號）。
 // 計數器或 DO 出錯時一律「不呼叫模型」（fail-closed）：寧可暫停 AI，也不冒超額計費。
-export const DAILY_NEURON_CAP = 9000;
+// GM 2026-11-13：上限 5,000。全帳號每日免費 10,000 neurons 中，旅伴Go 分配 4,000（AEGIS R7 條件：ai-proxy ≤5,000），
+// 5,000＋4,000＝9,000，留 1,000 緩衝給手動查詢與其他用量。
+export const DAILY_NEURON_CAP = 5000;
 export const FREE_DAILY_NEURONS = 10000;
-export const ALERT_LEVELS = [70, 90];   // 佔 DAILY_NEURON_CAP 的百分比，跨過時寫 ai_budget log 供告警
+export const ALERT_LEVELS = [70, 90];   // 佔 DAILY_NEURON_CAP（5,000）的百分比＝3,500／4,500，跨過時寫 ai_budget log 供告警
 
 // 每個 token 的 neurons（由 Workers AI 模型目錄的美元價 ÷ $0.011／1,000 neurons 換算，2026-11-13）。
 const RATES = {

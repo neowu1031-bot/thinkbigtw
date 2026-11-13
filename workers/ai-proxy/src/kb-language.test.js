@@ -143,6 +143,14 @@ test('主力內容空仍掉備援，不回空字串；推理內容不外洩', as
 // AEGIS r3 C1：主力卡住（12 秒逾時）＋備援卡住，整題總時間不超過 22 秒（bot 等 25 秒）。
 import { mock } from 'node:test';
 import { TOTAL_BUDGET_MS } from './thinkbig.js';
+// 11/13 修不穩定：舊寫法每輪固定撥快 10 ms 假時鐘、只讓出 10 次事件迴圈；機器忙時程式還沒走到下一步，
+// 假時鐘就先跑掉，導致「備援開始時間」偏移而偶發失敗（10 次約 1 次）。改成「等程式真的停在等計時器，才撥時鐘」：
+// 撥鐘只在 settle() 確認狀態到位之後，計時結果與機器快慢無關。
+async function settle(cond, max = 20000) {
+  for (let i = 0; i < max && !cond(); i++) await new Promise(r => setImmediate(r));
+  assert.ok(cond(), 'settle timeout');
+}
+async function idle(n = 200) { for (let i = 0; i < n; i++) await new Promise(r => setImmediate(r)); }
 test('總時間上限：主力 Llama 卡住 12 秒＋備援 Mistral 卡住，22 秒內回 503，剩不到 2 秒不再試', async () => {
   mock.timers.enable({ apis: ['setTimeout', 'Date'], now: 0 });
   const runs = [];
@@ -150,13 +158,17 @@ test('總時間上限：主力 Llama 卡住 12 秒＋備援 Mistral 卡住，22 
     const AI = { run: (model) => { runs.push({ model, at: Date.now() }); return new Promise(() => {}); } };
     let done = null;
     const p = ask('Can you speak English?', { AI }).then(r => { done = { status: r.status, at: Date.now() }; });
-    for (let i = 0; i < 3000 && !done; i++) { mock.timers.tick(10); for (let k = 0; k < 10; k++) await new Promise(r => setImmediate(r)); }
+    await settle(() => runs.length === 1);
+    assert.equal(runs[0].model, PRIMARY_MODEL); assert.equal(runs[0].at, 0);
+    mock.timers.tick(12000);
+    await settle(() => runs.length === 2);
+    assert.equal(runs[1].model, FALLBACK_MODEL); assert.equal(runs[1].at, 12000);
+    mock.timers.tick(10000);
+    await settle(() => done !== null);
     await p;
     assert.equal(done.status, 503);
-    assert.ok(done.at <= TOTAL_BUDGET_MS + 50, `total ${done.at} ms`); // +50：假時鐘每格 10 ms，回應串流要多一格才讀完
-    assert.equal(runs[0].model, PRIMARY_MODEL); assert.ok(runs[0].at <= 50, `primary start ${runs[0].at}`);
-    assert.equal(runs[1].model, FALLBACK_MODEL);
-    assert.ok(runs[1].at - runs[0].at >= 12000 && runs[1].at - runs[0].at <= 12050, `fallback start ${runs[1].at}`);
+    assert.equal(done.at, TOTAL_BUDGET_MS);
+    await idle(); mock.timers.tick(10000); await idle();
     assert.equal(runs.length, 2, '備援用掉 10 秒後只剩不到 2 秒，不再試');
   } finally { mock.timers.reset(); }
 });
@@ -167,10 +179,18 @@ test('總時間上限：主力逾時後備援 6 秒回中文、英文重試卡�
     const AI = { run: () => { n++; if (n === 2) return new Promise(r => setTimeout(() => r({ response: '我們提供企業 AI Agent 導入。' }), 6000)); return new Promise(() => {}); } };
     let done = null;
     const p = ask('What services does Think BIG offer?', { AI }).then(async r => { done = { body: await r.json(), at: Date.now() }; });
-    for (let i = 0; i < 3000 && !done; i++) { mock.timers.tick(10); for (let k = 0; k < 10; k++) await new Promise(r => setImmediate(r)); }
+    await settle(() => n === 1);
+    mock.timers.tick(12000);
+    await settle(() => n === 2);
+    await idle();
+    mock.timers.tick(6000);
+    await settle(() => n === 3);
+    await idle();
+    mock.timers.tick(4000);   // 剩 22,000−18,000＝4,000 ms，重試只能等這麼久
+    await settle(() => done !== null);
     await p;
     assert.equal(done.body.reply, '我們提供企業 AI Agent 導入。');
     assert.equal(n, 3);
-    assert.ok(done.at <= TOTAL_BUDGET_MS + 50, `total ${done.at} ms`); // +50：假時鐘每格 10 ms，回應串流要多一格才讀完
+    assert.equal(done.at, TOTAL_BUDGET_MS);
   } finally { mock.timers.reset(); }
 });
