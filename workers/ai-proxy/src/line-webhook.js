@@ -24,6 +24,7 @@ import { createBookingToken } from './booking.js';
 import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE, maskSummaryPII } from './thinkbig.js';
 import { handleGroupEvent } from './line-group.js';
 import { PRIMARY_MODEL, FALLBACK_MODEL, runModel, logUnavailable } from './ai-models.js';
+import { guardReply } from './reply-guard.js';
 import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 
 // ──────────────────────────────────────────────
@@ -563,6 +564,10 @@ async function generateLineReply(messages, env) {
     .replace(/\n{3,}/g, '\n\n')
     .replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理')
     .trim();
+
+  // AEGIS D4-20261113 C3：報價數字與內部規則（含 LINE 專用提示）外洩用固定規則擋。
+  const guarded = guardReply(reply, messages.filter(m => m.role === 'user').at(-1)?.content || '', [LINE_SYSTEM_PROMPT_SUFFIX]);
+  if (guarded.guard) { console.log(JSON.stringify({ type: 'reply_guard', kind: 'line', guard: guarded.guard, ts: new Date().toISOString() })); reply = guarded.reply; }
 
   // P7: 假收據防護（LINE 版：引導傳「預約」觸發轉真人）
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {

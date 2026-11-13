@@ -1,6 +1,7 @@
 import { retailExperience, employeeExperience } from './retail-experience.js';
 import { Converter as OpenCCConverter } from './vendor/opencc-cn2t.js';
 import { PRIMARY_MODEL, FALLBACK_MODEL, MODEL_CHAIN, runModel, logUnavailable } from './ai-models.js';
+import { guardReply } from './reply-guard.js';
 // 話題範圍（官網＋LINE 共用，不計入 KB token budget）
 export const SCOPE_RULE = `
 
@@ -214,6 +215,9 @@ async function chat(body, env) {
   }
   if (!reply) { logUnavailable('chat'); return json({ error: 'ai_unavailable', fallback: LINE }, 503); }
   reply = filterReply(reply);
+  // AEGIS D4-20261113 C3：報價數字與內部規則外洩用固定規則擋（注入評測實際抓到模型照念假價格、貼出【報價鐵則】）。
+  const guarded = guardReply(reply, messages.at(-1).content);
+  if (guarded.guard) { console.log(JSON.stringify({ type: 'reply_guard', kind: 'chat', guard: guarded.guard, ts: new Date().toISOString() })); reply = guarded.reply; }
   const inquirySuggested = /諮詢|聯絡我|聯繫我|找顧問|預約|想導入|想了解報價/.test(messages.at(-1).content);
   return json({ reply, model, inquirySuggested });
 }
