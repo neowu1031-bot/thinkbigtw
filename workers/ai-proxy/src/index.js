@@ -1,4 +1,6 @@
 import { handleThinkBig } from './thinkbig.js';
+import { withAiBudget, laneForPath, LANE_CUSTOMER } from './ai-budget.js';
+export { AiBudget } from './ai-budget.js';
 import { handleLineWebhook, handleLinePushAnswer, handleLineScheduled } from './line-webhook.js';
 import { handleLineGroupPush } from './line-group.js';
 
@@ -285,128 +287,12 @@ async function handleChat(request, env) {
 
 // ============== Think BIG! 官網 AI 客服助理 ==============
 // 知識庫：完整服務、方案、定價、技術細節（T11 Phase 1 知識補強 2026-08-23）
-// ============== ERP 助理 (規格 4 ｜ MiniMax-M2 + RAG) ==============
-const ERP_KNOWLEDGE = `你是 Think BIG AI ERP 內建的智慧助理。
-
-【你的能力】
-使用者每次提問,前端會把「目前 ERP 系統的完整即時資料」(JSON)附在訊息裡。
-你要做的是:
-1. 讀懂這份 JSON 資料(營收、庫存、供應商、訂單、員工出勤、加班等所有模組)
-2. 針對問題做真的計算(加總、排序、找極值、跨表比對)
-3. 不只給數字,還要給「顧問式洞察」——像一位懂經營的營運顧問
-
-【回答風格】
-- 繁體中文,純文字,完全不使用 emoji(這是 ERP 內部介面)
-- 先給結論數字,再給一句經營建議
-- 數據裡查不到的,直接說「目前系統數據中沒有這項資料」,絕不編造
-
-【範例】
-問:「誰加班最多?」
-答:「李明德這個月加班 32 小時最多,其次是王雅婷 21 小時。建議留意李明德的工時負荷。」
-
-問:「庫存有沒有快缺貨的?」
-答:「目前低於安全庫存的有 3 項:A 料剩 12、C 料剩 8、F 料剩 5。建議優先補 F 料。」
-
-【禁止】
-- 不報不存在於 JSON 內的數字
-- 不用 emoji、不下投資/財務/法律建議
-- 與 ERP 無關的問題禮貌引導回正題`;
-
-async function handleErpChat(request, env) {
-  let body;
-  try { body = await request.json(); }
-  catch (e) { return jsonResponse({ error: 'Invalid JSON' }, 400); }
-
-  const { messages, erpState } = body;
-  if (!Array.isArray(messages) || messages.length === 0) {
-    return jsonResponse({ error: 'messages 必填' }, 400);
-  }
-  if (messages.length > 20) {
-    return jsonResponse({ error: '對話過長' }, 400);
-  }
-  for (const m of messages) {
-    if (typeof m.content !== 'string' || m.content.length > 2000) {
-      return jsonResponse({ error: '訊息過長(上限 2000 字)' }, 400);
-    }
-    if (!['user', 'assistant'].includes(m.role)) {
-      return jsonResponse({ error: 'role 必須是 user 或 assistant' }, 400);
-    }
-  }
-
-  let systemPrompt = ERP_KNOWLEDGE;
-  if (erpState && typeof erpState === 'object') {
-    const knowledge = JSON.stringify(erpState);
-    const trimmed = knowledge.length > 50000 ? knowledge.slice(0, 50000) + '...(截斷)' : knowledge;
-    systemPrompt += `\n\n【目前 ERP 系統即時資料(JSON)】\n${trimmed}`;
-  }
-
-  let reply = '';
-  let modelUsed = 'MiniMax-M3';
-
-  // Primary: MiniMax-M2
-  const MINIMAX_KEY = env.MINIMAX_API_KEY;
-  if (MINIMAX_KEY) {
-    try {
-      const mxRes = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${MINIMAX_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          model: 'MiniMax-M3',
-          messages: [{ role: 'system', content: systemPrompt }, ...messages],
-          max_tokens: 800,
-          temperature: 0.3,
-        }),
-      });
-      if (mxRes.ok) {
-        const data = await mxRes.json();
-        if (data.base_resp && data.base_resp.status_code === 0 && data.choices && data.choices[0]) {
-          reply = (data.choices[0].message?.content || '').trim();
-          reply = reply.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
-        }
-      }
-    } catch (err) {
-      console.error('ERP MiniMax error:', err);
-    }
-  }
-
-  // Fallback: Llama 3.3 70B → Llama 3 8B
-  if (!reply) {
-    try {
-      const aiRes = await env.AI.run('@cf/meta/llama-3.3-70b-instruct-fp8-fast', {
-        messages: [{ role: 'system', content: systemPrompt }, ...messages],
-        max_tokens: 700,
-        temperature: 0.3,
-      });
-      reply = (aiRes.response || '').trim();
-      modelUsed = 'llama-3.3-70b-fallback';
-    } catch (err) {
-      try {
-        const aiRes = await env.AI.run('@cf/meta/llama-3-8b-instruct', {
-          messages: [{ role: 'system', content: systemPrompt }, ...messages],
-          max_tokens: 600,
-        });
-        reply = (aiRes.response || '').trim();
-        modelUsed = 'llama-3-8b-fallback';
-      } catch (err2) {
-        return jsonResponse({ reply: '助理暫時無法回應,請稍後再試。', model: 'fallback-error' });
-      }
-    }
-  }
-
-  // 嚴格去除 emoji(規格 1 ERP 鐵律)
-  reply = reply.replace(/[\u{1F300}-\u{1F9FF}\u{2600}-\u{27BF}\u{1F000}-\u{1F02F}\u{1F0A0}-\u{1F0FF}\u{1F100}-\u{1F64F}\u{1F910}-\u{1F96B}]/gu, '');
-
-  return jsonResponse({
-    reply,
-    model: modelUsed,
-    engine: 'Think BIG AI ERP Assistant',
-    updated: new Date().toISOString(),
-  });
+// ============== /erp-chat：ERP 示範已停止提供（AEGIS D4-20261113 C1）==============
+// 官網改版後沒有前端在用；匿名可呼叫又能塞 50k 字資料，會吃掉全帳號共用的 Workers AI 額度。
+// 直接回 410，不呼叫任何模型。
+function handleErpGone() {
+  return jsonResponse({ error: 'gone', message: 'ERP 示範已停止提供。' }, 410);
 }
-// ============== /erp-chat endpoint 結束 ==============
 
 // ============== 盤前快報情緒判讀 (NEW v3.1 - 規則式 + AI 輔助) ==============
 async function handleBriefing(request, env) {
@@ -1730,7 +1616,7 @@ async function handleIndustryDesign(request, env){
 }
 // ============== /industry-design 結束 ==============
 
-export default {
+const app = {
   async fetch(request, env, ctx) {
     const thinkBigPath = new URL(request.url).pathname;
     if (thinkBigPath === '/line-webhook') return handleLineWebhook(request, env, ctx);
@@ -2906,7 +2792,7 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
     try {
       if (url.pathname === '/chat') return await handleChat(request, env);
       if (url.pathname === '/industry-design') return await handleIndustryDesign(request, env);
-      if (url.pathname === '/erp-chat') return await handleErpChat(request, env);
+      if (url.pathname === '/erp-chat') return handleErpGone();
       if (url.pathname === '/briefing') return await handleBriefing(request, env);
       if (url.pathname === '/heatmap') return await handleHeatmap(request, env);
       if (url.pathname === '/analysis') return await handleAnalysis(request, env);
@@ -2924,4 +2810,15 @@ Beta ${r.beta || '?'} / 52 週高 $${r.fiftyTwoWeekHigh || '?'} / 52 週低 $${r
   async scheduled(event, env, ctx) {
     ctx.waitUntil(handleLineScheduled(env));
   },
+};
+
+// NEO 2026-11-13「不要超過額度」：這支 Worker 所有 AI 呼叫（官網、LINE、摘要、AI 實戰體驗、股市端點）
+// 都經過同一份每日 neurons 硬上限（ai-budget.js，5,000／UTC 日；其他車道子上限 1,500）。超過就不呼叫模型，走各端點既有的降級回覆。
+// AEGIS R2 M1：分車道。客服車道（/thinkbig-*、/line-*、排程）可用到 5,000；其他 AI 路徑合計 ≤1,500 且先過每 IP 限流。
+export default {
+  fetch(request, env, ctx) {
+    const lane = laneForPath(new URL(request.url).pathname);
+    return app.fetch(request, withAiBudget(env, { lane, ip: request.headers.get('CF-Connecting-IP') || '' }), ctx);
+  },
+  scheduled(event, env, ctx) { return app.scheduled(event, withAiBudget(env, { lane: LANE_CUSTOMER }), ctx); },
 };

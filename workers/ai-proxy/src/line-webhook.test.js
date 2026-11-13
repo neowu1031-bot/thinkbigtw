@@ -1887,3 +1887,34 @@ test('handleLineWebhook — 傳「人工客服」轉人工並回覆會安排時�
   assert.ok(repliedText?.includes('安排時間與您聯繫'), `回覆應包含「安排時間與您聯繫」，實際：${repliedText}`);
   assert.equal(reportPayload?.p_summary_json?.needs_human, true);
 });
+
+// ──────────────────────────────────────────────
+// TB 政策 2026-11-13：LINE AI 客服只走 Workers AI 非中國模型（主力 Llama 3.3 70B、備援 Mistral Small 3.1），MiniMax 已移除
+// ──────────────────────────────────────────────
+import { PRIMARY_MODEL, FALLBACK_MODEL } from './ai-models.js';
+
+test('LINE AI 客服：主力只回 choices 格式也讀得到；不送推理內容；即使留著 MINIMAX_API_KEY 也不打外部 API', async () => {
+  const models = [];
+  const { res, log } = await runLoadingCase({
+    message: { type: 'text', text: '請問企業方案怎麼收費' }, userId: 'U_cfai_primary', displayName: '一般用戶',
+    env: makeLoadingEnv({ MINIMAX_API_KEY: 'leftover' }),
+    aiImpl: async (model, body) => { models.push({ model, body }); return { choices: [{ message: { content: '企業方案依需求報價，歡迎預約需求訪談。', reasoning_content: '內部推理不可外洩' } }] }; },
+  });
+  assert.equal(res.status, 200);
+  assert.deepEqual(models.map(m => m.model), [PRIMARY_MODEL]);
+  assert.equal(models[0].body.max_tokens, 500);
+  assert.ok(log.replied && log.replied.includes('企業方案依需求報價'), '主力回覆應送出');
+  assert.ok(!log.replied.includes('內部推理不可外洩'));
+});
+
+test('LINE AI 客服：主力出錯就換備援 Mistral', async () => {
+  const models = [];
+  const { res, log } = await runLoadingCase({
+    message: { type: 'text', text: '請問企業方案怎麼收費' }, userId: 'U_cfai_fallback', displayName: '一般用戶',
+    env: makeLoadingEnv(),
+    aiImpl: async model => { models.push(model); if (model === PRIMARY_MODEL) throw new Error('capacity'); return { response: '企業方案依需求報價。' }; },
+  });
+  assert.equal(res.status, 200);
+  assert.deepEqual(models, [PRIMARY_MODEL, FALLBACK_MODEL]);
+  assert.ok(log.replied && log.replied.includes('企業方案依需求報價'));
+});

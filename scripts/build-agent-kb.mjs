@@ -9,7 +9,7 @@ const chapters=fs.readdirSync(dir).filter(x=>x.endsWith('.md')).sort().map(file=
 // 01–12 為核心章節（主力路徑全文讀取）；13 起為補充章節（官網導覽、方案交付物、本地大模型技術問答），依提問命中載入。
 if(chapters.length<12||chapters.slice(0,12).some((c,i)=>Number(c.id)!==i+1)) throw new Error('Expected core knowledge chapters 01–12');
 // Token budget guard (備援路徑 fallback path): base (ch01+ch10) + any optional chapter must not exceed 2850.
-// LINE（含 MiniMax）與官網備援都走這條路徑；官網主力路徑讀核心 01–12＋命中補充章，另受 KB_FULL_LIMIT 限制。
+// LINE（主力 Llama 3.3 70B＋備援 Mistral Small 3.1）與官網備援都走這條路徑；官網主力路徑讀核心 01–12＋命中補充章，另受 KB_FULL_LIMIT 限制。
 const estimateTokens=text=>Math.ceil(Array.from(text).reduce((n,c)=>n+(c.codePointAt(0)>127?2:1/3),0));
 const baseText=chapters.filter(c=>c.id==='01'||c.id==='10').map(c=>c.text).join('\n\n');
 const BASE_TOKENS=estimateTokens(baseText);

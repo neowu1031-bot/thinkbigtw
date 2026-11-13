@@ -21,8 +21,10 @@
  */
 
 import { createBookingToken } from './booking.js';
-import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE } from './thinkbig.js';
+import { selectKnowledge, trimHistory, cleanReply, generateChatSummary, toTraditionalTW, SCOPE_RULE, maskSummaryPII } from './thinkbig.js';
 import { handleGroupEvent } from './line-group.js';
+import { PRIMARY_MODEL, FALLBACK_MODEL, runModel, logUnavailable } from './ai-models.js';
+import { guardReply } from './reply-guard.js';
 import { sendFlexReply, sendFlexPush, sendWelcomeFlex } from './line-flex.js';
 
 // ──────────────────────────────────────────────
@@ -33,7 +35,7 @@ const LINE_PUSH_URL         = 'https://api.line.me/v2/bot/message/push';
 const LINE_MARK_AS_READ_URL = 'https://api.line.me/v2/bot/chat/markAsRead';
 const LINE_LOADING_URL      = 'https://api.line.me/v2/bot/chat/loading/start';
 // 輸入中動畫秒數：官方只接受 5–60 的 5 倍數；收到回覆訊息時動畫會自動消失。
-// 30 秒涵蓋 AI 備援鏈最壞情況（MiniMax 8s + Llama 70B 10s + Llama 8B 10s ≈ 28s）。
+// 30 秒涵蓋 AI 備援鏈最壞情況（Llama 3.3 70B 12s + Mistral Small 3.1 10s ≈ 22s）。
 export const LINE_LOADING_SECONDS = 30;
 
 const WELCOME_TEXT =
@@ -444,13 +446,7 @@ async function submitLineReport(env, sessionId, messages, needsHuman) {
   const heat = ['high', 'medium', 'low'].includes(summaryJson.heat) ? summaryJson.heat : 'low';
   const tierGuess = typeof summaryJson.tier_guess === 'string' ? summaryJson.tier_guess.slice(0, 60) : '';
 
-  const safeSummary = JSON.parse(JSON.stringify(summaryJson, (_, v) => {
-    if (typeof v !== 'string') return v;
-    return v
-      .replace(/[^\s@,;]+@[^\s@,;]+\.[^\s@,;]+/g, '[email]')
-      .replace(/\+?\d[\d ()-]{8,}/g, '[phone]')
-      .replace(/[A-Za-z][12]\d{8}/g, '[id]');
-  }));
+  const safeSummary = JSON.parse(JSON.stringify(summaryJson, (_, v) => typeof v === 'string' ? maskSummaryPII(v) : v));
 
   const response = await fetch(url.origin + '/rest/v1/rpc/submit_thinkbig_chat_report', {
     method: 'POST', signal: AbortSignal.timeout(10000),
@@ -540,32 +536,16 @@ async function generateLineReply(messages, env) {
 
   let reply = '';
 
-  if (env.MINIMAX_API_KEY) {
-    try {
-      const res = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
-        method: 'POST', signal: AbortSignal.timeout(8000),
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${env.MINIMAX_API_KEY}` },
-        body: JSON.stringify({ model: 'MiniMax-M3', messages: context, max_tokens: 500, temperature: 0.2 }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        if (data.base_resp?.status_code === 0) reply = cleanReply(data.choices?.[0]?.message?.content);
-      } else await res.body?.cancel();
-    } catch { /* fallback */ }
-  }
-
-  for (const model of ['@cf/meta/llama-3.3-70b-instruct-fp8-fast', '@cf/meta/llama-3-8b-instruct']) {
+  // TB 政策 2026-11-13：客戶資料不送中國公司模型 → 只走 Workers AI 非中國模型（見 ai-models.js），MiniMax 已移除。
+  // 主力 Llama 3.3 70B 最多 12 秒、備援 Mistral Small 3.1 最多 10 秒，合計 22 秒，在輸入中動畫 30 秒內。
+  for (const [model, timeoutMs] of [[PRIMARY_MODEL, 12000], [FALLBACK_MODEL, 10000]]) {
     if (reply) break;
     try {
-      const result = await Promise.race([
-        env.AI.run(model, { messages: context, max_tokens: 500, temperature: 0.2 }),
-        new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 10000)),
-      ]);
-      reply = cleanReply(result?.response);
+      reply = cleanReply(await runModel(env, model, context, { max_tokens: 500, temperature: 0.2, timeoutMs, kind: 'line' }));
     } catch { /* try next */ }
   }
 
-  if (!reply) return null;
+  if (!reply) { logUnavailable('line'); return null; }
 
   // P7: OpenCC 簡體 → 繁體台灣
   if (typeof toTraditionalTW === 'function') {
@@ -584,6 +564,10 @@ async function generateLineReply(messages, env) {
     .replace(/\n{3,}/g, '\n\n')
     .replace(/Hermes(?:\s*Agent)?/gi, '開源 AI 助理')
     .trim();
+
+  // AEGIS D4-20261113 C3：報價數字與內部規則（含 LINE 專用提示）外洩用固定規則擋。
+  const guarded = guardReply(reply, messages.filter(m => m.role === 'user').at(-1)?.content || '', [LINE_SYSTEM_PROMPT_SUFFIX]);
+  if (guarded.guard) { console.log(JSON.stringify({ type: 'reply_guard', kind: 'line', guard: guarded.guard, ts: new Date().toISOString() })); reply = guarded.reply; }
 
   // P7: 假收據防護（LINE 版：引導傳「預約」觸發轉真人）
   if (/已.{0,8}(送出|轉交|提交|轉給|收件|預約)|顧問會主動/.test(reply)) {
