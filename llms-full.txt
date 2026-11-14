@@ -366,6 +366,18 @@ AI@thinkbigtw.com
 
 Think BIG（大想成業有限公司），統一編號 62136066。總部位於台灣，服務範圍涵蓋全球。
 
+## 公司資料
+
+公司名稱：大想成業有限公司（Think BIG Make it Real CO., LTD.）
+
+統一編號：62136066
+
+營業所：臺中市南區五權南路 167 號地下一層之 6
+
+電子郵件：AI@thinkbigtw.com
+
+消費申訴：請先來信上述電子郵件，本公司於 3 個工作日內回覆；詳見[服務條款第十一條](https://thinkbigtw.com/terms.html)。
+
 ## 從你的需求開始
 
 企業需求請先描述部門、工作流程及資料條件；個人需求請說明設備規格（顯示卡型號與記憶體容量）與想使用的功能。請勿寄送密碼、API Key 或機密資料。
@@ -854,6 +866,16 @@ AI@thinkbigtw.com
 [Think BIG on WhatsApp ›](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.) (preferred for clients outside Taiwan)
 
 Think BIG (Think BIG Make it Real CO., LTD.), Taiwan Business ID 62136066. Headquartered in Taiwan, serving clients worldwide.
+
+## Company details
+
+Company: Think BIG Make it Real CO., LTD. (大想成業有限公司)
+
+Unified Business No.: 62136066
+
+Email: AI@thinkbigtw.com
+
+Complaints: please email us first; we reply within 3 working days. See our [Terms of Service](https://thinkbigtw.com/en/terms/).
 
 ## Start from your needs
 
@@ -2233,7 +2255,7 @@ If you're still not sure, just start with the Single Agent. OpenClaw or Hermes �
 
 ### Tell us which one you want and we'll get it running
 
-Start with the Single Agent — OpenClaw or Hermes, your choice. Taiwan-based engineers install it remotely. Larger budget? Let's discuss the Dual Agent or annual plans directly.
+Start with the Single Agent — OpenClaw or Hermes, your choice. Think BIG installs it remotely with AI tools. Larger budget? Let's discuss the Dual Agent or annual plans directly.
 
 [Contact us on WhatsApp →](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
@@ -2379,15 +2401,15 @@ What's installed is the official OpenClaw release — not a modified or counterf
 
 The Single Agent is installed on your own computer, not sent to some cloud somewhere. For many people, "my stuff is in my own hands" is itself valuable.
 
-### 3. Remote installation by Taiwan-based engineers
+### 3. Remote installation by Think BIG
 
-Taiwan-based engineers connect remotely via AnyDesk or DeskIn to do the installation. Full communication in English is available. You can see everything the engineer does. The installation is complete only when it's running and verified working.
+Think BIG installs remotely via AnyDesk or DeskIn, using AI tools operated by our staff. You can see everything happening. The installation is complete only when it's running and verified working.
 
 ### 4. Full personal skill package + Coding Agent
 
 The Single Agent includes a full personal skill package + 1 custom helper, tailored more closely to your work scenarios than a bare-bones install. Optional: 1–2 Coding Agent connections for people who already have a Claude Code or Codex subscription.
 
-One-sentence summary:  The service fee covers an OpenClaw AI assistant that's installed, running, on your own computer — plus the service of Taiwan-based engineers installing it remotely until it works. It is not a tutorial document for you to follow yourself.
+One-sentence summary:  The service fee covers an OpenClaw AI assistant that's installed, running, on your own computer — plus the service of Think BIG installing it remotely until it works (AI tools operated by our staff). It is not a tutorial document for you to follow yourself.
 
 ## What does the installation process look like? Your part is actually minimal
 
@@ -2656,7 +2678,7 @@ Think it through before installing. After installation, change the password, bin
 
 ### Decided to install it? Start with the Single Agent
 
-Taiwan-based engineers install it remotely until it works, with six security defaults done in one go: password changed, localhost-bound, permissions limited, skills whitelisted, API key secured, update plan in place. Want year-round support? Premier Annual or Flagship Annual.
+Think BIG installs it remotely until it works, with six security defaults done in one go: password changed, localhost-bound, permissions limited, skills whitelisted, API key secured, update plan in place. Want year-round support? Premier Annual or Flagship Annual.
 
 [Talk to us on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 
@@ -6165,7 +6187,7 @@ From NT$7,840 · 4 plans, 2 of them annual
 
 - Personal Plan 2 | Dual Agent: OpenClaw + Hermes working together; remote installation + tutorial videos + 7-day technical consultation after installation
 
-- Personal Plan 3 | Annual plans (Premier Annual and Flagship Annual): a dedicated engineer for a full year, 48-hour fault repair
+- Personal Plan 3 | Annual plans (Premier Annual and Flagship Annual): year-round maintenance by Think BIG (AI tools operated by our staff), 48-hour fault repair
 
 [See the plans →](https://thinkbigtw.com/en/pricing/personal/)
 
@@ -6300,7 +6322,7 @@ Personal use
 # Personal AI Agent Plans
 Single Agent, Dual Agent, and Annual
 
-Personal plans are for one person: personal work, side projects, or executives who want to try it for themselves first. The AI model and AI Agent are installed on your own computer (Apple M-series Mac, Windows + NVIDIA, or AMD Ryzen AI Max all supported — see hardware requirements ), then connected to your LINE Business Account or Telegram. Remote installation by Taiwan-based engineers. If your hardware doesn't meet requirements, you can switch to a cloud model at the same plan price. Choose based on your needs: Single Agent includes a full skill pack + 7 days of technical consultation; Dual Agent includes a collaboration meeting room; the annual plans include full-year operations. Every plan comes with remote installation + tutorial videos + 7-day technical consultation after installation.
+Personal plans are for one person: personal work, side projects, or executives who want to try it for themselves first. The AI model and AI Agent are installed on your own computer (Apple M-series Mac, Windows + NVIDIA, or AMD Ryzen AI Max all supported — see hardware requirements ), then connected to your LINE Business Account or Telegram. Remote installation by Think BIG: we deliver with AI tools, operated by our staff, who are responsible for the result. If your hardware doesn't meet requirements, you can switch to a cloud model at the same plan price. Choose based on your needs: Single Agent includes a full skill pack + 7 days of technical consultation; Dual Agent includes a collaboration meeting room; the annual plans include full-year operations. Every plan comes with remote installation + tutorial videos + 7-day technical consultation after installation.
 
 View full personal plan directory ↓
 
@@ -6350,7 +6372,7 @@ Cross-session persistent memory + full personal skill pack; same price, choose o
 
 [Buy on Shopee | Single Agent NT$7,840](https://shopee.tw/product/105010395/45107951008)
 
-No monthly fee. No maintenance commitment. Both individuals and businesses may use it for their own work; for shared use by several people, building a knowledge base from company data, or installing for third parties or reselling, please choose the Business plan. Full refund if installation cannot be completed due to a technical issue on our side.
+No monthly fee. No maintenance commitment. Both individuals and businesses may use it for their own work; for shared use by several people, building a knowledge base from company data, or installing for third parties or reselling, please choose the Business plan. Before you order, please read "Cancellation and refunds" : you can cancel for a full refund any time before work starts; once you have agreed in writing to start, the seven-day right to cancel does not apply to this custom service.
 
 Dual Agent · memory sync + collaboration meeting room
 
@@ -6368,13 +6390,13 @@ OpenClaw + Hermes MCP memory sync; cross-Agent collaboration meeting room (exclu
 
 [Buy on Shopee | Dual Agent NT$17,920](https://shopee.tw/product/105010395/54908601707)
 
-AnyDesk / DeskIn remote installation. No annual operations commitment. If you want someone to maintain it long-term after setup, see Plan 3 or add the System Health Check & Repair service.
+AnyDesk / DeskIn remote installation. No annual operations commitment. If you want someone to maintain it long-term after setup, see Plan 3 or add the System Health Check & Repair service. Before you order, please read "Cancellation and refunds" : you can cancel for a full refund any time before work starts; once you have agreed in writing to start, the seven-day right to cancel does not apply to this custom service.
 
 Two annual plans · Full-year operations · Most popular
 
 ### Plan 3 | Annual plans
 
-Plan 3 is two annual plans (Premier Annual and Flagship Annual) with a dedicated engineer looking after your system for the full year. Includes full-year dedicated operations (proactive fault detection) and 48-hour repair SLA. Renewal is optional in subsequent years: Premier NT$35,910, Flagship NT$43,010.
+Plan 3 is two annual plans (Premier Annual and Flagship Annual) with year-round maintenance by Think BIG (AI tools operated by our staff). Includes full-year operations (proactive fault detection) and 48-hour repair SLA. Renewal is optional in subsequent years: Premier NT$35,910, Flagship NT$43,010.
 
 Who it's for: Individuals who don't want to maintain it themselves and need someone looking after it all year. The top plan is for people who want to hand off the equivalent of seven departments. Solves "set it up for a month, then it sat there unused — and when it broke, nobody cared."
 
@@ -6392,7 +6414,7 @@ Hermes × OpenClaw × Claude Code multi-Agent architecture, multi-department cov
 
 [Buy on Shopee | Premier NT$39,910](https://shopee.tw/product/105010395/48258528741)[Buy on Shopee | Flagship NT$48,010](https://shopee.tw/product/105010395/47108617097)
 
-Neither tier is discounted. Process: place inquiry → requirements interview → remote installation → annual plan starts. Renewal is optional in subsequent years (Premier NT$35,910, Flagship NT$43,010) and includes weekly maintenance + 48-hour repair SLA.
+Neither tier is discounted. Process: place inquiry → requirements interview → remote installation → annual plan starts. Renewal is optional in subsequent years (Premier NT$35,910, Flagship NT$43,010) and includes weekly maintenance + 48-hour repair SLA. Before you order, please read "Cancellation and refunds" : you can cancel for a full refund any time before work starts; once you have agreed in writing to start, the seven-day right to cancel does not apply to this custom service.
 
 ## Plan comparison
 
@@ -6489,9 +6511,37 @@ OpenClaw uninstall service Pricing on request Post-setup service [Ask on WhatsAp
 
 - Supabase free account required (self-register) for plans that include the cross-Agent collaboration meeting room.
 
-### Refund policy
+### Cancellation and refunds (please read before you order)
 
-Full refund if installation cannot be completed due to a technical issue on our side. Service cancellation is handled in accordance with consumer protection law.
+This service is installed remotely and tailored to your computer and to the skills, messaging channels and settings you choose. The points below apply to consumers, meaning individuals who order for personal, non-business use.
+
+- Before work starts: full refund.  After you order and before we begin remote work, you may cancel at any time. We refund in full, with no deduction.
+
+- Seven-day right to cancel.  Under Article 19 of Taiwan's Consumer Protection Act, a consumer in a distance sale may cancel within 7 days after receiving the service by notifying us in writing, without giving a reason and at no cost.
+
+- Exception for custom work, only with your prior written consent.  Before we begin, we send you a written service specification and ask you to reply in writing that you agree to start. We do not start until you reply. Under Article 2, item 2 of Taiwan's rules on reasonable exceptions to the cancellation right in distance sales (通訊交易解除權合理例外情事適用準則), this service is custom work made at the consumer's request. From the moment you have agreed and we make our first remote connection to begin work, the seven-day right in point 2 no longer applies. Reading this notice on the page does not count as consent.
+
+- Stopping after work has started.  You may still stop at any time before completion. We refund the remainder in proportion to the steps not yet completed.
+
+- If we cannot complete the installation because of a technical problem on our side:  full refund.
+
+- Where the seven-day right still applies by law  (for example, if an authority or court finds that your order is not custom work): we refund as the law requires, at no cost to you.
+
+- How and when.  Email AI@thinkbigtw.com or message us on WhatsApp. We refund to the original payment method within 15 days from the day after we receive your notice.
+
+- Marketplace orders.  Orders placed through Shopee or another marketplace follow that marketplace's payment, cancellation and refund process.
+
+- Removal.  On cancellation, termination or refund, we remotely remove, free of charge, the software, scheduled jobs, account connections and remote access that we set up. We do not delete your own files or data. Your help with removal is not a condition of any refund.
+
+- Annual plans.  How fees are settled if you end the plan part-way through is set out in the service agreement we give you to review before you sign. The rules above on cancelling before work starts and on the seven-day right apply in the same way.
+
+- How we deliver.  We carry out remote work with AI tools (Anthropic Claude Code and OpenAI Codex; both providers are in the United States), operated by our staff, who are responsible for the result. The commands we run and their output are sent to those providers for processing. Your documents, conversations, photos, passwords and keys are not sent. We do not offer a version of the service without AI tools; if you do not accept this, please do not order.
+
+- Consumers outside Taiwan.  If the mandatory consumer law of the country where you live gives you additional rights, nothing here limits them.
+
+Full details: [Terms of Service, Section 6](https://thinkbigtw.com/en/terms/) and [Privacy Policy, Section 8](https://thinkbigtw.com/en/privacy/). Business customers: your signed agreement or statement of work applies.
+
+Seller: Think BIG Make it Real CO., LTD. (大想成業有限公司) | Unified Business No. 62136066 | AI@thinkbigtw.com
 
 Prices listed are service fees only. Local model computation carries no per-usage fee. Cloud model usage fees are billed by the provider to your own account and are not included in the service fee.
 
@@ -6507,7 +6557,7 @@ URL: https://thinkbigtw.com/en/privacy/
 
 # Think BIG Privacy Policy
 
-Last updated: November 10, 2026
+Last updated: November 13, 2026
 
 [中文版](https://thinkbigtw.com/privacy.html)
 
@@ -6522,6 +6572,8 @@ Identity and contact: name, email, phone / WhatsApp handle, company name and bus
 ## 3. Why we use it
 
 To deliver the Services and support you; to reply to enquiries; to process payments and issue invoices; to send you information you asked for (you can opt out at any time); to measure website traffic and improve our services; and to meet legal obligations. Our legal basis under GDPR, where it applies, is mainly performance of a contract (Art. 6(1)(b)), plus legitimate interests for site analytics and security, and consent where we ask for it.
+
+You are free to decide whether to give us personal data. What is required, and what happens if you do not provide it: (1) Enquiries, the quick request form and event sign-ups need a name, one contact method and your request; without them we cannot reply or send event notices. (2) Orders need your name, a contact method and the details required for an invoice; without them we cannot accept the order, deliver the Services or issue an invoice as the law requires. (3) Remote installation needs remote access to your device, granted by you; without it we cannot carry out the work (see Section 8 on AI tools). (4) Optional fields, such as company, industry or business ID, can be left blank with no effect on your use of the site or our reply. (5) You can reject or turn off cookies and analytics without affecting your use of the site (see Section 5).
 
 ## 4. Who receives it, and where
 
@@ -6540,6 +6592,8 @@ Enquiry form submissions are processed with AI assistance; the AI service provid
 ## 7. Security
 
 We use TLS encryption in transit, access controls and least-privilege permissions. No system is perfectly secure, and we cannot guarantee absolute security.
+
+If we learn that personal data we hold has been stolen, altered, damaged, lost or leaked, we will act promptly to contain it and notify the people affected by email or another suitable means, explaining what happened, what we have done and how to reach us with questions. Where the law requires us to report to an authority, we will do so, and we keep records of the incident and our response.
 
 ## 8. Remote work and AI tools: how your data is handled
 
@@ -13819,7 +13873,7 @@ AI Agent Setup
 
 # AI Agent setup: your AI assistant, installed on your own computer or company server
 
-AI Agent setup means installing an AI assistant that can read your materials and complete tasks by your rules on your own computer, your company server, or a cloud server registered to your company, and connecting it to the LINE, Telegram, or internal tools you already use. Think BIG (大想成業有限公司) is an AI Agent setup and deployment team based in Taiwan. We work with individuals and businesses, and our Taiwan-based engineers install remotely.
+AI Agent setup means installing an AI assistant that can read your materials and complete tasks by your rules on your own computer, your company server, or a cloud server registered to your company, and connecting it to the LINE, Telegram, or internal tools you already use. Think BIG (大想成業有限公司) is an AI Agent setup and deployment team based in Taiwan. We work with individuals and businesses, and our staff install remotely with AI tools.
 
 [Tell us your needs on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
 [Think BIG on WhatsApp](https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services.)
@@ -14516,7 +14570,7 @@ URL: https://thinkbigtw.com/en/terms/
 
 # Think BIG Terms of Service
 
-Effective date: November 10, 2026
+Effective date: November 13, 2026
 
 [中文版](https://thinkbigtw.com/terms.html)
 
@@ -14534,7 +14588,7 @@ Enterprise AI deployment and consulting (planning, building, deploying and suppo
 
 We deliver the Services using AI tools, currently Anthropic Claude Code (Anthropic PBC, United States) and OpenAI Codex (OpenAI, United States), operated by our staff, who remain responsible for the results. During remote work, the commands we run and their output are sent to these providers for processing. Your documents, conversation logs, photos, passwords, one-time codes, keys and payment details are not sent. Details are in our [Privacy Policy, Section 8](https://thinkbigtw.com/en/privacy/#remote-ai).
 
-Delivering with AI tools is the only way we provide the Services. We do not offer a version without AI tools. We tell you this before you order; by placing an order or signing, you accept this service method. If you do not accept it, please do not order. If you ordered but we have not started work, you may cancel for a full refund under Section 6 .
+We do not offer a version without AI tools. We tell you this before you order; by placing an order or signing, you accept this service method. If you do not accept it, please do not order. If you ordered but we have not started work, you may cancel for a full refund under Section 6 .
 
 ## 4. Ordering, prices, taxes and invoices
 
@@ -14555,6 +14609,12 @@ For standard packages, we aim to deliver within 30 days of receiving everything 
 6.1 Before work starts:  you may cancel at any time and we refund in full, with no deduction.
 
 6.2 Personal setup services:  before we begin, we send you a written service specification to confirm. We start remote work only after you confirm in writing. Once work has started and you ask to stop, we refund the unused part in proportion to the steps not yet completed.
+
+6.2a Seven-day right to cancel.  Under Article 19 of Taiwan's Consumer Protection Act, a consumer in a distance sale may cancel within 7 days after receiving the service by notifying us in writing, without giving a reason and at no cost.
+
+6.2b Exception for custom work, only with your prior written consent.  Under Article 2, item 2 of Taiwan's rules on reasonable exceptions to the cancellation right in distance sales (通訊交易解除權合理例外情事適用準則), personal AI assistant setup is custom work made at the consumer's request. From the moment you have confirmed the service specification in writing and we make our first remote connection to begin work, the seven-day right in 6.2a no longer applies. Reading these Terms on the page does not count as consent.
+
+6.2c Where the seven-day right still applies by law  (for example, if an authority or court finds that your order is not custom work): we refund as the law requires, at no cost to you.
 
 6.3 Our technical failure:  if we cannot complete the installation or delivery because of a problem on our side, we refund in full. If we fail to provide part of the Services for a reason attributable to us, we refund that part.
 
@@ -15254,7 +15314,7 @@ URL: https://thinkbigtw.com/experience/
 
 ## AI 同事
 
-示意 聊天外觀 綠色 藍色
+AI 示範｜回覆由 AI 產生 聊天外觀 綠色 藍色
 
 正在寫完整成品，約 20–40 秒…
 
@@ -15415,7 +15475,7 @@ Apple M 系列晶片的 Mac、Windows（或 Linux）＋NVIDIA 獨立顯卡、AMD
 
 ## 你們是怎麼做安裝的？用什麼工具？
 
-Think BIG 的工程團隊是 AI Agent：我們以 AI 工具（Anthropic Claude Code、OpenAI Codex）遠端施作，由人員操作並負責成果。安裝指令與執行結果會傳給這些服務商處理，傳送前先遮蔽帳號、電子郵件、電話、地址與 IP；您的文件、對話、照片、密碼與金鑰不會傳送。這是我們唯一的服務方式，不接受請不要下單。完整告知見隱私權政策。
+Think BIG 的工程團隊是 AI Agent：我們以 AI 工具（Anthropic Claude Code、OpenAI Codex）遠端施作，由人員操作並負責成果。安裝指令與執行結果會傳給這些服務商處理，傳送前先遮蔽帳號、電子郵件、電話、地址與 IP；您的文件、對話、照片、密碼與金鑰不會傳送。本公司不提供不使用 AI 工具的版本，不接受請不要下單。完整告知見隱私權政策。
 
 [查看隱私權政策第十二節 ›](https://thinkbigtw.com/privacy.html#remote-ai)
 
@@ -15687,7 +15747,7 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 ## 台灣誰在做 AI Agent 搭建？
 
-AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機上，並接到你平常用的 LINE、Telegram 或內部工具。Think BIG（大想成業有限公司）是台灣的 AI Agent 搭建與導入團隊，個人與企業都可以找我們，由台灣工程師遠端安裝。
+AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機上，並接到你平常用的 LINE、Telegram 或內部工具。Think BIG（大想成業有限公司）是台灣的 AI Agent 搭建與導入團隊，個人與企業都可以找我們，由 Think BIG 遠端安裝：我們以 AI 工具施作，由本公司人員操作並負責成果。
 
 AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用怎麼組成、地端版與雲端輔助版的差別，見 [AI Agent 搭建服務](https://thinkbigtw.com/services/ai-agent-setup/)。
 
@@ -15773,7 +15833,7 @@ Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服�
 
 個人使用
 
-蝦皮賣場選購，台灣工程師遠端裝到好。
+蝦皮賣場選購，Think BIG 遠端安裝，以 AI 工具施作、人員負責成果。
 
 [前往蝦皮賣場選購 →](https://shopee.tw/shop/105010395)
 
@@ -16187,7 +16247,7 @@ Q：可以用年約方式同時養兩個嗎？
 
 ### 想要哪一個，告訴我們就出貨
 
-從單 Agent 搭建開始，OpenClaw 或 Hermes 擇一，台灣工程師遠端裝到好。預算更高的，直接約時間聊雙 Agent 或年約。
+從單 Agent 搭建開始，OpenClaw 或 Hermes 擇一，Think BIG 遠端裝到能用。預算更高的，直接約時間聊雙 Agent 或年約。
 
 [前往蝦皮下單單 Agent 搭建→](https://shopee.tw/shop/105010395)
 
@@ -16337,15 +16397,15 @@ OpenClaw 是一套可以在你自己電腦上跑的 AI 助理（AI Agent）框�
 
 單 Agent 搭建裝在你自己的電腦裡，不是丟到不知道哪裡的雲端。對很多人來說，「東西在自己手上」這件事本身就值得。
 
-### 3. 台灣工程師遠端安裝
+### 3. Think BIG 遠端安裝
 
-由台灣工程師透過 AnyDesk 或 DeskIn 遠端連線幫你裝。全程中文溝通，看得到工程師在做什麼。裝到能跑、確認可用，才算交付。
+Think BIG 透過 AnyDesk 或 DeskIn 遠端連線幫你裝，以 AI 工具施作，由本公司人員操作並負責成果。看得到我們在做什麼，裝到能跑、確認可用，才算交付。
 
 ### 4. 完整個人技能包＋Coding Agent
 
 單 Agent 搭建帶的是完整個人技能包＋1 個客製小幫手，比官方原裝更貼你的工作場景；已有 Claude Code 或 Codex 訂閱的人，另可選配 Coding Agent 串接（訂閱自備）。
 
-一句話總結： NT$7,840 買的是一個裝好、能跑、在你自己電腦上的 OpenClaw AI 助理，加上台灣工程師遠端幫你裝到好的服務。它不是一份要你自己照著做的教學文件。
+一句話總結： NT$7,840 買的是一個裝好、能跑、在你自己電腦上的 OpenClaw AI 助理，加上 Think BIG 遠端幫你裝到好的服務（以 AI 工具執行，由本公司人員負責）。它不是一份要你自己照著做的教學文件。
 
 ## 代裝流程長怎樣？你要做的其實很少
 
@@ -16618,7 +16678,7 @@ OpenClaw 安不安全，看你裝的時候有沒有把基礎設定做好 。常�
 
 ### 決定要裝？單 Agent 搭建
 
-台灣工程師遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 或旗艦年約。
+Think BIG 遠端裝到能跑，六個資安預設一次到位：改密碼、綁本機、限權限、技能白名單、金鑰保管、更新規劃。想要全年有人顧，尊榮年約 或旗艦年約。
 
 [先聊聊需求](https://lin.ee/n5KW430)
 
@@ -22503,6 +22563,18 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+親子共讀與客製繪本 Q34
+
+## [刷牙、洗手、穿衣服：生活自理繪本怎麼用？](https://thinkbigtw.com/library/qa/self-care-skills-picture-books/)
+
+生活自理繪本可以用來先看流程、說出一個動作，再回到實際生活由大人陪著做。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/self-care-skills-picture-books/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-13
+
 台灣華語學習 BS20
 
 ## [學習 App 說「保證學會」「幾週見效」可信嗎？家長怎麼看廣告](https://thinkbigtw.com/library/qa/app-guarantee-claims-parents-check/)
@@ -25989,6 +26061,76 @@ Q1：2 歲以下的孩子可以看螢幕嗎？ WHO 2019 年指引不建議 1 歲
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/self-care-skills-picture-books/
+
+# 刷牙、洗手、穿衣服：生活自理繪本怎麼用？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q34
+
+# 刷牙、洗手、穿衣服：生活自理繪本怎麼用？
+
+Think BIG 問答圖書館　·　2026 年 11 月 13 日　星期五
+
+先說答案
+
+生活自理繪本可以用來先看流程、說出一個動作，再回到實際生活由大人陪著做。一次選刷牙、洗手或穿衣中的一件事，讓孩子試一小步即可。故事能當聊天材料，實際清潔方式與需要的協助，仍要依孩子情況確認。
+
+## 一、 書裡看順序，生活裡試動作
+
+教育部《幼兒園教保活動課程大綱》把日常健康行為列入身體動作與健康領域，例子包括洗手、刷牙與更換衣物；也鼓勵在例行活動中提供參與機會（[教育部課綱附檔](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)）。因此共讀可以接回每天真的會做的事，不必另外排成一堂課。
+
+建議先選動作畫得清楚、情境容易聊的一頁，問「他準備拿什麼」「做完放哪裡」。讀完只接一個實際動作，例如把自己的毛巾掛回去。這是家庭活動設計，不是課綱要求每位孩子在同一天完成相同任務，也不是生活技能的分齡測驗。
+
+## 二、 把任務拆成孩子能參與的一小步
+
+生活情境 共讀時可以聊 在家可試的參與方式 刷牙 「角色先拿了哪些東西？」 讓孩子找出自己的牙刷和杯子，由大人確認並陪同後續清潔。
+
+洗手 「他做完後，手在哪裡擦乾？」 一起找洗手用品和毛巾，實際操作時由大人確認環境與清潔。
+
+穿衣 「這件衣服的袖子在哪裡？」 把衣服攤好，讓孩子挑一個動作試，例如將一隻手放進袖子。
+
+表格不是刷牙或洗手的完整衛教流程，也沒有設定孩子必須獨立完成。若不確定清潔方式，請向醫護人員詢問，刷牙相關問題可另問牙醫師；孩子狀況特殊請諮詢小兒科醫師。不要因為角色在故事裡自己做，就直接減少現實中需要的大人協助。
+
+孩子不想試時，可以先讓玩偶演一遍；袖子卡住，就說「我幫你把這裡撐開」。建議描述實際動作，例如「你把杯子放回去了」，不用把一次做完當成乖不乖的評語。穿衣練習可以選時間寬裕的時段，趕出門時則先把當天需要完成的事處理好。
+
+## 三、 少一點盤問，多一次一起做
+
+AAP 的[共讀建議](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)鼓勵聊插圖，也提醒失去興趣時不必讀完。若孩子只想看角色玩水，不想回答洗手順序，就先描述畫面，不需要連問到答對。下次走到洗手台，再說「這裡也有書上那種毛巾」，讓對話回到當下。
+
+也建議先和其他照顧者約好，今天要讓孩子試哪一步、哪一步由大人接手。若各人期待不同，可以先談好，不在孩子面前反覆要求重做。這是減少流程混亂的安排建議，並非固定訓練處方。
+
+讀完的延伸只要留一件可做的事；想把睡前整理也放進日常，可參考[睡前共讀安排](https://thinkbigtw.com/library/qa/bedtime-reading-routine/)。遇到挫折時想聊感受，另看[情緒繪本的讀法](https://thinkbigtw.com/library/qa/feelings-picture-books/)。
+
+品牌資訊｜童話有你
+
+## 從童話有你的主題範例找聊天素材
+
+童話有你的[主題與範例頁](https://talewithyoutw.com/themes.html)列有晚安睡前、情緒小星球與夢想職業等主題。每本以孩子為主角，正式書頁依提供的照片繪製，小狗湯圓每一頁作伴。
+
+各主題有 A 水彩畫冊版、B 公仔立體版範例，示範主角為 AI 生成形象；書為 21 × 21 公分、26 面內頁、中文加注音。主題頁可翻看兩種畫風的範例內頁。
+
+本段內容取自童話有你官網主題與範例頁，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：讀過洗手故事，就算學會洗手嗎？ 先分開看。共讀可聊流程，實際清潔仍要在生活中由大人陪同與確認。 Q2：孩子不肯自己穿衣，怎麼開始？ 可先選一個小動作試，像找袖子或伸進一隻手，需要時由大人協助。 Q3：每天要練習多久？ 本篇不設定固定時間，可接在日常需要做的事情旁，一次試一小步。 Q4：繪本和醫護說明不同，怎麼辦？ 具體清潔與健康問題應向醫護人員確認；孩子狀況特殊請諮詢小兒科醫師。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 教育部｜幼兒園教保活動課程大綱，身體動作與健康領域：[edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+
+- AAP｜陪孩子享受朗讀：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/separation-anxiety-preschool/
 
 # 上幼兒園哭著不想去？分離焦慮可以怎麼陪？｜問答圖書館｜Think BIG
@@ -28363,7 +28505,7 @@ NT$7,840 起 · 蝦皮賣場選購
 
 - 個人方案 2｜雙 Agent：OpenClaw＋Hermes 協作，遠端安裝＋教學影片＋安裝後 7 天技術諮詢
 
-- 個人方案 3｜年約：專屬工程師顧一整年，48 小時故障修復
+- 個人方案 3｜年約：由 Think BIG 顧一整年（以 AI 工具執行維護，由本公司人員負責），48 小時故障修復
 
 [進去選 →](https://thinkbigtw.com/pricing/personal/)
 
@@ -28439,7 +28581,7 @@ URL: https://thinkbigtw.com/pricing/personal/
 # 個人 AI 助理方案
 單 Agent 搭建、雙 Agent 與年約
 
-個人使用是給一個人在用的人：個人工作、個人副業，或想先給自己裝一套的主管。把 AI 模型和 AI Agent 裝在你自己的電腦上運算（Mac、Windows＋NVIDIA、AMD 統一記憶體機都可評估，看設備條件 ），再接到你的 LINE 官方帳號或 Telegram，由台灣工程師遠端安裝。電腦規格不夠可改搭雲端大模型，同方案、同價格。依使用需求選擇：單 Agent 搭建含完整技能包＋7 天技術諮詢；雙 Agent 含協作會議室；年約含一年維運。遠端安裝＋教學影片＋安裝後 7 天技術諮詢。
+個人使用是給一個人在用的人：個人工作、個人副業，或想先給自己裝一套的主管。把 AI 模型和 AI Agent 裝在你自己的電腦上運算（Mac、Windows＋NVIDIA、AMD 統一記憶體機都可評估，看設備條件 ），再接到你的 LINE 官方帳號或 Telegram，由 Think BIG 遠端安裝：我們以 AI 工具施作，由本公司人員操作並負責成果。電腦規格不夠可改搭雲端大模型，同方案、同價格。依使用需求選擇：單 Agent 搭建含完整技能包＋7 天技術諮詢；雙 Agent 含協作會議室；年約含一年維運。遠端安裝＋教學影片＋安裝後 7 天技術諮詢。
 
 查看個人方案完整目錄 ↓
 
@@ -28490,7 +28632,7 @@ NT$7,840
 
 [蝦皮購買｜單 Agent NT$7,840](https://shopee.tw/product/105010395/45107951008)
 
-無月費、無維運承諾；個人和企業都可以用在自己的工作上；多人共用、以公司資料建知識庫，或替第三方代裝、轉售，請選公司方案。若因我方技術問題無法完成安裝，全額退費。
+無月費、無維運承諾；個人和企業都可以用在自己的工作上；多人共用、以公司資料建知識庫，或替第三方代裝、轉售，請選公司方案。下單前請先看〈取消與退款〉 ：開工前可隨時取消並全額退款；經您以文字同意開工後，本客製化服務不適用七日解除權。
 
 雙 Agent · 記憶互通＋協作會議室
 
@@ -28508,13 +28650,13 @@ OpenClaw＋Hermes MCP 記憶互通；跨 Agent 協作會議室（此方案專屬
 
 [蝦皮購買｜雙 Agent NT$17,920](https://shopee.tw/product/105010395/54908601707)
 
-AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧，看個人方案 3 或加購「系統健檢故障修復」。
+AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧，看個人方案 3 或加購「系統健檢故障修復」。下單前請先看〈取消與退款〉 ：開工前可隨時取消並全額退款；經您以文字同意開工後，本客製化服務不適用七日解除權。
 
 年約 2 個方案 · 顧一整年 · 主打
 
 ### 個人方案 3｜年約
 
-個人方案 3 是有專屬工程師顧一整年的年約服務，含一年維運陪跑（發現即修復）與 48 小時故障修復，次年可選配續約含每週維護。個人年約方案請至蝦皮賣場選購。
+個人方案 3 是由 Think BIG 顧一整年的年約服務（以 AI 工具執行維護，由本公司人員負責），含一年維運陪跑（發現即修復）與 48 小時故障修復，次年可選配續約含每週維護。個人年約方案請至蝦皮賣場選購。
 
 給誰：不想自己維護、要有人顧一整年的個人；頂規檔給想把七個部門的事交出去的人。解決的是「裝好一個月就晾著、壞了沒人理」。
 
@@ -28531,7 +28673,7 @@ Hermes × OpenClaw × Claude Code 多 Agent 架構、多部門覆蓋、CRM／雲
 
 [蝦皮購買｜尊榮年約 NT$39,910](https://shopee.tw/product/105010395/48258528741)[蝦皮購買｜旗艦年約 NT$48,010](https://shopee.tw/product/105010395/47108617097)
 
-流程：先訪談、確認做得到再下單 → 安排遠端安裝 → 啟動年約。首年價／續約價：尊榮年約 NT$39,910／NT$35,910、旗艦年約 NT$48,010／NT$43,010；次年可選配續約，含每週維護＋48 小時故障修復。
+流程：先訪談、確認做得到再下單 → 安排遠端安裝 → 啟動年約。首年價／續約價：尊榮年約 NT$39,910／NT$35,910、旗艦年約 NT$48,010／NT$43,010；次年可選配續約，含每週維護＋48 小時故障修復。下單前請先看〈取消與退款〉 ：開工前可隨時取消並全額退款；經您以文字同意開工後，本客製化服務不適用七日解除權。
 
 ## 方案比較表
 
@@ -28562,11 +28704,11 @@ CTA [蝦皮下單](https://shopee.tw/product/105010395/45107951008) [雙 Agent](
 
 個人服務・買家回饋
 
-## 蝦皮賣場 AI 服務評價全數 5 星
+## 蝦皮賣場買家評價選錄
 
-擷取自蝦皮賣場，買家資訊已遮蔽，擷取日 2026/09/27
+以下 8 則擷取自蝦皮賣場，擷取日 2026/09/27；買家資訊已遮蔽。
 
-截圖中的商品名為購買當時的版本，內容與現行方案不同，請以方案頁為準。以下選錄 8 則不同買家的評價。
+截圖中的商品名為購買當時的版本，內容與現行方案不同，請以方案頁為準。本頁只呈現部分評價，不代表全部買家的意見；完整評價請至蝦皮賣場查看。
 
 蝦皮買家 2026/04/27
 
@@ -28721,9 +28863,35 @@ OpenClaw 卸載服務 依需求報價 售後 [蝦皮](https://shopee.tw/product/
 
 - Supabase 自行免費註冊（跨 Agent 協作會議室方案需用到）
 
-### 退費政策
+### 取消與退款（下單前請先看）
 
-若因我方技術問題無法完成安裝，全額退費；服務終止依消費者保護法辦理。
+本服務是依您的電腦規格，以及您指定的技能、通訊管道和設定，遠端為您客製安裝。以下適用於以個人身分、非為營業目的訂購的消費者。
+
+- 開工前取消，全額退款。  下單後、本公司開始遠端施作前，您可以隨時取消，全額退款，不扣任何費用。
+
+- 七日解除權。  依消費者保護法第 19 條，通訊交易的消費者得於接受服務後 7 日內，以文字通知本公司解除契約，無須說明理由，也不負擔任何費用。
+
+- 客製化服務的例外，須經您事先以文字同意。  開工前，本公司會以文字傳送「服務規格表」給您確認，並請您以文字回覆同意開工；您回覆前，本公司不開工。依「通訊交易解除權合理例外情事適用準則」第 2 條第 2 款，本服務屬依消費者要求所為之客製化給付；自您同意、並由本公司第一次遠端連線施作時起，不適用前項的七日解除權。只在本頁閱讀本說明，不算同意。
+
+- 開工後要終止。  您仍可在完成前隨時終止，本公司依已完成步驟的比例計算，退還其餘款項。
+
+- 因本公司技術問題無法完成安裝。  全額退款。
+
+- 依法仍得行使七日解除權的情形 （例如經主管機關或法院認定您的訂單不屬客製化給付）：本公司依法退款，不收任何費用。
+
+- 退款方式與期限。  請來信 AI@thinkbigtw.com，或透過蝦皮聊聊通知。本公司於收到通知之次日起 15 日內，以原付款方式退回。
+
+- 蝦皮成交的訂單。  付款、取消與退款依蝦皮平台的流程辦理。
+
+- 系統移除。  取消、終止或退款時，本公司免費以遠端方式移除本公司安裝的軟體、排程、帳號串接與遠端存取權限，不刪除您自己的檔案與資料。您配合移除，不是退款的條件。
+
+- 年約方案。  服務期間中途終止的結算方式，載於簽約前提供給您審閱的服務合約；開工前取消與七日解除權的規定同上。
+
+- 服務方式。  本公司以 AI 工具（Anthropic Claude Code、OpenAI Codex，服務商在美國）遠端施作，由本公司人員操作並負責成果。安裝指令與執行結果會傳送給上述服務商處理；您的文件、對話、照片、密碼與金鑰不會傳送。本公司不提供不使用 AI 工具的版本，不接受者請勿下單。
+
+完整內容見[服務條款第四條](https://thinkbigtw.com/terms.html)與[隱私權政策第十二節](https://thinkbigtw.com/privacy.html)。企業客戶依雙方簽署的合約或報價單。
+
+賣家：大想成業有限公司｜統一編號 62136066｜臺中市南區五權南路 167 號地下一層之 6｜AI@thinkbigtw.com
 
 ※ 價格為我方服務費；本地版模型運算不另收用量費，雲端版模型使用費依用量向模型廠商支付，非服務費所含。
 
@@ -28739,9 +28907,9 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-11-10　[English version](https://thinkbigtw.com/en/privacy/)
+更新日期：2026-11-13　[English version](https://thinkbigtw.com/en/privacy/)
 
-大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
+大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。本政策是本公司依個人資料保護法第 8 條所為的告知，不以您瀏覽本網站作為您同意的表示。依法需要您同意的事項，本公司會在蒐集當下另行向您取得。
 
 ## 一、蒐集之個人資料類別
 
@@ -28754,6 +28922,20 @@ URL: https://thinkbigtw.com/privacy.html
 ## 二、蒐集目的
 
 契約履行與服務提供、客戶服務與聯繫、金流處理與電子發票開立、行銷訊息發送(您得隨時要求停止)、網站流量統計與服務改善,以及其他經營登記業務所必要之目的。
+
+## 二之一、您可以選擇不提供資料，以及不提供的影響
+
+您可以自由決定是否提供個人資料。各管道必填的資料如下，不提供時的影響也一併說明：
+
+- 詢問、快速需求表、說明會報名：必填稱呼、一種聯絡方式與需求內容。不提供時，本公司無法回覆您或寄送活動通知。
+
+- 訂購與履約：必填姓名或稱呼、聯絡方式，以及開立發票所需的資料。不提供時，本公司無法成立訂單、提供服務或依法開立發票。
+
+- 遠端安裝：必須由您提供裝置的遠端連線權限。不提供時，本公司無法施作；以 AI 工具施作的告知，見第十二節。
+
+- 選填欄位（例如公司／產業、統一編號）：不填不影響您使用本網站或取得回覆。
+
+- Cookie 與統計工具：您可以拒絕或停用，不影響瀏覽，見第四節。
 
 ## 三、利用期間、地區、對象與方式
 
@@ -28781,9 +28963,11 @@ URL: https://thinkbigtw.com/privacy.html
 
 本公司採用 TLS 加密傳輸、存取權限控管等合理之技術與管理措施,保護您的個人資料。
 
+個人資料事故之處理： 本公司知悉所保有的個人資料發生被竊取、竄改、毀損、滅失或洩漏等事故時，將即時採取應變措施，並以電子郵件等適當方式通知受影響的當事人，說明事故的事實、本公司已採取的措施及後續查詢管道；依法令應向主管機關通報者，本公司依規定通報，並保存事故與處理紀錄。
+
 ## 六、您的權利
 
-依個人資料保護法第 3 條,您得就您的個人資料行使下列權利:查詢或請求閱覽、請求製給複製本、請求補充或更正、請求停止蒐集處理或利用、請求刪除。行使方式:來信 AI@thinkbigtw.com,本公司將於合理期間內處理。
+依個人資料保護法第 3 條,您得就您的個人資料行使下列權利:查詢或請求閱覽、請求製給複製本、請求補充或更正、請求停止蒐集處理或利用、請求刪除。行使方式:來信 AI@thinkbigtw.com,本公司於 14 天內處理並回覆。
 
 ## 七、未成年人保護
 
@@ -28873,6 +29057,8 @@ AI 工具與服務商 Anthropic Claude Code(Anthropic PBC,美國)、OpenAI Codex
 
 大想成業有限公司 Think BIG Make it Real CO., LTD.|統一編號 62136066
 
+臺中市南區五權南路 167 號地下一層之 6
+
 AI@thinkbigtw.com
 
 [關於 Think BIG](https://thinkbigtw.com/about/)[術語表](https://thinkbigtw.com/guides/glossary/)[隱私權政策](https://thinkbigtw.com/privacy.html)|[服務條款](https://thinkbigtw.com/terms.html)
@@ -28883,13 +29069,13 @@ AI@thinkbigtw.com
 
 URL: https://thinkbigtw.com/services/ai-agent-setup/
 
-# AI Agent 搭建服務｜個人 AI 助理與企業 AI Agent，地端或雲端，台灣工程師遠端安裝｜Think BIG
+# AI Agent 搭建服務｜個人 AI 助理與企業 AI Agent，地端或雲端，Think BIG 遠端安裝｜Think BIG
 
 AI Agent Setup ／ AI Agent 搭建
 
 # AI Agent 搭建：把 AI 助理裝在你自己的電腦或公司主機上
 
-AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機上，並接到你平常用的 LINE、Telegram 或內部工具。Think BIG（大想成業有限公司）是台灣的 AI Agent 搭建與導入團隊，個人與企業都可以找我們，由台灣工程師遠端安裝。
+AI Agent 搭建，是把能自己讀資料、照規則完成工作的 AI 助理，安裝到你的電腦、公司主機或公司名下的雲端主機上，並接到你平常用的 LINE、Telegram 或內部工具。Think BIG（大想成業有限公司）是台灣的 AI Agent 搭建與導入團隊，個人與企業都可以找我們，由 Think BIG 遠端安裝：我們以 AI 工具施作，由本公司人員操作並負責成果。
 
 [用 LINE 說你的需求](https://lin.ee/n5KW430)
 先看哪一種適合我
@@ -29632,9 +29818,9 @@ URL: https://thinkbigtw.com/terms.html
 
 # 服務條款
 
-生效日期:2026-11-10
+生效日期:2026-11-13
 
-修訂紀錄:2026-11-10 新增第二之一條、改寫第四條。[English version](https://thinkbigtw.com/en/terms/)
+修訂紀錄:2026-11-10 新增第二之一條、改寫第四條;2026-11-13 調整第二之一條文字、第四條第 3 項增列依法退款之說明。[English version](https://thinkbigtw.com/en/terms/)
 
 ## 一、契約當事人與適用範圍
 
@@ -29654,7 +29840,7 @@ URL: https://thinkbigtw.com/terms.html
 
 本公司以 AI 工具提供本服務,目前使用 Anthropic Claude Code(Anthropic PBC,美國)及 OpenAI Codex(OpenAI,美國),由本公司人員操作並負責成果。施作時,安裝與設定指令及其執行結果會傳送至上述服務商處理;您的文件內容、對話紀錄、照片、密碼、驗證碼、金鑰與付款資料不會傳送。處理的資料、去向與保護措施,詳見[隱私權政策第十二節](https://thinkbigtw.com/privacy.html#remote-ai)。
 
-以 AI 工具施作是本服務唯一的提供方式,本公司不提供不使用 AI 工具的版本。本公司已於您訂購前在本條款及商品頁告知,您完成訂購即表示接受此服務方式。不接受者請勿訂購;已訂購但尚未開工者,得依第四條 第 2 項取消並全額退款。
+本公司不提供不使用 AI 工具的版本。本公司已於您訂購前在本條款及商品頁告知,您完成訂購即表示接受此服務方式。不接受者請勿訂購;已訂購但尚未開工者,得依第四條 第 2 項取消並全額退款。
 
 ## 三、訂購、付款與發票
 
@@ -29670,7 +29856,7 @@ URL: https://thinkbigtw.com/terms.html
 
 2. 開工前取消,全額退款: 消費者於本公司開始施作前,得隨時取消訂單,本公司全額退款,不扣任何費用。
 
-3. 客製化服務之開工同意: 個人 AI 助理建置,係依您的電腦規格及您指定的技能、通訊管道與設定所為之客製化服務。本公司將於施作前以文字傳送「服務規格表」供您確認,並請您逐字回覆開工同意。經您事先以文字同意並由本公司開始遠端施作後,依「通訊交易解除權合理例外情事適用準則」第 2 條第 2 款,該服務不適用消費者保護法第 19 條第 1 項之七日解除權;例外自本公司於您同意後第一次遠端連線施作時起算。您未回覆開工同意前,本公司不開工。開工後您要求終止者,依已完成步驟之比例退還其餘款項。
+3. 客製化服務之開工同意: 個人 AI 助理建置,係依您的電腦規格及您指定的技能、通訊管道與設定所為之客製化服務。本公司將於施作前以文字傳送「服務規格表」供您確認,並請您逐字回覆開工同意。經您事先以文字同意並由本公司開始遠端施作後,依「通訊交易解除權合理例外情事適用準則」第 2 條第 2 款,該服務不適用消費者保護法第 19 條第 1 項之七日解除權;例外自本公司於您同意後第一次遠端連線施作時起算。您未回覆開工同意前,本公司不開工。開工後您要求終止者,依已完成步驟之比例退還其餘款項。如依法仍得行使七日解除權者(例如該服務經主管機關或法院認定非屬客製化給付),本公司依法退款,不收任何費用。
 
 4. 本公司技術問題: 因本公司技術因素無法完成安裝或交付者,全額退款。因可歸責於本公司之事由致服務無法提供者,退還未提供部分之費用。
 
@@ -29717,6 +29903,8 @@ URL: https://thinkbigtw.com/terms.html
 消費申訴請先寄上述電子郵件,本公司於 3 個工作日內回覆;亦得依消費者保護法第 43 條向本公司提出申訴,或向直轄市、縣(市)政府消費者服務中心或消費者保護官申訴。
 
 大想成業有限公司 Think BIG Make it Real CO., LTD.|統一編號 62136066
+
+臺中市南區五權南路 167 號地下一層之 6
 
 AI@thinkbigtw.com
 

@@ -14,7 +14,7 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [服務總覽](https://thinkbigtw.com/services/)：Think BIG 服務一覽，含企業 AI Agent 導入與 SEO＋GEO 搜尋能見度服務
 - [SEO＋GEO 搜尋能見度服務](https://thinkbigtw.com/services/ai-visibility/)：讓 Google 找得到你、讓 ChatGPT 與 Perplexity 在回答時提到你；體檢、建置地基、每月監測報告
 - [Search Visibility Service (SEO + GEO)](https://thinkbigtw.com/en/services/seo-geo/)：Found on Google and cited by AI — one shared foundation, monthly monitoring reports
-- [方案與價格總覽](https://thinkbigtw.com/pricing/)：個人方案 NT$7,840 起（單 Agent 7,840、雙 Agent 17,920、尊榮年約 39,910、旗艦年約 48,010）與公司方案 NT$52,600 起（未稅，含稅 NT$55,230）（不含硬體），台灣工程師遠端安裝。兩種方案都可選雲端或本地大模型：選雲端大模型時，對話內容會傳給模型服務商處理，簽約前會說明使用哪一家服務與其資料條款；選本地大模型，資料留在你自己的電腦
+- [方案與價格總覽](https://thinkbigtw.com/pricing/)：個人方案 NT$7,840 起（單 Agent 7,840、雙 Agent 17,920、尊榮年約 39,910、旗艦年約 48,010）與公司方案 NT$52,600 起（未稅，含稅 NT$55,230）（不含硬體），Think BIG 遠端安裝，以 AI 工具施作、人員負責成果。兩種方案都可選雲端或本地大模型：選雲端大模型時，對話內容會傳給模型服務商處理，簽約前會說明使用哪一家服務與其資料條款；選本地大模型，資料留在你自己的電腦
 
 ## 企業導入（優先閱讀）
 - [什麼是 RAG？讓 AI 依公司文件回答](https://thinkbigtw.com/enterprise/rag/)：檢索增強生成、資料準備、權限與引用驗收
