@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7V41XYLLP5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7V41XYLLP5');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers | Think BIG NEWS</title>
+<meta name="description" content="A vendor&#x27;s 145B post lists 145B, about 10B, and 29GB. They measure different things. Here is how to read them and run a three-step check yourself. All figures are vendor-reported.">
+<link rel="canonical" href="https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/">
+<link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/news/laptop-145b-model-check-20261116/">
+<link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/">
+<link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/news/laptop-145b-model-check-20261116/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/">
+<meta property="og:title" content="A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers | Think BIG NEWS">
+<meta property="og:description" content="The &quot;145B,&quot; &quot;about 10B,&quot; and &quot;29GB&quot; in one announcement measure three different things: how big the model is in total, how much is computed at each step, and the most memory used under the vendor&#x27;s own test setup. When you see specs like these, ask which machine and which conditions each number came from, then test on your own machine and your own documents.">
+<meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<meta property="og:site_name" content="Think BIG!">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-11-16T20:00:00+08:00">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Can Your Machine Run a 145B Model? | Think BIG NEWS">
+<meta name="twitter:description" content="The &quot;145B,&quot; &quot;about 10B,&quot; and &quot;29GB&quot; in one announcement measure three different things: how big the model is in total, how much is computed at each step, and the most memory used under the vendor&#x27;s own test setup. When you see specs like these, ask which machine and which conditions each number came from, then test on your own machine and your own documents.">
+<meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/#article",
+      "headline": "A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers",
+      "description": "A vendor's 145B post lists 145B, about 10B, and 29GB. They measure different things. Here is how to read them and run a three-step check yourself. All figures are vendor-reported.",
+      "keywords": "local LLM, 145B, total parameters, active parameters, peak memory, local AI acceptance testing, model license, local AI agent deployment",
+      "author": {
+        "@type": "Organization",
+        "name": "Think BIG Media",
+        "url": "https://thinkbigtw.com/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://thinkbigtw.com/#organization",
+        "name": "Think BIG",
+        "url": "https://thinkbigtw.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://thinkbigtw.com/assets/brand/thinkbig-dark.png"
+        }
+      },
+      "datePublished": "2026-11-16T20:00:00+08:00",
+      "dateModified": "2026-11-16T20:00:00+08:00",
+      "url": "https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "Periodical",
+        "name": "Think BIG NEWS",
+        "url": "https://thinkbigtw.com/en/news/"
+      },
+      "citation": [
+        "https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer",
+        "https://docs.ollama.com/context-length",
+        "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Does 145B mean I need enough memory to hold 145 billion parameters?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can't conclude that from this number alone. The post says about 10B parameters take part in each step and that weights are spread across GPU memory, system memory, and SSD. What you actually need depends on your machine and settings, so test it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "The post says 29GB. Is my 32GB laptop enough?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can't infer that directly. The post doesn't say which machine or context length produced 29GB, and it mentions use on a laptop with 48GB of memory. It also describes model weights as competing with the operating system and other apps for limited memory and bandwidth. Go by a test on your own machine."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I treat the vendor-reported speed as what I'll get?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Treat it as a lead. The post says the full evaluation setup and hardware environment will be released with a technical report. NIST's guidance is to measure under conditions similar to deployment and to document the results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "The announcement doesn't name a license. What should I do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The post says open source and points to Hugging Face for the weights, but it names no license. Before adoption, read the license text on the model page and confirm the limits on commercial use, redistribution, and modification."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I tell whether a model is fully loaded into video memory?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "With Ollama, run ollama ps and read the PROCESSOR column. \"100% GPU\" means the model is fully loaded on the GPU, and a CPU percentage means part of it sits in system memory. For other tools, check their own documentation for the equivalent."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://thinkbigtw.com/en/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Think BIG NEWS",
+          "item": "https://thinkbigtw.com/en/news/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Can Your Machine Run a 145B Model?",
+          "item": "https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+  :root{--paper:#f5f1e6;--panel:#efe9db;--ink:#1c1915;--ink-soft:#575048;--rule:#c9bfa8;--accent:#9c2b1e;--accent-soft:#c6614f;--serif:'Noto Serif TC',Georgia,'Times New Roman',serif;--sans:'Noto Sans TC','Helvetica Neue',Arial,sans-serif;}
+  @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#1a1815;--panel:#232019;--ink:#ece4d4;--ink-soft:#a79d8c;--rule:#433d31;--accent:#e08a5e;--accent-soft:#c6614f;color-scheme:dark;}}
+  *{box-sizing:border-box}body{background:var(--paper);color:var(--ink);font-family:var(--serif);line-height:1.72;-webkit-font-smoothing:antialiased;margin:0}
+  .sheet{max-width:860px;margin:0 auto;padding-block:24px 56px;padding-left:20px;padding-right:20px}
+  .back-link{display:inline-block;font-family:var(--sans);font-size:13px;color:var(--accent-soft);text-decoration:none;margin-bottom:20px;letter-spacing:.04em}.back-link:hover{text-decoration:underline}
+  .topbar{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);border-bottom:1px solid var(--rule);padding-bottom:8px}
+  .masthead{text-align:center;padding:14px 0 6px}.masthead h1{font-weight:900;font-size:clamp(38px,11vw,78px);line-height:.92;margin:0;letter-spacing:.02em;text-wrap:balance}
+  .masthead .news{font-family:var(--serif);font-weight:900;font-size:clamp(19px,5.2vw,32px);letter-spacing:.4em;padding-left:.4em;margin-top:4px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:16px}
+  .masthead .news::before,.masthead .news::after{content:"";height:2px;width:clamp(26px,12vw,70px);background:var(--accent)}
+  .masthead .en{font-family:var(--sans);font-weight:700;font-size:clamp(12px,3vw,15px);letter-spacing:.5em;color:var(--accent);margin-top:12px;padding-left:.5em}
+  .rule-double{border:0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:4px;margin:10px 0 0}
+  .dateline{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 0 22px}.dateline span{white-space:nowrap}.dateline .dot{color:var(--accent)}
+  .kicker{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:10px}
+  .headline{font-weight:900;font-size:clamp(28px,6.6vw,46px);line-height:1.12;text-align:center;margin:0 auto;max-width:18em;text-wrap:balance}
+  .byline{text-align:center;font-family:var(--sans);font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin:16px 0 4px}
+  .deck{font-weight:700;font-size:clamp(17px,3.6vw,20px);line-height:1.6;max-width:40em;margin:14px auto 4px;text-align:center;color:var(--ink)}
+  .head-rule{border:0;border-top:1px solid var(--rule);margin:22px auto 24px;max-width:120px}
+  .body{columns:2;column-gap:40px;column-rule:1px solid var(--rule);font-size:16px}.body>*{break-inside:avoid-column}.body p{margin:0 0 15px}
+  .body h2{font-weight:900;font-size:19px;line-height:1.3;margin:4px 0 10px;column-span:all;border-top:2px solid var(--ink);padding-top:10px;text-wrap:balance}.body h2 .no{color:var(--accent);font-family:var(--sans);margin-right:.5em}
+  .lead::first-letter{initial-letter:2.6;font-weight:900;color:var(--accent);margin-right:8px;-webkit-initial-letter:2.6}.body strong{font-weight:700}
+  .firsthand{background:var(--panel);border-left:4px solid var(--accent);padding:16px 18px;margin:0 0 15px;break-inside:avoid-column;column-span:all}.firsthand p{margin:0 0 12px}.firsthand p:last-child{margin:0}.firsthand .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}
+  .houseview{column-span:all;margin:28px 0 0;border:2px solid var(--accent);padding:20px 22px}.houseview .lede{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:8px}.houseview h2{font-weight:900;font-size:20px;margin:0 0 12px;border-top:0;padding-top:0;column-span:none;text-wrap:balance}.houseview p{margin:0 0 12px;font-size:15.5px}.houseview p:last-child{margin:0;color:var(--ink-soft)}
+  .faq{column-span:all;margin:28px 0 0;border:2px solid var(--ink);padding:20px 22px;background:var(--panel)}.faq h3{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px;color:var(--accent)}.faq dt{font-weight:700;font-size:16px;margin-top:14px}.faq dt:first-of-type{margin-top:0}.faq dd{margin:4px 0 0;font-size:15px;color:var(--ink-soft);line-height:1.68}
+  .sources{margin-top:26px;border-top:1px solid var(--rule);padding-top:14px;font-family:var(--sans);font-size:11.5px;color:var(--ink-soft);line-height:1.7}.sources .lede{font-weight:700;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--ink)}.sources a{color:var(--accent-soft);word-break:break-all}
+  .disclaimer{font-size:12px;color:var(--ink-soft);font-style:italic;margin-top:18px;line-height:1.7}
+  .colophon{text-align:center;margin-top:34px;padding-top:18px;border-top:3px double var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}.colophon b{color:var(--accent);letter-spacing:.14em}.colophon .brand{display:block;margin-top:10px;color:var(--ink);font-weight:700;font-family:var(--serif);letter-spacing:.08em;text-transform:none;font-size:13px}
+  @media(max-width:640px){.body{columns:1;column-rule:0}.body h2{column-span:none}}a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+<link rel="stylesheet" href="/assets/generated/site-e284d01edacf.css">
+</head>
+<body>
+<!-- TB:NAV:START -->
+<nav id="tb-nav" aria-label="Main navigation"><a class="tb-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><div class="tb-links"><a href="/enterprise/">Enterprise (Chinese)</a><a href="/enterprise/departments/">AI Departments (Chinese)</a><a href="/en/services/seo-geo/">SEO / AEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/">Deployment Process (Chinese)</a><a href="/trust/">Security (Chinese)</a><a href="/guides/">Guides (Chinese)</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/local-ai-model-selection-20261031/" lang="zh-Hant">中文</a></div><details class="tb-menu"><summary>Menu</summary><div class="tb-links"><a href="/enterprise/">Enterprise (Chinese)</a><a href="/enterprise/departments/">AI Departments (Chinese)</a><a href="/en/services/seo-geo/">SEO / AEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/">Deployment Process (Chinese)</a><a href="/trust/">Security (Chinese)</a><a href="/guides/">Guides (Chinese)</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="/library/news/local-ai-model-selection-20261031/" lang="zh-Hant">中文</a></div></details></nav>
+<!-- TB:NAV:END --><main>
+<article class="sheet">
+  <a class="back-link" href="/en/news/">&larr; Think BIG NEWS</a>
+  <div class="topbar">
+    <span>Local AI Field Notes &middot; Issue 029</span>
+    <span>THINKBIGTW.COM</span>
+  </div>
+  <header class="masthead">
+    <h1>THINK BIG</h1>
+    <div class="news">NEWS</div>
+    <div class="en">LOCAL AI FIELD NOTES</div>
+  </header>
+  <hr class="rule-double">
+  <div class="dateline">
+    <span>November 16, 2026 &nbsp;&middot;&nbsp; Monday</span>
+    <span class="dot">&#9670;</span>
+    <span>Local AI Field Notes</span>
+    <span class="dot">&#9670;</span>
+    <span>Issue 029</span>
+  </div>
+  <p class="kicker">Local LLMs &middot; Reading Specs &middot; Acceptance Testing</p>
+  <h2 class="headline">A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers</h2>
+  <p class="byline">Think BIG Media &nbsp;|&nbsp; November 16, 2026</p>
+  <p class="deck">The "145B," "about 10B," and "29GB" in one announcement measure three different things: how big the model is in total, how much is computed at each step, and the most memory used under the vendor's own test setup. When you see specs like these, ask which machine and which conditions each number came from, then test on your own machine and your own documents.</p>
+  <hr class="head-rule">
+  <div class="body">
+<p><em>(Every vendor figure in this article comes from the company's own announcement and is vendor-reported. We have not reproduced any of it. This article does not rate the company or the model, and it takes no position on whether the model performs as described.)</em></p>
+<h2><span class="no">One.</span>What's Happening: Three Numbers in One Announcement</h2>
+<p class="lead">On November 12, 2026, Edge0 released two open-weight models, Edge0-145B and Edge0-120B, together with an inference framework and deployment tools.[1] For the 145B model, the post gives several figures at once (all vendor-reported):</p>
+<p><strong>Total parameters:</strong> 145B.</p>
+<p><strong>Active parameters:</strong> roughly 10B take part in computation at each inference step.</p>
+<p><strong>Peak memory:</strong> 29GB.</p>
+<p><strong>Tiered storage:</strong> an expert library of about 40GB sits in system memory, and about 48GB of vocabulary data sits on the SSD and is read on demand.</p>
+<p><strong>Speed and context:</strong> decoding at 80+ tokens per second, prefill at 1,100+ tokens per second, and a 128K–256K context. The post also lists about 120W typical power and says there was no throttling in its reported setup.[1]</p>
+<p>The three numbers most often mixed up answer different questions:</p>
+<p><strong>Total parameters: 145B:</strong> measures how many parameters the model has in all. The question it answers: how large the weights are and where they have to live.</p>
+<p><strong>Active parameters: about 10B:</strong> measures parameters used in computation at each step. The question it answers: how much work each step does; it relates to speed and does not mean only this much has to be loaded.</p>
+<p><strong>Peak memory: 29GB:</strong> measures the most memory used under the vendor's reported test setup. The question it answers: usage under that setup, not whether your machine is enough.</p>
+<p>That breakdown is our reading. The post's own description is that weights are spread across GPU memory, system memory, and SSD, with reading and computation overlapping.[1]</p>
+<p><strong>What the post does not say, and the limits it does state:</strong></p>
+<p>Which machine produced the 29GB figure: the post says only "a compatible laptop, such as a MacBook Pro," with no chip or memory configuration.</p>
+<p>What context length the 29GB was measured at: not stated.</p>
+<p>Whether the 40GB and 48GB figures add to the 29GB: the post gives no calculation.</p>
+<p>The full evaluation setup, hardware environment, and reproduction steps: the post says they will come with a technical report.[1]</p>
+<p>The post itself cautions that this does not mean every device can run the 145B model; very low-compute devices need a smaller model or the cloud, and cross-device long-term memory and searches that need current information still need cloud services.[1]</p>
+<p>License: the post says open source and points to Hugging Face for the weights. The body text does not name a license.[1]</p>
+<h2><span class="no">Two.</span>The Case for Specs, and the Case for Acceptance Tests</h2>
+<p class="lead"><strong>The case for reading the specs:</strong> the post handles "will it fit" by splitting storage into three tiers, and it mentions use on a laptop with 48GB of memory.[1] For teams that want to run large models locally, that means "fits" is no longer a single number, and the architecture description deserves a careful read.</p>
+<p><strong>The case for acceptance testing:</strong> Ollama's documentation says a longer context length raises the memory a model needs, that you should confirm you have enough VRAM before raising it, and that for best performance you should avoid offloading to the CPU. The <code>ollama ps</code> PROCESSOR column shows the split.[2] The NIST AI Risk Management Framework (AI RMF 1.0), under MEASURE 2.3, says performance should be demonstrated under conditions similar to the deployment setting, with the measurements documented.[3]</p>
+<p>The two views can coexist. The order is what matters: the vendor's specs help you decide whether a model belongs on the shortlist, and testing on your own machine decides whether you can tell a user "yes."</p>
+<section class="firsthand"><span class="lede">&#9670; First-Hand Lessons</span><h2 style="column-span:none;border-top:0;padding-top:0;margin-top:0">Three. What We Learned in Practice</h2>
+<p class="lead">These are the habits we follow when we evaluate local models. They are not industry statistics and do not describe any particular client.</p>
+<p><strong>1. If we haven't tested on a machine in the same class as the client's, we don't tell the client it will work.</strong> The memory figure on a spec sheet often differs from what you see during long use. The gap usually comes from context length, other programs running at the same time, and the class of the machine.</p>
+<p><strong>2. "It runs" and "it's usable" are different things.</strong> A model can load and answer its first prompt, and still slow down after hours of continuous use. Time to first token and slowdown over long sessions need to be measured separately.</p>
+<p><strong>3. We label vendor numbers "vendor-reported," every time.</strong> That is not distrust. It tells whoever retests later where the number came from and which conditions were never stated.</p>
+</section>
+<h2><span class="no">Four.</span>Our Recommendations: A Three-Step Acceptance Check</h2>
+<p class="lead"><strong>1. Check the license and where the weights come from.</strong> Confirm where the weights are downloaded from and read the license text itself, including what it says about commercial use, redistribution, and modification. "Open source" in an announcement is not enough.</p>
+<p><strong>2. Test on the target machine.</strong> Use the context length you will actually use, with the programs you normally keep open, and measure three things: peak memory, time to first token, and slowdown after long use. Record the machine model, memory size, context length, and test duration.[2][3]</p>
+<p><strong>3. Treat vendor benchmarks as leads, and check with a small sample of your own documents.</strong> Public benchmarks test someone else's questions. Take ten to twenty documents or questions you really handle, run them through, and have the person who owns that work review the results.</p>
+<p>In one sentence: <strong>the spec sheet tells you a model is worth trying; your machine and your documents tell you whether it works.</strong></p>
+<section class="houseview"><span class="lede">&#9670; Editor&#x2019;s Note &middot; How Think BIG Approaches This</span><h2>Leave a Record That Can Be Retested</h2>
+<p><em>(The following is Think BIG's practical position, separate from the reporting above.)</em></p>
+<p>When we evaluate a local model for a company, we deliver more than "it's installed." A few examples:</p>
+<p><strong>Machine test record:</strong> peak memory, time to first token, and slowdown over continuous use, measured on a machine in the same class as yours and delivered with the test conditions.</p>
+<p><strong>Document acceptance set:</strong> questions and results built from a small sample of your own documents, so a later model change can be retested against the same set.</p>
+<p><strong>License and source record:</strong> where the weights came from and how to read the license, summarized on one page.</p>
+<p>These are just a few of the things we do. Other workflows can be customized to your needs.</p>
+</section>
+    <section class="faq">
+      <h3>Frequently Asked Questions</h3>
+      <dl>
+        <dt>Q1: Does 145B mean I need enough memory to hold 145 billion parameters?</dt>
+        <dd>You can't conclude that from this number alone. The post says about 10B parameters take part in each step and that weights are spread across GPU memory, system memory, and SSD.[1] What you actually need depends on your machine and settings, so test it.</dd>
+        <dt>Q2: The post says 29GB. Is my 32GB laptop enough?</dt>
+        <dd>You can't infer that directly. The post doesn't say which machine or context length produced 29GB, and it mentions use on a laptop with 48GB of memory. It also describes model weights as competing with the operating system and other apps for limited memory and bandwidth.[1] Go by a test on your own machine.</dd>
+        <dt>Q3: Can I treat the vendor-reported speed as what I'll get?</dt>
+        <dd>Treat it as a lead. The post says the full evaluation setup and hardware environment will be released with a technical report.[1] NIST's guidance is to measure under conditions similar to deployment and to document the results.[3]</dd>
+        <dt>Q4: The announcement doesn't name a license. What should I do?</dt>
+        <dd>The post says open source and points to Hugging Face for the weights, but it names no license.[1] Before adoption, read the license text on the model page and confirm the limits on commercial use, redistribution, and modification.</dd>
+        <dt>Q5: How can I tell whether a model is fully loaded into video memory?</dt>
+        <dd>With Ollama, run <code>ollama ps</code> and read the PROCESSOR column. "100% GPU" means the model is fully loaded on the GPU, and a CPU percentage means part of it sits in system memory.[2] For other tools, check their own documentation for the equivalent.</dd>
+      </dl>
+    </section>
+  </div>
+  <div class="sources">
+    <span class="lede">Sources</span>
+    Fact-checked: 2026-11-14.<br>
+    [1] Edge0, "Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer," 2026-11-12 (total and active parameters, peak memory, tiered storage, speed, context, test environment, stated limits, license); accessed 2026-11-14: <a href="https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer" target="_blank" rel="noopener">edge0.ai</a> &middot;
+    [2] Ollama, "Context length" (context and memory, avoiding CPU offload, the ollama ps PROCESSOR column); accessed 2026-11-14: <a href="https://docs.ollama.com/context-length" target="_blank" rel="noopener">docs.ollama.com</a> &middot;
+    [3] NIST, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, 2023-01-26 (MEASURE 2.3: measure under conditions similar to the deployment setting and document it): <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf" target="_blank" rel="noopener">nvlpubs.nist.gov</a>
+  </div>
+  <p class="disclaimer">This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.</p>
+  <div class="colophon">
+    <b>THINK BIG NEWS</b> &nbsp;&middot;&nbsp; Local AI Field Notes
+    <span class="brand">Think BIG, Make it Real!</span>
+  </div>
+</article>
+</main><script src="/nav.js" defer></script><!-- TB:FOOTER:START -->
+<footer id="tb-footer"><div><a class="tb-f-logo" href="/en/" aria-label="Think BIG home"><img src="/assets/brand/thinkbig-dark.png" width="1509" height="327" alt="Think BIG"></a><p>Enterprise AI Agent Deployment &amp; Governance.<br>On-premises deployment &middot; Workflow integration &middot; Annual operations</p><div class="tb-f-social"><a href="https://www.instagram.com/think_big_ai/" target="_blank" rel="noopener" aria-label="Instagram @think_big_ai"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="https://www.youtube.com/@think_big_ai_tw" target="_blank" rel="noopener noreferrer" aria-label="YouTube @think_big_ai_tw"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg></a><a href="https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services." target="_blank" rel="noopener noreferrer" aria-label="Think BIG on WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a></div></div><div class="tb-f-links"><a href="/enterprise/">Enterprise (Chinese)</a><a href="/enterprise/departments/">AI Departments (Chinese)</a><a href="/en/services/seo-geo/">SEO / AEO / GEO</a><a href="/en/pricing/">Personal plans</a><a href="/enterprise/process/">Deployment Process (Chinese)</a><a href="/trust/">Security (Chinese)</a><a href="/guides/">Guides (Chinese)</a><a href="/portfolio/en/">Portfolio</a><a href="/en/news/">News</a><a href="https://wa.me/886908898903?text=Hi%20Think%20BIG%2C%20I%27d%20like%20to%20ask%20about%20your%20AI%20Agent%20services." target="_blank" rel="noopener noreferrer">Think BIG on WhatsApp &#x2197;</a><!-- TB:TELEGRAM:RESERVED --></div><div class="tb-copy"><span>&copy; 2026 Think BIG &middot; Taiwan</span><div class="tb-legal"><a href="/en/about/">About Think BIG</a><a href="/guides/glossary/">Glossary (Chinese)</a><a href="/en/privacy/">Privacy Policy</a><a href="/en/terms/">Terms of Service</a><a href="/en/contact/">Contact Us</a><a href="/en/faq/">FAQ</a><a href="/library/news/local-ai-model-selection-20261031/" lang="zh-Hant">中文</a></div></div></footer>
+<!-- TB:FOOTER:END -->
+</body>
+</html>

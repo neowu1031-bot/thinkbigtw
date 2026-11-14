@@ -4053,6 +4053,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 029
+
+November 16, 2026 · Local AI Field Notes
+
+## A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers
+
+Total parameters, active parameters, and reported peak memory are three different numbers. Ask which machine each came from, then test on your own.](https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/)
 [Issue 012
 
 October 29, 2026 · Enterprise Security Notes
@@ -4703,6 +4710,148 @@ Sources
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
 THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/
+
+# A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 029
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 16, 2026  ·  Monday
+◆
+Local AI Field Notes
+◆
+Issue 029
+
+Local LLMs · Reading Specs · Acceptance Testing
+
+## A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers
+
+Think BIG Media  |  November 16, 2026
+
+The "145B," "about 10B," and "29GB" in one announcement measure three different things: how big the model is in total, how much is computed at each step, and the most memory used under the vendor's own test setup. When you see specs like these, ask which machine and which conditions each number came from, then test on your own machine and your own documents.
+
+(Every vendor figure in this article comes from the company's own announcement and is vendor-reported. We have not reproduced any of it. This article does not rate the company or the model, and it takes no position on whether the model performs as described.)
+
+## One. What's Happening: Three Numbers in One Announcement
+
+On November 12, 2026, Edge0 released two open-weight models, Edge0-145B and Edge0-120B, together with an inference framework and deployment tools.[1] For the 145B model, the post gives several figures at once (all vendor-reported):
+
+Total parameters:  145B.
+
+Active parameters:  roughly 10B take part in computation at each inference step.
+
+Peak memory:  29GB.
+
+Tiered storage:  an expert library of about 40GB sits in system memory, and about 48GB of vocabulary data sits on the SSD and is read on demand.
+
+Speed and context:  decoding at 80+ tokens per second, prefill at 1,100+ tokens per second, and a 128K–256K context. The post also lists about 120W typical power and says there was no throttling in its reported setup.[1]
+
+The three numbers most often mixed up answer different questions:
+
+Total parameters: 145B:  measures how many parameters the model has in all. The question it answers: how large the weights are and where they have to live.
+
+Active parameters: about 10B:  measures parameters used in computation at each step. The question it answers: how much work each step does; it relates to speed and does not mean only this much has to be loaded.
+
+Peak memory: 29GB:  measures the most memory used under the vendor's reported test setup. The question it answers: usage under that setup, not whether your machine is enough.
+
+That breakdown is our reading. The post's own description is that weights are spread across GPU memory, system memory, and SSD, with reading and computation overlapping.[1]
+
+What the post does not say, and the limits it does state:
+
+Which machine produced the 29GB figure: the post says only "a compatible laptop, such as a MacBook Pro," with no chip or memory configuration.
+
+What context length the 29GB was measured at: not stated.
+
+Whether the 40GB and 48GB figures add to the 29GB: the post gives no calculation.
+
+The full evaluation setup, hardware environment, and reproduction steps: the post says they will come with a technical report.[1]
+
+The post itself cautions that this does not mean every device can run the 145B model; very low-compute devices need a smaller model or the cloud, and cross-device long-term memory and searches that need current information still need cloud services.[1]
+
+License: the post says open source and points to Hugging Face for the weights. The body text does not name a license.[1]
+
+## Two. The Case for Specs, and the Case for Acceptance Tests
+
+The case for reading the specs:  the post handles "will it fit" by splitting storage into three tiers, and it mentions use on a laptop with 48GB of memory.[1] For teams that want to run large models locally, that means "fits" is no longer a single number, and the architecture description deserves a careful read.
+
+The case for acceptance testing:  Ollama's documentation says a longer context length raises the memory a model needs, that you should confirm you have enough VRAM before raising it, and that for best performance you should avoid offloading to the CPU. The ollama ps  PROCESSOR column shows the split.[2] The NIST AI Risk Management Framework (AI RMF 1.0), under MEASURE 2.3, says performance should be demonstrated under conditions similar to the deployment setting, with the measurements documented.[3]
+
+The two views can coexist. The order is what matters: the vendor's specs help you decide whether a model belongs on the shortlist, and testing on your own machine decides whether you can tell a user "yes."
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are the habits we follow when we evaluate local models. They are not industry statistics and do not describe any particular client.
+
+1. If we haven't tested on a machine in the same class as the client's, we don't tell the client it will work.  The memory figure on a spec sheet often differs from what you see during long use. The gap usually comes from context length, other programs running at the same time, and the class of the machine.
+
+2. "It runs" and "it's usable" are different things.  A model can load and answer its first prompt, and still slow down after hours of continuous use. Time to first token and slowdown over long sessions need to be measured separately.
+
+3. We label vendor numbers "vendor-reported," every time.  That is not distrust. It tells whoever retests later where the number came from and which conditions were never stated.
+
+## Four. Our Recommendations: A Three-Step Acceptance Check
+
+1. Check the license and where the weights come from.  Confirm where the weights are downloaded from and read the license text itself, including what it says about commercial use, redistribution, and modification. "Open source" in an announcement is not enough.
+
+2. Test on the target machine.  Use the context length you will actually use, with the programs you normally keep open, and measure three things: peak memory, time to first token, and slowdown after long use. Record the machine model, memory size, context length, and test duration.[2][3]
+
+3. Treat vendor benchmarks as leads, and check with a small sample of your own documents.  Public benchmarks test someone else's questions. Take ten to twenty documents or questions you really handle, run them through, and have the person who owns that work review the results.
+
+In one sentence: the spec sheet tells you a model is worth trying; your machine and your documents tell you whether it works.
+
+◆ Editor’s Note · How Think BIG Approaches This
+
+## Leave a Record That Can Be Retested
+
+(The following is Think BIG's practical position, separate from the reporting above.)
+
+When we evaluate a local model for a company, we deliver more than "it's installed." A few examples:
+
+Machine test record:  peak memory, time to first token, and slowdown over continuous use, measured on a machine in the same class as yours and delivered with the test conditions.
+
+Document acceptance set:  questions and results built from a small sample of your own documents, so a later model change can be retested against the same set.
+
+License and source record:  where the weights came from and how to read the license, summarized on one page.
+
+These are just a few of the things we do. Other workflows can be customized to your needs.
+
+### Frequently Asked Questions
+
+Q1: Does 145B mean I need enough memory to hold 145 billion parameters?
+You can't conclude that from this number alone. The post says about 10B parameters take part in each step and that weights are spread across GPU memory, system memory, and SSD.[1] What you actually need depends on your machine and settings, so test it.
+Q2: The post says 29GB. Is my 32GB laptop enough?
+You can't infer that directly. The post doesn't say which machine or context length produced 29GB, and it mentions use on a laptop with 48GB of memory. It also describes model weights as competing with the operating system and other apps for limited memory and bandwidth.[1] Go by a test on your own machine.
+Q3: Can I treat the vendor-reported speed as what I'll get?
+Treat it as a lead. The post says the full evaluation setup and hardware environment will be released with a technical report.[1] NIST's guidance is to measure under conditions similar to deployment and to document the results.[3]
+Q4: The announcement doesn't name a license. What should I do?
+The post says open source and points to Hugging Face for the weights, but it names no license.[1] Before adoption, read the license text on the model page and confirm the limits on commercial use, redistribution, and modification.
+Q5: How can I tell whether a model is fully loaded into video memory?
+With Ollama, run ollama ps  and read the PROCESSOR column. "100% GPU" means the model is fully loaded on the GPU, and a CPU percentage means part of it sits in system memory.[2] For other tools, check their own documentation for the equivalent.
+
+Sources
+    Fact-checked: 2026-11-14.
+
+    [1] Edge0, "Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer," 2026-11-12 (total and active parameters, peak memory, tiered storage, speed, context, test environment, stated limits, license); accessed 2026-11-14: [edge0.ai](https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer) ·
+    [2] Ollama, "Context length" (context and memory, avoiding CPU offload, the ollama ps PROCESSOR column); accessed 2026-11-14: [docs.ollama.com](https://docs.ollama.com/context-length) ·
+    [3] NIST, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, 2023-01-26 (MEASURE 2.3: measure under conditions similar to the deployment setting and document it): [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
     Think BIG, Make it Real!
 
 ---
@@ -9888,6 +10037,18 @@ Taiwan’s Intellectual Property Office says copyright in AI-assisted text and�
 Think BIG Q&A Library
 AI Governance & Regulation
 Updated 2026-11-12
+
+AI Basics TB31
+
+## [How Do You Write a Work Prompt? A Four-Part Structure for Clearer Tasks](https://thinkbigtw.com/en/qa/prompt-structure-for-work/)
+
+A work prompt can have four parts: task, context, constraints, and output plus…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/prompt-structure-for-work/)
+
+Think BIG Q&A Library
+AI Basics
+Updated 2026-11-13
 
 Enterprise AI Security TB27
 
@@ -18031,6 +18192,148 @@ THINK BIG NEWS   ·  AI 導入實測手記
 
 ---
 
+URL: https://thinkbigtw.com/library/news/laptop-145b-model-check-20261116/
+
+# 廠商說筆電能跑 145B，你的機器能嗎？——總參數、活躍參數、實測記憶體是三個不同的數字 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 029 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 16 日　星期一
+◆
+本地 AI 實測筆記
+◆
+第 029 期
+
+本地大模型 · 規格解讀 · 導入驗收
+
+## 廠商說筆電能跑 145B，你的機器能嗎？——總參數、活躍參數、實測記憶體是三個不同的數字
+
+Think BIG 自媒體部  |  2026 年 11 月 16 日
+
+一則公告裡的「145B」「約 10B」「29GB」，量的是三件不同的事：模型總共有多大、每一步算多少、在廠商的測試設定下記憶體最多用到多少。看到這類規格，先問每個數字是在哪台機器、什麼條件下量的，再用自己的機器和文件實測。
+
+（本文所有廠商數字，都來自該公司自己的公告，屬廠商自報，我們沒有重現。本文不評論該公司或模型的優劣，也不判斷模型是否如公告所述。）
+
+## 一 現象：同一則公告裡的三個數字
+
+2026 年 11 月 12 日，Edge0 發表兩款開放權重模型 Edge0-145B 與 Edge0-120B，並同時釋出推論框架與部署工具。[1] 公告談到 145B 這款時，同時出現幾組數字（以下皆為公告自報）：
+
+總參數 ：145B。
+
+活躍參數 ：每一步推論約有 10B 參數參與運算。
+
+峰值記憶體 ：29GB。
+
+分層存放 ：約 40GB 的「專家庫」放在系統記憶體，約 48GB 的詞彙資料放在 SSD，按需讀取。
+
+速度與上下文 ：解碼 80+ tokens/s、預填 1,100+ tokens/s，上下文 128K–256K；公告同時寫約 120W 的典型功耗，並說在其報告的設定下沒有降速。[1]
+
+三個最容易被混在一起的數字，其實回答的是不同的問題：
+
+總參數 145B ：量的是模型一共有多少參數。它回答的問題：權重加起來有多大、要放在哪裡。
+
+活躍參數 約 10B ：量的是每一步推論實際參與運算的參數。它回答的問題：每一步要算多少，和速度有關；不等於只需要載入這麼多。
+
+峰值記憶體 29GB ：量的是在廠商所報告的測試設定下，記憶體最高用到多少。它回答的問題：在那個設定下的用量，不等於你的機器夠不夠。
+
+這是我們對三個數字的解讀。公告本身的說法是：模型把權重分放在 GPU 記憶體、系統記憶體與 SSD 三層，讓讀取與運算重疊進行。[1]
+
+公告沒有寫的，和寫了的限制：
+
+29GB 是在哪一台機器量到的：公告只寫「相容的筆電，例如 MacBook Pro」，沒有列出晶片與記憶體配置。
+
+29GB 是在多長的上下文下量到的：公告沒有寫。
+
+40GB、48GB 這幾個數字和 29GB 要不要相加：公告沒有給算法。
+
+完整的評測設定、硬體環境與重現方式，公告說會隨技術報告釋出。[1]
+
+公告自己也提醒：不代表每一台裝置都能跑 145B；運算力很低的裝置需要較小的模型或雲端；跨裝置的長期記憶、需要最新資訊的搜尋，仍然需要雲端服務。[1]
+
+授權：公告寫的是開源、權重放在 Hugging Face，正文沒有寫授權名稱。[1]
+
+## 二 各方評價：規格決定候選，驗收決定能不能說可以
+
+看規格的思路 ：公告把「放不放得下」拆成三層儲存來處理，也提到可在 48GB 記憶體的筆電上使用。[1] 對想在本地跑大模型的團隊，這代表「放得下」不再只有一個數字，值得認真看架構說明。
+
+看驗收的思路 ：Ollama 的文件說，上下文長度開越大，執行模型需要的記憶體越多，調大前要確認顯示記憶體夠用；為了效能，也要避免模型被卸載到 CPU，可以用 ollama ps  的 PROCESSOR 欄確認。[2] 美國 NIST 的《AI 風險管理框架》（AI RMF 1.0）在 MEASURE 2.3 寫到，系統效能應在接近部署環境的條件下量測，並記錄下來。[3]
+
+兩種思路可以並存，順序比較重要：廠商的規格，讓你決定這個模型值不值得放進候選；在你自己機器上的驗收，才決定你能不能對使用者說「可以」。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們評估本地模型時的做法，不是產業統計，也不代表任何特定客戶。
+
+1. 沒在客戶同等級的機器上實測過，我們就不先對客戶說可以。  規格表上的記憶體數字，和長時間使用時的實際數字常有落差。落差通常來自上下文長度、同時開著的其他程式，以及機器本身的等級。
+
+2. 「跑得起來」和「用得下去」是兩件事。  模型載入成功、第一句話答得出來，不代表連續用幾個小時還一樣快。首字要等多久、用久了會不會降速，都要另外量。
+
+3. 廠商數字我們一律標「廠商自報」。  這不是不信任，是讓之後重測的人知道這個數字從哪裡來、有哪些條件沒交代。
+
+## 四 我們的建議：三步驗收
+
+1. 查授權與權重來源。  確認權重從哪裡下載、授權條款原文怎麼寫，商用、再散布與修改各有什麼限制。公告只寫「開源」不夠，條款要讀原文。
+
+2. 在目標機器上實測。  用你實際要用的上下文長度、同時開著平常會開的程式，量三件事：峰值記憶體、首字等待時間、長時間使用後的降速。記錄機器型號、記憶體大小、上下文長度與測試時長。[2][3]
+
+3. 廠商跑分當線索，用自己的文件小樣本驗。  公開跑分測的是別人的題目。拿十到二十份你真正會處理的文件或問題，跑一遍，由負責這件事的人看結果。
+
+一句話：規格表告訴你這個模型值得試，你的機器和你的文件才告訴你能不能用。
+
+◆ 編按 · Think BIG 的做法
+
+## 驗收要留下可重測的紀錄
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們幫企業評估本地模型時，交付的不只是「裝好了」。舉幾個例子：
+
+機器實測紀錄 ：在與你同等級的機器上，量出峰值記憶體、首字等待時間與連續使用後的降速，連同測試條件一起交付。
+
+文件驗收題組 ：用你自己的文件小樣本做的題目與結果，之後換模型可以照同一組重測。
+
+授權與來源查核紀錄 ：權重來源、授權條款的讀法與限制，整理成一頁。
+
+這只是其中幾件，其他流程也能依你的需求客製。
+
+### 常見問題
+
+Q1：145B 是不是代表要有放得下 145B 個參數的記憶體？
+不能只用這個數字推論。公告說每一步約 10B 參數參與運算，權重分放在 GPU 記憶體、系統記憶體與 SSD 三層。[1] 實際需要多少，要看你的機器與設定，建議實測。
+Q2：公告寫 29GB，我的 32GB 筆電夠用嗎？
+不能直接這樣推。公告沒有寫 29GB 是在哪台機器、多長的上下文下量到的，只提到可在 48GB 記憶體的筆電上使用；公告也說模型權重要和作業系統與其他程式搶記憶體與頻寬。[1] 以你的機器實測為準。
+Q3：廠商自報的速度，可以直接當預期嗎？
+當線索就好。公告說完整的評測設定與硬體環境會隨技術報告釋出。[1] NIST 的建議是在接近部署環境的條件下量測並記錄。[3]
+Q4：公告沒寫授權，要怎麼辦？
+公告寫的是開源、權重放在 Hugging Face，沒有寫授權名稱。[1] 導入前請到模型頁讀授權條款原文，確認商用、再散布與修改的限制。
+Q5：怎麼知道模型有沒有完整放進顯示記憶體？
+以 Ollama 為例，執行 ollama ps ，看 PROCESSOR 欄；100% GPU 代表完整載入顯示記憶體，出現 CPU 的比例代表有一部分放在系統記憶體。[2] 其他工具請查各自文件的對應做法。
+
+參考來源
+    查核日期：2026-11-14。
+
+    [1] Edge0，〈Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer〉，2026-11-12（總參數、活躍參數、峰值記憶體、分層存放、速度、上下文、測試環境、限制說明、授權），查閱日期 2026-11-14：[edge0.ai](https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer)　·
+    [2] Ollama，〈Context length〉（上下文與記憶體、避免卸載到 CPU、ollama ps 的 PROCESSOR 欄），查閱日期 2026-11-14：[docs.ollama.com](https://docs.ollama.com/context-length)　·
+    [3] NIST，〈Artificial Intelligence Risk Management Framework (AI RMF 1.0)〉，NIST AI 100-1，2023-01-26（MEASURE 2.3：在接近部署環境的條件下量測並記錄）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/lobster-hermes-abandonment-20261003/
 
 # AI Agent 怎麼導入才不會被綁死？先問清楚三件事｜Think BIG NEWS
@@ -22502,6 +22805,30 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+AI 入門 TB31
+
+## [工作上的提示詞怎麼寫？用 4 段說清楚任務與限制](https://thinkbigtw.com/library/qa/prompt-structure-for-work/)
+
+工作提示詞可以分成四段：任務、背景資料、限制、輸出與檢查。這是本文整理的起步方法，目的是讓需求可執行、結果可核對，不代表每次都能一次得到可用答案。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/prompt-structure-for-work/)
+
+Think BIG 問答圖書館
+AI 入門
+更新 2026-11-13
+
+親子共讀與客製繪本 Q34
+
+## [刷牙、洗手、穿衣服：生活自理繪本怎麼用？](https://thinkbigtw.com/library/qa/self-care-skills-picture-books/)
+
+生活自理繪本可以用來先看流程、說出一個動作，再回到實際生活由大人陪著做。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/self-care-skills-picture-books/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-13
 
 台灣華語學習 BS20
 
