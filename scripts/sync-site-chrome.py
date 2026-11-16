@@ -27,6 +27,7 @@ ZH_BACK={
  'en/terms/':'/terms.html',
  'en/privacy/':'/privacy.html',
  'en/faq/':'/faq/',
+ 'en/pricing/ai-assistant-cost/':'/pricing/ai-assistant-cost/',
  'en/pricing/':'/pricing/',
  'en/guides/ai-agents/':'/guides/ai-agents/',
  'en/news/lobster-hermes-abandonment-20261003/':'/library/news/lobster-hermes-abandonment-20261003/',
