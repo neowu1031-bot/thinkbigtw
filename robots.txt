@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /clawland/
 Disallow: /cdn-cgi/
 
 User-agent: OAI-SearchBot
@@ -24,7 +23,6 @@ User-agent: Bytespider
 User-agent: YouBot
 User-agent: CCBot
 Allow: /
-Disallow: /clawland/
 Disallow: /cdn-cgi/
 
 Sitemap: https://thinkbigtw.com/sitemap.xml
