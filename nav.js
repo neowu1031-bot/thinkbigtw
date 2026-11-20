@@ -187,7 +187,7 @@
   var BRIEFING_UTM = 'utm_source=thinkbigtw&utm_medium=article_end&utm_campaign=briefing_202611';
 
   /* Pages that are not Think BIG AI services (other brands, tools, demos). */
-  var SKIP_PREFIX = ['/gift/', '/print/', '/book/', '/meeting/', '/clawland/', '/tbos/', '/v2/', '/erp/', '/portfolio/erp-demo/'];
+  var SKIP_PREFIX = ['/gift/', '/print/', '/book/', '/meeting/', '/tbos/', '/v2/', '/erp/', '/portfolio/erp-demo/'];
   var OTHER_BRAND = /童話有你|熊好學|Tale ?With ?You|BearSay/i;
 
   function isOtherBrandPage(path) {
