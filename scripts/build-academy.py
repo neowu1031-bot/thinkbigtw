@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Build /library/academy/ (series overview) and one page per episode from library/academy/_data/episodes.json.
+"""Build /library/academy/ (series overview) and one page per episode from data/academy-episodes.json.
 
 Rules (spec: OL-008):
 - An episode appears ONLY when its text is complete (title, summary, date, youtube_id, >=1 point). Incomplete episodes
