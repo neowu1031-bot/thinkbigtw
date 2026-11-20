@@ -39,6 +39,9 @@ jobs:
       - name: Check llms-full.txt is up to date
         run: python3 scripts/build-llms-full.py --check
 
+      - name: Guard - noindex and redirect pages never enter sitemap or llms-full
+        run: python3 scripts/test-llms-full-guard.py
+
       - name: Check agent KB JS files are up to date
         run: node scripts/build-agent-kb.mjs --check
 
