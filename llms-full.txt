@@ -17913,6 +17913,1102 @@ THINK BIG. MAKE IT REAL.
 
 ---
 
+URL: https://thinkbigtw.com/library/academy/ep01-too-late-to-start-ai/
+
+# 完全不懂 AI，現在開始還來得及嗎？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 完全不懂 AI，現在開始還來得及嗎？
+
+來得及。不用先追上別人，今天只完成一件小事：請聊天 AI 把待辦整理成今天能完成的三件事。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 不用先追上別人，今天只完成一件小事就好。
+
+- 免費版的聊天 AI 就能做：把一堆待辦丟給它，整理成「今天能完成的三件事」。
+
+- 請它先問你可用時間，排出來的事比較貼近你的實際狀況。
+
+- 會聊天，不代表什麼都做得對；它排的時間合不合理，要自己看一眼。
+
+## 一招用法
+
+選一件今天的小事試一次，留下整理前和整理後兩個版本。
+
+把以下待辦整理成今天能完成的三件事，先問我可用時間：[你的待辦]
+
+## 參考資料
+
+- [IBM〈What is artificial intelligence (AI)?〉](https://www.ibm.com/think/topics/artificial-intelligence)
+
+- [ChatGPT 官方定價頁（免費版）](https://chatgpt.com/zh-Hant/pricing/)
+
+[下一集：為什麼 AI 很有自信卻答錯？ →](https://thinkbigtw.com/library/academy/ep02-ai-confident-but-wrong/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep02-ai-confident-but-wrong/
+
+# 為什麼 AI 很有自信卻答錯？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 為什麼 AI 很有自信卻答錯？
+
+語氣很肯定，跟有證據是兩回事。大型語言模型在預測下一個字，接得順不代表內容是對的。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 大型語言模型是一直預測下一個字，接得很順，不代表內容是對的。
+
+- 聽起來合理、其實是錯的或編出來的，叫做幻覺。
+
+- 語氣肯定，和有證據，是兩回事。
+
+- 請它只根據你給的資料回答，缺的就說未提供，不要推測。
+
+## 術語小卡
+
+- 大型語言模型（LLM） ：一種不斷預測下一個字的模型，所以文句通常接得很順。
+
+- 幻覺 ：AI 產出聽起來合理、其實是錯的或編出來的內容。（例：資料裡沒寫年份，它自己補了一個年份，那個年份就是沒有依據的句子。）
+
+## 一招用法
+
+把資料和問題一起貼給 AI，加上限定的那句；拿到回答後，找出一個沒有依據的句子。
+
+只根據資料回答問題，若缺少年份請說未提供，不要推測：[資料與問題]
+
+## 參考資料
+
+- [IBM〈What are large language models (LLMs)?〉](https://www.ibm.com/think/topics/large-language-models)
+
+- [IBM〈What are AI hallucinations?〉](https://www.ibm.com/think/topics/ai-hallucinations)
+
+[← 上一集：完全不懂 AI，現在開始還來得及嗎？](https://thinkbigtw.com/library/academy/ep01-too-late-to-start-ai/)　[下一集：第一次用 AI：今天只完成這件事 →](https://thinkbigtw.com/library/academy/ep03-first-time-one-task/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep03-first-time-one-task/
+
+# 第一次用 AI：今天只完成這件事｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 第一次用 AI：今天只完成這件事
+
+第一次用 AI 不知道要打什麼？今天只做一件事：寫出一則能直接用的訊息。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 第一次用 AI，今天只做一件事：寫出一則能直接用的訊息。
+
+- 免費版的聊天 AI 就能做。
+
+- 把背景、要的結果、語氣一次講清楚，這段話就叫 Prompt（提示詞）。
+
+- 拿到回覆先看中文對照，時間、地點要和實際一樣。
+
+- 公開示範一律用假名，不放孩子的真名、學校或照片。
+
+## 術語小卡
+
+- Prompt（提示詞） ：你給模型的輸入，可以是一個問題，也可以是一段指令。（例：把背景、要的結果、語氣寫在同一段話裡。）
+
+## 一招用法
+
+照這句寫一則訊息，自己讀懂中文對照、核對時間地點後再按送出。
+
+幫我寫一則簡短英文訊息，告知家長孩子正在後院玩，語氣自然，附中文。
+
+## 參考資料
+
+- [Google Cloud〈What is prompt engineering?〉](https://cloud.google.com/discover/what-is-prompt-engineering)
+
+[← 上一集：為什麼 AI 很有自信卻答錯？](https://thinkbigtw.com/library/academy/ep02-ai-confident-but-wrong/)　[下一集：AI 到底是什麼？用生活例子一次聽懂 →](https://thinkbigtw.com/library/academy/ep04-what-is-ai-daily-examples/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep04-what-is-ai-daily-examples/
+
+# AI 到底是什麼？用生活例子一次聽懂｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# AI 到底是什麼？用生活例子一次聽懂
+
+你可能早就在用 AI，只是沒這樣叫它。用辨認、預測、生成三個生活例子一次聽懂。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 你可能早就在用 AI，只是沒這樣叫它。
+
+- 三個生活例子：相簿自動分類是辨認；平台猜你想看什麼是預測；請它寫一段文字是生成。
+
+- AI 是一大類方法，不是單一個 App。
+
+- 自動的功能不一定都用 AI；想知道某個功能有沒有用 AI，看它的官方說明最準。
+
+## 術語小卡
+
+- AI（人工智慧） ：一大類讓機器做辨認、理解語言、給出推薦的方法，不是單一個 App。（例：相簿自動分類、影音平台推薦、請它寫一段文字。）
+
+## 一招用法
+
+找一個你每天在用的功能，去看它的官方說明有沒有寫到 AI。
+
+## 參考資料
+
+- [IBM〈What is artificial intelligence (AI)?〉](https://www.ibm.com/think/topics/artificial-intelligence)
+
+[← 上一集：第一次用 AI：今天只完成這件事](https://thinkbigtw.com/library/academy/ep03-first-time-one-task/)　[下一集：看不懂英文通知？抓出要做的事 →](https://thinkbigtw.com/library/academy/ep05-english-notice-action-items/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep05-english-notice-action-items/
+
+# 看不懂英文通知？抓出要做的事｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 看不懂英文通知？抓出要做的事
+
+英文通知翻完了還是不知道要做什麼？多問一步：請 AI 列出要做的事、截止日期和原文出處。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 翻譯完還是不知道要做什麼，就多問這一步。
+
+- 請 AI 在翻譯之外，另外列出要做的事、截止日期和原文出處，沒寫的不要推測。
+
+- 這個動作叫資訊擷取。
+
+- 日期、時區、否定詞（不用、不要）一定要自己核對。
+
+## 術語小卡
+
+- 資訊擷取 ：把一段文字裡的重點資訊挑出來，整理成條列。（例：從一則通知列出要做的事、截止日期和原文出處。）
+
+## 一招用法
+
+找一張匿名的通知，整理出要做的事、期限和依據，再回原文核對日期與否定詞。
+
+幫我把以下通知翻成中文，另外列出我要做的事、截止日期和原文出處；沒寫的不要推測：[通知]
+
+## 參考資料
+
+- [IBM〈What is information extraction?〉](https://www.ibm.com/think/topics/information-extraction)
+
+[← 上一集：AI 到底是什麼？用生活例子一次聽懂](https://thinkbigtw.com/library/academy/ep04-what-is-ai-daily-examples/)　[下一集：哪些個資不適合直接貼進 AI？ →](https://thinkbigtw.com/library/academy/ep06-personal-data-before-pasting-ai/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep06-personal-data-before-pasting-ai/
+
+# 哪些個資不適合直接貼進 AI？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 哪些個資不適合直接貼進 AI？
+
+先替資料做減法，再讓工具幫忙。遮掉名字不代表認不出來，請 AI 給匿名化檢查清單就好。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 先替資料做減法，再讓工具幫忙。
+
+- 依台灣個資法，姓名、身分證字號、聯絡方式等，能直接或間接認出是誰的，都是個人資料（英文常寫 PII）。
+
+- 遮掉名字不代表認不出來：職位、公司、哪一天湊在一起，還是可能猜到是誰。
+
+- 請 AI 給檢查清單就好，不要把原始資料貼上去。
+
+## 術語小卡
+
+- 個人資料（PII） ：能直接或間接認出是誰的資料，英文常寫 PII。（例：姓名、身分證字號、聯絡方式；職稱加公司加日期湊在一起也可能認出人。）
+
+## 一招用法
+
+把一份假資料改成最少、必要的資訊；先請 AI 給匿名化檢查清單，再自己對照修改。
+
+請提供匿名化檢查清單，幫我確認文本是否仍有可識別個人的線索，不要求我貼出原始個資。
+
+## 參考資料
+
+- [個人資料保護法 第 2 條（全國法規資料庫）](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=I0050021&flno=2)
+
+- [NIST CSRC Glossary：Personally Identifiable Information](https://csrc.nist.gov/glossary/term/personally_identifiable_information)
+
+[← 上一集：看不懂英文通知？抓出要做的事](https://thinkbigtw.com/library/academy/ep05-english-notice-action-items/)　[下一集：不會英文，也不會寫程式，可以用 AI 嗎？ →](https://thinkbigtw.com/library/academy/ep07-no-english-no-coding-ok/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep07-no-english-no-coding-ok/
+
+# 不會英文，也不會寫程式，可以用 AI 嗎？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 不會英文，也不會寫程式，可以用 AI 嗎？
+
+可以。中文說得清楚，就是很好的開始。用一則婉拒訊息練習，再改成自己的口氣。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 可以。中文說得清楚，就是很好的開始。
+
+- 用免費版的聊天 AI，用中文說清楚你要什麼，例如客氣地說這個星期六不能去、友善簡短、不要替你編理由。
+
+- 我們平常說的話叫自然語言；讓電腦聽懂、也能回應它的技術，叫自然語言處理。
+
+- 拿到回覆後改成自己平常的口氣；重要內容自己看過再送出。
+
+## 術語小卡
+
+- 自然語言處理（NLP） ：讓電腦聽懂人平常說的話、也能回應的技術。（例：你用中文打一句話，AI 就能照意思回覆。）
+
+## 一招用法
+
+用這句產生訊息，再改成自己平常的口氣，完成一則可以直接送出的訊息。
+
+幫我用中文，客氣地說我這個星期六不能去，友善簡短，不要替我編理由。
+
+## 參考資料
+
+- [IBM〈What is natural language processing (NLP)?〉](https://www.ibm.com/think/topics/natural-language-processing)
+
+[← 上一集：哪些個資不適合直接貼進 AI？](https://thinkbigtw.com/library/academy/ep06-personal-data-before-pasting-ai/)　[下一集：為什麼「幫我寫一下」不好用？ →](https://thinkbigtw.com/library/academy/ep08-why-write-for-me-fails/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep08-why-write-for-me-fails/
+
+# 為什麼「幫我寫一下」不好用？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 為什麼「幫我寫一下」不好用？
+
+AI 沒有住在你的腦袋裡。對象、場合、長度、語氣這些背景要讓它知道，它才寫得出你要的。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- AI 沒有住在你的腦袋裡，你沒說的背景，它就不會知道。
+
+- 同一個寫信任務，「幫我寫一封感謝信」和補上對象、場合、長度、語氣的版本，給 AI 的材料差很多。
+
+- 你給它的這些背景叫上下文；模型一次能參考的內容叫上下文視窗。
+
+- 先寫清楚對象和目的，再請它動筆。
+
+## 術語小卡
+
+- 上下文 ：你給 AI 的背景資訊，例如對象、場合、長度、語氣。
+
+- 上下文視窗 ：模型一次能參考的內容範圍。
+
+## 一招用法
+
+拿一個你以前問過的問題，補上對象和目的再問一次。
+
+幫我寫給第一次合作夥伴的會後感謝訊息，八十字內，親切專業，不承諾未確認事項。
+
+## 參考資料
+
+- [IBM〈What is a context window?〉](https://www.ibm.com/think/topics/context-window)
+
+[← 上一集：不會英文，也不會寫程式，可以用 AI 嗎？](https://thinkbigtw.com/library/academy/ep07-no-english-no-coding-ok/)　[下一集：回答太長？指定輸出格式 →](https://thinkbigtw.com/library/academy/ep09-long-answer-output-format/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep09-long-answer-output-format/
+
+# 回答太長？指定輸出格式｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 回答太長？指定輸出格式
+
+AI 回答一大串、看完還不知道要做什麼？請它排成清單或表格，更好讀也更好執行。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- AI 回答一大串，看完還是不知道要做什麼，就指定輸出格式。
+
+- 1997 年 Nielsen Norman Group 的網頁研究發現，多數人看文字是挑重點掃過去，很少逐字讀。
+
+- 同一個答案排成清單或表格，就好讀很多。
+
+- 表格很整齊，不代表內容都對；時間和負責人要對回原本的通知。
+
+## 術語小卡
+
+- 輸出格式 ：你指定 AI 用什麼樣子回答，例如清單或表格。（例：三欄表格：要做的事、哪天要好、誰來做。）
+
+## 一招用法
+
+拿一段很長的訊息，請 AI 改成一份行動清單，再把時間和負責人對回原文。
+
+把以下內容整理成三欄表格：要做的事、哪天要好、誰來做；缺資料寫未提供：[內容]
+
+## 參考資料
+
+- [Nielsen Norman Group〈How Users Read on the Web〉（1997）](https://www.nngroup.com/articles/how-users-read-on-the-web/)
+
+- [Microsoft Learn〈Prompt engineering techniques〉](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/prompt-engineering)
+
+[← 上一集：為什麼「幫我寫一下」不好用？](https://thinkbigtw.com/library/academy/ep08-why-write-for-me-fails/)　[下一集：打字太慢？試著直接用說的 →](https://thinkbigtw.com/library/academy/ep10-typing-slow-use-voice/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep10-typing-slow-use-voice/
+
+# 打字太慢？試著直接用說的｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 打字太慢？試著直接用說的
+
+想不清楚也沒關係，先說，再整理。用語音把要買的東西一口氣說出來，再請 AI 排成清單。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 想不清楚也沒關係，先說，再整理。
+
+- 很多聊天 AI 都有麥克風按鈕，可以把要買的東西一口氣說出來。
+
+- 把聲音變成文字的技術叫語音轉文字（STT）。
+
+- 轉完先看一遍有沒有聽錯，再請它整理；各家工具的語音功能不太一樣。
+
+## 術語小卡
+
+- 語音轉文字（STT） ：把聲音變成文字的技術。（例：對著聊天 AI 的麥克風說出待辦，它轉成文字。）
+
+## 一招用法
+
+口述三件待辦，再核對一次轉出來的文字有沒有聽錯。
+
+先把這段口述整理成清單，遇到不確定的品項先問我，不要猜。
+
+## 參考資料
+
+- [IBM〈What is speech to text?〉](https://www.ibm.com/think/topics/speech-to-text)
+
+[← 上一集：回答太長？指定輸出格式](https://thinkbigtw.com/library/academy/ep09-long-answer-output-format/)　[下一集：不知道要什麼？請 AI 先問你 →](https://thinkbigtw.com/library/academy/ep11-let-ai-ask-you-first/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep11-let-ai-ask-you-first/
+
+# 不知道要什麼？請 AI 先問你｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 不知道要什麼？請 AI 先問你
+
+不用逼自己一次把需求講完。請 AI 一次問一個問題、最多五題，問完再幫你整理方向。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 不用逼自己一次把需求講完，請 AI 先問你。
+
+- 例如想開始做自媒體但方向不清楚：請它一次問一個問題、最多五題，問完再整理方向。
+
+- 這種做法叫釐清提問。
+
+- 它問的問題也可能帶著它自己的假設，最後的整理要確認是不是真的符合你。
+
+## 術語小卡
+
+- 釐清提問 ：請 AI 反過來問你問題，先把需求問清楚，再開始做。（例：一次問一個問題、最多五題，最後整理方向。）
+
+## 一招用法
+
+讓 AI 問你五題，最後檢查它整理出來的方向像不像你。
+
+我想開始自媒體但方向不清楚。請一次問一個問題，最多五題，最後整理方向。
+
+## 參考資料
+
+- [IBM〈What is prompt engineering?〉](https://www.ibm.com/think/topics/prompt-engineering)
+
+[← 上一集：打字太慢？試著直接用說的](https://thinkbigtw.com/library/academy/ep10-typing-slow-use-voice/)　[下一集：給一個範例，讓 AI 更懂你 →](https://thinkbigtw.com/library/academy/ep12-give-an-example/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep12-give-an-example/
+
+# 給一個範例，讓 AI 更懂你｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 給一個範例，讓 AI 更懂你
+
+與其說「像我一點」，不如直接給它看。準備三段你寫過的文字，請 AI 整理語氣再寫新內容。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 與其說「像我一點」，不如直接給 AI 看你的文字。
+
+- 準備三段你自己寫過、可以公開的文字，請 AI 先整理語氣特徵，再寫新內容。
+
+- 給它幾個範例，這種做法叫少樣本提示（Few-shot）。
+
+- 範例裡的錯字和錯誤也可能被學去，給範例前先自己看一遍。
+
+## 術語小卡
+
+- 少樣本提示（Few-shot） ：在提示詞裡給 AI 幾個範例，讓它照著範例的樣子做。（例：貼上三段自己寫過的文字，請它整理語氣特徵再寫新內容。）
+
+## 一招用法
+
+準備三段可以公開的個人文字貼進去，請它不要沿用原句，再自己檢查語氣像不像你。
+
+參考這三段我寫的文字，整理語氣特徵，再寫一段新內容，不沿用原句：[範例]
+
+## 參考資料
+
+- [IBM〈What is few-shot prompting?〉](https://www.ibm.com/think/topics/few-shot-prompting)
+
+[← 上一集：不知道要什麼？請 AI 先問你](https://thinkbigtw.com/library/academy/ep11-let-ai-ask-you-first/)　[下一集：把任務、對象、限制說清楚 →](https://thinkbigtw.com/library/academy/ep13-task-audience-constraints/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep13-task-audience-constraints/
+
+# 把任務、對象、限制說清楚｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 把任務、對象、限制說清楚
+
+一個好的交辦，通常就差三個資訊：任務、對象、限制。用三欄交辦卡一次補齊。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 一個好的交辦，通常就差三個資訊：任務、對象、限制。
+
+- 不要只說「幫我寫一段介紹」，改成三欄交辦卡：任務是什麼、寫給誰、有什麼限制。
+
+- 這些框住範圍的條件叫限制條件。
+
+- 條件太多或彼此矛盾（又要很短又要很詳細），結果反而會變差。
+
+## 術語小卡
+
+- 限制條件 ：框住 AI 回答範圍的條件，例如字數、語氣、要避開的東西。（例：六十字內、描述使用情境、避免專有名詞。）
+
+## 一招用法
+
+替你自己的任務完成一張三欄交辦卡：任務、對象、限制，再丟給 AI。
+
+為完全不懂香氛的新客寫一段香水介紹，六十字內，描述使用情境，避免專有名詞。
+
+## 參考資料
+
+- [Google Cloud〈What is prompt engineering?〉](https://cloud.google.com/discover/what-is-prompt-engineering)
+
+[← 上一集：給一個範例，讓 AI 更懂你](https://thinkbigtw.com/library/academy/ep12-give-an-example/)　[下一集：需要買新手機、新電腦才能開始嗎？ →](https://thinkbigtw.com/library/academy/ep14-need-new-phone-or-laptop/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep14-need-new-phone-or-laptop/
+
+# 需要買新手機、新電腦才能開始嗎？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 需要買新手機、新電腦才能開始嗎？
+
+想學 AI 要先買新設備嗎？先別買。問題會送到遠端處理，很多事用手上的舊手機就能開始。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 想學 AI，先別急著買新設備。
+
+- 國際電信聯盟（ITU）統計，2024 年全世界有 55 億人在上網，約佔七成人口。
+
+- 你在手機問 AI，問題會送到遠端服務處理，再把答案傳回來，這叫雲端運算。
+
+- 所以很多事，手上的舊手機也能開始；還是會受網路、裝置和服務條件影響。
+
+## 術語小卡
+
+- 雲端運算 ：把工作交給遠端的服務處理，再把結果傳回你的裝置。（例：在手機問 AI，問題送到遠端處理，答案再傳回來。）
+
+## 一招用法
+
+列出你現有的裝置，和你最想完成的兩件事，再用這句請 AI 列出選設備前要確認的條件。
+
+我想做文字整理與英文練習，請列出選設備前要確認的條件，不推薦品牌。
+
+## 參考資料
+
+- [IBM〈What is cloud computing?〉](https://www.ibm.com/think/topics/cloud-computing)
+
+- [ITU〈Facts and Figures 2024 – Internet use〉](https://www.itu.int/itu-d/reports/statistics/2024/11/10/ff24-internet-use/)
+
+[← 上一集：把任務、對象、限制說清楚](https://thinkbigtw.com/library/academy/ep13-task-audience-constraints/)　[下一集：冰箱剩這些，可以煮什麼？ →](https://thinkbigtw.com/library/academy/ep15-fridge-leftovers-what-to-cook/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep15-fridge-leftovers-what-to-cook/
+
+# 冰箱剩這些，可以煮什麼？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 冰箱剩這些，可以煮什麼？
+
+把限制說出來，比只問「吃什麼」有效。先列食材、時間、份量、廚具，再請 AI 想一道菜。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 把限制說出來，比只問「吃什麼」有效。
+
+- 美國農業部（USDA）建議，剩菜冷藏，三到四天內吃完；問 AI 之前，先把快到期的拿出來。
+
+- 先列食材、時間、份量、廚具四樣，再請 AI 在這個範圍內想一道菜。
+
+- 食物能不能吃，不要靠 AI 或照片判斷，過期和保存狀況自己確認。
+
+## 術語小卡
+
+- 限制條件 ：框住 AI 回答範圍的條件。（例：兩人份、只有蛋、豆腐、青菜和平底鍋、二十分鐘內、不新增食材。）
+
+## 一招用法
+
+列出食材、時間、份量、廚具，選一道你自己能確認做法的料理。
+
+兩人份，只有蛋、豆腐、青菜與平底鍋，二十分鐘內做一道菜，不新增食材。
+
+## 參考資料
+
+- [USDA FSIS〈Leftovers and Food Safety〉](https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/leftovers-and-food-safety)
+
+[← 上一集：需要買新手機、新電腦才能開始嗎？](https://thinkbigtw.com/library/academy/ep14-need-new-phone-or-laptop/)　[下一集：一週晚餐與買菜清單一起整理 →](https://thinkbigtw.com/library/academy/ep18-weekly-dinner-shopping-list/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep18-weekly-dinner-shopping-list/
+
+# 一週晚餐與買菜清單一起整理｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 一週晚餐與買菜清單一起整理
+
+晚餐排好了，買菜卻總是漏東西？把菜單和清單連起來，請 AI 合併食材、分開現有與待買。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 晚餐排好了，買菜卻總是漏東西？把兩件事連起來。
+
+- 聯合國環境署（UNEP）2024 年的報告說，全世界每天浪費掉的餐點超過十億份；先排好菜單、對好冰箱，就能少買、也少丟。
+
+- 寫好三天晚餐，請 AI 整理買菜清單：相同食材合併、分開列現有和待買、數量不清楚先問你。
+
+- 從菜單到清單一步接一步，就是一個工作流程（Workflow）。
+
+- 合併數量和單位最容易出錯，清單出來後自己對一下冰箱。
+
+## 術語小卡
+
+- 工作流程（Workflow） ：把一件事拆成一步接一步的流程。（例：從三天晚餐菜單，到合併成一張買菜清單。）
+
+## 一招用法
+
+寫好三天的晚餐，請 AI 整理成一張買菜清單，再對照冰箱檢查數量和單位。
+
+依這三日晚餐整理買菜清單，相同食材合併，分開列現有與待買，數量不明先問：[菜單]
+
+## 參考資料
+
+- [IBM〈What is workflow automation?〉](https://www.ibm.com/think/topics/workflow-automation)
+
+- [UNEP〈World squanders over 1 billion meals a day – UN report〉（2024）](https://www.unep.org/news-and-stories/press-release/world-squanders-over-1-billion-meals-day-un-report)
+
+[← 上一集：冰箱剩這些，可以煮什麼？](https://thinkbigtw.com/library/academy/ep15-fridge-leftovers-what-to-cook/)　[下一集：AI 能幫我做什麼？從你的一天找用途 →](https://thinkbigtw.com/library/academy/ep19-what-can-ai-do-for-me/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep19-what-can-ai-do-for-me/
+
+# AI 能幫我做什麼？從你的一天找用途｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# AI 能幫我做什麼？從你的一天找用途
+
+先別急著找工具，先找你每天最煩的那件事。把一天分成整理、創作、判斷，先挑一件低風險的交給 AI。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 先別急著找工具，先找你每天最煩的那件事。
+
+- 史丹佛 AI Index 2025 報告指出，2024 年有 78% 的組織在使用 AI；但你不用等公司，先從自己的小事開始。
+
+- 把一天分成整理、創作、判斷三種事，先挑一件低風險又常重複的交給 AI；判斷類的事自己來。
+
+- AI 產生答案，不等於事情做完了，你仍要確認。
+
+## 一招用法
+
+寫下你的一天，請 AI 找出三件適合用 AI 協助的事；挑你最常重複的那一件開始。
+
+這是我的一天：[內容]。找出三件適合用 AI 協助的事，說明我仍要確認什麼。
+
+## 參考資料
+
+- [IBM〈What is generative AI?〉](https://www.ibm.com/think/topics/generative-ai)
+
+- [Stanford HAI〈AI Index Report 2025〉](https://hai.stanford.edu/ai-index/2025-ai-index-report)
+
+[← 上一集：一週晚餐與買菜清單一起整理](https://thinkbigtw.com/library/academy/ep18-weekly-dinner-shopping-list/)　[下一集：同一件事接著聊，還是開新對話？ →](https://thinkbigtw.com/library/academy/ep20-continue-or-new-chat/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep20-continue-or-new-chat/
+
+# 同一件事接著聊，還是開新對話？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 同一件事接著聊，還是開新對話？
+
+跟 AI 聊很久越來越亂？先請它整理一張交接單，貼到新對話接著做。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 跟 AI 聊很久越來越亂，先整理交接，再開新對話。
+
+- AI 一次能看的對話長度有上限，聊得太長，前面的內容就可能被擠出去。
+
+- 請它把目標、已確認條件、未決問題整理成交接單，貼到新對話接著做。
+
+- 模型一次能參考的文字量叫上下文視窗（Context Window）。
+
+- 漏掉東西不一定只是容量不夠，交接單要自己看一遍。
+
+## 術語小卡
+
+- 上下文視窗（Context Window） ：模型一次能參考的文字量。（例：對話聊得太長，前面的內容就可能被擠出去。）
+
+## 一招用法
+
+替一段對話做一份交接單，貼進新對話，確認重點都在。
+
+整理本對話的目標、已確認條件、未決問題，做成新對話可用的交接單。
+
+## 參考資料
+
+- [Anthropic〈Context windows〉](https://docs.anthropic.com/en/docs/build-with-claude/context-windows)
+
+- [IBM〈What is a context window?〉](https://www.ibm.com/think/topics/context-window)
+
+[← 上一集：AI 能幫我做什麼？從你的一天找用途](https://thinkbigtw.com/library/academy/ep19-what-can-ai-do-for-me/)　[下一集：AI 沒把握也會編？先問這一句 →](https://thinkbigtw.com/library/academy/ep21-ai-unsure-ask-this-line/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep21-ai-unsure-ask-this-line/
+
+# AI 沒把握也會編？先問這一句｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# AI 沒把握也會編？先問這一句
+
+通知沒寫時間，AI 卻編了一個？多問一句，請它先列出可能答錯的地方。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 通知沒寫時間，AI 卻編了一個？多問一句，它比較會先說沒把握。
+
+- 在問題後面加一句，請它先列出可能答錯的地方。
+
+- 原因像考試猜題：亂猜也可能猜對；研究發現，有些評分方式會鼓勵猜。
+
+- 它列出的地方，你再自己查一次；再加一句「每一點附上出處」更好。
+
+## 一招用法
+
+下次問 AI 之前，順手加上這一句，再把它列出的地方自己查一次。
+
+回答前，先列出你可能答錯的地方，和我該自己查的地方。
+
+## 參考資料
+
+- [Kalai, Nachum, Vempala, Zhang〈Why Language Models Hallucinate〉（arXiv 2509.04664, 2025）](https://arxiv.org/abs/2509.04664)
+
+[← 上一集：同一件事接著聊，還是開新對話？](https://thinkbigtw.com/library/academy/ep20-continue-or-new-chat/)　[下一集：拍下菜單，順便練習點餐 →](https://thinkbigtw.com/library/academy/ep22-photo-menu-order-practice/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep22-photo-menu-order-practice/
+
+# 拍下菜單，順便練習點餐｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 拍下菜單，順便練習點餐
+
+看不懂的英文菜單，拍一張就有中文，還能順便學一句點餐英文。有過敏要當面問店員。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 看不懂的英文菜單，拍一張就有中文，還能順便學一句點餐英文。
+
+- 上傳照片後，先請它標出看不清的字，再把菜名翻成中文、寫一句點餐英文。
+
+- 先標看不清的字，是因為字看不清就容易看錯，像一張很舊的收據。
+
+- 有過敏的話，不能只靠照片判斷，一定要當面問店員；可以再請它寫一句問有沒有含堅果的英文。
+
+## 一招用法
+
+拍一張菜單，用這句請 AI 處理，練習那一句點餐英文。
+
+先標出看不清的字，再把菜名翻成中文，最後寫一句英文點餐句。
+
+## 參考資料
+
+- [U.S. FDA〈Food Allergies〉](https://www.fda.gov/food/food-labeling-nutrition/food-allergies)
+
+[← 上一集：AI 沒把握也會編？先問這一句](https://thinkbigtw.com/library/academy/ep21-ai-unsure-ask-this-line/)　[下一集：出門總是漏東西？做行李清單 →](https://thinkbigtw.com/library/academy/ep25-packing-list/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep25-packing-list/
+
+# 出門總是漏東西？做行李清單｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 出門總是漏東西？做行李清單
+
+出差三天，行李先分三類：證件、衣物、電子產品。把行程寫給 AI，請它照三類列清單。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 出差三天，行李先分這三類：證件、衣物、電子產品。
+
+- 把行程寫給 AI，請它按三類列清單；每趟行程都不一樣，行李也要看行程準備。
+
+- 要搭飛機的話，行動電源要放隨身行李（美國聯邦航空總署 PackSafe 的規定）。
+
+- 各航空公司另有容量規定，出發前再查一次；天氣也再看一次。
+
+## 一招用法
+
+下次出門前，先做一張行李清單，再加三樣只有你需要的東西。
+
+三天兩夜國內出差，有一場正式會議，請按證件、衣物、電子產品三類列行李清單
+
+## 參考資料
+
+- [美國聯邦航空總署 FAA〈PackSafe - Lithium Batteries〉](https://www.faa.gov/hazmat/packsafe/lithium-batteries)
+
+[← 上一集：拍下菜單，順便練習點餐](https://thinkbigtw.com/library/academy/ep22-photo-menu-order-practice/)　[下一集：待辦太多，怎麼排今天？ →](https://thinkbigtw.com/library/academy/ep26-plan-todo-today/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/ep26-plan-todo-today/
+
+# 待辦太多，怎麼排今天？｜Think BIG
+
+[← 陪你跟上 AI](https://thinkbigtw.com/library/academy/)
+
+# 待辦太多，怎麼排今天？
+
+十件待辦、兩小時，排得完嗎？把清單拍照傳給 AI，請它排今天，排不下的放明天。
+
+本集影像與配音為 AI 生成。
+
+## 本集重點
+
+- 十件待辦、兩小時，排得完嗎？拍一張照，讓 AI 幫你排今天。
+
+- 手寫清單或便利貼拍一張（備忘錄截圖也可以）傳給 AI，說你今天有多少時間，請它排好、多出來的放明天。
+
+- 再補一句「幫我留點空檔」，因為估時間常常太樂觀。
+
+- 它排的時間只是起點，自己再看一次。
+
+## 術語小卡
+
+- 規劃謬誤 ：人在估算完成時間時，常常估得太樂觀。（例：出門總覺得十分鐘就到。）
+
+## 一招用法
+
+把待辦拍照傳給 AI，說明今天的時間，明天照它排的做一次，看哪件超時。
+
+我今天只有兩小時，幫我排，多出來的放明天。
+
+## 參考資料
+
+- [Buehler 等（1994）規劃謬誤研究](https://doi.org/10.1037/0022-3514.67.3.366)
+
+[← 上一集：出門總是漏東西？做行李清單](https://thinkbigtw.com/library/academy/ep25-packing-list/)
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
+URL: https://thinkbigtw.com/library/academy/
+
+# 陪你跟上 AI
+
+每個平日一集，用白話講一個 AI 術語、教一招可以馬上用的做法。每集附影片、重點與參考資料。
+
+- [EP26　待辦太多，怎麼排今天？](https://thinkbigtw.com/library/academy/ep26-plan-todo-today/)
+十件待辦、兩小時，排得完嗎？把清單拍照傳給 AI，請它排今天，排不下的放明天。
+
+- [EP25　出門總是漏東西？做行李清單](https://thinkbigtw.com/library/academy/ep25-packing-list/)
+出差三天，行李先分三類：證件、衣物、電子產品。把行程寫給 AI，請它照三類列清單。
+
+- [EP22　拍下菜單，順便練習點餐](https://thinkbigtw.com/library/academy/ep22-photo-menu-order-practice/)
+看不懂的英文菜單，拍一張就有中文，還能順便學一句點餐英文。有過敏要當面問店員。
+
+- [EP21　AI 沒把握也會編？先問這一句](https://thinkbigtw.com/library/academy/ep21-ai-unsure-ask-this-line/)
+通知沒寫時間，AI 卻編了一個？多問一句，請它先列出可能答錯的地方。
+
+- [EP20　同一件事接著聊，還是開新對話？](https://thinkbigtw.com/library/academy/ep20-continue-or-new-chat/)
+跟 AI 聊很久越來越亂？先請它整理一張交接單，貼到新對話接著做。
+
+- [EP19　AI 能幫我做什麼？從你的一天找用途](https://thinkbigtw.com/library/academy/ep19-what-can-ai-do-for-me/)
+先別急著找工具，先找你每天最煩的那件事。把一天分成整理、創作、判斷，先挑一件低風險的交給 AI。
+
+- [EP18　一週晚餐與買菜清單一起整理](https://thinkbigtw.com/library/academy/ep18-weekly-dinner-shopping-list/)
+晚餐排好了，買菜卻總是漏東西？把菜單和清單連起來，請 AI 合併食材、分開現有與待買。
+
+- [EP15　冰箱剩這些，可以煮什麼？](https://thinkbigtw.com/library/academy/ep15-fridge-leftovers-what-to-cook/)
+把限制說出來，比只問「吃什麼」有效。先列食材、時間、份量、廚具，再請 AI 想一道菜。
+
+- [EP14　需要買新手機、新電腦才能開始嗎？](https://thinkbigtw.com/library/academy/ep14-need-new-phone-or-laptop/)
+想學 AI 要先買新設備嗎？先別買。問題會送到遠端處理，很多事用手上的舊手機就能開始。
+
+- [EP13　把任務、對象、限制說清楚](https://thinkbigtw.com/library/academy/ep13-task-audience-constraints/)
+一個好的交辦，通常就差三個資訊：任務、對象、限制。用三欄交辦卡一次補齊。
+
+- [EP12　給一個範例，讓 AI 更懂你](https://thinkbigtw.com/library/academy/ep12-give-an-example/)
+與其說「像我一點」，不如直接給它看。準備三段你寫過的文字，請 AI 整理語氣再寫新內容。
+
+- [EP11　不知道要什麼？請 AI 先問你](https://thinkbigtw.com/library/academy/ep11-let-ai-ask-you-first/)
+不用逼自己一次把需求講完。請 AI 一次問一個問題、最多五題，問完再幫你整理方向。
+
+- [EP10　打字太慢？試著直接用說的](https://thinkbigtw.com/library/academy/ep10-typing-slow-use-voice/)
+想不清楚也沒關係，先說，再整理。用語音把要買的東西一口氣說出來，再請 AI 排成清單。
+
+- [EP09　回答太長？指定輸出格式](https://thinkbigtw.com/library/academy/ep09-long-answer-output-format/)
+AI 回答一大串、看完還不知道要做什麼？請它排成清單或表格，更好讀也更好執行。
+
+- [EP08　為什麼「幫我寫一下」不好用？](https://thinkbigtw.com/library/academy/ep08-why-write-for-me-fails/)
+AI 沒有住在你的腦袋裡。對象、場合、長度、語氣這些背景要讓它知道，它才寫得出你要的。
+
+- [EP07　不會英文，也不會寫程式，可以用 AI 嗎？](https://thinkbigtw.com/library/academy/ep07-no-english-no-coding-ok/)
+可以。中文說得清楚，就是很好的開始。用一則婉拒訊息練習，再改成自己的口氣。
+
+- [EP06　哪些個資不適合直接貼進 AI？](https://thinkbigtw.com/library/academy/ep06-personal-data-before-pasting-ai/)
+先替資料做減法，再讓工具幫忙。遮掉名字不代表認不出來，請 AI 給匿名化檢查清單就好。
+
+- [EP05　看不懂英文通知？抓出要做的事](https://thinkbigtw.com/library/academy/ep05-english-notice-action-items/)
+英文通知翻完了還是不知道要做什麼？多問一步：請 AI 列出要做的事、截止日期和原文出處。
+
+- [EP04　AI 到底是什麼？用生活例子一次聽懂](https://thinkbigtw.com/library/academy/ep04-what-is-ai-daily-examples/)
+你可能早就在用 AI，只是沒這樣叫它。用辨認、預測、生成三個生活例子一次聽懂。
+
+- [EP03　第一次用 AI：今天只完成這件事](https://thinkbigtw.com/library/academy/ep03-first-time-one-task/)
+第一次用 AI 不知道要打什麼？今天只做一件事：寫出一則能直接用的訊息。
+
+- [EP02　為什麼 AI 很有自信卻答錯？](https://thinkbigtw.com/library/academy/ep02-ai-confident-but-wrong/)
+語氣很肯定，跟有證據是兩回事。大型語言模型在預測下一個字，接得順不代表內容是對的。
+
+- [EP01　完全不懂 AI，現在開始還來得及嗎？](https://thinkbigtw.com/library/academy/ep01-too-late-to-start-ai/)
+來得及。不用先追上別人，今天只完成一件小事：請聊天 AI 把待辦整理成今天能完成的三件事。
+
+想把這招用在公司流程？
+
+預約 30 分鐘免費評估，一起看哪些工作適合交給 AI Agent。
+
+[預約免費評估](https://thinkbigtw.com/enterprise/start/)　[LINE 洽詢 ↗](https://lin.ee/n5KW430)
+
+---
+
 URL: https://thinkbigtw.com/library/
 
 # Library｜報導・問答圖書館｜Think BIG
@@ -17939,6 +19035,13 @@ Library
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證。
 
 瀏覽問答 →](https://thinkbigtw.com/library/qa/)
+[Academy
+
+## 陪你跟上 AI
+
+每個平日一集，用白話講一個 AI 術語、教一招馬上能用的做法。每集附影片、重點與參考資料。
+
+看學堂 →](https://thinkbigtw.com/library/academy/)
 
 ---
 
