@@ -3523,6 +3523,113 @@ THINK BIG NEWS   ·  First-hand observations on AI deployment
 
 ---
 
+URL: https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/
+
+# Was This Image Made with AI? — What Content Credentials Can Tell You | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 022
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 18, 2026  ·  Wednesday
+◆
+AI Deployment Field Notes
+◆
+Issue 022
+
+C2PA · Content Credentials · AI disclosure
+
+## Was This Image Made with AI? — What Content Credentials Can Tell You
+
+Think BIG Media  |  November 18, 2026
+
+Read what a credential records and who signed it, then verify the claim made by the image. Missing credentials do not establish AI use. Teams need an intake and publication checklist.
+
+## One. The Shift Toward Provenance
+
+Can appearance alone tell us whether AI was used? Provenance offers another route. C2PA says its conformance program opened in June 2025 to check implementation and security requirements. This article follows that development; it is not a report of a new announcement today.[1]
+
+Content Credentials can record creation, editing, and tools used, with digitally signed provenance data. The C2PA FAQ describes a checkable history rather than a visual clue that readers must interpret from appearance.[2]
+
+Two limits matter. The C2PA 2.2 explainer separates provenance from factual truth. CAI documentation also says missing credentials are not evidence that an image is inauthentic. A valid record and an accurate story answer different questions.[3][4]
+
+## Two. The Case for Transparency, and Its Limits
+
+The benefit: inspectable evidence.  The conformance program evaluates credential implementations and publishes a list of conforming products.[1] In our reading, this gives teams concrete questions to ask about supported workflows instead of accepting a broad claim that AI content is labeled.
+
+The limitation: history may be incomplete.  CAI notes that a normal screenshot does not carry the original image’s C2PA metadata.[4] C2PA describes soft bindings such as watermarking or fingerprinting to help recover credentials, but that does not mean every forwarded image has a complete history.[2]
+
+We support using credentials as one part of verification while retaining editorial checks. Signing information, the depicted claim, the caption, and permission to use the asset need separate review. One successful technical check should not be extended to the entire story.[3]
+
+We suggest three review fields: provenance present in the file, checks actually performed by the validator, and facts independently checked by the editor. Do not let one field stand in for another. A recorded creation time still needs to be compared with the event date in the caption. This design makes the evidence boundary visible instead of adding an unexplained approval badge.[3]
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are questions we would ask during adoption, not a completed C2PA deployment or an account involving a particular client.
+
+1. Do we have the original file?  Ask where the asset came from, whether the team has only a screenshot, and whether the original is available. Keep an identifiable file location so reviewers and publishers inspect the same version.
+
+2. Who interprets the result?  Assign responsibility for checking the signer, verifying the caption, and handling an unverifiable file. Record missing data, unsupported data, and failed validation separately rather than labeling all three as a fabricated image.
+
+3. What will readers see?  Agree on a visible source and AI-use statement if the publication surface does not show credentials. Assign a new check when the file changes. This is a workflow proposal, not a claim that every platform preserves metadata.
+
+## Four. Our Recommendations: Four Checks
+
+1. Record the source at intake.  Keep the provider, acquisition date, original file location, and intended use. Ask whether the delivery is an original or an exported copy. Track permission separately.
+
+2. Match the record to the file.  Use a credential-aware tool and save the date and result. Distinguish signature checks, trust status, and recorded edits. Ask the provider about unclear fields instead of filling gaps with assumptions.[1][2]
+
+3. Verify factual claims separately.  List people, locations, dates, and event claims. Keep checks with the original publisher and caption review even when provenance validates. This is our editorial recommendation based on the specification’s limits.[3]
+
+4. Test the publishing path.  Run a sample through the actual crop, export, and upload process, then download and inspect it. If provenance does not survive, add an understandable explanation and retain the original and review record.[4]
+
+For handover, run one test asset from original-file intake through inspection, editing, export, upload, and download, then have another editor inspect the final file. Record filenames and results. If only a screenshot is available, say the original was unavailable rather than reporting that no AI use was found. This proposed drill checks how the team handles unknowns. Public wording should match available evidence even under publication pressure.
+
+◆ Editor’s Note · How Think BIG Approaches This: Keep Evidence Before Publication
+
+## Check disclosure, signatures, and facts separately.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to retain the source, AI-use disclosure, and publication review together. The checklist should distinguish confirmed facts from unknowns and identify who can approve use.
+
+We do not treat a badge as a factual verdict. When evidence is incomplete, narrow the wording to what it supports. The next editor should be able to inspect the reasoning behind the decision.
+
+### Frequently Asked Questions
+
+Q1: Does C2PA tell us whether an image is true?
+No. The explainer separates provenance from factual accuracy. Verify the depicted event separately.[3]
+Q2: Does a missing credential prove AI use?
+No. CAI says absence of credentials is not a negative authenticity signal.[4]
+Q3: Does a screenshot preserve the original credential?
+A normal screenshot does not contain the original C2PA metadata. Recovery mechanisms have separate requirements.[4][2]
+Q4: Does a credential grant usage rights?
+No. Provenance differs from DRM and access control. Confirm permission separately.[2]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] C2PA, “Conformance” (2025 program and public list); accessed 2026-10-26: [c2pa.org](https://c2pa.org/conformance/) ·
+    [2] C2PA, “FAQs” (signed provenance and soft bindings); accessed 2026-10-26: [c2pa.org](https://c2pa.org/faqs/) ·
+    [3] C2PA, “C2PA and Content Credentials Explainer,” specification 2.2 (limits); accessed 2026-10-26: [spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html) ·
+    [4] CAI, “Frequently-asked questions” (screenshots and missing credentials); accessed 2026-10-26: [opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/chatgpt-tw-citations-20261011/
 
 # Who Does ChatGPT Cite When It Answers Questions About Taiwan? Where Local Brands Should Put Their Information | Think BIG NEWS
@@ -3976,6 +4083,224 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 023
+
+November 20, 2026 · Local AI Field Notes
+
+## What Should You Back Up in a Local AI System? — Beyond Model Files
+
+Recovering a model does not reconstruct the working system.](https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/)
+[Issue 022
+
+November 18, 2026 · AI Deployment Field Notes
+
+## Was This Image Made with AI? — What Content Credentials Can Tell You
+
+Read what a credential records and who signed it, then verify the claim made by the image.](https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/)
+[Issue 020
+
+November 14, 2026 · AI Deployment Field Notes
+
+## Chat AI or an Ambient Agent? Define Triggers and Stop Conditions
+
+Start with who triggers the work and where it waits for a person. Background operation needs a defined scope, approval gates, and a way to stop.](https://thinkbigtw.com/en/news/ambient-vs-chat-ai-20261114/)
+[Issue 019
+
+November 12, 2026 · AI Deployment Field Notes
+
+## AI Keeps Missing the Point in Company Documents? Inspect Retrieval Before Changing Models
+
+Review the question, retrieved passages, and answer together. Locate the failure before changing documents, retrieval settings, or the model.](https://thinkbigtw.com/en/news/rag-retrieval-quality-20261112/)
+[Issue 018
+
+November 10, 2026 · Enterprise Security Notes
+
+## Should Every AI Skill Be Reviewed? Treat It as Part of the Supply Chain
+
+Before installing a skill, ask what it reads, executes, and sends elsewhere. Written instructions and executable scripts need different evidence.](https://thinkbigtw.com/en/news/vet-ai-agent-skills-20261110/)
+[Issue 017
+
+November 8, 2026 · Local AI Field Notes
+
+## Should AI Tools Update Automatically? Pin Versions and Plan Patches
+
+A business AI agent needs a known runtime. Pin a reproducible combination, then assign owners for updates, acceptance checks, and recovery.](https://thinkbigtw.com/en/news/pin-versions-ai-tools-20261108/)
+[Issue 016
+
+November 6, 2026 · AI Deployment Field Notes
+
+## What Is ISO/IEC 42001? Documenting How a Business Governs AI
+
+Inventory AI uses, owners, and checks before discussing certification. A management system needs evidence from everyday work.](https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/)
+[Issue 015
+
+November 4, 2026 · Local AI Field Notes
+
+## Can a Chinese Windows Username Disrupt Local AI? Check Paths and Logs
+
+A Chinese username is not a configuration error. When installation or GPU discovery fails, inspect the path the tool receives before changing directories.](https://thinkbigtw.com/en/news/non-ascii-username-local-ai-20261104/)
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT · FIELD NOTES
+
+First-hand observations on AI deployment
+◆
+thinkbigtw.com
+
+Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
+
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 013
+
+October 31, 2026 · Local AI Field Notes
+
+## Choosing a Local AI Model: Bigger Isn’t Automatically Better — Test It on Your Own Work
+
+Model size, context length, and concurrency all draw on the same VRAM. A large model that doesn’t fit can run slower than a smaller one fully on the GPU. Four steps: define tasks and metrics, do the memory math, test on your own questions, pick the smallest that passes.](https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/)
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 014
+
+November 2, 2026 · Enterprise Security Notes
+
+## What Is MCP? Set Permission Boundaries Before Connecting an AI Agent
+
+Before connecting an agent, define what it may read, change, and send. Review the connection protocol, authentication, and business approvals separately.](https://thinkbigtw.com/en/news/mcp-ai-agent-permissions-20261102/)
+[Issue 013
+
+October 31, 2026 · Local AI Field Notes
+
+## Choosing a Local AI Model: Bigger Isn’t Automatically Better — Test It on Your Own Work
+
+Model size, context length, and concurrency all draw on the same VRAM. A large model that doesn’t fit can run slower than a smaller one fully on the GPU. Four steps: define tasks and metrics, do the memory math, test on your own questions, pick the smallest that passes.](https://thinkbigtw.com/en/news/local-ai-model-selection-20261031/)
+[Issue 012
+
+October 29, 2026 · Enterprise Security Notes
+
+## AI Joins the Bug Hunt, and the Patch Window Shrinks — What PHP2Shell Means for Enterprise IT
+
+PHP fixed two critical flaws (CVE-2026-109618/109619, CVSS 9.2) on October 21 that can let an unauthenticated attacker run code on a server. CISA calls them “php2shell” and says: patch now or take it offline. Three steps: inventory every place PHP runs, update to the fixed release, and write event-driven patching into your process.](https://thinkbigtw.com/en/news/php2shell-patch-window-20261029/)
+[Issue 011
+
+October 27, 2026 · Local AI Deployment
+
+## Give Your Local AI Too Much “Memory” and It Can Drag Down the Whole Machine — How to Size the Context Length
+
+Ollama’s FAQ and its “Context length” page give different defaults; the safest check is the CONTEXT column in ollama ps . We look at why an oversized context slows everything down, what Flash Attention and K/V cache quantization offer, and how to work backward from real tasks to a number you can justify.](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261027/)
+[Issue 010
+
+October 24, 2026 · AI Security
+
+## AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else's Entry Point?
+
+Microsoft's latest investigation documents attackers using AI to accelerate existing attack workflows. For organizations, the immediate questions are which tools can read data or take action, and who approves and owns that access.](https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/)
+[Issue 009
+
+October 21, 2026 · AI Adoption
+
+## Rolled Out AI and Nobody Uses It? The Problem Usually Isn't the AI. Work Backward From the One Task Employees Actually Do Every Day
+
+Taiwan SMEs' biggest barrier is "no clear use case." BCG found 74% haven't seen results. MIT preliminary report: learning gap. The fix isn't a smarter model — work backward from one task employees actually do every day.](https://thinkbigtw.com/en/news/ai-adoption-nobody-uses-20261021/)
+[Issue 008
+
+October 19, 2026 · On-Premises vs. Cloud AI
+
+## Why Do Some Companies Run AI Agents on Their Own Machines Instead of the Cloud? Can the Data Leave?
+
+On-premises keeps the model and documents on company hardware; the cloud launches fast but your data goes to the provider. Taiwan's public-sector guideline, personal data law, provider terms, and six first-hand lessons from deploying both.](https://thinkbigtw.com/en/news/local-vs-cloud-ai-agent-20261019/)
+[Issue 007
+
+October 13, 2026 · AI Deployment
+
+## What Is a Forward Deployed Engineer, and Why Is It AI's Most Wanted Role? What Small Businesses Can Do Without an FDE Budget
+
+FDE postings grew more than 800% in 2025. In 2026, major companies invested billions in forward-deployed units. AI's bottleneck has moved from building models to putting them to work. Six lessons from doing this remotely.](https://thinkbigtw.com/en/news/fde-outsourced-engineer-20261013/)
+[Issue 006
+
+October 12, 2026 · AI Hallucinations
+
+## Confidently Wrong: What We Learned When an AI Said Our AI Company Had Nothing to Do with AI
+
+Training rewards guessing, not admitting uncertainty. Legal RAG tools still hallucinate on 17–33% of queries. Being pushed back makes AI more likely to flip from right to wrong. Five habits for individuals and five steps for businesses.](https://thinkbigtw.com/en/news/ai-hallucination-20261012/)
+[Issue 005
+
+October 11, 2026 · GEO Source Analysis
+
+## Who Does ChatGPT Cite When It Answers Questions About Taiwan? Where Local Brands Should Put Their Information
+
+15,729 citations reveal: ChatGPT leans on brand sites and government bodies, roughly 70% not in Chinese. Three AIs, three separate playing fields — local brands need a separate plan for each.](https://thinkbigtw.com/en/news/chatgpt-tw-citations-20261011/)
+[Issue 004
+
+October 9, 2026 · GEO Measurement
+
+## Asked AI Once and Called It? AI Answers Are Probabilities, Not Rankings: How to Measure GEO Properly
+
+Ask an AI the same question twice and most of the cited sources may change. A 2026 University of St. Gallen study found that when the same question is re-asked minutes apart, only about a third of the cited sources overlap. We cover what that means for measuring GEO properly.](https://thinkbigtw.com/en/news/geo-measurement-20261009/)
+[Issue 003
+
+October 7, 2026 · SEO / GEO
+
+## You Rank on Google. So Why Doesn’t ChatGPT Mention You? — SEO vs. GEO, Explained
+
+SEO gets you found in search results. GEO gets you mentioned in AI answers. Same foundation, different finish line: AI picks passages and weighs what others say about you.](https://thinkbigtw.com/en/news/seo-geo-difference-20261007/)
+[Issue 002
+
+October 5, 2026 · Local AI Deployment
+
+## Is Your Local AI Actually Using the GPU? “Installed” Doesn’t Mean “Running Well”
+
+When a local AI model is painfully slow, the most likely cause isn’t underpowered hardware — it’s that the model is running entirely on the CPU. One command, ten seconds, and you’ll know.](https://thinkbigtw.com/en/news/local-llm-gpu-check-20261005/)
+[Issue 001
+
+October 3, 2026 · AI Agent Deployment
+
+## Thinking about abandoning your AI Agent? Ask these three questions first — and stop getting locked in
+
+Most AI Agent abandonment has nothing to do with the tool itself. It comes down to three things nobody confirmed at the start: can you switch models, who owns the data, and can you predict the monthly cost?](https://thinkbigtw.com/en/news/lobster-hermes-abandonment-20261003/)
+
+This edition is also available in [Traditional Chinese (繁中版)](https://thinkbigtw.com/library/news/).
+
+[Issue 023
+
+November 20, 2026 · Local AI Field Notes
+
+## What Should You Back Up in a Local AI System? — Beyond Model Files
+
+Recovering a model does not reconstruct the working system.](https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/)
+[Issue 022
+
+November 18, 2026 · AI Deployment Field Notes
+
+## Was This Image Made with AI? — What Content Credentials Can Tell You
+
+Read what a credential records and who signed it, then verify the claim made by the image.](https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/)
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT · FIELD NOTES
+
+First-hand observations on AI deployment
+◆
+thinkbigtw.com
+
+Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
+
 [Issue 020
 
 November 14, 2026 · AI Deployment Field Notes
@@ -4256,6 +4581,13 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 029
+
+November 16, 2026 · Local AI Field Notes
+
+## A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers
+
+Total parameters, active parameters, and reported peak memory are three different numbers. Ask which machine each came from, then test on your own.](https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/)
 [Issue 012
 
 October 29, 2026 · Enterprise Security Notes
@@ -4906,6 +5238,148 @@ Sources
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
 THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/
+
+# A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 029
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 16, 2026  ·  Monday
+◆
+Local AI Field Notes
+◆
+Issue 029
+
+Local LLMs · Reading Specs · Acceptance Testing
+
+## A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers
+
+Think BIG Media  |  November 16, 2026
+
+The "145B," "about 10B," and "29GB" in one announcement measure three different things: how big the model is in total, how much is computed at each step, and the most memory used under the vendor's own test setup. When you see specs like these, ask which machine and which conditions each number came from, then test on your own machine and your own documents.
+
+(Every vendor figure in this article comes from the company's own announcement and is vendor-reported. We have not reproduced any of it. This article does not rate the company or the model, and it takes no position on whether the model performs as described.)
+
+## One. What's Happening: Three Numbers in One Announcement
+
+On November 12, 2026, Edge0 released two open-weight models, Edge0-145B and Edge0-120B, together with an inference framework and deployment tools.[1] For the 145B model, the post gives several figures at once (all vendor-reported):
+
+Total parameters:  145B.
+
+Active parameters:  roughly 10B take part in computation at each inference step.
+
+Peak memory:  29GB.
+
+Tiered storage:  an expert library of about 40GB sits in system memory, and about 48GB of vocabulary data sits on the SSD and is read on demand.
+
+Speed and context:  decoding at 80+ tokens per second, prefill at 1,100+ tokens per second, and a 128K–256K context. The post also lists about 120W typical power and says there was no throttling in its reported setup.[1]
+
+The three numbers most often mixed up answer different questions:
+
+Total parameters: 145B:  measures how many parameters the model has in all. The question it answers: how large the weights are and where they have to live.
+
+Active parameters: about 10B:  measures parameters used in computation at each step. The question it answers: how much work each step does; it relates to speed and does not mean only this much has to be loaded.
+
+Peak memory: 29GB:  measures the most memory used under the vendor's reported test setup. The question it answers: usage under that setup, not whether your machine is enough.
+
+That breakdown is our reading. The post's own description is that weights are spread across GPU memory, system memory, and SSD, with reading and computation overlapping.[1]
+
+What the post does not say, and the limits it does state:
+
+Which machine produced the 29GB figure: the post says only "a compatible laptop, such as a MacBook Pro," with no chip or memory configuration.
+
+What context length the 29GB was measured at: not stated.
+
+Whether the 40GB and 48GB figures add to the 29GB: the post gives no calculation.
+
+The full evaluation setup, hardware environment, and reproduction steps: the post says they will come with a technical report.[1]
+
+The post itself cautions that this does not mean every device can run the 145B model; very low-compute devices need a smaller model or the cloud, and cross-device long-term memory and searches that need current information still need cloud services.[1]
+
+License: the post says open source and points to Hugging Face for the weights. The body text does not name a license.[1]
+
+## Two. The Case for Specs, and the Case for Acceptance Tests
+
+The case for reading the specs:  the post handles "will it fit" by splitting storage into three tiers, and it mentions use on a laptop with 48GB of memory.[1] For teams that want to run large models locally, that means "fits" is no longer a single number, and the architecture description deserves a careful read.
+
+The case for acceptance testing:  Ollama's documentation says a longer context length raises the memory a model needs, that you should confirm you have enough VRAM before raising it, and that for best performance you should avoid offloading to the CPU. The ollama ps  PROCESSOR column shows the split.[2] The NIST AI Risk Management Framework (AI RMF 1.0), under MEASURE 2.3, says performance should be demonstrated under conditions similar to the deployment setting, with the measurements documented.[3]
+
+The two views can coexist. The order is what matters: the vendor's specs help you decide whether a model belongs on the shortlist, and testing on your own machine decides whether you can tell a user "yes."
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These are the habits we follow when we evaluate local models. They are not industry statistics and do not describe any particular client.
+
+1. If we haven't tested on a machine in the same class as the client's, we don't tell the client it will work.  The memory figure on a spec sheet often differs from what you see during long use. The gap usually comes from context length, other programs running at the same time, and the class of the machine.
+
+2. "It runs" and "it's usable" are different things.  A model can load and answer its first prompt, and still slow down after hours of continuous use. Time to first token and slowdown over long sessions need to be measured separately.
+
+3. We label vendor numbers "vendor-reported," every time.  That is not distrust. It tells whoever retests later where the number came from and which conditions were never stated.
+
+## Four. Our Recommendations: A Three-Step Acceptance Check
+
+1. Check the license and where the weights come from.  Confirm where the weights are downloaded from and read the license text itself, including what it says about commercial use, redistribution, and modification. "Open source" in an announcement is not enough.
+
+2. Test on the target machine.  Use the context length you will actually use, with the programs you normally keep open, and measure three things: peak memory, time to first token, and slowdown after long use. Record the machine model, memory size, context length, and test duration.[2][3]
+
+3. Treat vendor benchmarks as leads, and check with a small sample of your own documents.  Public benchmarks test someone else's questions. Take ten to twenty documents or questions you really handle, run them through, and have the person who owns that work review the results.
+
+In one sentence: the spec sheet tells you a model is worth trying; your machine and your documents tell you whether it works.
+
+◆ Editor’s Note · How Think BIG Approaches This
+
+## Leave a Record That Can Be Retested
+
+(The following is Think BIG's practical position, separate from the reporting above.)
+
+When we evaluate a local model for a company, we deliver more than "it's installed." A few examples:
+
+Machine test record:  peak memory, time to first token, and slowdown over continuous use, measured on a machine in the same class as yours and delivered with the test conditions.
+
+Document acceptance set:  questions and results built from a small sample of your own documents, so a later model change can be retested against the same set.
+
+License and source record:  where the weights came from and how to read the license, summarized on one page.
+
+These are just a few of the things we do. Other workflows can be customized to your needs.
+
+### Frequently Asked Questions
+
+Q1: Does 145B mean I need enough memory to hold 145 billion parameters?
+You can't conclude that from this number alone. The post says about 10B parameters take part in each step and that weights are spread across GPU memory, system memory, and SSD.[1] What you actually need depends on your machine and settings, so test it.
+Q2: The post says 29GB. Is my 32GB laptop enough?
+You can't infer that directly. The post doesn't say which machine or context length produced 29GB, and it mentions use on a laptop with 48GB of memory. It also describes model weights as competing with the operating system and other apps for limited memory and bandwidth.[1] Go by a test on your own machine.
+Q3: Can I treat the vendor-reported speed as what I'll get?
+Treat it as a lead. The post says the full evaluation setup and hardware environment will be released with a technical report.[1] NIST's guidance is to measure under conditions similar to deployment and to document the results.[3]
+Q4: The announcement doesn't name a license. What should I do?
+The post says open source and points to Hugging Face for the weights, but it names no license.[1] Before adoption, read the license text on the model page and confirm the limits on commercial use, redistribution, and modification.
+Q5: How can I tell whether a model is fully loaded into video memory?
+With Ollama, run ollama ps  and read the PROCESSOR column. "100% GPU" means the model is fully loaded on the GPU, and a CPU percentage means part of it sits in system memory.[2] For other tools, check their own documentation for the equivalent.
+
+Sources
+    Fact-checked: 2026-11-14.
+
+    [1] Edge0, "Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer," 2026-11-12 (total and active parameters, peak memory, tiered storage, speed, context, test environment, stated limits, license); accessed 2026-11-14: [edge0.ai](https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer) ·
+    [2] Ollama, "Context length" (context and memory, avoiding CPU offload, the ollama ps PROCESSOR column); accessed 2026-11-14: [docs.ollama.com](https://docs.ollama.com/context-length) ·
+    [3] NIST, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, 2023-01-26 (MEASURE 2.3: measure under conditions similar to the deployment setting and document it): [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
     Think BIG, Make it Real!
 
 ---
@@ -10127,6 +10601,66 @@ A local model’s Traditional Chinese is good enough only if it meets the…
 Think BIG Q&A Library
 Local LLM
 Updated 2026-11-15
+
+Local LLM TB34
+
+## [GPU or NPU: Can an “AI PC” Run a Company’s Local LLM?](https://thinkbigtw.com/en/qa/gpu-vs-npu-ai-pc/)
+
+A GPU supports parallel computation as well as graphics; an NPU is designed for…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/gpu-vs-npu-ai-pc/)
+
+Think BIG Q&A Library
+Local LLM
+Updated 2026-11-16
+
+Enterprise AI Security TB35
+
+## [What Is Zero Trust, and How Does It Apply to AI Agents?](https://thinkbigtw.com/en/qa/zero-trust-ai-agent/)
+
+Zero trust means a company network location does not automatically make an…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/zero-trust-ai-agent/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-11-17
+
+Enterprise AI Security TB36
+
+## [What Is AI Red Teaming, and What Can a Company Test Before Launch?](https://thinkbigtw.com/en/qa/ai-red-teaming/)
+
+AI red teaming deliberately looks for weaknesses in answers, data access, and…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-red-teaming/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-11-18
+
+AI Governance & Regulation TB37
+
+## [Can AI Be Biased? What Should a Company Check Before Using It to Inform Decisions?](https://thinkbigtw.com/en/qa/ai-bias-enterprise/)
+
+AI can exhibit bias. Before using it to inform decisions, examine the data, the…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-bias-enterprise/)
+
+Think BIG Q&A Library
+AI Governance & Regulation
+Updated 2026-11-19
+
+Enterprise AI Security TB38
+
+## [What Should You Check Before Using AI for Meeting Notes?](https://thinkbigtw.com/en/qa/ai-meeting-notes-privacy/)
+
+Before using AI meeting notes, confirm the basis and notice for recording and…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-meeting-notes-privacy/)
+
+Think BIG Q&A Library
+Enterprise AI Security
+Updated 2026-11-20
 
 Enterprise AI Security TB27
 
@@ -17883,6 +18417,113 @@ THINK BIG NEWS   ·  AI 導入的第一手觀察
 
 ---
 
+URL: https://thinkbigtw.com/library/news/c2pa-content-credentials-20261118/
+
+# 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 022 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 18 日　星期三
+◆
+AI 導入實測手記
+◆
+第 022 期
+
+C2PA · 內容憑證 · AI 生成標示
+
+## 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實
+
+Think BIG 自媒體部  |  2026 年 11 月 18 日
+
+看到內容憑證，先看它記錄了什麼、由誰簽署，再核對影像要表達的事實。沒有憑證也不能直接判定是 AI 圖。企業需要的是收圖與發布檢查流程。
+
+## 一 現象：從辨識外觀走向查閱來源
+
+一張看起來自然的照片，能不能只憑肉眼判斷有沒有用 AI？這期從來源紀錄談起。C2PA 官方說明，符合性計畫於 2025 年 6 月開辦，用來檢查實作是否符合內容憑證規格及安全要求；這是既有進展的延伸解讀，不是本日新公告。[1]
+
+內容憑證可以記錄建立、編輯過程與使用的工具，並用數位簽章連結相關資料。依 C2PA 官方常見問題，這份紀錄的重點是可供檢驗的內容履歷，而不是讓觀眾憑圖示猜測來源。[2]
+
+兩個界線要先說清楚。C2PA 規格 2.2 的解說文件明列：來源資料本身不能決定內容是否符合事實；CAI 開源文件也說，沒有內容憑證不能當成影像不真實的證據。這表示「驗得過」與「報導得對」是不同問題。[3][4]
+
+## 二 各方評價：透明有幫助，判讀有邊界
+
+支持的理由：查核多了可檢驗的線索。 符合性計畫把產生與驗證憑證的實作納入檢查，通過的產品列在公開清單。[1] 我們的判讀是，採購或接收素材時，可以具體詢問支援哪些流程，而不只接受一句「有 AI 標示」。
+
+保留的理由：紀錄可能不完整。 CAI 文件指出，一般截圖不會帶走原圖的 C2PA 中繼資料。[4] C2PA 則說明，可透過浮水印或指紋等軟性綁定協助找回憑證，但不能據此假定每張轉傳圖片都有完整歷程。[2]
+
+因此我們支持把憑證當成證據的一部分，也主張保留人工查核。簽署來源、圖片裡的敘述、刊登文字與素材使用許可，應各自有核對位置；不要把一個驗證結果擴大解讀成整份稿件都已查清。[3]
+
+我們建議審稿表不要只留「有／沒有憑證」的勾選。可以分成三欄：檔案提供了哪些來源資料、驗證工具實際確認了哪些項目、編輯另行核對了哪些事實。三欄之間不能互相代填。例如來源工具記錄了建立時間，仍要核對照片配文所說的事件日期。這樣設計，是為了讓審稿人知道目前證據的範圍，而不是增加一個看似正式、卻沒人理解的合格章。[3]
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們導入時會先問的問題清單，不是已完成 C2PA 部署的案例，也不代表任何特定客戶。
+
+1. 原始檔還在嗎？ 先問素材從哪裡來、是否只剩通訊軟體截圖、能否向提供者索取原檔。收圖時要有一個可回頭查的檔案位置，避免審稿人與發布人看的不是同一份。
+
+2. 誰負責讀懂驗證結果？ 確認誰檢查簽署者、誰核實照片配文、遇到無法驗證時由誰決定如何標示。我們會要求把「沒有資料」「不支援」「驗證失敗」分開記錄，而不是一律寫成假圖。
+
+3. 最終讀者會看到什麼？ 發布前先約定：若平台沒有顯示憑證，是否另外補上來源與 AI 使用說明；若編輯後換檔，誰負責重新檢查。這是流程設計，不是宣稱平台都會保留標記。
+
+## 四 我們的建議：把查核拆成四個動作
+
+1. 收圖時留下來源。 記下提供者、取得日期、原始檔位置及預計用途。與外部素材提供者確認交付的是原檔還是轉存檔，並把授權確認列成獨立欄位。
+
+2. 對照檔案與紀錄。 使用能讀取內容憑證的工具，保留檢查日期與結果；依工具顯示區分簽章、信任狀態及編輯歷程。對於無法判讀的欄位，先請提供者說明，不自行補故事。[1][2]
+
+3. 把關鍵事實另列清單。 人物、地點、時間與事件敘述分別確認。即使來源驗證通過，也保留查詢原始發布者、核對配文的步驟；這是我們依規格限制提出的編輯建議。[3]
+
+4. 測試正式發布流程。 把同一檔案經過實際使用的裁切、匯出與上傳流程，再下載檢查。若資料無法沿途保留，就加上讀者看得懂的說明，並保存原始檔與審稿紀錄。[4]
+
+實際交接時，可以用一份測試素材走完流程：收取原檔、查看憑證、編輯匯出、上傳後下載，再由另一位編輯核對最終檔案。每一步記下檔名與處理結果；若只剩截圖，就明寫「未取得原始檔」，不要寫「未發現 AI」。這是我們建議的演練方式，目的是確認團隊如何處理未知資訊。最後的公開說明，應對應真正拿得到的證據，不因為趕著發布就把未知改成肯定。
+
+◆ 編按 · Think BIG 的做法：發布前留下證據
+
+## 標示、簽章與事實，分開確認。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，影像導入流程要同時保留素材來源、AI 使用說明與發布前核對紀錄。檢查表應寫清楚什麼已確認、什麼還未知，以及誰有權核准使用。
+
+我們不把標記當成真實性的結論。沒有足夠證據時，文案就應收斂到能支持的範圍；讓下一位編輯看得到判斷依據，比留下含糊的「已驗證」更有用。
+
+### 常見問題
+
+Q1：C2PA 能直接判斷圖片是真是假嗎？
+不能。規格解說將來源紀錄與內容是否符合事實分開，仍要核實圖片所描述的事件。[3]
+Q2：沒有內容憑證就是 AI 圖嗎？
+不能這樣判斷。CAI 文件說明，缺少憑證不構成影像不真實的負面證據。[4]
+Q3：截圖會留下原圖憑證嗎？
+一般截圖不會包含原圖的 C2PA 中繼資料；支援的找回機制另有條件。[4][2]
+Q4：憑證是否等於使用授權？
+不是。C2PA 的來源紀錄與 DRM 權限控制不同；素材使用許可應另外確認。[2]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] C2PA，〈Conformance〉（2025 年計畫與公開清單），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/conformance/)　·
+    [2] C2PA，〈FAQs〉（來源履歷、簽章與軟性綁定），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/faqs/)　·
+    [3] C2PA，〈C2PA and Content Credentials Explainer〉，規格 2.2（真實性界線），查閱日期 2026-10-26：[spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html)　·
+    [4] CAI，〈Frequently-asked questions〉（截圖及缺少憑證），查閱日期 2026-10-26：[opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/chatgpt-tw-citations-20261011/
 
 # ChatGPT 回答台灣問題時，引用的都是誰？——在地品牌該把資訊放哪裡 | Think BIG NEWS
@@ -18440,6 +19081,148 @@ Q4：有證書就不用檢查回答嗎？
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
 THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/laptop-145b-model-check-20261116/
+
+# 廠商說筆電能跑 145B，你的機器能嗎？——總參數、活躍參數、實測記憶體是三個不同的數字 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 029 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 16 日　星期一
+◆
+本地 AI 實測筆記
+◆
+第 029 期
+
+本地大模型 · 規格解讀 · 導入驗收
+
+## 廠商說筆電能跑 145B，你的機器能嗎？——總參數、活躍參數、實測記憶體是三個不同的數字
+
+Think BIG 自媒體部  |  2026 年 11 月 16 日
+
+一則公告裡的「145B」「約 10B」「29GB」，量的是三件不同的事：模型總共有多大、每一步算多少、在廠商的測試設定下記憶體最多用到多少。看到這類規格，先問每個數字是在哪台機器、什麼條件下量的，再用自己的機器和文件實測。
+
+（本文所有廠商數字，都來自該公司自己的公告，屬廠商自報，我們沒有重現。本文不評論該公司或模型的優劣，也不判斷模型是否如公告所述。）
+
+## 一 現象：同一則公告裡的三個數字
+
+2026 年 11 月 12 日，Edge0 發表兩款開放權重模型 Edge0-145B 與 Edge0-120B，並同時釋出推論框架與部署工具。[1] 公告談到 145B 這款時，同時出現幾組數字（以下皆為公告自報）：
+
+總參數 ：145B。
+
+活躍參數 ：每一步推論約有 10B 參數參與運算。
+
+峰值記憶體 ：29GB。
+
+分層存放 ：約 40GB 的「專家庫」放在系統記憶體，約 48GB 的詞彙資料放在 SSD，按需讀取。
+
+速度與上下文 ：解碼 80+ tokens/s、預填 1,100+ tokens/s，上下文 128K–256K；公告同時寫約 120W 的典型功耗，並說在其報告的設定下沒有降速。[1]
+
+三個最容易被混在一起的數字，其實回答的是不同的問題：
+
+總參數 145B ：量的是模型一共有多少參數。它回答的問題：權重加起來有多大、要放在哪裡。
+
+活躍參數 約 10B ：量的是每一步推論實際參與運算的參數。它回答的問題：每一步要算多少，和速度有關；不等於只需要載入這麼多。
+
+峰值記憶體 29GB ：量的是在廠商所報告的測試設定下，記憶體最高用到多少。它回答的問題：在那個設定下的用量，不等於你的機器夠不夠。
+
+這是我們對三個數字的解讀。公告本身的說法是：模型把權重分放在 GPU 記憶體、系統記憶體與 SSD 三層，讓讀取與運算重疊進行。[1]
+
+公告沒有寫的，和寫了的限制：
+
+29GB 是在哪一台機器量到的：公告只寫「相容的筆電，例如 MacBook Pro」，沒有列出晶片與記憶體配置。
+
+29GB 是在多長的上下文下量到的：公告沒有寫。
+
+40GB、48GB 這幾個數字和 29GB 要不要相加：公告沒有給算法。
+
+完整的評測設定、硬體環境與重現方式，公告說會隨技術報告釋出。[1]
+
+公告自己也提醒：不代表每一台裝置都能跑 145B；運算力很低的裝置需要較小的模型或雲端；跨裝置的長期記憶、需要最新資訊的搜尋，仍然需要雲端服務。[1]
+
+授權：公告寫的是開源、權重放在 Hugging Face，正文沒有寫授權名稱。[1]
+
+## 二 各方評價：規格決定候選，驗收決定能不能說可以
+
+看規格的思路 ：公告把「放不放得下」拆成三層儲存來處理，也提到可在 48GB 記憶體的筆電上使用。[1] 對想在本地跑大模型的團隊，這代表「放得下」不再只有一個數字，值得認真看架構說明。
+
+看驗收的思路 ：Ollama 的文件說，上下文長度開越大，執行模型需要的記憶體越多，調大前要確認顯示記憶體夠用；為了效能，也要避免模型被卸載到 CPU，可以用 ollama ps  的 PROCESSOR 欄確認。[2] 美國 NIST 的《AI 風險管理框架》（AI RMF 1.0）在 MEASURE 2.3 寫到，系統效能應在接近部署環境的條件下量測，並記錄下來。[3]
+
+兩種思路可以並存，順序比較重要：廠商的規格，讓你決定這個模型值不值得放進候選；在你自己機器上的驗收，才決定你能不能對使用者說「可以」。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下是我們評估本地模型時的做法，不是產業統計，也不代表任何特定客戶。
+
+1. 沒在客戶同等級的機器上實測過，我們就不先對客戶說可以。  規格表上的記憶體數字，和長時間使用時的實際數字常有落差。落差通常來自上下文長度、同時開著的其他程式，以及機器本身的等級。
+
+2. 「跑得起來」和「用得下去」是兩件事。  模型載入成功、第一句話答得出來，不代表連續用幾個小時還一樣快。首字要等多久、用久了會不會降速，都要另外量。
+
+3. 廠商數字我們一律標「廠商自報」。  這不是不信任，是讓之後重測的人知道這個數字從哪裡來、有哪些條件沒交代。
+
+## 四 我們的建議：三步驗收
+
+1. 查授權與權重來源。  確認權重從哪裡下載、授權條款原文怎麼寫，商用、再散布與修改各有什麼限制。公告只寫「開源」不夠，條款要讀原文。
+
+2. 在目標機器上實測。  用你實際要用的上下文長度、同時開著平常會開的程式，量三件事：峰值記憶體、首字等待時間、長時間使用後的降速。記錄機器型號、記憶體大小、上下文長度與測試時長。[2][3]
+
+3. 廠商跑分當線索，用自己的文件小樣本驗。  公開跑分測的是別人的題目。拿十到二十份你真正會處理的文件或問題，跑一遍，由負責這件事的人看結果。
+
+一句話：規格表告訴你這個模型值得試，你的機器和你的文件才告訴你能不能用。
+
+◆ 編按 · Think BIG 的做法
+
+## 驗收要留下可重測的紀錄
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們幫企業評估本地模型時，交付的不只是「裝好了」。舉幾個例子：
+
+機器實測紀錄 ：在與你同等級的機器上，量出峰值記憶體、首字等待時間與連續使用後的降速，連同測試條件一起交付。
+
+文件驗收題組 ：用你自己的文件小樣本做的題目與結果，之後換模型可以照同一組重測。
+
+授權與來源查核紀錄 ：權重來源、授權條款的讀法與限制，整理成一頁。
+
+這只是其中幾件，其他流程也能依你的需求客製。
+
+### 常見問題
+
+Q1：145B 是不是代表要有放得下 145B 個參數的記憶體？
+不能只用這個數字推論。公告說每一步約 10B 參數參與運算，權重分放在 GPU 記憶體、系統記憶體與 SSD 三層。[1] 實際需要多少，要看你的機器與設定，建議實測。
+Q2：公告寫 29GB，我的 32GB 筆電夠用嗎？
+不能直接這樣推。公告沒有寫 29GB 是在哪台機器、多長的上下文下量到的，只提到可在 48GB 記憶體的筆電上使用；公告也說模型權重要和作業系統與其他程式搶記憶體與頻寬。[1] 以你的機器實測為準。
+Q3：廠商自報的速度，可以直接當預期嗎？
+當線索就好。公告說完整的評測設定與硬體環境會隨技術報告釋出。[1] NIST 的建議是在接近部署環境的條件下量測並記錄。[3]
+Q4：公告沒寫授權，要怎麼辦？
+公告寫的是開源、權重放在 Hugging Face，沒有寫授權名稱。[1] 導入前請到模型頁讀授權條款原文，確認商用、再散布與修改的限制。
+Q5：怎麼知道模型有沒有完整放進顯示記憶體？
+以 Ollama 為例，執行 ollama ps ，看 PROCESSOR 欄；100% GPU 代表完整載入顯示記憶體，出現 CPU 的比例代表有一部分放在系統記憶體。[2] 其他工具請查各自文件的對應做法。
+
+參考來源
+    查核日期：2026-11-14。
+
+    [1] Edge0，〈Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer〉，2026-11-12（總參數、活躍參數、峰值記憶體、分層存放、速度、上下文、測試環境、限制說明、授權），查閱日期 2026-11-14：[edge0.ai](https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer)　·
+    [2] Ollama，〈Context length〉（上下文與記憶體、避免卸載到 CPU、ollama ps 的 PROCESSOR 欄），查閱日期 2026-11-14：[docs.ollama.com](https://docs.ollama.com/context-length)　·
+    [3] NIST，〈Artificial Intelligence Risk Management Framework (AI RMF 1.0)〉，NIST AI 100-1，2023-01-26（MEASURE 2.3：在接近部署環境的條件下量測並記錄）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
 
 ---
@@ -22916,6 +23699,90 @@ Q & A Library
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
 
+親子共讀與客製繪本 Q41
+
+## [兄弟姊妹一直吵架？爸媽可以怎麼處理？](https://thinkbigtw.com/library/qa/sibling-conflicts/)
+
+兄弟姊妹吵架時，先制止會傷人的動作，再讓彼此說明需要，最後一起找能做到的安排，不必一開始就判誰贏誰輸。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/sibling-conflicts/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-20
+
+法規與治理 TB37
+
+## [AI 會有偏見嗎？企業用 AI 做判斷前要檢查什麼](https://thinkbigtw.com/library/qa/ai-bias-enterprise/)
+
+AI 可能出現偏見；企業用它協助判斷前，要檢查資料是否合適、評分條件是否合理，以及不同群體是否承受不同的錯誤。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-bias-enterprise/)
+
+Think BIG 問答圖書館
+法規與治理
+更新 2026-11-19
+
+親子共讀與客製繪本 Q40
+
+## [孩子說謊怎麼辦？用故事聊誠實](https://thinkbigtw.com/library/qa/kids-lying-honesty/)
+
+孩子說出與事實不同的話時，先弄清楚是在玩想像、說願望，還是怕被責備而隱瞞，再平靜說明事實與補救方式。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/kids-lying-honesty/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-19
+
+親子共讀與客製繪本 Q39
+
+## [如廁訓練什麼時候開始？繪本可以怎麼幫？](https://thinkbigtw.com/library/qa/potty-training-picture-books/)
+
+如廁訓練可以從觀察孩子的準備狀況開始，不必只看生日或跟同齡孩子比較；繪本適合拿來認識便盆、說出身體感覺與熟悉步驟。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/potty-training-picture-books/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-18
+
+親子共讀與客製繪本 Q38
+
+## [帶孩子去圖書館：兒童借書證怎麼辦、可以借幾本？](https://thinkbigtw.com/library/qa/library-card-for-kids/)
+
+兒童借書證的文件與借閱冊數要看館別；以臺北市立圖書館為例，未滿 12 歲到館可持戶口名簿影本或 3 個月內有效的戶籍謄本辦理個人借閱證，一般圖書每證可借 25 冊、借期 30 日。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/library-card-for-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-17
+
+本地大模型 TB34
+
+## [GPU、NPU 差在哪？「AI PC」能跑公司用的大模型嗎](https://thinkbigtw.com/library/qa/gpu-vs-npu-ai-pc/)
+
+GPU 是可處理平行運算的圖形處理器，NPU 則是針對神經網路運算設計的處理單元。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/gpu-vs-npu-ai-pc/)
+
+Think BIG 問答圖書館
+本地大模型
+更新 2026-11-16
+
+親子共讀與客製繪本 Q37
+
+## [在家怎麼安排孩子的小書櫃？封面朝外、放低一點可以嗎？](https://thinkbigtw.com/library/qa/home-bookshelf-for-kids/)
+
+孩子的小書櫃可以先從容易拿取、看得到封面、附近能坐下共讀這三件事安排，家中的低層收納或書籃也能試。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/home-bookshelf-for-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-16
+
 本地大模型 TB33
 
 ## [本地模型的繁體中文好不好？台灣用語要怎麼測](https://thinkbigtw.com/library/qa/traditional-chinese-local-llm/)
@@ -23131,6 +23998,42 @@ Think BIG 問答圖書館
 Think BIG 問答圖書館
 完整解答
 更新 2026-11-12
+
+企業資安 TB35
+
+## [零信任是什麼？套用到 AI Agent 要怎麼做](https://thinkbigtw.com/library/qa/zero-trust-ai-agent/)
+
+零信任是不因設備位於公司內網，就自動信任它或使用它的帳號；套用到 AI Agent，要讓每次資料存取與工具操作都經過授權檢查。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/zero-trust-ai-agent/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-11-17
+
+企業資安 TB36
+
+## [AI 紅隊測試是什麼？導入前可以自己先做的測試](https://thinkbigtw.com/library/qa/ai-red-teaming/)
+
+AI 紅隊測試是站在可能濫用系統的角度，刻意找出 AI 回答、資料存取與工具操作的弱點。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-red-teaming/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-11-18
+
+企業資安 TB38
+
+## [用 AI 做會議記錄要注意什麼？錄音、逐字稿與個資](https://thinkbigtw.com/library/qa/ai-meeting-notes-privacy/)
+
+用 AI 做會議記錄，應先確認錄音與個資處理的依據、告知內容，以及音檔、逐字稿和摘要各會送到哪裡。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-meeting-notes-privacy/)
+
+Think BIG 問答圖書館
+企業資安
+更新 2026-11-20
 
 企業資安 TB27
 
@@ -30576,502 +31479,6 @@ Q4：常駐系統可以自行寄信嗎？
 THINK BIG NEWS   ·  AI 導入實測手記
     Think BIG, Make it Real!　大想成業有限公司
 
-URL: https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/
-
-# A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Local AI Field Notes · Issue 029
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI FIELD NOTES
-
-November 16, 2026  ·  Monday
-◆
-Local AI Field Notes
-◆
-Issue 029
-
-Local LLMs · Reading Specs · Acceptance Testing
-
-## A Vendor Says a Laptop Can Run a 145B Model. Can Yours? Total Parameters, Active Parameters, and Measured Memory Are Three Different Numbers
-
-Think BIG Media  |  November 16, 2026
-
-The "145B," "about 10B," and "29GB" in one announcement measure three different things: how big the model is in total, how much is computed at each step, and the most memory used under the vendor's own test setup. When you see specs like these, ask which machine and which conditions each number came from, then test on your own machine and your own documents.
-
-(Every vendor figure in this article comes from the company's own announcement and is vendor-reported. We have not reproduced any of it. This article does not rate the company or the model, and it takes no position on whether the model performs as described.)
-
-## One. What's Happening: Three Numbers in One Announcement
-
-On November 12, 2026, Edge0 released two open-weight models, Edge0-145B and Edge0-120B, together with an inference framework and deployment tools.[1] For the 145B model, the post gives several figures at once (all vendor-reported):
-
-Total parameters:  145B.
-
-Active parameters:  roughly 10B take part in computation at each inference step.
-
-Peak memory:  29GB.
-
-Tiered storage:  an expert library of about 40GB sits in system memory, and about 48GB of vocabulary data sits on the SSD and is read on demand.
-
-Speed and context:  decoding at 80+ tokens per second, prefill at 1,100+ tokens per second, and a 128K–256K context. The post also lists about 120W typical power and says there was no throttling in its reported setup.[1]
-
-The three numbers most often mixed up answer different questions:
-
-Total parameters: 145B:  measures how many parameters the model has in all. The question it answers: how large the weights are and where they have to live.
-
-Active parameters: about 10B:  measures parameters used in computation at each step. The question it answers: how much work each step does; it relates to speed and does not mean only this much has to be loaded.
-
-Peak memory: 29GB:  measures the most memory used under the vendor's reported test setup. The question it answers: usage under that setup, not whether your machine is enough.
-
-That breakdown is our reading. The post's own description is that weights are spread across GPU memory, system memory, and SSD, with reading and computation overlapping.[1]
-
-What the post does not say, and the limits it does state:
-
-Which machine produced the 29GB figure: the post says only "a compatible laptop, such as a MacBook Pro," with no chip or memory configuration.
-
-What context length the 29GB was measured at: not stated.
-
-Whether the 40GB and 48GB figures add to the 29GB: the post gives no calculation.
-
-The full evaluation setup, hardware environment, and reproduction steps: the post says they will come with a technical report.[1]
-
-The post itself cautions that this does not mean every device can run the 145B model; very low-compute devices need a smaller model or the cloud, and cross-device long-term memory and searches that need current information still need cloud services.[1]
-
-License: the post says open source and points to Hugging Face for the weights. The body text does not name a license.[1]
-
-## Two. The Case for Specs, and the Case for Acceptance Tests
-
-The case for reading the specs:  the post handles "will it fit" by splitting storage into three tiers, and it mentions use on a laptop with 48GB of memory.[1] For teams that want to run large models locally, that means "fits" is no longer a single number, and the architecture description deserves a careful read.
-
-The case for acceptance testing:  Ollama's documentation says a longer context length raises the memory a model needs, that you should confirm you have enough VRAM before raising it, and that for best performance you should avoid offloading to the CPU. The ollama ps  PROCESSOR column shows the split.[2] The NIST AI Risk Management Framework (AI RMF 1.0), under MEASURE 2.3, says performance should be demonstrated under conditions similar to the deployment setting, with the measurements documented.[3]
-
-The two views can coexist. The order is what matters: the vendor's specs help you decide whether a model belongs on the shortlist, and testing on your own machine decides whether you can tell a user "yes."
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These are the habits we follow when we evaluate local models. They are not industry statistics and do not describe any particular client.
-
-1. If we haven't tested on a machine in the same class as the client's, we don't tell the client it will work.  The memory figure on a spec sheet often differs from what you see during long use. The gap usually comes from context length, other programs running at the same time, and the class of the machine.
-
-2. "It runs" and "it's usable" are different things.  A model can load and answer its first prompt, and still slow down after hours of continuous use. Time to first token and slowdown over long sessions need to be measured separately.
-
-3. We label vendor numbers "vendor-reported," every time.  That is not distrust. It tells whoever retests later where the number came from and which conditions were never stated.
-
-## Four. Our Recommendations: A Three-Step Acceptance Check
-
-1. Check the license and where the weights come from.  Confirm where the weights are downloaded from and read the license text itself, including what it says about commercial use, redistribution, and modification. "Open source" in an announcement is not enough.
-
-2. Test on the target machine.  Use the context length you will actually use, with the programs you normally keep open, and measure three things: peak memory, time to first token, and slowdown after long use. Record the machine model, memory size, context length, and test duration.[2][3]
-
-3. Treat vendor benchmarks as leads, and check with a small sample of your own documents.  Public benchmarks test someone else's questions. Take ten to twenty documents or questions you really handle, run them through, and have the person who owns that work review the results.
-
-In one sentence: the spec sheet tells you a model is worth trying; your machine and your documents tell you whether it works.
-
-◆ Editor’s Note · How Think BIG Approaches This
-
-## Leave a Record That Can Be Retested
-
-(The following is Think BIG's practical position, separate from the reporting above.)
-
-When we evaluate a local model for a company, we deliver more than "it's installed." A few examples:
-
-Machine test record:  peak memory, time to first token, and slowdown over continuous use, measured on a machine in the same class as yours and delivered with the test conditions.
-
-Document acceptance set:  questions and results built from a small sample of your own documents, so a later model change can be retested against the same set.
-
-License and source record:  where the weights came from and how to read the license, summarized on one page.
-
-These are just a few of the things we do. Other workflows can be customized to your needs.
-
-### Frequently Asked Questions
-
-Q1: Does 145B mean I need enough memory to hold 145 billion parameters?
-You can't conclude that from this number alone. The post says about 10B parameters take part in each step and that weights are spread across GPU memory, system memory, and SSD.[1] What you actually need depends on your machine and settings, so test it.
-Q2: The post says 29GB. Is my 32GB laptop enough?
-You can't infer that directly. The post doesn't say which machine or context length produced 29GB, and it mentions use on a laptop with 48GB of memory. It also describes model weights as competing with the operating system and other apps for limited memory and bandwidth.[1] Go by a test on your own machine.
-Q3: Can I treat the vendor-reported speed as what I'll get?
-Treat it as a lead. The post says the full evaluation setup and hardware environment will be released with a technical report.[1] NIST's guidance is to measure under conditions similar to deployment and to document the results.[3]
-Q4: The announcement doesn't name a license. What should I do?
-The post says open source and points to Hugging Face for the weights, but it names no license.[1] Before adoption, read the license text on the model page and confirm the limits on commercial use, redistribution, and modification.
-Q5: How can I tell whether a model is fully loaded into video memory?
-With Ollama, run ollama ps  and read the PROCESSOR column. "100% GPU" means the model is fully loaded on the GPU, and a CPU percentage means part of it sits in system memory.[2] For other tools, check their own documentation for the equivalent.
-
-Sources
-    Fact-checked: 2026-11-14.
-
-    [1] Edge0, "Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer," 2026-11-12 (total and active parameters, peak memory, tiered storage, speed, context, test environment, stated limits, license); accessed 2026-11-14: [edge0.ai](https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer) ·
-    [2] Ollama, "Context length" (context and memory, avoiding CPU offload, the ollama ps PROCESSOR column); accessed 2026-11-14: [docs.ollama.com](https://docs.ollama.com/context-length) ·
-    [3] NIST, "Artificial Intelligence Risk Management Framework (AI RMF 1.0)," NIST AI 100-1, 2023-01-26 (MEASURE 2.3: measure under conditions similar to the deployment setting and document it): [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  Local AI Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/laptop-145b-model-check-20261116/
-
-# 廠商說筆電能跑 145B，你的機器能嗎？——總參數、活躍參數、實測記憶體是三個不同的數字 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-本地 AI 實測筆記 · 第 029 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI FIELD NOTES
-
-2026 年 11 月 16 日　星期一
-◆
-本地 AI 實測筆記
-◆
-第 029 期
-
-本地大模型 · 規格解讀 · 導入驗收
-
-## 廠商說筆電能跑 145B，你的機器能嗎？——總參數、活躍參數、實測記憶體是三個不同的數字
-
-Think BIG 自媒體部  |  2026 年 11 月 16 日
-
-一則公告裡的「145B」「約 10B」「29GB」，量的是三件不同的事：模型總共有多大、每一步算多少、在廠商的測試設定下記憶體最多用到多少。看到這類規格，先問每個數字是在哪台機器、什麼條件下量的，再用自己的機器和文件實測。
-
-（本文所有廠商數字，都來自該公司自己的公告，屬廠商自報，我們沒有重現。本文不評論該公司或模型的優劣，也不判斷模型是否如公告所述。）
-
-## 一 現象：同一則公告裡的三個數字
-
-2026 年 11 月 12 日，Edge0 發表兩款開放權重模型 Edge0-145B 與 Edge0-120B，並同時釋出推論框架與部署工具。[1] 公告談到 145B 這款時，同時出現幾組數字（以下皆為公告自報）：
-
-總參數 ：145B。
-
-活躍參數 ：每一步推論約有 10B 參數參與運算。
-
-峰值記憶體 ：29GB。
-
-分層存放 ：約 40GB 的「專家庫」放在系統記憶體，約 48GB 的詞彙資料放在 SSD，按需讀取。
-
-速度與上下文 ：解碼 80+ tokens/s、預填 1,100+ tokens/s，上下文 128K–256K；公告同時寫約 120W 的典型功耗，並說在其報告的設定下沒有降速。[1]
-
-三個最容易被混在一起的數字，其實回答的是不同的問題：
-
-總參數 145B ：量的是模型一共有多少參數。它回答的問題：權重加起來有多大、要放在哪裡。
-
-活躍參數 約 10B ：量的是每一步推論實際參與運算的參數。它回答的問題：每一步要算多少，和速度有關；不等於只需要載入這麼多。
-
-峰值記憶體 29GB ：量的是在廠商所報告的測試設定下，記憶體最高用到多少。它回答的問題：在那個設定下的用量，不等於你的機器夠不夠。
-
-這是我們對三個數字的解讀。公告本身的說法是：模型把權重分放在 GPU 記憶體、系統記憶體與 SSD 三層，讓讀取與運算重疊進行。[1]
-
-公告沒有寫的，和寫了的限制：
-
-29GB 是在哪一台機器量到的：公告只寫「相容的筆電，例如 MacBook Pro」，沒有列出晶片與記憶體配置。
-
-29GB 是在多長的上下文下量到的：公告沒有寫。
-
-40GB、48GB 這幾個數字和 29GB 要不要相加：公告沒有給算法。
-
-完整的評測設定、硬體環境與重現方式，公告說會隨技術報告釋出。[1]
-
-公告自己也提醒：不代表每一台裝置都能跑 145B；運算力很低的裝置需要較小的模型或雲端；跨裝置的長期記憶、需要最新資訊的搜尋，仍然需要雲端服務。[1]
-
-授權：公告寫的是開源、權重放在 Hugging Face，正文沒有寫授權名稱。[1]
-
-## 二 各方評價：規格決定候選，驗收決定能不能說可以
-
-看規格的思路 ：公告把「放不放得下」拆成三層儲存來處理，也提到可在 48GB 記憶體的筆電上使用。[1] 對想在本地跑大模型的團隊，這代表「放得下」不再只有一個數字，值得認真看架構說明。
-
-看驗收的思路 ：Ollama 的文件說，上下文長度開越大，執行模型需要的記憶體越多，調大前要確認顯示記憶體夠用；為了效能，也要避免模型被卸載到 CPU，可以用 ollama ps  的 PROCESSOR 欄確認。[2] 美國 NIST 的《AI 風險管理框架》（AI RMF 1.0）在 MEASURE 2.3 寫到，系統效能應在接近部署環境的條件下量測，並記錄下來。[3]
-
-兩種思路可以並存，順序比較重要：廠商的規格，讓你決定這個模型值不值得放進候選；在你自己機器上的驗收，才決定你能不能對使用者說「可以」。
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下是我們評估本地模型時的做法，不是產業統計，也不代表任何特定客戶。
-
-1. 沒在客戶同等級的機器上實測過，我們就不先對客戶說可以。  規格表上的記憶體數字，和長時間使用時的實際數字常有落差。落差通常來自上下文長度、同時開著的其他程式，以及機器本身的等級。
-
-2. 「跑得起來」和「用得下去」是兩件事。  模型載入成功、第一句話答得出來，不代表連續用幾個小時還一樣快。首字要等多久、用久了會不會降速，都要另外量。
-
-3. 廠商數字我們一律標「廠商自報」。  這不是不信任，是讓之後重測的人知道這個數字從哪裡來、有哪些條件沒交代。
-
-## 四 我們的建議：三步驗收
-
-1. 查授權與權重來源。  確認權重從哪裡下載、授權條款原文怎麼寫，商用、再散布與修改各有什麼限制。公告只寫「開源」不夠，條款要讀原文。
-
-2. 在目標機器上實測。  用你實際要用的上下文長度、同時開著平常會開的程式，量三件事：峰值記憶體、首字等待時間、長時間使用後的降速。記錄機器型號、記憶體大小、上下文長度與測試時長。[2][3]
-
-3. 廠商跑分當線索，用自己的文件小樣本驗。  公開跑分測的是別人的題目。拿十到二十份你真正會處理的文件或問題，跑一遍，由負責這件事的人看結果。
-
-一句話：規格表告訴你這個模型值得試，你的機器和你的文件才告訴你能不能用。
-
-◆ 編按 · Think BIG 的做法
-
-## 驗收要留下可重測的紀錄
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們幫企業評估本地模型時，交付的不只是「裝好了」。舉幾個例子：
-
-機器實測紀錄 ：在與你同等級的機器上，量出峰值記憶體、首字等待時間與連續使用後的降速，連同測試條件一起交付。
-
-文件驗收題組 ：用你自己的文件小樣本做的題目與結果，之後換模型可以照同一組重測。
-
-授權與來源查核紀錄 ：權重來源、授權條款的讀法與限制，整理成一頁。
-
-這只是其中幾件，其他流程也能依你的需求客製。
-
-### 常見問題
-
-Q1：145B 是不是代表要有放得下 145B 個參數的記憶體？
-不能只用這個數字推論。公告說每一步約 10B 參數參與運算，權重分放在 GPU 記憶體、系統記憶體與 SSD 三層。[1] 實際需要多少，要看你的機器與設定，建議實測。
-Q2：公告寫 29GB，我的 32GB 筆電夠用嗎？
-不能直接這樣推。公告沒有寫 29GB 是在哪台機器、多長的上下文下量到的，只提到可在 48GB 記憶體的筆電上使用；公告也說模型權重要和作業系統與其他程式搶記憶體與頻寬。[1] 以你的機器實測為準。
-Q3：廠商自報的速度，可以直接當預期嗎？
-當線索就好。公告說完整的評測設定與硬體環境會隨技術報告釋出。[1] NIST 的建議是在接近部署環境的條件下量測並記錄。[3]
-Q4：公告沒寫授權，要怎麼辦？
-公告寫的是開源、權重放在 Hugging Face，沒有寫授權名稱。[1] 導入前請到模型頁讀授權條款原文，確認商用、再散布與修改的限制。
-Q5：怎麼知道模型有沒有完整放進顯示記憶體？
-以 Ollama 為例，執行 ollama ps ，看 PROCESSOR 欄；100% GPU 代表完整載入顯示記憶體，出現 CPU 的比例代表有一部分放在系統記憶體。[2] 其他工具請查各自文件的對應做法。
-
-參考來源
-    查核日期：2026-11-14。
-
-    [1] Edge0，〈Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer〉，2026-11-12（總參數、活躍參數、峰值記憶體、分層存放、速度、上下文、測試環境、限制說明、授權），查閱日期 2026-11-14：[edge0.ai](https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer)　·
-    [2] Ollama，〈Context length〉（上下文與記憶體、避免卸載到 CPU、ollama ps 的 PROCESSOR 欄），查閱日期 2026-11-14：[docs.ollama.com](https://docs.ollama.com/context-length)　·
-    [3] NIST，〈Artificial Intelligence Risk Management Framework (AI RMF 1.0)〉，NIST AI 100-1，2023-01-26（MEASURE 2.3：在接近部署環境的條件下量測並記錄）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  本地 AI 實測筆記
-    Think BIG, Make it Real!　大想成業有限公司
-
----
-
-URL: https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/
-
-# Was This Image Made with AI? — What Content Credentials Can Tell You | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-AI Deployment Field Notes · Issue 022
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-November 18, 2026  ·  Wednesday
-◆
-AI Deployment Field Notes
-◆
-Issue 022
-
-C2PA · Content Credentials · AI disclosure
-
-## Was This Image Made with AI? — What Content Credentials Can Tell You
-
-Think BIG Media  |  November 18, 2026
-
-Read what a credential records and who signed it, then verify the claim made by the image. Missing credentials do not establish AI use. Teams need an intake and publication checklist.
-
-## One. The Shift Toward Provenance
-
-Can appearance alone tell us whether AI was used? Provenance offers another route. C2PA says its conformance program opened in June 2025 to check implementation and security requirements. This article follows that development; it is not a report of a new announcement today.[1]
-
-Content Credentials can record creation, editing, and tools used, with digitally signed provenance data. The C2PA FAQ describes a checkable history rather than a visual clue that readers must interpret from appearance.[2]
-
-Two limits matter. The C2PA 2.2 explainer separates provenance from factual truth. CAI documentation also says missing credentials are not evidence that an image is inauthentic. A valid record and an accurate story answer different questions.[3][4]
-
-## Two. The Case for Transparency, and Its Limits
-
-The benefit: inspectable evidence.  The conformance program evaluates credential implementations and publishes a list of conforming products.[1] In our reading, this gives teams concrete questions to ask about supported workflows instead of accepting a broad claim that AI content is labeled.
-
-The limitation: history may be incomplete.  CAI notes that a normal screenshot does not carry the original image’s C2PA metadata.[4] C2PA describes soft bindings such as watermarking or fingerprinting to help recover credentials, but that does not mean every forwarded image has a complete history.[2]
-
-We support using credentials as one part of verification while retaining editorial checks. Signing information, the depicted claim, the caption, and permission to use the asset need separate review. One successful technical check should not be extended to the entire story.[3]
-
-We suggest three review fields: provenance present in the file, checks actually performed by the validator, and facts independently checked by the editor. Do not let one field stand in for another. A recorded creation time still needs to be compared with the event date in the caption. This design makes the evidence boundary visible instead of adding an unexplained approval badge.[3]
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These are questions we would ask during adoption, not a completed C2PA deployment or an account involving a particular client.
-
-1. Do we have the original file?  Ask where the asset came from, whether the team has only a screenshot, and whether the original is available. Keep an identifiable file location so reviewers and publishers inspect the same version.
-
-2. Who interprets the result?  Assign responsibility for checking the signer, verifying the caption, and handling an unverifiable file. Record missing data, unsupported data, and failed validation separately rather than labeling all three as a fabricated image.
-
-3. What will readers see?  Agree on a visible source and AI-use statement if the publication surface does not show credentials. Assign a new check when the file changes. This is a workflow proposal, not a claim that every platform preserves metadata.
-
-## Four. Our Recommendations: Four Checks
-
-1. Record the source at intake.  Keep the provider, acquisition date, original file location, and intended use. Ask whether the delivery is an original or an exported copy. Track permission separately.
-
-2. Match the record to the file.  Use a credential-aware tool and save the date and result. Distinguish signature checks, trust status, and recorded edits. Ask the provider about unclear fields instead of filling gaps with assumptions.[1][2]
-
-3. Verify factual claims separately.  List people, locations, dates, and event claims. Keep checks with the original publisher and caption review even when provenance validates. This is our editorial recommendation based on the specification’s limits.[3]
-
-4. Test the publishing path.  Run a sample through the actual crop, export, and upload process, then download and inspect it. If provenance does not survive, add an understandable explanation and retain the original and review record.[4]
-
-For handover, run one test asset from original-file intake through inspection, editing, export, upload, and download, then have another editor inspect the final file. Record filenames and results. If only a screenshot is available, say the original was unavailable rather than reporting that no AI use was found. This proposed drill checks how the team handles unknowns. Public wording should match available evidence even under publication pressure.
-
-◆ Editor’s Note · How Think BIG Approaches This: Keep Evidence Before Publication
-
-## Check disclosure, signatures, and facts separately.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-Think BIG’s position is to retain the source, AI-use disclosure, and publication review together. The checklist should distinguish confirmed facts from unknowns and identify who can approve use.
-
-We do not treat a badge as a factual verdict. When evidence is incomplete, narrow the wording to what it supports. The next editor should be able to inspect the reasoning behind the decision.
-
-### Frequently Asked Questions
-
-Q1: Does C2PA tell us whether an image is true?
-No. The explainer separates provenance from factual accuracy. Verify the depicted event separately.[3]
-Q2: Does a missing credential prove AI use?
-No. CAI says absence of credentials is not a negative authenticity signal.[4]
-Q3: Does a screenshot preserve the original credential?
-A normal screenshot does not contain the original C2PA metadata. Recovery mechanisms have separate requirements.[4][2]
-Q4: Does a credential grant usage rights?
-No. Provenance differs from DRM and access control. Confirm permission separately.[2]
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] C2PA, “Conformance” (2025 program and public list); accessed 2026-10-26: [c2pa.org](https://c2pa.org/conformance/) ·
-    [2] C2PA, “FAQs” (signed provenance and soft bindings); accessed 2026-10-26: [c2pa.org](https://c2pa.org/faqs/) ·
-    [3] C2PA, “C2PA and Content Credentials Explainer,” specification 2.2 (limits); accessed 2026-10-26: [spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html) ·
-    [4] CAI, “Frequently-asked questions” (screenshots and missing credentials); accessed 2026-10-26: [opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  AI Deployment Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/c2pa-content-credentials-20261118/
-
-# 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-AI 導入實測手記 · 第 022 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-2026 年 11 月 18 日　星期三
-◆
-AI 導入實測手記
-◆
-第 022 期
-
-C2PA · 內容憑證 · AI 生成標示
-
-## 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實
-
-Think BIG 自媒體部  |  2026 年 11 月 18 日
-
-看到內容憑證，先看它記錄了什麼、由誰簽署，再核對影像要表達的事實。沒有憑證也不能直接判定是 AI 圖。企業需要的是收圖與發布檢查流程。
-
-## 一 現象：從辨識外觀走向查閱來源
-
-一張看起來自然的照片，能不能只憑肉眼判斷有沒有用 AI？這期從來源紀錄談起。C2PA 官方說明，符合性計畫於 2025 年 6 月開辦，用來檢查實作是否符合內容憑證規格及安全要求；這是既有進展的延伸解讀，不是本日新公告。[1]
-
-內容憑證可以記錄建立、編輯過程與使用的工具，並用數位簽章連結相關資料。依 C2PA 官方常見問題，這份紀錄的重點是可供檢驗的內容履歷，而不是讓觀眾憑圖示猜測來源。[2]
-
-兩個界線要先說清楚。C2PA 規格 2.2 的解說文件明列：來源資料本身不能決定內容是否符合事實；CAI 開源文件也說，沒有內容憑證不能當成影像不真實的證據。這表示「驗得過」與「報導得對」是不同問題。[3][4]
-
-## 二 各方評價：透明有幫助，判讀有邊界
-
-支持的理由：查核多了可檢驗的線索。 符合性計畫把產生與驗證憑證的實作納入檢查，通過的產品列在公開清單。[1] 我們的判讀是，採購或接收素材時，可以具體詢問支援哪些流程，而不只接受一句「有 AI 標示」。
-
-保留的理由：紀錄可能不完整。 CAI 文件指出，一般截圖不會帶走原圖的 C2PA 中繼資料。[4] C2PA 則說明，可透過浮水印或指紋等軟性綁定協助找回憑證，但不能據此假定每張轉傳圖片都有完整歷程。[2]
-
-因此我們支持把憑證當成證據的一部分，也主張保留人工查核。簽署來源、圖片裡的敘述、刊登文字與素材使用許可，應各自有核對位置；不要把一個驗證結果擴大解讀成整份稿件都已查清。[3]
-
-我們建議審稿表不要只留「有／沒有憑證」的勾選。可以分成三欄：檔案提供了哪些來源資料、驗證工具實際確認了哪些項目、編輯另行核對了哪些事實。三欄之間不能互相代填。例如來源工具記錄了建立時間，仍要核對照片配文所說的事件日期。這樣設計，是為了讓審稿人知道目前證據的範圍，而不是增加一個看似正式、卻沒人理解的合格章。[3]
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下是我們導入時會先問的問題清單，不是已完成 C2PA 部署的案例，也不代表任何特定客戶。
-
-1. 原始檔還在嗎？ 先問素材從哪裡來、是否只剩通訊軟體截圖、能否向提供者索取原檔。收圖時要有一個可回頭查的檔案位置，避免審稿人與發布人看的不是同一份。
-
-2. 誰負責讀懂驗證結果？ 確認誰檢查簽署者、誰核實照片配文、遇到無法驗證時由誰決定如何標示。我們會要求把「沒有資料」「不支援」「驗證失敗」分開記錄，而不是一律寫成假圖。
-
-3. 最終讀者會看到什麼？ 發布前先約定：若平台沒有顯示憑證，是否另外補上來源與 AI 使用說明；若編輯後換檔，誰負責重新檢查。這是流程設計，不是宣稱平台都會保留標記。
-
-## 四 我們的建議：把查核拆成四個動作
-
-1. 收圖時留下來源。 記下提供者、取得日期、原始檔位置及預計用途。與外部素材提供者確認交付的是原檔還是轉存檔，並把授權確認列成獨立欄位。
-
-2. 對照檔案與紀錄。 使用能讀取內容憑證的工具，保留檢查日期與結果；依工具顯示區分簽章、信任狀態及編輯歷程。對於無法判讀的欄位，先請提供者說明，不自行補故事。[1][2]
-
-3. 把關鍵事實另列清單。 人物、地點、時間與事件敘述分別確認。即使來源驗證通過，也保留查詢原始發布者、核對配文的步驟；這是我們依規格限制提出的編輯建議。[3]
-
-4. 測試正式發布流程。 把同一檔案經過實際使用的裁切、匯出與上傳流程，再下載檢查。若資料無法沿途保留，就加上讀者看得懂的說明，並保存原始檔與審稿紀錄。[4]
-
-實際交接時，可以用一份測試素材走完流程：收取原檔、查看憑證、編輯匯出、上傳後下載，再由另一位編輯核對最終檔案。每一步記下檔名與處理結果；若只剩截圖，就明寫「未取得原始檔」，不要寫「未發現 AI」。這是我們建議的演練方式，目的是確認團隊如何處理未知資訊。最後的公開說明，應對應真正拿得到的證據，不因為趕著發布就把未知改成肯定。
-
-◆ 編按 · Think BIG 的做法：發布前留下證據
-
-## 標示、簽章與事實，分開確認。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-Think BIG 主張，影像導入流程要同時保留素材來源、AI 使用說明與發布前核對紀錄。檢查表應寫清楚什麼已確認、什麼還未知，以及誰有權核准使用。
-
-我們不把標記當成真實性的結論。沒有足夠證據時，文案就應收斂到能支持的範圍；讓下一位編輯看得到判斷依據，比留下含糊的「已驗證」更有用。
-
-### 常見問題
-
-Q1：C2PA 能直接判斷圖片是真是假嗎？
-不能。規格解說將來源紀錄與內容是否符合事實分開，仍要核實圖片所描述的事件。[3]
-Q2：沒有內容憑證就是 AI 圖嗎？
-不能這樣判斷。CAI 文件說明，缺少憑證不構成影像不真實的負面證據。[4]
-Q3：截圖會留下原圖憑證嗎？
-一般截圖不會包含原圖的 C2PA 中繼資料；支援的找回機制另有條件。[4][2]
-Q4：憑證是否等於使用授權？
-不是。C2PA 的來源紀錄與 DRM 權限控制不同；素材使用許可應另外確認。[2]
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] C2PA，〈Conformance〉（2025 年計畫與公開清單），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/conformance/)　·
-    [2] C2PA，〈FAQs〉（來源履歷、簽章與軟性綁定），查閱日期 2026-10-26：[c2pa.org](https://c2pa.org/faqs/)　·
-    [3] C2PA，〈C2PA and Content Credentials Explainer〉，規格 2.2（真實性界線），查閱日期 2026-10-26：[spec.c2pa.org](https://spec.c2pa.org/specifications/specifications/2.2/explainer/Explainer.html)　·
-    [4] CAI，〈Frequently-asked questions〉（截圖及缺少憑證），查閱日期 2026-10-26：[opensource.contentauthenticity.org](https://opensource.contentauthenticity.org/docs/getting-started/faqs/)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  AI 導入實測手記
-    Think BIG, Make it Real!　大想成業有限公司
-
 ---
 
 URL: https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/
@@ -31181,117 +31588,6 @@ THINK BIG NEWS   ·  Local AI Field Notes
 
 ---
 
-URL: https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/
-
-# A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Enterprise Security Notes · Issue 021
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-November 16, 2026  ·  Monday
-◆
-Enterprise Security Notes
-◆
-Issue 021
-
-Voice Impersonation · Payment Verification · Business Procedures
-
-## A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel
-
-Think BIG Media  |  November 16, 2026
-
-Pause an urgent payment request and verify both identity and purpose through previously confirmed contact details. Follow the approval workflow without first proving the audio is synthetic.
-
-## One.  What’s Happening: A Familiar Voice Still Requires Verification
-
-On May 15, 2025, the FBI warned of a campaign active since April in which actors impersonated senior US officials through texts and AI-generated voice messages to seek personal-account access.[1] This was a specific disclosed campaign, not a measure of victimization among Taiwanese businesses or evidence of a surge in executive payment fraud.
-
-The business lesson is to separate a recognizable voice from verified identity. In an earlier warning, the FTC explained that scammers could use public audio to clone a familiar voice and advised calling a number already known to belong to the person.[3] We do not claim a universal number of seconds needed to clone a voice.
-
-Payment requests already need verification. The FBI’s business email compromise guidance recommends confirming payment and purchase requests in person or by phone, including account-number or payment-procedure changes.[2] We extend that principle to voice requests: retain existing approvals without first needing to identify a particular synthesis technology.
-
-## Two.  Perspectives: Clues Help; Procedures Are More Usable Than a Listening Test
-
-The awareness perspective:  The FBI suggests observing tone, wording, and audiovisual details while acknowledging that AI-generated content can be hard to identify.[1] Training can help people notice anomalies. In our view, detecting an audio flaw should not become the employee’s test for authorizing payment.
-
-The procedural caution:  Publicly available personal facts may be insufficient for identity verification. We recommend independently confirmed contact details and separate checks on the purpose, recipient, documents, and approver. This is a business-control proposal, not an audio-forensics method.
-
-Another FBI announcement describes voice and real-time video impersonation uses.[4] Video may supplement checks, but an executive-looking image should not bypass payment controls. Nor should every unfamiliar recording be labeled fraudulent; apply the same verification procedure when uncertain.
-
-Include executives in the exercise and have them explicitly accept callbacks and review delays. Staff cannot apply verification consistently if they are urged to bypass it. Record missing contacts, outdated directories, and incomplete documents as actions, with owners confirming corrections.
-
-◆ Deployment Checklist
-
-## Three. Our Deployment Checklist
-
-These are proposed preparation questions for businesses, not claims of victimization or successful interception.
-
-1. Where does the contact list come from?  Ask whether payment contacts and executive numbers were previously verified and who can edit them. Calling a number supplied in the suspicious message keeps verification inside the sender’s channel.[1][2]
-
-2. Who may pause the request?  We recommend explicitly allowing staff to wait for verification and naming a backup reviewer. “In a meeting and unable to call” should not create an exception.
-
-3. What can the reviewer inspect?  Give reviewers the payment purpose, original documents, and account-change history. Separate confirming identity from approving the request itself; one callback should not silently stand for both.
-
-4. Where is help after submission?  Prepare bank and internal incident contacts in advance. Limit access to preserved recordings and screenshots rather than spreading personal information through group chats.
-
-## Four.  Our Recommendations: Write Steps People Can Follow
-
-1. Pause and use a trusted channel.  End the suspicious call and contact the person through previously confirmed details, rather than a new number or link in the message. The FBI and FTC advise independent verification.[1][3]
-
-2. Verify account changes separately.  Check changed payment details or procedures through established contacts and record the outcome.[2] We recommend the same procedure even when the voice sounds familiar or the message appears in an existing conversation.
-
-3. Separate processing and review.  Assign a reviewer and record the verification channel and approval basis for urgent requests too. If no reviewer is available, wait rather than treating urgency as an exception.
-
-4. Run a tabletop exercise.  Use a written scenario involving secrecy, urgency, and a new account. Check whether staff can find contacts, pause the request, and escalate. No voice clone is needed to test the process.
-
-5. Contact the bank immediately after a mistaken transfer.  The FBI recommends immediate contact with the financial institution and coordination with the receiving institution.[2] Preserve messages, times, and transaction records and seek appropriate assistance under the incident process. Do not wait for proof of AI use or assume funds will be recovered.
-
-A voice delivers a request; verification and approval authorize a payment.
-
-◆ Editor’s Note · How Think BIG Approaches This: Put Pause Authority in the Procedure
-
-## Let staff verify requests and find the right escalation contact.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-We recommend using AI to organize questions or verification tasks while designated people retain payment approval. External-action workflows should preserve verification evidence, review results, and response contacts.
-
-This article provides general fraud-prevention and process information, not legal advice.
-
-### Frequently Asked Questions
-
-Q1: Is a familiar voice enough?
-No. The FBI and FTC recommend independent verification through known contact details.[1][3]
-Q2: Must we prove AI use before pausing?
-We recommend pausing for verification. The FBI’s payment-verification advice does not depend on proving AI use first.[2]
-Q3: Does video make approval safe?
-Do not rely on it alone. The FBI also describes real-time video impersonation.[4]
-Q4: What if funds have already been sent?
-Contact the bank immediately through a known channel, preserve records, and seek assistance under the incident process. The FBI recommends immediate financial-institution contact.[2]
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] FBI IC3, “Senior US Officials Impersonated in Malicious Messaging Campaign,” May 15, 2025, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515) ·
-    [2] FBI, “Business Email Compromise”, accessed 2026-10-26: [www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise) ·
-    [3] FTC, “Scammers use AI to enhance their family emergency schemes,” 2023, accessed 2026-10-26: [consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes) ·
-    [4] FBI IC3, “Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud,” December 3, 2024, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  Enterprise Security Notes
-    Think BIG, Make it Real!
-
----
-
 URL: https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/
 
 # 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄 | Think BIG NEWS
@@ -31396,116 +31692,3 @@ Q4：模型都要再留一份嗎？
 
 THINK BIG NEWS   ·  本地 AI 實測筆記
     Think BIG, Make it Real!　大想成業有限公司
-
----
-
-URL: https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/
-
-# 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-企業資安實務 · 第 021 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-2026 年 11 月 16 日　星期一
-◆
-企業資安實務
-◆
-第 021 期
-
-語音冒名 · 付款核實 · 企業流程
-
-## 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程
-
-Think BIG 自媒體部  |  2026 年 11 月 16 日
-
-遇到緊急付款要求，先暫停，再用事先確認的聯絡方式核實人與事。回到原有核准流程，不必先證明聲音是不是 AI。
-
-## 一 現象：語音可以被模仿，付款還是要查核
-
-FBI 在 2025 年 5 月 15 日警示，自當年 4 月起，有人冒充美國高階官員，透過簡訊與 AI 產生的語音訊息建立信任，試圖取得個人帳號存取權。[1] 這是官方揭露的特定活動，不是台灣企業受害統計，也不應直接改寫成「老闆匯款詐騙暴增」。
-
-這項警示給公司的提醒，是把聲音與身分核實分開。美國 FTC 在較早的防詐文章中指出，詐騙者可能利用公開的聲音片段複製熟人的聲音，並建議用自己知道的電話回撥確認。[3] 本文不提供需要多少秒素材就能成功的數字，因為不同工具、資料與情境不能一概而論。
-
-付款要求本來就需要核實。FBI 的商務電子郵件詐騙（BEC）說明建議，透過當面或電話確認付款與採購要求，也要確認帳號或付款程序的變更。[2] 我們據此延伸：即使要求改從語音傳來，也不應省略原有核准；不必先判定使用了哪種合成技術，才有理由暫停。
-
-## 二 各方評價：辨識線索有幫助，流程比聽力測驗更可執行
-
-技術與警覺的一面： FBI 提醒，語氣、用詞與影音細節可以提供觀察線索，同時也承認 AI 內容常難辨識。[1] 我們的判讀是，教育訓練可以教人注意異常，但不適合把「有沒有聽出破綻」當成員工要承擔的付款判準。
-
-程序面的保留： 只問幾個公開資料能查到的問題，未必足以確認身分。我們建議使用已核實的聯絡資料，並另外確認事情本身：付款目的、收款對象、文件與核准人。這是公司流程建議，不是聲音真偽的鑑定方法。
-
-FBI 另一份生成式 AI 詐騙公告列出語音與即時視訊冒名的可能用法。[4] 因此，換成視訊可以作為補充，但不能讓任何看起來像主管的畫面直接跳過付款控制。我們也不主張每段陌生語音都是詐騙；有疑問時，依相同核實程序處理，避免靠個人感覺決定。
-
-我們也建議讓主管事先參與演練，明確接受經辦回撥與等待覆核。流程若只要求員工提高警覺，卻在真正查證時催促跳過，會讓執行者無所適從。演練後應把找不到窗口、通訊錄過期與文件不齊等缺口列成待辦，再由負責人確認修正結果。
-
-◆ 導入檢查清單
-
-## 三、我們導入時的檢查清單
-
-以下是我們建議公司事先確認的問題清單，不描述受害或攔阻事件。
-
-1. 通訊錄從哪裡來？ 我們會先問，付款聯絡人與主管電話是否有事先確認的紀錄，誰能修改。若回撥號碼直接抄自可疑訊息，核實仍停留在對方控制的管道裡。[1][2]
-
-2. 誰有權說「先停」？ 我們建議明文允許經辦在核實完成前暫停處理，並指定主管不在場時的覆核人。不要讓「正在開會、不能回電」變成略過流程的條件。
-
-3. 核實的人，看得到什麼？ 覆核者應能對照付款目的、原始單據與帳號變更紀錄。我們建議把「確認來電者」和「批准這筆要求」分成兩個問題，避免一通回電同時被當成全部授權。
-
-4. 如果已經送出，怎麼求助？ 先備好銀行與內部事件窗口，讓經辦知道如何聯絡，不必當場從可疑訊息找電話。保存紀錄時也應限制可讀人員，不在群組大量轉傳含個資的錄音或截圖。
-
-## 四 我們的建議：把核實寫成每個人都能照做的步驟
-
-1. 暫停，改走已知管道。 結束可疑通話，用事先確認的電話或其他可信管道聯絡本人；不要沿用來訊附的新電話或連結。FBI 與 FTC 都提出獨立核實方向。[1][3]
-
-2. 帳號變更另行確認。 收款資料或付款程序變更，回到已建立的窗口核對並留紀錄。[2] 我們建議即使聲音熟悉、訊息出現在舊對話，也照同樣程序處理。
-
-3. 讓經辦與覆核分工。 我們建議付款由指定人覆核，緊急件也要記下核實管道與同意依據。找不到覆核人時先等待，不把「對方很急」寫成例外條件。
-
-4. 做一次桌上演練。 用文字情境測試「主管要求保密、立即處理、新帳號」，觀察員工能否找到通訊錄、暫停點與升級窗口。不需要複製任何人的聲音，也能演練程序。
-
-5. 發現誤付就立即聯絡銀行。 FBI 建議立即聯絡金融機構，要求與收款機構聯繫。[2] 同時依公司事件流程保存訊息、時間與交易紀錄，向適當機關求助；不要等到證明是 AI 才通報，也不預期款項必能追回。
-
-一句話：聲音只是訊息來源，付款依據要回到核實與核准。
-
-◆ 編按 · Think BIG 的做法：把停止權寫進流程
-
-## 讓經辦可以查證，也知道該找誰。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們主張 AI 可以協助整理疑點或待核實事項，付款核准仍由指定人負責。涉及對外動作的流程，應留下核實依據、覆核結果與事件處理窗口。
-
-延伸閱讀[AI 系統事件處理](https://thinkbigtw.com/library/qa/ai-incident-response/)。本文提供一般防詐與流程參考，不構成法律意見。
-
-### 常見問題
-
-Q1：聲音很像主管，就能照做嗎？
-不能只以聲音核實。FBI 與 FTC 建議透過獨立、已知的聯絡方式確認。[1][3]
-Q2：要先證明是 AI 才能暫停嗎？
-我們建議不必。可疑付款或帳號變更先走核實流程；FBI 的付款核對建議也不以先鑑定 AI 為前提。[2]
-Q3：改成視訊就可以直接核准嗎？
-不建議。FBI 也列出即時視訊冒名的可能用法，仍需核實與覆核。[4]
-Q4：已經匯出怎麼辦？
-立即用已知管道聯絡銀行，依公司事件流程保存紀錄並尋求協助；FBI 亦建議立即聯絡金融機構。[2]
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] FBI IC3，〈Senior US Officials Impersonated in Malicious Messaging Campaign〉，2025-05-15，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515)　·
-    [2] FBI，〈Business Email Compromise〉，查閱日期 2026-10-26：[www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise)　·
-    [3] FTC，〈Scammers use AI to enhance their family emergency schemes〉，2023，查閱日期 2026-10-26：[consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes)　·
-    [4] FBI IC3，〈Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud〉，2024-12-03，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  企業資安實務
-    Think BIG, Make it Real!　大想成業有限公司
-
----
