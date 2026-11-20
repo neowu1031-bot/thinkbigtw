@@ -212,7 +212,7 @@ NT$39,910（續約 NT$35,910）
 
 以下是功能範例，依訪談、設備與環境評估後決定，不是每個方案都內含全部功能。
 
-單 Agent 各項皆可依需求設定 ，另可每週依使用情形客製新增技能（日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 Agent 頁）
+單 Agent 各項皆可依需求設定 ，每週維護之外，另可每週新增技能一次，需提出需求（日期計算、提醒、待辦摘要、文件整理、錄音轉逐字稿、潤飾與找錯字、查資料等，詳見單 Agent 頁）
 
 ### 維運：每週例行
 
@@ -708,7 +708,7 @@ We can set it up so that: reply drafts and templates for customer service, sent 
 
 These are example features. What you get is decided after an interview and an assessment of your device and environment; not every plan includes every feature.
 
-Everything in the Single Agent can be set up to your needs , and we can also build new skills each week based on how you use it (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single Agent page)
+Everything in the Single Agent can be set up to your needs , and alongside weekly maintenance we can add one new skill each week (you send us the request) (date calculation, reminders, to-do summaries, document summaries, audio to transcript, polishing and proofreading, web lookups and more; see the Single Agent page)
 
 ### Maintenance: weekly routine
 
@@ -2189,7 +2189,7 @@ Single Agent NT$7,840, one-time OpenClaw or Hermes (choose one), full personal s
 
 Dual Agent NT$17,920 OpenClaw + Hermes with memory sync, cross-Agent collaboration room (this plan only), skills per interview, includes remote installation + tutorial videos + 7-day technical consultation after installation Work spans both "executing" and "thinking" types, want two AIs with shared memory
 
-Premier Annual NT$39,910 first year / NT$35,910 renewal Single main system annual plan, weekly maintenance and skill additions, 48-hour failure repair Want year-round support, don't want to handle maintenance yourself
+Premier Annual NT$39,910 first year / NT$35,910 renewal Single main system annual plan, weekly maintenance plus one new skill per week (on request), 48-hour failure repair Want year-round support, don't want to handle maintenance yourself
 
 Flagship Annual NT$48,010 first year / NT$43,010 renewal OpenClaw + Hermes dual-system annual plan with memory sync, full-year maintenance, 48-hour failure repair Already know you want both, want full-year care
 
@@ -6584,7 +6584,7 @@ Who it's for: Individuals who don't want to maintain it themselves and need some
 Single Agent
 Subtitle: Premier Annual
 NT$39,910(renewal 35,910)
-OpenClaw or Hermes (your choice), fully custom; weekly maintenance + skill additions
+OpenClaw or Hermes (your choice), fully custom; weekly maintenance + one new skill per week (on request)
 [See Premier Annual →](https://thinkbigtw.com/en/annual-pro/)
 
 Dual Agent
@@ -16382,7 +16382,7 @@ Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理。Think BIG �
 
 雙 Agent NT$17,920 OpenClaw + Hermes 記憶互通，跨 Agent 協作會議室（此方案專屬），技能依訪談，含遠端安裝＋教學影片＋安裝後 7 天技術諮詢 工作橫跨「做事」跟「想事情」兩種，想讓兩個 AI 記憶互通協作
 
-尊榮年約 首年 NT$39,910／續約 NT$35,910 單一主系統年約，每週維護與新增技能，故障 48 小時修復 想一年有人顧、不想自己碰維護
+尊榮年約 首年 NT$39,910／續約 NT$35,910 單一主系統年約，每週維護，並每週新增技能一次（需提出需求），故障 48 小時修復 想一年有人顧、不想自己碰維護
 
 旗艦年約 首年 NT$48,010／續約 NT$43,010 OpenClaw + Hermes 雙系統互通年約，全年維護，故障 48 小時修復 已經知道兩個都要、想要全年保養
 
@@ -28832,7 +28832,7 @@ AnyDesk／DeskIn 遠端安裝；無年度維運承諾。裝好後要人長期顧
 [單 Agent
 副標：尊榮年約
 NT$39,910（續約 35,910）
-OpenClaw 或 Hermes 擇一、全客製；每週維護＋新增技能
+OpenClaw 或 Hermes 擇一、全客製；每週維護＋每週新增技能一次（需提出需求）
 看尊榮年約頁 →](https://thinkbigtw.com/annual-pro/)
 [雙 Agent
 副標：旗艦年約
