@@ -28,7 +28,17 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-        run: wrangler deploy --keep-vars
-        # --keep-vars: route update may fail (token lacks Zone:Workers Routes permission)
-        # but script upload succeeds; existing route thinkbigtw.com/* stays pointed at
-        # thinkbigtw-headers, so new code goes live regardless.
+        shell: bash
+        run: |
+          set +e
+          wrangler deploy --keep-vars 2>&1 | tee deploy.log
+          code=${PIPESTATUS[0]}
+          if [ "$code" -eq 0 ]; then exit 0; fi
+          # 部署用的 API 權杖沒有 Zone > Workers Routes 權限時，程式碼已上傳成功，
+          # 只有路由更新被拒；既有路由 thinkbigtw.com/* 仍指向此 Worker，新程式碼照常生效。
+          # 只容忍這一種失敗，其餘錯誤（語法、驗證、上傳失敗）一律視為失敗。
+          if grep -q "^Uploaded thinkbigtw-headers" deploy.log && grep -q "/workers/routes) failed" deploy.log; then
+            echo "::warning::程式碼已上傳；路由更新因權杖缺少 Workers Routes 權限而略過（既有路由不受影響）"
+            exit 0
+          fi
+          exit $code
