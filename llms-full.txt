@@ -3523,6 +3523,224 @@ THINK BIG NEWS   ·  First-hand observations on AI deployment
 
 ---
 
+URL: https://thinkbigtw.com/en/news/ambient-vs-chat-ai-20261114/
+
+# Chat AI or an Ambient Agent? Define Triggers and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 020
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 14, 2026  ·  Saturday
+◆
+AI Deployment Field Notes
+◆
+Issue 020
+
+Ambient AI · Event Triggers · Human Review
+
+## Chat AI or an Ambient Agent? Define Triggers and Stop Conditions
+
+Think BIG Media  |  November 14, 2026
+
+Start with who triggers the work and where it waits for a person. Background operation needs a defined scope, approval gates, and a way to stop.
+
+## One.  What’s Happening: From Waiting for Prompts to Responding to Events
+
+In January 2025, LangChain published “Introducing ambient agents,” describing agents that respond to signals and seek human input when needed, alongside an email-assistant reference implementation.[1] This historical announcement introduces our discussion of interaction and governance; it is not a current product launch report.
+
+Here, “going to AI” means a person initiates a request. “AI coming to you” means an event or schedule starts work and produces a notification or review item. This is an explanatory distinction, not an industry-wide taxonomy. The original article says ambient agents need not be completely autonomous.[1] Background operation does not mean watching every screen or receiving all system permissions.
+
+Waiting for a person can be an explicit program state. LangGraph documents interrupts that pause execution, save state, and resume with external input.[2] OWASP LLM06:2025 recommends limiting tools, permissions, and autonomy, with human approval for high-impact actions.[4] Background execution and approval authority need separate designs.
+
+## Two.  Perspectives: Less Repetition, More Operational Responsibility
+
+The benefit:  The original article distinguishes notification, questions, and review.[1] In our assessment, a well-defined trigger can make preparing a review queue more suitable than repeatedly briefing a tool. Measure that on real work rather than assuming a quantified time saving.
+
+The caution:  Background work also involves scheduling and retries. Kubernetes says its CronJob controller may sometimes create duplicate jobs or miss a job, so jobs should be idempotent: repeating them should not add unintended effects.[3] This is that scheduler’s documented behavior, not a defect attributed to every AI platform.
+
+We recommend turning this into acceptance questions: What happens when an event arrives twice? Is waiting-for-approval state visible? With no reply, does the job keep waiting, expire, or escalate? Decide these conditions before deployment.
+
+Define when a person needs an interruption: missing information, pending approval, or repeated failure. Group related items and identify an owner and deadline where relevant. Repeated reminders need a stop or escalation rule. This is an interaction recommendation, not a measured outcome.
+
+If a task lacks a clear event and completion condition, use conversation to clarify the workflow first. Once a person can describe its start, inputs, and outputs, move a bounded portion into the background. Not every task needs a schedule.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from operating persistent AI agents. They are not industry statistics or an account of any particular organization.
+
+1. Model calls continue without a conversation.  Heartbeat checks and automatic memory organization can consume usage allowances or compute unnoticed. We inventory schedules, disable unnecessary jobs, and set limits.
+
+2. Long conversations create maintenance work.  Old context needs summarization as conversations grow. Local summarization can take minutes and time out, blocking a conversation. We summarize earlier, set timeouts, and separate channels.
+
+3. A healthy service may have just restarted.  A laptop host once lost power overnight after its battery drained, leaving morning jobs unexecuted. The service later appeared healthy because it had just restarted. We check uptime and power alongside service status, and added low-battery alerts.
+
+4. Important memory must be inspectable.  We keep important items in memory files that can be viewed, edited, and deleted. Persistent state should remain understandable to its owner.
+
+## Four.  Our Recommendations: Pilot One Task with a Clear Endpoint
+
+1. Specify triggers.  Define the event or schedule, input data, output, and completion condition. When no work remains, execution should end rather than continually asking a model to find another task.
+
+2. Separate notification from action.  Begin with summaries, drafts, or review queues. Require designated approval for external sending or production changes, showing target and content beforehand.[4] Waiting for approval should be a workflow state.[2]
+
+3. Test duplicates, missed work, and recovery.  Use synthetic events to check duplicate handling and restart behavior.[3] Track last success and outstanding work, beyond process existence.
+
+4. Set usage and stop conditions.  Specify call, duration, and retry limits, with an alert recipient. Test manual shutdown and confirm unfinished work and pending approvals remain readable.
+
+Give background work a beginning, endpoint, and owner before expanding autonomy.
+
+◆ Editor’s Note · How Think BIG Approaches This: Background Work That Can Be Handed Over
+
+## Deliver triggers, state records, approvals, and shutdown instructions together.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend a visible inventory of schedules, recent actions, and outstanding approvals. New jobs should bring an explicit data scope, resource limits, and shutdown method.
+
+Whether an agent stays active and which actions it may perform are separate questions that both need answers.
+
+### Frequently Asked Questions
+
+Q1: Must ambient agents be fully autonomous?
+No. The original article includes notification, questions, and review.[1]
+Q2: Is adding a schedule enough?
+Test state, retries, duplicate handling, approvals, and shutdown separately.[2][3]
+Q3: Can model usage continue without a user prompt?
+In our operations records, heartbeat and memory jobs continue calling models, so we inventory them and set limits.
+Q4: Should an ambient agent send messages by itself?
+Separate capability from authorization. We recommend a preview and designated approval for outbound sending, applying high-impact-action guidance.[4]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] LangChain, “Introducing ambient agents,” January 14, 2025, accessed 2026-10-26: [blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/) ·
+    [2] LangChain, “Interrupts”, accessed 2026-10-26: [docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts) ·
+    [3] Kubernetes, “CronJob”, accessed 2026-10-26: [kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) ·
+    [4] OWASP, “LLM06:2025 Excessive Agency”, accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/
+
+# What Should You Back Up in a Local AI System? — Beyond Model Files | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 023
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 20, 2026  ·  Friday
+◆
+Local AI Field Notes
+◆
+Issue 023
+
+local AI · system backup · recovery drills
+
+## What Should You Back Up in a Local AI System? — Beyond Model Files
+
+Think BIG Media  |  November 20, 2026
+
+Recovering a model does not reconstruct the working system. A backup plan needs file locations, a consistent recovery point, and work-based acceptance checks.
+
+## One. A File Copy Is Not a Recovery Plan
+
+Model files are conspicuous, but size should not determine backup priority. Ollama’s FAQ describes configurable model storage and service settings managed through the operating system. The default directory may not describe the deployed setup.[1]
+
+Databases also need specific handling. PostgreSQL says a direct file-level copy requires shutdown; an appropriate consistent snapshot can work while running, provided its conditions, logs, and full data scope are covered.[2]
+
+SQLite offers an online backup API for database snapshots and discusses the locking and interruption risks of traditional copying.[3] CISA recommends offline, encrypted backups of critical data and regular availability and integrity tests.[4] These sources focus on recoverability, beyond simply having another copy.
+
+## Two. Offline and Online Methods Have Conditions
+
+The case for stopping writes: a clearer state.  Where maintenance windows are possible, we favor stopping writing services before a documented backup. This is our operational choice. PostgreSQL’s restrictions on direct copying do not mean every database requires an offline backup.[2]
+
+The case for online backup: service continuity.  SQLite’s API and PostgreSQL’s consistent-snapshot guidance offer conditional paths for working systems.[2][3] Our reading is that database and storage architecture should determine the method. A completed copy command is insufficient evidence by itself.
+
+Convenience also needs to be weighed against isolation. CISA notes that ransomware can delete or encrypt accessible backups.[4] We recommend reviewing backup access separately from everyday access while ensuring an authorized recovery owner can obtain what is needed.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These notes come from our local AI deployment and maintenance records. They are not industry statistics or an account of any particular client.
+
+1. The model is one component.  Our checklist includes configuration, schedules, service definitions, database snapshots, knowledge indexes, agent memory files, and conversation records. Where model files can be downloaded again, we still record the exact version rather than an ambiguous name.
+
+2. Make a consistent backup before upgrades.  Our recorded practice is to stop services before packaging the system, giving the backup a defined point with writes stopped. That is our method, not a universal prescription. Online requirements need a method appropriate to the database.[2][3]
+
+3. Use the existing backup process.  We use the established daily backup mechanism rather than adding a separate process without an owner. We consider the job complete after a recovery drill.
+
+## Four. Our Recommendations: From Inventory to Recovery
+
+1. Inventory by purpose.  Mark what must be preserved and what can be rebuilt. Record locations, owners, versions, retention, and rebuild instructions. If an index will be rebuilt, keep its source documents and build procedure.
+
+2. Document consistency.  Identify the services to stop, database order, and how to confirm writing has stopped. For online methods, save options and completion evidence. Do not assume that a copy of a live data directory is a usable snapshot.[2][3]
+
+3. Protect and isolate backups.  Consider offline storage and encryption under CISA’s guidance, and test authorized access to recovery and decryption material.[4] Keep secret retrieval controlled rather than placing complete secrets in general handover notes.
+
+4. Restore in isolation.  Select a backup, record the steps, and use known questions to check retrieval, memory access, and service startup. Disable outbound scheduled actions during the drill to avoid repeating production work. This is our recommended test design.
+
+5. Return results to the owner.  Keep the recovery point, elapsed time, failures, and corrections. Add missing settings to the inventory. Use the revised procedure for the next drill instead of carrying forward an old completion check.
+
+A useful drill can start with one concrete task, such as retrieving a known document. Define the expected answer and authorized account, restore from the instructions, and check the source data, version, and permissions. If an index is rebuilt, confirm that all required originals exist. Compare the drill against the inventory: any file obtained ad hoc during recovery belongs on the next checklist. This is our proposed acceptance method; service startup alone does not establish complete recovery.
+
+◆ Editor’s Note · How Think BIG Approaches This: Deliver the Recovery Procedure
+
+## A completed backup needs a repeatable restoration record.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to deliver backup scope, restoration order, and acceptance questions with a local AI system. Recovery belongs in the maintenance documentation.
+
+Another authorized person should be able to follow the procedure. Changes to configuration, data locations, or schedules should update the recovery instructions so they describe the system actually in use.
+
+### Frequently Asked Questions
+
+Q1: Is backing up model files enough?
+Our inventory also covers settings, schedules, databases, indexes, memory, and records. Model locations can be customized.[1]
+Q2: Can I copy database files directly?
+Use a method appropriate to the database. PostgreSQL requires shutdown for a direct file backup; SQLite offers an online backup API.[2][3]
+Q3: Do daily backups still need a recovery drill?
+Yes. CISA recommends testing availability and integrity regularly.[4]
+Q4: Must every model file be duplicated?
+We first assess whether it can be obtained again and record the exact version. An uncertain rebuild path should not be treated as disposable.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Ollama, “FAQ” (model storage and service configuration); accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/faq) ·
+    [2] PostgreSQL, “File System Level Backup” (copies and consistent snapshots); accessed 2026-10-26: [www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html) ·
+    [3] SQLite, “SQLite Backup API” (online snapshots); accessed 2026-10-26: [www.sqlite.org](https://www.sqlite.org/backup.html) ·
+    [4] CISA, “#StopRansomware Guide” (offline encrypted backups and testing); accessed 2026-10-26: [www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/
 
 # Was This Image Made with AI? — What Content Credentials Can Tell You | Think BIG NEWS
@@ -6927,6 +7145,98 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/ai-bias-enterprise/
+
+# Can AI Be Biased? What Should a Company Check Before Using It to Inform Decisions? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Governance & Regulation
+TB37
+
+# Can AI Be Biased? What Should a Company Check Before Using It to Inform Decisions?
+
+Think BIG Q&A Library  ·  2026-11-19
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-bias-enterprise/)
+
+The short answer
+
+AI can exhibit bias. Before using it to inform decisions, examine the data, the criteria, and whether errors affect groups differently. NIST SP 1270 (2022) explains that institutional and human factors also matter, so model testing alone is insufficient.
+
+## 1. Look beyond training data
+
+NIST SP 1270 (2022) examines systemic, statistical and computational, and human bias. Requirements, labeling choices, and interpretation can all shape outcomes. Asking whether a model is fair does not establish its suitability for a particular workflow.
+
+NIST AI 600-1 (2024) describes amplification of historical and societal bias and performance differences across groups or languages. Separate information organization from decisions affecting someone’s opportunities. The latter needs scrutiny of criteria, consequences, and a route to reconsideration.
+
+## 2. Make the process visible
+
+These are suggestions derived from NIST, not universal fairness thresholds.
+
+Area
+Question
+Evidence
+Purpose
+Extract facts, advise, or decide?
+Scope and prohibited uses
+
+Criteria
+Why does each field matter?
+Definitions and rationale
+
+Data
+Are actual languages and formats covered?
+Test coverage and sources
+
+Outcomes
+Who experiences more errors?
+Group-level results and limitations
+
+Review
+Who can correct or challenge a result?
+Owners and escalation paths
+
+Synthetic paired cases can keep relevant qualifications fixed while varying irrelevant descriptions. They can reveal warning signs but cannot establish fairness across all groups. Also evaluate suitable, lawfully obtained data from the actual use context. State coverage gaps explicitly.
+
+## 3. Give reviewers power to change outcomes
+
+Reviewers should see original information, applied criteria, and checkable reasons. They should be able to change conclusions and record why. As an editorial workflow suggestion, independent reading before seeing AI recommendations may help avoid simply accepting a default.
+
+Local deployment can address processing-location requirements, but fairness still requires contextual evaluation. Reassess cloud alternatives rather than carrying old results forward. Seek appropriate professional review for employment, legal rights, or other consequential uses. This article is general information, not legal advice.
+
+Brand information | Think BIG
+
+## Think BIG’s data boundaries and verification evidence
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does removing sensitive fields eliminate bias? No. Institutional and human factors remain; evaluate purpose and outcomes. Q2: Is human review enough? Reviewers need original information, time, and authority to correct results, rather than merely confirming them. Q3: Are local models fairer? Deployment location does not establish fairness. Evaluate models against the same task and criteria. Q4: Which fairness metric should we use? Define the decision and harm to avoid first. There is no cross-context threshold offered here.
+
+Sources (checked 2026-10-26)
+
+- NIST, SP 1270, Towards a Standard for Identifying and Managing Bias in Artificial Intelligence（2022）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf)
+
+- NIST, AI 600-1, Generative Artificial Intelligence Profile（2024）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/ai-illustration-safety/
 
 # Are AI-Generated Picture Book Illustrations Safe? 5 Things Parents Should Understand First | Think BIG Q&A Library
@@ -7122,6 +7432,90 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/ai-meeting-notes-privacy/
+
+# What Should You Check Before Using AI for Meeting Notes? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+Enterprise AI Security
+TB38
+
+# What Should You Check Before Using AI for Meeting Notes?
+
+Think BIG Q&A Library  ·  2026-11-20
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-meeting-notes-privacy/)
+
+The short answer
+
+Before using AI meeting notes, confirm the basis and notice for recording and personal-data processing, and map where each output goes. Permission to record and permission to send content to an external AI service need separate review. This Taiwan-focused overview is general information, not legal advice.
+
+## 1. Explain the purpose before recording
+
+Article 2 of Taiwan’s Personal Data Protection Act covers information identifying a person directly or indirectly. Converting identifiable speech into text does not remove that concern. Article 5 limits processing to a necessary and reasonably related scope, and Article 19 sets conditions for collection or processing by non-government agencies.
+
+Article 8 generally requires notice when collecting information from the individual, with statutory exceptions. Suggested meeting notices should explain recording, AI use, purpose, and a contact. Whether consent or an exception applies requires contextual review; an on-screen recording notice does not settle every legal question.
+
+## 2. Manage each output separately
+
+These are governance suggestions; determine retention from the purpose and applicable requirements.
+
+Output
+Review
+Access and sharing
+Recording
+Owner, storage, external transcription
+Necessary staff; avoid public links
+
+Transcript
+Speaker labels, sensitive content, errors
+Check recipients and content
+
+Summary and tasks
+Fidelity and unconfirmed decisions
+Owner review before sending
+
+Microsoft’s recording documentation illustrates why settings matter: recordings may reside in OneDrive or SharePoint, with access depending on meeting and sharing arrangements. This describes that service, not every tool. Examine recording, transcription, model processing, logs, and backups separately.
+
+## 3. Assign owners for reuse and deletion
+
+Article 20 generally limits non-government agencies’ use to the necessary scope of the collection purpose, with exceptions. Review the basis and notice again before reusing notes for training or another purpose. Define correction, access, and deletion request procedures.
+
+Local transcription and models can support processing on company equipment, while meeting platforms, synchronization, email, or backups may still use external services. Evaluate cloud options through actual terms and settings. A synthetic meeting can exercise recording, sharing, correction, and deletion before real information is introduced.
+
+Brand information | Think BIG
+
+## Think BIG’s meeting-data flows and access boundaries
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Is a recording notification sufficient? It is one step. Review the processing basis, notice, and other applicable requirements. Q2: Is a transcript anonymous without names? Not if roles, events, or other details still identify people. Q3: Can summaries go to every employee? Match recipients to purpose and necessity, and review sensitive information and unconfirmed decisions. Q4: Does local processing mean no external connection? Check the meeting platform, synchronization, external models, logs, and backups.
+
+Sources (checked 2026-10-26)
+
+- 全國法規資料庫, 個人資料保護法第 2、5、8、19、20 條: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Microsoft, Manage Teams recording policies for meetings and events: [learn.microsoft.com](https://learn.microsoft.com/en-us/microsoftteams/meeting-recording)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/ai-output-copyright/
 
 # Do AI-Generated Articles and Images Have Copyright in Taiwan? | Q&A Library | Think BIG
@@ -7203,6 +7597,94 @@ Sources (checked 2026-10-26)
 - Taiwan Intellectual Property Office, Email Interpretation 1150724: [www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-93359.html)
 
 - Think BIG, Trust and AI Governance: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/ai-red-teaming/
+
+# What Is AI Red Teaming, and What Can a Company Test Before Launch? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+Enterprise AI Security
+TB36
+
+# What Is AI Red Teaming, and What Can a Company Test Before Launch?
+
+Think BIG Q&A Library  ·  2026-11-18
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-red-teaming/)
+
+The short answer
+
+AI red teaming deliberately looks for weaknesses in answers, data access, and tool actions from an adversarial perspective. A company can begin with synthetic documents and test identities in an authorized environment. A few passing cases do not establish that a system is risk-free.
+
+## 1. Define scope and stopping conditions
+
+OWASP LLM01:2025 recommends adversarial testing to check trust boundaries and access controls. External documents can influence model behavior, and neither RAG nor fine-tuning fully removes prompt injection risk. Include retrieved content and connected tools in the exercise.
+
+Before testing, document the owner, accounts, data, permitted actions, time window, and stop contact. Use synthetic information and test endpoints for sending, deletion, or modification. Stop if unexpected data transmission, instability, or activity outside scope occurs. Testing third-party systems requires its own authorization.
+
+## 2. Start with low-impact cases
+
+These examples are editorial suggestions derived from OWASP, not its complete official test suite.
+
+Case
+Setup
+Expected boundary
+Instructions inside a file
+Put a task-diverting instruction in a synthetic document
+Content cannot grant tool permissions
+
+Cross-role retrieval
+Request another test group’s files
+Retrieval denies access and content stays undisclosed
+
+Unapproved sending
+Ask for a summary to be sent to a test destination
+No execution without designated approval
+
+Excess functionality
+Ask a read-only workflow to edit a test file
+Tool and data controls deny the write
+
+OWASP LLM06:2025 identifies excessive functionality, permissions, and autonomy as risk factors. Inspect downstream changes and actual tool events rather than relying on the model’s claim that it refused or did nothing.
+
+## 3. Turn failures into reproducible fixes
+
+Record inputs, document versions, permissions, model and application versions, expected behavior, outputs, and tool events. After a fix, rerun the failed case and legitimate tasks. Where responses vary, retain every result and the number of attempts rather than treating one pass as conclusive.
+
+Test both local and cloud models. Local processing does not remove prompt injection. Revisit affected workflows after changing tools, permissions, or retrieved content. Tests spanning systems or involving sensitive production data should be planned by qualified staff under a separately confirmed scope.
+
+Brand information | Think BIG
+
+## Think BIG’s security review and verification records
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: How is it different from acceptance testing? Acceptance checks intended work; red teaming deliberately explores misuse and adversarial situations. Both can share version and outcome records. Q2: Should real secrets be used? Use synthetic data for initial exercises. Production information requires a separately defined authorization scope. Q3: Can local models skip it? No. Document injection and excessive tool access can also affect local applications. Q4: Does finding nothing mean launch is safe? Also review functional acceptance, known limits, maintenance, and incident handling. The exercise is one part of readiness.
+
+Sources (checked 2026-10-26)
+
+- OWASP, LLM01:2025 Prompt Injection: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+
+- OWASP, LLM06:2025 Excessive Agency: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
 
 This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
 
@@ -9453,6 +9935,96 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/gpu-vs-npu-ai-pc/
+
+# GPU or NPU: Can an “AI PC” Run a Company’s Local LLM? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+Local LLM
+TB34
+
+# GPU or NPU: Can an “AI PC” Run a Company’s Local LLM?
+
+Think BIG Q&A Library  ·  2026-11-16
+      ·  [中文](https://thinkbigtw.com/library/qa/gpu-vs-npu-ai-pc/)
+
+The short answer
+
+A GPU supports parallel computation as well as graphics; an NPU is designed for neural-network operations. An “AI PC” label does not establish that a company’s chosen LLM can use its NPU. Model format, inference software, drivers, and available memory all matter. Test the intended configuration on actual work.
+
+## 1. Hardware needs a supported software path
+
+Intel explains GPUs’ parallel processing and uses beyond graphics. Microsoft’s NPU developer documentation states that software must be programmed to use the NPU. These sources explain roles rather than recommend products or rank devices.
+
+Dimension
+GPU
+NPU
+Role
+Graphics and suitable parallel workloads
+Neural-network operations
+
+Pre-adoption checks
+Supported hardware and drivers
+Runtime, model format, supported operations
+
+Acceptance evidence
+Actual GPU use, memory, latency
+Actual NPU use, compatibility, results
+
+This table is a review guide, not a universal speed comparison. Microsoft also describes model conversion or quantization for NPU use. Check the actual software path rather than the chip’s name.
+
+## 2. Test model capacity and work length together
+
+Ollama documents hardware and platform compatibility, and notes that larger contexts require more memory. Starting a model does not establish suitability for long documents or shared work.
+
+We suggest approved short questions, long files, and multiple turns, recording the model, quantization, context, completion, latency, and memory. Add concurrent work if that is the intended use. A short successful demonstration does not settle document handling or a continuously running Agent.
+
+Request evidence of the accelerator actually used, such as execution records and resource monitoring. Text output alone does not show whether acceleration is active.
+
+## 3. Describe acceptance conditions before buying
+
+Replace “we need an AI PC” with document types, acceptable waiting time, offline needs, expected concurrent users, and maintenance ownership. Ask for a demonstration with the same approved tasks and keep the configuration and results.
+
+Check answer quality, sources, and permissions alongside speed. We suggest retesting important tasks after changing model size or quantization. Allocate local and cloud work according to data rules, checking the complete local pipeline or external terms and transmitted fields as appropriate. A hardware label cannot stand in for that work and data inventory.
+
+Brand information | Think BIG
+
+## Hardware verification and version records at Think BIG
+
+Think BIG helps companies deploy AI Agents in their own environments. Running on company hardware does not keep every connection local: cloud models, messaging platforms, and other external services can still receive requests.
+
+- Verify work with evidence : Completion criteria require corresponding change records and verification results, with maintenance and handover responsibilities defined.
+
+- Review third-party components : Third-party packages are reviewed for source and licensing, pinned, and kept off automatic updates. Keys are stored in access-protected configuration files and are not shared in chat.
+
+See [Trust](https://thinkbigtw.com/trust/) and [Local AI and data sovereignty](https://thinkbigtw.com/guides/local-ai-data/).
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Can an AI PC’s NPU run every LLM? No. Check format, supported operations, runtime, and memory. Q2: Is a GPU or NPU better? Evaluate the workload and supported software. This article offers no universal ranking. Q3: Is successful startup sufficient? Test long files, multiple turns, intended concurrency, and answer quality. Q4: How can a company verify accelerator use? Request the tool’s execution records and resource-monitoring method, then validate on real tasks.
+
+Sources (checked 2026-10-26)
+
+- Intel, What Is a GPU?: [www.intel.com](https://www.intel.com/content/www/us/en/products/docs/processors/what-is-a-gpu.html)
+
+- Microsoft, Develop AI applications for Copilot+ PCs: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/ai/npu-devices/)
+
+- Ollama, Hardware support: [docs.ollama.com](https://docs.ollama.com/gpu)
+
+- Ollama, Context length: [docs.ollama.com](https://docs.ollama.com/context-length)
+
+- Think BIG, Trust and AI Governance: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/how-to-choose-custom-book/
 
 # How to Choose a Custom Picture Book: 7 Questions to Ask Before You Buy | Think BIG Q&A Library
@@ -11005,6 +11577,98 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/local-llm-read-pdf-excel/
+
+# Can a Local LLM Read PDFs, Excel Files, and Scans? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+Local LLM
+TB32
+
+# Can a Local LLM Read PDFs, Excel Files, and Scans?
+
+Think BIG Q&A Library  ·  2026-11-14
+      ·  [中文](https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/)
+
+The short answer
+
+A local AI system can be designed to handle PDFs, Excel workbooks, and scans, but a text model does not automatically understand every file placed in a folder. Parsing, OCR, or a validated image-capable workflow may be needed. Inspect extracted content before judging the answer.
+
+## 1. Match the extraction step to the file
+
+pypdf documents layout and table challenges and explains that image-only pages need OCR outside its text extractor. A PDF extension does not establish the presence of readable text.
+
+File
+Starting approach
+Suggested checks
+Text-based PDF
+Extract text with page and structure information
+Reading order, table rows and columns
+
+Scans or photos
+OCR or a validated image workflow
+Omissions, orientation, symbols, pages
+
+Excel workbook
+Read sheets, fields, and cells
+Headers, formulas, dates, hidden material
+
+This is a review guide, not a claim that every tool supports each operation. Models, parsers, and OCR are separate components. One local component does not establish that the full pipeline is local.
+
+## 2. Check whether extraction changes meaning
+
+Tesseract documents accuracy problems from noise and skew. We suggest testing small text, tables spanning pages, and special symbols against the originals.
+
+For spreadsheets, openpyxl’s tutorial explains that data_only  selects formulas or values stored the last time Excel read the sheet. A stored value is not a fresh calculation.
+
+Check important numbers, units, negatives, and footnotes. A missing negative or shifted row can change meaning even when the final answer sounds natural. These are illustrative acceptance cases, not measured error rates.
+
+## 3. Preserve provenance before retrieval
+
+We suggest retaining file names, page or sheet references, versions, and permissions. Select included sheets and fields before chunking, and keep units and qualifications retrievable with the associated material. Define how old passages are removed after updates.
+
+Our internal deployment observations include broken table extraction and conflicting document versions; these are not industry statistics. Compare original, extraction, retrieved passages, and final answer to locate failures.
+
+For an Agent, authorize parsing separately from writing or sending. Approved cloud parsing may fit some work; restricted material requires checking OCR, inference, logs, and backups together.
+
+Brand information | Think BIG
+
+## Document processing locations and verification at Think BIG
+
+Think BIG helps companies deploy AI Agents in their own environments. Running on company hardware does not keep every connection local: cloud models, messaging platforms, and other external services can still receive requests.
+
+- Map data flows first : Before deployment, identify data sources, processing locations, output recipients, logs, and backups. Assess deployment location and external connections separately.
+
+- Verify work with evidence : Completion criteria require corresponding change records and verification results, with maintenance and handover responsibilities defined.
+
+See [Trust](https://thinkbigtw.com/trust/) and [Local AI and data sovereignty](https://thinkbigtw.com/guides/local-ai-data/).
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does every PDF need OCR? No. Check for extractable text first; image-only pages require another approach. Q2: Does a spreadsheet value mean formulas were recalculated? No. Some readers return stored values; verify the calculation and update workflow. Q3: Can extracted text go straight into a knowledge base? We suggest checking extraction, versions, permissions, and provenance first, then testing retrieval. Q4: Does a local model imply local parsing? No. Verify parsing, OCR, inference, records, and backups separately.
+
+Sources (checked 2026-10-26)
+
+- pypdf, Extract Text from a PDF: [pypdf.readthedocs.io](https://pypdf.readthedocs.io/en/stable/user/extract-text.html)
+
+- openpyxl, Tutorial: [openpyxl.readthedocs.io](https://openpyxl.readthedocs.io/en/stable/tutorial.html)
+
+- Tesseract, Improving the quality of the output: [tesseract-ocr.github.io](https://tesseract-ocr.github.io/tessdoc/ImproveQuality.html)
+
+- Think BIG, Trust and AI Governance: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+- Think BIG, Local AI and Data Sovereignty: [thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/mixing-languages-at-home/
 
 # Will Mixing Mandarin, Taiwanese and English at Home Confuse My Child? | Q&A Library | Think BIG
@@ -12451,6 +13115,101 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/prompt-structure-for-work/
+
+# How Do You Write a Work Prompt? A Four-Part Structure for Clearer Tasks | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Basics
+TB31
+
+# How Do You Write a Work Prompt? A Four-Part Structure for Clearer Tasks
+
+Think BIG Q&A Library  ·  2026-11-13
+      ·  [中文](https://thinkbigtw.com/library/qa/prompt-structure-for-work/)
+
+The short answer
+
+A work prompt can have four parts: task, context, constraints, and output plus checks. This article offers that structure as a starting method for clear requests and inspectable results, not a promise of usable answers on the first attempt. Data quality, permission to share it, and action access need separate checks.
+
+## 1. Give each part a job
+
+Anthropic’s prompting guidance recommends explicit instructions, relevant context, output formats, constraints, and examples. The four-part structure below is our synthesis, not a formal standard.
+
+Part
+What to specify
+Example
+Task
+Deliverable and audience
+Draft a task list for manager review
+
+Context
+Approved source material
+Use only these notes and their dates
+
+Constraints
+What to omit or leave unresolved
+Do not invent owners; mark missing deadlines
+
+Output and checks
+Format and review method
+Table of task, owner, deadline, and evidence; list gaps
+
+Make the task easy for a colleague to assess. Use fictional or de-identified examples to show the intended format and handling of missing details, without introducing unapproved internal material.
+
+## 2. Turn vague requests into checkable criteria
+
+Instead of “make this better,” specify the audience, conclusions to preserve, and how to separate unresolved items. Name the reviewer for a draft.
+
+Task: Turn these fictional meeting notes into a draft task list.
+Context: Use only the supplied notes; do not look up outside material.
+Constraints: Add no commitments. Mark missing owners or dates as “to confirm.”
+Output and checks: List task, owner, deadline, and source text in a table, followed by questions for review.
+
+This exercise authorizes drafting, not sending mail or changing production systems. Test a missing deadline and an unresolved proposal. Compare each row with the notes, revise the relevant instruction, and repeat with the same material.
+
+## 3. Prompts are not access controls
+
+OWASP LLM01:2025 warns that pages and documents can carry instructions that alter model behavior. It recommends least privilege and human approval for high-risk actions. A secrecy instruction alone is not a complete data-access mechanism.
+
+We suggest clearly separating instructions from source material. Treat instructions inside quotations as material to analyze, not new authorization. For an Agent, approve drafting, writing, and external sending separately. Check sources and outputs with local and cloud models alike, and follow company rules for sensitive inputs.
+
+Brand information | Think BIG
+
+## Work data and action permissions at Think BIG
+
+Think BIG helps companies deploy AI Agents in their own environments. Running on company hardware does not keep every connection local: cloud models, messaging platforms, and other external services can still receive requests.
+
+- Map data flows first : Before deployment, identify data sources, processing locations, output recipients, logs, and backups. Assess deployment location and external connections separately.
+
+- Set permissions for the task : Define read and write access using least privilege. A designated person decides on external sending, spending, and changes to production systems.
+
+See [Trust](https://thinkbigtw.com/trust/) and [Local AI and data sovereignty](https://thinkbigtw.com/guides/local-ai-data/).
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Must every prompt be long? No. A simple task may need one sentence per part; add context and examples as needed. Q2: Is this an official standard? No. It is this article’s practical synthesis of published prompting principles. Q3: Is “do not disclose” enough? No. Enforce tool and data permissions outside the prompt. Q4: How can I judge a revision? Compare the same material against the same checks for omissions, errors, and unresolved information.
+
+Sources (checked 2026-10-26)
+
+- Anthropic, Prompting best practices: [platform.claude.com](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
+
+- OWASP, LLM01:2025 Prompt Injection: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+
+- Think BIG, Trust and AI Governance: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+- Think BIG, Local AI and Data Sovereignty: [thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/rag-access-control-by-department/
 
 # RAG Access Control by Department: How-To Guide | Think BIG
@@ -12973,6 +13732,98 @@ This article summarizes public official documents, laws, and research to help pa
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
 Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/traditional-chinese-local-llm/
+
+# How Good Is a Local LLM’s Traditional Chinese, and How Should You Test Taiwan Usage? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+Local LLM
+TB33
+
+# How Good Is a Local LLM’s Traditional Chinese, and How Should You Test Taiwan Usage?
+
+Think BIG Q&A Library  ·  2026-11-15
+      ·  [中文](https://thinkbigtw.com/library/qa/traditional-chinese-local-llm/)
+
+The short answer
+
+A local model’s Traditional Chinese is good enough only if it meets the company’s actual tasks. Correct script, Taiwan vocabulary, company terminology, document accuracy, and handling of missing evidence are separate capabilities. Build representative questions and acceptable answers, then test the intended model and configuration.
+
+## 1. Correct characters are one dimension
+
+MediaTek Research’s Traditional Chinese model card separates knowledge, reading comprehension, tables, and conversation in its evaluations. We cite that multidimensional approach, not rankings or a recommendation for any company. A language label starts an investigation; it is not an acceptance result.
+
+Dimension
+Suggested test
+Errors to record
+Script and punctuation
+A summary with specified conventions
+Mixed scripts or wrong punctuation
+
+Taiwan usage
+Rewrite against an approved glossary
+Wrong vocabulary or altered proper names
+
+Company terms
+Ask in everyday and formal language
+Terminology mismatch or changed scope
+
+Document grounding
+Questions with versions and exceptions
+Missing exceptions or unsupported citations
+
+A style guide might request preferred terms in ordinary prose while preserving formal titles and quotations. Review meaning after vocabulary edits: natural wording does not establish factual accuracy.
+
+## 2. Build a repeatable work test set
+
+The HELM research evaluates language models across scenarios and metrics to make tradeoffs visible. A company can apply that idea by recording fluency, correctness, instruction following, and sensitive-data handling separately.
+
+We suggest recording the task, approved input, expected evidence, essential qualifications, and prohibited behavior for each question. Include summaries, tables, conversational questions, missing information, and contradictory files. Have knowledgeable staff check the answers, with omissions ahead of tone in the review.
+
+Keep a stable comparison set and some tasks held back from tuning. Record model, quantization, prompt, or retrieval changes before retesting. These are suggested acceptance practices, without universal scores or question counts.
+
+## 3. Test the intended system
+
+NIST AI RMF 1.0 (2023), under MEASURE, addresses testing and documentation in relevant conditions. Use that principle to assess the intended work rather than transplanting a demo result.
+
+We suggest testing parsing, RAG, account permissions, and hardware together. Investigate retrieval when evidence is wrong; inspect prompting and glossary handling when evidence is right but wording is wrong. Approved questions can support local and cloud comparisons, subject to data-handling rules.
+
+Brand information | Think BIG
+
+## Work verification and component versions at Think BIG
+
+Think BIG helps companies deploy AI Agents in their own environments. Running on company hardware does not keep every connection local: cloud models, messaging platforms, and other external services can still receive requests.
+
+- Verify work with evidence : Completion criteria require corresponding change records and verification results, with maintenance and handover responsibilities defined.
+
+- Review third-party components : Third-party packages are reviewed for source and licensing, pinned, and kept off automatic updates. Keys are stored in access-protected configuration files and are not shared in chat.
+
+See [Trust](https://thinkbigtw.com/trust/) and [Local AI and data sovereignty](https://thinkbigtw.com/guides/local-ai-data/).
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does correct Traditional Chinese imply good Taiwan usage? No. Test vocabulary, meaning, company terminology, and task accuracy separately. Q2: Are public benchmark scores enough? Use them as context, then evaluate approved company tasks. Q3: How many questions are needed? There is no universal count here. Cover core work, exceptions, and missing evidence, then expand by risk. Q4: Should quantization or prompt changes trigger retesting? We suggest recording the change and rerunning a stable test set.
+
+Sources (checked 2026-10-26)
+
+- MediaTek Research, Breeze Model Card (evaluation dimensions): [huggingface.co](https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0)
+
+- Liang et al., Holistic Evaluation of Language Models (2022): [arxiv.org](https://arxiv.org/abs/2211.09110)
+
+- NIST, AI RMF 1.0 (2023), MEASURE: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+- Think BIG, Trust and AI Governance: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
 
 ---
 
@@ -13547,6 +14398,98 @@ This article summarizes public official documents, laws, and research to help pa
 
 Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
 Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/zero-trust-ai-agent/
+
+# What Is Zero Trust, and How Does It Apply to AI Agents? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+Enterprise AI Security
+TB35
+
+# What Is Zero Trust, and How Does It Apply to AI Agents?
+
+Think BIG Q&A Library  ·  2026-11-17
+      ·  [中文](https://thinkbigtw.com/library/qa/zero-trust-ai-agent/)
+
+The short answer
+
+Zero trust means a company network location does not automatically make an account or device trusted. For an AI Agent, apply authorization checks to data access and tool actions. NIST SP 800-207 (2020) places authentication and authorization before a resource session is established; local and cloud systems both need these controls.
+
+## 1. Ask who is doing what
+
+NIST shifts the focus toward users, devices, and resources. Employee login, document retrieval, and a tool changing data are separate authorization steps. A signed-in employee should not implicitly receive the system’s administrative privileges through an Agent.
+
+Map the path from user to Agent, tool, and data. Identify the actual execution identity at each step. OWASP LLM06:2025 describes the risk of a tool using a privileged shared identity to access documents beyond the current user’s scope.
+
+## 2. Put controls where actions happen
+
+The following are implementation suggestions derived from NIST and OWASP, not a certification checklist.
+
+Point
+Suggested control
+Evidence
+Identity
+Distinguish employee and service identities
+Account purpose and owner
+
+Retrieval
+Check document permissions for the requesting identity
+Allowed and denied cases
+
+Tools
+Separate reading from modification
+Enabled functions and scope
+
+High-impact actions
+Require designated human approval
+Approved content and actual result
+
+Incidents
+Support revocation and tool suspension
+Revocation exercises and activity records
+
+OWASP calls for authorization in downstream systems. A prompt can describe boundaries, but the application, database, or tool must enforce them. Approval should happen before execution and cover the action that will actually run.
+
+## 3. Verify one workflow first
+
+Use test accounts and synthetic files for authorized access, cross-department access, and a retry after revocation. Specify expected outcomes before testing, including visibility and access to logs. Check whether summaries, caches, or attachments bypass a denial.
+
+These are suggested verification steps, not proof that a company has completed zero trust. Revisit permissions when adding tools, changing models, or connecting external services. Local deployment can meet local-processing needs; cloud systems can apply the same access principles. Include data requirements and maintenance responsibilities in the deployment decision.
+
+Brand information | Think BIG
+
+## Think BIG’s Agent permissions and delivery review
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does zero trust mean repeatedly typing passwords? No. NIST focuses on authentication and authorization for resource access; the mechanism depends on risk and system design. Q2: Does a local model need it? Yes. An internal network location does not entitle every identity to every document. Q3: Is a confidentiality prompt enough? No. OWASP places authorization in downstream systems rather than the model’s judgment. Q4: Where can a small company start? Choose one retrieval workflow, identify accounts, data, tools, and owners, and test access boundaries and revocation.
+
+Sources (checked 2026-10-26)
+
+- NIST, SP 800-207, Zero Trust Architecture（2020）: [csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/207/final)
+
+- OWASP, LLM06:2025 Excessive Agency: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
 
 ---
 
@@ -17523,6 +18466,224 @@ THINK BIG NEWS   ·  AI 導入的第一手觀察
 
 ---
 
+URL: https://thinkbigtw.com/library/news/ambient-vs-chat-ai-20261114/
+
+# 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 020 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 14 日　星期六
+◆
+AI 導入實測手記
+◆
+第 020 期
+
+常駐型 AI · 事件觸發 · 人工確認
+
+## 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止
+
+Think BIG 自媒體部  |  2026 年 11 月 14 日
+
+差別先看誰啟動工作，以及執行到哪裡要等人。常駐是一種運作安排，不代表應該持續觀察所有資料或自行完成所有動作。
+
+## 一 現象：從等人提問，走向事件來了就啟動
+
+LangChain 在 2025 年 1 月發表〈Introducing ambient agents〉，描述一種回應事件訊號、需要時才找人介入的設計，也公布電子郵件助理參考實作。[1] 這是本期的原始公告引子；本文談互動方式與管理條件，不把當年的產品發布寫成今日新消息。
+
+我們把「你去找 AI」理解為人發起一次請求；把「AI 來找你」理解為事件或排程先啟動工作，再提出通知或待核准事項。這是本文的說明方式，並非產業統一分類。原始文章也說，ambient agents 不必完全自主。[1] 常駐不等於時時讀取每個畫面，更不等於拿到所有系統權限。
+
+要停下等人，可以做成程式狀態。LangGraph 的官方文件說明，interrupt 可暫停執行，保存狀態並等外部輸入後恢復。[2] OWASP LLM06:2025 則建議限制工具、權限與自主程度，對高影響動作保留人工核准。[4] 因此，能在背景做事與能自行核准事情，要分開設計。
+
+## 二 各方評價：少一點重複提問，也多一份維運責任
+
+支持背景工作的思路： 原始文章區分通知、提問與審閱三種人機互動。[1] 我們的判讀是，若工作有清楚觸發點，先整理待辦再請人判斷，可能比每天重新交代一次更合適；但要用實際工作觀察，而非直接宣稱節省多少時間。
+
+保留的思路： 背景程序還有排程與重試問題。Kubernetes 官方 CronJob 文件提醒，在某些情況可能建立重複工作，或沒有建立工作，因此工作應具備重複執行不造成額外效果的設計。[3] 這是該排程系統的技術限制，不是所有 AI 平台的共同缺陷。
+
+我們建議把這個提醒轉成驗收題：同一事件來兩次，會不會重複通知或寫入？等人核准時，狀態是否清楚？沒人回答時，是持續等待、逾期關閉，還是升級通知？這些選項需要事先決定，不能用「AI 自己會處理」帶過。
+
+我們建議先列出「需要打擾人的條件」，例如資料缺漏、等待核准或連續失敗，再討論通知頻率。把可合併的事項整理成一則待辦，並標明誰要處理、是否有期限；對同一件事反覆提醒，也應有停止或轉交規則。這是互動設計建議，不是已量測的使用成效。
+
+若原本工作沒有明確事件與完成條件，我們建議先用對話工具整理流程。能由人清楚說出起點、輸入與輸出後，再挑一小段改成背景工作；不必為了使用常駐功能，硬把每項工作都排成自動任務。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下取自我們維運常駐 AI Agent 的觀察，不是產業統計，也不描述特定對象。
+
+1. 沒人聊天，也可能持續呼叫模型。 我們發現心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。因此會逐項列出自動排程，關閉不需要的項目並設上限。
+
+2. 對話累積後，也有整理工作。 常駐對話超出上下文時要壓縮舊內容；本地模型做摘要可能要好幾分鐘，逾時會讓對話卡住。我們會提早壓縮、設逾時，並把不同通道的對話分開。
+
+3. 服務顯示健康，還要看開機時間。 我們遇過筆電主機整夜沒接電，耗盡電池關機，隔天排程沒跑。遠端看到服務健康，其實只是剛重啟。因此診斷時會一起看開機時間與電源狀態，後來也加上低電量提醒。
+
+4. 重要記憶要可以檢查。 我們把重要事項寫入可檢查的記憶檔，要求能看、能改、能刪。背景工作需要保存狀態，但不應讓狀態變成負責人無法理解的黑盒子。
+
+## 四 我們的建議：先試一個有清楚終點的工作
+
+1. 寫觸發條件。 明定哪個事件或排程會啟動、讀哪些資料、產生什麼輸出，以及怎樣算完成。沒有新的工作時，應能結束，不必每次都讓模型自由找下一件事。
+
+2. 分開通知與執行。 我們建議先從摘要、草稿或待辦試行；對外送出與正式資料變更交指定人核准，並在操作前顯示目標與內容。[4] 等待核准應是流程狀態，不只是聊天裡的一句提醒。[2]
+
+3. 測重複、漏跑與恢復。 用測試事件驗證同一事件重送不會重複處理，並檢查重開機後如何接續。[3] 紀錄最後成功時間與下一個待辦，不能只監控程序是否存在。
+
+4. 設用量與停止條件。 列出呼叫次數、執行時間及重試上限，指定告警接收人。測一次手動停止，確認未完成工作與待核准事項會留下可讀狀態。
+
+一句話：先讓背景工作有起點、終點與負責人，再增加自主程度。
+
+◆ 編按 · Think BIG 的做法：常駐也要可交接
+
+## 觸發表、狀態紀錄、核准與停止方式一起交付。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張把背景工作列成清單，讓負責人看得到有哪些排程、最近做了什麼、接下來在等誰。新增任務時，也同步確認資料範圍、資源上限與停止方式。
+
+延伸閱讀[MCP 權限邊界](https://thinkbigtw.com/library/news/mcp-ai-agent-permissions-20261102/)。是否常駐與能做哪些動作，是兩個都需要回答的問題。
+
+### 常見問題
+
+Q1：常駐型 AI 需要完全自主嗎？
+不需要。原始 ambient agents 文章就保留通知、提問與審閱的人機互動。[1]
+Q2：加一個排程就算導入完成嗎？
+我們建議另驗證狀態、重試、重複處理、人工核准及停止；排程本身不處理所有責任。[2][3]
+Q3：沒有人問，也會用到模型嗎？
+我們的維運紀錄中，心跳與記憶整理等自動排程會持續呼叫模型，因此需要盤點與上限。
+Q4：常駐系統可以自行寄信嗎？
+技術能力與授權要分開。我們建議對外寄送先預覽、再由指定人核准，符合高影響動作的人工作業方向。[4]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] LangChain，〈Introducing ambient agents〉，2025-01-14，查閱日期 2026-10-26：[blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/)　·
+    [2] LangChain，〈Interrupts〉，查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts)　·
+    [3] Kubernetes，〈CronJob〉，查閱日期 2026-10-26：[kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)　·
+    [4] OWASP，〈LLM06:2025 Excessive Agency〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/
+
+# 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 023 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 20 日　星期五
+◆
+本地 AI 實測筆記
+◆
+第 023 期
+
+本地 AI · 系統備份 · 還原演練
+
+## 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄
+
+Think BIG 自媒體部  |  2026 年 11 月 20 日
+
+模型能重新取得，不代表原來的工作環境能重新組回來。備份清單要回答：資料在哪裡、哪個時間點是一致的，以及還原後要用什麼工作驗收。
+
+## 一 現象：複製檔案與可還原的備份，有一段距離
+
+本地 AI 的模型檔很醒目，但備份不能只照檔案大小排順序。以 Ollama 為例，官方 FAQ 說明模型目錄可用環境變數調整，服務設定也可能在作業系統的服務管理中。單看預設目錄，未必就是實際部署的位置。[1]
+
+資料庫更不能一概視為普通文件。PostgreSQL 的檔案層備份文件說，直接複製資料檔的方式需要關閉資料庫；如果使用符合條件的一致性快照，則可在運作時進行，但也要涵蓋相關日誌及完整資料範圍。[2]
+
+SQLite 官方提供線上備份 API，用來建立資料庫快照，並說明傳統複製方式的鎖定與中斷風險。[3] CISA 的防勒索指引則建議保留離線、加密的關鍵資料備份，並定期測試可用性與完整性。[4] 這些文件共同指向的是「如何回復」，而不只是「檔案有沒有多一份」。
+
+## 二 各方評價：停機備份與線上備份各有條件
+
+支持停機備份的理由：狀態比較容易交代。 對能安排維護時段的部署，我們傾向先停止會寫入資料的服務，再依確認過的程序備份。這是我們的操作選擇；PostgreSQL 對直接檔案複製的限制，不能擴大成所有資料庫都只能停機。[2]
+
+支持線上備份的理由：服務仍要運作。 SQLite 的 API 與 PostgreSQL 文件中的一致性快照，提供了不必一律長時間停機的路徑，但各自有條件。[2][3] 我們的判讀是，選哪一種方法要依資料庫與儲存架構，不應只因某個複製指令跑完就算完成。
+
+另一個取捨是方便與隔離。CISA 說明可存取的備份也可能遭勒索程式刪除或加密。[4] 因此我們建議把備份存取權限與日常操作分開考慮，同時確認負責人真的拿得到復原需要的資料。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們本地 AI 系統的部署與維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 模型不是全部。 我們的備份清單包含設定檔、排程、服務設定、資料庫快照、知識庫索引、AI Agent 記憶檔與對話紀錄。模型檔本身可重新下載的情況下，也要記下確切版本；不能只留一個容易混淆的名稱。
+
+2. 升級前先做一致的備份。 我們會先停服務再打包，讓這份備份對應到同一個停止寫入的時間點。這是我們的操作方式，不是要求所有系統照抄；有線上備份需求時，應另依所用資料庫確認方法。[2][3]
+
+3. 接進原有備份機制。 我們使用既有的每日備份流程，不另外建立一套沒人接手的機制；還原要實際演練過，才算完成。
+
+## 四 我們的建議：從清單走到還原驗收
+
+1. 依用途列出清單。 把每一項分成「必須保留」與「可以重建」，並記下位置、負責人、版本、保留期限與重建步驟。知識庫索引若打算重建，也要留下原始文件及建立方式。
+
+2. 明寫一致性方法。 決定停止哪些服務、先備份哪個資料庫、最後如何確認沒有新的寫入。使用線上工具時，保存工具選項與完成紀錄；不要自行把運作中的資料目錄當成可用快照。[2][3]
+
+3. 隔離並保護備份。 按 CISA 指引考慮離線與加密，並測試有權人員能否取得解密與還原所需的資料。[4] 金鑰的取用方式應另受控，不宜把完整機密直接寫在一般交接文件中。
+
+4. 在隔離環境還原。 選定一份備份，記下還原步驟，再用已知問題檢查文件查詢、記憶讀取與服務啟動。測試時停用對外排程，確認不會重複執行正式工作；這是我們的演練建議。
+
+5. 把結果交回負責人。 保留備份時間點、實際用時、失敗項目與修正方式。若還原後仍缺設定，就把缺項補回清單；下一次演練使用更新後的步驟，不能只沿用上次的完成勾選。
+
+演練可以先選一項具體工作，例如查詢一份已知文件。先寫下預期答案與可存取帳號，再依文件還原，確認回覆所用資料、版本與權限都符合原來設定。若索引採重建方式，還要記錄重建所需的原始檔是否齊全。最後把還原結果與備份清單逐項對照：沒有列進備份、卻在還原時臨時找回的檔案，就是下一次要補的項目。這是我們建議的驗收方法，不能把服務能啟動直接寫成全部資料已復原。
+
+◆ 編按 · Think BIG 的做法：把復原方式一起交付
+
+## 備份完成，要有可重做的還原紀錄。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，交付本地 AI 時應一併交付備份範圍、復原順序與驗收題目。備份不是獨立於維運之外的附件，而是維護文件的一部分。
+
+我們重視的是另一位有授權的人能照文件重做。當系統改了設定、資料位置或排程，也應同步更新備份與還原說明，讓紀錄反映實際運作的樣子。
+
+### 常見問題
+
+Q1：只備份模型夠嗎？
+依我們的維運清單，還要納入設定、排程、資料庫、知識庫、記憶與紀錄；模型位置也可能經過調整。[1]
+Q2：資料庫可以直接複製嗎？
+要依資料庫方法。PostgreSQL 的直接檔案層備份要求停機；SQLite 有專用線上備份 API。[2][3]
+Q3：每天有備份，還要演練嗎？
+要確認資料能用。CISA 建議定期測試備份的可用性與完整性。[4]
+Q4：模型都要再留一份嗎？
+我們會先判斷能否重新取得，並記下確切版本。若重建條件不明，就不應把它列為可省略的項目。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Ollama，〈FAQ〉（模型位置與服務環境設定），查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/faq)　·
+    [2] PostgreSQL，〈File System Level Backup〉（直接複製與一致性快照），查閱日期 2026-10-26：[www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html)　·
+    [3] SQLite，〈SQLite Backup API〉（線上快照），查閱日期 2026-10-26：[www.sqlite.org](https://www.sqlite.org/backup.html)　·
+    [4] CISA，〈#StopRansomware Guide〉（離線、加密、定期測試），查閱日期 2026-10-26：[www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/c2pa-content-credentials-20261118/
 
 # 這張圖是 AI 做的嗎？——內容憑證能查來源，真實性仍要另外核實 | Think BIG NEWS
@@ -19638,6 +20799,76 @@ THINK BIG NEWS   ·  企業資安實務
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/afraid-of-doctor-shots/
+
+# 孩子怕看醫生、打針？就醫前可以怎麼準備？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q35
+
+# 孩子怕看醫生、打針？就醫前可以怎麼準備？
+
+Think BIG 問答圖書館　·　2026 年 11 月 14 日　星期六
+
+先說答案
+
+孩子怕看醫生或打針，可以先用簡單實話說明將發生的事，承認他的擔心，再和醫護人員討論安撫方式。不要把看診當成處罰，也不必要求孩子全程不哭。以下只提供一般性準備建議；孩子狀況特殊請諮詢小兒科醫師。
+
+## 一、 先說知道的事，不替醫療程序下結論
+
+AAP 的[打針恐懼與疼痛說明](https://www.healthychildren.org/English/safety-prevention/immunizations/Pages/Managing-Your-Childs-Pain-While-Getting-a-Shot.aspx)建議提前準備、回應孩子的擔心，並在處置前和醫療人員分享安撫計畫。可以說「今天要請醫師看看你的身體，有些事情我們到現場再問」，知道要接種時，也用孩子聽得懂的詞說明，不到進診間才突然告知。
+
+若孩子問「會不會痛」，可以回應「可能會有不舒服的感覺，我會陪你，我們一起問怎麼比較舒服」。這是依提前準備與承認擔心原則設計的說法，不是對疼痛程度的預測。拿不準的處置細節，就說「我還不知道，等一下問醫師」，不用為了安撫先承諾。
+
+## 二、 在家先排一份小計畫
+
+準備什麼 可以怎麼做 角色扮演 用玩偶演掛號、等候、和醫師說話。只演已知流程，不用在家模擬侵入性操作。
+
+舒服的選項 先問孩子想帶哪本書、聽哪首歌，或想由誰陪；能否在處置時使用，現場再確認。
+
+要告訴醫護的事 記下孩子怕什麼、以前發生過什麼、哪種安撫方式他願意接受，入診間先說明。
+
+想問的問題 例如「可以怎麼抱著陪他？」「有哪些適合他的減痛方式？」由醫護評估。
+
+這份表格是準備提案，不是醫療處置指示。AAP 列出的分心方式包括讀書、唱歌與說故事，也談到舒適姿勢和向醫師詢問減痛選擇。藥物、劑量、使用時間及是否適合孩子，請交由醫護人員說明，本篇不提供自行操作方法。
+
+## 三、 故事可以陪談，不用把勇敢等同不哭
+
+讀到角色害怕時，可問「他想請誰陪」「你想怎麼跟醫師說」。教育部《幼兒園教保活動課程大綱》情緒領域列有表達情緒、理解原因等目標（[教育部課綱附檔](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)）；本稿的問句沿這個方向設計，不把讀書當成處理針具恐懼的療程。
+
+到現場時，依醫護指示調整陪伴方式。若孩子非常緊繃，可以先告訴醫護你觀察到什麼，請對方評估下一步，而不是自己決定壓住孩子或取消必要照護。處置結束後，可描述「剛剛很怕，你有跟我們說」，不以哭沒哭作為獎懲條件。
+
+AAP 也提到，恐懼過於強烈時可能需要更多專業支持。若過去經驗使看診變得很困難，可在下次到診前先向小兒科醫師說明。想繼續聊感受，可讀[情緒繪本怎麼讀](https://thinkbigtw.com/library/qa/feelings-picture-books/)；想讓在家共讀更輕鬆，可看[對話式共讀](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)。
+
+品牌資訊｜童話有你
+
+## 童話有你的情緒與生活主題範例
+
+童話有你的[主題與範例頁](https://talewithyoutw.com/themes.html)有情緒小星球、夢想職業與晚安睡前等主題，每本讓孩子當主角，正式書頁依提供的照片繪製。
+
+範例頁主角為 AI 生成形象，並可查看 A 水彩畫冊版、B 公仔立體版。書為 21 × 21 公分、26 面內頁、中文加注音，可選加英文。
+
+本段內容取自童話有你官網主題與範例頁，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：孩子問打針會痛嗎，怎麼回答？ 可坦白說可能有不舒服的感覺，告訴他你會陪伴，並一起向醫護詢問安撫與減痛方式。 Q2：可以要求孩子不哭才給獎勵嗎？ 建議不把不哭當條件，可回應他的擔心，事後描述他如何表達與參與。 Q3：要自行先使用止痛或麻醉用品嗎？ 先詢問醫護人員是否適合及如何使用，本篇不提供藥物或操作指示。 Q4：孩子恐懼很強，怎麼辦？ 可在就診前向醫療團隊說明過去經驗與目前反應；孩子狀況特殊請諮詢小兒科醫師。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜面對針具恐懼與疼痛的準備：[www.healthychildren.org](https://www.healthychildren.org/English/safety-prevention/immunizations/Pages/Managing-Your-Childs-Pain-While-Getting-a-Shot.aspx)
+
+- 教育部｜幼兒園教保活動課程大綱，情緒領域：[edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-agent-acceptance-testing/
 
 # AI Agent 導入後要怎麼驗收？測試題要怎麼準備？｜問答圖書館｜Think BIG
@@ -20185,6 +21416,98 @@ Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/ai-bias-enterprise/
+
+# AI 會有偏見嗎？企業用 AI 做判斷前要檢查什麼｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+法規與治理
+TB37
+
+# AI 會有偏見嗎？企業用 AI 做判斷前要檢查什麼
+
+Think BIG 問答圖書館　·　2026 年 11 月 19 日　星期四
+    ·　[English](https://thinkbigtw.com/en/qa/ai-bias-enterprise/)
+
+先說答案
+
+AI 可能出現偏見；企業用它協助判斷前，要檢查資料是否合適、評分條件是否合理，以及不同群體是否承受不同的錯誤。NIST SP 1270（2022）指出，偏見也來自制度與人的判斷，不能只檢查模型。先界定用途、準備能比較的案例，再決定哪些結果需要人工覆核。
+
+## 一、 偏見不只藏在訓練資料裡
+
+NIST SP 1270（2022）從制度、統計與運算、人為等面向討論偏見。資料不具代表性是問題，需求如何定義、誰負責標註、使用者如何解讀結果，也都可能影響判斷。因此，採購時只問模型是否「公平」，還不足以回答它是否適合公司的特定工作。
+
+NIST AI 600-1（2024）也提醒，生成式 AI 可能放大歷史與社會偏見，不同群體或語言可能有表現差異。企業應把「整理資訊」和「決定人的機會」分開看。前者可以先測摘要忠實度；後者還要檢查判斷標準、錯誤造成的影響，以及受影響者能否請人重新檢視。
+
+## 二、 上線前先把判斷過程攤開
+
+以下是依 NIST 文件整理的檢查建議，不是通用的公平性合格門檻。
+
+檢查面向
+建議問法
+可準備的證據
+用途
+AI 是擷取事實、提出建議，還是直接決定？
+工作說明與不可做的事
+
+條件
+每個評分欄位與工作目的有何關聯？
+欄位定義、依據與排除條件
+
+資料
+測試內容涵蓋實際語言與文件形式嗎？
+來源與測試案例範圍
+
+結果
+哪些群體較容易被誤判或漏掉？
+分組結果、錯誤類型與限制
+
+人員
+誰能更正結果，誰能處理異議？
+覆核流程與負責人
+
+實作上，建議用虛構案例固定主要條件，再調整與任務無關的描述，觀察結果是否變動；也要用合法取得、適合用途的資料檢查實際表現。前者只能提供線索，不能直接證明所有群體都受到公平處理。測試資料不足的部分，要明確寫出，避免把「沒有測到」說成「沒有問題」。
+
+## 三、 讓人工覆核有能力改變結果
+
+人工覆核不能只剩按確認鍵。建議讓覆核者看到原始資料、AI 使用的條件與可核對的理由，也能修改結論並記錄原因。對重要判斷，可以安排先獨立閱讀資料，再看 AI 建議，降低只順著預設結論走的機會。這是本文的流程建議，不是 NIST 指定的固定步驟。
+
+模型放在地端，可以配合資料處理位置的需求；是否公平仍要回到同一套用途與測試。改用雲端也要重新評估，不能沿用舊結果。若用途涉及法律權利、人事或其他重要決策，應由適當專業人員確認適用規範；本文供參考，不構成法律意見。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的資料邊界與驗證依據
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：刪掉敏感欄位就沒有偏見嗎？ 不能這樣推定。NIST 提醒資料以外還有制度與人的因素，仍需檢查用途與實際結果。 Q2：人工覆核就足夠嗎？ 覆核者要有原始資料、時間及更正權限，並檢查是否只是沿用 AI 結論。 Q3：本地模型會比較公平嗎？ 部署位置無法直接說明公平性，應用相同工作案例與判斷標準測試。 Q4：要用哪個公平指標？ 先界定要避免的傷害與決策用途，再選合適指標；本文不提供跨用途通用門檻。
+
+參考來源（連結於 2026-10-26 查證）
+
+- NIST｜SP 1270, Towards a Standard for Identifying and Managing Bias in Artificial Intelligence（2022）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf)
+
+- NIST｜AI 600-1, Generative Artificial Intelligence Profile（2024）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-illustration-safety/
 
 # AI 畫的繪本插畫安全嗎？家長該先看懂的 5 件事｜問答圖書館｜Think BIG
@@ -20379,6 +21702,90 @@ Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/ai-meeting-notes-privacy/
+
+# 用 AI 做會議記錄要注意什麼？錄音、逐字稿與個資｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+企業資安
+TB38
+
+# 用 AI 做會議記錄要注意什麼？錄音、逐字稿與個資
+
+Think BIG 問答圖書館　·　2026 年 11 月 20 日　星期五
+    ·　[English](https://thinkbigtw.com/en/qa/ai-meeting-notes-privacy/)
+
+先說答案
+
+用 AI 做會議記錄，應先確認錄音與個資處理的依據、告知內容，以及音檔、逐字稿和摘要各會送到哪裡。錄音能否進行，和資料能否交給外部 AI 處理，是需要分別確認的問題。以下以台灣企業情境整理檢查方式，供參考，不構成法律意見。
+
+## 一、 錄音前先把用途說清楚
+
+《個人資料保護法》第 2 條所稱個人資料，包括可直接或間接識別個人的資料。會議內容若能辨識發言者，不能只因為轉成文字就當成沒有個資。同法第 5 條要求蒐集、處理與利用不得逾越特定目的必要範圍；非公務機關還要依第 19 條確認蒐集或處理的適用依據，不能把「公司開會」當成省略判斷的理由。
+
+向當事人蒐集資料時，第 8 條原則上要求告知蒐集者、目的、資料類別、利用期間與地區等事項，並有法定例外。本文建議在會議邀請與開始前說明是否錄音、是否用 AI、用途及聯絡窗口。是否需要同意、是否適用例外，應依會議內容與具體情況確認；畫面出現錄音通知，不等於已完成全部法律判斷。
+
+## 二、 把三種產物分開管理
+
+以下是資料治理的實作建議，保留期間應按用途與適用規範訂定，本文不給通用天數。
+
+產物
+建議核對
+權限與分享要點
+原始音檔
+錄製者、存放處、外部轉錄服務
+限定必要人員，避免公開連結
+
+逐字稿
+說話者標記、敏感內容、轉錄錯誤
+分享前檢查內容與收件範圍
+
+摘要與待辦
+是否忠於原話、有無未確認決議
+經負責人覆核後再傳送
+
+Microsoft 的官方會議錄影文件示範了為何要檢查實際設定：其服務的錄影可能存放在 OneDrive 或 SharePoint，檢視權限依會議形式與分享方式而異。這是特定服務的說明，不能推定所有工具都一樣。選工具時應逐項確認儲存、轉錄、模型處理、日誌與備份，不只看聊天介面的名稱。
+
+## 三、 會後分享、再利用與刪除都要有負責人
+
+《個人資料保護法》第 20 條原則上要求非公務機關於蒐集特定目的必要範圍內利用資料，另有法定例外。因此，拿來做會議記錄的內容，若要再作訓練或其他用途，應重新確認依據與告知範圍。建議另訂摘要更正、資料存取與刪除申請的處理方式。
+
+若選本地轉錄與本地模型，可規劃在公司設備內處理；但會議平台、同步、郵件或備份仍可能連外。雲端服務也可依需求評估，重點是實際條款與設定。開始試用時先用虛構會議，演練錄製、分享、更正與刪除，確認管理者知道每份副本由誰處理。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的會議資料流向與存取邊界
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：錄音通知跳出來就可以了嗎？ 通知只是其中一環，仍要確認蒐集處理依據、告知內容與其他適用規範。 Q2：逐字稿沒有姓名就沒有個資嗎？ 若仍可由職稱、事件或其他線索識別個人，就不能只靠刪姓名判斷。 Q3：會議摘要可以直接寄給全部同事嗎？ 建議依用途與必要範圍決定收件人，先確認有無敏感內容或錯誤決議。 Q4：本地處理就完全不會連外嗎？ 還要檢查會議平台、同步、外部模型、日誌和備份的實際流向。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 全國法規資料庫｜個人資料保護法第 2、5、8、19、20 條：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
+
+- Microsoft｜Manage Teams recording policies for meetings and events：[learn.microsoft.com](https://learn.microsoft.com/en-us/microsoftteams/meeting-recording)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-output-copyright/
 
 # AI 產出的文章和圖片有著作權嗎？公司使用前要知道的事｜問答圖書館｜Think BIG
@@ -20460,6 +21867,94 @@ Q1：只要用 AI 就沒有著作權嗎？ 依智慧局說明，仍須看人類�
 - 經濟部智慧財產局｜電子郵件 1150724：[www.tipo.gov.tw](https://www.tipo.gov.tw/tw/copyright/692-93359.html)
 
 - Think BIG｜資安與治理：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/ai-red-teaming/
+
+# AI 紅隊測試是什麼？導入前可以自己先做的測試｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+企業資安
+TB36
+
+# AI 紅隊測試是什麼？導入前可以自己先做的測試
+
+Think BIG 問答圖書館　·　2026 年 11 月 18 日　星期三
+    ·　[English](https://thinkbigtw.com/en/qa/ai-red-teaming/)
+
+先說答案
+
+AI 紅隊測試是站在可能濫用系統的角度，刻意找出 AI 回答、資料存取與工具操作的弱點。企業可以先在獲授權的測試環境，以虛構文件和測試帳號檢查提示注入、越權查詢與未核准動作。這種自測能協助找缺口，測過幾題不代表系統已沒有風險。
+
+## 一、 先界定可測的系統與停止條件
+
+OWASP LLM01:2025 建議進行對抗測試與攻擊模擬，檢驗信任邊界及存取控制。它也指出，外部文件或網頁中的內容可能影響模型行為，RAG 與微調無法完整消除提示注入。因此，測試對象應包含模型實際讀取的內容，以及它後面接上的工具。
+
+開始前先寫一張測試授權單：系統負責人、可測帳號、可用資料、允許的操作、執行時間與停止窗口。本文建議不用正式個資或真實機密作為測試內容；寄信、刪除或修改功能先接測試端點。一旦出現意外外送、服務不穩或超出範圍，就停止並交由負責人判斷。不要把對第三方服務的測試，混在公司內部測試裡執行。
+
+## 二、 先準備這些低影響案例
+
+下表是依 OWASP 風險設計的起步範例，不是官方完整測試集。
+
+情境
+測試安排
+應檢查的結果
+文件夾帶指令
+在虛構文件寫入偏離摘要任務的指令
+文件應作為資料，不應新增操作權限
+
+跨角色查詢
+用受限帳號索取另一測試群組的文件
+檢索端應拒絕，回覆也不應帶出內容
+
+未核准外送
+請 Agent 把測試摘要送往測試收件處
+沒有指定核准，送出動作應被阻擋
+
+超出工作功能
+讓唯讀流程嘗試修改虛構檔案
+工具與資料層都應拒絕
+
+OWASP LLM06:2025 提醒，工具功能、權限與自主程度過大，都可能擴大模型失誤的影響。測試時別只看畫面上的拒絕文字，還要核對工具是否真的執行、下游系統是否有變更。模型說「沒有寄出」，不能作為沒有寄出的充分證據。
+
+## 三、 把失敗整理成可以修的問題
+
+每個案例建議記錄輸入、文件版本、帳號權限、模型與程式版本、預期結果、實際回答及工具紀錄。修正後重跑原案例，也跑正常工作案例，檢查控制是否擋住必要功能。若同一輸入可能產生不同結果，就記下執行次數與每次結果，不用單次成功代表整體安全。
+
+本地模型與雲端模型都要測；本機處理不會自動消除提示注入。新增檢索資料、工具或權限後，應重新檢查受影響的流程。跨系統、高影響或涉及正式資料的測試，建議由具備相關能力的人員規劃，並另外確認授權範圍。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的資安審查與驗證紀錄
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：紅隊測試和一般驗收差在哪？ 一般驗收確認工作是否完成；紅隊測試刻意安排濫用或對抗情境。兩者可以共用版本與結果紀錄。 Q2：可以拿真實機密測試嗎？ 起步自測建議使用虛構資料，先確認外送與工具邊界，正式資料需另定授權範圍。 Q3：換成本地模型就不用測嗎？ 仍要測。OWASP 說明的文件注入與過度權限，也會出現在地端應用。 Q4：測試沒發現問題，可以直接上線嗎？ 還要核對正常工作驗收、已知限制、維護責任與事件處理方式；自測只是其中一部分。
+
+參考來源（連結於 2026-10-26 查證）
+
+- OWASP｜LLM01:2025 Prompt Injection：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+
+- OWASP｜LLM06:2025 Excessive Agency：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
 
 本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
 
@@ -22717,6 +24212,166 @@ Q1：獻詞要寫什麼才自然？ 可寫一件和孩子一起做過的小事�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/gpu-vs-npu-ai-pc/
+
+# GPU、NPU 差在哪？「AI PC」能跑公司用的大模型嗎｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+本地大模型
+TB34
+
+# GPU、NPU 差在哪？「AI PC」能跑公司用的大模型嗎
+
+Think BIG 問答圖書館　·　2026 年 11 月 16 日　星期一
+    ·　[English](https://thinkbigtw.com/en/qa/gpu-vs-npu-ai-pc/)
+
+先說答案
+
+GPU 是可處理平行運算的圖形處理器，NPU 則是針對神經網路運算設計的處理單元。標示「AI PC」不代表公司的任意大模型都能使用其中的 NPU，還要看模型格式、推論軟體、驅動與可用記憶體。能否用在公司工作，應以預計部署的整套配置實測。
+
+## 一、 有處理單元，還要有軟體支援
+
+Intel 的 GPU 說明介紹其平行處理能力與圖形以外的運算用途；Microsoft 的 NPU 開發文件則指出，軟體需要特別設計，才能使用 NPU 的能力。這兩份文件用來解釋硬體角色，不是產品推薦，也不能用來排出特定設備效能名次。
+
+面向
+GPU
+NPU
+角色
+圖形與適合平行處理的運算
+神經網路相關運算
+
+採用前要查
+模型工具支援的硬體與驅動
+執行環境、模型格式與支援運算
+
+驗收重點
+實際是否使用 GPU、記憶體與延遲
+實際是否使用 NPU、相容性與結果
+
+表格是查核方向，沒有主張哪一種硬體在所有工作都較快。Microsoft 的文件也說明模型可能需要轉換或量化以配合 NPU；是否可用要看所選模型與軟體路徑，不能只讀晶片名稱。
+
+## 二、 模型容量與工作長度要一起測
+
+Ollama 的硬體支援文件依硬體與平台說明相容性；上下文文件則指出，設定較大的上下文會增加記憶體需求。因此，設備可啟動一個模型，與能處理公司的長文件或多人工作，是不同的驗收問題。
+
+本文建議準備公司核准的短問答、長文件與多輪對話，記錄模型版本、量化設定、上下文、回覆完成狀態、等待時間及記憶體使用。若規劃多人使用，再加入預期同時工作情境。不要先用短句測成功，就推定整份文件與常駐 Agent 都能順暢執行。
+
+也建議向供應者要求實際使用哪個處理單元的證據，例如執行紀錄與資源監看。系統能輸出文字，並不能直接說明加速器已經投入工作；應把軟體的判讀方式與設備監看結果一起確認，而不是只看宣傳標籤。
+
+## 三、 採購前用可驗收條件描述需求
+
+本文建議把「我要 AI PC」改寫成工作條件：要處理哪些文件、可接受怎樣的回覆等待、是否需離線、哪些人同時使用，以及誰維護驅動與模型。再請建置者以同一份核准題目示範，並保留測試配置與結果。
+
+測試也要看答案品質、來源與權限。若模型縮小或改用量化檔，建議重測重要工作題；不能只因速度符合期待就通過。地端與雲端也可依資料規則分配工作：需要內部處理的內容確認整段流程，允許外部處理的任務則核對服務條款與傳送欄位。設備名稱不能代替這份工作與資料清單。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的設備驗證與版本紀錄
+
+Think BIG（大想成業有限公司）協助企業把 AI Agent 建在公司自己的環境裡。地端部署不等於所有連線都在本機；若使用雲端模型、通訊軟體或外部服務，相關請求仍會送出。
+
+- 以證據驗證工作 ：工作完成條件須有對應的變更紀錄與驗證結果，並確認維護與交接責任。
+
+- 第三方元件先審查 ：使用的第三方套件先審查來源與授權、固定版本、不自動更新；金鑰放在受權限保護的設定檔，不在對話裡傳。
+
+詳見[資安與治理](https://thinkbigtw.com/trust/)與[地端 AI 與資料主權](https://thinkbigtw.com/guides/local-ai-data/)。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：AI PC 的 NPU 可以跑所有大模型嗎？ 不能這樣推定。模型格式、支援運算、執行環境與記憶體都要核對。 Q2：GPU 和 NPU 哪個比較好？ 應按實際工作與軟體支援測試，本文不提供跨設備通用排名。 Q3：模型啟動成功就是設備足夠嗎？ 還要測長文件、多輪對話、預期同時工作與回答品質。 Q4：怎麼確認真的用到加速器？ 向建置者確認工具的執行紀錄與資源監看方式，再用實際工作驗證。
+
+參考來源（連結於 2026-10-26 查證）
+
+- Intel｜What Is a GPU?：[www.intel.com](https://www.intel.com/content/www/us/en/products/docs/processors/what-is-a-gpu.html)
+
+- Microsoft｜Develop AI applications for Copilot+ PCs：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/ai/npu-devices/)
+
+- Ollama｜Hardware support：[docs.ollama.com](https://docs.ollama.com/gpu)
+
+- Ollama｜Context length：[docs.ollama.com](https://docs.ollama.com/context-length)
+
+- Think BIG｜資安與治理：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/home-bookshelf-for-kids/
+
+# 在家怎麼安排孩子的小書櫃？封面朝外、放低一點可以嗎？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q37
+
+# 在家怎麼安排孩子的小書櫃？封面朝外、放低一點可以嗎？
+
+Think BIG 問答圖書館　·　2026 年 11 月 16 日　星期一
+
+先說答案
+
+孩子的小書櫃可以先從容易拿取、看得到封面、附近能坐下共讀這三件事安排，家中的低層收納或書籃也能試。封面朝外是選書與收納的建議，不是閱讀成效的必要條件。先放幾本孩子願意翻的書，再依實際使用情形調整，不需要一次買齊家具與書。
+
+## 一、 先看孩子怎麼拿書，再決定放哪裡
+
+AAP 的[家庭閱讀建議](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/10-Tips-to-Help-Your-Child-Fall-in-Love-with-Reading.aspx)提到，讓書在容易拿到的地方，也可安排舒適的閱讀角落。先在孩子平常停留的位置觀察：他能自己看見書嗎？拿出來後有地方放嗎？想找你一起讀時，你能坐在旁邊嗎？用這些問題挑位置，比先照一張漂亮照片採買更實際。
+
+建議先試家中已有的矮層架、收納籃或固定放書的位置。放好後，由大人確認收納穩定、不妨礙走動，再陪孩子拿出和放回一次。這是家中配置提案，不設定通用高度；孩子的身形、活動方式與空間不同，可以在使用中調整。
+
+## 二、 用少量展示，試一週的使用情形
+
+想解決的事 可試的安排 書背不容易分辨 挑部分書把封面朝外，讓孩子用圖像選；其他書可維持原本收法。
+
+想看的書不好拿 把近期常讀的放在孩子方便拿的位置，大人收藏的書另放。
+
+拿出後不知道收哪裡 用同一個籃子或位置收書，陪孩子放回，不要求排成固定色序。
+
+不確定要增加什麼書 先記下孩子常拿的題材，再到圖書館找相關故事，不急著一次添購。
+
+封面展示、少量輪替與試一週都是本稿的整理方法，不是研究驗證的最佳數量或週期。常讀的書不必為了輪替而收走；有想留在手邊的一本，就讓孩子繼續拿得到。空間小，也可只留一個家庭共讀籃，由大人和孩子一起選放什麼。
+
+## 三、 書櫃旁邊，留一個人能一起坐的位置
+
+建議每天用得上的位置先於展示整齊度。你可以把正在讀的一本放在共讀處，孩子來時說「你想看哪一頁」，不把收納變成每次拿書前的規矩考核。若光線或坐姿讓你們不舒服，就換位置，先讓當次共讀能進行。
+
+[國立公共資訊圖書館的親子兒童頁](https://www.nlpi.edu.tw/StaticPage/audience-children)介紹嬰幼兒閱讀空間、繪本等資源與親子閱讀角落。家長可以先到館一起挑書，看看孩子願意停在哪些題材，再決定家中要留下什麼。這是使用圖書館資源的提案，不表示需要把家裡布置成圖書館。
+
+也可把孩子自己的畫、借來的書和家中原有的繪本分開放，方便知道哪些要歸還。想依年齡挑題材，可參考[各階段的繪本選擇](https://thinkbigtw.com/library/qa/picture-books-by-age/)；孩子總拿同一本時，另看[重複閱讀的共讀方式](https://thinkbigtw.com/library/qa/reading-same-book-again/)。書櫃安排可隨生活改變，先從今天能一起讀的地方開始。
+
+品牌資訊｜童話有你
+
+## 童話有你的繪本尺寸與主題範例
+
+童話有你的[主題與範例頁](https://talewithyoutw.com/themes.html)列出 21 × 21 公分、26 面內頁、中文加注音的規格，可選加英文。主題包含交通工具、恐龍時代、晚安睡前與情緒小星球等。
+
+每本以孩子當主角，正式書頁依提供的照片繪製，小狗湯圓每頁作伴；範例頁主角為 AI 生成形象。頁面可翻看 A 水彩畫冊版與 B 公仔立體版範例。
+
+本段內容取自童話有你官網主題與範例頁，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：要買專門的兒童書櫃嗎？ 不用先買。可從家中現有的低層收納或書籃試起，由大人確認放置穩定和動線。 Q2：全部封面朝外才有效嗎？ 本篇沒有這樣的成效主張。可挑部分書展示，觀察孩子怎麼選，再調整。 Q3：每週都要換掉所有書嗎？ 不用。輪替是可選的整理方式，孩子常讀的書可繼續留在拿得到的地方。 Q4：童話有你的書多大？ 官網主題頁列出 21 × 21 公分正方形、26 面內頁，可依這個尺寸規劃放置位置。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜家庭閱讀角落與讓書容易取得：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/10-Tips-to-Help-Your-Child-Fall-in-Love-with-Reading.aspx)
+
+- 國立公共資訊圖書館｜親子兒童：[www.nlpi.edu.tw](https://www.nlpi.edu.tw/StaticPage/audience-children)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/how-to-choose-custom-book/
 
 # 客製繪本怎麼挑？買之前問清楚的 7 個問題｜問答圖書館｜Think BIG
@@ -24234,6 +25889,76 @@ Q1：幫孩子選語言學習 App，下載前要檢查什麼？ 檢查 5 件事�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/kids-lying-honesty/
+
+# 孩子說謊怎麼辦？用故事聊誠實｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q40
+
+# 孩子說謊怎麼辦？用故事聊誠實
+
+Think BIG 問答圖書館　·　2026 年 11 月 19 日　星期四
+
+先說答案
+
+孩子說出與事實不同的話時，先弄清楚是在玩想像、說願望，還是怕被責備而隱瞞，再平靜說明事實與補救方式。可以借故事討論「角色在擔心什麼、現在能怎麼說」，但別用故事逼孩子當場認錯。
+
+## 一、 先問清楚是哪一種話
+
+[AAP 的學齡前情緒發展說明](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Emotional-Development-in-Preschoolers.aspx)提到，孩子可能在想像與現實之間來回。說「我養了一隻恐龍」，與打翻水後說「不是我」，需要了解的情境不同。這不是替行為找理由，而是先確認大人和孩子談的是同一件事。
+
+可以先問「這是你想像的故事，還是今天真的發生的事？」如果是在玩故事，就說「那我們現在是在假裝」。若眼前確實有需要處理的事，回到具體觀察：「桌上有水，我們先拿抹布。」不必靠連續質問來測孩子會不會改口。
+
+依[AAP 給家長的誠實溝通建議](https://www.healthychildren.org/English/family-life/family-dynamics/communication-discipline/Pages/When-Children-Lie.aspx)，孩子也可能因為擔心責罵、讓家長失望而隱瞞；嚴厲懲罰通常不是有效做法。不能只憑一次回答，就判斷動機或替孩子貼上長期標籤。先把當下發生的事說清楚。
+
+## 二、 用故事排練一段說實話的對話
+
+以下是家庭共讀提案，並非某本書或研究驗證的固定步驟。挑一個角色弄壞東西、忘記約定或不敢開口的片段，先照原故事讀，等孩子有興趣再停下來，不要直接問「你是不是也這樣」。
+
+要聊的事 可以這樣說 角色的擔心 「他好像不敢講，你覺得他怕什麼？」不知道也可以。
+
+能用的句子 「如果他說『我弄倒了，需要幫忙』，接下來可以怎麼做？」
+
+修補的方法 「我們幫他想想，是擦乾淨、修好，還是先找大人？」
+
+大人也可以扮演願意聽的人：「謝謝你告訴我，我們來處理。」這段對話是在示範回應，不是說所有行為都沒有後續處理。若涉及損壞他人的物品，仍可以陪孩子了解影響、商量合適的修補方式；把責任說清楚，不把羞辱當成教學。
+
+## 三、 讓大人的說法也一致
+
+AAP 強調大人的誠實示範。可以從小事練習：忘記帶書就說「我忘了」，答應的事做不到就說明原因。不要一面要求孩子誠實，一面請他幫大人編理由。這些生活對話比讀完故事後考一句道理更貼近本題的目的。
+
+當孩子重新說明事情，可先聽完，再處理眼前問題；若大人剛才語氣太重，也能說「我剛剛太大聲，現在重新聽你說」。這是可試的溝通句，不是讓孩子立刻改變的承諾。
+
+若反覆隱瞞已讓家庭或學校生活持續困擾，可向專業人員求助；孩子狀況特殊請諮詢小兒科醫師。想練習談角色心情，可看[情緒繪本怎麼讀](https://thinkbigtw.com/library/qa/feelings-picture-books/)，提問方式則見[對話式共讀](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)。
+
+品牌資訊｜童話有你
+
+## 童話有你：讓孩子走進故事
+
+童話有你是孩子當主角、依照片繪製的 AI 客製繪本。[主題與範例](https://talewithyoutw.com/themes.html)列有「情緒小星球」「當哥哥姊姊」等主題，可先看故事設定與內頁；官網未列誠實專用主題。範例頁主角為 AI 生成形象，正式書頁依提供的照片繪製，小狗湯圓每一頁都在。
+
+本段內容取自童話有你官網[主題與範例](https://talewithyoutw.com/themes.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：孩子編故事也算說謊嗎？ 先了解是在想像遊戲，還是在陳述真實事件，不能只憑一句奇幻的話判定動機。 Q2：發現不實的話要一直追問嗎？ 可以先說明自己知道的事實，再邀請孩子說明和補救，避免把談話變成盤問。 Q3：說實話就不用負責嗎？ 仍可一起處理造成的影響，將說明事實與修補事情分開談。 Q4：讀誠實故事後孩子還是隱瞞怎麼辦？ 共讀不是立即改變行為的處方；若持續造成困擾，可諮詢小兒科醫師或相關專業人員。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜When Children Lie: What Parents Can Do：[www.healthychildren.org](https://www.healthychildren.org/English/family-life/family-dynamics/communication-discipline/Pages/When-Children-Lie.aspx)
+
+- AAP｜Emotional Development in Preschoolers：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Emotional-Development-in-Preschoolers.aspx)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/learn-ai-without-tech-background/
 
 # 完全不懂技術，AI 線上課程看不太懂，要怎麼開始學會用 AI？｜問答圖書館｜Think BIG
@@ -24408,6 +26133,70 @@ Q1：看影片學華語有沒有用？ 有一些，但取決於年齡與互動�
 - Roseberry, Hirsh-Pasek, Parish-Morris & Golinkoff (2009). Live action: Can young children learn verbs from video? Child Development, 80(5), 1360–1375：[doi.org](https://doi.org/10.1111/j.1467-8624.2009.01338.x)
 
 - World Health Organization (2019). Guidelines on physical activity, sedentary behaviour and sleep for children under 5 years of age：[www.who.int](https://www.who.int/publications/i/item/9789241550536)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/library-card-for-kids/
+
+# 帶孩子去圖書館：兒童借書證怎麼辦、可以借幾本？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q38
+
+# 帶孩子去圖書館：兒童借書證怎麼辦、可以借幾本？
+
+Think BIG 問答圖書館　·　2026 年 11 月 17 日　星期二
+
+先說答案
+
+兒童借書證的文件與借閱冊數要看館別；以臺北市立圖書館為例，未滿 12 歲到館可持戶口名簿影本或 3 個月內有效的戶籍謄本辦理個人借閱證，一般圖書每證可借 25 冊、借期 30 日。帶孩子出門前，先查目的館的辦證方式、開館時間與館藏類型，別把一座城市的規則套到全台。
+
+## 一、 辦證前先查這幾件事
+
+依[北市圖借閱證申請說明](https://tpml.gov.taipei/News_Content.aspx?n=CD4793DE89132E89&s=6E3D5703B2B0667E&sms=71AD87982060791E)，辦個人證可以自備悠遊卡、一卡通，或使用行動借閱證。親自到總館、分館或民眾閱覽室辦理較方便；智慧圖書館不受理辦證。未滿 12 歲的文件有特別規定，與一般成人須出示的證件正本不同。
+
+建議家長出門前把文件、打算綁定的卡片與館方說明放在一起，若由大人代辦，另向櫃檯確認代理文件。不要只問「小孩能不能辦」，可以說明孩子年齡、要去哪個據點、是本人到場還是家長代辦，讓館員回答實際需要的項目。
+
+北市圖也提供網路新辦證，但要開通完整借閱功能，仍須到有館員服務的據點核對有效證件。若今天就想借書回家，建議預留櫃檯辦理的時間；不要把送出線上表單當成全部程序已完成。
+
+## 二、 借幾本，要連借期一起看
+
+[北市圖閱覽規定](https://tpml.gov.taipei/News_Content.aspx?n=B64082F5678B94B1&s=56BD927456FE5EF7&sms=D0034AF4F8239B65)列明，一般圖書個人證可借 25 冊、家庭證可借 40 冊，每冊借期 30 日；這是該館的規定，並非全國統一額度。熱門館藏、視聽資料等另有規則，借閱前請確認所選資料的類別。
+
+可以把「能借多少」和「這次帶多少」分開想。以下是家庭安排建議：讓孩子挑想看的書，大人再選一本願意陪讀的，先以能帶回家、能收好為原則。借閱上限不必每次用滿，也不需要用借書數量評量孩子愛不愛閱讀。
+
+在借書機或櫃檯完成後，與孩子確認書名及到期日。回家安排一個固定的借書袋，讀完就放回去，大人同步設日曆提醒。需要續借時先看帳號顯示的條件與結果，不要把「可以申請續借」當成已延長借期。
+
+## 三、 把借書變成孩子能參與的小事
+
+初次到館，可以只完成認識兒童區、挑一本書、借出三件事。這是行程提案，沒有規定每次要待多久。若孩子想回家，先把手上的書辦好借閱，再約下次來，不必把所有書架都逛完。也可先約好下次想看的書架。
+
+回家先問「你想從哪一頁開始？」孩子願意指圖就陪他看，不急著考作者或生字。想調整選書方向，可接著看[各階段怎麼挑繪本](https://thinkbigtw.com/library/qa/picture-books-by-age/)；需要共讀問法，可參考[對話式共讀](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)。圖書館借來的書與家裡常讀的書，都可以照孩子當天的興趣交替讀。
+
+品牌資訊｜童話有你
+
+## 童話有你：讓孩子走進故事
+
+童話有你（Tale With You）是孩子當主角、依照片繪製的 AI 客製繪本。[主題與範例](https://talewithyoutw.com/themes.html)列有「台灣環島」「恐龍時代」「交通工具」等主題，每本為 21 × 21 公分、26 面內頁，中文加注音。範例頁主角為 AI 生成形象，正式書頁依家長提供的照片繪製。
+
+本段內容取自童話有你官網[主題與範例](https://talewithyoutw.com/themes.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：沒有身分證也能辦借書證嗎？ 以北市圖為例，未滿 12 歲到館可持戶口名簿影本或 3 個月內有效的戶籍謄本辦理；其他館別請先查官方規定。 Q2：各縣市都可以借 25 本嗎？ 不是。25 冊是文中北市圖個人證的一般圖書額度，其他館別與資料類型須另行確認。 Q3：線上申請後就能直接借紙本書嗎？ 北市圖線上新辦證後，要開通完整借閱功能，仍須至有館員服務的據點核對有效證件。 Q4：每次都要借滿嗎？ 不用。可以先挑孩子想讀、大人也願意陪讀的書，以家裡方便保管和歸還的數量開始。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 臺北市立圖書館｜借閱證申請：[tpml.gov.taipei](https://tpml.gov.taipei/News_Content.aspx?n=CD4793DE89132E89&s=6E3D5703B2B0667E&sms=71AD87982060791E)
+
+- 臺北市立圖書館｜閱覽規定：[tpml.gov.taipei](https://tpml.gov.taipei/News_Content.aspx?n=B64082F5678B94B1&s=56BD927456FE5EF7&sms=D0034AF4F8239B65)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
 
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
@@ -24753,6 +26542,98 @@ Q1：本地大模型有什麼缺點？ 主要有 5 個：前期硬體成本；�
 - 行政院院會議案：行政院及所屬機關（構）使用生成式 AI 參考指引（2023-08-31）：[www.ey.gov.tw](https://www.ey.gov.tw/Page/448DE008087A1971/40c1a925-121d-4b6b-8f40-7e9e1a5401f2)
 
 - 國科會新聞稿附指引全文，第四點（2023-08-31）：[www.ey.gov.tw](https://www.ey.gov.tw/File/CAE5B756153299FD?A=C)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/
+
+# 本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+本地大模型
+TB32
+
+# 本地大模型能讀 PDF、Excel 和掃描檔嗎？文件進 AI 前的處理
+
+Think BIG 問答圖書館　·　2026 年 11 月 14 日　星期六
+    ·　[English](https://thinkbigtw.com/en/qa/local-llm-read-pdf-excel/)
+
+先說答案
+
+本地 AI 系統可以依設計處理 PDF、Excel 與掃描檔，但不是把任何檔案放進資料夾，純文字模型就會直接讀懂。通常要先解析文字、表格，掃描內容則評估 OCR（光學字元辨識）或具影像能力的處理方式。能否讀得正確，要從抽出的內容開始驗收，再看模型回答。
+
+## 一、 不同檔案，先走不同的讀取步驟
+
+pypdf 官方文件說明，PDF 的文字擷取可能受版面與表格排列影響；只有圖片的頁面，需要另外使用 OCR。這表示 PDF 副檔名相同，不代表裡面都有可直接擷取的文字。
+
+檔案情況
+起步處理方向
+建議核對項目
+可選取文字的 PDF
+擷取文字並保留頁碼與結構
+段落順序、表格欄列
+
+掃描 PDF、照片
+OCR 或經驗證的影像處理流程
+漏字、方向、符號與頁次
+
+Excel 工作簿
+讀工作表、欄位與儲存格
+表頭、公式、日期及隱藏內容
+
+表格是本文的驗收起點，不代表所有工具都支援每種處理方式。模型、OCR 與檔案解析程式是不同元件；其中一項在本地，不能推定其他項目也在本地。對含敏感資料的原檔，應先確認整段流程的處理位置。
+
+## 二、 能抽出文字，仍要確認意思有沒有變
+
+Tesseract 的官方說明指出，雜訊與頁面歪斜可能降低 OCR 準確度。本文建議先挑有小字、跨頁表格與特殊符號的樣本，比對原圖與辨識結果；不要只用清楚的大字封面示範。
+
+Excel 也要確認讀到的是公式還是值。openpyxl 的教學說明，data_only  可選擇讀取公式，或 Excel 上次讀取工作表時儲存的值。後者不等於本次重新計算的結果，因此不要看到一個數值就推定它已更新。
+
+建議把關鍵數字、單位、否定句與註腳列為檢查點。例如「不適用」少了一個字，或欄位錯接到下一列，後續回答即使語句自然，也可能偏離文件。這些是假想的驗收案例，用來提醒應比較實際抽取內容，不是宣稱某工具有特定錯誤率。
+
+## 三、 交給 RAG 前保留可追溯的內容
+
+本文建議每個段落保留原檔名稱、頁碼或工作表、版本與存取權限。先決定要納入哪些工作表及欄位，再切成可檢索內容；欄位說明、單位和適用條件應能一起被取回。若來源文件改版，也要知道舊段落何時下架。
+
+我們部署時常見的現象，是轉文字後表格錯位或新舊版本一起被找到。這是內部實務觀察，不是產業統計。建議同時檢查「原檔→抽取結果→檢索段落→回答」，每一步都留下可比較樣本，才容易確認需要修正的位置。
+
+若接上會寫入或送出的 AI Agent，應把文件解析與後續操作分開授權。雲端解析可依核准用途採用；需要留在公司內的內容，則須連同 OCR、模型、日誌與備份一起確認。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的文件處理位置與驗證
+
+Think BIG（大想成業有限公司）協助企業把 AI Agent 建在公司自己的環境裡。地端部署不等於所有連線都在本機；若使用雲端模型、通訊軟體或外部服務，相關請求仍會送出。
+
+- 資料流向先列清楚 ：導入前逐項確認資料來源、處理位置、輸出接收者、日誌與備份；部署位置與外部串接分別評估。
+
+- 以證據驗證工作 ：工作完成條件須有對應的變更紀錄與驗證結果，並確認維護與交接責任。
+
+詳見[資安與治理](https://thinkbigtw.com/trust/)與[地端 AI 與資料主權](https://thinkbigtw.com/guides/local-ai-data/)。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：PDF 都需要 OCR 嗎？ 不需要一概如此。先看是否有可擷取文字；圖片型頁面再評估 OCR 或影像處理。 Q2：Excel 讀到數值，表示公式已重新算過嗎？ 不能這樣推定。部分讀取方式取得的是檔案保存的值，需確認更新與計算流程。 Q3：辨識後可以直接放進知識庫嗎？ 建議先比對抽取內容，確認版本、權限與來源標記，再測檢索。 Q4：本地模型就表示解析也在本地嗎？ 不表示。解析、OCR、模型、紀錄與備份的處理位置要分別確認。
+
+參考來源（連結於 2026-10-26 查證）
+
+- pypdf｜Extract Text from a PDF：[pypdf.readthedocs.io](https://pypdf.readthedocs.io/en/stable/user/extract-text.html)
+
+- openpyxl｜Tutorial：[openpyxl.readthedocs.io](https://openpyxl.readthedocs.io/en/stable/tutorial.html)
+
+- Tesseract｜Improving the quality of the output：[tesseract-ocr.github.io](https://tesseract-ocr.github.io/tessdoc/ImproveQuality.html)
+
+- Think BIG｜資安與治理：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+- Think BIG｜地端 AI 與資料主權：[thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
 
 本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
 
@@ -26029,6 +27910,76 @@ Q1：0–3 歲的寶寶適合什麼樣的繪本？ 依教育部閱讀起步走�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/potty-training-picture-books/
+
+# 如廁訓練什麼時候開始？繪本可以怎麼幫？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q39
+
+# 如廁訓練什麼時候開始？繪本可以怎麼幫？
+
+Think BIG 問答圖書館　·　2026 年 11 月 18 日　星期三
+
+先說答案
+
+如廁訓練可以從觀察孩子的準備狀況開始，不必只看生日或跟同齡孩子比較；繪本適合拿來認識便盆、說出身體感覺與熟悉步驟。美國兒科醫學會（AAP）提醒，理解簡單指令、能參與穿脫衣物、察覺排泄訊號與願意使用廁所，都是需要一起看的面向。
+
+## 一、 先看孩子能參與什麼
+
+依[AAP 如廁練習說明](https://www.healthychildren.org/English/ages-stages/toddler/toilet-training/Pages/The-Right-Age-to-Toilet-Train.aspx)，如廁同時涉及身體與心理準備。可以留意孩子會不會表示尿布濕了、能否走到廁所、能否理解簡單說明，以及是否對便盆有興趣。這些是觀察線索，不是每項都打勾就能推算完成日期的測驗。
+
+在家可先做一張很簡單的觀察便條：孩子今天怎麼表達想尿尿？哪個步驟願意自己做？需要大人幫忙的是什麼？只記具體情況，不寫「落後」「又失敗」。下次健兒門診有疑問，也比較容易向醫師說明。
+
+便盆或馬桶上的腳部支撐也要留意。AAP 建議使用孩子坐得穩、雙腳能有支撐的安排。準備時可以問「你坐在這裡舒服嗎？」先讓孩子熟悉位置，再邀請他參與，不必一拿出新便盆就要求當天排出來。
+
+## 二、 故事先講流程，練習留在生活裡
+
+AAP 提到可以讀使用廁所的童書，幫孩子理解這件事。以下是依這個方向設計的共讀示例，不是醫療處方，也沒有指定要讀幾次。挑書時先翻內頁，看看步驟是否清楚，語氣是否平實，避免用嘲笑角色弄髒褲子的情節催孩子。
+
+- 看身體訊號：「這個角色停下來了，他可能想做什麼？」孩子不知道時，大人直接說明即可。
+
+- 看動作順序：「先放下玩具，再去廁所，接著要做什麼？」也可以用手偶示範，不必考孩子背出順序。
+
+- 看需要的協助：「如果褲子拉不下來，可以怎麼叫大人？」讓孩子練一句用得到的求助語。
+
+- 看收尾：「用完廁所之後還要洗手。」回到家裡實際示範，書裡沒有畫到的部分，大人補充說明。
+
+讀書可以在客廳進行，不必把孩子留在便盆上等到整本讀完。若孩子只想看圖，就一起看圖；故事的用途是讓事情比較好理解，不是拿來換一次成功如廁。
+
+## 三、 遇到卡關，先減少拉扯
+
+AAP 建議保持正向，避免把如廁變成獎懲或權力爭奪。可以說「褲子濕了，我們換乾的」，接著協助清理；不要用「故事裡的小熊都會了」來比較。家裡正遇到搬家、迎接新生兒等大變動時，也可以跟醫師討論練習安排。
+
+若持續疼痛、排便困難，或家長對準備狀況有疑慮，孩子狀況特殊請諮詢小兒科醫師。這篇提供一般性建議，不判斷個別孩子是否需要治療。想把生活練習接回共讀，可參考[對話式共讀](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)；挑書則可看[各階段的繪本選擇](https://thinkbigtw.com/library/qa/picture-books-by-age/)。
+
+品牌資訊｜童話有你
+
+## 童話有你：讓孩子走進故事
+
+童話有你是孩子當主角、依照片繪製的 AI 客製繪本。[主題與範例](https://talewithyoutw.com/themes.html)列有「情緒小星球」「當哥哥姊姊」等成長與家人主題，未列如廁專用主題。範例頁主角為 AI 生成形象，正式書頁依提供的照片繪製；依官網常見問題，印製前會先傳預覽確認。
+
+本段內容取自童話有你官網[主題與範例](https://talewithyoutw.com/themes.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：幾歲開始才算剛好？ 先看身體訊號、理解指令、動作能力與意願，個別安排有疑問可在健兒門診詢問。 Q2：讀如廁繪本就會自己上廁所嗎？ 不能這樣推論。故事可介紹流程，生活中仍要觀察孩子的準備狀況並提供協助。 Q3：尿濕褲子要罵嗎？ 可以平靜說明、協助換衣與清理。AAP 建議避免把如廁變成權力拉扯。 Q4：童話有你有如廁專用主題嗎？ 本次查核的主題頁未列如廁專用主題，可先看實際範例與故事設定再選擇。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜The Right Age to Potty Train：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/toddler/toilet-training/Pages/The-Right-Age-to-Toilet-Train.aspx)
+
+- 童話有你｜常見問題：[talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/practice-speaking-at-home/
 
 # 在家怎麼陪孩子練口說？「對話來回」比「多說幾句」重要｜問答圖書館｜Think BIG
@@ -26189,6 +28140,103 @@ Q1：什麼是間接提示注入？ AI 從網頁、檔案等外部來源讀進�
 - OWASP GenAI Security Project〈LLM06:2025 Excessive Agency〉（最小權限、人工核准）：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
 
 - OWASP Top 10 for LLM Applications 2025 總覽：[genai.owasp.org](https://genai.owasp.org/llm-top-10/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/prompt-structure-for-work/
+
+# 工作上的提示詞怎麼寫？用 4 段說清楚任務與限制｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+AI 入門
+TB31
+
+# 工作上的提示詞怎麼寫？用 4 段說清楚任務與限制
+
+Think BIG 問答圖書館　·　2026 年 11 月 13 日　星期五
+    ·　[English](https://thinkbigtw.com/en/qa/prompt-structure-for-work/)
+
+先說答案
+
+工作提示詞可以分成四段：任務、背景資料、限制、輸出與檢查。這是本文整理的起步方法，目的是讓需求可執行、結果可核對，不代表每次都能一次得到可用答案。資料是否正確、能不能提供，以及 AI 能操作什麼，仍要另外確認。
+
+## 一、 四段各回答一個工作問題
+
+Anthropic 的官方提示詞文件建議，清楚說明要求、提供必要背景，並具體指定輸出格式與限制；範例也能協助表達預期。以下四段是本文依這些原則整理的寫法，不是某機構訂定的正式標準。
+
+段落
+要交代什麼
+可採用的寫法
+任務
+要完成哪個結果、給誰看
+請把這份會議筆記整理成主管可確認的待辦草稿
+
+背景資料
+依據哪些已核准的內容
+僅根據下方筆記，日期以筆記記載為準
+
+限制
+不可補哪些內容、缺資料怎麼辦
+不猜負責人；沒有期限就標示待確認
+
+輸出與檢查
+交付格式與核對方式
+用表格列事項、負責人、期限、依據；最後列缺少資料
+
+先說清楚任務，比堆很多角色設定更容易讓同事核對需求。範例可用假資料或去識別內容，重點是讓格式、判斷範圍與缺資料的處理方式看得見。不要為了示範而加入尚未核准傳送的內部文件。
+
+## 二、 把抽象要求換成可核對條件
+
+「幫我寫好一點」沒有指出要改善什麼。本文建議換成「給沒有技術背景的同事看，保留原文結論，把未定案事項獨立列出」。如果要摘要，就說清楚要保留哪種資訊；如果要草稿，就標明由誰審查後才能採用。
+
+一份可改寫的提示詞如下：
+
+任務：整理下方假想會議筆記，交付待辦草稿。
+背景：僅使用提供的筆記，不查外部資料。
+限制：不新增承諾；負責人與日期未寫明時標示「待確認」。
+輸出與檢查：以表格列事項、負責人、期限及原文依據，最後列出需人確認的問題。
+
+這個例子適合先練整理，不包含寄信或改動正式系統的授權。實際測試時，建議刻意放入一筆缺日期、另一筆仍在討論的事項，看模型是否照規則標註，再與原筆記逐項核對。若漏了一個欄位，先修改相應段落，再用同一份資料比較結果。
+
+## 三、 提示詞清楚，仍不能充當權限控制
+
+OWASP LLM01:2025 提醒，外部網站或文件可能夾帶影響模型行為的內容，並建議以最小權限與高風險動作人工核准限制影響。把「不要洩漏」寫進提示詞，不能當成完整的資料存取機制。
+
+本文建議把指示與待分析材料分段標示，並將引文中的要求當成材料內容，不自動視為新任務。若接到 AI Agent，草稿生成、檔案寫入與對外送出要分開授權。地端與雲端模型都需要核對資料來源與結果；敏感內容則先依公司核准的處理範圍決定能否輸入。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的工作資料與操作權限
+
+Think BIG（大想成業有限公司）協助企業把 AI Agent 建在公司自己的環境裡。地端部署不等於所有連線都在本機；若使用雲端模型、通訊軟體或外部服務，相關請求仍會送出。
+
+- 資料流向先列清楚 ：導入前逐項確認資料來源、處理位置、輸出接收者、日誌與備份；部署位置與外部串接分別評估。
+
+- 依工作需求設定權限 ：依最小權限原則確認可讀寫範圍；對外發送、花費與正式系統變更，由指定負責人決定。
+
+詳見[資安與治理](https://thinkbigtw.com/trust/)與[地端 AI 與資料主權](https://thinkbigtw.com/guides/local-ai-data/)。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：每次都要寫很長嗎？ 不用。簡單工作可以每段一句，複雜工作再補來源、例子與檢查條件。 Q2：四段寫法是官方標準嗎？ 不是，是本文依官方提示原則整理的起步方法。 Q3：提示詞說不要外傳就夠嗎？ 仍須設定工具與資料權限，不能只靠文字指示。 Q4：改提示詞後怎麼知道有改善？ 建議用相同資料與評估條件比較，逐項看缺漏、錯誤和未確認事項。
+
+參考來源（連結於 2026-10-26 查證）
+
+- Anthropic｜Prompting best practices：[platform.claude.com](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
+
+- OWASP｜LLM01:2025 Prompt Injection：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)
+
+- Think BIG｜資安與治理：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+- Think BIG｜地端 AI 與資料主權：[thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
 
 本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
 
@@ -26483,6 +28531,76 @@ Q1：2 歲以下的孩子可以看螢幕嗎？ WHO 2019 年指引不建議 1 歲
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/self-care-skills-picture-books/
+
+# 刷牙、洗手、穿衣服：生活自理繪本怎麼用？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q34
+
+# 刷牙、洗手、穿衣服：生活自理繪本怎麼用？
+
+Think BIG 問答圖書館　·　2026 年 11 月 13 日　星期五
+
+先說答案
+
+生活自理繪本可以用來先看流程、說出一個動作，再回到實際生活由大人陪著做。一次選刷牙、洗手或穿衣中的一件事，讓孩子試一小步即可。故事能當聊天材料，實際清潔方式與需要的協助，仍要依孩子情況確認。
+
+## 一、 書裡看順序，生活裡試動作
+
+教育部《幼兒園教保活動課程大綱》把日常健康行為列入身體動作與健康領域，例子包括洗手、刷牙與更換衣物；也鼓勵在例行活動中提供參與機會（[教育部課綱附檔](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)）。因此共讀可以接回每天真的會做的事，不必另外排成一堂課。
+
+建議先選動作畫得清楚、情境容易聊的一頁，問「他準備拿什麼」「做完放哪裡」。讀完只接一個實際動作，例如把自己的毛巾掛回去。這是家庭活動設計，不是課綱要求每位孩子在同一天完成相同任務，也不是生活技能的分齡測驗。
+
+## 二、 把任務拆成孩子能參與的一小步
+
+生活情境 共讀時可以聊 在家可試的參與方式 刷牙 「角色先拿了哪些東西？」 讓孩子找出自己的牙刷和杯子，由大人確認並陪同後續清潔。
+
+洗手 「他做完後，手在哪裡擦乾？」 一起找洗手用品和毛巾，實際操作時由大人確認環境與清潔。
+
+穿衣 「這件衣服的袖子在哪裡？」 把衣服攤好，讓孩子挑一個動作試，例如將一隻手放進袖子。
+
+表格不是刷牙或洗手的完整衛教流程，也沒有設定孩子必須獨立完成。若不確定清潔方式，請向醫護人員詢問，刷牙相關問題可另問牙醫師；孩子狀況特殊請諮詢小兒科醫師。不要因為角色在故事裡自己做，就直接減少現實中需要的大人協助。
+
+孩子不想試時，可以先讓玩偶演一遍；袖子卡住，就說「我幫你把這裡撐開」。建議描述實際動作，例如「你把杯子放回去了」，不用把一次做完當成乖不乖的評語。穿衣練習可以選時間寬裕的時段，趕出門時則先把當天需要完成的事處理好。
+
+## 三、 少一點盤問，多一次一起做
+
+AAP 的[共讀建議](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)鼓勵聊插圖，也提醒失去興趣時不必讀完。若孩子只想看角色玩水，不想回答洗手順序，就先描述畫面，不需要連問到答對。下次走到洗手台，再說「這裡也有書上那種毛巾」，讓對話回到當下。
+
+也建議先和其他照顧者約好，今天要讓孩子試哪一步、哪一步由大人接手。若各人期待不同，可以先談好，不在孩子面前反覆要求重做。這是減少流程混亂的安排建議，並非固定訓練處方。
+
+讀完的延伸只要留一件可做的事；想把睡前整理也放進日常，可參考[睡前共讀安排](https://thinkbigtw.com/library/qa/bedtime-reading-routine/)。遇到挫折時想聊感受，另看[情緒繪本的讀法](https://thinkbigtw.com/library/qa/feelings-picture-books/)。
+
+品牌資訊｜童話有你
+
+## 從童話有你的主題範例找聊天素材
+
+童話有你的[主題與範例頁](https://talewithyoutw.com/themes.html)列有晚安睡前、情緒小星球與夢想職業等主題。每本以孩子為主角，正式書頁依提供的照片繪製，小狗湯圓每一頁作伴。
+
+各主題有 A 水彩畫冊版、B 公仔立體版範例，示範主角為 AI 生成形象；書為 21 × 21 公分、26 面內頁、中文加注音。主題頁可翻看兩種畫風的範例內頁。
+
+本段內容取自童話有你官網主題與範例頁，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：讀過洗手故事，就算學會洗手嗎？ 先分開看。共讀可聊流程，實際清潔仍要在生活中由大人陪同與確認。 Q2：孩子不肯自己穿衣，怎麼開始？ 可先選一個小動作試，像找袖子或伸進一隻手，需要時由大人協助。 Q3：每天要練習多久？ 本篇不設定固定時間，可接在日常需要做的事情旁，一次試一小步。 Q4：繪本和醫護說明不同，怎麼辦？ 具體清潔與健康問題應向醫護人員確認；孩子狀況特殊請諮詢小兒科醫師。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 教育部｜幼兒園教保活動課程大綱，身體動作與健康領域：[edu.law.moe.gov.tw](https://edu.law.moe.gov.tw/LawContent.aspx?id=GL001586)
+
+- AAP｜陪孩子享受朗讀：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/gradeschool/school/Pages/Help-Your-Child-Enjoy-Reading-Aloud-Tips-for-Parents.aspx)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/separation-anxiety-preschool/
 
 # 上幼兒園哭著不想去？分離焦慮可以怎麼陪？｜問答圖書館｜Think BIG
@@ -26618,6 +28736,76 @@ Q1：私人群組就可以放心傳嗎？ 仍建議確認成員和轉傳約定�
 - 個人資料保護法｜第 3、8 條：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=I0050021)
 
 - 童話有你｜隱私權政策：[talewithyoutw.com](https://talewithyoutw.com/privacy.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/sibling-conflicts/
+
+# 兄弟姊妹一直吵架？爸媽可以怎麼處理？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q41
+
+# 兄弟姊妹一直吵架？爸媽可以怎麼處理？
+
+Think BIG 問答圖書館　·　2026 年 11 月 20 日　星期五
+
+先說答案
+
+兄弟姊妹吵架時，先制止會傷人的動作，再讓彼此說明需要，最後一起找能做到的安排，不必一開始就判誰贏誰輸。依美國兒科醫學會（AAP）的說明，幼兒通常需要較多協助；若孩子的身體或情緒安全受影響，大人應介入。
+
+## 一、 先看安全，再決定介入多少
+
+[AAP 的手足相處建議](https://www.healthychildren.org/English/family-life/family-dynamics/Pages/sibling-synergy.aspx)區分一般意見不合與需要大人介入的情況。孩子能安全談判時，可以留一些空間；已經打人、無法自行處理，或大人擔心其中一個孩子的安全，就平靜加入，先聽雙方說明。
+
+以下是可在家試的說法：「我會擋住打人的手，你們先分開一點。」先處理動作，不在混亂中追問「誰先開始」。若有人受傷，先照顧受傷者；不是要求他先原諒、先繼續一起玩，才願意幫忙。
+
+家中規則可寫得具體，例如「不打人」「進別人的房間前先問」。AAP 也提醒，幼兒需要大人反覆說明簡單規則；不能因為昨天講過，就期待今天遇到爭執時能完整照做。
+
+## 二、 把「他很壞」換成能處理的事情
+
+等音量下降後，再分別確認：「你正在玩車，他把車拿走了，是這樣嗎？」另一個孩子也有說明的機會。這是依平靜、公平聆聽原則設計的對話，不是在替某一方補理由，也不需要請孩子當場互相指控。
+
+眼前的爭執 可以一起商量的安排 兩個人都想玩同一件玩具 先確認正在使用的是誰，再談何時交接，或找另一件可選的玩具。
+
+一個想一起玩，一個想自己玩 說明現在想獨處，約好之後是否願意再邀請；不要求任何時候都陪玩。
+
+總是同一個人選活動 安排輪流提案，也把每個孩子喜歡的活動放進家庭時間。
+
+AAP 建議輪流選活動，也為每個孩子保留個別相處的時間。可以先從睡前各聊一小段開始，不用把大人的陪伴變成精算分鐘的比賽。若兩人暫時不想一起玩，就先各自活動，之後再談。
+
+## 三、 故事適合事後聊，不用拿來判案
+
+共讀可放在情緒平穩時。下面是讀法提案：挑一頁角色有不同需要的情節，問「他想靠近，可是另一個想安靜，還有什麼辦法？」讓孩子替角色想選項，不直接把角色指成哥哥或妹妹。
+
+讀完也能一起改畫一個結尾：有人先問、有人說等一下，或大人協助安排。這是在練習對話，沒有讀完就不吵的成效承諾。想先理解心情，可接[情緒繪本](https://thinkbigtw.com/library/qa/feelings-picture-books/)；若家裡正在迎接新生兒，可看[幫大寶準備的共讀方式](https://thinkbigtw.com/library/qa/new-sibling-preparation/)。
+
+如果衝突反覆涉及受傷、恐懼或持續影響生活，請尋求專業協助；孩子狀況特殊請諮詢小兒科醫師。大人不必獨自把所有衝突都處理好，也不要把明顯的不安全情況當成練習談判的機會。
+
+品牌資訊｜童話有你
+
+## 童話有你：當哥哥姊姊
+
+童話有你的[當哥哥姊姊](https://talewithyoutw.com/themes/big-sibling.html)主題，書名是《〔孩子名字〕的哥哥姊姊練習》。故事寫到迎接新家人，練習小聲說話、摺小衣服，以及說出「我有點緊張」。主角依孩子照片繪製，範例主角為 AI 生成形象；依官網常見問題，印製前會先傳預覽確認。
+
+本段內容取自童話有你官網[主題頁](https://talewithyoutw.com/themes/big-sibling.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：每次吵架都要介入嗎？ 先看安全與孩子能否處理。幼兒通常需要較多協助，涉及傷害或情緒安全時應介入。 Q2：哥哥姊姊應該一直讓嗎？ 不必只依年紀決定。可以確認正在使用的物品、每個人的需要與家中規則，再一起安排。 Q3：需要馬上道歉和抱抱嗎？ 可先處理安全與受傷，再聽雙方說明；不用把立刻親近當成結束爭執的條件。 Q4：童話有你的手足主題寫什麼？ 「當哥哥姊姊」的書名是《〔孩子名字〕的哥哥姊姊練習》，故事涉及迎接新家人與說出緊張的心情。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜Sibling Relationships: How to Help Your Kids Build Healthy Bonds：[www.healthychildren.org](https://www.healthychildren.org/English/family-life/family-dynamics/Pages/sibling-synergy.aspx)
+
+- 童話有你｜常見問題：[talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- 童話有你｜指定主題頁：[talewithyoutw.com](https://talewithyoutw.com/themes/big-sibling.html)
 
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
@@ -26781,6 +28969,170 @@ Q1：有沒有以台灣為主題、孩子當主角的繪本？ 有。童話有�
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
 問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/talking-about-death-with-kids/
+
+# 怎麼跟孩子聊死亡、寵物離開？爸媽可以說哪些話？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q36
+
+# 怎麼跟孩子聊死亡、寵物離開？爸媽可以說哪些話？
+
+Think BIG 問答圖書館　·　2026 年 11 月 15 日　星期日
+
+先說答案
+
+跟孩子聊死亡，可以直接說明身體已停止運作、不能再回來，接著聽他想問什麼，允許他難過或暫時不想談。避免只用「睡著了」「去旅行」說明，以免孩子把日常睡眠與出門和死亡混在一起。以下是一般性陪伴建議；孩子狀況特殊請諮詢小兒科醫師。
+
+## 一、 先用簡單實話，說清楚發生什麼
+
+[AAP 的兒童死亡理解說明](https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/How-Children-Understand-Death-What-You-Should-Say.aspx)建議用符合孩子理解程度的直接語言，幫他認識死亡的不可逆與身體停止運作，也提醒避免模糊的睡眠或旅行比喻。可以先說短短一段，再停下來等孩子反應；不必一次講完所有生命觀點。
+
+例如寵物離世時，可以說「牠死了，身體不再工作，不能再吃飯、走路，也不會再回家。我們會想牠。」這是依原則設計的示例，實際死因與細節只說家人已確認、願意適量說明的部分。若不知道答案，可以坦白說不知道，再一起找合適的人問。
+
+## 二、 聽問題，也留空間給不同反應
+
+孩子可能說 可試著回應 「什麼時候回來？」 「死亡後不會再回來。我們可以看照片，記得以前一起做的事。」
+
+「是我害的嗎？」 依已知事實說明原因，清楚告訴孩子，單純生氣、想法或說過的話不會造成這次死亡。
+
+「我現在不想說。」 「好，你想問時可以找我。我也會想牠。」
+
+「你也會死嗎？」 可以說明所有生命都會結束，再依實際情況談目前照顧與健康安排，不做永遠陪伴的承諾。
+
+這些是對話示例，不要求逐字照念。AAP 提醒要幫孩子理解死亡不是自己造成的；同時，原因說明要符合真實情況，不能在不了解事件時自行猜測。家庭有宗教信念時，可以說「我們家相信……」，並和身體停止運作的具體事實分開說。
+
+AAP 的[寵物離世陪伴說明](https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/when-a-pet-dies-how-to-help-your-child-cope.aspx)提到，孩子可能表現悲傷，也可能生氣或反覆提問，並建議跟著孩子意願談。大人也可以表達自己難過，不需要急著說服孩子振作，或因為他又去玩就判斷他沒有感情。
+
+## 三、 一起留紀念，不要求立刻告別完畢
+
+可以邀孩子畫一張記憶圖、做小相簿，或說一件以前和寵物一起做過的事。AAP 提到可輕柔邀請紀念儀式，並尊重孩子意願；若他不想參加，就先保留選擇。故事也能當聊天入口，但不把讀完一本書當成哀傷已處理完成。
+
+建議盡可能維持孩子熟悉的生活安排，讓他知道今天由誰陪、接下來會做什麼。若出現明顯睡眠困擾，或持續的焦慮、低落等令人擔心的反應，可向小兒科醫師說明；不必先替孩子貼上診斷名稱，也不用自行訂出必須恢復的期限。
+
+不知道怎麼談感受，可參考[情緒繪本的問法](https://thinkbigtw.com/library/qa/feelings-picture-books/)；想保留熟悉的夜晚時段，可讀[睡前共讀安排](https://thinkbigtw.com/library/qa/bedtime-reading-routine/)。這些安排提供陪伴的方式，仍以孩子當下需要為準。
+
+品牌資訊｜童話有你
+
+## 童話有你的情緒與睡前主題
+
+童話有你的[主題與範例頁](https://talewithyoutw.com/themes.html)列有情緒小星球與晚安睡前等主題。每本讓孩子當主角，正式書頁依提供的照片繪製，小狗湯圓每一頁作伴。
+
+主題可看 A 水彩畫冊版、B 公仔立體版範例，示範主角為 AI 生成形象；規格為 21 × 21 公分、26 面內頁、中文加注音，可選加英文。
+
+本段內容取自童話有你官網主題與範例頁，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：可以只說寵物睡著了嗎？ 建議清楚說明死亡與身體停止運作，避免只用睡著或旅行的比喻。 Q2：孩子一直問同樣問題，怎麼辦？ 可用簡單、一致的說明回答，再看他是不是想知道新的細節或只是想有人陪。 Q3：孩子不哭，是不是不在乎？ 不宜只看哭泣判斷。AAP 提醒反應會因年齡和理解而不同，可能有生氣或反覆提問。 Q4：什麼時候需要專業支持？ 若睡眠或情緒反應令人擔心，可向醫師說明觀察；孩子狀況特殊請諮詢小兒科醫師。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜如何與孩子說明死亡：[www.healthychildren.org](https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/How-Children-Understand-Death-What-You-Should-Say.aspx)
+
+- AAP｜寵物離世時陪伴孩子：[www.healthychildren.org](https://www.healthychildren.org/English/healthy-living/emotional-wellness/Building-Resilience/Pages/when-a-pet-dies-how-to-help-your-child-cope.aspx)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/traditional-chinese-local-llm/
+
+# 本地模型的繁體中文好不好？台灣用語要怎麼測｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+本地大模型
+TB33
+
+# 本地模型的繁體中文好不好？台灣用語要怎麼測
+
+Think BIG 問答圖書館　·　2026 年 11 月 15 日　星期日
+    ·　[English](https://thinkbigtw.com/en/qa/traditional-chinese-local-llm/)
+
+先說答案
+
+本地模型的繁體中文是否夠用，要用公司的實際工作測，不能只看會不會輸出繁體字。台灣用語、公司術語、讀文件是否正確，以及資料不足時的處理，是不同能力。建議先整理代表性的問題與可接受答案，再用預計部署的模型和設定測試。
+
+## 一、 繁體字正確，只是其中一項
+
+MediaTek Research 發布的繁體中文模型卡，分別呈現知識題、閱讀理解、表格與對話等評估面向。本文只引用這種分項評估的方式，不引用產品排名或推定某模型適合特定企業。語言標籤可以是查找資訊的起點，不能當成工作驗收結果。
+
+面向
+本文建議的測試
+要記下的錯誤
+字形與標點
+指定繁體中文與台灣標點寫摘要
+簡繁混用、標點不符
+
+台灣慣用詞
+提供核准詞表與短文改寫
+詞彙用法不符、亂換專有名稱
+
+公司術語
+同一概念用口語與正式名稱提問
+名稱對不上、解釋範圍改變
+
+文件依據
+附有版本與例外條件的問答
+忽略例外、引用不支持答案
+
+例如可以要求一般敘述使用「軟體」「資料庫」，但正式文件名稱與原文引用應依來源保留。這是企業編輯規範的例子，不是模型能力排名。詞彙修正後，也要再看事實是否改變；把句子改得自然，不能當成答案正確的證據。
+
+## 二、 用工作題建立可重做的評估
+
+HELM（Holistic Evaluation of Language Models）研究主張從多種情境與指標評估語言模型，呈現不同面向的取捨。企業可以借用這個思路，將語感、正確性、指示遵循與敏感資料處理分開記錄，不把所有結果壓成一個「中文好不好」的印象。
+
+本文建議每題記錄任務、核准輸入、預期依據、必須保留的限制與不能出現的行為。題目可以包含摘要、表格解讀、口語提問、資料不足與文件互相矛盾。由熟悉工作的同事核對答案；重要條件是否遺漏，應比語氣是否討喜更早檢查。
+
+建議固定一部分題目作後續比較，保留另一部分未用於調整的題目。模型、量化方式、提示詞或檢索配置改動時，記錄變更再重測。這些是本文建議的驗收安排，不提供通用通過分數或測試題數。
+
+## 三、 用預計上線的流程測，而非只測裸模型
+
+NIST AI RMF 1.0（2023）的 MEASURE 功能強調，應在相關條件下測量與記錄系統表現，並評估適用性。企業可據此要求測試貼近預計用途，不把展示環境的結果直接搬到正式工作。
+
+本文建議使用預計部署的文件解析、RAG、權限帳號與硬體一起測。若來源段落錯誤，先查檢索；若依據正確卻用詞不符，再看提示詞和詞表。雲端與地端也可用相同核准題目比較可用性，但須遵守資料傳送規則；不要為了測中文，把機密資料交給尚未核准的環境。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的工作驗證與元件版本
+
+Think BIG（大想成業有限公司）協助企業把 AI Agent 建在公司自己的環境裡。地端部署不等於所有連線都在本機；若使用雲端模型、通訊軟體或外部服務，相關請求仍會送出。
+
+- 以證據驗證工作 ：工作完成條件須有對應的變更紀錄與驗證結果，並確認維護與交接責任。
+
+- 第三方元件先審查 ：使用的第三方套件先審查來源與授權、固定版本、不自動更新；金鑰放在受權限保護的設定檔，不在對話裡傳。
+
+詳見[資安與治理](https://thinkbigtw.com/trust/)與[地端 AI 與資料主權](https://thinkbigtw.com/guides/local-ai-data/)。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：寫得出繁體字就是台灣用語好嗎？ 不是同一項能力；還要測詞彙、語意、公司術語與工作正確性。 Q2：可以只看公開測試分數嗎？ 可作參考，但應另用公司核准的工作題驗收，不由分數推定適用性。 Q3：要準備多少題才夠？ 本文不給通用題數。先涵蓋主要工作、例外與資料不足情境，再依風險補題。 Q4：換量化檔或提示詞要重測嗎？ 本文建議記錄配置變更，並用固定測試題確認結果，避免只憑印象比較。
+
+參考來源（連結於 2026-10-26 查證）
+
+- MediaTek Research｜Breeze 模型卡（分項評估方式）：[huggingface.co](https://huggingface.co/MediaTek-Research/Breeze-7B-Instruct-v1_0)
+
+- Liang 等｜Holistic Evaluation of Language Models（2022）：[arxiv.org](https://arxiv.org/abs/2211.09110)
+
+- NIST｜AI RMF 1.0（2023），MEASURE：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf)
+
+- Think BIG｜資安與治理：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
@@ -27346,6 +29698,98 @@ Q1：孩子要先會認字才能看地圖嗎？ 這裡的活動可以先由大�
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
 問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/zero-trust-ai-agent/
+
+# 零信任是什麼？套用到 AI Agent 要怎麼做｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+企業資安
+TB35
+
+# 零信任是什麼？套用到 AI Agent 要怎麼做
+
+Think BIG 問答圖書館　·　2026 年 11 月 17 日　星期二
+    ·　[English](https://thinkbigtw.com/en/qa/zero-trust-ai-agent/)
+
+先說答案
+
+零信任是不因設備位於公司內網，就自動信任它或使用它的帳號；套用到 AI Agent，要讓每次資料存取與工具操作都經過授權檢查。依 NIST SP 800-207（2020），身分驗證與授權應在建立資源連線前完成。模型放在地端或雲端，都要另外處理它能讀什麼、能做什麼。
+
+## 一、 從「在哪裡」改問「誰要做什麼」
+
+NIST 的零信任架構把防護焦點放在使用者、設備與資源，不以網路位置作為隱含信任的依據。對 AI Agent 而言，員工登入聊天介面、Agent 讀文件、工具修改資料，是不同的授權環節，應各自檢查。不能因為員工有帳號，就把整個系統的管理權限一起交給模型。
+
+例如，員工請 Agent 整理文件，工具應以該員工可用的範圍查詢；若背後改用可讀全公司的共用帳號，前端登入仍擋不住跨部門存取。這也是 OWASP LLM06:2025 提醒的過度權限情境。公司可以先畫出「使用者→Agent→工具→資料」的路徑，逐段標上實際執行身分，找出哪一段借用了過大的權限。
+
+## 二、 把原則放進實際的控制點
+
+以下是依 NIST 與 OWASP 原則整理的設計建議，不是額外的認證清單。
+
+控制點
+建議做法
+要留下的證據
+身分
+區分員工與服務帳號，標記請求代表誰
+帳號、用途與負責人
+
+查文件
+檢索時依身分檢查文件權限
+允許或拒絕的測試結果
+
+用工具
+把查詢和修改分開，僅開工作所需功能
+工具清單與可操作範圍
+
+高影響動作
+送出或修改前由指定人員核准
+核准內容與執行結果
+
+異常處理
+能撤回授權、停用工具並追查活動
+撤權演練與必要紀錄
+
+OWASP 指出，授權應在下游系統執行，不能讓模型自行判斷是否允許。提示詞可以說明工作邊界，真正的拒絕仍要靠工具、資料庫或應用程式落實。需要人核准的操作，也應在動作執行前設檢查點，讓核准內容對得上實際執行內容。
+
+## 三、 先用一個流程驗證邊界
+
+建議從單一文件查詢流程開始，用測試帳號與虛構資料準備正常查詢、跨部門查詢、權限撤回後重試三種情境。預期結果要在測試前寫好：哪些文件可見、哪些應拒絕，以及誰能查閱紀錄。拒絕存取時，也應確認摘要、快取或附件沒有繞過限制。
+
+這些是本文建議的驗證方法，不能僅憑測試通過就宣稱完成零信任。後續新增工具、改用模型或調整外部服務，都應重查資料路徑與授權。地端適合有本機處理需求的流程；雲端也能依相同原則控管。選擇部署位置時，把資料條件和維護責任一起列入。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的 Agent 權限與交付審查
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：零信任就是一直輸入密碼嗎？ 不是。NIST 強調資源存取前的身分與授權判斷；實際驗證方式應依風險與系統設計決定。 Q2：本地模型也需要零信任嗎？ 需要。設備在內網，不代表所有帳號都應讀到全部文件。 Q3：只在提示詞寫不能洩密夠嗎？ 不夠。依 OWASP，授權要由下游系統落實，不能交由模型自行裁定。 Q4：小公司可以從哪裡開始？ 先選一個文件查詢流程，列清帳號、資料、工具與負責人，再做跨權限和撤權測試。
+
+參考來源（連結於 2026-10-26 查證）
+
+- NIST｜SP 800-207, Zero Trust Architecture（2020）：[csrc.nist.gov](https://csrc.nist.gov/pubs/sp/800/207/final)
+
+- OWASP｜LLM06:2025 Excessive Agency：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
@@ -30322,479 +32766,3 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
-
----
-
-URL: https://thinkbigtw.com/full-agent/
-
-# 此頁已搬家｜Think BIG!
-
-此頁已搬到新位置：[雙 Agent](https://thinkbigtw.com/dual-agent/)。
-
----
-
-URL: https://thinkbigtw.com/harness/
-
-# 此頁已搬家｜Think BIG!
-
-此頁已搬到新位置：[單 Agent](https://thinkbigtw.com/single-agent/)。
-
----
-
-URL: https://thinkbigtw.com/tbos/en/
-
-# This page has moved | Think BIG!
-
-This page has moved: [Think BIG English home](https://thinkbigtw.com/en/).
-
----
-
-URL: https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/
-
-# 頁面已合併
-
-本頁已合併，[點此前往](https://thinkbigtw.com/library/news/ai-context-length-too-large-20261027/)。
-
----
-
-URL: https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/
-
-# Page merged
-
-This page has been merged. [Click here to continue.](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261027/)
-
----
-
-URL: https://thinkbigtw.com/en/news/ambient-vs-chat-ai-20261114/
-
-# Chat AI or an Ambient Agent? Define Triggers and Stop Conditions | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-AI Deployment Field Notes · Issue 020
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-November 14, 2026  ·  Saturday
-◆
-AI Deployment Field Notes
-◆
-Issue 020
-
-Ambient AI · Event Triggers · Human Review
-
-## Chat AI or an Ambient Agent? Define Triggers and Stop Conditions
-
-Think BIG Media  |  November 14, 2026
-
-Start with who triggers the work and where it waits for a person. Background operation needs a defined scope, approval gates, and a way to stop.
-
-## One.  What’s Happening: From Waiting for Prompts to Responding to Events
-
-In January 2025, LangChain published “Introducing ambient agents,” describing agents that respond to signals and seek human input when needed, alongside an email-assistant reference implementation.[1] This historical announcement introduces our discussion of interaction and governance; it is not a current product launch report.
-
-Here, “going to AI” means a person initiates a request. “AI coming to you” means an event or schedule starts work and produces a notification or review item. This is an explanatory distinction, not an industry-wide taxonomy. The original article says ambient agents need not be completely autonomous.[1] Background operation does not mean watching every screen or receiving all system permissions.
-
-Waiting for a person can be an explicit program state. LangGraph documents interrupts that pause execution, save state, and resume with external input.[2] OWASP LLM06:2025 recommends limiting tools, permissions, and autonomy, with human approval for high-impact actions.[4] Background execution and approval authority need separate designs.
-
-## Two.  Perspectives: Less Repetition, More Operational Responsibility
-
-The benefit:  The original article distinguishes notification, questions, and review.[1] In our assessment, a well-defined trigger can make preparing a review queue more suitable than repeatedly briefing a tool. Measure that on real work rather than assuming a quantified time saving.
-
-The caution:  Background work also involves scheduling and retries. Kubernetes says its CronJob controller may sometimes create duplicate jobs or miss a job, so jobs should be idempotent: repeating them should not add unintended effects.[3] This is that scheduler’s documented behavior, not a defect attributed to every AI platform.
-
-We recommend turning this into acceptance questions: What happens when an event arrives twice? Is waiting-for-approval state visible? With no reply, does the job keep waiting, expire, or escalate? Decide these conditions before deployment.
-
-Define when a person needs an interruption: missing information, pending approval, or repeated failure. Group related items and identify an owner and deadline where relevant. Repeated reminders need a stop or escalation rule. This is an interaction recommendation, not a measured outcome.
-
-If a task lacks a clear event and completion condition, use conversation to clarify the workflow first. Once a person can describe its start, inputs, and outputs, move a bounded portion into the background. Not every task needs a schedule.
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These observations come from operating persistent AI agents. They are not industry statistics or an account of any particular organization.
-
-1. Model calls continue without a conversation.  Heartbeat checks and automatic memory organization can consume usage allowances or compute unnoticed. We inventory schedules, disable unnecessary jobs, and set limits.
-
-2. Long conversations create maintenance work.  Old context needs summarization as conversations grow. Local summarization can take minutes and time out, blocking a conversation. We summarize earlier, set timeouts, and separate channels.
-
-3. A healthy service may have just restarted.  A laptop host once lost power overnight after its battery drained, leaving morning jobs unexecuted. The service later appeared healthy because it had just restarted. We check uptime and power alongside service status, and added low-battery alerts.
-
-4. Important memory must be inspectable.  We keep important items in memory files that can be viewed, edited, and deleted. Persistent state should remain understandable to its owner.
-
-## Four.  Our Recommendations: Pilot One Task with a Clear Endpoint
-
-1. Specify triggers.  Define the event or schedule, input data, output, and completion condition. When no work remains, execution should end rather than continually asking a model to find another task.
-
-2. Separate notification from action.  Begin with summaries, drafts, or review queues. Require designated approval for external sending or production changes, showing target and content beforehand.[4] Waiting for approval should be a workflow state.[2]
-
-3. Test duplicates, missed work, and recovery.  Use synthetic events to check duplicate handling and restart behavior.[3] Track last success and outstanding work, beyond process existence.
-
-4. Set usage and stop conditions.  Specify call, duration, and retry limits, with an alert recipient. Test manual shutdown and confirm unfinished work and pending approvals remain readable.
-
-Give background work a beginning, endpoint, and owner before expanding autonomy.
-
-◆ Editor’s Note · How Think BIG Approaches This: Background Work That Can Be Handed Over
-
-## Deliver triggers, state records, approvals, and shutdown instructions together.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-We recommend a visible inventory of schedules, recent actions, and outstanding approvals. New jobs should bring an explicit data scope, resource limits, and shutdown method.
-
-Whether an agent stays active and which actions it may perform are separate questions that both need answers.
-
-### Frequently Asked Questions
-
-Q1: Must ambient agents be fully autonomous?
-No. The original article includes notification, questions, and review.[1]
-Q2: Is adding a schedule enough?
-Test state, retries, duplicate handling, approvals, and shutdown separately.[2][3]
-Q3: Can model usage continue without a user prompt?
-In our operations records, heartbeat and memory jobs continue calling models, so we inventory them and set limits.
-Q4: Should an ambient agent send messages by itself?
-Separate capability from authorization. We recommend a preview and designated approval for outbound sending, applying high-impact-action guidance.[4]
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] LangChain, “Introducing ambient agents,” January 14, 2025, accessed 2026-10-26: [blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/) ·
-    [2] LangChain, “Interrupts”, accessed 2026-10-26: [docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts) ·
-    [3] Kubernetes, “CronJob”, accessed 2026-10-26: [kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/) ·
-    [4] OWASP, “LLM06:2025 Excessive Agency”, accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  AI Deployment Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/ambient-vs-chat-ai-20261114/
-
-# 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-AI 導入實測手記 · 第 020 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-2026 年 11 月 14 日　星期六
-◆
-AI 導入實測手記
-◆
-第 020 期
-
-常駐型 AI · 事件觸發 · 人工確認
-
-## 「你去找 AI」和「AI 來找你」差在哪？——常駐型 AI Agent 先定義觸發與停止
-
-Think BIG 自媒體部  |  2026 年 11 月 14 日
-
-差別先看誰啟動工作，以及執行到哪裡要等人。常駐是一種運作安排，不代表應該持續觀察所有資料或自行完成所有動作。
-
-## 一 現象：從等人提問，走向事件來了就啟動
-
-LangChain 在 2025 年 1 月發表〈Introducing ambient agents〉，描述一種回應事件訊號、需要時才找人介入的設計，也公布電子郵件助理參考實作。[1] 這是本期的原始公告引子；本文談互動方式與管理條件，不把當年的產品發布寫成今日新消息。
-
-我們把「你去找 AI」理解為人發起一次請求；把「AI 來找你」理解為事件或排程先啟動工作，再提出通知或待核准事項。這是本文的說明方式，並非產業統一分類。原始文章也說，ambient agents 不必完全自主。[1] 常駐不等於時時讀取每個畫面，更不等於拿到所有系統權限。
-
-要停下等人，可以做成程式狀態。LangGraph 的官方文件說明，interrupt 可暫停執行，保存狀態並等外部輸入後恢復。[2] OWASP LLM06:2025 則建議限制工具、權限與自主程度，對高影響動作保留人工核准。[4] 因此，能在背景做事與能自行核准事情，要分開設計。
-
-## 二 各方評價：少一點重複提問，也多一份維運責任
-
-支持背景工作的思路： 原始文章區分通知、提問與審閱三種人機互動。[1] 我們的判讀是，若工作有清楚觸發點，先整理待辦再請人判斷，可能比每天重新交代一次更合適；但要用實際工作觀察，而非直接宣稱節省多少時間。
-
-保留的思路： 背景程序還有排程與重試問題。Kubernetes 官方 CronJob 文件提醒，在某些情況可能建立重複工作，或沒有建立工作，因此工作應具備重複執行不造成額外效果的設計。[3] 這是該排程系統的技術限制，不是所有 AI 平台的共同缺陷。
-
-我們建議把這個提醒轉成驗收題：同一事件來兩次，會不會重複通知或寫入？等人核准時，狀態是否清楚？沒人回答時，是持續等待、逾期關閉，還是升級通知？這些選項需要事先決定，不能用「AI 自己會處理」帶過。
-
-我們建議先列出「需要打擾人的條件」，例如資料缺漏、等待核准或連續失敗，再討論通知頻率。把可合併的事項整理成一則待辦，並標明誰要處理、是否有期限；對同一件事反覆提醒，也應有停止或轉交規則。這是互動設計建議，不是已量測的使用成效。
-
-若原本工作沒有明確事件與完成條件，我們建議先用對話工具整理流程。能由人清楚說出起點、輸入與輸出後，再挑一小段改成背景工作；不必為了使用常駐功能，硬把每項工作都排成自動任務。
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下取自我們維運常駐 AI Agent 的觀察，不是產業統計，也不描述特定對象。
-
-1. 沒人聊天，也可能持續呼叫模型。 我們發現心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。因此會逐項列出自動排程，關閉不需要的項目並設上限。
-
-2. 對話累積後，也有整理工作。 常駐對話超出上下文時要壓縮舊內容；本地模型做摘要可能要好幾分鐘，逾時會讓對話卡住。我們會提早壓縮、設逾時，並把不同通道的對話分開。
-
-3. 服務顯示健康，還要看開機時間。 我們遇過筆電主機整夜沒接電，耗盡電池關機，隔天排程沒跑。遠端看到服務健康，其實只是剛重啟。因此診斷時會一起看開機時間與電源狀態，後來也加上低電量提醒。
-
-4. 重要記憶要可以檢查。 我們把重要事項寫入可檢查的記憶檔，要求能看、能改、能刪。背景工作需要保存狀態，但不應讓狀態變成負責人無法理解的黑盒子。
-
-## 四 我們的建議：先試一個有清楚終點的工作
-
-1. 寫觸發條件。 明定哪個事件或排程會啟動、讀哪些資料、產生什麼輸出，以及怎樣算完成。沒有新的工作時，應能結束，不必每次都讓模型自由找下一件事。
-
-2. 分開通知與執行。 我們建議先從摘要、草稿或待辦試行；對外送出與正式資料變更交指定人核准，並在操作前顯示目標與內容。[4] 等待核准應是流程狀態，不只是聊天裡的一句提醒。[2]
-
-3. 測重複、漏跑與恢復。 用測試事件驗證同一事件重送不會重複處理，並檢查重開機後如何接續。[3] 紀錄最後成功時間與下一個待辦，不能只監控程序是否存在。
-
-4. 設用量與停止條件。 列出呼叫次數、執行時間及重試上限，指定告警接收人。測一次手動停止，確認未完成工作與待核准事項會留下可讀狀態。
-
-一句話：先讓背景工作有起點、終點與負責人，再增加自主程度。
-
-◆ 編按 · Think BIG 的做法：常駐也要可交接
-
-## 觸發表、狀態紀錄、核准與停止方式一起交付。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們主張把背景工作列成清單，讓負責人看得到有哪些排程、最近做了什麼、接下來在等誰。新增任務時，也同步確認資料範圍、資源上限與停止方式。
-
-延伸閱讀[MCP 權限邊界](https://thinkbigtw.com/library/news/mcp-ai-agent-permissions-20261102/)。是否常駐與能做哪些動作，是兩個都需要回答的問題。
-
-### 常見問題
-
-Q1：常駐型 AI 需要完全自主嗎？
-不需要。原始 ambient agents 文章就保留通知、提問與審閱的人機互動。[1]
-Q2：加一個排程就算導入完成嗎？
-我們建議另驗證狀態、重試、重複處理、人工核准及停止；排程本身不處理所有責任。[2][3]
-Q3：沒有人問，也會用到模型嗎？
-我們的維運紀錄中，心跳與記憶整理等自動排程會持續呼叫模型，因此需要盤點與上限。
-Q4：常駐系統可以自行寄信嗎？
-技術能力與授權要分開。我們建議對外寄送先預覽、再由指定人核准，符合高影響動作的人工作業方向。[4]
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] LangChain，〈Introducing ambient agents〉，2025-01-14，查閱日期 2026-10-26：[blog.langchain.com](https://blog.langchain.com/introducing-ambient-agents/)　·
-    [2] LangChain，〈Interrupts〉，查閱日期 2026-10-26：[docs.langchain.com](https://docs.langchain.com/oss/python/langgraph/interrupts)　·
-    [3] Kubernetes，〈CronJob〉，查閱日期 2026-10-26：[kubernetes.io](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/)　·
-    [4] OWASP，〈LLM06:2025 Excessive Agency〉，查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  AI 導入實測手記
-    Think BIG, Make it Real!　大想成業有限公司
-
----
-
-URL: https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/
-
-# What Should You Back Up in a Local AI System? — Beyond Model Files | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Local AI Field Notes · Issue 023
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI FIELD NOTES
-
-November 20, 2026  ·  Friday
-◆
-Local AI Field Notes
-◆
-Issue 023
-
-local AI · system backup · recovery drills
-
-## What Should You Back Up in a Local AI System? — Beyond Model Files
-
-Think BIG Media  |  November 20, 2026
-
-Recovering a model does not reconstruct the working system. A backup plan needs file locations, a consistent recovery point, and work-based acceptance checks.
-
-## One. A File Copy Is Not a Recovery Plan
-
-Model files are conspicuous, but size should not determine backup priority. Ollama’s FAQ describes configurable model storage and service settings managed through the operating system. The default directory may not describe the deployed setup.[1]
-
-Databases also need specific handling. PostgreSQL says a direct file-level copy requires shutdown; an appropriate consistent snapshot can work while running, provided its conditions, logs, and full data scope are covered.[2]
-
-SQLite offers an online backup API for database snapshots and discusses the locking and interruption risks of traditional copying.[3] CISA recommends offline, encrypted backups of critical data and regular availability and integrity tests.[4] These sources focus on recoverability, beyond simply having another copy.
-
-## Two. Offline and Online Methods Have Conditions
-
-The case for stopping writes: a clearer state.  Where maintenance windows are possible, we favor stopping writing services before a documented backup. This is our operational choice. PostgreSQL’s restrictions on direct copying do not mean every database requires an offline backup.[2]
-
-The case for online backup: service continuity.  SQLite’s API and PostgreSQL’s consistent-snapshot guidance offer conditional paths for working systems.[2][3] Our reading is that database and storage architecture should determine the method. A completed copy command is insufficient evidence by itself.
-
-Convenience also needs to be weighed against isolation. CISA notes that ransomware can delete or encrypt accessible backups.[4] We recommend reviewing backup access separately from everyday access while ensuring an authorized recovery owner can obtain what is needed.
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These notes come from our local AI deployment and maintenance records. They are not industry statistics or an account of any particular client.
-
-1. The model is one component.  Our checklist includes configuration, schedules, service definitions, database snapshots, knowledge indexes, agent memory files, and conversation records. Where model files can be downloaded again, we still record the exact version rather than an ambiguous name.
-
-2. Make a consistent backup before upgrades.  Our recorded practice is to stop services before packaging the system, giving the backup a defined point with writes stopped. That is our method, not a universal prescription. Online requirements need a method appropriate to the database.[2][3]
-
-3. Use the existing backup process.  We use the established daily backup mechanism rather than adding a separate process without an owner. We consider the job complete after a recovery drill.
-
-## Four. Our Recommendations: From Inventory to Recovery
-
-1. Inventory by purpose.  Mark what must be preserved and what can be rebuilt. Record locations, owners, versions, retention, and rebuild instructions. If an index will be rebuilt, keep its source documents and build procedure.
-
-2. Document consistency.  Identify the services to stop, database order, and how to confirm writing has stopped. For online methods, save options and completion evidence. Do not assume that a copy of a live data directory is a usable snapshot.[2][3]
-
-3. Protect and isolate backups.  Consider offline storage and encryption under CISA’s guidance, and test authorized access to recovery and decryption material.[4] Keep secret retrieval controlled rather than placing complete secrets in general handover notes.
-
-4. Restore in isolation.  Select a backup, record the steps, and use known questions to check retrieval, memory access, and service startup. Disable outbound scheduled actions during the drill to avoid repeating production work. This is our recommended test design.
-
-5. Return results to the owner.  Keep the recovery point, elapsed time, failures, and corrections. Add missing settings to the inventory. Use the revised procedure for the next drill instead of carrying forward an old completion check.
-
-A useful drill can start with one concrete task, such as retrieving a known document. Define the expected answer and authorized account, restore from the instructions, and check the source data, version, and permissions. If an index is rebuilt, confirm that all required originals exist. Compare the drill against the inventory: any file obtained ad hoc during recovery belongs on the next checklist. This is our proposed acceptance method; service startup alone does not establish complete recovery.
-
-◆ Editor’s Note · How Think BIG Approaches This: Deliver the Recovery Procedure
-
-## A completed backup needs a repeatable restoration record.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-Think BIG’s position is to deliver backup scope, restoration order, and acceptance questions with a local AI system. Recovery belongs in the maintenance documentation.
-
-Another authorized person should be able to follow the procedure. Changes to configuration, data locations, or schedules should update the recovery instructions so they describe the system actually in use.
-
-### Frequently Asked Questions
-
-Q1: Is backing up model files enough?
-Our inventory also covers settings, schedules, databases, indexes, memory, and records. Model locations can be customized.[1]
-Q2: Can I copy database files directly?
-Use a method appropriate to the database. PostgreSQL requires shutdown for a direct file backup; SQLite offers an online backup API.[2][3]
-Q3: Do daily backups still need a recovery drill?
-Yes. CISA recommends testing availability and integrity regularly.[4]
-Q4: Must every model file be duplicated?
-We first assess whether it can be obtained again and record the exact version. An uncertain rebuild path should not be treated as disposable.
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] Ollama, “FAQ” (model storage and service configuration); accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/faq) ·
-    [2] PostgreSQL, “File System Level Backup” (copies and consistent snapshots); accessed 2026-10-26: [www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html) ·
-    [3] SQLite, “SQLite Backup API” (online snapshots); accessed 2026-10-26: [www.sqlite.org](https://www.sqlite.org/backup.html) ·
-    [4] CISA, “#StopRansomware Guide” (offline encrypted backups and testing); accessed 2026-10-26: [www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  Local AI Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/
-
-# 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-本地 AI 實測筆記 · 第 023 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI FIELD NOTES
-
-2026 年 11 月 20 日　星期五
-◆
-本地 AI 實測筆記
-◆
-第 023 期
-
-本地 AI · 系統備份 · 還原演練
-
-## 本地 AI 系統要備份什麼？——模型之外，還有設定、知識庫與運作紀錄
-
-Think BIG 自媒體部  |  2026 年 11 月 20 日
-
-模型能重新取得，不代表原來的工作環境能重新組回來。備份清單要回答：資料在哪裡、哪個時間點是一致的，以及還原後要用什麼工作驗收。
-
-## 一 現象：複製檔案與可還原的備份，有一段距離
-
-本地 AI 的模型檔很醒目，但備份不能只照檔案大小排順序。以 Ollama 為例，官方 FAQ 說明模型目錄可用環境變數調整，服務設定也可能在作業系統的服務管理中。單看預設目錄，未必就是實際部署的位置。[1]
-
-資料庫更不能一概視為普通文件。PostgreSQL 的檔案層備份文件說，直接複製資料檔的方式需要關閉資料庫；如果使用符合條件的一致性快照，則可在運作時進行，但也要涵蓋相關日誌及完整資料範圍。[2]
-
-SQLite 官方提供線上備份 API，用來建立資料庫快照，並說明傳統複製方式的鎖定與中斷風險。[3] CISA 的防勒索指引則建議保留離線、加密的關鍵資料備份，並定期測試可用性與完整性。[4] 這些文件共同指向的是「如何回復」，而不只是「檔案有沒有多一份」。
-
-## 二 各方評價：停機備份與線上備份各有條件
-
-支持停機備份的理由：狀態比較容易交代。 對能安排維護時段的部署，我們傾向先停止會寫入資料的服務，再依確認過的程序備份。這是我們的操作選擇；PostgreSQL 對直接檔案複製的限制，不能擴大成所有資料庫都只能停機。[2]
-
-支持線上備份的理由：服務仍要運作。 SQLite 的 API 與 PostgreSQL 文件中的一致性快照，提供了不必一律長時間停機的路徑，但各自有條件。[2][3] 我們的判讀是，選哪一種方法要依資料庫與儲存架構，不應只因某個複製指令跑完就算完成。
-
-另一個取捨是方便與隔離。CISA 說明可存取的備份也可能遭勒索程式刪除或加密。[4] 因此我們建議把備份存取權限與日常操作分開考慮，同時確認負責人真的拿得到復原需要的資料。
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下來自我們本地 AI 系統的部署與維運紀錄，不是產業統計，也不代表任何特定客戶。
-
-1. 模型不是全部。 我們的備份清單包含設定檔、排程、服務設定、資料庫快照、知識庫索引、AI Agent 記憶檔與對話紀錄。模型檔本身可重新下載的情況下，也要記下確切版本；不能只留一個容易混淆的名稱。
-
-2. 升級前先做一致的備份。 我們會先停服務再打包，讓這份備份對應到同一個停止寫入的時間點。這是我們的操作方式，不是要求所有系統照抄；有線上備份需求時，應另依所用資料庫確認方法。[2][3]
-
-3. 接進原有備份機制。 我們使用既有的每日備份流程，不另外建立一套沒人接手的機制；還原要實際演練過，才算完成。
-
-## 四 我們的建議：從清單走到還原驗收
-
-1. 依用途列出清單。 把每一項分成「必須保留」與「可以重建」，並記下位置、負責人、版本、保留期限與重建步驟。知識庫索引若打算重建，也要留下原始文件及建立方式。
-
-2. 明寫一致性方法。 決定停止哪些服務、先備份哪個資料庫、最後如何確認沒有新的寫入。使用線上工具時，保存工具選項與完成紀錄；不要自行把運作中的資料目錄當成可用快照。[2][3]
-
-3. 隔離並保護備份。 按 CISA 指引考慮離線與加密，並測試有權人員能否取得解密與還原所需的資料。[4] 金鑰的取用方式應另受控，不宜把完整機密直接寫在一般交接文件中。
-
-4. 在隔離環境還原。 選定一份備份，記下還原步驟，再用已知問題檢查文件查詢、記憶讀取與服務啟動。測試時停用對外排程，確認不會重複執行正式工作；這是我們的演練建議。
-
-5. 把結果交回負責人。 保留備份時間點、實際用時、失敗項目與修正方式。若還原後仍缺設定，就把缺項補回清單；下一次演練使用更新後的步驟，不能只沿用上次的完成勾選。
-
-演練可以先選一項具體工作，例如查詢一份已知文件。先寫下預期答案與可存取帳號，再依文件還原，確認回覆所用資料、版本與權限都符合原來設定。若索引採重建方式，還要記錄重建所需的原始檔是否齊全。最後把還原結果與備份清單逐項對照：沒有列進備份、卻在還原時臨時找回的檔案，就是下一次要補的項目。這是我們建議的驗收方法，不能把服務能啟動直接寫成全部資料已復原。
-
-◆ 編按 · Think BIG 的做法：把復原方式一起交付
-
-## 備份完成，要有可重做的還原紀錄。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-Think BIG 主張，交付本地 AI 時應一併交付備份範圍、復原順序與驗收題目。備份不是獨立於維運之外的附件，而是維護文件的一部分。
-
-我們重視的是另一位有授權的人能照文件重做。當系統改了設定、資料位置或排程，也應同步更新備份與還原說明，讓紀錄反映實際運作的樣子。
-
-### 常見問題
-
-Q1：只備份模型夠嗎？
-依我們的維運清單，還要納入設定、排程、資料庫、知識庫、記憶與紀錄；模型位置也可能經過調整。[1]
-Q2：資料庫可以直接複製嗎？
-要依資料庫方法。PostgreSQL 的直接檔案層備份要求停機；SQLite 有專用線上備份 API。[2][3]
-Q3：每天有備份，還要演練嗎？
-要確認資料能用。CISA 建議定期測試備份的可用性與完整性。[4]
-Q4：模型都要再留一份嗎？
-我們會先判斷能否重新取得，並記下確切版本。若重建條件不明，就不應把它列為可省略的項目。
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] Ollama，〈FAQ〉（模型位置與服務環境設定），查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/faq)　·
-    [2] PostgreSQL，〈File System Level Backup〉（直接複製與一致性快照），查閱日期 2026-10-26：[www.postgresql.org](https://www.postgresql.org/docs/18/backup-file.html)　·
-    [3] SQLite，〈SQLite Backup API〉（線上快照），查閱日期 2026-10-26：[www.sqlite.org](https://www.sqlite.org/backup.html)　·
-    [4] CISA，〈#StopRansomware Guide〉（離線、加密、定期測試），查閱日期 2026-10-26：[www.cisa.gov](https://www.cisa.gov/stopransomware/ransomware-guide)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  本地 AI 實測筆記
-    Think BIG, Make it Real!　大想成業有限公司
