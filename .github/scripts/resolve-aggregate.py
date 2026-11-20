@@ -122,7 +122,11 @@ def resolve_html_index(ours: str, theirs: str) -> str:
     new_blocks: list[str] = []
 
     # QA article blocks: <article class="qa" ...> ... </article>
+    # News index pages wrap the whole page in <article class="sheet">; treating
+    # that wrapper as a card re-inserts the entire page, so skip it there.
     for block in re.findall(r'<article\b[^>]*>.*?</article>', theirs, re.DOTALL):
+        if '<a class="issue"' in block or 'class="issue-list"' in block:
+            continue
         href_m = re.search(
             r'href="(/(?:library|en)/(?:qa|news)/[^/"]+/?)"', block)
         if href_m and href_m.group(1) not in ours_hrefs:
