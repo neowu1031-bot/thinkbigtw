@@ -8,6 +8,7 @@
 # i18n: Phase 2 — real /en/ pages now exist, no redirect needed for /en/, /en/contact/, /en/pricing/
 
 # Retired pages (301 enforced by the headers worker; static stubs use meta refresh as fallback)
+/services/     /services/ai-visibility/ 301
 /full-agent/   /dual-agent/    301
 /annual/       /annual-pro/    301
 /solo-pro/     /single-agent/  301

@@ -89,6 +89,7 @@ function isBlockedCrawler(userAgent) {
  * 已下架舊頁面 → 新頁面（301）。靜態 HTML 內另有 meta refresh + canonical + noindex 作為備援。
  */
 const MOVED_PAGES = {
+  '/services': '/services/ai-visibility/',
   '/full-agent': '/dual-agent/',
   '/annual': '/annual-pro/',
   '/solo-pro': '/single-agent/',
