@@ -32,6 +32,9 @@ Think BIG 的服務由 TB FRAME（Assess／Build／Validate／Operate）串起�
 - [AI Agent 驗收框架](https://thinkbigtw.com/guides/ai-acceptance/)
 - [AI Agent 導入術語表](https://thinkbigtw.com/guides/glossary/)
 
+## 營運資料指南
+- [舊進銷存／會計軟體停止支援：先做這 7 件事保住你的資料](https://thinkbigtw.com/guides/legacy-erp-data-backup/)：備份、還原測試、版本與授權記錄、匯出 CSV 與 PDF；附商業會計法第 38 條與稅捐稽徵機關管理營利事業會計帳簿憑證辦法第 26、27、28-1 條保存年限出處
+
 ## 個人使用指南
 - [AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)：2026 年常見 AI Agent 的用途與計費方式；每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
 - [AI Agent 工具選擇](https://thinkbigtw.com/guides/hermes-vs-openclaw/)：OpenClaw 和 Hermes 差在哪、個人方案對照
