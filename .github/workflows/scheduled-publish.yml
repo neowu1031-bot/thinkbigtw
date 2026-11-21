@@ -124,6 +124,22 @@ jobs:
               continue
             fi
 
+            # Regenerate llms-full.txt on the rebased tree so main stays in sync
+            # with the pages the branch adds (check-generated would otherwise fail).
+            if ! python3 -c 'import bs4' 2>/dev/null; then
+              pip install -q beautifulsoup4 || true
+            fi
+            if python3 scripts/build-llms-full.py; then
+              if ! git diff --quiet -- llms-full.txt; then
+                git add llms-full.txt
+                git commit -q -m "Regenerate llms-full.txt after scheduled publish" -m "Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>" -m "Claude-Session: https://claude.ai/code/session_01U5SbrcsvAEFb3Xz1ShCrke"
+                echo "- synced llms-full.txt for \`${b}\`" >> "$GITHUB_STEP_SUMMARY"
+              fi
+            else
+              git checkout -q -- llms-full.txt || true
+              echo "- WARN \`${b}\`：build-llms-full.py 失敗，llms-full.txt 未同步" >> "$GITHUB_STEP_SUMMARY"
+            fi
+
             git checkout -q main
             git merge -q --ff-only work
             git push origin main
