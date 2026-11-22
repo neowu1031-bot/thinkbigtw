@@ -11,6 +11,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy moneyradar-ai-proxy
+    environment: production
     steps:
       - name: Checkout
         uses: actions/checkout@v4
