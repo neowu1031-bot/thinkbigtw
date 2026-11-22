@@ -133,6 +133,22 @@ jobs:
           done
           echo "published=$published" >> "$GITHUB_OUTPUT"
 
+      # 重產 llms-full.txt：scheduled-publish 以 GITHUB_TOKEN 推送不會觸發
+      # check-generated，新頁加入 sitemap 後若未重產會造成 CI 漂移。
+      - name: Rebuild llms-full.txt after publish
+        if: steps.merge.outputs.published != '0'
+        run: |
+          pip install beautifulsoup4 -q
+          python3 scripts/build-llms-full.py
+          if ! git diff --quiet llms-full.txt; then
+            git add llms-full.txt
+            git commit -m "chore: rebuild llms-full.txt after scheduled publish"
+            git push origin main
+            echo "llms-full.txt rebuilt and pushed" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "llms-full.txt already up to date" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       # GITHUB_TOKEN 推的 commit 不會觸發 push 事件，但可以觸發 workflow_dispatch
       - name: Trigger Pages deploy and watch for failure
         if: steps.merge.outputs.published != '0'

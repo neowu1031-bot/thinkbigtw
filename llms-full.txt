@@ -10340,6 +10340,18 @@ Think BIG Q&A Library
 Enterprise AI Security
 Updated 2026-11-20
 
+AI Governance & Regulation TB39
+
+## [Who Is Responsible When an AI Chatbot Gives a Wrong Answer?](https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/)
+
+Responsibility for an incorrect chatbot answer depends on the service,…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/)
+
+Think BIG Q&A Library
+AI Governance & Regulation
+Updated 2026-11-21
+
 Enterprise AI Security TB27
 
 ## [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
@@ -25562,6 +25574,30 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+法規與治理 TB39
+
+## [AI 客服答錯了，誰要負責？上線前要設好的 4 道防線](https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/)
+
+AI 客服答錯，責任須依企業提供的服務、契約、適用法律與具體事實判斷，不能只因答案由 AI 生成就認定企業不必處理。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/)
+
+Think BIG 問答圖書館
+法規與治理
+更新 2026-11-21
+
+親子共讀與客製繪本 Q42
+
+## [孩子怕黑、不敢自己睡？睡前可以怎麼做？](https://thinkbigtw.com/library/qa/afraid-of-the-dark/)
+
+孩子怕黑時，可以先聽他在怕什麼，維持可預期的睡前流程，並討論他覺得安心的照明與陪伴方式，不必強迫當晚就獨自睡。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/afraid-of-the-dark/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-21
 
 親子共讀與客製繪本 Q41
 
