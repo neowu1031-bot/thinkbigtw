@@ -3130,6 +3130,113 @@ THINK BIG NEWS   ·  First-hand AI deployment notes
 
 ---
 
+URL: https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/
+
+# An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 024
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 22, 2026  ·  Sunday
+◆
+AI Deployment Field Notes
+◆
+Issue 024
+
+AI agents · usage limits · scheduling
+
+## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
+
+Think BIG Media  |  November 22, 2026
+
+Start with schedules and retries. Usage alerts, blocking new work, and canceling work already underway are separate controls that need separate tests.
+
+## One. Agent Loops Accumulate Resource Use
+
+An agent may call a model repeatedly for one task. In its June 13, 2025 research-system report, Anthropic describes agents exploring directions in parallel and warns that this architecture consumes tokens rapidly. Those observations belong to that system, not to every business deployment.[1]
+
+OWASP’s 2025 LLM10 entry treats uncontrolled inference consumption as a risk and recommends input limits, rate limits, quotas, timeouts, and monitoring.[2] A task still running deserves a check on its progress and stopping conditions.
+
+Controls also differ by layer. Pydantic AI distinguishes model turns from successful tool executions; a turn count does not cover every underlying transport attempt.[3] AWS warns that a timeout does not establish that a remote action failed to happen, and retries can add load to an overloaded service.[4]
+
+## Two. Room to Explore Needs a Boundary
+
+The case for execution room: exploration takes work.  The research report describes tasks whose direction changes as evidence arrives.[1] Our reading is that forcing every task into a very short run can conflict with the work. Limits should reflect the task.
+
+The caution: distinguish progress from repetition.  OWASP recommends resource monitoring as well as input controls.[2] We suggest tracking completed steps, repeated actions, and stop reasons. Token totals alone do not measure quality, and an unfinished answer does not justify an open-ended run.
+
+More retries do not automatically produce a more reliable service. AWS explains backoff and jitter, while emphasizing the need to consider safe repetition for actions with side effects.[4] We recommend different retry rules for reads and external writes, plus a recoverable state when work stops.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from our always-on agent maintenance notes. They are not industry statistics or an account of any particular client.
+
+1. No chat messages does not mean no model calls.  Heartbeat checks and automatic memory maintenance can continue consuming quota or compute unnoticed. Our inventory includes background work as well as chat activity. This does not imply that every framework has identical defaults.
+
+2. Inventory, disable, then limit.  We list automatic jobs, turn off unnecessary ones, and apply limits. We do not have a universal threshold or a savings percentage, so we make neither claim.
+
+3. Ask who takes over.  Our proposed adoption checklist asks for each job’s purpose, trigger, and owner. Agree in advance whether a stopped task waits for review, restarts later, or ends. This is a recommended control, not an additional deployment anecdote.
+
+## Four. Our Recommendations: Limits and What Happens Next
+
+1. Inventory triggers.  Include timers, incoming events, health checks, and retry queues. Record model calls and external writes. Disable jobs without a clear purpose, then test necessary work.
+
+2. Set several kinds of limits.  Manage model turns, tool executions, elapsed time, input and output, and concurrency separately. Check the framework’s definitions rather than treating a turn limit as a count of all network attempts.[2][3]
+
+3. Bound retries and add waiting.  Set retry counts, backoff, and an execution deadline. Check the earlier result before repeating an action with side effects. A timeout alone does not mean nothing happened.[4]
+
+4. Test stops and notifications.  Deliberately reach a limit. Check whether new work stops, how in-flight work is handled, and who is notified. Include a task identifier, the last completed step, and actions still requiring confirmation.
+
+5. Review background usage.  Compare schedules with purpose and look for duplicate triggers or persistent failures. Assign approval and a reason for limit changes instead of expanding the allowance whenever a task fails.[2]
+
+We suggest testing limits with a deliberately failing job: make a test dependency unavailable, verify that retries end as designed, and check that later schedules do not recreate the same work. Also run a successful job to confirm the limits allow normal operation. Retain both records so maintainers can distinguish an intentional stop from a new fault. For shared resources, test what happens to other authorized work when one job reaches its limit, rather than testing a single conversation alone.
+
+◆ Editor’s Note · How Think BIG Approaches This: Make Automated Work Easy to Hand Off
+
+## Every scheduled job needs an owner and a purpose.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to include schedules, limit scope, stopping procedures, and handoff owners in the operating documentation. A stopping rule belongs in the task design.
+
+Automated work should be inspectable, pausable, and traceable. When work exceeds expectations, preserve progress and unresolved actions so the owner can decide what happens next.
+
+### Frequently Asked Questions
+
+Q1: Why is there usage when nobody is chatting?
+Our maintenance notes include model calls from heartbeat and memory jobs. Inventory automatic schedules.
+Q2: Is a model-turn limit sufficient?
+No. Frameworks can count turns and tool executions separately, and transport retries may fall outside the turn count.[3]
+Q3: Can I retry immediately after a timeout?
+Check the previous outcome first. A remote action with side effects may already have happened.[4]
+Q4: Does a usage alert mean the task stopped?
+Do not assume so. We recommend testing new-work blocking, in-flight work, and the handoff separately.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Anthropic, “How we built our multi-agent research system,” June 13, 2025 (exploration and consumption); accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system) ·
+    [2] OWASP, “LLM10:2025 Unbounded Consumption” (limits and monitoring); accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/) ·
+    [3] Pydantic AI, “Agents,” usage limits (turns and tool counts); accessed 2026-10-26: [pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits) ·
+    [4] AWS, “Timeouts, retries, and backoff with jitter” (timeouts and side effects); accessed 2026-10-26: [aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/
 
 # AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else's Entry Point? | Think BIG NEWS
@@ -6964,6 +7071,95 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/ai-answers-with-citations/
+
+# How Can You Get AI Answers With Checkable Sources? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Basics
+TB40
+
+# How Can You Get AI Answers With Checkable Sources?
+
+Think BIG Q&A Library  ·  2026-11-22
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-answers-with-citations/)
+
+The short answer
+
+Give AI documents or pages it can actually access, then ask it to connect each claim to a document, version, and passage. For company content, RAG can retrieve relevant material before generation. A displayed link still needs to be opened and checked for support.
+
+## 1. Start with accessible evidence
+
+Microsoft describes RAG as grounding answers in enterprise content through retrieval. Simply asking a chat model for sources does not establish that it has read an internal policy.
+
+NIST AI 600-1 (2024) notes that outputs and supporting citations can be fabricated. Confirm access to the evidence first. For company policies, organize titles, applicability, effective information, and versions so conflicting documents can be identified.
+
+## 2. Make the output request specific
+
+Suggested prompt:
+
+Answer only from the supplied documents I am authorized to access. For each conclusion, give the document name, version, section or page, and an accessible source location. Separate source wording from your summary. If evidence is missing, say so; do not invent links or rules. Flag version conflicts.
+
+This is a suggested instruction, not an assurance of compliance.
+
+Output
+Check
+Document and version
+Is this the applicable source?
+
+Section or page
+Can a reader locate the passage?
+
+Short excerpt
+Does it support this claim?
+
+Gaps or conflicts
+Is missing evidence clearly stated?
+
+Spot-check extracted text from scans and tables. Distinguish file page numbers from printed page numbers, or use section and passage identifiers. Attractive reference formatting is not evidence of accuracy.
+
+## 3. Check support and authorization separately
+
+OWASP LLM09:2025 recommends cross-verification and human oversight. Suggested test cases include known answers, questions absent from the documents, and conflicting versions. Record answer correctness separately from citation support.
+
+Microsoft’s RAG guidance also calls for authorized retrieval. Do not bypass a restricted link by exposing the source text in an answer. Both local and cloud workflows can provide citations; choose based on data flows and maintenance needs.
+
+Brand information | Think BIG
+
+## Think BIG’s document retrieval and data boundaries
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Is “please include sources” enough? It is a starting instruction. Confirm that evidence is accessible and inspect the linked passage. Q2: Do citations eliminate hallucinations? No. NIST notes that citations themselves can be fabricated. Q3: What if internal files have no public URL? Use an authorized company location with document name, version, section, or page. Q4: Can quotations bypass access controls? They should not. Retrieval and answers must respect the same access scope.
+
+Sources (checked 2026-10-26)
+
+- Microsoft, Retrieval-augmented generation in Azure AI Search: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- NIST, AI 600-1, Generative Artificial Intelligence Profile（2024）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- OWASP, LLM09:2025 Misinformation: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm092025-misinformation/)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/ai-api-key-leak/
 
 # AI API Key Leak: Risks & Secure Storage Guide | Think BIG
@@ -7239,6 +7435,96 @@ Q1: Does removing sensitive fields eliminate bias? No. Institutional and human f
 Sources (checked 2026-10-26)
 
 - NIST, SP 1270, Towards a Standard for Identifying and Managing Bias in Artificial Intelligence（2022）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf)
+
+- NIST, AI 600-1, Generative Artificial Intelligence Profile（2024）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/
+
+# Who Is Responsible When an AI Chatbot Gives a Wrong Answer? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Governance & Regulation
+TB39
+
+# Who Is Responsible When an AI Chatbot Gives a Wrong Answer?
+
+Think BIG Q&A Library  ·  2026-11-21
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/)
+
+The short answer
+
+Responsibility for an incorrect chatbot answer depends on the service, contracts, applicable law, and facts; AI generation alone does not resolve the company’s obligations. Before launch, establish four safeguards: source control, answer boundaries, human escalation, and records with correction procedures. This Taiwan-focused overview is general information, not legal advice.
+
+## 1. Separate a wrong answer from a legal conclusion
+
+Article 4 of Taiwan’s Consumer Protection Act addresses sufficient and accurate consumer information. Article 22 concerns truthful advertising and related obligations. Whether a particular chatbot statement is advertising or contractual content requires reviewing its presentation and transaction context.
+
+Civil Code Article 184 concerns liability for unlawful infringement of rights through intent or negligence, among other conditions. Whether it applies, or contractual liability arises, needs case-specific review. Retain relevant evidence and define vendor maintenance and notification duties. Internal allocation of work and consumers’ legal rights are separate questions.
+
+## 2. Build four safeguards into the workflow
+
+These are editorial recommendations, not four steps prescribed by law.
+
+Safeguard
+Preparation
+Test
+Sources
+Approved documents, versions, and owners
+Conflicting old and new policies
+
+Answer scope
+Permitted topics and prohibited commitments
+Missing evidence triggers no speculation
+
+Human escalation
+Working contact and assigned owner
+Out-of-scope cases reach a person
+
+Records and correction
+Necessary dialogue, evidence, and change records
+Reconstruct the version behind an error
+
+NIST AI 600-1 (2024) describes confidently stated false content and fabricated citations. A displayed reference does not establish that every claim is supported. Check claims individually, including omitted exceptions.
+
+## 3. Contain the error and verify the fix
+
+Suggested response steps are to suspend the affected route or switch it to human handling, preserve necessary evidence, and review affected questions and versions. Have appropriate staff approve corrections or notices. Do not close an issue after a prompt edit without rerunning the original and related cases.
+
+Local deployment can support internal-processing requirements but still needs answer validation. Cloud deployments need data-flow and service-term reviews as well. Define knowledge updates, escalation, incident handling, and acceptance responsibilities in either case.
+
+Brand information | Think BIG
+
+## Think BIG’s support-data and change verification
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does an “AI answers are for reference” notice settle liability? No. Review the actual interaction, transaction, contract, and applicable law. Q2: Is the vendor responsible for everything? Review the contract and actual conduct. Vendor duties do not by themselves determine consumer rights. Q3: Must a person review every answer? Set scope by risk; route important commitments, disputes, and unsupported questions to designated staff. Q4: Do citations prevent wrong answers? No. NIST notes that citations themselves can be fabricated; open and check them.
+
+Sources (checked 2026-10-26)
+
+- 全國法規資料庫, 消費者保護法第 4、22 條: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- 全國法規資料庫, 民法第 184 條: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184)
 
 - NIST, AI 600-1, Generative Artificial Intelligence Profile（2024）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
 
@@ -19210,6 +19496,113 @@ THINK BIG NEWS   ·  AI 導入第一手手記
 
 ---
 
+URL: https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/
+
+# AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 024 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 22 日　星期日
+◆
+AI 導入實測手記
+◆
+第 024 期
+
+AI Agent · 用量上限 · 排程管理
+
+## AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設
+
+Think BIG 自媒體部  |  2026 年 11 月 22 日
+
+先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。
+
+## 一 現象：工作被拆成迴圈，資源也跟著累積
+
+一個問題交給 AI Agent 後，未必只呼叫模型一次。Anthropic 在 2025 年 6 月 13 日公開的研究系統實作文章，說明多個 Agent 可以平行探索不同方向，同時提醒這類架構會快速消耗 token。這是該團隊的實作報告，不能當成所有企業的用量統計。[1]
+
+OWASP《生成式 AI 應用風險》2025 年版的 LLM10，把不受控的推論消耗列為風險，並提出輸入限制、請求速率、配額、逾時與監控等措施。[2] 所以「還在執行」不等於「仍在產生有用結果」，也值得問是否已有停止條件。
+
+技術上也要分層。Pydantic AI 官方文件區分模型回合限制與成功工具執行次數限制；前者不等於每一筆底層傳輸請求。[3] AWS 的重試文件則提醒，逾時不代表遠端動作沒有發生，重試還可能增加原本已過載服務的負擔。[4]
+
+## 二 各方評價：有空間探索，也要有停止界線
+
+支持較大執行空間的理由：有些工作需要探索。 上述多 Agent 報告描述的研究任務，需要隨中間結果改變方向。[1] 我們的判讀是，把所有工作都壓到很短的單次回合，可能不符合任務本身；限制應依工作種類設計。
+
+保留的理由：有用的探索與空轉要能分辨。 OWASP 建議觀察資源分配與異常用量，而不只限制單一輸入。[2] 我們因此建議，同時看完成項目、重複步驟與停止原因；不能只以總 token 多少判斷品質，也不能因為回答尚未完成就無限放行。
+
+重試也不是越多越穩。AWS 說明退避與隨機延遲可用來分散請求，但有副作用的操作還須考慮能否安全重做。[4] 我們的立場是，對外寫入與單純查詢要有不同的重試規則，停止後也要留下可接手的狀態。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們常駐型 AI Agent 的維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 沒人傳訊息，仍然會呼叫模型。 心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。盤點不能只問誰在聊天，還要逐項看背景工作。這是我們記錄到的現象，不是宣稱所有框架都有相同預設。
+
+2. 先列清單，再關閉不需要的項目。 我們會逐項列出自動排程、關掉用不到的、設定上限。我們沒有一套通用的上限數字，也不估算節省比例。
+
+3. 接下來要問誰能接手。 在導入檢查清單中，我們會要求說明每項工作的目的、觸發來源與負責人；被停止的任務是等待人工、稍後重跑，還是直接結束，也要事先約定。這是我們提出的檢查方式。
+
+## 四 我們的建議：設好上限，也寫好停下來之後
+
+1. 盤點觸發來源。 列出時間排程、訊息事件、健康檢查與重試佇列，記下是否呼叫模型、是否寫入外部系統。先停掉沒有明確用途的工作，再測試必要的工作是否仍能完成。
+
+2. 按任務設多種上限。 分別管理模型回合、工具執行、總時間、輸入輸出與並行工作。對照所用框架的計數定義，別把回合上限誤讀為所有網路呼叫的總數。[2][3]
+
+3. 限制重試並留出等待。 設定重試次數、退避與最晚結束時間；對有副作用的操作，先確認前次結果再決定能否重送。逾時後不要直接假設「沒有執行」。[4]
+
+4. 測試停止與通知。 刻意觸發上限，檢查是否停止新增任務、如何處理已送出的工作，以及誰收到通知。通知文字應包括任務編號、最後完成步驟與待確認動作，方便人工接續。
+
+5. 定期檢查背景用量。 以工作目的對照排程紀錄，尋找重複觸發與持續失敗的項目。上限調整要有人核准並記下理由，避免每次任務失敗都只是把限制放大。[2]
+
+建議用一個刻意失敗的測試工作驗收限制：讓外部測試服務暫時無法回應，觀察重試是否按規則結束，並確認後續排程不會再建立相同工作。接著用成功工作確認正常流程沒有被限制擋住。這兩份紀錄一起交給維護人員，才容易判斷日後的停止究竟是預期控制，還是新故障。若多項工作共用資源，也應確認一項任務達到限制時，其他已獲授權的工作如何處理；別只測單一對話。
+
+◆ 編按 · Think BIG 的做法：讓自動工作可以交接
+
+## 每一項排程，都要有人知道它為何存在。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，常駐 AI Agent 的交接文件應包含排程清單、限制範圍、停止方式與接手人。把「何時停」寫清楚，是任務設計的一部分。
+
+我們希望自動工作能被檢視、暫停與追查。當任務超出預期，先留下目前進度與待確認事項，再由負責人決定下一步；不能讓停止原因消失在背景紀錄裡。
+
+### 常見問題
+
+Q1：沒有人聊天，為什麼還有用量？
+我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。
+Q2：只限制模型回合就夠嗎？
+不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。[3]
+Q3：逾時後可以直接重送嗎？
+先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。[4]
+Q4：用量通知等於停止了嗎？
+不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Anthropic，〈How we built our multi-agent research system〉，2025-06-13（探索與 token 消耗），查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system)　·
+    [2] OWASP，〈LLM10:2025 Unbounded Consumption〉（限制與監控），查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/)　·
+    [3] Pydantic AI，〈Agents〉用量限制章節（回合與工具計數），查閱日期 2026-10-26：[pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits)　·
+    [4] AWS，〈Timeouts, retries, and backoff with jitter〉（逾時與副作用），查閱日期 2026-10-26：[aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/
 
 # AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？ | Think BIG NEWS
@@ -22010,6 +22403,76 @@ Q1：孩子問打針會痛嗎，怎麼回答？ 可坦白說可能有不舒服�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/afraid-of-the-dark/
+
+# 孩子怕黑、不敢自己睡？睡前可以怎麼做？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q42
+
+# 孩子怕黑、不敢自己睡？睡前可以怎麼做？
+
+Think BIG 問答圖書館　·　2026 年 11 月 21 日　星期六
+
+先說答案
+
+孩子怕黑時，可以先聽他在怕什麼，維持可預期的睡前流程，並討論他覺得安心的照明與陪伴方式，不必強迫當晚就獨自睡。美國兒科醫學會（AAP）把獨自在黑暗中的恐懼列為常見兒童恐懼，建議家長同理回應，不嘲笑或逼孩子表現勇敢。
+
+## 一、 先分清楚孩子怕的事情
+
+可以在白天或睡前情緒還平穩時問：「是房間太暗、那個影子，還是擔心看不到大人？」這是溝通示例，不是診斷題。孩子說不出原因，也可以先回應「你現在覺得害怕，我聽到了」，不急著要求完整解釋。
+
+[AAP 的兒童恐懼說明](https://www.healthychildren.org/English/health-issues/conditions/emotional-problems/pages/Understanding-Childhood-Fears-and-Anxieties.aspx)建議傾聽，避免貶低、嘲笑或催促孩子勇敢。大人可以說明眼前可確認的事：「牆上的影子是椅子，我們一起看看。」不需要為了陪伴而說房間真的有怪物，也不要用「再哭怪物就來」催他入睡。
+
+若孩子提到最近看到的可怕影片，先了解內容，再調整接觸。AAP 也提醒留意媒體中的驚嚇影像。可以和照顧者約定，睡前不開恐怖片段；不是把孩子喜歡的所有故事一次收走。
+
+## 二、 把睡前安排說清楚
+
+[AAP 的睡眠建議](https://www.healthychildren.org/English/healthy-living/sleep/Pages/Sleep-and-Mental-Health.aspx)提到維持固定作息，並指出怕黑的孩子可以試試房門附近走廊的小夜燈。實際安排要看家裡空間與孩子反應；不需要把「完全關燈」當成每晚必須過關的任務。
+
+可以先做的安排 家裡能用的說法 睡前順序 「刷牙、換睡衣、一起讀書，接著休息。」事先說明今天的安排。
+
+照明選擇 「我們看看門邊留一點光，你覺得如何？」別趁孩子沒注意突然關燈。
+
+陪伴說明 「讀完後我先坐一下，之後會去客廳。」只說自己做得到的事。
+
+表格是家庭安排提案，不是固定療程。家長可以一次只調整一項，隔天再聊哪個部分有幫忙。若要改變陪伴方式，先讓孩子知道，也與其他照顧者談好，避免同一晚給出彼此矛盾的說法。
+
+## 三、 故事選平穩，問題留到白天也可以
+
+睡前共讀可以選孩子熟悉、願意聽的情節。這是選書建議，不主張某種繪本能治療怕黑。若故事出現讓孩子不舒服的畫面，可以跳過、換書，或先收起來，不必為了讀完而繼續。
+
+可問「這頁你想再看一下嗎？」不用每頁都問感受或要求說出勇敢的道理。睡前儀式的安排可看[睡前共讀怎麼開始](https://thinkbigtw.com/library/qa/bedtime-reading-routine/)，白天聊心情的問法則見[情緒繪本怎麼讀](https://thinkbigtw.com/library/qa/feelings-picture-books/)。
+
+如果恐懼持續、明顯影響睡眠與白天生活，請找專業人員討論；孩子狀況特殊請諮詢小兒科醫師。這篇提供一般陪伴方向，不能只憑「怕黑」就判斷有沒有焦慮症，也沒有設定孩子應在幾晚內改善。
+
+品牌資訊｜童話有你
+
+## 童話有你：晚安睡前
+
+童話有你的[晚安睡前](https://talewithyoutw.com/themes/goodnight.html)主題是《〔孩子名字〕的晚安夢遊記》。情節從刷牙、換睡衣、聽故事，進入星光海、月亮鞦韆等夢境。主角依孩子照片繪製，範例主角為 AI 生成形象；書頁為中文加注音，內頁 26 面。
+
+本段內容取自童話有你官網[主題頁](https://talewithyoutw.com/themes/goodnight.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：怕黑是故意拖延嗎？ 不能只憑這句話判斷。可先問孩子怕什麼，觀察情境，平靜回應他的感受。 Q2：可以留小夜燈嗎？ AAP 的睡眠建議提到，可嘗試在房門附近走廊留小夜燈，依孩子與環境調整。 Q3：要趁睡著後偷偷離開嗎？ 可以先說明自己做得到的陪伴安排，若要調整方式，讓孩子預先知道。 Q4：童話有你的晚安主題能治療怕黑嗎？ 不能據此主張治療效果。「晚安睡前」是含刷牙、換睡衣與夢境情節的客製故事。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜Fears & Phobias in Children: How Parents Can Help：[www.healthychildren.org](https://www.healthychildren.org/English/health-issues/conditions/emotional-problems/pages/Understanding-Childhood-Fears-and-Anxieties.aspx)
+
+- AAP｜Sleep and Health：[www.healthychildren.org](https://www.healthychildren.org/English/healthy-living/sleep/Pages/Sleep-and-Mental-Health.aspx)
+
+- 童話有你｜指定主題頁：[talewithyoutw.com](https://talewithyoutw.com/themes/goodnight.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-agent-acceptance-testing/
 
 # AI Agent 導入後要怎麼驗收？測試題要怎麼準備？｜問答圖書館｜Think BIG
@@ -22358,6 +22821,93 @@ Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/ai-answers-with-citations/
+
+# 怎麼讓 AI 回答時附上出處？查公司文件時特別重要｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+AI 入門
+TB40
+
+# 怎麼讓 AI 回答時附上出處？查公司文件時特別重要
+
+Think BIG 問答圖書館　·　2026 年 11 月 22 日　星期日
+    ·　[English](https://thinkbigtw.com/en/qa/ai-answers-with-citations/)
+
+先說答案
+
+要讓 AI 回答附上出處，先提供它實際可以查到的文件或網頁，再要求把每項主張對應到文件名稱、版本和段落。查公司文件時，可用 RAG 先找相關內容，再讓模型依找到的內容回答。出現連結不代表內容正確，仍須打開來源，確認它真的支持那句話。
+
+## 一、 先有能查的資料，才有能核對的回答
+
+Microsoft 的 RAG 官方說明把流程描述為：用企業內容作為回答依據，並透過檢索找出相關資訊。這與只請聊天模型「請附資料來源」不同；若系統沒有提供文件或查詢工具，不能推定它已讀過你心裡那份內部規定。
+
+NIST AI 600-1（2024）提醒，模型可能產生錯誤內容，也可能編造用來支持答案的引用。因此，先確認文件是否能被讀取，再要求引用，會比只改提示詞更容易檢查。對公司的制度文件，建議先整理標題、適用範圍、生效資訊與版本，避免同一問題同時找到互相衝突的舊資料。
+
+## 二、 把「附來源」改成具體的輸出要求
+
+以下是本文建議的提問範本，可以依公司文件形式調整，不是任何模型都會完整遵守的指令。
+
+請只依我提供、且我有權查閱的文件回答。每一項結論後列出文件名稱、版本、章節或頁碼，並附可開啟的來源位置。區分文件原文與你的整理。找不到支持內容時，請寫「目前資料不足」，不要自行補出連結或規則。新舊版本衝突時，先指出衝突。
+
+回答項目
+使用者要檢查什麼
+文件名稱與版本
+是不是目前適用的那份文件
+
+章節或頁碼
+打開後能不能定位到原文
+
+來源短摘
+是否支持旁邊那項結論
+
+不足與衝突
+是否明確說出缺少什麼依據
+
+若是掃描檔或表格，建議先抽查轉出的文字與原頁是否一致。頁碼要說清楚是檔案頁次還是文件印刷頁碼；沒有頁碼的資料，可用章節標題和段落識別。這些做法目的是方便查核，不應把來源格式做得漂亮當作正確性的證據。
+
+## 三、 同時檢查正確性與文件權限
+
+OWASP LLM09:2025 建議交叉查證與人工監督，尤其是重要資訊。可以先準備已知答案的測試題、文件沒有答案的題目，以及版本衝突的題目，分別確認回答、引用和拒答是否合理。本文建議把「答案對不對」與「引用支持不支持」分開記錄。
+
+公司文件還有存取邊界。Microsoft 官方 RAG 說明強調，使用者和 Agent 應只檢索獲授權內容。連結無法開啟時，不應把受限文件全文貼在回答裡繞過權限。地端與雲端都能規劃引用流程；差別在資料送往哪裡、由誰維護，應配合公司需求選擇。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的文件查詢與資料邊界
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：只說「請附來源」可以嗎？ 可以作為要求，但還要確認系統有可查的文件，並核對連結與原文。 Q2：有引用就不會亂答嗎？ 仍可能錯。NIST 說明引用本身也可能被編造。 Q3：內部文件沒有網址怎麼辦？ 用公司可存取的位置，搭配文件名稱、版本、章節或頁碼，讓授權人員可定位。 Q4：引用原文能繞過文件權限嗎？ 不應。檢索及回答都應尊重同一存取範圍，不能把受限內容貼出來。
+
+參考來源（連結於 2026-10-26 查證）
+
+- Microsoft｜Retrieval-augmented generation in Azure AI Search：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- NIST｜AI 600-1, Generative Artificial Intelligence Profile（2024）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- OWASP｜LLM09:2025 Misinformation：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm092025-misinformation/)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-api-key-leak/
 
 # AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？｜問答圖書館｜Think BIG
@@ -22637,6 +23187,96 @@ Q1：刪掉敏感欄位就沒有偏見嗎？ 不能這樣推定。NIST 提醒資
 參考來源（連結於 2026-10-26 查證）
 
 - NIST｜SP 1270, Towards a Standard for Identifying and Managing Bias in Artificial Intelligence（2022）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf)
+
+- NIST｜AI 600-1, Generative Artificial Intelligence Profile（2024）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/
+
+# AI 客服答錯了，誰要負責？上線前要設好的 4 道防線｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+法規與治理
+TB39
+
+# AI 客服答錯了，誰要負責？上線前要設好的 4 道防線
+
+Think BIG 問答圖書館　·　2026 年 11 月 21 日　星期六
+    ·　[English](https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/)
+
+先說答案
+
+AI 客服答錯，責任須依企業提供的服務、契約、適用法律與具體事實判斷，不能只因答案由 AI 生成就認定企業不必處理。上線前建議設好資料來源、答覆邊界、人工轉接、紀錄與更正這 4 道防線。以下是台灣情境的治理建議，供參考，不構成法律意見。
+
+## 一、 先分清資訊錯誤與法律責任
+
+《消費者保護法》第 4 條要求企業經營者提供消費者充分與正確的資訊；第 22 條規範廣告內容真實及相關義務。客服答覆是否構成廣告或契約內容，仍須看實際呈現方式、對話與交易情況，不能把任何一句回答都直接套成相同法律效果。
+
+《民法》第 184 條涉及因故意或過失不法侵害他人權利等損害賠償責任。某次客服錯答是否符合條件、是否另有契約責任，需依個案確認。企業應保留可供釐清的證據，也應預先約定供應商的維護、通知與協助範圍；內部約定如何分工，與消費者依法可主張什麼，是不同問題。
+
+## 二、 把 4 道防線放進客服流程
+
+下列為本文整理的建議，並非法規指定的固定四步程序。
+
+防線
+上線前要做的事
+建議驗收情境
+資料來源
+指定正式文件、版本與更新負責人
+新舊規則衝突時能否找出適用版本
+
+答覆邊界
+明定可回答事項與不可自行承諾的內容
+找不到依據時是否停止推測
+
+人工轉接
+提供可用的聯絡方式及處理分工
+問題超出範圍時能否交到負責人
+
+紀錄與更正
+留必要對話、依據與修正處理紀錄
+能否重建錯答當時的資料版本
+
+NIST AI 600-1（2024）指出，生成式 AI 可能產生語氣肯定但錯誤的內容，也可能編造支持答案的引用。這表示畫面上顯示來源，不足以說明每一句都正確。建議把回答拆成可核對的主張，再確認文件是否真的支持，並檢查例外條件有沒有被省略。
+
+## 三、 答錯後先讓錯誤停止擴散
+
+本文建議先停用有問題的答覆路徑或改由人工處理，保存必要證據，再由負責人核對受影響的問題與版本。若需要通知或更正，內容應經適當人員確認。不要只改提示詞，就把原本的問題標成完成；同一案例與相關情境要重新驗證，才能知道修正是否落在真正的原因上。
+
+地端客服可配合公司內部處理需求，但回答正確性仍需驗收；雲端方案也要確認資料流向與服務條款。選擇方案時，應把知識更新、人工窗口、異常處理與驗收責任寫清楚，而不是只看模型回答是否流暢。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的客服資料與變更驗證
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：寫「AI 回答僅供參考」就不用負責嗎？ 不能單靠這句判斷。仍須依實際對話、交易、契約與適用法律確認。 Q2：找外部供應商，就都由供應商負責嗎？ 應確認雙方契約與實際行為；供應商分工不等於消費者的權利判斷。 Q3：每個答案都要人工看過嗎？ 可依風險設範圍；重要承諾、爭議或缺少依據的問題，建議交由指定人員處理。 Q4：附出處就能避免錯答嗎？ 不能。NIST 提醒引用也可能是生成的錯誤內容，必須打開核對支持關係。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 全國法規資料庫｜消費者保護法第 4、22 條：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- 全國法規資料庫｜民法第 184 條：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184)
 
 - NIST｜AI 600-1, Generative Artificial Intelligence Profile（2024）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
 
@@ -23902,6 +24542,72 @@ Q1：挑孩子的生日禮物，先看什麼？ 先看三件事：孩子現在�
 - 童話有你 生日主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes/birthday.html)
 
 - 童話有你 常見問題：[talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/body-safety-for-kids/
+
+# 身體界線怎麼教？跟孩子說「我的身體我做主」｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q43
+
+# 身體界線怎麼教？跟孩子說「我的身體我做主」
+
+Think BIG 問答圖書館　·　2026 年 11 月 22 日　星期日
+
+先說答案
+
+身體界線可以從日常小事教：正確說出身體部位、碰觸前詢問、尊重不想抱抱的回答，並讓孩子知道不舒服時可以找可信任的大人。共讀適合練習說法，但孩子沒有拒絕或沒有立即說出來，都不表示他要為別人的不當行為負責。
+
+## 一、 把界線說成聽得懂的話
+
+[AAP 的身體自主說明](https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Sexual-Abuse.aspx)建議從幼兒時期開始，使用身體部位的正確名稱，並告訴孩子不想被碰觸或擁抱時，可以對包括大人在內的人說不。可以平實說「陰莖」「外陰」「臀部」，不把這些名稱當成髒話，也不需要一次上完一堂解剖課。
+
+在家能先練「我現在不想抱」「請停下來」「我想找媽媽」。孩子還說不出完整句子時，大人可以幫忙說明；不要要求他必須講得有禮貌、理由很完整，才願意停止搔癢或擁抱。這些是把官方原則帶進生活的對話示例。
+
+[AAP 的界線教育建議](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Sexual-Behaviors-Young-Children.aspx)也提醒，不要強迫或讓孩子因內疚而親吻、擁抱親友。可以改用揮手或口頭道別，並同樣提醒孩子：想碰別人的身體，也要先問，聽到拒絕就停下來。
+
+## 二、 照護和檢查，也先說明用途
+
+AAP 把協助洗澡、如廁與醫師健康檢查列為照護性接觸的例子。可以先說「我要幫你擦乾淨」，或在看診前一起聽醫師說明檢查哪裡、為什麼需要。不要教成「只要是醫師或家人，任何碰觸都可以」。
+
+以下是共讀活動提案：找一個角色打招呼、洗澡或看診的片段，用玩偶排演。大人問「我可以抱你嗎？」孩子幫玩偶回答「今天想揮手」。如果故事出現照護場景，就補一句「照顧身體要說明要做什麼」。孩子想換玩法時，先停下來即可。
+
+不必用突襲碰觸、測孩子有沒有反抗的方式驗收，也不用把每次讀書都變成安全考試。大人的行為要跟書裡的話一致：孩子說不要繼續搔癢，就停止，而不是說「你明明在笑」。
+
+## 三、 求助管道要說得比口號更清楚
+
+AAP 提醒孩子可以把令人害怕、奇怪或不適合保密的事告訴可信任成人，並知道不會因說出來而受罰。可一起列出在家與在學校能找的人，練一句「我有一件不舒服的事想告訴你」。不必限定只能告訴某一位家長。
+
+家長可以回應「謝謝你告訴我，我會聽」。如果孩子透露不當接觸，先關注安全、相信並支持他，尋求專業協助；不要用反覆盤問測試是否說謊。孩子狀況特殊請諮詢小兒科醫師，涉及即時安全疑慮時應立即找當地適當的求助管道。
+
+想先從角色的心情談起，可讀[情緒繪本的問法](https://thinkbigtw.com/library/qa/feelings-picture-books/)；共讀時如何等待孩子表達，見[對話式共讀](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)。繪本能提供談話情境，照顧與保護仍是成人的責任。
+
+品牌資訊｜童話有你
+
+## 童話有你：讓孩子走進故事
+
+童話有你是孩子當主角、依照片繪製的 AI 客製繪本。[主題與範例](https://talewithyoutw.com/themes.html)列有「情緒小星球」「當哥哥姊姊」等主題，未列身體界線專用主題。正式書頁依提供的照片繪製，範例頁主角為 AI 生成形象；每本有小狗湯圓作伴。
+
+本段內容取自童話有你官網[主題與範例](https://talewithyoutw.com/themes.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：不抱長輩是不禮貌嗎？ 可以用揮手或說再見表達尊重，不必強迫親吻、擁抱。 Q2：看醫師也要先說明嗎？ 可以請醫師用孩子懂的話說明檢查用途和部位，家長也先解釋必要照護。 Q3：孩子沒說不，是他的錯嗎？ 不是。沒有拒絕或沒有立即求助，都不表示孩子要為別人的不當行為負責。 Q4：要每天考孩子會不會拒絕嗎？ 不用把界線教育變成突襲測驗；日常示範詢問、尊重回答與聽取求助更具體。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜Preventing Child Sexual Abuse: What Parents Need to Know：[www.healthychildren.org](https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Sexual-Abuse.aspx)
+
+- AAP｜Sexual Behaviors in Young Children：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Sexual-Behaviors-Young-Children.aspx)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
 
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
@@ -33947,217 +34653,3 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
-
----
-
-URL: https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/
-
-# An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-AI Deployment Field Notes · Issue 024
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-November 22, 2026  ·  Sunday
-◆
-AI Deployment Field Notes
-◆
-Issue 024
-
-AI agents · usage limits · scheduling
-
-## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
-
-Think BIG Media  |  November 22, 2026
-
-Start with schedules and retries. Usage alerts, blocking new work, and canceling work already underway are separate controls that need separate tests.
-
-## One. Agent Loops Accumulate Resource Use
-
-An agent may call a model repeatedly for one task. In its June 13, 2025 research-system report, Anthropic describes agents exploring directions in parallel and warns that this architecture consumes tokens rapidly. Those observations belong to that system, not to every business deployment.[1]
-
-OWASP’s 2025 LLM10 entry treats uncontrolled inference consumption as a risk and recommends input limits, rate limits, quotas, timeouts, and monitoring.[2] A task still running deserves a check on its progress and stopping conditions.
-
-Controls also differ by layer. Pydantic AI distinguishes model turns from successful tool executions; a turn count does not cover every underlying transport attempt.[3] AWS warns that a timeout does not establish that a remote action failed to happen, and retries can add load to an overloaded service.[4]
-
-## Two. Room to Explore Needs a Boundary
-
-The case for execution room: exploration takes work.  The research report describes tasks whose direction changes as evidence arrives.[1] Our reading is that forcing every task into a very short run can conflict with the work. Limits should reflect the task.
-
-The caution: distinguish progress from repetition.  OWASP recommends resource monitoring as well as input controls.[2] We suggest tracking completed steps, repeated actions, and stop reasons. Token totals alone do not measure quality, and an unfinished answer does not justify an open-ended run.
-
-More retries do not automatically produce a more reliable service. AWS explains backoff and jitter, while emphasizing the need to consider safe repetition for actions with side effects.[4] We recommend different retry rules for reads and external writes, plus a recoverable state when work stops.
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These observations come from our always-on agent maintenance notes. They are not industry statistics or an account of any particular client.
-
-1. No chat messages does not mean no model calls.  Heartbeat checks and automatic memory maintenance can continue consuming quota or compute unnoticed. Our inventory includes background work as well as chat activity. This does not imply that every framework has identical defaults.
-
-2. Inventory, disable, then limit.  We list automatic jobs, turn off unnecessary ones, and apply limits. We do not have a universal threshold or a savings percentage, so we make neither claim.
-
-3. Ask who takes over.  Our proposed adoption checklist asks for each job’s purpose, trigger, and owner. Agree in advance whether a stopped task waits for review, restarts later, or ends. This is a recommended control, not an additional deployment anecdote.
-
-## Four. Our Recommendations: Limits and What Happens Next
-
-1. Inventory triggers.  Include timers, incoming events, health checks, and retry queues. Record model calls and external writes. Disable jobs without a clear purpose, then test necessary work.
-
-2. Set several kinds of limits.  Manage model turns, tool executions, elapsed time, input and output, and concurrency separately. Check the framework’s definitions rather than treating a turn limit as a count of all network attempts.[2][3]
-
-3. Bound retries and add waiting.  Set retry counts, backoff, and an execution deadline. Check the earlier result before repeating an action with side effects. A timeout alone does not mean nothing happened.[4]
-
-4. Test stops and notifications.  Deliberately reach a limit. Check whether new work stops, how in-flight work is handled, and who is notified. Include a task identifier, the last completed step, and actions still requiring confirmation.
-
-5. Review background usage.  Compare schedules with purpose and look for duplicate triggers or persistent failures. Assign approval and a reason for limit changes instead of expanding the allowance whenever a task fails.[2]
-
-We suggest testing limits with a deliberately failing job: make a test dependency unavailable, verify that retries end as designed, and check that later schedules do not recreate the same work. Also run a successful job to confirm the limits allow normal operation. Retain both records so maintainers can distinguish an intentional stop from a new fault. For shared resources, test what happens to other authorized work when one job reaches its limit, rather than testing a single conversation alone.
-
-◆ Editor’s Note · How Think BIG Approaches This: Make Automated Work Easy to Hand Off
-
-## Every scheduled job needs an owner and a purpose.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-Think BIG’s position is to include schedules, limit scope, stopping procedures, and handoff owners in the operating documentation. A stopping rule belongs in the task design.
-
-Automated work should be inspectable, pausable, and traceable. When work exceeds expectations, preserve progress and unresolved actions so the owner can decide what happens next.
-
-### Frequently Asked Questions
-
-Q1: Why is there usage when nobody is chatting?
-Our maintenance notes include model calls from heartbeat and memory jobs. Inventory automatic schedules.
-Q2: Is a model-turn limit sufficient?
-No. Frameworks can count turns and tool executions separately, and transport retries may fall outside the turn count.[3]
-Q3: Can I retry immediately after a timeout?
-Check the previous outcome first. A remote action with side effects may already have happened.[4]
-Q4: Does a usage alert mean the task stopped?
-Do not assume so. We recommend testing new-work blocking, in-flight work, and the handoff separately.
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] Anthropic, “How we built our multi-agent research system,” June 13, 2025 (exploration and consumption); accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system) ·
-    [2] OWASP, “LLM10:2025 Unbounded Consumption” (limits and monitoring); accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/) ·
-    [3] Pydantic AI, “Agents,” usage limits (turns and tool counts); accessed 2026-10-26: [pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits) ·
-    [4] AWS, “Timeouts, retries, and backoff with jitter” (timeouts and side effects); accessed 2026-10-26: [aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  AI Deployment Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/
-
-# AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-AI 導入實測手記 · 第 024 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-2026 年 11 月 22 日　星期日
-◆
-AI 導入實測手記
-◆
-第 024 期
-
-AI Agent · 用量上限 · 排程管理
-
-## AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設
-
-Think BIG 自媒體部  |  2026 年 11 月 22 日
-
-先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。
-
-## 一 現象：工作被拆成迴圈，資源也跟著累積
-
-一個問題交給 AI Agent 後，未必只呼叫模型一次。Anthropic 在 2025 年 6 月 13 日公開的研究系統實作文章，說明多個 Agent 可以平行探索不同方向，同時提醒這類架構會快速消耗 token。這是該團隊的實作報告，不能當成所有企業的用量統計。[1]
-
-OWASP《生成式 AI 應用風險》2025 年版的 LLM10，把不受控的推論消耗列為風險，並提出輸入限制、請求速率、配額、逾時與監控等措施。[2] 所以「還在執行」不等於「仍在產生有用結果」，也值得問是否已有停止條件。
-
-技術上也要分層。Pydantic AI 官方文件區分模型回合限制與成功工具執行次數限制；前者不等於每一筆底層傳輸請求。[3] AWS 的重試文件則提醒，逾時不代表遠端動作沒有發生，重試還可能增加原本已過載服務的負擔。[4]
-
-## 二 各方評價：有空間探索，也要有停止界線
-
-支持較大執行空間的理由：有些工作需要探索。 上述多 Agent 報告描述的研究任務，需要隨中間結果改變方向。[1] 我們的判讀是，把所有工作都壓到很短的單次回合，可能不符合任務本身；限制應依工作種類設計。
-
-保留的理由：有用的探索與空轉要能分辨。 OWASP 建議觀察資源分配與異常用量，而不只限制單一輸入。[2] 我們因此建議，同時看完成項目、重複步驟與停止原因；不能只以總 token 多少判斷品質，也不能因為回答尚未完成就無限放行。
-
-重試也不是越多越穩。AWS 說明退避與隨機延遲可用來分散請求，但有副作用的操作還須考慮能否安全重做。[4] 我們的立場是，對外寫入與單純查詢要有不同的重試規則，停止後也要留下可接手的狀態。
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下來自我們常駐型 AI Agent 的維運紀錄，不是產業統計，也不代表任何特定客戶。
-
-1. 沒人傳訊息，仍然會呼叫模型。 心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。盤點不能只問誰在聊天，還要逐項看背景工作。這是我們記錄到的現象，不是宣稱所有框架都有相同預設。
-
-2. 先列清單，再關閉不需要的項目。 我們會逐項列出自動排程、關掉用不到的、設定上限。我們沒有一套通用的上限數字，也不估算節省比例。
-
-3. 接下來要問誰能接手。 在導入檢查清單中，我們會要求說明每項工作的目的、觸發來源與負責人；被停止的任務是等待人工、稍後重跑，還是直接結束，也要事先約定。這是我們提出的檢查方式。
-
-## 四 我們的建議：設好上限，也寫好停下來之後
-
-1. 盤點觸發來源。 列出時間排程、訊息事件、健康檢查與重試佇列，記下是否呼叫模型、是否寫入外部系統。先停掉沒有明確用途的工作，再測試必要的工作是否仍能完成。
-
-2. 按任務設多種上限。 分別管理模型回合、工具執行、總時間、輸入輸出與並行工作。對照所用框架的計數定義，別把回合上限誤讀為所有網路呼叫的總數。[2][3]
-
-3. 限制重試並留出等待。 設定重試次數、退避與最晚結束時間；對有副作用的操作，先確認前次結果再決定能否重送。逾時後不要直接假設「沒有執行」。[4]
-
-4. 測試停止與通知。 刻意觸發上限，檢查是否停止新增任務、如何處理已送出的工作，以及誰收到通知。通知文字應包括任務編號、最後完成步驟與待確認動作，方便人工接續。
-
-5. 定期檢查背景用量。 以工作目的對照排程紀錄，尋找重複觸發與持續失敗的項目。上限調整要有人核准並記下理由，避免每次任務失敗都只是把限制放大。[2]
-
-建議用一個刻意失敗的測試工作驗收限制：讓外部測試服務暫時無法回應，觀察重試是否按規則結束，並確認後續排程不會再建立相同工作。接著用成功工作確認正常流程沒有被限制擋住。這兩份紀錄一起交給維護人員，才容易判斷日後的停止究竟是預期控制，還是新故障。若多項工作共用資源，也應確認一項任務達到限制時，其他已獲授權的工作如何處理；別只測單一對話。
-
-◆ 編按 · Think BIG 的做法：讓自動工作可以交接
-
-## 每一項排程，都要有人知道它為何存在。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-Think BIG 主張，常駐 AI Agent 的交接文件應包含排程清單、限制範圍、停止方式與接手人。把「何時停」寫清楚，是任務設計的一部分。
-
-我們希望自動工作能被檢視、暫停與追查。當任務超出預期，先留下目前進度與待確認事項，再由負責人決定下一步；不能讓停止原因消失在背景紀錄裡。
-
-### 常見問題
-
-Q1：沒有人聊天，為什麼還有用量？
-我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。
-Q2：只限制模型回合就夠嗎？
-不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。[3]
-Q3：逾時後可以直接重送嗎？
-先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。[4]
-Q4：用量通知等於停止了嗎？
-不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] Anthropic，〈How we built our multi-agent research system〉，2025-06-13（探索與 token 消耗），查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system)　·
-    [2] OWASP，〈LLM10:2025 Unbounded Consumption〉（限制與監控），查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/)　·
-    [3] Pydantic AI，〈Agents〉用量限制章節（回合與工具計數），查閱日期 2026-10-26：[pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits)　·
-    [4] AWS，〈Timeouts, retries, and backoff with jitter〉（逾時與副作用），查閱日期 2026-10-26：[aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  AI 導入實測手記
-    Think BIG, Make it Real!　大想成業有限公司
