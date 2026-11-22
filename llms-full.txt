@@ -10352,6 +10352,18 @@ Think BIG Q&A Library
 AI Governance & Regulation
 Updated 2026-11-21
 
+AI Basics TB40
+
+## [How Can You Get AI Answers With Checkable Sources?](https://thinkbigtw.com/en/qa/ai-answers-with-citations/)
+
+Give AI documents or pages it can actually access, then ask it to connect each…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-answers-with-citations/)
+
+Think BIG Q&A Library
+AI Basics
+Updated 2026-11-22
+
 Enterprise AI Security TB27
 
 ## [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
@@ -25574,6 +25586,30 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+AI 入門 TB40
+
+## [怎麼讓 AI 回答時附上出處？查公司文件時特別重要](https://thinkbigtw.com/library/qa/ai-answers-with-citations/)
+
+要讓 AI 回答附上出處，先提供它實際可以查到的文件或網頁，再要求把每項主張對應到文件名稱、版本和段落。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-answers-with-citations/)
+
+Think BIG 問答圖書館
+AI 入門
+更新 2026-11-22
+
+親子共讀與客製繪本 Q43
+
+## [身體界線怎麼教？跟孩子說「我的身體我做主」](https://thinkbigtw.com/library/qa/body-safety-for-kids/)
+
+身體界線可以從日常小事教：正確說出身體部位、碰觸前詢問、尊重不想抱抱的回答，並讓孩子知道不舒服時可以找可信任的大人。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/body-safety-for-kids/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-22
 
 法規與治理 TB39
 
