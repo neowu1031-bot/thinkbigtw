@@ -3130,6 +3130,113 @@ THINK BIG NEWS   ·  First-hand AI deployment notes
 
 ---
 
+URL: https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/
+
+# An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+AI Deployment Field Notes · Issue 024
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+November 22, 2026  ·  Sunday
+◆
+AI Deployment Field Notes
+◆
+Issue 024
+
+AI agents · usage limits · scheduling
+
+## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
+
+Think BIG Media  |  November 22, 2026
+
+Start with schedules and retries. Usage alerts, blocking new work, and canceling work already underway are separate controls that need separate tests.
+
+## One. Agent Loops Accumulate Resource Use
+
+An agent may call a model repeatedly for one task. In its June 13, 2025 research-system report, Anthropic describes agents exploring directions in parallel and warns that this architecture consumes tokens rapidly. Those observations belong to that system, not to every business deployment.[1]
+
+OWASP’s 2025 LLM10 entry treats uncontrolled inference consumption as a risk and recommends input limits, rate limits, quotas, timeouts, and monitoring.[2] A task still running deserves a check on its progress and stopping conditions.
+
+Controls also differ by layer. Pydantic AI distinguishes model turns from successful tool executions; a turn count does not cover every underlying transport attempt.[3] AWS warns that a timeout does not establish that a remote action failed to happen, and retries can add load to an overloaded service.[4]
+
+## Two. Room to Explore Needs a Boundary
+
+The case for execution room: exploration takes work.  The research report describes tasks whose direction changes as evidence arrives.[1] Our reading is that forcing every task into a very short run can conflict with the work. Limits should reflect the task.
+
+The caution: distinguish progress from repetition.  OWASP recommends resource monitoring as well as input controls.[2] We suggest tracking completed steps, repeated actions, and stop reasons. Token totals alone do not measure quality, and an unfinished answer does not justify an open-ended run.
+
+More retries do not automatically produce a more reliable service. AWS explains backoff and jitter, while emphasizing the need to consider safe repetition for actions with side effects.[4] We recommend different retry rules for reads and external writes, plus a recoverable state when work stops.
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These observations come from our always-on agent maintenance notes. They are not industry statistics or an account of any particular client.
+
+1. No chat messages does not mean no model calls.  Heartbeat checks and automatic memory maintenance can continue consuming quota or compute unnoticed. Our inventory includes background work as well as chat activity. This does not imply that every framework has identical defaults.
+
+2. Inventory, disable, then limit.  We list automatic jobs, turn off unnecessary ones, and apply limits. We do not have a universal threshold or a savings percentage, so we make neither claim.
+
+3. Ask who takes over.  Our proposed adoption checklist asks for each job’s purpose, trigger, and owner. Agree in advance whether a stopped task waits for review, restarts later, or ends. This is a recommended control, not an additional deployment anecdote.
+
+## Four. Our Recommendations: Limits and What Happens Next
+
+1. Inventory triggers.  Include timers, incoming events, health checks, and retry queues. Record model calls and external writes. Disable jobs without a clear purpose, then test necessary work.
+
+2. Set several kinds of limits.  Manage model turns, tool executions, elapsed time, input and output, and concurrency separately. Check the framework’s definitions rather than treating a turn limit as a count of all network attempts.[2][3]
+
+3. Bound retries and add waiting.  Set retry counts, backoff, and an execution deadline. Check the earlier result before repeating an action with side effects. A timeout alone does not mean nothing happened.[4]
+
+4. Test stops and notifications.  Deliberately reach a limit. Check whether new work stops, how in-flight work is handled, and who is notified. Include a task identifier, the last completed step, and actions still requiring confirmation.
+
+5. Review background usage.  Compare schedules with purpose and look for duplicate triggers or persistent failures. Assign approval and a reason for limit changes instead of expanding the allowance whenever a task fails.[2]
+
+We suggest testing limits with a deliberately failing job: make a test dependency unavailable, verify that retries end as designed, and check that later schedules do not recreate the same work. Also run a successful job to confirm the limits allow normal operation. Retain both records so maintainers can distinguish an intentional stop from a new fault. For shared resources, test what happens to other authorized work when one job reaches its limit, rather than testing a single conversation alone.
+
+◆ Editor’s Note · How Think BIG Approaches This: Make Automated Work Easy to Hand Off
+
+## Every scheduled job needs an owner and a purpose.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to include schedules, limit scope, stopping procedures, and handoff owners in the operating documentation. A stopping rule belongs in the task design.
+
+Automated work should be inspectable, pausable, and traceable. When work exceeds expectations, preserve progress and unresolved actions so the owner can decide what happens next.
+
+### Frequently Asked Questions
+
+Q1: Why is there usage when nobody is chatting?
+Our maintenance notes include model calls from heartbeat and memory jobs. Inventory automatic schedules.
+Q2: Is a model-turn limit sufficient?
+No. Frameworks can count turns and tool executions separately, and transport retries may fall outside the turn count.[3]
+Q3: Can I retry immediately after a timeout?
+Check the previous outcome first. A remote action with side effects may already have happened.[4]
+Q4: Does a usage alert mean the task stopped?
+Do not assume so. We recommend testing new-work blocking, in-flight work, and the handoff separately.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Anthropic, “How we built our multi-agent research system,” June 13, 2025 (exploration and consumption); accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system) ·
+    [2] OWASP, “LLM10:2025 Unbounded Consumption” (limits and monitoring); accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/) ·
+    [3] Pydantic AI, “Agents,” usage limits (turns and tool counts); accessed 2026-10-26: [pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits) ·
+    [4] AWS, “Timeouts, retries, and backoff with jitter” (timeouts and side effects); accessed 2026-10-26: [aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  AI Deployment Field Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/ai-attacks-became-automated-20261024/
 
 # AI Is Being Used to Automate Attacks — Could Your Tools Become Someone Else's Entry Point? | Think BIG NEWS
@@ -4289,6 +4396,20 @@ thinkbigtw.com
 
 Field notes written from our own deployment experience. One issue per week — the real problems behind the tools, lessons learned on-site, and what to confirm before you start.
 
+[Issue 024
+
+November 22, 2026 · AI Deployment Field Notes
+
+## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
+
+Start with schedules and retries.](https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/)
+[Issue 011
+
+October 25, 2026 · Local AI Deployment
+
+## Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length
+
+When a local AI model is given too much context, memory runs short and the whole machine slows down. Ollama's official docs define defaults by VRAM tier, and two of its pages state the default differently — read the CONTEXT and PROCESSOR columns of ollama ps  and pick a sensible value in three steps.](https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/)
 [Issue 023
 
 November 20, 2026 · Local AI Field Notes
@@ -6950,6 +7071,95 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/ai-answers-with-citations/
+
+# How Can You Get AI Answers With Checkable Sources? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Basics
+TB40
+
+# How Can You Get AI Answers With Checkable Sources?
+
+Think BIG Q&A Library  ·  2026-11-22
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-answers-with-citations/)
+
+The short answer
+
+Give AI documents or pages it can actually access, then ask it to connect each claim to a document, version, and passage. For company content, RAG can retrieve relevant material before generation. A displayed link still needs to be opened and checked for support.
+
+## 1. Start with accessible evidence
+
+Microsoft describes RAG as grounding answers in enterprise content through retrieval. Simply asking a chat model for sources does not establish that it has read an internal policy.
+
+NIST AI 600-1 (2024) notes that outputs and supporting citations can be fabricated. Confirm access to the evidence first. For company policies, organize titles, applicability, effective information, and versions so conflicting documents can be identified.
+
+## 2. Make the output request specific
+
+Suggested prompt:
+
+Answer only from the supplied documents I am authorized to access. For each conclusion, give the document name, version, section or page, and an accessible source location. Separate source wording from your summary. If evidence is missing, say so; do not invent links or rules. Flag version conflicts.
+
+This is a suggested instruction, not an assurance of compliance.
+
+Output
+Check
+Document and version
+Is this the applicable source?
+
+Section or page
+Can a reader locate the passage?
+
+Short excerpt
+Does it support this claim?
+
+Gaps or conflicts
+Is missing evidence clearly stated?
+
+Spot-check extracted text from scans and tables. Distinguish file page numbers from printed page numbers, or use section and passage identifiers. Attractive reference formatting is not evidence of accuracy.
+
+## 3. Check support and authorization separately
+
+OWASP LLM09:2025 recommends cross-verification and human oversight. Suggested test cases include known answers, questions absent from the documents, and conflicting versions. Record answer correctness separately from citation support.
+
+Microsoft’s RAG guidance also calls for authorized retrieval. Do not bypass a restricted link by exposing the source text in an answer. Both local and cloud workflows can provide citations; choose based on data flows and maintenance needs.
+
+Brand information | Think BIG
+
+## Think BIG’s document retrieval and data boundaries
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Is “please include sources” enough? It is a starting instruction. Confirm that evidence is accessible and inspect the linked passage. Q2: Do citations eliminate hallucinations? No. NIST notes that citations themselves can be fabricated. Q3: What if internal files have no public URL? Use an authorized company location with document name, version, section, or page. Q4: Can quotations bypass access controls? They should not. Retrieval and answers must respect the same access scope.
+
+Sources (checked 2026-10-26)
+
+- Microsoft, Retrieval-augmented generation in Azure AI Search: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- NIST, AI 600-1, Generative Artificial Intelligence Profile（2024）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- OWASP, LLM09:2025 Misinformation: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm092025-misinformation/)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/ai-api-key-leak/
 
 # AI API Key Leak: Risks & Secure Storage Guide | Think BIG
@@ -7225,6 +7435,96 @@ Q1: Does removing sensitive fields eliminate bias? No. Institutional and human f
 Sources (checked 2026-10-26)
 
 - NIST, SP 1270, Towards a Standard for Identifying and Managing Bias in Artificial Intelligence（2022）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf)
+
+- NIST, AI 600-1, Generative Artificial Intelligence Profile（2024）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
+URL: https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/
+
+# Who Is Responsible When an AI Chatbot Gives a Wrong Answer? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Governance & Regulation
+TB39
+
+# Who Is Responsible When an AI Chatbot Gives a Wrong Answer?
+
+Think BIG Q&A Library  ·  2026-11-21
+      ·  [中文](https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/)
+
+The short answer
+
+Responsibility for an incorrect chatbot answer depends on the service, contracts, applicable law, and facts; AI generation alone does not resolve the company’s obligations. Before launch, establish four safeguards: source control, answer boundaries, human escalation, and records with correction procedures. This Taiwan-focused overview is general information, not legal advice.
+
+## 1. Separate a wrong answer from a legal conclusion
+
+Article 4 of Taiwan’s Consumer Protection Act addresses sufficient and accurate consumer information. Article 22 concerns truthful advertising and related obligations. Whether a particular chatbot statement is advertising or contractual content requires reviewing its presentation and transaction context.
+
+Civil Code Article 184 concerns liability for unlawful infringement of rights through intent or negligence, among other conditions. Whether it applies, or contractual liability arises, needs case-specific review. Retain relevant evidence and define vendor maintenance and notification duties. Internal allocation of work and consumers’ legal rights are separate questions.
+
+## 2. Build four safeguards into the workflow
+
+These are editorial recommendations, not four steps prescribed by law.
+
+Safeguard
+Preparation
+Test
+Sources
+Approved documents, versions, and owners
+Conflicting old and new policies
+
+Answer scope
+Permitted topics and prohibited commitments
+Missing evidence triggers no speculation
+
+Human escalation
+Working contact and assigned owner
+Out-of-scope cases reach a person
+
+Records and correction
+Necessary dialogue, evidence, and change records
+Reconstruct the version behind an error
+
+NIST AI 600-1 (2024) describes confidently stated false content and fabricated citations. A displayed reference does not establish that every claim is supported. Check claims individually, including omitted exceptions.
+
+## 3. Contain the error and verify the fix
+
+Suggested response steps are to suspend the affected route or switch it to human handling, preserve necessary evidence, and review affected questions and versions. Have appropriate staff approve corrections or notices. Do not close an issue after a prompt edit without rerunning the original and related cases.
+
+Local deployment can support internal-processing requirements but still needs answer validation. Cloud deployments need data-flow and service-term reviews as well. Define knowledge updates, escalation, incident handling, and acceptance responsibilities in either case.
+
+Brand information | Think BIG
+
+## Think BIG’s support-data and change verification
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does an “AI answers are for reference” notice settle liability? No. Review the actual interaction, transaction, contract, and applicable law. Q2: Is the vendor responsible for everything? Review the contract and actual conduct. Vendor duties do not by themselves determine consumer rights. Q3: Must a person review every answer? Set scope by risk; route important commitments, disputes, and unsupported questions to designated staff. Q4: Do citations prevent wrong answers? No. NIST notes that citations themselves can be fabricated; open and check them.
+
+Sources (checked 2026-10-26)
+
+- 全國法規資料庫, 消費者保護法第 4、22 條: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- 全國法規資料庫, 民法第 184 條: [law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184)
 
 - NIST, AI 600-1, Generative Artificial Intelligence Profile（2024）: [nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
 
@@ -19196,6 +19496,113 @@ THINK BIG NEWS   ·  AI 導入第一手手記
 
 ---
 
+URL: https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/
+
+# AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+AI 導入實測手記 · 第 024 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+AI DEPLOYMENT FIELD NOTES
+
+2026 年 11 月 22 日　星期日
+◆
+AI 導入實測手記
+◆
+第 024 期
+
+AI Agent · 用量上限 · 排程管理
+
+## AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設
+
+Think BIG 自媒體部  |  2026 年 11 月 22 日
+
+先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。
+
+## 一 現象：工作被拆成迴圈，資源也跟著累積
+
+一個問題交給 AI Agent 後，未必只呼叫模型一次。Anthropic 在 2025 年 6 月 13 日公開的研究系統實作文章，說明多個 Agent 可以平行探索不同方向，同時提醒這類架構會快速消耗 token。這是該團隊的實作報告，不能當成所有企業的用量統計。[1]
+
+OWASP《生成式 AI 應用風險》2025 年版的 LLM10，把不受控的推論消耗列為風險，並提出輸入限制、請求速率、配額、逾時與監控等措施。[2] 所以「還在執行」不等於「仍在產生有用結果」，也值得問是否已有停止條件。
+
+技術上也要分層。Pydantic AI 官方文件區分模型回合限制與成功工具執行次數限制；前者不等於每一筆底層傳輸請求。[3] AWS 的重試文件則提醒，逾時不代表遠端動作沒有發生，重試還可能增加原本已過載服務的負擔。[4]
+
+## 二 各方評價：有空間探索，也要有停止界線
+
+支持較大執行空間的理由：有些工作需要探索。 上述多 Agent 報告描述的研究任務，需要隨中間結果改變方向。[1] 我們的判讀是，把所有工作都壓到很短的單次回合，可能不符合任務本身；限制應依工作種類設計。
+
+保留的理由：有用的探索與空轉要能分辨。 OWASP 建議觀察資源分配與異常用量，而不只限制單一輸入。[2] 我們因此建議，同時看完成項目、重複步驟與停止原因；不能只以總 token 多少判斷品質，也不能因為回答尚未完成就無限放行。
+
+重試也不是越多越穩。AWS 說明退避與隨機延遲可用來分散請求，但有副作用的操作還須考慮能否安全重做。[4] 我們的立場是，對外寫入與單純查詢要有不同的重試規則，停止後也要留下可接手的狀態。
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們常駐型 AI Agent 的維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 沒人傳訊息，仍然會呼叫模型。 心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。盤點不能只問誰在聊天，還要逐項看背景工作。這是我們記錄到的現象，不是宣稱所有框架都有相同預設。
+
+2. 先列清單，再關閉不需要的項目。 我們會逐項列出自動排程、關掉用不到的、設定上限。我們沒有一套通用的上限數字，也不估算節省比例。
+
+3. 接下來要問誰能接手。 在導入檢查清單中，我們會要求說明每項工作的目的、觸發來源與負責人；被停止的任務是等待人工、稍後重跑，還是直接結束，也要事先約定。這是我們提出的檢查方式。
+
+## 四 我們的建議：設好上限，也寫好停下來之後
+
+1. 盤點觸發來源。 列出時間排程、訊息事件、健康檢查與重試佇列，記下是否呼叫模型、是否寫入外部系統。先停掉沒有明確用途的工作，再測試必要的工作是否仍能完成。
+
+2. 按任務設多種上限。 分別管理模型回合、工具執行、總時間、輸入輸出與並行工作。對照所用框架的計數定義，別把回合上限誤讀為所有網路呼叫的總數。[2][3]
+
+3. 限制重試並留出等待。 設定重試次數、退避與最晚結束時間；對有副作用的操作，先確認前次結果再決定能否重送。逾時後不要直接假設「沒有執行」。[4]
+
+4. 測試停止與通知。 刻意觸發上限，檢查是否停止新增任務、如何處理已送出的工作，以及誰收到通知。通知文字應包括任務編號、最後完成步驟與待確認動作，方便人工接續。
+
+5. 定期檢查背景用量。 以工作目的對照排程紀錄，尋找重複觸發與持續失敗的項目。上限調整要有人核准並記下理由，避免每次任務失敗都只是把限制放大。[2]
+
+建議用一個刻意失敗的測試工作驗收限制：讓外部測試服務暫時無法回應，觀察重試是否按規則結束，並確認後續排程不會再建立相同工作。接著用成功工作確認正常流程沒有被限制擋住。這兩份紀錄一起交給維護人員，才容易判斷日後的停止究竟是預期控制，還是新故障。若多項工作共用資源，也應確認一項任務達到限制時，其他已獲授權的工作如何處理；別只測單一對話。
+
+◆ 編按 · Think BIG 的做法：讓自動工作可以交接
+
+## 每一項排程，都要有人知道它為何存在。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，常駐 AI Agent 的交接文件應包含排程清單、限制範圍、停止方式與接手人。把「何時停」寫清楚，是任務設計的一部分。
+
+我們希望自動工作能被檢視、暫停與追查。當任務超出預期，先留下目前進度與待確認事項，再由負責人決定下一步；不能讓停止原因消失在背景紀錄裡。
+
+### 常見問題
+
+Q1：沒有人聊天，為什麼還有用量？
+我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。
+Q2：只限制模型回合就夠嗎？
+不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。[3]
+Q3：逾時後可以直接重送嗎？
+先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。[4]
+Q4：用量通知等於停止了嗎？
+不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Anthropic，〈How we built our multi-agent research system〉，2025-06-13（探索與 token 消耗），查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system)　·
+    [2] OWASP，〈LLM10:2025 Unbounded Consumption〉（限制與監控），查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/)　·
+    [3] Pydantic AI，〈Agents〉用量限制章節（回合與工具計數），查閱日期 2026-10-26：[pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits)　·
+    [4] AWS，〈Timeouts, retries, and backoff with jitter〉（逾時與副作用），查閱日期 2026-10-26：[aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  AI 導入實測手記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/ai-attacks-became-automated-20261024/
 
 # AI 已被用來自動化攻擊——你手上的工具，會不會變成別人的入口？ | Think BIG NEWS
@@ -21996,6 +22403,76 @@ Q1：孩子問打針會痛嗎，怎麼回答？ 可坦白說可能有不舒服�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/afraid-of-the-dark/
+
+# 孩子怕黑、不敢自己睡？睡前可以怎麼做？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q42
+
+# 孩子怕黑、不敢自己睡？睡前可以怎麼做？
+
+Think BIG 問答圖書館　·　2026 年 11 月 21 日　星期六
+
+先說答案
+
+孩子怕黑時，可以先聽他在怕什麼，維持可預期的睡前流程，並討論他覺得安心的照明與陪伴方式，不必強迫當晚就獨自睡。美國兒科醫學會（AAP）把獨自在黑暗中的恐懼列為常見兒童恐懼，建議家長同理回應，不嘲笑或逼孩子表現勇敢。
+
+## 一、 先分清楚孩子怕的事情
+
+可以在白天或睡前情緒還平穩時問：「是房間太暗、那個影子，還是擔心看不到大人？」這是溝通示例，不是診斷題。孩子說不出原因，也可以先回應「你現在覺得害怕，我聽到了」，不急著要求完整解釋。
+
+[AAP 的兒童恐懼說明](https://www.healthychildren.org/English/health-issues/conditions/emotional-problems/pages/Understanding-Childhood-Fears-and-Anxieties.aspx)建議傾聽，避免貶低、嘲笑或催促孩子勇敢。大人可以說明眼前可確認的事：「牆上的影子是椅子，我們一起看看。」不需要為了陪伴而說房間真的有怪物，也不要用「再哭怪物就來」催他入睡。
+
+若孩子提到最近看到的可怕影片，先了解內容，再調整接觸。AAP 也提醒留意媒體中的驚嚇影像。可以和照顧者約定，睡前不開恐怖片段；不是把孩子喜歡的所有故事一次收走。
+
+## 二、 把睡前安排說清楚
+
+[AAP 的睡眠建議](https://www.healthychildren.org/English/healthy-living/sleep/Pages/Sleep-and-Mental-Health.aspx)提到維持固定作息，並指出怕黑的孩子可以試試房門附近走廊的小夜燈。實際安排要看家裡空間與孩子反應；不需要把「完全關燈」當成每晚必須過關的任務。
+
+可以先做的安排 家裡能用的說法 睡前順序 「刷牙、換睡衣、一起讀書，接著休息。」事先說明今天的安排。
+
+照明選擇 「我們看看門邊留一點光，你覺得如何？」別趁孩子沒注意突然關燈。
+
+陪伴說明 「讀完後我先坐一下，之後會去客廳。」只說自己做得到的事。
+
+表格是家庭安排提案，不是固定療程。家長可以一次只調整一項，隔天再聊哪個部分有幫忙。若要改變陪伴方式，先讓孩子知道，也與其他照顧者談好，避免同一晚給出彼此矛盾的說法。
+
+## 三、 故事選平穩，問題留到白天也可以
+
+睡前共讀可以選孩子熟悉、願意聽的情節。這是選書建議，不主張某種繪本能治療怕黑。若故事出現讓孩子不舒服的畫面，可以跳過、換書，或先收起來，不必為了讀完而繼續。
+
+可問「這頁你想再看一下嗎？」不用每頁都問感受或要求說出勇敢的道理。睡前儀式的安排可看[睡前共讀怎麼開始](https://thinkbigtw.com/library/qa/bedtime-reading-routine/)，白天聊心情的問法則見[情緒繪本怎麼讀](https://thinkbigtw.com/library/qa/feelings-picture-books/)。
+
+如果恐懼持續、明顯影響睡眠與白天生活，請找專業人員討論；孩子狀況特殊請諮詢小兒科醫師。這篇提供一般陪伴方向，不能只憑「怕黑」就判斷有沒有焦慮症，也沒有設定孩子應在幾晚內改善。
+
+品牌資訊｜童話有你
+
+## 童話有你：晚安睡前
+
+童話有你的[晚安睡前](https://talewithyoutw.com/themes/goodnight.html)主題是《〔孩子名字〕的晚安夢遊記》。情節從刷牙、換睡衣、聽故事，進入星光海、月亮鞦韆等夢境。主角依孩子照片繪製，範例主角為 AI 生成形象；書頁為中文加注音，內頁 26 面。
+
+本段內容取自童話有你官網[主題頁](https://talewithyoutw.com/themes/goodnight.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：怕黑是故意拖延嗎？ 不能只憑這句話判斷。可先問孩子怕什麼，觀察情境，平靜回應他的感受。 Q2：可以留小夜燈嗎？ AAP 的睡眠建議提到，可嘗試在房門附近走廊留小夜燈，依孩子與環境調整。 Q3：要趁睡著後偷偷離開嗎？ 可以先說明自己做得到的陪伴安排，若要調整方式，讓孩子預先知道。 Q4：童話有你的晚安主題能治療怕黑嗎？ 不能據此主張治療效果。「晚安睡前」是含刷牙、換睡衣與夢境情節的客製故事。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜Fears & Phobias in Children: How Parents Can Help：[www.healthychildren.org](https://www.healthychildren.org/English/health-issues/conditions/emotional-problems/pages/Understanding-Childhood-Fears-and-Anxieties.aspx)
+
+- AAP｜Sleep and Health：[www.healthychildren.org](https://www.healthychildren.org/English/healthy-living/sleep/Pages/Sleep-and-Mental-Health.aspx)
+
+- 童話有你｜指定主題頁：[talewithyoutw.com](https://talewithyoutw.com/themes/goodnight.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-agent-acceptance-testing/
 
 # AI Agent 導入後要怎麼驗收？測試題要怎麼準備？｜問答圖書館｜Think BIG
@@ -22344,6 +22821,93 @@ Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/ai-answers-with-citations/
+
+# 怎麼讓 AI 回答時附上出處？查公司文件時特別重要｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+AI 入門
+TB40
+
+# 怎麼讓 AI 回答時附上出處？查公司文件時特別重要
+
+Think BIG 問答圖書館　·　2026 年 11 月 22 日　星期日
+    ·　[English](https://thinkbigtw.com/en/qa/ai-answers-with-citations/)
+
+先說答案
+
+要讓 AI 回答附上出處，先提供它實際可以查到的文件或網頁，再要求把每項主張對應到文件名稱、版本和段落。查公司文件時，可用 RAG 先找相關內容，再讓模型依找到的內容回答。出現連結不代表內容正確，仍須打開來源，確認它真的支持那句話。
+
+## 一、 先有能查的資料，才有能核對的回答
+
+Microsoft 的 RAG 官方說明把流程描述為：用企業內容作為回答依據，並透過檢索找出相關資訊。這與只請聊天模型「請附資料來源」不同；若系統沒有提供文件或查詢工具，不能推定它已讀過你心裡那份內部規定。
+
+NIST AI 600-1（2024）提醒，模型可能產生錯誤內容，也可能編造用來支持答案的引用。因此，先確認文件是否能被讀取，再要求引用，會比只改提示詞更容易檢查。對公司的制度文件，建議先整理標題、適用範圍、生效資訊與版本，避免同一問題同時找到互相衝突的舊資料。
+
+## 二、 把「附來源」改成具體的輸出要求
+
+以下是本文建議的提問範本，可以依公司文件形式調整，不是任何模型都會完整遵守的指令。
+
+請只依我提供、且我有權查閱的文件回答。每一項結論後列出文件名稱、版本、章節或頁碼，並附可開啟的來源位置。區分文件原文與你的整理。找不到支持內容時，請寫「目前資料不足」，不要自行補出連結或規則。新舊版本衝突時，先指出衝突。
+
+回答項目
+使用者要檢查什麼
+文件名稱與版本
+是不是目前適用的那份文件
+
+章節或頁碼
+打開後能不能定位到原文
+
+來源短摘
+是否支持旁邊那項結論
+
+不足與衝突
+是否明確說出缺少什麼依據
+
+若是掃描檔或表格，建議先抽查轉出的文字與原頁是否一致。頁碼要說清楚是檔案頁次還是文件印刷頁碼；沒有頁碼的資料，可用章節標題和段落識別。這些做法目的是方便查核，不應把來源格式做得漂亮當作正確性的證據。
+
+## 三、 同時檢查正確性與文件權限
+
+OWASP LLM09:2025 建議交叉查證與人工監督，尤其是重要資訊。可以先準備已知答案的測試題、文件沒有答案的題目，以及版本衝突的題目，分別確認回答、引用和拒答是否合理。本文建議把「答案對不對」與「引用支持不支持」分開記錄。
+
+公司文件還有存取邊界。Microsoft 官方 RAG 說明強調，使用者和 Agent 應只檢索獲授權內容。連結無法開啟時，不應把受限文件全文貼在回答裡繞過權限。地端與雲端都能規劃引用流程；差別在資料送往哪裡、由誰維護，應配合公司需求選擇。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的文件查詢與資料邊界
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：只說「請附來源」可以嗎？ 可以作為要求，但還要確認系統有可查的文件，並核對連結與原文。 Q2：有引用就不會亂答嗎？ 仍可能錯。NIST 說明引用本身也可能被編造。 Q3：內部文件沒有網址怎麼辦？ 用公司可存取的位置，搭配文件名稱、版本、章節或頁碼，讓授權人員可定位。 Q4：引用原文能繞過文件權限嗎？ 不應。檢索及回答都應尊重同一存取範圍，不能把受限內容貼出來。
+
+參考來源（連結於 2026-10-26 查證）
+
+- Microsoft｜Retrieval-augmented generation in Azure AI Search：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- NIST｜AI 600-1, Generative Artificial Intelligence Profile（2024）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- OWASP｜LLM09:2025 Misinformation：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm092025-misinformation/)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/ai-api-key-leak/
 
 # AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？｜問答圖書館｜Think BIG
@@ -22623,6 +23187,96 @@ Q1：刪掉敏感欄位就沒有偏見嗎？ 不能這樣推定。NIST 提醒資
 參考來源（連結於 2026-10-26 查證）
 
 - NIST｜SP 1270, Towards a Standard for Identifying and Managing Bias in Artificial Intelligence（2022）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.1270.pdf)
+
+- NIST｜AI 600-1, Generative Artificial Intelligence Profile（2024）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/
+
+# AI 客服答錯了，誰要負責？上線前要設好的 4 道防線｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+法規與治理
+TB39
+
+# AI 客服答錯了，誰要負責？上線前要設好的 4 道防線
+
+Think BIG 問答圖書館　·　2026 年 11 月 21 日　星期六
+    ·　[English](https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/)
+
+先說答案
+
+AI 客服答錯，責任須依企業提供的服務、契約、適用法律與具體事實判斷，不能只因答案由 AI 生成就認定企業不必處理。上線前建議設好資料來源、答覆邊界、人工轉接、紀錄與更正這 4 道防線。以下是台灣情境的治理建議，供參考，不構成法律意見。
+
+## 一、 先分清資訊錯誤與法律責任
+
+《消費者保護法》第 4 條要求企業經營者提供消費者充分與正確的資訊；第 22 條規範廣告內容真實及相關義務。客服答覆是否構成廣告或契約內容，仍須看實際呈現方式、對話與交易情況，不能把任何一句回答都直接套成相同法律效果。
+
+《民法》第 184 條涉及因故意或過失不法侵害他人權利等損害賠償責任。某次客服錯答是否符合條件、是否另有契約責任，需依個案確認。企業應保留可供釐清的證據，也應預先約定供應商的維護、通知與協助範圍；內部約定如何分工，與消費者依法可主張什麼，是不同問題。
+
+## 二、 把 4 道防線放進客服流程
+
+下列為本文整理的建議，並非法規指定的固定四步程序。
+
+防線
+上線前要做的事
+建議驗收情境
+資料來源
+指定正式文件、版本與更新負責人
+新舊規則衝突時能否找出適用版本
+
+答覆邊界
+明定可回答事項與不可自行承諾的內容
+找不到依據時是否停止推測
+
+人工轉接
+提供可用的聯絡方式及處理分工
+問題超出範圍時能否交到負責人
+
+紀錄與更正
+留必要對話、依據與修正處理紀錄
+能否重建錯答當時的資料版本
+
+NIST AI 600-1（2024）指出，生成式 AI 可能產生語氣肯定但錯誤的內容，也可能編造支持答案的引用。這表示畫面上顯示來源，不足以說明每一句都正確。建議把回答拆成可核對的主張，再確認文件是否真的支持，並檢查例外條件有沒有被省略。
+
+## 三、 答錯後先讓錯誤停止擴散
+
+本文建議先停用有問題的答覆路徑或改由人工處理，保存必要證據，再由負責人核對受影響的問題與版本。若需要通知或更正，內容應經適當人員確認。不要只改提示詞，就把原本的問題標成完成；同一案例與相關情境要重新驗證，才能知道修正是否落在真正的原因上。
+
+地端客服可配合公司內部處理需求，但回答正確性仍需驗收；雲端方案也要確認資料流向與服務條款。選擇方案時，應把知識更新、人工窗口、異常處理與驗收責任寫清楚，而不是只看模型回答是否流暢。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的客服資料與變更驗證
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：寫「AI 回答僅供參考」就不用負責嗎？ 不能單靠這句判斷。仍須依實際對話、交易、契約與適用法律確認。 Q2：找外部供應商，就都由供應商負責嗎？ 應確認雙方契約與實際行為；供應商分工不等於消費者的權利判斷。 Q3：每個答案都要人工看過嗎？ 可依風險設範圍；重要承諾、爭議或缺少依據的問題，建議交由指定人員處理。 Q4：附出處就能避免錯答嗎？ 不能。NIST 提醒引用也可能是生成的錯誤內容，必須打開核對支持關係。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 全國法規資料庫｜消費者保護法第 4、22 條：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=J0170001)
+
+- 全國法規資料庫｜民法第 184 條：[law.moj.gov.tw](https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=B0000001&flno=184)
 
 - NIST｜AI 600-1, Generative Artificial Intelligence Profile（2024）：[nvlpubs.nist.gov](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf)
 
@@ -23888,6 +24542,72 @@ Q1：挑孩子的生日禮物，先看什麼？ 先看三件事：孩子現在�
 - 童話有你 生日主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes/birthday.html)
 
 - 童話有你 常見問題：[talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/body-safety-for-kids/
+
+# 身體界線怎麼教？跟孩子說「我的身體我做主」｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q43
+
+# 身體界線怎麼教？跟孩子說「我的身體我做主」
+
+Think BIG 問答圖書館　·　2026 年 11 月 22 日　星期日
+
+先說答案
+
+身體界線可以從日常小事教：正確說出身體部位、碰觸前詢問、尊重不想抱抱的回答，並讓孩子知道不舒服時可以找可信任的大人。共讀適合練習說法，但孩子沒有拒絕或沒有立即說出來，都不表示他要為別人的不當行為負責。
+
+## 一、 把界線說成聽得懂的話
+
+[AAP 的身體自主說明](https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Sexual-Abuse.aspx)建議從幼兒時期開始，使用身體部位的正確名稱，並告訴孩子不想被碰觸或擁抱時，可以對包括大人在內的人說不。可以平實說「陰莖」「外陰」「臀部」，不把這些名稱當成髒話，也不需要一次上完一堂解剖課。
+
+在家能先練「我現在不想抱」「請停下來」「我想找媽媽」。孩子還說不出完整句子時，大人可以幫忙說明；不要要求他必須講得有禮貌、理由很完整，才願意停止搔癢或擁抱。這些是把官方原則帶進生活的對話示例。
+
+[AAP 的界線教育建議](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Sexual-Behaviors-Young-Children.aspx)也提醒，不要強迫或讓孩子因內疚而親吻、擁抱親友。可以改用揮手或口頭道別，並同樣提醒孩子：想碰別人的身體，也要先問，聽到拒絕就停下來。
+
+## 二、 照護和檢查，也先說明用途
+
+AAP 把協助洗澡、如廁與醫師健康檢查列為照護性接觸的例子。可以先說「我要幫你擦乾淨」，或在看診前一起聽醫師說明檢查哪裡、為什麼需要。不要教成「只要是醫師或家人，任何碰觸都可以」。
+
+以下是共讀活動提案：找一個角色打招呼、洗澡或看診的片段，用玩偶排演。大人問「我可以抱你嗎？」孩子幫玩偶回答「今天想揮手」。如果故事出現照護場景，就補一句「照顧身體要說明要做什麼」。孩子想換玩法時，先停下來即可。
+
+不必用突襲碰觸、測孩子有沒有反抗的方式驗收，也不用把每次讀書都變成安全考試。大人的行為要跟書裡的話一致：孩子說不要繼續搔癢，就停止，而不是說「你明明在笑」。
+
+## 三、 求助管道要說得比口號更清楚
+
+AAP 提醒孩子可以把令人害怕、奇怪或不適合保密的事告訴可信任成人，並知道不會因說出來而受罰。可一起列出在家與在學校能找的人，練一句「我有一件不舒服的事想告訴你」。不必限定只能告訴某一位家長。
+
+家長可以回應「謝謝你告訴我，我會聽」。如果孩子透露不當接觸，先關注安全、相信並支持他，尋求專業協助；不要用反覆盤問測試是否說謊。孩子狀況特殊請諮詢小兒科醫師，涉及即時安全疑慮時應立即找當地適當的求助管道。
+
+想先從角色的心情談起，可讀[情緒繪本的問法](https://thinkbigtw.com/library/qa/feelings-picture-books/)；共讀時如何等待孩子表達，見[對話式共讀](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)。繪本能提供談話情境，照顧與保護仍是成人的責任。
+
+品牌資訊｜童話有你
+
+## 童話有你：讓孩子走進故事
+
+童話有你是孩子當主角、依照片繪製的 AI 客製繪本。[主題與範例](https://talewithyoutw.com/themes.html)列有「情緒小星球」「當哥哥姊姊」等主題，未列身體界線專用主題。正式書頁依提供的照片繪製，範例頁主角為 AI 生成形象；每本有小狗湯圓作伴。
+
+本段內容取自童話有你官網[主題與範例](https://talewithyoutw.com/themes.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：不抱長輩是不禮貌嗎？ 可以用揮手或說再見表達尊重，不必強迫親吻、擁抱。 Q2：看醫師也要先說明嗎？ 可以請醫師用孩子懂的話說明檢查用途和部位，家長也先解釋必要照護。 Q3：孩子沒說不，是他的錯嗎？ 不是。沒有拒絕或沒有立即求助，都不表示孩子要為別人的不當行為負責。 Q4：要每天考孩子會不會拒絕嗎？ 不用把界線教育變成突襲測驗；日常示範詢問、尊重回答與聽取求助更具體。
+
+參考來源（連結於 2026-10-26 查證）
+
+- AAP｜Preventing Child Sexual Abuse: What Parents Need to Know：[www.healthychildren.org](https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Sexual-Abuse.aspx)
+
+- AAP｜Sexual Behaviors in Young Children：[www.healthychildren.org](https://www.healthychildren.org/English/ages-stages/preschool/Pages/Sexual-Behaviors-Young-Children.aspx)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
 
 本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
 
@@ -33933,999 +34653,3 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
-
-URL: https://thinkbigtw.com/full-agent/
-
-# 全 Agent 串接 | Think BIG!
-
-個人 AI 助理
-
-# 全 Agent 串接
-
-你已經在付 Claude Code／Codex 的訂閱費了——讓它們組成一個團隊。
-
-Multi-Agent Orchestration（多代理協作）：讓 OpenClaw 和你既有的 coding agent（Claude Code／Codex／Antigravity 等）進駐同一個「協作會議室」分工做事。OpenClaw 負責接指令與日常任務，coding agent 負責寫程式、改檔案、跑測試——這是 2026 年 Anthropic、Google、Microsoft 都在推的架構方向。
-
-## 你是不是每天都在——
-
-- 開著 Claude Code、又開著 ChatGPT、又開著別的工具，自己當人肉轉接頭？
-
-- 付了 coding agent 訂閱費，卻只有坐在電腦前打指令的時候用得到？
-
-- 出門在外想派工給 AI，只能等回到電腦前？
-
-## 怎麼運行
-
-1
-
-收到 你打開專屬會議室網址（可加到手機主畫面當 App），下一道指令
-
-2
-
-判斷 OpenClaw 分析任務，決定自己做還是派給 coding agent
-
-3
-
-執行 多個 Agent 在會議室裡分工協作，你可即時看到協作過程
-
-4
-
-回報 最終結果報告自動推播到你指定的通訊軟體
-
-會議室建在你自己免費註冊的 Supabase 專案上，資料與其他客戶天然隔離。
-
-## 你得到什麼
-
-- OpenClaw 官方最新版＋ 60 組全客製技能 （依你的職業量身開發）
-
-- Coding Agent 串接（Claude Code／Codex／Antigravity 等，需自備訂閱）
-
-- 跨 Agent 協作會議室＋結果推播通訊軟體
-
-- 手機下指令、電腦上的 Agent 團隊接力完成——不必人在電腦前
-
-- 2 小時線上技術導覽＋安裝後 7 天 技術諮詢
-
-- 服務費依需求報價，無月費 （指我方服務費），請至[蝦皮賣場](https://shopee.tw/shop/105010395)選購
-
-想要會學習的第二顆大腦？→ [看「雙 AI Agent」](https://thinkbigtw.com/dual-agent/)。
-
-方案價格
-
-[蝦皮賣場選購](https://shopee.tw/shop/105010395)
-
-[前往蝦皮下單｜下單後預約遠端安裝時間](https://s.shopee.tw/2gAebp9KEB)
-
-※ 本地版模型運算不另收用量費；改搭雲端大模型時，API Key 由你本人申請、模型使用費依用量向模型廠商計費，皆非本方案服務費所含。coding agent 訂閱費由你自行負擔（Claude Code 需 Pro 以上，門檻以各官網公告為準）。
-
----
-
-URL: https://thinkbigtw.com/harness/
-
-# 個人 AI 助理搭建與整合｜Think BIG
-
-HARNESS ENGINEERS
-
-# Harness Engineers
-
-從個人安裝、工作流程整合到年度維運，依設備與使用需求搭建自己的 AI 助理。
-
-搭建與串接的平台
-
-- OpenClaw
-
-- Hermes Agent
-
-- Claude Managed Agent
-
-- OpenAI Codex
-
-- n8n
-
-- Dify
-
-- Make
-
-- LINE
-
-- WhatsApp
-
-- Telegram
-
-- Discord
-
-- Slack
-
-- Microsoft Teams
-
-- iMessage
-
-- Google Calendar
-
-- Gmail
-
-- Google Drive
-
-- Notion
-
-- Obsidian
-
-- GitHub
-
-- Zapier
-
-- Browser
-
-- Cron
-
-- Model Context Protocol (MCP)
-
-各商標屬其所有者，僅標示可串接之平台，不代表合作或背書。
-
-PERSONAL AI PLANS
-
-## 依需求選擇個人方案
-
-完整價格、內容與支援期，請以現行個人方案頁為準。
-
-### 本地大模型搭建
-
-把 AI 模型和 OpenClaw 或 Hermes Agent 一起裝在你的電腦上，建立自己的 AI 助理。
-
-[查看人格版方案 ›](https://thinkbigtw.com/pricing/personal/#tier1)
-
-### AI 部門
-
-單或雙 AI Agent，串接技能與協作會議室。
-
-[查看工作流程方案 ›](https://thinkbigtw.com/pricing/personal/#tier2)
-
-### 年約維運
-
-一年維運陪跑，依需求選擇 Agent 組合。
-
-[查看年約方案 ›](https://thinkbigtw.com/pricing/personal/#tier3)
-
-01 — LOCAL AI EXECUTION
-
-## OpenClaw
-
-AI Agent 的作業系統
-
-OPENCLAW — AI AGENT OS
-
-### OpenClaw — AI Agent 的作業系統
-
-OpenClaw 是一個開源的 AI Agent 平台，讓你在本機運行 客製化自動化技能（Skills）。不需要每次都開瀏覽器、不需要手動操作，OpenClaw 能自動執行排程任務、資料分析、檔案處理、API 串接等工作。安裝後透過終端機呼叫，24小時不停機。
-
-客製化 Skills
-本機執行
-24h 不停機
-MCP 支援
-20+ 通訊平台
-
-適合： 想要本機 AI 自動化、重視資安的個人與企業。
-
-HERMES AGENT
-
-## Hermes Agent
-
-Nous Research 開源的自主學習型 AI 助理
-
-我們協助安裝在你的電腦上。Hermes Agent 支援跨對話持久記憶、自我學習與技能累積，可透過 Telegram／Discord 等平台使用。實際功能與串接範圍依方案確認。
-
-它是 Think BIG 提供安裝的產品之一；本站的「Think BIG AI 顧問」則負責回答服務與方案問題。
-
-[查看個人方案（含 Hermes）›](https://thinkbigtw.com/pricing/personal/#tier1)
-
-03 — ADVANCED REASONING
-
-## Claude Managed Agent
-
-Anthropic 官方 AI Agent 框架
-
-CLAUDE MANAGED AGENT — ANTHROPIC
-
-### Claude Managed Agent — Anthropic 官方 AI Agent 框架
-
-Claude Managed Agent 是 Anthropic 官方推出的 Agent 框架，讓 Claude 能夠自主規劃、執行多步驟任務。不只是問答，而是真正的「給任務、自動完成」。透過 Claude 的推理能力，Agent 能分析複雜情境、決定下一步行動、呼叫外部工具。
-
-Anthropic 官方
-多步驟推理
-外部工具呼叫
-MCP 原生支援
-
-適合： 需要高度推理能力、複雜決策自動化的進階用戶。
-
-MCP
-
-04 — THE PROTOCOL
-
-## 任何 AI Agent，都能透過 MCP 串進同一套工作流程
-
-Model Context Protocol — AI 工具的共同語言
-
-MCP 是連接 AI Agent 與工具、資料的開放協議。Anthropic 於 2024 年提出並開源，2025 年 12 月將其捐贈給 Linux Foundation 旗下的 Agentic AI Foundation（AAIF）；協議的技術方向與日常運作仍由 MCP 維護者自主決定。
-
-[2024 開源公告 ↗](https://www.anthropic.com/news/model-context-protocol)[AAIF 官方公告 ↗](https://blog.modelcontextprotocol.io/posts/2025-12-09-mcp-joins-agentic-ai-foundation/)
-
-支援 MCP 的 AI Agent，共用工具與資料
-
-- [OpenClaw MCP 工具串接](https://docs.openclaw.ai/tools/mcp)
-
-- [Hermes Agent MCP 工具串接](https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp)
-
-- [Claude Claude Code](https://code.claude.com/docs/en/mcp)
-
-- [OpenAI Codex CLI／IDE](https://developers.openai.com/codex/mcp/)
-
-- [ChatGPT 開發者模式](https://developers.openai.com/api/docs/guides/developer-mode)
-
-- [Gemini CLI MCP 工具串接](https://geminicli.com/docs/tools/mcp-server/)
-
-- [Cursor MCP 工具串接](https://cursor.com/docs/context/mcp)
-
-- [GitHub Copilot Copilot Chat](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp)
-
-- ＋ 你的 Agent ＋ 支援 MCP 即可加入
-
-MCP 共同串接層
-
-### 工具與資料
-
-- LINE
-
-- Gmail
-
-- Google Drive
-
-- Notion
-
-- GitHub
-
-- Slack
-
-- 資料庫／CRM
-
-AI Agent 經 MCP 伺服器取用已授權的工具與資料。各產品須完成相容設定與個別授權；LINE 使用官方帳號 Messaging API。點選 AI Agent 可查看官方 MCP 文件。
-
-Agent 可替換
-
-用哪個 AI Agent 依需求選；支援 MCP，就能接入既有工作流程。
-
-工具串一次，所有 Agent 共用
-
-把工具接成 MCP 服務，完成相容設定與授權的 AI Agent 就能共用，減少重複串接。
-
-權限與稽核集中在 MCP 這層管
-
-在 MCP 串接層配置存取權限、操作紀錄與人工核准；這些治理能力需另外建置與設定。
-
-這不只是裝幾個工具，而是一套能持續加入新 Agent 的 AI 自動化基礎設施 。
-
-## 個人 AI 助理常見問題
-
-個人 AI 助理如何開始？
-
-先確認設備、帳號與工作需求，再依支援範圍選擇個人方案；價格與服務條件請見個人方案專區。
-
-地端部署代表資料不會離開電腦嗎？
-
-地端部署不等於所有連線都在本機。若使用雲端模型或外部服務，相關請求仍會送出；需要資料不出公司時，須確認本機模型、外連限制與可用功能。
-
-如何確認 AI Agent 的操作權限？
-
-依工作所需配置資料與工具權限；對外發送、花費與正式系統變更，由指定負責人核准。
-
-[查看個人方案與價格](https://thinkbigtw.com/pricing/personal/)
-
----
-
-URL: https://thinkbigtw.com/tbos/en/
-
-# Think BIG — Your Own Personal AI Assistant, Installed Once
-
-Personal AI assistants
-
-# Your AI assistant.
-On your own computer.
-
-Start with installation, connect your work tools, or choose annual maintenance. Taiwan-based engineers serve customers worldwide.
-
-Explore personal plans [Enterprise enquiries](https://thinkbigtw.com/enterprise/)
-
-## From your needs to a working setup
-
-### Choose a scope
-
-Tell us about your device and the work you want help with. Entry installation includes the original OpenClaw or Hermes Agent setup, not a custom skill bundle.
-
-### Schedule installation
-
-After ordering, book a remote installation session using AnyDesk or DeskIn. You stay present while the engineer operates your computer and checks the setup.
-
-### Understand support
-
-Entry includes 7 days of technical consultation. The single and dual AI Agent plans include a 2-hour online technical walkthrough plus 7 days of technical consultation after installation. Annual plans include a year of maintenance.
-
-## Know what your setup connects to
-
-Local installation does not mean all data stays local. Cloud models and external services receive the requests needed for their features. You provide your own model API key and pay third-party usage charges separately.
-
-During installation, the engineer operates your computer and may see work data or sensitive information on screen. We use the minimum permissions needed for the agreed task. You can close unrelated windows, end the session and remove remote access afterwards. Later access requires separate authorisation.
-
-[Read our data and access commitments (Chinese) ›](https://thinkbigtw.com/trust/#remote-install)
-
----
-
-URL: https://thinkbigtw.com/services/
-
-# 服務｜Think BIG
-
-正在為您轉址……[SEO／AEO／GEO 搜尋能見度服務](https://thinkbigtw.com/services/ai-visibility/)
-
----
-
-URL: https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/
-
-# AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-本地 AI 實測筆記 · 第 011 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI DEPLOYMENT NOTES
-
-2026 年 10 月 27 日　星期二
-◆
-本地 AI 實測筆記
-◆
-第 011 期
-
-本地 AI · 上下文長度 · 記憶體管理
-
-## AI 的「記憶」設太大，反而把整台電腦拖垮——上下文長度要怎麼抓
-
-Think BIG 自媒體部  |  2026 年 10 月 27 日
-
-本地 AI 越用越慢、整台電腦跟著卡，除了顯卡沒用上，另一個常見原因是上下文長度設得太大。打 ollama ps  看 PROCESSOR 和 CONTEXT 兩欄，就能知道模型實際用了多少上下文、有沒有被擠到 CPU。
-
-（本文以開源工具 Ollama 為例，因為它的官方文件把預設值和檢查方式寫得很清楚；其他本地執行工具原理相近，設定名稱不同。）
-
-這篇和本報第 2 期〈本地跑大模型，GPU 真的有在動嗎？〉是一組。第 2 期講「模型根本沒用到顯卡」；這篇講另一種情況：顯卡有在用，但上下文設太大，記憶體被吃光。兩個問題都從同一個指令開始查。
-
-## 一 現象：上下文長度也要佔記憶體
-
-上下文長度，白話說就是 AI 回答時一次能帶著的內容量，單位是 token。Ollama 官方文件的定義是：模型在記憶體中可以取用的最大 token 數。[2]
-
-這個數字不是免費的。官方文件寫明，把上下文長度設大，執行模型所需的記憶體也會增加，調大之前要先確認顯示記憶體（VRAM）夠用。[2] FAQ 也提到，同時處理多個請求時，所需記憶體會隨「並行請求數 × 上下文長度」放大；並行請求數的預設值是 1。[1]
-
-預設值要特別留意。 Ollama 的 FAQ 寫的是預設 4096 個 token。[1] 另一頁〈Context length〉則寫成依顯示記憶體分級：小於 24 GiB 為 4k，24 到 48 GiB 為 32k，48 GiB 以上為 256k。[2] 兩頁寫法不同，我們的做法是不靠記憶推斷，直接用 ollama ps  看 CONTEXT 欄，以機器實際配置的數字為準。[2]
-
-調整方式官方也寫得很清楚：要改整台服務的預設值，用環境變數 OLLAMA_CONTEXT_LENGTH ；只改單一模型或單次對話，在指令列用 /set parameter num_ctx ，或在 API 的 options 裡帶 num_ctx 。[1]
-
-## 二 各方評價：要大，還是要穩？
-
-主張開大的一方 ：Ollama 的〈Context length〉頁建議，網頁搜尋、AI Agent、程式工具這類需要大量上下文的任務，至少設到 64000 個 token；同一頁也說，為了最佳效能，可以用模型支援的最大上下文長度，並避免模型被卸載到 CPU。[2]
-
-提醒成本的一方 ：同樣是官方文件，FAQ 說明可以開 Flash Attention，在上下文變大時明顯降低記憶體用量；也可以把 K/V cache（存放上下文的暫存區）量化，q8_0  約用 f16  一半的記憶體，q4_0  約四分之一，但精度損失在上下文越大時可能越明顯，影響多少要看模型和任務。[1]
-
-兩邊其實不衝突。官方的前提一直是「機器放得下」：上下文可以開大，但要先算記憶體夠不夠，並確認模型沒有被擠到 CPU。[2]
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下是我們部署本地 AI Agent 時的實作觀察，不是產業統計，也不代表任何特定案場。
-
-1. 「AI 越來越慢，是不是顯卡太舊？」是常見的問題，但常見的答案是設定。 我們常遇到的情況是：有人為了讓 AI「記得多一點」，把上下文一口氣拉到很高，結果記憶體放不下，模型部分跑到 CPU，回應時間明顯拉長。
-
-2. 統一記憶體的機器要更小心。 顯示晶片和系統共用同一塊記憶體的電腦，上下文吃掉的不只是「顯卡的份」。我們常見的症狀有三個：回應時間越拉越長、整台電腦操作變遲鈍、硬碟開始大量寫入交換空間（swap）。這時候慢的不只 AI，其他程式也一起被拖住。
-
-3. 先查需求，再定數字。 我們不在一開始就給一個固定數字。比較穩的順序是：先跑幾個真實工作，看每次實際送進去多少 token，再決定上下文要留多少餘裕。Ollama 的 API 回應會附 prompt_eval_count （這次輸入了多少 token），拿來當依據就夠了。[3]
-
-4. 交付前看 CONTEXT 和 PROCESSOR 兩欄。 ollama ps  的 PROCESSOR 欄會顯示 100% GPU、100% CPU，或兩者的比例；[1] CONTEXT 欄顯示實際配置的上下文長度。[2] 我們交付前會把這兩欄截圖留存。
-
-## 四 我們的建議：先做三步
-
-1. 先量，再設。 拿你最常做的三到五種工作（例如回客服信、摘要會議紀錄、查內部文件），各跑幾次，記下 prompt_eval_count 。[3] 最大值再加上回答需要的空間，就是你的起點。
-
-2. 改完馬上看 ollama ps 。 PROCESSOR 欄如果出現 CPU 比例，代表模型加上下文已經超過顯示記憶體能放的量。[1] 先把上下文調回來，或評估 Flash Attention、K/V cache 量化，量化後要用你的真實工作再驗一次品質。[1]
-
-3. 並行數和上下文一起看。 要讓多個人同時用，記憶體需求是兩者相乘。[1] 先決定同時要服務幾個請求，再回頭定上下文。
-
-一句話：上下文可以開大，前提是機器放得下。 放不下的時候，慢下來的會是整台電腦。
-
-◆ 編按 · Think BIG 的做法：讓設定值有根據
-
-## 先量、再設。設定值要能說出「為什麼是這個數字」。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們部署本地 AI Agent 時，上下文長度不是憑感覺填的：依真實工作量定值 ——用客戶自己的工作內容實測輸入量，再決定上下文與並行數；交付時留證據 ——ollama ps  的 PROCESSOR、CONTEXT 兩欄截圖，連同設定值一起交給負責人；改設定要重驗 ——調整上下文、量化或並行數之後，用同一組工作重跑一次，確認速度和回答品質都還在可接受範圍。
-
-我們的立場是：設定值要能說出「為什麼是這個數字」。本報第 13 期將延伸談模型選型，也以同一套邏輯為基礎。
-
-### 常見問題
-
-Q1：上下文長度是什麼？
-AI 回答時一次能帶著的內容量，以 token 計算。Ollama 官方定義為模型在記憶體中可以取用的最大 token 數。[2]
-Q2：Ollama 預設的上下文長度是多少？
-官方 FAQ 寫預設 4096 個 token；〈Context length〉頁則寫依顯示記憶體大小分為 4k、32k、256k 三種。[1][2] 兩頁寫法不同，請用 ollama ps  的 CONTEXT 欄確認你的機器實際配置。[2]
-Q3：怎麼調整上下文長度？
-整台服務的預設值用環境變數 OLLAMA_CONTEXT_LENGTH ；單一模型或單次請求用 num_ctx （指令列 /set parameter num_ctx ，或 API 的 options）。[1]
-Q4：上下文設大一定比較好嗎？
-Ollama 建議 AI Agent、程式工具這類任務至少 64000 個 token，但也說明上下文越大，需要的記憶體越多，要確認顯示記憶體夠用。[2] 我們的建議是先量實際需求，再決定數字。
-Q5：記憶體不夠，又需要較長的上下文，怎麼辦？
-Ollama 文件提到兩個方向：開啟 Flash Attention，以及把 K/V cache 量化（q8_0  約省一半、q4_0  約剩四分之一），但量化對品質的影響依模型與任務而定，需要自己實測。[1]
-Q6：這跟「GPU 沒在動」是同一個問題嗎？
-不完全一樣，但查法相同。本報第 2 期談的是模型沒用到顯卡；這篇談的是上下文太大、記憶體放不下。兩種情況都可以先從 ollama ps  的 PROCESSOR 欄看起。[1]
-
-參考來源
-    查核日期：2026-10-24。
-
-    [1] Ollama，〈FAQ〉（上下文長度設定、ollama ps  的 PROCESSOR 欄、OLLAMA_NUM_PARALLEL 、Flash Attention、K/V cache 量化），查閱日期 2026-10-24：[docs.ollama.com/faq](https://docs.ollama.com/faq)　·
-    [2] Ollama，〈Context length〉（定義、依顯示記憶體的預設值、Agent 任務建議值、ollama ps  的 CONTEXT 欄），查閱日期 2026-10-24：[docs.ollama.com/context-length](https://docs.ollama.com/context-length)　·
-    [3] Ollama，〈Usage〉（API 回應的 prompt_eval_count  等欄位），查閱日期 2026-10-24：[docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  本地 AI 實測筆記
-    Think BIG, Make it Real!　大想成業有限公司
-
----
-
-URL: https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/
-
-# Give Your Local AI Too Much "Memory" and It Can Drag Down the Whole Machine — How to Size the Context Length | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Local AI Deployment Notes · Issue 011
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI DEPLOYMENT NOTES
-
-October 27, 2026   Tuesday
-◆
-Local AI Deployment Notes
-◆
-Issue 011
-
-Local AI · Context Length · Memory Management
-
-## Give Your Local AI Too Much “Memory” and It Can Drag Down the Whole Machine — How to Size the Context Length
-
-Think BIG Content Team  |  October 27, 2026
-
-If a local AI keeps getting slower and the rest of the computer bogs down with it, an unused GPU is one suspect. An oversized context length is another. Run ollama ps  and check two columns, PROCESSOR and CONTEXT, to see how much context is actually allocated and whether the model has spilled onto the CPU.
-
-(We use the open-source tool Ollama as the example because its documentation spells out the defaults and the checks clearly. Other local runtimes work along similar lines under different setting names.)
-
-This piece pairs with our Issue 2, “Running a Model Locally: Is Your GPU Actually Doing Anything?” Issue 2 covered models that never touch the GPU. This one covers the other case: the GPU is in use, but the context is set so large that memory runs out. Both start with the same command.
-
-## One.  What’s Happening: Context Takes Memory Too
-
-Context length is how much material the model can carry while it answers, measured in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]
-
-It isn’t free. Ollama’s documentation states that a larger context length increases the memory needed to run a model, and that you should make sure you have enough VRAM before raising it.[2] The FAQ adds that when a model serves several requests at once, required memory scales with parallel requests multiplied by context length; the default for parallel requests is 1.[1]
-
-Watch the default.  Ollama’s FAQ says the default context window is 4,096 tokens.[1] The separate “Context length” page describes VRAM-based defaults instead: 4k below 24 GiB, 32k from 24 to 48 GiB, and 256k at 48 GiB or more.[2] Because the two pages differ, we don’t rely on either from memory. We read the CONTEXT column in ollama ps  and go by what the machine has actually allocated.[2]
-
-Changing it is documented too. To change the server-wide default, set the OLLAMA_CONTEXT_LENGTH  environment variable. To change it for one model or one session, use /set parameter num_ctx  in the CLI, or pass num_ctx  in the API options.[1]
-
-## Two.  Perspectives: Go Big, or Stay Stable?
-
-The case for larger contexts:  Ollama’s “Context length” page recommends at least 64,000 tokens for context-heavy tasks such as web search, agents, and coding tools. The same page says that for best performance you can use a model’s maximum context length while avoiding offloading the model to the CPU.[2]
-
-The case for counting the cost:  The FAQ explains that Flash Attention can significantly reduce memory use as context grows, and that the K/V cache (where context is held) can be quantized. q8_0  uses roughly half the memory of f16 , and q4_0  roughly a quarter, but precision loss may be more noticeable at larger context sizes, and the impact depends on the model and task.[1]
-
-These views don’t really conflict. The documentation’s assumption throughout is that the model fits: open the context up, but check the memory budget first and confirm nothing has been pushed to the CPU.[2]
-
-◆ First-Hand Notes
-
-## Three. What We’ve Learned in Practice
-
-These are observations from our own local AI agent deployments. They are not industry statistics and don’t describe any specific site.
-
-1. “It’s getting slower — is the GPU too old?” is a common question. The common answer is configuration.  A pattern we see often: someone raises the context sharply so the AI “remembers more,” memory can’t hold it, part of the model ends up on the CPU, and response times stretch out.
-
-2. Be extra careful on unified-memory machines.  When the graphics chip and the system share one pool of memory, context isn’t only eating “the GPU’s share.” The symptoms we commonly see: responses get progressively slower, the whole computer turns sluggish, and the disk starts writing heavily to swap. At that point it isn’t just the AI that’s slow; every other program is being held back too.
-
-3. Measure the need before picking a number.  We don’t start with a fixed figure. The steadier sequence is to run a few real tasks, see how many tokens each actually sends, and then decide how much headroom to leave. Ollama’s API responses include prompt_eval_count , the number of input tokens in that request, which is a good enough basis.[3]
-
-4. Check CONTEXT and PROCESSOR before handover.  In ollama ps , PROCESSOR shows 100% GPU, 100% CPU, or a split between them;[1] CONTEXT shows the allocated context length.[2] We screenshot both columns at handover.
-
-## Four.  Our Recommendations: Three Steps
-
-1. Measure, then set.  Take the three to five tasks you run most often (answering support emails, summarizing meeting notes, searching internal documents), run each a few times, and record prompt_eval_count .[3] Take the highest value, add room for the answer, and start there.
-
-2. Run ollama ps  right after any change.  If PROCESSOR shows any CPU share, the model plus its context no longer fits in VRAM.[1] Bring the context back down, or look at Flash Attention or K/V cache quantization. If you quantize, re-check quality on your real tasks.[1]
-
-3. Size parallelism and context together.  If several people will use it at once, memory needs multiply.[1] Decide how many concurrent requests you need first, then set the context.
-
-In short: a big context is fine if the machine can hold it.  If it can’t, the whole computer slows down with it.
-
-◆ Editor’s Note · How Think BIG Approaches This: Settings With a Reason Behind Them
-
-## Measure first, then set. Every setting should answer “why this number?”
-
-(The following is Think BIG’s own practice, kept separate from the reporting above.)
-
-When we deploy local AI agents, context length isn’t a guess: set from real workloads  — we measure input size on the client’s own tasks before fixing context length and parallelism; leave evidence at handover  — screenshots of the PROCESSOR and CONTEXT columns from ollama ps , handed to the owner with the settings; re-verify after changes  — after adjusting context, quantization, or parallelism, we rerun the same tasks to confirm speed and answer quality are still acceptable.
-
-Our position: every setting should come with an answer to “why this number?” Issue 13 extends this to model selection, using the same logic as a foundation.
-
-### Frequently Asked Questions
-
-Q1: What is context length?
-The amount of material the AI can carry while it answers, counted in tokens. Ollama defines it as the maximum number of tokens the model has access to in memory.[2]
-Q2: What is Ollama’s default context length?
-The FAQ says 4,096 tokens; the “Context length” page describes VRAM-based defaults of 4k, 32k, or 256k.[1][2] Because they differ, check the CONTEXT column in ollama ps  for what your machine actually uses.[2]
-Q3: How do I change it?
-Use the OLLAMA_CONTEXT_LENGTH  environment variable for the server-wide default, and num_ctx  for a single model or request (/set parameter num_ctx  in the CLI, or the API options).[1]
-Q4: Is a bigger context always better?
-Ollama recommends at least 64,000 tokens for agents and coding tools, and also notes that larger contexts need more memory, so confirm you have enough VRAM.[2] Our advice is to measure your actual need first.
-Q5: What if memory is tight but I need a longer context?
-Ollama’s documentation points to Flash Attention and K/V cache quantization (q8_0  at roughly half, q4_0  at roughly a quarter of f16  memory). How much quantization affects quality depends on the model and task, so test it yourself.[1]
-Q6: Is this the same problem as “the GPU isn’t being used”?
-Not quite, but you check it the same way. Our Issue 2 covered a model not using the GPU; this article covers a context too large for memory. In both cases, start with the PROCESSOR column in ollama ps .[1]
-
-Sources
-    Fact-checked on October 24, 2026.
-
-    [1] Ollama, “FAQ” (context window settings, the PROCESSOR column in ollama ps , OLLAMA_NUM_PARALLEL , Flash Attention, K/V cache quantization); accessed October 24, 2026: [docs.ollama.com/faq](https://docs.ollama.com/faq)  ·
-    [2] Ollama, “Context length” (definition, VRAM-based defaults, recommendation for agent tasks, the CONTEXT column in ollama ps ); accessed October 24, 2026: [docs.ollama.com/context-length](https://docs.ollama.com/context-length)  ·
-    [3] Ollama, “Usage” (API response fields including prompt_eval_count ); accessed October 24, 2026: [docs.ollama.com/api/usage](https://docs.ollama.com/api/usage)
-
-The first-hand lessons, recommendations, and editor’s note present Think BIG’s practical views and do not constitute industry statistics or evidence of customer outcomes.
-
-THINK BIG NEWS   ·  Local AI Deployment Notes
-    Think BIG, Make it Real!　Think BIG Make it Real Co., Ltd.
-
----
-
-URL: https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/
-
-# An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-AI Deployment Field Notes · Issue 024
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-November 22, 2026  ·  Sunday
-◆
-AI Deployment Field Notes
-◆
-Issue 024
-
-AI agents · usage limits · scheduling
-
-## An AI Agent Ran All Night? — Set Limits, Schedules, and Stop Conditions
-
-Think BIG Media  |  November 22, 2026
-
-Start with schedules and retries. Usage alerts, blocking new work, and canceling work already underway are separate controls that need separate tests.
-
-## One. Agent Loops Accumulate Resource Use
-
-An agent may call a model repeatedly for one task. In its June 13, 2025 research-system report, Anthropic describes agents exploring directions in parallel and warns that this architecture consumes tokens rapidly. Those observations belong to that system, not to every business deployment.[1]
-
-OWASP’s 2025 LLM10 entry treats uncontrolled inference consumption as a risk and recommends input limits, rate limits, quotas, timeouts, and monitoring.[2] A task still running deserves a check on its progress and stopping conditions.
-
-Controls also differ by layer. Pydantic AI distinguishes model turns from successful tool executions; a turn count does not cover every underlying transport attempt.[3] AWS warns that a timeout does not establish that a remote action failed to happen, and retries can add load to an overloaded service.[4]
-
-## Two. Room to Explore Needs a Boundary
-
-The case for execution room: exploration takes work.  The research report describes tasks whose direction changes as evidence arrives.[1] Our reading is that forcing every task into a very short run can conflict with the work. Limits should reflect the task.
-
-The caution: distinguish progress from repetition.  OWASP recommends resource monitoring as well as input controls.[2] We suggest tracking completed steps, repeated actions, and stop reasons. Token totals alone do not measure quality, and an unfinished answer does not justify an open-ended run.
-
-More retries do not automatically produce a more reliable service. AWS explains backoff and jitter, while emphasizing the need to consider safe repetition for actions with side effects.[4] We recommend different retry rules for reads and external writes, plus a recoverable state when work stops.
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These observations come from our always-on agent maintenance notes. They are not industry statistics or an account of any particular client.
-
-1. No chat messages does not mean no model calls.  Heartbeat checks and automatic memory maintenance can continue consuming quota or compute unnoticed. Our inventory includes background work as well as chat activity. This does not imply that every framework has identical defaults.
-
-2. Inventory, disable, then limit.  We list automatic jobs, turn off unnecessary ones, and apply limits. We do not have a universal threshold or a savings percentage, so we make neither claim.
-
-3. Ask who takes over.  Our proposed adoption checklist asks for each job’s purpose, trigger, and owner. Agree in advance whether a stopped task waits for review, restarts later, or ends. This is a recommended control, not an additional deployment anecdote.
-
-## Four. Our Recommendations: Limits and What Happens Next
-
-1. Inventory triggers.  Include timers, incoming events, health checks, and retry queues. Record model calls and external writes. Disable jobs without a clear purpose, then test necessary work.
-
-2. Set several kinds of limits.  Manage model turns, tool executions, elapsed time, input and output, and concurrency separately. Check the framework’s definitions rather than treating a turn limit as a count of all network attempts.[2][3]
-
-3. Bound retries and add waiting.  Set retry counts, backoff, and an execution deadline. Check the earlier result before repeating an action with side effects. A timeout alone does not mean nothing happened.[4]
-
-4. Test stops and notifications.  Deliberately reach a limit. Check whether new work stops, how in-flight work is handled, and who is notified. Include a task identifier, the last completed step, and actions still requiring confirmation.
-
-5. Review background usage.  Compare schedules with purpose and look for duplicate triggers or persistent failures. Assign approval and a reason for limit changes instead of expanding the allowance whenever a task fails.[2]
-
-We suggest testing limits with a deliberately failing job: make a test dependency unavailable, verify that retries end as designed, and check that later schedules do not recreate the same work. Also run a successful job to confirm the limits allow normal operation. Retain both records so maintainers can distinguish an intentional stop from a new fault. For shared resources, test what happens to other authorized work when one job reaches its limit, rather than testing a single conversation alone.
-
-◆ Editor’s Note · How Think BIG Approaches This: Make Automated Work Easy to Hand Off
-
-## Every scheduled job needs an owner and a purpose.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-Think BIG’s position is to include schedules, limit scope, stopping procedures, and handoff owners in the operating documentation. A stopping rule belongs in the task design.
-
-Automated work should be inspectable, pausable, and traceable. When work exceeds expectations, preserve progress and unresolved actions so the owner can decide what happens next.
-
-### Frequently Asked Questions
-
-Q1: Why is there usage when nobody is chatting?
-Our maintenance notes include model calls from heartbeat and memory jobs. Inventory automatic schedules.
-Q2: Is a model-turn limit sufficient?
-No. Frameworks can count turns and tool executions separately, and transport retries may fall outside the turn count.[3]
-Q3: Can I retry immediately after a timeout?
-Check the previous outcome first. A remote action with side effects may already have happened.[4]
-Q4: Does a usage alert mean the task stopped?
-Do not assume so. We recommend testing new-work blocking, in-flight work, and the handoff separately.
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] Anthropic, “How we built our multi-agent research system,” June 13, 2025 (exploration and consumption); accessed 2026-10-26: [www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system) ·
-    [2] OWASP, “LLM10:2025 Unbounded Consumption” (limits and monitoring); accessed 2026-10-26: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/) ·
-    [3] Pydantic AI, “Agents,” usage limits (turns and tool counts); accessed 2026-10-26: [pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits) ·
-    [4] AWS, “Timeouts, retries, and backoff with jitter” (timeouts and side effects); accessed 2026-10-26: [aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  AI Deployment Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/
-
-# A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Enterprise Security Notes · Issue 021
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-November 16, 2026  ·  Monday
-◆
-Enterprise Security Notes
-◆
-Issue 021
-
-Voice Impersonation · Payment Verification · Business Procedures
-
-## A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel
-
-Think BIG Media  |  November 16, 2026
-
-Pause an urgent payment request and verify both identity and purpose through previously confirmed contact details. Follow the approval workflow without first proving the audio is synthetic.
-
-## One.  What’s Happening: A Familiar Voice Still Requires Verification
-
-On May 15, 2025, the FBI warned of a campaign active since April in which actors impersonated senior US officials through texts and AI-generated voice messages to seek personal-account access.[1] This was a specific disclosed campaign, not a measure of victimization among Taiwanese businesses or evidence of a surge in executive payment fraud.
-
-The business lesson is to separate a recognizable voice from verified identity. In an earlier warning, the FTC explained that scammers could use public audio to clone a familiar voice and advised calling a number already known to belong to the person.[3] We do not claim a universal number of seconds needed to clone a voice.
-
-Payment requests already need verification. The FBI’s business email compromise guidance recommends confirming payment and purchase requests in person or by phone, including account-number or payment-procedure changes.[2] We extend that principle to voice requests: retain existing approvals without first needing to identify a particular synthesis technology.
-
-## Two.  Perspectives: Clues Help; Procedures Are More Usable Than a Listening Test
-
-The awareness perspective:  The FBI suggests observing tone, wording, and audiovisual details while acknowledging that AI-generated content can be hard to identify.[1] Training can help people notice anomalies. In our view, detecting an audio flaw should not become the employee’s test for authorizing payment.
-
-The procedural caution:  Publicly available personal facts may be insufficient for identity verification. We recommend independently confirmed contact details and separate checks on the purpose, recipient, documents, and approver. This is a business-control proposal, not an audio-forensics method.
-
-Another FBI announcement describes voice and real-time video impersonation uses.[4] Video may supplement checks, but an executive-looking image should not bypass payment controls. Nor should every unfamiliar recording be labeled fraudulent; apply the same verification procedure when uncertain.
-
-Include executives in the exercise and have them explicitly accept callbacks and review delays. Staff cannot apply verification consistently if they are urged to bypass it. Record missing contacts, outdated directories, and incomplete documents as actions, with owners confirming corrections.
-
-◆ Deployment Checklist
-
-## Three. Our Deployment Checklist
-
-These are proposed preparation questions for businesses, not claims of victimization or successful interception.
-
-1. Where does the contact list come from?  Ask whether payment contacts and executive numbers were previously verified and who can edit them. Calling a number supplied in the suspicious message keeps verification inside the sender’s channel.[1][2]
-
-2. Who may pause the request?  We recommend explicitly allowing staff to wait for verification and naming a backup reviewer. “In a meeting and unable to call” should not create an exception.
-
-3. What can the reviewer inspect?  Give reviewers the payment purpose, original documents, and account-change history. Separate confirming identity from approving the request itself; one callback should not silently stand for both.
-
-4. Where is help after submission?  Prepare bank and internal incident contacts in advance. Limit access to preserved recordings and screenshots rather than spreading personal information through group chats.
-
-## Four.  Our Recommendations: Write Steps People Can Follow
-
-1. Pause and use a trusted channel.  End the suspicious call and contact the person through previously confirmed details, rather than a new number or link in the message. The FBI and FTC advise independent verification.[1][3]
-
-2. Verify account changes separately.  Check changed payment details or procedures through established contacts and record the outcome.[2] We recommend the same procedure even when the voice sounds familiar or the message appears in an existing conversation.
-
-3. Separate processing and review.  Assign a reviewer and record the verification channel and approval basis for urgent requests too. If no reviewer is available, wait rather than treating urgency as an exception.
-
-4. Run a tabletop exercise.  Use a written scenario involving secrecy, urgency, and a new account. Check whether staff can find contacts, pause the request, and escalate. No voice clone is needed to test the process.
-
-5. Contact the bank immediately after a mistaken transfer.  The FBI recommends immediate contact with the financial institution and coordination with the receiving institution.[2] Preserve messages, times, and transaction records and seek appropriate assistance under the incident process. Do not wait for proof of AI use or assume funds will be recovered.
-
-A voice delivers a request; verification and approval authorize a payment.
-
-◆ Editor’s Note · How Think BIG Approaches This: Put Pause Authority in the Procedure
-
-## Let staff verify requests and find the right escalation contact.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-We recommend using AI to organize questions or verification tasks while designated people retain payment approval. External-action workflows should preserve verification evidence, review results, and response contacts.
-
-This article provides general fraud-prevention and process information, not legal advice.
-
-### Frequently Asked Questions
-
-Q1: Is a familiar voice enough?
-No. The FBI and FTC recommend independent verification through known contact details.[1][3]
-Q2: Must we prove AI use before pausing?
-We recommend pausing for verification. The FBI’s payment-verification advice does not depend on proving AI use first.[2]
-Q3: Does video make approval safe?
-Do not rely on it alone. The FBI also describes real-time video impersonation.[4]
-Q4: What if funds have already been sent?
-Contact the bank immediately through a known channel, preserve records, and seek assistance under the incident process. The FBI recommends immediate financial-institution contact.[2]
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] FBI IC3, “Senior US Officials Impersonated in Malicious Messaging Campaign,” May 15, 2025, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515) ·
-    [2] FBI, “Business Email Compromise”, accessed 2026-10-26: [www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise) ·
-    [3] FTC, “Scammers use AI to enhance their family emergency schemes,” 2023, accessed 2026-10-26: [consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes) ·
-    [4] FBI IC3, “Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud,” December 3, 2024, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  Enterprise Security Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/ai-agent-usage-limits-20261122/
-
-# AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-AI 導入實測手記 · 第 024 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-AI DEPLOYMENT FIELD NOTES
-
-2026 年 11 月 22 日　星期日
-◆
-AI 導入實測手記
-◆
-第 024 期
-
-AI Agent · 用量上限 · 排程管理
-
-## AI Agent 跑了一整晚沒停？——排程、用量上限與停止條件要一起設
-
-Think BIG 自媒體部  |  2026 年 11 月 22 日
-
-先查誰在排程、誰在重試，再決定上限。用量通知、停止新工作與取消已開始的動作，是三件需要分別驗證的事。
-
-## 一 現象：工作被拆成迴圈，資源也跟著累積
-
-一個問題交給 AI Agent 後，未必只呼叫模型一次。Anthropic 在 2025 年 6 月 13 日公開的研究系統實作文章，說明多個 Agent 可以平行探索不同方向，同時提醒這類架構會快速消耗 token。這是該團隊的實作報告，不能當成所有企業的用量統計。[1]
-
-OWASP《生成式 AI 應用風險》2025 年版的 LLM10，把不受控的推論消耗列為風險，並提出輸入限制、請求速率、配額、逾時與監控等措施。[2] 所以「還在執行」不等於「仍在產生有用結果」，也值得問是否已有停止條件。
-
-技術上也要分層。Pydantic AI 官方文件區分模型回合限制與成功工具執行次數限制；前者不等於每一筆底層傳輸請求。[3] AWS 的重試文件則提醒，逾時不代表遠端動作沒有發生，重試還可能增加原本已過載服務的負擔。[4]
-
-## 二 各方評價：有空間探索，也要有停止界線
-
-支持較大執行空間的理由：有些工作需要探索。 上述多 Agent 報告描述的研究任務，需要隨中間結果改變方向。[1] 我們的判讀是，把所有工作都壓到很短的單次回合，可能不符合任務本身；限制應依工作種類設計。
-
-保留的理由：有用的探索與空轉要能分辨。 OWASP 建議觀察資源分配與異常用量，而不只限制單一輸入。[2] 我們因此建議，同時看完成項目、重複步驟與停止原因；不能只以總 token 多少判斷品質，也不能因為回答尚未完成就無限放行。
-
-重試也不是越多越穩。AWS 說明退避與隨機延遲可用來分散請求，但有副作用的操作還須考慮能否安全重做。[4] 我們的立場是，對外寫入與單純查詢要有不同的重試規則，停止後也要留下可接手的狀態。
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下來自我們常駐型 AI Agent 的維運紀錄，不是產業統計，也不代表任何特定客戶。
-
-1. 沒人傳訊息，仍然會呼叫模型。 心跳檢查、自動整理記憶等排程，會在沒人注意時持續使用額度或運算資源。盤點不能只問誰在聊天，還要逐項看背景工作。這是我們記錄到的現象，不是宣稱所有框架都有相同預設。
-
-2. 先列清單，再關閉不需要的項目。 我們會逐項列出自動排程、關掉用不到的、設定上限。我們沒有一套通用的上限數字，也不估算節省比例。
-
-3. 接下來要問誰能接手。 在導入檢查清單中，我們會要求說明每項工作的目的、觸發來源與負責人；被停止的任務是等待人工、稍後重跑，還是直接結束，也要事先約定。這是我們提出的檢查方式。
-
-## 四 我們的建議：設好上限，也寫好停下來之後
-
-1. 盤點觸發來源。 列出時間排程、訊息事件、健康檢查與重試佇列，記下是否呼叫模型、是否寫入外部系統。先停掉沒有明確用途的工作，再測試必要的工作是否仍能完成。
-
-2. 按任務設多種上限。 分別管理模型回合、工具執行、總時間、輸入輸出與並行工作。對照所用框架的計數定義，別把回合上限誤讀為所有網路呼叫的總數。[2][3]
-
-3. 限制重試並留出等待。 設定重試次數、退避與最晚結束時間；對有副作用的操作，先確認前次結果再決定能否重送。逾時後不要直接假設「沒有執行」。[4]
-
-4. 測試停止與通知。 刻意觸發上限，檢查是否停止新增任務、如何處理已送出的工作，以及誰收到通知。通知文字應包括任務編號、最後完成步驟與待確認動作，方便人工接續。
-
-5. 定期檢查背景用量。 以工作目的對照排程紀錄，尋找重複觸發與持續失敗的項目。上限調整要有人核准並記下理由，避免每次任務失敗都只是把限制放大。[2]
-
-建議用一個刻意失敗的測試工作驗收限制：讓外部測試服務暫時無法回應，觀察重試是否按規則結束，並確認後續排程不會再建立相同工作。接著用成功工作確認正常流程沒有被限制擋住。這兩份紀錄一起交給維護人員，才容易判斷日後的停止究竟是預期控制，還是新故障。若多項工作共用資源，也應確認一項任務達到限制時，其他已獲授權的工作如何處理；別只測單一對話。
-
-◆ 編按 · Think BIG 的做法：讓自動工作可以交接
-
-## 每一項排程，都要有人知道它為何存在。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-Think BIG 主張，常駐 AI Agent 的交接文件應包含排程清單、限制範圍、停止方式與接手人。把「何時停」寫清楚，是任務設計的一部分。
-
-我們希望自動工作能被檢視、暫停與追查。當任務超出預期，先留下目前進度與待確認事項，再由負責人決定下一步；不能讓停止原因消失在背景紀錄裡。
-
-### 常見問題
-
-Q1：沒有人聊天，為什麼還有用量？
-我們維運時看到，心跳檢查與記憶整理也會呼叫模型；應逐項盤點自動排程。
-Q2：只限制模型回合就夠嗎？
-不夠。框架可能分別計算回合與工具執行，也不一定把底層傳輸重試算進回合。[3]
-Q3：逾時後可以直接重送嗎？
-先確認前次動作狀態。有副作用的遠端操作，逾時不表示沒有發生。[4]
-Q4：用量通知等於停止了嗎？
-不能直接畫上等號。我們建議另外測試停止新工作、處理已開始的工作與人工接手流程。
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] Anthropic，〈How we built our multi-agent research system〉，2025-06-13（探索與 token 消耗），查閱日期 2026-10-26：[www.anthropic.com](https://www.anthropic.com/research/multi-agent-research-system)　·
-    [2] OWASP，〈LLM10:2025 Unbounded Consumption〉（限制與監控），查閱日期 2026-10-26：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm102025-unbounded-consumption/)　·
-    [3] Pydantic AI，〈Agents〉用量限制章節（回合與工具計數），查閱日期 2026-10-26：[pydantic.dev](https://pydantic.dev/docs/ai/core-concepts/agent/#usage-limits)　·
-    [4] AWS，〈Timeouts, retries, and backoff with jitter〉（逾時與副作用），查閱日期 2026-10-26：[aws.amazon.com](https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  AI 導入實測手記
-    Think BIG, Make it Real!　大想成業有限公司
-
----
-
-URL: https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/
-
-# 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-企業資安實務 · 第 021 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-2026 年 11 月 16 日　星期一
-◆
-企業資安實務
-◆
-第 021 期
-
-語音冒名 · 付款核實 · 企業流程
-
-## 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程
-
-Think BIG 自媒體部  |  2026 年 11 月 16 日
-
-遇到緊急付款要求，先暫停，再用事先確認的聯絡方式核實人與事。回到原有核准流程，不必先證明聲音是不是 AI。
-
-## 一 現象：語音可以被模仿，付款還是要查核
-
-FBI 在 2025 年 5 月 15 日警示，自當年 4 月起，有人冒充美國高階官員，透過簡訊與 AI 產生的語音訊息建立信任，試圖取得個人帳號存取權。[1] 這是官方揭露的特定活動，不是台灣企業受害統計，也不應直接改寫成「老闆匯款詐騙暴增」。
-
-這項警示給公司的提醒，是把聲音與身分核實分開。美國 FTC 在較早的防詐文章中指出，詐騙者可能利用公開的聲音片段複製熟人的聲音，並建議用自己知道的電話回撥確認。[3] 本文不提供需要多少秒素材就能成功的數字，因為不同工具、資料與情境不能一概而論。
-
-付款要求本來就需要核實。FBI 的商務電子郵件詐騙（BEC）說明建議，透過當面或電話確認付款與採購要求，也要確認帳號或付款程序的變更。[2] 我們據此延伸：即使要求改從語音傳來，也不應省略原有核准；不必先判定使用了哪種合成技術，才有理由暫停。
-
-## 二 各方評價：辨識線索有幫助，流程比聽力測驗更可執行
-
-技術與警覺的一面： FBI 提醒，語氣、用詞與影音細節可以提供觀察線索，同時也承認 AI 內容常難辨識。[1] 我們的判讀是，教育訓練可以教人注意異常，但不適合把「有沒有聽出破綻」當成員工要承擔的付款判準。
-
-程序面的保留： 只問幾個公開資料能查到的問題，未必足以確認身分。我們建議使用已核實的聯絡資料，並另外確認事情本身：付款目的、收款對象、文件與核准人。這是公司流程建議，不是聲音真偽的鑑定方法。
-
-FBI 另一份生成式 AI 詐騙公告列出語音與即時視訊冒名的可能用法。[4] 因此，換成視訊可以作為補充，但不能讓任何看起來像主管的畫面直接跳過付款控制。我們也不主張每段陌生語音都是詐騙；有疑問時，依相同核實程序處理，避免靠個人感覺決定。
-
-我們也建議讓主管事先參與演練，明確接受經辦回撥與等待覆核。流程若只要求員工提高警覺，卻在真正查證時催促跳過，會讓執行者無所適從。演練後應把找不到窗口、通訊錄過期與文件不齊等缺口列成待辦，再由負責人確認修正結果。
-
-◆ 導入檢查清單
-
-## 三、我們導入時的檢查清單
-
-以下是我們建議公司事先確認的問題清單，不描述受害或攔阻事件。
-
-1. 通訊錄從哪裡來？ 我們會先問，付款聯絡人與主管電話是否有事先確認的紀錄，誰能修改。若回撥號碼直接抄自可疑訊息，核實仍停留在對方控制的管道裡。[1][2]
-
-2. 誰有權說「先停」？ 我們建議明文允許經辦在核實完成前暫停處理，並指定主管不在場時的覆核人。不要讓「正在開會、不能回電」變成略過流程的條件。
-
-3. 核實的人，看得到什麼？ 覆核者應能對照付款目的、原始單據與帳號變更紀錄。我們建議把「確認來電者」和「批准這筆要求」分成兩個問題，避免一通回電同時被當成全部授權。
-
-4. 如果已經送出，怎麼求助？ 先備好銀行與內部事件窗口，讓經辦知道如何聯絡，不必當場從可疑訊息找電話。保存紀錄時也應限制可讀人員，不在群組大量轉傳含個資的錄音或截圖。
-
-## 四 我們的建議：把核實寫成每個人都能照做的步驟
-
-1. 暫停，改走已知管道。 結束可疑通話，用事先確認的電話或其他可信管道聯絡本人；不要沿用來訊附的新電話或連結。FBI 與 FTC 都提出獨立核實方向。[1][3]
-
-2. 帳號變更另行確認。 收款資料或付款程序變更，回到已建立的窗口核對並留紀錄。[2] 我們建議即使聲音熟悉、訊息出現在舊對話，也照同樣程序處理。
-
-3. 讓經辦與覆核分工。 我們建議付款由指定人覆核，緊急件也要記下核實管道與同意依據。找不到覆核人時先等待，不把「對方很急」寫成例外條件。
-
-4. 做一次桌上演練。 用文字情境測試「主管要求保密、立即處理、新帳號」，觀察員工能否找到通訊錄、暫停點與升級窗口。不需要複製任何人的聲音，也能演練程序。
-
-5. 發現誤付就立即聯絡銀行。 FBI 建議立即聯絡金融機構，要求與收款機構聯繫。[2] 同時依公司事件流程保存訊息、時間與交易紀錄，向適當機關求助；不要等到證明是 AI 才通報，也不預期款項必能追回。
-
-一句話：聲音只是訊息來源，付款依據要回到核實與核准。
-
-◆ 編按 · Think BIG 的做法：把停止權寫進流程
-
-## 讓經辦可以查證，也知道該找誰。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們主張 AI 可以協助整理疑點或待核實事項，付款核准仍由指定人負責。涉及對外動作的流程，應留下核實依據、覆核結果與事件處理窗口。
-
-延伸閱讀[AI 系統事件處理](https://thinkbigtw.com/library/qa/ai-incident-response/)。本文提供一般防詐與流程參考，不構成法律意見。
-
-### 常見問題
-
-Q1：聲音很像主管，就能照做嗎？
-不能只以聲音核實。FBI 與 FTC 建議透過獨立、已知的聯絡方式確認。[1][3]
-Q2：要先證明是 AI 才能暫停嗎？
-我們建議不必。可疑付款或帳號變更先走核實流程；FBI 的付款核對建議也不以先鑑定 AI 為前提。[2]
-Q3：改成視訊就可以直接核准嗎？
-不建議。FBI 也列出即時視訊冒名的可能用法，仍需核實與覆核。[4]
-Q4：已經匯出怎麼辦？
-立即用已知管道聯絡銀行，依公司事件流程保存紀錄並尋求協助；FBI 亦建議立即聯絡金融機構。[2]
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] FBI IC3，〈Senior US Officials Impersonated in Malicious Messaging Campaign〉，2025-05-15，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515)　·
-    [2] FBI，〈Business Email Compromise〉，查閱日期 2026-10-26：[www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise)　·
-    [3] FTC，〈Scammers use AI to enhance their family emergency schemes〉，2023，查閱日期 2026-10-26：[consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes)　·
-    [4] FBI IC3，〈Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud〉，2024-12-03，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  企業資安實務
-    Think BIG, Make it Real!　大想成業有限公司
-
----

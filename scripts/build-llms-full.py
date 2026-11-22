@@ -25,6 +25,7 @@ urls=[n.text for n in ET.parse(ROOT/'sitemap.xml').iter('{http://www.sitemaps.or
 parts=[]
 for url in urls:
  path=url.removeprefix(BASE);p=ROOT/(path+'index.html' if not path or path.endswith('/') else path)
+ if not p.exists():print('WARN skip missing page:',url,file=sys.stderr);continue  # unpublished page listed in sitemap must not break the build
  soup=BeautifulSoup(p.read_text(),'html.parser')
  if is_stub(soup):continue  # noindex / meta-refresh pages are never exported
  body=soup.main or soup.body
