@@ -11,23 +11,23 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？｜問答圖書館｜Think BIG</title>
-<meta name="description" content="AI 的 API 金鑰外洩，等於別人可以用你公司的帳號呼叫 AI：帳單算你的，額度被用光，也可能造成資料損失。發現外洩要立刻撤銷並換新金鑰。本文依 OpenAI 官方金鑰安全建議與 OWASP 秘密管理指南，整理外洩時的 4 個步驟和平時的 7 條保管規則。">
+<title>API 金鑰外洩怎麼辦？立刻做這 4 步｜Think BIG</title>
+<meta name="description" content="懷疑 AI 的 API 金鑰外洩？先撤銷舊金鑰、產生新金鑰並更新到系統，再到用量頁面檢查有沒有不是自己團隊產生的紀錄，最後從程式庫歷史、聊天紀錄與日誌清掉外洩的金鑰。另附平時保管金鑰的 7 條規則。">
 <link rel="canonical" href="https://thinkbigtw.com/library/qa/ai-api-key-leak/">
 <link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/ai-api-key-leak/">
 <link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/ai-api-key-leak/">
 <link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/ai-api-key-leak/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://thinkbigtw.com/library/qa/ai-api-key-leak/">
-<meta property="og:title" content="AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？｜問答圖書館｜Think BIG">
-<meta property="og:description" content="AI 的 API 金鑰外洩，等於別人可以用你公司的帳號呼叫 AI：帳單算你的，額度被用光，也可能造成資料損失。發現外洩要立刻撤銷並換新金鑰。本文依 OpenAI 官方金鑰安全建議與 OWASP 秘密管理指南，整理外洩時的 4 個步驟和平時的 7 條保管規則。">
+<meta property="og:title" content="API 金鑰外洩怎麼辦？立刻做這 4 步｜Think BIG">
+<meta property="og:description" content="懷疑 AI 的 API 金鑰外洩？先撤銷舊金鑰、產生新金鑰並更新到系統，再到用量頁面檢查有沒有不是自己團隊產生的紀錄，最後從程式庫歷史、聊天紀錄與日誌清掉外洩的金鑰。另附平時保管金鑰的 7 條規則。">
 <meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <meta property="og:site_name" content="Think BIG!">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？｜問答圖書館｜Think BIG">
-<meta name="twitter:description" content="AI 的 API 金鑰外洩，等於別人可以用你公司的帳號呼叫 AI：帳單算你的，額度被用光，也可能造成資料損失。發現外洩要立刻撤銷並換新金鑰。本文依 OpenAI 官方金鑰安全建議與 OWASP 秘密管理指南，整理外洩時的 4 個步驟和平時的 7 條保管規則。">
+<meta name="twitter:title" content="API 金鑰外洩怎麼辦？立刻做這 4 步｜Think BIG">
+<meta name="twitter:description" content="懷疑 AI 的 API 金鑰外洩？先撤銷舊金鑰、產生新金鑰並更新到系統，再到用量頁面檢查有沒有不是自己團隊產生的紀錄，最後從程式庫歷史、聊天紀錄與日誌清掉外洩的金鑰。另附平時保管金鑰的 7 條規則。">
 <meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <script type="application/ld+json">
 {
@@ -37,7 +37,7 @@
    "@type": "Article",
    "@id": "https://thinkbigtw.com/library/qa/ai-api-key-leak/#article",
    "headline": "AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？",
-   "description": "AI 的 API 金鑰外洩，等於別人可以用你公司的帳號呼叫 AI：帳單算你的，額度被用光，也可能造成資料損失。發現外洩要立刻撤銷並換新金鑰。本文依 OpenAI 官方金鑰安全建議與 OWASP 秘密管理指南，整理外洩時的 4 個步驟和平時的 7 條保管規則。",
+   "description": "懷疑 AI 的 API 金鑰外洩？先撤銷舊金鑰、產生新金鑰並更新到系統，再到用量頁面檢查有沒有不是自己團隊產生的紀錄，最後從程式庫歷史、聊天紀錄與日誌清掉外洩的金鑰。另附平時保管金鑰的 7 條規則。",
    "keywords": "API key 外洩, API key 保管, API key 安全, OpenAI API key 安全, 金鑰管理, 金鑰輪替, AI 資安, Think BIG",
    "author": {
     "@type": "Organization",

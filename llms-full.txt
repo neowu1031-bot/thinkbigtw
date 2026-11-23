@@ -1723,7 +1723,11 @@ Think BIG Editorial
 
 Grok, Claude, ChatGPT, Gemini and others are launching fast. This guide covers what AI Agents are available in 2026, how each charges for usage, what to do when quotas run out, and where OpenClaw fits for long-running tasks.
 
-Last updated: 2026-10-02 | Data verified: 2026-09-30
+Last updated: 2026-11-24 | Data verified: 2026-11-24
+
+What is an AI Agent?  An AI Agent is an AI assistant that runs workflows within approved data, tools, and actions; its outputs and important actions are still reviewed by a designated person.
+
+What AI Agents are there in 2026?  Brand AI Agents: Claude (Anthropic), ChatGPT Work and dots (OpenAI), Tasks in Gemini (Google, formerly Gemini Spark), Grok Bot (xAI), Muse (Meta), and Microsoft Copilot. Open-source AI Agents you can pair with any model: OpenClaw (the Lobster) and Hermes Agent. Pricing and Taiwan availability are listed below  (data verified 2026-11-24).
 
 New AI Agents will not make OpenClaw (the Lobster) obsolete — they are designed for different purposes. Each one is excellent. But for long-running tasks where cost control matters, brand AI Agents are not the first choice, though they are great for collaboration.
 
@@ -1739,85 +1743,111 @@ Each one is excellent. But for long-running tasks where cost control matters, br
 
 ## Common AI Agents in 2026
 
-Data verified: 2026-09-30. Prices are from official brand websites. All prices shown in original currency; no self-calculated conversions. Labels: [Official] from brand website or blog; [Third-party] media only; [To verify] not disclosed by vendor.
+Data verified: 2026-11-24. Prices are from official brand websites, shown in original currency with no conversions. Label: [Official] means the brand's website, help center, or official newsroom. Where the vendor does not state something, we write "not disclosed" rather than estimate.
 
 ### Two Main Types
 
-- Brand AI Agents  — subscription-based, fixed monthly fee with usage quota. Examples: Claude, ChatGPT Agent, Gemini Spark, Grok Bot, Muse, Copilot Autopilot, Manus.
+- Brand AI Agents  — subscription-based, fixed monthly fee with usage allowance. Examples: Claude, ChatGPT Work and dots, Tasks in Gemini, Grok Bot, Muse, Microsoft Copilot.
 
 - Open-source AI Agents  — software is free; model usage fees paid directly to your chosen model provider, or use a local model for zero model fees. Examples: OpenClaw (Lobster), Hermes Agent.
 
 ### Claude (Anthropic)
 
-- What it is : Anthropic's AI assistant, integrated background task completion (reports, research) since September 2026. [Official]
+- What it is : Anthropic's AI assistant. Besides chat, Anthropic offers Claude Code (coding assistant) and Claude Cowork (delegated work). [Official]
 
-- How to use : Web, desktop app, mobile, Claude Code; all share one usage limit. [Official]
+- How to use : Web, desktop app, mobile, Claude Code; claude.ai, Claude Code, and Claude Desktop share one usage limit. [Official]
 
-- Pricing : Free (limited); Pro and Max plans available — see [claude.com/pricing](https://claude.com/pricing). Usage limits reset on 5-hour and weekly cycles; paid plans can purchase usage credits. [Official]
+- Pricing : Free (limited); Pro US$20/month (US$17/month billed annually); Max US$100/month (5x Pro usage); Ultra US$200/month (10x Pro weekly usage, no 5-hour limit). Usage resets on 5-hour and weekly cycles; paid plans can buy usage credits. [Official]
 
-- Available in Taiwan : Yes. [Official]
+- Available in Taiwan : Yes (Taiwan is on the supported-countries list). [Official]
 
-- Source : [claude.com/pricing](https://claude.com/pricing), verified 2026-09-30.
+- Source : [claude.com/pricing](https://claude.com/pricing), [usage limits](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work), [supported countries](https://www.anthropic.com/supported-countries), verified 2026-11-24.
 
-### ChatGPT Agent and dots (OpenAI)
+### ChatGPT Work and dots (OpenAI)
 
-- What it is : ChatGPT Agent uses a virtual browser to complete multi-step tasks; dots (launched 2026-09-29) is a 24/7 AI Agent with its own cloud computer, connected to 4,000+ apps. [Official]
+- What it is : ChatGPT agent mode is no longer available; OpenAI now points users to ChatGPT Work for longer, multi-step tasks and finished deliverables. dots (launched 2026-09-29) is a 24/7 AI Agent with its own cloud computer that can connect to 4,000+ apps through plugins. [Official]
 
-- How to use : Select "agent" in ChatGPT tools or type /agent; dots is accessible via ChatGPT, Slack, and Teams. [Official]
+- How to use : ChatGPT Work runs in ChatGPT on desktop, web, and mobile. A dot is created in the ChatGPT desktop app or a desktop browser, then can be messaged from the mobile app, Slack, or Teams. [Official]
 
-- Pricing : Plus and Pro plans available — see [openai.com/chatgpt/pricing](https://openai.com/chatgpt/pricing/). ChatGPT Agent and Codex share the same agentic quota; dots is included in Pro and Business Premium. [Official]
+- Pricing : Plus US$20/month; Pro comes as Pro 100 (US$100), Pro 200 (US$200), and Pro 500 (US$500) per month. Work and Codex share the plan's included allowance, which is not a fixed message count; when it runs out you can wait, upgrade, or buy credits. OpenAI says that starting in December, ChatGPT and Codex usage will share one allowance on Plus, Pro, and Business. Your first dot is included in Pro and Business Premium at no extra cost; chatting with it does not count toward ChatGPT limits, but Work or Codex tasks it starts do. [Official]
 
-- Available in Taiwan : ChatGPT Agent yes; dots availability [To verify]. [Official]
+- Available in Taiwan : ChatGPT yes (Taiwan is a supported country). [Official] dots rolls out to "eligible markets"; whether Taiwan is included is not disclosed.
 
-- Source : [ChatGPT agent help](https://help.openai.com/en/articles/11752874-chatgpt-agent), [dots launch](https://openai.com/index/introducing-dots/), verified 2026-09-30.
+- Source : [ChatGPT agent (retired)](https://help.openai.com/en/articles/11752874-chatgpt-agent), [Pro tiers](https://help.openai.com/en/articles/9793128), [ChatGPT and Codex usage](https://help.openai.com/en/articles/20001625), [dots launch](https://openai.com/index/introducing-dots/), verified 2026-11-24.
 
-### Gemini Spark (Google)
+### Tasks in Gemini (Google, formerly Gemini Spark)
 
-- What it is : Google's 24/7 personal AI Agent that works in the background even when your device is off, connected to Gmail, Calendar, and Drive. [Official]
+- What it is : Google's personal AI Agent. The official product page that introduced Gemini Spark now presents it as "Tasks in Gemini": hand off a task and it works through multiple steps in the background, runs scheduled routines, and uses your connected apps and websites. [Official]
 
-- How to use : Requires Google AI Pro or Ultra subscription; must be 18+ with a personal Google account. [Official]
+- How to use : Gemini mobile app, Gemini app on Mac, or gemini.google.com; 18+ with a personal Google account (work and school accounts not supported for now). [Official]
 
-- Pricing : AI Pro and AI Ultra plans available — see [gemini.google/subscriptions](https://gemini.google/subscriptions/). Usage calculated by computation, recovering every 5 hours up to a weekly cap. [Official]
+- Pricing : Since 2026-11-17, free in the US, India, Canada, Australia, Japan, and Korea. Elsewhere it requires Google AI Pro (US$19.99/month) or AI Ultra (US$99.99 or US$199.99/month). Usage is compute-based and rises with higher plans. [Official]
 
-- Available in Taiwan : Not on the exclusion list; actual availability [To verify].
+- Available in Taiwan : Taiwan is not on the free list. The exclusion list (EEA, Nigeria, Switzerland, UK) does not include Taiwan, so per Google, Taiwan users need AI Pro or Ultra. [Official]
 
-- Source : [gemini.google/subscriptions](https://gemini.google/subscriptions/), verified 2026-09-30.
+- Source : [Tasks in Gemini](https://gemini.google/overview/agent/), [requirements](https://support.google.com/gemini/answer/17094507), [gemini.google/subscriptions](https://gemini.google/subscriptions/), verified 2026-11-24.
 
 ### Grok Bot (xAI)
 
-- What it is : xAI's persistent AI teammate (launched August 2026) with its own cloud computer, browser and terminal; multiple can run simultaneously. [Official]
+- What it is : xAI's always-on AI teammate (launched 2026-08-11, in beta). It has its own cloud computer, signs in and works across apps, tools, and websites, and comes back to you only when it needs approval. [Official]
 
-- How to use : Available on macOS, Windows, Linux, iOS, Android. [Official]
+- How to use : Desktop app on macOS, Windows, Linux; companion app on iOS and Android; also in X Chat and Slack. [Official]
 
-- Pricing : SuperGrok and SuperGrok Plus plans — both include Grok Bot. All Grok products share one weekly usage pool; heavy video or long tasks consume more quota. Extra Usage Credits available (web only, 1-year validity) — see [x.ai/pricing](https://x.ai/pricing). [Official]
+- Pricing : Since 2026-10-12, new customers start on The X Subscription: Premium US$30, Super US$100, and Ultra US$200 per month include Grok Bot; Plus (US$8) and Free do not. Grok Bot shares a weekly usage pool with the Grok apps and Cursor, and prepaid credit covers usage beyond the pool. Existing SuperGrok and Cursor plans can be kept. Extra Usage Credits start at US$5, web only, valid for one year. [Official]
 
-- Available in Taiwan : No official country list published [To verify]. [Official]
+- Available in Taiwan : xAI says The X Subscription is rolling out globally; Grok Bot country restrictions are not disclosed.
 
-- Source : [x.ai/pricing](https://x.ai/pricing), verified 2026-09-30.
+- Source : [The X Subscription](https://x.ai/news/x-subscription), [Grok Bot FAQ](https://docs.x.ai/grok-bot/faq), [Grok Bot launch](https://x.ai/news/introducing-grok-bot), verified 2026-11-24.
 
 ### Muse (Meta)
 
-- What it is : Meta's personal AI Agent (launched 2026-09-08) running in a dedicated virtual machine; can browse, fill forms, send emails, and make bookings. Confirms before sending or paying. [Official]
+- What it is : Meta's personal AI Agent (launched September 2026), running on a dedicated virtual machine; it can browse, fill forms, send emails, and make bookings, in the Muse app or WhatsApp. [Official]
 
-- How to use : iOS, Android app and muse.ai. Currently limited to the US; Canada opened 2026-09-18. [Official]
+- How to use : iOS and Android apps and muse.ai. [Official]
 
-- Pricing : Free (limited); Power (5B Muse tokens/week) and Maximum (30B Muse tokens/week) plans available — see [meta.com/ai/muse](https://www.meta.com/ai/muse/). [Official]
+- Pricing : Free for most needs; Power US$20/month (500 million Muse tokens/week); Maximum US$100/month (3 billion Muse tokens/week). Meta says subscriptions are in limited testing and not available everywhere. [Official]
 
-- Available in Taiwan : Not currently available. [Official]
+- Available in Taiwan : Official announcements list the US, Singapore (October 2026), and Australia (November 2026); Taiwan is not listed. [Official]
 
-- Source : [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/), verified 2026-09-30.
+- Source : [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/), [Australia launch](https://about.fb.com/news/2026/11/muse-is-now-available-in-australia/), [Muse subscriptions](https://www.meta.com/help/subscriptions/1021145227643680/), verified 2026-11-24.
+
+### Microsoft Copilot (individuals)
+
+- What it is : Copilot inside Microsoft 365, handling tasks in Word, Excel, PowerPoint, and Outlook. Autopilot, the always-on work version, began rolling out to Frontier preview customers on 2026-11-17 and is still in preview. [Official]
+
+- How to use : Microsoft 365 personal plans, via web or Microsoft 365 apps. [Official]
+
+- Pricing : Microsoft 365 Personal US$9.99/month; Premium US$19.99/month (limited agentic AI usage); Pro US$99.99/month (highest usage, monthly billing only). Regular prices; limited-time offers vary. Microsoft only states "usage limits apply"; exact allowances are not disclosed. [Official]
+
+- Available in Taiwan : Microsoft 365 is sold in Taiwan; availability of agentic features and Autopilot in Taiwan is not disclosed.
+
+- Source : [Copilot pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals), [Autopilot FAQ](https://learn.microsoft.com/en-us/copilot/autopilot/faq), verified 2026-11-24.
 
 ### OpenClaw — the Lobster (Open-source)
 
-- What it is : OpenClaw is an open-source personal AI assistant, often called "the Lobster" in Taiwan. Installed on your own computer; accessed via WhatsApp, Telegram or other chat apps. Supports both local and cloud models. [Official]
+- What it is : OpenClaw is an open-source personal AI assistant, often called "the Lobster" in Taiwan. Installed on your own computer or server; accessed via WhatsApp, Telegram, Discord, or other chat apps. Supports both local and cloud models. [Official]
 
-- How to use : Runs on Windows and macOS. Can be used standalone or paired with Hermes for a dual-agent setup.
+- How to use : Runs on Windows, macOS, Linux, or your own cloud server; on a personal computer, the computer must stay on. Can be paired with Hermes for a dual-agent setup. [Official]
 
-- Pricing : Software is free. Model costs depend on your chosen provider and actual usage. [Official]
+- Pricing : Software is free. Model costs depend on your chosen provider and actual usage, or use a local model for zero usage fees. [Official]
 
 - Available in Taiwan : Yes (self-install). [Official]
 
-- Source : OpenClaw official documentation, verified 2026-09-30. → [Installation guide (中)](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+- Source : [OpenClaw documentation](https://docs.openclaw.ai/), verified 2026-11-24. → [Installation guide (中)](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+
+### Hermes Agent (Open-source)
+
+- What it is : Hermes Agent is Nous Research's open-source, self-hosted AI agent with persistent memory and autonomous skill creation, reachable via Telegram, Discord, Slack, WhatsApp, Signal, and email. [Official]
+
+- How to use : Runs on Windows, macOS, Linux; use alone or paired with OpenClaw. [Official]
+
+- Pricing : Software is free (MIT license); model costs depend on your chosen provider. [Official]
+
+- Available in Taiwan : Yes (self-install). [Official]
+
+- Source : [Hermes Agent website](https://hermes-agent.nousresearch.com/), verified 2026-11-24.
+
+Other AI Agents often mentioned include Perplexity Computer, Manus, Siri, and Alexa+. We did not re-verify these in this update; check each vendor's website for current pricing and availability in Taiwan.
 
 ## Two Approaches: How They Differ
 
@@ -1842,15 +1872,17 @@ Each one is excellent. But for long-running tasks where cost control matters, br
 
 ## What To Do When Your Quota Runs Out
 
-- Claude (Anthropic) : 5-hour segment limit plus weekly cap; paid plans can purchase usage credits. (Source: [official](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work), verified 2026-09-30)
+How each brand resets usage (verified 2026-11-24):
 
-- ChatGPT Agent (OpenAI) : Monthly limit per plan; credits available for purchase. (Source: [official](https://help.openai.com/en/articles/12642688), verified 2026-09-30)
+- Claude (Anthropic) : 5-hour session limit plus weekly limit (Ultra has no 5-hour limit); paid plans can buy usage credits. (Source: [official](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work))
 
-- Grok Bot (xAI) : Weekly pool resets; Extra Usage Credits available for purchase (web only). (Source: [official](https://docs.x.ai/grok/faq), verified 2026-09-30)
+- ChatGPT Work and dots (OpenAI) : Work and Codex share the plan's included allowance, with 5-hour and weekly windows depending on plan; from December, ChatGPT and Codex share one allowance; wait for reset, upgrade, or buy credits. (Source: [official](https://help.openai.com/en/articles/20001516), [credits](https://help.openai.com/en/articles/12642688))
 
-- Gemini Spark (Google) : Computation-based, recovers every 5 hours up to weekly cap; Pro/Ultra can purchase AI credits. (Source: [official](https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/), verified 2026-09-30)
+- Grok Bot (xAI) : Weekly pool resets; prepaid credit covers extra usage; Extra Usage Credits from US$5, valid one year. (Source: [Grok Bot FAQ](https://docs.x.ai/grok-bot/faq), [Grok FAQ](https://docs.x.ai/grok/faq))
 
-- Muse (Meta) : Upgrade or wait for free quota to recover. Power: 5B tokens/week; Maximum: 30B tokens/week. (Source: [official](https://www.meta.com/help/subscriptions/1021145227643680/), verified 2026-09-30)
+- Tasks in Gemini (Google) : Compute-based usage limits that rise with higher subscriptions; exact allowances not disclosed. (Source: [official](https://support.google.com/gemini/answer/17094507))
+
+- Muse (Meta) : Upgrade when the free allowance runs out; Power 500 million Muse tokens/week, Maximum 3 billion Muse tokens/week. (Source: [official](https://www.meta.com/help/subscriptions/1021145227643680/))
 
 General approach: route long-running background work to an open-source AI Agent (like OpenClaw, Hermes) — use brand AI Agents for collaboration tasks when needed. → [Dual Agent collaboration](https://thinkbigtw.com/en/dual-agent/)
 
@@ -1858,11 +1890,11 @@ General approach: route long-running background work to an open-source AI Agent 
 
 Q: Will new AI Agents replace OpenClaw (the Lobster)?
 
-The two serve different purposes and work well together. Common brand AI Agents in 2026 include Grok Bot (xAI), Claude (Anthropic), ChatGPT Agent and dots (OpenAI), Gemini Spark (Google), Muse (Meta), Copilot Autopilot (Microsoft), and Manus. Each one is excellent, but for long-running tasks where cost control matters, brand AI Agents are not the first choice — though they are great for collaboration. OpenClaw and Hermes, as open-source AI Agents, let you choose your own model, pay per actual usage, and run 24/7.
+The two serve different purposes and work well together. Common brand AI Agents in 2026 include Claude (Anthropic), ChatGPT Work and dots (OpenAI), Tasks in Gemini (Google), Grok Bot (xAI), Muse (Meta), and Microsoft Copilot. Each one is excellent, but for long-running tasks where cost control matters, brand AI Agents are not the first choice — though they are great for collaboration. OpenClaw and Hermes, as open-source AI Agents, let you choose your own model, pay per actual usage, and run 24/7.
 
 Q: What AI Agents are available in 2026?
 
-Two main types: (1) Brand AI Agents — subscription-based with usage quotas, such as Claude, ChatGPT Agent, Gemini Spark, Grok Bot, Muse, Copilot Autopilot, Manus. (2) Open-source AI Agents — software is free, you pay per model usage, such as OpenClaw (Lobster) and Hermes Agent.
+Two main types: (1) Brand AI Agents — subscription-based with usage allowances: Claude (Anthropic), ChatGPT Work and dots (OpenAI), Tasks in Gemini (Google, formerly Gemini Spark), Grok Bot (xAI), Muse (Meta), Microsoft Copilot. (2) Open-source AI Agents — software is free, you pay per model usage: OpenClaw (Lobster), Hermes Agent. Data verified 2026-11-24.
 
 Q: What should I do when my AI subscription quota runs out?
 
@@ -1878,21 +1910,27 @@ No. Think BIG's service fee covers installation and setup only. Third-party AI m
 
 ## Sources and Update History
 
-All data in this page is from official brand websites as of 2026-09-30. Numbers without official sources are not included.
+All vendor data on this page comes from official brand websites, help centers, and newsrooms as of 2026-11-24. Anything the vendor does not state is marked "not disclosed".
 
 - Claude: [claude.com/pricing](https://claude.com/pricing)
 
-- ChatGPT Agent: [OpenAI Help Center](https://help.openai.com/en/articles/11752874-chatgpt-agent)
+- ChatGPT Work, Pro tiers, usage: [OpenAI Help Center](https://help.openai.com/en/articles/9793128)
 
 - dots: [openai.com/index/introducing-dots](https://openai.com/index/introducing-dots/)
 
-- Gemini Spark: [gemini.google/overview/agent](https://gemini.google/overview/agent/)
+- Tasks in Gemini: [gemini.google/overview/agent](https://gemini.google/overview/agent/)
 
-- Grok Bot: [x.ai/news/introducing-grok-bot](https://x.ai/news/introducing-grok-bot)
+- Grok Bot: [docs.x.ai/grok-bot/faq](https://docs.x.ai/grok-bot/faq)
 
 - Muse: [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)
 
-Data verified: 2026-09-30. Prices subject to change. Update history: 2026-10-02 initial publication.
+- Microsoft Copilot: [microsoft.com/copilot/pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals)
+
+- OpenClaw: [docs.openclaw.ai](https://docs.openclaw.ai/)
+
+- Hermes Agent: [hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/)
+
+Data verified: 2026-11-24. Prices subject to change. Update history: 2026-10-02 initial publication; 2026-11-24 all vendor data re-verified (ChatGPT agent replaced by ChatGPT Work, Gemini Spark page now presents Tasks in Gemini, Grok Bot now on The X Subscription, Claude adds Ultra, Muse token figures corrected), and the direct answer moved to the top.
 
 ---
 
@@ -4103,6 +4141,117 @@ This article combines research reporting with Think BIG’s first-hand practice.
 
 THINK BIG NEWS   ·  First-hand observations on AI deployment
     Think BIG, Make it Real!   Think BIG Make it Real CO., LTD.
+
+---
+
+URL: https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/
+
+# A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Enterprise Security Notes · Issue 021
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+November 16, 2026  ·  Monday
+◆
+Enterprise Security Notes
+◆
+Issue 021
+
+Voice Impersonation · Payment Verification · Business Procedures
+
+## A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel
+
+Think BIG Media  |  November 16, 2026
+
+Pause an urgent payment request and verify both identity and purpose through previously confirmed contact details. Follow the approval workflow without first proving the audio is synthetic.
+
+## One.  What’s Happening: A Familiar Voice Still Requires Verification
+
+On May 15, 2025, the FBI warned of a campaign active since April in which actors impersonated senior US officials through texts and AI-generated voice messages to seek personal-account access.[1] This was a specific disclosed campaign, not a measure of victimization among Taiwanese businesses or evidence of a surge in executive payment fraud.
+
+The business lesson is to separate a recognizable voice from verified identity. In an earlier warning, the FTC explained that scammers could use public audio to clone a familiar voice and advised calling a number already known to belong to the person.[3] We do not claim a universal number of seconds needed to clone a voice.
+
+Payment requests already need verification. The FBI’s business email compromise guidance recommends confirming payment and purchase requests in person or by phone, including account-number or payment-procedure changes.[2] We extend that principle to voice requests: retain existing approvals without first needing to identify a particular synthesis technology.
+
+## Two.  Perspectives: Clues Help; Procedures Are More Usable Than a Listening Test
+
+The awareness perspective:  The FBI suggests observing tone, wording, and audiovisual details while acknowledging that AI-generated content can be hard to identify.[1] Training can help people notice anomalies. In our view, detecting an audio flaw should not become the employee’s test for authorizing payment.
+
+The procedural caution:  Publicly available personal facts may be insufficient for identity verification. We recommend independently confirmed contact details and separate checks on the purpose, recipient, documents, and approver. This is a business-control proposal, not an audio-forensics method.
+
+Another FBI announcement describes voice and real-time video impersonation uses.[4] Video may supplement checks, but an executive-looking image should not bypass payment controls. Nor should every unfamiliar recording be labeled fraudulent; apply the same verification procedure when uncertain.
+
+Include executives in the exercise and have them explicitly accept callbacks and review delays. Staff cannot apply verification consistently if they are urged to bypass it. Record missing contacts, outdated directories, and incomplete documents as actions, with owners confirming corrections.
+
+◆ Deployment Checklist
+
+## Three. Our Deployment Checklist
+
+These are proposed preparation questions for businesses, not claims of victimization or successful interception.
+
+1. Where does the contact list come from?  Ask whether payment contacts and executive numbers were previously verified and who can edit them. Calling a number supplied in the suspicious message keeps verification inside the sender’s channel.[1][2]
+
+2. Who may pause the request?  We recommend explicitly allowing staff to wait for verification and naming a backup reviewer. “In a meeting and unable to call” should not create an exception.
+
+3. What can the reviewer inspect?  Give reviewers the payment purpose, original documents, and account-change history. Separate confirming identity from approving the request itself; one callback should not silently stand for both.
+
+4. Where is help after submission?  Prepare bank and internal incident contacts in advance. Limit access to preserved recordings and screenshots rather than spreading personal information through group chats.
+
+## Four.  Our Recommendations: Write Steps People Can Follow
+
+1. Pause and use a trusted channel.  End the suspicious call and contact the person through previously confirmed details, rather than a new number or link in the message. The FBI and FTC advise independent verification.[1][3]
+
+2. Verify account changes separately.  Check changed payment details or procedures through established contacts and record the outcome.[2] We recommend the same procedure even when the voice sounds familiar or the message appears in an existing conversation.
+
+3. Separate processing and review.  Assign a reviewer and record the verification channel and approval basis for urgent requests too. If no reviewer is available, wait rather than treating urgency as an exception.
+
+4. Run a tabletop exercise.  Use a written scenario involving secrecy, urgency, and a new account. Check whether staff can find contacts, pause the request, and escalate. No voice clone is needed to test the process.
+
+5. Contact the bank immediately after a mistaken transfer.  The FBI recommends immediate contact with the financial institution and coordination with the receiving institution.[2] Preserve messages, times, and transaction records and seek appropriate assistance under the incident process. Do not wait for proof of AI use or assume funds will be recovered.
+
+A voice delivers a request; verification and approval authorize a payment.
+
+◆ Editor’s Note · How Think BIG Approaches This: Put Pause Authority in the Procedure
+
+## Let staff verify requests and find the right escalation contact.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend using AI to organize questions or verification tasks while designated people retain payment approval. External-action workflows should preserve verification evidence, review results, and response contacts.
+
+This article provides general fraud-prevention and process information, not legal advice.
+
+### Frequently Asked Questions
+
+Q1: Is a familiar voice enough?
+No. The FBI and FTC recommend independent verification through known contact details.[1][3]
+Q2: Must we prove AI use before pausing?
+We recommend pausing for verification. The FBI’s payment-verification advice does not depend on proving AI use first.[2]
+Q3: Does video make approval safe?
+Do not rely on it alone. The FBI also describes real-time video impersonation.[4]
+Q4: What if funds have already been sent?
+Contact the bank immediately through a known channel, preserve records, and seek assistance under the incident process. The FBI recommends immediate financial-institution contact.[2]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] FBI IC3, “Senior US Officials Impersonated in Malicious Messaging Campaign,” May 15, 2025, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515) ·
+    [2] FBI, “Business Email Compromise”, accessed 2026-10-26: [www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise) ·
+    [3] FTC, “Scammers use AI to enhance their family emergency schemes,” 2023, accessed 2026-10-26: [consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes) ·
+    [4] FBI IC3, “Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud,” December 3, 2024, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
 
 ---
 
@@ -6842,7 +6991,7 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-permissions/
 
-# AI Agent Permissions: Least-Privilege Setup | Think BIG
+# Who Should Approve AI Agent Permissions? Roles and Checklist | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6856,7 +7005,7 @@ Think BIG Q&A Library  ·  2026-10-19
 
 The short answer
 
-Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing "don't do this" in a prompt.
+Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing "don't do this" in a prompt. Who approves: the owner of each system or data source the agent touches signs off its permissions; high-impact actions need a named person to approve each run.
 
 ## 1. What goes wrong with too much permission
 
@@ -7169,7 +7318,7 @@ Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
 
 URL: https://thinkbigtw.com/en/qa/ai-api-key-leak/
 
-# AI API Key Leak: Risks & Secure Storage Guide | Think BIG
+# API Key Exposed? 4 Steps to Take Immediately | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -11129,6 +11278,96 @@ Updated 2026-10-19
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/inference-vs-training/
+
+# What Is the Difference Between Inference and Training? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Basics
+TB41
+
+# What Is the Difference Between Inference and Training?
+
+Think BIG Q&A Library  ·  2026-11-23
+      ·  [中文](https://thinkbigtw.com/library/qa/inference-vs-training/)
+
+The short answer
+
+Inference uses an already trained model to produce a result; training adjusts model parameters using data. Generating a draft or summary is inference, while separately fine-tuning a model involves training. Whether a service retains those inputs or later uses them for training is a separate terms-and-settings question.
+
+## 1. Ask whether parameters are being changed
+
+Google’s machine-learning glossary describes training as reading examples and adjusting parameters, and LLM inference as generating a response with a trained model. A new prompt does not by itself mean retraining.
+
+Hugging Face describes fine-tuning as continuing training on a task- or domain-specific dataset. Deploying a model can mean running an existing model on designated equipment. It does not necessarily include training one.
+
+## 2. Classify common activities
+
+Activity
+Main process
+Do not assume
+Rewrite text
+Inference
+Parameters have changed
+
+Include a policy in a prompt
+Supply answer context
+Permanent memory
+
+Retrieve documents with RAG
+Retrieval plus inference
+Documents were used for fine-tuning
+
+Fine-tune with examples
+Further training
+Every answer will be correct
+
+Microsoft’s RAG guidance describes grounding responses in enterprise content. This requires retrieval and content preparation. Clarify whether a project delivers a retrieval system, a model runtime, or training artifacts, and specify acceptance evidence accordingly.
+
+## 3. Review needs and data handling separately
+
+For current company documents, start by checking content quality, retrieval, and access. For consistent task behavior, assess whether fine-tuning is needed. This is a suggested evaluation order, not a universal prescription. Test existing models on actual work to identify whether the gap is data, workflow, or model behavior.
+
+Separately map processing locations, retention, access, training use, and exit arrangements. Think BIG’s local-data guide notes that terms depend on the product, account, and contract. Inference does not mean no logs; local deployment still requires reviewing backups and external integrations. Choose local or cloud execution against these requirements.
+
+Brand information | Think BIG
+
+## Think BIG’s model-processing locations and data scope
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does a long conversation train the model? Context can affect responses. Parameter changes or later training use require checking the system and terms. Q2: Must a company train from scratch? Do not assume so. Test an existing model before deciding whether training is needed. Q3: Is RAG training? Retrieving documents for an answer differs from fine-tuning parameters; a system may include both. Q4: Does inference remove privacy risk? No. Review inputs, logging, retention, and external services separately.
+
+Sources (checked 2026-10-26)
+
+- Google, Machine Learning Glossary：inference、training: [developers.google.com](https://developers.google.com/machine-learning/glossary)
+
+- Hugging Face, Fine-tuning: [huggingface.co](https://huggingface.co/docs/transformers/training)
+
+- Microsoft, Retrieval-augmented generation in Azure AI Search: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- Think BIG, 地端 AI 與資料主權: [thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/instagram-age-13-kids-daily-word/
 
 # Can a Child Use Instagram Alone to Watch the Daily Word? The Age-13 Rule | Q&A Library | Think BIG
@@ -11693,7 +11932,7 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 URL: https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/
 
-# Local LLM Hardware: GPU Memory Guide | Think BIG
+# Local LLM Hardware Requirements: How Much VRAM? Table + 4 Steps | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -16707,7 +16946,11 @@ Think BIG 編輯部
 
 最近各大品牌密集推出常駐型 AI Agent。這篇整理 2026 年常見的 AI Agent 有哪些、各家怎麼計費、額度用完怎麼辦，以及龍蝦（OpenClaw）在長時間運作情境的定位。
 
-最後更新：2026-11-08｜資料查證：2026-09-30
+最後更新：2026-11-24｜資料查證：2026-11-24
+
+AI Agent 是什麼？ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI 助理；產物與重要操作仍需指定人員覆核。
+
+2026 年常見的 AI Agent 有哪些？ 大模型品牌推出的有 Claude（Anthropic）、ChatGPT Work 與 dots（OpenAI）、Tasks in Gemini（Google，原 Gemini Spark）、Grok Bot（xAI）、Muse（Meta）、Microsoft Copilot；開源、可自選模型的有龍蝦（OpenClaw）和 Hermes Agent。各家計費與台灣可用性見下方整理 （資料查證：2026-11-24）。
 
 新的 AI Agent 不會讓龍蝦（OpenClaw）失去用處，兩者適合的工作不同。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
 
@@ -16740,13 +16983,13 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 ## 2026 年常見的 AI Agent 有哪些
 
-資料查證日期：2026-09-30，價格以各家官網為準。原幣價格不自行換算台幣；需換算時已附換算基準。標記說明：【官方】來自品牌官網或官方部落格；【第三方】只有媒體資料；【待實測】官方未揭露。
+資料查證日期：2026-11-24，價格以各家官網為準，原幣價格不自行換算台幣。標記說明：【官方】來自品牌官網、官方說明頁或官方新聞稿；官方沒有寫明的欄位標「未公開」，不自行推估。
 
 ### 兩大類型
 
 目前市面上的 AI Agent 可分成兩類：
 
-- 大模型品牌推出的 AI Agent ：以訂閱方案使用，費用固定，額度用完需等重置或加購。例如 Claude、ChatGPT Agent、Gemini Spark、Grok Bot、Muse。
+- 大模型品牌推出的 AI Agent ：以訂閱方案使用，費用固定，額度用完需等重置或加購。例如 Claude、ChatGPT Work 與 dots、Tasks in Gemini、Grok Bot、Muse。
 
 - 開源 AI Agent（可自選模型） ：軟體開源免費，模型費用依實際用量付給自選的模型商，或接本地大模型零模型費。例如 OpenClaw（龍蝦）、Hermes。
 
@@ -16754,101 +16997,101 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 ### Claude（Anthropic）
 
-- 是什麼 ：Claude 是 Anthropic 的 AI 助理，2026 年 9 月起整合原 Cowork 功能，可在關閉電腦後繼續背景完成報告、簡報、研究任務。【官方】
+- 是什麼 ：Claude 是 Anthropic 的 AI 助理，除了對話，另有 Claude Code（程式碼助理）與 Claude Cowork（代辦工作）等產品。【官方】
 
-- 怎麼用 ：網頁版、桌面版、App、Claude Code（程式碼助理）；網頁、App、Claude Code 共用同一個用量上限。【官方】
+- 怎麼用 ：網頁版、桌面版、App、Claude Code；claude.ai、Claude Code、Claude Desktop 共用同一個用量上限。【官方】
 
-- 怎麼計費 ：Free（有限制）；Pro US$20／月（年繳每月 US$17）；Max US$100 起（約 Pro 5 倍用量）。【官方】額度分 5 小時區段上限與每週上限；用完可購買 usage credits。
+- 怎麼計費 ：Free（有限制）；Pro US$20／月（年繳每月 US$17）；Max US$100／月（Pro 的 5 倍用量）；Ultra US$200／月（Pro 的 10 倍每週用量，沒有 5 小時上限）。【官方】額度分 5 小時區段上限與每週上限；付費方案用完可購買 usage credits。【官方】
 
 - 台灣可用 ：可以（台灣在支援國家名單內）。【官方】
 
-- 出處 ：[claude.com/pricing](https://claude.com/pricing)、[用量上限說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)，查證於 2026-09-30。
+- 出處 ：[claude.com/pricing](https://claude.com/pricing)、[用量上限說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)、[支援國家](https://www.anthropic.com/supported-countries)，查證於 2026-11-24。
 
-### ChatGPT Agent 與 dots（OpenAI）
+### ChatGPT Work 與 dots（OpenAI）
 
-- 是什麼 ：ChatGPT Agent 是 OpenAI 整合進 ChatGPT 的 agent 模式，用虛擬瀏覽器與連接的 App 完成多步驟任務；dots（2026 年 9 月 29 日推出）是 24 小時常駐的 AI Agent，有自己的雲端電腦，可串接超過 4,000 個 App。【官方】
+- 是什麼 ：原本的 ChatGPT agent 模式已停止提供，OpenAI 改由 ChatGPT Work 處理較長的多步驟任務與成品交付。【官方】dots（2026 年 9 月 29 日推出）是 24 小時常駐的 AI Agent，有自己的雲端電腦，可透過外掛連接超過 4,000 個 App。【官方】
 
-- 怎麼用 ：ChatGPT 工具選單選「agent」或輸入 /agent 啟用；dots 可在 ChatGPT、Slack、Teams 裡傳訊息使用。【官方】
+- 怎麼用 ：ChatGPT Work 在 ChatGPT 桌面版、網頁版與手機版使用；dots 先在 ChatGPT 桌面 App 或電腦瀏覽器建立，之後可用手機 App、Slack、Teams 傳訊息。【官方】
 
-- 怎麼計費 ：ChatGPT Agent 模式：Plus US$20（約 640 TWD，1 USD=31.9，2026-09-30 台銀牌告）每月 40 則；Pro US$100 起每月 400 則。【官方】ChatGPT Agent 與 Codex、Work 共用 agentic 額度，額度用完可加購 credits。dots 第一個內含在 Pro 與 Business Premium 方案裡，不另收費；和 dots 對話不算 ChatGPT 額度。【官方】
+- 怎麼計費 ：Plus US$20／月；Pro 分 Pro 100（US$100）、Pro 200（US$200）、Pro 500（US$500）三種月繳方案。【官方】Work 與 Codex 共用方案內含的用量，不是固定則數，用多少依模型與任務而定；用完可等重置、升級或加購 credits。OpenAI 公告 12 月起 Plus、Pro、Business 的 ChatGPT 與 Codex 用量合併計算。【官方】第一個 dot 含在 Pro 與 Business Premium 方案內、不另收費；和 dot 對話不算 ChatGPT 用量，但它代為啟動的 Work 或 Codex 任務照常計入。【官方】
 
-- 台灣可用 ：ChatGPT Agent 可以（台灣在支援名單內）；dots 官方未列排除名單，台灣可否開通【待實測】。【官方】
+- 台灣可用 ：ChatGPT 可以（台灣在支援名單內）。【官方】dots 開放給「符合資格市場」的用戶，台灣是否在內：未公開。
 
-- 出處 ：[ChatGPT agent 說明](https://help.openai.com/en/articles/11752874-chatgpt-agent)、[dots 發表](https://openai.com/index/introducing-dots/)，查證於 2026-09-30。
+- 出處 ：[ChatGPT agent 說明（已停止提供）](https://help.openai.com/en/articles/11752874-chatgpt-agent)、[Pro 方案說明](https://help.openai.com/en/articles/9793128)、[ChatGPT 與 Codex 用量說明](https://help.openai.com/en/articles/20001625)、[dots 發表](https://openai.com/index/introducing-dots/)，查證於 2026-11-24。
 
-### Gemini Spark（Google）
+### Tasks in Gemini（Google，原 Gemini Spark）
 
-- 是什麼 ：Gemini Spark 是 Google 推出的 24 小時個人 AI Agent，手機和電腦關機時也會在背景工作，重大動作前會先問你，連接 Gmail、日曆、雲端硬碟等 Google 服務。【官方】
+- 是什麼 ：Google 的個人 AI Agent。原本介紹 Gemini Spark 的官方產品頁，現在改以「Tasks in Gemini」介紹：交代任務後在背景執行多步驟工作、可排程例行工作，能使用已連結的 App 與網站。【官方】
 
-- 怎麼用 ：需訂閱 Google AI Pro 或 Ultra，年滿 18 歲、用個人 Google 帳號。【官方】
+- 怎麼用 ：Gemini 手機 App、Mac 版 Gemini App 或 gemini.google.com 網頁版；需年滿 18 歲、用個人 Google 帳號（工作或學校帳號目前不支援）。【官方】
 
-- 怎麼計費 ：AI Pro US$19.99；AI Ultra US$99.99（約 3,190 TWD）或 US$199.99。用量依運算量計算，每 5 小時恢復一次，直到每週上限。Pro 與 Ultra 可加購 AI credits。【官方】
+- 怎麼計費 ：2026 年 11 月 17 日起，美國、印度、加拿大、澳洲、日本、韓國可免費使用；其他支援地區需訂閱 Google AI Pro（US$19.99／月）或 AI Ultra（US$99.99 或 US$199.99／月）。用量依運算量計算，訂閱等級越高上限越高。【官方】
 
-- 台灣可用 ：官方排除名單不含台灣；台灣帳號是否可啟用【待實測】。
+- 台灣可用 ：台灣不在免費名單；官方排除名單（歐洲經濟區、奈及利亞、瑞士、英國）不含台灣，依官方說明需訂閱 AI Pro 或 Ultra。【官方】
 
-- 出處 ：[gemini.google/subscriptions](https://gemini.google/subscriptions/)、[Gemini Spark 產品頁](https://gemini.google/overview/agent/)，查證於 2026-09-30。
+- 出處 ：[Tasks in Gemini 產品頁](https://gemini.google/overview/agent/)、[使用條件說明](https://support.google.com/gemini/answer/17094507)、[gemini.google/subscriptions](https://gemini.google/subscriptions/)，查證於 2026-11-24。
 
 ### Grok Bot（xAI）
 
-- 是什麼 ：Grok Bot 是 xAI 於 2026 年 8 月推出的常駐 AI 隊友，有自己的雲端電腦、瀏覽器、終端機，可以多個同時工作，需要你判斷的事才回頭問你。xAI 服務 2026 年 6 月起各功能共用每週額度池。【官方】
+- 是什麼 ：Grok Bot 是 xAI 於 2026 年 8 月 11 日推出的常駐 AI 隊友（目前為 beta），在雲端有自己的電腦，可登入並操作各種 App、工具與網站，需要你核准時才回頭問你。【官方】
 
-- 怎麼用 ：支援 macOS、Windows、Linux 桌面版及 iOS、Android。帳號驗證沿用 Cursor 帳號。【官方】
+- 怎麼用 ：macOS、Windows、Linux 桌面版，以及 iOS、Android 隨行 App；也可在 X Chat、Slack 裡使用。【官方】
 
-- 怎麼計費 ：SuperGrok US$30（約 960 TWD）、SuperGrok Plus US$100 含 Grok Bot。Grok Bot 有自己的每週額度，和 Grok 聊天分開計算；影片與長任務特別耗額度，用完等每週重置。【官方】xAI 訂閱者可購買 Extra Usage Credits 補充額度（US$5 起，網頁購買，效期一年）。【官方】
+- 怎麼計費 ：2026 年 10 月 12 日起新客戶改用 The X Subscription：Premium US$30、Super US$100、Ultra US$200（每月）含 Grok Bot，Plus（US$8）與免費版不含。【官方】Grok Bot 與 Grok App、Cursor 共用每週用量池，超出部分用預付額度支付；原本的 SuperGrok、Cursor 方案可繼續使用。【官方】Extra Usage Credits 最低 US$5、限網頁購買、效期一年。【官方】
 
-- 台灣可用 ：官方未列國家清單【待實測】。
+- 台灣可用 ：官方表示 The X Subscription 陸續開放全球；Grok Bot 的國家限制：未公開。
 
-- 出處 ：[x.ai/pricing](https://x.ai/pricing)、[Grok Bot 發表](https://x.ai/news/introducing-grok-bot)，查證於 2026-09-30。
+- 出處 ：[The X Subscription 發表](https://x.ai/news/x-subscription)、[Grok Bot FAQ](https://docs.x.ai/grok-bot/faq)、[Grok Bot 發表](https://x.ai/news/introducing-grok-bot)，查證於 2026-11-24。
 
 ### Muse（Meta）
 
-- 是什麼 ：Muse 是 Meta 於 2026 年 9 月 8 日推出的個人 AI Agent，跑在專屬的虛擬機上，可開瀏覽器、填表、寄信、訂位，寄信或付款前會先問你，可在 Muse App 或 WhatsApp 使用。【官方】
+- 是什麼 ：Muse 是 Meta 於 2026 年 9 月推出的個人 AI Agent，跑在專屬的虛擬機上，可開瀏覽器、填表、寄信、訂位，可在 Muse App 或 WhatsApp 裡使用。【官方】
 
 - 怎麼用 ：iOS、Android App 及 muse.ai 網頁。【官方】
 
-- 怎麼計費 ：免費版有額度上限；Power US$20／月（每週 5 億 Muse tokens）；Maximum US$100／月（每週 30 億 Muse tokens）。官方說明訂閱在有限測試中，不是每個地區都能用。【官方】
+- 怎麼計費 ：大部分功能免費；Power US$20／月（每週 5 億 Muse tokens）；Maximum US$100／月（每週 30 億 Muse tokens）。官方說明訂閱仍在有限測試，不是每個地區都能用。【官方】
 
-- 台灣可用 ：目前官方只在美國上線；加拿大 2026 年 9 月開放【第三方】；台灣尚未開放。【官方：not available in all locations】
+- 台灣可用 ：官方新聞稿列出的上線地區為美國、新加坡（2026 年 10 月）、澳洲（2026 年 11 月）；台灣未列入。【官方】
 
-- 出處 ：[Meta Newsroom 發表](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)、[Muse 訂閱說明](https://www.meta.com/help/subscriptions/1021145227643680/)，查證於 2026-09-30。
+- 出處 ：[Meta Newsroom 發表](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)、[澳洲上線公告](https://about.fb.com/news/2026/11/muse-is-now-available-in-australia/)、[Muse 訂閱說明](https://www.meta.com/help/subscriptions/1021145227643680/)，查證於 2026-11-24。
 
 ### Microsoft Copilot（個人版）
 
-- 是什麼 ：Microsoft 365 內的 agentic AI，可在 Word、Excel、PowerPoint、Outlook 裡代辦任務；Copilot Autopilot 是 2026 年 9 月 25 日推出的常駐企業版，目前為私人預覽。【官方】
+- 是什麼 ：Microsoft 365 內的 Copilot，可在 Word、Excel、PowerPoint、Outlook 裡代辦任務。常駐型的 Autopilot 是工作版功能，2026 年 11 月 17 日起開始對 Frontier 預覽計畫的企業客戶推出，仍屬預覽。【官方】
 
-- 怎麼用 ：Microsoft 365 訂閱方案；個人版透過網頁或 M365 應用程式使用。【官方】
+- 怎麼用 ：訂閱 Microsoft 365 個人方案，透過網頁或 Microsoft 365 應用程式使用。【官方】
 
-- 怎麼計費 ：M365 Personal US$9.99；Premium US$19.99（含有限 agentic AI）；Pro US$99.99（含最高用量 agentic AI）。官方只寫「usage limits apply」，確切數字【待實測】。【官方】
+- 怎麼計費 ：Microsoft 365 Personal US$9.99／月；Premium US$19.99／月（含有限的 agentic AI 用量）；Pro US$99.99／月（最高用量，只能月繳）。以上為原價，官網不定期有限時優惠。官方只寫「usage limits apply」，確切額度：未公開。【官方】
 
-- 台灣可用 ：台灣有販售 Microsoft 365；agentic 功能台灣可用性【待實測】。
+- 台灣可用 ：台灣有販售 Microsoft 365；agentic 功能與 Autopilot 在台灣的開放狀況：未公開。
 
-- 出處 ：[Copilot 個人定價](https://www.microsoft.com/en-us/copilot/pricing/individuals)，查證於 2026-09-30。
+- 出處 ：[Copilot 個人定價](https://www.microsoft.com/en-us/copilot/pricing/individuals)、[Autopilot FAQ](https://learn.microsoft.com/en-us/copilot/autopilot/faq)，查證於 2026-11-24。
 
 ### 龍蝦 OpenClaw（開源）
 
-- 是什麼 ：OpenClaw 是開源個人 AI 助理，台灣使用者常稱「龍蝦」。裝在自己的電腦上，透過 WhatsApp、Telegram 等聊天 App 使用，支援本機與雲端模型。【官方】
+- 是什麼 ：OpenClaw 是開源個人 AI 助理，台灣使用者常稱「龍蝦」。裝在自己的電腦或主機上，透過 WhatsApp、Telegram、Discord 等聊天 App 使用，支援本機與雲端模型。【官方】
 
-- 怎麼用 ：安裝在 Windows、macOS 上，需要你的電腦保持開機。
+- 怎麼用 ：可裝在 Windows、macOS、Linux，或自己的雲端主機；裝在個人電腦時，電腦要保持開機。【官方】
 
 - 怎麼計費 ：軟體開源免費；費用看你接哪個模型商，依實際用量計費，由你直接付給模型商。你可以選 MiniMax、Claude API、OpenAI API 等，或接本地模型零用量費。【官方】
 
 - 台灣可用 ：可以（自行安裝）。【官方】
 
-- 出處 ：OpenClaw 官方文件，查證於 2026-09-30。→ [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+- 出處 ：[OpenClaw 官方文件](https://docs.openclaw.ai/)，查證於 2026-11-24。→ [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 
 ### Hermes Agent（開源）
 
-- 是什麼 ：Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理，支援跨對話記憶與自我學習，可將任務經驗轉化為技能，可排程執行。Think BIG 提供的服務是協助安裝在你的電腦上、配置與教學；與 OpenClaw 可串接分工。【官方】
+- 是什麼 ：Hermes Agent 是 Nous Research 開源、可自架的 AI 助理，有跨對話記憶，能把任務經驗自己整理成技能，可排程執行，並透過 Telegram、Discord、Slack、WhatsApp、Signal、email 等管道對話。【官方】Think BIG 提供的服務是協助安裝在你的電腦上、配置與教學；與 OpenClaw 可串接分工。
 
-- 怎麼用 ：安裝在 Windows、macOS 上；可單獨使用，也可與 OpenClaw 串接建立雙 Agent 協作。
+- 怎麼用 ：可裝在 Windows、macOS、Linux；可單獨使用，也可與 OpenClaw 串接建立雙 Agent 協作。【官方】
 
 - 怎麼計費 ：軟體開源免費（MIT 授權）；模型費用自選，和 OpenClaw 一樣依實際用量付給模型商。【官方】
 
 - 台灣可用 ：可以（自行安裝）。【官方】
 
-- 出處 ：Nous Research 官方，查證於 2026-09-30。→ [OpenClaw 和 Hermes 差在哪](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
+- 出處 ：[Hermes Agent 官方網站](https://hermes-agent.nousresearch.com/)，查證於 2026-11-24。→ [OpenClaw 和 Hermes 差在哪](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
 
-其他也有官方資料的 AI Agent（簡述）：Perplexity Computer（通用代辦，點數制，Pro US$20 起）；Manus（通用 Agent，點數制，Pro US$20 起，全球可用）；Siri AI（隨 iOS 27 提供，目前 beta 只支援英文）；Alexa+（僅限美國）。中國大陸平台（豆包、扣子、Kimi、MiniMax Agent 等）台灣能否使用各有差異，一律標【待實測】。
+其他也常被提到的 AI Agent：Perplexity Computer、Manus、Siri、Alexa+，以及中國大陸平台（豆包、扣子、Kimi、MiniMax Agent 等）。這幾家本次沒有逐項重新查證，價格、額度與台灣能否使用，請以各家官網為準。
 
 ## 台灣誰在做 AI Agent 搭建？
 
@@ -16887,17 +17130,17 @@ AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用�
 
 ## 訂閱額度用完怎麼辦
 
-各家品牌 AI Agent 的額度重置機制：
+各家品牌 AI Agent 的額度重置機制（查證於 2026-11-24）：
 
-- Claude（Anthropic） ：5 小時區段上限加每週上限；付費方案可購買 usage credits。（查證於 2026-09-30，來源：[官方說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)）
+- Claude（Anthropic） ：5 小時區段上限加每週上限（Ultra 沒有 5 小時上限）；付費方案可購買 usage credits。（來源：[官方說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)）
 
-- ChatGPT Agent / dots（OpenAI） ：ChatGPT Agent 每月額度（Plus 40 則、Pro 400 則）；額度用完可加購 credits，或等月重置。（查證於 2026-09-30，來源：[官方說明](https://help.openai.com/en/articles/12642688)）
+- ChatGPT Work 與 dots（OpenAI） ：Work 與 Codex 共用方案內含用量，依方案可能有 5 小時與每週兩種上限；12 月起 ChatGPT 與 Codex 用量合併計算；用完可等重置、升級方案或加購 credits。（來源：[官方說明](https://help.openai.com/en/articles/20001516)、[credits 說明](https://help.openai.com/en/articles/12642688)）
 
-- Grok Bot（xAI） ：每週額度池重置；可購買 Extra Usage Credits（US$5 起，效期一年）。（查證於 2026-09-30，來源：[官方 FAQ](https://docs.x.ai/grok/faq)）
+- Grok Bot（xAI） ：每週用量池重置；超出部分用預付額度，Extra Usage Credits 最低 US$5、效期一年。（來源：[Grok Bot FAQ](https://docs.x.ai/grok-bot/faq)、[Grok FAQ](https://docs.x.ai/grok/faq)）
 
-- Gemini Spark（Google） ：用量依運算量計算，每 5 小時恢復一次，直到每週上限；Pro 與 Ultra 可加購 AI credits。（查證於 2026-09-30，來源：[官方說明](https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/)）
+- Tasks in Gemini（Google） ：依運算量計算用量，訂閱等級越高上限越高；確切額度：未公開。（來源：[官方說明](https://support.google.com/gemini/answer/17094507)）
 
-- Muse（Meta） ：免費額度用完可升級，或等免費額度恢復；Power 每週 5 億 tokens，Maximum 每週 30 億 tokens。（查證於 2026-09-30，來源：[官方說明](https://www.meta.com/help/subscriptions/1021145227643680/)）
+- Muse（Meta） ：免費額度用完可升級；Power 每週 5 億 Muse tokens，Maximum 每週 30 億 Muse tokens。（來源：[官方說明](https://www.meta.com/help/subscriptions/1021145227643680/)）
 
 通用做法：把長時間常駐的工作交給可自選模型的 AI Agent（如 OpenClaw、Hermes），品牌 AI Agent 留給需要協作的時段。這就是核心句說的「很適合拿來協作」。→ [雙 Agent 協作方案](https://thinkbigtw.com/dual-agent/)
 
@@ -16953,11 +17196,11 @@ Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服�
 
 Q：2026 年常見的 AI Agent 有哪些？
 
-分成兩類：大模型品牌推出、以訂閱方案使用的 AI Agent；以及開源、可自選模型的 AI Agent（如龍蝦）。各家介紹見本頁「2026 年常見的 AI Agent 有哪些」。
+分成兩類。大模型品牌推出、以訂閱方案使用的：Claude（Anthropic）、ChatGPT Work 與 dots（OpenAI）、Tasks in Gemini（Google，原 Gemini Spark）、Grok Bot（xAI）、Muse（Meta）、Microsoft Copilot。開源、可自選模型的：龍蝦（OpenClaw）、Hermes Agent。各家計費與台灣可用性見本頁「2026 年常見的 AI Agent 有哪些」（資料查證 2026-11-24）。
 
 Q：新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？
 
-兩者擅長的工作不同，可以一起用。2026 年常見的大模型品牌 AI Agent 包括：Grok Bot（xAI）、Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Muse（Meta）、Copilot Autopilot（Microsoft）、Manus 等。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。龍蝦（OpenClaw）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作情境。
+兩者擅長的工作不同，可以一起用。2026 年常見的大模型品牌 AI Agent 包括：Claude（Anthropic）、ChatGPT Work 與 dots（OpenAI）、Tasks in Gemini（Google）、Grok Bot（xAI）、Muse（Meta）、Microsoft Copilot 等。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。龍蝦（OpenClaw）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作情境。
 
 Q：龍蝦 AI 是什麼？要錢嗎？
 
@@ -16989,23 +17232,27 @@ Q：你們裝的 AI Agent 跟大品牌的有什麼不一樣？資安怎麼顧？
 
 ## 資料來源與更新紀錄
 
-本頁各家 AI Agent 資料依 2026-09-30 各品牌官方網站整理，未附官方出處的數字不列入。
+本頁各家 AI Agent 資料依 2026-11-24 各品牌官方網站、官方說明頁與官方新聞稿整理；官方沒有寫明的欄位標「未公開」，不自行推估。
 
 - Claude：[claude.com/pricing](https://claude.com/pricing)
 
-- ChatGPT Agent：[OpenAI Help Center](https://help.openai.com/en/articles/11752874-chatgpt-agent)
+- ChatGPT Work、Pro 方案、用量：[OpenAI Help Center](https://help.openai.com/en/articles/9793128)
 
 - dots：[openai.com/index/introducing-dots](https://openai.com/index/introducing-dots/)
 
-- Gemini Spark：[gemini.google/overview/agent](https://gemini.google/overview/agent/)
+- Tasks in Gemini：[gemini.google/overview/agent](https://gemini.google/overview/agent/)
 
-- Grok Bot：[x.ai/news/introducing-grok-bot](https://x.ai/news/introducing-grok-bot)
+- Grok Bot：[docs.x.ai/grok-bot/faq](https://docs.x.ai/grok-bot/faq)
 
 - Muse：[Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)
 
 - Microsoft Copilot：[microsoft.com/copilot/pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals)
 
-資料查證日期：2026-09-30，價格以各家官網為準。更新紀錄：2026-10-01 初版上線；2026-10-02 加入「新的 AI Agent 出來了，還需要龍蝦？」FAQ。
+- OpenClaw：[docs.openclaw.ai](https://docs.openclaw.ai/)
+
+- Hermes Agent：[hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/)
+
+資料查證日期：2026-11-24，價格以各家官網為準。更新紀錄：2026-10-01 初版上線；2026-10-02 加入「新的 AI Agent 出來了，還需要龍蝦？」FAQ；2026-11-24 各家資料重新查證（ChatGPT agent 已由 ChatGPT Work 取代、Gemini Spark 官方頁改以 Tasks in Gemini 介紹、Grok Bot 改含在 The X Subscription、Claude 新增 Ultra 方案），並把「AI Agent 是什麼、有哪些」的答案移到最前面。
 
 想讓 AI Agent 裝在自己的電腦上用？
 
@@ -18160,6 +18407,16 @@ AI 生成虛擬人物廣告・主持人為 AI 生成非真實存在
 - [雲端／本地大模型 公司方案 NT$52,600 起（未稅） 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
 
 流程整合 權限與覆核 持續維運
+
+ABOUT THINK BIG
+
+## Think BIG 是誰、做什麼
+
+Think BIG（大想成業有限公司）是台灣的 AI Agent 導入團隊，服務個人與企業。我們把 AI Agent 建在你的電腦、公司設備或公司名下的雲端主機上，可依需求選雲端大模型或本地大模型。個人方案 NT$7,840 起，公司方案 NT$52,600 起（未稅）；本地版模型運算不另收模型用量費，雲端版的模型用量費依實際用量，由你直接向模型廠商支付。想先聊聊，可以用 LINE 說需求，或預約 30 分鐘免費評估。
+
+[用 LINE 說需求 →](https://lin.ee/n5KW430)
+
+延伸閱讀：[問答圖書館](https://thinkbigtw.com/library/)・[AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)
 
 01 / WHAT WE DO
 
@@ -20495,6 +20752,117 @@ THINK BIG NEWS   ·  AI 導入的第一手觀察
 
 ---
 
+URL: https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/
+
+# 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+企業資安實務 · 第 021 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+2026 年 11 月 16 日　星期一
+◆
+企業資安實務
+◆
+第 021 期
+
+語音冒名 · 付款核實 · 企業流程
+
+## 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程
+
+Think BIG 自媒體部  |  2026 年 11 月 16 日
+
+遇到緊急付款要求，先暫停，再用事先確認的聯絡方式核實人與事。回到原有核准流程，不必先證明聲音是不是 AI。
+
+## 一 現象：語音可以被模仿，付款還是要查核
+
+FBI 在 2025 年 5 月 15 日警示，自當年 4 月起，有人冒充美國高階官員，透過簡訊與 AI 產生的語音訊息建立信任，試圖取得個人帳號存取權。[1] 這是官方揭露的特定活動，不是台灣企業受害統計，也不應直接改寫成「老闆匯款詐騙暴增」。
+
+這項警示給公司的提醒，是把聲音與身分核實分開。美國 FTC 在較早的防詐文章中指出，詐騙者可能利用公開的聲音片段複製熟人的聲音，並建議用自己知道的電話回撥確認。[3] 本文不提供需要多少秒素材就能成功的數字，因為不同工具、資料與情境不能一概而論。
+
+付款要求本來就需要核實。FBI 的商務電子郵件詐騙（BEC）說明建議，透過當面或電話確認付款與採購要求，也要確認帳號或付款程序的變更。[2] 我們據此延伸：即使要求改從語音傳來，也不應省略原有核准；不必先判定使用了哪種合成技術，才有理由暫停。
+
+## 二 各方評價：辨識線索有幫助，流程比聽力測驗更可執行
+
+技術與警覺的一面： FBI 提醒，語氣、用詞與影音細節可以提供觀察線索，同時也承認 AI 內容常難辨識。[1] 我們的判讀是，教育訓練可以教人注意異常，但不適合把「有沒有聽出破綻」當成員工要承擔的付款判準。
+
+程序面的保留： 只問幾個公開資料能查到的問題，未必足以確認身分。我們建議使用已核實的聯絡資料，並另外確認事情本身：付款目的、收款對象、文件與核准人。這是公司流程建議，不是聲音真偽的鑑定方法。
+
+FBI 另一份生成式 AI 詐騙公告列出語音與即時視訊冒名的可能用法。[4] 因此，換成視訊可以作為補充，但不能讓任何看起來像主管的畫面直接跳過付款控制。我們也不主張每段陌生語音都是詐騙；有疑問時，依相同核實程序處理，避免靠個人感覺決定。
+
+我們也建議讓主管事先參與演練，明確接受經辦回撥與等待覆核。流程若只要求員工提高警覺，卻在真正查證時催促跳過，會讓執行者無所適從。演練後應把找不到窗口、通訊錄過期與文件不齊等缺口列成待辦，再由負責人確認修正結果。
+
+◆ 導入檢查清單
+
+## 三、我們導入時的檢查清單
+
+以下是我們建議公司事先確認的問題清單，不描述受害或攔阻事件。
+
+1. 通訊錄從哪裡來？ 我們會先問，付款聯絡人與主管電話是否有事先確認的紀錄，誰能修改。若回撥號碼直接抄自可疑訊息，核實仍停留在對方控制的管道裡。[1][2]
+
+2. 誰有權說「先停」？ 我們建議明文允許經辦在核實完成前暫停處理，並指定主管不在場時的覆核人。不要讓「正在開會、不能回電」變成略過流程的條件。
+
+3. 核實的人，看得到什麼？ 覆核者應能對照付款目的、原始單據與帳號變更紀錄。我們建議把「確認來電者」和「批准這筆要求」分成兩個問題，避免一通回電同時被當成全部授權。
+
+4. 如果已經送出，怎麼求助？ 先備好銀行與內部事件窗口，讓經辦知道如何聯絡，不必當場從可疑訊息找電話。保存紀錄時也應限制可讀人員，不在群組大量轉傳含個資的錄音或截圖。
+
+## 四 我們的建議：把核實寫成每個人都能照做的步驟
+
+1. 暫停，改走已知管道。 結束可疑通話，用事先確認的電話或其他可信管道聯絡本人；不要沿用來訊附的新電話或連結。FBI 與 FTC 都提出獨立核實方向。[1][3]
+
+2. 帳號變更另行確認。 收款資料或付款程序變更，回到已建立的窗口核對並留紀錄。[2] 我們建議即使聲音熟悉、訊息出現在舊對話，也照同樣程序處理。
+
+3. 讓經辦與覆核分工。 我們建議付款由指定人覆核，緊急件也要記下核實管道與同意依據。找不到覆核人時先等待，不把「對方很急」寫成例外條件。
+
+4. 做一次桌上演練。 用文字情境測試「主管要求保密、立即處理、新帳號」，觀察員工能否找到通訊錄、暫停點與升級窗口。不需要複製任何人的聲音，也能演練程序。
+
+5. 發現誤付就立即聯絡銀行。 FBI 建議立即聯絡金融機構，要求與收款機構聯繫。[2] 同時依公司事件流程保存訊息、時間與交易紀錄，向適當機關求助；不要等到證明是 AI 才通報，也不預期款項必能追回。
+
+一句話：聲音只是訊息來源，付款依據要回到核實與核准。
+
+◆ 編按 · Think BIG 的做法：把停止權寫進流程
+
+## 讓經辦可以查證，也知道該找誰。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張 AI 可以協助整理疑點或待核實事項，付款核准仍由指定人負責。涉及對外動作的流程，應留下核實依據、覆核結果與事件處理窗口。
+
+延伸閱讀[AI 系統事件處理](https://thinkbigtw.com/library/qa/ai-incident-response/)。本文提供一般防詐與流程參考，不構成法律意見。
+
+### 常見問題
+
+Q1：聲音很像主管，就能照做嗎？
+不能只以聲音核實。FBI 與 FTC 建議透過獨立、已知的聯絡方式確認。[1][3]
+Q2：要先證明是 AI 才能暫停嗎？
+我們建議不必。可疑付款或帳號變更先走核實流程；FBI 的付款核對建議也不以先鑑定 AI 為前提。[2]
+Q3：改成視訊就可以直接核准嗎？
+不建議。FBI 也列出即時視訊冒名的可能用法，仍需核實與覆核。[4]
+Q4：已經匯出怎麼辦？
+立即用已知管道聯絡銀行，依公司事件流程保存紀錄並尋求協助；FBI 亦建議立即聯絡金融機構。[2]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] FBI IC3，〈Senior US Officials Impersonated in Malicious Messaging Campaign〉，2025-05-15，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515)　·
+    [2] FBI，〈Business Email Compromise〉，查閱日期 2026-10-26：[www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise)　·
+    [3] FTC，〈Scammers use AI to enhance their family emergency schemes〉，2023，查閱日期 2026-10-26：[consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes)　·
+    [4] FBI IC3，〈Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud〉，2024-12-03，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  企業資安實務
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/fde-outsourced-engineer-20261013/
 
 # FDE 是什麼？為什麼 AI 落地最缺的是「派駐工程師」——中小企業沒有預算養 FDE 怎麼辦 | Think BIG NEWS
@@ -22600,7 +22968,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/library/qa/ai-agent-permissions/
 
-# AI Agent 的權限要怎麼設？哪些動作一定要人核准？｜問答圖書館｜Think BIG
+# AI Agent 權限誰核准？負責人分工、權限表範例與 6 步驟｜Think BIG
 
 [← 問答圖書館](https://thinkbigtw.com/library/qa/)
 
@@ -22614,7 +22982,7 @@ Think BIG 問答圖書館　·　2026 年 10 月 19 日　星期一
 
 先說答案
 
-照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。
+照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。誰核准：AI Agent 碰到的每個系統或資料來源，由該系統的負責人簽核它的權限；影響大的動作，每次執行都要由指定的人核准。
 
 ## 一、 權限給太多，會出什麼事
 
@@ -22929,7 +23297,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/library/qa/ai-api-key-leak/
 
-# AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？｜問答圖書館｜Think BIG
+# API 金鑰外洩怎麼辦？立刻做這 4 步｜Think BIG
 
 [← 問答圖書館](https://thinkbigtw.com/library/qa/)
 
@@ -25704,6 +26072,78 @@ Q1：覺得人物不像，怎麼說比較清楚？ 可指出原照和預覽的�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/early-math-picture-books/
+
+# 用繪本認識數字：數學啟蒙怎麼從生活開始？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q44
+
+# 用繪本認識數字：數學啟蒙怎麼從生活開始？
+
+Think BIG 問答圖書館　·　2026 年 11 月 23 日　星期一
+
+先說答案
+
+數學啟蒙可以從一起點數、比較大小、找形狀與分類開始，再把書裡看到的東西接回生活，不必急著寫算式。UNICEF 建議利用生活中的形狀、數量與規律跟幼兒玩數學；繪本可當話題起點，實際操作則用家裡熟悉的物件來試。
+
+## 一、 先選一頁看得清楚的圖
+
+[UNICEF 的幼兒數學活動建議](https://www.unicef.org/parenting/child-development/how-introduce-maths-your-toddler)從日常語言談起：大和小、形狀、點數、分類，都能成為數學對話。挑書時可以先翻內頁，找物件輪廓清楚、孩子願意看的畫面，不需要封面寫著數學才開始。
+
+例如一頁有幾隻動物，就跟著孩子的手指慢慢數；一頁只有一座屋子，也能找門、窗和屋頂的形狀。以下共讀方式是依上述方向設計的家庭提案，沒有設定幾歲應完成哪一項，也不是能力測驗。
+
+若孩子只注意主角手上的氣球，可以先從氣球聊起：「這顆大，那顆小。」不用為了今天預定教數字，就把孩子指的東西全部帶回計數。選題可以跟著當天興趣，換一本書時也不用從頭安排一套課程。
+
+## 二、 從書頁接到餐桌與玩具
+
+書裡看到什麼 共讀時能說的話 生活中能試的事 角色準備吃飯 「這張桌子旁坐了誰？」 請孩子幫玩偶各放一個碗，放好後一起看看有沒有漏掉。
+
+不同大小的車 「你想把哪一台放旁邊比比看？」 用家裡的玩具車並排，試著按大小排，不要求背出專有名詞。
+
+重複出現的圖案 「紅色、藍色，接下來你想放什麼？」 用大塊積木排出重複組合，再讓孩子自己改規則。
+
+圓形與方形物件 「還有哪裡跟這個形狀像？」 在房間找一樣形狀的物品，只看和指，不必每件都搬出來。
+
+UNICEF 也提到數腳步、拍手等不需額外物件的活動。可以一邊走一邊數，再停下來休息；活動本身就能是聊天內容，不必加上計分、排名或獎品。
+
+上表不是要同一天做完的清單。若今天只讀到吃飯那頁，就挑放碗的活動；如果孩子想反過來當出題的人，大人也可以照他的規則做，請他說明怎麼分組。
+
+## 三、 數錯時，回到眼前的物件
+
+可以說「我們一起慢慢指一次」，不急著要求孩子從更大的數字重新背。這是陪讀建議，不據此推斷發展程度。也可把問題換成「哪一堆看起來多？要不要排排看？」讓操作留在具體情境裡。
+
+讀完不必填學習單，可以只聊「今天我們把車分成哪幾堆」。同一頁下次也能換問形狀或位置。選書可參考[各階段怎麼挑繪本](https://thinkbigtw.com/library/qa/picture-books-by-age/)；若家長發現自己一直考問題，可改用[對話式共讀的問法](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)，留時間聽孩子的想法。
+
+家庭可以把目標訂成願意一起找、一起試，而不是今天要算對幾題。這是本篇的活動安排提案，沒有宣稱讀某一本書就能提升數學成績，也不需要因一次數錯就額外加課。
+
+品牌資訊｜童話有你
+
+## 童話有你：讓孩子走進故事
+
+童話有你是孩子當主角、依照片繪製的 AI 客製繪本。[主題與範例](https://talewithyoutw.com/themes.html)列有「交通工具」「恐龍時代」「世界環遊」等主題，家長可先翻內頁確認畫面。範例頁主角為 AI 生成形象，正式書頁依提供的照片繪製；官網常見問題說明印製前會傳預覽確認。
+
+本段內容取自童話有你官網[主題與範例](https://talewithyoutw.com/themes.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：需要買數學繪本嗎？ 不必。願意一起看的故事頁面，也可以找數量、形狀、大小和分類。 Q2：孩子數錯要馬上糾正嗎？ 可回到眼前物件，一起指著慢慢數，不必立即加難度或責備。 Q3：除了數數還能做什麼？ 可以比較大小、找形狀、整理分類或玩重複圖案，這些都是 UNICEF 提到的活動方向。 Q4：要每天做完全部活動嗎？ 不用。挑一頁、一個孩子有興趣的生活情境就可以，依當天狀況調整。
+
+參考來源（連結於 2026-10-26 查證）
+
+- UNICEF｜How to introduce maths to your toddler：[www.unicef.org](https://www.unicef.org/parenting/child-development/how-introduce-maths-your-toddler)
+
+- 童話有你｜常見問題：[talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/
 
 # 員工把公司資料貼進 ChatGPT，會有什麼風險？公司該怎麼管？｜問答圖書館｜Think BIG
@@ -27544,6 +27984,96 @@ Think BIG 　·　大想成業有限公司　·　[Library 首頁](https://think
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/inference-vs-training/
+
+# 推論跟訓練差在哪？公司用 AI 是在做哪一種｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+AI 入門
+TB41
+
+# 推論跟訓練差在哪？公司用 AI 是在做哪一種
+
+Think BIG 問答圖書館　·　2026 年 11 月 23 日　星期一
+    ·　[English](https://thinkbigtw.com/en/qa/inference-vs-training/)
+
+先說答案
+
+推論是使用已訓練好的模型產生結果；訓練則是利用資料調整模型參數。公司用 AI 寫草稿、摘要或回答問題時，產生回答這一步屬於推論；另行微調才涉及訓練。推論資料是否被保存或另用於訓練，還要看服務條款與設定，不能只靠這兩個名詞判斷。
+
+## 一、 用「有沒有調整模型參數」分辨
+
+Google 的機器學習術語表將訓練說明為讀取範例、逐步調整模型參數的過程，將大型語言模型的推論說明為用訓練好的模型回應提示。可以把參數想成模型已學到的內部設定；輸入問題後，模型利用這些設定產生輸出，並不等於每次都重新訓練。
+
+Hugging Face 的官方微調文件則說明，微調是在已預訓練的模型上，使用特定任務或領域的資料繼續訓練。所以「自己部署模型」和「自己訓練模型」不是同一件事。部署可以只是下載可用的模型，讓它在指定設備上執行；若要調整參數，才需要另外規劃訓練流程、資料和評估。
+
+## 二、 公司常見操作各屬於哪一類
+
+操作
+主要在做什麼
+不應直接推定的事
+請模型改寫文字
+推論，依輸入產生文字
+不代表模型參數已改變
+
+在問題中附規定
+提供當次回答的參考內容
+不代表模型往後都記得
+
+用 RAG 找文件再回答
+檢索資料，加上模型推論
+不等於把文件拿去微調
+
+用範例微調模型
+繼續訓練，調整參數
+不代表每個答案都正確
+
+Microsoft 官方 RAG 說明把企業內容作為模型回答的依據；它需要檢索與內容準備，不能只把資料夾名稱寫進提示詞。表中的差異有助於問清導入範圍：供應商交付的是查詢系統、模型執行環境，還是包含訓練成果？每種成果應有不同的驗收證據。
+
+## 三、 先問需求，再問資料會去哪裡
+
+若需求是查公司最新文件，建議先確認文件品質、檢索與權限；若需求是調整固定任務的輸出習慣，再評估是否需要微調。這是本文的導入順序建議，不是所有專案的固定答案。先用現有模型和真實工作題測試，能幫團隊說清楚缺的是資料、流程還是模型行為。
+
+資料治理也要另列一張表：輸入送到哪裡、保留多久、誰能讀取、是否用於訓練、如何退出。Think BIG 的地端資料指南提醒，供應商處理方式取決於產品、帳號與合約設定。即使當下只是推論，也不表示服務不留紀錄；即使放在公司設備，也要確認日誌、備份與外部串接。地端與雲端應依這些條件選擇。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的模型處理位置與資料範圍
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：聊天越久，模型就被我訓練了嗎？ 不能這樣推定。對話內容可影響當次回答；是否調整參數或另用資料，需確認系統和條款。 Q2：公司需要從頭訓練模型嗎？ 不必預設如此。先用現有模型測試工作需求，再決定是否需要訓練。 Q3：RAG 算訓練嗎？ 檢索公司文件供回答參考，與微調參數是不同流程；實際系統也可能同時包含兩者。 Q4：只做推論就沒有個資風險嗎？ 仍要確認輸入、紀錄、保留和外部服務，不能以推論一詞判斷隱私條件。
+
+參考來源（連結於 2026-10-26 查證）
+
+- Google｜Machine Learning Glossary：inference、training：[developers.google.com](https://developers.google.com/machine-learning/glossary)
+
+- Hugging Face｜Fine-tuning：[huggingface.co](https://huggingface.co/docs/transformers/training)
+
+- Microsoft｜Retrieval-augmented generation in Azure AI Search：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- Think BIG｜地端 AI 與資料主權：[thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/
 
 # 孩子可以自己用 Instagram 看每日一詞嗎？13 歲規定怎麼看｜問答圖書館｜Think BIG
@@ -28248,7 +28778,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/
 
-# 公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG
+# 本地大模型硬體需求：顯示記憶體要多大？對照表＋4 步驟｜Think BIG
 
 [← 問答圖書館](https://thinkbigtw.com/library/qa/)
 
@@ -34696,225 +35226,3 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
-
----
-
-URL: https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/
-
-# A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Enterprise Security Notes · Issue 021
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-November 16, 2026  ·  Monday
-◆
-Enterprise Security Notes
-◆
-Issue 021
-
-Voice Impersonation · Payment Verification · Business Procedures
-
-## A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel
-
-Think BIG Media  |  November 16, 2026
-
-Pause an urgent payment request and verify both identity and purpose through previously confirmed contact details. Follow the approval workflow without first proving the audio is synthetic.
-
-## One.  What’s Happening: A Familiar Voice Still Requires Verification
-
-On May 15, 2025, the FBI warned of a campaign active since April in which actors impersonated senior US officials through texts and AI-generated voice messages to seek personal-account access.[1] This was a specific disclosed campaign, not a measure of victimization among Taiwanese businesses or evidence of a surge in executive payment fraud.
-
-The business lesson is to separate a recognizable voice from verified identity. In an earlier warning, the FTC explained that scammers could use public audio to clone a familiar voice and advised calling a number already known to belong to the person.[3] We do not claim a universal number of seconds needed to clone a voice.
-
-Payment requests already need verification. The FBI’s business email compromise guidance recommends confirming payment and purchase requests in person or by phone, including account-number or payment-procedure changes.[2] We extend that principle to voice requests: retain existing approvals without first needing to identify a particular synthesis technology.
-
-## Two.  Perspectives: Clues Help; Procedures Are More Usable Than a Listening Test
-
-The awareness perspective:  The FBI suggests observing tone, wording, and audiovisual details while acknowledging that AI-generated content can be hard to identify.[1] Training can help people notice anomalies. In our view, detecting an audio flaw should not become the employee’s test for authorizing payment.
-
-The procedural caution:  Publicly available personal facts may be insufficient for identity verification. We recommend independently confirmed contact details and separate checks on the purpose, recipient, documents, and approver. This is a business-control proposal, not an audio-forensics method.
-
-Another FBI announcement describes voice and real-time video impersonation uses.[4] Video may supplement checks, but an executive-looking image should not bypass payment controls. Nor should every unfamiliar recording be labeled fraudulent; apply the same verification procedure when uncertain.
-
-Include executives in the exercise and have them explicitly accept callbacks and review delays. Staff cannot apply verification consistently if they are urged to bypass it. Record missing contacts, outdated directories, and incomplete documents as actions, with owners confirming corrections.
-
-◆ Deployment Checklist
-
-## Three. Our Deployment Checklist
-
-These are proposed preparation questions for businesses, not claims of victimization or successful interception.
-
-1. Where does the contact list come from?  Ask whether payment contacts and executive numbers were previously verified and who can edit them. Calling a number supplied in the suspicious message keeps verification inside the sender’s channel.[1][2]
-
-2. Who may pause the request?  We recommend explicitly allowing staff to wait for verification and naming a backup reviewer. “In a meeting and unable to call” should not create an exception.
-
-3. What can the reviewer inspect?  Give reviewers the payment purpose, original documents, and account-change history. Separate confirming identity from approving the request itself; one callback should not silently stand for both.
-
-4. Where is help after submission?  Prepare bank and internal incident contacts in advance. Limit access to preserved recordings and screenshots rather than spreading personal information through group chats.
-
-## Four.  Our Recommendations: Write Steps People Can Follow
-
-1. Pause and use a trusted channel.  End the suspicious call and contact the person through previously confirmed details, rather than a new number or link in the message. The FBI and FTC advise independent verification.[1][3]
-
-2. Verify account changes separately.  Check changed payment details or procedures through established contacts and record the outcome.[2] We recommend the same procedure even when the voice sounds familiar or the message appears in an existing conversation.
-
-3. Separate processing and review.  Assign a reviewer and record the verification channel and approval basis for urgent requests too. If no reviewer is available, wait rather than treating urgency as an exception.
-
-4. Run a tabletop exercise.  Use a written scenario involving secrecy, urgency, and a new account. Check whether staff can find contacts, pause the request, and escalate. No voice clone is needed to test the process.
-
-5. Contact the bank immediately after a mistaken transfer.  The FBI recommends immediate contact with the financial institution and coordination with the receiving institution.[2] Preserve messages, times, and transaction records and seek appropriate assistance under the incident process. Do not wait for proof of AI use or assume funds will be recovered.
-
-A voice delivers a request; verification and approval authorize a payment.
-
-◆ Editor’s Note · How Think BIG Approaches This: Put Pause Authority in the Procedure
-
-## Let staff verify requests and find the right escalation contact.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-We recommend using AI to organize questions or verification tasks while designated people retain payment approval. External-action workflows should preserve verification evidence, review results, and response contacts.
-
-This article provides general fraud-prevention and process information, not legal advice.
-
-### Frequently Asked Questions
-
-Q1: Is a familiar voice enough?
-No. The FBI and FTC recommend independent verification through known contact details.[1][3]
-Q2: Must we prove AI use before pausing?
-We recommend pausing for verification. The FBI’s payment-verification advice does not depend on proving AI use first.[2]
-Q3: Does video make approval safe?
-Do not rely on it alone. The FBI also describes real-time video impersonation.[4]
-Q4: What if funds have already been sent?
-Contact the bank immediately through a known channel, preserve records, and seek assistance under the incident process. The FBI recommends immediate financial-institution contact.[2]
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] FBI IC3, “Senior US Officials Impersonated in Malicious Messaging Campaign,” May 15, 2025, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515) ·
-    [2] FBI, “Business Email Compromise”, accessed 2026-10-26: [www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise) ·
-    [3] FTC, “Scammers use AI to enhance their family emergency schemes,” 2023, accessed 2026-10-26: [consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes) ·
-    [4] FBI IC3, “Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud,” December 3, 2024, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  Enterprise Security Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/
-
-# 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-企業資安實務 · 第 021 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-2026 年 11 月 16 日　星期一
-◆
-企業資安實務
-◆
-第 021 期
-
-語音冒名 · 付款核實 · 企業流程
-
-## 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程
-
-Think BIG 自媒體部  |  2026 年 11 月 16 日
-
-遇到緊急付款要求，先暫停，再用事先確認的聯絡方式核實人與事。回到原有核准流程，不必先證明聲音是不是 AI。
-
-## 一 現象：語音可以被模仿，付款還是要查核
-
-FBI 在 2025 年 5 月 15 日警示，自當年 4 月起，有人冒充美國高階官員，透過簡訊與 AI 產生的語音訊息建立信任，試圖取得個人帳號存取權。[1] 這是官方揭露的特定活動，不是台灣企業受害統計，也不應直接改寫成「老闆匯款詐騙暴增」。
-
-這項警示給公司的提醒，是把聲音與身分核實分開。美國 FTC 在較早的防詐文章中指出，詐騙者可能利用公開的聲音片段複製熟人的聲音，並建議用自己知道的電話回撥確認。[3] 本文不提供需要多少秒素材就能成功的數字，因為不同工具、資料與情境不能一概而論。
-
-付款要求本來就需要核實。FBI 的商務電子郵件詐騙（BEC）說明建議，透過當面或電話確認付款與採購要求，也要確認帳號或付款程序的變更。[2] 我們據此延伸：即使要求改從語音傳來，也不應省略原有核准；不必先判定使用了哪種合成技術，才有理由暫停。
-
-## 二 各方評價：辨識線索有幫助，流程比聽力測驗更可執行
-
-技術與警覺的一面： FBI 提醒，語氣、用詞與影音細節可以提供觀察線索，同時也承認 AI 內容常難辨識。[1] 我們的判讀是，教育訓練可以教人注意異常，但不適合把「有沒有聽出破綻」當成員工要承擔的付款判準。
-
-程序面的保留： 只問幾個公開資料能查到的問題，未必足以確認身分。我們建議使用已核實的聯絡資料，並另外確認事情本身：付款目的、收款對象、文件與核准人。這是公司流程建議，不是聲音真偽的鑑定方法。
-
-FBI 另一份生成式 AI 詐騙公告列出語音與即時視訊冒名的可能用法。[4] 因此，換成視訊可以作為補充，但不能讓任何看起來像主管的畫面直接跳過付款控制。我們也不主張每段陌生語音都是詐騙；有疑問時，依相同核實程序處理，避免靠個人感覺決定。
-
-我們也建議讓主管事先參與演練，明確接受經辦回撥與等待覆核。流程若只要求員工提高警覺，卻在真正查證時催促跳過，會讓執行者無所適從。演練後應把找不到窗口、通訊錄過期與文件不齊等缺口列成待辦，再由負責人確認修正結果。
-
-◆ 導入檢查清單
-
-## 三、我們導入時的檢查清單
-
-以下是我們建議公司事先確認的問題清單，不描述受害或攔阻事件。
-
-1. 通訊錄從哪裡來？ 我們會先問，付款聯絡人與主管電話是否有事先確認的紀錄，誰能修改。若回撥號碼直接抄自可疑訊息，核實仍停留在對方控制的管道裡。[1][2]
-
-2. 誰有權說「先停」？ 我們建議明文允許經辦在核實完成前暫停處理，並指定主管不在場時的覆核人。不要讓「正在開會、不能回電」變成略過流程的條件。
-
-3. 核實的人，看得到什麼？ 覆核者應能對照付款目的、原始單據與帳號變更紀錄。我們建議把「確認來電者」和「批准這筆要求」分成兩個問題，避免一通回電同時被當成全部授權。
-
-4. 如果已經送出，怎麼求助？ 先備好銀行與內部事件窗口，讓經辦知道如何聯絡，不必當場從可疑訊息找電話。保存紀錄時也應限制可讀人員，不在群組大量轉傳含個資的錄音或截圖。
-
-## 四 我們的建議：把核實寫成每個人都能照做的步驟
-
-1. 暫停，改走已知管道。 結束可疑通話，用事先確認的電話或其他可信管道聯絡本人；不要沿用來訊附的新電話或連結。FBI 與 FTC 都提出獨立核實方向。[1][3]
-
-2. 帳號變更另行確認。 收款資料或付款程序變更，回到已建立的窗口核對並留紀錄。[2] 我們建議即使聲音熟悉、訊息出現在舊對話，也照同樣程序處理。
-
-3. 讓經辦與覆核分工。 我們建議付款由指定人覆核，緊急件也要記下核實管道與同意依據。找不到覆核人時先等待，不把「對方很急」寫成例外條件。
-
-4. 做一次桌上演練。 用文字情境測試「主管要求保密、立即處理、新帳號」，觀察員工能否找到通訊錄、暫停點與升級窗口。不需要複製任何人的聲音，也能演練程序。
-
-5. 發現誤付就立即聯絡銀行。 FBI 建議立即聯絡金融機構，要求與收款機構聯繫。[2] 同時依公司事件流程保存訊息、時間與交易紀錄，向適當機關求助；不要等到證明是 AI 才通報，也不預期款項必能追回。
-
-一句話：聲音只是訊息來源，付款依據要回到核實與核准。
-
-◆ 編按 · Think BIG 的做法：把停止權寫進流程
-
-## 讓經辦可以查證，也知道該找誰。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們主張 AI 可以協助整理疑點或待核實事項，付款核准仍由指定人負責。涉及對外動作的流程，應留下核實依據、覆核結果與事件處理窗口。
-
-延伸閱讀[AI 系統事件處理](https://thinkbigtw.com/library/qa/ai-incident-response/)。本文提供一般防詐與流程參考，不構成法律意見。
-
-### 常見問題
-
-Q1：聲音很像主管，就能照做嗎？
-不能只以聲音核實。FBI 與 FTC 建議透過獨立、已知的聯絡方式確認。[1][3]
-Q2：要先證明是 AI 才能暫停嗎？
-我們建議不必。可疑付款或帳號變更先走核實流程；FBI 的付款核對建議也不以先鑑定 AI 為前提。[2]
-Q3：改成視訊就可以直接核准嗎？
-不建議。FBI 也列出即時視訊冒名的可能用法，仍需核實與覆核。[4]
-Q4：已經匯出怎麼辦？
-立即用已知管道聯絡銀行，依公司事件流程保存紀錄並尋求協助；FBI 亦建議立即聯絡金融機構。[2]
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] FBI IC3，〈Senior US Officials Impersonated in Malicious Messaging Campaign〉，2025-05-15，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515)　·
-    [2] FBI，〈Business Email Compromise〉，查閱日期 2026-10-26：[www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise)　·
-    [3] FTC，〈Scammers use AI to enhance their family emergency schemes〉，2023，查閱日期 2026-10-26：[consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes)　·
-    [4] FBI IC3，〈Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud〉，2024-12-03，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  企業資安實務
-    Think BIG, Make it Real!　大想成業有限公司

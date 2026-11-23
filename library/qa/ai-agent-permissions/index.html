@@ -11,23 +11,23 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Agent 的權限要怎麼設？哪些動作一定要人核准？｜問答圖書館｜Think BIG</title>
-<meta name="description" content="AI Agent 的權限照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號；對外發送、花錢、刪除或改正式資料，都由人核准後才執行。本文依 OWASP LLM06 與 MCP 安全最佳實務，整理一張權限表範例和設定的 6 個步驟。">
+<title>AI Agent 權限誰核准？負責人分工、權限表範例與 6 步驟｜Think BIG</title>
+<meta name="description" content="簡答：AI Agent 碰到的每個系統，由該系統的負責人簽核它的權限表；對外發送、花錢、刪除或修改正式資料的動作，都要等指定的人核准後才執行。附權限表範例與設定的 6 個步驟。">
 <link rel="canonical" href="https://thinkbigtw.com/library/qa/ai-agent-permissions/">
 <link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/ai-agent-permissions/">
 <link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/ai-agent-permissions/">
 <link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/ai-agent-permissions/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://thinkbigtw.com/library/qa/ai-agent-permissions/">
-<meta property="og:title" content="AI Agent 的權限要怎麼設？哪些動作一定要人核准？｜問答圖書館｜Think BIG">
-<meta property="og:description" content="AI Agent 的權限照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號；對外發送、花錢、刪除或改正式資料，都由人核准後才執行。本文依 OWASP LLM06 與 MCP 安全最佳實務，整理一張權限表範例和設定的 6 個步驟。">
+<meta property="og:title" content="AI Agent 權限誰核准？負責人分工、權限表範例與 6 步驟｜Think BIG">
+<meta property="og:description" content="簡答：AI Agent 碰到的每個系統，由該系統的負責人簽核它的權限表；對外發送、花錢、刪除或修改正式資料的動作，都要等指定的人核准後才執行。附權限表範例與設定的 6 個步驟。">
 <meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <meta property="og:site_name" content="Think BIG!">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Agent 的權限要怎麼設？哪些動作一定要人核准？｜問答圖書館｜Think BIG">
-<meta name="twitter:description" content="AI Agent 的權限照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號；對外發送、花錢、刪除或改正式資料，都由人核准後才執行。本文依 OWASP LLM06 與 MCP 安全最佳實務，整理一張權限表範例和設定的 6 個步驟。">
+<meta name="twitter:title" content="AI Agent 權限誰核准？負責人分工、權限表範例與 6 步驟｜Think BIG">
+<meta name="twitter:description" content="簡答：AI Agent 碰到的每個系統，由該系統的負責人簽核它的權限表；對外發送、花錢、刪除或修改正式資料的動作，都要等指定的人核准後才執行。附權限表範例與設定的 6 個步驟。">
 <meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <script type="application/ld+json">
 {
@@ -37,7 +37,7 @@
    "@type": "Article",
    "@id": "https://thinkbigtw.com/library/qa/ai-agent-permissions/#article",
    "headline": "AI Agent 的權限要怎麼設？哪些動作一定要人核准？",
-   "description": "AI Agent 的權限照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號；對外發送、花錢、刪除或改正式資料，都由人核准後才執行。本文依 OWASP LLM06 與 MCP 安全最佳實務，整理一張權限表範例和設定的 6 個步驟。",
+   "description": "簡答：AI Agent 碰到的每個系統，由該系統的負責人簽核它的權限表；對外發送、花錢、刪除或修改正式資料的動作，都要等指定的人核准後才執行。附權限表範例與設定的 6 個步驟。",
    "keywords": "AI Agent 權限, AI Agent 安全嗎, AI Agent 安全性, 最小權限, 人工核准, Excessive Agency, MCP 權限, Think BIG",
    "author": {
     "@type": "Organization",
@@ -79,7 +79,7 @@
      "name": "AI Agent 的權限要怎麼設？哪些動作一定要人核准？",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。"
+      "text": "照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。誰核准：AI Agent 碰到的每個系統或資料來源，由該系統的負責人簽核它的權限；影響大的動作，每次執行都要由指定的人核准。"
      }
     },
     {
@@ -206,7 +206,7 @@
 
   <section class="answer" aria-label="先說答案">
     <span class="lede">先說答案</span>
-    <div><p>照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。</p></div>
+    <div><p>照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。誰核准：AI Agent 碰到的每個系統或資料來源，由該系統的負責人簽核它的權限；影響大的動作，每次執行都要由指定的人核准。</p></div>
   </section>
 
   <div class="body"><h2><span class="no">一、</span>權限給太多，會出什麼事</h2>

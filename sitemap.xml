@@ -19,7 +19,7 @@
   <url><loc>https://thinkbigtw.com/en/enterprise/start/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/faq/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/guides/ai-acceptance/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/guides/ai-agents/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/guides/ai-agents/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/guides/choose-ai-partner/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/guides/glossary/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/guides/hermes-vs-openclaw/</loc><lastmod>2026-11-13</lastmod></url>
@@ -28,7 +28,7 @@
   <url><loc>https://thinkbigtw.com/en/guides/openclaw-daizhuang/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/guides/openclaw-safe/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/guides/yuanduan-daizhuang/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/library/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/ai-adoption-nobody-uses-20261021/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/ai-agent-usage-limits-20261122/</loc><lastmod>2026-11-22</lastmod></url>
@@ -39,9 +39,10 @@
   <url><loc>https://thinkbigtw.com/en/news/backup-local-ai-system-20261120/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/c2pa-content-credentials-20261118/</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/chatgpt-tw-citations-20261011/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/fde-outsourced-engineer-20261013/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/geo-measurement-20261009/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/news/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/news/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/iso-42001-ai-management-20261106/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/laptop-145b-model-check-20261116/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/news/lobster-hermes-abandonment-20261003/</loc><lastmod>2026-11-10</lastmod></url>
@@ -60,10 +61,10 @@
   <url><loc>https://thinkbigtw.com/en/pricing/personal/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/privacy/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/ai-agent-acceptance-testing/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/qa/ai-agent-permissions/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/qa/ai-agent-permissions/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/ai-agent-pre-delivery-security-review/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/ai-answers-with-citations/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/qa/ai-api-key-leak/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/qa/ai-api-key-leak/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/ai-audit-logs/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/ai-bias-enterprise/</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/ai-chatbot-wrong-answer-liability/</loc><lastmod>2026-11-21</lastmod></url>
@@ -102,7 +103,8 @@
   <url><loc>https://thinkbigtw.com/en/qa/gift-from-grandparents/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/gpu-vs-npu-ai-pc/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/how-to-choose-custom-book/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/qa/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/qa/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/qa/inference-vs-training/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/instagram-age-13-kids-daily-word/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/is-local-llm-good-enough/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/kids-in-app-purchase-refund-taiwan/</loc><lastmod>2026-11-20</lastmod></url>
@@ -110,7 +112,7 @@
   <url><loc>https://thinkbigtw.com/en/qa/learn-ai-without-tech-background/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/learn-language-from-video/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/local-llm-advantages/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/local-llm-limitations/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/local-llm-read-pdf-excel/</loc><lastmod>2026-11-14</lastmod></url>
   <url><loc>https://thinkbigtw.com/en/qa/mixing-languages-at-home/</loc><lastmod>2026-11-13</lastmod></url>
@@ -163,7 +165,7 @@
   <url><loc>https://thinkbigtw.com/experience/retail/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/faq/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/guides/ai-acceptance/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/guides/ai-agents/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/guides/ai-agents/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/guides/choose-ai-partner/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/guides/glossary/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/guides/hermes-vs-openclaw/</loc><lastmod>2026-11-13</lastmod></url>
@@ -173,7 +175,7 @@
   <url><loc>https://thinkbigtw.com/guides/openclaw-daizhuang/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/guides/openclaw-safe/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/guides/yuanduan-daizhuang/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/academy/ep01-too-late-to-start-ai/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/academy/ep02-ai-confident-but-wrong/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/academy/ep03-first-time-one-task/</loc><lastmod>2026-11-20</lastmod></url>
@@ -207,9 +209,10 @@
   <url><loc>https://thinkbigtw.com/library/news/backup-local-ai-system-20261120/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/news/c2pa-content-credentials-20261118/</loc><lastmod>2026-11-18</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/news/chatgpt-tw-citations-20261011/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/news/fde-outsourced-engineer-20261013/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/news/geo-measurement-20261009/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/library/news/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/news/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/news/iso-42001-ai-management-20261106/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/news/laptop-145b-model-check-20261116/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/news/lobster-hermes-abandonment-20261003/</loc><lastmod>2026-11-13</lastmod></url>
@@ -226,10 +229,10 @@
   <url><loc>https://thinkbigtw.com/library/qa/afraid-of-doctor-shots/</loc><lastmod>2026-11-14</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/afraid-of-the-dark/</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/ai-agent-acceptance-testing/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/library/qa/ai-agent-permissions/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/qa/ai-agent-permissions/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/ai-agent-pre-delivery-security-review/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/ai-answers-with-citations/</loc><lastmod>2026-11-22</lastmod></url>
-  <url><loc>https://thinkbigtw.com/library/qa/ai-api-key-leak/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/qa/ai-api-key-leak/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/ai-audit-logs/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/ai-bias-enterprise/</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/ai-chatbot-wrong-answer-liability/</loc><lastmod>2026-11-21</lastmod></url>
@@ -263,6 +266,7 @@
   <url><loc>https://thinkbigtw.com/library/qa/dialogic-reading-at-home/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/dinosaur-loving-kids/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/does-ai-book-look-like-my-child/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/qa/early-math-picture-books/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/feelings-picture-books/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/fine-tuning-vs-rag/</loc><lastmod>2026-11-13</lastmod></url>
@@ -270,7 +274,8 @@
   <url><loc>https://thinkbigtw.com/library/qa/gpu-vs-npu-ai-pc/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/home-bookshelf-for-kids/</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/how-to-choose-custom-book/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/library/qa/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/qa/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/qa/inference-vs-training/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/instagram-age-13-kids-daily-word/</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/is-local-llm-good-enough/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/kids-in-app-purchase-refund-taiwan/</loc><lastmod>2026-11-20</lastmod></url>
@@ -280,7 +285,7 @@
   <url><loc>https://thinkbigtw.com/library/qa/learn-language-from-video/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/library-card-for-kids/</loc><lastmod>2026-11-17</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/local-llm-advantages/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/</loc><lastmod>2026-11-24</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/local-llm-limitations/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/local-llm-read-pdf-excel/</loc><lastmod>2026-11-14</lastmod></url>
   <url><loc>https://thinkbigtw.com/library/qa/mixing-languages-at-home/</loc><lastmod>2026-11-13</lastmod></url>
@@ -341,12 +346,4 @@
   <url><loc>https://thinkbigtw.com/skill-pack/</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/terms.html</loc><lastmod>2026-11-13</lastmod></url>
   <url><loc>https://thinkbigtw.com/trust/</loc><lastmod>2026-11-13</lastmod></url>
-  <url><loc>https://thinkbigtw.com/full-agent/</loc><lastmod>2026-10-01</lastmod></url>
-  <url><loc>https://thinkbigtw.com/harness/</loc><lastmod>2026-10-01</lastmod></url>
-  <url><loc>https://thinkbigtw.com/tbos/en/</loc><lastmod>2026-10-01</lastmod></url>
-  <url><loc>https://thinkbigtw.com/services/</loc><lastmod>2026-10-04</lastmod></url>
-  <url><loc>https://thinkbigtw.com/library/news/ai-context-length-too-large-20261025/</loc><lastmod>2026-10-25</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/news/ai-context-length-too-large-20261025/</loc><lastmod>2026-10-25</lastmod></url>
-  <url><loc>https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/</loc><lastmod>2026-11-16</lastmod></url>
-  <url><loc>https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/</loc><lastmod>2026-11-16</lastmod></url>
 </urlset>
