@@ -95,7 +95,7 @@ def episode_html(root, e, prev, nxt):
 {('<h2>參考資料</h2><ol class="refs">' + refs + '</ol>') if refs else ''}
 <p>{nav}</p>
 {CTA}'''
-    ld = {'@context': 'https://schema.org', '@type': 'VideoObject', 'name': e['title'], 'description': e['summary'], 'uploadDate': e['date'],
+    ld = {'@context': 'https://schema.org', '@type': 'VideoObject', 'name': e['title'], 'description': e['summary'], 'uploadDate': e['date'] + 'T00:00:00+08:00',
           'thumbnailUrl': f"https://i.ytimg.com/vi/{e['youtube_id']}/hqdefault.jpg", 'embedUrl': f"https://www.youtube-nocookie.com/embed/{e['youtube_id']}"}
     return page(root, e['title'], e['summary'][:150], url, body, ld)
 
