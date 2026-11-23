@@ -12554,7 +12554,7 @@ Q&A Library 　·　[Library home](https://thinkbigtw.com/library/)Think BIG, Ma
 
 URL: https://thinkbigtw.com/en/qa/offline-local-llm-updates/
 
-# Offline Local LLM: Air-Gap Deployment & Updates | Think BIG
+# Air-Gapped Local LLM Setup & Offline Updates | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
