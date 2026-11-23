@@ -4144,6 +4144,117 @@ THINK BIG NEWS   ·  First-hand observations on AI deployment
 
 ---
 
+URL: https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/
+
+# A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Enterprise Security Notes · Issue 021
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+November 16, 2026  ·  Monday
+◆
+Enterprise Security Notes
+◆
+Issue 021
+
+Voice Impersonation · Payment Verification · Business Procedures
+
+## A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel
+
+Think BIG Media  |  November 16, 2026
+
+Pause an urgent payment request and verify both identity and purpose through previously confirmed contact details. Follow the approval workflow without first proving the audio is synthetic.
+
+## One.  What’s Happening: A Familiar Voice Still Requires Verification
+
+On May 15, 2025, the FBI warned of a campaign active since April in which actors impersonated senior US officials through texts and AI-generated voice messages to seek personal-account access.[1] This was a specific disclosed campaign, not a measure of victimization among Taiwanese businesses or evidence of a surge in executive payment fraud.
+
+The business lesson is to separate a recognizable voice from verified identity. In an earlier warning, the FTC explained that scammers could use public audio to clone a familiar voice and advised calling a number already known to belong to the person.[3] We do not claim a universal number of seconds needed to clone a voice.
+
+Payment requests already need verification. The FBI’s business email compromise guidance recommends confirming payment and purchase requests in person or by phone, including account-number or payment-procedure changes.[2] We extend that principle to voice requests: retain existing approvals without first needing to identify a particular synthesis technology.
+
+## Two.  Perspectives: Clues Help; Procedures Are More Usable Than a Listening Test
+
+The awareness perspective:  The FBI suggests observing tone, wording, and audiovisual details while acknowledging that AI-generated content can be hard to identify.[1] Training can help people notice anomalies. In our view, detecting an audio flaw should not become the employee’s test for authorizing payment.
+
+The procedural caution:  Publicly available personal facts may be insufficient for identity verification. We recommend independently confirmed contact details and separate checks on the purpose, recipient, documents, and approver. This is a business-control proposal, not an audio-forensics method.
+
+Another FBI announcement describes voice and real-time video impersonation uses.[4] Video may supplement checks, but an executive-looking image should not bypass payment controls. Nor should every unfamiliar recording be labeled fraudulent; apply the same verification procedure when uncertain.
+
+Include executives in the exercise and have them explicitly accept callbacks and review delays. Staff cannot apply verification consistently if they are urged to bypass it. Record missing contacts, outdated directories, and incomplete documents as actions, with owners confirming corrections.
+
+◆ Deployment Checklist
+
+## Three. Our Deployment Checklist
+
+These are proposed preparation questions for businesses, not claims of victimization or successful interception.
+
+1. Where does the contact list come from?  Ask whether payment contacts and executive numbers were previously verified and who can edit them. Calling a number supplied in the suspicious message keeps verification inside the sender’s channel.[1][2]
+
+2. Who may pause the request?  We recommend explicitly allowing staff to wait for verification and naming a backup reviewer. “In a meeting and unable to call” should not create an exception.
+
+3. What can the reviewer inspect?  Give reviewers the payment purpose, original documents, and account-change history. Separate confirming identity from approving the request itself; one callback should not silently stand for both.
+
+4. Where is help after submission?  Prepare bank and internal incident contacts in advance. Limit access to preserved recordings and screenshots rather than spreading personal information through group chats.
+
+## Four.  Our Recommendations: Write Steps People Can Follow
+
+1. Pause and use a trusted channel.  End the suspicious call and contact the person through previously confirmed details, rather than a new number or link in the message. The FBI and FTC advise independent verification.[1][3]
+
+2. Verify account changes separately.  Check changed payment details or procedures through established contacts and record the outcome.[2] We recommend the same procedure even when the voice sounds familiar or the message appears in an existing conversation.
+
+3. Separate processing and review.  Assign a reviewer and record the verification channel and approval basis for urgent requests too. If no reviewer is available, wait rather than treating urgency as an exception.
+
+4. Run a tabletop exercise.  Use a written scenario involving secrecy, urgency, and a new account. Check whether staff can find contacts, pause the request, and escalate. No voice clone is needed to test the process.
+
+5. Contact the bank immediately after a mistaken transfer.  The FBI recommends immediate contact with the financial institution and coordination with the receiving institution.[2] Preserve messages, times, and transaction records and seek appropriate assistance under the incident process. Do not wait for proof of AI use or assume funds will be recovered.
+
+A voice delivers a request; verification and approval authorize a payment.
+
+◆ Editor’s Note · How Think BIG Approaches This: Put Pause Authority in the Procedure
+
+## Let staff verify requests and find the right escalation contact.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+We recommend using AI to organize questions or verification tasks while designated people retain payment approval. External-action workflows should preserve verification evidence, review results, and response contacts.
+
+This article provides general fraud-prevention and process information, not legal advice.
+
+### Frequently Asked Questions
+
+Q1: Is a familiar voice enough?
+No. The FBI and FTC recommend independent verification through known contact details.[1][3]
+Q2: Must we prove AI use before pausing?
+We recommend pausing for verification. The FBI’s payment-verification advice does not depend on proving AI use first.[2]
+Q3: Does video make approval safe?
+Do not rely on it alone. The FBI also describes real-time video impersonation.[4]
+Q4: What if funds have already been sent?
+Contact the bank immediately through a known channel, preserve records, and seek assistance under the incident process. The FBI recommends immediate financial-institution contact.[2]
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] FBI IC3, “Senior US Officials Impersonated in Malicious Messaging Campaign,” May 15, 2025, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515) ·
+    [2] FBI, “Business Email Compromise”, accessed 2026-10-26: [www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise) ·
+    [3] FTC, “Scammers use AI to enhance their family emergency schemes,” 2023, accessed 2026-10-26: [consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes) ·
+    [4] FBI IC3, “Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud,” December 3, 2024, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Enterprise Security Notes
+    Think BIG, Make it Real!
+
+---
+
 URL: https://thinkbigtw.com/en/news/fde-outsourced-engineer-20261013/
 
 # What Is a Forward Deployed Engineer, and Why Is It AI's Most Wanted Role? What Small Businesses Can Do Without an FDE Budget | Think BIG NEWS
@@ -11164,6 +11275,96 @@ Not always. It depends on the license of the exact version you download, not on�
 Think BIG Q&A Library
 Local LLMs
 Updated 2026-10-19
+
+---
+
+URL: https://thinkbigtw.com/en/qa/inference-vs-training/
+
+# What Is the Difference Between Inference and Training? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Basics
+TB41
+
+# What Is the Difference Between Inference and Training?
+
+Think BIG Q&A Library  ·  2026-11-23
+      ·  [中文](https://thinkbigtw.com/library/qa/inference-vs-training/)
+
+The short answer
+
+Inference uses an already trained model to produce a result; training adjusts model parameters using data. Generating a draft or summary is inference, while separately fine-tuning a model involves training. Whether a service retains those inputs or later uses them for training is a separate terms-and-settings question.
+
+## 1. Ask whether parameters are being changed
+
+Google’s machine-learning glossary describes training as reading examples and adjusting parameters, and LLM inference as generating a response with a trained model. A new prompt does not by itself mean retraining.
+
+Hugging Face describes fine-tuning as continuing training on a task- or domain-specific dataset. Deploying a model can mean running an existing model on designated equipment. It does not necessarily include training one.
+
+## 2. Classify common activities
+
+Activity
+Main process
+Do not assume
+Rewrite text
+Inference
+Parameters have changed
+
+Include a policy in a prompt
+Supply answer context
+Permanent memory
+
+Retrieve documents with RAG
+Retrieval plus inference
+Documents were used for fine-tuning
+
+Fine-tune with examples
+Further training
+Every answer will be correct
+
+Microsoft’s RAG guidance describes grounding responses in enterprise content. This requires retrieval and content preparation. Clarify whether a project delivers a retrieval system, a model runtime, or training artifacts, and specify acceptance evidence accordingly.
+
+## 3. Review needs and data handling separately
+
+For current company documents, start by checking content quality, retrieval, and access. For consistent task behavior, assess whether fine-tuning is needed. This is a suggested evaluation order, not a universal prescription. Test existing models on actual work to identify whether the gap is data, workflow, or model behavior.
+
+Separately map processing locations, retention, access, training use, and exit arrangements. Think BIG’s local-data guide notes that terms depend on the product, account, and contract. Inference does not mean no logs; local deployment still requires reviewing backups and external integrations. Choose local or cloud execution against these requirements.
+
+Brand information | Think BIG
+
+## Think BIG’s model-processing locations and data scope
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Does a long conversation train the model? Context can affect responses. Parameter changes or later training use require checking the system and terms. Q2: Must a company train from scratch? Do not assume so. Test an existing model before deciding whether training is needed. Q3: Is RAG training? Retrieving documents for an answer differs from fine-tuning parameters; a system may include both. Q4: Does inference remove privacy risk? No. Review inputs, logging, retention, and external services separately.
+
+Sources (checked 2026-10-26)
+
+- Google, Machine Learning Glossary：inference、training: [developers.google.com](https://developers.google.com/machine-learning/glossary)
+
+- Hugging Face, Fine-tuning: [huggingface.co](https://huggingface.co/docs/transformers/training)
+
+- Microsoft, Retrieval-augmented generation in Azure AI Search: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- Think BIG, 地端 AI 與資料主權: [thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
 
 ---
 
@@ -20551,6 +20752,117 @@ THINK BIG NEWS   ·  AI 導入的第一手觀察
 
 ---
 
+URL: https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/
+
+# 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+企業資安實務 · 第 021 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+ENTERPRISE SECURITY NOTES
+
+2026 年 11 月 16 日　星期一
+◆
+企業資安實務
+◆
+第 021 期
+
+語音冒名 · 付款核實 · 企業流程
+
+## 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程
+
+Think BIG 自媒體部  |  2026 年 11 月 16 日
+
+遇到緊急付款要求，先暫停，再用事先確認的聯絡方式核實人與事。回到原有核准流程，不必先證明聲音是不是 AI。
+
+## 一 現象：語音可以被模仿，付款還是要查核
+
+FBI 在 2025 年 5 月 15 日警示，自當年 4 月起，有人冒充美國高階官員，透過簡訊與 AI 產生的語音訊息建立信任，試圖取得個人帳號存取權。[1] 這是官方揭露的特定活動，不是台灣企業受害統計，也不應直接改寫成「老闆匯款詐騙暴增」。
+
+這項警示給公司的提醒，是把聲音與身分核實分開。美國 FTC 在較早的防詐文章中指出，詐騙者可能利用公開的聲音片段複製熟人的聲音，並建議用自己知道的電話回撥確認。[3] 本文不提供需要多少秒素材就能成功的數字，因為不同工具、資料與情境不能一概而論。
+
+付款要求本來就需要核實。FBI 的商務電子郵件詐騙（BEC）說明建議，透過當面或電話確認付款與採購要求，也要確認帳號或付款程序的變更。[2] 我們據此延伸：即使要求改從語音傳來，也不應省略原有核准；不必先判定使用了哪種合成技術，才有理由暫停。
+
+## 二 各方評價：辨識線索有幫助，流程比聽力測驗更可執行
+
+技術與警覺的一面： FBI 提醒，語氣、用詞與影音細節可以提供觀察線索，同時也承認 AI 內容常難辨識。[1] 我們的判讀是，教育訓練可以教人注意異常，但不適合把「有沒有聽出破綻」當成員工要承擔的付款判準。
+
+程序面的保留： 只問幾個公開資料能查到的問題，未必足以確認身分。我們建議使用已核實的聯絡資料，並另外確認事情本身：付款目的、收款對象、文件與核准人。這是公司流程建議，不是聲音真偽的鑑定方法。
+
+FBI 另一份生成式 AI 詐騙公告列出語音與即時視訊冒名的可能用法。[4] 因此，換成視訊可以作為補充，但不能讓任何看起來像主管的畫面直接跳過付款控制。我們也不主張每段陌生語音都是詐騙；有疑問時，依相同核實程序處理，避免靠個人感覺決定。
+
+我們也建議讓主管事先參與演練，明確接受經辦回撥與等待覆核。流程若只要求員工提高警覺，卻在真正查證時催促跳過，會讓執行者無所適從。演練後應把找不到窗口、通訊錄過期與文件不齊等缺口列成待辦，再由負責人確認修正結果。
+
+◆ 導入檢查清單
+
+## 三、我們導入時的檢查清單
+
+以下是我們建議公司事先確認的問題清單，不描述受害或攔阻事件。
+
+1. 通訊錄從哪裡來？ 我們會先問，付款聯絡人與主管電話是否有事先確認的紀錄，誰能修改。若回撥號碼直接抄自可疑訊息，核實仍停留在對方控制的管道裡。[1][2]
+
+2. 誰有權說「先停」？ 我們建議明文允許經辦在核實完成前暫停處理，並指定主管不在場時的覆核人。不要讓「正在開會、不能回電」變成略過流程的條件。
+
+3. 核實的人，看得到什麼？ 覆核者應能對照付款目的、原始單據與帳號變更紀錄。我們建議把「確認來電者」和「批准這筆要求」分成兩個問題，避免一通回電同時被當成全部授權。
+
+4. 如果已經送出，怎麼求助？ 先備好銀行與內部事件窗口，讓經辦知道如何聯絡，不必當場從可疑訊息找電話。保存紀錄時也應限制可讀人員，不在群組大量轉傳含個資的錄音或截圖。
+
+## 四 我們的建議：把核實寫成每個人都能照做的步驟
+
+1. 暫停，改走已知管道。 結束可疑通話，用事先確認的電話或其他可信管道聯絡本人；不要沿用來訊附的新電話或連結。FBI 與 FTC 都提出獨立核實方向。[1][3]
+
+2. 帳號變更另行確認。 收款資料或付款程序變更，回到已建立的窗口核對並留紀錄。[2] 我們建議即使聲音熟悉、訊息出現在舊對話，也照同樣程序處理。
+
+3. 讓經辦與覆核分工。 我們建議付款由指定人覆核，緊急件也要記下核實管道與同意依據。找不到覆核人時先等待，不把「對方很急」寫成例外條件。
+
+4. 做一次桌上演練。 用文字情境測試「主管要求保密、立即處理、新帳號」，觀察員工能否找到通訊錄、暫停點與升級窗口。不需要複製任何人的聲音，也能演練程序。
+
+5. 發現誤付就立即聯絡銀行。 FBI 建議立即聯絡金融機構，要求與收款機構聯繫。[2] 同時依公司事件流程保存訊息、時間與交易紀錄，向適當機關求助；不要等到證明是 AI 才通報，也不預期款項必能追回。
+
+一句話：聲音只是訊息來源，付款依據要回到核實與核准。
+
+◆ 編按 · Think BIG 的做法：把停止權寫進流程
+
+## 讓經辦可以查證，也知道該找誰。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+我們主張 AI 可以協助整理疑點或待核實事項，付款核准仍由指定人負責。涉及對外動作的流程，應留下核實依據、覆核結果與事件處理窗口。
+
+延伸閱讀[AI 系統事件處理](https://thinkbigtw.com/library/qa/ai-incident-response/)。本文提供一般防詐與流程參考，不構成法律意見。
+
+### 常見問題
+
+Q1：聲音很像主管，就能照做嗎？
+不能只以聲音核實。FBI 與 FTC 建議透過獨立、已知的聯絡方式確認。[1][3]
+Q2：要先證明是 AI 才能暫停嗎？
+我們建議不必。可疑付款或帳號變更先走核實流程；FBI 的付款核對建議也不以先鑑定 AI 為前提。[2]
+Q3：改成視訊就可以直接核准嗎？
+不建議。FBI 也列出即時視訊冒名的可能用法，仍需核實與覆核。[4]
+Q4：已經匯出怎麼辦？
+立即用已知管道聯絡銀行，依公司事件流程保存紀錄並尋求協助；FBI 亦建議立即聯絡金融機構。[2]
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] FBI IC3，〈Senior US Officials Impersonated in Malicious Messaging Campaign〉，2025-05-15，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515)　·
+    [2] FBI，〈Business Email Compromise〉，查閱日期 2026-10-26：[www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise)　·
+    [3] FTC，〈Scammers use AI to enhance their family emergency schemes〉，2023，查閱日期 2026-10-26：[consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes)　·
+    [4] FBI IC3，〈Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud〉，2024-12-03，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  企業資安實務
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/news/fde-outsourced-engineer-20261013/
 
 # FDE 是什麼？為什麼 AI 落地最缺的是「派駐工程師」——中小企業沒有預算養 FDE 怎麼辦 | Think BIG NEWS
@@ -25760,6 +26072,78 @@ Q1：覺得人物不像，怎麼說比較清楚？ 可指出原照和預覽的�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/early-math-picture-books/
+
+# 用繪本認識數字：數學啟蒙怎麼從生活開始？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q44
+
+# 用繪本認識數字：數學啟蒙怎麼從生活開始？
+
+Think BIG 問答圖書館　·　2026 年 11 月 23 日　星期一
+
+先說答案
+
+數學啟蒙可以從一起點數、比較大小、找形狀與分類開始，再把書裡看到的東西接回生活，不必急著寫算式。UNICEF 建議利用生活中的形狀、數量與規律跟幼兒玩數學；繪本可當話題起點，實際操作則用家裡熟悉的物件來試。
+
+## 一、 先選一頁看得清楚的圖
+
+[UNICEF 的幼兒數學活動建議](https://www.unicef.org/parenting/child-development/how-introduce-maths-your-toddler)從日常語言談起：大和小、形狀、點數、分類，都能成為數學對話。挑書時可以先翻內頁，找物件輪廓清楚、孩子願意看的畫面，不需要封面寫著數學才開始。
+
+例如一頁有幾隻動物，就跟著孩子的手指慢慢數；一頁只有一座屋子，也能找門、窗和屋頂的形狀。以下共讀方式是依上述方向設計的家庭提案，沒有設定幾歲應完成哪一項，也不是能力測驗。
+
+若孩子只注意主角手上的氣球，可以先從氣球聊起：「這顆大，那顆小。」不用為了今天預定教數字，就把孩子指的東西全部帶回計數。選題可以跟著當天興趣，換一本書時也不用從頭安排一套課程。
+
+## 二、 從書頁接到餐桌與玩具
+
+書裡看到什麼 共讀時能說的話 生活中能試的事 角色準備吃飯 「這張桌子旁坐了誰？」 請孩子幫玩偶各放一個碗，放好後一起看看有沒有漏掉。
+
+不同大小的車 「你想把哪一台放旁邊比比看？」 用家裡的玩具車並排，試著按大小排，不要求背出專有名詞。
+
+重複出現的圖案 「紅色、藍色，接下來你想放什麼？」 用大塊積木排出重複組合，再讓孩子自己改規則。
+
+圓形與方形物件 「還有哪裡跟這個形狀像？」 在房間找一樣形狀的物品，只看和指，不必每件都搬出來。
+
+UNICEF 也提到數腳步、拍手等不需額外物件的活動。可以一邊走一邊數，再停下來休息；活動本身就能是聊天內容，不必加上計分、排名或獎品。
+
+上表不是要同一天做完的清單。若今天只讀到吃飯那頁，就挑放碗的活動；如果孩子想反過來當出題的人，大人也可以照他的規則做，請他說明怎麼分組。
+
+## 三、 數錯時，回到眼前的物件
+
+可以說「我們一起慢慢指一次」，不急著要求孩子從更大的數字重新背。這是陪讀建議，不據此推斷發展程度。也可把問題換成「哪一堆看起來多？要不要排排看？」讓操作留在具體情境裡。
+
+讀完不必填學習單，可以只聊「今天我們把車分成哪幾堆」。同一頁下次也能換問形狀或位置。選書可參考[各階段怎麼挑繪本](https://thinkbigtw.com/library/qa/picture-books-by-age/)；若家長發現自己一直考問題，可改用[對話式共讀的問法](https://thinkbigtw.com/library/qa/dialogic-reading-at-home/)，留時間聽孩子的想法。
+
+家庭可以把目標訂成願意一起找、一起試，而不是今天要算對幾題。這是本篇的活動安排提案，沒有宣稱讀某一本書就能提升數學成績，也不需要因一次數錯就額外加課。
+
+品牌資訊｜童話有你
+
+## 童話有你：讓孩子走進故事
+
+童話有你是孩子當主角、依照片繪製的 AI 客製繪本。[主題與範例](https://talewithyoutw.com/themes.html)列有「交通工具」「恐龍時代」「世界環遊」等主題，家長可先翻內頁確認畫面。範例頁主角為 AI 生成形象，正式書頁依提供的照片繪製；官網常見問題說明印製前會傳預覽確認。
+
+本段內容取自童話有你官網[主題與範例](https://talewithyoutw.com/themes.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：需要買數學繪本嗎？ 不必。願意一起看的故事頁面，也可以找數量、形狀、大小和分類。 Q2：孩子數錯要馬上糾正嗎？ 可回到眼前物件，一起指著慢慢數，不必立即加難度或責備。 Q3：除了數數還能做什麼？ 可以比較大小、找形狀、整理分類或玩重複圖案，這些都是 UNICEF 提到的活動方向。 Q4：要每天做完全部活動嗎？ 不用。挑一頁、一個孩子有興趣的生活情境就可以，依當天狀況調整。
+
+參考來源（連結於 2026-10-26 查證）
+
+- UNICEF｜How to introduce maths to your toddler：[www.unicef.org](https://www.unicef.org/parenting/child-development/how-introduce-maths-your-toddler)
+
+- 童話有你｜常見問題：[talewithyoutw.com](https://talewithyoutw.com/faq.html)
+
+- 童話有你｜主題與範例：[talewithyoutw.com](https://talewithyoutw.com/themes.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/employees-chatgpt-company-data/
 
 # 員工把公司資料貼進 ChatGPT，會有什麼風險？公司該怎麼管？｜問答圖書館｜Think BIG
@@ -27597,6 +27981,96 @@ Think BIG 官方
 問答圖書館持續更新中。合作客戶的問答一律標示「合作內容」，不偽裝成路人推薦。
 
 Think BIG 　·　大想成業有限公司　·　[Library 首頁](https://thinkbigtw.com/library/)
+
+---
+
+URL: https://thinkbigtw.com/library/qa/inference-vs-training/
+
+# 推論跟訓練差在哪？公司用 AI 是在做哪一種｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+AI 入門
+TB41
+
+# 推論跟訓練差在哪？公司用 AI 是在做哪一種
+
+Think BIG 問答圖書館　·　2026 年 11 月 23 日　星期一
+    ·　[English](https://thinkbigtw.com/en/qa/inference-vs-training/)
+
+先說答案
+
+推論是使用已訓練好的模型產生結果；訓練則是利用資料調整模型參數。公司用 AI 寫草稿、摘要或回答問題時，產生回答這一步屬於推論；另行微調才涉及訓練。推論資料是否被保存或另用於訓練，還要看服務條款與設定，不能只靠這兩個名詞判斷。
+
+## 一、 用「有沒有調整模型參數」分辨
+
+Google 的機器學習術語表將訓練說明為讀取範例、逐步調整模型參數的過程，將大型語言模型的推論說明為用訓練好的模型回應提示。可以把參數想成模型已學到的內部設定；輸入問題後，模型利用這些設定產生輸出，並不等於每次都重新訓練。
+
+Hugging Face 的官方微調文件則說明，微調是在已預訓練的模型上，使用特定任務或領域的資料繼續訓練。所以「自己部署模型」和「自己訓練模型」不是同一件事。部署可以只是下載可用的模型，讓它在指定設備上執行；若要調整參數，才需要另外規劃訓練流程、資料和評估。
+
+## 二、 公司常見操作各屬於哪一類
+
+操作
+主要在做什麼
+不應直接推定的事
+請模型改寫文字
+推論，依輸入產生文字
+不代表模型參數已改變
+
+在問題中附規定
+提供當次回答的參考內容
+不代表模型往後都記得
+
+用 RAG 找文件再回答
+檢索資料，加上模型推論
+不等於把文件拿去微調
+
+用範例微調模型
+繼續訓練，調整參數
+不代表每個答案都正確
+
+Microsoft 官方 RAG 說明把企業內容作為模型回答的依據；它需要檢索與內容準備，不能只把資料夾名稱寫進提示詞。表中的差異有助於問清導入範圍：供應商交付的是查詢系統、模型執行環境，還是包含訓練成果？每種成果應有不同的驗收證據。
+
+## 三、 先問需求，再問資料會去哪裡
+
+若需求是查公司最新文件，建議先確認文件品質、檢索與權限；若需求是調整固定任務的輸出習慣，再評估是否需要微調。這是本文的導入順序建議，不是所有專案的固定答案。先用現有模型和真實工作題測試，能幫團隊說清楚缺的是資料、流程還是模型行為。
+
+資料治理也要另列一張表：輸入送到哪裡、保留多久、誰能讀取、是否用於訓練、如何退出。Think BIG 的地端資料指南提醒，供應商處理方式取決於產品、帳號與合約設定。即使當下只是推論，也不表示服務不留紀錄；即使放在公司設備，也要確認日誌、備份與外部串接。地端與雲端應依這些條件選擇。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的模型處理位置與資料範圍
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：聊天越久，模型就被我訓練了嗎？ 不能這樣推定。對話內容可影響當次回答；是否調整參數或另用資料，需確認系統和條款。 Q2：公司需要從頭訓練模型嗎？ 不必預設如此。先用現有模型測試工作需求，再決定是否需要訓練。 Q3：RAG 算訓練嗎？ 檢索公司文件供回答參考，與微調參數是不同流程；實際系統也可能同時包含兩者。 Q4：只做推論就沒有個資風險嗎？ 仍要確認輸入、紀錄、保留和外部服務，不能以推論一詞判斷隱私條件。
+
+參考來源（連結於 2026-10-26 查證）
+
+- Google｜Machine Learning Glossary：inference、training：[developers.google.com](https://developers.google.com/machine-learning/glossary)
+
+- Hugging Face｜Fine-tuning：[huggingface.co](https://huggingface.co/docs/transformers/training)
+
+- Microsoft｜Retrieval-augmented generation in Azure AI Search：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview)
+
+- Think BIG｜地端 AI 與資料主權：[thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
 
 ---
 
@@ -34752,225 +35226,3 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
-
----
-
-URL: https://thinkbigtw.com/en/news/deepfake-voice-payment-fraud-20261116/
-
-# A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Enterprise Security Notes · Issue 021
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-November 16, 2026  ·  Monday
-◆
-Enterprise Security Notes
-◆
-Issue 021
-
-Voice Impersonation · Payment Verification · Business Procedures
-
-## A Familiar Voice Asks You to Transfer Funds. Verify the Request Through a Trusted Channel
-
-Think BIG Media  |  November 16, 2026
-
-Pause an urgent payment request and verify both identity and purpose through previously confirmed contact details. Follow the approval workflow without first proving the audio is synthetic.
-
-## One.  What’s Happening: A Familiar Voice Still Requires Verification
-
-On May 15, 2025, the FBI warned of a campaign active since April in which actors impersonated senior US officials through texts and AI-generated voice messages to seek personal-account access.[1] This was a specific disclosed campaign, not a measure of victimization among Taiwanese businesses or evidence of a surge in executive payment fraud.
-
-The business lesson is to separate a recognizable voice from verified identity. In an earlier warning, the FTC explained that scammers could use public audio to clone a familiar voice and advised calling a number already known to belong to the person.[3] We do not claim a universal number of seconds needed to clone a voice.
-
-Payment requests already need verification. The FBI’s business email compromise guidance recommends confirming payment and purchase requests in person or by phone, including account-number or payment-procedure changes.[2] We extend that principle to voice requests: retain existing approvals without first needing to identify a particular synthesis technology.
-
-## Two.  Perspectives: Clues Help; Procedures Are More Usable Than a Listening Test
-
-The awareness perspective:  The FBI suggests observing tone, wording, and audiovisual details while acknowledging that AI-generated content can be hard to identify.[1] Training can help people notice anomalies. In our view, detecting an audio flaw should not become the employee’s test for authorizing payment.
-
-The procedural caution:  Publicly available personal facts may be insufficient for identity verification. We recommend independently confirmed contact details and separate checks on the purpose, recipient, documents, and approver. This is a business-control proposal, not an audio-forensics method.
-
-Another FBI announcement describes voice and real-time video impersonation uses.[4] Video may supplement checks, but an executive-looking image should not bypass payment controls. Nor should every unfamiliar recording be labeled fraudulent; apply the same verification procedure when uncertain.
-
-Include executives in the exercise and have them explicitly accept callbacks and review delays. Staff cannot apply verification consistently if they are urged to bypass it. Record missing contacts, outdated directories, and incomplete documents as actions, with owners confirming corrections.
-
-◆ Deployment Checklist
-
-## Three. Our Deployment Checklist
-
-These are proposed preparation questions for businesses, not claims of victimization or successful interception.
-
-1. Where does the contact list come from?  Ask whether payment contacts and executive numbers were previously verified and who can edit them. Calling a number supplied in the suspicious message keeps verification inside the sender’s channel.[1][2]
-
-2. Who may pause the request?  We recommend explicitly allowing staff to wait for verification and naming a backup reviewer. “In a meeting and unable to call” should not create an exception.
-
-3. What can the reviewer inspect?  Give reviewers the payment purpose, original documents, and account-change history. Separate confirming identity from approving the request itself; one callback should not silently stand for both.
-
-4. Where is help after submission?  Prepare bank and internal incident contacts in advance. Limit access to preserved recordings and screenshots rather than spreading personal information through group chats.
-
-## Four.  Our Recommendations: Write Steps People Can Follow
-
-1. Pause and use a trusted channel.  End the suspicious call and contact the person through previously confirmed details, rather than a new number or link in the message. The FBI and FTC advise independent verification.[1][3]
-
-2. Verify account changes separately.  Check changed payment details or procedures through established contacts and record the outcome.[2] We recommend the same procedure even when the voice sounds familiar or the message appears in an existing conversation.
-
-3. Separate processing and review.  Assign a reviewer and record the verification channel and approval basis for urgent requests too. If no reviewer is available, wait rather than treating urgency as an exception.
-
-4. Run a tabletop exercise.  Use a written scenario involving secrecy, urgency, and a new account. Check whether staff can find contacts, pause the request, and escalate. No voice clone is needed to test the process.
-
-5. Contact the bank immediately after a mistaken transfer.  The FBI recommends immediate contact with the financial institution and coordination with the receiving institution.[2] Preserve messages, times, and transaction records and seek appropriate assistance under the incident process. Do not wait for proof of AI use or assume funds will be recovered.
-
-A voice delivers a request; verification and approval authorize a payment.
-
-◆ Editor’s Note · How Think BIG Approaches This: Put Pause Authority in the Procedure
-
-## Let staff verify requests and find the right escalation contact.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-We recommend using AI to organize questions or verification tasks while designated people retain payment approval. External-action workflows should preserve verification evidence, review results, and response contacts.
-
-This article provides general fraud-prevention and process information, not legal advice.
-
-### Frequently Asked Questions
-
-Q1: Is a familiar voice enough?
-No. The FBI and FTC recommend independent verification through known contact details.[1][3]
-Q2: Must we prove AI use before pausing?
-We recommend pausing for verification. The FBI’s payment-verification advice does not depend on proving AI use first.[2]
-Q3: Does video make approval safe?
-Do not rely on it alone. The FBI also describes real-time video impersonation.[4]
-Q4: What if funds have already been sent?
-Contact the bank immediately through a known channel, preserve records, and seek assistance under the incident process. The FBI recommends immediate financial-institution contact.[2]
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] FBI IC3, “Senior US Officials Impersonated in Malicious Messaging Campaign,” May 15, 2025, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515) ·
-    [2] FBI, “Business Email Compromise”, accessed 2026-10-26: [www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise) ·
-    [3] FTC, “Scammers use AI to enhance their family emergency schemes,” 2023, accessed 2026-10-26: [consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes) ·
-    [4] FBI IC3, “Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud,” December 3, 2024, accessed 2026-10-26: [www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  Enterprise Security Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/deepfake-voice-payment-fraud-20261116/
-
-# 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-企業資安實務 · 第 021 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-ENTERPRISE SECURITY NOTES
-
-2026 年 11 月 16 日　星期一
-◆
-企業資安實務
-◆
-第 021 期
-
-語音冒名 · 付款核實 · 企業流程
-
-## 老闆來電要你匯款，聲音很像？——AI 語音冒名與公司的核實流程
-
-Think BIG 自媒體部  |  2026 年 11 月 16 日
-
-遇到緊急付款要求，先暫停，再用事先確認的聯絡方式核實人與事。回到原有核准流程，不必先證明聲音是不是 AI。
-
-## 一 現象：語音可以被模仿，付款還是要查核
-
-FBI 在 2025 年 5 月 15 日警示，自當年 4 月起，有人冒充美國高階官員，透過簡訊與 AI 產生的語音訊息建立信任，試圖取得個人帳號存取權。[1] 這是官方揭露的特定活動，不是台灣企業受害統計，也不應直接改寫成「老闆匯款詐騙暴增」。
-
-這項警示給公司的提醒，是把聲音與身分核實分開。美國 FTC 在較早的防詐文章中指出，詐騙者可能利用公開的聲音片段複製熟人的聲音，並建議用自己知道的電話回撥確認。[3] 本文不提供需要多少秒素材就能成功的數字，因為不同工具、資料與情境不能一概而論。
-
-付款要求本來就需要核實。FBI 的商務電子郵件詐騙（BEC）說明建議，透過當面或電話確認付款與採購要求，也要確認帳號或付款程序的變更。[2] 我們據此延伸：即使要求改從語音傳來，也不應省略原有核准；不必先判定使用了哪種合成技術，才有理由暫停。
-
-## 二 各方評價：辨識線索有幫助，流程比聽力測驗更可執行
-
-技術與警覺的一面： FBI 提醒，語氣、用詞與影音細節可以提供觀察線索，同時也承認 AI 內容常難辨識。[1] 我們的判讀是，教育訓練可以教人注意異常，但不適合把「有沒有聽出破綻」當成員工要承擔的付款判準。
-
-程序面的保留： 只問幾個公開資料能查到的問題，未必足以確認身分。我們建議使用已核實的聯絡資料，並另外確認事情本身：付款目的、收款對象、文件與核准人。這是公司流程建議，不是聲音真偽的鑑定方法。
-
-FBI 另一份生成式 AI 詐騙公告列出語音與即時視訊冒名的可能用法。[4] 因此，換成視訊可以作為補充，但不能讓任何看起來像主管的畫面直接跳過付款控制。我們也不主張每段陌生語音都是詐騙；有疑問時，依相同核實程序處理，避免靠個人感覺決定。
-
-我們也建議讓主管事先參與演練，明確接受經辦回撥與等待覆核。流程若只要求員工提高警覺，卻在真正查證時催促跳過，會讓執行者無所適從。演練後應把找不到窗口、通訊錄過期與文件不齊等缺口列成待辦，再由負責人確認修正結果。
-
-◆ 導入檢查清單
-
-## 三、我們導入時的檢查清單
-
-以下是我們建議公司事先確認的問題清單，不描述受害或攔阻事件。
-
-1. 通訊錄從哪裡來？ 我們會先問，付款聯絡人與主管電話是否有事先確認的紀錄，誰能修改。若回撥號碼直接抄自可疑訊息，核實仍停留在對方控制的管道裡。[1][2]
-
-2. 誰有權說「先停」？ 我們建議明文允許經辦在核實完成前暫停處理，並指定主管不在場時的覆核人。不要讓「正在開會、不能回電」變成略過流程的條件。
-
-3. 核實的人，看得到什麼？ 覆核者應能對照付款目的、原始單據與帳號變更紀錄。我們建議把「確認來電者」和「批准這筆要求」分成兩個問題，避免一通回電同時被當成全部授權。
-
-4. 如果已經送出，怎麼求助？ 先備好銀行與內部事件窗口，讓經辦知道如何聯絡，不必當場從可疑訊息找電話。保存紀錄時也應限制可讀人員，不在群組大量轉傳含個資的錄音或截圖。
-
-## 四 我們的建議：把核實寫成每個人都能照做的步驟
-
-1. 暫停，改走已知管道。 結束可疑通話，用事先確認的電話或其他可信管道聯絡本人；不要沿用來訊附的新電話或連結。FBI 與 FTC 都提出獨立核實方向。[1][3]
-
-2. 帳號變更另行確認。 收款資料或付款程序變更，回到已建立的窗口核對並留紀錄。[2] 我們建議即使聲音熟悉、訊息出現在舊對話，也照同樣程序處理。
-
-3. 讓經辦與覆核分工。 我們建議付款由指定人覆核，緊急件也要記下核實管道與同意依據。找不到覆核人時先等待，不把「對方很急」寫成例外條件。
-
-4. 做一次桌上演練。 用文字情境測試「主管要求保密、立即處理、新帳號」，觀察員工能否找到通訊錄、暫停點與升級窗口。不需要複製任何人的聲音，也能演練程序。
-
-5. 發現誤付就立即聯絡銀行。 FBI 建議立即聯絡金融機構，要求與收款機構聯繫。[2] 同時依公司事件流程保存訊息、時間與交易紀錄，向適當機關求助；不要等到證明是 AI 才通報，也不預期款項必能追回。
-
-一句話：聲音只是訊息來源，付款依據要回到核實與核准。
-
-◆ 編按 · Think BIG 的做法：把停止權寫進流程
-
-## 讓經辦可以查證，也知道該找誰。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-我們主張 AI 可以協助整理疑點或待核實事項，付款核准仍由指定人負責。涉及對外動作的流程，應留下核實依據、覆核結果與事件處理窗口。
-
-延伸閱讀[AI 系統事件處理](https://thinkbigtw.com/library/qa/ai-incident-response/)。本文提供一般防詐與流程參考，不構成法律意見。
-
-### 常見問題
-
-Q1：聲音很像主管，就能照做嗎？
-不能只以聲音核實。FBI 與 FTC 建議透過獨立、已知的聯絡方式確認。[1][3]
-Q2：要先證明是 AI 才能暫停嗎？
-我們建議不必。可疑付款或帳號變更先走核實流程；FBI 的付款核對建議也不以先鑑定 AI 為前提。[2]
-Q3：改成視訊就可以直接核准嗎？
-不建議。FBI 也列出即時視訊冒名的可能用法，仍需核實與覆核。[4]
-Q4：已經匯出怎麼辦？
-立即用已知管道聯絡銀行，依公司事件流程保存紀錄並尋求協助；FBI 亦建議立即聯絡金融機構。[2]
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] FBI IC3，〈Senior US Officials Impersonated in Malicious Messaging Campaign〉，2025-05-15，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2025/PSA250515)　·
-    [2] FBI，〈Business Email Compromise〉，查閱日期 2026-10-26：[www.fbi.gov](https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise)　·
-    [3] FTC，〈Scammers use AI to enhance their family emergency schemes〉，2023，查閱日期 2026-10-26：[consumer.ftc.gov](https://consumer.ftc.gov/consumer-alerts/2023/03/scammers-use-ai-enhance-their-family-emergency-schemes)　·
-    [4] FBI IC3，〈Criminals Use Generative Artificial Intelligence to Facilitate Financial Fraud〉，2024-12-03，查閱日期 2026-10-26：[www.ic3.gov](https://www.ic3.gov/PSA/2024/PSA241203)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  企業資安實務
-    Think BIG, Make it Real!　大想成業有限公司
