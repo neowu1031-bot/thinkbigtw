@@ -11,23 +11,23 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Agent Permissions: Least-Privilege Setup | Think BIG</title>
-<meta name="description" content="Grant AI Agents only the tools and files they need. Covers permission scoping and which actions must require human approval before running.">
+<title>Who Should Approve AI Agent Permissions? Roles and Checklist | Think BIG</title>
+<meta name="description" content="Short answer: the company owner of each system signs off the AI Agent&#x27;s permission table, and any action that sends externally, spends money, deletes, or changes production data waits for a named approver. Six steps plus a sample table.">
 <link rel="canonical" href="https://thinkbigtw.com/en/qa/ai-agent-permissions/">
 <link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/ai-agent-permissions/">
 <link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/ai-agent-permissions/">
 <link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/ai-agent-permissions/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://thinkbigtw.com/en/qa/ai-agent-permissions/">
-<meta property="og:title" content="AI Agent Permissions: Least-Privilege Setup | Think BIG">
-<meta property="og:description" content="Grant AI Agents only the tools and files they need. Covers permission scoping and which actions must require human approval before running.">
+<meta property="og:title" content="Who Should Approve AI Agent Permissions? Roles and Checklist | Think BIG">
+<meta property="og:description" content="Short answer: the company owner of each system signs off the AI Agent&#x27;s permission table, and any action that sends externally, spends money, deletes, or changes production data waits for a named approver. Six steps plus a sample table.">
 <meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <meta property="og:site_name" content="Think BIG!">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Agent Permissions: Least-Privilege Setup | Think BIG">
-<meta name="twitter:description" content="Grant AI Agents only the tools and files they need. Covers permission scoping and which actions must require human approval before running.">
+<meta name="twitter:title" content="Who Should Approve AI Agent Permissions? Roles and Checklist | Think BIG">
+<meta name="twitter:description" content="Short answer: the company owner of each system signs off the AI Agent&#x27;s permission table, and any action that sends externally, spends money, deletes, or changes production data waits for a named approver. Six steps plus a sample table.">
 <meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <script type="application/ld+json">
 {
@@ -79,7 +79,7 @@
      "name": "How Should AI Agent Permissions Be Set, and Which Actions Must a Person Approve?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing \"don't do this\" in a prompt."
+      "text": "Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing \"don't do this\" in a prompt. Who approves: the owner of each system or data source the agent touches signs off its permissions; high-impact actions need a named person to approve each run."
      }
     },
     {
@@ -200,7 +200,7 @@
 
   <section class="answer" aria-label="The short answer">
     <span class="lede">The short answer</span>
-    <div><p>Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing "don't do this" in a prompt.</p></div>
+    <div><p>Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing "don't do this" in a prompt. Who approves: the owner of each system or data source the agent touches signs off its permissions; high-impact actions need a named person to approve each run.</p></div>
   </section>
 
   <div class="body"><h2><span class="no">1. </span>What goes wrong with too much permission</h2>

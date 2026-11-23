@@ -1723,7 +1723,11 @@ Think BIG Editorial
 
 Grok, Claude, ChatGPT, Gemini and others are launching fast. This guide covers what AI Agents are available in 2026, how each charges for usage, what to do when quotas run out, and where OpenClaw fits for long-running tasks.
 
-Last updated: 2026-10-02 | Data verified: 2026-09-30
+Last updated: 2026-11-24 | Data verified: 2026-11-24
+
+What is an AI Agent?  An AI Agent is an AI assistant that runs workflows within approved data, tools, and actions; its outputs and important actions are still reviewed by a designated person.
+
+What AI Agents are there in 2026?  Brand AI Agents: Claude (Anthropic), ChatGPT Work and dots (OpenAI), Tasks in Gemini (Google, formerly Gemini Spark), Grok Bot (xAI), Muse (Meta), and Microsoft Copilot. Open-source AI Agents you can pair with any model: OpenClaw (the Lobster) and Hermes Agent. Pricing and Taiwan availability are listed below  (data verified 2026-11-24).
 
 New AI Agents will not make OpenClaw (the Lobster) obsolete — they are designed for different purposes. Each one is excellent. But for long-running tasks where cost control matters, brand AI Agents are not the first choice, though they are great for collaboration.
 
@@ -1739,85 +1743,111 @@ Each one is excellent. But for long-running tasks where cost control matters, br
 
 ## Common AI Agents in 2026
 
-Data verified: 2026-09-30. Prices are from official brand websites. All prices shown in original currency; no self-calculated conversions. Labels: [Official] from brand website or blog; [Third-party] media only; [To verify] not disclosed by vendor.
+Data verified: 2026-11-24. Prices are from official brand websites, shown in original currency with no conversions. Label: [Official] means the brand's website, help center, or official newsroom. Where the vendor does not state something, we write "not disclosed" rather than estimate.
 
 ### Two Main Types
 
-- Brand AI Agents  — subscription-based, fixed monthly fee with usage quota. Examples: Claude, ChatGPT Agent, Gemini Spark, Grok Bot, Muse, Copilot Autopilot, Manus.
+- Brand AI Agents  — subscription-based, fixed monthly fee with usage allowance. Examples: Claude, ChatGPT Work and dots, Tasks in Gemini, Grok Bot, Muse, Microsoft Copilot.
 
 - Open-source AI Agents  — software is free; model usage fees paid directly to your chosen model provider, or use a local model for zero model fees. Examples: OpenClaw (Lobster), Hermes Agent.
 
 ### Claude (Anthropic)
 
-- What it is : Anthropic's AI assistant, integrated background task completion (reports, research) since September 2026. [Official]
+- What it is : Anthropic's AI assistant. Besides chat, Anthropic offers Claude Code (coding assistant) and Claude Cowork (delegated work). [Official]
 
-- How to use : Web, desktop app, mobile, Claude Code; all share one usage limit. [Official]
+- How to use : Web, desktop app, mobile, Claude Code; claude.ai, Claude Code, and Claude Desktop share one usage limit. [Official]
 
-- Pricing : Free (limited); Pro and Max plans available — see [claude.com/pricing](https://claude.com/pricing). Usage limits reset on 5-hour and weekly cycles; paid plans can purchase usage credits. [Official]
+- Pricing : Free (limited); Pro US$20/month (US$17/month billed annually); Max US$100/month (5x Pro usage); Ultra US$200/month (10x Pro weekly usage, no 5-hour limit). Usage resets on 5-hour and weekly cycles; paid plans can buy usage credits. [Official]
 
-- Available in Taiwan : Yes. [Official]
+- Available in Taiwan : Yes (Taiwan is on the supported-countries list). [Official]
 
-- Source : [claude.com/pricing](https://claude.com/pricing), verified 2026-09-30.
+- Source : [claude.com/pricing](https://claude.com/pricing), [usage limits](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work), [supported countries](https://www.anthropic.com/supported-countries), verified 2026-11-24.
 
-### ChatGPT Agent and dots (OpenAI)
+### ChatGPT Work and dots (OpenAI)
 
-- What it is : ChatGPT Agent uses a virtual browser to complete multi-step tasks; dots (launched 2026-09-29) is a 24/7 AI Agent with its own cloud computer, connected to 4,000+ apps. [Official]
+- What it is : ChatGPT agent mode is no longer available; OpenAI now points users to ChatGPT Work for longer, multi-step tasks and finished deliverables. dots (launched 2026-09-29) is a 24/7 AI Agent with its own cloud computer that can connect to 4,000+ apps through plugins. [Official]
 
-- How to use : Select "agent" in ChatGPT tools or type /agent; dots is accessible via ChatGPT, Slack, and Teams. [Official]
+- How to use : ChatGPT Work runs in ChatGPT on desktop, web, and mobile. A dot is created in the ChatGPT desktop app or a desktop browser, then can be messaged from the mobile app, Slack, or Teams. [Official]
 
-- Pricing : Plus and Pro plans available — see [openai.com/chatgpt/pricing](https://openai.com/chatgpt/pricing/). ChatGPT Agent and Codex share the same agentic quota; dots is included in Pro and Business Premium. [Official]
+- Pricing : Plus US$20/month; Pro comes as Pro 100 (US$100), Pro 200 (US$200), and Pro 500 (US$500) per month. Work and Codex share the plan's included allowance, which is not a fixed message count; when it runs out you can wait, upgrade, or buy credits. OpenAI says that starting in December, ChatGPT and Codex usage will share one allowance on Plus, Pro, and Business. Your first dot is included in Pro and Business Premium at no extra cost; chatting with it does not count toward ChatGPT limits, but Work or Codex tasks it starts do. [Official]
 
-- Available in Taiwan : ChatGPT Agent yes; dots availability [To verify]. [Official]
+- Available in Taiwan : ChatGPT yes (Taiwan is a supported country). [Official] dots rolls out to "eligible markets"; whether Taiwan is included is not disclosed.
 
-- Source : [ChatGPT agent help](https://help.openai.com/en/articles/11752874-chatgpt-agent), [dots launch](https://openai.com/index/introducing-dots/), verified 2026-09-30.
+- Source : [ChatGPT agent (retired)](https://help.openai.com/en/articles/11752874-chatgpt-agent), [Pro tiers](https://help.openai.com/en/articles/9793128), [ChatGPT and Codex usage](https://help.openai.com/en/articles/20001625), [dots launch](https://openai.com/index/introducing-dots/), verified 2026-11-24.
 
-### Gemini Spark (Google)
+### Tasks in Gemini (Google, formerly Gemini Spark)
 
-- What it is : Google's 24/7 personal AI Agent that works in the background even when your device is off, connected to Gmail, Calendar, and Drive. [Official]
+- What it is : Google's personal AI Agent. The official product page that introduced Gemini Spark now presents it as "Tasks in Gemini": hand off a task and it works through multiple steps in the background, runs scheduled routines, and uses your connected apps and websites. [Official]
 
-- How to use : Requires Google AI Pro or Ultra subscription; must be 18+ with a personal Google account. [Official]
+- How to use : Gemini mobile app, Gemini app on Mac, or gemini.google.com; 18+ with a personal Google account (work and school accounts not supported for now). [Official]
 
-- Pricing : AI Pro and AI Ultra plans available — see [gemini.google/subscriptions](https://gemini.google/subscriptions/). Usage calculated by computation, recovering every 5 hours up to a weekly cap. [Official]
+- Pricing : Since 2026-11-17, free in the US, India, Canada, Australia, Japan, and Korea. Elsewhere it requires Google AI Pro (US$19.99/month) or AI Ultra (US$99.99 or US$199.99/month). Usage is compute-based and rises with higher plans. [Official]
 
-- Available in Taiwan : Not on the exclusion list; actual availability [To verify].
+- Available in Taiwan : Taiwan is not on the free list. The exclusion list (EEA, Nigeria, Switzerland, UK) does not include Taiwan, so per Google, Taiwan users need AI Pro or Ultra. [Official]
 
-- Source : [gemini.google/subscriptions](https://gemini.google/subscriptions/), verified 2026-09-30.
+- Source : [Tasks in Gemini](https://gemini.google/overview/agent/), [requirements](https://support.google.com/gemini/answer/17094507), [gemini.google/subscriptions](https://gemini.google/subscriptions/), verified 2026-11-24.
 
 ### Grok Bot (xAI)
 
-- What it is : xAI's persistent AI teammate (launched August 2026) with its own cloud computer, browser and terminal; multiple can run simultaneously. [Official]
+- What it is : xAI's always-on AI teammate (launched 2026-08-11, in beta). It has its own cloud computer, signs in and works across apps, tools, and websites, and comes back to you only when it needs approval. [Official]
 
-- How to use : Available on macOS, Windows, Linux, iOS, Android. [Official]
+- How to use : Desktop app on macOS, Windows, Linux; companion app on iOS and Android; also in X Chat and Slack. [Official]
 
-- Pricing : SuperGrok and SuperGrok Plus plans — both include Grok Bot. All Grok products share one weekly usage pool; heavy video or long tasks consume more quota. Extra Usage Credits available (web only, 1-year validity) — see [x.ai/pricing](https://x.ai/pricing). [Official]
+- Pricing : Since 2026-10-12, new customers start on The X Subscription: Premium US$30, Super US$100, and Ultra US$200 per month include Grok Bot; Plus (US$8) and Free do not. Grok Bot shares a weekly usage pool with the Grok apps and Cursor, and prepaid credit covers usage beyond the pool. Existing SuperGrok and Cursor plans can be kept. Extra Usage Credits start at US$5, web only, valid for one year. [Official]
 
-- Available in Taiwan : No official country list published [To verify]. [Official]
+- Available in Taiwan : xAI says The X Subscription is rolling out globally; Grok Bot country restrictions are not disclosed.
 
-- Source : [x.ai/pricing](https://x.ai/pricing), verified 2026-09-30.
+- Source : [The X Subscription](https://x.ai/news/x-subscription), [Grok Bot FAQ](https://docs.x.ai/grok-bot/faq), [Grok Bot launch](https://x.ai/news/introducing-grok-bot), verified 2026-11-24.
 
 ### Muse (Meta)
 
-- What it is : Meta's personal AI Agent (launched 2026-09-08) running in a dedicated virtual machine; can browse, fill forms, send emails, and make bookings. Confirms before sending or paying. [Official]
+- What it is : Meta's personal AI Agent (launched September 2026), running on a dedicated virtual machine; it can browse, fill forms, send emails, and make bookings, in the Muse app or WhatsApp. [Official]
 
-- How to use : iOS, Android app and muse.ai. Currently limited to the US; Canada opened 2026-09-18. [Official]
+- How to use : iOS and Android apps and muse.ai. [Official]
 
-- Pricing : Free (limited); Power (5B Muse tokens/week) and Maximum (30B Muse tokens/week) plans available — see [meta.com/ai/muse](https://www.meta.com/ai/muse/). [Official]
+- Pricing : Free for most needs; Power US$20/month (500 million Muse tokens/week); Maximum US$100/month (3 billion Muse tokens/week). Meta says subscriptions are in limited testing and not available everywhere. [Official]
 
-- Available in Taiwan : Not currently available. [Official]
+- Available in Taiwan : Official announcements list the US, Singapore (October 2026), and Australia (November 2026); Taiwan is not listed. [Official]
 
-- Source : [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/), verified 2026-09-30.
+- Source : [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/), [Australia launch](https://about.fb.com/news/2026/11/muse-is-now-available-in-australia/), [Muse subscriptions](https://www.meta.com/help/subscriptions/1021145227643680/), verified 2026-11-24.
+
+### Microsoft Copilot (individuals)
+
+- What it is : Copilot inside Microsoft 365, handling tasks in Word, Excel, PowerPoint, and Outlook. Autopilot, the always-on work version, began rolling out to Frontier preview customers on 2026-11-17 and is still in preview. [Official]
+
+- How to use : Microsoft 365 personal plans, via web or Microsoft 365 apps. [Official]
+
+- Pricing : Microsoft 365 Personal US$9.99/month; Premium US$19.99/month (limited agentic AI usage); Pro US$99.99/month (highest usage, monthly billing only). Regular prices; limited-time offers vary. Microsoft only states "usage limits apply"; exact allowances are not disclosed. [Official]
+
+- Available in Taiwan : Microsoft 365 is sold in Taiwan; availability of agentic features and Autopilot in Taiwan is not disclosed.
+
+- Source : [Copilot pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals), [Autopilot FAQ](https://learn.microsoft.com/en-us/copilot/autopilot/faq), verified 2026-11-24.
 
 ### OpenClaw — the Lobster (Open-source)
 
-- What it is : OpenClaw is an open-source personal AI assistant, often called "the Lobster" in Taiwan. Installed on your own computer; accessed via WhatsApp, Telegram or other chat apps. Supports both local and cloud models. [Official]
+- What it is : OpenClaw is an open-source personal AI assistant, often called "the Lobster" in Taiwan. Installed on your own computer or server; accessed via WhatsApp, Telegram, Discord, or other chat apps. Supports both local and cloud models. [Official]
 
-- How to use : Runs on Windows and macOS. Can be used standalone or paired with Hermes for a dual-agent setup.
+- How to use : Runs on Windows, macOS, Linux, or your own cloud server; on a personal computer, the computer must stay on. Can be paired with Hermes for a dual-agent setup. [Official]
 
-- Pricing : Software is free. Model costs depend on your chosen provider and actual usage. [Official]
+- Pricing : Software is free. Model costs depend on your chosen provider and actual usage, or use a local model for zero usage fees. [Official]
 
 - Available in Taiwan : Yes (self-install). [Official]
 
-- Source : OpenClaw official documentation, verified 2026-09-30. → [Installation guide (中)](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+- Source : [OpenClaw documentation](https://docs.openclaw.ai/), verified 2026-11-24. → [Installation guide (中)](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+
+### Hermes Agent (Open-source)
+
+- What it is : Hermes Agent is Nous Research's open-source, self-hosted AI agent with persistent memory and autonomous skill creation, reachable via Telegram, Discord, Slack, WhatsApp, Signal, and email. [Official]
+
+- How to use : Runs on Windows, macOS, Linux; use alone or paired with OpenClaw. [Official]
+
+- Pricing : Software is free (MIT license); model costs depend on your chosen provider. [Official]
+
+- Available in Taiwan : Yes (self-install). [Official]
+
+- Source : [Hermes Agent website](https://hermes-agent.nousresearch.com/), verified 2026-11-24.
+
+Other AI Agents often mentioned include Perplexity Computer, Manus, Siri, and Alexa+. We did not re-verify these in this update; check each vendor's website for current pricing and availability in Taiwan.
 
 ## Two Approaches: How They Differ
 
@@ -1842,15 +1872,17 @@ Each one is excellent. But for long-running tasks where cost control matters, br
 
 ## What To Do When Your Quota Runs Out
 
-- Claude (Anthropic) : 5-hour segment limit plus weekly cap; paid plans can purchase usage credits. (Source: [official](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work), verified 2026-09-30)
+How each brand resets usage (verified 2026-11-24):
 
-- ChatGPT Agent (OpenAI) : Monthly limit per plan; credits available for purchase. (Source: [official](https://help.openai.com/en/articles/12642688), verified 2026-09-30)
+- Claude (Anthropic) : 5-hour session limit plus weekly limit (Ultra has no 5-hour limit); paid plans can buy usage credits. (Source: [official](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work))
 
-- Grok Bot (xAI) : Weekly pool resets; Extra Usage Credits available for purchase (web only). (Source: [official](https://docs.x.ai/grok/faq), verified 2026-09-30)
+- ChatGPT Work and dots (OpenAI) : Work and Codex share the plan's included allowance, with 5-hour and weekly windows depending on plan; from December, ChatGPT and Codex share one allowance; wait for reset, upgrade, or buy credits. (Source: [official](https://help.openai.com/en/articles/20001516), [credits](https://help.openai.com/en/articles/12642688))
 
-- Gemini Spark (Google) : Computation-based, recovers every 5 hours up to weekly cap; Pro/Ultra can purchase AI credits. (Source: [official](https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/), verified 2026-09-30)
+- Grok Bot (xAI) : Weekly pool resets; prepaid credit covers extra usage; Extra Usage Credits from US$5, valid one year. (Source: [Grok Bot FAQ](https://docs.x.ai/grok-bot/faq), [Grok FAQ](https://docs.x.ai/grok/faq))
 
-- Muse (Meta) : Upgrade or wait for free quota to recover. Power: 5B tokens/week; Maximum: 30B tokens/week. (Source: [official](https://www.meta.com/help/subscriptions/1021145227643680/), verified 2026-09-30)
+- Tasks in Gemini (Google) : Compute-based usage limits that rise with higher subscriptions; exact allowances not disclosed. (Source: [official](https://support.google.com/gemini/answer/17094507))
+
+- Muse (Meta) : Upgrade when the free allowance runs out; Power 500 million Muse tokens/week, Maximum 3 billion Muse tokens/week. (Source: [official](https://www.meta.com/help/subscriptions/1021145227643680/))
 
 General approach: route long-running background work to an open-source AI Agent (like OpenClaw, Hermes) — use brand AI Agents for collaboration tasks when needed. → [Dual Agent collaboration](https://thinkbigtw.com/en/dual-agent/)
 
@@ -1858,11 +1890,11 @@ General approach: route long-running background work to an open-source AI Agent 
 
 Q: Will new AI Agents replace OpenClaw (the Lobster)?
 
-The two serve different purposes and work well together. Common brand AI Agents in 2026 include Grok Bot (xAI), Claude (Anthropic), ChatGPT Agent and dots (OpenAI), Gemini Spark (Google), Muse (Meta), Copilot Autopilot (Microsoft), and Manus. Each one is excellent, but for long-running tasks where cost control matters, brand AI Agents are not the first choice — though they are great for collaboration. OpenClaw and Hermes, as open-source AI Agents, let you choose your own model, pay per actual usage, and run 24/7.
+The two serve different purposes and work well together. Common brand AI Agents in 2026 include Claude (Anthropic), ChatGPT Work and dots (OpenAI), Tasks in Gemini (Google), Grok Bot (xAI), Muse (Meta), and Microsoft Copilot. Each one is excellent, but for long-running tasks where cost control matters, brand AI Agents are not the first choice — though they are great for collaboration. OpenClaw and Hermes, as open-source AI Agents, let you choose your own model, pay per actual usage, and run 24/7.
 
 Q: What AI Agents are available in 2026?
 
-Two main types: (1) Brand AI Agents — subscription-based with usage quotas, such as Claude, ChatGPT Agent, Gemini Spark, Grok Bot, Muse, Copilot Autopilot, Manus. (2) Open-source AI Agents — software is free, you pay per model usage, such as OpenClaw (Lobster) and Hermes Agent.
+Two main types: (1) Brand AI Agents — subscription-based with usage allowances: Claude (Anthropic), ChatGPT Work and dots (OpenAI), Tasks in Gemini (Google, formerly Gemini Spark), Grok Bot (xAI), Muse (Meta), Microsoft Copilot. (2) Open-source AI Agents — software is free, you pay per model usage: OpenClaw (Lobster), Hermes Agent. Data verified 2026-11-24.
 
 Q: What should I do when my AI subscription quota runs out?
 
@@ -1878,21 +1910,27 @@ No. Think BIG's service fee covers installation and setup only. Third-party AI m
 
 ## Sources and Update History
 
-All data in this page is from official brand websites as of 2026-09-30. Numbers without official sources are not included.
+All vendor data on this page comes from official brand websites, help centers, and newsrooms as of 2026-11-24. Anything the vendor does not state is marked "not disclosed".
 
 - Claude: [claude.com/pricing](https://claude.com/pricing)
 
-- ChatGPT Agent: [OpenAI Help Center](https://help.openai.com/en/articles/11752874-chatgpt-agent)
+- ChatGPT Work, Pro tiers, usage: [OpenAI Help Center](https://help.openai.com/en/articles/9793128)
 
 - dots: [openai.com/index/introducing-dots](https://openai.com/index/introducing-dots/)
 
-- Gemini Spark: [gemini.google/overview/agent](https://gemini.google/overview/agent/)
+- Tasks in Gemini: [gemini.google/overview/agent](https://gemini.google/overview/agent/)
 
-- Grok Bot: [x.ai/news/introducing-grok-bot](https://x.ai/news/introducing-grok-bot)
+- Grok Bot: [docs.x.ai/grok-bot/faq](https://docs.x.ai/grok-bot/faq)
 
 - Muse: [Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)
 
-Data verified: 2026-09-30. Prices subject to change. Update history: 2026-10-02 initial publication.
+- Microsoft Copilot: [microsoft.com/copilot/pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals)
+
+- OpenClaw: [docs.openclaw.ai](https://docs.openclaw.ai/)
+
+- Hermes Agent: [hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/)
+
+Data verified: 2026-11-24. Prices subject to change. Update history: 2026-10-02 initial publication; 2026-11-24 all vendor data re-verified (ChatGPT agent replaced by ChatGPT Work, Gemini Spark page now presents Tasks in Gemini, Grok Bot now on The X Subscription, Claude adds Ultra, Muse token figures corrected), and the direct answer moved to the top.
 
 ---
 
@@ -6842,7 +6880,7 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 URL: https://thinkbigtw.com/en/qa/ai-agent-permissions/
 
-# AI Agent Permissions: Least-Privilege Setup | Think BIG
+# Who Should Approve AI Agent Permissions? Roles and Checklist | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -6856,7 +6894,7 @@ Think BIG Q&A Library  ·  2026-10-19
 
 The short answer
 
-Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing "don't do this" in a prompt.
+Use least privilege. Each AI Agent gets only the tools, data, and accounts its job needs, and read-only wherever possible. Any action that sends externally, spends money, deletes, or changes production data runs only after a designated person approves. Permissions must be enforced by the systems themselves, not by writing "don't do this" in a prompt. Who approves: the owner of each system or data source the agent touches signs off its permissions; high-impact actions need a named person to approve each run.
 
 ## 1. What goes wrong with too much permission
 
@@ -7169,7 +7207,7 @@ Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
 
 URL: https://thinkbigtw.com/en/qa/ai-api-key-leak/
 
-# AI API Key Leak: Risks & Secure Storage Guide | Think BIG
+# API Key Exposed? 4 Steps to Take Immediately | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -11693,7 +11731,7 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 URL: https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/
 
-# Local LLM Hardware: GPU Memory Guide | Think BIG
+# Local LLM Hardware Requirements: How Much VRAM? Table + 4 Steps | Think BIG
 
 [← Q&A Library](https://thinkbigtw.com/en/qa/)
 
@@ -16707,7 +16745,11 @@ Think BIG 編輯部
 
 最近各大品牌密集推出常駐型 AI Agent。這篇整理 2026 年常見的 AI Agent 有哪些、各家怎麼計費、額度用完怎麼辦，以及龍蝦（OpenClaw）在長時間運作情境的定位。
 
-最後更新：2026-11-08｜資料查證：2026-09-30
+最後更新：2026-11-24｜資料查證：2026-11-24
+
+AI Agent 是什麼？ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI 助理；產物與重要操作仍需指定人員覆核。
+
+2026 年常見的 AI Agent 有哪些？ 大模型品牌推出的有 Claude（Anthropic）、ChatGPT Work 與 dots（OpenAI）、Tasks in Gemini（Google，原 Gemini Spark）、Grok Bot（xAI）、Muse（Meta）、Microsoft Copilot；開源、可自選模型的有龍蝦（OpenClaw）和 Hermes Agent。各家計費與台灣可用性見下方整理 （資料查證：2026-11-24）。
 
 新的 AI Agent 不會讓龍蝦（OpenClaw）失去用處，兩者適合的工作不同。每一個都很好。但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。
 
@@ -16740,13 +16782,13 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 ## 2026 年常見的 AI Agent 有哪些
 
-資料查證日期：2026-09-30，價格以各家官網為準。原幣價格不自行換算台幣；需換算時已附換算基準。標記說明：【官方】來自品牌官網或官方部落格；【第三方】只有媒體資料；【待實測】官方未揭露。
+資料查證日期：2026-11-24，價格以各家官網為準，原幣價格不自行換算台幣。標記說明：【官方】來自品牌官網、官方說明頁或官方新聞稿；官方沒有寫明的欄位標「未公開」，不自行推估。
 
 ### 兩大類型
 
 目前市面上的 AI Agent 可分成兩類：
 
-- 大模型品牌推出的 AI Agent ：以訂閱方案使用，費用固定，額度用完需等重置或加購。例如 Claude、ChatGPT Agent、Gemini Spark、Grok Bot、Muse。
+- 大模型品牌推出的 AI Agent ：以訂閱方案使用，費用固定，額度用完需等重置或加購。例如 Claude、ChatGPT Work 與 dots、Tasks in Gemini、Grok Bot、Muse。
 
 - 開源 AI Agent（可自選模型） ：軟體開源免費，模型費用依實際用量付給自選的模型商，或接本地大模型零模型費。例如 OpenClaw（龍蝦）、Hermes。
 
@@ -16754,101 +16796,101 @@ AI Agent 是依核准的資料、工具與操作範圍執行工作流程的 AI �
 
 ### Claude（Anthropic）
 
-- 是什麼 ：Claude 是 Anthropic 的 AI 助理，2026 年 9 月起整合原 Cowork 功能，可在關閉電腦後繼續背景完成報告、簡報、研究任務。【官方】
+- 是什麼 ：Claude 是 Anthropic 的 AI 助理，除了對話，另有 Claude Code（程式碼助理）與 Claude Cowork（代辦工作）等產品。【官方】
 
-- 怎麼用 ：網頁版、桌面版、App、Claude Code（程式碼助理）；網頁、App、Claude Code 共用同一個用量上限。【官方】
+- 怎麼用 ：網頁版、桌面版、App、Claude Code；claude.ai、Claude Code、Claude Desktop 共用同一個用量上限。【官方】
 
-- 怎麼計費 ：Free（有限制）；Pro US$20／月（年繳每月 US$17）；Max US$100 起（約 Pro 5 倍用量）。【官方】額度分 5 小時區段上限與每週上限；用完可購買 usage credits。
+- 怎麼計費 ：Free（有限制）；Pro US$20／月（年繳每月 US$17）；Max US$100／月（Pro 的 5 倍用量）；Ultra US$200／月（Pro 的 10 倍每週用量，沒有 5 小時上限）。【官方】額度分 5 小時區段上限與每週上限；付費方案用完可購買 usage credits。【官方】
 
 - 台灣可用 ：可以（台灣在支援國家名單內）。【官方】
 
-- 出處 ：[claude.com/pricing](https://claude.com/pricing)、[用量上限說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)，查證於 2026-09-30。
+- 出處 ：[claude.com/pricing](https://claude.com/pricing)、[用量上限說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)、[支援國家](https://www.anthropic.com/supported-countries)，查證於 2026-11-24。
 
-### ChatGPT Agent 與 dots（OpenAI）
+### ChatGPT Work 與 dots（OpenAI）
 
-- 是什麼 ：ChatGPT Agent 是 OpenAI 整合進 ChatGPT 的 agent 模式，用虛擬瀏覽器與連接的 App 完成多步驟任務；dots（2026 年 9 月 29 日推出）是 24 小時常駐的 AI Agent，有自己的雲端電腦，可串接超過 4,000 個 App。【官方】
+- 是什麼 ：原本的 ChatGPT agent 模式已停止提供，OpenAI 改由 ChatGPT Work 處理較長的多步驟任務與成品交付。【官方】dots（2026 年 9 月 29 日推出）是 24 小時常駐的 AI Agent，有自己的雲端電腦，可透過外掛連接超過 4,000 個 App。【官方】
 
-- 怎麼用 ：ChatGPT 工具選單選「agent」或輸入 /agent 啟用；dots 可在 ChatGPT、Slack、Teams 裡傳訊息使用。【官方】
+- 怎麼用 ：ChatGPT Work 在 ChatGPT 桌面版、網頁版與手機版使用；dots 先在 ChatGPT 桌面 App 或電腦瀏覽器建立，之後可用手機 App、Slack、Teams 傳訊息。【官方】
 
-- 怎麼計費 ：ChatGPT Agent 模式：Plus US$20（約 640 TWD，1 USD=31.9，2026-09-30 台銀牌告）每月 40 則；Pro US$100 起每月 400 則。【官方】ChatGPT Agent 與 Codex、Work 共用 agentic 額度，額度用完可加購 credits。dots 第一個內含在 Pro 與 Business Premium 方案裡，不另收費；和 dots 對話不算 ChatGPT 額度。【官方】
+- 怎麼計費 ：Plus US$20／月；Pro 分 Pro 100（US$100）、Pro 200（US$200）、Pro 500（US$500）三種月繳方案。【官方】Work 與 Codex 共用方案內含的用量，不是固定則數，用多少依模型與任務而定；用完可等重置、升級或加購 credits。OpenAI 公告 12 月起 Plus、Pro、Business 的 ChatGPT 與 Codex 用量合併計算。【官方】第一個 dot 含在 Pro 與 Business Premium 方案內、不另收費；和 dot 對話不算 ChatGPT 用量，但它代為啟動的 Work 或 Codex 任務照常計入。【官方】
 
-- 台灣可用 ：ChatGPT Agent 可以（台灣在支援名單內）；dots 官方未列排除名單，台灣可否開通【待實測】。【官方】
+- 台灣可用 ：ChatGPT 可以（台灣在支援名單內）。【官方】dots 開放給「符合資格市場」的用戶，台灣是否在內：未公開。
 
-- 出處 ：[ChatGPT agent 說明](https://help.openai.com/en/articles/11752874-chatgpt-agent)、[dots 發表](https://openai.com/index/introducing-dots/)，查證於 2026-09-30。
+- 出處 ：[ChatGPT agent 說明（已停止提供）](https://help.openai.com/en/articles/11752874-chatgpt-agent)、[Pro 方案說明](https://help.openai.com/en/articles/9793128)、[ChatGPT 與 Codex 用量說明](https://help.openai.com/en/articles/20001625)、[dots 發表](https://openai.com/index/introducing-dots/)，查證於 2026-11-24。
 
-### Gemini Spark（Google）
+### Tasks in Gemini（Google，原 Gemini Spark）
 
-- 是什麼 ：Gemini Spark 是 Google 推出的 24 小時個人 AI Agent，手機和電腦關機時也會在背景工作，重大動作前會先問你，連接 Gmail、日曆、雲端硬碟等 Google 服務。【官方】
+- 是什麼 ：Google 的個人 AI Agent。原本介紹 Gemini Spark 的官方產品頁，現在改以「Tasks in Gemini」介紹：交代任務後在背景執行多步驟工作、可排程例行工作，能使用已連結的 App 與網站。【官方】
 
-- 怎麼用 ：需訂閱 Google AI Pro 或 Ultra，年滿 18 歲、用個人 Google 帳號。【官方】
+- 怎麼用 ：Gemini 手機 App、Mac 版 Gemini App 或 gemini.google.com 網頁版；需年滿 18 歲、用個人 Google 帳號（工作或學校帳號目前不支援）。【官方】
 
-- 怎麼計費 ：AI Pro US$19.99；AI Ultra US$99.99（約 3,190 TWD）或 US$199.99。用量依運算量計算，每 5 小時恢復一次，直到每週上限。Pro 與 Ultra 可加購 AI credits。【官方】
+- 怎麼計費 ：2026 年 11 月 17 日起，美國、印度、加拿大、澳洲、日本、韓國可免費使用；其他支援地區需訂閱 Google AI Pro（US$19.99／月）或 AI Ultra（US$99.99 或 US$199.99／月）。用量依運算量計算，訂閱等級越高上限越高。【官方】
 
-- 台灣可用 ：官方排除名單不含台灣；台灣帳號是否可啟用【待實測】。
+- 台灣可用 ：台灣不在免費名單；官方排除名單（歐洲經濟區、奈及利亞、瑞士、英國）不含台灣，依官方說明需訂閱 AI Pro 或 Ultra。【官方】
 
-- 出處 ：[gemini.google/subscriptions](https://gemini.google/subscriptions/)、[Gemini Spark 產品頁](https://gemini.google/overview/agent/)，查證於 2026-09-30。
+- 出處 ：[Tasks in Gemini 產品頁](https://gemini.google/overview/agent/)、[使用條件說明](https://support.google.com/gemini/answer/17094507)、[gemini.google/subscriptions](https://gemini.google/subscriptions/)，查證於 2026-11-24。
 
 ### Grok Bot（xAI）
 
-- 是什麼 ：Grok Bot 是 xAI 於 2026 年 8 月推出的常駐 AI 隊友，有自己的雲端電腦、瀏覽器、終端機，可以多個同時工作，需要你判斷的事才回頭問你。xAI 服務 2026 年 6 月起各功能共用每週額度池。【官方】
+- 是什麼 ：Grok Bot 是 xAI 於 2026 年 8 月 11 日推出的常駐 AI 隊友（目前為 beta），在雲端有自己的電腦，可登入並操作各種 App、工具與網站，需要你核准時才回頭問你。【官方】
 
-- 怎麼用 ：支援 macOS、Windows、Linux 桌面版及 iOS、Android。帳號驗證沿用 Cursor 帳號。【官方】
+- 怎麼用 ：macOS、Windows、Linux 桌面版，以及 iOS、Android 隨行 App；也可在 X Chat、Slack 裡使用。【官方】
 
-- 怎麼計費 ：SuperGrok US$30（約 960 TWD）、SuperGrok Plus US$100 含 Grok Bot。Grok Bot 有自己的每週額度，和 Grok 聊天分開計算；影片與長任務特別耗額度，用完等每週重置。【官方】xAI 訂閱者可購買 Extra Usage Credits 補充額度（US$5 起，網頁購買，效期一年）。【官方】
+- 怎麼計費 ：2026 年 10 月 12 日起新客戶改用 The X Subscription：Premium US$30、Super US$100、Ultra US$200（每月）含 Grok Bot，Plus（US$8）與免費版不含。【官方】Grok Bot 與 Grok App、Cursor 共用每週用量池，超出部分用預付額度支付；原本的 SuperGrok、Cursor 方案可繼續使用。【官方】Extra Usage Credits 最低 US$5、限網頁購買、效期一年。【官方】
 
-- 台灣可用 ：官方未列國家清單【待實測】。
+- 台灣可用 ：官方表示 The X Subscription 陸續開放全球；Grok Bot 的國家限制：未公開。
 
-- 出處 ：[x.ai/pricing](https://x.ai/pricing)、[Grok Bot 發表](https://x.ai/news/introducing-grok-bot)，查證於 2026-09-30。
+- 出處 ：[The X Subscription 發表](https://x.ai/news/x-subscription)、[Grok Bot FAQ](https://docs.x.ai/grok-bot/faq)、[Grok Bot 發表](https://x.ai/news/introducing-grok-bot)，查證於 2026-11-24。
 
 ### Muse（Meta）
 
-- 是什麼 ：Muse 是 Meta 於 2026 年 9 月 8 日推出的個人 AI Agent，跑在專屬的虛擬機上，可開瀏覽器、填表、寄信、訂位，寄信或付款前會先問你，可在 Muse App 或 WhatsApp 使用。【官方】
+- 是什麼 ：Muse 是 Meta 於 2026 年 9 月推出的個人 AI Agent，跑在專屬的虛擬機上，可開瀏覽器、填表、寄信、訂位，可在 Muse App 或 WhatsApp 裡使用。【官方】
 
 - 怎麼用 ：iOS、Android App 及 muse.ai 網頁。【官方】
 
-- 怎麼計費 ：免費版有額度上限；Power US$20／月（每週 5 億 Muse tokens）；Maximum US$100／月（每週 30 億 Muse tokens）。官方說明訂閱在有限測試中，不是每個地區都能用。【官方】
+- 怎麼計費 ：大部分功能免費；Power US$20／月（每週 5 億 Muse tokens）；Maximum US$100／月（每週 30 億 Muse tokens）。官方說明訂閱仍在有限測試，不是每個地區都能用。【官方】
 
-- 台灣可用 ：目前官方只在美國上線；加拿大 2026 年 9 月開放【第三方】；台灣尚未開放。【官方：not available in all locations】
+- 台灣可用 ：官方新聞稿列出的上線地區為美國、新加坡（2026 年 10 月）、澳洲（2026 年 11 月）；台灣未列入。【官方】
 
-- 出處 ：[Meta Newsroom 發表](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)、[Muse 訂閱說明](https://www.meta.com/help/subscriptions/1021145227643680/)，查證於 2026-09-30。
+- 出處 ：[Meta Newsroom 發表](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)、[澳洲上線公告](https://about.fb.com/news/2026/11/muse-is-now-available-in-australia/)、[Muse 訂閱說明](https://www.meta.com/help/subscriptions/1021145227643680/)，查證於 2026-11-24。
 
 ### Microsoft Copilot（個人版）
 
-- 是什麼 ：Microsoft 365 內的 agentic AI，可在 Word、Excel、PowerPoint、Outlook 裡代辦任務；Copilot Autopilot 是 2026 年 9 月 25 日推出的常駐企業版，目前為私人預覽。【官方】
+- 是什麼 ：Microsoft 365 內的 Copilot，可在 Word、Excel、PowerPoint、Outlook 裡代辦任務。常駐型的 Autopilot 是工作版功能，2026 年 11 月 17 日起開始對 Frontier 預覽計畫的企業客戶推出，仍屬預覽。【官方】
 
-- 怎麼用 ：Microsoft 365 訂閱方案；個人版透過網頁或 M365 應用程式使用。【官方】
+- 怎麼用 ：訂閱 Microsoft 365 個人方案，透過網頁或 Microsoft 365 應用程式使用。【官方】
 
-- 怎麼計費 ：M365 Personal US$9.99；Premium US$19.99（含有限 agentic AI）；Pro US$99.99（含最高用量 agentic AI）。官方只寫「usage limits apply」，確切數字【待實測】。【官方】
+- 怎麼計費 ：Microsoft 365 Personal US$9.99／月；Premium US$19.99／月（含有限的 agentic AI 用量）；Pro US$99.99／月（最高用量，只能月繳）。以上為原價，官網不定期有限時優惠。官方只寫「usage limits apply」，確切額度：未公開。【官方】
 
-- 台灣可用 ：台灣有販售 Microsoft 365；agentic 功能台灣可用性【待實測】。
+- 台灣可用 ：台灣有販售 Microsoft 365；agentic 功能與 Autopilot 在台灣的開放狀況：未公開。
 
-- 出處 ：[Copilot 個人定價](https://www.microsoft.com/en-us/copilot/pricing/individuals)，查證於 2026-09-30。
+- 出處 ：[Copilot 個人定價](https://www.microsoft.com/en-us/copilot/pricing/individuals)、[Autopilot FAQ](https://learn.microsoft.com/en-us/copilot/autopilot/faq)，查證於 2026-11-24。
 
 ### 龍蝦 OpenClaw（開源）
 
-- 是什麼 ：OpenClaw 是開源個人 AI 助理，台灣使用者常稱「龍蝦」。裝在自己的電腦上，透過 WhatsApp、Telegram 等聊天 App 使用，支援本機與雲端模型。【官方】
+- 是什麼 ：OpenClaw 是開源個人 AI 助理，台灣使用者常稱「龍蝦」。裝在自己的電腦或主機上，透過 WhatsApp、Telegram、Discord 等聊天 App 使用，支援本機與雲端模型。【官方】
 
-- 怎麼用 ：安裝在 Windows、macOS 上，需要你的電腦保持開機。
+- 怎麼用 ：可裝在 Windows、macOS、Linux，或自己的雲端主機；裝在個人電腦時，電腦要保持開機。【官方】
 
 - 怎麼計費 ：軟體開源免費；費用看你接哪個模型商，依實際用量計費，由你直接付給模型商。你可以選 MiniMax、Claude API、OpenAI API 等，或接本地模型零用量費。【官方】
 
 - 台灣可用 ：可以（自行安裝）。【官方】
 
-- 出處 ：OpenClaw 官方文件，查證於 2026-09-30。→ [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)
+- 出處 ：[OpenClaw 官方文件](https://docs.openclaw.ai/)，查證於 2026-11-24。→ [OpenClaw 代裝指南](https://thinkbigtw.com/guides/openclaw-daizhuang/)
 
 ### Hermes Agent（開源）
 
-- 是什麼 ：Hermes Agent 是 Nous Research 開源的自主學習型 AI 助理，支援跨對話記憶與自我學習，可將任務經驗轉化為技能，可排程執行。Think BIG 提供的服務是協助安裝在你的電腦上、配置與教學；與 OpenClaw 可串接分工。【官方】
+- 是什麼 ：Hermes Agent 是 Nous Research 開源、可自架的 AI 助理，有跨對話記憶，能把任務經驗自己整理成技能，可排程執行，並透過 Telegram、Discord、Slack、WhatsApp、Signal、email 等管道對話。【官方】Think BIG 提供的服務是協助安裝在你的電腦上、配置與教學；與 OpenClaw 可串接分工。
 
-- 怎麼用 ：安裝在 Windows、macOS 上；可單獨使用，也可與 OpenClaw 串接建立雙 Agent 協作。
+- 怎麼用 ：可裝在 Windows、macOS、Linux；可單獨使用，也可與 OpenClaw 串接建立雙 Agent 協作。【官方】
 
 - 怎麼計費 ：軟體開源免費（MIT 授權）；模型費用自選，和 OpenClaw 一樣依實際用量付給模型商。【官方】
 
 - 台灣可用 ：可以（自行安裝）。【官方】
 
-- 出處 ：Nous Research 官方，查證於 2026-09-30。→ [OpenClaw 和 Hermes 差在哪](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
+- 出處 ：[Hermes Agent 官方網站](https://hermes-agent.nousresearch.com/)，查證於 2026-11-24。→ [OpenClaw 和 Hermes 差在哪](https://thinkbigtw.com/guides/hermes-vs-openclaw/)
 
-其他也有官方資料的 AI Agent（簡述）：Perplexity Computer（通用代辦，點數制，Pro US$20 起）；Manus（通用 Agent，點數制，Pro US$20 起，全球可用）；Siri AI（隨 iOS 27 提供，目前 beta 只支援英文）；Alexa+（僅限美國）。中國大陸平台（豆包、扣子、Kimi、MiniMax Agent 等）台灣能否使用各有差異，一律標【待實測】。
+其他也常被提到的 AI Agent：Perplexity Computer、Manus、Siri、Alexa+，以及中國大陸平台（豆包、扣子、Kimi、MiniMax Agent 等）。這幾家本次沒有逐項重新查證，價格、額度與台灣能否使用，請以各家官網為準。
 
 ## 台灣誰在做 AI Agent 搭建？
 
@@ -16887,17 +16929,17 @@ AI 模型用量費（雲端版）與 LINE 官方帳號訊息費另計。費用�
 
 ## 訂閱額度用完怎麼辦
 
-各家品牌 AI Agent 的額度重置機制：
+各家品牌 AI Agent 的額度重置機制（查證於 2026-11-24）：
 
-- Claude（Anthropic） ：5 小時區段上限加每週上限；付費方案可購買 usage credits。（查證於 2026-09-30，來源：[官方說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)）
+- Claude（Anthropic） ：5 小時區段上限加每週上限（Ultra 沒有 5 小時上限）；付費方案可購買 usage credits。（來源：[官方說明](https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work)）
 
-- ChatGPT Agent / dots（OpenAI） ：ChatGPT Agent 每月額度（Plus 40 則、Pro 400 則）；額度用完可加購 credits，或等月重置。（查證於 2026-09-30，來源：[官方說明](https://help.openai.com/en/articles/12642688)）
+- ChatGPT Work 與 dots（OpenAI） ：Work 與 Codex 共用方案內含用量，依方案可能有 5 小時與每週兩種上限；12 月起 ChatGPT 與 Codex 用量合併計算；用完可等重置、升級方案或加購 credits。（來源：[官方說明](https://help.openai.com/en/articles/20001516)、[credits 說明](https://help.openai.com/en/articles/12642688)）
 
-- Grok Bot（xAI） ：每週額度池重置；可購買 Extra Usage Credits（US$5 起，效期一年）。（查證於 2026-09-30，來源：[官方 FAQ](https://docs.x.ai/grok/faq)）
+- Grok Bot（xAI） ：每週用量池重置；超出部分用預付額度，Extra Usage Credits 最低 US$5、效期一年。（來源：[Grok Bot FAQ](https://docs.x.ai/grok-bot/faq)、[Grok FAQ](https://docs.x.ai/grok/faq)）
 
-- Gemini Spark（Google） ：用量依運算量計算，每 5 小時恢復一次，直到每週上限；Pro 與 Ultra 可加購 AI credits。（查證於 2026-09-30，來源：[官方說明](https://blog.google/products-and-platforms/products/google-one/google-ai-subscriptions/)）
+- Tasks in Gemini（Google） ：依運算量計算用量，訂閱等級越高上限越高；確切額度：未公開。（來源：[官方說明](https://support.google.com/gemini/answer/17094507)）
 
-- Muse（Meta） ：免費額度用完可升級，或等免費額度恢復；Power 每週 5 億 tokens，Maximum 每週 30 億 tokens。（查證於 2026-09-30，來源：[官方說明](https://www.meta.com/help/subscriptions/1021145227643680/)）
+- Muse（Meta） ：免費額度用完可升級；Power 每週 5 億 Muse tokens，Maximum 每週 30 億 Muse tokens。（來源：[官方說明](https://www.meta.com/help/subscriptions/1021145227643680/)）
 
 通用做法：把長時間常駐的工作交給可自選模型的 AI Agent（如 OpenClaw、Hermes），品牌 AI Agent 留給需要協作的時段。這就是核心句說的「很適合拿來協作」。→ [雙 Agent 協作方案](https://thinkbigtw.com/dual-agent/)
 
@@ -16953,11 +16995,11 @@ Think BIG（大想成業有限公司）是台灣的 AI Agent 安裝與導入服�
 
 Q：2026 年常見的 AI Agent 有哪些？
 
-分成兩類：大模型品牌推出、以訂閱方案使用的 AI Agent；以及開源、可自選模型的 AI Agent（如龍蝦）。各家介紹見本頁「2026 年常見的 AI Agent 有哪些」。
+分成兩類。大模型品牌推出、以訂閱方案使用的：Claude（Anthropic）、ChatGPT Work 與 dots（OpenAI）、Tasks in Gemini（Google，原 Gemini Spark）、Grok Bot（xAI）、Muse（Meta）、Microsoft Copilot。開源、可自選模型的：龍蝦（OpenClaw）、Hermes Agent。各家計費與台灣可用性見本頁「2026 年常見的 AI Agent 有哪些」（資料查證 2026-11-24）。
 
 Q：新的 AI Agent 出來了，還需要龍蝦（OpenClaw）嗎？
 
-兩者擅長的工作不同，可以一起用。2026 年常見的大模型品牌 AI Agent 包括：Grok Bot（xAI）、Claude（Anthropic）、ChatGPT Agent 與 dots（OpenAI）、Gemini Spark（Google）、Muse（Meta）、Copilot Autopilot（Microsoft）、Manus 等。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。龍蝦（OpenClaw）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作情境。
+兩者擅長的工作不同，可以一起用。2026 年常見的大模型品牌 AI Agent 包括：Claude（Anthropic）、ChatGPT Work 與 dots（OpenAI）、Tasks in Gemini（Google）、Grok Bot（xAI）、Muse（Meta）、Microsoft Copilot 等。每一個都很好，但如果要長時間運作、又想費用可控，大模型品牌推出的 AI Agent 就不會是首選，但很適合拿來協作。龍蝦（OpenClaw）等開源 AI Agent 可自選模型、依用量付費、24 小時常駐，適合長時間例行運作情境。
 
 Q：龍蝦 AI 是什麼？要錢嗎？
 
@@ -16989,23 +17031,27 @@ Q：你們裝的 AI Agent 跟大品牌的有什麼不一樣？資安怎麼顧？
 
 ## 資料來源與更新紀錄
 
-本頁各家 AI Agent 資料依 2026-09-30 各品牌官方網站整理，未附官方出處的數字不列入。
+本頁各家 AI Agent 資料依 2026-11-24 各品牌官方網站、官方說明頁與官方新聞稿整理；官方沒有寫明的欄位標「未公開」，不自行推估。
 
 - Claude：[claude.com/pricing](https://claude.com/pricing)
 
-- ChatGPT Agent：[OpenAI Help Center](https://help.openai.com/en/articles/11752874-chatgpt-agent)
+- ChatGPT Work、Pro 方案、用量：[OpenAI Help Center](https://help.openai.com/en/articles/9793128)
 
 - dots：[openai.com/index/introducing-dots](https://openai.com/index/introducing-dots/)
 
-- Gemini Spark：[gemini.google/overview/agent](https://gemini.google/overview/agent/)
+- Tasks in Gemini：[gemini.google/overview/agent](https://gemini.google/overview/agent/)
 
-- Grok Bot：[x.ai/news/introducing-grok-bot](https://x.ai/news/introducing-grok-bot)
+- Grok Bot：[docs.x.ai/grok-bot/faq](https://docs.x.ai/grok-bot/faq)
 
 - Muse：[Meta Newsroom](https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/)
 
 - Microsoft Copilot：[microsoft.com/copilot/pricing](https://www.microsoft.com/en-us/copilot/pricing/individuals)
 
-資料查證日期：2026-09-30，價格以各家官網為準。更新紀錄：2026-10-01 初版上線；2026-10-02 加入「新的 AI Agent 出來了，還需要龍蝦？」FAQ。
+- OpenClaw：[docs.openclaw.ai](https://docs.openclaw.ai/)
+
+- Hermes Agent：[hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/)
+
+資料查證日期：2026-11-24，價格以各家官網為準。更新紀錄：2026-10-01 初版上線；2026-10-02 加入「新的 AI Agent 出來了，還需要龍蝦？」FAQ；2026-11-24 各家資料重新查證（ChatGPT agent 已由 ChatGPT Work 取代、Gemini Spark 官方頁改以 Tasks in Gemini 介紹、Grok Bot 改含在 The X Subscription、Claude 新增 Ultra 方案），並把「AI Agent 是什麼、有哪些」的答案移到最前面。
 
 想讓 AI Agent 裝在自己的電腦上用？
 
@@ -18160,6 +18206,16 @@ AI 生成虛擬人物廣告・主持人為 AI 生成非真實存在
 - [雲端／本地大模型 公司方案 NT$52,600 起（未稅） 多人使用、要用公司資料建知識庫的公司](https://thinkbigtw.com/enterprise/)
 
 流程整合 權限與覆核 持續維運
+
+ABOUT THINK BIG
+
+## Think BIG 是誰、做什麼
+
+Think BIG（大想成業有限公司）是台灣的 AI Agent 導入團隊，服務個人與企業。我們把 AI Agent 建在你的電腦、公司設備或公司名下的雲端主機上，可依需求選雲端大模型或本地大模型。個人方案 NT$7,840 起，公司方案 NT$52,600 起（未稅）；本地版模型運算不另收模型用量費，雲端版的模型用量費依實際用量，由你直接向模型廠商支付。想先聊聊，可以用 LINE 說需求，或預約 30 分鐘免費評估。
+
+[用 LINE 說需求 →](https://lin.ee/n5KW430)
+
+延伸閱讀：[問答圖書館](https://thinkbigtw.com/library/)・[AI Agent 有哪些？各家一次看懂](https://thinkbigtw.com/guides/ai-agents/)
 
 01 / WHAT WE DO
 
@@ -22600,7 +22656,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/library/qa/ai-agent-permissions/
 
-# AI Agent 的權限要怎麼設？哪些動作一定要人核准？｜問答圖書館｜Think BIG
+# AI Agent 權限誰核准？負責人分工、權限表範例與 6 步驟｜Think BIG
 
 [← 問答圖書館](https://thinkbigtw.com/library/qa/)
 
@@ -22614,7 +22670,7 @@ Think BIG 問答圖書館　·　2026 年 10 月 19 日　星期一
 
 先說答案
 
-照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。
+照「最小權限」設：每個 AI Agent 只拿得到它這份工作需要的工具、資料和帳號，能唯讀就不給寫入。凡是對外發送、花錢、刪除或修改正式資料的動作，都由指定的人核准後才執行。權限要在系統端擋住，不能只在提示詞裡寫「不要做」。誰核准：AI Agent 碰到的每個系統或資料來源，由該系統的負責人簽核它的權限；影響大的動作，每次執行都要由指定的人核准。
 
 ## 一、 權限給太多，會出什麼事
 
@@ -22929,7 +22985,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/library/qa/ai-api-key-leak/
 
-# AI 的 API 金鑰外洩會怎樣？公司要怎麼保管？｜問答圖書館｜Think BIG
+# API 金鑰外洩怎麼辦？立刻做這 4 步｜Think BIG
 
 [← 問答圖書館](https://thinkbigtw.com/library/qa/)
 
@@ -28248,7 +28304,7 @@ Think BIG, Make it Real!　大想成業有限公司
 
 URL: https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/
 
-# 公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG
+# 本地大模型硬體需求：顯示記憶體要多大？對照表＋4 步驟｜Think BIG
 
 [← 問答圖書館](https://thinkbigtw.com/library/qa/)
 

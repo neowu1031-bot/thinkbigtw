@@ -11,23 +11,23 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG</title>
-<meta name="description" content="本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。">
+<title>本地大模型硬體需求：顯示記憶體要多大？對照表＋4 步驟｜Think BIG</title>
+<meta name="description" content="本地大模型要整個載入顯示記憶體（VRAM）才跑得快，放不下的部分會改由 CPU 計算、速度明顯變慢。附常見模型檔案大小與硬體對照表、選硬體的 4 個步驟：先看顯示記憶體，不是先看 CPU。">
 <link rel="canonical" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
 <link rel="alternate" hreflang="zh-Hant-TW" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
 <link rel="alternate" hreflang="en" href="https://thinkbigtw.com/en/qa/local-llm-hardware-sizing/">
 <link rel="alternate" hreflang="x-default" href="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/">
-<meta property="og:title" content="公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG">
-<meta property="og:description" content="本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。">
+<meta property="og:title" content="本地大模型硬體需求：顯示記憶體要多大？對照表＋4 步驟｜Think BIG">
+<meta property="og:description" content="本地大模型要整個載入顯示記憶體（VRAM）才跑得快，放不下的部分會改由 CPU 計算、速度明顯變慢。附常見模型檔案大小與硬體對照表、選硬體的 4 個步驟：先看顯示記憶體，不是先看 CPU。">
 <meta property="og:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <meta property="og:site_name" content="Think BIG!">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2026-10-19T12:00:00+08:00">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？｜問答圖書館｜Think BIG">
-<meta name="twitter:description" content="本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。">
+<meta name="twitter:title" content="本地大模型硬體需求：顯示記憶體要多大？對照表＋4 步驟｜Think BIG">
+<meta name="twitter:description" content="本地大模型要整個載入顯示記憶體（VRAM）才跑得快，放不下的部分會改由 CPU 計算、速度明顯變慢。附常見模型檔案大小與硬體對照表、選硬體的 4 個步驟：先看顯示記憶體，不是先看 CPU。">
 <meta name="twitter:image" content="https://thinkbigtw.com/assets/brand/thinkbig-og.jpg">
 <script type="application/ld+json">
 {
@@ -37,7 +37,7 @@
    "@type": "Article",
    "@id": "https://thinkbigtw.com/library/qa/local-llm-hardware-sizing/#article",
    "headline": "公司要跑本地大模型，需要什麼硬體？顯示記憶體要多大？",
-   "description": "本地大模型的硬體先看顯示記憶體，不是先看 CPU：模型檔要能整個放進顯示記憶體，還要留空間給上下文和同時使用的人數。本文附常見模型的官方檔案大小、硬體規格對照，以及選硬體的 4 個步驟。",
+   "description": "本地大模型要整個載入顯示記憶體（VRAM）才跑得快，放不下的部分會改由 CPU 計算、速度明顯變慢。附常見模型檔案大小與硬體對照表、選硬體的 4 個步驟：先看顯示記憶體，不是先看 CPU。",
    "keywords": "本地大模型 硬體, LLM 硬體需求, Ollama 硬體需求, Ollama 顯卡需求, 顯示記憶體 VRAM, gpt-oss-20b 硬體需求, 地端 AI 設備, Think BIG",
    "author": {
     "@type": "Organization",
