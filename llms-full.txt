@@ -6814,13 +6814,13 @@ URL: https://thinkbigtw.com/en/privacy/
 
 # Think BIG Privacy Policy
 
-Last updated: November 10, 2026
+Last updated: November 25, 2026
 
 [中文版](https://thinkbigtw.com/privacy.html)
 
 ## 1. Who is responsible
 
-Think BIG Make it Real CO., LTD. (大想成業有限公司), Taiwan (R.O.C.), Unified Business No. 62136066, B1-6, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan; AI@thinkbigtw.com  (“we”). This Policy covers thinkbigtw.com and our Services. We comply with Taiwan’s Personal Data Protection Act and, where it applies to you, the EU/UK GDPR (see Section 10).
+Think BIG Make it Real CO., LTD. (大想成業有限公司), Taiwan (R.O.C.), Unified Business No. 62136066, B1-6, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan; AI@thinkbigtw.com  (“we”). This Policy covers thinkbigtw.com and our Services. We handle personal data under Taiwan’s Personal Data Protection Act. Where the EU or UK GDPR applies to how we process your data, we handle that data as the GDPR requires, including the legal bases in Section 3 and the rights in Section 10.
 
 Providing the information we ask for is your choice. If you do not, we may not be able to answer your enquiry or deliver the related service, but you can still browse this site.
 
@@ -6831,6 +6831,8 @@ Identity and contact: name, email, phone / WhatsApp handle, company name and bus
 ## 3. Why we use it
 
 To deliver the Services and support you; to reply to enquiries; to process payments and issue invoices; to send you information you asked for (you can opt out at any time); to measure website traffic and improve our services; and to meet legal obligations. Our legal basis under GDPR, where it applies, is mainly performance of a contract (Art. 6(1)(b)), plus legitimate interests for site analytics and security, and consent where we ask for it.
+
+Marketing and how to say no.  When we use your personal data for marketing, we give you a free way to refuse at the time of the first marketing message: reply "unsubscribe" to the email, or email AI@thinkbigtw.com with "unsubscribe" in the subject line; on our LINE official account you can block us at any time or tell us in writing. Within 2 business days of receiving your request we stop using your personal data for any marketing, on every channel, and add your contact detail to a do-not-contact list that we keep only so we do not contact you again. Contact details you give us through an enquiry, the quick request form, an event sign-up or our AI assistant are used only to reply to that request or to send notices about that event, and are never added to marketing lists.
 
 ## 4. Who receives it, and where
 
@@ -6863,6 +6865,8 @@ Enquiry form submissions are processed with AI assistance; the AI service provid
 
 We use TLS encryption in transit, access controls and least-privilege permissions. No system is perfectly secure, and we cannot guarantee absolute security.
 
+If a data incident happens.  If we learn that personal data we hold has been stolen, altered, damaged, lost or leaked, we will act promptly to contain it and notify the people affected by email or another suitable means, explaining what happened, what we have done and how to contact us with questions or requests. Where the law requires us to report to an authority, we will do so, and we keep records of the incident and our response. If the incident involves data we process for a client, we notify that client as our contract requires and help them respond.
+
 ## 8. Remote work and AI tools: how your data is handled
 
 Item Detail
@@ -6881,7 +6885,7 @@ Our safeguards We mask account names, email addresses, phone numbers, street add
 
 Where it goes The providers’ servers in the United States, under their published data policies.
 
-Retention Provider side: under the providers’ policies. Our side: Work logs are kept only as long as the service requires; you can ask us to delete them at any time.
+Retention Provider side: under the providers’ published data policies. Our side: work logs are kept for 2 years after the project ends and then deleted; you can ask us to delete them sooner at any time.
 
 Your choice AI tools are how we deliver the Services, so we cannot offer a version without them. If you do not accept this, please do not order.
 
@@ -6889,7 +6893,30 @@ Services use AI tools as described. For clients in the EU/EEA or the UK, persona
 
 ## 9. How long we keep data
 
-Contact data, enquiry summaries and project records: until you ask us to delete them, or until the purpose ends, whichever is earlier; invoices and accounting records are kept as Taiwan law requires. Deletion requests are handled within 14 days.
+We keep personal data for the periods in the table below. For anything not listed, we keep it until the purpose ends or you ask us to delete it, unless the law requires a longer period or a contract with you says otherwise. When the period ends or the purpose no longer exists, we delete the data or stop using it, as Article 11 of Taiwan's Personal Data Protection Act requires. We handle deletion requests within 14 days; data the law requires us to keep (such as accounting records) is kept for the legal period but not used for anything else.
+
+Data How long we keep it
+Accounting vouchers At least 5 years after the annual closing of accounts (Taiwan Business Entity Accounting Act, Art. 38)
+
+Account books and financial statements At least 10 years after the annual closing of accounts (same law)
+
+Contracts, quotes, acceptance and payment records 10 years after the end of the year they belong to
+
+Client details, project documents and final client communications 5 years after the project (including any warranty period) ends
+
+Work, progress, Q&A and review records, including our logs of remote work 2 years after the project ends
+
+Records of requests you make about your data, and of data incidents 5 years
+
+Do-not-contact list (after you refuse marketing) Only the contact detail needed to avoid contacting you again, until you agree to hear from us again
+
+Threads engagement tool review records 30 days, then deleted automatically (Section 11)
+
+Conversation context held by messaging apps Cleared after about 30 minutes of inactivity, at most 2 hours (Section 6)
+
+Website enquiries, quick request forms, event sign-ups, AI assistant enquiry summaries and the contact details in them Until you ask us to delete them (Section 6)
+
+Children's photos for custom storybooks Under the separate notice and consent form provided before ordering; this table does not apply
 
 ## 10. Your rights
 
@@ -34245,7 +34272,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 # 隱私權政策
 
-更新日期：2026-11-10　[English version](https://thinkbigtw.com/en/privacy/)
+更新日期：2026-11-25　[English version](https://thinkbigtw.com/en/privacy/)
 
 大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。提供本公司服務所需的資料(例如聯絡方式、需求內容)為您的自由選擇;若不提供,本公司可能無法回覆您的詢問或提供相關服務,但仍可瀏覽本網站。請在提供資料前閱讀本政策;若有疑問,歡迎來信詢問。
 
@@ -34259,17 +34286,44 @@ URL: https://thinkbigtw.com/privacy.html
 
 ## 二、蒐集目的
 
-契約履行與服務提供、客戶服務與聯繫、金流處理與電子發票開立、行銷訊息發送(您得隨時要求停止)、網站流量統計與服務改善,以及其他經營登記業務所必要之目的。
+契約履行與服務提供、客戶服務與聯繫、金流處理與電子發票開立、行銷訊息發送(拒絕方式見本節末段)、網站流量統計與服務改善,以及其他經營登記業務所必要之目的。
+
+行銷訊息與拒絕方式: 本公司以您的個人資料進行行銷時,會在第一次行銷的同時,免費提供您表示拒絕的方式:電子郵件可直接回覆「退訂」,或寄信至 AI@thinkbigtw.com 並於主旨註明「退訂」;LINE 官方帳號可隨時封鎖或來信表示拒絕。本公司收到後 2 個工作日內停止以您的個人資料進行任何行銷(不限於原本的管道),並將您的聯絡方式列入不再聯絡名單;該名單僅用於避免再次聯絡您。您透過詢問、快速需求表、說明會報名或 AI 顧問提供的聯絡資料,只用於回覆該次需求或該活動的通知,不會因此被加入行銷名單。
 
 ## 三、利用期間、地區、對象與方式
 
-- 期間:自蒐集之日起至蒐集目的消失或您請求刪除為止;法令另有保存規定者,依其規定。個案另有約定者,從其約定。本公司依個人資料保護法第 11 條,於蒐集目的消失或期限屆滿時,主動或依請求刪除、停止處理或利用,但因執行業務所必須或經您書面同意者不在此限。
+- 期間:依下方「保存期間表」;表內未列者,保存至蒐集目的消失或您請求刪除為止;法令另有保存規定者,依其規定;個案另有約定者,從其約定。期間屆滿或蒐集目的消失時,本公司依個人資料保護法第 11 條主動刪除、停止處理或利用,但因執行業務所必須或經您書面同意者不在此限。您請求刪除時,本公司於 14 天內處理並回覆;依法令必須保存的資料(例如會計憑證),於法定期間內保存,但停止其他利用。
 
 - 地區:台灣,以及本公司所使用雲端服務與 AI 工具服務商之伺服器所在地(包括美國)。
 
 - 對象:本公司,以及為完成服務所必要之受託處理者,包括綠界科技股份有限公司(金流與電子發票)、Google LLC(分析與雲端服務)、Cloudflare, Inc.(網站與資安服務)、Supabase Inc.(資料庫服務)、Meta Platforms, Inc.(廣告成效追蹤，投放期間適用)、Anthropic PBC 與 OpenAI(遠端安裝施作所用 AI 工具,見第十二節 )。除法令要求或前述必要範圍外,本公司不會將您的個人資料提供予第三人。
 
 - 方式:以自動化系統或其他合於法令之方式蒐集、處理及利用。
+
+### 保存期間表
+
+資料 保存期間
+會計憑證 年度決算程序辦理終了後至少 5 年(商業會計法第 38 條)
+
+會計帳簿及財務報表 年度決算程序辦理終了後至少 10 年(同上)
+
+合約、報價單、驗收與收款紀錄 所屬年度終了後 10 年
+
+客戶基本資料、專案說明文件、給客戶的定稿溝通紀錄 結案(含保固期)後 5 年
+
+施工、進度、問答與審查紀錄;遠端施作的本公司端作業紀錄 結案後 2 年
+
+您行使個人資料權利的處理紀錄、個人資料事故紀錄 5 年
+
+不再聯絡名單(您拒絕行銷後) 僅保存避免再次聯絡您所需的聯絡方式,至您另行同意接收為止
+
+Threads 互動工具的審核紀錄 自建立起 30 天,期滿自動刪除(見第十一節)
+
+LINE 官方帳號暫存的對話脈絡 閒置約 30 分鐘後清除,最長不超過 2 小時(見第十節)
+
+官網詢問、快速需求表、說明會報名、AI 顧問諮詢摘要及其中的聯絡資料 保存至您請求刪除為止(見第十節)
+
+客製童書的兒童照片 依訂購前提供的專屬告知與同意書,不適用本表
 
 ## 四、Cookie 與追蹤技術
 
@@ -34300,9 +34354,11 @@ tb_consent 本公司（瀏覽器 localStorage，非 Cookie） 記住您在 Cooki
 
 本公司採用 TLS 加密傳輸、存取權限控管等合理之技術與管理措施,保護您的個人資料。
 
+個人資料事故之處理: 本公司知悉所保有的個人資料發生被竊取、竄改、毀損、滅失或洩漏等事故時,將即時採取應變措施防止損害擴大,並以電子郵件或其他適當方式通知受影響的當事人,說明事故的事實、本公司已採取的因應措施,以及後續查詢與提出請求的管道;依法令應向主管機關通報者,本公司依規定通報,並保存事故與處理紀錄。本公司受客戶委託處理的資料發生事故時,依雙方契約通知委託的客戶,並協助其處理。
+
 ## 六、您的權利
 
-依個人資料保護法第 3 條,您得就您的個人資料行使下列權利:查詢或請求閱覽、請求製給複製本、請求補充或更正、請求停止蒐集處理或利用、請求刪除。行使方式:來信 AI@thinkbigtw.com,本公司將於合理期間內處理。
+依個人資料保護法第 3 條,您得就您的個人資料行使下列權利:查詢或請求閱覽、請求製給複製本、請求補充或更正、請求停止蒐集處理或利用、請求刪除。行使方式:來信 AI@thinkbigtw.com,本公司於 14 天內處理並回覆。
 
 ## 七、未成年人保護
 
@@ -34378,7 +34434,7 @@ AI 工具與服務商 Anthropic Claude Code(Anthropic PBC,美國)、OpenAI Codex
 
 利用地區 中華民國,以及上述服務商所在的美國(國際傳輸,個人資料保護法第 21 條)。
 
-利用期間 施作與維護期間;本公司端作業紀錄於服務完成後依實際需要保存，您可隨時來信要求刪除。服務商端依其公布的資料政策保存。
+利用期間 施作與維護期間;本公司端作業紀錄保存至結案後 2 年,期滿刪除,您也可以隨時來信要求提前刪除。服務商端依其公布的資料政策保存。
 
 您的權利 查詢、閱覽、複製、補充或更正、停止蒐集處理利用、刪除,本公司於 14 日內處理。
 
@@ -35149,7 +35205,7 @@ URL: https://thinkbigtw.com/terms.html
 
 ## 一、契約當事人與適用範圍
 
-本條款由大想成業有限公司(統一編號 62136066;代表人 吳御綸;營業所:臺中市南區五權南路 167 號地下一層之 6;電子郵件 AI@thinkbigtw.com ;以下稱「本公司」)訂定,適用於您使用 thinkbigtw.com 網站及本公司提供之各項服務。個人方案經蝦皮平台成交者,付款、取消與退款另依蝦皮平台規則辦理,本條款補充之。您完成訂購或開始使用服務,即視為同意本條款。
+本條款由大想成業有限公司(統一編號 62136066;代表人 吳御綸;營業所:臺中市南區五權南路 167 號地下一層之 6;電子郵件 AI@thinkbigtw.com ;以下稱「本公司」)訂定,適用於您使用 thinkbigtw.com 網站及本公司提供之各項服務。個人方案經蝦皮平台成交者,付款、取消與退款另依蝦皮平台規則辦理,本條款補充之。本公司於您訂購或簽約前提供本條款(網站下單頁、蝦皮商品頁或報價單附有連結);您在可以閱讀本條款的情形下完成訂購或簽署報價單、合約,本條款即成為雙方契約的一部分。單純瀏覽本網站,不代表您同意本條款。
 
 本條款區分兩類客戶:「消費者」(為個人生活目的購買者,適用消費者保護法)與「企業客戶」(為營業目的購買者,依雙方合約或報價單)。
 
