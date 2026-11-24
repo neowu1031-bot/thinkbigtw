@@ -262,6 +262,782 @@ NT$39,910（續約 NT$35,910）
 
 ---
 
+URL: https://thinkbigtw.com/bearsay/child-safety/en/
+
+# BearSay Mandarin Child Safety
+
+Version 2.0
+
+Current status (2026-11-24): mobile version 1.0 (iOS and Android) has no accounts and no paid features, no analytics and no ads, and does not collect or upload personal data; it does not connect to any AI speech service while running. Accounts on the web version are not live yet. Sections on accounts, sync and payments describe how those features will work once enabled; we will update this page and announce it before enabling them.
+
+This page is for parents and guardians: what is and is not inside BearSay Mandarin when a child uses it to learn Taiwanese Mandarin, how the content is checked, and how to reach us.
+
+## What is not in the App
+
+- No chat, no comments, no community and no publicly posted user content.
+
+- No ads. Accounts are available only to people aged 18 or older. Below 18 or with an unknown age, the sign-in entry is hidden, no code is sent and no learning progress is synced. This version has no parental-consent process to open a child account.
+
+- Mobile version 1.0 has no accounts and no paid features. The web version does not take payments; if payments are offered in future, they will only go through the mobile App's App Store or Google Play. Adults should manage store purchase restrictions and should not share payment credentials or adult accounts with children.
+
+- When official URLs are configured, Settings has three links: "Privacy policy", "Child safety" and "Support". They open our company website in the system browser; the App has no embedded browser. The website receives ordinary web-request information such as your IP address; the App does not attach progress or recordings.
+
+- No speech recognition and no pronunciation scoring; speaking practice only records so the child can play it back.
+
+- Without sign-in, mobile learning progress and recordings stay on the device. When an eligible user signs in, the service processes an email address, account ID and sign-in security records; learning progress and review cards are uploaded only after separate sync consent. Recordings, age and consent records are never uploaded from the device. Support email you choose to send includes your email address and message, kept for 1 year after our last exchange. Please have a parent or guardian write for a child. See the privacy policy at [https://thinkbigtw.com/bearsay/privacy/en/](https://thinkbigtw.com/bearsay/privacy/en/).
+
+## How the content is checked
+
+Nobody can promise perfection. What we do is review the content one layer at a time:
+
+- Structure checks: when each lesson is built, a program checks its format, character forms, syllables and exercise links; an error stops the lesson from moving on.
+
+- Safety-word scan: every piece of text in every lesson is scanned against a safety-word list; each hit is read in context by a person and is released only after confirmation, with a record kept.
+
+- Two independent reviewers: each lesson is read by two independent review agents; it is accepted only when their conclusions agree, and any disagreement is decided by the person in charge with a written reason.
+
+- Sign-off: a lesson is signed off for release only after the steps above; any later edit invalidates the sign-off and the lesson must be reviewed again.
+
+Review points include: sentences suitable for children, no requests for a child's personal information (exercises only ask about fictional characters), an adult present whenever a risky activity appears, no judgement about bodies or money, and no fortune-telling, gambling, alcohol, tobacco or horror elements.
+
+## Demonstration pronunciation
+
+Demonstration pronunciation is AI-synthesized speech and is labelled inside the App. Synthesis happens during content production and is reviewed; the App never connects to a speech service while running.
+
+## What parents can do
+
+- Settings lets users report their actual age, stored only on the device, without a birth date or identity documents. The account section says "This feature is currently unavailable" when ineligible. Do not enter an adult age for a child or let a child use an adult account to sync learning. Age is self-reported, not identity-verified; parents should still manage shared devices.
+
+- Accounts require age 18 or older. Reminder protections separately apply below 13 and to unknown ages: no notifications between 9 p.m. and 8 a.m. (daily reminders move to 8 a.m., festival notices go out at 9 a.m.), no pressure-style "your streak is about to end" reminders, and daily reminders use child-appropriate wording only. Users aged 13–17 still cannot use accounts, while reminders retain the existing age-13 threshold.
+
+- If a child has used an adult account or provided personal information, have a parent write to us. An adult account can use "Withdraw consent and stop syncing" in the App or on the web. To delete existing cloud data, first tap "Delete account", then "Confirm deletion". Stopping sync does not delete cloud data, and deleting an account does not cancel store subscriptions.
+
+- Recordings can be deleted all at once on the Settings page ("Withdraw consent and delete recordings").
+
+- Daily reminders and festival notifications can be turned off in Settings. Pet-care notifications are currently inactive: none are scheduled or sent, and there is no separate switch. Pet status appears only inside the App. You can also disable all App notifications in device system settings.
+
+- For any question, or to report a content issue, write to AI@thinkbigtw.com  and we will reply as soon as we can.
+
+Company: Think BIG Make it Real CO., LTD.　Unified Business Number: 62136066
+
+Address: B1-6, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan (R.O.C.)
+
+Contact: AI@thinkbigtw.com
+
+Related pages: Privacy policy [https://thinkbigtw.com/bearsay/privacy/en/](https://thinkbigtw.com/bearsay/privacy/en/)　Support [https://thinkbigtw.com/bearsay/support/en/](https://thinkbigtw.com/bearsay/support/en/)
+
+The Traditional Chinese version of this page prevails; the English version is for reference, and if they differ the Traditional Chinese version applies.
+
+---
+
+URL: https://thinkbigtw.com/bearsay/child-safety/
+
+# 熊好學 兒童安全說明
+
+版本 2.0
+
+目前狀態（2026-11-24）：手機版 1.0（iOS、Android）未提供帳號與付費功能，沒有分析、沒有廣告，不蒐集、不上傳個人資料；執行時不連線任何 AI 語音服務。網頁版的帳號功能尚未上線。本頁說明帳號、同步、付費的段落，是這些功能未來啟用時的做法；啟用前會更新本頁並公告。
+
+這一頁寫給家長與監護人：孩子用「熊好學」學台灣華語時，App 裡有什麼、沒有什麼，內容怎麼把關，以及你怎麼找到我們。
+
+## App 裡沒有的東西
+
+- 沒有聊天、沒有留言、沒有社群、沒有任何使用者公開發表的內容。
+
+- 沒有廣告。帳號只開放滿 18 歲者使用；未滿 18 歲或年齡未知時，不顯示登入入口、不寄送驗證碼，也不同步學習進度。本版不提供家長代為同意開通兒童帳號的流程。
+
+- 手機版 1.0 沒有帳號、沒有付費功能。網頁不收款；未來若提供付費，只會透過手機 App 的 App Store 或 Google Play。請由成年人管理商店購買限制，不要將付款憑證或成人帳號交給孩子使用。
+
+- 設定頁在已設定正式網址時提供「隱私權政策」「兒童安全說明」「支援」三個連結，由系統瀏覽器開啟公司網站；App 沒有內嵌瀏覽器。網站會收到 IP 位址等一般網頁請求資訊，App 不會附上學習紀錄或錄音。
+
+- 沒有語音辨識、沒有發音評分；口說練習只是錄下來讓孩子自己回放。
+
+- 未登入時，手機版的學習進度與錄音留在裝置。符合年齡者登入後，服務會處理 email、帳號代號與登入安全紀錄；學習進度和複習卡只在另行同意同步後上傳。錄音、年齡與同意紀錄不會從裝置上傳。主動寄客服信時會提供 email 與信件內容，保存至最後一次往來後 1 年。請由家長或監護人代為來信。詳見隱私權政策 [https://thinkbigtw.com/bearsay/privacy/](https://thinkbigtw.com/bearsay/privacy/)。
+
+## 內容怎麼把關
+
+沒有人能打包票，我們做的是一道一道的審查：
+
+- 結構檢查：每一課在建置時由程式檢查格式、字形、音節與題目對應，有錯就不能進入下一步。
+
+- 安全詞掃描：每一課的所有文字都用一份安全詞清單掃過；命中的句子逐一由人看語境，確認後才放行並留下紀錄。
+
+- 雙代理審稿：每一課由兩個互相獨立的審稿代理各自讀過，結論一致才採用；不一致的地方由負責人裁決並寫下理由。
+
+- 簽核：每一課通過以上步驟後才簽核上架；內容若有修改，簽核就失效，必須重新審。
+
+審查重點包括：句子適合孩子、不索取孩子的個人資料（題目只問虛構角色）、涉及危險活動時一律有大人陪同、不對身體或金錢做評價、沒有占卜、賭博、酒菸與恐怖元素。
+
+## 示範發音
+
+示範發音為 AI 合成語音，App 內有標示。合成在內容製作階段完成並經過審查；App 執行時不會連線任何語音服務。
+
+## 家長可以怎麼做
+
+- 設定頁可填寫實際年齡，只存本機，不需生日或身分證件；未設定時顯示「此功能目前無法使用」說明。請不要替孩子填成年人的年齡，也不要讓孩子用成人帳號同步學習紀錄。年齡為自行填寫，並非身分驗證；家長仍應協助管理共用裝置。
+
+- 帳號門檻是滿 18 歲；提醒保護另以未滿 13 歲及未知年齡判定。符合提醒保護時，晚上 9 點到早上 8 點不發通知（每日提醒改在早上 8 點、節日通知在早上 9 點），不發「連續天數快中斷」這類有壓力的提醒，每日提醒只用適合孩子的文字。13～17 歲仍不能使用帳號，但提醒依既有 13 歲門檻處理。
+
+- 若發現孩子使用成人帳號或提供個人資料，請由家長來信說明。成人帳號可在 App 或網頁按「撤回同意並停止同步」；若要刪除既有雲端資料，先按「刪除帳號」，再按「確認刪除」。停止同步不會自動刪除雲端資料；刪除帳號也不會取消商店訂閱。
+
+- 錄音可以在設定頁一次刪除（「撤回同意並刪除錄音」）。
+
+- 每日提醒與節日通知都可以在設定頁關閉。寵物養成通知目前未啟用，不會排程或發送，也沒有獨立開關；養成狀態只在 App 內顯示。裝置系統設定也可關閉本 App 的所有通知。
+
+- 有任何疑問或想回報內容問題，請寫信到 AI@thinkbigtw.com ，我們會盡快回覆。
+
+公司：大想成業有限公司　統一編號：62136066
+
+地址：臺中市南區福興里五權南路167號地下一層之6
+
+聯絡信箱：AI@thinkbigtw.com
+
+相關頁面：隱私權政策 [https://thinkbigtw.com/bearsay/privacy/](https://thinkbigtw.com/bearsay/privacy/)　支援頁 [https://thinkbigtw.com/bearsay/support/](https://thinkbigtw.com/bearsay/support/)
+
+本頁以繁體中文版為準；英文版僅供參考，兩者不一致時以繁體中文版為準。
+
+---
+
+URL: https://thinkbigtw.com/bearsay/privacy/en/
+
+# BearSay Mandarin Privacy Policy
+
+Version 2.0　Effective date: 2026-11-24
+
+Current status (2026-11-24): mobile version 1.0 (iOS and Android) has no accounts and no paid features, no analytics and no ads, and does not collect or upload personal data; it does not connect to any AI speech service while running. Accounts on the web version are not live yet. Sections on accounts, sync and payments describe how those features will work once enabled; we will update this page and announce it before enabling them.
+
+This policy explains how the BearSay Mandarin app and the BearSay Mandarin web version (together, the "Service") handle data.
+
+Summary:
+
+- You can use every learning feature without signing in. Without an account, learning progress, recordings and pet-care records stay on your device.
+
+- Accounts are optional and available only to people aged 18 or older . Eligibility uses the age you report in Settings. Accounts are unavailable below 18 or when no age is set; learning data stays on the device.
+
+- After you sign in and agree to sync, only "learning progress" and "review cards" are synced from your device to the cloud, together with your email address and a system-generated account ID. Recordings, your age, consent records, coin wallet and paid entitlements are never uploaded from your device.
+
+- Before the first sync, the App shows what will be uploaded and asks for your consent. You can stop syncing at any time, and you can delete your account directly in the App or on the web; your cloud data is deleted with it.
+
+- No ads, no analytics or tracking tools. We do not sell or rent your data and do not use it for marketing.
+
+## 1. Who we are
+
+The Service is provided by the company below, which is responsible for the personal data described in this policy (the collector under Taiwan's Personal Data Protection Act and the "controller" under the GDPR):
+
+- Legal entity: Think BIG Make it Real CO., LTD.
+
+- Unified Business Number: 62136066
+
+- Address: B1-6, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan (R.O.C.)
+
+- Contact: AI@thinkbigtw.com
+
+## 2. What we collect and why
+
+### 2-1. Without an account
+
+The App itself does not collect or upload personal data. Learning features do not connect to analytics, advertising or push servers. Data kept on your device is described in section 3.
+
+### 2-2. When you create an account and sign in (optional, age 18 or older)
+
+Mobile version 1.0 has no accounts and no paid features; accounts on the web version are not live yet. This section describes how accounts will work once enabled.
+
+An account only lets you continue your own learning across devices (the App and the web). Settings lets you report your age; enter your actual age, without a birth date or identity documents. The age stays on the device and is never uploaded. When ineligible, the account section says "This feature is currently unavailable". Below 18 or with an unknown age, you cannot sign in, receive a sign-in code or sync. You sign in with an email code: you enter your email address, we send you a code, and you enter the code to sign in. There is no password.
+
+While your account exists, we store the following in the cloud:
+
+- Your email address: used to send sign-in codes and identify your account.
+
+- Account ID: a random identifier (user ID) generated by the sign-in service, used to link your learning progress to your account.
+
+- Learning progress: completed lessons and items, experience points, badges, streak and daily goal, streak-freeze weeks, and the time each was last updated.
+
+- Review cards: each card's next review time, repetition count, mistake count and last-updated time.
+
+- Sign-in security records: when you sign in, the sign-in service automatically records technical information such as sign-in time and IP address, used to keep accounts secure and prevent abuse.
+
+The following are never  uploaded from your device: recordings, the age you set, consent records, coins and wallet, paid entitlements, pet-care and game records, reminder settings, and diagnostic files.
+
+Purposes (specific purposes under Taiwan's Personal Data Protection Act): 090 consumer and customer management and service; 135 information and communication services; 136 information, communication and database management. We do not use this data for any other purpose, including marketing, advertising or profiling.
+
+Legal bases: creating an account and signing in are needed to provide the cross-device learning you ask for (GDPR Art. 6(1)(b), performance of our agreement with you); uploading learning progress and review cards starts only after you consent (Art. 6(1)(a), consent); sign-in security records protect accounts and the Service (Art. 6(1)(f), legitimate interests).
+
+Providing an email address is optional. Without one you cannot create an account, but all learning features still work and your data stays on your device.
+
+### 2-3. When you contact us
+
+Only when you choose to write to AI@thinkbigtw.com  do we receive your email address and message, including files you attach, such as diagnostics. We use this information only to answer questions, provide support and improve the Service, never for marketing. Our support staff in Taiwan process and store it through the email service we use. We do not disclose it to other third parties except as needed to provide email service or as required by law. We keep it for 1 year after our last exchange, then delete it.
+
+Without an email address we cannot reply. For a child's question, please have a parent or guardian write to us. Do not send identity documents or unrelated personal information.
+
+### 2-4. Payments
+
+Mobile version 1.0 has no accounts and no paid features; there are no purchases in the App. If payments are offered in future, they can only be made inside the App through Apple App Store or Google Play in-app purchase. Apple or Google processes the payment; we never receive your card or payment account details. The web version does not take payments and has no payment features.
+
+## 3. Data that stays on your device
+
+The following data exists only on your device (for the web version, in your browser's local storage). Apart from the learning progress and review cards you agree to sync under section 2-2, none of it is uploaded:
+
+- Learning progress, coins and pet-care records.
+
+- Speaking-practice recordings (created only after you explicitly agree to on-device recording; used only so you can play them back, with no speech recognition, no scoring and no model training).
+
+- The age you set, and consent records such as recording and sync consent.
+
+- Daily reminder and festival notification settings.
+
+- Lesson content included with the App and local lesson caches.
+
+- A copy of the learning progress for each account that has signed in on this device, so you can keep learning offline.
+
+- Diagnostic files: created only when you tap "Export diagnostics" yourself, stored on the device and never uploaded automatically; they contain error times, names, messages and stacks, App start timing, and mobile lesson-cache statistics, but no recording files. Error messages may contain runtime environment information, so review the file before sharing it; sharing it with us is your choice.
+
+Sign-in credentials are kept only in memory while the App is running and are not written to device storage; you need to sign in again after closing the App or reloading the web page.
+
+How to delete:
+
+- On the Settings page, tap "Withdraw consent and delete recordings" to delete all recordings and withdraw recording consent.
+
+- Choose "Sign out and clear progress on this device", then "Confirm deletion", to clear current learning, game and pet-care progress, all local account progress copies and sync consent records on this device. Settings and recordings remain; use the separate recording control above to delete recordings. Cloud data is not deleted.
+
+- Uninstalling the App removes all of the above from the device. On the web, clear this site's data in your browser.
+
+## 4. Sync consent, stopping sync and deleting your account
+
+- Notice and consent before the first sync: the App displays "With consent, learning progress (completed lessons and items, XP, streaks, daily goal, streak-freeze weeks, badges and update times) and review cards (review schedules, repetition and mistake counts, update times) are uploaded so you can continue learning across devices. Recordings, age, consent records, wallet, paid entitlements, games, pet care, reminder settings and diagnostics are excluded. Withdrawing consent stops future sync; delete your account to remove existing cloud data." Uploading starts only after you tap "Agree and start syncing". The consent record is stored only on your device.
+
+- Stopping sync: tap "Withdraw consent and stop syncing" at any time in the App or on the web to stop future uploads and downloads. Data that reached the server before withdrawal cannot be recalled. Data already in the cloud stays until you delete your account. To remove cloud data as well, use "Delete account".
+
+- Deleting your account: on the account page in the App or on the web, first tap "Delete account". The notice reads "Permanently delete your account? Your cloud email address, account ID, learning progress, review cards and entitlement records, plus this account's backup and current progress on this device, will be deleted and cannot be recovered. Store subscriptions are not cancelled; manage them in the app store." Read it, then tap "Confirm deletion" to send the request. You can also tap "Cancel" at the second step. On success, your email address, account ID, learning progress, review cards and entitlement records are deleted from the cloud immediately and cannot be recovered. This account's local progress copy, sync consent record and current device progress are cleared; other accounts' local backups remain. Settings and recordings remain. Offline copies already downloaded on other devices must be cleared on those devices separately. Deleting an account does not cancel app-store subscriptions; manage them in the app store.
+
+- Signing out: ordinary "Sign out" keeps local progress. To clear it, use "Sign out and clear progress on this device" as described in section 3.
+
+## 5. Who processes data for us
+
+We use only the service providers below, which process data on our instructions and only for the purposes in this policy. We do not sell or rent data to anyone.
+
+- Supabase: provides sign-in and the database, storing the account data, learning progress, review cards and sign-in security records listed in section 2-2. Currently not enabled; we will update this policy and announce it before enabling (including storage region).
+
+- Email delivery service: delivers sign-in codes to your inbox and receives your email address and the code email. Currently not enabled; we will update this policy and announce it before enabling (including provider).
+
+- Cloudflare: hosts the web version and our website. When you visit, the host receives ordinary web-request information such as IP address, browser type and request time.
+
+These providers' servers may be located outside Taiwan. For users in the European Economic Area (EEA), the United Kingdom or Switzerland, cross-border transfers are protected by lawful mechanisms such as the providers' data processing agreements and standard contractual clauses; Supabase and the email service are currently not enabled; we will update this policy and announce it before enabling.
+
+Except as above or as required by law (for example, a lawful request from judicial authorities), we do not provide your personal data to third parties.
+
+## 6. How long we keep data
+
+- Email address, account ID, cloud learning progress and review cards: kept until you delete your account.
+
+- After account deletion: the data above is deleted from the cloud database immediately. Copies may remain in the providers' system backups and are overwritten when the backup cycle ends, within a maximum period we will announce before accounts are enabled (currently not enabled; we will update this policy and announce it before enabling). We do not use or restore those backups during that period except to recover from a system failure.
+
+- Sign-in security records: currently not enabled; we will update this policy and announce it before enabling (including retention period).
+
+- Sign-in codes: currently not enabled; we will update this policy and announce it before enabling (including validity period); once enabled, codes expire when used or timed out.
+
+- Ordinary web-hosting request logs: handled under Cloudflare's log retention settings.
+
+- Support email: 1 year after our last exchange (see section 2-3).
+
+- On-device data: under your control, kept until you delete it, clear it when signing out, or uninstall the App.
+
+## 7. Your rights
+
+Under Article 3 of Taiwan's Personal Data Protection Act, you may ask us to let you access or review the personal data we hold about you, give you a copy, supplement or correct it, stop collecting, processing or using it, or delete it. Users in the EEA, the UK or Switzerland also have GDPR rights to restrict processing, to data portability, to object, and to withdraw consent at any time (without affecting processing before withdrawal), and may complain to their local data protection authority.
+
+The quickest way is to stop syncing or delete your account in the App or on the web. For other requests, write to AI@thinkbigtw.com  from your account's email address so we can confirm it is you. We will reply within the period required by law; if the law allows us to refuse, we will tell you why.
+
+## 8. Permissions
+
+- Microphone: used only while you hold "Start recording" to record your own speaking practice; recordings stay on this device. The system permission is requested only after you agree to on-device recording.
+
+- Notifications: used only for the daily reminder and festival notifications you turn on in Settings. Reminders are scheduled locally on the device; there is no push server. For a known age of 13 or older with daily reminders enabled, a streak reminder may also be scheduled when its conditions are met; children and unknown ages receive no streak reminders. Pet-care notifications are currently inactive: none are scheduled or sent, and there is no separate switch. Pet status appears only inside the App. Milestone and return-visit copy is not currently scheduled as system notifications either.
+
+- Network: learning features in mobile version 1.0 do not need or use the network; only links you open to the privacy policy, child safety or support pages connect, through the system browser. Once accounts are enabled, the network is used when you request a sign-in code, sign in or manage your account. Learning progress and review cards are uploaded and downloaded only after sign-in and sync consent. The web version also connects to load code, lessons and media; links you choose to open connect through the system browser.
+
+You can turn these permissions off at any time in your device's system settings. The related feature stops; everything else keeps working.
+
+## 9. Children
+
+The Service is suitable for children learning Mandarin, but accounts are available only to people aged 18 or older . The App uses the age reported in Settings. Below 18 or when no age is set, the sign-in entry is hidden, no code is sent, no sync happens, and learning data stays on the device. The account section says "This feature is currently unavailable" when ineligible. Age stays on the device and is not verified against identity documents. This version has no parental-consent process to open a child account. Reminders separately retain their protections for children under 13 and unknown ages; that threshold differs from the account threshold.
+
+We do not knowingly collect personal information from children. An account is for the adult's own use: please do not use your account to sync a child's learning or let a child sign in with your account. If you are a parent or guardian and find that your child has created an account or given us personal information, write to AI@thinkbigtw.com  and we will delete that account and the related data once confirmed.
+
+The Service has no chat, no community, no user-generated public content and no ads.
+
+## 10. Third-party libraries and links
+
+The App is built with the open-source frameworks Expo and React Native. We reviewed every library the App uses directly: each is an open-source component under an MIT, BSD or Apache licence, and none of them is an analytics, advertising, crash-reporting or tracking SDK. The indirect dependencies they bring in were matched by package name against the same categories, with no hits. The full list with versions is kept in our dependency inventory. Account sign-in and sync add no third-party SDK; the App connects directly to the sign-in and database service listed in section 5.
+
+One item deserves a specific note: on Android, the notification component bundles Google's Firebase Cloud Messaging library, so it appears in the Google Play SDK list. The App has no Firebase project configured (there is no google-services configuration file) and never requests a push token, so that library is never initialised and receives or sends no push data; reminders and festival notifications are scheduled locally on the device. The iOS version contains no Firebase.
+
+Mobile release lessons and demonstration audio are included with the App and do not need a content server. "Download this lesson" writes the bundled lesson to a local cache; it is not a network download. If you tap "Privacy policy", "Child safety" or "Support" in Settings, the system browser connects to our website, whose host receives ordinary web-request information such as your IP address. The App does not attach progress or recordings to those links. The web version loads code, lessons and media from its own host, which receives ordinary web-request information; it uses only the browser local storage needed to work and no advertising or tracking cookies. The App is distributed through the Apple App Store and Google Play; when you download, install or make an in-app purchase, Apple's and Google's own privacy policies apply to their services.
+
+Demonstration pronunciation is AI-synthesized speech and is labelled as such inside the App. Synthesis happens during content production; the App does not connect to any speech service while running.
+
+## 11. Security
+
+Connections between the App, the web version and the sign-in and database services are encrypted with HTTPS. The database enforces access controls so each account can read and write only its own learning progress and cannot read or change anyone else's data. Sign-in credentials are not written to device storage. No system can promise absolute security; if a personal data breach occurs, we will investigate and notify affected users as required by law, including what we are doing about it.
+
+## 12. Legal statements
+
+- Taiwan: the Service handles personal data under the Personal Data Protection Act. Section 2 covers purposes and data categories, sections 5 and 6 cover recipients, regions and periods of use, and section 7 covers your rights.
+
+- United States Children's Online Privacy Protection Act (COPPA): the Service does not collect personal information from children under 13. Accounts are not available for children or unknown ages, and their learning data stays on the device. If we learn we have received a child's personal information, we will delete it.
+
+- EU and UK General Data Protection Regulation (GDPR / UK GDPR): the Service processes data on the bases listed in section 2-2, collects only the minimum needed to provide the features, and provides the rights in section 7.
+
+## 13. Changes to this policy
+
+If this policy changes, we will update the version and effective date on this page and mention it in the App's release notes. A material change (for example, a new category of uploaded data or a new purpose) will be announced inside the App and, where required, enabled only after you agree.
+
+## 14. Contact
+
+Write to AI@thinkbigtw.com  with any question and we will reply as soon as we can.
+
+Related pages: Support [https://thinkbigtw.com/bearsay/support/en/](https://thinkbigtw.com/bearsay/support/en/)　Child safety [https://thinkbigtw.com/bearsay/child-safety/en/](https://thinkbigtw.com/bearsay/child-safety/en/)
+
+The Traditional Chinese version of this page prevails; the English version is for reference, and if they differ the Traditional Chinese version applies.
+
+### Age settings and local restrictions
+
+The age field does not display the account threshold. When ineligible, the account section says "This feature is currently unavailable". This device stores the first reported age and time, and the first reported age below 18 and its time. For 30 days after the first under-18 entry, the age cannot be changed to 18 or above. Leaving it blank, signing out, deleting an account or clearing device progress does not reset these records. Only clearing App data (site data on the web) resets them. These records stay on this device and are not uploaded; this remains a self-reported check.
+
+Mobile version 1.0 (iOS and Android) has no account features; local learning remains available. Accounts on the web version are not live yet.
+
+Account deletion requires email OTP verification within the last 10 minutes. After that, request and verify a new code; refreshing a session does not extend this window. After verification, choose "Delete account" and "Confirm deletion" again. Verification does not automatically delete the account.
+
+---
+
+URL: https://thinkbigtw.com/bearsay/privacy/
+
+# 熊好學 隱私權政策
+
+版本 2.0　生效日期：2026-11-24
+
+目前狀態（2026-11-24）：手機版 1.0（iOS、Android）未提供帳號與付費功能，沒有分析、沒有廣告，不蒐集、不上傳個人資料；執行時不連線任何 AI 語音服務。網頁版的帳號功能尚未上線。本頁說明帳號、同步、付費的段落，是這些功能未來啟用時的做法；啟用前會更新本頁並公告。
+
+本政策說明「熊好學」App 與熊好學網頁版（以下合稱「本服務」）如何處理資料。
+
+重點摘要：
+
+- 不登入也能完整學習。不登入時，學習進度、錄音與養成紀錄只留在你的裝置上。
+
+- 帳號是選用功能，只開放滿 18 歲者建立 。依設定頁自報年齡判定；未滿 18 歲或未設定年齡時，不開放帳號，學習資料只留在裝置上。
+
+- 登入並同意同步後，只有「學習進度」與「複習卡」會從裝置同步到雲端，另外會有你的 email 與系統產生的帳號代號。錄音、年齡、同意紀錄、金幣錢包與付費權益都不會從你的裝置上傳。
+
+- 第一次同步前，App 會先列出上傳範圍並請你同意；你可以隨時停止同步，也可以在 App 或網頁內直接刪除帳號，雲端資料會一併刪除。
+
+- 沒有廣告、沒有分析或追蹤工具，我們不販售、不出租你的資料，也不拿去做行銷。
+
+## 1. 我們是誰
+
+本服務由下列公司提供，並負責處理本政策所說的個人資料（即《個人資料保護法》所稱的蒐集者，也就是 GDPR 所稱的「控管者」）：
+
+- 公司登記名：大想成業有限公司
+
+- 統一編號：62136066
+
+- 地址：臺中市南區福興里五權南路167號地下一層之6
+
+- 聯絡信箱：AI@thinkbigtw.com
+
+## 2. 我們收集什麼、為什麼收集
+
+### 2-1. 不登入時
+
+App 本身不收集或上傳個人資料。學習功能不連線分析、廣告或推播伺服器。留在裝置上的資料見第 3 節。
+
+### 2-2. 你建立帳號並登入時（選用，限滿 18 歲者）
+
+手機版 1.0 未提供帳號與付費功能；網頁版帳號功能尚未上線。本節是帳號功能啟用後的做法。
+
+帳號只用來讓你在不同裝置（App 與網頁）接續自己的學習。設定頁讓你自報年齡；請填寫實際年齡，不需提供生日或身分證件。年齡只存本機，不會上傳。未設定時顯示「此功能目前無法使用」說明；未滿 18 歲或年齡未知時，不能登入，也不寄送驗證碼或進行同步。登入方式是 Email 驗證碼：你輸入 email，我們寄一組驗證碼給你，你輸入驗證碼後完成登入。我們不設密碼。
+
+帳號存在期間，我們在雲端保存下列資料：
+
+- 你的 email 地址：用來寄驗證碼和辨識你的帳號。
+
+- 帳號代號：登入服務自動產生的一串亂碼（user ID），用來把你的學習進度對應到你的帳號。
+
+- 學習進度：已完成的課程與題目、經驗值、徽章、連續學習天數與每日目標、連勝保護週次，以及每項資料的更新時間。
+
+- 複習卡：各張複習卡的下次複習時間、練習次數、答錯次數，以及每張卡的更新時間。
+
+- 登入安全紀錄：登入服務在你登入時會自動留下登入時間、IP 位址等技術紀錄，用於維護帳號安全與防止濫用。
+
+下列資料不會 從你的裝置上傳到雲端：錄音、你設定的年齡、各項同意紀錄、金幣與錢包、付費權益、寵物養成與遊戲紀錄、提醒設定、診斷檔。
+
+蒐集目的（依我國個人資料保護法之特定目的）：〇九〇 消費者、客戶管理與服務；一三五 資（通）訊服務；一三六 資（通）訊與資料庫管理。我們不會把這些資料用在上述目的以外，也不拿去做行銷、廣告或使用者剖析。
+
+依據：建立帳號與登入，是為了提供你要求的跨裝置接續學習服務（GDPR 第 6 條第 1 項 b 款：履行與你之間的服務約定）；把學習進度與複習卡上傳同步，是在取得你的同意後才開始（第 6 條第 1 項 a 款：同意）；登入安全紀錄則是為了保護帳號與服務安全（第 6 條第 1 項 f 款：正當利益）。
+
+你可以不提供 email。不提供的話就無法建立帳號，但所有學習功能照常可用，資料只存在你的裝置上。
+
+### 2-3. 你主動聯絡我們時
+
+只有在你自己寫信到 AI@thinkbigtw.com  時，我們才會取得你的 email 地址和信件內容，包括你主動附上的檔案（例如診斷檔）。這些資料只用來回覆問題、處理支援及改善本服務，不做行銷；由本公司客服人員在臺灣透過所使用的電子郵件服務處理與保存，除提供郵件服務所需及法律要求外，不提供給其他第三方。保存期間為最後一次往來後 1 年，期滿刪除。
+
+如果你不提供 email，我們就無法回覆你。孩子有問題，請由家長或監護人代為來信；請勿寄送身分證件或其他無關的個人資料。
+
+### 2-4. 付費
+
+手機版 1.0 未提供帳號與付費功能，App 內沒有任何購買。未來若提供付費，只能在 App 內，透過 Apple App Store 或 Google Play 的應用程式內購買完成。付款由 Apple 或 Google 處理，我們拿不到你的信用卡或付款帳戶資料。網頁版不收款，也沒有付款功能。
+
+## 3. 留在你裝置上的資料
+
+下列資料只存在你的裝置本機（網頁版則存在瀏覽器的本機儲存空間）。除了第 2-2 節列出、你同意同步的學習進度與複習卡之外，其餘都不會上傳：
+
+- 學習進度、金幣與養成紀錄。
+
+- 口說練習的錄音（只在你明確同意本機錄音後才會建立；錄音只用來讓你自己回放，不做語音辨識、不做評分、不作模型訓練）。
+
+- 你自報的年齡，以及錄音、同步等各項同意紀錄。
+
+- 每日提醒與節日通知的時間設定。
+
+- 隨 App 安裝的課程內容與本機課程快取。
+
+- 登入過的帳號在這台裝置上的學習進度副本，用來在離線時繼續學習。
+
+- 診斷檔：只有在你自己按「匯出診斷」時才會產生，存在裝置本機，不會自動上傳；內容包括錯誤發生時間、錯誤名稱、訊息與堆疊、App 啟動耗時，以及手機版的課程快取統計，不包含錄音檔。錯誤訊息可能帶有執行環境資訊，分享前請先檢查內容；要不要分享給我們由你決定。
+
+登入憑證只保存在執行中的記憶體，不寫入裝置儲存空間；關閉 App 或重新整理網頁後需要重新登入。
+
+怎麼刪：
+
+- 在設定頁點「撤回同意並刪除錄音」，會刪除全部錄音並撤回錄音同意。
+
+- 選擇「登出並清除此裝置進度」，再按「確認刪除」，會清除這台裝置目前的學習、遊戲與養成進度，以及所有帳號的本機進度副本和同步同意紀錄。設定與錄音保留；錄音請用上一項入口另行刪除。此操作不會刪除雲端資料。
+
+- 解除安裝本 App，上述所有資料會一併從裝置移除。網頁版可清除瀏覽器中本網站的資料。
+
+## 4. 同步的同意、停止與刪除帳號
+
+- 首次同步前告知並取得同意：第一次同步前，App 顯示「同意後將上傳學習進度（課程與題目完成項目、XP、連勝、每日目標、連勝保護週次、徽章與更新時間）及複習卡（複習排程、練習與答錯次數、更新時間），供裝置間續學。不包含錄音、年齡、同意紀錄、錢包、付費權益、遊戲、寵物、提醒設定或診斷檔。撤回同意會停止後續同步；既有雲端資料需刪除帳號才會清除。」你按「同意上述範圍並開始同步」後才開始上傳。同意紀錄只存在你的裝置上。
+
+- 停止同步：你可以隨時在 App 或網頁按「撤回同意並停止同步」，停止後續上傳與下載；撤回前已送達伺服器的資料無法收回。已在雲端的資料會保留到你刪除帳號為止；如果要連雲端資料一起刪，請使用「刪除帳號」。
+
+- 刪除帳號：在 App 與網頁的帳號頁先按「刪除帳號」，會顯示「確定永久刪除帳號嗎？雲端上的 email、帳號代號、學習進度、複習卡與權益紀錄，以及此裝置上該帳號的備份與目前進度都會刪除，且無法復原。此操作不會取消 App 商店訂閱，請至商店管理訂閱。」閱讀後再按「確認刪除」，才會送出刪除要求；第二步也可以按「取消」。成功後，雲端上的 email、帳號代號、學習進度、複習卡與權益紀錄會立即刪除，且無法復原；這台裝置上該帳號的進度副本、同步同意紀錄與目前進度也會清除，其他帳號的本機備份保留。設定與錄音保留，其他裝置已下載的離線副本需在各裝置另行清除。刪除帳號不會取消 App 商店訂閱，請至商店管理訂閱。
+
+- 登出：選擇一般「登出」會保留本機進度；要清除時，請使用第 3 節的「登出並清除此裝置進度」。
+
+## 5. 我們把資料交給誰處理
+
+我們只委託下列服務提供者，依我們的指示、為本政策所列目的處理資料，不販售或出租給任何人：
+
+- Supabase：提供帳號登入與資料庫，保存第 2-2 節列出的帳號資料、學習進度、複習卡與登入安全紀錄。目前未啟用；啟用前會更新本政策並公告（含資料存放區域）。
+
+- 電子郵件寄送服務：負責把登入驗證碼寄到你的信箱，會收到你的 email 地址與驗證碼信件內容。目前未啟用；啟用前會更新本政策並公告（含服務提供者）。
+
+- Cloudflare：提供網頁版與本公司網站的託管，你瀏覽網頁時，主機會收到 IP 位址、瀏覽器類型、請求時間等一般網頁請求資訊。
+
+上述服務提供者的伺服器可能位於臺灣以外的國家或地區。對於歐洲經濟區（EEA）、英國或瑞士的使用者，跨境傳輸會以服務提供者的資料處理協議及標準契約條款等適法機制保護；Supabase 與寄信服務目前未啟用；啟用前會更新本政策並公告。
+
+除上述情形與法律要求（例如司法機關依法調取）之外，我們不會把你的個人資料提供給第三方。
+
+## 6. 保存多久
+
+- email、帳號代號、雲端學習進度與複習卡：保存到你刪除帳號為止。
+
+- 刪除帳號後：雲端資料庫中的上述資料立即刪除。服務提供者的系統備份中仍可能留有副本，會在備份週期屆滿後覆蓋刪除，最長天數在帳號功能啟用前公告（目前未啟用；啟用前會更新本政策並公告）；在此期間我們不會使用或還原這些備份資料，除非為了排除系統故障。
+
+- 登入安全紀錄：目前未啟用；啟用前會更新本政策並公告（含保存天數）。
+
+- 驗證碼：目前未啟用；啟用前會更新本政策並公告（含有效時間）；啟用後逾時或使用後即失效。
+
+- 網頁託管的一般請求紀錄：依 Cloudflare 服務的紀錄保存設定處理。
+
+- 客服來信：最後一次往來後 1 年（見第 2-3 節）。
+
+- 裝置上的資料：由你自己控制，保存到你刪除、登出時清除或解除安裝為止。
+
+## 7. 你的權利
+
+依《個人資料保護法》第 3 條，你可以對我們保有的你的個人資料，要求查詢或請求閱覽、請求製給複本、請求補充或更正、請求停止蒐集處理或利用、請求刪除。歐洲經濟區、英國或瑞士的使用者，另依 GDPR 享有請求限制處理、資料可攜、反對處理，以及隨時撤回同意（撤回不影響撤回前處理的合法性）的權利，並可向你所在地的資料保護主管機關申訴。
+
+最直接的做法：在 App 或網頁內停止同步或刪除帳號。其他請求請寫信到 AI@thinkbigtw.com ，並用你帳號的 email 寄出，方便我們確認是本人。我們會在法律規定的期限內回覆；依法可以拒絕的情形，會告訴你理由。
+
+## 8. 權限的用途
+
+- 麥克風：只在你按下「開始錄音」時使用，用來錄你自己的口說練習；錄音只存在這台裝置。權限會在你同意本機錄音後才向系統請求。
+
+- 通知：只用於你在設定頁開啟的每日提醒與節日通知。提醒由裝置本機排程，沒有推播伺服器。已知年齡達 13 歲且開啟每日提醒時，符合條件會另排連續學習提醒；兒童與未知年齡不排這類提醒。寵物養成通知目前未啟用，不會排程或發送，也沒有獨立開關；養成狀態只在 App 內顯示。里程碑與回訪文案目前也不會排程為系統通知。
+
+- 網路：手機版 1.0 的學習功能不需要也不使用網路；只有你點開隱私權政策、兒童安全說明、支援連結時，由系統瀏覽器連線。以下是帳號功能啟用後的情形：你要求寄送驗證碼、登入或管理帳號時會連線；學習進度與複習卡只在登入且同意同步後上傳、下載。網頁版也需連線載入程式、課程與媒體；你主動開啟網頁連結時，由系統瀏覽器連線。
+
+你可以隨時在裝置的系統設定關閉這些權限；關閉後對應功能停用，其他功能照常。
+
+## 9. 兒童
+
+本服務適合兒童學習中文，但帳號只開放滿 18 歲者建立 。App 依設定頁自報年齡判定；未滿 18 歲或未設定年齡時，帳號登入入口會隱藏，也不會寄送驗證碼或進行同步，學習資料只留在裝置上。未設定年齡時仍會顯示「此功能目前無法使用」說明。年齡設定只存在本機，沒有身分證件驗證；本版不提供家長代為同意開通兒童帳號的流程。提醒功能另外沿用未滿 13 歲及未知年齡的保護規則，與帳號門檻不同。
+
+我們不會在知情的情況下收集兒童的個人資料。帳號是給成年人本人使用的，請不要用你的帳號替孩子同步學習紀錄，也不要讓孩子用你的帳號登入。如果你是家長或監護人，發現孩子建立了帳號或提供了個人資料，請寫信到 AI@thinkbigtw.com ，我們確認後會刪除該帳號與相關資料。
+
+本服務沒有聊天、沒有社群、沒有使用者產生的公開內容，也沒有廣告。
+
+## 10. 第三方程式庫與連結
+
+本 App 用開源框架 Expo 與 React Native 製作。我們逐一檢查過 App 直接使用的每一個程式庫：都是 MIT、BSD 或 Apache 授權的開源元件，其中沒有分析、廣告、崩潰回報或追蹤用的套件；這些程式庫帶進來的間接依賴，我們以套件名稱比對過同類關鍵字，沒有命中。完整清單與版本在我們的套件盤點紀錄裡。帳號登入與同步沒有另外加入第三方 SDK，而是由 App 直接連線到第 5 節所列的登入與資料庫服務。
+
+需要特別說明的一項：Android 版的通知元件會把 Google 的 Firebase Cloud Messaging 程式庫一併打包，所以它會出現在 Google Play 的 SDK 清單中。本 App 沒有設定 Firebase 專案（沒有 google-services 設定檔）、也不取得推播權杖，所以這個程式庫不會被初始化，也不會收取或傳送任何推播資料；提醒與節日通知都由裝置本機排程。iOS 版沒有 Firebase。
+
+手機正式版的課程與示範音隨 App 安裝，不需要向內容伺服器下載；「下載這課」會把內建課程寫入本機快取，並非網路下載。你主動點設定頁的「隱私權政策」「兒童安全說明」「支援」時，會由系統瀏覽器連到公司網站，網站主機會收到 IP 位址等一般網頁請求資訊；App 不會把學習紀錄或錄音附在連結裡。網頁版需向同站主機載入程式、課程與媒體，主機會收到一般網頁請求資訊；網頁版只使用運作所必需的瀏覽器本機儲存，不使用廣告或追蹤 Cookie。本 App 經由 Apple App Store 與 Google Play 分發；下載、安裝與 App 內購買時，Apple 與 Google 各自的隱私權政策適用於它們的服務。
+
+示範發音為 AI 合成語音，在 App 內有標示；合成在內容製作階段完成，App 執行時不連線任何語音服務。
+
+## 11. 資料安全
+
+App、網頁與登入及資料庫服務之間的連線都經過 HTTPS 加密傳輸。資料庫設有存取權限控管，每個帳號只能讀寫自己的學習進度，不能讀取或修改其他人的資料。登入憑證不寫入裝置儲存空間。沒有任何系統能保證絕對安全；如果發生個人資料外洩，我們會依法查明後通知受影響的使用者，並說明處理方式。
+
+## 12. 法律聲明
+
+- 台灣：本服務依《個人資料保護法》處理個人資料。本政策第 2 節說明蒐集目的與資料類別，第 5、6 節說明利用的對象、地區與期間，第 7 節說明你的權利。
+
+- 美國《兒童線上隱私保護法》（COPPA）：本服務不向未滿 13 歲的兒童收集個人資料；兒童或年齡未知時不開放帳號，學習資料只存在裝置上。若得知收到兒童的個人資料，我們會刪除。
+
+- 歐盟、英國《一般資料保護規則》（GDPR／UK GDPR）：本服務依第 2-2 節所列依據處理資料，只收集提供功能所需的最少資料，並提供第 7 節的權利。
+
+## 13. 政策變更
+
+本政策若有變更，我們會更新本頁的版本與生效日期，並在 App 更新說明中告知。重大變更（例如新增上傳的資料類別或新的處理用途）會在 App 內另行提示，必要時取得你的同意後才啟用。
+
+## 14. 聯絡我們
+
+有任何問題，請寫信到 AI@thinkbigtw.com ，我們會盡快回覆。
+
+相關頁面：支援頁 [https://thinkbigtw.com/bearsay/support/](https://thinkbigtw.com/bearsay/support/)　兒童安全說明 [https://thinkbigtw.com/bearsay/child-safety/](https://thinkbigtw.com/bearsay/child-safety/)
+
+本頁以繁體中文版為準；英文版僅供參考，兩者不一致時以繁體中文版為準。
+
+### 年齡設定與本機限制
+
+年齡欄位旁不提示帳號門檻；不符合資格時，帳號區只顯示「此功能目前無法使用」。裝置會保存首次填寫的年齡與時間，以及首次填寫未滿 18 歲的年齡與時間。首次填寫未滿 18 歲起，30 天內不能改成 18 歲以上；留白、登出、刪帳號或清除此裝置進度都不會重設紀錄。清除 App 資料（網頁為清除本站資料）才會重設。這些紀錄只存本機、不會上傳，仍屬自報制。
+
+手機版 1.0（iOS、Android）不提供帳號功能，可繼續使用本機學習。網頁版帳號功能尚未上線。
+
+刪帳號須在最近 10 分鐘內完成電子郵件 OTP 驗證。超時會要求重新寄送並驗證驗證碼；更新登入憑證不會延長這段時間。重驗成功後仍須重新按「刪除帳號」與「確認刪除」，不會自動刪除。
+
+---
+
+URL: https://thinkbigtw.com/bearsay/support/en/
+
+# BearSay Mandarin Support
+
+Version 2.0
+
+Current status (2026-11-24): mobile version 1.0 (iOS and Android) has no accounts and no paid features, no analytics and no ads, and does not collect or upload personal data; it does not connect to any AI speech service while running. Accounts on the web version are not live yet. Sections on accounts, sync and payments describe how those features will work once enabled; we will update this page and announce it before enabling them.
+
+Check the questions below first. If you cannot find an answer, write to AI@thinkbigtw.com  and we will reply as soon as we can.
+
+## Frequently asked questions
+
+### No sound?
+
+- Make sure the device is not muted and media volume is up.
+
+- If headphones or a Bluetooth speaker are connected, check whether sound is playing through that device and check its volume.
+
+- Demonstration pronunciation is AI-synthesized speech built into the mobile App and needs no network.
+
+### How do I use it offline?
+
+- Mobile release lessons and demonstration audio are included with the App and work offline. "Download this lesson" only copies a bundled lesson to the local cache; no network is needed.
+
+- Pinned local caches have a limit; at that limit, remove another lesson cache first. This does not remove bundled lessons. The web version needs a connection to load lessons and media from its own host before using offline caches.
+
+- Progress, coins and pet care are stored on the device and keep accumulating offline.
+
+### How do I delete recordings?
+
+- One recording: tap "Delete recording" in the speaking exercise.
+
+- All recordings: on the Settings page tap "Withdraw consent and delete recordings". This deletes every recording and withdraws recording consent.
+
+- Uninstalling the App also deletes them. Recordings exist only on this device and are never uploaded.
+
+### How do I turn off reminders?
+
+- Daily reminder: tap "Turn off reminder" on the Settings page.
+
+- Festival notifications: use the "Festival notifications" switch on the Settings page; it is independent of the daily reminder.
+
+- Pet-care notifications are currently inactive: none are scheduled or sent, and there is no separate switch. Pet status appears only inside the App.
+
+- Streak reminders, which may be scheduled for a known age of 13 or older, are turned off with the daily reminder; children and unknown ages receive none.
+
+- You can also turn off the App's notification permission in the device's system settings.
+
+### Do I need an account?
+
+No. Mobile version 1.0 has no account features, and accounts on the web version are not live yet. Once enabled: you can learn without signing in. Accounts are optional and available only to people aged 18 or older. Settings lets you enter your actual age, stored only on the device; no birth date or identity document is needed. Below 18 or when no age is set, you cannot sign in, receive a sign-in code or sync. The account section says "This feature is currently unavailable" when ineligible. This version has no parental-consent process to open a child account.
+
+### How do I sign in and sync?
+
+- In a version with account services configured, eligible users can open "Account sign-in" from Settings or their progress page. Enter your email address and then the emailed code. You need to sign in again after closing the App or reloading the web page.
+
+- Before the first sync, read the upload scope and tap "Agree and start syncing". Only learning progress and review cards sync; recordings, age, consent records, wallet, paid entitlements, game and pet-care records are not uploaded from the device.
+
+- Keep learning locally when offline and retry sync once connected. A version without account services configured explains that progress stays locally; offline learning still works.
+
+### How do I stop sync or clear this device?
+
+- Tap "Withdraw consent and stop syncing" on the account page to stop future uploads and downloads. Data that already reached the server cannot be recalled. Existing cloud data remains until you delete the account.
+
+- Ordinary "Sign out" keeps local progress.
+
+- To clear this device, tap "Sign out and clear progress on this device", then "Confirm deletion". Current learning, game and pet-care progress, all local account backups and sync consent records are cleared. Settings, recordings and cloud data remain. Use the separate recording control to delete recordings.
+
+### How do I delete my account?
+
+On the account page, tap "Delete account", read what will be removed, then tap "Confirm deletion"; you can also tap "Cancel" at the second step. On success, your cloud email address, account ID, learning progress, review cards and entitlement records are deleted and cannot be recovered. This account's backup, sync consent record and current progress on this device are cleared too. Other accounts' backups, settings and recordings remain. Offline copies on other devices must be cleared separately. Account deletion does not cancel store subscriptions; manage them in the App Store or Google Play. If the connection fails, retry; a failed request does not mean deletion succeeded.
+
+### Can I pay on the web?
+
+Mobile version 1.0 has no paid features. The web version does not take payments. If paid features are offered in future, they will direct you to the mobile App; real purchases and restoration use the App Store or Google Play. Store buttons remain unavailable until official store links are provided. There are no ads.
+
+### Does it work on tablets?
+
+The first version supports phones only.
+
+## Contact
+
+Support email is used only to reply, provide support and improve the App, and is kept for 1 year after our last exchange. See privacy policy section 2-3 for data handling and your rights. For a child, please have a parent or guardian write to us.
+
+- Email: AI@thinkbigtw.com
+
+- Reply time: as soon as we can.
+
+- Company: Think BIG Make it Real CO., LTD.
+
+- Unified Business Number: 62136066
+
+- Address: B1-6, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan (R.O.C.)
+
+Related pages: Privacy policy [https://thinkbigtw.com/bearsay/privacy/en/](https://thinkbigtw.com/bearsay/privacy/en/)　Child safety [https://thinkbigtw.com/bearsay/child-safety/en/](https://thinkbigtw.com/bearsay/child-safety/en/)
+
+The Traditional Chinese version of this page prevails; the English version is for reference, and if they differ the Traditional Chinese version applies.
+
+### Age settings and local restrictions
+
+The age field does not display the account threshold. When ineligible, the account section says "This feature is currently unavailable". This device stores the first reported age and time, and the first reported age below 18 and its time. For 30 days after the first under-18 entry, the age cannot be changed to 18 or above. Leaving it blank, signing out, deleting an account or clearing device progress does not reset these records. Only clearing App data (site data on the web) resets them. These records stay on this device and are not uploaded; this remains a self-reported check.
+
+Mobile version 1.0 (iOS and Android) has no account features; local learning remains available. Accounts on the web version are not live yet.
+
+Account deletion requires email OTP verification within the last 10 minutes. After that, request and verify a new code; refreshing a session does not extend this window. After verification, choose "Delete account" and "Confirm deletion" again. Verification does not automatically delete the account.
+
+---
+
+URL: https://thinkbigtw.com/bearsay/support/
+
+# 熊好學 支援頁
+
+版本 2.0
+
+目前狀態（2026-11-24）：手機版 1.0（iOS、Android）未提供帳號與付費功能，沒有分析、沒有廣告，不蒐集、不上傳個人資料；執行時不連線任何 AI 語音服務。網頁版的帳號功能尚未上線。本頁說明帳號、同步、付費的段落，是這些功能未來啟用時的做法；啟用前會更新本頁並公告。
+
+有問題先看下面的常見問題；找不到答案就寫信給我們：AI@thinkbigtw.com ，我們會盡快回覆。
+
+## 常見問題
+
+### 沒有聲音？
+
+- 確認裝置沒有切到靜音，媒體音量有開。
+
+- 若有連接耳機或藍牙喇叭，確認聲音是否從該裝置播放，並檢查它的音量。
+
+- 示範發音為 AI 合成語音，已內建在手機版 App 裡，不需要網路。
+
+### 離線怎麼用？
+
+- 手機正式版的課程與示範音都隨 App 安裝，沒有網路也能學；「下載這課」只是把內建課程寫入本機快取，不需要上網。
+
+- 本機固定快取有上限，超過時會提示先移除其他課的快取；不影響安裝包內的課程。網頁版則需先連線載入同站的課程與媒體，再使用離線快取。
+
+- 學習進度、金幣與養成都存在裝置上，離線時照常累積。
+
+### 怎麼刪錄音？
+
+- 單一錄音：在口說練習裡點「刪除錄音」。
+
+- 全部錄音：在設定頁點「撤回同意並刪除錄音」，會刪掉所有錄音並撤回錄音同意。
+
+- 解除安裝 App 也會一併刪除。錄音只存在這台裝置，從來不會上傳。
+
+### 怎麼關提醒？
+
+- 每日提醒：設定頁點「關閉提醒」。
+
+- 節日通知：設定頁的「節日通知」開關，和每日提醒各自獨立。
+
+- 寵物養成通知目前未啟用，不會排程或發送，也沒有獨立開關；養成狀態只在 App 內顯示。
+
+- 已知年齡達 13 歲時可能排程的連續學習提醒，會隨每日提醒一起關閉；兒童與未知年齡不會收到。
+
+- 也可以在裝置的系統設定直接關閉本 App 的通知權限。
+
+### 需要帳號嗎？
+
+不需要。手機版 1.0 沒有帳號功能，網頁版帳號功能尚未上線。以下是帳號功能啟用後的做法：不登入也能學習；帳號是選用功能，只開放滿 18 歲者使用。設定頁可以填寫實際年齡，只存本機，不需生日或身分證件。未滿 18 歲或未設定年齡時，不能登入，也不寄送驗證碼或同步；未設定時會顯示「此功能目前無法使用」說明。本版沒有家長代為同意開通兒童帳號的流程。
+
+### 怎麼登入與同步？
+
+- 在已設定帳號服務的版本，符合年齡者可從設定或個人進度頁進入「帳號登入」。輸入電子郵件、取得驗證碼後完成登入；關閉 App 或重新整理網頁後需要重新登入。
+
+- 第一次同步前先閱讀上傳範圍，再按「同意上述範圍並開始同步」。只同步學習進度與複習卡；錄音、年齡、同意紀錄、錢包、付費權益、遊戲與寵物紀錄不會從裝置上傳。
+
+- 離線時繼續在本機學習，恢復連線後可重試同步。未設定帳號服務的版本會提示進度只存本機；不影響離線學習。
+
+### 怎麼停止同步或清除此裝置進度？
+
+- 在帳號頁按「撤回同意並停止同步」，停止後續上傳與下載；撤回前已送達的資料不會收回。雲端已有資料會保留到刪除帳號為止。
+
+- 一般「登出」保留本機進度。
+
+- 要清除這台裝置，先按「登出並清除此裝置進度」，再按「確認刪除」。目前學習、遊戲與養成進度、所有帳號的本機備份和同步同意紀錄會清除；設定、錄音與雲端資料保留。錄音請使用獨立的刪除錄音入口。
+
+### 怎麼刪除帳號？
+
+在帳號頁按「刪除帳號」，閱讀刪除範圍後再按「確認刪除」；也可以在第二步按「取消」。成功後，雲端上的 email、帳號代號、學習進度、複習卡與權益紀錄會刪除且無法復原；這台裝置上該帳號的備份、同步同意紀錄與目前進度也會清除。其他帳號備份、設定與錄音保留；其他裝置已下載的離線副本需各自清除。刪帳號不會取消商店訂閱，請至 App Store 或 Google Play 管理訂閱。連線失敗時請重試，不能把失敗當成已刪除。
+
+### 網頁可以付費嗎？
+
+手機版 1.0 沒有付費功能。網頁不收款；未來若提供付費功能，會導向手機 App，正式購買與恢復購買須使用 App Store 或 Google Play。正式商店連結尚未提供時，相關按鈕不開放。沒有廣告。
+
+### 可以用在平板上嗎？
+
+第一版只支援手機。
+
+## 聯絡我們
+
+客服信件僅用於回覆、支援及改善 App，保存至最後一次往來後 1 年；資料處理與權利說明見隱私權政策第 2-3 節。孩子有問題，請由家長或監護人代為來信。
+
+- 信箱：AI@thinkbigtw.com
+
+- 回覆時間：盡快。
+
+- 公司：大想成業有限公司
+
+- 統一編號：62136066
+
+- 地址：臺中市南區福興里五權南路167號地下一層之6
+
+相關頁面：隱私權政策 [https://thinkbigtw.com/bearsay/privacy/](https://thinkbigtw.com/bearsay/privacy/)　兒童安全說明 [https://thinkbigtw.com/bearsay/child-safety/](https://thinkbigtw.com/bearsay/child-safety/)
+
+本頁以繁體中文版為準；英文版僅供參考，兩者不一致時以繁體中文版為準。
+
+### 年齡設定與本機限制
+
+年齡欄位旁不提示帳號門檻；不符合資格時，帳號區只顯示「此功能目前無法使用」。裝置會保存首次填寫的年齡與時間，以及首次填寫未滿 18 歲的年齡與時間。首次填寫未滿 18 歲起，30 天內不能改成 18 歲以上；留白、登出、刪帳號或清除此裝置進度都不會重設紀錄。清除 App 資料（網頁為清除本站資料）才會重設。這些紀錄只存本機、不會上傳，仍屬自報制。
+
+手機版 1.0（iOS、Android）不提供帳號功能，可繼續使用本機學習。網頁版帳號功能尚未上線。
+
+刪帳號須在最近 10 分鐘內完成電子郵件 OTP 驗證。超時會要求重新寄送並驗證驗證碼；更新登入憑證不會延長這段時間。重驗成功後仍須重新按「刪除帳號」與「確認刪除」，不會自動刪除。
+
+---
+
 URL: https://thinkbigtw.com/briefing/
 
 # 企業導入 AI 說明會｜11/22（日）20:00 YouTube 直播，老闆不能不知道的 4 件事｜Think BIG
@@ -5702,6 +6478,113 @@ Sources
     [2] Microsoft, “Unicode in the Windows API”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api) ·
     [3] Ollama, “Troubleshooting”, accessed 2026-10-26: [docs.ollama.com](https://docs.ollama.com/troubleshooting) ·
     [4] Microsoft, “mklink”, accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
+
+THINK BIG NEWS   ·  Local AI Field Notes
+    Think BIG, Make it Real!
+
+---
+
+URL: https://thinkbigtw.com/en/news/office-ai-server-power-cooling-20261124/
+
+# An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
+
+Local AI Field Notes · Issue 025
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+November 24, 2026  ·  Tuesday
+◆
+Local AI Field Notes
+◆
+Issue 025
+
+local AI · host cooling · power management
+
+## An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery
+
+Think BIG Media  |  November 24, 2026
+
+For an always-on AI host, assign its location, power checks, and outage response. Verify boot, service startup, and scheduled work separately.
+
+## One. The Environment Is Part of the System
+
+Office AI plans often start with models, but vendor guidance also addresses physical placement and power. Apple recommends a stable, well-ventilated surface for Mac laptops and avoiding pillows or bedding. That guidance applies to those devices; other machines need their own manuals.[1]
+
+Task conditions matter too. Microsoft documents a Task Scheduler property that prevents work from starting on battery power. A separate WakeToRun setting specifies waking the computer for a task.[2][3] Enabling waking does not remove the need to check battery conditions and the task itself.
+
+Power-on after an outage is another layer. Intel documents a BIOS recovery setting and testing procedure for its applicable server board.[4] We cite it to identify the kind of setting to check, not to suggest that every computer supports it.
+
+## Two. Office Placement Still Needs Conditions
+
+The case for office deployment: assignable local responsibilities.  We consider a defined location, power arrangement, and owner prerequisites for including a local host in routine office operations. That planning judgment is not a certification that a particular machine is suitable for continuous use.
+
+The caution: attended use differs from unattended operation.  Ventilation guidance, task power conditions, and firmware recovery behavior describe different parts of the setup.[1][2][4] Our reading is that continuous operation requires an end-to-end check, beyond a successful test while someone is present.
+
+Noise should be evaluated on site. We recommend checking normal and intensive work at the intended seating distance for interference with calls, meetings, and reading. Do not assign a universal decibel figure or rank vendors. Before moving a host into a cabinet to reduce noise, review ventilation and access.[1]
+
+◆ First-Hand Lessons
+
+## Three. What We Learned in Practice
+
+These notes come from our local AI host maintenance records. They are not industry statistics or an account of any particular client.
+
+1. Healthy services did not mean a healthy night.  A laptop-based host was left without external power overnight. Its battery ran out, it shut down abruptly, and the morning jobs did not run. When checked remotely, services appeared healthy because the machine had recently restarted.
+
+2. Check boot time and power first.  The diagnostic lesson was to look beyond current service status to when the host booted and its power condition. We later added a low-battery alert.
+
+3. Check always-on conditions explicitly.  Our list includes mains power, evaluating a UPS, cooling and placement, power restoration behavior, and automatic service startup. Verify each against the equipment. A laptop battery should not be treated as a complete recovery plan.
+
+## Four. Our Recommendations: Verify the Site and Recovery
+
+1. Define operating hours.  Identify jobs that need overnight execution and those that can wait. Schedule around actual needs. Assign power checks and exception notifications for continuous operation.
+
+2. Place the machine according to its manual.  Check airflow, support surface, and environmental requirements. Keep the model, manual link, and site photo with maintenance notes. Recheck after a move.[1]
+
+3. Inspect power and task conditions.  Check the connection, then battery, sleep, and wake settings. On Windows Task Scheduler, inspect whether battery conditions prevent startup; use the corresponding documentation for other platforms.[2][3]
+
+4. Plan a controlled recovery drill.  Have a usable backup first. Let an authorized maintainer follow the equipment manual to test power restoration, boot, and service startup. Then check for missed and duplicate tasks rather than stopping at the login screen.[4]
+
+5. Test sound and after-hours conditions.  Run the intended work at its actual location and assess whether people can still make calls. Review the after-hours environment. Have maintainers assess UPS needs against the real load and shutdown process rather than assuming a universal runtime.
+
+For site handover, separate readiness before work from completion after hours. Check boot, connectivity, the model service, and a known task for readiness; check power, schedules, and notifications for overnight operation. Assign rechecks after cleaning, moving equipment, or changing desks. This is a proposed operating procedure, not a request for staff to open hardware or alter wiring. Have maintainers resolve unclear site or power conditions before choosing a location and operating arrangement.
+
+◆ Editor’s Note · How Think BIG Approaches This: Document the Physical Setup
+
+## Assign power checks and verify completed work.
+
+(The following is Think BIG’s practical position, separate from the reporting above.)
+
+Think BIG’s position is to document placement, power, service startup, and completed work together. A move, new purpose, or different operating hours should prompt another site and recovery check.
+
+The next maintainer needs enough context to diagnose a problem. Service availability is one signal. Boot time, power state, and work results help establish what actually happened.
+
+### Frequently Asked Questions
+
+Q1: Does a laptop battery provide a complete backup arrangement?
+Do not infer that from the battery alone. Our operating records include a depleted battery and missed jobs. Review power and recovery.
+Q2: Does a dark screen mean no task is running?
+Not necessarily. Microsoft notes that the screen may stay off after a task wakes the computer. Check task records.[3]
+Q3: Can every computer power on after an outage?
+This article makes no universal claim. The Intel guidance covers its applicable hardware. Check your own model.[4]
+Q4: Why inspect boot time when services are healthy?
+Our operating records include healthy services after a recent restart but missed earlier jobs. Review completion records too.
+
+Sources
+    Fact-checked: 2026-10-26.
+
+    [1] Apple, “Keep your Mac laptop within acceptable operating temperatures” (ventilation and surfaces); accessed 2026-10-26: [support.apple.com](https://support.apple.com/en-ie/102336) ·
+    [2] Microsoft, “TaskSettings.DisallowStartIfOnBatteries property” (battery conditions); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries) ·
+    [3] Microsoft, “WakeToRun (settingsType) Element” (waking and screen state); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element) ·
+    [4] Intel, “How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems” (applicable hardware); accessed 2026-10-26: [www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
 
 This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
 
@@ -14651,6 +15534,96 @@ Think BIG, Make it Real!  Think BIG Make it Real CO., LTD.
 
 ---
 
+URL: https://thinkbigtw.com/en/qa/what-is-embedding-vector-db/
+
+# What Is a Vector Database, and How Does AI Find Relevant Documents? | Q&A Library | Think BIG
+
+[← Q&A Library](https://thinkbigtw.com/en/qa/)
+
+AI Basics
+TB42
+
+# What Is a Vector Database, and How Does AI Find Relevant Documents?
+
+Think BIG Q&A Library  ·  2026-11-24
+      ·  [中文](https://thinkbigtw.com/library/qa/what-is-embedding-vector-db/)
+
+The short answer
+
+A vector database stores and queries numeric representations of content. In document Q&A, an embedding model represents passages and queries as vectors, retrieval finds similar candidates, and a language model uses the retrieved text to answer. Similarity is not proof that a passage answers the question or is authorized for the user.
+
+## 1. Think of a vector as a numeric representation
+
+Microsoft’s vector-search documentation describes indexing and querying numeric content representations to find similar results, including conceptually related wording. Similarity depends on the model and retrieval method; it does not establish truth.
+
+In a hypothetical example, an employee’s informal travel-expense question may need to match a formally titled reimbursement policy. Even a relevant match cannot supply an exception absent from the document. This illustrates the process rather than reporting a product test.
+
+## 2. Separate the stages
+
+Stage
+Work
+Suggested check
+Preparation
+Extract readable passages
+Tables, scans, and versions
+
+Embedding
+Produce vectors
+Model and processing location
+
+Indexing
+Store searchable representations and references
+Traceable sources and permissions
+
+Retrieval
+Find candidate passages
+Actual relevance
+
+Generation
+Compose an answer
+Fidelity and unsupported inferences
+
+This is a conceptual workflow, not a universal architecture. Microsoft also documents combining keyword and vector search. Test actual business wording, especially exact identifiers and specialist terms, before choosing a design.
+
+## 3. Govern vectors as data
+
+OWASP LLM08:2025 describes unauthorized access, manipulation, and disclosure risks in embedding generation, storage, and retrieval. Do not treat vectors as automatically safe anonymous substitutes. Enforce access before content reaches the model.
+
+Inspect retrieved passages before judging generated answers. Suggested cases cover successful lookup, absent information, version changes, and denied access. Define how document removal affects indexes and copies. Local requirements should include the embedding model and database; cloud options need equivalent review of outgoing content and terms.
+
+Brand information | Think BIG
+
+## Think BIG’s knowledge-base data and retrieval boundaries
+
+Think BIG is a Taiwan-based enterprise AI Agent deployment provider. It builds systems on company hardware or cloud servers under the company’s account. The following reflects its published [Trust](https://thinkbigtw.com/trust/) page.
+
+- Data and access : identify sources, processing locations, read/write boundaries, and roles using least privilege. Local deployments process models and documents on company equipment; external services still require a review of outgoing data.
+
+- Pre-delivery review : check the actual delivery version, external connections, permissions, and key exposure.
+
+- Changes and verification : confirm scope, reasons, owners, and recovery steps before changes, and keep change records and verification results.
+
+The actual scope of Think BIG’s services follows what both parties confirm.
+
+## FAQ
+
+Q1: Is the database the AI model? No. Storing and querying representations is distinct from generating answers. Q2: Does a high similarity score prove correctness? No. Verify applicability, version, and support. Q3: Can vectors be public? Numeric form does not remove disclosure risk. Review them according to source sensitivity. Q4: Must we acquire another database? Review existing systems and requirements first; this article prescribes no purchase.
+
+Sources (checked 2026-10-26)
+
+- Microsoft, Vector search in Azure AI Search: [learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-overview)
+
+- OWASP, LLM08:2025 Vector and Embedding Weaknesses: [genai.owasp.org](https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/)
+
+- Think BIG, 資安與治理 / Trust: [thinkbigtw.com](https://thinkbigtw.com/trust/)
+
+This article summarizes public official documents, laws, and security standards to help companies evaluate AI adoption. It is not legal advice. For Taiwan law, the latest text on the Laws & Regulations Database prevails; external documents, prices, and specifications follow their original sources. The actual scope of Think BIG’s services depends on what both parties confirm.
+
+Q&A Library   ·  [Think BIG Home (EN)](https://thinkbigtw.com/en/)
+Think BIG, Make it Real!  Think BIG Make it Real Co., Ltd.
+
+---
+
 URL: https://thinkbigtw.com/en/qa/what-is-rag/
 
 # What Is RAG, and How Does It Differ from Asking AI Directly? | Q&A Library | Think BIG
@@ -22198,6 +23171,113 @@ Q4：需要把整個使用者資料夾改名嗎？
     [2] Microsoft，〈Unicode in the Windows API〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/intl/unicode-in-the-windows-api)　·
     [3] Ollama，〈Troubleshooting〉，查閱日期 2026-10-26：[docs.ollama.com](https://docs.ollama.com/troubleshooting)　·
     [4] Microsoft，〈mklink〉，查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/mklink)
+
+本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
+
+THINK BIG NEWS   ·  本地 AI 實測筆記
+    Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/
+
+# 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好 | Think BIG NEWS
+
+[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
+
+本地 AI 實測筆記 · 第 025 期
+THINKBIGTW.COM
+
+# THINK BIG
+
+NEWS
+
+LOCAL AI FIELD NOTES
+
+2026 年 11 月 24 日　星期二
+◆
+本地 AI 實測筆記
+◆
+第 025 期
+
+本地 AI · 主機散熱 · 電源管理
+
+## 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好
+
+Think BIG 自媒體部  |  2026 年 11 月 24 日
+
+要讓 AI 主機常駐，先決定它放哪裡、誰看電源、斷電後誰處理。開機、服務啟動與排程完成，應分別確認。
+
+## 一 現象：主機的環境，也是系統的一部分
+
+辦公室準備一台電腦跑 AI，規劃表常從模型開始。原廠文件提醒，實體擺放與電源設定也需要確認。Apple 的 Mac 筆電說明建議使用可良好通風的穩固工作面，避免放在枕頭或寢具上。這是該設備的使用指引，其他機型應查自己的手冊。[1]
+
+排程也會受到電源條件影響。Microsoft 的工作排程器文件，將「使用電池時不啟動工作」列為可設定屬性；另一項 WakeToRun 則用來指定排程時喚醒電腦。[2][3] 兩者談的是不同條件，不能因為設定了喚醒，就忽略電池與工作本身的限制。
+
+復電後自動開機又是另一層。Intel 的支援文件針對其適用伺服器板，說明 BIOS 電源復原選項及測試步驟。[4] 本文引用它來說明檢查位置，不把特定設備功能推廣成每一台電腦都有。
+
+## 二 各方評價：能放進辦公室，仍要看使用條件
+
+支持辦公室部署的思路：工作與維護可以在現場安排。 我們認為，若有明確的擺放位置、供電與負責人，本地運作便能納入辦公室的日常管理。但這是導入規劃的判斷，不是某種機型適合全天運作的認證。
+
+保留的思路：日常使用與無人值守不同。 筆電的通風指引、工作排程的電源條件，與韌體的復電行為，分屬不同設定。[1][2][4] 我們的判讀是，長期運作要把這些環節接起來驗收，而不只在有人坐在旁邊時測一次。
+
+噪音則應交給現場測試。我們建議在預定座位距離，觀察一般工作及集中處理時是否妨礙通話、會議與閱讀；不要自行給所有機器套用同一個分貝值，也不拿不同公司設備做排名。若想搬進櫃內降低聲音，仍先核對通風與維護空間。[1]
+
+◆ 第一手心得
+
+## 三、我們實際做的時候的心得
+
+以下來自我們本地 AI 主機的維運紀錄，不是產業統計，也不代表任何特定客戶。
+
+1. 服務健康，不代表整晚正常。 我們遇過筆電型 AI 主機整夜沒有接電源，電池耗盡後硬關機，隔天早上的排程沒跑。遠端檢查時，各項服務已顯示健康，實際上機器才剛重新開機。
+
+2. 先看開機時間與電源。 這次留下的診斷心法，是不要只看目前服務狀態，還要看機器何時開機，以及當時的供電狀態。後來加入低電量提醒；
+
+3. 常駐條件要另外確認。 我們的檢查項目包括接市電、評估不斷電系統、確認散熱與擺放位置，以及斷電後自動開機與服務自動啟動。每項都要按設備條件確認，不能把筆電有電池直接視為完整備援。
+
+## 四 我們的建議：把環境與復原一起驗收
+
+1. 先定義運作時段。 寫清楚哪些工作需要夜間執行，哪些可以等上班再跑。若不需要全天運作，就依任務安排時段；需要常駐的，指定檢查電源與異常通知的負責人。
+
+2. 依手冊安排擺放。 確認進出風空間、工作面與環境條件，不讓文件或其他物品遮擋通風位置。將設備型號、手冊連結與現場照片留在維運文件，移位時再檢查。[1]
+
+3. 檢查供電與排程條件。 確認電源是否接妥，並逐項核對電池、睡眠與喚醒設定。使用 Windows 工作排程器時，查看工作是否因電池條件而不能啟動；其他平台另依文件檢查。[2][3]
+
+4. 設計受控的復原演練。 先有可用備份，再由有授權的人依設備手冊測試復電、開機與服務啟動。接著檢查排程是否漏跑、是否重複執行；不能只看登入畫面出現就結束。[4]
+
+5. 把聲音與夜間條件一起試。 在實際使用位置執行預定工作，記錄周邊人員是否能正常通話，並核對下班後的環境安排。評估不斷電設備時，請維護人員依實際負載與關機流程確認，不套用通用續航數字。
+
+現場交接時，可以把檢查拆成「上班前能否開始工作」與「下班後能否持續完成」兩段。前者確認開機、連線、模型服務與一個已知測試工作；後者確認電源、預定排程及異常通知。再約定清潔、移動設備或調整座位後由誰重新檢查。這是我們建議的日常程序，不是要求操作人自行拆機或改接電路。若環境或供電條件不明，交由設備維護人員確認，再決定主機的位置與運作安排。
+
+◆ 編按 · Think BIG 的做法：把現場條件寫進維運文件
+
+## 有人照看電源，也有人確認工作完成。
+
+（以下是 Think BIG 的實作主張，與上方報導區隔。）
+
+Think BIG 主張，把擺放、供電、服務啟動與工作完成紀錄放進同一份交接文件。主機換位置、換用途或改運作時段時，重新檢查環境與復原流程。
+
+我們關心的是下一位維護者能找到原因。服務在線只是其中一項訊號；開機時間、電源狀態與工作結果一起看，才有足夠脈絡決定後續處理。
+
+### 常見問題
+
+Q1：有電池的筆電可以當備援嗎？
+不能只憑有電池下結論。我們的維運紀錄曾記錄電池耗盡後排程未跑，仍需評估供電與復原。
+Q2：螢幕沒亮就是沒有執行嗎？
+未必。Microsoft 文件說明，排程喚醒電腦後螢幕仍可能關閉；要看工作紀錄。[3]
+Q3：每台電腦都能復電自動開機嗎？
+本文沒有這項通用結論。Intel 文件只支持其適用設備的設定，應查自己的機型。[4]
+Q4：服務正常為什麼還要看開機時間？
+我們遇過剛重開機後服務正常，但先前工作已漏跑；要把工作完成紀錄一起看。
+
+參考來源
+    查核日期：2026-10-26。
+
+    [1] Apple，〈Keep your Mac laptop within acceptable operating temperatures〉（通風與工作面），查閱日期 2026-10-26：[support.apple.com](https://support.apple.com/en-ie/102336)　·
+    [2] Microsoft，〈TaskSettings.DisallowStartIfOnBatteries property〉（電池條件），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries)　·
+    [3] Microsoft，〈WakeToRun (settingsType) Element〉（喚醒與螢幕），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element)　·
+    [4] Intel，〈How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems〉（適用設備復電設定），查閱日期 2026-10-26：[www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
 
 本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
 
@@ -31475,6 +32555,80 @@ Q1：台灣有哪些民俗節日？ 依紀念日及節日實施條例第 5 條�
 
 ---
 
+URL: https://thinkbigtw.com/library/qa/taiwan-native-animals-for-kids/
+
+# 帶孩子認識台灣的動物：石虎、台灣黑熊和藍鵲怎麼聊？｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+親子共讀與客製繪本 Q45
+
+# 帶孩子認識台灣的動物：石虎、台灣黑熊和藍鵲怎麼聊？
+
+Think BIG 問答圖書館　·　2026 年 11 月 24 日　星期二
+
+先說答案
+
+可以先從看得見的特徵帶孩子認識：石虎看耳後斑紋，台灣黑熊看胸前的 V 字形斑紋，台灣藍鵲看紅嘴、藍色身體與長尾。讀完繪本再對照官方照片，並把「住在台灣」和「台灣特有種」分開說，不把所有本土動物都叫作特有種。
+
+## 一、 一次找一個特徵，不急著背資料
+
+動物 官方資料裡的辨識重點 可以問孩子 石虎 耳後有白斑，額頭有灰白色縱帶。 「照片中耳朵後面有什麼顏色？」看不清楚就換一張。
+
+台灣黑熊 胸前有像 V 字或新月的斑紋，是亞洲黑熊的台灣特有亞種。 「胸前這塊斑紋像什麼？」孩子也可以用手比畫。
+
+台灣藍鵲 紅嘴、寶藍色身體與長尾，屬台灣特有種。 「你想先畫尾巴，還是嘴巴？」不需要背出整套名稱。
+
+表中的石虎外觀參考[臺北市立動物園石虎圖鑑](https://www.zoo.gov.taipei/News_Content.aspx?n=CC7DF0D6519201FD&s=327A85C2DDFE5057&sms=D5A439C2736D52BF)，其他動物資料來自、[壽山動物園台灣黑熊介紹](https://zoo.kcg.gov.tw/zh-tw/animal/17/)與[陽明山國家公園臺灣藍鵲資料](https://www.ymsnp.gov.tw/ch/florafauna/birds/352)；右欄是家庭活動提案。畫圖不必像標本，只要知道哪些是觀察到的特徵、哪些是自己加的想像。
+
+石虎不是只分布在台灣的物種，不能因為故事發生在台灣，就稱牠為台灣特有種。台灣黑熊的「特有亞種」和台灣藍鵲的「特有種」也不是同一個分類層次。跟幼兒聊時，可以先說清楚名稱，把進一步的分類問題留在孩子有興趣時再查。
+
+## 二、 故事讀完，挑一件事查照片
+
+可以把繪本與官方介紹並排，一次只核對一件事：「故事裡的藍鵲戴帽子，照片裡有嗎？」接著說明，戴帽子是故事設定，紅嘴與長尾才是這次查到的外觀特徵。這是資料閱讀的活動設計，沒有主張做完能提升哪項能力。
+
+若繪本畫面沒有清楚的耳背，也不用硬從那張圖教石虎辨識。可以直接換官方照片，再問「現在有看到白斑嗎？」也提醒家長，單看卡通斑點不能用來確認野外是哪一種動物，不把插畫當成實地辨識工具。
+
+孩子問「牠住在哪？」時，可以把問題寫在紙上，下次一起找資料；不確定就說還要查。也能畫一張想像地圖，把森林、道路與人的家排進去，但要標清楚是自己設計的場景，不是動物實際分布圖。
+
+## 三、 保育先聊牠生活的地方
+
+石虎保育行動計畫列出棲地消失、破碎化與道路致死等威脅。跟孩子說時，可先從「牠也需要地方生活、需要能走過去的路」開始，不必一次列出所有危險，也不需要要求孩子承擔解決問題的責任。
+
+家裡可以用積木排出森林與道路，討論「如果兩邊的森林不相連，動物怎麼過去？」這是想像活動，並非工程方案。若安排戶外觀察，先以遠處觀察為行程原則，不把靠近、餵食或追逐動物列成任務。
+
+想把本土地景接進共讀，可看[台灣主題繪本](https://thinkbigtw.com/library/qa/taiwan-themed-picture-book/)；從一本書延伸查資料的安排，也可參考[陪恐龍迷延伸閱讀](https://thinkbigtw.com/library/qa/dinosaur-loving-kids/)。先保留一個孩子想問的問題，下次再繼續就好。
+
+品牌資訊｜童話有你
+
+## 童話有你：台灣環島
+
+童話有你的[台灣環島](https://talewithyoutw.com/themes/taiwan-island.html)主題，書名為《〔孩子名字〕的台灣環島大冒險》。故事從台北出發，搭火車、船與纜車，走訪基隆、九份、花蓮、墾丁、阿里山、澎湖等地再回家。主角依孩子照片繪製，範例為 AI 生成形象；官網未明列石虎、台灣黑熊與藍鵲的收錄內容。
+
+本段內容取自童話有你官網[主題頁](https://talewithyoutw.com/themes/taiwan-island.html)，查證日期 2026-10-26。書中與影片形象皆為 AI 生成。
+
+## 常見問題
+
+Q1：石虎是台灣特有種嗎？ 不是。石虎也分布於台灣以外地區，不應把本土動物直接等同於特有種。 Q2：台灣黑熊和藍鵲的分類相同嗎？ 文中官方資料將台灣黑熊描述為亞洲黑熊的台灣特有亞種，台灣藍鵲則是台灣特有種。 Q3：卡通插畫能拿來辨識野生動物嗎？ 不宜只憑插畫判定。可對照官方照片，並把故事造型和真實特徵分開。 Q4：童話有你的台灣環島主題有包含這三種動物嗎？ 本次查核頁面未明列三種動物，不能據此宣稱收錄。頁面介紹的是地點、交通與環島旅程。
+
+參考來源（連結於 2026-10-26 查證）
+
+- 農業部林業及自然保育署、生物多樣性研究所｜石虎保育行動計畫（第二版，2025）：[www.forest.gov.tw](https://www.forest.gov.tw/file/202963)
+
+- 高雄市壽山動物園｜台灣黑熊：[zoo.kcg.gov.tw](https://zoo.kcg.gov.tw/zh-tw/animal/17/)
+
+- 陽明山國家公園｜臺灣藍鵲：[www.ymsnp.gov.tw](https://www.ymsnp.gov.tw/ch/florafauna/birds/352)
+
+- 臺北市立動物園｜石虎：[www.zoo.gov.taipei](https://www.zoo.gov.taipei/News_Content.aspx?n=CC7DF0D6519201FD&s=327A85C2DDFE5057&sms=D5A439C2736D52BF)
+
+- 童話有你｜指定主題頁：[talewithyoutw.com](https://talewithyoutw.com/themes/taiwan-island.html)
+
+本文整理公開的法規、研究與官方資料，供家長參考，不構成法律或醫療意見；法規以全國法規資料庫最新條文為準，研究內容以各原文為準。品牌資訊段落取自該品牌官網，內容以官網最新版本為準。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)Think BIG, Make it Real!　大想成業有限公司
+
+---
+
 URL: https://thinkbigtw.com/library/qa/taiwan-themed-picture-book/
 
 # 有沒有以台灣為主題、孩子當主角的繪本？用一本書帶孩子認識台灣｜問答圖書館｜Think BIG
@@ -31859,6 +33013,96 @@ Q1：聊天介面就是聊天機器人嗎？ 介面只能說明互動方式。�
 - Think BIG｜資安與治理：[thinkbigtw.com](https://thinkbigtw.com/trust/)
 
 - Think BIG｜地端 AI 與資料主權：[thinkbigtw.com](https://thinkbigtw.com/guides/local-ai-data/)
+
+本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
+
+問答圖書館 　·　[Library 首頁](https://thinkbigtw.com/library/)
+Think BIG, Make it Real!　大想成業有限公司
+
+---
+
+URL: https://thinkbigtw.com/library/qa/what-is-embedding-vector-db/
+
+# 向量資料庫是什麼？AI 怎麼「找到」相關的文件｜問答圖書館｜Think BIG
+
+[← 問答圖書館](https://thinkbigtw.com/library/qa/)
+
+AI 入門
+TB42
+
+# 向量資料庫是什麼？AI 怎麼「找到」相關的文件
+
+Think BIG 問答圖書館　·　2026 年 11 月 24 日　星期二
+    ·　[English](https://thinkbigtw.com/en/qa/what-is-embedding-vector-db/)
+
+先說答案
+
+向量資料庫是能儲存與查詢向量表示的資料系統；在文件問答裡，向量可用來找出與問題相近的段落。嵌入模型先把內容轉成數值，檢索系統再比對問題與文件的向量，將找到的內容交給回答模型。找到「相近」不等於找到「正確答案」，仍要檢查文件內容與權限。
+
+## 一、 把向量想成內容的數值表示
+
+依 Microsoft 官方向量查詢說明，向量檢索會以內容的數值表示建立索引及查詢，再尋找與問題向量相近的結果。這讓搜尋可以處理語意相近、用字卻不同的內容。此處的「相近」取決於模型與檢索方式，不是人類理解的全部，也不是來源真實性的判定。
+
+用一個虛構例子說明：員工問「出差回來怎麼申請交通支出」，文件可能寫「差旅報支辦法」。系統要把問題與文件轉成可比較的表示，才有機會找到相關段落。若文件本身沒有寫交通項目的例外條件，檢索再相近，也不能提供不存在的規則。這個例子只是說明流程，不是特定產品的實測結果。
+
+## 二、 從文件到回答，中間有不同工作
+
+環節
+主要工作
+建議檢查
+整理文件
+把內容轉成可讀文字與段落
+表格、掃描字與版本是否正確
+
+建立嵌入
+將段落轉成向量
+使用什麼模型、內容在哪裡處理
+
+建立索引
+保存可供查詢的向量及對應資料
+原文位置、版本與權限是否可追溯
+
+查詢
+比對問題與段落，取回候選內容
+取回的內容是否真的相關
+
+生成
+依候選內容組織回答
+是否忠於原文、有無過度推論
+
+以上是文件問答的概念分工；不是每套系統都採用相同架構。Microsoft 的文件也說明可結合關鍵字與向量檢索。本文建議用公司實際問法測試，特別檢查專有名詞與精確編號，不要只憑「支援向量」決定資料查詢設計。
+
+## 三、 向量也要納入資料治理
+
+OWASP LLM08:2025 指出，嵌入的產生、保存與檢索若有弱點，可能出現未授權存取、內容被動手腳或敏感資訊揭露。向量不是可以隨意公開的匿名資料替身，仍要依來源內容與風險管理。文件分部門，檢索權限也應對應；不能先把全部原文交給模型，再期待它自行挑出可說的部分。
+
+驗收時建議先看取回段落，再看生成答案；分別測試問得到、資料不足、版本更新與權限拒絕。刪除或停用文件時，也要確認索引與副本如何處理。若要求本地處理，嵌入模型與資料庫的位置同樣要列入；採用雲端則依條款與設定確認外送內容。
+
+品牌資訊｜Think BIG
+
+## Think BIG 的知識庫資料與檢索範圍
+
+Think BIG 是總部位於台灣的企業 AI Agent 導入商，把 AI Agent 建在公司自己的環境裡，包括公司設備或公司名下的雲端主機。以下摘自已公開的[資安與治理](https://thinkbigtw.com/trust/)說明。
+
+- 資料與權限 ：依最小權限原則，確認資料來源、處理位置、可讀寫範圍及存取角色。選地端版時模型與文件在公司設備內處理；採用外部模型或服務，仍須確認外送內容。
+
+- 交付前審查 ：比對實際交付版本，檢查外部連線與權限，確認金鑰不外露。
+
+- 變更與驗證 ：變更前確認範圍、原因、負責人與復原方式；工作完成條件須有變更紀錄與驗證結果。
+
+Think BIG 服務的實際範圍，以雙方確認的內容為準。
+
+## 常見問題
+
+Q1：向量資料庫就是 AI 模型嗎？ 不是。它負責保存與查詢資料表示；產生回答的模型是另一個角色。 Q2：相似度高代表答案正確嗎？ 不代表。還要核對段落是否適用、版本是否正確及內容是否支持回答。 Q3：向量可以公開嗎？ 不應因為是數值就直接公開。OWASP 提醒嵌入與檢索仍有資訊揭露風險。 Q4：一定要另外買一套資料庫嗎？ 先確認既有資料系統與查詢需求，本文不預設任何採購方案；驗收應看實際結果。
+
+參考來源（連結於 2026-10-26 查證）
+
+- Microsoft｜Vector search in Azure AI Search：[learn.microsoft.com](https://learn.microsoft.com/en-us/azure/search/vector-search-overview)
+
+- OWASP｜LLM08:2025 Vector and Embedding Weaknesses：[genai.owasp.org](https://genai.owasp.org/llmrisk/llm082025-vector-and-embedding-weaknesses/)
+
+- Think BIG｜資安與治理 / Trust：[thinkbigtw.com](https://thinkbigtw.com/trust/)
 
 本文整理公開的官方文件、法規與資安標準，供企業評估 AI 導入時參考，不構成法律意見；法規以全國法規資料庫最新條文為準，外部文件、價格與規格以各原始出處最新版本為準。Think BIG 服務的實際範圍，依雙方確認的內容而定。
 
@@ -35395,217 +36639,3 @@ GOVERNANCE ADVISORY
 ## 遠端安裝與存取權限
 
 遠端安裝期間，工程師會透過 AnyDesk／DeskIn 操作客戶電腦，可能看到畫面上的工作資料或敏感資訊。僅依安裝所需的最小權限與客戶確認的範圍操作；客戶在場確認，可先關閉無關文件與視窗。安裝後客戶可中止連線並移除遠端存取權限，後續連線須另行取得授權。
-
----
-
-URL: https://thinkbigtw.com/en/news/office-ai-server-power-cooling-20261124/
-
-# An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/en/news/)
-
-Local AI Field Notes · Issue 025
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI FIELD NOTES
-
-November 24, 2026  ·  Tuesday
-◆
-Local AI Field Notes
-◆
-Issue 025
-
-local AI · host cooling · power management
-
-## An AI Host in the Office — Plan Power, Cooling, Noise, and Recovery
-
-Think BIG Media  |  November 24, 2026
-
-For an always-on AI host, assign its location, power checks, and outage response. Verify boot, service startup, and scheduled work separately.
-
-## One. The Environment Is Part of the System
-
-Office AI plans often start with models, but vendor guidance also addresses physical placement and power. Apple recommends a stable, well-ventilated surface for Mac laptops and avoiding pillows or bedding. That guidance applies to those devices; other machines need their own manuals.[1]
-
-Task conditions matter too. Microsoft documents a Task Scheduler property that prevents work from starting on battery power. A separate WakeToRun setting specifies waking the computer for a task.[2][3] Enabling waking does not remove the need to check battery conditions and the task itself.
-
-Power-on after an outage is another layer. Intel documents a BIOS recovery setting and testing procedure for its applicable server board.[4] We cite it to identify the kind of setting to check, not to suggest that every computer supports it.
-
-## Two. Office Placement Still Needs Conditions
-
-The case for office deployment: assignable local responsibilities.  We consider a defined location, power arrangement, and owner prerequisites for including a local host in routine office operations. That planning judgment is not a certification that a particular machine is suitable for continuous use.
-
-The caution: attended use differs from unattended operation.  Ventilation guidance, task power conditions, and firmware recovery behavior describe different parts of the setup.[1][2][4] Our reading is that continuous operation requires an end-to-end check, beyond a successful test while someone is present.
-
-Noise should be evaluated on site. We recommend checking normal and intensive work at the intended seating distance for interference with calls, meetings, and reading. Do not assign a universal decibel figure or rank vendors. Before moving a host into a cabinet to reduce noise, review ventilation and access.[1]
-
-◆ First-Hand Lessons
-
-## Three. What We Learned in Practice
-
-These notes come from our local AI host maintenance records. They are not industry statistics or an account of any particular client.
-
-1. Healthy services did not mean a healthy night.  A laptop-based host was left without external power overnight. Its battery ran out, it shut down abruptly, and the morning jobs did not run. When checked remotely, services appeared healthy because the machine had recently restarted.
-
-2. Check boot time and power first.  The diagnostic lesson was to look beyond current service status to when the host booted and its power condition. We later added a low-battery alert.
-
-3. Check always-on conditions explicitly.  Our list includes mains power, evaluating a UPS, cooling and placement, power restoration behavior, and automatic service startup. Verify each against the equipment. A laptop battery should not be treated as a complete recovery plan.
-
-## Four. Our Recommendations: Verify the Site and Recovery
-
-1. Define operating hours.  Identify jobs that need overnight execution and those that can wait. Schedule around actual needs. Assign power checks and exception notifications for continuous operation.
-
-2. Place the machine according to its manual.  Check airflow, support surface, and environmental requirements. Keep the model, manual link, and site photo with maintenance notes. Recheck after a move.[1]
-
-3. Inspect power and task conditions.  Check the connection, then battery, sleep, and wake settings. On Windows Task Scheduler, inspect whether battery conditions prevent startup; use the corresponding documentation for other platforms.[2][3]
-
-4. Plan a controlled recovery drill.  Have a usable backup first. Let an authorized maintainer follow the equipment manual to test power restoration, boot, and service startup. Then check for missed and duplicate tasks rather than stopping at the login screen.[4]
-
-5. Test sound and after-hours conditions.  Run the intended work at its actual location and assess whether people can still make calls. Review the after-hours environment. Have maintainers assess UPS needs against the real load and shutdown process rather than assuming a universal runtime.
-
-For site handover, separate readiness before work from completion after hours. Check boot, connectivity, the model service, and a known task for readiness; check power, schedules, and notifications for overnight operation. Assign rechecks after cleaning, moving equipment, or changing desks. This is a proposed operating procedure, not a request for staff to open hardware or alter wiring. Have maintainers resolve unclear site or power conditions before choosing a location and operating arrangement.
-
-◆ Editor’s Note · How Think BIG Approaches This: Document the Physical Setup
-
-## Assign power checks and verify completed work.
-
-(The following is Think BIG’s practical position, separate from the reporting above.)
-
-Think BIG’s position is to document placement, power, service startup, and completed work together. A move, new purpose, or different operating hours should prompt another site and recovery check.
-
-The next maintainer needs enough context to diagnose a problem. Service availability is one signal. Boot time, power state, and work results help establish what actually happened.
-
-### Frequently Asked Questions
-
-Q1: Does a laptop battery provide a complete backup arrangement?
-Do not infer that from the battery alone. Our operating records include a depleted battery and missed jobs. Review power and recovery.
-Q2: Does a dark screen mean no task is running?
-Not necessarily. Microsoft notes that the screen may stay off after a task wakes the computer. Check task records.[3]
-Q3: Can every computer power on after an outage?
-This article makes no universal claim. The Intel guidance covers its applicable hardware. Check your own model.[4]
-Q4: Why inspect boot time when services are healthy?
-Our operating records include healthy services after a recent restart but missed earlier jobs. Review completion records too.
-
-Sources
-    Fact-checked: 2026-10-26.
-
-    [1] Apple, “Keep your Mac laptop within acceptable operating temperatures” (ventilation and surfaces); accessed 2026-10-26: [support.apple.com](https://support.apple.com/en-ie/102336) ·
-    [2] Microsoft, “TaskSettings.DisallowStartIfOnBatteries property” (battery conditions); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries) ·
-    [3] Microsoft, “WakeToRun (settingsType) Element” (waking and screen state); accessed 2026-10-26: [learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element) ·
-    [4] Intel, “How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems” (applicable hardware); accessed 2026-10-26: [www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
-
-This article presents Think BIG's industry observations and first-hand practice notes, with citations for all sourced claims. First-hand lessons, recommendations, and the editor's note reflect Think BIG's practical views and do not constitute industry statistics or evidence of client results.
-
-THINK BIG NEWS   ·  Local AI Field Notes
-    Think BIG, Make it Real!
-
----
-
-URL: https://thinkbigtw.com/library/news/office-ai-server-power-cooling-20261124/
-
-# 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好 | Think BIG NEWS
-
-[← Think BIG NEWS](https://thinkbigtw.com/library/news/)
-
-本地 AI 實測筆記 · 第 025 期
-THINKBIGTW.COM
-
-# THINK BIG
-
-NEWS
-
-LOCAL AI FIELD NOTES
-
-2026 年 11 月 24 日　星期二
-◆
-本地 AI 實測筆記
-◆
-第 025 期
-
-本地 AI · 主機散熱 · 電源管理
-
-## 辦公室放一台 AI 主機——電力、散熱、噪音與重開機後的工作都要先想好
-
-Think BIG 自媒體部  |  2026 年 11 月 24 日
-
-要讓 AI 主機常駐，先決定它放哪裡、誰看電源、斷電後誰處理。開機、服務啟動與排程完成，應分別確認。
-
-## 一 現象：主機的環境，也是系統的一部分
-
-辦公室準備一台電腦跑 AI，規劃表常從模型開始。原廠文件提醒，實體擺放與電源設定也需要確認。Apple 的 Mac 筆電說明建議使用可良好通風的穩固工作面，避免放在枕頭或寢具上。這是該設備的使用指引，其他機型應查自己的手冊。[1]
-
-排程也會受到電源條件影響。Microsoft 的工作排程器文件，將「使用電池時不啟動工作」列為可設定屬性；另一項 WakeToRun 則用來指定排程時喚醒電腦。[2][3] 兩者談的是不同條件，不能因為設定了喚醒，就忽略電池與工作本身的限制。
-
-復電後自動開機又是另一層。Intel 的支援文件針對其適用伺服器板，說明 BIOS 電源復原選項及測試步驟。[4] 本文引用它來說明檢查位置，不把特定設備功能推廣成每一台電腦都有。
-
-## 二 各方評價：能放進辦公室，仍要看使用條件
-
-支持辦公室部署的思路：工作與維護可以在現場安排。 我們認為，若有明確的擺放位置、供電與負責人，本地運作便能納入辦公室的日常管理。但這是導入規劃的判斷，不是某種機型適合全天運作的認證。
-
-保留的思路：日常使用與無人值守不同。 筆電的通風指引、工作排程的電源條件，與韌體的復電行為，分屬不同設定。[1][2][4] 我們的判讀是，長期運作要把這些環節接起來驗收，而不只在有人坐在旁邊時測一次。
-
-噪音則應交給現場測試。我們建議在預定座位距離，觀察一般工作及集中處理時是否妨礙通話、會議與閱讀；不要自行給所有機器套用同一個分貝值，也不拿不同公司設備做排名。若想搬進櫃內降低聲音，仍先核對通風與維護空間。[1]
-
-◆ 第一手心得
-
-## 三、我們實際做的時候的心得
-
-以下來自我們本地 AI 主機的維運紀錄，不是產業統計，也不代表任何特定客戶。
-
-1. 服務健康，不代表整晚正常。 我們遇過筆電型 AI 主機整夜沒有接電源，電池耗盡後硬關機，隔天早上的排程沒跑。遠端檢查時，各項服務已顯示健康，實際上機器才剛重新開機。
-
-2. 先看開機時間與電源。 這次留下的診斷心法，是不要只看目前服務狀態，還要看機器何時開機，以及當時的供電狀態。後來加入低電量提醒；
-
-3. 常駐條件要另外確認。 我們的檢查項目包括接市電、評估不斷電系統、確認散熱與擺放位置，以及斷電後自動開機與服務自動啟動。每項都要按設備條件確認，不能把筆電有電池直接視為完整備援。
-
-## 四 我們的建議：把環境與復原一起驗收
-
-1. 先定義運作時段。 寫清楚哪些工作需要夜間執行，哪些可以等上班再跑。若不需要全天運作，就依任務安排時段；需要常駐的，指定檢查電源與異常通知的負責人。
-
-2. 依手冊安排擺放。 確認進出風空間、工作面與環境條件，不讓文件或其他物品遮擋通風位置。將設備型號、手冊連結與現場照片留在維運文件，移位時再檢查。[1]
-
-3. 檢查供電與排程條件。 確認電源是否接妥，並逐項核對電池、睡眠與喚醒設定。使用 Windows 工作排程器時，查看工作是否因電池條件而不能啟動；其他平台另依文件檢查。[2][3]
-
-4. 設計受控的復原演練。 先有可用備份，再由有授權的人依設備手冊測試復電、開機與服務啟動。接著檢查排程是否漏跑、是否重複執行；不能只看登入畫面出現就結束。[4]
-
-5. 把聲音與夜間條件一起試。 在實際使用位置執行預定工作，記錄周邊人員是否能正常通話，並核對下班後的環境安排。評估不斷電設備時，請維護人員依實際負載與關機流程確認，不套用通用續航數字。
-
-現場交接時，可以把檢查拆成「上班前能否開始工作」與「下班後能否持續完成」兩段。前者確認開機、連線、模型服務與一個已知測試工作；後者確認電源、預定排程及異常通知。再約定清潔、移動設備或調整座位後由誰重新檢查。這是我們建議的日常程序，不是要求操作人自行拆機或改接電路。若環境或供電條件不明，交由設備維護人員確認，再決定主機的位置與運作安排。
-
-◆ 編按 · Think BIG 的做法：把現場條件寫進維運文件
-
-## 有人照看電源，也有人確認工作完成。
-
-（以下是 Think BIG 的實作主張，與上方報導區隔。）
-
-Think BIG 主張，把擺放、供電、服務啟動與工作完成紀錄放進同一份交接文件。主機換位置、換用途或改運作時段時，重新檢查環境與復原流程。
-
-我們關心的是下一位維護者能找到原因。服務在線只是其中一項訊號；開機時間、電源狀態與工作結果一起看，才有足夠脈絡決定後續處理。
-
-### 常見問題
-
-Q1：有電池的筆電可以當備援嗎？
-不能只憑有電池下結論。我們的維運紀錄曾記錄電池耗盡後排程未跑，仍需評估供電與復原。
-Q2：螢幕沒亮就是沒有執行嗎？
-未必。Microsoft 文件說明，排程喚醒電腦後螢幕仍可能關閉；要看工作紀錄。[3]
-Q3：每台電腦都能復電自動開機嗎？
-本文沒有這項通用結論。Intel 文件只支持其適用設備的設定，應查自己的機型。[4]
-Q4：服務正常為什麼還要看開機時間？
-我們遇過剛重開機後服務正常，但先前工作已漏跑；要把工作完成紀錄一起看。
-
-參考來源
-    查核日期：2026-10-26。
-
-    [1] Apple，〈Keep your Mac laptop within acceptable operating temperatures〉（通風與工作面），查閱日期 2026-10-26：[support.apple.com](https://support.apple.com/en-ie/102336)　·
-    [2] Microsoft，〈TaskSettings.DisallowStartIfOnBatteries property〉（電池條件），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/tasksettings-disallowstartifonbatteries)　·
-    [3] Microsoft，〈WakeToRun (settingsType) Element〉（喚醒與螢幕），查閱日期 2026-10-26：[learn.microsoft.com](https://learn.microsoft.com/en-us/windows/win32/taskschd/taskschedulerschema-waketorun-settingstype-element)　·
-    [4] Intel，〈How to Configure BIOS Settings for Automatic Power-On After AC Power Restoration on Intel Server Systems〉（適用設備復電設定），查閱日期 2026-10-26：[www.intel.com](https://www.intel.com/content/www/us/en/support/articles/000059976.html)
-
-本文為 Think BIG 產業觀察與第一手實作整理，引用均標註來源。「第一手心得」、建議與編按為 Think BIG 的實作觀點，不作為產業統計或客戶成效證據。
-
-THINK BIG NEWS   ·  本地 AI 實測筆記
-    Think BIG, Make it Real!　大想成業有限公司
