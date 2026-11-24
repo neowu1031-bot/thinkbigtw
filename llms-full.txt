@@ -6815,6 +6815,8 @@ Last updated: November 10, 2026
 
 Think BIG Make it Real CO., LTD. (大想成業有限公司), Taiwan (R.O.C.), Unified Business No. 62136066, B1-6, No. 167, Wuquan S. Rd., Fuxing Vil., South Dist., Taichung City 402011, Taiwan; AI@thinkbigtw.com  (“we”). This Policy covers thinkbigtw.com and our Services. We comply with Taiwan’s Personal Data Protection Act and, where it applies to you, the EU/UK GDPR (see Section 10).
 
+Providing the information we ask for is your choice. If you do not, we may not be able to answer your enquiry or deliver the related service, but you can still browse this site.
+
 ## 2. Data we collect
 
 Identity and contact: name, email, phone / WhatsApp handle, company name and business ID. Billing: order and invoice records; card details are handled by our payment provider and we do not store full card numbers. Technical: IP address, browser type, cookies, pages viewed. Enquiry data: what you type into our enquiry forms and AI assistant.
@@ -6830,6 +6832,19 @@ We use these service providers: ECPay (payments and e-invoices, Taiwan), Google 
 ## 5. Cookies and analytics
 
 We use Google Analytics 4 to count visits, pages, time on page and conversions (for example, an enquiry form sent). You can opt out with the [Google Analytics opt-out browser add-on](https://tools.google.com/dlpage/gaoptout) or by blocking third-party cookies. While we run ads, we use the Meta Pixel to measure ad clicks and conversions; you can manage this in [Meta ad preferences](https://www.facebook.com/help/568137493302217). The Pixel does not load when no ads are running.
+
+### Cookies and browser storage we use
+
+Name Set by Purpose Duration When it is used
+_ga Google (our domain) Tells visitors apart for traffic statistics About 13 months (400 days measured in browser) When you allow analytics cookies (in the EU, UK and similar regions only after you click Accept)
+
+_ga_7V41XYLLP5 Google (our domain) Keeps session state for traffic statistics About 13 months (400 days measured in browser) Same as above
+
+_fbp Meta (our domain) Measures advertising performance About 3 months Not used today; it will be used only if we run ads in future and you have consented
+
+tb_consent Us (browser localStorage, not a cookie) Remembers whether you chose Accept or Decline Until you clear your browser's site data or choose again When you make a choice; it stays on your device and is not sent to us
+
+How to change your choice: select Cookie settings  (or add #cookie-settings to the page address) to reopen the choice box and press Accept or Decline again. You can also clear your browser's site data and choose again on your next visit. Declining analytics cookies does not affect your use of the site.
 
 ## 6. Our website AI assistant and enquiry summaries
 
@@ -34189,7 +34204,7 @@ URL: https://thinkbigtw.com/privacy.html
 
 更新日期：2026-11-10　[English version](https://thinkbigtw.com/en/privacy/)
 
-大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。使用本網站或服務,即表示您已閱讀並同意本政策。
+大想成業有限公司(統一編號 62136066,以下稱「本公司」)重視您的隱私權。本政策說明本公司於 thinkbigtw.com 網站及所提供之各項服務(包括企業 AI 導入、個人 AI 助理等)中,如何蒐集、處理及利用您的個人資料。提供本公司服務所需的資料(例如聯絡方式、需求內容)為您的自由選擇;若不提供,本公司可能無法回覆您的詢問或提供相關服務,但仍可瀏覽本網站。請在提供資料前閱讀本政策;若有疑問,歡迎來信詢問。
 
 ## 一、蒐集之個人資料類別
 
@@ -34224,6 +34239,19 @@ URL: https://thinkbigtw.com/privacy.html
 ### Meta 像素（Facebook Pixel）
 
 本網站在廣告投放期間使用 Meta 像素，追蹤廣告點擊與轉換（如諮詢表單送出），以評估廣告成效。資料由 Meta Platforms, Inc. 依其資料政策處理。如需退出，可至 [Meta 廣告偏好設定](https://www.facebook.com/help/568137493302217) 管理廣告追蹤，或使用瀏覽器的 Do Not Track 功能。未投放廣告期間，像素不會載入。
+
+### Cookie 與瀏覽器儲存清單
+
+名稱 提供者 用途 保存期間 何時使用
+_ga Google（本網站網域） 區分不同訪客，用於流量統計 約 13 個月（瀏覽器實測 400 天） 您允許統計類 Cookie 時（歐盟、英國等地區須先按「接受」）
+
+_ga_7V41XYLLP5 Google（本網站網域） 保存工作階段狀態，用於流量統計 約 13 個月（瀏覽器實測 400 天） 同上
+
+_fbp Meta（本網站網域） 廣告成效衡量 約 3 個月 目前未使用；日後投放廣告並取得您的同意後才會啟用
+
+tb_consent 本公司（瀏覽器 localStorage，非 Cookie） 記住您在 Cookie 橫幅選擇「接受」或「拒絕」 直到您清除瀏覽器網站資料或重新選擇 您做出選擇時；僅存於您的裝置，不傳送給本公司
+
+如何更改同意選擇：點選 Cookie 設定 （或在網址後加上 #cookie-settings）即可重新開啟選擇視窗，改按「接受」或「拒絕」；您也可以清除瀏覽器的網站資料，下次造訪時重新選擇。拒絕統計類 Cookie 不影響瀏覽本網站。
 
 ## 五、資料安全
 
