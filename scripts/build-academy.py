@@ -37,7 +37,29 @@ def chrome(root):
             g(r'<script src="/ask-ai\.js[^"]*" defer></script>'))
 
 
-STYLE = '<style>.ac{max-width:760px;margin:0 auto;padding:32px 20px 64px;line-height:1.8}.ac h1{line-height:1.3}.ac .lead{color:#5a635f}.ac .vid{position:relative;aspect-ratio:16/9;margin:24px 0;background:#000;border-radius:12px;overflow:hidden}.ac .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}.ac pre{white-space:pre-wrap;background:#f3f3ef;padding:14px;border-radius:8px}.ac .cta{margin-top:40px;padding:20px;background:#e3ece9;border-radius:12px}.ac ol.refs{font-size:.92em;color:#5a635f}.ac ul.eps{list-style:none;padding:0}.ac ul.eps li{padding:12px 0;border-bottom:1px solid #daded7}</style>'
+STYLE = '<style>.ac{max-width:760px;margin:0 auto;padding:32px 20px 64px;line-height:1.8}.ac h1{line-height:1.3}.ac .lead{color:#5a635f}.ac .vid{position:relative;aspect-ratio:16/9;margin:24px 0;background:#000;border-radius:12px;overflow:hidden}.ac .vid iframe,.ac .vid-play{position:absolute;inset:0;width:100%;height:100%;border:0}.ac .vid-play{padding:0;margin:0;background:#000;cursor:pointer;display:block}.ac .vid-play img{width:100%;height:100%;object-fit:cover;display:block}.ac .vid-btn{position:absolute;left:50%;top:50%;width:68px;height:48px;margin:-24px 0 0 -34px;border-radius:12px;background:rgba(47,52,50,.86);box-shadow:0 0 0 2px #eea4bb}.ac .vid-btn:after{content:'';position:absolute;left:27px;top:14px;border-style:solid;border-width:10px 0 10px 17px;border-color:transparent transparent transparent #fff}.ac .vid-play:hover .vid-btn,.ac .vid-play:focus-visible .vid-btn{background:#eea4bb}.ac .vid-play:focus-visible{outline:3px solid #eea4bb;outline-offset:2px}.ac pre{white-space:pre-wrap;background:#f3f3ef;padding:14px;border-radius:8px}.ac .cta{margin-top:40px;padding:20px;background:#e3ece9;border-radius:12px}.ac ol.refs{font-size:.92em;color:#5a635f}.ac ul.eps{list-style:none;padding:0}.ac ul.eps li{padding:12px 0;border-bottom:1px solid #daded7}</style>'
+
+
+THUMB_DIR = 'assets/academy/thumbs'
+# Click-to-load player: no request to YouTube until the visitor presses play.
+PLAYER_JS = '<script>document.addEventListener("click",function(ev){var b=ev.target.closest&&ev.target.closest(".vid-play");if(!b)return;var f=document.createElement("iframe");f.src="https://www.youtube-nocookie.com/embed/"+b.dataset.yt+"?autoplay=1&rel=0";f.title=b.dataset.title||"";f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen";f.allowFullscreen=true;f.referrerPolicy="strict-origin-when-cross-origin";b.replaceWith(f);f.focus();});</script>'
+
+
+def thumb_url(root, e):
+    """Self-hosted thumbnail (assets/academy/thumbs/<youtube_id>.webp); fall back to the YouTube CDN URL only in JSON-LD."""
+    if (root / THUMB_DIR / f"{e['youtube_id']}.webp").exists():
+        return f"{BASE}/{THUMB_DIR}/{e['youtube_id']}.webp"
+    return f"https://i.ytimg.com/vi/{e['youtube_id']}/hqdefault.jpg"
+
+
+def video_facade(root, e):
+    yid = e['youtube_id']
+    has = (root / THUMB_DIR / f'{yid}.webp').exists()
+    if not has:
+        print(f'warning: missing self-hosted thumbnail {THUMB_DIR}/{yid}.webp (player shows a plain black frame)')
+    img = f'<img src="/{THUMB_DIR}/{yid}.webp" alt="" width="960" height="540" decoding="async">' if has else ''
+    return (f'<div class="vid"><button type="button" class="vid-play" data-yt="{esc(yid)}" data-title="{esc(e["title"])}" '
+            f'aria-label="播放影片：{esc(e["title"])}">{img}<span class="vid-btn" aria-hidden="true"></span></button></div>')
 
 
 def page(root, title, desc, canonical, body, ld=None):
@@ -87,16 +109,17 @@ def episode_html(root, e, prev, nxt):
     body = f'''<p><a href="/library/academy/">← 陪你跟上 AI</a></p>
 <h1>{esc(e['title'])}</h1>
 <p class="lead">{esc(e['summary'])}</p>
-<div class="vid"><iframe src="https://www.youtube-nocookie.com/embed/{e['youtube_id']}" title="{esc(e['title'])}" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+{video_facade(root, e)}
 <p class="lead">本集影像與配音為 AI 生成。</p>
 <h2>本集重點</h2><ul>{pts}</ul>
 {('<h2>術語小卡</h2><ul>' + terms + '</ul>') if terms else ''}
 {tip_html}
 {('<h2>參考資料</h2><ol class="refs">' + refs + '</ol>') if refs else ''}
 <p>{nav}</p>
-{CTA}'''
+{CTA}
+{PLAYER_JS}'''
     ld = {'@context': 'https://schema.org', '@type': 'VideoObject', 'name': e['title'], 'description': e['summary'], 'uploadDate': e['date'] + 'T00:00:00+08:00',
-          'thumbnailUrl': f"https://i.ytimg.com/vi/{e['youtube_id']}/hqdefault.jpg", 'embedUrl': f"https://www.youtube-nocookie.com/embed/{e['youtube_id']}"}
+          'thumbnailUrl': thumb_url(root, e), 'embedUrl': f"https://www.youtube-nocookie.com/embed/{e['youtube_id']}"}
     return page(root, e['title'], e['summary'][:150], url, body, ld)
 
 
