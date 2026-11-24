@@ -84,6 +84,7 @@
     if (location.hash === '#cookie-settings' || (!stored() && inConsentRegion())) show();
     runQueue();
   }
+  document.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('a[href="#cookie-settings"]'); if (a) { e.preventDefault(); show(); } });
   window.addEventListener('hashchange', function () { if (location.hash === '#cookie-settings') show(); });
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
