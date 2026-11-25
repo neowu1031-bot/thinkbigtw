@@ -11800,6 +11800,18 @@ Think BIG Q&A Library
 AI Basics
 Updated 2026-11-24
 
+AI Governance & Regulation TB43
+
+## [Can AI Screen Resumes? What About Fairness and Personal Data?](https://thinkbigtw.com/en/qa/ai-resume-screening-risks/)
+
+AI-assisted resume organization can be evaluated, but screening requires review…
+
+[Read full answer →](https://thinkbigtw.com/en/qa/ai-resume-screening-risks/)
+
+Think BIG Q&A Library
+AI Governance & Regulation
+Updated 2026-11-25
+
 Enterprise AI Security TB27
 
 ## [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
@@ -27930,6 +27942,30 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+法規與治理 TB43
+
+## [可以用 AI 篩履歷嗎？公平與個資要注意什麼](https://thinkbigtw.com/library/qa/ai-resume-screening-risks/)
+
+可以評估用 AI 協助整理履歷，但是否能用於篩選，要看資料處理依據、判斷條件與適用規範；不宜直接把模型排序當成錄取或淘汰決定。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/ai-resume-screening-risks/)
+
+Think BIG 問答圖書館
+法規與治理
+更新 2026-11-25
+
+親子共讀與客製繪本 Q46
+
+## [新住民家庭怎麼共讀？用爸媽的母語讀故事](https://thinkbigtw.com/library/qa/new-immigrant-family-reading/)
+
+新住民家庭可以用爸媽最自在的母語陪孩子讀故事，也能看圖講述，不必為了共讀先把華語練得很標準。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/new-immigrant-family-reading/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-25
 
 AI 入門 TB42
 
