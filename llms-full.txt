@@ -11831,6 +11831,18 @@ Think BIG Q&A Library
 Local LLM
 Updated 2026-11-26
 
+Local LLM TB45
+
+## [Can a Local Model Understand Images? Business Uses and Limits of Multimodal AI](https://thinkbigtw.com/en/qa/multimodal-local-llm/)
+
+Yes, if the model supports image input and the local runtime is compatible.
+
+[Read full answer →](https://thinkbigtw.com/en/qa/multimodal-local-llm/)
+
+Think BIG Q&A Library
+Local LLM
+Updated 2026-11-27
+
 Enterprise AI Security TB27
 
 ## [How Should a Company Classify Data Before Using AI?](https://thinkbigtw.com/en/qa/data-classification-for-ai/)
@@ -27961,6 +27973,30 @@ Q & A Library
 # 問答圖書館
 
 把你想讓 AI 記住的正確答案，整理成一則一則的問答。每一則都有明確出處、可查證；與客戶合作的內容，我們都會清楚標示。
+
+本地大模型 TB45
+
+## [本地模型看得懂圖片嗎？多模態 AI 在公司的用途與限制](https://thinkbigtw.com/library/qa/multimodal-local-llm/)
+
+可以，但要選支援影像輸入的模型，並搭配相容的本地執行環境；只有文字功能的模型，不能因為裝在公司電腦就直接看圖。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/multimodal-local-llm/)
+
+Think BIG 問答圖書館
+本地大模型
+更新 2026-11-27
+
+親子共讀與客製繪本 Q48
+
+## [孩子聽故事坐不住，正常嗎？邊動邊聽也可以](https://thinkbigtw.com/library/qa/kids-who-cant-sit-still-reading/)
+
+孩子聽故事坐不住，不能只憑這一次表現判斷發展或診斷疾病；可以先縮短段落、減少干擾，讓他用指圖、翻頁或模仿動作參與。
+
+[看完整解答與出處 →](https://thinkbigtw.com/library/qa/kids-who-cant-sit-still-reading/)
+
+Think BIG 問答圖書館
+完整解答
+更新 2026-11-27
 
 本地大模型 TB44
 
